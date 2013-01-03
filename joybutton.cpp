@@ -127,11 +127,7 @@ void JoyButton::reset()
     isDown = false;
     useMouse = false;
     useTurbo = false;
-
-    if (timer)
-    {
-        timer->stop();
-    }
+    timer->stop();
 }
 
 void JoyButton::reset(int index)
@@ -220,6 +216,8 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
+        reset();
+
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {

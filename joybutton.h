@@ -24,8 +24,6 @@ public:
     int getMouse();
     bool getToggleState();
     int getTurboInterval();
-    void reset();
-    void reset(int index);
     void setUseMouse(bool useMouse);
     bool isUsingMouse();
     void setUseTurbo(bool useTurbo);
@@ -63,6 +61,8 @@ signals:
 public slots:
     void setTurboInterval (int interval);
     void setToggle (bool toggle);
+    virtual void reset();
+    virtual void reset(int index);
 
 private slots:
     void turboEvent();

@@ -21,43 +21,17 @@ const float JoyAxis::JOYSPEED = 20.0;
 JoyAxis::JoyAxis(QObject *parent) :
     QObject(parent)
 {
-    index = 0;
-    deadZone = 5000;
-    isActive = false;
-    mouseSpeed = 20;
-    axisMode = KeyboardAxis;
     timer = new QTimer ();
-    interval = QTime ();
-    eventActive = false;
-    currentValue = 0;
-    maxZoneValue = 30000;
-    throttle = 0;
-    sumDist = 0.0;
-    mouseOffset = 400;
-    lastkey = 0;
-    pkeycode = 0;
-    nkeycode = 0;
+    reset();
+    index = 0;
 }
 
 JoyAxis::JoyAxis(int index, QObject *parent) :
     QObject(parent)
 {
-    this->index = index;
-    deadZone = 5000;
-    isActive = false;
-    axisMode = KeyboardAxis;
-    mouseSpeed = 20;
     timer = new QTimer ();
-    interval = QTime ();
-    eventActive = false;
-    currentValue = 0;
-    maxZoneValue = 30000;
-    throttle = 0;
-    sumDist = 0.0;
-    mouseOffset = 400;
-    lastkey = 0;
-    pkeycode = 0;
-    nkeycode = 0;
+    reset();
+    this->index = index;
 }
 
 void JoyAxis::joyEvent(int value)
@@ -388,6 +362,8 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == "axis")
     {
+        reset();
+
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "axis"))
         {
@@ -506,10 +482,36 @@ void JoyAxis::timerEvent()
     }
 }
 
+void JoyAxis::reset()
+{
+    deadZone = 5000;
+    isActive = false;
+    mouseSpeed = 20;
+    axisMode = KeyboardAxis;
+    timer->stop();
+    interval = QTime ();
+    eventActive = false;
+    currentValue = 0;
+    maxZoneValue = 30000;
+    throttle = 0;
+    sumDist = 0.0;
+    mouseOffset = 400;
+    lastkey = 0;
+    pkeycode = 0;
+    nkeycode = 0;
+}
+
+void JoyAxis::reset(int index)
+{
+    reset();
+    this->index = index;
+}
+
 JoyAxis::~JoyAxis()
 {
     if (timer)
     {
+        timer->stop();
         delete timer;
         timer = 0;
     }

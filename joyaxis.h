@@ -79,6 +79,8 @@ signals:
     void moved(int value);
 
 public slots:
+    void reset();
+    void reset(int index);
 
 private slots:
     void timerEvent();

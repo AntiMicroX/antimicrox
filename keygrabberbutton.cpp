@@ -32,7 +32,6 @@ void KeyGrabberButton::beginCountdown()
     emit grabStarted();
 
     isGrabber = true;
-    qDebug () << "IT's THE FINAL COUNTDOWN" << endl;
     oldvalue = this->text();
     this->setText(QString ("[%1]").arg(numSeconds));
     connect (&timer, SIGNAL(timeout()), this, SLOT(updateCountdown()));
@@ -45,7 +44,6 @@ void KeyGrabberButton::updateCountdown()
     {
         numSeconds--;
         this->setText(QString ("[%1]").arg(numSeconds));
-        qDebug () << "TO BE FOUND" << endl;
     }
     else
     {
@@ -73,7 +71,6 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     {
         int mouseValue = 0;
         QMouseEvent *mouseEve = (QMouseEvent*) event;
-        qDebug() << "SOLITAIRE " << mouseEve->button() << endl;
 
         if (mouseEve->button() == Qt::RightButton)
         {
@@ -97,8 +94,8 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     else if (isGrabber && event->type() == QEvent::KeyRelease)
     {
         QKeyEvent *keyEve = (QKeyEvent*) event;
-        qDebug() << "EVENT: " << keyEve->nativeVirtualKey() << endl;
-        qDebug() << "EVENT 2: " << keyEve->nativeScanCode() << endl;
+        //qDebug() << "EVENT: " << keyEve->nativeVirtualKey() << endl;
+        //qDebug() << "EVENT 2: " << keyEve->nativeScanCode() << endl;
         controlcode = keyEve->nativeScanCode();
 
         if ((keyEve->modifiers() & Qt::ControlModifier) && keyEve->key() == Qt::Key_X)

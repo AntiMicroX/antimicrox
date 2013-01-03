@@ -30,7 +30,8 @@ protected:
 signals:
     
 public slots:
-    
+    virtual void reset();
+    virtual void reset(int index);
 };
 
 #endif // JOYDPADBUTTON_H

@@ -67,3 +67,16 @@ QString JoyDPadButton::getPartialName()
 {
     return dpad->getName().append(" - ").append(getDirectionName());
 }
+
+
+void JoyDPadButton::reset()
+{
+    JoyButton::reset();
+    this->keycode = 0;
+    this->mousecode = 0;
+}
+
+void JoyDPadButton::reset(int index)
+{
+    reset();
+}

@@ -10,6 +10,7 @@
 #include <QSpacerItem>
 #include <QFileDialog>
 #include <QSettings>
+#include <QHash>
 
 #include "joystick.h"
 #include "axiseditdialog.h"
@@ -22,6 +23,10 @@ public:
     explicit JoyTabWidget(Joystick *joystick, QWidget *parent = 0);
     void saveSettings(QSettings *settings);
     void loadSettings(QSettings *settings);
+    QHash<int, QString>* recentConfigs();
+    void setCurrentConfig(int index);
+    int getCurrentConfigIndex();
+    QString getCurrentConfigName();
 
 protected:
     QVBoxLayout *verticalLayout;
@@ -44,6 +49,7 @@ protected:
 signals:
     void joystickRefreshRequested();
     void joystickRefreshRequested(Joystick *joystick);
+    void joystickConfigChanged(int index);
 
 public slots:
     void openConfigFileDialog();

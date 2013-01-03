@@ -19,6 +19,8 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent) :
     ui->tab_2->deleteLater();
     ui->tab->deleteLater();
 
+    trayIconMenu = new QMenu(this);
+
     this->joysticks = joysticks;
 
     populateTrayIcon();
@@ -59,6 +61,7 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
     if (joysticks->count() > 0)
     {
         loadAppConfig();
+        populateTrayIcon();
 
         ui->tabWidget->setCurrentIndex(0);
         ui->stackedWidget->setCurrentIndex(1);
@@ -74,40 +77,58 @@ void MainWindow::joystickRefreshPropogate(Joystick *joystick)
 void MainWindow::startJoystickRefresh()
 {
     ui->stackedWidget->setCurrentIndex(0);
-
-    /*for (int i=0; i < ui->tabWidget->count(); i++)
-    {
-        QLayout* old_layout = ui->tabWidget->widget(i)->findChild<QLayout*>("gridLayout");
-        QWidget* child = 0;
-
-        while (old_layout && old_layout->count() > 0)
-        {
-            child = old_layout->takeAt(0)->widget();
-            old_layout->removeWidget (child);
-            delete child;
-            child = 0;
-        }
-    }*/
-
     emit joystickRefreshRequested();
 }
 
 void MainWindow::populateTrayIcon()
 {
-    QMenu *trayIconMenu = new QMenu(this);
+    trayIconMenu->clear();
 
-    hideAction = new QAction(tr("Hide"), this);
+    if (joysticks->count() > 0)
+    {
+        for (int i=0; i < joysticks->count(); i++)
+        {
+            QMenu *joysticksub = trayIconMenu->addMenu(joysticks->value(i)->getName());
+            JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
+            QHash<int, QString> *configs = widget->recentConfigs();
+            QHashIterator<int, QString> iter(*configs);
+            while (iter.hasNext())
+            {
+                iter.next();
+                QAction *newaction = new QAction(iter.value(), joysticksub);
+                newaction->setCheckable(true);
+                newaction->setChecked(false);
+
+                if (iter.key() == widget->getCurrentConfigIndex())
+                {
+                    newaction->setChecked(true);
+                }
+                QHash<QString, QVariant> *tempmap = new QHash<QString, QVariant> ();
+                tempmap->insert(QString::number(i), QVariant (iter.key()));
+                QVariant tempvar (*tempmap);
+                newaction->setData(tempvar);
+                joysticksub->addAction(newaction);
+            }
+
+            connect(joysticksub, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
+            connect(joysticksub, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+        }
+
+        trayIconMenu->addSeparator();
+    }
+
+    hideAction = new QAction(tr("Hide"), trayIconMenu);
     connect(hideAction, SIGNAL(triggered()), this, SLOT(hide()));
     connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
 
-    restoreAction = new QAction(tr("Restore"), this);
+    restoreAction = new QAction(tr("Restore"), trayIconMenu);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(enableFlashActions()));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
 
-    closeAction = new QAction(tr("Quit"), this);
+    closeAction = new QAction(tr("Quit"), trayIconMenu);
     connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
 
-    updateJoy = new QAction(tr("Update Joysticks"), this);
+    updateJoy = new QAction(tr("Update Joysticks"), trayIconMenu);
     connect(updateJoy, SIGNAL(triggered()), this, SLOT(startJoystickRefresh()));
 
     trayIconMenu->addAction(hideAction);
@@ -238,4 +259,55 @@ void MainWindow::restoreWindow()
 {
     enableFlashActions();
     show();
+}
+
+void MainWindow::trayMenuChangeJoyConfig(QAction *action)
+{
+    QMenu *tempmenu = (QMenu*)action->parent();
+    QList<QAction*> menuactions = tempmenu->actions();
+    QListIterator<QAction*> listiter (menuactions);
+    while (listiter.hasNext())
+    {
+        QAction *tempaction = listiter.next();
+        tempaction->setChecked(false);
+    }
+
+    QHash<QString, QVariant> tempmap = action->data().toHash();
+    QHashIterator<QString, QVariant> iter(tempmap);
+    while (iter.hasNext())
+    {
+        iter.next();
+        int joyindex = iter.key().toInt();
+        int configindex = iter.value().toInt();
+        JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+        widget->setCurrentConfig(configindex);
+        action->setChecked(true);
+    }
+}
+
+void MainWindow::joystickTrayShow()
+{
+    QMenu *tempmenu = (QMenu*) sender();
+    QList<QAction*> menuactions = tempmenu->actions();
+    QListIterator<QAction*> listiter (menuactions);
+    while (listiter.hasNext())
+    {
+        QAction *action = listiter.next();
+        action->setChecked(false);
+
+        QHash<QString, QVariant> tempmap = action->data().toHash();
+        QHashIterator<QString, QVariant> iter(tempmap);
+        while (iter.hasNext())
+        {
+            iter.next();
+            int joyindex = iter.key().toInt();
+            int configindex = iter.value().toInt();
+            JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+
+            if (configindex == widget->getCurrentConfigIndex())
+            {
+                action->setChecked(true);
+            }
+        }
+    }
 }

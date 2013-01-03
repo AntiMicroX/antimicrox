@@ -31,6 +31,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
         ui->pushButton->setValue(button->getMouse() + MOUSE_OFFSET);
     }
 
+    ui->checkBox_2->setChecked(false);
     if (button->getToggleState())
     {
         ui->checkBox_2->setChecked(true);

@@ -336,6 +336,7 @@ void JoyTabWidget::changeJoyConfig(int index)
         QFileInfo fileinfo(filename);
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         configBox->setCurrentIndex(searchIndex);
+        //emit joystickConfigChanged(searchIndex);
     }
     else
     {
@@ -447,4 +448,34 @@ void JoyTabWidget::loadSettings(QSettings *settings)
         }
     }
 
+}
+
+QHash<int, QString>* JoyTabWidget::recentConfigs()
+{
+    QHash<int, QString> *temp = new QHash<int, QString> ();
+    for (int i=1; i < configBox->count(); i++)
+    {
+        QString current = configBox->itemText(i);
+        temp->insert(i, current);
+    }
+
+    return temp;
+}
+
+void JoyTabWidget::setCurrentConfig(int index)
+{
+    if (index >= 1 && index < configBox->count())
+    {
+        configBox->setCurrentIndex(index);
+    }
+}
+
+int JoyTabWidget::getCurrentConfigIndex()
+{
+    return configBox->currentIndex();
+}
+
+QString JoyTabWidget::getCurrentConfigName()
+{
+    return configBox->currentText();
 }

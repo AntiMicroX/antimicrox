@@ -30,6 +30,7 @@ protected:
     QAction *restoreAction;
     QAction *closeAction;
     QAction *updateJoy;
+    QMenu *trayIconMenu;
 
 private:
     Ui::MainWindow *ui;
@@ -55,6 +56,8 @@ private slots:
     void disableFlashActions();
     void enableFlashActions();
     void joystickRefreshPropogate(Joystick *joystick);
+    void trayMenuChangeJoyConfig(QAction *action);
+    void joystickTrayShow();
 };
 
 #endif // MAINWINDOW_H
