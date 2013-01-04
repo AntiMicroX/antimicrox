@@ -110,8 +110,13 @@ void MainWindow::populateTrayIcon()
                 joysticksub->addAction(newaction);
             }
 
+            QAction *newaction = new QAction(tr("Open File"), joysticksub);
+            connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
+            joysticksub->addAction(newaction);
+
             connect(joysticksub, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
             connect(joysticksub, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+            connect(widget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
         }
 
         trayIconMenu->addSeparator();

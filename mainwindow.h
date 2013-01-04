@@ -22,8 +22,6 @@ public:
     ~MainWindow();
     
 protected:
-    void populateTrayIcon();
-
     QHash<int, Joystick*> *joysticks;
     QSystemTrayIcon *trayIcon;
     QAction *hideAction;
@@ -58,6 +56,7 @@ private slots:
     void joystickRefreshPropogate(Joystick *joystick);
     void trayMenuChangeJoyConfig(QAction *action);
     void joystickTrayShow();
+    void populateTrayIcon();
 };
 
 #endif // MAINWINDOW_H

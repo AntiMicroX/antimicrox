@@ -105,10 +105,12 @@ void JoyTabWidget::openConfigFileDialog()
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
+            emit joystickConfigChanged(1);
         }
         else
         {
             configBox->setCurrentIndex(searchIndex);
+            emit joystickConfigChanged(searchIndex);
         }
     }
 }
@@ -311,6 +313,7 @@ void JoyTabWidget::saveAsConfig()
 
         configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
         configBox->setCurrentIndex(1);
+        emit joystickConfigChanged(1);
     }
 }
 
@@ -336,7 +339,6 @@ void JoyTabWidget::changeJoyConfig(int index)
         QFileInfo fileinfo(filename);
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         configBox->setCurrentIndex(searchIndex);
-        //emit joystickConfigChanged(searchIndex);
     }
     else
     {
