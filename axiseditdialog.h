@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "joyaxis.h"
+#include "axisvaluebox.h"
 
 namespace Ui {
 class AxisEditDialog;
@@ -31,6 +32,9 @@ private slots:
     void updateMaxZoneBox(int value);
     void updateSpeedConvertLabel(int value);
     void updateThrottleUi(int index);
+    void updateJoyValue(int index);
+    void updateDeadZoneSlider(QString value);
+    void updateMaxZoneSlider(QString value);
 };
 
 #endif // AXISEDITDIALOG_H

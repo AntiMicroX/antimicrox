@@ -4,7 +4,7 @@
 #include "joyaxis.h"
 #include "event.h"
 
-const int JoyAxis::AXISMIN = -32767;
+const int JoyAxis::AXISMIN = -32768;
 const int JoyAxis::AXISMAX = 32767;
 const int JoyAxis::AXISDEADZONE = 5000;
 const int JoyAxis::AXISMAXZONE = 30000;
@@ -94,7 +94,7 @@ void JoyAxis::joyEvent(int value)
         }
     }
 
-    emit moved(value);
+    emit moved(temp);
 }
 
 bool JoyAxis::inDeadZone(int value)
@@ -108,7 +108,6 @@ bool JoyAxis::inDeadZone(int value)
     {
         value = (value + AXISMAX) / 2;
     }
-
 
     if (abs(value) <= deadZone)
     {
@@ -137,6 +136,11 @@ QString JoyAxis::getName()
 int JoyAxis::getRealJoyIndex()
 {
     return index + 1;
+}
+
+int JoyAxis::getCurrentValue()
+{
+    return currentValue;
 }
 
 void JoyAxis::setIndex(int index)

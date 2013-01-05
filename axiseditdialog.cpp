@@ -90,12 +90,30 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
         ui->pushButton->setEnabled(false);
     }
 
+    ui->axisstatusBox->setDeadZone(axis->getDeadZone());
+    ui->axisstatusBox->setMaxZone(axis->getMaxZoneValue());
+    ui->axisstatusBox->setThrottle(axis->getThrottle());
+
+    QString currentJoyValueText ("Current Value: ");
+    currentJoyValueText = currentJoyValueText.append(QString::number(axis->getCurrentValue()));
+    ui->joyValueLabel->setText(currentJoyValueText);
+
     connect(this, SIGNAL(accepted()), this, SLOT(saveAxisChanges()));
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateModeUi(int)));
     connect(ui->spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpeedConvertLabel(int)));
+
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(updateDeadZoneBox(int)));
+    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setDeadZone(int)));
+
     connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), this, SLOT(updateMaxZoneBox(int)));
+    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setMaxZone(int)));
+
     connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(updateThrottleUi(int)));
+    connect(axis, SIGNAL(moved(int)), ui->axisstatusBox, SLOT(setValue(int)));
+    connect(axis, SIGNAL(moved(int)), this, SLOT(updateJoyValue(int)));
+
+    connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(updateDeadZoneSlider(QString)));
+    connect(ui->lineEdit_2, SIGNAL(textEdited(QString)), this, SLOT(updateMaxZoneSlider(QString)));
 }
 
 void AxisEditDialog::saveAxisChanges()
@@ -207,6 +225,32 @@ void AxisEditDialog::updateThrottleUi(int index)
     {
         ui->pushButton_2->setEnabled(true);
         ui->pushButton->setEnabled(false);
+    }
+    ui->axisstatusBox->setThrottle(index - 1);
+}
+
+void AxisEditDialog::updateJoyValue(int index)
+{
+    QString currentJoyValueText ("Current Value: ");
+    currentJoyValueText = currentJoyValueText.append(QString::number(index));
+    ui->joyValueLabel->setText(currentJoyValueText);
+}
+
+void AxisEditDialog::updateDeadZoneSlider(QString value)
+{
+    int temp = value.toInt();
+    if (temp >= JoyAxis::AXISMIN && temp <= JoyAxis::AXISMAX)
+    {
+        ui->horizontalSlider->setValue(temp);
+    }
+}
+
+void AxisEditDialog::updateMaxZoneSlider(QString value)
+{
+    int temp = value.toInt();
+    if (temp >= JoyAxis::AXISMIN && temp <= JoyAxis::AXISMAX)
+    {
+        ui->horizontalSlider_2->setValue(temp);
     }
 }
 

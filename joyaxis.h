@@ -37,6 +37,8 @@ public:
     int getMaxZoneValue();
     void setThrottle(int value);
     int getThrottle();
+    int getCurrentValue();
+
     void readConfig(QXmlStreamReader *xml);
     void writeConfig(QXmlStreamWriter *xml);
 

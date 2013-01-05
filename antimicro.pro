@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     axiseditdialog.cpp \
     xmlconfigreader.cpp \
     xmlconfigwriter.cpp \
-    joytabwidget.cpp
+    joytabwidget.cpp \
+    axisvaluebox.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
     xmlconfigreader.h \
     xmlconfigwriter.h \
     common.h \
-    joytabwidget.h
+    joytabwidget.h \
+    axisvaluebox.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
