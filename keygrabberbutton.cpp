@@ -67,6 +67,9 @@ void KeyGrabberButton::endCountdown()
 
 bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 {
+    Q_UNUSED(obj);
+    Q_UNUSED(event);
+
     if (isGrabber && event->type() == QEvent::MouseButtonRelease)
     {
         int mouseValue = 0;

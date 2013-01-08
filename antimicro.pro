@@ -58,8 +58,6 @@ FORMS    += mainwindow.ui \
 
 LIBS += -lSDL -lXtst -lX11
 
-#INCLUDEPATH += $$PWD/../../../../usr/include/SDL
-#DEPENDPATH += $$PWD/../../../../usr/include/SDL
-
 RESOURCES += \
     resources.qrc
+
