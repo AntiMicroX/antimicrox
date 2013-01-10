@@ -250,6 +250,7 @@ void JoyTabWidget::saveConfigFile()
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
+            emit joystickConfigChanged(1);
         }
     }
 }

@@ -78,5 +78,6 @@ void JoyDPadButton::reset()
 
 void JoyDPadButton::reset(int index)
 {
+    Q_UNUSED(index);
     reset();
 }
