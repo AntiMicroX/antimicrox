@@ -6,6 +6,8 @@
 #include <QSystemTrayIcon>
 #include <QAction>
 #include <QFileDialog>
+#include <QHideEvent>
+#include <QShowEvent>
 
 #include "joystick.h"
 
@@ -29,6 +31,10 @@ protected:
     QAction *closeAction;
     QAction *updateJoy;
     QMenu *trayIconMenu;
+    bool signalDisconnect;
+
+    virtual void hideEvent(QHideEvent * event);
+    virtual void showEvent(QShowEvent *event);
 
 private:
     Ui::MainWindow *ui;
@@ -43,7 +49,6 @@ public slots:
     void fillButtons(QHash<int, Joystick*>* joysticks);
     void startJoystickRefresh();
     void hideWindow();
-    void restoreWindow();
 
 private slots:
     void quitProgram();

@@ -19,6 +19,8 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent) :
     ui->tab_2->deleteLater();
     ui->tab->deleteLater();
 
+    signalDisconnect = false;
+
     trayIconMenu = new QMenu(this);
 
     this->joysticks = joysticks;
@@ -124,10 +126,10 @@ void MainWindow::populateTrayIcon()
 
     hideAction = new QAction(tr("Hide"), trayIconMenu);
     connect(hideAction, SIGNAL(triggered()), this, SLOT(hide()));
-    connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
+    //connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
 
     restoreAction = new QAction(tr("Restore"), trayIconMenu);
-    connect(restoreAction, SIGNAL(triggered()), this, SLOT(enableFlashActions()));
+    //connect(restoreAction, SIGNAL(triggered()), this, SLOT(enableFlashActions()));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
 
     closeAction = new QAction(tr("Quit"), trayIconMenu);
@@ -227,7 +229,9 @@ void MainWindow::disableFlashActions()
             JoyAxisWidget *axisWidget = iter2.next();
             axisWidget->disableFlashes();
         }
+
     }
+
 }
 
 void MainWindow::enableFlashActions()
@@ -249,21 +253,16 @@ void MainWindow::enableFlashActions()
             JoyAxisWidget *axisWidget = iter2.next();
             axisWidget->enableFlashes();
         }
+
     }
+
 }
 
 // Intermediate slot used in Design mode
 void MainWindow::hideWindow()
 {
     hide();
-    disableFlashActions();
-}
-
-// Intermediate slot used in Design mode
-void MainWindow::restoreWindow()
-{
-    enableFlashActions();
-    show();
+    //disableFlashActions();
 }
 
 void MainWindow::trayMenuChangeJoyConfig(QAction *action)
@@ -315,4 +314,49 @@ void MainWindow::joystickTrayShow()
             }
         }
     }
+}
+
+void MainWindow::hideEvent(QHideEvent *event)
+{
+    // Perform if window is minimized via the window manager
+    if (event->spontaneous())
+    {
+        // Check if a system tray exists and hide window if one is available
+        if (QSystemTrayIcon::isSystemTrayAvailable())
+        {
+            hide();
+        }
+        // No system tray found. Disconnect processing of flashing buttons
+        else
+        {
+            disableFlashActions();
+            signalDisconnect = true;
+        }
+    }
+    else
+    {
+        // Code is envoked by calling the hide method
+        disableFlashActions();
+        signalDisconnect = true;
+    }
+
+    QMainWindow::hideEvent(event);
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    // Check if hideEvent has been processed
+    if (signalDisconnect)
+    {
+        // Restore flashing buttons
+        enableFlashActions();
+        signalDisconnect = false;
+        // Only needed if hidden with the system tray enabled
+        if (QSystemTrayIcon::isSystemTrayAvailable())
+        {
+            showNormal();
+        }
+    }
+
+    QMainWindow::showEvent(event);
 }
