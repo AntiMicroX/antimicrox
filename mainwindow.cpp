@@ -335,7 +335,7 @@ void MainWindow::hideEvent(QHideEvent *event)
     }
     else
     {
-        // Code is envoked by calling the hide method
+        // Code is invoked by calling the hide method
         disableFlashActions();
         signalDisconnect = true;
     }

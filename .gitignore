@@ -1,2 +1,11 @@
+*.o
+.*.swp
+.directory
+Makefile
+antimicro
 antimicro.pro.user
-
+antimicro.pro.user.*
+moc_*
+qrc_resources.cpp
+ui_*.h
+*.*~

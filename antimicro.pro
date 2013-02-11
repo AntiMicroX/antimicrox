@@ -4,7 +4,14 @@
 #
 #-------------------------------------------------
 
+isEmpty(INSTALL_PREFIX)
+{
+    INSTALL_PREFIX = /usr/local
+}
+
 QT       += core gui
+
+target.path = $$INSTALL_PREFIX/bin
 
 TARGET = antimicro
 TEMPLATE = app
@@ -61,3 +68,4 @@ LIBS += -lSDL -lXtst -lX11
 RESOURCES += \
     resources.qrc
 
+INSTALLS += target
