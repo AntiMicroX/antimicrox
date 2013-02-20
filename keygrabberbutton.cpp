@@ -8,8 +8,8 @@ KeyGrabberButton::KeyGrabberButton(QWidget *parent) :
 {
     numSeconds = 5;
     isGrabber = false;
-    oldcode = 0;
     controlcode = 0;
+    grabbingWheel = false;
     connect (this, SIGNAL(clicked()), this, SLOT(beginCountdown()));
     this->installEventFilter(this);
 }
@@ -21,6 +21,8 @@ void KeyGrabberButton::keyPressEvent(QKeyEvent *event)
     {
         return;
     }
+
+    QPushButton::keyPressEvent(event);
 }
 
 void KeyGrabberButton::beginCountdown()
@@ -32,7 +34,7 @@ void KeyGrabberButton::beginCountdown()
     emit grabStarted();
 
     isGrabber = true;
-    oldvalue = this->text();
+    oldLabel = this->text();
     this->setText(QString ("[%1]").arg(numSeconds));
     connect (&timer, SIGNAL(timeout()), this, SLOT(updateCountdown()));
     timer.start(1000);
@@ -48,7 +50,7 @@ void KeyGrabberButton::updateCountdown()
     else
     {
         endCountdown();
-        this->setText(oldvalue);
+        this->setText(oldLabel);
         emit grabFinished(false);
     }
 }
@@ -60,7 +62,7 @@ void KeyGrabberButton::endCountdown()
 
     this->releaseKeyboard();
     numSeconds = 5;
-    isGrabber = false;
+    isGrabber = grabbingWheel = false;
 
     connect (this, SIGNAL(clicked()), this, SLOT(beginCountdown()));
 }
@@ -68,7 +70,6 @@ void KeyGrabberButton::endCountdown()
 bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 {
     Q_UNUSED(obj);
-    Q_UNUSED(event);
 
     if (isGrabber && event->type() == QEvent::MouseButtonRelease)
     {
@@ -88,9 +89,11 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
 
         setText(QString("Mouse ").append(QString::number(mouseValue)));
-        controlcode = mouseValue + MOUSE_OFFSET;
 
-        this->clearFocus();
+        controlcode = mouseValue;
+        buttonslot.setSlotCode(mouseValue);
+        buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
+        clearFocus();
         this->endCountdown();
         emit grabFinished(true);
     }
@@ -116,19 +119,26 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             setText(keycodeToKey(controlcode).toUpper());
         }
 
-        this->clearFocus();
+        buttonslot.setSlotCode(controlcode);
+        buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
+        clearFocus();
         this->endCountdown();
         emit grabFinished(true);
+    }
+    else if (isGrabber && event->type() == QEvent::Wheel && !grabbingWheel)
+    {
+        grabbingWheel = true;
     }
     else if (isGrabber && event->type() == QEvent::Wheel)
     {
         QWheelEvent *wheelEve = (QWheelEvent*) event;
         QString text = QString("Mouse ");
-        if (wheelEve->delta() > 0)
+
+        if (wheelEve->orientation() == Qt::Vertical && wheelEve->delta() >= 120)
         {
             controlcode = 4;
         }
-        else
+        else if (wheelEve->orientation() == Qt::Vertical && wheelEve->delta() <= -120)
         {
             controlcode = 5;
         }
@@ -136,20 +146,15 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         text = text.append(QString::number(controlcode));
         setText(text);
 
-        controlcode += MOUSE_OFFSET;
-        this->clearFocus();
+        buttonslot.setSlotCode(controlcode);
+        buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
+        clearFocus();
         this->endCountdown();
         emit grabFinished(true);
     }
 
     return false;
 }
-
-/*bool KeyGrabberButton::x11Event(XEvent *e)
-{
-    //QPushButton::x11Event(e);
-    qDebug () << "jfdsjfsdjkl: " << e->xbutton.button << endl;
-}*/
 
 /*bool KeyGrabberButton::x11Event(XEvent *e)
 {
@@ -205,12 +210,14 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     return false;
 }*/
 
-int KeyGrabberButton::getValue()
-{
-    return controlcode;
-}
-
-void KeyGrabberButton::setValue(int value)
+void KeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputAction mode)
 {
     controlcode = value;
+    buttonslot.setSlotCode(controlcode);
+    buttonslot.setSlotMode(mode);
+}
+
+JoyButtonSlot* KeyGrabberButton::getValue()
+{
+    return &buttonslot;
 }

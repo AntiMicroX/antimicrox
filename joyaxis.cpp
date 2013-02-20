@@ -13,7 +13,7 @@ const int JoyAxis::AXISMAXZONE = 30000;
 // Should create around 20 events per second.
 // mouseSpeed * 20 will give the number of pixels per second
 // the mouse cursor will move on screen
-const int JoyAxis::JOYINTERVAL = 50;
+
 // Speed in pixels/second
 const float JoyAxis::JOYSPEED = 20.0;
 
@@ -22,6 +22,9 @@ JoyAxis::JoyAxis(QObject *parent) :
     QObject(parent)
 {
     timer = new QTimer ();
+    naxisbutton = new JoyAxisButton(this, 0);
+    paxisbutton = new JoyAxisButton(this, 1);
+
     reset();
     index = 0;
 }
@@ -30,8 +33,19 @@ JoyAxis::JoyAxis(int index, QObject *parent) :
     QObject(parent)
 {
     timer = new QTimer ();
+    naxisbutton = new JoyAxisButton(this, 0);
+    paxisbutton = new JoyAxisButton(this, 1);
+
     reset();
+
     this->index = index;
+}
+
+JoyAxis::~JoyAxis()
+{
+    delete timer;
+    delete paxisbutton;
+    delete naxisbutton;
 }
 
 void JoyAxis::joyEvent(int value)
@@ -49,49 +63,19 @@ void JoyAxis::joyEvent(int value)
     bool safezone = !inDeadZone(temp);
     currentValue = value;
 
-    if (axisMode == KeyboardAxis)
+    if (safezone && !isActive)
     {
-        if (safezone && !isActive)
-        {
-            isActive = eventActive = true;
-            emit active(value);
-
-            createDeskEvent();
-        }
-        else if (!safezone && isActive)
-        {
-            isActive = eventActive = false;
-            emit released(value);
-
-            createDeskEvent();
-            lastkey = 0;
-        }
+        isActive = eventActive = true;
+        emit active(value);
+        createDeskEvent();
     }
-    else if (axisMode == MouseAxis)
+    else if (!safezone && isActive)
     {
-        if (safezone)
-        {
-            if (!isActive)
-            {
-                isActive = eventActive = true;
-                emit active(value);
-                createDeskEvent();
+        isActive = eventActive = false;
+        emit released(value);
 
-                connect(timer, SIGNAL(timeout()), this, SLOT(timerEvent()));
-                sumDist = 0.0;
-                timer->start(0);
-                interval.start();
-            }
-        }
-        else
-        {
-            isActive = eventActive = false;
-            interval.restart();
-            timer->stop();
-            sumDist = 0.0;
-            disconnect(timer, SIGNAL(timeout()), 0, 0);
-            emit released(value);
-        }
+        createDeskEvent();
+        lastkey = 0;
     }
 
     emit moved(temp);
@@ -119,15 +103,21 @@ bool JoyAxis::inDeadZone(int value)
 
 QString JoyAxis::getName()
 {
-    QString label = QString("Axis ").append(QString::number(getRealJoyIndex()))
-            .append(": ");
-    if (axisMode == KeyboardAxis)
+    QString label = QString("Axis ").append(QString::number(getRealJoyIndex()));
+    label.append(": ");
+
+    if (throttle == 0)
     {
-        label = label.append("[KEYBOARD]");
+        label.append("-").append(naxisbutton->getSlotsSummary());
+        label.append(" | +").append(paxisbutton->getSlotsSummary());
     }
-    else if (axisMode == MouseAxis)
+    else if (throttle == 1)
     {
-        label = label.append("[MOUSE]");
+        label.append("+").append(paxisbutton->getSlotsSummary());
+    }
+    else if (throttle == -1)
+    {
+        label.append("-").append(naxisbutton->getSlotsSummary());
     }
 
     return label;
@@ -153,106 +143,23 @@ int JoyAxis::getIndex()
     return index;
 }
 
-void JoyAxis::setPKey(int code)
-{
-    pkeycode = code;
-}
-
-int JoyAxis::getPKey()
-{
-    return pkeycode;
-}
-
-void JoyAxis::setNKey(int code)
-{
-    nkeycode = code;
-}
-
-int JoyAxis::getNKey()
-{
-    return nkeycode;
-}
 
 void JoyAxis::createDeskEvent()
 {
-    if (axisMode == KeyboardAxis)
+    if (currentValue > deadZone)
     {
-        JoyInputDevice currentMode = JoyKeyboard;
-        int temppkey = pkeycode;
-        int tempnkey = nkeycode;
-
-        if (currentValue > deadZone)
-        {
-            if (pkeycode > mouseOffset)
-            {
-                temppkey -= mouseOffset;
-                currentMode = JoyMouse;
-            }
-            sendevent(temppkey, eventActive, currentMode);
-            lastkey = pkeycode;
-        }
-        else if (currentValue < -deadZone)
-        {
-            if (nkeycode > mouseOffset)
-            {
-                tempnkey -= mouseOffset;
-                currentMode = JoyMouse;
-            }
-            sendevent(tempnkey, eventActive, currentMode);
-            lastkey = nkeycode;
-        }
-        else if (lastkey > 0)
-        {
-            int templast = lastkey;
-            if (lastkey > mouseOffset)
-            {
-                templast -= mouseOffset;
-                currentMode = JoyMouse;
-            }
-            sendevent(templast, eventActive, currentMode);
-            lastkey = 0;
-        }
+        paxisbutton->joyEvent(eventActive);
+        activeButton = paxisbutton;
     }
-    else if (axisMode == MouseAxis)
+    else if (currentValue < -deadZone)
     {
-        if (interval.elapsed() >= (1000.0/(mouseSpeed*JOYSPEED)))
-        {
-            float difference = (abs(currentValue) - deadZone)/(float)(maxZoneValue - deadZone);
-            sumDist += difference;
-
-            int distance = (int)floor (sumDist + 0.5);
-            if (currentValue < 0)
-            {
-                distance = -distance;
-            }
-
-            int mouse1 = 0;
-            int mouse2 = 0;
-            if (mousemode == MouseHorizontal)
-            {
-                mouse1 = distance;
-            }
-            else if (mousemode == MouseInvHorizontal)
-            {
-                mouse1 = -distance;
-            }
-            else if (mousemode == MouseVertical)
-            {
-                mouse2 = distance;
-            }
-            else if (mousemode == MouseInvVertical)
-            {
-                mouse2 = -distance;
-            }
-
-            if (sumDist >= 1.0)
-            {
-                sendevent(mouse1, mouse2);
-                sumDist = 0.0;
-            }
-
-            interval.restart();
-        }
+        naxisbutton->joyEvent(eventActive);
+        activeButton = naxisbutton;
+    }
+    else if (activeButton)
+    {
+        activeButton->joyEvent(eventActive);
+        activeButton = 0;
     }
 }
 
@@ -264,71 +171,6 @@ void JoyAxis::setDeadZone(int value)
 int JoyAxis::getDeadZone()
 {
     return deadZone;
-}
-
-
-void JoyAxis::setMouseMode(int mode)
-{
-    JoyAxisMouseMode temp = (JoyAxisMouseMode) mode;
-    switch (mode) {
-        case MouseHorizontal:
-        case MouseInvHorizontal:
-        case MouseVertical:
-        case MouseInvVertical:
-        {
-            mousemode = temp;
-            break;
-        }
-
-        default:
-        {
-            break;
-        }
-    }
-}
-
-int JoyAxis::getMouseMode()
-{
-    int mode = (int)mousemode;
-    return mode;
-}
-
-void JoyAxis::setMouseSpeed(int speed)
-{
-    if (speed >= 1 && speed <= 50)
-    {
-        mouseSpeed = speed;
-    }
-}
-
-int JoyAxis::getMouseSpeed()
-{
-    return mouseSpeed;
-}
-
-void JoyAxis::setAxisMode(int mode)
-{
-    JoyAxisMode temp = (JoyAxisMode) mode;
-    switch (mode)
-    {
-        case KeyboardAxis:
-        case MouseAxis:
-        {
-            axisMode = temp;
-            break;
-        }
-
-        default:
-        {
-            break;
-        }
-    }
-}
-
-int JoyAxis::getAxisMode()
-{
-    int temp = (int) axisMode;
-    return temp;
 }
 
 void JoyAxis::setMaxZoneValue(int value)
@@ -377,37 +219,11 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 this->setDeadZone(tempchoice);
             }
-
             else if (xml->name() == "maxZone" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 this->setMaxZoneValue(tempchoice);
-            }
-
-            else if (xml->name() == "pkeycode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setPKey(tempchoice);
-            }
-            else if (xml->name() == "nkeycode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setNKey(tempchoice);
-            }
-            else if (xml->name() == "axismode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setAxisMode(tempchoice);
-            }
-            else if (xml->name() == "mousemode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMouseMode(tempchoice);
             }
             else if (xml->name() == "throttle" && xml->isStartElement())
             {
@@ -425,11 +241,17 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
                     this->setThrottle(1);
                 }
             }
-            else if (xml->name() == "mousespeed" && xml->isStartElement())
+            else if (xml->name() == "axisbutton" && xml->isStartElement())
             {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMouseSpeed(tempchoice);
+                int index = xml->attributes().value("index").toString().toInt();
+                if (index == 1)
+                {
+                    naxisbutton->readConfig(xml);
+                }
+                else if (index == 2)
+                {
+                    paxisbutton->readConfig(xml);
+                }
             }
             else
             {
@@ -448,11 +270,6 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeTextElement("deadZone", QString::number(deadZone));
     xml->writeTextElement("maxZone", QString::number(maxZoneValue));
-    xml->writeTextElement("nkeycode", QString::number(nkeycode));
-    xml->writeTextElement("pkeycode", QString::number(pkeycode));
-    xml->writeTextElement("axismode", QString::number(axisMode));
-    xml->writeTextElement("mousemode", QString::number(mousemode));
-    xml->writeTextElement("mousespeed", QString::number(mouseSpeed));
 
     xml->writeStartElement("throttle");
     if (throttle == -1)
@@ -469,29 +286,17 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
     }
     xml->writeEndElement();
 
-    xml->writeEndElement();
-}
+    naxisbutton->writeConfig(xml);
+    paxisbutton->writeConfig(xml);
 
-void JoyAxis::timerEvent()
-{
-    if (axisMode == KeyboardAxis)
-    {
-        eventActive = !eventActive;
-        createDeskEvent();
-    }
-    else
-    {
-        eventActive = true;
-        createDeskEvent();
-    }
+    xml->writeEndElement();
 }
 
 void JoyAxis::reset()
 {
     deadZone = 5000;
     isActive = false;
-    mouseSpeed = 20;
-    axisMode = KeyboardAxis;
+
     timer->stop();
     interval = QTime ();
     eventActive = false;
@@ -501,8 +306,10 @@ void JoyAxis::reset()
     sumDist = 0.0;
     mouseOffset = 400;
     lastkey = 0;
-    pkeycode = 0;
-    nkeycode = 0;
+
+    paxisbutton->reset();
+    naxisbutton->reset();
+    activeButton = 0;
 }
 
 void JoyAxis::reset(int index)
@@ -511,12 +318,23 @@ void JoyAxis::reset(int index)
     this->index = index;
 }
 
-JoyAxis::~JoyAxis()
+double JoyAxis::calculateNormalizedAxisPlacement()
 {
-    if (timer)
+    double difference = (abs(currentValue) - deadZone)/(double)(maxZoneValue - deadZone);
+    if (difference > 1.0)
     {
-        timer->stop();
-        delete timer;
-        timer = 0;
+        difference = 1.0;
     }
+
+    return difference;
+}
+
+JoyAxisButton* JoyAxis::getPAxisButton()
+{
+    return paxisbutton;
+}
+
+JoyAxisButton* JoyAxis::getNAxisButton()
+{
+    return naxisbutton;
 }

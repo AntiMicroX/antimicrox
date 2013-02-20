@@ -5,6 +5,7 @@
 
 #include "joybutton.h"
 #include "joydpadbutton.h"
+#include "buttontempconfig.h"
 
 namespace Ui {
 class ButtonEditDialog;
@@ -22,9 +23,12 @@ private:
     Ui::ButtonEditDialog *ui;
 
 protected:
+    void updateTempConfigState();
+
     JoyButton* button;
     bool isEditing;
     QString defaultLabel;
+    ButtonTempConfig *tempconfig;
 
 signals:
 
@@ -34,10 +38,11 @@ public slots:
 private slots:
     void saveButtonChanges();
     void changeDialogText(bool edited=false);
-    void changeTurboText(int value);
     void disableDialogButtons();
     void enableDialogButtons();
-    //void enableTurboSlider(bool enable);
+    void openAdvancedDialog();
+    void updateFromTempConfig();
+    void singleAssignmentForTempConfig(bool edited);
 };
 
 #endif // BUTTONEDITDIALOG_H

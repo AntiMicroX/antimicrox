@@ -14,6 +14,8 @@
 
 int main(int argc, char *argv[])
 {
+    qRegisterMetaType<JoyButtonSlot*>();
+
     XInitThreads ();
 
     QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();

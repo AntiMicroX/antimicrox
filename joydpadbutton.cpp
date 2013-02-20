@@ -10,8 +10,6 @@ JoyDPadButton::JoyDPadButton(int direction, JoyDPad* dpad, QObject *parent) :
 {
     this->direction = direction;
     this->dpad = dpad;
-    this->keycode = 0;
-    this->mousecode = 0;
 }
 
 QString JoyDPadButton::getDirectionName()
@@ -72,8 +70,6 @@ QString JoyDPadButton::getPartialName()
 void JoyDPadButton::reset()
 {
     JoyButton::reset();
-    this->keycode = 0;
-    this->mousecode = 0;
 }
 
 void JoyDPadButton::reset(int index)

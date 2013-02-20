@@ -2,14 +2,37 @@
 #include <QDir>
 
 #include "xmlconfigreader.h"
+#include "xmlconfigmigration.h"
+#include "xmlconfigwriter.h"
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
     QObject(parent)
 {
-    fileName = QString(PadderCommon::configPath + "/dudeman.xml");
-    configFile = new QFile(fileName);
+    //fileName = QString(PadderCommon::configPath + "/dudeman.xml");
+    //configFile = new QFile(fileName);
     xml = new QXmlStreamReader();
+    configFile = 0;
     joystick = 0;
+}
+
+XMLConfigReader::~XMLConfigReader()
+{
+    if (configFile)
+    {
+        if (configFile->isOpen())
+        {
+            configFile->close();
+        }
+
+        delete configFile;
+        configFile = 0;
+    }
+
+    if (xml)
+    {
+        delete xml;
+        xml = 0;
+    }
 }
 
 void XMLConfigReader::setJoystick(Joystick *joystick)
@@ -39,7 +62,10 @@ void XMLConfigReader::configJoystick(Joystick *joystick)
 
 bool XMLConfigReader::read()
 {
-    if (configFile->exists() && joystick)
+    bool requiredMigration = false;
+    bool error = false;
+
+    if (configFile && configFile->exists() && joystick)
     {
         xml->clear();
 
@@ -56,6 +82,18 @@ bool XMLConfigReader::read()
         }
         else
         {
+            /*XMLConfigMigration *migration = new XMLConfigMigration(xml);
+            if (migration->requiresMigration())
+            {
+                QString migrationString = migration->migrate();
+                if (migrationString.length() > 0)
+                {
+                    xml->clear();
+                    xml->addData(migrationString);
+                    xml->readNextStartElement();
+                    requiredMigration = true;
+                }
+            }*/
             xml->readNextStartElement();
         }
 
@@ -110,27 +148,21 @@ bool XMLConfigReader::read()
         }
 
         configFile->close();
-    }
 
-    return !xml->error();
-}
-
-XMLConfigReader::~XMLConfigReader()
-{
-    if (configFile)
-    {
-        if (configFile->isOpen())
+        /*if (requiredMigration && (!xml->hasError() || xml->error() == QXmlStreamReader::PrematureEndOfDocumentError))
         {
-            configFile->close();
+            XMLConfigWriter *newsave = new XMLConfigWriter();
+            newsave->setFileName(configFile->fileName());
+            newsave->write(joystick);
+            delete newsave;
+            newsave = 0;
+        }*/
+
+        if (xml->hasError() && xml->error() != QXmlStreamReader::PrematureEndOfDocumentError)
+        {
+            error = true;
         }
-
-        delete configFile;
-        configFile = 0;
     }
 
-    if (xml)
-    {
-        delete xml;
-        xml = 0;
-    }
+    return error;
 }

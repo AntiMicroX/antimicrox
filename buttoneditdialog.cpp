@@ -2,7 +2,7 @@
 
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
-#include "event.h"
+#include "advancebuttondialog.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent),
@@ -19,80 +19,66 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     QString currentlabel = defaultLabel;
     ui->label->setText(currentlabel.append(button->getPartialName()));
 
-    ui->pushButton->setText("[NO KEY]");
-    if (button->getKey() > 0 && button->getKey() <= MOUSE_OFFSET)
+    //ui->pushButton->setText(button->getSlotsSummary());
+
+    ui->checkBox->setChecked(button->isUsingTurbo());
+    ui->checkBox_2->setChecked(button->getToggleState());
+
+    tempconfig = new ButtonTempConfig(button);
+    /*tempconfig->turbo = button->isUsingTurbo();
+    tempconfig->toggle = button->getToggleState();
+    tempconfig->turboInterval = button->getTurboInterval();
+    tempconfig->mouseSpeedX = button->getMouseSpeedX();
+    tempconfig->mouseSpeedY = button->getMouseSpeedY();*/
+
+    tempconfig->assignments->clear();
+    QListIterator<JoyButtonSlot*> iter(*(button->getAssignedSlots()));
+    bool updatedPushValue = false;
+    while (iter.hasNext())
     {
-        ui->pushButton->setText(keycodeToKey(button->getKey()).toUpper());
-        ui->pushButton->setValue(button->getKey());
-    }
-    else if (button->getMouse() > 0)
-    {
-        ui->pushButton->setText(QString("Mouse %1").arg(button->getMouse()));
-        ui->pushButton->setValue(button->getMouse() + MOUSE_OFFSET);
+        JoyButtonSlot *tempbuttonslot = iter.next();
+        if (!updatedPushValue)
+        {
+            ui->pushButton->setValue(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
+            updatedPushValue = !updatedPushValue;
+        }
+
+        tempconfig->assignments->append(tempbuttonslot);
     }
 
-    ui->checkBox_2->setChecked(false);
-    if (button->getToggleState())
-    {
-        ui->checkBox_2->setChecked(true);
-    }
-
-    if (button->isUsingTurbo())
-    {
-        int interval = (int)(button->getTurboInterval() / 100);
-        this->changeTurboText(interval);
-        ui->checkBox->setChecked(true);
-        ui->horizontalSlider->setEnabled(true);
-        ui->horizontalSlider->setValue(interval);
-    }
-    else
-    {
-        int interval = (int)(button->getTurboInterval() / 100);
-        this->changeTurboText(interval);
-        ui->checkBox->setChecked(false);
-        ui->horizontalSlider->setValue(interval);
-    }
+    updateFromTempConfig();
 
     connect (ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveButtonChanges()));
     connect (ui->buttonBox, SIGNAL(rejected()), this, SLOT(close()));
     connect (ui->pushButton, SIGNAL(clicked()), this, SLOT(changeDialogText()));
-    connect(ui->checkBox, SIGNAL(clicked(bool)), ui->horizontalSlider, SLOT(setEnabled(bool)));
+
+    connect(ui->pushButton, SIGNAL(grabStarted()), this, SLOT(disableDialogButtons()));
     connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(changeDialogText(bool)));
     connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(enableDialogButtons()));
-    connect(ui->pushButton, SIGNAL(grabStarted()), this, SLOT(disableDialogButtons()));
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTurboText(int)));
-    //connect(ui->pushButton, SIGNAL(mouseCode(int)), this, SLOT(changeMouseSetting(int)));
+    connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(singleAssignmentForTempConfig(bool)));
+    connect(ui->advancedButton, SIGNAL(clicked()), this, SLOT(openAdvancedDialog()));
 }
 
 ButtonEditDialog::~ButtonEditDialog()
 {
     delete ui;
+    delete tempconfig;
 }
 
 void ButtonEditDialog::saveButtonChanges()
 {
     button->reset ();
 
-    if (ui->pushButton->getValue() >= 0)
+    updateTempConfigState();
+
+    QListIterator<JoyButtonSlot*> iter(*(tempconfig->assignments));
+    while (iter.hasNext())
     {
-        int keycode = ui->pushButton->getValue();
-        if (keycode == 0)
-        {
-            button->setKey(keycode);
-        }
-        else if (keycode <= MOUSE_OFFSET)
-        {
-            button->setKey(keycode);
-        }
-        else
-        {
-            button->setMouse(keycode - MOUSE_OFFSET);
-            button->setUseMouse(true);
-        }
+        JoyButtonSlot *tempbuttonslot = iter.next();
+        button->setAssignedSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
     }
 
-    int turboInterval = ui->horizontalSlider->value() * 100;
-    button->setTurboInterval(turboInterval);
+    button->setTurboInterval(tempconfig->turboInterval);
 
     if (ui->checkBox->isChecked())
     {
@@ -103,6 +89,9 @@ void ButtonEditDialog::saveButtonChanges()
     {
         button->setToggle(true);
     }
+
+    button->setMouseSpeedX(tempconfig->mouseSpeedX);
+    button->setMouseSpeedY(tempconfig->mouseSpeedY);
 
     //button->joyEvent(false);
     this->close();
@@ -129,17 +118,6 @@ void ButtonEditDialog::changeDialogText(bool edited)
     }
 }
 
-void ButtonEditDialog::changeTurboText(int value)
-{
-    if (value == 0)
-    {
-        value = 1;
-    }
-    double clicks = 100 / (value * 10.0);
-    QString labeltext = QString(QString::number(clicks, 'g', 2)).append("/sec.");
-    ui->label_3->setText(labeltext);
-}
-
 void ButtonEditDialog::enableDialogButtons()
 {
     ui->buttonBox->setEnabled(true);
@@ -148,4 +126,49 @@ void ButtonEditDialog::enableDialogButtons()
 void ButtonEditDialog::disableDialogButtons()
 {
     ui->buttonBox->setEnabled(false);
+}
+
+void ButtonEditDialog::openAdvancedDialog()
+{
+    updateTempConfigState();
+
+    AdvanceButtonDialog *dialog = new AdvanceButtonDialog(tempconfig);
+    dialog->show();
+
+    connect(dialog, SIGNAL(accepted()), this, SLOT(updateFromTempConfig()));
+}
+
+void ButtonEditDialog::updateFromTempConfig()
+{
+    ui->checkBox->setChecked(tempconfig->turbo);
+    ui->checkBox_2->setChecked(tempconfig->toggle);
+
+    int slotcount = tempconfig->assignments->count();
+    ui->pushButton->setText(tempconfig->getSlotsSummary());
+    if (slotcount > 0)
+    {
+        JoyButtonSlot *tempbuttonslot = tempconfig->assignments->at(0);
+        ui->pushButton->setValue(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
+    }
+    else
+    {
+        ui->pushButton->setValue(0);
+    }
+}
+
+void ButtonEditDialog::updateTempConfigState()
+{
+    tempconfig->turbo = ui->checkBox->isChecked();
+    tempconfig->toggle = ui->checkBox_2->isChecked();
+}
+
+void ButtonEditDialog::singleAssignmentForTempConfig(bool edited)
+{
+    if (edited)
+    {
+        JoyButtonSlot *buttonslot = ui->pushButton->getValue();
+        JoyButtonSlot *newbuttonslot = new JoyButtonSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+        tempconfig->assignments->clear();
+        tempconfig->assignments->append(newbuttonslot);
+    }
 }

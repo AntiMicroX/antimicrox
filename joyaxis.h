@@ -4,8 +4,11 @@
 #include <QObject>
 #include <QTimer>
 #include <QTime>
+#include <QList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+
+#include "joyaxisbutton.h"
 
 class JoyAxis : public QObject
 {
@@ -21,23 +24,19 @@ public:
     void setIndex(int index);
     int getIndex();
     int getRealJoyIndex();
-    void setPKey(int code);
-    int getPKey();
-    void setNKey(int code);
-    int getNKey();
+
+    JoyAxisButton *getPAxisButton();
+    JoyAxisButton *getNAxisButton();
+
     void setDeadZone(int value);
     int getDeadZone();
-    void setMouseMode(int mode);
-    int getMouseMode();
-    void setMouseSpeed(int speed);
-    int getMouseSpeed();
-    void setAxisMode(int mode);
-    int getAxisMode();
+
     void setMaxZoneValue(int value);
     int getMaxZoneValue();
     void setThrottle(int value);
     int getThrottle();
     int getCurrentValue();
+    double calculateNormalizedAxisPlacement();
 
     void readConfig(QXmlStreamReader *xml);
     void writeConfig(QXmlStreamWriter *xml);
@@ -46,11 +45,8 @@ public:
     static const int AXISMAX;
     static const int AXISDEADZONE;
     static const int AXISMAXZONE;
-    static const int JOYINTERVAL;
-    static const float JOYSPEED;
 
-    enum JoyAxisMode {KeyboardAxis, MouseAxis};
-    enum JoyAxisMouseMode {MouseHorizontal, MouseInvHorizontal, MouseVertical, MouseInvVertical};
+    static const float JOYSPEED;
 
 protected:
     void createDeskEvent();
@@ -59,13 +55,10 @@ protected:
     int deadZone;
     int maxZoneValue;
     bool isActive;
-    int pkeycode;
-    int nkeycode;
-    int mouseSpeed;
 
-    JoyAxisMode axisMode;
-    JoyAxisMouseMode mousemode;
-    bool trigger;
+    JoyAxisButton *paxisbutton;
+    JoyAxisButton *naxisbutton;
+
     bool eventActive;
     int currentValue;
     QTimer *timer;
@@ -74,6 +67,7 @@ protected:
     float sumDist;
     int mouseOffset;
     int lastkey;
+    JoyAxisButton *activeButton;
 
 signals:
     void active(int value);
@@ -85,7 +79,6 @@ public slots:
     void reset(int index);
 
 private slots:
-    void timerEvent();
     
 };
 

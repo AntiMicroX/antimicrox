@@ -9,7 +9,6 @@ const QString JoyButton::xmlName = "button";
 JoyButton::JoyButton(QObject *parent) :
     QObject(parent)
 {
-    timer = new QTimer (this);
     this->reset();
     index = 0;
 }
@@ -17,7 +16,6 @@ JoyButton::JoyButton(QObject *parent) :
 JoyButton::JoyButton(int index, QObject *parent) :
     QObject(parent)
 {
-    timer = new QTimer (this);
     this->reset();
     this->index = index;
 }
@@ -53,12 +51,12 @@ void JoyButton::joyEvent(bool pressed)
         if (isButtonPressed && useTurbo)
         {
             turboEvent();
-            connect(timer, SIGNAL(timeout()), this, SLOT(turboEvent()));
+            connect(&timer, SIGNAL(timeout()), this, SLOT(turboEvent()));
         }
         else if (!isButtonPressed && useTurbo)
         {
-            timer->stop();
-            disconnect(timer, SIGNAL(timeout()), 0, 0);
+            timer.stop();
+            disconnect(&timer, SIGNAL(timeout()), 0, 0);
             if (isKeyPressed)
             {
                 turboEvent();
@@ -87,26 +85,6 @@ void JoyButton::setJoyNumber(int index)
     this->index = index;
 }
 
-void JoyButton::setKey(int keycode)
-{
-    this->keycode = keycode;
-    emit keyChanged(keycode);
-}
-
-void JoyButton::setMouse(int mouse)
-{
-    if (mouse > 0 && mouse <= 8)
-    {
-        this->mousecode = mouse;
-        emit mouseChanged(mouse);
-    }
-}
-
-int JoyButton::getMouse()
-{
-    return mousecode;
-}
-
 void JoyButton::setToggle(bool toggle)
 {
     this->toggle = toggle;
@@ -119,26 +97,22 @@ void JoyButton::setTurboInterval(int interval)
 
 void JoyButton::reset()
 {
+    assignments.clear();
+
     isKeyPressed = isButtonPressed = false;
     toggle = false;
     turboInterval = 0;
-    keycode = 0;
-    mousecode = 0;
     isDown = false;
-    useMouse = false;
     useTurbo = false;
-    timer->stop();
+    mouseSpeedX = 30;
+    mouseSpeedY = 30;
+    timer.stop();
 }
 
 void JoyButton::reset(int index)
 {
     JoyButton::reset();
     this->index = index;
-}
-
-int JoyButton::getKey()
-{
-    return keycode;
 }
 
 bool JoyButton::getToggleState()
@@ -153,47 +127,105 @@ int JoyButton::getTurboInterval()
 
 void JoyButton::turboEvent()
 {
+    QListIterator<JoyButtonSlot*> iter(assignments);
     if (!isKeyPressed)
     {
-        sendevent(keycode, true);
+        while(iter.hasNext())
+        {
+            JoyButtonSlot *slot = iter.next();
+            int tempcode = slot->getSlotCode();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+            sendevent(tempcode, true, mode);
+        }
         isKeyPressed = true;
-        timer->start(100);
+        timer.start(100);
     }
     else
     {
-        sendevent(keycode, false);
+        while(iter.hasNext())
+        {
+            JoyButtonSlot *slot = iter.next();
+            int tempcode = slot->getSlotCode();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+            sendevent(tempcode, false, mode);
+        }
         isKeyPressed = false;
-        timer->start(turboInterval - 100);
+        timer.start(turboInterval - 100);
     }
 }
 
 JoyButton::~JoyButton()
 {
-    if (timer)
-    {
-        timer->stop();
-    }
-}
-
-void JoyButton::setUseMouse(bool useMouse)
-{
-    this->useMouse = useMouse;
-}
-
-bool JoyButton::isUsingMouse()
-{
-    return useMouse;
+    timer.stop();
 }
 
 void JoyButton::createDeskEvent()
 {
-    if (!useMouse && keycode > 0)
+    QListIterator<JoyButtonSlot*> iter(assignments);
+    while(iter.hasNext())
     {
-        sendevent(keycode, isButtonPressed);
+        JoyButtonSlot *slot = iter.next();
+        int tempcode = slot->getSlotCode();
+        JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+        if (mode != JoyButtonSlot::JoyMouseMovement)
+        {
+            sendevent(tempcode, isButtonPressed, mode);
+        }
+        else
+        {
+            mouseEvent(slot);
+        }
     }
-    else if (useMouse && mousecode > 0)
+}
+
+void JoyButton::mouseEvent(JoyButtonSlot *buttonslot)
+{
+    QTime* mouseInterval = buttonslot->getMouseInterval();
+    int mouse1 = 0;
+    int mouse2 = 0;
+    double sumDist = 0.0;
+    int mousemode = buttonslot->getSlotCode();
+    int mousespeed;
+
+    if (mousemode == JoyButtonSlot::MouseRight)
     {
-        sendevent(mousecode, isButtonPressed, JoyMouse);
+        mouse1 = 1;
+        sumDist += mouse1;
+        mousespeed = mouseSpeedX;
+    }
+    else if (mousemode == JoyButtonSlot::MouseLeft)
+    {
+        mouse1 = -1;
+        sumDist += -mouse1;
+        mousespeed = mouseSpeedX;
+    }
+    else if (mousemode == JoyButtonSlot::MouseDown)
+    {
+        mouse2 = 1;
+        sumDist += mouse2;
+        mousespeed = mouseSpeedY;
+    }
+    else if (mousemode == JoyButtonSlot::MouseUp)
+    {
+        mouse2 = -1;
+        sumDist += -mouse2;
+        mousespeed = mouseSpeedY;
+    }
+
+    if (isButtonPressed && mouseInterval->elapsed() >= (1000.0/(mousespeed*JoyButtonSlot::JOYSPEED)))
+    {
+        if (abs(sumDist) >= 1.0)
+        {
+            sendevent(mouse1, mouse2);
+            sumDist = 0.0;
+        }
+
+        mouseInterval->restart();
+    }
+
+    if (isButtonPressed)
+    {
+        QMetaObject::invokeMethod(this, "mouseEvent", Qt::QueuedConnection, Q_ARG(JoyButtonSlot*, buttonslot));
     }
 }
 
@@ -243,25 +275,31 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     this->setUseTurbo(true);
                 }
             }
-            else if (xml->name() == "keycode" && xml->isStartElement())
+            else if (xml->name() == "mousespeedx" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
-                this->setKey(tempchoice);
+                this->setMouseSpeedX(tempchoice);
             }
-            else if (xml->name() == "usemouse" && xml->isStartElement())
+            else if (xml->name() == "mousespeedy" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
-                if (temptext == "true")
+                int tempchoice = temptext.toInt();
+                this->setMouseSpeedY(tempchoice);
+            }
+            else if (xml->name() == "slots" && xml->isStartElement())
+            {
+                xml->readNextStartElement();
+                while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "slots"))
                 {
-                    this->setUseMouse(true);
+                    if (xml->name() == "slot" && xml->isStartElement())
+                    {
+                        JoyButtonSlot *buttonslot = new JoyButtonSlot();
+                        buttonslot->readConfig(xml);
+                        this->assignments.append(buttonslot);
+                    }
+                    xml->readNextStartElement();
                 }
-            }
-            else if (xml->name() == "mousecode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMouse(tempchoice);
             }
             else
             {
@@ -279,12 +317,20 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
     xml->writeStartElement(getXmlName());
     xml->writeAttribute("index", QString::number(getRealJoyNumber()));
 
-    xml->writeTextElement("keycode", QString::number(keycode));
-    xml->writeTextElement("usemouse", useMouse ? "true" : "false");
-    xml->writeTextElement("mousecode", QString::number(mousecode));
     xml->writeTextElement("toggle", toggle ? "true" : "false");
     xml->writeTextElement("turbointerval", QString::number(turboInterval));
     xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
+    xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
+    xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
+
+    xml->writeStartElement("slots");
+    QListIterator<JoyButtonSlot*> iter(assignments);
+    if (iter.hasNext())
+    {
+        JoyButtonSlot *buttonslot = iter.next();
+        buttonslot->writeConfig(xml);
+    }
+    xml->writeEndElement();
 
     xml->writeEndElement();
 }
@@ -292,23 +338,110 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 QString JoyButton::getName()
 {
     QString newlabel = getPartialName();
-    if (keycode > 0)
-    {
-        newlabel = newlabel.append(": ").append(keycodeToKey(keycode).toUpper());
-    }
-    else if (mousecode > 0)
-    {
-        newlabel = newlabel.append(": Mouse ").append(QString::number(mousecode));
-    }
-    else
-    {
-        newlabel = newlabel.append(": [NO KEY]");
-    }
-
+    newlabel = newlabel.append(": ").append(getSlotsSummary());
     return newlabel;
 }
 
 QString JoyButton::getPartialName()
 {
     return QString("Button ").append(QString::number(getRealJoyNumber()));
+}
+
+QString JoyButton::getSlotsSummary()
+{
+    QString newlabel;
+    int slotCount = assignments.count();
+
+    if (slotCount > 0)
+    {
+        JoyButtonSlot *slot = assignments.first();
+        int code = slot->getSlotCode();
+        if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
+        {
+            newlabel = newlabel.append(keycodeToKey(code).toUpper());
+        }
+        else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseButton)
+        {
+            newlabel = newlabel.append("Mouse ").append(QString::number(code));
+        }
+        else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseMovement)
+        {
+            newlabel.append(slot->movementString());
+        }
+
+        if (slotCount > 1)
+        {
+            newlabel = newlabel.append(" ...");
+        }
+    }
+    else
+    {
+        newlabel = newlabel.append("[NO KEY]");
+    }
+
+    return newlabel;
+}
+
+void JoyButton::setCustomName(QString name)
+{
+    customName = name;
+}
+
+QString JoyButton::getCustomName()
+{
+    return customName;
+}
+
+void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
+{
+    JoyButtonSlot *slot = new JoyButtonSlot(code, mode);
+    assignments.append(slot);
+}
+
+void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInputAction mode)
+{
+    if (index >= 0 && index < assignments.count())
+    {
+        // Slot already exists. Override code and place into desired slot
+        JoyButtonSlot *slot = new JoyButtonSlot(code, mode);
+        assignments.insert(index, slot);
+    }
+    else if (index >= assignments.count())
+    {
+        // Append code into a new slot
+        JoyButtonSlot *slot = new JoyButtonSlot(code, mode);
+        assignments.append(slot);
+    }
+}
+
+QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
+{
+    QList<JoyButtonSlot*> *newassign = new QList<JoyButtonSlot*> (assignments);
+    return newassign;
+}
+
+void JoyButton::setMouseSpeedX(int speed)
+{
+    if (speed >= 1 && speed <= 200)
+    {
+        mouseSpeedX = speed;
+    }
+}
+
+int JoyButton::getMouseSpeedX()
+{
+    return mouseSpeedX;
+}
+
+void JoyButton::setMouseSpeedY(int speed)
+{
+    if (speed >= 1 && speed <= 200)
+    {
+        mouseSpeedY = speed;
+    }
+}
+
+int JoyButton::getMouseSpeedY()
+{
+    return mouseSpeedY;
 }

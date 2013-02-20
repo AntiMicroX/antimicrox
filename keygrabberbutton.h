@@ -7,10 +7,8 @@
 #include <QWheelEvent>
 #include <QTimer>
 
-//#include <X11/Xlib.h>
+#include "joybuttonslot.h"
 
-//The KeySym for "x"
-const int XK_x = 0x078;
 const int MOUSE_OFFSET = 400;
 
 class KeyGrabberButton : public QPushButton
@@ -18,8 +16,9 @@ class KeyGrabberButton : public QPushButton
     Q_OBJECT
 public:
     explicit KeyGrabberButton(QWidget *parent = 0);
-    void setValue(int value);
-    int getValue ();
+
+    void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    JoyButtonSlot* getValue();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
@@ -30,14 +29,14 @@ protected:
     QTimer timer;
     int numSeconds;
     bool isGrabber;
-    QString oldvalue;
-    int oldcode;
+    QString oldLabel;
     int controlcode;
+    JoyButtonSlot buttonslot;
+    bool grabbingWheel;
 
 signals:
     void grabStarted();
     void grabFinished(bool changed);
-    //void grabFinished(int value);
     void mouseCode(int mousecode);
     
 public slots:

@@ -27,6 +27,7 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent) :
 
     populateTrayIcon();
     trayIcon->show();
+    aboutDialog = new AboutDialog(this);
 
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
 }
@@ -359,4 +360,9 @@ void MainWindow::showEvent(QShowEvent *event)
     }
 
     QMainWindow::showEvent(event);
+}
+
+void MainWindow::openAboutDialog()
+{
+    aboutDialog->show();
 }

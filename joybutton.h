@@ -3,8 +3,12 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QTime>
+#include <QList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+
+#include "joybuttonslot.h"
 
 class JoyButton : public QObject
 {
@@ -18,39 +22,50 @@ public:
     int getJoyNumber ();
     virtual int getRealJoyNumber ();
     void setJoyNumber (int index);
-    void setKey(int keycode);
-    int getKey();
-    void setMouse(int mouse);
-    int getMouse();
+
     bool getToggleState();
     int getTurboInterval();
-    void setUseMouse(bool useMouse);
-    bool isUsingMouse();
     void setUseTurbo(bool useTurbo);
     bool isUsingTurbo();
+    void setCustomName(QString name);
+    QString getCustomName();
+    void setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    QList<JoyButtonSlot*> *getAssignedSlots();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
     virtual QString getPartialName();
+    virtual QString getSlotsSummary();
     virtual QString getName();
     virtual QString getXmlName();
+
+    void setMouseSpeedX(int speed);
+    int getMouseSpeedX();
+    void setMouseSpeedY(int speed);
+    int getMouseSpeedY();
 
     static const QString xmlName;
 
 protected:
     void createDeskEvent();
 
+    // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
+    // Used to denote whether the virtual key is pressed
     bool isKeyPressed;
     bool toggle;
+    // Used to denote the SDL index of the actual joypad button
     int index;
     int turboInterval;
-    int keycode;
-    int mousecode;
-    QTimer *timer;
+    QTimer timer;
     bool isDown;
-    bool useMouse;
     bool useTurbo;
+    QList<JoyButtonSlot*> assignments;
+    QString customName;
+    int mouseSpeedX;
+    int mouseSpeedY;
 
 signals:
     void clicked (int index);
@@ -66,6 +81,7 @@ public slots:
 
 private slots:
     void turboEvent();
+    virtual void mouseEvent(JoyButtonSlot *buttonslot);
 };
 
 

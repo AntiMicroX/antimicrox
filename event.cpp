@@ -9,7 +9,7 @@ QMutex mutex;
 Display* display;
 
 //actually creates an XWindows event  :)
-void sendevent( int code, bool pressed, JoyInputDevice device) {
+void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
     //mutex.lock();
     display = QX11Info::display();
 
@@ -18,11 +18,11 @@ void sendevent( int code, bool pressed, JoyInputDevice device) {
     //qDebug () << "IN SENDEVENT: " << code << endl;
 
 
-    if (device == JoyKeyboard)
+    if (device == JoyButtonSlot::JoyKeyboard)
     {
         XTestFakeKeyEvent(display, code, pressed, 0);
     }
-    else if (device == JoyMouse)
+    else if (device == JoyButtonSlot::JoyMouseButton)
     {
         XTestFakeButtonEvent(display, code, pressed, 0);
     }
@@ -49,7 +49,7 @@ int keyToKeycode (QString key)
 {
     int tempcode = -1;
     Display* display = QX11Info::display();
-    if (key.length() == 1)
+    if (key.length() > 0)
     {
         tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
     }

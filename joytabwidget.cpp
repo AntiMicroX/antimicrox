@@ -337,9 +337,9 @@ void JoyTabWidget::changeJoyConfig(int index)
 
         fillButtons();
 
-        QFileInfo fileinfo(filename);
-        int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
-        configBox->setCurrentIndex(searchIndex);
+        //QFileInfo fileinfo(filename);
+        //int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
+        //configBox->setCurrentIndex(searchIndex);
     }
     else
     {

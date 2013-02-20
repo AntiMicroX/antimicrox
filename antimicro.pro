@@ -35,7 +35,14 @@ SOURCES += main.cpp\
     xmlconfigreader.cpp \
     xmlconfigwriter.cpp \
     joytabwidget.cpp \
-    axisvaluebox.cpp
+    axisvaluebox.cpp \
+    advancebuttondialog.cpp \
+    buttontempconfig.cpp \
+    simplekeygrabberbutton.cpp \
+    joybuttonslot.cpp \
+    joyaxisbutton.cpp \
+    aboutdialog.cpp \
+    xmlconfigmigration.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -55,12 +62,21 @@ HEADERS  += mainwindow.h \
     xmlconfigwriter.h \
     common.h \
     joytabwidget.h \
-    axisvaluebox.h
+    axisvaluebox.h \
+    advancebuttondialog.h \
+    buttontempconfig.h \
+    simplekeygrabberbutton.h \
+    joybuttonslot.h \
+    joyaxisbutton.h \
+    aboutdialog.h \
+    xmlconfigmigration.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
     dpadbuttoneditdialog.ui \
-    axiseditdialog.ui
+    axiseditdialog.ui \
+    advancebuttondialog.ui \
+    aboutdialog.ui
 
 
 LIBS += -lSDL -lXtst -lX11

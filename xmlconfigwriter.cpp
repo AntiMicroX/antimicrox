@@ -6,11 +6,32 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     QObject(parent)
 {
 
-    fileName = QString(PadderCommon::configPath + "/brony.xml");
-    configFile = new QFile(fileName);
+    //fileName = QString(PadderCommon::configPath + "/brony.xml");
+    //configFile = new QFile(fileName);
     xml = new QXmlStreamWriter();
     xml->setAutoFormatting(true);
+    configFile = 0;
     joystick = 0;
+}
+
+XMLConfigWriter::~XMLConfigWriter()
+{
+    if (configFile)
+    {
+        if (configFile->isOpen())
+        {
+            configFile->close();
+        }
+
+        delete configFile;
+        configFile = 0;
+    }
+
+    if (xml)
+    {
+        delete xml;
+        xml = 0;
+    }
 }
 
 void XMLConfigWriter::write(Joystick *joystick)
@@ -23,6 +44,7 @@ void XMLConfigWriter::write(Joystick *joystick)
 
     xml->writeStartDocument();
     xml->writeStartElement("joystick");
+    xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
 
     for (int i=0; i < joystick->getNumberAxes(); i++)
     {
@@ -53,24 +75,4 @@ void XMLConfigWriter::setFileName(QString filename)
     QFile *temp = new QFile(filename);
     fileName = filename;
     configFile = temp;
-}
-
-XMLConfigWriter::~XMLConfigWriter()
-{
-    if (configFile)
-    {
-        if (configFile->isOpen())
-        {
-            configFile->close();
-        }
-
-        delete configFile;
-        configFile = 0;
-    }
-
-    if (xml)
-    {
-        delete xml;
-        xml = 0;
-    }
 }

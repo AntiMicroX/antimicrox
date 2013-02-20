@@ -2,6 +2,7 @@
 
 #include "axiseditdialog.h"
 #include "ui_axiseditdialog.h"
+#include "advancebuttondialog.h"
 #include "event.h"
 
 AxisEditDialog::AxisEditDialog(QWidget *parent) :
@@ -25,57 +26,35 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     this->setWindowTitle(QString("Set Axis %1").arg(axis->getRealJoyIndex()));
 
-    if (this->axis->getAxisMode() == 0)
-    {
-        ui->comboBox->setCurrentIndex(0);
-    }
-    else
-    {
-        ui->comboBox->setCurrentIndex(axis->getMouseMode()+1);
-        ui->spinBox->setEnabled(true);
-        ui->pushButton->setEnabled(false);
-        ui->pushButton_2->setEnabled(false);
-        ui->comboBox_2->setEnabled(false);
-    }
-
-    ui->spinBox->setValue(axis->getMouseSpeed());
-    updateSpeedConvertLabel(axis->getMouseSpeed());
-
     ui->horizontalSlider->setValue(axis->getDeadZone());
     ui->lineEdit->setText(QString::number(axis->getDeadZone()));
 
     ui->horizontalSlider_2->setValue(axis->getMaxZoneValue());
     ui->lineEdit_2->setText(QString::number(axis->getMaxZoneValue()));
 
-    if (axis->getNKey() > 0)
+    JoyAxisButton *button = axis->getNAxisButton();
+    tempNConfig = new ButtonTempConfig(button);
+
+    QListIterator<JoyButtonSlot*> iter(*(button->getAssignedSlots()));
+    while (iter.hasNext())
     {
-        int keycode = axis->getNKey();
-        ui->pushButton->setValue(keycode);
-        if (keycode > MOUSE_OFFSET)
-        {
-            keycode -= MOUSE_OFFSET;
-            ui->pushButton->setText(QString("Mouse ").append(QString::number(keycode)));
-        }
-        else
-        {
-            ui->pushButton->setText(keycodeToKey(keycode).toUpper());
-        }
+        JoyButtonSlot *tempbuttonslot = iter.next();
+        tempNConfig->assignments->append(tempbuttonslot);
     }
 
-    if (axis->getPKey() > 0)
+    ui->pushButton->setText(axis->getNAxisButton()->getSlotsSummary());
+
+    button = axis->getPAxisButton();
+    tempPConfig = new ButtonTempConfig(button);
+
+    QListIterator<JoyButtonSlot*> iter2(*(button->getAssignedSlots()));
+    while (iter2.hasNext())
     {
-        int keycode = axis->getPKey();
-        ui->pushButton_2->setValue(keycode);
-        if (keycode > MOUSE_OFFSET)
-        {
-            keycode -= MOUSE_OFFSET;
-            ui->pushButton_2->setText(QString("Mouse ").append(QString::number(keycode)));
-        }
-        else
-        {
-            ui->pushButton_2->setText(keycodeToKey(keycode).toUpper());
-        }
+        JoyButtonSlot *tempbuttonslot = iter2.next();
+        tempPConfig->assignments->append(tempbuttonslot);
     }
+
+    ui->pushButton_2->setText(axis->getPAxisButton()->getSlotsSummary());
 
     int currentThrottle = axis->getThrottle();
     ui->comboBox_2->setCurrentIndex(currentThrottle+1);
@@ -98,9 +77,40 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     currentJoyValueText = currentJoyValueText.append(QString::number(axis->getCurrentValue()));
     ui->joyValueLabel->setText(currentJoyValueText);
 
+    if (tempPConfig->mouseSpeedX == tempNConfig->mouseSpeedX)
+    {
+        ui->horizontalSpinBox->setValue(tempPConfig->mouseSpeedX);
+        updateHorizontalSpeedConvertLabel(tempPConfig->mouseSpeedX);
+    }
+    else
+    {
+        int temp = (tempPConfig->mouseSpeedX > tempNConfig->mouseSpeedX) ? tempPConfig->mouseSpeedX : tempNConfig->mouseSpeedX;
+        ui->horizontalSpinBox->setValue(temp);
+        updateHorizontalSpeedConvertLabel(temp);
+    }
+
+    if (tempPConfig->mouseSpeedY == tempNConfig->mouseSpeedY)
+    {
+        ui->verticalSpinBox->setValue(tempNConfig->mouseSpeedY);
+        updateVerticalSpeedConvertLabel(tempNConfig->mouseSpeedY);
+    }
+    else
+    {
+        int temp = (tempPConfig->mouseSpeedY > tempNConfig->mouseSpeedY) ? tempPConfig->mouseSpeedY : tempNConfig->mouseSpeedY;
+        ui->verticalSpinBox->setValue(temp);
+        updateVerticalSpeedConvertLabel(temp);
+    }
+
     connect(this, SIGNAL(accepted()), this, SLOT(saveAxisChanges()));
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateModeUi(int)));
-    connect(ui->spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpeedConvertLabel(int)));
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+
+    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
+    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
+    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateTempConfigHorizontalSpeed(int)));
+
+    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
+    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
+    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateTempConfigVerticalSpeed(int)));
 
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(updateDeadZoneBox(int)));
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setDeadZone(int)));
@@ -114,57 +124,50 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(updateDeadZoneSlider(QString)));
     connect(ui->lineEdit_2, SIGNAL(textEdited(QString)), this, SLOT(updateMaxZoneSlider(QString)));
+
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(openAdvancedNDialog()));
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(openAdvancedPDialog()));
+
+    connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
+    connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
+}
+
+AxisEditDialog::~AxisEditDialog()
+{
+    delete ui;
+    delete tempPConfig;
+    delete tempNConfig;
 }
 
 void AxisEditDialog::saveAxisChanges()
 {
-    if (ui->pushButton->getValue() >= 0)
+    JoyAxisButton *naxisbutton = axis->getNAxisButton();
+    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+
+    naxisbutton->reset();
+    QListIterator<JoyButtonSlot*> iter(*(tempNConfig->assignments));
+    while (iter.hasNext())
     {
-        int keycode = ui->pushButton->getValue();
-        if (keycode == 0)
-        {
-            axis->setNKey(keycode);
-        }
-        else if (keycode <= MOUSE_OFFSET)
-        {
-            axis->setNKey(keycode);
-        }
-        else
-        {
-            axis->setNKey(keycode);
-        }
+        JoyButtonSlot *tempbuttonslot = iter.next();
+        naxisbutton->setAssignedSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
     }
 
-    if (ui->pushButton_2->getValue() >= 0)
+    paxisbutton->reset();
+    QListIterator<JoyButtonSlot*> iter2(*(tempPConfig->assignments));
+    while (iter2.hasNext())
     {
-        int keycode = ui->pushButton_2->getValue();
-        if (keycode == 0)
-        {
-            axis->setPKey(keycode);
-        }
-        else if (keycode <= MOUSE_OFFSET)
-        {
-            axis->setPKey(keycode);
-        }
-        else
-        {
-            axis->setPKey(keycode);
-        }
+        JoyButtonSlot *tempbuttonslot = iter2.next();
+        paxisbutton->setAssignedSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
     }
 
     axis->setDeadZone(ui->horizontalSlider->value());
     axis->setMaxZoneValue(ui->horizontalSlider_2->value());
 
-    if (ui->comboBox->currentIndex() == 0)
-    {
-        axis->setAxisMode(0);
-    }
-    else
-    {
-        axis->setAxisMode(1);
-        axis->setMouseMode(ui->comboBox->currentIndex() - 1);
-        axis->setMouseSpeed(ui->spinBox->value());
-    }
+    naxisbutton->setMouseSpeedX(tempNConfig->mouseSpeedX);
+    naxisbutton->setMouseSpeedY(tempNConfig->mouseSpeedY);
+
+    paxisbutton->setMouseSpeedX(tempPConfig->mouseSpeedX);
+    paxisbutton->setMouseSpeedY(tempPConfig->mouseSpeedY);
 
     int currentThrottle = 0;
     if (ui->comboBox_2->isEnabled())
@@ -174,21 +177,64 @@ void AxisEditDialog::saveAxisChanges()
     axis->setThrottle(currentThrottle);
 }
 
-void AxisEditDialog::updateModeUi(int index)
+void AxisEditDialog::implementPresets(int index)
 {
-    if (index > 0)
+    JoyButtonSlot *nbuttonslot = 0;
+    JoyButtonSlot *pbuttonslot = 0;
+
+    if (index == 1)
     {
-        ui->spinBox->setEnabled(true);
-        ui->pushButton->setEnabled(false);
-        ui->pushButton_2->setEnabled(false);
-        ui->comboBox_2->setEnabled(false);
+        nbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement);
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement);
     }
-    else
+    else if (index == 2)
     {
-        ui->spinBox->setEnabled(false);
-        ui->pushButton->setEnabled(true);
-        ui->pushButton_2->setEnabled(true);
-        ui->comboBox_2->setEnabled(true);
+        nbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement);
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement);
+    }
+    else if (index == 3)
+    {
+        nbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement);
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement);
+    }
+    else if (index == 4)
+    {
+        nbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement);
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement);
+    }
+    else if (index == 5)
+    {
+        nbuttonslot = new JoyButtonSlot(keyToKeycode("Up"), JoyButtonSlot::JoyKeyboard);
+        pbuttonslot = new JoyButtonSlot(keyToKeycode("Down"), JoyButtonSlot::JoyKeyboard);
+    }
+    else if (index == 6)
+    {
+        nbuttonslot = new JoyButtonSlot(keyToKeycode("Left"), JoyButtonSlot::JoyKeyboard);
+        pbuttonslot = new JoyButtonSlot(keyToKeycode("Right"), JoyButtonSlot::JoyKeyboard);
+    }
+    else if (index == 7)
+    {
+        nbuttonslot = new JoyButtonSlot(keyToKeycode("w"), JoyButtonSlot::JoyKeyboard);
+        pbuttonslot = new JoyButtonSlot(keyToKeycode("s"), JoyButtonSlot::JoyKeyboard);
+    }
+    else if (index == 8)
+    {
+        nbuttonslot = new JoyButtonSlot(keyToKeycode("a"), JoyButtonSlot::JoyKeyboard);
+        pbuttonslot = new JoyButtonSlot(keyToKeycode("d"), JoyButtonSlot::JoyKeyboard);
+    }
+
+    if (nbuttonslot)
+    {
+        tempNConfig->assignments->clear();
+        tempNConfig->assignments->append(nbuttonslot);
+        updateFromTempNConfig();
+    }
+
+    if (pbuttonslot)
+    {
+        tempPConfig->assignments->clear();
+        tempPConfig->assignments->append(pbuttonslot);
+        updateFromTempPConfig();
     }
 }
 
@@ -202,11 +248,18 @@ void AxisEditDialog::updateMaxZoneBox(int value)
     ui->lineEdit_2->setText(QString::number(value));
 }
 
-void AxisEditDialog::updateSpeedConvertLabel(int value)
+void AxisEditDialog::updateHorizontalSpeedConvertLabel(int value)
 {
     QString label = QString (QString::number(value));
     label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
-    ui->label_5->setText(label);
+    ui->horizontalSpeedLabel->setText(label);
+}
+
+void AxisEditDialog::updateVerticalSpeedConvertLabel(int value)
+{
+    QString label = QString (QString::number(value));
+    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
+    ui->verticalSpeedLabel->setText(label);
 }
 
 void AxisEditDialog::updateThrottleUi(int index)
@@ -254,7 +307,128 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
     }
 }
 
-AxisEditDialog::~AxisEditDialog()
+void AxisEditDialog::openAdvancedPDialog()
 {
-    delete ui;
+    AdvanceButtonDialog *dialog = new AdvanceButtonDialog(tempPConfig);
+    dialog->show();
+
+    connect(dialog, SIGNAL(accepted()), this, SLOT(updateFromTempPConfig()));
+}
+
+void AxisEditDialog::openAdvancedNDialog()
+{
+    AdvanceButtonDialog *dialog = new AdvanceButtonDialog(tempNConfig);
+    dialog->show();
+
+    connect(dialog, SIGNAL(accepted()), this, SLOT(updateFromTempNConfig()));
+}
+
+void AxisEditDialog::updateFromTempPConfig()
+{
+    ui->pushButton_2->setText(tempPConfig->getSlotsSummary());
+    if (tempPConfig->mouseSpeedX != ui->horizontalSpinBox->value())
+    {
+        ui->changeMouseSpeedsCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setEnabled(false);
+        ui->horizontalSpinBox->setEnabled(false);
+        ui->verticalSpinBox->setEnabled(false);
+    }
+    else if (tempPConfig->mouseSpeedY != ui->verticalSpinBox->value())
+    {
+        ui->changeMouseSpeedsCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setEnabled(false);
+        ui->horizontalSpinBox->setEnabled(false);
+        ui->verticalSpinBox->setEnabled(false);
+    }
+
+    if (tempPConfig->mouseSpeedX > ui->horizontalSpinBox->value())
+    {
+        ui->horizontalSpinBox->setValue(tempPConfig->mouseSpeedX);
+    }
+
+    if (tempPConfig->mouseSpeedY > ui->verticalSpinBox->value())
+    {
+        ui->verticalSpinBox->setValue(tempPConfig->mouseSpeedY);
+    }
+}
+
+void AxisEditDialog::updateFromTempNConfig()
+{
+    ui->pushButton->setText(tempNConfig->getSlotsSummary());
+    if (tempNConfig->mouseSpeedX != ui->horizontalSpinBox->value())
+    {
+        ui->changeMouseSpeedsCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setEnabled(false);
+        ui->horizontalSpinBox->setEnabled(false);
+        ui->verticalSpinBox->setEnabled(false);
+    }
+    else if (tempNConfig->mouseSpeedY != ui->verticalSpinBox->value())
+    {
+        ui->changeMouseSpeedsCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setChecked(false);
+        ui->changeTogetherCheckBox->setEnabled(false);
+        ui->horizontalSpinBox->setEnabled(false);
+        ui->verticalSpinBox->setEnabled(false);
+    }
+
+    if (tempNConfig->mouseSpeedX > ui->horizontalSpinBox->value())
+    {
+        ui->horizontalSpinBox->setValue(tempNConfig->mouseSpeedX);
+    }
+
+    if (tempNConfig->mouseSpeedY > ui->verticalSpinBox->value())
+    {
+        ui->verticalSpinBox->setValue(tempNConfig->mouseSpeedY);
+    }
+}
+
+void AxisEditDialog::syncSpeedSpinBoxes()
+{
+    int temp = ui->horizontalSpinBox->value();
+    if (temp > ui->verticalSpinBox->value())
+    {
+        ui->verticalSpinBox->setValue(temp);
+    }
+    else
+    {
+        temp = ui->verticalSpinBox->value();
+        ui->horizontalSpinBox->setValue(temp);
+    }
+}
+
+void AxisEditDialog::moveSpeedsTogether(int value)
+{
+    if (ui->changeTogetherCheckBox->isChecked())
+    {
+        ui->horizontalSpinBox->setValue(value);
+        ui->verticalSpinBox->setValue(value);
+    }
+}
+
+void AxisEditDialog::changeMouseSpeedsInterface(bool value)
+{
+    ui->horizontalSpinBox->setEnabled(value);
+    ui->verticalSpinBox->setEnabled(value);
+    ui->changeTogetherCheckBox->setEnabled(value);
+}
+
+void AxisEditDialog::updateTempConfigHorizontalSpeed(int value)
+{
+    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    {
+        tempPConfig->mouseSpeedX = value;
+        tempNConfig->mouseSpeedX = value;
+    }
+}
+
+void AxisEditDialog::updateTempConfigVerticalSpeed(int value)
+{
+    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    {
+        tempPConfig->mouseSpeedY = value;
+        tempNConfig->mouseSpeedY = value;
+    }
 }

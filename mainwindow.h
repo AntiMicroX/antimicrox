@@ -10,6 +10,8 @@
 #include <QShowEvent>
 
 #include "joystick.h"
+#include "aboutdialog.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +33,7 @@ protected:
     QAction *closeAction;
     QAction *updateJoy;
     QMenu *trayIconMenu;
+    AboutDialog *aboutDialog;
     bool signalDisconnect;
 
     virtual void hideEvent(QHideEvent * event);
@@ -62,6 +65,7 @@ private slots:
     void trayMenuChangeJoyConfig(QAction *action);
     void joystickTrayShow();
     void populateTrayIcon();
+    void openAboutDialog();
 };
 
 #endif // MAINWINDOW_H

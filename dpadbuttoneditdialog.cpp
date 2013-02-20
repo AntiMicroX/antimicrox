@@ -2,8 +2,18 @@
 
 #include "dpadbuttoneditdialog.h"
 #include "ui_dpadbuttoneditdialog.h"
-#include "event.h"
 
+DPadButtonEditDialog::DPadButtonEditDialog(JoyDPadButton *button, QWidget *parent) :
+    ButtonEditDialog(button, parent)
+{
+}
+
+//DPadButtonEditDialog::~DPadButtonEditDialog()
+//{
+//    delete ui;
+//}
+
+/*
 DPadButtonEditDialog::DPadButtonEditDialog(JoyDPadButton *button, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DPadButtonEditDialog)
@@ -112,3 +122,4 @@ void DPadButtonEditDialog::changeMouseSetting(int mousecode)
 {
     pendingMouseCode = mousecode;
 }
+*/
