@@ -173,6 +173,7 @@ void JoyButton::createDeskEvent()
         }
         else
         {
+            slot->getMouseInterval()->restart();
             mouseEvent(slot);
         }
     }
