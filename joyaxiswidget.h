@@ -8,10 +8,13 @@
 class JoyAxisWidget : public QPushButton
 {
     Q_OBJECT
+    Q_PROPERTY(bool isflashing READ isButtonFlashing)
+
 public:
     explicit JoyAxisWidget(QWidget *parent = 0);
     explicit JoyAxisWidget(JoyAxis *axis, QWidget *parent=0);
     JoyAxis* getAxis();
+    bool isButtonFlashing();
 
 protected:
     JoyAxis *axis;

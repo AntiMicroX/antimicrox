@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QStyle>
 
 #include "joyaxiswidget.h"
 
@@ -55,14 +56,22 @@ JoyAxis* JoyAxisWidget::getAxis()
 void JoyAxisWidget::flash()
 {
     isflashing = true;
-    setPalette(flashing);
+    //setPalette(flashing);
+    //update();
+    this->style()->unpolish(this);
+    this->style()->polish(this);
+
     emit flashed(isflashing);
 }
 
 void JoyAxisWidget::unflash()
 {
     isflashing = false;
-    setPalette(normal);
+    //setPalette(normal);
+    //update();
+    this->style()->unpolish(this);
+    this->style()->polish(this);
+
     emit flashed(isflashing);
 }
 
@@ -82,4 +91,9 @@ void JoyAxisWidget::enableFlashes()
 {
     connect(axis, SIGNAL(active(int)), this, SLOT(flash()));
     connect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
+}
+
+bool JoyAxisWidget::isButtonFlashing()
+{
+    return isflashing;
 }

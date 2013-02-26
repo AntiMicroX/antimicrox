@@ -186,6 +186,7 @@ void JoyButton::mouseEvent(JoyButtonSlot *buttonslot)
 
     int mousemode = buttonslot->getSlotCode();
     int mousespeed;
+    int timeElapsed = mouseInterval->elapsed();
 
     if (mousemode == JoyButtonSlot::MouseRight)
     {
@@ -204,7 +205,7 @@ void JoyButton::mouseEvent(JoyButtonSlot *buttonslot)
         mousespeed = mouseSpeedY;
     }
 
-    if (isButtonPressed && mouseInterval->elapsed() >= 1)
+    if (isButtonPressed && timeElapsed >= 1)
     {
         int mouse1 = 0;
         int mouse2 = 0;
@@ -212,25 +213,25 @@ void JoyButton::mouseEvent(JoyButtonSlot *buttonslot)
 
         if (mousemode == JoyButtonSlot::MouseRight)
         {
-            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse1 = distance;
         }
         else if (mousemode == JoyButtonSlot::MouseLeft)
         {
-            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse1 = -distance;
         }
         else if (mousemode == JoyButtonSlot::MouseDown)
         {
-            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse2 = distance;
         }
         else if (mousemode == JoyButtonSlot::MouseUp)
         {
-            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse2 = -distance;
         }

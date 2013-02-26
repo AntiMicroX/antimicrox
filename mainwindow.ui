@@ -16,6 +16,12 @@
   <property name="windowTitle">
    <string>AntiMicro</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
+JoyAxisWidget[isflashing=&quot;true&quot;] {
+    background-color: rgb(0, 0, 255);
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="leftMargin">

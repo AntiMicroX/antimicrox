@@ -30,6 +30,7 @@ void JoyAxisButton::mouseEvent(JoyButtonSlot *buttonslot)
 
     int mousemode = buttonslot->getSlotCode();
     int mousespeed;
+    int timeElapsed = mouseInterval->elapsed();
 
     if (mousemode == JoyButtonSlot::MouseRight)
     {
@@ -48,7 +49,7 @@ void JoyAxisButton::mouseEvent(JoyButtonSlot *buttonslot)
         mousespeed = mouseSpeedY;
     }
 
-    if (isButtonPressed && mouseInterval->elapsed() >= 1)
+    if (isButtonPressed && timeElapsed >= 1)
     {
         double difference = axis->calculateNormalizedAxisPlacement();
         int mouse1 = 0;
@@ -57,25 +58,25 @@ void JoyAxisButton::mouseEvent(JoyButtonSlot *buttonslot)
 
         if (mousemode == JoyButtonSlot::MouseRight)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse1 = distance;
         }
         else if (mousemode == JoyButtonSlot::MouseLeft)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse1 = -distance;
         }
         else if (mousemode == JoyButtonSlot::MouseDown)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse2 = distance;
         }
         else if (mousemode == JoyButtonSlot::MouseUp)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED) / 1000.0;
+            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
             int distance = (int)floor(sumDist + 0.5);
             mouse2 = -distance;
         }

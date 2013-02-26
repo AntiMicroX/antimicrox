@@ -9,10 +9,13 @@
 class JoyButtonWidget : public QPushButton
 {
     Q_OBJECT
+    Q_PROPERTY(bool isflashing READ isButtonFlashing)
+
 public:
     explicit JoyButtonWidget(QWidget *parent = 0);
     explicit JoyButtonWidget(JoyButton* button, QWidget *parent=0);
     JoyButton* getJoyButton();
+    bool isButtonFlashing();
 
 protected:
     JoyButton* button;

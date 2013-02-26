@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QStyle>
 
 #include "joybuttonwidget.h"
 #include "event.h"
@@ -58,14 +59,23 @@ JoyButton* JoyButtonWidget::getJoyButton()
 void JoyButtonWidget::flash()
 {
     isflashing = true;
-    setPalette(flashing);
+    //setPalette(flashing);
+    //update();
+    this->style()->unpolish(this);
+    this->style()->polish(this);
+
     emit flashed(isflashing);
 }
 
 void JoyButtonWidget::unflash()
 {
     isflashing = false;
-    setPalette(normal);
+    //setPalette(normal);
+    //update();
+
+    this->style()->unpolish(this);
+    this->style()->polish(this);
+
     emit flashed(isflashing);
 }
 
@@ -95,4 +105,9 @@ void JoyButtonWidget::enableFlashes()
 {
     connect (button, SIGNAL(clicked(int)), this, SLOT(flash()));
     connect (button, SIGNAL(released(int)), this, SLOT(unflash()));
+}
+
+bool JoyButtonWidget::isButtonFlashing()
+{
+    return isflashing;
 }
