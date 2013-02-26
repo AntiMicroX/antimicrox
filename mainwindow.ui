@@ -330,20 +330,20 @@ JoyAxisWidget[isflashing=&quot;true&quot;] {
    </property>
    <widget class="QMenu" name="menuQuit">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionHide"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Options</string>
+     <string>&amp;Options</string>
     </property>
     <addaction name="actionUpdate_Joysticks"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
@@ -361,22 +361,34 @@ JoyAxisWidget[isflashing=&quot;true&quot;] {
   </widget>
   <action name="actionQuit">
    <property name="text">
-    <string>Quit</string>
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionUpdate_Joysticks">
    <property name="text">
-    <string>Update Joysticks</string>
+    <string>&amp;Update Joysticks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
   <action name="actionHide">
    <property name="text">
-    <string>Hide</string>
+    <string>&amp;Hide</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
  </widget>
