@@ -125,18 +125,18 @@ void MainWindow::populateTrayIcon()
         trayIconMenu->addSeparator();
     }
 
-    hideAction = new QAction(tr("Hide"), trayIconMenu);
+    hideAction = new QAction(tr("&Hide"), trayIconMenu);
     connect(hideAction, SIGNAL(triggered()), this, SLOT(hide()));
     //connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
 
-    restoreAction = new QAction(tr("Restore"), trayIconMenu);
+    restoreAction = new QAction(tr("&Restore"), trayIconMenu);
     //connect(restoreAction, SIGNAL(triggered()), this, SLOT(enableFlashActions()));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
 
-    closeAction = new QAction(tr("Quit"), trayIconMenu);
+    closeAction = new QAction(tr("&Quit"), trayIconMenu);
     connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
 
-    updateJoy = new QAction(tr("Update Joysticks"), trayIconMenu);
+    updateJoy = new QAction(tr("&Update Joysticks"), trayIconMenu);
     connect(updateJoy, SIGNAL(triggered()), this, SLOT(startJoystickRefresh()));
 
     trayIconMenu->addAction(hideAction);
