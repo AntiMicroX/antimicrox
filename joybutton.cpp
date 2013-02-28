@@ -358,7 +358,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeStartElement("slots");
     QListIterator<JoyButtonSlot*> iter(assignments);
-    if (iter.hasNext())
+    while (iter.hasNext())
     {
         JoyButtonSlot *buttonslot = iter.next();
         buttonslot->writeConfig(xml);
