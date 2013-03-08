@@ -152,6 +152,18 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
     {
         setText(buttonslot.movementString());
     }
+    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyPause)
+    {
+        QString temp("Pause ");
+        temp.append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
+        setText(temp);
+    }
+    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyHold)
+    {
+        QString temp("Hold ");
+        temp.append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
+        setText(temp);
+    }
 }
 
 JoyButtonSlot* SimpleKeyGrabberButton::getValue()

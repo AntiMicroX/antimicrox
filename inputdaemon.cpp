@@ -55,31 +55,52 @@ void InputDaemon::run ()
             {
                 case SDL_JOYBUTTONDOWN: {
                     Joystick *joy = joysticks->value(event.button.which);
-                    JoyButton *button = joy->getJoyButton(event.button.button);
-                    button->joyEvent(true);
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    //JoyButton *button = joy->getJoyButton(event.button.button);
+                    JoyButton *button = set->getJoyButton(event.button.button);
+
+                    if (button)
+                    {
+                        button->joyEvent(true);
+                    }
                     break;
                 }
 
                 case SDL_JOYBUTTONUP:
                 {
                     Joystick *joy = joysticks->value(event.button.which);
-                    JoyButton *button = joy->getJoyButton(event.button.button);
-                    button->joyEvent(false);
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    //JoyButton *button = joy->getJoyButton(event.button.button);
+                    JoyButton *button = set->getJoyButton(event.button.button);
+
+                    if (button)
+                    {
+                        button->joyEvent(false);
+                    }
                     break;
                 }
 
                 case SDL_JOYAXISMOTION: {
                     Joystick *joy = joysticks->value(event.jaxis.which);
-                    JoyAxis *axis = joy->getJoyAxis(event.jaxis.axis);
-                    axis->joyEvent(event.jaxis.value);
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    //JoyAxis *axis = joy->getJoyAxis(event.jaxis.axis);
+                    JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
+                    if (axis)
+                    {
+                        axis->joyEvent(event.jaxis.value);
+                    }
                     break;
                 }
 
                 case SDL_JOYHATMOTION: {
                     Joystick *joy = joysticks->value(event.jhat.which);
-                    JoyDPad *dpad = joy->getJoyDPad(event.jhat.hat);
-                    dpad->joyEvent(event.jhat.value);
-
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    //JoyDPad *dpad = joy->getJoyDPad(event.jhat.hat);
+                    JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
+                    if (dpad)
+                    {
+                        dpad->joyEvent(event.jhat.value);
+                    }
                     break;
                 }
 
@@ -111,9 +132,10 @@ void InputDaemon::refreshJoysticks()
     {
         SDL_Joystick* joystick = SDL_JoystickOpen (i);
         Joystick *curJoystick = new Joystick (joystick, this);
-        curJoystick->refreshAxes();
-        curJoystick->refreshHats();
-        curJoystick->refreshButtons();
+        //curJoystick->refreshAxes();
+        //curJoystick->refreshHats();
+        //curJoystick->refreshButtons();
+        curJoystick->reset();
 
         joysticks->insert(i, curJoystick);
     }
@@ -143,9 +165,12 @@ bool InputDaemon::isRunning()
 
 void InputDaemon::refreshJoystick(Joystick *joystick)
 {
+    /*
     joystick->refreshAxes();
     joystick->refreshHats();
     joystick->refreshButtons();
+    */
+    joystick->reset();
 
     emit joystickRefreshed(joystick);
 }

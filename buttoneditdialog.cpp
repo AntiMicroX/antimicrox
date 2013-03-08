@@ -46,6 +46,10 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
         tempconfig->assignments->append(tempbuttonslot);
     }
 
+    tempconfig->originset = button->getOriginSet();
+    tempconfig->setSelection = button->getSetSelection();
+    tempconfig->setSelectionCondition = button->getChangeSetCondition();
+
     updateFromTempConfig();
 
     connect (ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveButtonChanges()));
@@ -67,6 +71,13 @@ ButtonEditDialog::~ButtonEditDialog()
 
 void ButtonEditDialog::saveButtonChanges()
 {
+    bool pressed = button->getButtonState();
+    if (pressed)
+    {
+        button->joyEvent(false);
+    }
+    JoyButton::SetChangeCondition oldCondition = button->getChangeSetCondition();
+
     button->reset ();
 
     updateTempConfigState();
@@ -93,7 +104,26 @@ void ButtonEditDialog::saveButtonChanges()
     button->setMouseSpeedX(tempconfig->mouseSpeedX);
     button->setMouseSpeedY(tempconfig->mouseSpeedY);
 
-    //button->joyEvent(false);
+    if (tempconfig->setSelection > -1 && tempconfig->setSelectionCondition != JoyButton::SetChangeDisabled)
+    {
+        // Revert old set condition before entering new set condition.
+        // Also, do not emit signals on first change
+        button->setChangeSetCondition(oldCondition, true);
+
+        button->setChangeSetSelection(tempconfig->setSelection);
+        button->setChangeSetCondition(tempconfig->setSelectionCondition);
+    }
+    else
+    {
+        button->setChangeSetSelection(-1);
+        button->setChangeSetCondition(JoyButton::SetChangeDisabled);
+    }
+
+    if (pressed)
+    {
+        button->joyEvent(pressed);
+    }
+
     this->close();
 }
 
@@ -154,6 +184,15 @@ void ButtonEditDialog::updateFromTempConfig()
     {
         ui->pushButton->setValue(0);
     }
+
+    if (tempconfig->containsSequence())
+    {
+        ui->checkBox->setEnabled(false);
+    }
+    else
+    {
+        ui->checkBox->setEnabled(true);
+    }
 }
 
 void ButtonEditDialog::updateTempConfigState()
@@ -170,5 +209,6 @@ void ButtonEditDialog::singleAssignmentForTempConfig(bool edited)
         JoyButtonSlot *newbuttonslot = new JoyButtonSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
         tempconfig->assignments->clear();
         tempconfig->assignments->append(newbuttonslot);
+        ui->checkBox->setEnabled(true);
     }
 }

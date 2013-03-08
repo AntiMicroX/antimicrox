@@ -12,11 +12,10 @@ JoyAxisButton::JoyAxisButton(JoyAxis *axis, QObject *parent) :
     this->axis = axis;
 }
 
-JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, QObject *parent) :
-    JoyButton(parent)
+JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent) :
+    JoyButton(index, originset, parent)
 {
     this->axis = axis;
-    this->index = index;
 }
 
 QString JoyAxisButton::getXmlName()
@@ -49,7 +48,8 @@ void JoyAxisButton::mouseEvent(JoyButtonSlot *buttonslot)
         mousespeed = mouseSpeedY;
     }
 
-    if (isButtonPressed && timeElapsed >= 1)
+    bool isActive = activeSlots.contains(buttonslot);
+    if (isActive && timeElapsed >= 1)
     {
         double difference = axis->calculateNormalizedAxisPlacement();
         int mouse1 = 0;
@@ -96,7 +96,7 @@ void JoyAxisButton::mouseEvent(JoyButtonSlot *buttonslot)
         mouseInterval->restart();
     }
 
-    if (isButtonPressed)
+    if (isActive)
     {
         QMetaObject::invokeMethod(this, "mouseEvent", Qt::QueuedConnection, Q_ARG(JoyButtonSlot*, buttonslot));
     }

@@ -7,18 +7,18 @@ JoyDPad::JoyDPad(QObject *parent) :
 {
     buttons = QHash<int, JoyDPadButton*> ();
     prevDirection = JoyDPadButton::DpadCentered;
-    previousValue = JoyDPadButton::DpadCentered;
     populateButtons();
+    originset = 0;
 }
 
-JoyDPad::JoyDPad(int index, QObject *parent) :
+JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
     QObject(parent)
 {
     this->index = index;
     buttons = QHash<int, JoyDPadButton*> ();
     prevDirection = JoyDPadButton::DpadCentered;
-    previousValue = JoyDPadButton::DpadCentered;
     populateButtons();
+    this->originset = originset;
 }
 
 JoyDPadButton *JoyDPad::getJoyButton(int index)
@@ -28,16 +28,16 @@ JoyDPadButton *JoyDPad::getJoyButton(int index)
 
 void JoyDPad::populateButtons()
 {
-    JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, this, this);
+    JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, originset, this, this);
     buttons.insert(JoyDPadButton::DpadUp, button);
 
-    button = new JoyDPadButton (JoyDPadButton::DpadDown, this, this);
+    button = new JoyDPadButton (JoyDPadButton::DpadDown, originset, this, this);
     buttons.insert(JoyDPadButton::DpadDown, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRight, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRight, originset, this, this);
     buttons.insert(JoyDPadButton::DpadRight, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeft, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeft, originset, this, this);
     buttons.insert(JoyDPadButton::DpadLeft, button);
 }
 
@@ -103,7 +103,7 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
     xml->writeEndElement();
 }
 
-void JoyDPad::joyEvent(int value)
+void JoyDPad::joyEvent(int value, bool ignoresets)
 {
     JoyDPadButton *curButton;
     JoyDPadButton *prevButton;
@@ -112,23 +112,23 @@ void JoyDPad::joyEvent(int value)
         if (prevDirection & JoyDPadButton::DpadUp)
         {
             prevButton = buttons.value(JoyDPadButton::DpadUp);
-            prevButton->joyEvent(false);
+            prevButton->joyEvent(false, ignoresets);
         }
         if (prevDirection & JoyDPadButton::DpadRight)
         {
             prevButton = buttons.value(JoyDPadButton::DpadRight);
-            prevButton->joyEvent(false);
+            prevButton->joyEvent(false, ignoresets);
         }
         if (prevDirection & JoyDPadButton::DpadDown)
         {
             prevButton = buttons.value(JoyDPadButton::DpadDown);
-            prevButton->joyEvent(false);
+            prevButton->joyEvent(false, ignoresets);
         }
 
         if (prevDirection & JoyDPadButton::DpadLeft)
         {
             prevButton = buttons.value(JoyDPadButton::DpadLeft);
-            prevButton->joyEvent(false);
+            prevButton->joyEvent(false, ignoresets);
         }
 
         /*if (prevDirection & JoyDPadButton::DpadRightUp)
@@ -155,22 +155,22 @@ void JoyDPad::joyEvent(int value)
         if (value & JoyDPadButton::DpadUp)
         {
             curButton = buttons.value(JoyDPadButton::DpadUp);
-            curButton->joyEvent(true);
+            curButton->joyEvent(true, ignoresets);
         }
         if (value & JoyDPadButton::DpadRight)
         {
             curButton = buttons.value(JoyDPadButton::DpadRight);
-            curButton->joyEvent(true);
+            curButton->joyEvent(true, ignoresets);
         }
         if (value & JoyDPadButton::DpadDown)
         {
             curButton = buttons.value(JoyDPadButton::DpadDown);
-            curButton->joyEvent(true);
+            curButton->joyEvent(true, ignoresets);
         }
         if (value & JoyDPadButton::DpadLeft)
         {
             curButton = buttons.value(JoyDPadButton::DpadLeft);
-            curButton->joyEvent(true);
+            curButton->joyEvent(true, ignoresets);
         }
         /*if (value & JoyDPadButton::DpadRightUp)
         {
@@ -221,4 +221,9 @@ void JoyDPad::joyEvent(int value)
 QHash<int, JoyDPadButton*>* JoyDPad::getJoyButtons()
 {
     return &buttons;
+}
+
+int JoyDPad::getCurrentDirection()
+{
+    return prevDirection;
 }

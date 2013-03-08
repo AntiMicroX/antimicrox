@@ -22,22 +22,23 @@ JoyAxis::JoyAxis(QObject *parent) :
     QObject(parent)
 {
     timer = new QTimer ();
-    naxisbutton = new JoyAxisButton(this, 0);
-    paxisbutton = new JoyAxisButton(this, 1);
+    originset = 0;
+    naxisbutton = new JoyAxisButton(this, 0, originset);
+    paxisbutton = new JoyAxisButton(this, 1, originset);
 
     reset();
     index = 0;
 }
 
-JoyAxis::JoyAxis(int index, QObject *parent) :
+JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
     QObject(parent)
 {
     timer = new QTimer ();
-    naxisbutton = new JoyAxisButton(this, 0);
-    paxisbutton = new JoyAxisButton(this, 1);
+    this->originset = originset;
+    naxisbutton = new JoyAxisButton(this, 0, originset);
+    paxisbutton = new JoyAxisButton(this, 1, originset);
 
     reset();
-
     this->index = index;
 }
 
@@ -48,9 +49,10 @@ JoyAxis::~JoyAxis()
     delete naxisbutton;
 }
 
-void JoyAxis::joyEvent(int value)
+void JoyAxis::joyEvent(int value, bool ignoresets)
 {
-    int temp = value;
+    currentRawValue = value;
+
     if (throttle == -1)
     {
         value = (value + AXISMIN) / 2;
@@ -60,25 +62,41 @@ void JoyAxis::joyEvent(int value)
         value = (value + AXISMAX) / 2;
     }
 
-    bool safezone = !inDeadZone(temp);
-    currentValue = value;
+    bool safezone = !inDeadZone(currentRawValue);
+    currentThrottledValue = value;
 
     if (safezone && !isActive)
     {
         isActive = eventActive = true;
         emit active(value);
-        createDeskEvent();
+        createDeskEvent(ignoresets);
     }
     else if (!safezone && isActive)
     {
         isActive = eventActive = false;
         emit released(value);
 
-        createDeskEvent();
+        createDeskEvent(ignoresets);
         lastkey = 0;
     }
 
-    emit moved(temp);
+    /*if (!ignoresets)
+    {
+        if (!isActive && setSelectionCondition == SetChangeOneWay && setSelection > -1)
+        {
+            emit setChangeActivated(setSelection);
+        }
+        else if (!isActive && setSelectionCondition == SetChangeTwoWay && setSelection > -1)
+        {
+            emit setChangeActivated(setSelection);
+        }
+        else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
+        {
+            emit setChangeActivated(setSelection);
+        }
+    }*/
+
+    emit moved(currentRawValue);
 }
 
 bool JoyAxis::inDeadZone(int value)
@@ -128,9 +146,9 @@ int JoyAxis::getRealJoyIndex()
     return index + 1;
 }
 
-int JoyAxis::getCurrentValue()
+int JoyAxis::getCurrentThrottledValue()
 {
-    return currentValue;
+    return currentThrottledValue;
 }
 
 void JoyAxis::setIndex(int index)
@@ -144,21 +162,21 @@ int JoyAxis::getIndex()
 }
 
 
-void JoyAxis::createDeskEvent()
+void JoyAxis::createDeskEvent(bool ignoresets)
 {
-    if (currentValue > deadZone)
+    if (currentThrottledValue > deadZone)
     {
-        paxisbutton->joyEvent(eventActive);
+        paxisbutton->joyEvent(eventActive, ignoresets);
         activeButton = paxisbutton;
     }
-    else if (currentValue < -deadZone)
+    else if (currentThrottledValue < -deadZone)
     {
-        naxisbutton->joyEvent(eventActive);
+        naxisbutton->joyEvent(eventActive, ignoresets);
         activeButton = naxisbutton;
     }
     else if (activeButton)
     {
-        activeButton->joyEvent(eventActive);
+        activeButton->joyEvent(eventActive, ignoresets);
         activeButton = 0;
     }
 }
@@ -196,6 +214,7 @@ void JoyAxis::setThrottle(int value)
     if (value >= -1 && value <= 1)
     {
         throttle = value;
+        adjustRange();
     }
 }
 
@@ -300,7 +319,8 @@ void JoyAxis::reset()
     timer->stop();
     interval = QTime ();
     eventActive = false;
-    currentValue = 0;
+    currentThrottledValue = 0;
+    currentRawValue = 0;
     maxZoneValue = 30000;
     throttle = 0;
     sumDist = 0.0;
@@ -310,6 +330,8 @@ void JoyAxis::reset()
     paxisbutton->reset();
     naxisbutton->reset();
     activeButton = 0;
+
+    adjustRange();
 }
 
 void JoyAxis::reset(int index)
@@ -320,7 +342,7 @@ void JoyAxis::reset(int index)
 
 double JoyAxis::calculateNormalizedAxisPlacement()
 {
-    double difference = (abs(currentValue) - deadZone)/(double)(maxZoneValue - deadZone);
+    double difference = (abs(currentThrottledValue) - deadZone)/(double)(maxZoneValue - deadZone);
     if (difference > 1.0)
     {
         difference = 1.0;
@@ -337,4 +359,49 @@ JoyAxisButton* JoyAxis::getPAxisButton()
 JoyAxisButton* JoyAxis::getNAxisButton()
 {
     return naxisbutton;
+}
+
+int JoyAxis::getCurrentRawValue()
+{
+    return currentRawValue;
+}
+
+void JoyAxis::adjustRange()
+{
+    if (throttle == -1)
+    {
+        currentThrottledDeadValue = AXISMAX;
+        //currentThrottledMin = AXISMAX;
+        //currentThrottledMax = 0;
+        //value = (value + AXISMIN) / 2;
+    }
+    else if (throttle == 0)
+    {
+        currentThrottledDeadValue = 0;
+        //currentThrottledMin = AXISMIN;
+        //currentThrottleCenter = 0;
+        //currentThrottledMax = AXISMAX;
+    }
+    else if (throttle == 1)
+    {
+        currentThrottledDeadValue = AXISMIN;
+        //currentThrottledMin = 0;
+        //currentThrottledMax = AXISMAX;
+        //value = (value + AXISMAX) / 2;
+    }
+}
+
+int JoyAxis::getCurrentThrottledMin()
+{
+    return currentThrottledMin;
+}
+
+int JoyAxis::getCurrentThrottledMax()
+{
+    return currentThrottledMax;
+}
+
+int JoyAxis::getCurrentThrottledDeadValue()
+{
+    return currentThrottledDeadValue;
 }

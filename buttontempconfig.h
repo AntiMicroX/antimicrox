@@ -20,9 +20,13 @@ public:
     bool toggle;
     int mouseSpeedX;
     int mouseSpeedY;
+    int setSelection;
+    int originset;
     QList<JoyButtonSlot*> *assignments;
+    JoyButton::SetChangeCondition setSelectionCondition;
 
     QString getSlotsSummary();
+    bool containsSequence();
 
 signals:
     

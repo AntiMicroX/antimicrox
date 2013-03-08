@@ -94,49 +94,14 @@ bool XMLConfigReader::read()
                     requiredMigration = true;
                 }
             }*/
-            xml->readNextStartElement();
+            //xml->readNextStartElement();
         }
 
         while (!xml->atEnd())
         {
-            if (xml->name() == "button" && xml->isStartElement())
+            if (xml->name() == "joystick" && xml->isStartElement())
             {
-                int index = xml->attributes().value("index").toString().toInt();
-                JoyButton *button = joystick->getJoyButton(index-1);
-                if (button)
-                {
-                    button->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
-            }
-            else if (xml->name() == "axis" && xml->isStartElement())
-            {
-                int index = xml->attributes().value("index").toString().toInt();
-                JoyAxis *axis = joystick->getJoyAxis(index-1);
-                if (axis)
-                {
-                    axis->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
-            }
-            else if (xml->name() == "dpad" && xml->isStartElement())
-            {
-                int index = xml->attributes().value("index").toString().toInt();
-                JoyDPad *dpad = joystick->getJoyDPad(index-1);
-                if (dpad)
-                {
-                    dpad->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                joystick->readConfig(xml);
             }
             else
             {

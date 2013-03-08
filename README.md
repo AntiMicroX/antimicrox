@@ -5,6 +5,12 @@
 Graphical program used to map keyboard and mouse buttons to gamepad buttons.
 Useful for games with no gamepad support.
 
+## License
+
+This program is licensed under the GPL v.3. Please read the gpl.txt text document
+included with the source code if you would like to read the terms of the license.
+The license can also be found online at [http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
+
 
 ## Build Dependencies
 

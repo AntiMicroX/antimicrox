@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>608</width>
-    <height>421</height>
+    <width>690</width>
+    <height>524</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -66,6 +66,11 @@
          <string>Turbo</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Set Selector</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -80,7 +85,7 @@
         <number>0</number>
        </property>
        <widget class="QWidget" name="page">
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QVBoxLayout" name="verticalLayout_9">
          <item>
           <widget class="QListWidget" name="slotListWidget">
            <property name="sizePolicy">
@@ -101,11 +106,32 @@
              <height>80</height>
             </size>
            </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="midLineWidth">
+            <number>0</number>
+           </property>
            <property name="verticalScrollBarPolicy">
             <enum>Qt::ScrollBarAlwaysOff</enum>
            </property>
            <property name="flow">
             <enum>QListView::LeftToRight</enum>
+           </property>
+           <property name="viewMode">
+            <enum>QListView::ListMode</enum>
+           </property>
+           <property name="selectionRectVisible">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -127,6 +153,20 @@
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QPushButton" name="pausePushButton">
+             <property name="text">
+              <string>Pause</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="holdPushButton">
+             <property name="text">
+              <string>Hold</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -157,6 +197,13 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="clearAllPushButton">
+             <property name="text">
+              <string>Clear All</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item>
@@ -165,7 +212,230 @@
             <enum>Qt::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Expanding</enum>
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Time:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="actionTimeLabel">
+               <property name="text">
+                <string>0.01s</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <property name="spacing">
+              <number>1</number>
+             </property>
+             <item>
+              <widget class="QComboBox" name="actionSecondsComboBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maxVisibleItems">
+                <number>11</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>0s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>1s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>2s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>3s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>4s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>5s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>6s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>7s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>8s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>9s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>10s</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>10</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QComboBox" name="actionMillisecondsComboBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="currentIndex">
+                <number>1</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>0.0s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.1s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.2s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.3s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.4s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.5s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.6s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.7s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.8s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>0.9s</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -177,32 +447,6 @@
          </item>
          <item>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="1" column="0">
-            <widget class="QPushButton" name="mouseLeftPushButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Mouse Left</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="mouseDownPushButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Mouse Down</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QPushButton" name="mouseUpPushButton">
              <property name="sizePolicy">
@@ -226,6 +470,32 @@
              </property>
              <property name="text">
               <string>Mouse Right</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="mouseLeftPushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Mouse Left</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="mouseDownPushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Mouse Down</string>
              </property>
             </widget>
            </item>
@@ -309,7 +579,7 @@
                 <number>1</number>
                </property>
                <property name="maximum">
-                <number>200</number>
+                <number>300</number>
                </property>
               </widget>
              </item>
@@ -366,7 +636,7 @@
                 <number>1</number>
                </property>
                <property name="maximum">
-                <number>200</number>
+                <number>300</number>
                </property>
               </widget>
              </item>
@@ -398,6 +668,7 @@
         <zorder>verticalSpacer_6</zorder>
         <zorder>changeTogetherCheckBox</zorder>
         <zorder>verticalSpacer_7</zorder>
+        <zorder>verticalSpacer_9</zorder>
        </widget>
        <widget class="QWidget" name="page_2">
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -625,6 +896,172 @@
         <zorder>verticalSpacer</zorder>
         <zorder></zorder>
         <zorder>verticalSpacer_4</zorder>
+       </widget>
+       <widget class="QWidget" name="page_4">
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>30</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Enabled</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="setSelectionComboBox">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <property name="maxVisibleItems">
+              <number>30</number>
+             </property>
+             <item>
+              <property name="text">
+               <string>Disabled</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 1 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 1 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 1 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 2 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 2 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 2 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 3 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 3 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 3 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 4 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 4 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 4 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 5 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 5 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 5 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 6 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 6 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 6 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 7 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 7 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 7 While Held</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 8 One Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 8 Two Way</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Select Set 8 While Held</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>289</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </widget>
       </widget>
      </item>

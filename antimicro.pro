@@ -42,7 +42,8 @@ SOURCES += main.cpp\
     joybuttonslot.cpp \
     joyaxisbutton.cpp \
     aboutdialog.cpp \
-    xmlconfigmigration.cpp
+    xmlconfigmigration.cpp \
+    setjoystick.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -69,7 +70,8 @@ HEADERS  += mainwindow.h \
     joybuttonslot.h \
     joyaxisbutton.h \
     aboutdialog.h \
-    xmlconfigmigration.h
+    xmlconfigmigration.h \
+    setjoystick.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
@@ -85,3 +87,6 @@ RESOURCES += \
     resources.qrc
 
 INSTALLS += target
+
+OTHER_FILES += \
+    gpl.txt

@@ -74,7 +74,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     ui->axisstatusBox->setThrottle(axis->getThrottle());
 
     QString currentJoyValueText ("Current Value: ");
-    currentJoyValueText = currentJoyValueText.append(QString::number(axis->getCurrentValue()));
+    currentJoyValueText = currentJoyValueText.append(QString::number(axis->getCurrentRawValue()));
     ui->joyValueLabel->setText(currentJoyValueText);
 
     if (tempPConfig->mouseSpeedX == tempNConfig->mouseSpeedX)
@@ -175,6 +175,7 @@ void AxisEditDialog::saveAxisChanges()
         currentThrottle = ui->comboBox_2->currentIndex() - 1;
     }
     axis->setThrottle(currentThrottle);
+    //axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
 }
 
 void AxisEditDialog::implementPresets(int index)

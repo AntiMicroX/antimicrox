@@ -20,10 +20,23 @@
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
 JoyAxisWidget[isflashing=&quot;true&quot;] {
     background-color: rgb(0, 0, 255);
-}</string>
+	color: rgb(205, 197, 191);
+}
+
+QPushButton#setPushButton1[setActive=&quot;false&quot;],
+QPushButton#setPushButton2[setActive=&quot;false&quot;],
+QPushButton#setPushButton3[setActive=&quot;false&quot;],
+QPushButton#setPushButton4[setActive=&quot;false&quot;],
+QPushButton#setPushButton5[setActive=&quot;false&quot;],
+QPushButton#setPushButton6[setActive=&quot;false&quot;],
+QPushButton#setPushButton7[setActive=&quot;false&quot;],
+QPushButton#setPushButton8[setActive=&quot;false&quot;] {
+	background-color: rgb(190, 190, 190);
+}
+</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QGridLayout" name="gridLayout_2">
     <property name="leftMargin">
      <number>4</number>
     </property>
@@ -33,7 +46,7 @@ JoyAxisWidget[isflashing=&quot;true&quot;] {
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
+    <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -124,7 +137,7 @@ JoyAxisWidget[isflashing=&quot;true&quot;] {
            <attribute name="title">
             <string>Tab 1</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
@@ -243,26 +256,140 @@ JoyAxisWidget[isflashing=&quot;true&quot;] {
              </spacer>
             </item>
             <item>
-             <layout class="QGridLayout" name="gridLayout">
-              <property name="sizeConstraint">
-               <enum>QLayout::SetDefaultConstraint</enum>
+             <widget class="QStackedWidget" name="stackedWidget_2">
+              <property name="currentIndex">
+               <number>0</number>
               </property>
-              <item row="0" column="0">
-               <widget class="QPushButton" name="pushButton">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
+              <widget class="QWidget" name="page">
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                 <widget class="QPushButton" name="pushButton">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>PushButton</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_2"/>
+              <widget class="QWidget" name="page_3"/>
+              <widget class="QWidget" name="page_4"/>
+              <widget class="QWidget" name="page_5"/>
+              <widget class="QWidget" name="page_6"/>
+              <widget class="QWidget" name="page_7"/>
+              <widget class="QWidget" name="page_8"/>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="setPushButton1">
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                 <property name="text">
-                 <string>PushButton</string>
+                 <string>1</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton2">
+                <property name="text">
+                 <string>2</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton3">
+                <property name="text">
+                 <string>3</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton4">
+                <property name="text">
+                 <string>4</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton5">
+                <property name="text">
+                 <string>5</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton6">
+                <property name="text">
+                 <string>6</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton7">
+                <property name="text">
+                 <string>7</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="setPushButton8">
+                <property name="text">
+                 <string>8</string>
+                </property>
+                <property name="setActive" stdset="0">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -284,26 +411,45 @@ JoyAxisWidget[isflashing=&quot;true&quot;] {
               </property>
              </spacer>
             </item>
-            <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="pushButton_9">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>75</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Reset</string>
-              </property>
-             </widget>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_9">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Reset</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
+           <zorder>verticalSpacer_3</zorder>
+           <zorder>stackedWidget_2</zorder>
           </widget>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">

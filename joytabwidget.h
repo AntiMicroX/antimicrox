@@ -11,6 +11,7 @@
 #include <QFileDialog>
 #include <QSettings>
 #include <QHash>
+#include <QStackedWidget>
 
 #include "joystick.h"
 #include "axiseditdialog.h"
@@ -37,12 +38,41 @@ protected:
     QPushButton *saveAsButton;
     QComboBox *configBox;
     QGridLayout *gridLayout;
+    QGridLayout *gridLayout2;
+    QGridLayout *gridLayout3;
+    QGridLayout *gridLayout4;
+    QGridLayout *gridLayout5;
+    QGridLayout *gridLayout6;
+    QGridLayout *gridLayout7;
+    QGridLayout *gridLayout8;
+
     QSpacerItem *spacer1;
     QSpacerItem *spacer2;
     QSpacerItem *spacer3;
     QFileDialog *fileDialog;
     ButtonEditDialog *buttonDialog;
     AxisEditDialog *axisDialog;
+    QPushButton *setPushButton1;
+    QPushButton *setPushButton2;
+    QPushButton *setPushButton3;
+    QPushButton *setPushButton4;
+    QPushButton *setPushButton5;
+    QPushButton *setPushButton6;
+    QPushButton *setPushButton7;
+    QPushButton *setPushButton8;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *verticalSpacer_2;
+    QStackedWidget *stackedWidget_2;
+    QWidget *page;
+    QWidget *page_2;
+    QWidget *page_3;
+    QWidget *page_4;
+    QWidget *page_5;
+    QWidget *page_6;
+    QWidget *page_7;
+    QWidget *page_8;
+    QPushButton *pushButton;
+    QSpacerItem *verticalSpacer_3;
 
     Joystick *joystick;
 
@@ -62,6 +92,16 @@ private slots:
     void changeJoyConfig(int index);
     void showAxisDialog();
     void showButtonDialog();
+
+    void changeSetOne();
+    void changeSetTwo();
+    void changeSetThree();
+    void changeSetFour();
+    void changeSetFive();
+    void changeSetSix();
+    void changeSetSeven();
+    void changeSetEight();
+    void changeCurrentSet(int index);
 };
 
 #endif // JOYTABWIDGET_H

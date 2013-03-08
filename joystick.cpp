@@ -1,36 +1,25 @@
 #include <QDebug>
+#include <QListIterator>
 
 #include "joystick.h"
 
-Joystick::Joystick(QObject *parent) :
-    QObject(parent)
-{
-    joyhandle = 0;
-    buttons = QHash<int, JoyButton*> ();
-    axes = QHash<int, JoyAxis*> ();
-}
+const int Joystick::NUMBER_JOYSETS = 8;
 
 Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
     QObject(parent)
 {
     this->joyhandle = joyhandle;
-    buttons = QHash<int, JoyButton*> ();
-    axes = QHash<int, JoyAxis*> ();
-}
+    joystick_sets = QHash<int, SetJoystick*> ();
+    for (int i=0; i < NUMBER_JOYSETS; i++)
+    {
+        SetJoystick *setstick = new SetJoystick(joyhandle, i);
+        joystick_sets.insert(i, setstick);
+        connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(setActiveSetNumber(int)));
+        connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(setstick, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(changeSetButtonAssociation(int,int,int,int)));
+    }
 
-int Joystick::getNumberButtons()
-{
-    return buttons.count();
-}
-
-int Joystick::getNumberAxes()
-{
-    return axes.count();
-}
-
-int Joystick::getNumberHats()
-{
-    return hats.count();
+    active_set = 0;
 }
 
 SDL_Joystick* Joystick::getSDLHandle()
@@ -44,58 +33,10 @@ int Joystick::getJoyNumber()
     return joynumber;
 }
 
-void Joystick::refreshButtons()
-{
-    buttons.clear();
-
-    for (int i=0; i < SDL_JoystickNumButtons(joyhandle); i++)
-    {
-        JoyButton *button = new JoyButton (i, this);
-        buttons.insert(i, button);
-    }
-}
-
-void Joystick::refreshAxes()
-{
-    axes.clear();
-
-    for (int i=0; i < SDL_JoystickNumAxes(joyhandle); i++)
-    {
-        JoyAxis *axis = new JoyAxis(i, this);
-        axes.insert(i, axis);
-    }
-}
-
-void Joystick::refreshHats()
-{
-    hats.clear();
-
-    for (int i=0; i < SDL_JoystickNumHats(joyhandle); i++)
-    {
-        JoyDPad *dpad = new JoyDPad(i, this);
-        hats.insert(i, dpad);
-    }
-}
-
 int Joystick::getRealJoyNumber()
 {
     int joynumber = getJoyNumber();
     return joynumber + 1;
-}
-
-JoyButton* Joystick::getJoyButton(int index)
-{
-    return buttons.value(index);
-}
-
-JoyAxis* Joystick::getJoyAxis(int index)
-{
-    return axes.value(index);
-}
-
-JoyDPad* Joystick::getJoyDPad(int index)
-{
-    return hats.value(index);
 }
 
 QString Joystick::getName()
@@ -105,7 +46,207 @@ QString Joystick::getName()
 
 void Joystick::reset()
 {
-    refreshAxes();
+    for (int i=0; i < NUMBER_JOYSETS; i++)
+    {
+        SetJoystick* set = joystick_sets.value(i);
+        set->reset();
+    }
+    /*refreshAxes();
     refreshButtons();
-    refreshHats();
+    refreshHats();*/
+}
+
+void Joystick::setActiveSetNumber(int index)
+{
+    if ((index >= 0 && index < NUMBER_JOYSETS) && (index != active_set))
+    {
+        QList<bool> buttonstates;
+        QList<int> axesstates;
+        QList<int> dpadstates;
+
+        SetJoystick *current_set = joystick_sets.value(active_set);
+        for (int i = 0; i < current_set->getNumberButtons(); i++)
+        {
+            JoyButton *button = current_set->getJoyButton(i);
+            buttonstates.append(button->getButtonState());
+        }
+
+        for (int i = 0; i < current_set->getNumberAxes(); i++)
+        {
+            JoyAxis *axis = current_set->getJoyAxis(i);
+            axesstates.append(axis->getCurrentRawValue());
+        }
+
+        for (int i = 0; i < current_set->getNumberHats(); i++)
+        {
+            JoyDPad *dpad = current_set->getJoyDPad(i);
+            dpadstates.append(dpad->getCurrentDirection());
+        }
+
+        joystick_sets.value(active_set)->release();
+        active_set = index;
+
+        current_set = joystick_sets.value(active_set);
+        for (int i = 0; i < current_set->getNumberButtons(); i++)
+        {
+            bool value = buttonstates.at(i);
+            JoyButton *button = current_set->getJoyButton(i);
+            button->joyEvent(value, true);
+        }
+
+        for (int i = 0; i < current_set->getNumberAxes(); i++)
+        {
+            int value = axesstates.at(i);
+            JoyAxis *axis = current_set->getJoyAxis(i);
+            axis->joyEvent(value, true);
+        }
+
+        for (int i = 0; i < current_set->getNumberHats(); i++)
+        {
+            int value = dpadstates.at(i);
+            JoyDPad *dpad = current_set->getJoyDPad(i);
+            dpad->joyEvent(value, true);
+        }
+    }
+}
+
+int Joystick::getActiveSetNumber()
+{
+    return active_set;
+}
+
+SetJoystick* Joystick::getActiveSetJoystick()
+{
+    return joystick_sets.value(active_set);
+}
+
+int Joystick::getNumberButtons()
+{
+    return getActiveSetJoystick()->getNumberButtons();
+}
+
+int Joystick::getNumberAxes()
+{
+    return getActiveSetJoystick()->getNumberAxes();
+}
+
+int Joystick::getNumberHats()
+{
+    return getActiveSetJoystick()->getNumberHats();
+}
+
+SetJoystick* Joystick::getSetJoystick(int index)
+{
+    return joystick_sets.value(index);
+}
+
+void Joystick::propogateSetChange(int index)
+{
+    emit setChangeActivated(index);
+}
+
+void Joystick::changeSetButtonAssociation(int button_index, int originset, int newset, int mode)
+{
+    JoyButton *button = joystick_sets.value(newset)->getJoyButton(button_index);
+    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
+}
+
+void Joystick::readConfig(QXmlStreamReader *xml)
+{
+    if (xml->isStartElement() && xml->name() == "joystick")
+    {
+        //reset();
+
+        xml->readNextStartElement();
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "joystick"))
+        {
+            if (xml->name() == "sets" && xml->isStartElement())
+            {
+                xml->readNextStartElement();
+
+                while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "sets"))
+                {
+                    if (xml->name() == "set" && xml->isStartElement())
+                    {
+                        int index = xml->attributes().value("index").toString().toInt();
+                        index = index - 1;
+                        if (index >= 0 && index < joystick_sets.size())
+                        {
+                            joystick_sets.value(index)->readConfig(xml);
+                        }
+                    }
+                    else
+                    {
+                        // If none of the above, skip the element
+                        xml->skipCurrentElement();
+                    }
+
+                    xml->readNextStartElement();
+                }
+            }
+            else if (xml->name() == "button" && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                JoyButton *button = joystick_sets.value(0)->getJoyButton(index-1);
+                if (button)
+                {
+                    button->readConfig(xml);
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
+            else if (xml->name() == "axis" && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                JoyAxis *axis = joystick_sets.value(0)->getJoyAxis(index-1);
+                if (axis)
+                {
+                    axis->readConfig(xml);
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
+            else if (xml->name() == "dpad" && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                JoyDPad *dpad = joystick_sets.value(0)->getJoyDPad(index-1);
+                if (dpad)
+                {
+                    dpad->readConfig(xml);
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
+            else
+            {
+                // If none of the above, skip the element
+                xml->skipCurrentElement();
+            }
+
+            xml->readNextStartElement();
+        }
+    }
+}
+
+void Joystick::writeConfig(QXmlStreamWriter *xml)
+{
+    xml->writeStartElement("joystick");
+    xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
+
+    xml->writeStartElement("sets");
+    for (int i=0; i < joystick_sets.size(); i++)
+    {
+        joystick_sets.value(i)->writeConfig(xml);
+    }
+    xml->writeEndElement();
+
+    xml->writeEndElement();
 }

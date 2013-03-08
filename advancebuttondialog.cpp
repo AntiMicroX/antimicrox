@@ -2,6 +2,7 @@
 #include <QHBoxLayout>
 #include <QListWidget>
 #include <QScrollBar>
+#include <QDebug>
 
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
@@ -13,7 +14,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
 
     this->tempconfig = tempconfig;
     oldRow = 0;
@@ -53,6 +53,16 @@ AdvanceButtonDialog::AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *
             existingCode->setText(buttonslot->movementString());
             existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotMode());
         }
+        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyPause)
+        {
+            existingCode->setText(QString("Pause ").append(QString::number(buttonslot->getSlotCode() / 1000.0, 'g', 3)));
+            existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+        }
+        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyHold)
+        {
+            existingCode->setText(QString("Hold ").append(QString::number(buttonslot->getSlotCode() / 1000.0, 'g', 3)));
+            existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+        }
 
         //existingCode->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
@@ -86,10 +96,51 @@ AdvanceButtonDialog::AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *
         ui->changeTogetherCheckBox->setChecked(false);
     }
 
+    if (tempconfig->setSelection > -1 && tempconfig->setSelectionCondition != JoyButton::SetChangeDisabled)
+    {
+        int offset = (int)tempconfig->setSelectionCondition;
+        ui->setSelectionComboBox->setCurrentIndex((tempconfig->setSelection * 3) + offset);
+    }
+
+    if (tempconfig->originset == 0)
+    {
+        ui->setSelectionComboBox->model()->removeRows(1, 3);
+    }
+    else if (tempconfig->originset == 1)
+    {
+        ui->setSelectionComboBox->model()->removeRows(4, 3);
+    }
+    else if (tempconfig->originset == 2)
+    {
+        ui->setSelectionComboBox->model()->removeRows(7, 3);
+    }
+    else if (tempconfig->originset == 3)
+    {
+        ui->setSelectionComboBox->model()->removeRows(10, 3);
+    }
+    else if (tempconfig->originset == 4)
+    {
+        ui->setSelectionComboBox->model()->removeRows(13, 3);
+    }
+    else if (tempconfig->originset == 5)
+    {
+        ui->setSelectionComboBox->model()->removeRows(16, 3);
+    }
+    else if (tempconfig->originset == 6)
+    {
+        ui->setSelectionComboBox->model()->removeRows(19, 3);
+    }
+    else if (tempconfig->originset == 7)
+    {
+        ui->setSelectionComboBox->model()->removeRows(22, 3);
+    }
+
+    updateActionTimeLabel();
+    changeTurboForSequences();
+
     connect(this, SIGNAL(accepted()), this, SLOT(updateTempConfig()));
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
     connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTurboText(int)));
-    connect(ui->deleteSlotButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
     connect(ui->horizSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizSpeedLabel(int)));
     connect(ui->horizSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
 
@@ -103,6 +154,13 @@ AdvanceButtonDialog::AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *
     connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
 
     connect(ui->insertSlotButton, SIGNAL(clicked()), this, SLOT(insertSlot()));
+    connect(ui->deleteSlotButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
+    connect(ui->clearAllPushButton, SIGNAL(clicked()), this, SLOT(clearAllSlots()));
+    connect(ui->pausePushButton, SIGNAL(clicked()), this, SLOT(insertPauseSlot()));
+    connect(ui->holdPushButton, SIGNAL(clicked()), this, SLOT(insertHoldSlot()));
+
+    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionMillisecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
 }
 
 AdvanceButtonDialog::~AdvanceButtonDialog()
@@ -146,11 +204,51 @@ void AdvanceButtonDialog::updateTempConfig()
 
     tempconfig->mouseSpeedX = ui->horizSpinBox->value();
     tempconfig->mouseSpeedY = ui->vertSpinBox->value();
+
+    if (ui->setSelectionComboBox->currentIndex() > 0)
+    {
+        int condition_choice = 0;
+        int chosen_set = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
+        // Above removed rows
+        if (tempconfig->originset > chosen_set)
+        {
+            tempconfig->setSelection = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
+            condition_choice = (ui->setSelectionComboBox->currentIndex() + 2) % 3;
+
+        }
+        // Below removed rows
+        else
+        {
+            tempconfig->setSelection = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
+            condition_choice = (ui->setSelectionComboBox->currentIndex() + 2) % 3;
+        }
+
+        //qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
+        if (condition_choice == 0)
+        {
+            tempconfig->setSelectionCondition = JoyButton::SetChangeOneWay;
+        }
+        else if (condition_choice == 1)
+        {
+            tempconfig->setSelectionCondition = JoyButton::SetChangeTwoWay;
+        }
+        else if (condition_choice == 2)
+        {
+            tempconfig->setSelectionCondition = JoyButton::SetChangeWhileHeld;
+        }
+    }
+    else
+    {
+        tempconfig->setSelection = -1;
+        tempconfig->setSelectionCondition = JoyButton::SetChangeDisabled;
+    }
+
+    //qDebug() << "SET SELECTION: " << QString::number(tempconfig->setSelection) << endl;
 }
 
 void AdvanceButtonDialog::updateSlotsScrollArea(int value)
 {
-    ui->slotListWidget->setCurrentRow(oldRow);
+    //ui->slotListWidget->setCurrentRow(oldRow);
     int index = ui->slotListWidget->currentRow();
     int itemcount = ui->slotListWidget->count();
 
@@ -164,6 +262,8 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
         delete item;
         item = 0;
     }
+
+    changeTurboForSequences();
 }
 
 void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
@@ -186,6 +286,8 @@ void AdvanceButtonDialog::deleteSlot()
     {
         appendBlankKeyGrabber();
     }
+
+    changeTurboForSequences();
 }
 
 void AdvanceButtonDialog::changeSelectedSlot()
@@ -306,5 +408,109 @@ void AdvanceButtonDialog::insertSlot()
         ui->slotListWidget->setItemWidget(item, widget);
         ui->slotListWidget->setCurrentItem(item);
         connectButtonEvents(blankButton);
+    }
+}
+
+void AdvanceButtonDialog::insertPauseSlot()
+{
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    int actionTime = actionTimeConvert();
+    if (actionTime > 0)
+    {
+        tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
+        updateSlotsScrollArea(actionTime);
+    }
+}
+
+void AdvanceButtonDialog::insertHoldSlot()
+{
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    int actionTime = actionTimeConvert();
+    if (actionTime > 0)
+    {
+        tempbutton->setValue(actionTime, JoyButtonSlot::JoyHold);
+        updateSlotsScrollArea(actionTime);
+    }
+}
+
+int AdvanceButtonDialog::actionTimeConvert()
+{
+    int tempSeconds = 0;
+    int secondsIndex = ui->actionSecondsComboBox->currentIndex();
+    int millisecondsIndex = ui->actionMillisecondsComboBox->currentIndex();
+    switch (secondsIndex)
+    {
+        case 0: tempSeconds += 0; break;
+        case 1: tempSeconds += 1000; break;
+        case 2: tempSeconds += 2000; break;
+        case 3: tempSeconds += 3000; break;
+        case 4: tempSeconds += 4000; break;
+        case 5: tempSeconds += 5000; break;
+        case 6: tempSeconds += 6000; break;
+        case 7: tempSeconds += 7000; break;
+        case 8: tempSeconds += 8000; break;
+        case 9: tempSeconds += 9000; break;
+        case 10: tempSeconds += 10000; break;
+
+        default: break;
+    }
+
+    switch (millisecondsIndex)
+    {
+        case 0: tempSeconds += 0; break;
+        case 1: tempSeconds += 100; break;
+        case 2: tempSeconds += 200; break;
+        case 3: tempSeconds += 300; break;
+        case 4: tempSeconds += 400; break;
+        case 5: tempSeconds += 500; break;
+        case 6: tempSeconds += 600; break;
+        case 7: tempSeconds += 700; break;
+        case 8: tempSeconds += 800; break;
+        case 9: tempSeconds += 900; break;
+
+        default: break;
+    }
+
+    return tempSeconds;
+}
+
+void AdvanceButtonDialog::updateActionTimeLabel()
+{
+    int actionTime = actionTimeConvert();
+    QString temp("");
+    temp.append(QString::number(actionTime / 1000.0, 'g', 5)).append("s");
+    ui->actionTimeLabel->setText(temp);
+}
+
+void AdvanceButtonDialog::clearAllSlots()
+{
+    ui->slotListWidget->clear();
+    appendBlankKeyGrabber();
+    changeTurboForSequences();
+}
+
+void AdvanceButtonDialog::changeTurboForSequences()
+{
+    bool containsSequences = false;
+    for (int i = 0; i < ui->slotListWidget->count() && !containsSequences; i++)
+    {
+        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        JoyButtonSlot *tempbuttonslot = button->getValue();
+        if (tempbuttonslot->getSlotCode() > 0 &&
+            (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyPause || tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyHold)
+           )
+        {
+            containsSequences = true;
+        }
+    }
+
+    if (containsSequences)
+    {
+        ui->turboCheckbox->setChecked(false);
+        ui->turboCheckbox->setEnabled(false);
+    }
+    else
+    {
+        ui->turboCheckbox->setEnabled(true);
     }
 }

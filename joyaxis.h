@@ -15,10 +15,10 @@ class JoyAxis : public QObject
     Q_OBJECT
 public:
     explicit JoyAxis(QObject *parent = 0);
-    explicit JoyAxis(int index, QObject *parent=0);
+    explicit JoyAxis(int index, int originset, QObject *parent=0);
     ~JoyAxis();
 
-    void joyEvent(int value);
+    void joyEvent(int value, bool ignoresets=false);
     bool inDeadZone(int value);
     QString getName();
     void setIndex(int index);
@@ -35,7 +35,12 @@ public:
     int getMaxZoneValue();
     void setThrottle(int value);
     int getThrottle();
-    int getCurrentValue();
+    int getCurrentThrottledValue();
+    int getCurrentRawValue();
+    int getCurrentThrottledMin();
+    int getCurrentThrottledMax();
+    int getCurrentThrottledDeadValue();
+
     double calculateNormalizedAxisPlacement();
 
     void readConfig(QXmlStreamReader *xml);
@@ -49,7 +54,8 @@ public:
     static const float JOYSPEED;
 
 protected:
-    void createDeskEvent();
+    void createDeskEvent(bool ignoresets = false);
+    void adjustRange();
 
     int index;
     int deadZone;
@@ -60,7 +66,8 @@ protected:
     JoyAxisButton *naxisbutton;
 
     bool eventActive;
-    int currentValue;
+    int currentThrottledValue;
+    int currentRawValue;
     QTimer *timer;
     QTime interval;
     int throttle;
@@ -68,6 +75,12 @@ protected:
     int mouseOffset;
     int lastkey;
     JoyAxisButton *activeButton;
+    int originset;
+
+    int currentThrottledMin;
+    int currentThrottledMax;
+    int currentThrottleCenter;
+    int currentThrottledDeadValue;
 
 signals:
     void active(int value);

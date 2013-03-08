@@ -5,6 +5,10 @@
 #include <QTimer>
 #include <QTime>
 #include <QList>
+#include <QListIterator>
+#include <QHash>
+#include <QMutex>
+#include <QQueue>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
@@ -15,10 +19,11 @@ class JoyButton : public QObject
     Q_OBJECT
 public:
     explicit JoyButton(QObject *parent = 0);
-    explicit JoyButton(int index, QObject *parent=0);
+    explicit JoyButton(int index, int originset, QObject *parent=0);
     ~JoyButton();
 
-    void joyEvent (bool pressed);
+    enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay, SetChangeTwoWay, SetChangeWhileHeld};
+    void joyEvent (bool pressed, bool ignoresets=false);
     int getJoyNumber ();
     virtual int getRealJoyNumber ();
     void setJoyNumber (int index);
@@ -46,16 +51,29 @@ public:
     void setMouseSpeedY(int speed);
     int getMouseSpeedY();
 
+    void setChangeSetSelection(int index);
+    int getSetSelection();
+
+    void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    SetChangeCondition getChangeSetCondition();
+
+    bool getButtonState();
+    int getOriginSet();
+
+    void release();
+    bool containsSequence();
+
     static const QString xmlName;
 
 protected:
-    void createDeskEvent();
-
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
     // Used to denote whether the virtual key is pressed
     bool isKeyPressed;
     bool toggle;
+
+    bool eventReset;
+    bool quitEvent;
     // Used to denote the SDL index of the actual joypad button
     int index;
     int turboInterval;
@@ -63,15 +81,33 @@ protected:
     bool isDown;
     bool useTurbo;
     QList<JoyButtonSlot*> assignments;
+    QList<JoyButtonSlot*> activeSlots;
     QString customName;
     int mouseSpeedX;
     int mouseSpeedY;
+
+    int setSelection;
+    SetChangeCondition setSelectionCondition;
+    int originset;
+    QListIterator<JoyButtonSlot*> *slotiter;
+    JoyButtonSlot *currentPause;
+    JoyButtonSlot *currentHold;
+    bool ignoresets;
+    QMutex buttonMutex;
+    QTime buttonHold;
+    QTime pauseHold;
+    QTime inpauseHold;
+    QQueue<bool> ignoreSetQueue;
+    QQueue<bool> isButtonPressedQueue;
 
 signals:
     void clicked (int index);
     void released (int index);
     void keyChanged(int keycode);
     void mouseChanged(int mousecode);
+    void setChangeActivated(int index);
+    void setAssignmentChanged(int current_button, int associated_set, int mode);
+    void finishedPause();
 
 public slots:
     void setTurboInterval (int interval);
@@ -82,6 +118,14 @@ public slots:
 private slots:
     void turboEvent();
     virtual void mouseEvent(JoyButtonSlot *buttonslot);
+    void createDeskEvent();
+    void releaseDeskEvent();
+    void waitForDeskEvent();
+    void waitForReleaseDeskEvent();
+    void pauseEvent();
+    void holdEvent();
+    void pauseWaitEvent();
+    void checkForSetChange();
 };
 
 

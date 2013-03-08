@@ -132,6 +132,14 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyMouseMovement);
                 }
+                else if (temptext == "pause")
+                {
+                    this->setSlotMode(JoyPause);
+                }
+                else if (temptext == "hold")
+                {
+                    this->setSlotMode(JoyHold);
+                }
             }
             else
             {
@@ -161,6 +169,14 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyMouseMovement)
     {
         xml->writeCharacters("mousemovement");
+    }
+    else if (mode == JoyPause)
+    {
+        xml->writeCharacters("pause");
+    }
+    else if (mode == JoyHold)
+    {
+        xml->writeCharacters("hold");
     }
     xml->writeEndElement();
 

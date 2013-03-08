@@ -25,6 +25,8 @@ private:
 protected:
     void connectButtonEvents(SimpleKeyGrabberButton *button);
     void appendBlankKeyGrabber();
+    int actionTimeConvert();
+    void changeTurboForSequences();
 
     ButtonTempConfig *tempconfig;
     int oldRow;
@@ -44,6 +46,12 @@ private slots:
     void moveSpeedsTogether(int value);
     void syncSpeedSpinBoxes();
     void insertSlot();
+
+    void insertPauseSlot();
+    void insertHoldSlot();
+
+    void updateActionTimeLabel();
+    void clearAllSlots();
 };
 
 #endif // ADVANCEBUTTONDIALOG_H

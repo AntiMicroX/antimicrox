@@ -1,3 +1,5 @@
+#include <QListIterator>
+
 #include "buttontempconfig.h"
 #include "event.h"
 
@@ -8,8 +10,11 @@ ButtonTempConfig::ButtonTempConfig(QObject *parent) :
     toggle = false;
     turboInterval = 100;
     assignments = new QList<JoyButtonSlot*> ();
-    mouseSpeedX = 20;
-    mouseSpeedY = 20;
+    mouseSpeedX = 50;
+    mouseSpeedY = 50;
+    setSelection = -1;
+    originset = 0;
+    setSelectionCondition = JoyButton::SetChangeDisabled;
 }
 
 ButtonTempConfig::ButtonTempConfig(JoyButton *button, QObject *parent) :
@@ -28,11 +33,18 @@ ButtonTempConfig::ButtonTempConfig(JoyButton *button, QObject *parent) :
     assignments = new QList<JoyButtonSlot*> ();
     mouseSpeedX = button->getMouseSpeedX();
     mouseSpeedY = button->getMouseSpeedY();
+
+    setSelection = -1;
+    setSelectionCondition = JoyButton::SetChangeDisabled;
 }
 
 ButtonTempConfig::~ButtonTempConfig()
 {
-    delete assignments;
+    if (assignments)
+    {
+        delete assignments;
+        assignments = 0;
+    }
 }
 
 QString ButtonTempConfig::getSlotsSummary()
@@ -56,6 +68,14 @@ QString ButtonTempConfig::getSlotsSummary()
         {
             newlabel.append(slot->movementString());
         }
+        else if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
+        {
+            newlabel.append("Pause ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
+        }
+        else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
+        {
+            newlabel.append("Hold ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
+        }
 
         if (slotCount > 1)
         {
@@ -68,4 +88,22 @@ QString ButtonTempConfig::getSlotsSummary()
     }
 
     return newlabel;
+}
+
+bool ButtonTempConfig::containsSequence()
+{
+    bool result = false;
+
+    QListIterator<JoyButtonSlot*> tempiter(*assignments);
+    while (tempiter.hasNext() && !result)
+    {
+        JoyButtonSlot *slot = tempiter.next();
+        JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+        if (mode == JoyButtonSlot::JoyPause || mode == JoyButtonSlot::JoyHold)
+        {
+            result = true;
+        }
+    }
+
+    return result;
 }

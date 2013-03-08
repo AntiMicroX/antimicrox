@@ -43,28 +43,9 @@ void XMLConfigWriter::write(Joystick *joystick)
     }
 
     xml->writeStartDocument();
-    xml->writeStartElement("joystick");
-    xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
 
-    for (int i=0; i < joystick->getNumberAxes(); i++)
-    {
-        JoyAxis *axis = joystick->getJoyAxis(i);
-        axis->writeConfig(xml);
-    }
+    joystick->writeConfig(xml);
 
-    for (int i=0; i < joystick->getNumberHats(); i++)
-    {
-        JoyDPad *dpad = joystick->getJoyDPad(i);
-        dpad->writeConfig(xml);
-    }
-
-    for (int i=0; i < joystick->getNumberButtons(); i++)
-    {
-        JoyButton *button = joystick->getJoyButton(i);
-        button->writeConfig(xml);
-    }
-
-    xml->writeEndElement();
     xml->writeEndDocument();
 
     configFile->close();

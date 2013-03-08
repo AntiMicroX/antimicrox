@@ -10,7 +10,8 @@ namespace PadderCommon
     const QString configPath = QDir::homePath() + "/.antimicro";
     const QString configFileName = "antimicro_settings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
-    const int LATESTCONFIGFILEVERSION = 1;
+    const int LATESTCONFIGFILEVERSION = 2;
+    const QString programVersion = "0.3";
 }
 
 #endif // COMMON_H
