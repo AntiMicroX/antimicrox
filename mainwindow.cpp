@@ -59,6 +59,7 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         tabwidget->fillButtons();
         ui->tabWidget->addTab(tabwidget, QString("Joystick %1").arg(joystick->getRealJoyNumber()));
         connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
+        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
     }
 
     if (joysticks->count() > 0)
@@ -119,7 +120,6 @@ void MainWindow::populateTrayIcon()
 
             connect(joysticksub, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
             connect(joysticksub, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
-            connect(widget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
         }
 
         trayIconMenu->addSeparator();

@@ -248,19 +248,19 @@ void JoyTabWidget::openConfigFileDialog()
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         if (searchIndex == -1)
         {
-            if (configBox->count() == 5)
+            if (configBox->count() == 6)
             {
-                configBox->removeItem(4);
+                configBox->removeItem(5);
             }
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
-            emit joystickConfigChanged(1);
+            emit joystickConfigChanged(joystick->getJoyNumber());
         }
         else
         {
             configBox->setCurrentIndex(searchIndex);
-            emit joystickConfigChanged(searchIndex);
+            emit joystickConfigChanged(joystick->getJoyNumber());
         }
     }
 }
@@ -459,16 +459,22 @@ void JoyTabWidget::saveConfigFile()
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
 
-        if (index == 0)
+        int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
+        if (existingIndex == -1)
         {
-            if (configBox->count() == 5)
+            if (configBox->count() == 6)
             {
-                configBox->removeItem(4);
+                configBox->removeItem(5);
             }
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
-            emit joystickConfigChanged(1);
+            emit joystickConfigChanged(joystick->getJoyNumber());
+        }
+        else
+        {
+            configBox->setCurrentIndex(existingIndex);
+            emit joystickConfigChanged(joystick->getJoyNumber());
         }
     }
 }
@@ -501,7 +507,15 @@ void JoyTabWidget::saveAsConfig()
 {
     int index = configBox->currentIndex();
     QString filename;
-    if (index != 0)
+    if (index == 0)
+    {
+        QString tempfilename = QFileDialog::getSaveFileName(this, "Save Config", QDir::currentPath(), "Config File (*.xml)");
+        if (!tempfilename.isEmpty())
+        {
+            filename = tempfilename;
+        }
+    }
+    else
     {
         QString configPath = configBox->itemData(index).toString();
         QFileInfo temp(configPath);
@@ -525,14 +539,23 @@ void JoyTabWidget::saveAsConfig()
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
 
-        if (configBox->count() == 5)
+        int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
+        if (existingIndex == -1)
         {
-            configBox->removeItem(4);
-        }
+            if (configBox->count() == 6)
+            {
+                configBox->removeItem(4);
+            }
 
-        configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
-        configBox->setCurrentIndex(1);
-        emit joystickConfigChanged(1);
+            configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+            configBox->setCurrentIndex(1);
+            emit joystickConfigChanged(joystick->getJoyNumber());
+        }
+        else
+        {
+            configBox->setCurrentIndex(existingIndex);
+            emit joystickConfigChanged(joystick->getJoyNumber());
+        }
     }
 }
 
