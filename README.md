@@ -49,7 +49,7 @@ The source code for QJoyPad was an invaluable resource when I made the first ver
 This program has evolved pretty quickly since I started the project. I believe that
 this program has now obtained an identity beyond just being considered an updated version of
 QJoyPad. Now that a lot of the features that I have wanted are now implemented in the program,
-I have starting to take into consideration what it will take before I can actually consider this program
+I have started to take into consideration what it will take before I can actually consider this program
 worthy of a 1.0 release. I have started to compile a list of possible features that I would
 like incorporated in this program before it is worthy of a 1.0 release.
 
