@@ -544,7 +544,7 @@ void JoyTabWidget::saveAsConfig()
         {
             if (configBox->count() == 6)
             {
-                configBox->removeItem(4);
+                configBox->removeItem(5);
             }
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
