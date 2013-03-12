@@ -71,8 +71,6 @@ protected:
     // Used to denote whether the virtual key is pressed
     bool isKeyPressed;
     bool toggle;
-
-    bool eventReset;
     bool quitEvent;
     // Used to denote the SDL index of the actual joypad button
     int index;
@@ -92,13 +90,21 @@ protected:
     QListIterator<JoyButtonSlot*> *slotiter;
     JoyButtonSlot *currentPause;
     JoyButtonSlot *currentHold;
+    JoyButtonSlot *currentCycle;
+    JoyButtonSlot *currentDistance;
+    JoyButtonSlot *currentMouseEvent;
+
     bool ignoresets;
     QMutex buttonMutex;
     QTime buttonHold;
     QTime pauseHold;
     QTime inpauseHold;
+
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
+    QQueue<JoyButtonSlot*> mouseEventQueue;
+
+    int currentRawValue;
 
 signals:
     void clicked (int index);
@@ -117,13 +123,15 @@ public slots:
 
 private slots:
     void turboEvent();
-    virtual void mouseEvent(JoyButtonSlot *buttonslot);
+    virtual void mouseEvent();
     void createDeskEvent();
     void releaseDeskEvent();
     void waitForDeskEvent();
     void waitForReleaseDeskEvent();
     void pauseEvent();
     void holdEvent();
+    void distanceEvent();
+
     void pauseWaitEvent();
     void checkForSetChange();
 };

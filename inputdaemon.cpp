@@ -9,7 +9,14 @@ InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
-    this->stopped = true;
+    this->stopped = false;
+    this->performRefresh = true;
+    initSDL();
+}
+
+InputDaemon::~InputDaemon()
+{
+    closeSDL();
 }
 
 void InputDaemon::initSDL()
@@ -39,24 +46,23 @@ void InputDaemon::closeSDL()
 
 void InputDaemon::run ()
 {
-    stopped = false;
-
-    initSDL();
-
-    refreshJoysticks();
+    if (performRefresh)
+    {
+        refreshJoysticks();
+        performRefresh = false;
+    }
 
     if (joysticks->count() > 0)
     {
         SDL_Event event;
 
-        while (SDL_PollEvent(&event) >= 0 && !stopped)
+        while (SDL_PollEvent(&event) > 0)
         {
             switch (event.type)
             {
                 case SDL_JOYBUTTONDOWN: {
                     Joystick *joy = joysticks->value(event.button.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
-                    //JoyButton *button = joy->getJoyButton(event.button.button);
                     JoyButton *button = set->getJoyButton(event.button.button);
 
                     if (button)
@@ -70,7 +76,6 @@ void InputDaemon::run ()
                 {
                     Joystick *joy = joysticks->value(event.button.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
-                    //JoyButton *button = joy->getJoyButton(event.button.button);
                     JoyButton *button = set->getJoyButton(event.button.button);
 
                     if (button)
@@ -83,7 +88,6 @@ void InputDaemon::run ()
                 case SDL_JOYAXISMOTION: {
                     Joystick *joy = joysticks->value(event.jaxis.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
-                    //JoyAxis *axis = joy->getJoyAxis(event.jaxis.axis);
                     JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
                     if (axis)
                     {
@@ -95,7 +99,6 @@ void InputDaemon::run ()
                 case SDL_JOYHATMOTION: {
                     Joystick *joy = joysticks->value(event.jhat.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
-                    //JoyDPad *dpad = joy->getJoyDPad(event.jhat.hat);
                     JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
                     if (dpad)
                     {
@@ -107,21 +110,21 @@ void InputDaemon::run ()
                 default:
                     break;
             }
-
-            QCoreApplication::processEvents();
         }
     }
 
-    closeSDL();
-
-    stopped = false;
-
-    if (joysticks->count() > 0)
+    if (stopped)
     {
-        emit complete(joysticks->value(0));
+        if (joysticks->count() > 0)
+        {
+            emit complete(joysticks->value(0));
+        }
+        emit complete();
     }
-
-    emit complete();
+    else
+    {
+        QTimer::singleShot(10, this, SLOT(run()));
+    }
 }
 
 void InputDaemon::refreshJoysticks()
@@ -132,9 +135,6 @@ void InputDaemon::refreshJoysticks()
     {
         SDL_Joystick* joystick = SDL_JoystickOpen (i);
         Joystick *curJoystick = new Joystick (joystick, this);
-        //curJoystick->refreshAxes();
-        //curJoystick->refreshHats();
-        //curJoystick->refreshButtons();
         curJoystick->reset();
 
         joysticks->insert(i, curJoystick);
@@ -149,27 +149,24 @@ void InputDaemon::refreshJoysticks()
 void InputDaemon::stop()
 {
     stopped = true;
+    closeSDL();
 }
 
 void InputDaemon::refresh()
 {
     stop();
-    // Event loop should be reached after old instance of run has finished
-    QTimer::singleShot(0, this, SLOT(run()));
+    initSDL();
+    refreshJoysticks();
+    stopped = false;
 }
 
 bool InputDaemon::isRunning()
 {
-    return stopped;
+    return !stopped;
 }
 
 void InputDaemon::refreshJoystick(Joystick *joystick)
 {
-    /*
-    joystick->refreshAxes();
-    joystick->refreshHats();
-    joystick->refreshButtons();
-    */
     joystick->reset();
 
     emit joystickRefreshed(joystick);

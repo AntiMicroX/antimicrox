@@ -76,6 +76,10 @@ QString ButtonTempConfig::getSlotsSummary()
         {
             newlabel.append("Hold ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
         }
+        else if (slot->getSlotMode() == JoyButtonSlot::JoyCycle)
+        {
+            newlabel.append("Cycle");
+        }
 
         if (slotCount > 1)
         {

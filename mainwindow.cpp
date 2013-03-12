@@ -366,3 +366,8 @@ void MainWindow::openAboutDialog()
 {
     aboutDialog->show();
 }
+
+void MainWindow::nothinButLuigi()
+{
+    qDebug() << "NOTHING BUT LUIGI" << endl;
+}

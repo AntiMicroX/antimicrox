@@ -1,3 +1,5 @@
+#include <QDebug>
+#include <QEventLoop>
 #include <cmath>
 
 #include "joyaxisbutton.h"
@@ -23,86 +25,100 @@ QString JoyAxisButton::getXmlName()
     return this->xmlName;
 }
 
-void JoyAxisButton::mouseEvent(JoyButtonSlot *buttonslot)
+void JoyAxisButton::mouseEvent()
 {
-    QTime* mouseInterval = buttonslot->getMouseInterval();
-
-    int mousemode = buttonslot->getSlotCode();
-    int mousespeed;
-    int timeElapsed = mouseInterval->elapsed();
-
-    if (mousemode == JoyButtonSlot::MouseRight)
+    JoyButtonSlot *buttonslot = 0;
+    if (currentMouseEvent)
     {
-        mousespeed = mouseSpeedX;
+        buttonslot = currentMouseEvent;
     }
-    else if (mousemode == JoyButtonSlot::MouseLeft)
+    else if (!mouseEventQueue.isEmpty())
     {
-        mousespeed = mouseSpeedX;
-    }
-    else if (mousemode == JoyButtonSlot::MouseDown)
-    {
-        mousespeed = mouseSpeedY;
-    }
-    else if (mousemode == JoyButtonSlot::MouseUp)
-    {
-        mousespeed = mouseSpeedY;
+        buttonslot = mouseEventQueue.dequeue();
     }
 
-    bool isActive = activeSlots.contains(buttonslot);
-    if (isActive && timeElapsed >= 1)
+    if (buttonslot)
     {
-        double difference = axis->calculateNormalizedAxisPlacement();
-        int mouse1 = 0;
-        int mouse2 = 0;
-        double sumDist = buttonslot->getDistance();
+        QTime* mouseInterval = buttonslot->getMouseInterval();
+
+        int mousemode = buttonslot->getSlotCode();
+        int mousespeed;
+        int timeElapsed = mouseInterval->elapsed();
 
         if (mousemode == JoyButtonSlot::MouseRight)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-            int distance = (int)floor(sumDist + 0.5);
-            mouse1 = distance;
+            mousespeed = mouseSpeedX;
         }
         else if (mousemode == JoyButtonSlot::MouseLeft)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-            int distance = (int)floor(sumDist + 0.5);
-            mouse1 = -distance;
+            mousespeed = mouseSpeedX;
         }
         else if (mousemode == JoyButtonSlot::MouseDown)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-            int distance = (int)floor(sumDist + 0.5);
-            mouse2 = distance;
+            mousespeed = mouseSpeedY;
         }
         else if (mousemode == JoyButtonSlot::MouseUp)
         {
-            sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-            int distance = (int)floor(sumDist + 0.5);
-            mouse2 = -distance;
+            mousespeed = mouseSpeedY;
         }
 
-        if (sumDist < 1.0)
+        bool isActive = activeSlots.contains(buttonslot);
+        if (isActive && timeElapsed >= 5)
         {
-            buttonslot->setDistance(sumDist);
+            double difference = axis->calculateNormalizedAxisPlacement();
+            int mouse1 = 0;
+            int mouse2 = 0;
+            double sumDist = buttonslot->getDistance();
+
+            if (mousemode == JoyButtonSlot::MouseRight)
+            {
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                int distance = (int)floor(sumDist + 0.5);
+                mouse1 = distance;
+            }
+            else if (mousemode == JoyButtonSlot::MouseLeft)
+            {
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                int distance = (int)floor(sumDist + 0.5);
+                mouse1 = -distance;
+            }
+            else if (mousemode == JoyButtonSlot::MouseDown)
+            {
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                int distance = (int)floor(sumDist + 0.5);
+                mouse2 = distance;
+            }
+            else if (mousemode == JoyButtonSlot::MouseUp)
+            {
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                int distance = (int)floor(sumDist + 0.5);
+                mouse2 = -distance;
+            }
+
+            if (sumDist < 1.0)
+            {
+                buttonslot->setDistance(sumDist);
+            }
+            else if (sumDist >= 1.0)
+            {
+                sendevent(mouse1, mouse2);
+                sumDist = 0.0;
+
+                buttonslot->setDistance(sumDist);
+            }
+
+            mouseInterval->restart();
         }
-        else if (sumDist >= 1.0)
+
+        if (isActive)
         {
-            sendevent(mouse1, mouse2);
-            sumDist = 0.0;
-
-            buttonslot->setDistance(sumDist);
+            mouseEventQueue.enqueue(buttonslot);
+            QTimer::singleShot(5, this, SLOT(mouseEvent()));
         }
-
-        mouseInterval->restart();
-    }
-
-    if (isActive)
-    {
-        QMetaObject::invokeMethod(this, "mouseEvent", Qt::QueuedConnection, Q_ARG(JoyButtonSlot*, buttonslot));
-    }
-    else
-    {
-        buttonslot->setDistance(0.0);
-        mouseInterval->restart();
+        else
+        {
+            buttonslot->setDistance(0.0);
+            mouseInterval->restart();
+        }
     }
 }

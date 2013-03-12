@@ -10,6 +10,7 @@ class InputDaemon : public QObject
     Q_OBJECT
 public:
     InputDaemon (QHash<int, Joystick*> *joysticks, QObject *parent=0);
+    ~InputDaemon();
     bool isRunning();
 
 protected:
@@ -18,6 +19,7 @@ protected:
 
     QHash<int, Joystick*> *joysticks;
     bool stopped;
+    bool performRefresh;
 
 signals:
     void joystickRefreshed (Joystick *joystick);

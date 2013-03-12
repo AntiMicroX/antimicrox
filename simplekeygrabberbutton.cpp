@@ -104,6 +104,14 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             controlcode = 5;
         }
+        else if (wheelEve->orientation() == Qt::Horizontal && wheelEve->delta() >= 120)
+        {
+            controlcode = 6;
+        }
+        else if (wheelEve->orientation() == Qt::Horizontal && wheelEve->delta() <= -120)
+        {
+            controlcode = 7;
+        }
 
         if (controlcode > 0)
         {
@@ -163,6 +171,10 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
         QString temp("Hold ");
         temp.append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
         setText(temp);
+    }
+    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyCycle)
+    {
+        setText("Cycle");
     }
 }
 

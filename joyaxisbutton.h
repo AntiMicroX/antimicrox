@@ -22,7 +22,7 @@ protected:
 signals:
     
 public slots:
-    virtual void mouseEvent(JoyButtonSlot *buttonslot);
+    virtual void mouseEvent();
 };
 
 #endif // JOYAXISBUTTON_H

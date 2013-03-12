@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
 
     InputDaemon *joypad_worker = new InputDaemon (joysticks);
     QThread* joypad_thread = new QThread ();
+    joypad_worker->moveToThread(joypad_thread);
 
     //QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &joyConfigReader, SLOT(configJoystick(Joystick*)));
     QObject::connect(joypad_thread, SIGNAL(started()), joypad_worker, SLOT(run()));
@@ -43,9 +44,8 @@ int main(int argc, char *argv[])
     //QObject::connect(joypad_worker, SIGNAL(complete()), &w, SLOT(resetInterface()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested(Joystick*)), joypad_worker, SLOT(refreshJoystick(Joystick*)));
-    QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
+    //QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
 
-    joypad_worker->moveToThread(joypad_thread);
     joypad_thread->start();
 
     int app_result = a.exec();

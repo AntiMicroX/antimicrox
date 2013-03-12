@@ -142,6 +142,14 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             controlcode = 5;
         }
+        else if (wheelEve->orientation() == Qt::Horizontal && wheelEve->delta() >= 120)
+        {
+            controlcode = 6;
+        }
+        else if (wheelEve->orientation() == Qt::Horizontal && wheelEve->delta() <= -120)
+        {
+            controlcode = 7;
+        }
 
         text = text.append(QString::number(controlcode));
         setText(text);

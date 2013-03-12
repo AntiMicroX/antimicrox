@@ -52,6 +52,7 @@ public slots:
     void fillButtons(QHash<int, Joystick*>* joysticks);
     void startJoystickRefresh();
     void hideWindow();
+    void nothinButLuigi();
 
 private slots:
     void quitProgram();
