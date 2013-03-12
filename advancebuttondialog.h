@@ -49,6 +49,7 @@ private slots:
 
     void insertPauseSlot();
     void insertHoldSlot();
+    void insertCycleSlot();
 
     void updateActionTimeLabel();
     void clearAllSlots();

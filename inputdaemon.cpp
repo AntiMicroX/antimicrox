@@ -1,5 +1,4 @@
 #include <QtDebug>
-#include <QCoreApplication>
 #include <QTimer>
 #include <SDL/SDL.h>
 
@@ -10,57 +9,55 @@ InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, QObject *parent) :
 {
     this->joysticks = joysticks;
     this->stopped = false;
-    this->performRefresh = true;
-    initSDL();
+    this->performRefresh = false;
+
+    eventWorker = new SDLEventReader(joysticks);
+    thread = new QThread();
+    eventWorker->moveToThread(thread);
+
+    QTimer::singleShot(0, this, SLOT(refreshJoysticks()));
+    connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+    connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+    thread->start();
 }
 
 InputDaemon::~InputDaemon()
 {
-    closeSDL();
-}
-
-void InputDaemon::initSDL()
-{
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
-    SDL_JoystickEventState(SDL_ENABLE);
-}
-
-void InputDaemon::closeSDL()
-{
-    SDL_Event event;
-    for (int i=0; i < SDL_NumJoysticks(); i++)
+    if (eventWorker)
     {
-        if (SDL_JoystickOpened(i) && joysticks->value(i))
-        {
-            SDL_Joystick *handle = (joysticks->value(i))->getSDLHandle();
-            SDL_JoystickClose(handle);
-        }
+        eventWorker->stop();
+        delete eventWorker;
+        eventWorker = 0;
     }
 
-    // Clear any pending events
-    while (SDL_PollEvent(&event) > 0)
+    if (thread)
     {
+        thread->quit();
+        thread->wait();
+        delete thread;
+        thread = 0;
     }
-    SDL_Quit();
 }
 
 void InputDaemon::run ()
 {
-    if (performRefresh)
+    /*if (performRefresh)
     {
-        refreshJoysticks();
+        stopped = false;
         performRefresh = false;
-    }
+    }*/
 
     if (joysticks->count() > 0)
     {
         SDL_Event event;
+        event = eventWorker->getCurrentEvent();
 
-        while (SDL_PollEvent(&event) > 0)
+        do
         {
             switch (event.type)
             {
-                case SDL_JOYBUTTONDOWN: {
+                case SDL_JOYBUTTONDOWN:
+                {
                     Joystick *joy = joysticks->value(event.button.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
                     JoyButton *button = set->getJoyButton(event.button.button);
@@ -85,7 +82,8 @@ void InputDaemon::run ()
                     break;
                 }
 
-                case SDL_JOYAXISMOTION: {
+                case SDL_JOYAXISMOTION:
+                {
                     Joystick *joy = joysticks->value(event.jaxis.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
                     JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
@@ -96,7 +94,8 @@ void InputDaemon::run ()
                     break;
                 }
 
-                case SDL_JOYHATMOTION: {
+                case SDL_JOYHATMOTION:
+                {
                     Joystick *joy = joysticks->value(event.jhat.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
                     JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
@@ -107,10 +106,17 @@ void InputDaemon::run ()
                     break;
                 }
 
+                case SDL_QUIT:
+                {
+                    stopped = true;
+                    break;
+                }
+
                 default:
                     break;
             }
         }
+        while (SDL_PollEvent(&event) > 0);
     }
 
     if (stopped)
@@ -120,10 +126,12 @@ void InputDaemon::run ()
             emit complete(joysticks->value(0));
         }
         emit complete();
+        stopped = false;
+        performRefresh = true;
     }
     else
     {
-        QTimer::singleShot(10, this, SLOT(run()));
+        QTimer::singleShot(0, eventWorker, SLOT(performWork()));
     }
 }
 
@@ -140,29 +148,23 @@ void InputDaemon::refreshJoysticks()
         joysticks->insert(i, curJoystick);
     }
 
-    if (joysticks->count() > 0)
-    {
-        emit joysticksRefreshed(joysticks);
-    }
+    emit joysticksRefreshed(joysticks);
 }
 
 void InputDaemon::stop()
 {
     stopped = true;
-    closeSDL();
 }
 
 void InputDaemon::refresh()
 {
     stop();
-    initSDL();
-    refreshJoysticks();
-    stopped = false;
-}
 
-bool InputDaemon::isRunning()
-{
-    return !stopped;
+    stopped = false;
+    performRefresh = true;
+    eventWorker->refresh();
+    refreshJoysticks();
+    QTimer::singleShot(0, eventWorker, SLOT(performWork()));
 }
 
 void InputDaemon::refreshJoystick(Joystick *joystick)

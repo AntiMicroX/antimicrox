@@ -80,22 +80,6 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
         lastkey = 0;
     }
 
-    /*if (!ignoresets)
-    {
-        if (!isActive && setSelectionCondition == SetChangeOneWay && setSelection > -1)
-        {
-            emit setChangeActivated(setSelection);
-        }
-        else if (!isActive && setSelectionCondition == SetChangeTwoWay && setSelection > -1)
-        {
-            emit setChangeActivated(setSelection);
-        }
-        else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
-        {
-            emit setChangeActivated(setSelection);
-        }
-    }*/
-
     emit moved(currentRawValue);
 }
 

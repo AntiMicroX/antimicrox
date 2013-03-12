@@ -2,8 +2,10 @@
 #define INPUTDAEMONTHREAD_H
 
 #include <QHash>
+#include <QThread>
 
 #include "joystick.h"
+#include "sdleventreader.h"
 
 class InputDaemon : public QObject
 {
@@ -11,15 +13,14 @@ class InputDaemon : public QObject
 public:
     InputDaemon (QHash<int, Joystick*> *joysticks, QObject *parent=0);
     ~InputDaemon();
-    bool isRunning();
 
 protected:
-    void initSDL();
-    void closeSDL();
-
     QHash<int, Joystick*> *joysticks;
     bool stopped;
     bool performRefresh;
+
+    SDLEventReader *eventWorker;
+    QThread *thread;
 
 signals:
     void joystickRefreshed (Joystick *joystick);

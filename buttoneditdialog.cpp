@@ -151,11 +151,13 @@ void ButtonEditDialog::changeDialogText(bool edited)
 void ButtonEditDialog::enableDialogButtons()
 {
     ui->buttonBox->setEnabled(true);
+    ui->advancedButton->setEnabled(true);
 }
 
 void ButtonEditDialog::disableDialogButtons()
 {
     ui->buttonBox->setEnabled(false);
+    ui->advancedButton->setEnabled(false);
 }
 
 void ButtonEditDialog::openAdvancedDialog()

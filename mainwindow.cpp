@@ -47,13 +47,16 @@ void MainWindow::fillButtons(Joystick *joystick)
 
 void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
 {
+    ui->stackedWidget->setCurrentIndex(0);
+
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        ui->tabWidget->widget(i)->deleteLater();
+    }
+
     for (int i=0; i < joysticks->count(); i++)
     {
         Joystick *joystick = joysticks->value(i);
-        if (ui->tabWidget->widget(i) != 0)
-        {
-            ui->tabWidget->widget(i)->deleteLater();
-        }
 
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
         tabwidget->fillButtons();
@@ -62,10 +65,11 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
     }
 
+    populateTrayIcon();
+
     if (joysticks->count() > 0)
     {
         loadAppConfig();
-        populateTrayIcon();
 
         ui->tabWidget->setCurrentIndex(0);
         ui->stackedWidget->setCurrentIndex(1);

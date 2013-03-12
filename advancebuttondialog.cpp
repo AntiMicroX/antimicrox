@@ -63,6 +63,11 @@ AdvanceButtonDialog::AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *
             existingCode->setText(QString("Hold ").append(QString::number(buttonslot->getSlotCode() / 1000.0, 'g', 3)));
             existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotMode());
         }
+        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyCycle)
+        {
+            existingCode->setText("Cycle");
+            existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+        }
 
         //existingCode->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
@@ -158,6 +163,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *
     connect(ui->clearAllPushButton, SIGNAL(clicked()), this, SLOT(clearAllSlots()));
     connect(ui->pausePushButton, SIGNAL(clicked()), this, SLOT(insertPauseSlot()));
     connect(ui->holdPushButton, SIGNAL(clicked()), this, SLOT(insertHoldSlot()));
+    connect(ui->cyclePushButton, SIGNAL(clicked()), this, SLOT(insertCycleSlot()));
 
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionMillisecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
@@ -513,4 +519,11 @@ void AdvanceButtonDialog::changeTurboForSequences()
     {
         ui->turboCheckbox->setEnabled(true);
     }
+}
+
+void AdvanceButtonDialog::insertCycleSlot()
+{
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    tempbutton->setValue(1, JoyButtonSlot::JoyCycle);
+    updateSlotsScrollArea(1);
 }

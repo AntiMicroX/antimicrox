@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     joyaxisbutton.cpp \
     aboutdialog.cpp \
     xmlconfigmigration.cpp \
-    setjoystick.cpp
+    setjoystick.cpp \
+    sdleventreader.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -71,7 +72,9 @@ HEADERS  += mainwindow.h \
     joyaxisbutton.h \
     aboutdialog.h \
     xmlconfigmigration.h \
-    setjoystick.h
+    setjoystick.h \
+    sdleventreader.h \
+    sdleventreader.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
