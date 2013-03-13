@@ -65,8 +65,6 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
     }
 
-    populateTrayIcon();
-
     if (joysticks->count() > 0)
     {
         loadAppConfig();
@@ -74,6 +72,8 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         ui->tabWidget->setCurrentIndex(0);
         ui->stackedWidget->setCurrentIndex(1);
     }
+
+    populateTrayIcon();
 }
 
 void MainWindow::joystickRefreshPropogate(Joystick *joystick)
