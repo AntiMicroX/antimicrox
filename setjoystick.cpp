@@ -2,14 +2,6 @@
 
 #include "setjoystick.h"
 
-/*
-SetJoystick::SetJoystick(QObject *parent) :
-    QObject(parent)
-{
-    joyhandle = 0;
-}
-*/
-
 SetJoystick::SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent) :
     QObject(parent)
 {

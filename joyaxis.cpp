@@ -79,6 +79,10 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
         createDeskEvent(ignoresets);
         lastkey = 0;
     }
+    else if (isActive)
+    {
+        createDeskEvent(ignoresets);
+    }
 
     emit moved(currentRawValue);
 }
@@ -388,4 +392,30 @@ int JoyAxis::getCurrentThrottledMax()
 int JoyAxis::getCurrentThrottledDeadValue()
 {
     return currentThrottledDeadValue;
+}
+
+double JoyAxis::getDistanceFromDeadZone()
+{
+    double distance = 0.0;
+    //int tempThrottledValue = abs(currentThrottledValue);
+    /*if (tempThrottledValue > deadZone)
+    {
+        distance = tempThrottledValue / AXISMAX;
+    }*/
+    if (currentThrottledValue >= deadZone)
+    {
+        distance = (currentThrottledValue - deadZone)/(double)(maxZoneValue - deadZone);
+    }
+    else if (currentThrottledValue <= -deadZone)
+    {
+        distance = (currentThrottledValue + deadZone)/(double)(-maxZoneValue + deadZone);
+    }
+
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+
+    return distance;
+
 }

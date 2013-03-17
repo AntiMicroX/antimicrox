@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>690</width>
-    <height>524</height>
+    <width>750</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -86,6 +86,12 @@
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_9">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
          <item>
           <widget class="QListWidget" name="slotListWidget">
            <property name="sizePolicy">
@@ -146,33 +152,44 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>10</height>
+             <height>4</height>
             </size>
            </property>
           </spacer>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
            <item>
-            <widget class="QPushButton" name="pausePushButton">
-             <property name="text">
-              <string>Pause</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="holdPushButton">
-             <property name="text">
-              <string>Hold</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="cyclePushButton">
-             <property name="text">
-              <string>Cycle</string>
-             </property>
-            </widget>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="1">
+              <widget class="QPushButton" name="holdPushButton">
+               <property name="text">
+                <string>Hold</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="pausePushButton">
+               <property name="text">
+                <string>Pause</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QPushButton" name="cyclePushButton">
+               <property name="text">
+                <string>Cycle</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QPushButton" name="distancePushButton">
+               <property name="text">
+                <string>Distance</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
             <spacer name="horizontalSpacer">
@@ -191,25 +208,29 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="insertSlotButton">
-             <property name="text">
-              <string>Insert</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="deleteSlotButton">
-             <property name="text">
-              <string>Delete</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="clearAllPushButton">
-             <property name="text">
-              <string>Clear All</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QPushButton" name="insertSlotButton">
+               <property name="text">
+                <string>Insert</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="deleteSlotButton">
+               <property name="text">
+                <string>Delete</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clearAllPushButton">
+               <property name="text">
+                <string>Clear All</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
@@ -230,210 +251,268 @@
           </spacer>
          </item>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <property name="spacing">
-            <number>20</number>
-           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="spacing">
+              <number>20</number>
+             </property>
              <item>
-              <widget class="QLabel" name="label_5">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Time:</string>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Time:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="actionTimeLabel">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>0.01s</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
              <item>
-              <widget class="QLabel" name="actionTimeLabel">
-               <property name="text">
-                <string>0.01s</string>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <property name="spacing">
+                <number>1</number>
                </property>
-              </widget>
+               <item>
+                <widget class="QComboBox" name="actionSecondsComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maxVisibleItems">
+                  <number>11</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>0s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>1s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>2s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>3s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>4s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>5s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>6s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>7s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>8s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>9s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>10s</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>10</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QComboBox" name="actionMillisecondsComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>0.0s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.1s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.2s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.3s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.4s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.5s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.6s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.7s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.8s</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>0.9s</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
              <property name="spacing">
-              <number>1</number>
+              <number>20</number>
              </property>
              <item>
-              <widget class="QComboBox" name="actionSecondsComboBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
+              <widget class="QLabel" name="label_6">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
                </property>
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
+               <property name="text">
+                <string>Distance: </string>
                </property>
-               <property name="maxVisibleItems">
-                <number>11</number>
-               </property>
-               <item>
-                <property name="text">
-                 <string>0s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>1s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>2s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>3s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>4s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>5s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>6s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>7s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>8s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>9s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>10s</string>
-                </property>
-               </item>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>10</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QComboBox" name="actionMillisecondsComboBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
+              <widget class="QSpinBox" name="distanceSpinBox">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>81</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="currentIndex">
+               <property name="suffix">
+                <string>%</string>
+               </property>
+               <property name="minimum">
                 <number>1</number>
                </property>
-               <item>
-                <property name="text">
-                 <string>0.0s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.1s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.2s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.3s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.4s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.5s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.6s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.7s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.8s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.9s</string>
-                </property>
-               </item>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="singleStep">
+                <number>1</number>
+               </property>
               </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
              </item>
             </layout>
            </item>
@@ -447,7 +526,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>40</height>
+             <height>20</height>
             </size>
            </property>
           </spacer>
@@ -519,7 +598,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>40</height>
+             <height>20</height>
             </size>
            </property>
           </spacer>
@@ -545,7 +624,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>14</height>
+             <height>10</height>
             </size>
            </property>
           </spacer>
@@ -554,6 +633,12 @@
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
             <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Mouse Horiz. Speed:</string>
              </property>
@@ -614,6 +699,12 @@
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
             <widget class="QLabel" name="label_4">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Mouse Verti. Speed:</string>
              </property>

@@ -68,7 +68,7 @@ void JoyAxisButton::mouseEvent()
             double difference = axis->calculateNormalizedAxisPlacement();
             int mouse1 = 0;
             int mouse2 = 0;
-            double sumDist = buttonslot->getDistance();
+            double sumDist = buttonslot->getMouseDistance();
 
             if (mousemode == JoyButtonSlot::MouseRight)
             {
@@ -121,4 +121,9 @@ void JoyAxisButton::mouseEvent()
             mouseInterval->restart();
         }
     }
+}
+
+double JoyAxisButton::getDistanceFromDeadZone()
+{
+    return axis->getDistanceFromDeadZone();
 }

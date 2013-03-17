@@ -88,7 +88,7 @@ void JoyButtonSlot::setDistance(double distance)
     this->distance = distance;
 }
 
-double JoyButtonSlot::getDistance()
+double JoyButtonSlot::getMouseDistance()
 {
     return distance;
 }
@@ -140,6 +140,14 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyHold);
                 }
+                else if (temptext == "cycle")
+                {
+                    this->setSlotMode(JoyCycle);
+                }
+                else if (temptext == "distance")
+                {
+                    this->setSlotMode(JoyDistance);
+                }
             }
             else
             {
@@ -178,6 +186,15 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     {
         xml->writeCharacters("hold");
     }
+    else if (mode == JoyCycle)
+    {
+        xml->writeCharacters("cycle");
+    }
+    else if (mode == JoyDistance)
+    {
+        xml->writeCharacters("distance");
+    }
+
     xml->writeEndElement();
 
     xml->writeEndElement();

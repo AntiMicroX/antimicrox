@@ -60,12 +60,17 @@ public:
     bool getButtonState();
     int getOriginSet();
 
-    void release();
     bool containsSequence();
+    bool containsDistanceSlots();
+
+    virtual double getDistanceFromDeadZone();
 
     static const QString xmlName;
 
 protected:
+    double getTotalSlotDistance(JoyButtonSlot *slot);
+    bool distanceTempEvent();
+
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
     // Used to denote whether the virtual key is pressed
@@ -75,7 +80,10 @@ protected:
     // Used to denote the SDL index of the actual joypad button
     int index;
     int turboInterval;
-    QTimer timer;
+    QTimer turboTimer;
+    QTimer pauseTimer;
+    QTimer holdTimer;
+    QTimer pauseWaitTimer;
     bool isDown;
     bool useTurbo;
     QList<JoyButtonSlot*> assignments;
@@ -91,6 +99,7 @@ protected:
     JoyButtonSlot *currentPause;
     JoyButtonSlot *currentHold;
     JoyButtonSlot *currentCycle;
+    JoyButtonSlot *previousCycle;
     JoyButtonSlot *currentDistance;
     JoyButtonSlot *currentMouseEvent;
 
@@ -125,7 +134,7 @@ private slots:
     void turboEvent();
     virtual void mouseEvent();
     void createDeskEvent();
-    void releaseDeskEvent();
+    void releaseDeskEvent(bool skipsetchange=false);
     void waitForDeskEvent();
     void waitForReleaseDeskEvent();
     void pauseEvent();

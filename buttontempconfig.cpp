@@ -80,6 +80,12 @@ QString ButtonTempConfig::getSlotsSummary()
         {
             newlabel.append("Cycle");
         }
+        else if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
+        {
+            QString temp("Distance ");
+            temp.append(QString::number(slot->getSlotCode())).append("%");
+            newlabel.append(temp);
+        }
 
         if (slotCount > 1)
         {
@@ -103,7 +109,10 @@ bool ButtonTempConfig::containsSequence()
     {
         JoyButtonSlot *slot = tempiter.next();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-        if (mode == JoyButtonSlot::JoyPause || mode == JoyButtonSlot::JoyHold)
+        if (mode == JoyButtonSlot::JoyPause ||
+            mode == JoyButtonSlot::JoyHold ||
+            mode == JoyButtonSlot::JoyDistance
+           )
         {
             result = true;
         }

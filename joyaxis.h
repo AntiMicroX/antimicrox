@@ -41,6 +41,8 @@ public:
     int getCurrentThrottledMax();
     int getCurrentThrottledDeadValue();
 
+    double getDistanceFromDeadZone();
+
     double calculateNormalizedAxisPlacement();
 
     void readConfig(QXmlStreamReader *xml);

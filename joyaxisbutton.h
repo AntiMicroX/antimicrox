@@ -13,6 +13,7 @@ public:
     explicit JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent=0);
     
     virtual QString getXmlName();
+    virtual double getDistanceFromDeadZone();
 
     static const QString xmlName;
 

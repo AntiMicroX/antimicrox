@@ -176,6 +176,12 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
     {
         setText("Cycle");
     }
+    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyDistance)
+    {
+        QString temp("Distance ");
+        temp.append(QString::number(buttonslot.getSlotCode())).append("%");
+        setText(temp);
+    }
 }
 
 JoyButtonSlot* SimpleKeyGrabberButton::getValue()

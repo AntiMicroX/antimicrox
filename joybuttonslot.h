@@ -25,7 +25,7 @@ public:
     QString movementString();
     void setMouseSpeed(int value);
     void setDistance(double distance);
-    double getDistance();
+    double getMouseDistance();
     QTime* getMouseInterval();
     void restartMouseInterval();
     QString getXmlName();

@@ -175,6 +175,16 @@ void AxisEditDialog::saveAxisChanges()
         currentThrottle = ui->comboBox_2->currentIndex() - 1;
     }
     axis->setThrottle(currentThrottle);
+
+    if (tempPConfig->toggle)
+    {
+        paxisbutton->setToggle(true);
+    }
+
+    if (tempNConfig->toggle)
+    {
+        naxisbutton->setToggle(true);
+    }
     //axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
 }
 
