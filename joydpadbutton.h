@@ -16,6 +16,8 @@ public:
     virtual QString getPartialName();
     virtual QString getXmlName();
 
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+
     enum JoyDPadDirections {
         DpadCentered = 0, DpadUp = 1, DpadRight = 2,
         DpadDown = 4, DpadLeft = 8, DpadRightUp = 3,
@@ -28,7 +30,8 @@ protected:
     JoyDPad *dpad;
 
 signals:
-    
+    void setAssignmentChanged(int current_button, int dpad_index, int associated_set, int mode);
+
 public slots:
     virtual void reset();
     virtual void reset(int index);

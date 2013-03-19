@@ -73,7 +73,6 @@ HEADERS  += mainwindow.h \
     aboutdialog.h \
     xmlconfigmigration.h \
     setjoystick.h \
-    sdleventreader.h \
     sdleventreader.h
 
 FORMS    += mainwindow.ui \

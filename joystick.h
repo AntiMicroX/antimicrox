@@ -57,6 +57,9 @@ public slots:
     void reset();
     void setActiveSetNumber(int index);
     void changeSetButtonAssociation(int button_index, int originset, int newset, int mode);
+    void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);
+    void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
+
 
 private slots:
     void propogateSetChange(int index);

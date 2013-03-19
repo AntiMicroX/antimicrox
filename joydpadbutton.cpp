@@ -77,3 +77,33 @@ void JoyDPadButton::reset(int index)
     Q_UNUSED(index);
     reset();
 }
+
+void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+{
+    if (condition != setSelectionCondition && !passive)
+    {
+        if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
+        {
+            // Set new condition
+            emit setAssignmentChanged(index, this->dpad->getJoyNumber(), setSelection, condition);
+            //emit setAssignmentChanged(index, setSelection, condition);
+        }
+        else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
+        {
+            // Remove old condition
+            emit setAssignmentChanged(index, this->dpad->getJoyNumber(), setSelection, SetChangeDisabled);
+            //emit setAssignmentChanged(index, setSelection, SetChangeDisabled);
+        }
+
+        setSelectionCondition = condition;
+    }
+    else if (passive)
+    {
+        setSelectionCondition = condition;
+    }
+
+    if (setSelectionCondition == SetChangeDisabled)
+    {
+        setChangeSetSelection(-1);
+    }
+}

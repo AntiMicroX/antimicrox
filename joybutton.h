@@ -54,7 +54,7 @@ public:
     void setChangeSetSelection(int index);
     int getSetSelection();
 
-    void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     SetChangeCondition getChangeSetCondition();
 
     bool getButtonState();

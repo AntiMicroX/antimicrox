@@ -46,10 +46,13 @@ void SetJoystick::refreshAxes()
     {
         JoyAxis *axis = new JoyAxis(i, index, this);
         axes.insert(i, axis);
-        JoyButton *button = axis->getNAxisButton();
+        JoyAxisButton *button = axis->getNAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
+
         button = axis->getPAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
     }
 }
 
@@ -67,6 +70,8 @@ void SetJoystick::refreshHats()
         {
             JoyDPadButton *button = iter.next().value();
             connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+
+            connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
         }
     }
 }
@@ -107,7 +112,25 @@ void SetJoystick::propogateSetButtonAssociation(int button, int newset, int mode
 {
     if (newset != index)
     {
-        emit setAssignmentChanged(button, index, newset, mode);
+        emit setAssignmentButtonChanged(button, index, newset, mode);
+    }
+}
+
+void SetJoystick::propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode)
+{
+    if (newset != index)
+    {
+        emit setAssignmentAxisChanged(button, axis, index, newset, mode);
+        //emit setAssignmentButtonChanged(button, index, newset, mode);
+    }
+}
+
+void SetJoystick::propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode)
+{
+    if (newset != index)
+    {
+        emit setAssignmentDPadChanged(button, dpad, index, newset, mode);
+        //emit setAssignmentButtonChanged(button, index, newset, mode);
     }
 }
 

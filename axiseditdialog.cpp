@@ -144,6 +144,9 @@ void AxisEditDialog::saveAxisChanges()
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
     JoyAxisButton *paxisbutton = axis->getPAxisButton();
 
+    JoyButton::SetChangeCondition oldNCondition = naxisbutton->getChangeSetCondition();
+    JoyButton::SetChangeCondition oldPCondition = paxisbutton->getChangeSetCondition();
+
     naxisbutton->reset();
     QListIterator<JoyButtonSlot*> iter(*(tempNConfig->assignments));
     while (iter.hasNext())
@@ -184,6 +187,36 @@ void AxisEditDialog::saveAxisChanges()
     if (tempNConfig->toggle)
     {
         naxisbutton->setToggle(true);
+    }
+
+    if (tempNConfig->setSelection > -1 && tempNConfig->setSelectionCondition != JoyButton::SetChangeDisabled)
+    {
+        // Revert old set condition before entering new set condition.
+        // Also, do not emit signals on first change
+        naxisbutton->setChangeSetCondition(oldNCondition, true);
+
+        naxisbutton->setChangeSetSelection(tempNConfig->setSelection);
+        naxisbutton->setChangeSetCondition(tempNConfig->setSelectionCondition);
+    }
+    else
+    {
+        naxisbutton->setChangeSetSelection(-1);
+        naxisbutton->setChangeSetCondition(JoyButton::SetChangeDisabled);
+    }
+
+    if (tempPConfig->setSelection > -1 && tempPConfig->setSelectionCondition != JoyButton::SetChangeDisabled)
+    {
+        // Revert old set condition before entering new set condition.
+        // Also, do not emit signals on first change
+        paxisbutton->setChangeSetCondition(oldPCondition, true);
+
+        paxisbutton->setChangeSetSelection(tempPConfig->setSelection);
+        paxisbutton->setChangeSetCondition(tempPConfig->setSelectionCondition);
+    }
+    else
+    {
+        paxisbutton->setChangeSetSelection(-1);
+        paxisbutton->setChangeSetCondition(JoyButton::SetChangeDisabled);
     }
     //axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
 }

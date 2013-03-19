@@ -20,6 +20,7 @@ public:
 
     int getCurrentDirection();
     int getJoyNumber();
+    int getIndex();
     int getRealJoyNumber();
     QString getName();
     void joyEvent(int value, bool ignoresets=false);

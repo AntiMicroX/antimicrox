@@ -16,7 +16,10 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
         joystick_sets.insert(i, setstick);
         connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(setActiveSetNumber(int)));
         connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(setstick, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(changeSetButtonAssociation(int,int,int,int)));
+        connect(setstick, SIGNAL(setAssignmentButtonChanged(int,int,int,int)), this, SLOT(changeSetButtonAssociation(int,int,int,int)));
+
+        connect(setstick, SIGNAL(setAssignmentAxisChanged(int,int,int,int,int)), this, SLOT(changeSetAxisButtonAssociation(int,int,int,int,int)));
+        connect(setstick, SIGNAL(setAssignmentDPadChanged(int,int,int,int,int)), this, SLOT(changeSetDPadButtonAssociation(int,int,int,int,int)));
     }
 
     active_set = 0;
@@ -249,4 +252,30 @@ void Joystick::writeConfig(QXmlStreamWriter *xml)
     xml->writeEndElement();
 
     xml->writeEndElement();
+}
+
+void Joystick::changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode)
+{
+    JoyAxisButton *button = 0;
+    if (button_index == 0)
+    {
+        button = joystick_sets.value(newset)->getJoyAxis(axis_index)->getNAxisButton();
+    }
+    else if (button_index == 1)
+    {
+        button = joystick_sets.value(newset)->getJoyAxis(axis_index)->getPAxisButton();
+    }
+
+    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
+}
+
+void Joystick::changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode)
+{
+    JoyDPadButton *button = joystick_sets.value(newset)->getJoyDPad(dpad_index)->getJoyButton(button_index);
+
+    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
 }

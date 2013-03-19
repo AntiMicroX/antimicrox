@@ -36,6 +36,10 @@ ButtonTempConfig::ButtonTempConfig(JoyButton *button, QObject *parent) :
 
     setSelection = -1;
     setSelectionCondition = JoyButton::SetChangeDisabled;
+
+    originset = button->getOriginSet();
+    setSelection = button->getSetSelection();
+    setSelectionCondition = button->getChangeSetCondition();
 }
 
 ButtonTempConfig::~ButtonTempConfig()

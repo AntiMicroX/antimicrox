@@ -7,8 +7,8 @@ JoyDPad::JoyDPad(QObject *parent) :
 {
     buttons = QHash<int, JoyDPadButton*> ();
     prevDirection = JoyDPadButton::DpadCentered;
-    populateButtons();
     originset = 0;
+    populateButtons();
 }
 
 JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
@@ -17,8 +17,9 @@ JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
     this->index = index;
     buttons = QHash<int, JoyDPadButton*> ();
     prevDirection = JoyDPadButton::DpadCentered;
-    populateButtons();
     this->originset = originset;
+
+    populateButtons();
 }
 
 JoyDPadButton *JoyDPad::getJoyButton(int index)
@@ -49,6 +50,11 @@ QString JoyDPad::getName()
 }
 
 int JoyDPad::getJoyNumber()
+{
+    return index;
+}
+
+int JoyDPad::getIndex()
 {
     return index;
 }

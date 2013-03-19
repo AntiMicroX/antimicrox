@@ -25,11 +25,6 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     ui->checkBox_2->setChecked(button->getToggleState());
 
     tempconfig = new ButtonTempConfig(button);
-    /*tempconfig->turbo = button->isUsingTurbo();
-    tempconfig->toggle = button->getToggleState();
-    tempconfig->turboInterval = button->getTurboInterval();
-    tempconfig->mouseSpeedX = button->getMouseSpeedX();
-    tempconfig->mouseSpeedY = button->getMouseSpeedY();*/
 
     tempconfig->assignments->clear();
     QListIterator<JoyButtonSlot*> iter(*(button->getAssignedSlots()));
@@ -45,10 +40,6 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 
         tempconfig->assignments->append(tempbuttonslot);
     }
-
-    tempconfig->originset = button->getOriginSet();
-    tempconfig->setSelection = button->getSetSelection();
-    tempconfig->setSelectionCondition = button->getChangeSetCondition();
 
     updateFromTempConfig();
 
