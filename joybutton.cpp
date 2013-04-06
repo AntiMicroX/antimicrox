@@ -645,6 +645,37 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     xml->readNextStartElement();
                 }
             }
+            else if (xml->name() == "setselect" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                if (tempchoice >= 1 && tempchoice <= 8)
+                {
+                    this->setChangeSetSelection(tempchoice - 1);
+                }
+            }
+            else if (xml->name() == "setselectcondition" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                SetChangeCondition tempcondition = SetChangeDisabled;
+                if (temptext == "one-way")
+                {
+                    tempcondition = SetChangeOneWay;
+                }
+                else if (temptext == "two-way")
+                {
+                    tempcondition = SetChangeTwoWay;
+                }
+                else if (temptext == "while-held")
+                {
+                    tempcondition = SetChangeWhileHeld;
+                }
+
+                if (tempcondition != SetChangeDisabled)
+                {
+                    this->setChangeSetCondition(tempcondition, true);
+                }
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -666,6 +697,25 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
     xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
     xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
     xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
+    if (setSelectionCondition != SetChangeDisabled)
+    {
+        xml->writeTextElement("setselect", QString::number(setSelection+1));
+
+        QString temptext;
+        if (setSelectionCondition == SetChangeOneWay)
+        {
+            temptext = "one-way";
+        }
+        else if (setSelectionCondition == SetChangeTwoWay)
+        {
+            temptext = "two-way";
+        }
+        else if (setSelectionCondition == SetChangeWhileHeld)
+        {
+            temptext = "while-held";
+        }
+        xml->writeTextElement("setselectcondition", temptext);
+    }
 
     xml->writeStartElement("slots");
     QListIterator<JoyButtonSlot*> iter(assignments);
@@ -864,7 +914,10 @@ int JoyButton::getMouseSpeedY()
 
 void JoyButton::setChangeSetSelection(int index)
 {
-    setSelection = index;
+    if (index >= 0 && index <= 7)
+    {
+        setSelection = index;
+    }
 }
 
 int JoyButton::getSetSelection()
