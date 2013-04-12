@@ -153,7 +153,7 @@ void MainWindow::populateTrayIcon()
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
     connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
-    //connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(refreshTrayIconMenu(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
 }
 
 void MainWindow::quitProgram()
@@ -173,6 +173,22 @@ void MainWindow::refreshTrayIconMenu()
         hideAction->setEnabled(true);
         restoreAction->setEnabled(false);
     }
+}
+
+void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger)
+    {
+        if (this->isHidden())
+        {
+            this->show();
+        }
+        else
+        {
+            this->hide();
+        }
+    }
+
 }
 
 void MainWindow::mainMenuChange()

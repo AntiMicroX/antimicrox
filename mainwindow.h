@@ -57,6 +57,7 @@ public slots:
 private slots:
     void quitProgram();
     void refreshTrayIconMenu();
+    void trayIconClickAction(QSystemTrayIcon::ActivationReason reason);
     void mainMenuChange();
     void saveAppConfig();
     void loadAppConfig();
