@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=AntiMicro
+Comment=
+Exec=antimicro
+Icon=antimicro_joystick_icon
+MimeType=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+Categories=Qt;Utility;

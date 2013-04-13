@@ -9,9 +9,16 @@ isEmpty(INSTALL_PREFIX)
     INSTALL_PREFIX = /usr/local
 }
 
+
 QT       += core gui
 
 target.path = $$INSTALL_PREFIX/bin
+
+desktop.path = $$INSTALL_PREFIX/share/applications
+desktop.files = other/antimicro.desktop
+
+deskicon.path = $$INSTALL_PREFIX/share/pixmaps
+deskicon.files = images/antimicro.png
 
 TARGET = antimicro
 TEMPLATE = app
@@ -88,7 +95,8 @@ LIBS += -lSDL -lXtst -lX11
 RESOURCES += \
     resources.qrc
 
-INSTALLS += target
+INSTALLS += target desktop deskicon
 
 OTHER_FILES += \
-    gpl.txt
+    gpl.txt \
+    other/antimicro.desktop

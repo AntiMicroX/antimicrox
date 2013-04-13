@@ -148,7 +148,7 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(updateJoy);
     trayIconMenu->addAction(closeAction);
 
-    QIcon icon = QIcon(":/images/joystick_icon.png");
+    QIcon icon = QIcon(":/images/antimicro.png");
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
