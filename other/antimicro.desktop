@@ -2,7 +2,7 @@
 Name=AntiMicro
 Comment=
 Exec=antimicro
-Icon=antimicro_joystick_icon
+Icon=antimicro
 MimeType=
 StartupNotify=true
 Terminal=false
