@@ -20,6 +20,8 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
 
         connect(setstick, SIGNAL(setAssignmentAxisChanged(int,int,int,int,int)), this, SLOT(changeSetAxisButtonAssociation(int,int,int,int,int)));
         connect(setstick, SIGNAL(setAssignmentDPadChanged(int,int,int,int,int)), this, SLOT(changeSetDPadButtonAssociation(int,int,int,int,int)));
+
+        connect(setstick, SIGNAL(setAssignmentAxisThrottleChanged(int,int)), this, SLOT(propogateSetAxisThrottleChange(int, int)));
     }
 
     active_set = 0;
@@ -278,4 +280,29 @@ void Joystick::changeSetDPadButtonAssociation(int button_index, int dpad_index, 
     JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
     button->setChangeSetSelection(originset);
     button->setChangeSetCondition(tempmode, true);
+}
+
+void Joystick::propogateSetAxisThrottleChange(int index, int originset)
+{
+    SetJoystick *currentSet = joystick_sets.value(originset);
+    if (currentSet)
+    {
+        JoyAxis *axis = currentSet->getJoyAxis(index);
+        if (axis)
+        {
+            int throttleSetting = axis->getThrottle();
+
+            QHashIterator<int, SetJoystick*> iter(joystick_sets);
+            while (iter.hasNext())
+            {
+                iter.next();
+                SetJoystick *temp = iter.value();
+                // Ignore change for set axis that initiated the change
+                if (temp != currentSet)
+                {
+                    temp->getJoyAxis(index)->setThrottle(throttleSetting);
+                }
+            }
+        }
+    }
 }

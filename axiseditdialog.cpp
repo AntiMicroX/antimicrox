@@ -9,9 +9,11 @@ AxisEditDialog::AxisEditDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AxisEditDialog)
 {
-    ui->setupUi(this);
-
+    ui->setupUi(this);    
     setAttribute(Qt::WA_DeleteOnClose);
+
+    //setAxisThrottleConfirm = new SetAxisThrottleDialog(this);
+
     axis = 0;
 }
 
@@ -21,6 +23,8 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    setAxisThrottleConfirm = new SetAxisThrottleDialog(axis, this);
 
     this->axis = axis;
 
@@ -130,6 +134,8 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
     connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
+
+    connect(this, SIGNAL(throttleChanged()), setAxisThrottleConfirm, SLOT(exec()));
 }
 
 AxisEditDialog::~AxisEditDialog()
@@ -137,6 +143,7 @@ AxisEditDialog::~AxisEditDialog()
     delete ui;
     delete tempPConfig;
     delete tempNConfig;
+    delete setAxisThrottleConfirm;
 }
 
 void AxisEditDialog::saveAxisChanges()
@@ -176,8 +183,12 @@ void AxisEditDialog::saveAxisChanges()
     if (ui->comboBox_2->isEnabled())
     {
         currentThrottle = ui->comboBox_2->currentIndex() - 1;
+        if (currentThrottle != axis->getThrottle())
+        {
+            axis->setThrottle(currentThrottle);
+            emit throttleChanged();
+        }
     }
-    axis->setThrottle(currentThrottle);
 
     if (tempPConfig->toggle)
     {

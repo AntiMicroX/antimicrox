@@ -6,6 +6,7 @@
 #include "joyaxis.h"
 #include "axisvaluebox.h"
 #include "buttontempconfig.h"
+#include "setaxisthrottledialog.h"
 
 namespace Ui {
 class AxisEditDialog;
@@ -24,9 +25,13 @@ protected:
     JoyAxis *axis;
     ButtonTempConfig *tempPConfig;
     ButtonTempConfig *tempNConfig;
+    SetAxisThrottleDialog *setAxisThrottleConfirm;
 
 private:
     Ui::AxisEditDialog *ui;
+
+signals:
+    void throttleChanged();
 
 private slots:
     void saveAxisChanges();

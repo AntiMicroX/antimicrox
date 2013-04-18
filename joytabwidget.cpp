@@ -221,7 +221,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     connect(setPushButton6, SIGNAL(clicked()), this, SLOT(changeSetSix()));
     connect(setPushButton7, SIGNAL(clicked()), this, SLOT(changeSetSeven()));
     connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
-
 }
 
 void JoyTabWidget::openConfigFileDialog()
@@ -354,6 +353,7 @@ void JoyTabWidget::fillButtons()
             axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
             connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
+            connect(axis, SIGNAL(throttleChanged()), axisWidget, SLOT(refreshLabel()));
 
             if (column > 1)
             {
@@ -807,4 +807,3 @@ void JoyTabWidget::changeSetEight()
 {
     changeCurrentSet(7);
 }
-

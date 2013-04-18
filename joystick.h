@@ -52,6 +52,7 @@ protected:
 
 signals:
     void setChangeActivated(int index);
+    void setAxisThrottleActivated(int index);
 
 public slots:
     void reset();
@@ -63,7 +64,7 @@ public slots:
 
 private slots:
     void propogateSetChange(int index);
-
+    void propogateSetAxisThrottleChange(int index, int originset);
 };
 
 #endif // JOYSTICK_H

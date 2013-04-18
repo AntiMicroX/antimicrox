@@ -80,6 +80,7 @@ signals:
     void joystickRefreshRequested();
     void joystickRefreshRequested(Joystick *joystick);
     void joystickConfigChanged(int index);
+    void joystickAxisRefreshLabels(int axisIndex);
 
 public slots:
     void openConfigFileDialog();

@@ -201,8 +201,12 @@ void JoyAxis::setThrottle(int value)
 {
     if (value >= -1 && value <= 1)
     {
-        throttle = value;
-        adjustRange();
+        if (value != throttle)
+        {
+            throttle = value;
+            adjustRange();
+            emit throttleChanged();
+        }
     }
 }
 
@@ -418,4 +422,14 @@ double JoyAxis::getDistanceFromDeadZone()
 
     return distance;
 
+}
+
+void JoyAxis::propogateThrottleChange()
+{
+    emit throttleChangePropogated(this->index);
+}
+
+int JoyAxis::getCurrentlyAssignedSet()
+{
+    return originset;
 }

@@ -40,6 +40,7 @@ public:
     int getCurrentThrottledMin();
     int getCurrentThrottledMax();
     int getCurrentThrottledDeadValue();
+    int getCurrentlyAssignedSet();
 
     double getDistanceFromDeadZone();
 
@@ -88,13 +89,13 @@ signals:
     void active(int value);
     void released(int value);
     void moved(int value);
+    void throttleChangePropogated(int index);
+    void throttleChanged();
 
 public slots:
     void reset();
     void reset(int index);
-
-private slots:
-    
+    void propogateThrottleChange();    
 };
 
 #endif // JOYAXIS_H

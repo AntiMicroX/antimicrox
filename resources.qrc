@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/antimicro.png</file>
+        <file>images/antimicro_trayicon.png</file>
     </qresource>
 </RCC>

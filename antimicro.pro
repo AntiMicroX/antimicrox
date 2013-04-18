@@ -51,7 +51,8 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     xmlconfigmigration.cpp \
     setjoystick.cpp \
-    sdleventreader.cpp
+    sdleventreader.cpp \
+    setaxisthrottledialog.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -80,14 +81,16 @@ HEADERS  += mainwindow.h \
     aboutdialog.h \
     xmlconfigmigration.h \
     setjoystick.h \
-    sdleventreader.h
+    sdleventreader.h \
+    setaxisthrottledialog.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
     dpadbuttoneditdialog.ui \
     axiseditdialog.ui \
     advancebuttondialog.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    setaxisthrottledialog.ui
 
 
 LIBS += -lSDL -lXtst -lX11
