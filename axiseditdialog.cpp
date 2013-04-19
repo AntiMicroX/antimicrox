@@ -80,6 +80,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     QString currentJoyValueText ("Current Value: ");
     currentJoyValueText = currentJoyValueText.append(QString::number(axis->getCurrentRawValue()));
     ui->joyValueLabel->setText(currentJoyValueText);
+    ui->axisstatusBox->setValue(axis->getCurrentRawValue());
 
     if (tempPConfig->mouseSpeedX == tempNConfig->mouseSpeedX)
     {
@@ -228,7 +229,6 @@ void AxisEditDialog::saveAxisChanges()
         paxisbutton->setChangeSetSelection(-1);
         paxisbutton->setChangeSetCondition(JoyButton::SetChangeDisabled);
     }
-    //axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
 }
 
 void AxisEditDialog::implementPresets(int index)

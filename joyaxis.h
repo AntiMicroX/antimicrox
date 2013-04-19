@@ -75,8 +75,6 @@ protected:
     QTime interval;
     int throttle;
     float sumDist;
-    int mouseOffset;
-    int lastkey;
     JoyAxisButton *activeButton;
     int originset;
 

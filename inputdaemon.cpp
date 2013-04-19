@@ -141,7 +141,12 @@ void InputDaemon::refreshJoysticks()
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
+        // SDL will queue events for each axis detected on
+        // a controller when first opened. Ignore initial axis motion events
+        SDL_EventState(SDL_JOYAXISMOTION, SDL_IGNORE);
         SDL_Joystick* joystick = SDL_JoystickOpen (i);
+        SDL_EventState(SDL_JOYAXISMOTION, SDL_ENABLE);
+
         Joystick *curJoystick = new Joystick (joystick, this);
         curJoystick->reset();
 

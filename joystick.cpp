@@ -56,9 +56,6 @@ void Joystick::reset()
         SetJoystick* set = joystick_sets.value(i);
         set->reset();
     }
-    /*refreshAxes();
-    refreshButtons();
-    refreshHats();*/
 }
 
 void Joystick::setActiveSetNumber(int index)

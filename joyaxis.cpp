@@ -77,7 +77,6 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
         emit released(value);
 
         createDeskEvent(ignoresets);
-        lastkey = 0;
     }
     else if (isActive)
     {
@@ -251,6 +250,8 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
                 {
                     this->setThrottle(1);
                 }
+
+                currentRawValue = currentThrottledDeadValue;
             }
             else if (xml->name() == "axisbutton" && xml->isStartElement())
             {
@@ -311,19 +312,16 @@ void JoyAxis::reset()
     timer->stop();
     interval = QTime ();
     eventActive = false;
-    currentThrottledValue = 0;
-    currentRawValue = 0;
     maxZoneValue = 30000;
     throttle = 0;
     sumDist = 0.0;
-    mouseOffset = 400;
-    lastkey = 0;
 
     paxisbutton->reset();
     naxisbutton->reset();
     activeButton = 0;
 
     adjustRange();
+    currentRawValue = currentThrottledValue = currentThrottledDeadValue;
 }
 
 void JoyAxis::reset(int index)
