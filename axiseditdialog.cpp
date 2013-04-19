@@ -143,7 +143,6 @@ AxisEditDialog::~AxisEditDialog()
     delete ui;
     delete tempPConfig;
     delete tempNConfig;
-    delete setAxisThrottleConfirm;
 }
 
 void AxisEditDialog::saveAxisChanges()

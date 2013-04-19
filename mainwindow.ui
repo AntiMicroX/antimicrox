@@ -492,6 +492,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
    </widget>
    <addaction name="menuQuit"/>
    <addaction name="menuOptions"/>
@@ -535,6 +536,11 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>

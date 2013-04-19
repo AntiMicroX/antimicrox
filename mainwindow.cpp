@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include <typeinfo>
 #include <QFile>
+#include <QtGui/QApplication>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -29,7 +30,9 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent) :
     trayIcon->show();
     aboutDialog = new AboutDialog(this);
 
+    QApplication *app = static_cast<QApplication*> (QCoreApplication::instance());
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
+    connect(ui->actionAbout_Qt, SIGNAL(triggered()), app, SLOT(aboutQt()));
 }
 
 MainWindow::~MainWindow()
