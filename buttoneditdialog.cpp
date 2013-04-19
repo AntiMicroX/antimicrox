@@ -16,10 +16,8 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     isEditing = false;
 
     defaultLabel = QString ("Click below to change key or mouse button for ");
-    QString currentlabel = defaultLabel;
-    ui->label->setText(currentlabel.append(button->getPartialName()));
-
-    //ui->pushButton->setText(button->getSlotsSummary());
+    defaultLabel = defaultLabel.append(button->getPartialName());
+    ui->label->setText(defaultLabel);
 
     ui->checkBox->setChecked(button->isUsingTurbo());
     ui->checkBox_2->setChecked(button->getToggleState());
@@ -45,7 +43,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 
     connect (ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveButtonChanges()));
     connect (ui->buttonBox, SIGNAL(rejected()), this, SLOT(close()));
-    connect (ui->pushButton, SIGNAL(clicked()), this, SLOT(changeDialogText()));
+    connect (ui->pushButton, SIGNAL(grabStarted()), this, SLOT(changeDialogText()));
 
     connect(ui->pushButton, SIGNAL(grabStarted()), this, SLOT(disableDialogButtons()));
     connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(changeDialogText(bool)));
@@ -122,20 +120,21 @@ void ButtonEditDialog::changeDialogText(bool edited)
 {
     isEditing = !isEditing;
 
-    if (edited)
+    if (isEditing && edited)
     {
-        QString label = defaultLabel;
-        label = label.append(button->getPartialName());
-        ui->label->setText(label);
+        ui->label->setText(defaultLabel);
+        isEditing = false;
+    }
+    else if (isEditing)
+    {
+        QString currentlabel = QString ("Choose a new key or mouse button for ");
+        currentlabel = currentlabel.append(button->getPartialName());
+        currentlabel = currentlabel.append("\n(Ctrl+X to reset key)");
+        ui->label->setText(currentlabel);
     }
     else
     {
-        if (isEditing)
-        {
-            QString label = QString ("Choose a new key or mouse button for ");
-            label = label.append(button->getPartialName());
-            ui->label->setText(label);
-        }
+        ui->label->setText(defaultLabel);
     }
 }
 

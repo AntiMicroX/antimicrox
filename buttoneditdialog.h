@@ -30,11 +30,6 @@ protected:
     QString defaultLabel;
     ButtonTempConfig *tempconfig;
 
-signals:
-
-public slots:
-
-
 private slots:
     void saveButtonChanges();
     void changeDialogText(bool edited=false);

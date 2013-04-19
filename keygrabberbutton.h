@@ -24,7 +24,6 @@ protected:
     void keyPressEvent(QKeyEvent *event);
     void endCountdown();
     virtual bool eventFilter(QObject *obj, QEvent *event);
-    //virtual bool x11Event(XEvent *e);
 
     QTimer timer;
     int numSeconds;

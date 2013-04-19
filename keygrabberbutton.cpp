@@ -164,60 +164,6 @@ bool KeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
-/*bool KeyGrabberButton::x11Event(XEvent *e)
-{
-    //On a key press, return the key and quit
-    //Ctrl+X == [No Key]
-    if (e->type == KeyRelease) {
-        if ((int)XKeycodeToKeysym(e->xkey.display,e->xkey.keycode,0) == XK_x ) {
-            if (e->xkey.state & ControlMask)
-            {
-                controlcode = 0;
-            }
-            else
-            {
-                controlcode = e->xkey.keycode;
-            }
-        }
-
-        else
-        {
-            controlcode = e->xkey.keycode;
-        }
-
-        if (controlcode == 0)
-        {
-            setText("[NO KEY]");
-        }
-        else
-        {
-            setText(keycodeToKey(controlcode).toUpper());
-        }
-
-        this->clearFocus();
-        this->endCountdown();
-        emit grabFinished(true);
-
-        return true;
-    }
-    //if we're accepting mouse clicks and a mouse button was clicked...
-    else if (e->type == ButtonRelease) {
-        setText(QString("Mouse ").append(QString::number(controlcode)));
-
-        controlcode = e->xbutton.button + MOUSE_OFFSET;
-
-        this->clearFocus();
-        this->endCountdown();
-        emit grabFinished(true);
-
-        return true;
-    }
-
-    //any other events we will pass on to the dialog. This allows for closing
-    //the window and easy redrawing  :)
-    return false;
-}*/
-
 void KeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputAction mode)
 {
     controlcode = value;
