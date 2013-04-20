@@ -182,3 +182,15 @@ void InputDaemon::refreshJoystick(Joystick *joystick)
 
     emit joystickRefreshed(joystick);
 }
+
+void InputDaemon::quit()
+{
+    stopped = true;
+    eventWorker->stop();
+
+    // Wait for SDL to finish. Let worker deconstructor close SDL.
+    // Let InputDaemon deconstructor close thread instance.
+    QEventLoop q;
+    connect(eventWorker, SIGNAL(finished()), &q, SLOT(quit()));
+    q.exec();
+}

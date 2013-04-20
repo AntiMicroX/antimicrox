@@ -29,12 +29,13 @@ signals:
     void complete();
 
 public slots:
-    void run ();
-    void stop ();
+    void run();
+    void quit();
     void refresh();
     void refreshJoystick(Joystick *joystick);
 
 private slots:
+    void stop();
     void refreshJoysticks ();
 };
 

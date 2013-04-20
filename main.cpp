@@ -32,33 +32,23 @@ int main(int argc, char *argv[])
     }
 
     InputDaemon *joypad_worker = new InputDaemon (joysticks);
-    //QThread* joypad_thread = new QThread ();
-    //joypad_worker->moveToThread(joypad_thread);
 
-    //QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &joyConfigReader, SLOT(configJoystick(Joystick*)));
-    //QObject::connect(joypad_thread, SIGNAL(started()), joypad_worker, SLOT(run()));
-    //QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int, Joystick*>*)), &w, SLOT(fillButtons(Joystick*)));
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int,Joystick*>*)), &w, SLOT(fillButtons(QHash<int,Joystick*>*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
-    //QObject::connect(joypad_worker, SIGNAL(complete()), &w, SLOT(resetInterface()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested(Joystick*)), joypad_worker, SLOT(refreshJoystick(Joystick*)));
-    //QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
-
-    //joypad_thread->start();
+    QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
 
     w.show();
 
     int app_result = a.exec();
 
-    joypad_worker->stop();
-    //joypad_thread->quit();
-    //joypad_thread->wait();
+    joypad_worker->quit();
+    //joypad_worker->stop();
 
     delete joypad_worker;
     joypad_worker = 0;
-    //delete joypad_thread;
-    //joypad_thread = 0;
+
     delete joysticks;
     joysticks = 0;
 
