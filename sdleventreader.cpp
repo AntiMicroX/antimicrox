@@ -17,6 +17,8 @@ void SDLEventReader::initSDL()
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
     SDL_JoystickEventState(SDL_ENABLE);
     sdlIsOpen = true;
+
+    emit sdlStarted();
 }
 
 void SDLEventReader::closeSDL()
@@ -42,12 +44,20 @@ void SDLEventReader::closeSDL()
 
 void SDLEventReader::performWork()
 {
-    SDL_Event event;
-    int status = SDL_WaitEvent(&event);
-    if (status)
+    if (sdlIsOpen)
     {
-        currentEvent = event;
-        emit eventRaised();
+        SDL_Event event;
+
+        int status = SDL_WaitEvent(&event);
+        if (status)
+        {
+            currentEvent = event;
+            emit eventRaised();
+            if (event.type == SDL_QUIT)
+            {
+                emit finished();
+            }
+        }
     }
 }
 
@@ -68,8 +78,29 @@ void SDLEventReader::refresh()
     if (sdlIsOpen)
     {
         stop();
+        connect(this, SIGNAL(finished()), this, SLOT(secondaryRefresh()));
+    }
+}
+
+void SDLEventReader::secondaryRefresh()
+{
+    disconnect(this, SIGNAL(finished()), 0, 0);
+
+    if (sdlIsOpen)
+    {
         closeSDL();
     }
 
     initSDL();
+}
+
+void SDLEventReader::clearEvents()
+{
+    if (sdlIsOpen)
+    {
+        SDL_Event event;
+        while (SDL_PollEvent(&event) > 0)
+        {
+        }
+    }
 }

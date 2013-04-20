@@ -52,18 +52,8 @@ JoyAxis::~JoyAxis()
 void JoyAxis::joyEvent(int value, bool ignoresets)
 {
     currentRawValue = value;
-
-    if (throttle == -1)
-    {
-        value = (value + AXISMIN) / 2;
-    }
-    else if (throttle == 1)
-    {
-        value = (value + AXISMAX) / 2;
-    }
-
     bool safezone = !inDeadZone(currentRawValue);
-    currentThrottledValue = value;
+    currentThrottledValue = calculateThrottledValue(value);
 
     if (safezone && !isActive)
     {
@@ -89,16 +79,9 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
 bool JoyAxis::inDeadZone(int value)
 {
     bool result = false;
-    if (throttle == -1)
-    {
-        value = (value + AXISMIN) / 2;
-    }
-    else if (throttle == 1)
-    {
-        value = (value + AXISMAX) / 2;
-    }
+    int temp = calculateThrottledValue(value);
 
-    if (abs(value) <= deadZone)
+    if (abs(temp) <= deadZone)
     {
         result = true;
     }
@@ -136,6 +119,22 @@ int JoyAxis::getRealJoyIndex()
 int JoyAxis::getCurrentThrottledValue()
 {
     return currentThrottledValue;
+}
+
+int JoyAxis::calculateThrottledValue(int value)
+{
+    int temp = value;
+
+    if (throttle == -1)
+    {
+        temp = (value + AXISMIN) / 2;
+    }
+    else if (throttle == 1)
+    {
+        temp = (value + AXISMAX) / 2;
+    }
+
+    return temp;
 }
 
 void JoyAxis::setIndex(int index)
@@ -252,6 +251,7 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
                 }
 
                 currentRawValue = currentThrottledDeadValue;
+                currentThrottledValue = calculateThrottledValue(currentRawValue);
             }
             else if (xml->name() == "axisbutton" && xml->isStartElement())
             {
@@ -321,7 +321,8 @@ void JoyAxis::reset()
     activeButton = 0;
 
     adjustRange();
-    currentRawValue = currentThrottledValue = currentThrottledDeadValue;
+    currentRawValue = currentThrottledDeadValue;
+    currentThrottledValue = calculateThrottledValue(currentRawValue);
 }
 
 void JoyAxis::reset(int index)
@@ -379,6 +380,8 @@ void JoyAxis::adjustRange()
         //currentThrottledMax = AXISMAX;
         //value = (value + AXISMAX) / 2;
     }
+
+    currentThrottledValue = calculateThrottledValue(currentRawValue);
 }
 
 int JoyAxis::getCurrentThrottledMin()

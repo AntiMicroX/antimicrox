@@ -59,6 +59,7 @@ public:
 protected:
     void createDeskEvent(bool ignoresets = false);
     void adjustRange();
+    int calculateThrottledValue(int value);
 
     int index;
     int deadZone;

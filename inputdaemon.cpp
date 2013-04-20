@@ -1,5 +1,6 @@
 #include <QtDebug>
 #include <QTimer>
+#include <QEventLoop>
 #include <SDL/SDL.h>
 
 #include "inputdaemon.h"
@@ -9,7 +10,7 @@ InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, QObject *parent) :
 {
     this->joysticks = joysticks;
     this->stopped = false;
-    this->performRefresh = false;
+    this->sdlIgnoreEvent = true;
 
     eventWorker = new SDLEventReader(joysticks);
     thread = new QThread();
@@ -41,13 +42,7 @@ InputDaemon::~InputDaemon()
 
 void InputDaemon::run ()
 {
-    /*if (performRefresh)
-    {
-        stopped = false;
-        performRefresh = false;
-    }*/
-
-    if (joysticks->count() > 0)
+    if (joysticks->count() > 0 && !sdlIgnoreEvent)
     {
         SDL_Event event;
         event = eventWorker->getCurrentEvent();
@@ -118,6 +113,17 @@ void InputDaemon::run ()
         }
         while (SDL_PollEvent(&event) > 0);
     }
+    else if (joysticks->count() > 0 && sdlIgnoreEvent)
+    {
+        // SDL will queue events for each axis detected on
+        // a controller when first opened. Ignore initial axis motion events.
+        // Old SDL_EventState solution was not good enough
+        SDL_Event event;
+        while (SDL_PollEvent(&event) > 0)
+        {
+        }
+        sdlIgnoreEvent = false;
+    }
 
     if (stopped)
     {
@@ -127,7 +133,7 @@ void InputDaemon::run ()
         }
         emit complete();
         stopped = false;
-        performRefresh = true;
+        sdlIgnoreEvent = true;
     }
     else
     {
@@ -141,12 +147,7 @@ void InputDaemon::refreshJoysticks()
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
-        // SDL will queue events for each axis detected on
-        // a controller when first opened. Ignore initial axis motion events
-        SDL_EventState(SDL_JOYAXISMOTION, SDL_IGNORE);
         SDL_Joystick* joystick = SDL_JoystickOpen (i);
-        SDL_EventState(SDL_JOYAXISMOTION, SDL_ENABLE);
-
         Joystick *curJoystick = new Joystick (joystick, this);
         curJoystick->reset();
 
@@ -165,9 +166,12 @@ void InputDaemon::refresh()
 {
     stop();
 
-    stopped = false;
-    performRefresh = true;
     eventWorker->refresh();
+
+    QEventLoop q;
+    connect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
+    q.exec();
+
     refreshJoysticks();
     QTimer::singleShot(0, eventWorker, SLOT(performWork()));
 }

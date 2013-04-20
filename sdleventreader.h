@@ -18,6 +18,7 @@ public:
 protected:
     void initSDL();
     void closeSDL();
+    void clearEvents();
 
     QHash<int, Joystick*> *joysticks;
     SDL_Event currentEvent;
@@ -26,15 +27,15 @@ protected:
 signals:
     void eventRaised();
     void finished();
+    void sdlStarted();
 
 public slots:
     void performWork();
     void stop();
-    //void reset();
     void refresh();
 
 private slots:
-    //void refreshJoysticks ();
+    void secondaryRefresh();
 
 };
 

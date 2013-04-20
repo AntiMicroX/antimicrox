@@ -17,7 +17,7 @@ public:
 protected:
     QHash<int, Joystick*> *joysticks;
     bool stopped;
-    bool performRefresh;
+    bool sdlIgnoreEvent;
 
     SDLEventReader *eventWorker;
     QThread *thread;
