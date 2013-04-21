@@ -818,7 +818,7 @@ void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
             }
         }
     }
-    else
+    else if (slot->getSlotCode() > 0)
     {
         assignments.append(slot);
         slotInserted = true;
@@ -855,6 +855,10 @@ void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInput
         {
             permitSlot = false;
         }
+    }
+    else if (slot->getSlotCode() <= 0)
+    {
+        permitSlot = false;
     }
 
     if (permitSlot)

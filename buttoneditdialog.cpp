@@ -45,10 +45,11 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     connect (ui->buttonBox, SIGNAL(rejected()), this, SLOT(close()));
     connect (ui->pushButton, SIGNAL(grabStarted()), this, SLOT(changeDialogText()));
 
-    connect(ui->pushButton, SIGNAL(grabStarted()), this, SLOT(disableDialogButtons()));
-    connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(changeDialogText(bool)));
-    connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(enableDialogButtons()));
     connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(singleAssignmentForTempConfig(bool)));
+    connect(ui->pushButton, SIGNAL(grabStarted()), this, SLOT(disableDialogInterface()));
+    connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(changeDialogText(bool)));
+    connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(enableDialogInterface()));
+    //connect(ui->pushButton, SIGNAL(grabFinished(bool)), this, SLOT(enableDialogButtons()));
     connect(ui->advancedButton, SIGNAL(clicked()), this, SLOT(openAdvancedDialog()));
 }
 
@@ -144,10 +145,18 @@ void ButtonEditDialog::enableDialogButtons()
     ui->advancedButton->setEnabled(true);
 }
 
-void ButtonEditDialog::disableDialogButtons()
+void ButtonEditDialog::disableDialogInterface()
 {
     ui->buttonBox->setEnabled(false);
     ui->advancedButton->setEnabled(false);
+    ui->checkBox->setEnabled(false);
+    ui->checkBox_2->setEnabled(false);
+}
+
+void ButtonEditDialog::enableDialogInterface()
+{
+    enableDialogButtons();
+    updateFromTempConfig();
 }
 
 void ButtonEditDialog::openAdvancedDialog()
@@ -162,15 +171,19 @@ void ButtonEditDialog::openAdvancedDialog()
 
 void ButtonEditDialog::updateFromTempConfig()
 {
-    ui->checkBox->setChecked(tempconfig->turbo);
-    ui->checkBox_2->setChecked(tempconfig->toggle);
-
     int slotcount = tempconfig->assignments->count();
-    ui->pushButton->setText(tempconfig->getSlotsSummary());
     if (slotcount > 0)
     {
         JoyButtonSlot *tempbuttonslot = tempconfig->assignments->at(0);
-        ui->pushButton->setValue(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
+        if (tempbuttonslot->getSlotCode() > 0)
+        {
+            ui->pushButton->setValue(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
+        }
+        else
+        {
+            tempconfig->assignments->clear();
+            ui->pushButton->setValue(0);
+        }
     }
     else
     {
@@ -185,6 +198,13 @@ void ButtonEditDialog::updateFromTempConfig()
     {
         ui->checkBox->setEnabled(true);
     }
+
+    ui->checkBox_2->setEnabled(true);
+
+    ui->checkBox->setChecked(tempconfig->turbo);
+    ui->checkBox_2->setChecked(tempconfig->toggle);
+
+    ui->pushButton->setText(tempconfig->getSlotsSummary());
 }
 
 void ButtonEditDialog::updateTempConfigState()
@@ -198,9 +218,12 @@ void ButtonEditDialog::singleAssignmentForTempConfig(bool edited)
     if (edited)
     {
         JoyButtonSlot *buttonslot = ui->pushButton->getValue();
-        JoyButtonSlot *newbuttonslot = new JoyButtonSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
         tempconfig->assignments->clear();
-        tempconfig->assignments->append(newbuttonslot);
-        ui->checkBox->setEnabled(true);
+
+        if (buttonslot->getSlotCode() > 0)
+        {
+            JoyButtonSlot *newbuttonslot = new JoyButtonSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+            tempconfig->assignments->append(newbuttonslot);
+        }
     }
 }

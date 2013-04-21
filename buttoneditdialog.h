@@ -24,6 +24,7 @@ private:
 
 protected:
     void updateTempConfigState();
+    void enableDialogButtons();
 
     JoyButton* button;
     bool isEditing;
@@ -33,8 +34,8 @@ protected:
 private slots:
     void saveButtonChanges();
     void changeDialogText(bool edited=false);
-    void disableDialogButtons();
-    void enableDialogButtons();
+    void disableDialogInterface();
+    void enableDialogInterface();
     void openAdvancedDialog();
     void updateFromTempConfig();
     void singleAssignmentForTempConfig(bool edited);
