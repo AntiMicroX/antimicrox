@@ -109,7 +109,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>0.4.9</string>
+      <string>0.5</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
