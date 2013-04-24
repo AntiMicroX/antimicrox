@@ -4,8 +4,7 @@
 #
 #-------------------------------------------------
 
-isEmpty(INSTALL_PREFIX)
-{
+isEmpty(INSTALL_PREFIX) {
     INSTALL_PREFIX = /usr/local
 }
 
