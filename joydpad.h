@@ -14,6 +14,7 @@ class JoyDPad : public QObject
 public:
     explicit JoyDPad(QObject *parent = 0);
     explicit JoyDPad(int index, int originset, QObject *parent=0);
+    ~JoyDPad();
 
     JoyDPadButton* getJoyButton(int index);
     QHash<int, JoyDPadButton*>* getJoyButtons();

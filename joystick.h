@@ -2,7 +2,6 @@
 #define JOYSTICK_H
 
 #include <QObject>
-#include <QHash>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <SDL/SDL.h>
@@ -18,6 +17,7 @@ class Joystick : public QObject
     Q_OBJECT
 public:
     explicit Joystick(SDL_Joystick *joyhandle, QObject *parent=0);
+    ~Joystick();
 
     int getNumberButtons ();
     int getNumberAxes();
@@ -25,12 +25,6 @@ public:
     SDL_Joystick* getSDLHandle ();
     int getJoyNumber ();
     int getRealJoyNumber ();
-    //void refreshButtons ();
-    //void refreshAxes();
-    //void refreshHats();
-    /*JoyAxis* getJoyAxis(int index);
-    JoyButton* getJoyButton(int index);
-    JoyDPad* getJoyDPad(int index);*/
     QString getName();
     int getActiveSetNumber();
     SetJoystick* getActiveSetJoystick();
@@ -42,13 +36,10 @@ public:
     static const int NUMBER_JOYSETS;
 
 protected:
-    QHash<int, JoyButton*> buttons;
-    QHash<int, JoyAxis*> axes;
-    QHash<int, JoyDPad*> hats;
-
     SDL_Joystick* joyhandle;
     QHash<int, SetJoystick*> joystick_sets;
     int active_set;
+    int joyNumber;
 
 signals:
     void setChangeActivated(int index);

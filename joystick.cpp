@@ -1,5 +1,5 @@
 #include <QDebug>
-#include <QListIterator>
+#include <QHashIterator>
 
 #include "joystick.h"
 
@@ -9,6 +9,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
     QObject(parent)
 {
     this->joyhandle = joyhandle;
+    joyNumber= SDL_JoystickIndex(joyhandle);
     joystick_sets = QHash<int, SetJoystick*> ();
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
@@ -27,6 +28,19 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
     active_set = 0;
 }
 
+Joystick::~Joystick()
+{
+    QHashIterator<int, SetJoystick*> iter(joystick_sets);
+    while (iter.hasNext())
+    {
+        SetJoystick *setjoystick = iter.next().value();
+        delete setjoystick;
+        setjoystick = 0;
+    }
+
+    joystick_sets.clear();
+}
+
 SDL_Joystick* Joystick::getSDLHandle()
 {
     return joyhandle;
@@ -34,8 +48,7 @@ SDL_Joystick* Joystick::getSDLHandle()
 
 int Joystick::getJoyNumber()
 {
-    int joynumber = SDL_JoystickIndex(joyhandle);
-    return joynumber;
+    return joyNumber;
 }
 
 int Joystick::getRealJoyNumber()

@@ -1,5 +1,4 @@
 #include <QDebug>
-#include <QEventLoop>
 #include <cmath>
 
 #include "joybutton.h"
@@ -35,6 +34,17 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     this->originset = originset;
 
     quitEvent = true;
+}
+
+JoyButton::~JoyButton()
+{
+    turboTimer.stop();
+
+    if (slotiter)
+    {
+        delete slotiter;
+        slotiter = 0;
+    }
 }
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
@@ -227,17 +237,6 @@ void JoyButton::turboEvent()
 
         isKeyPressed = false;
         turboTimer.start(turboInterval - 100);
-    }
-}
-
-JoyButton::~JoyButton()
-{
-    turboTimer.stop();
-
-    if (slotiter)
-    {
-        delete slotiter;
-        slotiter = 0;
     }
 }
 

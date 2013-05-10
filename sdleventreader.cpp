@@ -63,9 +63,12 @@ void SDLEventReader::performWork()
 
 void SDLEventReader::stop()
 {
-    SDL_Event event;
-    event.type = SDL_QUIT;
-    SDL_PushEvent(&event);
+    if (sdlIsOpen)
+    {
+        SDL_Event event;
+        event.type = SDL_QUIT;
+        SDL_PushEvent(&event);
+    }
 }
 
 SDL_Event& SDLEventReader::getCurrentEvent()

@@ -1,9 +1,9 @@
-#include <QX11Info>
 #include <QDebug>
 #include <QMutex>
 #include <X11/extensions/XTest.h>
 
 #include "event.h"
+#include "x11info.h"
 
 QMutex mutex;
 Display* display;
@@ -11,12 +11,8 @@ Display* display;
 //actually creates an XWindows event  :)
 void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
     //mutex.lock();
-    display = QX11Info::display();
-
+    display = X11Info::display();
     XLockDisplay (display);
-
-    //qDebug () << "IN SENDEVENT: " << code << endl;
-
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
@@ -35,7 +31,7 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
 
 void sendevent(int code1, int code2)
 {
-    display = QX11Info::display();
+    display = X11Info::display();
 
     XLockDisplay (display);
 
@@ -48,7 +44,8 @@ void sendevent(int code1, int code2)
 int keyToKeycode (QString key)
 {
     int tempcode = -1;
-    Display* display = QX11Info::display();
+    Display* display = X11Info::display();
+
     if (key.length() > 0)
     {
         tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
@@ -58,7 +55,7 @@ int keyToKeycode (QString key)
 
 QString keycodeToKey(int keycode)
 {
-    display = QX11Info::display();
+    display = X11Info::display();
     QString newkey;
     if (keycode <= 0)
     {

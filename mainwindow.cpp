@@ -1,8 +1,7 @@
 #include <QDebug>
-#include <SDL/SDL.h>
 #include <typeinfo>
 #include <QFile>
-#include <QtGui/QApplication>
+#include <QApplication>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"

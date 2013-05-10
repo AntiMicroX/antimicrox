@@ -1,6 +1,7 @@
 #include <QtDebug>
 #include <QTimer>
 #include <QEventLoop>
+#include <QHashIterator>
 #include <SDL/SDL.h>
 
 #include "inputdaemon.h"
@@ -26,9 +27,7 @@ InputDaemon::~InputDaemon()
 {
     if (eventWorker)
     {
-        eventWorker->stop();
-        delete eventWorker;
-        eventWorker = 0;
+        quit();
     }
 
     if (thread)
@@ -143,6 +142,17 @@ void InputDaemon::run ()
 
 void InputDaemon::refreshJoysticks()
 {
+    QHashIterator<int, Joystick*> iter(*joysticks);
+    while (iter.hasNext())
+    {
+        Joystick *joystick = iter.next().value();
+        if (joystick)
+        {
+            delete joystick;
+            joystick = 0;
+        }
+    }
+
     joysticks->clear();
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
@@ -193,4 +203,7 @@ void InputDaemon::quit()
     QEventLoop q;
     connect(eventWorker, SIGNAL(finished()), &q, SLOT(quit()));
     q.exec();
+
+    delete eventWorker;
+    eventWorker = 0;
 }

@@ -10,6 +10,13 @@ SetJoystick::SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent) :
     this->reset();
 }
 
+SetJoystick::~SetJoystick()
+{
+    deleteButtons();
+    deleteAxes();
+    deleteHats();
+}
+
 JoyButton* SetJoystick::getJoyButton(int index)
 {
     return buttons.value(index);
@@ -27,7 +34,7 @@ JoyDPad* SetJoystick::getJoyDPad(int index)
 
 void SetJoystick::refreshButtons()
 {
-    buttons.clear();
+    deleteButtons();
 
     for (int i=0; i < SDL_JoystickNumButtons(joyhandle); i++)
     {
@@ -40,7 +47,7 @@ void SetJoystick::refreshButtons()
 
 void SetJoystick::refreshAxes()
 {
-    axes.clear();
+    deleteAxes();
 
     for (int i=0; i < SDL_JoystickNumAxes(joyhandle); i++)
     {
@@ -61,7 +68,7 @@ void SetJoystick::refreshAxes()
 
 void SetJoystick::refreshHats()
 {
-    hats.clear();
+    deleteHats();
 
     for (int i=0; i < SDL_JoystickNumHats(joyhandle); i++)
     {
@@ -77,6 +84,54 @@ void SetJoystick::refreshHats()
             connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
         }
     }
+}
+
+void SetJoystick::deleteButtons()
+{
+    QHashIterator<int, JoyButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyButton *button = iter.next().value();
+        if (button)
+        {
+            delete button;
+            button = 0;
+        }
+    }
+
+    buttons.clear();
+}
+
+void SetJoystick::deleteAxes()
+{
+    QHashIterator<int, JoyAxis*> iter(axes);
+    while (iter.hasNext())
+    {
+        JoyAxis *axis = iter.next().value();
+        if (axis)
+        {
+            delete axis;
+            axis = 0;
+        }
+    }
+
+    axes.clear();
+}
+
+void SetJoystick::deleteHats()
+{
+    QHashIterator<int, JoyDPad*> iter(hats);
+    while (iter.hasNext())
+    {
+        JoyDPad *dpad = iter.next().value();
+        if (dpad)
+        {
+            delete dpad;
+            dpad = 0;
+        }
+    }
+
+    hats.clear();
 }
 
 int SetJoystick::getNumberButtons()

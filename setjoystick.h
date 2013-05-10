@@ -16,6 +16,7 @@ class SetJoystick : public QObject
     Q_OBJECT
 public:
     explicit SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent=0);
+    ~SetJoystick();
 
     SDL_Joystick* getSDLHandle ();
     JoyAxis* getJoyAxis(int index);
@@ -34,6 +35,9 @@ public:
 
 protected:
     bool isSetEmpty();
+    void deleteButtons();
+    void deleteAxes();
+    void deleteHats();
 
     QHash<int, JoyButton*> buttons;
     QHash<int, JoyAxis*> axes;

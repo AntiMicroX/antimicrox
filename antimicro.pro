@@ -11,6 +11,10 @@ isEmpty(INSTALL_PREFIX) {
 
 QT       += core gui
 
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets
+}
+
 target.path = $$INSTALL_PREFIX/bin
 
 desktop.path = $$INSTALL_PREFIX/share/applications
@@ -51,7 +55,8 @@ SOURCES += main.cpp\
     xmlconfigmigration.cpp \
     setjoystick.cpp \
     sdleventreader.cpp \
-    setaxisthrottledialog.cpp
+    setaxisthrottledialog.cpp \
+    x11info.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -81,7 +86,8 @@ HEADERS  += mainwindow.h \
     xmlconfigmigration.h \
     setjoystick.h \
     sdleventreader.h \
-    setaxisthrottledialog.h
+    setaxisthrottledialog.h \
+    x11info.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \

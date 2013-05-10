@@ -22,6 +22,19 @@ JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
     populateButtons();
 }
 
+JoyDPad::~JoyDPad()
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        delete button;
+        button = 0;
+    }
+
+    buttons.clear();
+}
+
 JoyDPadButton *JoyDPad::getJoyButton(int index)
 {
     return buttons.value(index);
