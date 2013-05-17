@@ -29,6 +29,7 @@ public:
     QTime* getMouseInterval();
     void restartMouseInterval();
     QString getXmlName();
+    QString getSlotString();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

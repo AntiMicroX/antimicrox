@@ -5,7 +5,6 @@
 
 #include "joyaxis.h"
 #include "axisvaluebox.h"
-#include "buttontempconfig.h"
 #include "setaxisthrottledialog.h"
 
 namespace Ui {
@@ -23,8 +22,6 @@ public:
 
 protected:
     JoyAxis *axis;
-    ButtonTempConfig *tempPConfig;
-    ButtonTempConfig *tempNConfig;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
 
 private:
@@ -34,7 +31,6 @@ signals:
     void throttleChanged();
 
 private slots:
-    void saveAxisChanges();
     void implementPresets(int index);
     void updateDeadZoneBox(int value);
     void updateMaxZoneBox(int value);
@@ -46,13 +42,15 @@ private slots:
     void updateMaxZoneSlider(QString value);
     void openAdvancedPDialog();
     void openAdvancedNDialog();
-    void updateFromTempPConfig();
-    void updateFromTempNConfig();
+
+    void refreshPButtonLabel();
+    void refreshNButtonLabel();
+
     void syncSpeedSpinBoxes();
     void moveSpeedsTogether(int value);
     void changeMouseSpeedsInterface(bool value);
-    void updateTempConfigHorizontalSpeed(int value);
-    void updateTempConfigVerticalSpeed(int value);
+    void updateConfigHorizontalSpeed(int value);
+    void updateConfigVerticalSpeed(int value);
 };
 
 #endif // AXISEDITDIALOG_H

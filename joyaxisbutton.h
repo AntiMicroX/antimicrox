@@ -9,9 +9,9 @@ class JoyAxisButton : public JoyButton
 {
     Q_OBJECT
 public:
-    //explicit JoyAxisButton(JoyAxis *axis, QObject *parent = 0);
     explicit JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent=0);
     
+    virtual QString getPartialName();
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);

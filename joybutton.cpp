@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QStringList>
 #include <cmath>
 
 #include "joybutton.h"
@@ -45,6 +46,8 @@ JoyButton::~JoyButton()
         delete slotiter;
         slotiter = 0;
     }
+
+    clearAssignedSlots();
 }
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
@@ -159,17 +162,26 @@ void JoyButton::setJoyNumber(int index)
 
 void JoyButton::setToggle(bool toggle)
 {
-    this->toggle = toggle;
+    if (toggle != this->toggle)
+    {
+        this->toggle = toggle;
+        emit toggleChanged(toggle);
+    }
 }
 
 void JoyButton::setTurboInterval(int interval)
 {
-    this->turboInterval = interval;
+    if (interval > 0 && interval != this->turboInterval)
+    {
+        this->turboInterval = interval;
+        emit turboIntervalChanged(interval);
+    }
 }
 
 void JoyButton::reset()
 {
     turboTimer.stop();
+    pauseTimer.stop();
     pauseWaitTimer.stop();
 
     if (slotiter)
@@ -178,8 +190,8 @@ void JoyButton::reset()
         slotiter = 0;
     }
 
-    releaseDeskEvent();
-    assignments.clear();
+    releaseDeskEvent(true);
+    clearAssignedSlots();
 
     isButtonPressedQueue.clear();
     ignoreSetQueue.clear();
@@ -402,8 +414,7 @@ void JoyButton::createDeskEvent()
 
     while (slotiter->hasNext() && !exit)
     {
-        JoyButtonSlot *slot = 0;
-        slot = slotiter->next();
+        JoyButtonSlot *slot = slotiter->next();
         int tempcode = slot->getSlotCode();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
@@ -569,10 +580,23 @@ void JoyButton::mouseEvent()
 
 void JoyButton::setUseTurbo(bool useTurbo)
 {
-    this->useTurbo = useTurbo;
-    if (this->useTurbo && this->containsSequence())
+    bool initialState = this->useTurbo;
+
+    if (useTurbo != this->useTurbo)
     {
-        this->useTurbo = false;
+        if (useTurbo && this->containsSequence())
+        {
+            this->useTurbo = false;
+        }
+        else
+        {
+            this->useTurbo = useTurbo;
+        }
+
+        if (initialState != this->useTurbo)
+        {
+            emit turboChanged(this->useTurbo);
+        }
     }
 }
 
@@ -743,40 +767,12 @@ QString JoyButton::getPartialName()
 QString JoyButton::getSlotsSummary()
 {
     QString newlabel;
-    int slotCount = assignments.count();
+    int slotCount = assignments.size();
 
     if (slotCount > 0)
     {
         JoyButtonSlot *slot = assignments.first();
-        int code = slot->getSlotCode();
-        if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
-        {
-            newlabel = newlabel.append(keycodeToKey(code).toUpper());
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseButton)
-        {
-            newlabel = newlabel.append("Mouse ").append(QString::number(code));
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseMovement)
-        {
-            newlabel.append(slot->movementString());
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
-        {
-            newlabel.append("Pause ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
-        {
-            newlabel.append("Hold ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyCycle)
-        {
-            newlabel.append("Cycle");
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
-        {
-            newlabel.append("Distance ").append(QString::number(slot->getSlotCode())).append("%");
-        }
+        newlabel = newlabel.append(slot->getSlotString());
 
         if (slotCount > 1)
         {
@@ -789,6 +785,31 @@ QString JoyButton::getSlotsSummary()
     }
 
     return newlabel;
+}
+
+QString JoyButton::getSlotsString()
+{
+    QString label;
+
+    if (assignments.size() > 0)
+    {
+        QListIterator<JoyButtonSlot*> iter(assignments);
+        QStringList stringlist;
+
+        while (iter.hasNext())
+        {
+            JoyButtonSlot *slot = iter.next();
+            stringlist.append(slot->getSlotString());
+        }
+
+        label = stringlist.join(", ");
+    }
+    else
+    {
+        label = label.append("[NO KEY]");
+    }
+
+    return label;
 }
 
 void JoyButton::setCustomName(QString name)
@@ -804,7 +825,7 @@ QString JoyButton::getCustomName()
 void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
 {
     bool slotInserted = false;
-    JoyButtonSlot *slot = new JoyButtonSlot(code, mode);
+    JoyButtonSlot *slot = new JoyButtonSlot(code, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
         if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
@@ -832,6 +853,16 @@ void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
         {
             setUseTurbo(false);
         }
+
+        emit slotsChanged();
+    }
+    else
+    {
+        if (slot)
+        {
+            delete slot;
+            slot = 0;
+        }
     }
 }
 
@@ -839,7 +870,7 @@ void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInput
 {
     bool permitSlot = true;
 
-    JoyButtonSlot *slot = new JoyButtonSlot(code, mode);
+    JoyButtonSlot *slot = new JoyButtonSlot(code, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
         if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
@@ -879,6 +910,16 @@ void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInput
            )
         {
             setUseTurbo(false);
+        }
+
+        emit slotsChanged();
+    }
+    else
+    {
+        if (slot)
+        {
+            delete slot;
+            slot = 0;
         }
     }
 }
@@ -994,6 +1035,7 @@ void JoyButton::pauseEvent()
             inpauseHold.restart();
             //disconnect(&pauseTimer, SIGNAL(timeout()), 0, 0);
             pauseTimer.stop();
+            pauseWaitTimer.start(0);
         }
         else
         {
@@ -1424,4 +1466,66 @@ bool JoyButton::containsDistanceSlots()
     }
 
     return result;
+}
+
+void JoyButton::clearAssignedSlots()
+{
+    QListIterator<JoyButtonSlot*> iter(assignments);
+    while (iter.hasNext())
+    {
+        JoyButtonSlot *slot = iter.next();
+        if (slot)
+        {
+            delete slot;
+            slot = 0;
+        }
+    }
+
+    assignments.clear();
+    emit slotsChanged();
+}
+
+void JoyButton::removeAssignedSlot(int index)
+{    
+    if (index >= 0 && index < assignments.size())
+    {
+        JoyButtonSlot *slot = assignments.takeAt(index);
+        if (slot)
+        {
+            delete slot;
+            slot = 0;
+        }
+
+        emit slotsChanged();
+    }
+}
+
+void JoyButton::clearSlotsEventReset()
+{
+    turboTimer.stop();
+    pauseTimer.stop();
+    pauseWaitTimer.stop();
+
+    if (slotiter)
+    {
+        delete slotiter;
+        slotiter = 0;
+    }
+
+    releaseDeskEvent(true);
+    clearAssignedSlots();
+
+    isButtonPressedQueue.clear();
+    ignoreSetQueue.clear();
+    mouseEventQueue.clear();
+
+    currentCycle = 0;
+    previousCycle = 0;
+    currentPause = 0;
+    currentHold = 0;
+    currentDistance = 0;
+    currentRawValue = 0;
+    currentMouseEvent = 0;
+
+    isKeyPressed = isButtonPressed = false;
 }

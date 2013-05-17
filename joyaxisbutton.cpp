@@ -7,16 +7,29 @@
 
 const QString JoyAxisButton::xmlName = "axisbutton";
 
-/*JoyAxisButton::JoyAxisButton(JoyAxis *axis, QObject *parent) :
-    JoyButton(parent)
-{
-    this->axis = axis;
-}*/
-
 JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent) :
     JoyButton(index, originset, parent)
 {
     this->axis = axis;
+}
+
+QString JoyAxisButton::getPartialName()
+{
+    QString buttontype;
+    if (index == 0)
+    {
+        buttontype = "Negative";
+    }
+    else if (index == 1)
+    {
+        buttontype = "Positive";
+    }
+    else
+    {
+        buttontype = "Unknown";
+    }
+
+    return QString("Axis ").append(QString::number(axis->getRealJoyIndex())).append(": Button ").append(buttontype);
 }
 
 QString JoyAxisButton::getXmlName()

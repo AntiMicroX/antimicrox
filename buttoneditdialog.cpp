@@ -163,10 +163,10 @@ void ButtonEditDialog::openAdvancedDialog()
 {
     updateTempConfigState();
 
-    AdvanceButtonDialog *dialog = new AdvanceButtonDialog(tempconfig);
-    dialog->show();
+    //AdvanceButtonDialog *dialog = new AdvanceButtonDialog(tempconfig);
+    //dialog->show();
 
-    connect(dialog, SIGNAL(accepted()), this, SLOT(updateFromTempConfig()));
+    //connect(dialog, SIGNAL(accepted()), this, SLOT(updateFromTempConfig()));
 }
 
 void ButtonEditDialog::updateFromTempConfig()

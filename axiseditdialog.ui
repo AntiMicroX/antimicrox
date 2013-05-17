@@ -502,7 +502,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="nPushButton">
        <property name="text">
         <string>[NO KEY]</string>
        </property>
@@ -537,7 +537,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pPushButton">
        <property name="text">
         <string>[NO KEY]</string>
        </property>
@@ -599,7 +599,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Close</set>
      </property>
      <property name="centerButtons">
       <bool>false</bool>

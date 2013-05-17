@@ -30,12 +30,13 @@ public:
 
     bool getToggleState();
     int getTurboInterval();
-    void setUseTurbo(bool useTurbo);
     bool isUsingTurbo();
     void setCustomName(QString name);
     QString getCustomName();
     void setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void removeAssignedSlot(int index);
+
     QList<JoyButtonSlot*> *getAssignedSlots();
 
     virtual void readConfig(QXmlStreamReader *xml);
@@ -43,12 +44,11 @@ public:
 
     virtual QString getPartialName();
     virtual QString getSlotsSummary();
+    virtual QString getSlotsString();
     virtual QString getName();
     virtual QString getXmlName();
 
-    void setMouseSpeedX(int speed);
     int getMouseSpeedX();
-    void setMouseSpeedY(int speed);
     int getMouseSpeedY();
 
     void setChangeSetSelection(int index);
@@ -70,6 +70,7 @@ public:
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
     bool distanceTempEvent();
+    void clearAssignedSlots();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -123,12 +124,22 @@ signals:
     void setChangeActivated(int index);
     void setAssignmentChanged(int current_button, int associated_set, int mode);
     void finishedPause();
+    void turboChanged(bool state);
+    void toggleChanged(bool state);
+    void turboIntervalChanged(int interval);
+    void slotsChanged();
 
 public slots:
     void setTurboInterval (int interval);
     void setToggle (bool toggle);
+    void setUseTurbo(bool useTurbo);
+    void setMouseSpeedX(int speed);
+    void setMouseSpeedY(int speed);
+
     virtual void reset();
     virtual void reset(int index);
+
+    virtual void clearSlotsEventReset();
 
 private slots:
     void turboEvent();

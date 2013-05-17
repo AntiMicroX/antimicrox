@@ -56,7 +56,11 @@ SOURCES += main.cpp\
     setjoystick.cpp \
     sdleventreader.cpp \
     setaxisthrottledialog.cpp \
-    x11info.cpp
+    x11info.cpp \
+    keyboard/virtualkeypushbutton.cpp \
+    buttoneditdialogtwo.cpp \
+    keyboard/virtualkeyboardmousewidget.cpp \
+    keyboard/virtualmousepushbutton.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -87,7 +91,11 @@ HEADERS  += mainwindow.h \
     setjoystick.h \
     sdleventreader.h \
     setaxisthrottledialog.h \
-    x11info.h
+    x11info.h \
+    keyboard/virtualkeypushbutton.h \
+    buttoneditdialogtwo.h \
+    keyboard/virtualkeyboardmousewidget.h \
+    keyboard/virtualmousepushbutton.h
 
 FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
@@ -95,7 +103,8 @@ FORMS    += mainwindow.ui \
     axiseditdialog.ui \
     advancebuttondialog.ui \
     aboutdialog.ui \
-    setaxisthrottledialog.ui
+    setaxisthrottledialog.ui \
+    buttoneditdialogtwo.ui
 
 
 LIBS += -lSDL -lXtst -lX11

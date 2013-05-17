@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QListWidgetItem>
 
+#include "joybutton.h"
 #include "buttontempconfig.h"
 #include "simplekeygrabberbutton.h"
 
@@ -16,7 +17,7 @@ class AdvanceButtonDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit AdvanceButtonDialog(ButtonTempConfig *tempconfig, QWidget *parent=0);
+    explicit AdvanceButtonDialog(JoyButton *button, QWidget *parent=0);
     ~AdvanceButtonDialog();
 
 private:
@@ -30,21 +31,27 @@ protected:
 
     ButtonTempConfig *tempconfig;
     int oldRow;
+    JoyButton *button;
+
+signals:
+    void toggleChanged(bool state);
+    void turboChanged(bool state);
+    void slotsChanged();
+    void turboButtonEnabledChange(bool state);
+
+public slots:
+    void placeNewSlot(JoyButtonSlot *slot);
+    void clearAllSlots();
 
 private slots:
     void changeTurboText(int value);
+    void updateTurboIntervalValue(int value);
+    void checkTurboSetting(bool state);
+
     void updateTempConfig();
     void updateSlotsScrollArea(int value);
     void deleteSlot();
     void changeSelectedSlot();
-    void updateHorizSpeedLabel(int value);
-    void updateVertiSpeedLabel(int value);
-    void addUpMovementSlot();
-    void addDownMovementSlot();
-    void addLeftMovementSlot();
-    void addRightMovementSlot();
-    void moveSpeedsTogether(int value);
-    void syncSpeedSpinBoxes();
     void insertSlot();
 
     void insertPauseSlot();
@@ -53,7 +60,9 @@ private slots:
     void insertDistanceSlot();
 
     void updateActionTimeLabel();
-    void clearAllSlots();
+    void updateSetSelection();
 };
+
+Q_DECLARE_METATYPE(AdvanceButtonDialog*)
 
 #endif // ADVANCEBUTTONDIALOG_H

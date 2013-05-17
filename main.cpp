@@ -5,19 +5,23 @@
 #include <QThread>
 #include <QDir>
 #include <QDebug>
+#include <QListWidget>
 
 #include <X11/Xlib.h>
 
 #include "mainwindow.h"
 #include "joystick.h"
+#include "joybuttonslot.h"
 #include "inputdaemon.h"
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
 #include "common.h"
+#include "advancebuttondialog.h"
 
 int main(int argc, char *argv[])
 {
     qRegisterMetaType<JoyButtonSlot*>();
+    qRegisterMetaType<AdvanceButtonDialog*>();
 
     XInitThreads ();
 
@@ -40,7 +44,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested(Joystick*)), joypad_worker, SLOT(refreshJoystick(Joystick*)));
-    QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
+    //QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
 
     w.show();

@@ -28,10 +28,8 @@ public:
     JoyAxisButton *getPAxisButton();
     JoyAxisButton *getNAxisButton();
 
-    void setDeadZone(int value);
     int getDeadZone();
 
-    void setMaxZoneValue(int value);
     int getMaxZoneValue();
     void setThrottle(int value);
     int getThrottle();
@@ -95,6 +93,9 @@ public slots:
     void reset();
     void reset(int index);
     void propogateThrottleChange();    
+
+    void setDeadZone(int value);
+    void setMaxZoneValue(int value);
 };
 
 #endif // JOYAXIS_H

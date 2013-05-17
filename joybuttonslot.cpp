@@ -1,4 +1,5 @@
 #include "joybuttonslot.h"
+#include "event.h"
 
 const int JoyButtonSlot::JOYSPEED = 20;
 const QString JoyButtonSlot::xmlName = "slot";
@@ -16,13 +17,11 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
 JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent) :
     QObject(parent)
 {
+    deviceCode = 0;
+
     if (code > 0)
     {
         deviceCode = code;
-    }
-    else
-    {
-        deviceCode = 0;
     }
 
     this->mode = mode;
@@ -203,4 +202,49 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 QString JoyButtonSlot::getXmlName()
 {
     return this->xmlName;
+}
+
+QString JoyButtonSlot::getSlotString()
+{
+    QString newlabel;
+
+    if (deviceCode > 0)
+    {
+        if (mode == JoyButtonSlot::JoyKeyboard)
+        {
+            newlabel = newlabel.append(keycodeToKey(deviceCode).toUpper());
+        }
+        else if (mode == JoyButtonSlot::JoyMouseButton)
+        {
+            newlabel = newlabel.append("Mouse ").append(QString::number(deviceCode));
+        }
+        else if (mode == JoyButtonSlot::JoyMouseMovement)
+        {
+            newlabel.append(movementString());
+        }
+        else if (mode == JoyButtonSlot::JoyPause)
+        {
+            newlabel.append("Pause ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+        }
+        else if (mode == JoyButtonSlot::JoyHold)
+        {
+            newlabel.append("Hold ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+        }
+        else if (mode == JoyButtonSlot::JoyCycle)
+        {
+            newlabel.append("Cycle");
+        }
+        else if (mode == JoyButtonSlot::JoyDistance)
+        {
+            QString temp("Distance ");
+            temp.append(QString::number(deviceCode).append("%"));
+            newlabel.append(temp);
+        }
+    }
+    else
+    {
+        newlabel = newlabel.append("[NO KEY]");
+    }
+
+    return newlabel;
 }

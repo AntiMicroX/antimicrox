@@ -10,6 +10,7 @@ Display* display;
 
 //actually creates an XWindows event  :)
 void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
+
     //mutex.lock();
     display = X11Info::display();
     XLockDisplay (display);
@@ -63,7 +64,7 @@ QString keycodeToKey(int keycode)
     }
     else
     {
-        newkey = XKeysymToString(XKeycodeToKeysym(display, keycode,0));
+        newkey = XKeysymToString(XKeycodeToKeysym(display, keycode, 0));
     }
 
     return newkey;

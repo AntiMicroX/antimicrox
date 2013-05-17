@@ -30,7 +30,7 @@ ButtonTempConfig::ButtonTempConfig(JoyButton *button, QObject *parent) :
     {
         turboInterval = 100;
     }
-    assignments = new QList<JoyButtonSlot*> ();
+    assignments = new QList<JoyButtonSlot*> (*button->getAssignedSlots());
     mouseSpeedX = button->getMouseSpeedX();
     mouseSpeedY = button->getMouseSpeedY();
 
@@ -54,42 +54,12 @@ ButtonTempConfig::~ButtonTempConfig()
 QString ButtonTempConfig::getSlotsSummary()
 {
     QString newlabel;
-    int slotCount = assignments->count();
+    int slotCount = assignments->size();
 
     if (slotCount > 0)
     {
         JoyButtonSlot *slot = assignments->first();
-        int code = slot->getSlotCode();
-        if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
-        {
-            newlabel = newlabel.append(keycodeToKey(code).toUpper());
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseButton)
-        {
-            newlabel = newlabel.append("Mouse ").append(QString::number(code));
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseMovement)
-        {
-            newlabel.append(slot->movementString());
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
-        {
-            newlabel.append("Pause ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
-        {
-            newlabel.append("Hold ").append(QString::number(slot->getSlotCode() / 1000.0, 'g', 3));
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyCycle)
-        {
-            newlabel.append("Cycle");
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
-        {
-            QString temp("Distance ");
-            temp.append(QString::number(slot->getSlotCode())).append("%");
-            newlabel.append(temp);
-        }
+        newlabel = newlabel.append(slot->getSlotString());
 
         if (slotCount > 1)
         {

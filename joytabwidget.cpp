@@ -5,6 +5,8 @@
 #include "joybuttonwidget.h"
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
+#include "buttoneditdialogtwo.h"
+//#include "keyboard/dedicationtoanewagg.h"
 
 JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     QWidget(parent)
@@ -413,9 +415,19 @@ void JoyTabWidget::showButtonDialog()
     JoyButtonWidget *buttonWidget = (JoyButtonWidget*)sender;
     JoyButton *button = buttonWidget->getJoyButton();
 
-    buttonDialog = new ButtonEditDialog(button, this);
-    buttonDialog->show();
-    connect(buttonDialog, SIGNAL(destroyed()), buttonWidget, SLOT(refreshLabel()));
+    ButtonEditDialogTwo *dialog = new ButtonEditDialogTwo(button, this);
+    dialog->show();
+    connect(dialog, SIGNAL(finished(int)), buttonWidget, SLOT(refreshLabel()));
+    //connect(dialog, SIGNAL(finished(int)), dialog, SLOT(deleteLater()));
+
+    //DedicationToANewAgg *hamtaro = new DedicationToANewAgg(button, this);
+    //hamtaro->show();
+    //connect(hamtaro, SIGNAL(finished(int)), buttonWidget, SLOT(refreshLabel()));
+    //connect(hamtaro, SIGNAL(finished(int)), hamtaro, SLOT(deleteLater()));
+
+    //buttonDialog = new ButtonEditDialog(button, this);
+    //buttonDialog->show();
+    //connect(buttonDialog, SIGNAL(destroyed()), buttonWidget, SLOT(refreshLabel()));
 }
 
 void JoyTabWidget::showAxisDialog()
