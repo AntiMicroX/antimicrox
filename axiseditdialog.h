@@ -16,19 +16,16 @@ class AxisEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit AxisEditDialog(QWidget *parent = 0);
-    AxisEditDialog(JoyAxis *axis, QWidget *parent=0);
+    explicit AxisEditDialog(JoyAxis *axis, QWidget *parent=0);
     ~AxisEditDialog();
 
 protected:
     JoyAxis *axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
+    int initialThrottleState;
 
 private:
     Ui::AxisEditDialog *ui;
-
-signals:
-    void throttleChanged();
 
 private slots:
     void implementPresets(int index);
@@ -51,6 +48,8 @@ private slots:
     void changeMouseSpeedsInterface(bool value);
     void updateConfigHorizontalSpeed(int value);
     void updateConfigVerticalSpeed(int value);
+
+    void checkFinalSettings();
 };
 
 #endif // AXISEDITDIALOG_H

@@ -6,18 +6,6 @@
 #include "buttoneditdialog.h"
 #include "event.h"
 
-AxisEditDialog::AxisEditDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AxisEditDialog)
-{
-    ui->setupUi(this);    
-    setAttribute(Qt::WA_DeleteOnClose);
-
-    //setAxisThrottleConfirm = new SetAxisThrottleDialog(this);
-
-    axis = 0;
-}
-
 AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AxisEditDialog)
@@ -30,6 +18,8 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     this->axis = axis;
 
     this->setWindowTitle(QString("Set Axis %1").arg(axis->getRealJoyIndex()));
+
+    initialThrottleState = axis->getThrottle();
 
     ui->horizontalSlider->setValue(axis->getDeadZone());
     ui->lineEdit->setText(QString::number(axis->getDeadZone()));
@@ -122,7 +112,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
     connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
 
-    connect(this, SIGNAL(throttleChanged()), setAxisThrottleConfirm, SLOT(exec()));
+    connect(this, SIGNAL(finished(int)), this, SLOT(checkFinalSettings()));
 }
 
 AxisEditDialog::~AxisEditDialog()
@@ -337,5 +327,13 @@ void AxisEditDialog::updateConfigVerticalSpeed(int value)
     {
         axis->getPAxisButton()->setMouseSpeedY(value);
         axis->getNAxisButton()->setMouseSpeedY(value);
+    }
+}
+
+void AxisEditDialog::checkFinalSettings()
+{
+    if (axis->getThrottle() != initialThrottleState)
+    {
+        setAxisThrottleConfirm->exec();
     }
 }
