@@ -14,8 +14,6 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
 {
     populateTopRowKeys();
 
-    qDebug() << "Floating in a tin can" << endl;
-
     this->button = button;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
@@ -58,8 +56,6 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
     connect(mouseVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
     connect(mouseHorizSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setButtonMouseHorizSpeed(int)));
     connect(mouseVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setButtonMouseVertiSpeed(int)));
-    //QList<VirtualKeyPushButton*> newlist = keyboardTab->findChildren<VirtualKeyPushButton*> ();
-    //qDebug() << "COUNT: " << newlist.count() << endl;
 }
 
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
@@ -524,8 +520,6 @@ QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 
 void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode)
 {
-    qDebug() << "KEYCODE: " << keycode << endl;
-    qDebug() << "String: " << keycodeToKey(keycode) << endl;
     button->clearSlotsEventReset();
     button->setAssignedSlot(keycode);
 

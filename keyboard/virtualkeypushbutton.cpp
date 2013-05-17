@@ -10,8 +10,8 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 {
     populateKnownAliases();
 
-    qDebug() << "Question: " << keyToKeycode("KP_7") << endl;
-    qDebug() << "Question: " << keycodeToKey(79) << endl;
+    //qDebug() << "Question: " << keyToKeycode("KP_7") << endl;
+    //qDebug() << "Question: " << keycodeToKey(79) << endl;
     this->keycode = 0;
     this->xcodestring = "";
     this->displayString = "";
@@ -40,8 +40,6 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 void VirtualKeyPushButton::processSingleSelection()
 {
     emit keycodeObtained(keycode);
-    qDebug() << "Question: " << keyToKeycode(xcodestring) << endl;
-    qDebug() << "JKSJKLSLKJ: " << xcodestring << endl;
 }
 
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)

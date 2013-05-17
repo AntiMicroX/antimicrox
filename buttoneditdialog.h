@@ -21,6 +21,10 @@ public:
     
 protected:
     JoyButton *button;
+    bool ignoreRelease;
+
+    virtual void keyReleaseEvent(QKeyEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::ButtonEditDialog *ui;
@@ -28,16 +32,23 @@ private:
 signals:
     void advancedDialogOpened();
     void sendTempSlotToAdvanced(JoyButtonSlot *tempslot);
+    void keyGrabbed(JoyButtonSlot *tempslot);
+    void selectionCleared();
+    void selectionFinished();
 
 private slots:
     void refreshSlotSummaryLabel();
     void changeToggleSetting();
     void changeTurboSetting();
     void openAdvancedDialog();
+    void closedAdvancedDialog();
     void createTempSlot(int keycode);
 
     void checkTurboSetting(bool state);
     void setTurboButtonEnabled(bool state);
+    void processSlotAssignment(JoyButtonSlot *tempslot);
+    void clearButtonSlots();
+    void sendSelectionFinished();
 };
 
 #endif // BUTTONEDITDIALOGTWO_H

@@ -34,7 +34,6 @@ SOURCES += main.cpp\
     joybutton.cpp \
     event.cpp \
     inputdaemon.cpp \
-    keygrabberbutton.cpp \
     joyaxis.cpp \
     joyaxiswidget.cpp \
     joydpad.cpp \
@@ -45,7 +44,6 @@ SOURCES += main.cpp\
     joytabwidget.cpp \
     axisvaluebox.cpp \
     advancebuttondialog.cpp \
-    buttontempconfig.cpp \
     simplekeygrabberbutton.cpp \
     joybuttonslot.cpp \
     joyaxisbutton.cpp \
@@ -66,7 +64,6 @@ HEADERS  += mainwindow.h \
     joybutton.h \
     event.h \
     inputdaemon.h \
-    keygrabberbutton.h \
     joyaxis.h \
     joyaxiswidget.h \
     joydpad.h \
@@ -78,7 +75,6 @@ HEADERS  += mainwindow.h \
     joytabwidget.h \
     axisvaluebox.h \
     advancebuttondialog.h \
-    buttontempconfig.h \
     simplekeygrabberbutton.h \
     joybuttonslot.h \
     joyaxisbutton.h \
