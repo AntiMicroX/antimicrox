@@ -17,7 +17,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     ui->virtualKeyMouseTabWidget->deleteLater();
     ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(button, this);
 
-    ui->verticalLayout->insertWidget(0, ui->virtualKeyMouseTabWidget);
+    ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
     ui->slotSummaryLabel->setText(button->getSlotsString());
     setWindowTitle(QString("Set ").append(button->getPartialName()));
 

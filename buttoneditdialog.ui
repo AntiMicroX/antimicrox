@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>380</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
-    <height>380</height>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,16 @@
    <property name="spacing">
     <number>10</number>
    </property>
+   <item>
+    <widget class="QLabel" name="helpAssignLabel">
+     <property name="text">
+      <string>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="VirtualKeyboardMouseWidget" name="virtualKeyMouseTabWidget">
      <property name="currentIndex">
