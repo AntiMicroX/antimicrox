@@ -15,7 +15,6 @@
 
 #include "joystick.h"
 #include "axiseditdialog.h"
-#include "buttoneditdialog.h"
 
 class JoyTabWidget : public QWidget
 {
@@ -50,7 +49,6 @@ protected:
     QSpacerItem *spacer2;
     QSpacerItem *spacer3;
     QFileDialog *fileDialog;
-    ButtonEditDialog *buttonDialog;
     AxisEditDialog *axisDialog;
     QPushButton *setPushButton1;
     QPushButton *setPushButton2;

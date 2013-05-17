@@ -34,13 +34,11 @@ SOURCES += main.cpp\
     joybutton.cpp \
     event.cpp \
     inputdaemon.cpp \
-    buttoneditdialog.cpp \
     keygrabberbutton.cpp \
     joyaxis.cpp \
     joyaxiswidget.cpp \
     joydpad.cpp \
     joydpadbutton.cpp \
-    dpadbuttoneditdialog.cpp \
     axiseditdialog.cpp \
     xmlconfigreader.cpp \
     xmlconfigwriter.cpp \
@@ -58,9 +56,9 @@ SOURCES += main.cpp\
     setaxisthrottledialog.cpp \
     x11info.cpp \
     keyboard/virtualkeypushbutton.cpp \
-    buttoneditdialogtwo.cpp \
     keyboard/virtualkeyboardmousewidget.cpp \
-    keyboard/virtualmousepushbutton.cpp
+    keyboard/virtualmousepushbutton.cpp \
+    buttoneditdialog.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -68,13 +66,11 @@ HEADERS  += mainwindow.h \
     joybutton.h \
     event.h \
     inputdaemon.h \
-    buttoneditdialog.h \
     keygrabberbutton.h \
     joyaxis.h \
     joyaxiswidget.h \
     joydpad.h \
     joydpadbutton.h \
-    dpadbuttoneditdialog.h \
     axiseditdialog.h \
     xmlconfigreader.h \
     xmlconfigwriter.h \
@@ -93,18 +89,16 @@ HEADERS  += mainwindow.h \
     setaxisthrottledialog.h \
     x11info.h \
     keyboard/virtualkeypushbutton.h \
-    buttoneditdialogtwo.h \
     keyboard/virtualkeyboardmousewidget.h \
-    keyboard/virtualmousepushbutton.h
+    keyboard/virtualmousepushbutton.h \
+    buttoneditdialog.h
 
 FORMS    += mainwindow.ui \
-    buttoneditdialog.ui \
-    dpadbuttoneditdialog.ui \
     axiseditdialog.ui \
     advancebuttondialog.ui \
     aboutdialog.ui \
     setaxisthrottledialog.ui \
-    buttoneditdialogtwo.ui
+    buttoneditdialog.ui
 
 
 LIBS += -lSDL -lXtst -lX11

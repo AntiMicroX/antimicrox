@@ -2,10 +2,8 @@
 #define ADVANCEBUTTONDIALOG_H
 
 #include <QDialog>
-#include <QListWidgetItem>
 
 #include "joybutton.h"
-#include "buttontempconfig.h"
 #include "simplekeygrabberbutton.h"
 
 namespace Ui {
@@ -29,7 +27,6 @@ protected:
     int actionTimeConvert();
     void changeTurboForSequences();
 
-    ButtonTempConfig *tempconfig;
     int oldRow;
     JoyButton *button;
 
@@ -48,7 +45,6 @@ private slots:
     void updateTurboIntervalValue(int value);
     void checkTurboSetting(bool state);
 
-    void updateTempConfig();
     void updateSlotsScrollArea(int value);
     void deleteSlot();
     void changeSelectedSlot();

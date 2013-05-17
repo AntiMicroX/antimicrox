@@ -1,6 +1,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QListWidget>
+#include <QListWidgetItem>
 #include <QScrollBar>
 #include <QDebug>
 
@@ -147,69 +148,6 @@ void AdvanceButtonDialog::changeTurboText(int value)
 
     ui->delayValueLabel->setText(delaytext);
     ui->rateValueLabel->setText(labeltext);
-}
-
-void AdvanceButtonDialog::updateTempConfig()
-{
-    /*tempconfig->turbo = ui->turboCheckbox->isChecked();
-    tempconfig->turboInterval = ui->turboSlider->value() * 100;
-    tempconfig->toggle = ui->toggleCheckbox->isChecked();
-    tempconfig->assignments->clear();
-
-    for (int i = 0; i < ui->slotListWidget->count(); i++)
-    {
-        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-        JoyButtonSlot *tempbuttonslot = button->getValue();
-        if (tempbuttonslot->getSlotCode() > 0)
-        {
-            JoyButtonSlot *buttonslot = new JoyButtonSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
-            tempconfig->assignments->append(buttonslot);
-        }
-    }
-
-    tempconfig->mouseSpeedX = ui->horizSpinBox->value();
-    tempconfig->mouseSpeedY = ui->vertSpinBox->value();
-
-    if (ui->setSelectionComboBox->currentIndex() > 0)
-    {
-        int condition_choice = 0;
-        int chosen_set = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
-        // Above removed rows
-        if (tempconfig->originset > chosen_set)
-        {
-            tempconfig->setSelection = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
-            condition_choice = (ui->setSelectionComboBox->currentIndex() + 2) % 3;
-
-        }
-        // Below removed rows
-        else
-        {
-            tempconfig->setSelection = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
-            condition_choice = (ui->setSelectionComboBox->currentIndex() + 2) % 3;
-        }
-
-        //qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
-        if (condition_choice == 0)
-        {
-            tempconfig->setSelectionCondition = JoyButton::SetChangeOneWay;
-        }
-        else if (condition_choice == 1)
-        {
-            tempconfig->setSelectionCondition = JoyButton::SetChangeTwoWay;
-        }
-        else if (condition_choice == 2)
-        {
-            tempconfig->setSelectionCondition = JoyButton::SetChangeWhileHeld;
-        }
-    }
-    else
-    {
-        tempconfig->setSelection = -1;
-        tempconfig->setSelectionCondition = JoyButton::SetChangeDisabled;
-    }
-
-    //qDebug() << "SET SELECTION: " << QString::number(tempconfig->setSelection) << endl;
-    */
 }
 
 void AdvanceButtonDialog::updateSlotsScrollArea(int value)

@@ -1,11 +1,11 @@
-#ifndef BUTTONEDITDIALOG_H
-#define BUTTONEDITDIALOG_H
+#ifndef BUTTONEDITDIALOGTWO_H
+#define BUTTONEDITDIALOGTWO_H
 
 #include <QDialog>
 
 #include "joybutton.h"
-#include "joydpadbutton.h"
-#include "buttontempconfig.h"
+#include "keyboard/virtualkeyboardmousewidget.h"
+#include "advancebuttondialog.h"
 
 namespace Ui {
 class ButtonEditDialog;
@@ -16,29 +16,28 @@ class ButtonEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit ButtonEditDialog(JoyButton* button, QWidget *parent=0);
+    explicit ButtonEditDialog(JoyButton *button, QWidget *parent = 0);
     ~ButtonEditDialog();
+    
+protected:
+    JoyButton *button;
 
 private:
     Ui::ButtonEditDialog *ui;
 
-protected:
-    void updateTempConfigState();
-    void enableDialogButtons();
-
-    JoyButton* button;
-    bool isEditing;
-    QString defaultLabel;
-    ButtonTempConfig *tempconfig;
+signals:
+    void advancedDialogOpened();
+    void sendTempSlotToAdvanced(JoyButtonSlot *tempslot);
 
 private slots:
-    void saveButtonChanges();
-    void changeDialogText(bool edited=false);
-    void disableDialogInterface();
-    void enableDialogInterface();
+    void refreshSlotSummaryLabel();
+    void changeToggleSetting();
+    void changeTurboSetting();
     void openAdvancedDialog();
-    void updateFromTempConfig();
-    void singleAssignmentForTempConfig(bool edited);
+    void createTempSlot(int keycode);
+
+    void checkTurboSetting(bool state);
+    void setTurboButtonEnabled(bool state);
 };
 
-#endif // BUTTONEDITDIALOG_H
+#endif // BUTTONEDITDIALOGTWO_H

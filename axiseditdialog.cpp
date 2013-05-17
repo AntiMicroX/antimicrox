@@ -3,7 +3,7 @@
 #include "axiseditdialog.h"
 #include "ui_axiseditdialog.h"
 #include "advancebuttondialog.h"
-#include "buttoneditdialogtwo.h"
+#include "buttoneditdialog.h"
 #include "event.h"
 
 AxisEditDialog::AxisEditDialog(QWidget *parent) :
@@ -268,7 +268,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
 
 void AxisEditDialog::openAdvancedPDialog()
 {
-    ButtonEditDialogTwo *dialog = new ButtonEditDialogTwo(axis->getPAxisButton());
+    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getPAxisButton());
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPButtonLabel()));
@@ -276,7 +276,7 @@ void AxisEditDialog::openAdvancedPDialog()
 
 void AxisEditDialog::openAdvancedNDialog()
 {
-    ButtonEditDialogTwo *dialog = new ButtonEditDialogTwo(axis->getNAxisButton());
+    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getNAxisButton());
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshNButtonLabel()));
