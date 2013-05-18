@@ -150,20 +150,46 @@ int JoyAxis::getIndex()
 
 void JoyAxis::createDeskEvent(bool ignoresets)
 {
+    JoyAxisButton *eventbutton = 0;
     if (currentThrottledValue > deadZone)
     {
-        paxisbutton->joyEvent(eventActive, ignoresets);
-        activeButton = paxisbutton;
+        eventbutton = paxisbutton;
+        //paxisbutton->joyEvent(eventActive, ignoresets);
+        //activeButton = paxisbutton;
     }
     else if (currentThrottledValue < -deadZone)
     {
-        naxisbutton->joyEvent(eventActive, ignoresets);
-        activeButton = naxisbutton;
+        eventbutton = naxisbutton;
+        //naxisbutton->joyEvent(eventActive, ignoresets);
+        //activeButton = naxisbutton;
+    }
+
+    if (eventbutton && activeButton && eventbutton == activeButton)
+    {
+        //Button is currently active. Just pass current value
+        eventbutton->joyEvent(eventActive, ignoresets);
+    }
+    else if (eventbutton && activeButton && eventbutton != activeButton)
+    {
+        // Deadzone skipped. Button for new event is not the currently
+        // active button. Disable the active button before enabling
+        // the new button
+        activeButton->joyEvent(false, ignoresets);
+        eventbutton->joyEvent(eventActive, ignoresets);
+        activeButton = eventbutton;
     }
     else if (activeButton)
     {
+        // Currently in deadzone. Disable currently active button.
         activeButton->joyEvent(eventActive, ignoresets);
         activeButton = 0;
+    }
+    else
+    {
+        // There is no active button. Call joyEvent and set current
+        // button as active button
+        eventbutton->joyEvent(eventActive, ignoresets);
+        activeButton = eventbutton;
     }
 }
 
