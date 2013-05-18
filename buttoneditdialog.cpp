@@ -62,32 +62,39 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 
 void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    int controlcode = event->nativeScanCode();
-
-    if (!ignoreRelease)
+    if (ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
     {
-        if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_X)
+        int controlcode = event->nativeScanCode();
+
+        if (!ignoreRelease)
         {
-            controlcode = 0;
-            ignoreRelease = true;
-            emit selectionCleared();
+            if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_X)
+            {
+                controlcode = 0;
+                ignoreRelease = true;
+                emit selectionCleared();
+            }
+            else if (controlcode < 0)
+            {
+                controlcode = 0;
+            }
         }
-        else if (controlcode < 0)
+        else
         {
             controlcode = 0;
+            ignoreRelease = false;
+        }
+
+
+        if (controlcode > 0)
+        {
+            JoyButtonSlot *tempslot = new JoyButtonSlot(controlcode, JoyButtonSlot::JoyKeyboard, this);
+            emit keyGrabbed(tempslot);
         }
     }
     else
     {
-        controlcode = 0;
-        ignoreRelease = false;
-    }
-
-
-    if (controlcode > 0)
-    {
-        JoyButtonSlot *tempslot = new JoyButtonSlot(controlcode, JoyButtonSlot::JoyKeyboard, this);
-        emit keyGrabbed(tempslot);
+        QDialog::keyReleaseEvent(event);
     }
 }
 

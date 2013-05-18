@@ -3,7 +3,6 @@ Name=AntiMicro
 Comment=
 Exec=antimicro
 Icon=antimicro
-MimeType=
 StartupNotify=true
 Terminal=false
 Type=Application

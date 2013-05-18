@@ -24,6 +24,7 @@ class VirtualKeyboardMouseWidget : public QTabWidget
 public:
     explicit VirtualKeyboardMouseWidget(JoyButton *button, QWidget *parent = 0);
     explicit VirtualKeyboardMouseWidget(QWidget *parent = 0);
+    bool isKeyboardTabVisible();
 
 protected:
     JoyButton *button;

@@ -676,3 +676,8 @@ void VirtualKeyboardMouseWidget::setButtonMouseVertiSpeed(int value)
 {
     button->setMouseSpeedY(value);
 }
+
+bool VirtualKeyboardMouseWidget::isKeyboardTabVisible()
+{
+    return this->keyboardTab->isVisible();
+}

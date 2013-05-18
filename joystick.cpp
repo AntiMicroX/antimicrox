@@ -13,7 +13,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
     joystick_sets = QHash<int, SetJoystick*> ();
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
-        SetJoystick *setstick = new SetJoystick(joyhandle, i);
+        SetJoystick *setstick = new SetJoystick(joyhandle, i, this);
         joystick_sets.insert(i, setstick);
         connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(setActiveSetNumber(int)));
         connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
@@ -34,8 +34,11 @@ Joystick::~Joystick()
     while (iter.hasNext())
     {
         SetJoystick *setjoystick = iter.next().value();
-        delete setjoystick;
-        setjoystick = 0;
+        if (setjoystick)
+        {
+            delete setjoystick;
+            setjoystick = 0;
+        }
     }
 
     joystick_sets.clear();
@@ -172,7 +175,7 @@ void Joystick::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == "joystick")
     {
-        //reset();
+        reset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "joystick"))
