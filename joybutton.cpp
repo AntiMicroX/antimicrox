@@ -39,15 +39,7 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
 
 JoyButton::~JoyButton()
 {
-    turboTimer.stop();
-
-    if (slotiter)
-    {
-        delete slotiter;
-        slotiter = 0;
-    }
-
-    clearAssignedSlots();
+    reset();
 }
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
