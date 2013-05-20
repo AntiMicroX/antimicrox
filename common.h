@@ -11,7 +11,7 @@ namespace PadderCommon
     const QString configFileName = "antimicro_settings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
     const int LATESTCONFIGFILEVERSION = 2;
-    const QString programVersion = "0.5.9";
+    const QString programVersion = "0.6";
 }
 
 #endif // COMMON_H
