@@ -1,8 +1,10 @@
 *.o
 .*.swp
 .directory
+*.qm
 Makefile
 antimicro
+!share/antimicro
 antimicro.pro.user
 antimicro.pro.user.*
 moc_*
