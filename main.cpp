@@ -6,6 +6,8 @@
 #include <QDir>
 #include <QDebug>
 #include <QListWidget>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 #include <X11/Xlib.h>
 
@@ -28,6 +30,13 @@ int main(int argc, char *argv[])
     QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
 
     QApplication a(argc, argv);
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+
+    QTranslator myappTranslator;
+    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/share/antimicro/translations"));
+    a.installTranslator(&myappTranslator);
     //Q_INIT_RESOURCE(resources);
     //a.setQuitOnLastWindowClosed(false);
     MainWindow w(joysticks);

@@ -32,10 +32,10 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
     mouseVertSpeedSpinBox->setValue(50);
 
     noneButton = createNoneKey();
-    mouseChangeTogether = new QCheckBox("Change Together", this);
+    mouseChangeTogether = new QCheckBox(tr("Change Together"), this);
 
-    this->addTab(keyboardTab, "Keyboard");
-    this->addTab(mouseTab, "Mouse");
+    this->addTab(keyboardTab, tr("Keyboard"));
+    this->addTab(mouseTab, tr("Mouse"));
 
     this->setTabPosition(QTabWidget::South);
 
@@ -76,10 +76,10 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
     mouseVertSpeedSpinBox->setMaximum(300);
 
     noneButton = createNoneKey();
-    mouseChangeTogether = new QCheckBox("Change Together", this);
+    mouseChangeTogether = new QCheckBox(tr("Change Together"), this);
 
-    this->addTab(keyboardTab, "Keyboard");
-    this->addTab(mouseTab, "Mouse");
+    this->addTab(keyboardTab, tr("Keyboard"));
+    this->addTab(mouseTab, tr("Mouse"));
 
     this->setTabPosition(QTabWidget::South);
 }
@@ -396,7 +396,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
     QVBoxLayout *tempInnerVBoxLayout = new QVBoxLayout();
     tempInnerHBoxLayout = new QHBoxLayout();
-    QLabel *label = new QLabel("Mouse Horiz. Speed:", this);
+    QLabel *label = new QLabel(tr("Mouse Horiz. Speed").append(":"), this);
     QFont font1;
     font1.setBold(true);
     font1.setPointSize(8);
@@ -412,7 +412,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
     tempInnerVBoxLayout = new QVBoxLayout();
     tempInnerHBoxLayout = new QHBoxLayout();
-    label = new QLabel("Mouse Vert. Speed:", this);
+    label = new QLabel(tr("Mouse Vert. Speed").append(":"), this);
     QFont font2;
     font2.setBold(true);
     font2.setPointSize(8);
@@ -506,7 +506,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 
 QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 {
-    QPushButton *pushButton = new QPushButton("NONE", this);
+    QPushButton *pushButton = new QPushButton(tr("NONE"), this);
     pushButton->setMinimumSize(120, 40);
     pushButton->setMaximumHeight(100);
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);

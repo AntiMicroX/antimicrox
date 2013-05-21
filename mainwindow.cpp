@@ -62,7 +62,7 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
 
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
         tabwidget->fillButtons();
-        ui->tabWidget->addTab(tabwidget, QString("Joystick %1").arg(joystick->getRealJoyNumber()));
+        ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
         connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
         connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
     }

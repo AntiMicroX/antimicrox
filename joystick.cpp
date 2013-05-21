@@ -62,7 +62,7 @@ int Joystick::getRealJoyNumber()
 
 QString Joystick::getName()
 {
-    return QString("Joystick ").append(QString::number(getRealJoyNumber()));
+    return QString(tr("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 void Joystick::reset()

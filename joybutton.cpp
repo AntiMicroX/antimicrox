@@ -753,7 +753,7 @@ QString JoyButton::getName()
 
 QString JoyButton::getPartialName()
 {
-    return QString("Button ").append(QString::number(getRealJoyNumber()));
+    return QString(tr("Button").append(" ").append(QString::number(getRealJoyNumber())));
 }
 
 QString JoyButton::getSlotsSummary()
@@ -773,7 +773,7 @@ QString JoyButton::getSlotsSummary()
     }
     else
     {
-        newlabel = newlabel.append("[NO KEY]");
+        newlabel = newlabel.append(tr("[NO KEY]"));
     }
 
     return newlabel;
@@ -798,7 +798,7 @@ QString JoyButton::getSlotsString()
     }
     else
     {
-        label = label.append("[NO KEY]");
+        label = label.append(tr("[NO KEY]"));
     }
 
     return label;

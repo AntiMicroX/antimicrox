@@ -17,7 +17,7 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     configHorizontalLayout = new QHBoxLayout();
     configBox = new QComboBox(this);
-    configBox->addItem("<New>", "");
+    configBox->addItem(tr("<New>"), "");
 
     configBox->setObjectName(QString::fromUtf8("configBox"));
     configBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -206,7 +206,7 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     resetButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
 
-    fileDialog = new QFileDialog(this, "Open Config", QDir::currentPath(), "Config Files (*.xml)");
+    fileDialog = new QFileDialog(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
 
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
@@ -436,7 +436,7 @@ void JoyTabWidget::saveConfigFile()
     QString filename;
     if (index == 0)
     {
-        QString tempfilename = QFileDialog::getSaveFileName(this, "Save Config", QDir::currentPath(), "Config File (*.xml)");
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::currentPath(), "Config File (*.xml)");
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -510,7 +510,7 @@ void JoyTabWidget::saveAsConfig()
     QString filename;
     if (index == 0)
     {
-        QString tempfilename = QFileDialog::getSaveFileName(this, "Save Config", QDir::currentPath(), "Config File (*.xml)");
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::currentPath(), "Config File (*.xml)");
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -520,7 +520,7 @@ void JoyTabWidget::saveAsConfig()
     {
         QString configPath = configBox->itemData(index).toString();
         QFileInfo temp(configPath);
-        QString tempfilename = QFileDialog::getSaveFileName(this, "Save Config", temp.absoluteDir().absolutePath(), "Config File (*.xml)");
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), "Config File (*.xml)");
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;

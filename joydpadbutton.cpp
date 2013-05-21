@@ -17,35 +17,35 @@ QString JoyDPadButton::getDirectionName()
     QString label = QString ();
     if (direction & DpadUp)
     {
-        label.append("Up");
+        label.append(tr("Up"));
     }
     else if (direction & DpadDown)
     {
-        label.append("Down");
+        label.append(tr("Down"));
     }
     else if (direction & DpadLeft)
     {
-        label.append("Left");
+        label.append(tr("Left"));
     }
     else if (direction & DpadRight)
     {
-        label.append("Right");
+        label.append(tr("Right"));
     }
     else if (direction & DpadLeftUp)
     {
-        label.append("Up+Left");
+        label.append(tr("Up")).append("+").append(tr("Left"));
     }
     else if (direction & DpadLeftDown)
     {
-        label.append("Down+Left");
+        label.append(tr("Down")).append("+").append(tr("Left"));
     }
     else if (direction & DpadRightUp)
     {
-        label.append("Up+Left");
+        label.append(tr("Up")).append("+").append(tr("Left"));
     }
     else if (direction & DpadRightDown)
     {
-        label.append("Down+Right");
+        label.append(tr("Down")).append("+").append(tr("Right"));
     }
 
     return label;

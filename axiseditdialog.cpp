@@ -17,7 +17,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     this->axis = axis;
 
-    this->setWindowTitle(QString("Set Axis %1").arg(axis->getRealJoyIndex()));
+    this->setWindowTitle(QString(tr("Set Axis %1")).arg(axis->getRealJoyIndex()));
 
     initialThrottleState = axis->getThrottle();
 

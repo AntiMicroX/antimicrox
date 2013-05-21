@@ -23,9 +23,31 @@ desktop.files = other/antimicro.desktop
 deskicon.path = $$INSTALL_PREFIX/share/pixmaps
 deskicon.files = images/antimicro.png
 
+TRANSLATIONS = share/antimicro/translations/antimicro_en.ts \
+    share/antimicro/translations/antimicro_fr.ts
+
+programtranslations.path = $$INSTALL_PREFIX/share/antimicro/translations
+programtranslations.files = share/translations/antimicro/antimicro_en.qm \
+    share/translations/antimicro/antimicro_fr.qm
+
+equals(OUT_PWD, $$PWD) {
+    updateqm.commands = lrelease $$_PRO_FILE_
+} else {
+    for(transfile, TRANSLATIONS): fulltranslations += $$PWD/$$transfile
+
+    for(qmfile, programtranslations.files): finaltranslations += $$OUT_PWD/$$qmfile
+
+    updateqm.commands = $(MKDIR) $${OUT_PWD}/share/antimicro/translations && \
+        $(COPY_DIR) $$PWD/share/antimicro/translations $${OUT_PWD}/share/antimicro && \
+        lrelease $$fulltranslations
+}
+
+updateqm.target = updateqm
+
+QMAKE_EXTRA_TARGETS += updateqm
+
 TARGET = antimicro
 TEMPLATE = app
-
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -102,8 +124,9 @@ LIBS += -lSDL -lXtst -lX11
 RESOURCES += \
     resources.qrc
 
-INSTALLS += target desktop deskicon
+INSTALLS += target desktop deskicon programtranslations
 
 OTHER_FILES += \
     gpl.txt \
     other/antimicro.desktop
+

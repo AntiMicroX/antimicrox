@@ -18,18 +18,19 @@ QString JoyAxisButton::getPartialName()
     QString buttontype;
     if (index == 0)
     {
-        buttontype = "Negative";
+        buttontype = tr("Negative");
     }
     else if (index == 1)
     {
-        buttontype = "Positive";
+        buttontype = tr("Positive");
     }
     else
     {
-        buttontype = "Unknown";
+        buttontype = tr("Unknown");
     }
 
-    return QString("Axis ").append(QString::number(axis->getRealJoyIndex())).append(": Button ").append(buttontype);
+    return QString(tr("Axis ")).append(QString::number(axis->getRealJoyIndex())).append(": ")
+            .append(tr("Button")).append(" ").append(buttontype);
 }
 
 QString JoyAxisButton::getXmlName()

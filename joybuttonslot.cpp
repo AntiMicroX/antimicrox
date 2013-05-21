@@ -60,22 +60,22 @@ QString JoyButtonSlot::movementString()
 
     if (mode == JoyMouseMovement)
     {
-        newlabel.append("Mouse ");
+        newlabel.append(tr("Mouse")).append(" ");
         if (deviceCode == JoyButtonSlot::MouseUp)
         {
-            newlabel.append("Up");
+            newlabel.append(tr("Up"));
         }
         else if (deviceCode == JoyButtonSlot::MouseDown)
         {
-            newlabel.append("Down");
+            newlabel.append(tr("Down"));
         }
         else if (deviceCode == JoyButtonSlot::MouseLeft)
         {
-            newlabel.append("Left");
+            newlabel.append(tr("Left"));
         }
         else if (deviceCode == JoyButtonSlot::MouseRight)
         {
-            newlabel.append("Right");
+            newlabel.append(tr("Right"));
         }
     }
 
@@ -216,7 +216,7 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {
-            newlabel = newlabel.append("Mouse ").append(QString::number(deviceCode));
+            newlabel = newlabel.append(tr("Mouse")).append(" ").append(QString::number(deviceCode));
         }
         else if (mode == JoyButtonSlot::JoyMouseMovement)
         {
@@ -224,26 +224,26 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyButtonSlot::JoyPause)
         {
-            newlabel.append("Pause ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+            newlabel.append(tr("Pause")).append(" ").append(QString::number(deviceCode / 1000.0, 'g', 3));
         }
         else if (mode == JoyButtonSlot::JoyHold)
         {
-            newlabel.append("Hold ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+            newlabel.append(tr("Hold")).append(" ").append(QString::number(deviceCode / 1000.0, 'g', 3));
         }
         else if (mode == JoyButtonSlot::JoyCycle)
         {
-            newlabel.append("Cycle");
+            newlabel.append(tr("Cycle"));
         }
         else if (mode == JoyButtonSlot::JoyDistance)
         {
-            QString temp("Distance ");
-            temp.append(QString::number(deviceCode).append("%"));
+            QString temp(tr("Distance"));
+            temp.append(" ").append(QString::number(deviceCode).append("%"));
             newlabel.append(temp);
         }
     }
     else
     {
-        newlabel = newlabel.append("[NO KEY]");
+        newlabel = newlabel.append(tr("[NO KEY]"));
     }
 
     return newlabel;

@@ -48,7 +48,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             controlcode = mouseEve->button();
         }
 
-        setText(QString("Mouse ").append(QString::number(controlcode)));
+        setText(QString(tr("Mouse")).append(" ").append(QString::number(controlcode)));
 
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
@@ -94,7 +94,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     else if (grabNextAction && event->type() == QEvent::Wheel)
     {
         QWheelEvent *wheelEve = (QWheelEvent*) event;
-        QString text = QString("Mouse ");
+        QString text = QString(tr("Mouse")).append(" ");
 
         if (wheelEve->orientation() == Qt::Vertical && wheelEve->delta() >= 120)
         {
@@ -154,7 +154,7 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
     }
     else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyMouseButton)
     {
-        setText(QString("Mouse ").append(QString::number(value)));
+        setText(QString(tr("Mouse")).append(" ").append(QString::number(value)));
     }
     else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyMouseMovement)
     {
@@ -162,24 +162,24 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
     }
     else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyPause)
     {
-        QString temp("Pause ");
-        temp.append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
+        QString temp(tr("Pause"));
+        temp.append(" ").append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
         setText(temp);
     }
     else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyHold)
     {
-        QString temp("Hold ");
-        temp.append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
+        QString temp(tr("Hold"));
+        temp.append(" ").append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
         setText(temp);
     }
     else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyCycle)
     {
-        setText("Cycle");
+        setText(tr("Cycle"));
     }
     else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        QString temp("Distance ");
-        temp.append(QString::number(buttonslot.getSlotCode())).append("%");
+        QString temp(tr("Distance"));
+        temp.append(" ").append(QString::number(buttonslot.getSlotCode())).append("%");
         setText(temp);
     }
 }
