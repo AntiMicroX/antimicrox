@@ -29,6 +29,7 @@ Enter the following commands in order to build the program:
 
 * qmake
 * make
+* make updateqm
 * sudo make install
 
 The installation path of antimicro can be customized by specifying the INSTALL_PREFIX variable for qmake.
@@ -37,6 +38,9 @@ The installation path of antimicro can be customized by specifying the INSTALL_P
 
 This will install the antimicro executable to /usr/bin/antimicro.
 By default, the executable will be installed to /usr/local/bin/antimicro.
+
+Also, running "make updateqm" is only required if you would like to enable translations
+for the application.
 
 ## Shoutout
 
