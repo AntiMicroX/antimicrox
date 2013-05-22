@@ -67,3 +67,7 @@ with each direction
 ## Credits
 
 Travis Nickles <nickles.travis@gmail.com>
+
+## Translators
+
+Belleguic Terence <hizo@free.fr>
