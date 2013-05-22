@@ -4,7 +4,7 @@
 #include "joyaxis.h"
 #include "event.h"
 
-const int JoyAxis::AXISMIN = -32768;
+const int JoyAxis::AXISMIN = -32767;
 const int JoyAxis::AXISMAX = 32767;
 const int JoyAxis::AXISDEADZONE = 5000;
 const int JoyAxis::AXISMAXZONE = 30000;

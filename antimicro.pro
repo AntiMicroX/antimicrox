@@ -33,7 +33,7 @@ programtranslations.files = share/translations/antimicro/antimicro_en.qm \
 equals(OUT_PWD, $$PWD) {
     updateqm.commands = lrelease $$_PRO_FILE_
 } else {
-    for(transfile, TRANSLATIONS): fulltranslations += $$PWD/$$transfile
+    for(transfile, TRANSLATIONS): fulltranslations += $$OUT_PWD/$$transfile
 
     for(qmfile, programtranslations.files): finaltranslations += $$OUT_PWD/$$qmfile
 

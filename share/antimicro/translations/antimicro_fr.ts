@@ -4,42 +4,47 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../../../aboutdialog.ui" line="20"/>
+        <location filename="../aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="75"/>
+        <location filename="../aboutdialog.ui" line="75"/>
         <source>AntiMicro</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="99"/>
+        <location filename="../aboutdialog.ui" line="99"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="113"/>
+        <location filename="../aboutdialog.ui" line="113"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Crédits</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="128"/>
+        <location filename="../aboutdialog.ui" line="128"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="144"/>
+        <location filename="../aboutdialog.ui" line="144"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>License</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="159"/>
+        <location filename="../aboutdialog.ui" line="159"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -719,969 +724,973 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Public License instead of this License.  But first, please read&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;http://www.gnu.org/philosophy/why-not-lgpl.html&amp;gt;.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="851"/>
+        <location filename="../aboutdialog.ui" line="851"/>
         <source>Copyright: 2013</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright: 2013</translation>
     </message>
     <message>
-        <location filename="../../../aboutdialog.ui" line="885"/>
+        <location filename="../aboutdialog.ui" line="885"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer</translation>
     </message>
 </context>
 <context>
     <name>AdvanceButtonDialog</name>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="29"/>
+        <location filename="../advancebuttondialog.ui" line="29"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Avancé</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="65"/>
+        <location filename="../advancebuttondialog.ui" line="65"/>
         <source>Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>Assignements</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="70"/>
+        <location filename="../advancebuttondialog.ui" line="70"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>Maintient de la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="75"/>
+        <location filename="../advancebuttondialog.ui" line="75"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>Turbo</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="80"/>
+        <location filename="../advancebuttondialog.ui" line="80"/>
         <source>Set Selector</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de configuration</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="182"/>
+        <location filename="../advancebuttondialog.ui" line="182"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>Maintenir</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="189"/>
+        <location filename="../advancebuttondialog.ui" line="189"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="196"/>
+        <location filename="../advancebuttondialog.ui" line="196"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="203"/>
+        <location filename="../advancebuttondialog.ui" line="203"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Distance</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="230"/>
+        <location filename="../advancebuttondialog.ui" line="230"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="237"/>
+        <location filename="../advancebuttondialog.ui" line="237"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="244"/>
+        <location filename="../advancebuttondialog.ui" line="244"/>
         <source>Clear All</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="290"/>
+        <location filename="../advancebuttondialog.ui" line="290"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Temps :</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="303"/>
+        <location filename="../advancebuttondialog.ui" line="303"/>
         <source>0.01s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,01s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="333"/>
+        <location filename="../advancebuttondialog.ui" line="333"/>
         <source>0s</source>
-        <translation type="unfinished"></translation>
+        <translation>0s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="338"/>
+        <location filename="../advancebuttondialog.ui" line="338"/>
         <source>1s</source>
-        <translation type="unfinished"></translation>
+        <translation>1s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="343"/>
+        <location filename="../advancebuttondialog.ui" line="343"/>
         <source>2s</source>
-        <translation type="unfinished"></translation>
+        <translation>2s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="348"/>
+        <location filename="../advancebuttondialog.ui" line="348"/>
         <source>3s</source>
-        <translation type="unfinished"></translation>
+        <translation>3s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="353"/>
+        <location filename="../advancebuttondialog.ui" line="353"/>
         <source>4s</source>
-        <translation type="unfinished"></translation>
+        <translation>4s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="358"/>
+        <location filename="../advancebuttondialog.ui" line="358"/>
         <source>5s</source>
-        <translation type="unfinished"></translation>
+        <translation>5s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="363"/>
+        <location filename="../advancebuttondialog.ui" line="363"/>
         <source>6s</source>
-        <translation type="unfinished"></translation>
+        <translation>6s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="368"/>
+        <location filename="../advancebuttondialog.ui" line="368"/>
         <source>7s</source>
-        <translation type="unfinished"></translation>
+        <translation>7s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="373"/>
+        <location filename="../advancebuttondialog.ui" line="373"/>
         <source>8s</source>
-        <translation type="unfinished"></translation>
+        <translation>8s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="378"/>
+        <location filename="../advancebuttondialog.ui" line="378"/>
         <source>9s</source>
-        <translation type="unfinished"></translation>
+        <translation>9s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="383"/>
+        <location filename="../advancebuttondialog.ui" line="383"/>
         <source>10s</source>
-        <translation type="unfinished"></translation>
+        <translation>10s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="423"/>
+        <location filename="../advancebuttondialog.ui" line="423"/>
         <source>0.0s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,0s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="428"/>
+        <location filename="../advancebuttondialog.ui" line="428"/>
         <source>0.1s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,1s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="433"/>
+        <location filename="../advancebuttondialog.ui" line="433"/>
         <source>0.2s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,2s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="438"/>
+        <location filename="../advancebuttondialog.ui" line="438"/>
         <source>0.3s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,3s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="443"/>
+        <location filename="../advancebuttondialog.ui" line="443"/>
         <source>0.4s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,4s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="448"/>
+        <location filename="../advancebuttondialog.ui" line="448"/>
         <source>0.5s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,5s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="453"/>
+        <location filename="../advancebuttondialog.ui" line="453"/>
         <source>0.6s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,6s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="458"/>
+        <location filename="../advancebuttondialog.ui" line="458"/>
         <source>0.7s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,7s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="463"/>
+        <location filename="../advancebuttondialog.ui" line="463"/>
         <source>0.8s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,8s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="468"/>
+        <location filename="../advancebuttondialog.ui" line="468"/>
         <source>0.9s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,9s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="507"/>
+        <location filename="../advancebuttondialog.ui" line="507"/>
         <source>Distance: </source>
-        <translation type="unfinished"></translation>
+        <translation>Distance :</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="520"/>
+        <location filename="../advancebuttondialog.ui" line="520"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="569"/>
-        <location filename="../../../advancebuttondialog.ui" line="616"/>
-        <location filename="../../../advancebuttondialog.ui" line="796"/>
+        <location filename="../advancebuttondialog.ui" line="569"/>
+        <location filename="../advancebuttondialog.ui" line="616"/>
+        <location filename="../advancebuttondialog.ui" line="796"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="674"/>
+        <location filename="../advancebuttondialog.ui" line="674"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalle :</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="699"/>
+        <location filename="../advancebuttondialog.ui" line="699"/>
         <source>0.10s</source>
-        <translation type="unfinished"></translation>
+        <translation>0,10s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="766"/>
+        <location filename="../advancebuttondialog.ui" line="766"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taux :</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="773"/>
+        <location filename="../advancebuttondialog.ui" line="773"/>
         <source>10.0/s</source>
-        <translation type="unfinished"></translation>
+        <translation>10,0/s</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="810"/>
+        <location filename="../advancebuttondialog.ui" line="810"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactivé</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="815"/>
+        <location filename="../advancebuttondialog.ui" line="815"/>
         <source>Select Set 1 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°1 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="820"/>
+        <location filename="../advancebuttondialog.ui" line="820"/>
         <source>Select Set 1 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°1 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="825"/>
+        <location filename="../advancebuttondialog.ui" line="825"/>
         <source>Select Set 1 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°1 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="830"/>
+        <location filename="../advancebuttondialog.ui" line="830"/>
         <source>Select Set 2 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°2 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="835"/>
+        <location filename="../advancebuttondialog.ui" line="835"/>
         <source>Select Set 2 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°2 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="840"/>
+        <location filename="../advancebuttondialog.ui" line="840"/>
         <source>Select Set 2 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°2 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="845"/>
+        <location filename="../advancebuttondialog.ui" line="845"/>
         <source>Select Set 3 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°3 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="850"/>
+        <location filename="../advancebuttondialog.ui" line="850"/>
         <source>Select Set 3 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°3 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="855"/>
+        <location filename="../advancebuttondialog.ui" line="855"/>
         <source>Select Set 3 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°3 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="860"/>
+        <location filename="../advancebuttondialog.ui" line="860"/>
         <source>Select Set 4 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°4 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="865"/>
+        <location filename="../advancebuttondialog.ui" line="865"/>
         <source>Select Set 4 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°4 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="870"/>
+        <location filename="../advancebuttondialog.ui" line="870"/>
         <source>Select Set 4 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°4 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="875"/>
+        <location filename="../advancebuttondialog.ui" line="875"/>
         <source>Select Set 5 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°5 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="880"/>
+        <location filename="../advancebuttondialog.ui" line="880"/>
         <source>Select Set 5 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°5 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="885"/>
+        <location filename="../advancebuttondialog.ui" line="885"/>
         <source>Select Set 5 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°5 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="890"/>
+        <location filename="../advancebuttondialog.ui" line="890"/>
         <source>Select Set 6 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°6 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="895"/>
+        <location filename="../advancebuttondialog.ui" line="895"/>
         <source>Select Set 6 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°6 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="900"/>
+        <location filename="../advancebuttondialog.ui" line="900"/>
         <source>Select Set 6 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°6 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="905"/>
+        <location filename="../advancebuttondialog.ui" line="905"/>
         <source>Select Set 7 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°7 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="910"/>
+        <location filename="../advancebuttondialog.ui" line="910"/>
         <source>Select Set 7 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°7 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="915"/>
+        <location filename="../advancebuttondialog.ui" line="915"/>
         <source>Select Set 7 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°7 : Pendant la pression</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="920"/>
+        <location filename="../advancebuttondialog.ui" line="920"/>
         <source>Select Set 8 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°8 : Aller</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="925"/>
+        <location filename="../advancebuttondialog.ui" line="925"/>
         <source>Select Set 8 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°8 : Aller-Retour</translation>
     </message>
     <message>
-        <location filename="../../../advancebuttondialog.ui" line="930"/>
+        <location filename="../advancebuttondialog.ui" line="930"/>
         <source>Select Set 8 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Séléction de la configuration N°8 : Pendant la pression</translation>
     </message>
 </context>
 <context>
     <name>AxisEditDialog</name>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="32"/>
+        <location filename="../axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Axe</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="52"/>
+        <location filename="../axiseditdialog.ui" line="52"/>
         <source>Preset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Préréglage :</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="77"/>
+        <location filename="../axiseditdialog.ui" line="77"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris (Horizontal)</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="82"/>
+        <location filename="../axiseditdialog.ui" line="82"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="87"/>
+        <location filename="../axiseditdialog.ui" line="87"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris (Vertical)</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="92"/>
+        <location filename="../axiseditdialog.ui" line="92"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="97"/>
+        <location filename="../axiseditdialog.ui" line="97"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Flèches : Haut | Bas</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="102"/>
+        <location filename="../axiseditdialog.ui" line="102"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Flèches : Gauche | Droite</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="107"/>
+        <location filename="../axiseditdialog.ui" line="107"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>Touches : W | S</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="112"/>
+        <location filename="../axiseditdialog.ui" line="112"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Touches : A | D </translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="138"/>
+        <location filename="../axiseditdialog.ui" line="138"/>
         <source>Unified Mouse Speeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Unifier les vitesses de la souris</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="161"/>
+        <location filename="../axiseditdialog.ui" line="161"/>
         <source>Change Speeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier les vitesses</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="171"/>
+        <location filename="../axiseditdialog.ui" line="171"/>
         <source>Change Together</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier en même temps</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="189"/>
+        <location filename="../axiseditdialog.ui" line="189"/>
         <source>Horizontal Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse horizontale :</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="244"/>
-        <location filename="../../../axiseditdialog.ui" line="318"/>
+        <location filename="../axiseditdialog.ui" line="244"/>
+        <location filename="../axiseditdialog.ui" line="318"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 20 pps</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="263"/>
+        <location filename="../axiseditdialog.ui" line="263"/>
         <source>Vertical Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse verticale :</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="393"/>
+        <location filename="../axiseditdialog.ui" line="393"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zone morte :</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="400"/>
+        <location filename="../axiseditdialog.ui" line="400"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zone maximale :</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="507"/>
-        <location filename="../../../axiseditdialog.ui" line="542"/>
+        <location filename="../axiseditdialog.ui" line="507"/>
+        <location filename="../axiseditdialog.ui" line="542"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[AUCUNE TOUCHE]</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="524"/>
+        <location filename="../axiseditdialog.ui" line="524"/>
         <source>Negative Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Accélération négative</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="529"/>
+        <location filename="../axiseditdialog.ui" line="529"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="534"/>
+        <location filename="../axiseditdialog.ui" line="534"/>
         <source>Positive Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Accélération positive</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.ui" line="579"/>
+        <location filename="../axiseditdialog.ui" line="579"/>
         <source>Current Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valeur actuelle :</translation>
     </message>
     <message>
-        <location filename="../../../axiseditdialog.cpp" line="20"/>
+        <location filename="../axiseditdialog.cpp" line="20"/>
         <source>Set Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Regler l&apos;Axe %1</translation>
     </message>
 </context>
 <context>
     <name>ButtonEditDialog</name>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="20"/>
+        <location filename="../buttoneditdialog.ui" line="20"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialogue</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="32"/>
+        <location filename="../buttoneditdialog.ui" line="32"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour un nouvel assignement, appuyer sur n&apos;importe quelle touche du clavier ou cliquer sur un bouton de l&apos;onglet clavier ou souris</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="46"/>
+        <location filename="../buttoneditdialog.ui" line="46"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Espace réservé</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="56"/>
+        <location filename="../buttoneditdialog.ui" line="56"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>Pression continue</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="81"/>
+        <location filename="../buttoneditdialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>Mitraillette</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="111"/>
+        <location filename="../buttoneditdialog.ui" line="111"/>
         <source>Current:</source>
-        <translation type="unfinished"></translation>
+        <translation>Actuellement :</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="118"/>
+        <location filename="../buttoneditdialog.ui" line="118"/>
         <source>Slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Emplacements</translation>
     </message>
     <message>
-        <location filename="../../../buttoneditdialog.ui" line="138"/>
+        <location filename="../buttoneditdialog.ui" line="138"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Avancé</translation>
     </message>
 </context>
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../joyaxis.cpp" line="94"/>
+        <location filename="../joyaxis.cpp" line="94"/>
         <source>Axis </source>
-        <translation type="unfinished"></translation>
+        <translation>Axe</translation>
     </message>
 </context>
 <context>
     <name>JoyAxisButton</name>
     <message>
-        <location filename="../../../joyaxisbutton.cpp" line="21"/>
+        <location filename="../joyaxisbutton.cpp" line="21"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagatif</translation>
     </message>
     <message>
-        <location filename="../../../joyaxisbutton.cpp" line="25"/>
+        <location filename="../joyaxisbutton.cpp" line="25"/>
         <source>Positive</source>
-        <translation type="unfinished"></translation>
+        <translation>Positif</translation>
     </message>
     <message>
-        <location filename="../../../joyaxisbutton.cpp" line="29"/>
+        <location filename="../joyaxisbutton.cpp" line="29"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Inconnu</translation>
     </message>
     <message>
-        <location filename="../../../joyaxisbutton.cpp" line="32"/>
+        <location filename="../joyaxisbutton.cpp" line="32"/>
         <source>Axis </source>
-        <translation type="unfinished"></translation>
+        <translation>Axe</translation>
     </message>
     <message>
-        <location filename="../../../joyaxisbutton.cpp" line="33"/>
+        <location filename="../joyaxisbutton.cpp" line="33"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouton</translation>
     </message>
 </context>
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../joybutton.cpp" line="756"/>
+        <location filename="../joybutton.cpp" line="756"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouton</translation>
     </message>
     <message>
-        <location filename="../../../joybutton.cpp" line="776"/>
-        <location filename="../../../joybutton.cpp" line="801"/>
+        <location filename="../joybutton.cpp" line="776"/>
+        <location filename="../joybutton.cpp" line="801"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[AUCUNE TOUCHE]</translation>
     </message>
 </context>
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="63"/>
-        <location filename="../../../joybuttonslot.cpp" line="219"/>
+        <location filename="../joybuttonslot.cpp" line="63"/>
+        <location filename="../joybuttonslot.cpp" line="219"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="66"/>
+        <location filename="../joybuttonslot.cpp" line="66"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="70"/>
+        <location filename="../joybuttonslot.cpp" line="70"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="74"/>
+        <location filename="../joybuttonslot.cpp" line="74"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Gauche</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="78"/>
+        <location filename="../joybuttonslot.cpp" line="78"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Droite</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="227"/>
+        <location filename="../joybuttonslot.cpp" line="227"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="231"/>
+        <location filename="../joybuttonslot.cpp" line="231"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>Maintenir</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="235"/>
+        <location filename="../joybuttonslot.cpp" line="235"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="239"/>
+        <location filename="../joybuttonslot.cpp" line="239"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Distance</translation>
     </message>
     <message>
-        <location filename="../../../joybuttonslot.cpp" line="246"/>
+        <location filename="../joybuttonslot.cpp" line="246"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[AUCUNE TOUCHE]</translation>
     </message>
 </context>
 <context>
     <name>JoyDPadButton</name>
     <message>
-        <location filename="../../../joydpadbutton.cpp" line="20"/>
-        <location filename="../../../joydpadbutton.cpp" line="36"/>
-        <location filename="../../../joydpadbutton.cpp" line="44"/>
+        <location filename="../joydpadbutton.cpp" line="20"/>
+        <location filename="../joydpadbutton.cpp" line="36"/>
+        <location filename="../joydpadbutton.cpp" line="44"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../../../joydpadbutton.cpp" line="24"/>
-        <location filename="../../../joydpadbutton.cpp" line="40"/>
-        <location filename="../../../joydpadbutton.cpp" line="48"/>
+        <location filename="../joydpadbutton.cpp" line="24"/>
+        <location filename="../joydpadbutton.cpp" line="40"/>
+        <location filename="../joydpadbutton.cpp" line="48"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../../../joydpadbutton.cpp" line="28"/>
-        <location filename="../../../joydpadbutton.cpp" line="36"/>
-        <location filename="../../../joydpadbutton.cpp" line="40"/>
-        <location filename="../../../joydpadbutton.cpp" line="44"/>
+        <location filename="../joydpadbutton.cpp" line="28"/>
+        <location filename="../joydpadbutton.cpp" line="36"/>
+        <location filename="../joydpadbutton.cpp" line="40"/>
+        <location filename="../joydpadbutton.cpp" line="44"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Gauche</translation>
     </message>
     <message>
-        <location filename="../../../joydpadbutton.cpp" line="32"/>
-        <location filename="../../../joydpadbutton.cpp" line="48"/>
+        <location filename="../joydpadbutton.cpp" line="32"/>
+        <location filename="../joydpadbutton.cpp" line="48"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Droite</translation>
     </message>
 </context>
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="20"/>
+        <location filename="../joytabwidget.cpp" line="20"/>
         <source>&lt;New&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Nouveau&gt;</translation>
     </message>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="28"/>
+        <location filename="../joytabwidget.cpp" line="28"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="34"/>
+        <location filename="../joytabwidget.cpp" line="34"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="41"/>
+        <location filename="../joytabwidget.cpp" line="41"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="203"/>
+        <location filename="../joytabwidget.cpp" line="203"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="209"/>
+        <location filename="../joytabwidget.cpp" line="209"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir Config</translation>
     </message>
     <message>
-        <location filename="../../../joytabwidget.cpp" line="439"/>
-        <location filename="../../../joytabwidget.cpp" line="513"/>
-        <location filename="../../../joytabwidget.cpp" line="523"/>
+        <location filename="../joytabwidget.cpp" line="439"/>
+        <location filename="../joytabwidget.cpp" line="513"/>
+        <location filename="../joytabwidget.cpp" line="523"/>
         <source>Save Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer Config</translation>
     </message>
 </context>
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../../../joystick.cpp" line="65"/>
+        <location filename="../joystick.cpp" line="65"/>
         <source>Joystick</source>
-        <translation type="unfinished"></translation>
+        <translation>Manette</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../../mainwindow.ui" line="17"/>
+        <location filename="../mainwindow.ui" line="17"/>
         <source>AntiMicro</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="77"/>
+        <location filename="../mainwindow.ui" line="77"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune manette n&apos;a été détéctée.
+ Merci de brancher une manette et de choisir l&apos;option &quot;Mettre à jour les manettes&quot; du menu principal</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="138"/>
+        <location filename="../mainwindow.ui" line="138"/>
         <source>Tab 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Onglet 1</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="156"/>
+        <location filename="../mainwindow.ui" line="156"/>
         <source>&lt;None&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Vide&gt;</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="192"/>
+        <location filename="../mainwindow.ui" line="192"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="211"/>
+        <location filename="../mainwindow.ui" line="211"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="236"/>
+        <location filename="../mainwindow.ui" line="236"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="280"/>
+        <location filename="../mainwindow.ui" line="280"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>Appuyer sur le bouton</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="319"/>
+        <location filename="../mainwindow.ui" line="319"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="329"/>
+        <location filename="../mainwindow.ui" line="329"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="339"/>
+        <location filename="../mainwindow.ui" line="339"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="349"/>
+        <location filename="../mainwindow.ui" line="349"/>
         <source>4</source>
-        <translation type="unfinished"></translation>
+        <translation>4</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="359"/>
+        <location filename="../mainwindow.ui" line="359"/>
         <source>5</source>
-        <translation type="unfinished"></translation>
+        <translation>5</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="369"/>
+        <location filename="../mainwindow.ui" line="369"/>
         <source>6</source>
-        <translation type="unfinished"></translation>
+        <translation>6</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="379"/>
+        <location filename="../mainwindow.ui" line="379"/>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation>7</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="389"/>
+        <location filename="../mainwindow.ui" line="389"/>
         <source>8</source>
-        <translation type="unfinished"></translation>
+        <translation>8</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="444"/>
+        <location filename="../mainwindow.ui" line="444"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="456"/>
+        <location filename="../mainwindow.ui" line="456"/>
         <source>Tab 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Onglet 2</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="479"/>
+        <location filename="../mainwindow.ui" line="479"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="486"/>
+        <location filename="../mainwindow.ui" line="486"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="492"/>
+        <location filename="../mainwindow.ui" line="492"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="511"/>
-        <location filename="../../../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.ui" line="511"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="514"/>
+        <location filename="../mainwindow.ui" line="514"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="519"/>
-        <location filename="../../../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.ui" line="519"/>
+        <location filename="../mainwindow.cpp" line="145"/>
         <source>&amp;Update Joysticks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mettre à jour les manettes</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="522"/>
+        <location filename="../mainwindow.ui" line="522"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="527"/>
-        <location filename="../../../mainwindow.cpp" line="134"/>
+        <location filename="../mainwindow.ui" line="527"/>
+        <location filename="../mainwindow.cpp" line="134"/>
         <source>&amp;Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cacher</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="530"/>
+        <location filename="../mainwindow.ui" line="530"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="535"/>
+        <location filename="../mainwindow.ui" line="535"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="538"/>
+        <location filename="../mainwindow.ui" line="538"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.ui" line="543"/>
+        <location filename="../mainwindow.ui" line="543"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos de Qt</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.cpp" line="65"/>
+        <location filename="../mainwindow.cpp" line="65"/>
         <source>Joystick %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Manette %1</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.cpp" line="123"/>
+        <location filename="../mainwindow.cpp" line="123"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir fichier</translation>
     </message>
     <message>
-        <location filename="../../../mainwindow.cpp" line="138"/>
+        <location filename="../mainwindow.cpp" line="138"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Restaurer</translation>
     </message>
 </context>
 <context>
     <name>SetAxisThrottleDialog</name>
     <message>
-        <location filename="../../../setaxisthrottledialog.ui" line="14"/>
+        <location filename="../setaxisthrottledialog.ui" line="14"/>
         <source>Throttle Change</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer la pression</translation>
     </message>
     <message>
-        <location filename="../../../setaxisthrottledialog.ui" line="20"/>
+        <location filename="../setaxisthrottledialog.ui" line="20"/>
         <source>The throttle setting for Axis %1 has been changed.
 
 Would you like to distribute this throttle change to all sets?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>axes ou axe dans ce cas ?</translatorcomment>
+        <translation>La configuration de l&apos;accélération de l&apos;axe %1 a été modifié.
+
+Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</translation>
     </message>
 </context>
 <context>
     <name>SimpleKeyGrabberButton</name>
     <message>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="51"/>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="97"/>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="157"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="51"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="97"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="157"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="165"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="165"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="171"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="171"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantenir</translation>
     </message>
     <message>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="177"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="177"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../simplekeygrabberbutton.cpp" line="181"/>
+        <location filename="../simplekeygrabberbutton.cpp" line="181"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Distance</translation>
     </message>
 </context>
 <context>
     <name>VirtualKeyboardMouseWidget</name>
     <message>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="35"/>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="79"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="35"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="79"/>
         <source>Change Together</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier en même temps</translation>
     </message>
     <message>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="37"/>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="81"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="37"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="81"/>
         <source>Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Clavier</translation>
     </message>
     <message>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="38"/>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="82"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="38"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="82"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="399"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="399"/>
         <source>Mouse Horiz. Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse horizontale de la souris</translation>
     </message>
     <message>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="415"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="415"/>
         <source>Mouse Vert. Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse veritcale. de la souris</translation>
     </message>
     <message>
-        <location filename="../../../keyboard/virtualkeyboardmousewidget.cpp" line="509"/>
+        <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="509"/>
         <source>NONE</source>
-        <translation type="unfinished"></translation>
+        <translation>VIDE</translation>
     </message>
 </context>
 <context>
     <name>VirtualMousePushButton</name>
     <message>
-        <location filename="../../../keyboard/virtualmousepushbutton.cpp" line="37"/>
+        <location filename="../keyboard/virtualmousepushbutton.cpp" line="37"/>
         <source>INVALID</source>
-        <translation type="unfinished"></translation>
+        <translation>INVALIDE</translation>
     </message>
 </context>
 </TS>
