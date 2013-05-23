@@ -8,6 +8,7 @@
 #include <QListWidget>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <QSystemTrayIcon>
 
 #include <X11/Xlib.h>
 
@@ -19,6 +20,7 @@
 #include "xmlconfigwriter.h"
 #include "common.h"
 #include "advancebuttondialog.h"
+#include "commandlineutility.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,9 +29,11 @@ int main(int argc, char *argv[])
 
     XInitThreads ();
 
-    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
-
     QApplication a(argc, argv);
+    CommandLineUtility cmdutility;
+    QStringList cmdarguments = a.arguments();
+    cmdutility.parseArguments(cmdarguments);
+
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     a.installTranslator(&qtTranslator);
@@ -37,8 +41,22 @@ int main(int argc, char *argv[])
     QTranslator myappTranslator;
     myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/share/antimicro/translations"));
     a.installTranslator(&myappTranslator);
+
+    if (cmdutility.isHelpRequested())
+    {
+        cmdutility.printHelp();
+        return 0;
+    }
+    else if (cmdutility.isVersionRequested())
+    {
+        cmdutility.printVersionString();
+        return 0;
+    }
+
     //Q_INIT_RESOURCE(resources);
     //a.setQuitOnLastWindowClosed(false);
+
+    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
     MainWindow w(joysticks);
 
     QDir configDir (PadderCommon::configPath);
@@ -56,7 +74,10 @@ int main(int argc, char *argv[])
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
 
-    w.show();
+    if (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable())
+    {
+        w.show();
+    }
 
     int app_result = a.exec();
 
