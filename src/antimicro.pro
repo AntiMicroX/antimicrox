@@ -18,29 +18,37 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 target.path = $$INSTALL_PREFIX/bin
 
 desktop.path = $$INSTALL_PREFIX/share/applications
-desktop.files = other/antimicro.desktop
+desktop.files = ../other/antimicro.desktop
 
 deskicon.path = $$INSTALL_PREFIX/share/pixmaps
 deskicon.files = images/antimicro.png
 
-TRANSLATIONS = share/antimicro/translations/antimicro_en.ts \
-    share/antimicro/translations/antimicro_fr.ts
+TRANSLATIONS = ../share/antimicro/translations/antimicro_en.ts \
+    ../share/antimicro/translations/antimicro_fr.ts
 
 programtranslations.path = $$INSTALL_PREFIX/share/antimicro/translations
-programtranslations.files = share/translations/antimicro/antimicro_en.qm \
-    share/translations/antimicro/antimicro_fr.qm
+programtranslations.files = ../share/antimicro/translations/antimicro_en.qm \
+    ../share/antimicro/translations/antimicro_fr.qm
 
 equals(OUT_PWD, $$PWD) {
     updateqm.commands = lrelease $$_PRO_FILE_
+
+    finaltranslations.path = $$programtranslations.path
+    finaltranslations.files = $$programtranslations.files
+
 } else {
+    finaltranslations.path = $$programtranslations.path
+
     for(transfile, TRANSLATIONS): fulltranslations += $$OUT_PWD/$$transfile
 
-    for(qmfile, programtranslations.files): finaltranslations += $$OUT_PWD/$$qmfile
+    for(qmfile, programtranslations.files): finaltranslations.files += $$OUT_PWD/$$qmfile
 
-    updateqm.commands = $(MKDIR) $${OUT_PWD}/share/antimicro/translations && \
-        $(COPY_DIR) $$PWD/share/antimicro/translations $${OUT_PWD}/share/antimicro && \
+    updateqm.commands = $(MKDIR) $${OUT_PWD}/../share/antimicro/translations && \
+        $(COPY_DIR) $$PWD/../share/antimicro/translations $${OUT_PWD}/../share/antimicro && \
         lrelease $$fulltranslations
 }
+
+finaltranslations.CONFIG += no_check_exist
 
 updateqm.target = updateqm
 
@@ -126,9 +134,10 @@ LIBS += -lSDL -lXtst -lX11
 RESOURCES += \
     resources.qrc
 
-INSTALLS += target desktop deskicon programtranslations
+INSTALLS += target desktop deskicon finaltranslations
 
 OTHER_FILES += \
-    gpl.txt \
-    other/antimicro.desktop
+    ../gpl.txt \
+    ../other/antimicro.desktop
 
+QMAKE_CLEAN += $$finaltranslations.files
