@@ -488,7 +488,7 @@ void JoyButton::mouseEvent()
         QTime* mouseInterval = buttonslot->getMouseInterval();
 
         int mousemode = buttonslot->getSlotCode();
-        int mousespeed;
+        int mousespeed = 0;
         int timeElapsed = mouseInterval->elapsed();
 
         if (mousemode == JoyButtonSlot::MouseRight)

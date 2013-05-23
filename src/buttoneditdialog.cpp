@@ -19,7 +19,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
     ui->slotSummaryLabel->setText(button->getSlotsString());
-    setWindowTitle(QString("Set ").append(button->getPartialName()));
+    setWindowTitle(tr("Set").append(" ").append(button->getPartialName()));
 
     ui->toggleCheckBox->setChecked(button->getToggleState());
     ui->turboCheckBox->setChecked(button->isUsingTurbo());

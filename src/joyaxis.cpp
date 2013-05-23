@@ -91,7 +91,7 @@ bool JoyAxis::inDeadZone(int value)
 
 QString JoyAxis::getName()
 {
-    QString label = QString(tr("Axis ")).append(QString::number(getRealJoyIndex()));
+    QString label = QString(tr("Axis")).append(" ").append(QString::number(getRealJoyIndex()));
     label.append(": ");
 
     if (throttle == 0)

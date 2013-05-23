@@ -101,7 +101,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     updateActionTimeLabel();
     changeTurboForSequences();
 
-    setWindowTitle(QString("Advanced: ").append(button->getPartialName()));
+    setWindowTitle(tr("Advanced").append(": ").append(button->getPartialName()));
 
     //populateSetSelectionComboBox();
 
