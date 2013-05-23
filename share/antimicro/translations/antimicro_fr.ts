@@ -1199,7 +1199,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../axiseditdialog.cpp" line="20"/>
         <source>Set Axis %1</source>
-        <translation>Regler l&apos;Axe %1</translation>
+        <translation>Configurer l&apos;Axe %1</translation>
     </message>
 </context>
 <context>
@@ -1212,7 +1212,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../buttoneditdialog.ui" line="32"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation>Pour un nouvel assignement, appuyer sur n&apos;importe quelle touche du clavier ou cliquer sur un bouton de l&apos;onglet clavier ou souris</translation>
+        <translation>Pour assigner une touche à ce bouton, presser celle-ci ou cliquer sur son équivalent graphique dans les onglets clavier et souris</translation>
     </message>
     <message>
         <location filename="../buttoneditdialog.ui" line="46"/>
@@ -1227,7 +1227,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../buttoneditdialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation>Mitraillette</translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../buttoneditdialog.ui" line="111"/>
@@ -1258,7 +1258,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../joyaxisbutton.cpp" line="21"/>
         <source>Negative</source>
-        <translation>Nagatif</translation>
+        <translation>Négatif</translation>
     </message>
     <message>
         <location filename="../joyaxisbutton.cpp" line="25"/>
@@ -1410,14 +1410,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../joytabwidget.cpp" line="209"/>
         <source>Open Config</source>
-        <translation>Ouvrir Config</translation>
+        <translation>Charger un fichier de configuration</translation>
     </message>
     <message>
         <location filename="../joytabwidget.cpp" line="439"/>
         <location filename="../joytabwidget.cpp" line="513"/>
         <location filename="../joytabwidget.cpp" line="523"/>
         <source>Save Config</source>
-        <translation>Enregistrer Config</translation>
+        <translation>Enregistrer le fichier de configuration</translation>
     </message>
 </context>
 <context>
@@ -1450,7 +1450,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../mainwindow.ui" line="156"/>
         <source>&lt;None&gt;</source>
-        <translation>&lt;Vide&gt;</translation>
+        <translation>&lt;Aucun&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="192"/>
@@ -1606,7 +1606,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../setaxisthrottledialog.ui" line="14"/>
         <source>Throttle Change</source>
-        <translation>Changer la pression</translation>
+        <translation>Modifier l&apos;accélération</translation>
     </message>
     <message>
         <location filename="../setaxisthrottledialog.ui" line="20"/>
@@ -1682,7 +1682,7 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <message>
         <location filename="../keyboard/virtualkeyboardmousewidget.cpp" line="509"/>
         <source>NONE</source>
-        <translation>VIDE</translation>
+        <translation>AUCUNE</translation>
     </message>
 </context>
 <context>
