@@ -52,6 +52,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_18">
      <item>
       <widget class="QCheckBox" name="toggleCheckBox">
+       <property name="toolTip">
+        <string>Enables a key press or release to only occur when a controller button is pressed</string>
+       </property>
        <property name="text">
         <string>Toggle</string>
        </property>
@@ -77,6 +80,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout_16">
        <item>
         <widget class="QCheckBox" name="turboCheckBox">
+         <property name="toolTip">
+          <string>Enables rapid key presses and releases. Turbo controller</string>
+         </property>
          <property name="text">
           <string>Turbo</string>
          </property>

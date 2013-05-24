@@ -185,6 +185,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label_2">
+              <property name="toolTip">
+               <string>Set the horizontal speed used for both axes buttons</string>
+              </property>
               <property name="text">
                <string>Horizontal Speed:</string>
               </property>
@@ -200,6 +203,9 @@
                 <width>0</width>
                 <height>20</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string/>
               </property>
               <property name="wrapping">
                <bool>false</bool>
@@ -259,6 +265,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QLabel" name="label_6">
+              <property name="toolTip">
+               <string>Set the vertical speed for both axes buttons</string>
+              </property>
               <property name="text">
                <string>Vertical Speed:</string>
               </property>
@@ -274,6 +283,9 @@
                 <width>0</width>
                 <height>20</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string/>
               </property>
               <property name="wrapping">
                <bool>false</bool>
@@ -369,6 +381,9 @@
          <width>100</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string>Set the value of the dead zone for an axis</string>
        </property>
        <property name="inputMask">
         <string notr="true"/>
@@ -483,6 +498,9 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>Set the value to use as the limit for an axis. Useful for a defective analog stick</string>
+       </property>
        <property name="inputMask">
         <string notr="true"/>
        </property>
@@ -510,6 +528,9 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_2">
+       <property name="toolTip">
+        <string>Throttle setting that determines the behavior of how to interpret an axis hold or release</string>
+       </property>
        <property name="currentIndex">
         <number>1</number>
        </property>
