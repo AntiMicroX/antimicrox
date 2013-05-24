@@ -12,6 +12,7 @@
 #include <QSettings>
 #include <QHash>
 #include <QStackedWidget>
+#include <QScrollArea>
 
 #include "joystick.h"
 #include "axiseditdialog.h"

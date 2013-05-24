@@ -257,28 +257,43 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
             </item>
             <item>
              <widget class="QStackedWidget" name="stackedWidget_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="currentIndex">
                <number>0</number>
               </property>
               <widget class="QWidget" name="page">
-               <layout class="QGridLayout" name="gridLayout">
-                <item row="0" column="0">
-                 <widget class="QPushButton" name="pushButton">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QScrollArea" name="scrollArea">
+                  <property name="widgetResizable">
+                   <bool>true</bool>
                   </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>PushButton</string>
-                  </property>
+                  <widget class="QWidget" name="scrollAreaWidgetContents">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>662</width>
+                     <height>315</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <layout class="QFormLayout" name="formLayout">
+                    <property name="fieldGrowthPolicy">
+                     <enum>QFormLayout::ExpandingFieldsGrow</enum>
+                    </property>
+                   </layout>
+                  </widget>
                  </widget>
                 </item>
                </layout>

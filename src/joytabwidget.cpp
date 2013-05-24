@@ -47,8 +47,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     verticalLayout->addLayout(configHorizontalLayout);
     verticalLayout->setStretchFactor(configHorizontalLayout, 1);
 
-    QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-
     spacer2 = new QSpacerItem(20, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
     verticalLayout->addItem(spacer2);
 
@@ -62,73 +60,175 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     page = new QWidget();
     page->setObjectName(QString::fromUtf8("page"));
-    gridLayout = new QGridLayout(page);
-    gridLayout->setSpacing(6);
-    gridLayout->setContentsMargins(11, 11, 11, 11);
-    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-    //pushButton = new QPushButton(page);
-    //pushButton->setObjectName(QString::fromUtf8("pushButton"));
-    //sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-    //pushButton->setSizePolicy(sizePolicy);
-    //pushButton->setMinimumSize(QSize(0, 0));
 
-    //gridLayout->addWidget(pushButton, 0, 0, 1, 1);
+    QVBoxLayout *tempVBoxLayout = new QVBoxLayout(page);
+    QScrollArea *scrollArea = new QScrollArea(page);
+    scrollArea->setObjectName(QString::fromUtf8("scrollArea1"));
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //sizePolicy.setHorizontalStretch(0);
+    //sizePolicy.setVerticalStretch(0);
+    scrollArea->setSizePolicy(sizePolicy);
+    scrollArea->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents1 = new QWidget();
+    scrollAreaWidgetContents1->setObjectName(QString::fromUtf8("scrollAreaWidgetContents1"));
+
+    gridLayout = new QGridLayout(scrollAreaWidgetContents1);
+    gridLayout->setSpacing(4);
+    gridLayout->setContentsMargins(6, 6, 6, 6);
+    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+
+    scrollArea->setWidget(scrollAreaWidgetContents1);
+    tempVBoxLayout->addWidget(scrollArea);
     stackedWidget_2->addWidget(page);
 
     page_2 = new QWidget();
     page_2->setObjectName(QString::fromUtf8("page_2"));
-    gridLayout2 = new QGridLayout(page_2);
-    gridLayout2->setSpacing(6);
-    gridLayout2->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_2);
+    QScrollArea *scrollArea2 = new QScrollArea(page_2);
+    scrollArea2->setObjectName(QString::fromUtf8("scrollArea2"));
+    scrollArea2->setSizePolicy(sizePolicy);
+    scrollArea2->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents2 = new QWidget();
+    scrollAreaWidgetContents2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents2"));
+
+    gridLayout2 = new QGridLayout(scrollAreaWidgetContents2);
+    gridLayout->setSpacing(4);
+    gridLayout->setContentsMargins(6, 6, 6, 6);
     gridLayout2->setObjectName(QString::fromUtf8("gridLayout2"));
+
+    scrollArea2->setWidget(scrollAreaWidgetContents2);
+    tempVBoxLayout->addWidget(scrollArea2);
     stackedWidget_2->addWidget(page_2);
+
 
     page_3 = new QWidget();
     page_3->setObjectName(QString::fromUtf8("page_3"));
-    gridLayout3 = new QGridLayout(page_3);
-    gridLayout3->setSpacing(6);
-    gridLayout3->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_3);
+    QScrollArea *scrollArea3 = new QScrollArea(page_3);
+    scrollArea3->setObjectName(QString::fromUtf8("scrollArea3"));
+    scrollArea3->setSizePolicy(sizePolicy);
+    scrollArea3->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents3 = new QWidget();
+    scrollAreaWidgetContents3->setObjectName(QString::fromUtf8("scrollAreaWidgetContents3"));
+
+    gridLayout3 = new QGridLayout(scrollAreaWidgetContents3);
+    gridLayout3->setSpacing(4);
+    gridLayout3->setContentsMargins(6, 6, 6, 5);
     gridLayout3->setObjectName(QString::fromUtf8("gridLayout3"));
+
+    scrollArea3->setWidget(scrollAreaWidgetContents3);
+    tempVBoxLayout->addWidget(scrollArea3);
     stackedWidget_2->addWidget(page_3);
+
 
     page_4 = new QWidget();
     page_4->setObjectName(QString::fromUtf8("page_4"));
-    gridLayout4 = new QGridLayout(page_4);
-    gridLayout4->setSpacing(6);
-    gridLayout4->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_4);
+    QScrollArea *scrollArea4 = new QScrollArea(page_4);
+    scrollArea4->setObjectName(QString::fromUtf8("scrollArea4"));
+    scrollArea4->setSizePolicy(sizePolicy);
+    scrollArea4->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents4 = new QWidget();
+    scrollAreaWidgetContents4->setObjectName(QString::fromUtf8("scrollAreaWidgetContents4"));
+
+    gridLayout4 = new QGridLayout(scrollAreaWidgetContents4);
+    gridLayout4->setSpacing(4);
+    gridLayout4->setContentsMargins(6, 6, 6, 6);
     gridLayout4->setObjectName(QString::fromUtf8("gridLayout4"));
+
+    scrollArea4->setWidget(scrollAreaWidgetContents4);
+    tempVBoxLayout->addWidget(scrollArea4);
     stackedWidget_2->addWidget(page_4);
 
     page_5 = new QWidget();
     page_5->setObjectName(QString::fromUtf8("page_5"));
-    gridLayout5 = new QGridLayout(page_5);
-    gridLayout5->setSpacing(6);
-    gridLayout5->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_5);
+    QScrollArea *scrollArea5 = new QScrollArea(page_5);
+    scrollArea5->setObjectName(QString::fromUtf8("scrollArea5"));
+    scrollArea5->setSizePolicy(sizePolicy);
+    scrollArea5->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents5 = new QWidget();
+    scrollAreaWidgetContents5->setObjectName(QString::fromUtf8("scrollAreaWidgetContents5"));
+
+    gridLayout5 = new QGridLayout(scrollAreaWidgetContents5);
+    gridLayout5->setSpacing(4);
+    gridLayout5->setContentsMargins(6, 6, 6, 6);
     gridLayout5->setObjectName(QString::fromUtf8("gridLayout5"));
+
+    scrollArea5->setWidget(scrollAreaWidgetContents5);
+    tempVBoxLayout->addWidget(scrollArea5);
     stackedWidget_2->addWidget(page_5);
 
     page_6 = new QWidget();
     page_6->setObjectName(QString::fromUtf8("page_6"));
-    gridLayout6 = new QGridLayout(page_6);
-    gridLayout6->setSpacing(6);
-    gridLayout6->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_6);
+    QScrollArea *scrollArea6 = new QScrollArea(page_6);
+    scrollArea6->setObjectName(QString::fromUtf8("scrollArea6"));
+    scrollArea6->setSizePolicy(sizePolicy);
+    scrollArea6->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents6 = new QWidget();
+    scrollAreaWidgetContents6->setObjectName(QString::fromUtf8("scrollAreaWidgetContents6"));
+
+    gridLayout6 = new QGridLayout(scrollAreaWidgetContents6);
+    gridLayout6->setSpacing(4);
+    gridLayout6->setContentsMargins(6, 6, 6, 6);
     gridLayout6->setObjectName(QString::fromUtf8("gridLayout6"));
+
+    scrollArea6->setWidget(scrollAreaWidgetContents6);
+    tempVBoxLayout->addWidget(scrollArea6);
     stackedWidget_2->addWidget(page_6);
 
     page_7 = new QWidget();
     page_7->setObjectName(QString::fromUtf8("page_7"));
-    gridLayout7 = new QGridLayout(page_7);
-    gridLayout7->setSpacing(6);
-    gridLayout7->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_7);
+    QScrollArea *scrollArea7 = new QScrollArea(page_7);
+    scrollArea7->setObjectName(QString::fromUtf8("scrollArea7"));
+    scrollArea7->setSizePolicy(sizePolicy);
+    scrollArea7->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents7 = new QWidget();
+    scrollAreaWidgetContents7->setObjectName(QString::fromUtf8("scrollAreaWidgetContents7"));
+
+    gridLayout7 = new QGridLayout(scrollAreaWidgetContents7);
+    gridLayout7->setSpacing(4);
+    gridLayout7->setContentsMargins(6, 6, 6, 6);
     gridLayout7->setObjectName(QString::fromUtf8("gridLayout7"));
+
+    scrollArea7->setWidget(scrollAreaWidgetContents7);
+    tempVBoxLayout->addWidget(scrollArea7);
     stackedWidget_2->addWidget(page_7);
 
     page_8 = new QWidget();
     page_8->setObjectName(QString::fromUtf8("page_8"));
-    gridLayout8 = new QGridLayout(page_8);
-    gridLayout8->setSpacing(6);
-    gridLayout8->setContentsMargins(11, 11, 11, 11);
+
+    tempVBoxLayout = new QVBoxLayout(page_8);
+    QScrollArea *scrollArea8 = new QScrollArea(page_8);
+    scrollArea8->setObjectName(QString::fromUtf8("scrollArea8"));
+    scrollArea8->setSizePolicy(sizePolicy);
+    scrollArea8->setWidgetResizable(true);
+
+    QWidget *scrollAreaWidgetContents8 = new QWidget();
+    scrollAreaWidgetContents8->setObjectName(QString::fromUtf8("scrollAreaWidgetContents8"));
+
+    gridLayout8 = new QGridLayout(scrollAreaWidgetContents8);
+    gridLayout8->setSpacing(4);
+    gridLayout8->setContentsMargins(6, 6, 6, 6);
     gridLayout8->setObjectName(QString::fromUtf8("gridLayout8"));
+
+    scrollArea8->setWidget(scrollAreaWidgetContents8);
+    tempVBoxLayout->addWidget(scrollArea8);
     stackedWidget_2->addWidget(page_8);
 
     verticalLayout->addWidget(stackedWidget_2);
@@ -352,6 +452,7 @@ void JoyTabWidget::fillButtons()
             JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, this);
             axisWidget->setText(axis->getName());
             axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+            axisWidget->setMinimumHeight(30);
 
             connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
             connect(axis, SIGNAL(throttleChanged()), axisWidget, SLOT(refreshLabel()));
@@ -376,6 +477,7 @@ void JoyTabWidget::fillButtons()
                 dude->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
                 connect (dude, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 dude->setText(dude->text());
+                dude->setMinimumHeight(30);
 
                 if (column > 1)
                 {
@@ -395,6 +497,7 @@ void JoyTabWidget::fillButtons()
             dude->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
             connect (dude, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
             dude->setText(dude->text());
+            dude->setMinimumHeight(30);
 
             if (column > 1)
             {
