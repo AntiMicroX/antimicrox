@@ -98,8 +98,8 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     scrollAreaWidgetContents2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents2"));
 
     gridLayout2 = new QGridLayout(scrollAreaWidgetContents2);
-    gridLayout->setSpacing(4);
-    gridLayout->setContentsMargins(6, 6, 6, 6);
+    gridLayout2->setSpacing(4);
+    gridLayout2->setContentsMargins(6, 6, 6, 6);
     gridLayout2->setObjectName(QString::fromUtf8("gridLayout2"));
 
     scrollArea2->setWidget(scrollAreaWidgetContents2);
@@ -121,7 +121,7 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout3 = new QGridLayout(scrollAreaWidgetContents3);
     gridLayout3->setSpacing(4);
-    gridLayout3->setContentsMargins(6, 6, 6, 5);
+    gridLayout3->setContentsMargins(6, 6, 6, 6);
     gridLayout3->setObjectName(QString::fromUtf8("gridLayout3"));
 
     scrollArea3->setWidget(scrollAreaWidgetContents3);
@@ -237,15 +237,8 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     verticalLayout->addWidget(stackedWidget_2);
 
     verticalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
-
     verticalLayout->addItem(verticalSpacer_3);
 
-    /*gridLayout = new QGridLayout();
-    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-    //QPushButton *testButton = new QPushButton (tr("Push Button"), this);
-    //testButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-    //gridLayout->addWidget(testButton);
-    verticalLayout->addLayout(gridLayout);*/
 
     horizontalLayout_2 = new QHBoxLayout();
     horizontalLayout_2->setSpacing(6);
@@ -305,7 +298,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     resetButton = new QPushButton(tr("Reset"), this);
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
-    //resetButton->setFixedWidth(75);
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     resetButton->setIcon(QIcon::fromTheme("document-revert"));
     verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
