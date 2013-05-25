@@ -143,7 +143,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
               <item>
                <widget class="QComboBox" name="configBox">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -177,7 +177,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
               <item>
                <widget class="QPushButton" name="pushButton_8">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -191,31 +191,41 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                 <property name="text">
                  <string>Load</string>
                 </property>
+                <property name="icon">
+                 <iconset theme="document-open">
+                  <normaloff/>
+                 </iconset>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="pushButton_7">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>0</width>
+                  <width>90</width>
                   <height>0</height>
                  </size>
                 </property>
                 <property name="text">
                  <string>Save</string>
                 </property>
+                <property name="icon">
+                 <iconset theme="document-save">
+                  <normaloff/>
+                 </iconset>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="pushButton_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -234,6 +244,20 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                 </property>
                 <property name="text">
                  <string>Save As</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="document-save-as">
+                  <normaloff/>
+                 </iconset>
+                </property>
+                <property name="autoDefault">
+                 <bool>false</bool>
+                </property>
+                <property name="default">
+                 <bool>false</bool>
+                </property>
+                <property name="flat">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -279,7 +303,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                      <x>0</x>
                      <y>0</y>
                      <width>662</width>
-                     <height>315</height>
+                     <height>313</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -444,7 +468,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
               <item>
                <widget class="QPushButton" name="pushButton_9">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -457,6 +481,11 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                 </property>
                 <property name="text">
                  <string>Reset</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="document-revert">
+                  <normaloff/>
+                 </iconset>
                 </property>
                </widget>
               </item>
@@ -522,6 +551,11 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
    </attribute>
   </widget>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="window-close">
+     <normaloff/>
+    </iconset>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
@@ -546,6 +580,11 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about">
+     <normaloff/>
+    </iconset>
+   </property>
    <property name="text">
     <string>&amp;About</string>
    </property>

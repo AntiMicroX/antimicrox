@@ -13,6 +13,7 @@
 #include <QHash>
 #include <QStackedWidget>
 #include <QScrollArea>
+#include <QIcon>
 
 #include "joystick.h"
 #include "axiseditdialog.h"

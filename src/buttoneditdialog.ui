@@ -26,10 +26,31 @@
    <property name="spacing">
     <number>10</number>
    </property>
+   <property name="leftMargin">
+    <number>8</number>
+   </property>
+   <property name="rightMargin">
+    <number>8</number>
+   </property>
+   <property name="bottomMargin">
+    <number>4</number>
+   </property>
    <item>
     <widget class="QLabel" name="helpAssignLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
      <property name="text">
       <string>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -142,6 +163,11 @@
       <widget class="QPushButton" name="advancedPushButton">
        <property name="text">
         <string>Advanced</string>
+       </property>
+       <property name="icon">
+        <iconset theme="games-config-options">
+         <normaloff/>
+        </iconset>
        </property>
       </widget>
      </item>

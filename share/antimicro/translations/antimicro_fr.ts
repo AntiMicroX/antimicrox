@@ -1241,7 +1241,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="22"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration</translation>
     </message>
 </context>
 <context>
@@ -1671,42 +1671,42 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="315"/>
         <source>Left</source>
-        <translation type="unfinished">Gauche</translation>
+        <translation>Gauche</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="326"/>
         <source>Up</source>
-        <translation type="unfinished">Haut</translation>
+        <translation>Haut</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="347"/>
         <source>Wheel Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Molette bas</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="351"/>
         <source>Wheel Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Molette gauche</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="355"/>
         <source>Wheel Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Molette droite</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="359"/>
         <source>Wheel Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Molette bas</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="367"/>
         <source>Down</source>
-        <translation type="unfinished">Bas</translation>
+        <translation>Bas</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="382"/>
         <source>Right</source>
-        <translation type="unfinished">Droite</translation>
+        <translation>Droite</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="399"/>

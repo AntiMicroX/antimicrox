@@ -20,28 +20,31 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     configBox->addItem(tr("<New>"), "");
 
     configBox->setObjectName(QString::fromUtf8("configBox"));
-    configBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    configBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     configHorizontalLayout->addWidget(configBox);
     spacer1 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     configHorizontalLayout->addItem(spacer1);
 
     loadButton = new QPushButton(tr("Load"), this);
     loadButton->setObjectName(QString::fromUtf8("loadButton"));
-    loadButton->setFixedWidth(100);
-    loadButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    //loadButton->setFixedWidth(100);
+    loadButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    loadButton->setIcon(QIcon::fromTheme("document-open"));
     configHorizontalLayout->addWidget(loadButton);
 
     saveButton = new QPushButton(tr("Save"), this);
     saveButton->setObjectName(QString::fromUtf8("saveButton"));
-    saveButton->setFixedWidth(100);
-    saveButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    //saveButton->setFixedWidth(100);
+    saveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    saveButton->setIcon(QIcon::fromTheme("document-save"));
     configHorizontalLayout->addWidget(saveButton);
     //configHorizontalLayout->setSpacing(-1);
 
     saveAsButton = new QPushButton(tr("Save As"), this);
     saveAsButton->setObjectName(QString::fromUtf8("saveAsButton"));
-    saveAsButton->setFixedWidth(100);
-    saveAsButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    //saveAsButton->setFixedWidth(100);
+    saveAsButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    saveAsButton->setIcon(QIcon::fromTheme("document-save-as"));
     configHorizontalLayout->addWidget(saveAsButton);
 
     verticalLayout->addLayout(configHorizontalLayout);
@@ -302,8 +305,9 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     resetButton = new QPushButton(tr("Reset"), this);
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
-    resetButton->setFixedWidth(75);
-    resetButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    //resetButton->setFixedWidth(75);
+    resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    resetButton->setIcon(QIcon::fromTheme("document-revert"));
     verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
 
     fileDialog = new QFileDialog(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
