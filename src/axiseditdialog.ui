@@ -186,7 +186,7 @@
             <item>
              <widget class="QLabel" name="label_2">
               <property name="toolTip">
-               <string>Set the horizontal speed used for both axes buttons</string>
+               <string>Set the horizontal speed used for both axes buttons.</string>
               </property>
               <property name="text">
                <string>Horizontal Speed:</string>
@@ -266,7 +266,7 @@
             <item>
              <widget class="QLabel" name="label_6">
               <property name="toolTip">
-               <string>Set the vertical speed for both axes buttons</string>
+               <string>Set the vertical speed for both axes buttons.</string>
               </property>
               <property name="text">
                <string>Vertical Speed:</string>
@@ -383,7 +383,7 @@
         </size>
        </property>
        <property name="toolTip">
-        <string>Set the value of the dead zone for an axis</string>
+        <string>Set the value of the dead zone for an axis.</string>
        </property>
        <property name="inputMask">
         <string notr="true"/>
@@ -499,7 +499,7 @@
         </size>
        </property>
        <property name="toolTip">
-        <string>Set the value to use as the limit for an axis. Useful for a defective analog stick</string>
+        <string>Set the value to use as the limit for an axis. Useful for a defective analog stick.</string>
        </property>
        <property name="inputMask">
         <string notr="true"/>
@@ -529,7 +529,7 @@
      <item>
       <widget class="QComboBox" name="comboBox_2">
        <property name="toolTip">
-        <string>Throttle setting that determines the behavior of how to interpret an axis hold or release</string>
+        <string>Throttle setting that determines the behavior of how to interpret an axis hold or release.</string>
        </property>
        <property name="currentIndex">
         <number>1</number>

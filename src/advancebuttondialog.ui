@@ -195,7 +195,7 @@
              <item row="0" column="0">
               <widget class="QPushButton" name="pausePushButton">
                <property name="toolTip">
-                <string>Insert a pause that occurs in between key presses</string>
+                <string>Insert a pause that occurs in between key presses.</string>
                </property>
                <property name="text">
                 <string>Pause</string>
@@ -215,7 +215,7 @@
              <item row="1" column="1">
               <widget class="QPushButton" name="distancePushButton">
                <property name="toolTip">
-                <string>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone</string>
+                <string>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</string>
                </property>
                <property name="text">
                 <string>Distance</string>
@@ -245,7 +245,7 @@
              <item>
               <widget class="QPushButton" name="insertSlotButton">
                <property name="toolTip">
-                <string>Insert a new blank slot</string>
+                <string>Insert a new blank slot.</string>
                </property>
                <property name="text">
                 <string>Insert</string>
@@ -260,7 +260,7 @@
              <item>
               <widget class="QPushButton" name="deleteSlotButton">
                <property name="toolTip">
-                <string>Delete a slot</string>
+                <string>Delete a slot.</string>
                </property>
                <property name="text">
                 <string>Delete</string>
@@ -275,7 +275,7 @@
              <item>
               <widget class="QPushButton" name="clearAllPushButton">
                <property name="toolTip">
-                <string>Clear all currently assigned slots</string>
+                <string>Clear all currently assigned slots.</string>
                </property>
                <property name="text">
                 <string>Clear All</string>
@@ -329,7 +329,7 @@
                 </font>
                </property>
                <property name="toolTip">
-                <string>Specify the duration of an inserted Pause or Hold slot</string>
+                <string>Specify the duration of an inserted Pause or Hold slot.</string>
                </property>
                <property name="text">
                 <string>Time:</string>
@@ -549,7 +549,7 @@
               </font>
              </property>
              <property name="toolTip">
-              <string>Specify the range past an axis dead zone in which a sequence of actions will execute</string>
+              <string>Specify the range past an axis dead zone in which a sequence of actions will execute.</string>
              </property>
              <property name="text">
               <string>Distance: </string>
