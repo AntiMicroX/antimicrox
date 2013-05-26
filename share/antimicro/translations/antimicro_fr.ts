@@ -2016,14 +2016,14 @@ R</source>
         <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="259"/>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="323"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="263"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="327"/>
         <source>Left</source>
         <translation>Gauche</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="258"/>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="334"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="262"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="338"/>
         <source>Up</source>
         <translation>Haut</translation>
     </message>
@@ -2263,269 +2263,274 @@ R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="195"/>
-        <source>z</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="196"/>
-        <source>x</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="197"/>
-        <source>c</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="198"/>
-        <source>v</source>
+        <source>less</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="199"/>
-        <source>b</source>
+        <source>z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="200"/>
-        <source>n</source>
+        <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="201"/>
-        <source>m</source>
+        <source>c</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="202"/>
-        <source>comma</source>
+        <source>v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="203"/>
-        <source>period</source>
+        <source>b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="204"/>
-        <source>slash</source>
+        <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="205"/>
+        <source>m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="206"/>
+        <source>comma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="207"/>
+        <source>period</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="208"/>
+        <source>slash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="209"/>
         <source>Shift_R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="210"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="214"/>
         <source>Control_L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="211"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="215"/>
         <source>Super_L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="212"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="216"/>
         <source>Alt_L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="213"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="217"/>
         <source>space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="214"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="218"/>
         <source>Alt_R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="215"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="219"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="216"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="220"/>
         <source>Control_R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="238"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="242"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="239"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="243"/>
         <source>Scroll_Lock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="240"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="244"/>
         <source>Pause</source>
         <translation type="unfinished">Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="246"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="250"/>
         <source>Insert</source>
         <translation type="unfinished">Insérer</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="247"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="251"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="248"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="252"/>
         <source>Prior</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="249"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="253"/>
         <source>Delete</source>
         <translation type="unfinished">Effacer</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="250"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="254"/>
         <source>End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="251"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="255"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="278"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="282"/>
         <source>Num_Lock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="279"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="283"/>
         <source>KP_Divide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="280"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="284"/>
         <source>KP_Multiply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="281"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="285"/>
         <source>KP_Subtract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="286"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="290"/>
         <source>KP_7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="287"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="291"/>
         <source>KP_8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="288"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="292"/>
         <source>KP_9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="289"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="293"/>
         <source>KP_4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="290"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="294"/>
         <source>KP_5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="291"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="295"/>
         <source>KP_6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="293"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="297"/>
         <source>KP_Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="300"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="304"/>
         <source>KP_1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="301"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="305"/>
         <source>KP_2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="302"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="306"/>
         <source>KP_3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="303"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="307"/>
         <source>KP_0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="304"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="308"/>
         <source>KP_Decimal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="306"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="310"/>
         <source>KP_Enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="355"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="359"/>
         <source>Wheel Up</source>
         <translation>Molette bas</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="359"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="363"/>
         <source>Wheel Left</source>
         <translation>Molette gauche</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="363"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="367"/>
         <source>Wheel Right</source>
         <translation>Molette droite</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="367"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="371"/>
         <source>Wheel Down</source>
         <translation>Molette bas</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="260"/>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="375"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="264"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="379"/>
         <source>Down</source>
         <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="261"/>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="390"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="265"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="394"/>
         <source>Right</source>
         <translation>Droite</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="407"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="411"/>
         <source>Mouse Horiz. Speed</source>
         <translation>Vitesse horizontale de la souris</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="423"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="427"/>
         <source>Mouse Vert. Speed</source>
         <translation>Vitesse veritcale. de la souris</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="517"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="521"/>
         <source>NONE</source>
         <translation>AUCUNE</translation>
     </message>
