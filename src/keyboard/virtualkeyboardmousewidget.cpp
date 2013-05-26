@@ -192,6 +192,10 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     tempHBoxLayout->addWidget(createNewKey(tr("Shift_L")));
+    if (QLocale::system().language() == QLocale::French)
+    {
+        tempHBoxLayout->addWidget(createNewKey(tr("less")));
+    }
     tempHBoxLayout->addWidget(createNewKey(tr("z")));
     tempHBoxLayout->addWidget(createNewKey(tr("x")));
     tempHBoxLayout->addWidget(createNewKey(tr("c")));
