@@ -3,6 +3,7 @@
 #include <QSizePolicy>
 #include <QSpacerItem>
 #include <QListIterator>
+#include <QLocale>
 
 #include "virtualkeyboardmousewidget.h"
 #include "event.h"
@@ -159,7 +160,10 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey(tr("p")));
     tempHBoxLayout->addWidget(createNewKey(tr("bracketleft")));
     tempHBoxLayout->addWidget(createNewKey(tr("bracketright")));
-    tempHBoxLayout->addWidget(createNewKey(tr("backslash")));
+    if (QLocale::system().language() != QLocale::French)
+    {
+        tempHBoxLayout->addWidget(createNewKey(tr("backslash")));
+    }
     tempMiddleVLayout->addLayout(tempHBoxLayout);
 
     tempHBoxLayout = new QHBoxLayout();
@@ -176,6 +180,10 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey(tr("l")));
     tempHBoxLayout->addWidget(createNewKey(tr("semicolon")));
     tempHBoxLayout->addWidget(createNewKey(tr("apostrophe")));
+    if (QLocale::system().language() == QLocale::French)
+    {
+        tempHBoxLayout->addWidget(createNewKey(tr("asterisk")));
+    }
     tempMiddleVLayout->addLayout(tempHBoxLayout);
     tempMiddleHLayout->addLayout(tempMiddleVLayout);
     tempMiddleHLayout->addWidget(createNewKey(tr("Return")));
