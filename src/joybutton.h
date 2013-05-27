@@ -85,6 +85,8 @@ protected:
     QTimer pauseTimer;
     QTimer holdTimer;
     QTimer pauseWaitTimer;
+    QTimer createDeskTimer;
+    QTimer releaseDeskTimer;
     bool isDown;
     bool useTurbo;
     QList<JoyButtonSlot*> assignments;
