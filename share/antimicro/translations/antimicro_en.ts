@@ -1344,27 +1344,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="52"/>
-        <source>-h, --help   </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="52"/>
         <source>Print help text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="53"/>
-        <source>-v, --version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="53"/>
         <source>Print version information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="54"/>
-        <source>--tray       </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1412,13 +1397,13 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="756"/>
+        <location filename="../../../src/joybutton.cpp" line="770"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="776"/>
-        <location filename="../../../src/joybutton.cpp" line="801"/>
+        <location filename="../../../src/joybutton.cpp" line="790"/>
+        <location filename="../../../src/joybutton.cpp" line="815"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1987,6 +1972,11 @@ N
 T
 E
 R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="106"/>
+        <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

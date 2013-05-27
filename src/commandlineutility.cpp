@@ -49,9 +49,9 @@ void CommandLineUtility::printHelp()
     out << tr("Usage: antimicro [option]") << endl;
     out << endl;
     out << tr("Options") << ":" << endl;
-    out << tr("-h, --help   ") << " " << tr("Print help text") << endl;
-    out << tr("-v, --version") << " " << tr("Print version information") << endl;
-    out << tr("--tray       ") << " " << tr("Launch program in system tray only") << endl;
+    out << "-h, --help   " << " " << tr("Print help text") << endl;
+    out << "-v, --version" << " " << tr("Print version information") << endl;
+    out << "--tray       " << " " << tr("Launch program in system tray only") << endl;
 }
 
 bool CommandLineUtility::isHelpRequested()
