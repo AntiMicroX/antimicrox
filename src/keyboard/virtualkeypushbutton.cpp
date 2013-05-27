@@ -104,5 +104,6 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("KP_Decimal", tr("."));
         knownAliases.insert("asterisk", tr("*"));
         knownAliases.insert("less", tr("<"));
+        knownAliases.insert("colon", tr(":"));
     }
 }

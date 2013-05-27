@@ -1982,6 +1982,11 @@ R</source>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="107"/>
+        <source>:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VirtualKeyboardMouseWidget</name>

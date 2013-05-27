@@ -1349,32 +1349,32 @@ interpret an axis hold or release.</source>
         <location filename="../../../src/commandlineutility.cpp" line="50"/>
         <location filename="../../../src/commandlineutility.cpp" line="72"/>
         <source>AntiMicro version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version d&apos;AntiMicro</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="51"/>
         <source>Usage: antimicro [option]</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisation : antimicro [option]</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="53"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="54"/>
         <source>Print help text</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;aide</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="55"/>
         <source>Print version information</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la version</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="56"/>
         <source>Launch program in system tray only</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer le programme uniquement dans le systray</translation>
     </message>
 </context>
 <context>
@@ -1991,6 +1991,11 @@ E</translation>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="106"/>
         <source>&lt;</source>
         <translation>&lt;</translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="107"/>
+        <source>:</source>
+        <translation>:</translation>
     </message>
 </context>
 <context>
