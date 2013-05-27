@@ -14,6 +14,8 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)
 {
     launchInTray = false;
+    helpRequest = false;
+    versionRequest = false;
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)

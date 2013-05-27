@@ -240,6 +240,10 @@ QString JoyButtonSlot::getSlotString()
             temp.append(" ").append(QString::number(deviceCode).append("%"));
             newlabel.append(temp);
         }
+        else if (mode == JoyButtonSlot::JoyRelease)
+        {
+            newlabel.append(tr("Release")).append(" ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+        }
     }
     else
     {

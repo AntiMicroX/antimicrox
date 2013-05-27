@@ -115,6 +115,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->holdPushButton, SIGNAL(clicked()), this, SLOT(insertHoldSlot()));
     connect(ui->cyclePushButton, SIGNAL(clicked()), this, SLOT(insertCycleSlot()));
     connect(ui->distancePushButton, SIGNAL(clicked()), this, SLOT(insertDistanceSlot()));
+    connect(ui->releasePushButton, SIGNAL(clicked()), this, SLOT(insertReleaseSlot()));
 
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionMillisecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
@@ -273,6 +274,17 @@ void AdvanceButtonDialog::insertPauseSlot()
     if (actionTime > 0)
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
+        updateSlotsScrollArea(actionTime);
+    }
+}
+
+void AdvanceButtonDialog::insertReleaseSlot()
+{
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    int actionTime = actionTimeConvert();
+    if (actionTime > 0)
+    {
+        tempbutton->setValue(actionTime, JoyButtonSlot::JoyRelease);
         updateSlotsScrollArea(actionTime);
     }
 }

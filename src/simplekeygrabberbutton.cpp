@@ -148,40 +148,8 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
 {
     buttonslot.setSlotCode(value);
     buttonslot.setSlotMode(mode);
-    if (buttonslot.getSlotMode() == JoyButtonSlot::JoyKeyboard)
-    {
-        setText(keycodeToKey(value).toUpper());
-    }
-    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyMouseButton)
-    {
-        setText(QString(tr("Mouse")).append(" ").append(QString::number(value)));
-    }
-    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyMouseMovement)
-    {
-        setText(buttonslot.movementString());
-    }
-    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyPause)
-    {
-        QString temp(tr("Pause"));
-        temp.append(" ").append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
-        setText(temp);
-    }
-    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyHold)
-    {
-        QString temp(tr("Hold"));
-        temp.append(" ").append(QString::number((buttonslot.getSlotCode() / 1000.0), 'g', 3));
-        setText(temp);
-    }
-    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyCycle)
-    {
-        setText(tr("Cycle"));
-    }
-    else if (buttonslot.getSlotMode() == JoyButtonSlot::JoyDistance)
-    {
-        QString temp(tr("Distance"));
-        temp.append(" ").append(QString::number(buttonslot.getSlotCode())).append("%");
-        setText(temp);
-    }
+
+    setText(buttonslot.getSlotString());
 }
 
 JoyButtonSlot* SimpleKeyGrabberButton::getValue()

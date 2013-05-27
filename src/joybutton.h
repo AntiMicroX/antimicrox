@@ -62,6 +62,7 @@ public:
 
     bool containsSequence();
     bool containsDistanceSlots();
+    bool containsReleaseSlots();
 
     virtual double getDistanceFromDeadZone();
 
@@ -71,6 +72,7 @@ protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
     bool distanceTempEvent();
     void clearAssignedSlots();
+    void releaseSlotEvent();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -148,6 +150,8 @@ private slots:
     virtual void mouseEvent();
     void createDeskEvent();
     void releaseDeskEvent(bool skipsetchange=false);
+    void releaseActiveSlots();
+    void activateSlots();
     void waitForDeskEvent();
     void waitForReleaseDeskEvent();
     void pauseEvent();

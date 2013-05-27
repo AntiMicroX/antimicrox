@@ -324,7 +324,8 @@ bool JoyButton::distanceTempEvent()
                     holdTimer.stop();
 
                     // Release stuff
-                    releaseDeskEvent(true);
+                    releaseActiveSlots();
+                    //releaseDeskEvent(true);
                     currentPause = currentHold = 0;
 
                     slotiter->toFront();
@@ -347,7 +348,8 @@ bool JoyButton::distanceTempEvent()
                     holdTimer.stop();
 
                     // Release stuff
-                    releaseDeskEvent(true);
+                    releaseActiveSlots();
+                    //releaseDeskEvent(true);
                     currentPause = currentHold = 0;
 
                     slotiter->toFront();
@@ -372,7 +374,8 @@ bool JoyButton::distanceTempEvent()
                     holdTimer.stop();
 
                     // Release stuff
-                    releaseDeskEvent(true);
+                    releaseActiveSlots();
+                    //releaseDeskEvent(true);
                     currentPause = currentHold = 0;
 
                     slotiter->toFront();
@@ -403,63 +406,17 @@ void JoyButton::createDeskEvent()
     {
         slotiter = new QListIterator<JoyButtonSlot*> (assignments);
         distanceTempEvent();
-        quitEvent = false;
     }
     else if (!slotiter->hasPrevious())
     {
         distanceTempEvent();
-        quitEvent = false;
     }
     else if (currentCycle)
     {
-        quitEvent = false;
         currentCycle = 0;
     }
 
-    bool exit = false;
-
-    while (slotiter->hasNext() && !exit)
-    {
-        JoyButtonSlot *slot = slotiter->next();
-        int tempcode = slot->getSlotCode();
-        JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-
-        if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
-        {
-            sendevent(tempcode, true, mode);
-            activeSlots.append(slot);
-        }
-        else if (mode == JoyButtonSlot::JoyMouseMovement)
-        {
-            slot->getMouseInterval()->restart();
-            currentMouseEvent = slot;
-            activeSlots.append(slot);
-            mouseEvent();
-            currentMouseEvent = 0;
-        }
-        else if (mode == JoyButtonSlot::JoyPause)
-        {
-            currentPause = slot;
-            pauseHold.restart();
-            pauseTimer.start(0);
-            exit = true;
-        }
-        else if (mode == JoyButtonSlot::JoyHold)
-        {
-            currentHold = slot;
-            holdTimer.start(0);
-            exit = true;
-        }
-        else if (mode == JoyButtonSlot::JoyCycle)
-        {
-            currentCycle = slot;
-            exit = true;
-        }
-        else if (mode == JoyButtonSlot::JoyDistance)
-        {
-            exit = true;
-        }
-    }
+    activateSlots();
 
     if (currentCycle)
     {
@@ -483,6 +440,61 @@ void JoyButton::createDeskEvent()
     }
 
     buttonMutex.unlock();
+}
+
+void JoyButton::activateSlots()
+{
+    if (slotiter)
+    {
+        bool exit = false;
+
+        while (slotiter->hasNext() && !exit)
+        {
+            JoyButtonSlot *slot = slotiter->next();
+            int tempcode = slot->getSlotCode();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+
+            if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
+            {
+                sendevent(tempcode, true, mode);
+                activeSlots.append(slot);
+            }
+            else if (mode == JoyButtonSlot::JoyMouseMovement)
+            {
+                slot->getMouseInterval()->restart();
+                currentMouseEvent = slot;
+                activeSlots.append(slot);
+                mouseEvent();
+                currentMouseEvent = 0;
+            }
+            else if (mode == JoyButtonSlot::JoyPause)
+            {
+                currentPause = slot;
+                pauseHold.restart();
+                pauseTimer.start(0);
+                exit = true;
+            }
+            else if (mode == JoyButtonSlot::JoyHold)
+            {
+                currentHold = slot;
+                holdTimer.start(0);
+                exit = true;
+            }
+            else if (mode == JoyButtonSlot::JoyCycle)
+            {
+                currentCycle = slot;
+                exit = true;
+            }
+            else if (mode == JoyButtonSlot::JoyDistance)
+            {
+                exit = true;
+            }
+            else if (mode == JoyButtonSlot::JoyRelease)
+            {
+                exit = true;
+            }
+        }
+    }
 }
 
 void JoyButton::mouseEvent()
@@ -854,7 +866,8 @@ void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
     {
         if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
             slot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            slot->getSlotMode() == JoyButtonSlot::JoyDistance
+            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
+            slot->getSlotMode() == JoyButtonSlot::JoyRelease
            )
         {
             setUseTurbo(false);
@@ -912,7 +925,8 @@ void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInput
 
         if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
             slot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            slot->getSlotMode() == JoyButtonSlot::JoyDistance
+            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
+            slot->getSlotMode() == JoyButtonSlot::JoyRelease
            )
         {
             setUseTurbo(false);
@@ -1024,29 +1038,14 @@ void JoyButton::pauseEvent()
     {
         if (pauseHold.elapsed() > 100)
         {
-            QListIterator<JoyButtonSlot*> iter(activeSlots);
-            while (iter.hasNext())
-            {
-                JoyButtonSlot *slot = iter.next();
-                int tempcode = slot->getSlotCode();
-                JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-                if (mode == JoyButtonSlot::JoyKeyboard)
-                {
-                    sendevent(tempcode, false, mode);
-                }
-            }
-
-            activeSlots.clear();
-            //QTimer::singleShot(0, this, SLOT(pauseWaitEvent()));
+            releaseActiveSlots();
             inpauseHold.restart();
-            //disconnect(&pauseTimer, SIGNAL(timeout()), 0, 0);
             pauseTimer.stop();
             pauseWaitTimer.start(0);
         }
         else
         {
             pauseTimer.start(10);
-            //QTimer::singleShot(10, this, SLOT(pauseEvent()));
         }
     }
     else
@@ -1071,7 +1070,6 @@ void JoyButton::pauseWaitEvent()
                 ignoreSetQueue.clear();
                 isButtonPressedQueue.clear();
 
-                //createDeskEvent();
                 ignoreSetQueue.enqueue(lastIgnoreSetState);
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
@@ -1089,7 +1087,6 @@ void JoyButton::pauseWaitEvent()
         if (inpauseHold.elapsed() < currentPause->getSlotCode())
         {
             pauseWaitTimer.start(10);
-            //QTimer::singleShot(10, this, SLOT(pauseWaitEvent()));
         }
         else
         {
@@ -1227,7 +1224,6 @@ void JoyButton::holdEvent()
         else if (currentlyPressed)
         {
             holdTimer.start(10);
-            //QTimer::singleShot(10, this, SLOT(holdEvent()));
         }
         // Pre-emptive release
         else
@@ -1239,7 +1235,6 @@ void JoyButton::holdEvent()
                 createDeskEvent();
             }
 
-            //disconnect(&holdTimer, SIGNAL(timeout()), 0, 0);
             holdTimer.stop();
         }
     }
@@ -1255,23 +1250,10 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
     quitEvent = false;
 
-    if (!activeSlots.isEmpty())
+    releaseActiveSlots();
+    if (!isButtonPressedQueue.isEmpty())
     {
-        QListIterator<JoyButtonSlot*> iter(activeSlots);
-
-        while (iter.hasNext())
-        {
-            JoyButtonSlot *slot = iter.next();
-            int tempcode = slot->getSlotCode();
-            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-
-            if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
-            {
-                sendevent(tempcode, false, mode);
-            }
-        }
-
-        activeSlots.clear();
+        releaseSlotEvent();
     }
 
     if (!skipsetchange && !isButtonPressedQueue.isEmpty())
@@ -1295,7 +1277,12 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         this->currentDistance = 0;
         slotiter->toFront();
     }
-    else if (slotiter && slotiter->hasNext() && !currentCycle)
+    else if (slotiter && slotiter->hasNext() && currentCycle)
+    {
+        slotiter->toFront();
+        slotiter->findNext(currentCycle);
+    }
+    else if (slotiter && slotiter->hasPrevious() && slotiter->hasNext() && !currentCycle)
     {
         JoyButtonSlot *tempslot = 0;
         bool exit = false;
@@ -1318,17 +1305,19 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
             slotiter->previous();
         }
     }
-    else if (slotiter && slotiter->hasNext() && currentCycle)
-    {
-        slotiter->toFront();
-        slotiter->findNext(currentCycle);
-    }
 
     if (currentCycle)
     {
         previousCycle = currentCycle;
         this->currentDistance = 0;
         currentCycle = 0;
+    }
+    else if (slotiter && slotiter->hasNext() && containsReleaseSlots())
+    {
+        currentCycle = 0;
+        previousCycle = 0;
+        this->currentDistance = 0;
+        slotiter->toFront();
     }
 
     quitEvent = true;
@@ -1528,4 +1517,90 @@ void JoyButton::clearSlotsEventReset()
     currentMouseEvent = 0;
 
     isKeyPressed = isButtonPressed = false;
+}
+
+void JoyButton::releaseActiveSlots()
+{
+    if (!activeSlots.isEmpty())
+    {
+        QListIterator<JoyButtonSlot*> iter(activeSlots);
+
+        while (iter.hasNext())
+        {
+            JoyButtonSlot *slot = iter.next();
+            int tempcode = slot->getSlotCode();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+
+            if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
+            {
+                sendevent(tempcode, false, mode);
+            }
+        }
+
+        activeSlots.clear();
+    }
+}
+
+bool JoyButton::containsReleaseSlots()
+{
+    bool result = false;
+    QListIterator<JoyButtonSlot*> iter(assignments);
+    while (iter.hasNext())
+    {
+        JoyButtonSlot *slot = iter.next();
+        if (slot->getSlotMode() == JoyButtonSlot::JoyRelease)
+        {
+            result = true;
+            iter.toBack();
+        }
+    }
+
+    return result;
+}
+
+void JoyButton::releaseSlotEvent()
+{
+    JoyButtonSlot *temp = 0;
+
+    int timeElapsed = buttonHold.elapsed();
+    int tempElapsed = 0;
+
+    if (containsReleaseSlots())
+    {
+        QListIterator<JoyButtonSlot*> iter(assignments);
+        if (previousCycle)
+        {
+            iter.findNext(previousCycle);
+        }
+
+        while (iter.hasNext())
+        {
+            JoyButtonSlot *currentSlot = iter.next();
+            int tempcode = currentSlot->getSlotCode();
+            JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
+            if (mode == JoyButtonSlot::JoyRelease)
+            {
+                tempElapsed += tempcode;
+                if (tempElapsed <= timeElapsed)
+                {
+                    temp = currentSlot;
+                    iter.toBack();
+                }
+            }
+            // Reset tempDistance
+            else if (mode == JoyButtonSlot::JoyCycle)
+            {
+                tempElapsed = 0;
+                iter.toBack();
+            }
+        }
+
+        if (temp && slotiter)
+        {
+            slotiter->toFront();
+            slotiter->findNext(temp);
+            activateSlots();
+            releaseActiveSlots();
+        }
+    }
 }

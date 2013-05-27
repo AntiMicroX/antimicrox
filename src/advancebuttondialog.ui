@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
+    <width>750</width>
     <height>400</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>700</width>
+    <width>750</width>
     <height>400</height>
    </size>
   </property>
@@ -179,7 +179,8 @@
              <item row="0" column="1">
               <widget class="QPushButton" name="holdPushButton">
                <property name="toolTip">
-                <string>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</string>
+                <string>Insert a hold action. Slots after the action will only be
+executed if the button is held past the interval specified.</string>
                </property>
                <property name="statusTip">
                 <string/>
@@ -205,7 +206,9 @@
              <item row="1" column="0">
               <widget class="QPushButton" name="cyclePushButton">
                <property name="toolTip">
-                <string>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</string>
+                <string>Slots past a Cycle action will be executed
+on the next button press. Multiple cycles can be added
+in order to create partitions in a sequence.</string>
                </property>
                <property name="text">
                 <string>Cycle</string>
@@ -215,10 +218,24 @@
              <item row="1" column="1">
               <widget class="QPushButton" name="distancePushButton">
                <property name="toolTip">
-                <string>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</string>
+                <string>Distance action specifies that the slots afterwards
+will only be executed when an axis is moved
+a certain range past the designated dead zone.</string>
                </property>
                <property name="text">
                 <string>Distance</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="releasePushButton">
+               <property name="toolTip">
+                <string>Insert a release action. Slots after the action will only be
+executed after a button release if the button was help
+past the interval specified.</string>
+               </property>
+               <property name="text">
+                <string>Release</string>
                </property>
               </widget>
              </item>

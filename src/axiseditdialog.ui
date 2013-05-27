@@ -499,7 +499,8 @@
         </size>
        </property>
        <property name="toolTip">
-        <string>Set the value to use as the limit for an axis. Useful for a defective analog stick.</string>
+        <string>Set the value to use as the limit for an axis. Useful for a
+defective analog stick.</string>
        </property>
        <property name="inputMask">
         <string notr="true"/>
@@ -529,7 +530,8 @@
      <item>
       <widget class="QComboBox" name="comboBox_2">
        <property name="toolTip">
-        <string>Throttle setting that determines the behavior of how to interpret an axis hold or release.</string>
+        <string>Throttle setting that determines the behavior of how to
+interpret an axis hold or release.</string>
        </property>
        <property name="currentIndex">
         <number>1</number>

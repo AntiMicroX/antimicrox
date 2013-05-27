@@ -759,359 +759,376 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="182"/>
-        <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="191"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="192"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="201"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="202"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="208"/>
-        <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="211"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="214"/>
         <source>Cycle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="221"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="226"/>
         <source>Distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="251"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="268"/>
         <source>Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="266"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="283"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="281"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="298"/>
         <source>Clear All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="335"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="352"/>
         <source>Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="348"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="365"/>
         <source>0.01s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="378"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="395"/>
         <source>0s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="383"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="400"/>
         <source>1s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="388"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="405"/>
         <source>2s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="393"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="410"/>
         <source>3s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="398"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="415"/>
         <source>4s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="403"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="420"/>
         <source>5s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="408"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="425"/>
         <source>6s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="413"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="430"/>
         <source>7s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="418"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="435"/>
         <source>8s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="423"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="440"/>
         <source>9s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="428"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="445"/>
         <source>10s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="468"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="485"/>
         <source>0.0s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="473"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="490"/>
         <source>0.1s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="478"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="495"/>
         <source>0.2s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="483"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="500"/>
         <source>0.3s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="488"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="505"/>
         <source>0.4s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="493"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="510"/>
         <source>0.5s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="498"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="515"/>
         <source>0.6s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="503"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="520"/>
         <source>0.7s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="508"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="525"/>
         <source>0.8s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="513"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="530"/>
         <source>0.9s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="198"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="199"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="218"/>
-        <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
+        <location filename="../../../src/advancebuttondialog.ui" line="182"/>
+        <source>Insert a hold action. Slots after the action will only be
+executed if the button is held past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="248"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="209"/>
+        <source>Slots past a Cycle action will be executed
+on the next button press. Multiple cycles can be added
+in order to create partitions in a sequence.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="221"/>
+        <source>Distance action specifies that the slots afterwards
+will only be executed when an axis is moved
+a certain range past the designated dead zone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="233"/>
+        <source>Insert a release action. Slots after the action will only be
+executed after a button release if the button was help
+past the interval specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="238"/>
+        <source>Release</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="265"/>
         <source>Insert a new blank slot.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="263"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="280"/>
         <source>Delete a slot.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="278"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="295"/>
         <source>Clear all currently assigned slots.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="332"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="349"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="552"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="569"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="555"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="572"/>
         <source>Distance: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="568"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="585"/>
         <source>%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="617"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="664"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="844"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="634"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="681"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="861"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="722"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="739"/>
         <source>Delay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="747"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="764"/>
         <source>0.10s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="814"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="831"/>
         <source>Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="821"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="838"/>
         <source>10.0/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="858"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="875"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="863"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="880"/>
         <source>Select Set 1 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="868"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="885"/>
         <source>Select Set 1 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="873"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="890"/>
         <source>Select Set 1 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="878"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="895"/>
         <source>Select Set 2 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="883"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="900"/>
         <source>Select Set 2 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="888"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="905"/>
         <source>Select Set 2 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="893"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="910"/>
         <source>Select Set 3 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="898"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="915"/>
         <source>Select Set 3 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="903"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="920"/>
         <source>Select Set 3 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="908"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="925"/>
         <source>Select Set 4 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="913"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="930"/>
         <source>Select Set 4 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="918"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="935"/>
         <source>Select Set 4 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="923"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="940"/>
         <source>Select Set 5 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="928"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="945"/>
         <source>Select Set 5 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="933"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="950"/>
         <source>Select Set 5 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="938"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="955"/>
         <source>Select Set 6 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="943"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="960"/>
         <source>Select Set 6 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="948"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="965"/>
         <source>Select Set 6 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="953"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="970"/>
         <source>Select Set 7 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="958"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="975"/>
         <source>Select Set 7 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="963"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="980"/>
         <source>Select Set 7 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="968"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="985"/>
         <source>Select Set 8 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="973"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="990"/>
         <source>Select Set 8 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="978"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="995"/>
         <source>Select Set 8 While Held</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1199,16 +1216,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="502"/>
-        <source>Set the value to use as the limit for an axis. Useful for a defective analog stick.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="532"/>
-        <source>Throttle setting that determines the behavior of how to interpret an axis hold or release.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../../src/axiseditdialog.ui" line="192"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
@@ -1235,28 +1242,40 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="525"/>
-        <location filename="../../../src/axiseditdialog.ui" line="563"/>
+        <location filename="../../../src/axiseditdialog.ui" line="502"/>
+        <source>Set the value to use as the limit for an axis. Useful for a
+defective analog stick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="526"/>
+        <location filename="../../../src/axiseditdialog.ui" line="565"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="545"/>
+        <location filename="../../../src/axiseditdialog.ui" line="533"/>
+        <source>Throttle setting that determines the behavior of how to
+interpret an axis hold or release.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="547"/>
         <source>Negative Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="550"/>
+        <location filename="../../../src/axiseditdialog.ui" line="552"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="555"/>
+        <location filename="../../../src/axiseditdialog.ui" line="557"/>
         <source>Positive Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="600"/>
+        <location filename="../../../src/axiseditdialog.ui" line="602"/>
         <source>Current Value:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1327,33 +1346,33 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CommandLineUtility</name>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="48"/>
-        <location filename="../../../src/commandlineutility.cpp" line="70"/>
+        <location filename="../../../src/commandlineutility.cpp" line="50"/>
+        <location filename="../../../src/commandlineutility.cpp" line="72"/>
         <source>AntiMicro version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="49"/>
+        <location filename="../../../src/commandlineutility.cpp" line="51"/>
         <source>Usage: antimicro [option]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="51"/>
+        <location filename="../../../src/commandlineutility.cpp" line="53"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="52"/>
+        <location filename="../../../src/commandlineutility.cpp" line="54"/>
         <source>Print help text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="53"/>
+        <location filename="../../../src/commandlineutility.cpp" line="55"/>
         <source>Print version information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="54"/>
+        <location filename="../../../src/commandlineutility.cpp" line="56"/>
         <source>Launch program in system tray only</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1397,13 +1416,13 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="770"/>
+        <location filename="../../../src/joybutton.cpp" line="782"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="790"/>
-        <location filename="../../../src/joybutton.cpp" line="815"/>
+        <location filename="../../../src/joybutton.cpp" line="802"/>
+        <location filename="../../../src/joybutton.cpp" line="827"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1457,7 +1476,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="246"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
+        <source>Release</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="250"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1728,28 +1752,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="51"/>
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="97"/>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="157"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="165"/>
-        <source>Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="171"/>
-        <source>Hold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="177"/>
-        <source>Cycle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="181"/>
-        <source>Distance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
