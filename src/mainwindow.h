@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QHash>
+#include <QIcon>
 #include <QSystemTrayIcon>
 #include <QAction>
 #include <QFileDialog>

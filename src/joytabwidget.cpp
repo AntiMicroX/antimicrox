@@ -78,7 +78,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout = new QGridLayout(scrollAreaWidgetContents1);
     gridLayout->setSpacing(4);
-    gridLayout->setContentsMargins(6, 6, 6, 6);
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
 
     scrollArea->setWidget(scrollAreaWidgetContents1);
@@ -99,7 +98,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout2 = new QGridLayout(scrollAreaWidgetContents2);
     gridLayout2->setSpacing(4);
-    gridLayout2->setContentsMargins(6, 6, 6, 6);
     gridLayout2->setObjectName(QString::fromUtf8("gridLayout2"));
 
     scrollArea2->setWidget(scrollAreaWidgetContents2);
@@ -121,7 +119,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout3 = new QGridLayout(scrollAreaWidgetContents3);
     gridLayout3->setSpacing(4);
-    gridLayout3->setContentsMargins(6, 6, 6, 6);
     gridLayout3->setObjectName(QString::fromUtf8("gridLayout3"));
 
     scrollArea3->setWidget(scrollAreaWidgetContents3);
@@ -143,7 +140,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout4 = new QGridLayout(scrollAreaWidgetContents4);
     gridLayout4->setSpacing(4);
-    gridLayout4->setContentsMargins(6, 6, 6, 6);
     gridLayout4->setObjectName(QString::fromUtf8("gridLayout4"));
 
     scrollArea4->setWidget(scrollAreaWidgetContents4);
@@ -164,7 +160,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout5 = new QGridLayout(scrollAreaWidgetContents5);
     gridLayout5->setSpacing(4);
-    gridLayout5->setContentsMargins(6, 6, 6, 6);
     gridLayout5->setObjectName(QString::fromUtf8("gridLayout5"));
 
     scrollArea5->setWidget(scrollAreaWidgetContents5);
@@ -185,7 +180,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout6 = new QGridLayout(scrollAreaWidgetContents6);
     gridLayout6->setSpacing(4);
-    gridLayout6->setContentsMargins(6, 6, 6, 6);
     gridLayout6->setObjectName(QString::fromUtf8("gridLayout6"));
 
     scrollArea6->setWidget(scrollAreaWidgetContents6);
@@ -206,7 +200,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout7 = new QGridLayout(scrollAreaWidgetContents7);
     gridLayout7->setSpacing(4);
-    gridLayout7->setContentsMargins(6, 6, 6, 6);
     gridLayout7->setObjectName(QString::fromUtf8("gridLayout7"));
 
     scrollArea7->setWidget(scrollAreaWidgetContents7);
@@ -227,7 +220,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     gridLayout8 = new QGridLayout(scrollAreaWidgetContents8);
     gridLayout8->setSpacing(4);
-    gridLayout8->setContentsMargins(6, 6, 6, 6);
     gridLayout8->setObjectName(QString::fromUtf8("gridLayout8"));
 
     scrollArea8->setWidget(scrollAreaWidgetContents8);
@@ -448,7 +440,8 @@ void JoyTabWidget::fillButtons()
             JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, this);
             axisWidget->setText(axis->getName());
             axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-            axisWidget->setMinimumHeight(30);
+            //axisWidget->setMinimumHeight(30);
+            axisWidget->setMinimumSize(316, 30);
 
             connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
             connect(axis, SIGNAL(throttleChanged()), axisWidget, SLOT(refreshLabel()));
@@ -473,7 +466,8 @@ void JoyTabWidget::fillButtons()
                 dude->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
                 connect (dude, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 dude->setText(dude->text());
-                dude->setMinimumHeight(30);
+                //dude->setMinimumHeight(30);
+                dude->setMinimumSize(316, 30);
 
                 if (column > 1)
                 {
@@ -493,7 +487,8 @@ void JoyTabWidget::fillButtons()
             dude->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
             connect (dude, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
             dude->setText(dude->text());
-            dude->setMinimumHeight(30);
+            //dude->setMinimumHeight(30);
+            dude->setMinimumSize(316, 30);
 
             if (column > 1)
             {
