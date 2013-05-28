@@ -121,6 +121,7 @@ void MainWindow::populateTrayIcon()
             }
 
             QAction *newaction = new QAction(tr("Open File"), joysticksub);
+            newaction->setIcon(QIcon::fromTheme("document-open"));
             connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
             joysticksub->addAction(newaction);
 
@@ -132,17 +133,21 @@ void MainWindow::populateTrayIcon()
     }
 
     hideAction = new QAction(tr("&Hide"), trayIconMenu);
+    hideAction->setIcon(QIcon::fromTheme("view-restore"));
     connect(hideAction, SIGNAL(triggered()), this, SLOT(hide()));
     //connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
 
     restoreAction = new QAction(tr("&Restore"), trayIconMenu);
+    restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
     //connect(restoreAction, SIGNAL(triggered()), this, SLOT(enableFlashActions()));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
 
     closeAction = new QAction(tr("&Quit"), trayIconMenu);
+    closeAction->setIcon(QIcon::fromTheme("application-exit"));
     connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
 
     updateJoy = new QAction(tr("&Update Joysticks"), trayIconMenu);
+    updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
     connect(updateJoy, SIGNAL(triggered()), this, SLOT(startJoystickRefresh()));
 
     trayIconMenu->addAction(hideAction);

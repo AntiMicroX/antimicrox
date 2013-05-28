@@ -759,22 +759,22 @@ p, li { white-space: pre-wrap; }
         <translation>Séléction de configuration</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="192"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="214"/>
         <source>Hold</source>
         <translation>Maintenir</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="202"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="185"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="214"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="226"/>
         <source>Cycle</source>
         <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="226"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="197"/>
         <source>Distance</source>
         <translation>Distance</translation>
     </message>
@@ -909,41 +909,48 @@ p, li { white-space: pre-wrap; }
         <translation>0,9s</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="199"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="182"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>Insére une pause de la durée indiquée entre la pression des touches.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="182"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="204"/>
         <source>Insert a hold action. Slots after the action will only be
 executed if the button is held past the interval specified.</source>
-        <translation type="unfinished">Insére une action maintenue. Les emplacements suivants ne seront exécutés que si le bouton est maintenu le temps indiqué.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="209"/>
-        <source>Slots past a Cycle action will be executed
-on the next button press. Multiple cycles can be added
-in order to create partitions in a sequence.</source>
-        <translation type="unfinished">Les emplacements se trouvant après une action Cycle ne seront exécutés qu&apos;à la pression suivante du bouton. Plusieurs Cycle peuvent être utilisés pour séparer une séquence.</translation>
+        <translation>Insére une action maintenue. Les emplacements suivants
+ne seront exécutés que si le bouton est maintenu le temps indiqué.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="221"/>
+        <source>Slots past a Cycle action will be executed
+on the next button press. Multiple cycles can be added
+in order to create partitions in a sequence.</source>
+        <translation>Les emplacements se trouvant après une action Cycle
+ne seront exécutés qu&apos;à la pression suivante du bouton.
+Plusieurs Cycle peuvent être utilisés pour séparer une séquence.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="192"/>
         <source>Distance action specifies that the slots afterwards
 will only be executed when an axis is moved
 a certain range past the designated dead zone.</source>
-        <translation type="unfinished">L&apos;action Distance permet d’exécuter les emplacements suivants uniquement lorsque l&apos;axe aura été déplacé de la distance indiquée par rapport à la zone morte.</translation>
+        <translation>L&apos;action Distance permet d’exécuter les emplacements suivants
+uniquement lorsque l&apos;axe aura été déplacé de la distance indiquée
+par rapport à la zone morte.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="233"/>
         <source>Insert a release action. Slots after the action will only be
 executed after a button release if the button was help
 past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Insère une action Relâchement. Les emplacements après
+cette action seront exécutés au moment où le bouton est relâché
+si celui-ci est resté appuyé au minimum le temps défini.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="238"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>Relâchement</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="265"/>
@@ -1245,7 +1252,8 @@ past the interval specified.</source>
         <location filename="../../../src/axiseditdialog.ui" line="502"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 defective analog stick.</source>
-        <translation type="unfinished">Configure la valeur à utiliser comme limite pour un axe. Utile pour un stick analogique défectueux.</translation>
+        <translation>Configure la valeur à utiliser comme limite pour un axe.
+Utile pour un stick analogique défectueux.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="526"/>
@@ -1257,7 +1265,8 @@ defective analog stick.</source>
         <location filename="../../../src/axiseditdialog.ui" line="533"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished">Configure l’accélération qui détermine le comportement de maintien ou de relâchement d&apos;un axe.</translation>
+        <translation>Configure l’accélération qui détermine le comportement
+de maintien ou de relâchement d&apos;un axe.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="547"/>
@@ -1282,7 +1291,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="20"/>
         <source>Set Axis %1</source>
-        <translation>Configurer l&apos;Axe %1</translation>
+        <translation>Configuration de l&apos;Axe %1</translation>
     </message>
 </context>
 <context>
@@ -1416,13 +1425,13 @@ interpret an axis hold or release.</source>
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="782"/>
+        <location filename="../../../src/joybutton.cpp" line="787"/>
         <source>Button</source>
         <translation>Bouton</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="802"/>
-        <location filename="../../../src/joybutton.cpp" line="827"/>
+        <location filename="../../../src/joybutton.cpp" line="807"/>
+        <location filename="../../../src/joybutton.cpp" line="832"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -1478,7 +1487,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="245"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>Relâchement</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="250"/>
@@ -1568,152 +1577,152 @@ interpret an axis hold or release.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="17"/>
+        <location filename="../../../src/mainwindow.ui" line="23"/>
         <source>AntiMicro</source>
         <translation>AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="77"/>
+        <location filename="../../../src/mainwindow.ui" line="83"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
         <translation>Aucune manette n&apos;a été détéctée.
  Merci de brancher une manette et de choisir l&apos;option &quot;Mettre à jour les manettes&quot; du menu principal</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="138"/>
+        <location filename="../../../src/mainwindow.ui" line="144"/>
         <source>Tab 1</source>
         <translation>Onglet 1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="156"/>
+        <location filename="../../../src/mainwindow.ui" line="162"/>
         <source>&lt;None&gt;</source>
         <translation>&lt;Aucun&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="192"/>
+        <location filename="../../../src/mainwindow.ui" line="198"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="216"/>
+        <location filename="../../../src/mainwindow.ui" line="222"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="246"/>
+        <location filename="../../../src/mainwindow.ui" line="252"/>
         <source>Save As</source>
         <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="358"/>
+        <location filename="../../../src/mainwindow.ui" line="364"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="368"/>
+        <location filename="../../../src/mainwindow.ui" line="374"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="378"/>
+        <location filename="../../../src/mainwindow.ui" line="384"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="388"/>
+        <location filename="../../../src/mainwindow.ui" line="394"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="398"/>
+        <location filename="../../../src/mainwindow.ui" line="404"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="408"/>
+        <location filename="../../../src/mainwindow.ui" line="414"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="418"/>
+        <location filename="../../../src/mainwindow.ui" line="424"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="428"/>
+        <location filename="../../../src/mainwindow.ui" line="434"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="483"/>
+        <location filename="../../../src/mainwindow.ui" line="489"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="500"/>
+        <location filename="../../../src/mainwindow.ui" line="506"/>
         <source>Tab 2</source>
         <translation>Onglet 2</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="523"/>
+        <location filename="../../../src/mainwindow.ui" line="529"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="530"/>
+        <location filename="../../../src/mainwindow.ui" line="536"/>
         <source>&amp;Options</source>
         <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="536"/>
+        <location filename="../../../src/mainwindow.ui" line="542"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="560"/>
-        <location filename="../../../src/mainwindow.cpp" line="142"/>
+        <location filename="../../../src/mainwindow.ui" line="564"/>
+        <location filename="../../../src/mainwindow.cpp" line="145"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="563"/>
+        <location filename="../../../src/mainwindow.ui" line="567"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="568"/>
-        <location filename="../../../src/mainwindow.cpp" line="145"/>
+        <location filename="../../../src/mainwindow.ui" line="575"/>
+        <location filename="../../../src/mainwindow.cpp" line="149"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Mettre à jour les manettes</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="571"/>
+        <location filename="../../../src/mainwindow.ui" line="578"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="576"/>
-        <location filename="../../../src/mainwindow.cpp" line="134"/>
+        <location filename="../../../src/mainwindow.ui" line="586"/>
+        <location filename="../../../src/mainwindow.cpp" line="135"/>
         <source>&amp;Hide</source>
         <translation>&amp;Cacher</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="579"/>
+        <location filename="../../../src/mainwindow.ui" line="589"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="589"/>
+        <location filename="../../../src/mainwindow.ui" line="599"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="592"/>
+        <location filename="../../../src/mainwindow.ui" line="602"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="597"/>
+        <location filename="../../../src/mainwindow.ui" line="607"/>
         <source>About Qt</source>
         <translation>À propos de Qt</translation>
     </message>
@@ -1728,7 +1737,7 @@ interpret an axis hold or release.</source>
         <translation>Ouvrir fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="138"/>
+        <location filename="../../../src/mainwindow.cpp" line="140"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>

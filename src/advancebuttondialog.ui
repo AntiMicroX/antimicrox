@@ -176,6 +176,28 @@
           <layout class="QHBoxLayout" name="horizontalLayout_12">
            <item>
             <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QPushButton" name="pausePushButton">
+               <property name="toolTip">
+                <string>Insert a pause that occurs in between key presses.</string>
+               </property>
+               <property name="text">
+                <string>Pause</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QPushButton" name="distancePushButton">
+               <property name="toolTip">
+                <string>Distance action specifies that the slots afterwards
+will only be executed when an axis is moved
+a certain range past the designated dead zone.</string>
+               </property>
+               <property name="text">
+                <string>Distance</string>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="1">
               <widget class="QPushButton" name="holdPushButton">
                <property name="toolTip">
@@ -193,16 +215,6 @@ executed if the button is held past the interval specified.</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="pausePushButton">
-               <property name="toolTip">
-                <string>Insert a pause that occurs in between key presses.</string>
-               </property>
-               <property name="text">
-                <string>Pause</string>
-               </property>
-              </widget>
-             </item>
              <item row="1" column="0">
               <widget class="QPushButton" name="cyclePushButton">
                <property name="toolTip">
@@ -215,19 +227,7 @@ in order to create partitions in a sequence.</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QPushButton" name="distancePushButton">
-               <property name="toolTip">
-                <string>Distance action specifies that the slots afterwards
-will only be executed when an axis is moved
-a certain range past the designated dead zone.</string>
-               </property>
-               <property name="text">
-                <string>Distance</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
+             <item row="2" column="0">
               <widget class="QPushButton" name="releasePushButton">
                <property name="toolTip">
                 <string>Insert a release action. Slots after the action will only be

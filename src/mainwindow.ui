@@ -13,6 +13,12 @@
     <height>526</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>AntiMicro</string>
   </property>
@@ -552,7 +558,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="window-close">
+    <iconset theme="application-exit">
      <normaloff/>
     </iconset>
    </property>
@@ -564,6 +570,11 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
    </property>
   </action>
   <action name="actionUpdate_Joysticks">
+   <property name="icon">
+    <iconset theme="view-refresh">
+     <normaloff/>
+    </iconset>
+   </property>
    <property name="text">
     <string>&amp;Update Joysticks</string>
    </property>
@@ -572,6 +583,11 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
    </property>
   </action>
   <action name="actionHide">
+   <property name="icon">
+    <iconset theme="view-restore">
+     <normaloff/>
+    </iconset>
+   </property>
    <property name="text">
     <string>&amp;Hide</string>
    </property>
