@@ -6,7 +6,7 @@
 
 const int JoyAxis::AXISMIN = -32767;
 const int JoyAxis::AXISMAX = 32767;
-const int JoyAxis::AXISDEADZONE = 5000;
+const int JoyAxis::AXISDEADZONE = 6000;
 const int JoyAxis::AXISMAXZONE = 30000;
 
 // Set event interval to allow one event every 50 ms.
@@ -154,17 +154,26 @@ void JoyAxis::createDeskEvent(bool ignoresets)
     if (currentThrottledValue > deadZone)
     {
         eventbutton = paxisbutton;
-        //paxisbutton->joyEvent(eventActive, ignoresets);
-        //activeButton = paxisbutton;
     }
     else if (currentThrottledValue < -deadZone)
     {
         eventbutton = naxisbutton;
-        //naxisbutton->joyEvent(eventActive, ignoresets);
-        //activeButton = naxisbutton;
     }
 
-    if (eventbutton && activeButton && eventbutton == activeButton)
+    if (eventbutton && !activeButton)
+    {
+        // There is no active button. Call joyEvent and set current
+        // button as active button
+        eventbutton->joyEvent(eventActive, ignoresets);
+        activeButton = eventbutton;
+    }
+    else if (!eventbutton && activeButton)
+    {
+        // Currently in deadzone. Disable currently active button.
+        activeButton->joyEvent(eventActive, ignoresets);
+        activeButton = 0;
+    }
+    else if (eventbutton && activeButton && eventbutton == activeButton)
     {
         //Button is currently active. Just pass current value
         eventbutton->joyEvent(eventActive, ignoresets);
@@ -174,20 +183,7 @@ void JoyAxis::createDeskEvent(bool ignoresets)
         // Deadzone skipped. Button for new event is not the currently
         // active button. Disable the active button before enabling
         // the new button
-        activeButton->joyEvent(false, ignoresets);
-        eventbutton->joyEvent(eventActive, ignoresets);
-        activeButton = eventbutton;
-    }
-    else if (activeButton)
-    {
-        // Currently in deadzone. Disable currently active button.
-        activeButton->joyEvent(eventActive, ignoresets);
-        activeButton = 0;
-    }
-    else
-    {
-        // There is no active button. Call joyEvent and set current
-        // button as active button
+        activeButton->joyEvent(!eventActive, ignoresets);
         eventbutton->joyEvent(eventActive, ignoresets);
         activeButton = eventbutton;
     }
@@ -332,13 +328,13 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 
 void JoyAxis::reset()
 {
-    deadZone = 5000;
+    deadZone = AXISDEADZONE;
     isActive = false;
 
     timer->stop();
     interval = QTime ();
     eventActive = false;
-    maxZoneValue = 30000;
+    maxZoneValue = AXISMAXZONE;
     throttle = 0;
     sumDist = 0.0;
 
@@ -428,11 +424,7 @@ int JoyAxis::getCurrentThrottledDeadValue()
 double JoyAxis::getDistanceFromDeadZone()
 {
     double distance = 0.0;
-    //int tempThrottledValue = abs(currentThrottledValue);
-    /*if (tempThrottledValue > deadZone)
-    {
-        distance = tempThrottledValue / AXISMAX;
-    }*/
+
     if (currentThrottledValue >= deadZone)
     {
         distance = (currentThrottledValue - deadZone)/(double)(maxZoneValue - deadZone);

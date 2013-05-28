@@ -63,6 +63,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         if (isButtonPressed)
         {
             buttonHold.restart();
+            buttonHeldRelease.restart();
             createDeskTimer.start(0);
             //QTimer::singleShot(0, this, SLOT(waitForDeskEvent()));
         }
@@ -80,6 +81,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         {
             //createDeskEvent();
             buttonHold.restart();
+            buttonHeldRelease.restart();
             createDeskTimer.start(0);
             //QTimer::singleShot(0, this, SLOT(waitForDeskEvent()));
         }
@@ -107,6 +109,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         if (useTurbo && isButtonPressed)
         {
             buttonHold.restart();
+            buttonHeldRelease.restart();
             connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
             turboTimer.start();
         }
@@ -122,6 +125,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         else if (isButtonPressed)
         {
             buttonHold.restart();
+            buttonHeldRelease.restart();
             createDeskTimer.start(0);
             //QTimer::singleShot(0, this, SLOT(waitForDeskEvent()));
         }
@@ -139,6 +143,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         {
             //createDeskEvent();
             buttonHold.restart();
+            buttonHeldRelease.restart();
             createDeskTimer.start(0);
             //QTimer::singleShot(0, this, SLOT(waitForDeskEvent()));
         }
@@ -1562,7 +1567,7 @@ void JoyButton::releaseSlotEvent()
 {
     JoyButtonSlot *temp = 0;
 
-    int timeElapsed = buttonHold.elapsed();
+    int timeElapsed = buttonHeldRelease.elapsed();
     int tempElapsed = 0;
 
     if (containsReleaseSlots())

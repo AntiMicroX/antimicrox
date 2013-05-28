@@ -113,6 +113,7 @@ protected:
     QTime buttonHold;
     QTime pauseHold;
     QTime inpauseHold;
+    QTime buttonHeldRelease;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
