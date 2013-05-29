@@ -35,8 +35,8 @@ public:
     int getThrottle();
     int getCurrentThrottledValue();
     int getCurrentRawValue();
-    int getCurrentThrottledMin();
-    int getCurrentThrottledMax();
+    //int getCurrentThrottledMin();
+    //int getCurrentThrottledMax();
     int getCurrentThrottledDeadValue();
     int getCurrentlyAssignedSet();
 
@@ -77,9 +77,8 @@ protected:
     JoyAxisButton *activeButton;
     int originset;
 
-    int currentThrottledMin;
-    int currentThrottledMax;
-    int currentThrottleCenter;
+    //int currentThrottledMin;
+    //int currentThrottledMax;
     int currentThrottledDeadValue;
 
 signals:

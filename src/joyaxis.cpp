@@ -392,7 +392,6 @@ void JoyAxis::adjustRange()
     {
         currentThrottledDeadValue = 0;
         //currentThrottledMin = AXISMIN;
-        //currentThrottleCenter = 0;
         //currentThrottledMax = AXISMAX;
     }
     else if (throttle == 1)
@@ -406,7 +405,7 @@ void JoyAxis::adjustRange()
     currentThrottledValue = calculateThrottledValue(currentRawValue);
 }
 
-int JoyAxis::getCurrentThrottledMin()
+/*int JoyAxis::getCurrentThrottledMin()
 {
     return currentThrottledMin;
 }
@@ -414,7 +413,7 @@ int JoyAxis::getCurrentThrottledMin()
 int JoyAxis::getCurrentThrottledMax()
 {
     return currentThrottledMax;
-}
+}*/
 
 int JoyAxis::getCurrentThrottledDeadValue()
 {
