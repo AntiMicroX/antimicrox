@@ -2,6 +2,7 @@
 #include <math.h>
 
 #include "joyaxis.h"
+#include "joycontrolstick.h"
 #include "event.h"
 
 const int JoyAxis::AXISMIN = -32767;
@@ -23,6 +24,7 @@ JoyAxis::JoyAxis(QObject *parent) :
 {
     timer = new QTimer ();
     originset = 0;
+    stick = 0;
     naxisbutton = new JoyAxisButton(this, 0, originset);
     paxisbutton = new JoyAxisButton(this, 1, originset);
 
@@ -34,6 +36,7 @@ JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
     QObject(parent)
 {
     timer = new QTimer ();
+    stick = 0;
     this->originset = originset;
     naxisbutton = new JoyAxisButton(this, 0, originset);
     paxisbutton = new JoyAxisButton(this, 1, originset);
@@ -55,22 +58,29 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
     bool safezone = !inDeadZone(currentRawValue);
     currentThrottledValue = calculateThrottledValue(value);
 
-    if (safezone && !isActive)
+    if (this->stick)
     {
-        isActive = eventActive = true;
-        emit active(value);
-        createDeskEvent(ignoresets);
+        stick->joyEvent(ignoresets);
     }
-    else if (!safezone && isActive)
+    else
     {
-        isActive = eventActive = false;
-        emit released(value);
+        if (safezone && !isActive)
+        {
+            isActive = eventActive = true;
+            emit active(value);
+            createDeskEvent(ignoresets);
+        }
+        else if (!safezone && isActive)
+        {
+            isActive = eventActive = false;
+            emit released(value);
 
-        createDeskEvent(ignoresets);
-    }
-    else if (isActive)
-    {
-        createDeskEvent(ignoresets);
+            createDeskEvent(ignoresets);
+        }
+        else if (isActive)
+        {
+            createDeskEvent(ignoresets);
+        }
     }
 
     emit moved(currentRawValue);
@@ -450,4 +460,19 @@ void JoyAxis::propogateThrottleChange()
 int JoyAxis::getCurrentlyAssignedSet()
 {
     return originset;
+}
+
+void JoyAxis::setControlStick(JoyControlStick *stick)
+{
+    this->stick = stick;
+}
+
+bool JoyAxis::isPartControlStick()
+{
+    return (this->stick != 0);
+}
+
+JoyControlStick* JoyAxis::getControlStick()
+{
+    return this->stick;
 }

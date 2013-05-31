@@ -10,6 +10,8 @@
 
 #include "joyaxisbutton.h"
 
+class JoyControlStick;
+
 class JoyAxis : public QObject
 {
     Q_OBJECT
@@ -47,6 +49,10 @@ public:
     void readConfig(QXmlStreamReader *xml);
     void writeConfig(QXmlStreamWriter *xml);
 
+    void setControlStick(JoyControlStick *stick);
+    bool isPartControlStick();
+    JoyControlStick* getControlStick();
+
     static const int AXISMIN;
     static const int AXISMAX;
     static const int AXISDEADZONE;
@@ -80,6 +86,7 @@ protected:
     //int currentThrottledMin;
     //int currentThrottledMax;
     int currentThrottledDeadValue;
+    JoyControlStick *stick;
 
 signals:
     void active(int value);

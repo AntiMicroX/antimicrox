@@ -87,7 +87,9 @@ SOURCES += main.cpp\
     keyboard/virtualkeyboardmousewidget.cpp \
     keyboard/virtualmousepushbutton.cpp \
     buttoneditdialog.cpp \
-    commandlineutility.cpp
+    commandlineutility.cpp \
+    joycontrolstick.cpp \
+    joycontrolstickbutton.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -119,7 +121,9 @@ HEADERS  += mainwindow.h \
     keyboard/virtualkeyboardmousewidget.h \
     keyboard/virtualmousepushbutton.h \
     buttoneditdialog.h \
-    commandlineutility.h
+    commandlineutility.h \
+    joycontrolstick.h \
+    joycontrolstickbutton.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \

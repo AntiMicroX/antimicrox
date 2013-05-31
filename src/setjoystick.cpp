@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QHashIterator>
 
 #include "setjoystick.h"
@@ -64,6 +65,13 @@ void SetJoystick::refreshAxes()
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
     }
+
+    JoyControlStick *stick = new JoyControlStick(axes.value(0), axes.value(1), 0, this);
+    sticks.insert(1, stick);
+    axes.value(0)->setControlStick(stick);
+    axes.value(1)->setControlStick(stick);
+
+    //qDebug() << "In axis " << endl;
 }
 
 void SetJoystick::refreshHats()
@@ -116,6 +124,7 @@ void SetJoystick::deleteAxes()
     }
 
     axes.clear();
+    sticks.clear();
 }
 
 void SetJoystick::deleteHats()

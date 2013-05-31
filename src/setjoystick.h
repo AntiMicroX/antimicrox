@@ -8,6 +8,7 @@
 #include <SDL/SDL.h>
 
 #include "joyaxis.h"
+#include "joycontrolstick.h"
 #include "joydpad.h"
 #include "joybutton.h"
 
@@ -42,6 +43,7 @@ protected:
     QHash<int, JoyButton*> buttons;
     QHash<int, JoyAxis*> axes;
     QHash<int, JoyDPad*> hats;
+    QHash<int, JoyControlStick*> sticks;
     int index;
     SDL_Joystick* joyhandle;
 
