@@ -22,7 +22,7 @@ const float JoyAxis::JOYSPEED = 20.0;
 JoyAxis::JoyAxis(QObject *parent) :
     QObject(parent)
 {
-    timer = new QTimer ();
+    //timer = new QTimer ();
     originset = 0;
     stick = 0;
     naxisbutton = new JoyAxisButton(this, 0, originset);
@@ -35,7 +35,7 @@ JoyAxis::JoyAxis(QObject *parent) :
 JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
     QObject(parent)
 {
-    timer = new QTimer ();
+    //timer = new QTimer ();
     stick = 0;
     this->originset = originset;
     naxisbutton = new JoyAxisButton(this, 0, originset);
@@ -47,7 +47,7 @@ JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
 
 JoyAxis::~JoyAxis()
 {
-    delete timer;
+    //delete timer;
     delete paxisbutton;
     delete naxisbutton;
 }
@@ -341,12 +341,12 @@ void JoyAxis::reset()
     deadZone = AXISDEADZONE;
     isActive = false;
 
-    timer->stop();
-    interval = QTime ();
+    //timer->stop();
+    //interval = QTime ();
     eventActive = false;
     maxZoneValue = AXISMAXZONE;
     throttle = 0;
-    sumDist = 0.0;
+    //sumDist = 0.0;
 
     paxisbutton->reset();
     naxisbutton->reset();
@@ -365,10 +365,29 @@ void JoyAxis::reset(int index)
 
 double JoyAxis::calculateNormalizedAxisPlacement()
 {
-    double difference = (abs(currentThrottledValue) - deadZone)/(double)(maxZoneValue - deadZone);
+    double difference = (abs(currentThrottledValue))/(double)(maxZoneValue);
     if (difference > 1.0)
     {
         difference = 1.0;
+    }
+    else if (difference < 0.0)
+    {
+        difference = 0.0;
+    }
+
+    return difference;
+}
+
+double JoyAxis::getAbsoluteAxisPlacement()
+{
+    double difference = (abs(currentRawValue))/(double)(maxZoneValue);
+    if (difference > 1.0)
+    {
+        difference = 1.0;
+    }
+    else if (difference < 0.0)
+    {
+        difference = 0.0;
     }
 
     return difference;
@@ -447,6 +466,10 @@ double JoyAxis::getDistanceFromDeadZone()
     {
         distance = 1.0;
     }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
 
     return distance;
 
@@ -475,4 +498,9 @@ bool JoyAxis::isPartControlStick()
 JoyControlStick* JoyAxis::getControlStick()
 {
     return this->stick;
+}
+
+void JoyAxis::removeControlStick()
+{
+    this->stick = 0;
 }

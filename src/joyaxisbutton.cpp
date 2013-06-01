@@ -68,7 +68,7 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     }
 }
 
-void JoyAxisButton::mouseEvent()
+/*void JoyAxisButton::mouseEvent()
 {
     JoyButtonSlot *buttonslot = 0;
     if (currentMouseEvent)
@@ -164,7 +164,7 @@ void JoyAxisButton::mouseEvent()
             mouseInterval->restart();
         }
     }
-}
+}*/
 
 double JoyAxisButton::getDistanceFromDeadZone()
 {

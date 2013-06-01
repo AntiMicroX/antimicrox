@@ -13,6 +13,7 @@ SetJoystick::SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent) :
 
 SetJoystick::~SetJoystick()
 {
+    deleteSticks();
     deleteButtons();
     deleteAxes();
     deleteHats();
@@ -65,13 +66,6 @@ void SetJoystick::refreshAxes()
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
     }
-
-    JoyControlStick *stick = new JoyControlStick(axes.value(0), axes.value(1), 0, this);
-    sticks.insert(1, stick);
-    axes.value(0)->setControlStick(stick);
-    axes.value(1)->setControlStick(stick);
-
-    //qDebug() << "In axis " << endl;
 }
 
 void SetJoystick::refreshHats()
@@ -124,6 +118,21 @@ void SetJoystick::deleteAxes()
     }
 
     axes.clear();
+}
+
+void SetJoystick::deleteSticks()
+{
+    QHashIterator<int, JoyControlStick*> iter(sticks);
+    while (iter.hasNext())
+    {
+        JoyControlStick *stick = iter.next().value();
+        if (stick)
+        {
+            delete stick;
+            stick = 0;
+        }
+    }
+
     sticks.clear();
 }
 
@@ -160,9 +169,59 @@ int SetJoystick::getNumberHats()
 
 void SetJoystick::reset()
 {
+    deleteSticks();
     refreshAxes();
     refreshButtons();
     refreshHats();
+
+    if (axes.contains(0) && axes.contains(1))
+    {
+        JoyControlStick *stick = new JoyControlStick(axes.value(0), axes.value(1), 0, index, this);
+        stick->getDirectionButton(JoyControlStick::StickUp)->setAssignedSlot(25);
+        stick->getDirectionButton(JoyControlStick::StickDown)->setAssignedSlot(39);
+        stick->getDirectionButton(JoyControlStick::StickLeft)->setAssignedSlot(38);
+        stick->getDirectionButton(JoyControlStick::StickRight)->setAssignedSlot(40);
+        sticks.insert(0, stick);
+
+        axes.value(0)->setControlStick(stick);
+        axes.value(1)->setControlStick(stick);
+    }
+
+    if (axes.contains(3) && axes.contains(4))
+    {
+        JoyControlStick *stick = new JoyControlStick(axes.value(3), axes.value(4), 1, index, this);
+        stick->getDirectionButton(JoyControlStick::StickUp)->setAssignedSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement);
+        /*
+        stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedX(10);
+        stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedY(10);
+        //*/
+
+        stick->getDirectionButton(JoyControlStick::StickDown)->setAssignedSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement);
+        /*
+        stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedX(10);
+        stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedY(10);
+        //*/
+
+        stick->getDirectionButton(JoyControlStick::StickLeft)->setAssignedSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement);
+        /*
+        stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedX(10);
+        stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedY(10);
+        //*/
+
+        stick->getDirectionButton(JoyControlStick::StickRight)->setAssignedSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement);
+        /*
+        stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedX(10);
+        stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedY(10);
+        //*/
+
+        sticks.insert(1, stick);
+
+        axes.value(3)->setControlStick(stick);
+        axes.value(4)->setControlStick(stick);
+    }
+
+    //qDebug() << "In axis " << endl;
+
 }
 
 SDL_Joystick* SetJoystick::getSDLHandle()

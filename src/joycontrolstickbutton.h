@@ -2,6 +2,7 @@
 #define JOYCONTROLSTICKBUTTON_H\
 
 #include "joybutton.h"
+#include "joycontrolstickdirectionstype.h"
 
 class JoyControlStick;
 
@@ -10,14 +11,21 @@ class JoyControlStickButton : public JoyButton
     Q_OBJECT
 public:
     explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, QObject *parent = 0);
+    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent = 0);
 
     virtual QString getPartialName();
+    virtual QString getXmlName();
+    QString getDirectionName();
     virtual double getDistanceFromDeadZone();
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+
+    static const QString xmlName;
 
 protected:
     JoyControlStick *stick;
 
 signals:
+    void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
     
 public slots:
     virtual void mouseEvent();

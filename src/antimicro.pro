@@ -123,7 +123,8 @@ HEADERS  += mainwindow.h \
     buttoneditdialog.h \
     commandlineutility.h \
     joycontrolstick.h \
-    joycontrolstickbutton.h
+    joycontrolstickbutton.h \
+    joycontrolstickdirectionstype.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \

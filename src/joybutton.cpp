@@ -16,6 +16,7 @@ JoyButton::JoyButton(QObject *parent) :
     connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
     connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
+    connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
 
     this->reset();
     index = 0;
@@ -33,6 +34,7 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
     connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
+    connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
 
     this->reset();
     this->index = index;
@@ -192,6 +194,7 @@ void JoyButton::reset()
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
+    mouseEventTimer.stop();
 
     if (slotiter)
     {
@@ -542,31 +545,32 @@ void JoyButton::mouseEvent()
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive && timeElapsed >= 5)
         {
+            double difference = getDistanceFromDeadZone();
             int mouse1 = 0;
             int mouse2 = 0;
             double sumDist = buttonslot->getMouseDistance();
 
             if (mousemode == JoyButtonSlot::MouseRight)
             {
-                sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
                 int distance = (int)floor(sumDist + 0.5);
                 mouse1 = distance;
             }
             else if (mousemode == JoyButtonSlot::MouseLeft)
             {
-                sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
                 int distance = (int)floor(sumDist + 0.5);
                 mouse1 = -distance;
             }
             else if (mousemode == JoyButtonSlot::MouseDown)
             {
-                sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
                 int distance = (int)floor(sumDist + 0.5);
                 mouse2 = distance;
             }
             else if (mousemode == JoyButtonSlot::MouseUp)
             {
-                sumDist += (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
                 int distance = (int)floor(sumDist + 0.5);
                 mouse2 = -distance;
             }
@@ -589,12 +593,17 @@ void JoyButton::mouseEvent()
         if (isActive)
         {
             mouseEventQueue.enqueue(buttonslot);
-            QTimer::singleShot(5, this, SLOT(mouseEvent()));
+            if (!mouseEventTimer.isActive())
+            {
+                mouseEventTimer.start(5);
+            }
+            //QTimer::singleShot(5, this, SLOT(mouseEvent()));
         }
         else
         {
             buttonslot->setDistance(0.0);
             mouseInterval->restart();
+            mouseEventTimer.stop();
         }
     }
 
@@ -1325,6 +1334,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         slotiter->toFront();
     }
 
+    mouseEventTimer.stop();
+
     quitEvent = true;
 
     //buttonMutex.unlock();
@@ -1499,6 +1510,7 @@ void JoyButton::clearSlotsEventReset()
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
+    mouseEventTimer.stop();
 
     if (slotiter)
     {

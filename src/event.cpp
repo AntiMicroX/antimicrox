@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QMutex>
+#include <X11/XKBlib.h>
 #include <X11/extensions/XTest.h>
 
 #include "event.h"
@@ -64,7 +65,7 @@ QString keycodeToKey(int keycode)
     }
     else
     {
-        newkey = XKeysymToString(XKeycodeToKeysym(display, keycode, 0));
+        newkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
     }
 
     return newkey;

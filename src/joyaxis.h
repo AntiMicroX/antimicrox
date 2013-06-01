@@ -43,13 +43,14 @@ public:
     int getCurrentlyAssignedSet();
 
     double getDistanceFromDeadZone();
-
     double calculateNormalizedAxisPlacement();
+    double getAbsoluteAxisPlacement();
 
     void readConfig(QXmlStreamReader *xml);
     void writeConfig(QXmlStreamWriter *xml);
 
     void setControlStick(JoyControlStick *stick);
+    void removeControlStick();
     bool isPartControlStick();
     JoyControlStick* getControlStick();
 
@@ -76,10 +77,10 @@ protected:
     bool eventActive;
     int currentThrottledValue;
     int currentRawValue;
-    QTimer *timer;
-    QTime interval;
+    //QTimer *timer;
+    //QTime interval;
     int throttle;
-    float sumDist;
+    //float sumDist;
     JoyAxisButton *activeButton;
     int originset;
 

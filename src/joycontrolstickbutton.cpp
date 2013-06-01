@@ -4,20 +4,102 @@
 #include "joycontrolstick.h"
 #include "event.h"
 
+const QString JoyControlStickButton::xmlName = "stickbutton";
+
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, QObject *parent) :
     JoyButton(index, originset, parent)
 {
     this->stick = stick;
 }
 
+JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent) :
+    JoyButton((int)index, originset, parent)
+{
+    this->stick = stick;
+}
+
+QString JoyControlStickButton::getDirectionName()
+{
+    QString label = QString();
+    if (index == JoyControlStick::StickUp)
+    {
+        label.append(tr("Up"));
+    }
+    else if (index == JoyControlStick::StickDown)
+    {
+        label.append(tr("Down"));
+    }
+    else if (index == JoyControlStick::StickLeft)
+    {
+        label.append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickRight)
+    {
+        label.append(tr("Right"));
+    }
+    else if (index == JoyControlStick::StickLeftUp)
+    {
+        label.append(tr("Up")).append("+").append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickLeftDown)
+    {
+        label.append(tr("Down")).append("+").append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickRightUp)
+    {
+        label.append(tr("Up")).append("+").append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickRightDown)
+    {
+        label.append(tr("Down")).append("+").append(tr("Right"));
+    }
+
+    return label;
+}
+
 QString JoyControlStickButton::getPartialName()
 {
-    return QString("temp");
+    return stick->getName().append(" - ").append(getDirectionName());
+}
+
+QString JoyControlStickButton::getXmlName()
+{
+    return this->xmlName;
 }
 
 double JoyControlStickButton::getDistanceFromDeadZone()
 {
     return stick->getDistanceFromDeadZone();
+}
+
+void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+{
+    if (condition != setSelectionCondition && !passive)
+    {
+        if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
+        {
+            // Set new condition
+            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, condition);
+            //emit setAssignmentChanged(index, setSelection, condition);
+        }
+        else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
+        {
+            // Remove old condition
+            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, SetChangeDisabled);
+            //emit setAssignmentChanged(index, setSelection, SetChangeDisabled);
+        }
+
+        setSelectionCondition = condition;
+    }
+    else if (passive)
+    {
+        setSelectionCondition = condition;
+    }
+
+    if (setSelectionCondition == SetChangeDisabled)
+    {
+        setChangeSetSelection(-1);
+    }
 }
 
 void JoyControlStickButton::mouseEvent()
@@ -60,8 +142,8 @@ void JoyControlStickButton::mouseEvent()
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive && timeElapsed >= 5)
         {
-            //double difference = axis->calculateNormalizedAxisPlacement();
-            double difference = getDistanceFromDeadZone();
+            double difference = stick->calculateDirectionalDistance(this);
+            //double difference = getDistanceFromDeadZone();
             int mouse1 = 0;
             int mouse2 = 0;
             double sumDist = buttonslot->getMouseDistance();
@@ -109,12 +191,17 @@ void JoyControlStickButton::mouseEvent()
         if (isActive)
         {
             mouseEventQueue.enqueue(buttonslot);
-            QTimer::singleShot(5, this, SLOT(mouseEvent()));
+            //QTimer::singleShot(5, this, SLOT(mouseEvent()));
+            if (!mouseEventTimer.isActive())
+            {
+                mouseEventTimer.start(5);
+            }
         }
         else
         {
             buttonslot->setDistance(0.0);
             mouseInterval->restart();
+            mouseEventTimer.stop();
         }
     }
 }

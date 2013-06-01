@@ -39,6 +39,7 @@ protected:
     void deleteButtons();
     void deleteAxes();
     void deleteHats();
+    void deleteSticks();
 
     QHash<int, JoyButton*> buttons;
     QHash<int, JoyAxis*> axes;
