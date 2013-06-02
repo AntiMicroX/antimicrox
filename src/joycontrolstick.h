@@ -21,6 +21,7 @@ public:
     int getDeadZone();
     int getDiagonalRange();
     double getDistanceFromDeadZone();
+    double getAbsoluteDistance();
     int getIndex();
     void setIndex(int index);
     int getRealJoyIndex();
@@ -57,6 +58,7 @@ protected:
     bool isActive;
     JoyControlStickButton *activeButton1;
     JoyControlStickButton *activeButton2;
+    JoyControlStickButton *activeButton3;
     bool safezone;
     int index;
     JoyStickDirections currentDirection;

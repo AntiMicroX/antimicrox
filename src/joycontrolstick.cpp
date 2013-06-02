@@ -19,6 +19,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
     isActive = false;
     activeButton1 = 0;
     activeButton2 = 0;
+    activeButton3 = 0;
     safezone = false;
     this->index = index;
     currentDirection = StickCentered;
@@ -111,6 +112,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
 {
     JoyControlStickButton *eventbutton1 = 0;
     JoyControlStickButton *eventbutton2 = 0;
+    JoyControlStickButton *eventbutton3 = 0;
 
     if (safezone)
     {
@@ -155,8 +157,15 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= upRightInitial && bearing < rightInitial)
         {
             currentDirection = StickRightUp;
-            eventbutton1 = buttons.value(StickRight);
-            eventbutton2 = buttons.value(StickUp);
+            if (buttons.contains(StickRightUp))
+            {
+                eventbutton3 = buttons.value(StickRightUp);
+            }
+            else
+            {
+                eventbutton1 = buttons.value(StickRight);
+                eventbutton2 = buttons.value(StickUp);
+            }
         }
         else if (bearing >= rightInitial && bearing < downRightInitial)
         {
@@ -166,8 +175,15 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= downRightInitial && bearing < downInitial)
         {
             currentDirection = StickRightDown;
-            eventbutton1 = buttons.value(StickRight);
-            eventbutton2 = buttons.value(StickDown);
+            if (buttons.contains(StickRightDown))
+            {
+                eventbutton3 = buttons.value(StickRightDown);
+            }
+            else
+            {
+                eventbutton1 = buttons.value(StickRight);
+                eventbutton2 = buttons.value(StickDown);
+            }
         }
         else if (bearing >= downInitial && bearing < downLeftInitial)
         {
@@ -177,8 +193,15 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= downLeftInitial && bearing < leftInitial)
         {
             currentDirection = StickLeftDown;
-            eventbutton1 = buttons.value(StickLeft);
-            eventbutton2 = buttons.value(StickDown);
+            if (buttons.contains(StickLeftDown))
+            {
+                eventbutton3 = buttons.value(StickLeftDown);
+            }
+            else
+            {
+                eventbutton1 = buttons.value(StickLeft);
+                eventbutton2 = buttons.value(StickDown);
+            }
         }
         else if (bearing >= leftInitial && bearing < upLeftInitial)
         {
@@ -188,8 +211,15 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= upLeftInitial && bearing < initialLeft)
         {
             currentDirection = StickLeftUp;
-            eventbutton1 = buttons.value(StickLeft);
-            eventbutton2 = buttons.value(StickUp);
+            if (buttons.contains(StickLeftUp))
+            {
+                eventbutton3 = buttons.value(StickLeftUp);
+            }
+            else
+            {
+                eventbutton1 = buttons.value(StickLeft);
+                eventbutton2 = buttons.value(StickUp);
+            }
         }
         //*/
 
@@ -249,6 +279,11 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     {
         changeButtonEvent(eventbutton1, activeButton1, ignoresets);
     }
+
+    if (eventbutton3 || activeButton3)
+    {
+        changeButtonEvent(eventbutton3, activeButton3, ignoresets);
+    }
 }
 
 double JoyControlStick::calculateBearing()
@@ -304,11 +339,11 @@ void JoyControlStick::changeButtonEvent(JoyControlStickButton *eventbutton, JoyC
     {
         // Currently in deadzone. Disable currently active button.
         activebutton->joyEvent(false, ignoresets);
-        qDebug() << "KLJDLJKDL: " << activebutton->getName() << endl;
+        //qDebug() << "KLJDLJKDL: " << activebutton->getName() << endl;
         activebutton = 0;
-        qDebug() << "DISABLE EVENT: " << isActive << endl;
-        qDebug() << "AXIS1: " << axis1->getCurrentRawValue() << endl;
-        qDebug() << "AXIS2: " << axis2->getCurrentRawValue() << endl;
+        //qDebug() << "DISABLE EVENT: " << isActive << endl;
+        //qDebug() << "AXIS1: " << axis1->getCurrentRawValue() << endl;
+        //qDebug() << "AXIS2: " << axis2->getCurrentRawValue() << endl;
     }
     else if (eventbutton && activebutton && eventbutton == activebutton)
     {
@@ -336,6 +371,28 @@ double JoyControlStick::getDistanceFromDeadZone()
     unsigned int square_dist = (axis1Value*axis1Value) + (axis2Value*axis2Value);
 
     distance = (sqrt(square_dist) - deadZone)/(double)(JoyAxis::AXISMAXZONE - deadZone);
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
+
+    return distance;
+}
+
+double JoyControlStick::getAbsoluteDistance()
+{
+    double distance = 0.0;
+
+    int axis1Value = axis1->getCurrentRawValue();
+    int axis2Value = axis2->getCurrentRawValue();
+
+    unsigned int square_dist = (axis1Value*axis1Value) + (axis2Value*axis2Value);
+
+    distance = sqrt(square_dist)/(double)(JoyAxis::AXISMAXZONE);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -402,6 +459,7 @@ void JoyControlStick::reset()
 
     activeButton1 = 0;
     activeButton2 = 0;
+    activeButton3 = 0;
     safezone = false;
     currentDirection = StickCentered;
     resetButtons();
@@ -584,6 +642,19 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = axis2->getAbsoluteAxisPlacement();
         }
+        /*else if (activeButton3 && activeButton3 == button)
+        {
+            double radius = getDistanceFromDeadZone();
+            double bearing = calculateBearing();
+            bearing = round(bearing) % 90;
+            int diagonalAngle = bearing;
+            if (bearing > 45)
+            {
+                diagonalAngle = 90 - bearing;
+            }
+
+            finalDistance = radius * (diagonalAngle / 45.0);
+        }*/
     }
     else if (currentDirection == StickRight)
     {
@@ -599,6 +670,19 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = axis2->getAbsoluteAxisPlacement();
         }
+        /*else if (activeButton3 && activeButton3 == button)
+        {
+            double radius = getDistanceFromDeadZone();
+            double bearing = calculateBearing();
+            bearing = round(bearing) % 90;
+            int diagonalAngle = bearing;
+            if (bearing > 45)
+            {
+                diagonalAngle = 90 - bearing;
+            }
+
+            finalDistance = radius * (diagonalAngle / 45.0);
+        }*/
     }
     else if (currentDirection == StickDown)
     {
@@ -614,6 +698,19 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = axis2->getAbsoluteAxisPlacement();
         }
+        /*else if (activeButton3 && activeButton3 == button)
+        {
+            double radius = getDistanceFromDeadZone();
+            double bearing = calculateBearing();
+            bearing = round(bearing) % 90;
+            int diagonalAngle = bearing;
+            if (bearing > 45)
+            {
+                diagonalAngle = 90 - bearing;
+            }
+
+            finalDistance = radius * (diagonalAngle / 45.0);
+        }*/
     }
     else if (currentDirection == StickLeft)
     {
@@ -629,6 +726,19 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = axis2->getAbsoluteAxisPlacement();
         }
+        /*else if (activeButton3 && activeButton3 == button)
+        {
+            double radius = getDistanceFromDeadZone();
+            double bearing = calculateBearing();
+            bearing = round(bearing) % 90;
+            int diagonalAngle = bearing;
+            if (bearing > 45)
+            {
+                diagonalAngle = 90 - bearing;
+            }
+
+            finalDistance = radius * (diagonalAngle / 45.0);
+        }*/
     }
 
     return finalDistance;
