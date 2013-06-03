@@ -93,6 +93,7 @@ private slots:
     void changeJoyConfig(int index);
     void showAxisDialog();
     void showButtonDialog();
+    void showStickDialog();
 
     void changeSetOne();
     void changeSetTwo();

@@ -23,9 +23,11 @@ public:
     JoyAxis* getJoyAxis(int index);
     JoyButton* getJoyButton(int index);
     JoyDPad* getJoyDPad(int index);
+    JoyControlStick* getJoyStick(int index);
     int getNumberButtons ();
     int getNumberAxes();
     int getNumberHats();
+    int getNumberSticks();
     void refreshButtons ();
     void refreshAxes();
     void refreshHats();

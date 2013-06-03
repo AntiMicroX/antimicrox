@@ -6,6 +6,8 @@
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
 #include "buttoneditdialog.h"
+#include "joycontrolstickeditdialog.h"
+#include "joycontrolstickpushbutton.h"
 
 JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     QWidget(parent)
@@ -426,33 +428,54 @@ void JoyTabWidget::fillButtons()
         {
             child = current_layout->takeAt(0)->widget();
             current_layout->removeWidget (child);
-            //child->deleteLater();
             delete child;
             child = 0;
         }
 
         connect (joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)));
 
-        for (int j=0; j < joystick->getNumberAxes(); j++)
+        for (int j=0; j < joystick->getNumberSticks(); j++)
         {
-            //JoyAxis *axis = joystick->getJoyAxis(i);
-            JoyAxis *axis = joystick->getSetJoystick(i)->getJoyAxis(j);
-            JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, this);
-            axisWidget->setText(axis->getName());
-            axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-            //axisWidget->setMinimumHeight(30);
-            axisWidget->setMinimumSize(316, 30);
+            JoyControlStick *stick = joystick->getSetJoystick(i)->getJoyStick(j);
+            JoyControlStickPushButton *stickWidget = new JoyControlStickPushButton(stick, this);
 
-            connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
-            connect(axis, SIGNAL(throttleChanged()), axisWidget, SLOT(refreshLabel()));
+            stickWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+            stickWidget->setMinimumSize(316, 30);
+
+            connect(stickWidget, SIGNAL(clicked()), this, SLOT(showStickDialog()));
 
             if (column > 1)
             {
                 column = 0;
                 row++;
             }
-            current_layout->addWidget(axisWidget, row, column);
+            current_layout->addWidget(stickWidget, row, column);
             column++;
+        }
+
+        for (int j=0; j < joystick->getNumberAxes(); j++)
+        {
+            //JoyAxis *axis = joystick->getJoyAxis(i);
+            JoyAxis *axis = joystick->getSetJoystick(i)->getJoyAxis(j);
+            if (!axis->isPartControlStick())
+            {
+                JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, this);
+                axisWidget->setText(axis->getName());
+                axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+                //axisWidget->setMinimumHeight(30);
+                axisWidget->setMinimumSize(316, 30);
+
+                connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
+                connect(axis, SIGNAL(throttleChanged()), axisWidget, SLOT(refreshLabel()));
+
+                if (column > 1)
+                {
+                    column = 0;
+                    row++;
+                }
+                current_layout->addWidget(axisWidget, row, column);
+                column++;
+            }
         }
 
         for (int j=0; j < joystick->getNumberHats(); j++)
@@ -522,6 +545,17 @@ void JoyTabWidget::showAxisDialog()
     axisDialog = new AxisEditDialog (axis, this);
     axisDialog->show();
     connect(axisDialog, SIGNAL(destroyed()), axisWidget, SLOT(refreshLabel()));
+}
+
+void JoyTabWidget::showStickDialog()
+{
+    QObject *sender = QObject::sender();
+    JoyControlStickPushButton *stickWidget = (JoyControlStickPushButton*) sender;
+    JoyControlStick *stick = stickWidget->getStick();
+
+    JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog (stick, this);
+    dialog->show();
+    connect(dialog, SIGNAL(destroyed()), stickWidget, SLOT(refreshLabel()));
 }
 
 void JoyTabWidget::saveConfigFile()

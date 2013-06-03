@@ -69,7 +69,8 @@ QString JoyControlStickButton::getXmlName()
 
 double JoyControlStickButton::getDistanceFromDeadZone()
 {
-    return stick->getDistanceFromDeadZone();
+    //return stick->getDistanceFromDeadZone();
+    return stick->calculateDirectionalDistance(this);
 }
 
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
@@ -102,7 +103,7 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     }
 }
 
-void JoyControlStickButton::mouseEvent()
+/*void JoyControlStickButton::mouseEvent()
 {
     JoyButtonSlot *buttonslot = 0;
     if (currentMouseEvent)
@@ -142,7 +143,7 @@ void JoyControlStickButton::mouseEvent()
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive && timeElapsed >= 5)
         {
-            double difference = stick->calculateDirectionalDistance(this);
+            //double difference = stick->calculateDirectionalDistance(this);
             //double difference = getDistanceFromDeadZone();
             int mouse1 = 0;
             int mouse2 = 0;
@@ -205,3 +206,4 @@ void JoyControlStickButton::mouseEvent()
         }
     }
 }
+*/

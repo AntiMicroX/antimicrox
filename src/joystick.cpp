@@ -153,6 +153,11 @@ int Joystick::getNumberHats()
     return getActiveSetJoystick()->getNumberHats();
 }
 
+int Joystick::getNumberSticks()
+{
+    return getActiveSetJoystick()->getNumberSticks();
+}
+
 SetJoystick* Joystick::getSetJoystick(int index)
 {
     return joystick_sets.value(index);

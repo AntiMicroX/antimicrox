@@ -258,7 +258,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
 
 void AxisEditDialog::openAdvancedPDialog()
 {
-    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getPAxisButton());
+    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getPAxisButton(), this);
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPButtonLabel()));
@@ -266,7 +266,7 @@ void AxisEditDialog::openAdvancedPDialog()
 
 void AxisEditDialog::openAdvancedNDialog()
 {
-    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getNAxisButton());
+    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getNAxisButton(), this);
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshNButtonLabel()));

@@ -606,7 +606,10 @@ void JoyButton::mouseEvent()
             mouseEventTimer.stop();
         }
     }
+}
 
+void JoyButton::mouseSingleEvent()
+{
 
 }
 

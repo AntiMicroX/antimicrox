@@ -22,6 +22,7 @@ public:
     int getNumberButtons ();
     int getNumberAxes();
     int getNumberHats();
+    int getNumberSticks();
     SDL_Joystick* getSDLHandle ();
     int getJoyNumber ();
     int getRealJoyNumber ();

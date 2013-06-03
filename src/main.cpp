@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested(Joystick*)), joypad_worker, SLOT(refreshJoystick(Joystick*)));
-    QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
+    //QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
 
     if (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable())

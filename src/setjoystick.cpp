@@ -34,6 +34,11 @@ JoyDPad* SetJoystick::getJoyDPad(int index)
     return hats.value(index);
 }
 
+JoyControlStick* SetJoystick::getJoyStick(int index)
+{
+    return sticks.value(index);
+}
+
 void SetJoystick::refreshButtons()
 {
     deleteButtons();
@@ -165,6 +170,11 @@ int SetJoystick::getNumberAxes()
 int SetJoystick::getNumberHats()
 {
     return hats.count();
+}
+
+int SetJoystick::getNumberSticks()
+{
+    return sticks.size();
 }
 
 void SetJoystick::reset()

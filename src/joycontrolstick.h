@@ -22,6 +22,7 @@ public:
     int getDiagonalRange();
     double getDistanceFromDeadZone();
     double getAbsoluteDistance();
+    double getNormalizedAbsoluteDistance();
     int getIndex();
     void setIndex(int index);
     int getRealJoyIndex();
@@ -29,6 +30,9 @@ public:
     int getCurrentlyAssignedSet();
     QString getName();
     JoyStickDirections getCurrentDirection();
+    int getXCoordinate();
+    int getYCoordinate();
+    double calculateBearing();
 
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();
@@ -38,16 +42,17 @@ public:
     void readConfig(QXmlStreamReader *xml);
     void writeConfig(QXmlStreamWriter *xml);
 
-    static double PI;
+    static const double PI;
 
 protected:
     void populateButtons();
     void createDeskEvent(bool ignoresets = false);
-    double calculateBearing();
     void changeButtonEvent(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void refreshButtons();
     void deleteButtons();
     void resetButtons();
+    double calculateXDistanceFromDeadZone();
+    double calculateYDistanceFromDeadZone();
 
     JoyAxis *axis1;
     JoyAxis *axis2;

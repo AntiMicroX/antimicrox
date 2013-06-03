@@ -4,27 +4,11 @@
 
 #include "joycontrolstick.h"
 
-double JoyControlStick::PI = acos(-1.0);
+const double JoyControlStick::PI = acos(-1.0);
 
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset, QObject *parent) :
     QObject(parent)
 {
-    /*
-    this->axis1 = axis1;
-    this->axis2 = axis2;
-    this->originset = originset;
-    deadZone = 8000;
-    maxZone = 30000;
-    diagonalRange = 0;
-    isActive = false;
-    activeButton1 = 0;
-    activeButton2 = 0;
-    activeButton3 = 0;
-    safezone = false;
-    this->index = index;
-    currentDirection = StickCentered;
-    */
-
     this->axis1 = axis1;
     this->axis2 = axis2;
     this->index = index;
@@ -70,7 +54,7 @@ bool JoyControlStick::inDeadZone()
     int axis1Value = axis1->getCurrentRawValue();
     int axis2Value = axis2->getCurrentRawValue();
 
-    unsigned int squareDist = (axis1Value*axis1Value) + (axis2Value*axis2Value);
+    unsigned int squareDist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
     return squareDist <= (deadZone*deadZone);
 }
@@ -78,23 +62,15 @@ bool JoyControlStick::inDeadZone()
 void JoyControlStick::populateButtons()
 {
     JoyControlStickButton *button = new JoyControlStickButton (this, StickUp, originset, this);
-    //button->setAssignedSlot(31);
-    //button->setAssignedSlot(25);
     buttons.insert(StickUp, button);
 
     button = new JoyControlStickButton (this, StickDown, originset, this);
-    //button->setAssignedSlot(45);
-    //button->setAssignedSlot(39);
     buttons.insert(StickDown, button);
 
     button = new JoyControlStickButton(this, StickLeft, originset, this);
-    //button->setAssignedSlot(44);
-    //button->setAssignedSlot(38);
     buttons.insert(StickLeft, button);
 
     button = new JoyControlStickButton(this, StickRight, originset, this);
-    //button->setAssignedSlot(46);
-    //button->setAssignedSlot(40);
     buttons.insert(StickRight, button);
 }
 
@@ -117,16 +93,8 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     if (safezone)
     {
         double bearing = calculateBearing();
-        //*
-        //int diagonalAngle = (int)floor((deadZone / (double)JoyAxis::AXISMAX) * 100);
         //int diagonalAngle = diagonalRange;
-        int diagonalAngle = 45;
-        /*
-        if (diagonalAngle > 89)
-        {
-            diagonalAngle = 89;
-        }
-        //*/
+        int diagonalAngle = diagonalRange;
 
         int cardinalAngle = (360 - (diagonalAngle * 4)) / 4;
 
@@ -368,9 +336,63 @@ double JoyControlStick::getDistanceFromDeadZone()
     int axis1Value = axis1->getCurrentRawValue();
     int axis2Value = axis2->getCurrentRawValue();
 
-    unsigned int square_dist = (axis1Value*axis1Value) + (axis2Value*axis2Value);
+    unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
     distance = (sqrt(square_dist) - deadZone)/(double)(JoyAxis::AXISMAXZONE - deadZone);
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
+
+    return distance;
+}
+
+double JoyControlStick::calculateXDistanceFromDeadZone()
+{
+    double distance = 0.0;
+
+    int axis1Value = axis1->getCurrentRawValue();
+
+    double relativeAngle = calculateBearing();
+    if (relativeAngle > 180)
+    {
+        relativeAngle = relativeAngle - 180;
+    }
+
+    double tester = sin(relativeAngle * PI / 180.0);
+    double testerDead = deadZone * tester;
+    int deadX = (int)round(deadZone * sin(relativeAngle * PI / 180.0));
+    distance = (abs(axis1Value) - deadX)/(double)(JoyAxis::AXISMAXZONE - deadX);
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
+
+    return distance;
+}
+
+double JoyControlStick::calculateYDistanceFromDeadZone()
+{
+    double distance = 0.0;
+
+    int axis2Value = axis2->getCurrentRawValue();
+
+    double relativeAngle = calculateBearing();
+    if (relativeAngle > 180)
+    {
+        relativeAngle = relativeAngle - 180;
+    }
+
+    int deadY = abs(round(deadZone * cos(relativeAngle * PI / 180.0)));
+    distance = (abs(axis2Value) - deadY)/(double)(JoyAxis::AXISMAXZONE - deadY);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -390,9 +412,31 @@ double JoyControlStick::getAbsoluteDistance()
     int axis1Value = axis1->getCurrentRawValue();
     int axis2Value = axis2->getCurrentRawValue();
 
-    unsigned int square_dist = (axis1Value*axis1Value) + (axis2Value*axis2Value);
+    unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
-    distance = sqrt(square_dist)/(double)(JoyAxis::AXISMAXZONE);
+    distance = sqrt(square_dist);
+    if (distance > JoyAxis::AXISMAX)
+    {
+        distance = JoyAxis::AXISMAX;
+    }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
+
+    return distance;
+}
+
+double JoyControlStick::getNormalizedAbsoluteDistance()
+{
+    double distance = 0.0;
+
+    int axis1Value = axis1->getCurrentRawValue();
+    int axis2Value = axis2->getCurrentRawValue();
+
+    unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
+
+    distance = sqrt(square_dist)/(double)(JoyAxis::AXISMAX);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -441,7 +485,7 @@ void JoyControlStick::reset()
 {
     deadZone = 8000;
     maxZone = JoyAxis::AXISMAXZONE;
-    diagonalRange = 0;
+    diagonalRange = 45;
     isActive = false;
 
     /*if (activeButton1)
@@ -630,27 +674,31 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     if (currentDirection == StickUp)
     {
         //finalDistance = axis2->getCurrentRawValue() / (double)JoyAxis::AXISMAXZONE;
-        finalDistance = axis2->getAbsoluteAxisPlacement();
+        //finalDistance = axis2->getAbsoluteAxisPlacement();
+        finalDistance = calculateYDistanceFromDeadZone();
     }
     else if (currentDirection == StickRightUp)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            finalDistance = axis1->getAbsoluteAxisPlacement();
+            //finalDistance = axis1->getAbsoluteAxisPlacement();
+            finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            finalDistance = axis2->getAbsoluteAxisPlacement();
+            //finalDistance = axis2->getAbsoluteAxisPlacement();
+            finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            bearing = round(bearing) % 90;
-            int diagonalAngle = bearing;
-            if (bearing > 45)
+            int relativeBearing = (int)round(bearing) % 90;
+            //bearing = round(bearing) % 90;
+            int diagonalAngle = relativeBearing;
+            if (relativeBearing > 45)
             {
-                diagonalAngle = 90 - bearing;
+                diagonalAngle = 90 - relativeBearing;
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
@@ -658,27 +706,31 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     }
     else if (currentDirection == StickRight)
     {
-        finalDistance = axis1->getAbsoluteAxisPlacement();
+        //finalDistance = axis1->getAbsoluteAxisPlacement();
+        finalDistance = calculateXDistanceFromDeadZone();
     }
     else if (currentDirection  == StickRightDown)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            finalDistance = axis1->getAbsoluteAxisPlacement();
+            //finalDistance = axis1->getAbsoluteAxisPlacement();
+            finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            finalDistance = axis2->getAbsoluteAxisPlacement();
+            //finalDistance = axis2->getAbsoluteAxisPlacement();
+            finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            bearing = round(bearing) % 90;
-            int diagonalAngle = bearing;
-            if (bearing > 45)
+            int relativeBearing = (int)round(bearing) % 90;
+            //bearing = round(bearing) % 90;
+            int diagonalAngle = relativeBearing;
+            if (relativeBearing > 45)
             {
-                diagonalAngle = 90 - bearing;
+                diagonalAngle = 90 - relativeBearing;
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
@@ -686,27 +738,31 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     }
     else if (currentDirection == StickDown)
     {
-        finalDistance = axis2->getAbsoluteAxisPlacement();
+        //finalDistance = axis2->getAbsoluteAxisPlacement();
+        finalDistance = calculateYDistanceFromDeadZone();
     }
     else if (currentDirection == StickLeftDown)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            finalDistance = axis1->getAbsoluteAxisPlacement();
+            //finalDistance = axis1->getAbsoluteAxisPlacement();
+            finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            finalDistance = axis2->getAbsoluteAxisPlacement();
+            //finalDistance = axis2->getAbsoluteAxisPlacement();
+            finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            bearing = round(bearing) % 90;
-            int diagonalAngle = bearing;
-            if (bearing > 45)
+            int relativeBearing = (int)round(bearing) % 90;
+            //bearing = round(bearing) % 90;
+            int diagonalAngle = relativeBearing;
+            if (relativeBearing > 45)
             {
-                diagonalAngle = 90 - bearing;
+                diagonalAngle = 90 - relativeBearing;
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
@@ -714,27 +770,31 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     }
     else if (currentDirection == StickLeft)
     {
-        finalDistance = axis1->getAbsoluteAxisPlacement();
+        //finalDistance = axis1->getAbsoluteAxisPlacement();
+        finalDistance = calculateXDistanceFromDeadZone();
     }
     else if (currentDirection == StickLeftUp)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            finalDistance = axis1->getAbsoluteAxisPlacement();
+            //finalDistance = axis1->getAbsoluteAxisPlacement();
+            finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            finalDistance = axis2->getAbsoluteAxisPlacement();
+            //finalDistance = axis2->getAbsoluteAxisPlacement();
+            finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            bearing = round(bearing) % 90;
-            int diagonalAngle = bearing;
-            if (bearing > 45)
+            int relativeBearing = (int)round(bearing) % 90;
+            //bearing = round(bearing) % 90;
+            int diagonalAngle = relativeBearing;
+            if (relativeBearing > 45)
             {
-                diagonalAngle = 90 - bearing;
+                diagonalAngle = 90 - relativeBearing;
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
@@ -747,4 +807,14 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
 JoyControlStick::JoyStickDirections JoyControlStick::getCurrentDirection()
 {
     return currentDirection;
+}
+
+int JoyControlStick::getXCoordinate()
+{
+    return axis1->getCurrentRawValue();
+}
+
+int JoyControlStick::getYCoordinate()
+{
+    return axis2->getCurrentRawValue();
 }
