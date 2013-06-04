@@ -37,6 +37,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->distanceLabel->setText(QString::number(stick->getAbsoluteDistance()));
     ui->diagonalLabel->setText(QString::number(stick->calculateBearing()));
 
+    ui->stickStatusBoxWidget->setStick(stick);
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));

@@ -93,7 +93,6 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     if (safezone)
     {
         double bearing = calculateBearing();
-        //int diagonalAngle = diagonalRange;
         int diagonalAngle = diagonalRange;
 
         int cardinalAngle = (360 - (diagonalAngle * 4)) / 4;
@@ -114,8 +113,6 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         int leftInitial = downLeftInitial + diagonalAngle;
         int upLeftInitial = leftInitial + cardinalAngle;
 
-        //*
-        double initialBearing = bearing;
         bearing = round(bearing);
         if (bearing <= initialRight || bearing >= initialLeft)
         {
@@ -189,53 +186,6 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
                 eventbutton2 = buttons.value(StickUp);
             }
         }
-        //*/
-
-        /*
-        int pedaltothemetal = (int)round(bearing/45.0);
-        int direction = ((int)round(bearing/45.0)) % 8;
-        direction += 1;
-        currentDirection = (JoyStickDirections)direction;
-        //*/
-
-        /*
-        if (direction == StickUp)
-        {
-            eventbutton2 = buttons.value(StickUp);
-        }
-        else if (direction == StickRightUp)
-        {
-            eventbutton1 = buttons.value(StickRight);
-            eventbutton2 = buttons.value(StickUp);
-        }
-        else if (direction == StickRight)
-        {
-            eventbutton1 = buttons.value(StickRight);
-        }
-        else if (direction  == StickRightDown)
-        {
-            eventbutton1 = buttons.value(StickRight);
-            eventbutton2 = buttons.value(StickDown);
-        }
-        else if (direction == StickDown)
-        {
-            eventbutton2 = buttons.value(StickDown);
-        }
-        else if (direction == StickLeftDown)
-        {
-            eventbutton1 = buttons.value(StickLeft);
-            eventbutton2 = buttons.value(StickDown);
-        }
-        else if (direction == StickLeft)
-        {
-            eventbutton1 = buttons.value(StickLeft);
-        }
-        else if (direction == StickLeftUp)
-        {
-            eventbutton1 = buttons.value(StickLeft);
-            eventbutton2 = buttons.value(StickUp);
-        }
-        //*/
     }
 
     if (eventbutton2 || activeButton2)
@@ -517,7 +467,11 @@ void JoyControlStick::setDeadZone(int value)
         value = JoyAxis::AXISMAX;
     }
 
-    deadZone = value;
+    if (value != deadZone)
+    {
+        deadZone = value;
+        emit deadZoneChanged(value);
+    }
 }
 
 void JoyControlStick::setMaxZone(int value)
@@ -542,7 +496,11 @@ void JoyControlStick::setDiagonalRange(int value)
         value = 99;
     }
 
-    diagonalRange = value;
+    if (value != diagonalRange)
+    {
+        diagonalRange = value;
+        emit diagonalRangeChanged(value);
+    }
 }
 
 void JoyControlStick::refreshButtons()
@@ -624,69 +582,20 @@ double JoyControlStick::calculateNormalizedAxis2Placement()
 
 double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *button)
 {
-    /*
-    double finalDistance = 0.0;
-
-    double bearing = calculateBearing();
-    int direction = ((int)round(bearing/45.0)) % 8;
-
-    if (direction == 0)
-    {
-        finalDistance = axis1->getCurrentRawValue() / (double)JoyAxis::AXISMAXZONE;
-    }
-    else if (direction == 1)
-    {
-        eventbutton1 = buttons.value(StickRight);
-        eventbutton2 = buttons.value(StickUp);
-    }
-    else if (direction == 2)
-    {
-        eventbutton1 = buttons.value(StickRight);
-    }
-    else if (direction  == 3)
-    {
-        eventbutton1 = buttons.value(StickRight);
-        eventbutton2 = buttons.value(StickDown);
-    }
-    else if (direction == 4)
-    {
-        eventbutton2 = buttons.value(StickDown);
-    }
-    else if (direction == 5)
-    {
-        eventbutton1 = buttons.value(StickLeft);
-        eventbutton2 = buttons.value(StickDown);
-    }
-    else if (direction == 6)
-    {
-        eventbutton1 = buttons.value(StickLeft);
-    }
-    else if (direction == 7)
-    {
-        eventbutton1 = buttons.value(StickLeft);
-        eventbutton2 = buttons.value(StickUp);
-    }
-
-    return finalDistance;
-    //*/
     double finalDistance = 0.0;
 
     if (currentDirection == StickUp)
     {
-        //finalDistance = axis2->getCurrentRawValue() / (double)JoyAxis::AXISMAXZONE;
-        //finalDistance = axis2->getAbsoluteAxisPlacement();
         finalDistance = calculateYDistanceFromDeadZone();
     }
     else if (currentDirection == StickRightUp)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            //finalDistance = axis1->getAbsoluteAxisPlacement();
             finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            //finalDistance = axis2->getAbsoluteAxisPlacement();
             finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
@@ -706,19 +615,16 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     }
     else if (currentDirection == StickRight)
     {
-        //finalDistance = axis1->getAbsoluteAxisPlacement();
         finalDistance = calculateXDistanceFromDeadZone();
     }
     else if (currentDirection  == StickRightDown)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            //finalDistance = axis1->getAbsoluteAxisPlacement();
             finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            //finalDistance = axis2->getAbsoluteAxisPlacement();
             finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
@@ -738,19 +644,16 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     }
     else if (currentDirection == StickDown)
     {
-        //finalDistance = axis2->getAbsoluteAxisPlacement();
         finalDistance = calculateYDistanceFromDeadZone();
     }
     else if (currentDirection == StickLeftDown)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            //finalDistance = axis1->getAbsoluteAxisPlacement();
             finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            //finalDistance = axis2->getAbsoluteAxisPlacement();
             finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
@@ -770,19 +673,16 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
     }
     else if (currentDirection == StickLeft)
     {
-        //finalDistance = axis1->getAbsoluteAxisPlacement();
         finalDistance = calculateXDistanceFromDeadZone();
     }
     else if (currentDirection == StickLeftUp)
     {
         if (activeButton1 && activeButton1 == button)
         {
-            //finalDistance = axis1->getAbsoluteAxisPlacement();
             finalDistance = calculateXDistanceFromDeadZone();
         }
         else if (activeButton2 && activeButton2 == button)
         {
-            //finalDistance = axis2->getAbsoluteAxisPlacement();
             finalDistance = calculateYDistanceFromDeadZone();
         }
         /*else if (activeButton3 && activeButton3 == button)
@@ -817,4 +717,41 @@ int JoyControlStick::getXCoordinate()
 int JoyControlStick::getYCoordinate()
 {
     return axis2->getCurrentRawValue();
+}
+
+QList<int> JoyControlStick::getDiagonalZoneAngles()
+{
+    QList<int> anglesList;
+
+    int diagonalAngle = diagonalRange;
+
+    int cardinalAngle = (360 - (diagonalAngle * 4)) / 4;
+
+    int initialLeft = 360 - (int)((cardinalAngle - 1) / 2);
+    int initialRight = (int)((cardinalAngle - 1)/ 2);
+    if ((cardinalAngle - 1) % 2 != 0)
+    {
+        initialLeft = 360 - (cardinalAngle / 2);
+        initialRight = (cardinalAngle / 2) - 1;
+    }
+
+    int upRightInitial = initialRight + 1;
+    int rightInitial = upRightInitial + diagonalAngle ;
+    int downRightInitial = rightInitial + cardinalAngle;
+    int downInitial = downRightInitial + diagonalAngle;
+    int downLeftInitial = downInitial + cardinalAngle;
+    int leftInitial = downLeftInitial + diagonalAngle;
+    int upLeftInitial = leftInitial + cardinalAngle;
+
+    anglesList.append(initialLeft);
+    anglesList.append(initialRight);
+    anglesList.append(upRightInitial);
+    anglesList.append(rightInitial);
+    anglesList.append(downRightInitial);
+    anglesList.append(downInitial);
+    anglesList.append(downLeftInitial);
+    anglesList.append(leftInitial);
+    anglesList.append(upLeftInitial);
+
+    return anglesList;
 }

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHash>
+#include <QList>
 
 #include "joyaxis.h"
 #include "joybutton.h"
@@ -33,6 +34,7 @@ public:
     int getXCoordinate();
     int getYCoordinate();
     double calculateBearing();
+    QList<int> getDiagonalZoneAngles();
 
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();
@@ -75,6 +77,8 @@ signals:
     void moved(int xaxis, int yaxis);
     void active(int xaxis, int yaxis);
     void released(int axis, int yaxis);
+    void deadZoneChanged(int value);
+    void diagonalRangeChanged(int value);
 
 public slots:
     void reset();

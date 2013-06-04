@@ -92,7 +92,8 @@ SOURCES += main.cpp\
     joycontrolstickbutton.cpp \
     joycontrolstickeditdialog.cpp \
     joycontrolstickpushbutton.cpp \
-    joycontrolstickbuttonpushbutton.cpp
+    joycontrolstickbuttonpushbutton.cpp \
+    joycontrolstickstatusbox.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -130,7 +131,8 @@ HEADERS  += mainwindow.h \
     joycontrolstickdirectionstype.h \
     joycontrolstickeditdialog.h \
     joycontrolstickpushbutton.h \
-    joycontrolstickbuttonpushbutton.h
+    joycontrolstickbuttonpushbutton.h \
+    joycontrolstickstatusbox.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \
