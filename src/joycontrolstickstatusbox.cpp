@@ -12,6 +12,12 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     this->stick = 0;
     xCoor = 0;
     yCoor = 0;
+
+    /*QSizePolicy sizePolicy1;
+    sizePolicy1.setHorizontalPolicy(QSizePolicy::Preferred);
+    sizePolicy1.setVerticalPolicy(QSizePolicy::Preferred);
+    sizePolicy1.setHeightForWidth(true);
+    this->setSizePolicy(sizePolicy1);*/
 }
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent) :
@@ -46,6 +52,16 @@ JoyControlStick* JoyControlStickStatusBox::getStick()
     return stick;
 }
 
+int JoyControlStickStatusBox::heightForWidth(int width) const
+{
+    return width;
+}
+
+QSize JoyControlStickStatusBox::sizeHint() const
+{
+    return QSize(-1, -1);
+}
+
 void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
@@ -54,6 +70,9 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 
     int side = qMin(width()-2, height()-2);
 
+    //qDebug() << "WIDTH: " << width() << endl;
+    //qDebug() << "HEIGHT: " << height() << endl;
+    //qDebug() << "SIDE: " << side << endl;
     paint.save();
     paint.setPen(Qt::gray);
     paint.scale(side / 2.0, side / 2.0);

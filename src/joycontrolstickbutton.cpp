@@ -81,13 +81,11 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
         {
             // Set new condition
             emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, condition);
-            //emit setAssignmentChanged(index, setSelection, condition);
         }
         else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
         {
             // Remove old condition
             emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, SetChangeDisabled);
-            //emit setAssignmentChanged(index, setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;

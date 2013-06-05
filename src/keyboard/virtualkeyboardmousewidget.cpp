@@ -461,7 +461,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     {
         width = 40;
     }
-    else if (xcodestring == "Shift_L")
+    else if (xcodestring == "Shift_L" || xcodestring == "Shift_R")
     {
         width = 84;
     }

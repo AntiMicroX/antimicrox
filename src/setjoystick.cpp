@@ -188,9 +188,25 @@ void SetJoystick::reset()
     {
         JoyControlStick *stick = new JoyControlStick(axes.value(0), axes.value(1), 0, index, this);
         stick->getDirectionButton(JoyControlStick::StickUp)->setAssignedSlot(25);
+        JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickUp);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
+
         stick->getDirectionButton(JoyControlStick::StickDown)->setAssignedSlot(39);
+        button = stick->getDirectionButton(JoyControlStick::StickDown);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
+
         stick->getDirectionButton(JoyControlStick::StickLeft)->setAssignedSlot(38);
+        button = stick->getDirectionButton(JoyControlStick::StickLeft);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
+
         stick->getDirectionButton(JoyControlStick::StickRight)->setAssignedSlot(40);
+        button = stick->getDirectionButton(JoyControlStick::StickRight);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
+
         sticks.insert(0, stick);
 
         axes.value(0)->setControlStick(stick);
@@ -201,24 +217,42 @@ void SetJoystick::reset()
     {
         JoyControlStick *stick = new JoyControlStick(axes.value(3), axes.value(4), 1, index, this);
         stick->getDirectionButton(JoyControlStick::StickUp)->setAssignedSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement);
+
+        JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickUp);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
+
         /*
         stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedX(10);
         stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedY(10);
         //*/
 
         stick->getDirectionButton(JoyControlStick::StickDown)->setAssignedSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement);
+
+        button = stick->getDirectionButton(JoyControlStick::StickDown);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
+
         /*
         stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedX(10);
         stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedY(10);
         //*/
 
         stick->getDirectionButton(JoyControlStick::StickLeft)->setAssignedSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement);
+
+        button = stick->getDirectionButton(JoyControlStick::StickLeft);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
         /*
         stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedX(10);
         stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedY(10);
         //*/
 
         stick->getDirectionButton(JoyControlStick::StickRight)->setAssignedSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement);
+
+        button = stick->getDirectionButton(JoyControlStick::StickRight);
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
         /*
         stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedX(10);
         stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedY(10);
@@ -257,6 +291,14 @@ void SetJoystick::propogateSetAxisButtonAssociation(int button, int axis, int ne
     if (newset != index)
     {
         emit setAssignmentAxisChanged(button, axis, index, newset, mode);
+    }
+}
+
+void SetJoystick::propogateSetStickButtonAssociation(int button, int stick, int newset, int mode)
+{
+    if (newset != index)
+    {
+        emit setAssignmentStickChanged(button, stick, index, newset, mode);
     }
 }
 

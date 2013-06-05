@@ -51,6 +51,7 @@ public slots:
     void setActiveSetNumber(int index);
     void changeSetButtonAssociation(int button_index, int originset, int newset, int mode);
     void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);
+    void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
 
 

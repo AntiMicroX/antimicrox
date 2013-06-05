@@ -18,6 +18,9 @@ public:
 
     JoyControlStick* getStick();
 
+    virtual int heightForWidth(int width) const;
+    QSize sizeHint() const;
+
 protected:
     virtual void paintEvent(QPaintEvent *event);
 

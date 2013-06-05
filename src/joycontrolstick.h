@@ -35,6 +35,7 @@ public:
     int getYCoordinate();
     double calculateBearing();
     QList<int> getDiagonalZoneAngles();
+    QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();
 
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();

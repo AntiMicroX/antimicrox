@@ -21,6 +21,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
 
         connect(setstick, SIGNAL(setAssignmentAxisChanged(int,int,int,int,int)), this, SLOT(changeSetAxisButtonAssociation(int,int,int,int,int)));
         connect(setstick, SIGNAL(setAssignmentDPadChanged(int,int,int,int,int)), this, SLOT(changeSetDPadButtonAssociation(int,int,int,int,int)));
+        connect(setstick, SIGNAL(setAssignmentStickChanged(int,int,int,int,int)), this, SLOT(changeSetStickButtonAssociation(int,int,int,int,int)));
 
         connect(setstick, SIGNAL(setAssignmentAxisThrottleChanged(int,int)), this, SLOT(propogateSetAxisThrottleChange(int, int)));
     }
@@ -285,6 +286,15 @@ void Joystick::changeSetAxisButtonAssociation(int button_index, int axis_index, 
     {
         button = joystick_sets.value(newset)->getJoyAxis(axis_index)->getPAxisButton();
     }
+
+    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
+}
+
+void Joystick::changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode)
+{
+    JoyControlStickButton *button = joystick_sets.value(newset)->getJoyStick(stick_index)->getDirectionButton((JoyControlStick::JoyStickDirections)button_index);
 
     JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
     button->setChangeSetSelection(originset);

@@ -1,3 +1,5 @@
+#include <QHashIterator>
+
 #include "joycontrolstickeditdialog.h"
 #include "ui_joycontrolstickeditdialog.h"
 #include "buttoneditdialog.h"
@@ -39,7 +41,38 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     ui->stickStatusBoxWidget->setStick(stick);
 
+    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+    int tempMouseSpeedX = 0;
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        tempMouseSpeedX = qMax(tempMouseSpeedX, button->getMouseSpeedX());
+    }
+
+    iter.toFront();
+    int tempMouseSpeedY = 0;
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        tempMouseSpeedY = qMax(tempMouseSpeedY, button->getMouseSpeedY());
+    }
+
+    ui->horizontalSpinBox->setValue(tempMouseSpeedX);
+    updateHorizontalSpeedConvertLabel(tempMouseSpeedX);
+
+    ui->verticalSpinBox->setValue(tempMouseSpeedY);
+    updateVerticalSpeedConvertLabel(tempMouseSpeedY);
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+
+    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
+    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
+    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigHorizontalSpeed(int)));
+
+    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
+    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
+    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigVerticalSpeed(int)));
+
     connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
 
@@ -53,6 +86,9 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->downPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedDownDialog()));
     connect(ui->leftPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedLeftDialog()));
     connect(ui->rightPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedRightDialog()));
+
+    connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
+    connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
 
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
 }
@@ -207,4 +243,70 @@ void JoyControlStickEditDialog::refreshStickStats(int x, int y)
     ui->yCoordinateLabel->setText(QString::number(y));
     ui->distanceLabel->setText(QString::number(stick->getAbsoluteDistance()));
     ui->diagonalLabel->setText(QString::number(stick->calculateBearing()));
+}
+
+void JoyControlStickEditDialog::syncSpeedSpinBoxes()
+{
+    int temp = ui->horizontalSpinBox->value();
+    if (temp > ui->verticalSpinBox->value())
+    {
+        ui->verticalSpinBox->setValue(temp);
+    }
+    else
+    {
+        temp = ui->verticalSpinBox->value();
+        ui->horizontalSpinBox->setValue(temp);
+    }
+}
+
+void JoyControlStickEditDialog::changeMouseSpeedsInterface(bool value)
+{
+    ui->horizontalSpinBox->setEnabled(value);
+    ui->verticalSpinBox->setEnabled(value);
+    ui->changeTogetherCheckBox->setEnabled(value);
+}
+
+void JoyControlStickEditDialog::updateHorizontalSpeedConvertLabel(int value)
+{
+    QString label = QString (QString::number(value));
+    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
+    ui->horizontalSpeedLabel->setText(label);
+}
+
+void JoyControlStickEditDialog::updateVerticalSpeedConvertLabel(int value)
+{
+    QString label = QString (QString::number(value));
+    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
+    ui->verticalSpeedLabel->setText(label);
+}
+
+void JoyControlStickEditDialog::moveSpeedsTogether(int value)
+{
+    if (ui->changeTogetherCheckBox->isChecked())
+    {
+        ui->horizontalSpinBox->setValue(value);
+        ui->verticalSpinBox->setValue(value);
+    }
+}
+
+void JoyControlStickEditDialog::updateConfigHorizontalSpeed(int value)
+{
+    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    {
+        stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedX(value);
+        stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedX(value);
+        stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedX(value);
+        stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedX(value);
+    }
+}
+
+void JoyControlStickEditDialog::updateConfigVerticalSpeed(int value)
+{
+    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    {
+        stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedY(value);
+        stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedY(value);
+        stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedY(value);
+        stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedY(value);
+    }
 }

@@ -93,25 +93,17 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     if (safezone)
     {
         double bearing = calculateBearing();
-        int diagonalAngle = diagonalRange;
 
-        int cardinalAngle = (360 - (diagonalAngle * 4)) / 4;
-
-        int initialLeft = 360 - (int)((cardinalAngle - 1) / 2);
-        int initialRight = (int)((cardinalAngle - 1)/ 2);
-        if ((cardinalAngle - 1) % 2 != 0)
-        {
-            initialLeft = 360 - (cardinalAngle / 2);
-            initialRight = (cardinalAngle / 2) - 1;
-        }
-
-        int upRightInitial = initialRight + 1;
-        int rightInitial = upRightInitial + diagonalAngle ;
-        int downRightInitial = rightInitial + cardinalAngle;
-        int downInitial = downRightInitial + diagonalAngle;
-        int downLeftInitial = downInitial + cardinalAngle;
-        int leftInitial = downLeftInitial + diagonalAngle;
-        int upLeftInitial = leftInitial + cardinalAngle;
+        QList<int> anglesList = getDiagonalZoneAngles();
+        int initialLeft = anglesList.value(0);
+        int initialRight = anglesList.value(1);
+        int upRightInitial = anglesList.value(2);
+        int rightInitial = anglesList.value(3);
+        int downRightInitial = anglesList.value(4);
+        int downInitial = anglesList.value(5);
+        int downLeftInitial = anglesList.value(6);
+        int leftInitial = anglesList.value(7);
+        int upLeftInitial = anglesList.value(8);
 
         bearing = round(bearing);
         if (bearing <= initialRight || bearing >= initialLeft)
@@ -754,4 +746,9 @@ QList<int> JoyControlStick::getDiagonalZoneAngles()
     anglesList.append(upLeftInitial);
 
     return anglesList;
+}
+
+QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*>* JoyControlStick::getButtons()
+{
+    return &buttons;
 }
