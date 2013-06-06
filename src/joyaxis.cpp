@@ -8,7 +8,7 @@
 const int JoyAxis::AXISMIN = -32767;
 const int JoyAxis::AXISMAX = 32767;
 const int JoyAxis::AXISDEADZONE = 6000;
-const int JoyAxis::AXISMAXZONE = 30000;
+const int JoyAxis::AXISMAXZONE = 32000;
 
 // Set event interval to allow one event every 50 ms.
 // Should create around 20 events per second.

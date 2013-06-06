@@ -19,6 +19,9 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->deadZoneSlider->setValue(stick->getDeadZone());
     ui->deadZoneSpinBox->setValue(stick->getDeadZone());
 
+    ui->maxZoneSlider->setValue(stick->getMaxZone());
+    ui->maxZoneSpinBox->setValue(stick->getMaxZone());
+
     ui->diagonalRangeSlider->setValue(stick->getDiagonalRange());
     ui->diagonalRangeSpinBox->setValue(stick->getDiagonalRange());
 
@@ -74,12 +77,18 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigVerticalSpeed(int)));
 
     connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
+    connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
+    //connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
+    //connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
+    connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), ui->maxZoneSlider, SLOT(setValue(int)));
+    connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
+    //connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
 
     connect(ui->upPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedUpDialog()));
@@ -308,5 +317,13 @@ void JoyControlStickEditDialog::updateConfigVerticalSpeed(int value)
         stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedY(value);
         stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedY(value);
         stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedY(value);
+    }
+}
+
+void JoyControlStickEditDialog::checkMaxZone(int value)
+{
+    if (value > ui->deadZoneSpinBox->value())
+    {
+        stick->setMaxZone(value);
     }
 }

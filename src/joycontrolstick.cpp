@@ -426,7 +426,7 @@ int JoyControlStick::getCurrentlyAssignedSet()
 void JoyControlStick::reset()
 {
     deadZone = 8000;
-    maxZone = JoyAxis::AXISMAXZONE;
+    maxZone = 32000;
     diagonalRange = 45;
     isActive = false;
 
@@ -474,7 +474,11 @@ void JoyControlStick::setMaxZone(int value)
         value = JoyAxis::AXISMAX;
     }
 
-    maxZone = value;
+    if (value != maxZone && value > deadZone)
+    {
+        maxZone = value;
+        emit maxZoneChanged(value);
+    }
 }
 
 void JoyControlStick::setDiagonalRange(int value)

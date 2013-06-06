@@ -44,6 +44,8 @@ private slots:
     void moveSpeedsTogether(int value);
     void updateConfigHorizontalSpeed(int value);
     void updateConfigVerticalSpeed(int value);
+
+    void checkMaxZone(int value);
 };
 
 #endif // JOYCONTROLSTICKEDITDIALOG_H

@@ -80,6 +80,7 @@ signals:
     void released(int axis, int yaxis);
     void deadZoneChanged(int value);
     void diagonalRangeChanged(int value);
+    void maxZoneChanged(int value);
 
 public slots:
     void reset();
