@@ -32,6 +32,7 @@ public:
     void refreshAxes();
     void refreshHats();
     void release();
+    void addControlStick(int index, JoyControlStick *stick);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

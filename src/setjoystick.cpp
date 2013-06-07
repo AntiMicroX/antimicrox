@@ -209,8 +209,8 @@ void SetJoystick::reset()
 
         sticks.insert(0, stick);
 
-        axes.value(0)->setControlStick(stick);
-        axes.value(1)->setControlStick(stick);
+        //axes.value(0)->setControlStick(stick);
+        //axes.value(1)->setControlStick(stick);
     }
 
     if (axes.contains(3) && axes.contains(4))
@@ -260,12 +260,9 @@ void SetJoystick::reset()
 
         sticks.insert(1, stick);
 
-        axes.value(3)->setControlStick(stick);
-        axes.value(4)->setControlStick(stick);
+        //axes.value(3)->setControlStick(stick);
+        //axes.value(4)->setControlStick(stick);
     }
-
-    //qDebug() << "In axis " << endl;
-
 }
 
 SDL_Joystick* SetJoystick::getSDLHandle()
@@ -392,6 +389,37 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "stick" && xml->isStartElement())
+            {
+                int stickIndex = xml->attributes().value("index").toString().toInt();
+                int xAxis = xml->attributes().value("xAxis").toString().toInt();
+                int yAxis = xml->attributes().value("yAxis").toString().toInt();
+
+                if (stickIndex > 0 && xAxis > 0 && yAxis > 0)
+                {
+                    xAxis -= 1;
+                    yAxis -= 1;
+                    stickIndex -= 1;
+
+                    JoyAxis *axis1 = getJoyAxis(xAxis);
+                    JoyAxis *axis2 = getJoyAxis(yAxis);
+
+                    if (axis1 && axis2)
+                    {
+                        JoyControlStick *stick = new JoyControlStick(axis1, axis2, stickIndex, this->index, this);
+                        addControlStick(stickIndex, stick);
+                        stick->readConfig(xml);
+                    }
+                    else
+                    {
+                        xml->skipCurrentElement();
+                    }
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
             else
             {
                 // If none of the above, skip the element
@@ -411,10 +439,19 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
 
         xml->writeAttribute("index", QString::number(index+1));
 
+        for (int i=0; i < getNumberSticks(); i++)
+        {
+            JoyControlStick *stick = getJoyStick(i);
+            stick->writeConfig(xml);
+        }
+
         for (int i=0; i < getNumberAxes(); i++)
         {
             JoyAxis *axis = getJoyAxis(i);
-            axis->writeConfig(xml);
+            if (!axis->isPartControlStick())
+            {
+                axis->writeConfig(xml);
+            }
         }
 
         for (int i=0; i < getNumberHats(); i++)
@@ -486,4 +523,9 @@ void SetJoystick::propogateSetAxisThrottleSetting(int index)
     {
         emit setAssignmentAxisThrottleChanged(index, axis->getCurrentlyAssignedSet());
     }
+}
+
+void SetJoystick::addControlStick(int index, JoyControlStick *stick)
+{
+    sticks.insert(index, stick);
 }

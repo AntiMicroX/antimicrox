@@ -25,8 +25,6 @@ protected:
     virtual void paintEvent(QPaintEvent *event);
 
     JoyControlStick *stick;
-    int xCoor;
-    int yCoor;
 
 signals:
     

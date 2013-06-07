@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QHash>
 #include <QList>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
 #include "joyaxis.h"
 #include "joybutton.h"

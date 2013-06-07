@@ -17,8 +17,6 @@ public:
     
 protected:
     JoyControlStick *stick;
-    QPalette normal;
-    QPalette flashing;
     bool isflashing;
 
 signals:

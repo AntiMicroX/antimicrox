@@ -10,7 +10,10 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
     QObject(parent)
 {
     this->axis1 = axis1;
+    this->axis1->setControlStick(this);
     this->axis2 = axis2;
+    this->axis2->setControlStick(this);
+
     this->index = index;
     this->originset = originset;
     reset();
@@ -206,8 +209,8 @@ double JoyControlStick::calculateBearing()
     }
     else
     {
-        double temp1 = axis1->getCurrentRawValue() / (double)axis1->AXISMAXZONE;
-        double temp2 = axis2->getCurrentRawValue() / (double)axis2->AXISMAXZONE;
+        double temp1 = axis1->getCurrentRawValue() / (double)maxZone;
+        double temp2 = axis2->getCurrentRawValue() / (double)maxZone;
 
         double angle = (atan2(temp1, -temp2) * 180) / PI;
 
@@ -249,11 +252,7 @@ void JoyControlStick::changeButtonEvent(JoyControlStickButton *eventbutton, JoyC
     {
         // Currently in deadzone. Disable currently active button.
         activebutton->joyEvent(false, ignoresets);
-        //qDebug() << "KLJDLJKDL: " << activebutton->getName() << endl;
         activebutton = 0;
-        //qDebug() << "DISABLE EVENT: " << isActive << endl;
-        //qDebug() << "AXIS1: " << axis1->getCurrentRawValue() << endl;
-        //qDebug() << "AXIS2: " << axis2->getCurrentRawValue() << endl;
     }
     else if (eventbutton && activebutton && eventbutton == activebutton)
     {
@@ -280,7 +279,7 @@ double JoyControlStick::getDistanceFromDeadZone()
 
     unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
-    distance = (sqrt(square_dist) - deadZone)/(double)(JoyAxis::AXISMAXZONE - deadZone);
+    distance = (sqrt(square_dist) - deadZone)/(double)(maxZone - deadZone);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -305,10 +304,8 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
         relativeAngle = relativeAngle - 180;
     }
 
-    double tester = sin(relativeAngle * PI / 180.0);
-    double testerDead = deadZone * tester;
     int deadX = (int)round(deadZone * sin(relativeAngle * PI / 180.0));
-    distance = (abs(axis1Value) - deadX)/(double)(JoyAxis::AXISMAXZONE - deadX);
+    distance = (abs(axis1Value) - deadX)/(double)(maxZone - deadX);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -334,7 +331,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
     }
 
     int deadY = abs(round(deadZone * cos(relativeAngle * PI / 180.0)));
-    distance = (abs(axis2Value) - deadY)/(double)(JoyAxis::AXISMAXZONE - deadY);
+    distance = (abs(axis2Value) - deadY)/(double)(maxZone - deadY);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -378,7 +375,7 @@ double JoyControlStick::getNormalizedAbsoluteDistance()
 
     unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
-    distance = sqrt(square_dist)/(double)(JoyAxis::AXISMAX);
+    distance = sqrt(square_dist)/(double)(maxZone);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -426,7 +423,7 @@ int JoyControlStick::getCurrentlyAssignedSet()
 void JoyControlStick::reset()
 {
     deadZone = 8000;
-    maxZone = 32000;
+    maxZone = JoyAxis::AXISMAXZONE;
     diagonalRange = 45;
     isActive = false;
 
@@ -459,7 +456,7 @@ void JoyControlStick::setDeadZone(int value)
         value = JoyAxis::AXISMAX;
     }
 
-    if (value != deadZone)
+    if (value != deadZone && value < maxZone)
     {
         deadZone = value;
         emit deadZoneChanged(value);
@@ -523,12 +520,50 @@ void JoyControlStick::deleteButtons()
 
 void JoyControlStick::readConfig(QXmlStreamReader *xml)
 {
+    if (xml->isStartElement() && xml->name() == "stick")
+    {
+        xml->readNextStartElement();
 
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "stick"))
+        {
+            if (xml->name() == JoyControlStickButton::xmlName && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                JoyControlStickButton *button = buttons.value((JoyStickDirections)index);
+                if (button)
+                {
+                    button->readConfig(xml);
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
+            else
+            {
+                xml->skipCurrentElement();
+            }
+
+            xml->readNextStartElement();
+        }
+    }
 }
 
 void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 {
+    xml->writeStartElement("stick");
+    xml->writeAttribute("index", QString::number(index+1));
+    xml->writeAttribute("xAxis", QString::number(axis1->getRealJoyIndex()));
+    xml->writeAttribute("yAxis", QString::number(axis2->getRealJoyIndex()));
 
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->writeConfig(xml);
+    }
+
+    xml->writeEndElement();
 }
 
 void JoyControlStick::resetButtons()

@@ -13,6 +13,7 @@ public:
     explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, QObject *parent = 0);
     explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent = 0);
 
+    virtual int getRealJoyNumber();
     virtual QString getPartialName();
     virtual QString getXmlName();
     QString getDirectionName();

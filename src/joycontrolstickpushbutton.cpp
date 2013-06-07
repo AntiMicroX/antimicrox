@@ -8,18 +8,6 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWi
 {
     this->stick = stick;
 
-    normal = this->palette();
-    flashing = this->palette();
-    QColor highlightColor = QColor(0, 0, 255);
-
-    flashing.setCurrentColorGroup(QPalette::Inactive);
-    flashing.setColor(QPalette::Button, highlightColor);
-    flashing.setColor(QPalette::Light, highlightColor.light(150));
-    flashing.setColor(QPalette::Midlight, highlightColor.light(125));
-    flashing.setColor(QPalette::Dark, highlightColor.dark(200));
-    flashing.setColor(QPalette::Mid, highlightColor.dark(150));
-
-    setPalette(normal);
     isflashing = false;
 
     setText(stick->getName());
@@ -36,8 +24,7 @@ JoyControlStick* JoyControlStickPushButton::getStick()
 void JoyControlStickPushButton::flash()
 {
     isflashing = true;
-    //setPalette(flashing);
-    //update();
+
     this->style()->unpolish(this);
     this->style()->polish(this);
 
@@ -47,8 +34,7 @@ void JoyControlStickPushButton::flash()
 void JoyControlStickPushButton::unflash()
 {
     isflashing = false;
-    //setPalette(normal);
-    //update();
+
     this->style()->unpolish(this);
     this->style()->polish(this);
 

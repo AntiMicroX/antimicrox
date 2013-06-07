@@ -101,6 +101,11 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     }
 }
 
+int JoyControlStickButton::getRealJoyNumber()
+{
+    return index;
+}
+
 /*void JoyControlStickButton::mouseEvent()
 {
     JoyButtonSlot *buttonslot = 0;

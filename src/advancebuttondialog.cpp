@@ -500,7 +500,7 @@ void AdvanceButtonDialog::updateSetSelection()
             chosen_set = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
         }
 
-        qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
+        //qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
         if (condition_choice == 0)
         {
             set_selection_condition = JoyButton::SetChangeOneWay;
@@ -513,7 +513,7 @@ void AdvanceButtonDialog::updateSetSelection()
         {
             set_selection_condition = JoyButton::SetChangeWhileHeld;
         }
-        qDebug() << "CHOSEN SET: " << chosen_set << endl;
+        //qDebug() << "CHOSEN SET: " << chosen_set << endl;
     }
     else
     {

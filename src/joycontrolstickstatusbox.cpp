@@ -11,8 +11,6 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     QWidget(parent)
 {
     this->stick = 0;
-    xCoor = 0;
-    yCoor = 0;
 
     /*QSizePolicy sizePolicy1;
     sizePolicy1.setHorizontalPolicy(QSizePolicy::Preferred);
@@ -25,8 +23,6 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidg
     QWidget(parent)
 {
     this->stick = stick;
-    xCoor = stick->getXCoordinate();
-    yCoor = stick->getYCoordinate();
 
     /*QSizePolicy sizePolicy1;
     sizePolicy1.setHorizontalPolicy(QSizePolicy::Preferred);
