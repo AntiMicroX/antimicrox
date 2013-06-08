@@ -2,6 +2,7 @@
 #define JOYCONTROLSTICKPUSHBUTTON_H
 
 #include <QPushButton>
+#include <QPaintEvent>
 
 #include "joycontrolstick.h"
 
@@ -16,6 +17,7 @@ public:
     bool isButtonFlashing();
     
 protected:
+    virtual void paintEvent(QPaintEvent *event);
     JoyControlStick *stick;
     bool isflashing;
 

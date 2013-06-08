@@ -16,7 +16,7 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
 {
     Q_OBJECT
 public:
-    explicit JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset = 0, QObject *parent = 0);
+    explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY, int index, int originset = 0, QObject *parent = 0);
     ~JoyControlStick();
 
     void joyEvent(bool ignoresets=false);
@@ -64,8 +64,8 @@ protected:
     double calculateXDistanceFromDeadZone();
     double calculateYDistanceFromDeadZone();
 
-    JoyAxis *axis1;
-    JoyAxis *axis2;
+    JoyAxis *axisX;
+    JoyAxis *axisY;
     int originset;
     int deadZone;
     int diagonalRange;

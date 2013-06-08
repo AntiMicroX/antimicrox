@@ -1337,8 +1337,6 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         slotiter->toFront();
     }
 
-    mouseEventTimer.stop();
-
     quitEvent = true;
 
     //buttonMutex.unlock();
@@ -1558,6 +1556,13 @@ void JoyButton::releaseActiveSlots()
         }
 
         activeSlots.clear();
+
+        mouseEventTimer.stop();
+        currentMouseEvent = 0;
+        if (!mouseEventQueue.isEmpty())
+        {
+            mouseEventQueue.clear();
+        }
     }
 }
 

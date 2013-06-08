@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QHashIterator>
+#include <QStringList>
 #include <math.h>
 
 #include "joycontrolstick.h"
@@ -9,10 +10,10 @@ const double JoyControlStick::PI = acos(-1.0);
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset, QObject *parent) :
     QObject(parent)
 {
-    this->axis1 = axis1;
-    this->axis1->setControlStick(this);
-    this->axis2 = axis2;
-    this->axis2->setControlStick(this);
+    this->axisX = axis1;
+    this->axisX->setControlStick(this);
+    this->axisY = axis2;
+    this->axisY->setControlStick(this);
 
     this->index = index;
     this->originset = originset;
@@ -23,8 +24,8 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
 
 JoyControlStick::~JoyControlStick()
 {
-    axis1->removeControlStick();
-    axis2->removeControlStick();
+    axisX->removeControlStick();
+    axisY->removeControlStick();
 
     deleteButtons();
 }
@@ -36,14 +37,14 @@ void JoyControlStick::joyEvent(bool ignoresets)
     if (safezone && !isActive)
     {
         isActive = true;
-        emit active(axis1->getCurrentRawValue(), axis2->getCurrentRawValue());
+        emit active(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
         createDeskEvent(ignoresets);
     }
     else if (!safezone && isActive)
     {
         isActive = false;
         currentDirection = StickCentered;
-        emit released(axis1->getCurrentRawValue(), axis2->getCurrentRawValue());
+        emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
 
         createDeskEvent(ignoresets);
     }
@@ -52,13 +53,13 @@ void JoyControlStick::joyEvent(bool ignoresets)
         createDeskEvent(ignoresets);
     }
 
-    emit moved(axis1->getCurrentRawValue(), axis2->getCurrentRawValue());
+    emit moved(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
 }
 
 bool JoyControlStick::inDeadZone()
 {
-    int axis1Value = axis1->getCurrentRawValue();
-    int axis2Value = axis2->getCurrentRawValue();
+    int axis1Value = axisX->getCurrentRawValue();
+    int axis2Value = axisY->getCurrentRawValue();
 
     unsigned int squareDist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
@@ -206,33 +207,33 @@ double JoyControlStick::calculateBearing()
 {
     double finalAngle = 0.0;
 
-    if (axis1->getCurrentRawValue() == 0 && axis2->getCurrentRawValue() == 0)
+    if (axisX->getCurrentRawValue() == 0 && axisY->getCurrentRawValue() == 0)
     {
         finalAngle = 0.0;
     }
     else
     {
-        double temp1 = axis1->getCurrentRawValue() / (double)maxZone;
-        double temp2 = axis2->getCurrentRawValue() / (double)maxZone;
+        double temp1 = axisX->getCurrentRawValue() / (double)maxZone;
+        double temp2 = axisY->getCurrentRawValue() / (double)maxZone;
 
         double angle = (atan2(temp1, -temp2) * 180) / PI;
 
-        if (axis1->getCurrentRawValue() >= 0 && axis2->getCurrentRawValue() <= 0)
+        if (axisX->getCurrentRawValue() >= 0 && axisY->getCurrentRawValue() <= 0)
         {
             // NE Quadrant
             finalAngle = angle;
         }
-        else if (axis1->getCurrentRawValue() >= 0 && axis2->getCurrentRawValue() >= 0)
+        else if (axisX->getCurrentRawValue() >= 0 && axisY->getCurrentRawValue() >= 0)
         {
             // SE Quadrant (angle will be positive)
             finalAngle = angle;
         }
-        else if (axis1->getCurrentRawValue() <= 0 && axis2->getCurrentRawValue() >= 0)
+        else if (axisX->getCurrentRawValue() <= 0 && axisY->getCurrentRawValue() >= 0)
         {
             // SW Quadrant (angle will be negative)
             finalAngle = 360.0 + angle;
         }
-        else if (axis1->getCurrentRawValue() <= 0 && axis2->getCurrentRawValue() <= 0)
+        else if (axisX->getCurrentRawValue() <= 0 && axisY->getCurrentRawValue() <= 0)
         {
             // NW Quadrant (angle will be negative)
             finalAngle = 360.0 + angle;
@@ -277,8 +278,8 @@ double JoyControlStick::getDistanceFromDeadZone()
 {
     double distance = 0.0;
 
-    int axis1Value = axis1->getCurrentRawValue();
-    int axis2Value = axis2->getCurrentRawValue();
+    int axis1Value = axisX->getCurrentRawValue();
+    int axis2Value = axisY->getCurrentRawValue();
 
     unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
@@ -299,7 +300,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
 {
     double distance = 0.0;
 
-    int axis1Value = axis1->getCurrentRawValue();
+    int axis1Value = axisX->getCurrentRawValue();
 
     double relativeAngle = calculateBearing();
     if (relativeAngle > 180)
@@ -325,7 +326,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
 {
     double distance = 0.0;
 
-    int axis2Value = axis2->getCurrentRawValue();
+    int axis2Value = axisY->getCurrentRawValue();
 
     double relativeAngle = calculateBearing();
     if (relativeAngle > 180)
@@ -351,8 +352,8 @@ double JoyControlStick::getAbsoluteDistance()
 {
     double distance = 0.0;
 
-    int axis1Value = axis1->getCurrentRawValue();
-    int axis2Value = axis2->getCurrentRawValue();
+    int axis1Value = axisX->getCurrentRawValue();
+    int axis2Value = axisY->getCurrentRawValue();
 
     unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
@@ -373,8 +374,8 @@ double JoyControlStick::getNormalizedAbsoluteDistance()
 {
     double distance = 0.0;
 
-    int axis1Value = axis1->getCurrentRawValue();
-    int axis2Value = axis2->getCurrentRawValue();
+    int axis1Value = axisX->getCurrentRawValue();
+    int axis2Value = axisY->getCurrentRawValue();
 
     unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
@@ -410,6 +411,38 @@ QString JoyControlStick::getName()
 {
     QString label(tr("Stick"));
     label.append(" ").append(QString::number(getRealJoyIndex()));
+    label.append(": ");
+    QStringList tempList;
+    if (buttons.contains(StickUp))
+    {
+        JoyControlStickButton *button = buttons.value(StickUp);
+        tempList.append(button->getSlotsSummary());
+    }
+
+    if (buttons.contains(StickLeft))
+    {
+        JoyControlStickButton *button = buttons.value(StickLeft);
+        tempList.append(button->getSlotsSummary());
+    }
+
+    if (buttons.contains(StickDown))
+    {
+        JoyControlStickButton *button = buttons.value(StickDown);
+        tempList.append(button->getSlotsSummary());
+    }
+
+    if (buttons.contains(StickRight))
+    {
+        JoyControlStickButton *button = buttons.value(StickRight);
+        tempList.append(button->getSlotsSummary());
+    }
+    /*QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        tempList.append(button->getSlotsSummary());
+    }*/
+    label.append(tempList.join(", "));
     return label;
 }
 
@@ -529,7 +562,25 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
 
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "stick"))
         {
-            if (xml->name() == JoyControlStickButton::xmlName && xml->isStartElement())
+            if (xml->name() == "deadZone" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                this->setDeadZone(tempchoice);
+            }
+            else if (xml->name() == "maxZone" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                this->setMaxZone(tempchoice);
+            }
+            else if (xml->name() == "diagonalRange" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                this->setDiagonalRange(tempchoice);
+            }
+            else if (xml->name() == JoyControlStickButton::xmlName && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value((JoyStickDirections)index);
@@ -556,6 +607,9 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement("stick");
     xml->writeAttribute("index", QString::number(index+1));
+    xml->writeTextElement("deadZone", QString::number(deadZone));
+    xml->writeTextElement("maxZone", QString::number(maxZone));
+    xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
@@ -604,12 +658,12 @@ JoyControlStickButton* JoyControlStick::getDirectionButton(JoyStickDirections di
 
 double JoyControlStick::calculateNormalizedAxis1Placement()
 {
-    return axis1->calculateNormalizedAxisPlacement();
+    return axisX->calculateNormalizedAxisPlacement();
 }
 
 double JoyControlStick::calculateNormalizedAxis2Placement()
 {
-    return axis2->calculateNormalizedAxisPlacement();
+    return axisY->calculateNormalizedAxisPlacement();
 }
 
 double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *button)
@@ -743,12 +797,12 @@ JoyControlStick::JoyStickDirections JoyControlStick::getCurrentDirection()
 
 int JoyControlStick::getXCoordinate()
 {
-    return axis1->getCurrentRawValue();
+    return axisX->getCurrentRawValue();
 }
 
 int JoyControlStick::getYCoordinate()
 {
-    return axis2->getCurrentRawValue();
+    return axisY->getCurrentRawValue();
 }
 
 QList<int> JoyControlStick::getDiagonalZoneAngles()
@@ -795,24 +849,24 @@ QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*>* JoyControlSt
 
 JoyAxis* JoyControlStick::getAxisX()
 {
-    return axis1;
+    return axisX;
 }
 
 JoyAxis* JoyControlStick::getAxisY()
 {
-    return axis2;
+    return axisY;
 }
 
 void JoyControlStick::replaceXAxis(JoyAxis *axis)
 {
-    axis1->removeControlStick();
-    this->axis1 = axis;
-    this->axis1->setControlStick(this);
+    axisX->removeControlStick();
+    this->axisX = axis;
+    this->axisX->setControlStick(this);
 }
 
 void JoyControlStick::replaceYAxis(JoyAxis *axis)
 {
-    axis2->removeControlStick();
-    this->axis2 = axis;
-    this->axis2->setControlStick(this);
+    axisY->removeControlStick();
+    this->axisY = axis;
+    this->axisY->setControlStick(this);
 }
