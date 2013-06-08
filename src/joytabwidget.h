@@ -50,7 +50,7 @@ protected:
     QSpacerItem *spacer1;
     QSpacerItem *spacer2;
     QSpacerItem *spacer3;
-    QFileDialog *fileDialog;
+    //QFileDialog *fileDialog;
     AxisEditDialog *axisDialog;
     QPushButton *setPushButton1;
     QPushButton *setPushButton2;
@@ -61,6 +61,8 @@ protected:
     QPushButton *setPushButton7;
     QPushButton *setPushButton8;
     QHBoxLayout *horizontalLayout_2;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *stickAssignPushButton;
     QSpacerItem *verticalSpacer_2;
     QStackedWidget *stackedWidget_2;
     QWidget *page;
@@ -94,6 +96,7 @@ private slots:
     void showAxisDialog();
     void showButtonDialog();
     void showStickDialog();
+    void showStickAssignmentDialog();
 
     void changeSetOne();
     void changeSetTwo();

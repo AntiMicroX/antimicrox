@@ -249,7 +249,7 @@ void Joystick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
-            else if (xml->name() == "stick" && xml->isStartElement())
+            else if (xml->name() == "stickAxisAssociation" && xml->isStartElement())
             {
                 int stickIndex = xml->attributes().value("index").toString().toInt();
                 int xAxis = xml->attributes().value("xAxis").toString().toInt();
@@ -261,13 +261,36 @@ void Joystick::readConfig(QXmlStreamReader *xml)
                     yAxis -= 1;
                     stickIndex -= 1;
 
-                    JoyAxis *axis1 = joystick_sets.value(0)->getJoyAxis(xAxis);
-                    JoyAxis *axis2 = joystick_sets.value(0)->getJoyAxis(yAxis);
-
-                    if (axis1 && axis2)
+                    for (int i=0; i <joystick_sets.size(); i++)
                     {
-                        JoyControlStick *stick = new JoyControlStick(axis1, axis2, stickIndex, 0, this);
-                        joystick_sets.value(0)->addControlStick(stickIndex, stick);
+                        SetJoystick *currentset = joystick_sets.value(i);
+                        JoyAxis *axis1 = currentset->getJoyAxis(xAxis);
+                        JoyAxis *axis2 = currentset->getJoyAxis(yAxis);
+                        if (axis1 && axis2)
+                        {
+                            JoyControlStick *stick = new JoyControlStick(axis1, axis2, stickIndex, i, this);
+                            currentset->addControlStick(stickIndex, stick);
+                        }
+                    }
+
+                    xml->readNext();
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
+            else if (xml->name() == "stick" && xml->isStartElement())
+            {
+                int stickIndex = xml->attributes().value("index").toString().toInt();
+
+                if (stickIndex > 0)
+                {
+                    stickIndex -= 1;
+
+                    JoyControlStick *stick = joystick_sets.value(0)->getJoyStick(stickIndex);
+                    if (stick)
+                    {
                         stick->readConfig(xml);
                     }
                     else
@@ -295,6 +318,16 @@ void Joystick::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement("joystick");
     xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
+
+    for (int i=0; i < getNumberSticks(); i++)
+    {
+        JoyControlStick *stick = getActiveSetJoystick()->getJoyStick(i);
+        xml->writeStartElement("stickAxisAssociation");
+        xml->writeAttribute("index", QString::number(stick->getRealJoyIndex()));
+        xml->writeAttribute("xAxis", QString::number(stick->getAxisX()->getRealJoyIndex()));
+        xml->writeAttribute("yAxis", QString::number(stick->getAxisY()->getRealJoyIndex()));
+        xml->writeEndElement();
+    }
 
     xml->writeStartElement("sets");
     for (int i=0; i < joystick_sets.size(); i++)

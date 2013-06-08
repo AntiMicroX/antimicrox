@@ -38,6 +38,11 @@ public:
     double calculateBearing();
     QList<int> getDiagonalZoneAngles();
     QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();
+    JoyAxis* getAxisX();
+    JoyAxis* getAxisY();
+
+    void replaceXAxis(JoyAxis *axis);
+    void replaceYAxis(JoyAxis *axis);
 
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();

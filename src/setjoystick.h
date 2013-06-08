@@ -28,11 +28,13 @@ public:
     int getNumberAxes();
     int getNumberHats();
     int getNumberSticks();
+    int getIndex();
     void refreshButtons ();
     void refreshAxes();
     void refreshHats();
     void release();
     void addControlStick(int index, JoyControlStick *stick);
+    void removeControlStick(int index);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

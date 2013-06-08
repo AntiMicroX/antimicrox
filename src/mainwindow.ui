@@ -460,6 +460,16 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
+               <widget class="QPushButton" name="stickAssignPushButton">
+                <property name="text">
+                 <string>Stick Assign</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="games-config-options"/>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>

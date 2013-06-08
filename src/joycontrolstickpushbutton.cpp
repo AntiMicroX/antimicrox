@@ -63,4 +63,3 @@ bool JoyControlStickPushButton::isButtonFlashing()
 {
     return isflashing;
 }
-

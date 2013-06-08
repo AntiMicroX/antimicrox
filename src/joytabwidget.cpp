@@ -8,6 +8,7 @@
 #include "buttoneditdialog.h"
 #include "joycontrolstickeditdialog.h"
 #include "joycontrolstickpushbutton.h"
+#include "advancestickassignmentdialog.h"
 
 JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     QWidget(parent)
@@ -290,13 +291,31 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     spacer3 = new QSpacerItem(20, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
     verticalLayout->addItem(spacer3);
 
+    horizontalLayout_3 = new QHBoxLayout();
+    horizontalLayout_3->setSpacing(6);
+    horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+    stickAssignPushButton = new QPushButton(tr("Stick Assign"), this);
+    stickAssignPushButton->setObjectName(QString::fromUtf8("stickAssignPushButton"));
+    QIcon icon7(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
+    stickAssignPushButton->setIcon(icon7);
+
+    horizontalLayout_3->addWidget(stickAssignPushButton);
+
+    QSpacerItem *horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+    horizontalLayout_3->addItem(horizontalSpacer_2);
+
     resetButton = new QPushButton(tr("Reset"), this);
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     resetButton->setIcon(QIcon::fromTheme("document-revert"));
-    verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
+    //verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
+    horizontalLayout_3->addWidget(resetButton);
 
-    fileDialog = new QFileDialog(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
+    verticalLayout->addLayout(horizontalLayout_3);
+
+    //fileDialog = new QFileDialog(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
+    //fileDialog->setOption(QFileDialog::DontUseNativeDialog);
 
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
@@ -312,27 +331,30 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     connect(setPushButton6, SIGNAL(clicked()), this, SLOT(changeSetSix()));
     connect(setPushButton7, SIGNAL(clicked()), this, SLOT(changeSetSeven()));
     connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
+
+    connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
 }
 
 void JoyTabWidget::openConfigFileDialog()
 {
-    QStringList filenames;
+    //QStringList filenames;
     QString filename;
 
-    if (fileDialog->exec())
-    {
-        filenames = fileDialog->selectedFiles();
-        filename = filenames.at(0);
-    }
+    //if (fileDialog->exec())
+    filename = QFileDialog::getOpenFileName(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
+    //{
+    //    filenames = fileDialog->selectedFiles();
+    //    filename = filenames.at(0);
+    //}
 
-    if (!filename.isEmpty())
+    if (!filename.isNull() && !filename.isEmpty())
     {
-        XMLConfigReader reader;
+        //XMLConfigReader reader;
         //QFile *configFile = new QFile(filename);
-        reader.setFileName(filename);
-        reader.configJoystick(joystick);
+        //reader.setFileName(filename);
+        //reader.configJoystick(joystick);
 
-        fillButtons();
+        //fillButtons();
 
         QFileInfo fileinfo(filename);
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
@@ -455,14 +477,12 @@ void JoyTabWidget::fillButtons()
 
         for (int j=0; j < joystick->getNumberAxes(); j++)
         {
-            //JoyAxis *axis = joystick->getJoyAxis(i);
             JoyAxis *axis = joystick->getSetJoystick(i)->getJoyAxis(j);
             if (!axis->isPartControlStick())
             {
                 JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, this);
                 axisWidget->setText(axis->getName());
                 axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-                //axisWidget->setMinimumHeight(30);
                 axisWidget->setMinimumSize(316, 30);
 
                 connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
@@ -489,7 +509,6 @@ void JoyTabWidget::fillButtons()
                 dude->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
                 connect (dude, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 dude->setText(dude->text());
-                //dude->setMinimumHeight(30);
                 dude->setMinimumSize(316, 30);
 
                 if (column > 1)
@@ -510,7 +529,6 @@ void JoyTabWidget::fillButtons()
             dude->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
             connect (dude, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
             dude->setText(dude->text());
-            //dude->setMinimumHeight(30);
             dude->setMinimumSize(316, 30);
 
             if (column > 1)
@@ -626,10 +644,6 @@ void JoyTabWidget::resetJoystick()
         joystick->reset();
         fillButtons();
     }
-    /*else
-    {
-        emit joystickRefreshRequested(joystick);
-    }*/
 }
 
 void JoyTabWidget::saveAsConfig()
@@ -700,26 +714,16 @@ void JoyTabWidget::changeJoyConfig(int index)
     if (!filename.isEmpty())
     {
         XMLConfigReader reader;
-        //QFile *configFile = new QFile(filename);
 
         reader.setFileName(filename);
         reader.configJoystick(joystick);
 
         fillButtons();
-
-        //QFileInfo fileinfo(filename);
-        //int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
-        //configBox->setCurrentIndex(searchIndex);
     }
     else
     {
         emit joystickRefreshRequested(joystick);
-        //QMetaObject::invokeMethod(joystick, "reset");
-        //joystick->reset();
-        //fillButtons();
     }
-
-    //fillButtons(joystick);
 }
 
 void JoyTabWidget::saveSettings(QSettings *settings)
@@ -935,4 +939,11 @@ void JoyTabWidget::changeSetSeven()
 void JoyTabWidget::changeSetEight()
 {
     changeCurrentSet(7);
+}
+
+void JoyTabWidget::showStickAssignmentDialog()
+{
+    AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
+    dialog->show();
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
 }

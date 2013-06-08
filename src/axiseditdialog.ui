@@ -49,7 +49,7 @@
         <number>1</number>
        </property>
        <property name="text">
-        <string>Preset:</string>
+        <string>Presets:</string>
        </property>
       </widget>
      </item>

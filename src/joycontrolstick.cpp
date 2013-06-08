@@ -23,6 +23,9 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
 
 JoyControlStick::~JoyControlStick()
 {
+    axis1->removeControlStick();
+    axis2->removeControlStick();
+
     deleteButtons();
 }
 
@@ -553,8 +556,6 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement("stick");
     xml->writeAttribute("index", QString::number(index+1));
-    xml->writeAttribute("xAxis", QString::number(axis1->getRealJoyIndex()));
-    xml->writeAttribute("yAxis", QString::number(axis2->getRealJoyIndex()));
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
@@ -790,4 +791,28 @@ QList<int> JoyControlStick::getDiagonalZoneAngles()
 QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*>* JoyControlStick::getButtons()
 {
     return &buttons;
+}
+
+JoyAxis* JoyControlStick::getAxisX()
+{
+    return axis1;
+}
+
+JoyAxis* JoyControlStick::getAxisY()
+{
+    return axis2;
+}
+
+void JoyControlStick::replaceXAxis(JoyAxis *axis)
+{
+    axis1->removeControlStick();
+    this->axis1 = axis;
+    this->axis1->setControlStick(this);
+}
+
+void JoyControlStick::replaceYAxis(JoyAxis *axis)
+{
+    axis2->removeControlStick();
+    this->axis2 = axis;
+    this->axis2->setControlStick(this);
 }
