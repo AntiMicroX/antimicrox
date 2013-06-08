@@ -7,6 +7,7 @@
 #include "ui_mainwindow.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
+#include "joycontrolstickpushbutton.h"
 #include "joytabwidget.h"
 #include "common.h"
 
@@ -258,8 +259,14 @@ void MainWindow::disableFlashActions()
             axisWidget->disableFlashes();
         }
 
+        QList<JoyControlStickPushButton*> list3 = ui->tabWidget->widget(i)->findChildren<JoyControlStickPushButton*>();
+        QListIterator<JoyControlStickPushButton*> iter3(list3);
+        while (iter3.hasNext())
+        {
+            JoyControlStickPushButton *stickWidget = iter3.next();
+            stickWidget->disableFlashes();
+        }
     }
-
 }
 
 void MainWindow::enableFlashActions()
@@ -282,8 +289,14 @@ void MainWindow::enableFlashActions()
             axisWidget->enableFlashes();
         }
 
+        QList<JoyControlStickPushButton*> list3 = ui->tabWidget->widget(i)->findChildren<JoyControlStickPushButton*>();
+        QListIterator<JoyControlStickPushButton*> iter3(list3);
+        while (iter3.hasNext())
+        {
+            JoyControlStickPushButton *stickWidget = iter3.next();
+            stickWidget->enableFlashes();
+        }
     }
-
 }
 
 // Intermediate slot used in Design mode
