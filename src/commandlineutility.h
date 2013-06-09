@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QStringList>
 #include <QRegExp>
-#include <QTextStream>
 
 class CommandLineUtility : public QObject
 {
@@ -16,20 +15,32 @@ public:
     bool isLaunchInTrayEnabled();
     bool isHelpRequested();
     bool isVersionRequested();
+    bool isTrayHidden();
+    bool hasProfile();
+    bool hasControllerNumber();
+    QString getProfileLocation();
+    unsigned int getControllerNumber();
 
     void printHelp();
     void printVersionString();
+
+    bool hasError();
 
 protected:
     bool launchInTray;
     bool helpRequest;
     bool versionRequest;
+    bool hideTrayIcon;
+    QString profileLocation;
+    unsigned int controllerNumber;
+    bool encounteredError;
 
     static QRegExp trayRegexp;
-    static QRegExp helpShortRegexp;
-    static QRegExp helpLongRegexp;
-    static QRegExp versionShortRegexp;
-    static QRegExp versionLongRegexp;
+    static QRegExp helpRegexp;
+    static QRegExp versionRegexp;
+    static QRegExp noTrayRegexp;
+    static QRegExp loadProfileRegexp;
+    static QRegExp loadProfileForControllerRegexp;
     
 signals:
     

@@ -608,11 +608,6 @@ void JoyButton::mouseEvent()
     }
 }
 
-void JoyButton::mouseSingleEvent()
-{
-
-}
-
 void JoyButton::setUseTurbo(bool useTurbo)
 {
     bool initialState = this->useTurbo;

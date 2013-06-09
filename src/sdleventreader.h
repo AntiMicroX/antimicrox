@@ -14,6 +14,7 @@ public:
     explicit SDLEventReader(QHash<int, Joystick*> *joysticks, QObject *parent = 0);
     ~SDLEventReader();
     SDL_Event& getCurrentEvent();
+    bool isSDLOpen();
 
 protected:
     void initSDL();

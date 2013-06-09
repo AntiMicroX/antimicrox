@@ -12,7 +12,7 @@
 
 #include "joystick.h"
 #include "aboutdialog.h"
-
+#include "commandlineutility.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,10 +23,14 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent = 0);
+    explicit MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
     ~MainWindow();
     
 protected:
+    virtual void hideEvent(QHideEvent * event);
+    virtual void showEvent(QShowEvent *event);
+    void loadConfigFile(QString fileLocation, int joystickIndex=0);
+
     QHash<int, Joystick*> *joysticks;
     QSystemTrayIcon *trayIcon;
     QAction *hideAction;
@@ -36,9 +40,8 @@ protected:
     QMenu *trayIconMenu;
     AboutDialog *aboutDialog;
     bool signalDisconnect;
-
-    virtual void hideEvent(QHideEvent * event);
-    virtual void showEvent(QShowEvent *event);
+    bool showTrayIcon;
+    bool graphical;
 
 private:
     Ui::MainWindow *ui;
@@ -53,15 +56,14 @@ public slots:
     void fillButtons(QHash<int, Joystick*>* joysticks);
     void startJoystickRefresh();
     void hideWindow();
-    void nothinButLuigi();
+    void saveAppConfig();
+    void loadAppConfig();
 
 private slots:
     void quitProgram();
     void refreshTrayIconMenu();
     void trayIconClickAction(QSystemTrayIcon::ActivationReason reason);
     void mainMenuChange();
-    void saveAppConfig();
-    void loadAppConfig();
     void disableFlashActions();
     void enableFlashActions();
     void joystickRefreshPropogate(Joystick *joystick);

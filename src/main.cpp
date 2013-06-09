@@ -9,8 +9,13 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QSystemTrayIcon>
+#include <QTextStream>
 
 #include <X11/Xlib.h>
+
+#include <sys/file.h>
+#include <errno.h>
+#include <signal.h>
 
 #include "mainwindow.h"
 #include "joystick.h"
@@ -21,6 +26,17 @@
 #include "common.h"
 #include "advancebuttondialog.h"
 #include "commandlineutility.h"
+
+MainWindow *appWindow = 0;
+
+void catchSIGUSR1(int sig) {
+    if (appWindow)
+    {
+        appWindow->loadAppConfig();
+    }
+
+    signal(sig, catchSIGUSR1);
+}
 
 int main(int argc, char *argv[])
 {
@@ -42,7 +58,11 @@ int main(int argc, char *argv[])
     myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
     a.installTranslator(&myappTranslator);
 
-    if (cmdutility.isHelpRequested())
+    if (cmdutility.hasError())
+    {
+        return 1;
+    }
+    else if (cmdutility.isHelpRequested())
     {
         cmdutility.printHelp();
         return 0;
@@ -56,16 +76,74 @@ int main(int argc, char *argv[])
     //Q_INIT_RESOURCE(resources);
     //a.setQuitOnLastWindowClosed(false);
 
-    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
-    MainWindow w(joysticks);
-
     QDir configDir (PadderCommon::configPath);
     if (!configDir.exists())
     {
-        configDir.mkdir(PadderCommon::configPath);
+        configDir.mkpath(PadderCommon::configPath);
+    }
+
+    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
+
+    QFile pidFile(PadderCommon::pidFilePath);
+    pidFile.open(QIODevice::ReadWrite);
+    int pid_file = pidFile.handle();
+    int rc = flock(pid_file, LOCK_EX | LOCK_NB);
+    if (rc)
+    {
+        if (EWOULDBLOCK == errno)
+        {
+            // An instance of this program is already running.
+            // Save app config and exit.
+            InputDaemon *joypad_worker = new InputDaemon (joysticks, false);
+            MainWindow w(joysticks, &cmdutility, false);
+            appWindow = &w;
+
+            if (!cmdutility.hasError() && cmdutility.hasProfile())
+            {
+                w.saveAppConfig();
+            }
+
+            if (pidFile.isOpen())
+            {
+                int otherpid = 0;
+                QTextStream(&pidFile) >> otherpid;
+                kill(otherpid, SIGUSR1);
+                pidFile.close();
+            }
+
+            joypad_worker->quit();
+
+            QHashIterator<int, Joystick*> iter(*joysticks);
+            while (iter.hasNext())
+            {
+                Joystick *joystick = iter.next().value();
+                if (joystick)
+                {
+                    delete joystick;
+                    joystick = 0;
+                }
+            }
+
+            joysticks->clear();
+            delete joysticks;
+            joysticks = 0;
+
+            delete joypad_worker;
+            joypad_worker = 0;
+
+            return 0;
+        }
+    }
+    else
+    {
+        QTextStream(&pidFile) << getpid();
     }
 
     InputDaemon *joypad_worker = new InputDaemon (joysticks);
+    MainWindow w(joysticks, &cmdutility);
+    appWindow = &w;
+
+    signal(SIGUSR1, catchSIGUSR1);
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int,Joystick*>*)), &w, SLOT(fillButtons(QHash<int,Joystick*>*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
@@ -80,6 +158,14 @@ int main(int argc, char *argv[])
     }
 
     int app_result = a.exec();
+
+    if (pidFile.isOpen())
+    {
+        ftruncate(pidFile.handle(), 0);
+        flock(pidFile.handle(), LOCK_UN);
+        pidFile.close();
+        pidFile.remove();
+    }
 
     QHashIterator<int, Joystick*> iter(*joysticks);
     while (iter.hasNext())
@@ -101,4 +187,3 @@ int main(int argc, char *argv[])
 
     return app_result;
 }
-

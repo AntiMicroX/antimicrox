@@ -150,7 +150,6 @@ public slots:
 private slots:
     void turboEvent();
     virtual void mouseEvent();
-    void mouseSingleEvent();
     void createDeskEvent();
     void releaseDeskEvent(bool skipsetchange=false);
     void releaseActiveSlots();

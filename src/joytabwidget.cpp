@@ -314,9 +314,6 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     verticalLayout->addLayout(horizontalLayout_3);
 
-    //fileDialog = new QFileDialog(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
-    //fileDialog->setOption(QFileDialog::DontUseNativeDialog);
-
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
@@ -337,25 +334,12 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
 void JoyTabWidget::openConfigFileDialog()
 {
-    //QStringList filenames;
     QString filename;
 
-    //if (fileDialog->exec())
     filename = QFileDialog::getOpenFileName(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
-    //{
-    //    filenames = fileDialog->selectedFiles();
-    //    filename = filenames.at(0);
-    //}
 
     if (!filename.isNull() && !filename.isEmpty())
     {
-        //XMLConfigReader reader;
-        //QFile *configFile = new QFile(filename);
-        //reader.setFileName(filename);
-        //reader.configJoystick(joystick);
-
-        //fillButtons();
-
         QFileInfo fileinfo(filename);
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         if (searchIndex == -1)
@@ -764,6 +748,12 @@ void JoyTabWidget::saveSettings(QSettings *settings)
 
 void JoyTabWidget::loadSettings(QSettings *settings)
 {
+    if (configBox->count() > 0)
+    {
+        configBox->clear();
+        configBox->addItem(tr("<New>"), "");
+    }
+
     int joyindex = joystick->getRealJoyNumber();
     QString controlString = QString("Controllers/Controller%1ConfigFile%2").arg(QString::number(joyindex));
     QString controlLastSelected = QString("Controllers/Controller%1LastSelected").arg(QString::number(joyindex));
@@ -825,6 +815,7 @@ void JoyTabWidget::loadSettings(QSettings *settings)
         }
     }
 
+    emit joystickConfigChanged(joystick->getJoyNumber());
 }
 
 QHash<int, QString>* JoyTabWidget::recentConfigs()
@@ -946,4 +937,28 @@ void JoyTabWidget::showStickAssignmentDialog()
     AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
     dialog->show();
     connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+}
+
+void JoyTabWidget::loadConfigFile(QString fileLocation)
+{
+    QFileInfo fileinfo(fileLocation);
+    if (fileinfo.exists() && fileinfo.suffix() == "xml")
+    {
+        int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
+        if (searchIndex == -1)
+        {
+            if (configBox->count() == 6)
+            {
+                configBox->removeItem(5);
+            }
+            configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+            configBox->setCurrentIndex(1);
+            emit joystickConfigChanged(joystick->getJoyNumber());
+        }
+        else
+        {
+            configBox->setCurrentIndex(searchIndex);
+            emit joystickConfigChanged(joystick->getJoyNumber());
+        }
+    }
 }

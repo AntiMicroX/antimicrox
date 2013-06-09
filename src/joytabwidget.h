@@ -29,6 +29,7 @@ public:
     void setCurrentConfig(int index);
     int getCurrentConfigIndex();
     QString getCurrentConfigName();
+    void loadConfigFile(QString fileLocation);
 
 protected:
     QVBoxLayout *verticalLayout;
@@ -50,7 +51,6 @@ protected:
     QSpacerItem *spacer1;
     QSpacerItem *spacer2;
     QSpacerItem *spacer3;
-    //QFileDialog *fileDialog;
     AxisEditDialog *axisDialog;
     QPushButton *setPushButton1;
     QPushButton *setPushButton2;

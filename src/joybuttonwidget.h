@@ -19,8 +19,6 @@ public:
 
 protected:
     JoyButton* button;
-    QPalette normal;
-    QPalette flashing;
     bool isflashing;
 
 signals:

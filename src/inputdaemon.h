@@ -11,13 +11,14 @@ class InputDaemon : public QObject
 {
     Q_OBJECT
 public:
-    InputDaemon (QHash<int, Joystick*> *joysticks, QObject *parent=0);
+    InputDaemon (QHash<int, Joystick*> *joysticks, bool graphical=true, QObject *parent=0);
     ~InputDaemon();
 
 protected:
     QHash<int, Joystick*> *joysticks;
     bool stopped;
     bool sdlIgnoreEvent;
+    bool graphical;
 
     SDLEventReader *eventWorker;
     QThread *thread;
@@ -33,10 +34,10 @@ public slots:
     void quit();
     void refresh();
     void refreshJoystick(Joystick *joystick);
+    void refreshJoysticks();
 
 private slots:
     void stop();
-    void refreshJoysticks ();
 };
 
 #endif // INPUTDAEMONTHREAD_H

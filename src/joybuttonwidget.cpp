@@ -7,40 +7,14 @@
 JoyButtonWidget::JoyButtonWidget(QWidget *parent) :
     QPushButton(parent)
 {
-
-    normal = this->palette();
-    flashing = this->palette();
-
-    QColor highlightColor = QColor(0, 0, 255);
-    flashing.setCurrentColorGroup(QPalette::Inactive);
-    flashing.setColor(QPalette::Button, highlightColor);
-    flashing.setColor(QPalette::Light, highlightColor.light(150));
-    flashing.setColor(QPalette::Midlight, highlightColor.light(125));
-    flashing.setColor(QPalette::Dark, highlightColor.dark(200));
-    flashing.setColor(QPalette::Mid, highlightColor.dark(150));
-
-    setPalette(flashing);
     isflashing = false;
 }
 
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, QWidget *parent) :
     QPushButton(parent)
 {
-
     this->button = button;
 
-    normal = this->palette();
-    flashing = this->palette();
-    QColor highlightColor = QColor(0, 0, 255);
-
-    flashing.setCurrentColorGroup(QPalette::Inactive);
-    flashing.setColor(QPalette::Button, highlightColor);
-    flashing.setColor(QPalette::Light, highlightColor.light(150));
-    flashing.setColor(QPalette::Midlight, highlightColor.light(125));
-    flashing.setColor(QPalette::Dark, highlightColor.dark(200));
-    flashing.setColor(QPalette::Mid, highlightColor.dark(150));
-
-    setPalette(normal);
     isflashing = false;
 
     setText(button->getName());
@@ -59,8 +33,7 @@ JoyButton* JoyButtonWidget::getJoyButton()
 void JoyButtonWidget::flash()
 {
     isflashing = true;
-    //setPalette(flashing);
-    //update();
+
     this->style()->unpolish(this);
     this->style()->polish(this);
 
@@ -70,8 +43,6 @@ void JoyButtonWidget::flash()
 void JoyButtonWidget::unflash()
 {
     isflashing = false;
-    //setPalette(normal);
-    //update();
 
     this->style()->unpolish(this);
     this->style()->polish(this);

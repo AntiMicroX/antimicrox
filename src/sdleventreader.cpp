@@ -107,3 +107,8 @@ void SDLEventReader::clearEvents()
         }
     }
 }
+
+bool SDLEventReader::isSDLOpen()
+{
+    return sdlIsOpen;
+}

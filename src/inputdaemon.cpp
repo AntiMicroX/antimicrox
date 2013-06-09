@@ -6,21 +6,26 @@
 
 #include "inputdaemon.h"
 
-InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, QObject *parent) :
+InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, bool graphical, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
     this->stopped = false;
     this->sdlIgnoreEvent = true;
+    this->graphical = graphical;
 
     eventWorker = new SDLEventReader(joysticks);
     thread = new QThread();
     eventWorker->moveToThread(thread);
 
-    QTimer::singleShot(0, this, SLOT(refreshJoysticks()));
-    connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
-    connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
-    thread->start();
+    //QTimer::singleShot(0, this, SLOT(refreshJoysticks()));
+    if (graphical)
+    {
+        connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+        connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+        thread->start();
+    }
+    refreshJoysticks();
 }
 
 InputDaemon::~InputDaemon()
@@ -159,7 +164,6 @@ void InputDaemon::refreshJoysticks()
     {
         SDL_Joystick* joystick = SDL_JoystickOpen (i);
         Joystick *curJoystick = new Joystick (joystick, this);
-        curJoystick->reset();
 
         joysticks->insert(i, curJoystick);
     }
@@ -200,9 +204,12 @@ void InputDaemon::quit()
 
     // Wait for SDL to finish. Let worker destructor close SDL.
     // Let InputDaemon destructor close thread instance.
-    QEventLoop q;
-    connect(eventWorker, SIGNAL(finished()), &q, SLOT(quit()));
-    q.exec();
+    if (graphical)
+    {
+        QEventLoop q;
+        connect(eventWorker, SIGNAL(finished()), &q, SLOT(quit()));
+        q.exec();
+    }
 
     delete eventWorker;
     eventWorker = 0;

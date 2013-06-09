@@ -1,7 +1,7 @@
 #include <QDebug>
-#include <typeinfo>
 #include <QFile>
 #include <QApplication>
+#include <typeinfo>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -11,23 +11,46 @@
 #include "joytabwidget.h"
 #include "common.h"
 
-MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent) :
+MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-    ui->tab_2->deleteLater();
-    ui->tab->deleteLater();
 
+    delete ui->tab_2;
+    ui->tab_2 = 0;
+
+    delete ui->tab;
+    ui->tab = 0;
+
+    this->graphical = graphical;
     signalDisconnect = false;
-
-    trayIconMenu = new QMenu(this);
+    showTrayIcon = !cmdutility->isTrayHidden() && graphical;
 
     this->joysticks = joysticks;
 
-    populateTrayIcon();
-    trayIcon->show();
+    if (showTrayIcon)
+    {
+        trayIconMenu = new QMenu(this);
+        trayIcon = new QSystemTrayIcon(this);
+        connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
+        connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
+    }
+
+    fillButtons(joysticks);
+    if (cmdutility->hasProfile())
+    {
+        if (cmdutility->hasControllerNumber())
+        {
+            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->getControllerNumber());
+        }
+        else
+        {
+            loadConfigFile(cmdutility->getProfileLocation());
+        }
+    }
+
     aboutDialog = new AboutDialog(this);
 
     QApplication *app = static_cast<QApplication*> (QCoreApplication::instance());
@@ -38,7 +61,6 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    this->deleteLater();
 }
 
 void MainWindow::fillButtons(Joystick *joystick)
@@ -54,8 +76,14 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
 
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
+        /*QWidget *temptab = ui->tabWidget->widget(i);
+        ui->tabWidget->removeTab(i);
+        delete temptab;
+        temptab = 0;*/
         ui->tabWidget->widget(i)->deleteLater();
     }
+
+    ui->tabWidget->clear();
 
     for (int i=0; i < joysticks->count(); i++)
     {
@@ -65,7 +93,10 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         tabwidget->fillButtons();
         ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
         connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
-        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        if (showTrayIcon)
+        {
+            connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        }
     }
 
     if (joysticks->count() > 0)
@@ -76,7 +107,11 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         ui->stackedWidget->setCurrentIndex(1);
     }
 
-    populateTrayIcon();
+    if (showTrayIcon)
+    {
+        populateTrayIcon();
+        trayIcon->show();
+    }
 }
 
 void MainWindow::joystickRefreshPropogate(Joystick *joystick)
@@ -157,11 +192,9 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(closeAction);
 
     QIcon icon = QIcon(":/images/antimicro_trayicon.png");
-    trayIcon = new QSystemTrayIcon(this);
+    //trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
-    connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
 }
 
 void MainWindow::quitProgram()
@@ -303,7 +336,6 @@ void MainWindow::enableFlashActions()
 void MainWindow::hideWindow()
 {
     hide();
-    //disableFlashActions();
 }
 
 void MainWindow::trayMenuChangeJoyConfig(QAction *action)
@@ -363,9 +395,11 @@ void MainWindow::hideEvent(QHideEvent *event)
     if (event->spontaneous())
     {
         // Check if a system tray exists and hide window if one is available
-        if (QSystemTrayIcon::isSystemTrayAvailable())
+        if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
         {
             hide();
+            disableFlashActions();
+            signalDisconnect = true;
         }
         // No system tray found. Disconnect processing of flashing buttons
         else
@@ -393,7 +427,7 @@ void MainWindow::showEvent(QShowEvent *event)
         enableFlashActions();
         signalDisconnect = false;
         // Only needed if hidden with the system tray enabled
-        if (QSystemTrayIcon::isSystemTrayAvailable())
+        if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
         {
             showNormal();
         }
@@ -407,7 +441,25 @@ void MainWindow::openAboutDialog()
     aboutDialog->show();
 }
 
-void MainWindow::nothinButLuigi()
+void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 {
-    qDebug() << "NOTHING BUT LUIGI" << endl;
+    if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(joystickIndex-1));
+        if (widget)
+        {
+            widget->loadConfigFile(fileLocation);
+        }
+    }
+    else if (joystickIndex <= 0)
+    {
+        for (int i=0; i < ui->tabWidget->count(); i++)
+        {
+            JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(i));
+            if (widget)
+            {
+                widget->loadConfigFile(fileLocation);
+            }
+        }
+    }
 }
