@@ -70,7 +70,7 @@ public:
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
-    bool distanceTempEvent();
+    bool distanceEvent();
     void clearAssignedSlots();
     void releaseSlotEvent();
 
@@ -158,7 +158,6 @@ private slots:
     void waitForReleaseDeskEvent();
     void pauseEvent();
     void holdEvent();
-    void distanceEvent();
 
     void pauseWaitEvent();
     void checkForSetChange();

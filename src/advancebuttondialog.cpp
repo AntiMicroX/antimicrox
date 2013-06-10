@@ -103,8 +103,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     setWindowTitle(tr("Advanced").append(": ").append(button->getPartialName()));
 
-    //populateSetSelectionComboBox();
-
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
     connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTurboText(int)));
 

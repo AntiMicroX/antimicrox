@@ -5,9 +5,6 @@
 XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     QObject(parent)
 {
-
-    //fileName = QString(PadderCommon::configPath + "/brony.xml");
-    //configFile = new QFile(fileName);
     xml = new QXmlStreamWriter();
     xml->setAutoFormatting(true);
     configFile = 0;

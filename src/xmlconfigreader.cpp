@@ -8,8 +8,6 @@
 XMLConfigReader::XMLConfigReader(QObject *parent) :
     QObject(parent)
 {
-    //fileName = QString(PadderCommon::configPath + "/dudeman.xml");
-    //configFile = new QFile(fileName);
     xml = new QXmlStreamReader();
     configFile = 0;
     joystick = 0;

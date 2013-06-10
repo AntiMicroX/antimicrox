@@ -1,6 +1,8 @@
 #ifndef JOYAXISBUTTON_H
 #define JOYAXISBUTTON_H
 
+#include <QString>
+
 #include "joybutton.h"
 
 class JoyAxis;
@@ -25,7 +27,6 @@ signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
     
 public slots:
-    //virtual void mouseEvent();
 };
 
 #endif // JOYAXISBUTTON_H
