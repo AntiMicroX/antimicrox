@@ -59,7 +59,7 @@ QString JoyControlStickButton::getDirectionName()
 
 QString JoyControlStickButton::getPartialName()
 {
-    return stick->getName().append(" - ").append(getDirectionName());
+    return QString(tr("Stick %1").arg(QString::number(stick->getRealJoyIndex()))).append(": ").append(getDirectionName());
 }
 
 QString JoyControlStickButton::getXmlName()
