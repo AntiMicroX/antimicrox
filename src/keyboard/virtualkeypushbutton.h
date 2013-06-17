@@ -24,6 +24,7 @@ protected:
 
     QString setDisplayString(QString xcodestring);
     void populateKnownAliases();
+    virtual void paintEvent(QPaintEvent *event);
 
 signals:
     void keycodeObtained(int code);

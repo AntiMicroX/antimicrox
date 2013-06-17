@@ -52,17 +52,17 @@ void JoyButtonWidget::unflash()
 
 void JoyButtonWidget::changeKeyLabel()
 {
-    setText(button->getName());
+    setText(button->getName().replace("&", "&&"));
 }
 
 void JoyButtonWidget::changeMouseLabel()
 {
-    setText(button->getName());
+    setText(button->getName().replace("&", "&&"));
 }
 
 void JoyButtonWidget::refreshLabel()
 {
-    setText(button->getName());
+    setText(button->getName().replace("&", "&&"));
 }
 
 void JoyButtonWidget::disableFlashes()

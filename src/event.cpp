@@ -1,5 +1,8 @@
 #include <QDebug>
 #include <QMutex>
+#include <QChar>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include <X11/extensions/XTest.h>
 
@@ -65,7 +68,35 @@ QString keycodeToKey(int keycode)
     }
     else
     {
-        newkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
+        QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
+        QString tempalias = X11Info::getDisplayString(tempkey);
+        if (!tempalias.isEmpty())
+        {
+            newkey = tempalias;
+        }
+        else
+        {
+            XKeyPressedEvent tempevent;
+            tempevent.keycode = keycode;
+            tempevent.type = KeyPress;
+            tempevent.display = display;
+            tempevent.state = 0;
+
+            char tempstring[256];
+            memset(tempstring, 0, sizeof(tempstring));
+            int bitestoreturn = 256;
+            int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, NULL, NULL);
+            if (numchars > 0)
+            {
+                newkey = QString(tempstring);
+                //qDebug() << "NEWKEY:" << newkey << endl;
+                //qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+            }
+            else
+            {
+                newkey = tempkey;
+            }
+        }
     }
 
     return newkey;

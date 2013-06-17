@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QPainter>
 
 #include "virtualkeypushbutton.h"
 #include "event.h"
@@ -32,7 +33,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
         this->displayString = setDisplayString(xcodestring);
     }
 
-    this->setText(this->displayString);
+    this->setText(this->displayString.replace("&", "&&"));
 
     connect(this, SIGNAL(clicked()), this, SLOT(processSingleSelection()));
 }
@@ -44,10 +45,19 @@ void VirtualKeyPushButton::processSingleSelection()
 
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
-    QString temp = xcodestring;
+    QString temp;
     if (knownAliases.contains(xcodestring))
     {
         temp = knownAliases.value(xcodestring);
+    }
+    else
+    {
+        temp = keycodeToKey(keyToKeycode(xcodestring));
+    }
+
+    if (temp.isEmpty() && !xcodestring.isEmpty())
+    {
+        temp = xcodestring;
     }
 
     return temp.toUpper();
@@ -106,4 +116,26 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("less", tr("<"));
         knownAliases.insert("colon", tr(":"));
     }
+}
+
+void VirtualKeyPushButton::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+
+    QPainter painter(this);
+
+    QFontMetrics fm = this->fontMetrics();
+    QFont tempWidgetFont = this->font();
+    QFont tempScaledFont = painter.font();
+
+    while ((this->width() < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) && tempScaledFont.pointSize() >= 5)
+    {
+        tempScaledFont.setPointSize(painter.font().pointSize()-1);
+        painter.setFont(tempScaledFont);
+        fm = painter.fontMetrics();
+    }
+
+    this->setFont(tempScaledFont);
+    QPushButton::paintEvent(event);
+    this->setFont(tempWidgetFont);
 }

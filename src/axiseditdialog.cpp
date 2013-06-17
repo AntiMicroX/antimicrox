@@ -52,9 +52,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     ui->axisstatusBox->setMaxZone(axis->getMaxZoneValue());
     ui->axisstatusBox->setThrottle(axis->getThrottle());
 
-    QString currentJoyValueText ("Current Value: ");
-    currentJoyValueText = currentJoyValueText.append(QString::number(axis->getCurrentRawValue()));
-    ui->joyValueLabel->setText(currentJoyValueText);
+    ui->joyValueLabel->setText(QString::number(axis->getCurrentRawValue()));
     ui->axisstatusBox->setValue(axis->getCurrentRawValue());
 
     if (pButton->getMouseSpeedX() == nButton->getMouseSpeedX())
@@ -231,11 +229,9 @@ void AxisEditDialog::updateThrottleUi(int index)
     axis->setThrottle(index - 1);
 }
 
-void AxisEditDialog::updateJoyValue(int index)
+void AxisEditDialog::updateJoyValue(int value)
 {
-    QString currentJoyValueText ("Current Value: ");
-    currentJoyValueText = currentJoyValueText.append(QString::number(index));
-    ui->joyValueLabel->setText(currentJoyValueText);
+    ui->joyValueLabel->setText(QString::number(value));
 }
 
 void AxisEditDialog::updateDeadZoneSlider(QString value)

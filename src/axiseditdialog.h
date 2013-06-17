@@ -34,7 +34,7 @@ private slots:
     void updateHorizontalSpeedConvertLabel(int value);
     void updateVerticalSpeedConvertLabel(int value);
     void updateThrottleUi(int index);
-    void updateJoyValue(int index);
+    void updateJoyValue(int value);
     void updateDeadZoneSlider(QString value);
     void updateMaxZoneSlider(QString value);
     void openAdvancedPDialog();

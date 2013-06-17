@@ -45,7 +45,7 @@ void JoyControlStickPushButton::unflash()
 
 void JoyControlStickPushButton::refreshLabel()
 {
-    setText(stick->getName());
+    setText(stick->getName().replace("&", "&&"));
 }
 
 void JoyControlStickPushButton::disableFlashes()

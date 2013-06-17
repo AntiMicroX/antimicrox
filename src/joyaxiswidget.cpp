@@ -43,7 +43,7 @@ void JoyAxisWidget::unflash()
 
 void JoyAxisWidget::refreshLabel()
 {
-    setText(axis->getName());
+    setText(axis->getName().replace("&", "&&"));
 }
 
 void JoyAxisWidget::disableFlashes()

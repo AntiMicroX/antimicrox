@@ -1190,141 +1190,141 @@ past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="77"/>
+        <location filename="../../../src/axiseditdialog.ui" line="80"/>
         <source>Mouse (Horizontal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="82"/>
+        <location filename="../../../src/axiseditdialog.ui" line="85"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="87"/>
+        <location filename="../../../src/axiseditdialog.ui" line="90"/>
         <source>Mouse (Vertical)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="92"/>
+        <location filename="../../../src/axiseditdialog.ui" line="95"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="97"/>
+        <location filename="../../../src/axiseditdialog.ui" line="100"/>
         <source>Arrows: Up | Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="102"/>
+        <location filename="../../../src/axiseditdialog.ui" line="105"/>
         <source>Arrows: Left | Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="107"/>
+        <location filename="../../../src/axiseditdialog.ui" line="110"/>
         <source>Keys: W | S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="112"/>
+        <location filename="../../../src/axiseditdialog.ui" line="115"/>
         <source>Keys: A | D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="161"/>
+        <location filename="../../../src/axiseditdialog.ui" line="164"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="171"/>
+        <location filename="../../../src/axiseditdialog.ui" line="174"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="189"/>
+        <location filename="../../../src/axiseditdialog.ui" line="192"/>
         <source>Set the horizontal speed used for both axes buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="269"/>
+        <location filename="../../../src/axiseditdialog.ui" line="272"/>
         <source>Set the vertical speed for both axes buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="386"/>
+        <location filename="../../../src/axiseditdialog.ui" line="392"/>
         <source>Set the value of the dead zone for an axis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="192"/>
+        <location filename="../../../src/axiseditdialog.ui" line="195"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="52"/>
+        <location filename="../../../src/axiseditdialog.ui" line="55"/>
         <source>Presets:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="138"/>
+        <location filename="../../../src/axiseditdialog.ui" line="141"/>
         <source>Configure Mouse Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="250"/>
-        <location filename="../../../src/axiseditdialog.ui" line="330"/>
+        <location filename="../../../src/axiseditdialog.ui" line="253"/>
+        <location filename="../../../src/axiseditdialog.ui" line="333"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="272"/>
+        <location filename="../../../src/axiseditdialog.ui" line="275"/>
         <source>Vertical Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="408"/>
+        <location filename="../../../src/axiseditdialog.ui" line="414"/>
         <source>Dead Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="415"/>
+        <location filename="../../../src/axiseditdialog.ui" line="421"/>
         <source>Max Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="502"/>
+        <location filename="../../../src/axiseditdialog.ui" line="508"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 defective analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="526"/>
-        <location filename="../../../src/axiseditdialog.ui" line="565"/>
+        <location filename="../../../src/axiseditdialog.ui" line="532"/>
+        <location filename="../../../src/axiseditdialog.ui" line="571"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="533"/>
+        <location filename="../../../src/axiseditdialog.ui" line="539"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="547"/>
+        <location filename="../../../src/axiseditdialog.ui" line="553"/>
         <source>Negative Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="552"/>
+        <location filename="../../../src/axiseditdialog.ui" line="558"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="557"/>
+        <location filename="../../../src/axiseditdialog.ui" line="563"/>
         <source>Positive Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="602"/>
+        <location filename="../../../src/axiseditdialog.ui" line="645"/>
         <source>Current Value:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2037,217 +2037,217 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>VirtualKeyPushButton</name>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="60"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="70"/>
         <source>Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="61"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="71"/>
         <source>Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="62"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="72"/>
         <source>Shift (L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="63"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="73"/>
         <source>Shift (R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="64"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="74"/>
         <source>Ctrl (L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="65"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="75"/>
         <source>Ctrl (R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="66"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="76"/>
         <source>Alt (L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="67"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="77"/>
         <source>Alt (R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="68"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="78"/>
         <source>`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="69"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="79"/>
         <source>~</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="70"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="101"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="80"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="111"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="71"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="81"/>
         <source>=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="72"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="82"/>
         <source>[</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="73"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="83"/>
         <source>]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="74"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="84"/>
         <source>\</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="75"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="85"/>
         <source>Caps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="76"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="86"/>
         <source>;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="77"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="87"/>
         <source>&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="78"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="88"/>
         <source>,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="79"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="104"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="89"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="114"/>
         <source>.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="80"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="99"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="90"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="109"/>
         <source>/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="81"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="91"/>
         <source>ESC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="82"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="92"/>
         <source>PRTSC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="83"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="93"/>
         <source>SCLK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="84"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="94"/>
         <source>INS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="85"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="95"/>
         <source>PGUP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="86"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="96"/>
         <source>DEL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="87"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="97"/>
         <source>PGDN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="88"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="98"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="89"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="99"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="90"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="100"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="91"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="101"/>
         <source>4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="92"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="102"/>
         <source>5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="93"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="103"/>
         <source>6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="94"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="104"/>
         <source>7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="95"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="105"/>
         <source>8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="96"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="106"/>
         <source>9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="97"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="107"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="98"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="108"/>
         <source>NUM
 LK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="100"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="105"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="110"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="115"/>
         <source>*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="102"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="112"/>
         <source>+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="103"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="113"/>
         <source>E
 N
 T
@@ -2256,12 +2256,12 @@ R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="106"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="116"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="107"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="117"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2811,6 +2811,44 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualmousepushbutton.cpp" line="37"/>
         <source>INVALID</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>X11Info</name>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="49"/>
+        <source>ESC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="50"/>
+        <source>Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="51"/>
+        <source>Space</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="52"/>
+        <source>DEL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="53"/>
+        <source>Return</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="54"/>
+        <source>KP_Enter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="55"/>
+        <source>Backspace</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
