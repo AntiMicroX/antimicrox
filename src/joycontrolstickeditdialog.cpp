@@ -6,7 +6,7 @@
 #include "event.h"
 
 JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::JoyControlStickEditDialog)
 {
     ui->setupUi(this);

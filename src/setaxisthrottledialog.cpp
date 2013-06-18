@@ -4,7 +4,7 @@
 #include "ui_setaxisthrottledialog.h"
 
 SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::SetAxisThrottleDialog)
 {
     ui->setupUi(this);

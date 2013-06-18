@@ -4,7 +4,7 @@
 #include "ui_buttoneditdialog.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::ButtonEditDialog)
 {
     ui->setupUi(this);

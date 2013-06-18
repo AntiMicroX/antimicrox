@@ -7,7 +7,7 @@
 #include "joycontrolstick.h"
 
 AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::AdvanceStickAssignmentDialog)
 {
     ui->setupUi(this);

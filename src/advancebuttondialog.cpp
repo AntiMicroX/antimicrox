@@ -10,7 +10,7 @@
 #include "event.h"
 
 AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::AdvanceButtonDialog)
 {
     ui->setupUi(this);

@@ -7,7 +7,7 @@
 #include "event.h"
 
 AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::AxisEditDialog)
 {
     ui->setupUi(this);
