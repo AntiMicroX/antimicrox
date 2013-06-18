@@ -2817,37 +2817,37 @@ R</source>
 <context>
     <name>X11Info</name>
     <message>
-        <location filename="../../../src/x11info.cpp" line="49"/>
+        <location filename="../../../src/x11info.cpp" line="51"/>
         <source>ESC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="50"/>
+        <location filename="../../../src/x11info.cpp" line="52"/>
         <source>Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="51"/>
+        <location filename="../../../src/x11info.cpp" line="53"/>
         <source>Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="52"/>
+        <location filename="../../../src/x11info.cpp" line="54"/>
         <source>DEL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="53"/>
+        <location filename="../../../src/x11info.cpp" line="55"/>
         <source>Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="54"/>
+        <location filename="../../../src/x11info.cpp" line="56"/>
         <source>KP_Enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="55"/>
+        <location filename="../../../src/x11info.cpp" line="57"/>
         <source>Backspace</source>
         <translation type="unfinished"></translation>
     </message>

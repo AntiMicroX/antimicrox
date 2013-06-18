@@ -2838,39 +2838,39 @@ E</translation>
 <context>
     <name>X11Info</name>
     <message>
-        <location filename="../../../src/x11info.cpp" line="49"/>
-        <source>ESC</source>
-        <translation type="unfinished">ECHAP</translation>
-    </message>
-    <message>
-        <location filename="../../../src/x11info.cpp" line="50"/>
-        <source>Tab</source>
-        <translation type="unfinished">Tab</translation>
-    </message>
-    <message>
         <location filename="../../../src/x11info.cpp" line="51"/>
-        <source>Space</source>
-        <translation type="unfinished">Espace</translation>
+        <source>ESC</source>
+        <translation>ECHAP</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="52"/>
-        <source>DEL</source>
-        <translation type="unfinished">SUPPR</translation>
+        <source>Tab</source>
+        <translation>Tab</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="53"/>
-        <source>Return</source>
-        <translation type="unfinished">Return</translation>
+        <source>Space</source>
+        <translation>Espace</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="54"/>
-        <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <source>DEL</source>
+        <translation>SUPPR</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="55"/>
+        <source>Return</source>
+        <translation>Retour</translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="56"/>
+        <source>KP_Enter</source>
+        <translation>KP_Entrée</translation>
+    </message>
+    <message>
+        <location filename="../../../src/x11info.cpp" line="57"/>
         <source>Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Retour arrière</translation>
     </message>
 </context>
 </TS>
