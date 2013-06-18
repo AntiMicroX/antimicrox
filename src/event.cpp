@@ -84,11 +84,12 @@ QString keycodeToKey(int keycode)
 
             char tempstring[256];
             memset(tempstring, 0, sizeof(tempstring));
-            int bitestoreturn = 256;
+            int bitestoreturn = sizeof(tempstring) - 1;
             int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, NULL, NULL);
             if (numchars > 0)
             {
-                newkey = QString(tempstring);
+                tempstring[numchars] = '\0';
+                newkey = QString::fromUtf8(tempstring);
                 //qDebug() << "NEWKEY:" << newkey << endl;
                 //qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
             }
