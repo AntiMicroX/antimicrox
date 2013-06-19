@@ -231,7 +231,7 @@ in order to create partitions in a sequence.</string>
               <widget class="QPushButton" name="releasePushButton">
                <property name="toolTip">
                 <string>Insert a release action. Slots after the action will only be
-executed after a button release if the button was help
+executed after a button release if the button was held
 past the interval specified.</string>
                </property>
                <property name="text">

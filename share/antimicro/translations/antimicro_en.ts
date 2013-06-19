@@ -779,6 +779,13 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="233"/>
+        <source>Insert a release action. Slots after the action will only be
+executed after a button release if the button was held
+past the interval specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../../src/advancebuttondialog.ui" line="268"/>
         <source>Insert</source>
         <translation type="unfinished"></translation>
@@ -931,13 +938,6 @@ in order to create partitions in a sequence.</source>
         <source>Distance action specifies that the slots afterwards
 will only be executed when an axis is moved
 a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="233"/>
-        <source>Insert a release action. Slots after the action will only be
-executed after a button release if the button was help
-past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

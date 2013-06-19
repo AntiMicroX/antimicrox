@@ -63,7 +63,7 @@ bool JoyControlStick::inDeadZone()
 
     unsigned int squareDist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
-    return squareDist <= (deadZone*deadZone);
+    return squareDist <= (unsigned int)(deadZone*deadZone);
 }
 
 void JoyControlStick::populateButtons()

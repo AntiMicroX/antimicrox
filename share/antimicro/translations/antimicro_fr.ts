@@ -779,6 +779,15 @@ p, li { white-space: pre-wrap; }
         <translation>Distance</translation>
     </message>
     <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="233"/>
+        <source>Insert a release action. Slots after the action will only be
+executed after a button release if the button was held
+past the interval specified.</source>
+        <translation>Insère une action Relâchement. Les emplacements après
+cette action seront exécutés au moment où le bouton est relâché
+si celui-ci est resté appuyé au minimum le temps défini.</translation>
+    </message>
+    <message>
         <location filename="../../../src/advancebuttondialog.ui" line="268"/>
         <source>Insert</source>
         <translation>Insérer</translation>
@@ -937,15 +946,6 @@ a certain range past the designated dead zone.</source>
         <translation>L&apos;action Distance permet d’exécuter les emplacements suivants
 uniquement lorsque l&apos;axe aura été déplacé de la distance indiquée
 par rapport à la zone morte.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="233"/>
-        <source>Insert a release action. Slots after the action will only be
-executed after a button release if the button was help
-past the interval specified.</source>
-        <translation>Insère une action Relâchement. Les emplacements après
-cette action seront exécutés au moment où le bouton est relâché
-si celui-ci est resté appuyé au minimum le temps défini.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="238"/>
