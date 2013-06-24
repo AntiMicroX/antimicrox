@@ -683,7 +683,7 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 
                 if (tempcondition != SetChangeDisabled)
                 {
-                    this->setChangeSetCondition(tempcondition, true);
+                    this->setChangeSetCondition(tempcondition);
                 }
             }
             else
