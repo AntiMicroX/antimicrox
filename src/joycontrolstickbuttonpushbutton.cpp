@@ -7,15 +7,17 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(QWidget *parent
     QPushButton(parent)
 {
     this->button = 0;
+    this->isflashing = false;
 }
 
 JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, QWidget *parent) :
     QPushButton(parent)
 {
     this->button = button;
+    this->isflashing = false;
 
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+    refreshLabel();
+    enableFlashes();
 }
 
 JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
@@ -26,7 +28,9 @@ JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
 void JoyControlStickButtonPushButton::JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
 {
     disableFlashes();
+
     this->button = button;
+    refreshLabel();
     enableFlashes();
 }
 

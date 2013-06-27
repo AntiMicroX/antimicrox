@@ -47,7 +47,7 @@ QString JoyControlStickButton::getDirectionName()
     }
     else if (index == JoyControlStick::StickRightUp)
     {
-        label.append(tr("Up")).append("+").append(tr("Left"));
+        label.append(tr("Up")).append("+").append(tr("Right"));
     }
     else if (index == JoyControlStick::StickRightDown)
     {
