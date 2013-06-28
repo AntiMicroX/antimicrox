@@ -10,11 +10,6 @@ const int JoyAxis::AXISMAX = 32767;
 const int JoyAxis::AXISDEADZONE = 6000;
 const int JoyAxis::AXISMAXZONE = 32000;
 
-// Set event interval to allow one event every 50 ms.
-// Should create around 20 events per second.
-// mouseSpeed * 20 will give the number of pixels per second
-// the mouse cursor will move on screen
-
 // Speed in pixels/second
 const float JoyAxis::JOYSPEED = 20.0;
 
@@ -22,7 +17,6 @@ const float JoyAxis::JOYSPEED = 20.0;
 JoyAxis::JoyAxis(QObject *parent) :
     QObject(parent)
 {
-    //timer = new QTimer ();
     originset = 0;
     stick = 0;
     naxisbutton = new JoyAxisButton(this, 0, originset);
@@ -35,7 +29,6 @@ JoyAxis::JoyAxis(QObject *parent) :
 JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
     QObject(parent)
 {
-    //timer = new QTimer ();
     stick = 0;
     this->originset = originset;
     naxisbutton = new JoyAxisButton(this, 0, originset);
@@ -47,7 +40,6 @@ JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
 
 JoyAxis::~JoyAxis()
 {
-    //delete timer;
     delete paxisbutton;
     delete naxisbutton;
 }

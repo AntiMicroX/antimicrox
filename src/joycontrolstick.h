@@ -19,6 +19,8 @@ public:
     explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY, int index, int originset = 0, QObject *parent = 0);
     ~JoyControlStick();
 
+    enum JoyMode {StandardMode=0, EightWayMode};
+
     void joyEvent(bool ignoresets=false);
     bool inDeadZone();
     int getDeadZone();
@@ -49,6 +51,11 @@ public:
     double calculateNormalizedAxis2Placement();
     double calculateDirectionalDistance(JoyControlStickButton *button);
 
+    void setJoyMode(JoyMode mode);
+    JoyMode getJoyMode();
+
+    void releaseButtonEvents();
+
     void readConfig(QXmlStreamReader *xml);
     void writeConfig(QXmlStreamWriter *xml);
 
@@ -77,6 +84,7 @@ protected:
     bool safezone;
     int index;
     JoyStickDirections currentDirection;
+    JoyMode currentMode;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 

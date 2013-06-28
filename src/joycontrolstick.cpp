@@ -70,15 +70,35 @@ void JoyControlStick::populateButtons()
 {
     JoyControlStickButton *button = new JoyControlStickButton (this, StickUp, originset, this);
     buttons.insert(StickUp, button);
+    //button->setAssignedSlot(25);
 
     button = new JoyControlStickButton (this, StickDown, originset, this);
     buttons.insert(StickDown, button);
+    //button->setAssignedSlot(39);
 
     button = new JoyControlStickButton(this, StickLeft, originset, this);
     buttons.insert(StickLeft, button);
+    //button->setAssignedSlot(38);
 
     button = new JoyControlStickButton(this, StickRight, originset, this);
     buttons.insert(StickRight, button);
+    //button->setAssignedSlot(40);
+
+    button = new JoyControlStickButton(this, StickLeftUp, originset, this);
+    buttons.insert(StickLeftUp, button);
+    //button->setAssignedSlot(30);
+
+    button = new JoyControlStickButton(this, StickLeftDown, originset, this);
+    buttons.insert(StickLeftDown, button);
+    //button->setAssignedSlot(31);
+
+    button = new JoyControlStickButton(this, StickRightDown, originset, this);
+    buttons.insert(StickRightDown, button);
+    //button->setAssignedSlot(32);
+
+    button = new JoyControlStickButton(this, StickRightUp, originset, this);
+    buttons.insert(StickRightUp, button);
+    //button->setAssignedSlot(33);
 }
 
 int JoyControlStick::getDeadZone()
@@ -121,7 +141,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= upRightInitial && bearing < rightInitial)
         {
             currentDirection = StickRightUp;
-            if (buttons.contains(StickRightUp))
+            if (currentMode == EightWayMode && buttons.contains(StickRightUp))
             {
                 eventbutton3 = buttons.value(StickRightUp);
             }
@@ -139,7 +159,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= downRightInitial && bearing < downInitial)
         {
             currentDirection = StickRightDown;
-            if (buttons.contains(StickRightDown))
+            if (currentMode == EightWayMode && buttons.contains(StickRightDown))
             {
                 eventbutton3 = buttons.value(StickRightDown);
             }
@@ -157,7 +177,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= downLeftInitial && bearing < leftInitial)
         {
             currentDirection = StickLeftDown;
-            if (buttons.contains(StickLeftDown))
+            if (currentMode == EightWayMode && buttons.contains(StickLeftDown))
             {
                 eventbutton3 = buttons.value(StickLeftDown);
             }
@@ -175,7 +195,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         else if (bearing >= upLeftInitial && bearing < initialLeft)
         {
             currentDirection = StickLeftUp;
-            if (buttons.contains(StickLeftUp))
+            if (currentMode == EightWayMode && buttons.contains(StickLeftUp))
             {
                 eventbutton3 = buttons.value(StickLeftUp);
             }
@@ -481,6 +501,7 @@ void JoyControlStick::reset()
     activeButton3 = 0;
     safezone = false;
     currentDirection = StickCentered;
+    currentMode = StandardMode;
     resetButtons();
 }
 
@@ -580,6 +601,14 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 this->setDiagonalRange(tempchoice);
             }
+            else if (xml->name() == "mode" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (temptext == "eight-way")
+                {
+                    this->setJoyMode(EightWayMode);
+                }
+            }
             else if (xml->name() == JoyControlStickButton::xmlName && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
@@ -610,6 +639,10 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
     xml->writeTextElement("deadZone", QString::number(deadZone));
     xml->writeTextElement("maxZone", QString::number(maxZone));
     xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
+    if (currentMode == EightWayMode)
+    {
+        xml->writeTextElement("mode", "eight-way");
+    }
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
@@ -684,7 +717,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = calculateYDistanceFromDeadZone();
         }
-        /*else if (activeButton3 && activeButton3 == button)
+        else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
@@ -697,7 +730,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
-        }*/
+        }
     }
     else if (currentDirection == StickRight)
     {
@@ -713,7 +746,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = calculateYDistanceFromDeadZone();
         }
-        /*else if (activeButton3 && activeButton3 == button)
+        else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
@@ -726,7 +759,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
-        }*/
+        }
     }
     else if (currentDirection == StickDown)
     {
@@ -742,7 +775,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = calculateYDistanceFromDeadZone();
         }
-        /*else if (activeButton3 && activeButton3 == button)
+        else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
@@ -755,7 +788,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
-        }*/
+        }
     }
     else if (currentDirection == StickLeft)
     {
@@ -771,7 +804,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             finalDistance = calculateYDistanceFromDeadZone();
         }
-        /*else if (activeButton3 && activeButton3 == button)
+        else if (activeButton3 && activeButton3 == button)
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
@@ -784,7 +817,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
-        }*/
+        }
     }
 
     return finalDistance;
@@ -869,4 +902,24 @@ void JoyControlStick::replaceYAxis(JoyAxis *axis)
     axisY->removeControlStick();
     this->axisY = axis;
     this->axisY->setControlStick(this);
+}
+
+void JoyControlStick::setJoyMode(JoyMode mode)
+{
+    currentMode = mode;
+}
+
+JoyControlStick::JoyMode JoyControlStick::getJoyMode()
+{
+    return currentMode;
+}
+
+void JoyControlStick::releaseButtonEvents()
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->joyEvent(false, true);
+    }
 }
