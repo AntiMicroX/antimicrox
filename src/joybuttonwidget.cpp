@@ -1,14 +1,9 @@
 #include <QDebug>
 #include <QStyle>
+#include <QFontMetrics>
+#include <QPainter>
 
 #include "joybuttonwidget.h"
-#include "event.h"
-
-JoyButtonWidget::JoyButtonWidget(QWidget *parent) :
-    QPushButton(parent)
-{
-    isflashing = false;
-}
 
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, QWidget *parent) :
     QPushButton(parent)
@@ -17,10 +12,8 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, QWidget *parent) :
 
     isflashing = false;
 
-    setText(button->getName());
+    refreshLabel();
 
-    connect (button, SIGNAL(keyChanged(int)), this, SLOT(changeKeyLabel()));
-    connect (button, SIGNAL(mouseChanged(int)), this, SLOT(changeMouseLabel()));
     connect (button, SIGNAL(clicked(int)), this, SLOT(flash()));
     connect (button, SIGNAL(released(int)), this, SLOT(unflash()));
 }
@@ -50,19 +43,9 @@ void JoyButtonWidget::unflash()
     emit flashed(isflashing);
 }
 
-void JoyButtonWidget::changeKeyLabel()
-{
-    setText(button->getName().replace("&", "&&"));
-}
-
-void JoyButtonWidget::changeMouseLabel()
-{
-    setText(button->getName().replace("&", "&&"));
-}
-
 void JoyButtonWidget::refreshLabel()
 {
-    setText(button->getName().replace("&", "&&"));
+    setText(generateLabel());
 }
 
 void JoyButtonWidget::disableFlashes()
@@ -81,4 +64,40 @@ void JoyButtonWidget::enableFlashes()
 bool JoyButtonWidget::isButtonFlashing()
 {
     return isflashing;
+}
+
+QString JoyButtonWidget::generateLabel()
+{
+    QString temp;
+    temp = button->getName().replace("&", "&&");
+    return temp;
+}
+
+void JoyButtonWidget::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+
+    QPainter painter(this);
+
+    QFontMetrics fm = this->fontMetrics();
+    //QString temp = stick->getName();
+    QFont tempWidgetFont = this->font();
+    //QFontMetrics fm(this->font());
+    //QString temp = fm.elidedText(stick->getName(), Qt::ElideRight, this->width());
+    //this->setText(temp);
+    //qDebug() << "FM WIDTH B4: " << fm.width(stick->getName()) << " " << text();
+    QFont tempScaledFont = painter.font();
+
+    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 6)
+    {
+        tempScaledFont.setPointSize(painter.font().pointSize()-2);
+        painter.setFont(tempScaledFont);
+        fm = painter.fontMetrics();
+        //qDebug() << "TEMP SIZE: " << tempScaledFont.pointSize() << endl;
+    }
+    //qDebug() << "FM WIDTH NOW: " << fm.width(stick->getName()) << " " << text();
+
+    this->setFont(tempScaledFont);
+    QPushButton::paintEvent(event);
+    this->setFont(tempWidgetFont);
 }

@@ -1,8 +1,8 @@
 #ifndef JOYBUTTONWIDGET_H
 #define JOYBUTTONWIDGET_H
 
-#include <QPainter>
 #include <QPushButton>
+#include <QPaintEvent>
 
 #include "joybutton.h"
 
@@ -12,12 +12,14 @@ class JoyButtonWidget : public QPushButton
     Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
 public:
-    explicit JoyButtonWidget(QWidget *parent = 0);
     explicit JoyButtonWidget(JoyButton* button, QWidget *parent=0);
     JoyButton* getJoyButton();
     bool isButtonFlashing();
 
 protected:
+    virtual void paintEvent(QPaintEvent *event);
+    QString generateLabel();
+
     JoyButton* button;
     bool isflashing;
 
@@ -25,11 +27,7 @@ signals:
     void flashed(bool flashing);
 
 public slots:
-    void changeKeyLabel();
-    //void changeKeyLabel(QString label);
-    void changeMouseLabel();
-    //void changeMouseLabel(QString label);
-    void refreshLabel();
+    virtual void refreshLabel();
     void disableFlashes();
     void enableFlashes();
 

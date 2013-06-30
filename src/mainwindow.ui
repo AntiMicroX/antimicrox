@@ -9,13 +9,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>526</height>
+    <width>650</width>
+    <height>570</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>700</width>
+    <width>650</width>
     <height>0</height>
    </size>
   </property>
@@ -25,7 +25,9 @@
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
 JoyAxisWidget[isflashing=&quot;true&quot;],
-JoyControlStickPushButton[isflashing=&quot;true&quot;] {
+JoyControlStickPushButton[isflashing=&quot;true&quot;],
+JoyControlStickButtonPushButton[isflashing=&quot;true&quot;],
+VirtualDPadPushButton[isflashing=&quot;true&quot;] {
     background-color: rgb(0, 0, 255);
 	color: rgb(205, 197, 191);
 }
@@ -309,8 +311,8 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>662</width>
-                     <height>313</height>
+                     <width>612</width>
+                     <height>357</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -465,7 +467,9 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                  <string>Stick Assign</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="games-config-options"/>
+                 <iconset theme="games-config-options">
+                  <normaloff/>
+                 </iconset>
                 </property>
                </widget>
               </item>
@@ -531,7 +535,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>700</width>
+     <width>650</width>
      <height>21</height>
     </rect>
    </property>

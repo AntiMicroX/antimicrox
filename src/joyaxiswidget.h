@@ -2,6 +2,7 @@
 #define JOYAXISWIDGET_H
 
 #include <QPushButton>
+#include <QPaintEvent>
 
 #include "joyaxis.h"
 
@@ -16,6 +17,9 @@ public:
     bool isButtonFlashing();
 
 protected:
+    virtual void paintEvent(QPaintEvent *event);
+    QString generateLabel();
+
     JoyAxis *axis;
     bool isflashing;
 
@@ -24,12 +28,12 @@ signals:
 
 public slots:
     void refreshLabel();
-    void unflash();
     void disableFlashes();
     void enableFlashes();
 
 private slots:
     void flash();
+    void unflash();
 };
 
 #endif // JOYAXISWIDGET_H
