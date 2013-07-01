@@ -465,7 +465,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
               <item>
                <widget class="QPushButton" name="stickAssignPushButton">
                 <property name="text">
-                 <string>Stick Assign</string>
+                 <string>Stick/Pad Assign</string>
                 </property>
                 <property name="icon">
                  <iconset theme="games-config-options">

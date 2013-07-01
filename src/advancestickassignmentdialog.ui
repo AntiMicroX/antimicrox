@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Stick Assignment</string>
+   <string>Stick/Pad Assignment</string>
   </property>
   <property name="modal">
    <bool>true</bool>

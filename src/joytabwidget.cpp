@@ -300,7 +300,7 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     horizontalLayout_3 = new QHBoxLayout();
     horizontalLayout_3->setSpacing(6);
     horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-    stickAssignPushButton = new QPushButton(tr("Stick Assign"), this);
+    stickAssignPushButton = new QPushButton(tr("Stick/Pad Assign"), this);
     stickAssignPushButton->setObjectName(QString::fromUtf8("stickAssignPushButton"));
     QIcon icon7(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     stickAssignPushButton->setIcon(icon7);

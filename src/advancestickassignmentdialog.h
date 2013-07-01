@@ -44,6 +44,9 @@ private slots:
     void changeVDPadDownButton(int index);
     void changeVDPadLeftButton(int index);
     void changeVDPadRightButton(int index);
+
+    void disableVDPadComboBoxes();
+    void enableVDPadComboBoxes();
 };
 
 #endif // ADVANCESTICKASSIGNMENTDIALOG_H
