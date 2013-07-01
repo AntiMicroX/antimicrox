@@ -12,9 +12,7 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, QWidget *parent) :
 
     isflashing = false;
     refreshLabel();
-
-    connect(dpad, SIGNAL(active(int,int)), this, SLOT(flash()));
-    connect(dpad, SIGNAL(released(int,int)), this, SLOT(unflash()));
+    enableFlashes();
 }
 
 JoyDPad* DPadPushButton::getDPad()
@@ -56,15 +54,15 @@ QString DPadPushButton::generateLabel()
 
 void DPadPushButton::disableFlashes()
 {
-    disconnect(dpad, SIGNAL(active(int, int)), 0, 0);
-    disconnect(dpad, SIGNAL(released(int, int)), 0, 0);
+    disconnect(dpad, SIGNAL(active(int)), 0, 0);
+    disconnect(dpad, SIGNAL(released(int)), 0, 0);
     this->unflash();
 }
 
 void DPadPushButton::enableFlashes()
 {
-    connect(dpad, SIGNAL(active(int, int)), this, SLOT(flash()));
-    connect(dpad, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    connect(dpad, SIGNAL(active(int)), this, SLOT(flash()));
+    connect(dpad, SIGNAL(released(int)), this, SLOT(unflash()));
 }
 
 bool DPadPushButton::isButtonFlashing()

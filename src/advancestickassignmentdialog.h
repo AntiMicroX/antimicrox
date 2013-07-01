@@ -18,9 +18,6 @@ public:
     ~AdvanceStickAssignmentDialog();
     
 protected:
-    void refreshStickConfiguration();
-    void refreshVDPadConfiguration();
-
     Joystick *joystick;
 
 signals:
@@ -31,6 +28,9 @@ private:
     Ui::AdvanceStickAssignmentDialog *ui;
 
 private slots:
+    void refreshStickConfiguration();
+    void refreshVDPadConfiguration();
+
     void checkForAxisAssignmentStickOne();
     void checkForAxisAssignmentStickTwo();
 

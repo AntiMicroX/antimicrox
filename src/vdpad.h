@@ -16,8 +16,10 @@ public:
     void joyEvent (bool pressed, bool ignoresets=false);
     void addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button);
     void removeVButton(JoyDPadButton::JoyDPadDirections direction);
+    void removeVButton(JoyButton *button);
     JoyButton* getVButton(JoyDPadButton::JoyDPadDirections direction);
     bool isEmpty();
+    virtual QString getName();
     virtual QString getXmlName();
 
     static const QString xmlName;

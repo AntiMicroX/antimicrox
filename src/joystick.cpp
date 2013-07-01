@@ -393,6 +393,19 @@ void Joystick::readConfig(QXmlStreamReader *xml)
                         xml->readNextStartElement();
                     }
                 }
+
+                for (int i=0; i < joystick_sets.size(); i++)
+                {
+                    SetJoystick *currentset = joystick_sets.value(i);
+                    for (int j=0; j < currentset->getNumberVDPads(); j++)
+                    {
+                        VDPad *vdpad = currentset->getVDPad(j);
+                        if (vdpad && vdpad->isEmpty())
+                        {
+                            currentset->removeVDPad(j);
+                        }
+                    }
+                }
             }
             else if (xml->name() == "vdpad" && xml->isStartElement())
             {

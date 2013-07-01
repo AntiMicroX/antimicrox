@@ -27,6 +27,7 @@
 JoyAxisWidget[isflashing=&quot;true&quot;],
 JoyControlStickPushButton[isflashing=&quot;true&quot;],
 JoyControlStickButtonPushButton[isflashing=&quot;true&quot;],
+DPadPushButton[isflashing=&quot;true&quot;],
 VirtualDPadPushButton[isflashing=&quot;true&quot;] {
     background-color: rgb(0, 0, 255);
 	color: rgb(205, 197, 191);
