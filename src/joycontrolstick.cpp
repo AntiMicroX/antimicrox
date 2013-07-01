@@ -634,24 +634,27 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
 
 void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 {
-    xml->writeStartElement("stick");
-    xml->writeAttribute("index", QString::number(index+1));
-    xml->writeTextElement("deadZone", QString::number(deadZone));
-    xml->writeTextElement("maxZone", QString::number(maxZone));
-    xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
-    if (currentMode == EightWayMode)
+    if (!isDefault())
     {
-        xml->writeTextElement("mode", "eight-way");
-    }
+        xml->writeStartElement("stick");
+        xml->writeAttribute("index", QString::number(index+1));
+        xml->writeTextElement("deadZone", QString::number(deadZone));
+        xml->writeTextElement("maxZone", QString::number(maxZone));
+        xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
+        if (currentMode == EightWayMode)
+        {
+            xml->writeTextElement("mode", "eight-way");
+        }
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
-    while (iter.hasNext())
-    {
-        JoyControlStickButton *button = iter.next().value();
-        button->writeConfig(xml);
-    }
+        QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+        while (iter.hasNext())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            button->writeConfig(xml);
+        }
 
-    xml->writeEndElement();
+        xml->writeEndElement();
+    }
 }
 
 void JoyControlStick::resetButtons()
@@ -922,4 +925,20 @@ void JoyControlStick::releaseButtonEvents()
         JoyControlStickButton *button = iter.next().value();
         button->joyEvent(false, true);
     }
+}
+
+bool JoyControlStick::isDefault()
+{
+    bool value = true;
+    value = value && (deadZone == 8000);
+    value = value && (maxZone == JoyAxis::AXISMAXZONE);
+    value = value && (diagonalRange == 45);
+    value = value && (currentMode == StandardMode);
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        value = value && (button->isDefault());
+    }
+    return value;
 }

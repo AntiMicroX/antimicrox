@@ -8,6 +8,10 @@
 #include "joybuttonwidget.h"
 #include "joycontrolstickpushbutton.h"
 #include "joytabwidget.h"
+#include "joydpadbuttonwidget.h"
+#include "virtualdpadpushbutton.h"
+#include "joycontrolstickbuttonpushbutton.h"
+#include "dpadpushbutton.h"
 #include "common.h"
 
 MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
@@ -298,6 +302,38 @@ void MainWindow::disableFlashActions()
             JoyControlStickPushButton *stickWidget = iter3.next();
             stickWidget->disableFlashes();
         }
+
+        QList<JoyDPadButtonWidget*> list4 = ui->tabWidget->widget(i)->findChildren<JoyDPadButtonWidget*>();
+        QListIterator<JoyDPadButtonWidget*> iter4(list4);
+        while (iter4.hasNext())
+        {
+            JoyDPadButtonWidget *dpadWidget = iter4.next();
+            dpadWidget->disableFlashes();
+        }
+
+        QList<VirtualDPadPushButton*> list5 = ui->tabWidget->widget(i)->findChildren<VirtualDPadPushButton*>();
+        QListIterator<VirtualDPadPushButton*> iter5(list5);
+        while (iter5.hasNext())
+        {
+            VirtualDPadPushButton *dpadWidget = iter5.next();
+            dpadWidget->disableFlashes();
+        }
+
+        QList<JoyControlStickButtonPushButton*> list6 = ui->tabWidget->widget(i)->findChildren<JoyControlStickButtonPushButton*>();
+        QListIterator<JoyControlStickButtonPushButton*> iter6(list6);
+        while (iter6.hasNext())
+        {
+            JoyControlStickButtonPushButton *stickButtonWidget = iter6.next();
+            stickButtonWidget->disableFlashes();
+        }
+
+        QList<DPadPushButton*> list7 = ui->tabWidget->widget(i)->findChildren<DPadPushButton*>();
+        QListIterator<DPadPushButton*> iter7(list7);
+        while (iter7.hasNext())
+        {
+            DPadPushButton *dpadWidget = iter7.next();
+            dpadWidget->disableFlashes();
+        }
     }
 }
 
@@ -327,6 +363,38 @@ void MainWindow::enableFlashActions()
         {
             JoyControlStickPushButton *stickWidget = iter3.next();
             stickWidget->enableFlashes();
+        }
+
+        QList<JoyDPadButtonWidget*> list4 = ui->tabWidget->widget(i)->findChildren<JoyDPadButtonWidget*>();
+        QListIterator<JoyDPadButtonWidget*> iter4(list4);
+        while (iter4.hasNext())
+        {
+            JoyDPadButtonWidget *dpadWidget = iter4.next();
+            dpadWidget->enableFlashes();
+        }
+
+        QList<VirtualDPadPushButton*> list5 = ui->tabWidget->widget(i)->findChildren<VirtualDPadPushButton*>();
+        QListIterator<VirtualDPadPushButton*> iter5(list5);
+        while (iter5.hasNext())
+        {
+            VirtualDPadPushButton *dpadWidget = iter5.next();
+            dpadWidget->enableFlashes();
+        }
+
+        QList<JoyControlStickButtonPushButton*> list6 = ui->tabWidget->widget(i)->findChildren<JoyControlStickButtonPushButton*>();
+        QListIterator<JoyControlStickButtonPushButton*> iter6(list6);
+        while (iter6.hasNext())
+        {
+            JoyControlStickButtonPushButton *stickButtonWidget = iter6.next();
+            stickButtonWidget->enableFlashes();
+        }
+
+        QList<DPadPushButton*> list7 = ui->tabWidget->widget(i)->findChildren<DPadPushButton*>();
+        QListIterator<DPadPushButton*> iter7(list7);
+        while (iter7.hasNext())
+        {
+            DPadPushButton *dpadWidget = iter7.next();
+            dpadWidget->enableFlashes();
         }
     }
 }

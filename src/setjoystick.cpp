@@ -517,7 +517,7 @@ bool SetJoystick::isSetEmpty()
     while (iter.hasNext() && result)
     {
         JoyButton *button = iter.next().value();
-        if (button->getAssignedSlots()->size() > 0)
+        if (!button->isDefault())
         {
             result = false;
         }
@@ -527,11 +527,7 @@ bool SetJoystick::isSetEmpty()
     while (iter2.hasNext() && result)
     {
         JoyAxis *axis = iter2.next().value();
-        if (axis->getPAxisButton()->getAssignedSlots()->size() > 0)
-        {
-            result = false;
-        }
-        else if (axis->getNAxisButton()->getAssignedSlots()->size() > 0)
+        if (!axis->isDefault())
         {
             result = false;
         }
@@ -541,23 +537,31 @@ bool SetJoystick::isSetEmpty()
     while (iter3.hasNext() && result)
     {
         JoyDPad *dpad = iter3.next().value();
-        QHash<int, JoyDPadButton*> *dpadButtons = dpad->getJoyButtons();
+        if (!dpad->isDefault())
+        {
+            result = false;
+        }
+        /*QHash<int, JoyDPadButton*> *dpadButtons = dpad->getJoyButtons();
         QHashIterator<int, JoyDPadButton*> dpaditer(*dpadButtons);
         while (dpaditer.hasNext() && result)
         {
             JoyDPadButton *button = dpaditer.next().value();
-            if (button->getAssignedSlots()->size() > 0)
+            if (!button->isDefault())
             {
                 result = false;
             }
-        }
+        }*/
     }
 
     QHashIterator<int, JoyControlStick*> iter4(sticks);
     while (iter4.hasNext() && result)
     {
         JoyControlStick *stick = iter4.next().value();
-        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickbuttons = stick->getButtons();
+        if (!stick->isDefault())
+        {
+            result = false;
+        }
+        /*QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickbuttons = stick->getButtons();
         QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> stickiter(*stickbuttons);
         while (stickiter.hasNext() && result)
         {
@@ -566,14 +570,18 @@ bool SetJoystick::isSetEmpty()
             {
                 result = false;
             }
-        }
+        }*/
     }
 
     QHashIterator<int, VDPad*> iter5(vdpads);
     while (iter5.hasNext() && result)
     {
         VDPad *vdpad = iter5.next().value();
-        QHash<int, JoyDPadButton*> *dpadButtons = vdpad->getJoyButtons();
+        if (!vdpad->isDefault())
+        {
+            result = false;
+        }
+        /*QHash<int, JoyDPadButton*> *dpadButtons = vdpad->getJoyButtons();
         QHashIterator<int, JoyDPadButton*> dpaditer(*dpadButtons);
         while (dpaditer.hasNext() && result)
         {
@@ -582,7 +590,7 @@ bool SetJoystick::isSetEmpty()
             {
                 result = false;
             }
-        }
+        }*/
     }
 
     return result;

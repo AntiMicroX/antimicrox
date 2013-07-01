@@ -301,31 +301,34 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
 
 void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 {
-    xml->writeStartElement("axis");
-    xml->writeAttribute("index", QString::number(index+1));
-
-    xml->writeTextElement("deadZone", QString::number(deadZone));
-    xml->writeTextElement("maxZone", QString::number(maxZoneValue));
-
-    xml->writeStartElement("throttle");
-    if (throttle == -1)
+    if (!isDefault())
     {
-        xml->writeCharacters("negative");
-    }
-    else if (throttle == 0)
-    {
-        xml->writeCharacters("normal");
-    }
-    else if (throttle == 1)
-    {
-        xml->writeCharacters("positive");
-    }
-    xml->writeEndElement();
+        xml->writeStartElement("axis");
+        xml->writeAttribute("index", QString::number(index+1));
 
-    naxisbutton->writeConfig(xml);
-    paxisbutton->writeConfig(xml);
+        xml->writeTextElement("deadZone", QString::number(deadZone));
+        xml->writeTextElement("maxZone", QString::number(maxZoneValue));
 
-    xml->writeEndElement();
+        xml->writeStartElement("throttle");
+        if (throttle == -1)
+        {
+            xml->writeCharacters("negative");
+        }
+        else if (throttle == 0)
+        {
+            xml->writeCharacters("normal");
+        }
+        else if (throttle == 1)
+        {
+            xml->writeCharacters("positive");
+        }
+        xml->writeEndElement();
+
+        naxisbutton->writeConfig(xml);
+        paxisbutton->writeConfig(xml);
+
+        xml->writeEndElement();
+    }
 }
 
 void JoyAxis::reset()
@@ -523,4 +526,15 @@ void JoyAxis::removeVDPads()
         naxisbutton->joyEvent(false, true);
         naxisbutton->removeVDPad();
     }
+}
+
+bool JoyAxis::isDefault()
+{
+    bool value = true;
+    value = value && (deadZone == AXISDEADZONE);
+    value = value && (maxZoneValue == AXISMAXZONE);
+    value = value && (throttle == 0);
+    value = value && (paxisbutton->isDefault());
+    value = value && (naxisbutton->isDefault());
+    return value;
 }

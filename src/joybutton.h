@@ -72,6 +72,8 @@ public:
     bool isPartVDPad();
     VDPad* getVDPad();
 
+    virtual bool isDefault();
+
     static const QString xmlName;
 
 protected:

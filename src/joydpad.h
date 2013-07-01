@@ -34,6 +34,8 @@ public:
 
     void releaseButtonEvents();
 
+    virtual bool isDefault();
+
     QHash<int, JoyDPadButton*>* getButtons();
 
     void readConfig(QXmlStreamReader *xml);

@@ -56,6 +56,8 @@ public:
     bool hasControlOfButtons();
     void removeVDPads();
 
+    virtual bool isDefault();
+
     static const int AXISMIN;
     static const int AXISMAX;
     static const int AXISDEADZONE;

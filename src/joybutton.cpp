@@ -698,7 +698,7 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 
 void JoyButton::writeConfig(QXmlStreamWriter *xml)
 {
-    if (this->getAssignedSlots()->size() > 0)
+    if (!isDefault())
     {
         xml->writeStartElement(getXmlName());
         xml->writeAttribute("index", QString::number(getRealJoyNumber()));
@@ -1516,4 +1516,18 @@ VDPad* JoyButton::getVDPad()
 void JoyButton::removeVDPad()
 {
     this->vdpad = 0;
+}
+
+bool JoyButton::isDefault()
+{
+    bool value = true;
+    value = value && (toggle == false);
+    value = value && (turboInterval == 0);
+    value = value && (useTurbo == false);
+    value = value && (mouseSpeedX == 50);
+    value = value && (mouseSpeedY == 50);
+    value = value && (setSelection == -1);
+    value = value && (setSelectionCondition == SetChangeDisabled);
+    value = value && (assignments.size() > 0);
+    return value;
 }

@@ -56,6 +56,8 @@ public:
 
     void releaseButtonEvents();
 
+    virtual bool isDefault();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
