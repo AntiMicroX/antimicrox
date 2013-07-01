@@ -478,7 +478,7 @@ void AdvanceStickAssignmentDialog::populateDPadComboBoxes()
     for (int i = 0; i < joystick->getNumberAxes(); i++)
     {
         JoyAxis *axis = joystick->getActiveSetJoystick()->getJoyAxis(i);
-        if (!axis->isPartControlStick() && axis->hasControlOfButtons())
+        if (!axis->isPartControlStick())
         {
             QList<QVariant> templist;
             templist.append(QVariant(i+1));
@@ -535,7 +535,7 @@ void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
         {
             int axis = templist.at(0).toInt();
             int button = templist.at(1).toInt();
-            if (axis > 0 && button != 0)
+            if (axis > 0 && button >= 0)
             {
                 for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
                 {
@@ -607,7 +607,7 @@ void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
         {
             int axis = templist.at(0).toInt();
             int button = templist.at(1).toInt();
-            if (axis > 0 && button != 0)
+            if (axis > 0 && button >= 0)
             {
                 for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
                 {
@@ -679,7 +679,7 @@ void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
         {
             int axis = templist.at(0).toInt();
             int button = templist.at(1).toInt();
-            if (axis > 0 && button != 0)
+            if (axis > 0 && button >= 0)
             {
                 for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
                 {
@@ -751,7 +751,7 @@ void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
         {
             int axis = templist.at(0).toInt();
             int button = templist.at(1).toInt();
-            if (axis > 0 && button != 0)
+            if (axis > 0 && button >= 0)
             {
                 for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
                 {
