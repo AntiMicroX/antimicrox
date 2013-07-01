@@ -63,7 +63,8 @@ void JoyControlStickButtonPushButton::refreshLabel()
 {
     if (button)
     {
-        setText(button->getName().replace("&", "&&"));
+        setText(button->getSlotsSummary().replace("&", "&&"));
+        //setText(button->getName().replace("&", "&&"));
     }
 }
 

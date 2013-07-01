@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>475</height>
+    <width>705</width>
+    <height>490</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -37,7 +37,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_7">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,0,1">
+    <layout class="QHBoxLayout" name="horizontalLayout_14">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
@@ -223,22 +223,6 @@
       </layout>
      </item>
      <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
@@ -251,6 +235,12 @@
          </item>
          <item>
           <widget class="QComboBox" name="presetsComboBox">
+           <property name="minimumSize">
+            <size>
+             <width>282</width>
+             <height>0</height>
+            </size>
+           </property>
            <item>
             <property name="text">
              <string/>
@@ -291,6 +281,37 @@
         </layout>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Mode:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="joyModeComboBox">
+           <property name="minimumSize">
+            <size>
+             <width>282</width>
+             <height>0</height>
+            </size>
+           </property>
+           <item>
+            <property name="text">
+             <string>Standard</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Eight Way</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -300,8 +321,8 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>455</width>
-           <height>14</height>
+           <width>452</width>
+           <height>13</height>
           </size>
          </property>
         </spacer>
@@ -577,57 +598,6 @@
          </item>
         </layout>
        </item>
-       <item>
-        <spacer name="verticalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>455</width>
-           <height>13</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="1" column="1">
-          <widget class="JoyControlStickButtonPushButton" name="downPushButton">
-           <property name="text">
-            <string>Down</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="JoyControlStickButtonPushButton" name="rightPushButton">
-           <property name="text">
-            <string>Right</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="JoyControlStickButtonPushButton" name="upPushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Up</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="JoyControlStickButtonPushButton" name="leftPushButton">
-           <property name="text">
-            <string>Left</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
       </layout>
      </item>
     </layout>
@@ -661,11 +631,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>JoyControlStickButtonPushButton</class>
-   <extends>QPushButton</extends>
-   <header>joycontrolstickbuttonpushbutton.h</header>
-  </customwidget>
   <customwidget>
    <class>JoyControlStickStatusBox</class>
    <extends>QWidget</extends>

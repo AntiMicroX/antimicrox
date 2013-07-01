@@ -14,6 +14,7 @@ SetJoystick::SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent) :
 SetJoystick::~SetJoystick()
 {
     deleteSticks();
+    deleteVDpads();
     deleteButtons();
     deleteAxes();
     deleteHats();
@@ -32,6 +33,11 @@ JoyAxis* SetJoystick::getJoyAxis(int index)
 JoyDPad* SetJoystick::getJoyDPad(int index)
 {
     return hats.value(index);
+}
+
+VDPad* SetJoystick::getVDPad(int index)
+{
+    return vdpads.value(index);
 }
 
 JoyControlStick* SetJoystick::getJoyStick(int index)
@@ -141,6 +147,22 @@ void SetJoystick::deleteSticks()
     sticks.clear();
 }
 
+void SetJoystick::deleteVDpads()
+{
+    QHashIterator<int, VDPad*> iter(vdpads);
+    while (iter.hasNext())
+    {
+        VDPad *dpad = iter.next().value();
+        if (dpad)
+        {
+            delete dpad;
+            dpad = 0;
+        }
+    }
+
+    vdpads.clear();
+}
+
 void SetJoystick::deleteHats()
 {
     QHashIterator<int, JoyDPad*> iter(hats);
@@ -177,12 +199,30 @@ int SetJoystick::getNumberSticks()
     return sticks.size();
 }
 
+int SetJoystick::getNumberVDPads()
+{
+    return vdpads.size();
+}
+
 void SetJoystick::reset()
 {
     deleteSticks();
+    deleteVDpads();
     refreshAxes();
     refreshButtons();
     refreshHats();
+
+    /*if (axes.contains(6) && axes.contains(7))
+    {
+        JoyButton *upButton = axes.value(7)->getNAxisButton();
+        JoyButton *downButton = axes.value(7)->getPAxisButton();
+        JoyButton *leftButton = axes.value(6)->getNAxisButton();
+        JoyButton *rightButton = axes.value(6)->getPAxisButton();
+
+        VDPad *dpad = new VDPad(upButton, downButton, leftButton, rightButton, 0, 0, this);
+        vdpads.insert(0, dpad);
+    }
+    */
 
     /*if (axes.contains(0) && axes.contains(1))
     {
@@ -395,6 +435,19 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "vdpad" && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                VDPad *vdpad = getVDPad(index-1);
+                if (vdpad)
+                {
+                    vdpad->readConfig(xml);
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
             else
             {
                 // If none of the above, skip the element
@@ -420,10 +473,19 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
             stick->writeConfig(xml);
         }
 
+        for (int i=0; i < getNumberVDPads(); i++)
+        {
+            VDPad *vdpad = getVDPad(i);
+            if (vdpad)
+            {
+                vdpad->writeConfig(xml);
+            }
+        }
+
         for (int i=0; i < getNumberAxes(); i++)
         {
             JoyAxis *axis = getJoyAxis(i);
-            if (!axis->isPartControlStick())
+            if (!axis->isPartControlStick() && axis->hasControlOfButtons())
             {
                 axis->writeConfig(xml);
             }
@@ -438,7 +500,10 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
         for (int i=0; i < getNumberButtons(); i++)
         {
             JoyButton *button = getJoyButton(i);
-            button->writeConfig(xml);
+            if (button && !button->isPartVDPad())
+            {
+                button->writeConfig(xml);
+            }
         }
 
         xml->writeEndElement();
@@ -488,6 +553,38 @@ bool SetJoystick::isSetEmpty()
         }
     }
 
+    QHashIterator<int, JoyControlStick*> iter4(sticks);
+    while (iter4.hasNext() && result)
+    {
+        JoyControlStick *stick = iter4.next().value();
+        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickbuttons = stick->getButtons();
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> stickiter(*stickbuttons);
+        while (stickiter.hasNext() && result)
+        {
+            JoyControlStickButton *button = stickiter.next().value();
+            if (button->getAssignedSlots()->size() > 0)
+            {
+                result = false;
+            }
+        }
+    }
+
+    QHashIterator<int, VDPad*> iter5(vdpads);
+    while (iter5.hasNext() && result)
+    {
+        VDPad *vdpad = iter5.next().value();
+        QHash<int, JoyDPadButton*> *dpadButtons = vdpad->getJoyButtons();
+        QHashIterator<int, JoyDPadButton*> dpaditer(*dpadButtons);
+        while (dpaditer.hasNext() && result)
+        {
+            JoyDPadButton *button = dpaditer.next().value();
+            if (button->getAssignedSlots()->size() > 0)
+            {
+                result = false;
+            }
+        }
+    }
+
     return result;
 }
 
@@ -513,6 +610,22 @@ void SetJoystick::removeControlStick(int index)
         sticks.remove(index);
         delete stick;
         stick = 0;
+    }
+}
+
+void SetJoystick::addVDPad(int index, VDPad *vdpad)
+{
+    vdpads.insert(index, vdpad);
+}
+
+void SetJoystick::removeVDPad(int index)
+{
+    if (vdpads.contains(index))
+    {
+        VDPad *vdpad = vdpads.value(index);
+        vdpads.remove(index);
+        delete vdpad;
+        vdpad = 0;
     }
 }
 

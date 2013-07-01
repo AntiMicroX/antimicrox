@@ -94,7 +94,12 @@ SOURCES += main.cpp\
     joycontrolstickpushbutton.cpp \
     joycontrolstickbuttonpushbutton.cpp \
     joycontrolstickstatusbox.cpp \
-    advancestickassignmentdialog.cpp
+    advancestickassignmentdialog.cpp \
+    virtualdpadpushbutton.cpp \
+    dpadpushbutton.cpp \
+    dpadeditdialog.cpp \
+    vdpad.cpp \
+    joydpadbuttonwidget.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -134,7 +139,12 @@ HEADERS  += mainwindow.h \
     joycontrolstickpushbutton.h \
     joycontrolstickbuttonpushbutton.h \
     joycontrolstickstatusbox.h \
-    advancestickassignmentdialog.h
+    advancestickassignmentdialog.h \
+    virtualdpadpushbutton.h \
+    dpadpushbutton.h \
+    dpadeditdialog.h \
+    vdpad.h \
+    joydpadbuttonwidget.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \
@@ -143,7 +153,8 @@ FORMS    += mainwindow.ui \
     setaxisthrottledialog.ui \
     buttoneditdialog.ui \
     joycontrolstickeditdialog.ui \
-    advancestickassignmentdialog.ui
+    advancestickassignmentdialog.ui \
+    dpadeditdialog.ui
 
 
 LIBS += -lSDL -lXtst -lX11

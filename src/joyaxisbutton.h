@@ -17,6 +17,8 @@ public:
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    JoyAxis* getAxis();
+    virtual void setVDPad(VDPad *vdpad);
 
     static const QString xmlName;
 

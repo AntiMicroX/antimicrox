@@ -1,5 +1,6 @@
+#include <typeinfo>
+
 #include <QString>
-#include <QListIterator>
 #include <QHashIterator>
 
 #include "advancestickassignmentdialog.h"
@@ -18,6 +19,11 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     QString tempHeaderLabel = ui->joystickNumberLabel->text();
     tempHeaderLabel = tempHeaderLabel.arg(joystick->getRealJoyNumber());
     ui->joystickNumberLabel->setText(tempHeaderLabel);
+    ui->joystickNumberLabel2->setText(tempHeaderLabel);
+
+    tempHeaderLabel = ui->hatNumberLabel->text();
+    tempHeaderLabel = tempHeaderLabel.arg(joystick->getNumberHats());
+    ui->hatNumberLabel->setText(tempHeaderLabel);
 
     ui->xAxisOneComboBox->addItem("", QVariant(0));
     ui->yAxisOneComboBox->addItem("", QVariant(0));
@@ -35,20 +41,40 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     }
 
     refreshStickConfiguration();
+    populateDPadComboBoxes();
+    refreshVDPadConfiguration();
 
     connect(ui->enableOneCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeStateStickOneWidgets(bool)));
     connect(ui->enableTwoCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeStateStickTwoWidgets(bool)));
+
+    connect(ui->vdpadEnableCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeStateVDPadWidgets(bool)));
 
     connect(ui->xAxisOneComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForAxisAssignmentStickOne()));
     connect(ui->yAxisOneComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForAxisAssignmentStickOne()));
 
     connect(ui->xAxisTwoComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForAxisAssignmentStickTwo()));
     connect(ui->yAxisTwoComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForAxisAssignmentStickTwo()));
+
+    connect(ui->vdpadUpComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeVDPadUpButton(int)));
+    connect(ui->vdpadDownComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeVDPadDownButton(int)));
+    connect(ui->vdpadLeftComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeVDPadLeftButton(int)));
+    connect(ui->vdpadRightComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeVDPadRightButton(int)));
+
+    connect(this, SIGNAL(stickConfigurationChanged()), this, SLOT(populateDPadComboBoxes()));
 }
 
 AdvanceStickAssignmentDialog::~AdvanceStickAssignmentDialog()
 {
     delete ui;
+    for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+    {
+        SetJoystick *currentset = joystick->getSetJoystick(i);
+        VDPad *vdpad = currentset->getVDPad(0);
+        if (vdpad && vdpad->isEmpty())
+        {
+            currentset->removeVDPad(0);
+        }
+    }
 }
 
 void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickOne()
@@ -79,6 +105,7 @@ void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickOne()
             }
 
             refreshStickConfiguration();
+            emit stickConfigurationChanged();
         }
         else
         {
@@ -122,6 +149,7 @@ void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickTwo()
             }
 
             refreshStickConfiguration();
+            emit stickConfigurationChanged();
         }
         else
         {
@@ -132,6 +160,43 @@ void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickTwo()
             else if (sender() == ui->yAxisTwoComboBox)
             {
                 ui->xAxisTwoComboBox->setCurrentIndex(0);
+            }
+        }
+    }
+}
+
+void AdvanceStickAssignmentDialog::changeStateVDPadWidgets(bool enabled)
+{
+    if (enabled)
+    {
+        ui->vdpadUpComboBox->setEnabled(true);
+        ui->vdpadDownComboBox->setEnabled(true);
+        ui->vdpadLeftComboBox->setEnabled(true);
+        ui->vdpadRightComboBox->setEnabled(true);
+
+        for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+        {
+            SetJoystick *currentset = joystick->getSetJoystick(i);
+            if (!currentset->getVDPad(0))
+            {
+                VDPad *vdpad = new VDPad(0, i, currentset);
+                currentset->addVDPad(0, vdpad);
+            }
+        }
+    }
+    else
+    {
+        ui->vdpadUpComboBox->setEnabled(false);
+        ui->vdpadDownComboBox->setEnabled(false);
+        ui->vdpadLeftComboBox->setEnabled(false);
+        ui->vdpadRightComboBox->setEnabled(false);
+
+        for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+        {
+            SetJoystick *currentset = joystick->getSetJoystick(i);
+            if (currentset->getVDPad(0))
+            {
+                currentset->removeVDPad(0);
             }
         }
     }
@@ -165,7 +230,10 @@ void AdvanceStickAssignmentDialog::changeStateStickOneWidgets(bool enabled)
             for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
             {
                 SetJoystick *currentset = joystick->getSetJoystick(i);
-                currentset->removeControlStick(0);
+                if (currentset->getJoyStick(0))
+                {
+                    currentset->removeControlStick(0);
+                }
             }
         }
     }
@@ -247,5 +315,347 @@ void AdvanceStickAssignmentDialog::refreshStickConfiguration()
         ui->yAxisTwoComboBox->setCurrentIndex(0);
         ui->yAxisTwoComboBox->setEnabled(false);
         ui->enableTwoCheckBox->setChecked(false);
+    }
+}
+
+void AdvanceStickAssignmentDialog::refreshVDPadConfiguration()
+{
+    VDPad *vdpad = joystick->getActiveSetJoystick()->getVDPad(0);
+    if (vdpad && !vdpad->isEmpty())
+    {
+        ui->vdpadEnableCheckBox->setChecked(true);
+        ui->vdpadUpComboBox->setEnabled(true);
+        ui->vdpadDownComboBox->setEnabled(true);
+        ui->vdpadLeftComboBox->setEnabled(true);
+        ui->vdpadRightComboBox->setEnabled(true);
+
+        JoyButton *upButton = vdpad->getVButton(JoyDPadButton::DpadUp);
+        if (upButton)
+        {
+            int buttonindex = 0;
+            if (typeid(*upButton) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(upButton);
+                JoyAxis *axis = axisbutton->getAxis();
+                buttonindex = (axis->getRealJoyIndex() * 2) - 1;
+                buttonindex += axisbutton->getJoyNumber();
+            }
+            else
+            {
+                buttonindex = (joystick->getNumberAxes()*2) + upButton->getRealJoyNumber();
+            }
+
+            ui->vdpadUpComboBox->setCurrentIndex(buttonindex);
+        }
+
+        JoyButton *downButton = vdpad->getVButton(JoyDPadButton::DpadDown);
+        if (downButton)
+        {
+            int buttonindex = 0;
+            if (typeid(*downButton) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(downButton);
+                JoyAxis *axis = axisbutton->getAxis();
+                buttonindex = (axis->getRealJoyIndex() * 2) - 1;
+                buttonindex += axisbutton->getJoyNumber();
+            }
+            else
+            {
+                buttonindex = (joystick->getNumberAxes()*2) + downButton->getRealJoyNumber();
+            }
+
+            ui->vdpadDownComboBox->setCurrentIndex(buttonindex);
+        }
+
+        JoyButton *leftButton = vdpad->getVButton(JoyDPadButton::DpadLeft);
+        if (leftButton)
+        {
+            int buttonindex = 0;
+            if (typeid(*leftButton) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(leftButton);
+                JoyAxis *axis = axisbutton->getAxis();
+                buttonindex = (axis->getRealJoyIndex() * 2) - 1;
+                buttonindex += axisbutton->getJoyNumber();
+            }
+            else
+            {
+                buttonindex = (joystick->getNumberAxes()*2) + leftButton->getRealJoyNumber();
+            }
+
+            ui->vdpadLeftComboBox->setCurrentIndex(buttonindex);
+        }
+
+        JoyButton *rightButton = vdpad->getVButton(JoyDPadButton::DpadRight);
+        if (rightButton)
+        {
+            int buttonindex = 0;
+            if (typeid(*rightButton) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(rightButton);
+                JoyAxis *axis = axisbutton->getAxis();
+                buttonindex = (axis->getRealJoyIndex() * 2) - 1;
+                buttonindex += axisbutton->getJoyNumber();
+            }
+            else
+            {
+                buttonindex = (joystick->getNumberAxes()*2) + rightButton->getRealJoyNumber();
+            }
+
+            ui->vdpadRightComboBox->setCurrentIndex(buttonindex);
+        }
+    }
+    else
+    {
+        ui->vdpadEnableCheckBox->setChecked(false);
+
+        ui->vdpadUpComboBox->setCurrentIndex(0);
+        ui->vdpadUpComboBox->setEnabled(false);
+
+        ui->vdpadDownComboBox->setCurrentIndex(0);
+        ui->vdpadDownComboBox->setEnabled(false);
+
+        ui->vdpadLeftComboBox->setCurrentIndex(0);
+        ui->vdpadLeftComboBox->setEnabled(false);
+
+        ui->vdpadRightComboBox->setCurrentIndex(0);
+        ui->vdpadRightComboBox->setEnabled(false);
+    }
+}
+
+void AdvanceStickAssignmentDialog::populateDPadComboBoxes()
+{
+    ui->vdpadUpComboBox->clear();
+    ui->vdpadDownComboBox->clear();
+    ui->vdpadLeftComboBox->clear();
+    ui->vdpadRightComboBox->clear();
+
+    ui->vdpadUpComboBox->addItem("", QVariant(0));
+    ui->vdpadDownComboBox->addItem("", QVariant(0));
+    ui->vdpadLeftComboBox->addItem("", QVariant(0));
+    ui->vdpadRightComboBox->addItem("", QVariant(0));
+
+    for (int i = 0; i < joystick->getNumberAxes(); i++)
+    {
+        JoyAxis *axis = joystick->getActiveSetJoystick()->getJoyAxis(i);
+        if (!axis->isPartControlStick() || axis->hasControlOfButtons())
+        {
+            QList<QVariant> templist;
+            templist.append(QVariant(i+1));
+            templist.append(QVariant(-1));
+
+            ui->vdpadUpComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadDownComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadLeftComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadRightComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+
+            templist.clear();
+            templist.append(QVariant(i+1));
+            templist.append(QVariant(1));
+            ui->vdpadUpComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadDownComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadLeftComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadRightComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+        }
+    }
+
+    for (int i = 0; i < joystick->getNumberButtons(); i++)
+    {
+        QList<QVariant> templist;
+        templist.append(QVariant(0));
+        templist.append(QVariant(i+1));
+
+        ui->vdpadUpComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadDownComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadLeftComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadRightComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+    }
+}
+
+void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
+{
+    if (index > 0)
+    {
+        QVariant temp = ui->vdpadUpComboBox->itemData(index);
+        QList<QVariant> templist = temp.toList();
+        if (templist.size() == 2)
+        {
+            int axis = templist.at(0).toInt();
+            int button = templist.at(1).toInt();
+            if (axis > 0 && button != 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
+                    JoyButton *currentbutton = 0;
+                    if (button == -1)
+                    {
+                        currentbutton = currentaxis->getNAxisButton();
+                    }
+                    else if (button == 1)
+                    {
+                        currentbutton = currentaxis->getPAxisButton();
+                    }
+
+                    vdpad->addVButton(JoyDPadButton::DpadUp, currentbutton);
+                }
+            }
+            else if (button > 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyButton *currentbutton = currentset->getJoyButton(button-1);
+                    if (currentbutton)
+                    {
+                        vdpad->addVButton(JoyDPadButton::DpadUp, currentbutton);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
+{
+    if (index > 0)
+    {
+        QVariant temp = ui->vdpadDownComboBox->itemData(index);
+        QList<QVariant> templist = temp.toList();
+        if (templist.size() == 2)
+        {
+            int axis = templist.at(0).toInt();
+            int button = templist.at(1).toInt();
+            if (axis > 0 && button != 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
+                    JoyButton *currentbutton = 0;
+                    if (button == -1)
+                    {
+                        currentbutton = currentaxis->getNAxisButton();
+                    }
+                    else if (button == 1)
+                    {
+                        currentbutton = currentaxis->getPAxisButton();
+                    }
+
+                    vdpad->addVButton(JoyDPadButton::DpadDown, currentbutton);
+                }
+            }
+            else if (button > 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyButton *currentbutton = currentset->getJoyButton(button-1);
+                    if (currentbutton)
+                    {
+                        vdpad->addVButton(JoyDPadButton::DpadDown, currentbutton);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
+{
+    if (index > 0)
+    {
+        QVariant temp = ui->vdpadLeftComboBox->itemData(index);
+        QList<QVariant> templist = temp.toList();
+        if (templist.size() == 2)
+        {
+            int axis = templist.at(0).toInt();
+            int button = templist.at(1).toInt();
+            if (axis > 0 && button != 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
+                    JoyButton *currentbutton = 0;
+                    if (button == -1)
+                    {
+                        currentbutton = currentaxis->getNAxisButton();
+                    }
+                    else if (button == 1)
+                    {
+                        currentbutton = currentaxis->getPAxisButton();
+                    }
+
+                    vdpad->addVButton(JoyDPadButton::DpadLeft, currentbutton);
+                }
+            }
+            else if (button > 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyButton *currentbutton = currentset->getJoyButton(button-1);
+                    if (currentbutton)
+                    {
+                        vdpad->addVButton(JoyDPadButton::DpadLeft, currentbutton);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
+{
+    if (index > 0)
+    {
+        QVariant temp = ui->vdpadRightComboBox->itemData(index);
+        QList<QVariant> templist = temp.toList();
+        if (templist.size() == 2)
+        {
+            int axis = templist.at(0).toInt();
+            int button = templist.at(1).toInt();
+            if (axis > 0 && button != 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
+                    JoyButton *currentbutton = 0;
+                    if (button == -1)
+                    {
+                        currentbutton = currentaxis->getNAxisButton();
+                    }
+                    else if (button == 1)
+                    {
+                        currentbutton = currentaxis->getPAxisButton();
+                    }
+
+                    vdpad->addVButton(JoyDPadButton::DpadRight, currentbutton);
+                }
+            }
+            else if (button > 0)
+            {
+                for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+                {
+                    SetJoystick *currentset = joystick->getSetJoystick(i);
+                    VDPad *vdpad = currentset->getVDPad(0);
+                    JoyButton *currentbutton = currentset->getJoyButton(button-1);
+                    if (currentbutton)
+                    {
+                        vdpad->addVButton(JoyDPadButton::DpadRight, currentbutton);
+                    }
+                }
+            }
+        }
     }
 }

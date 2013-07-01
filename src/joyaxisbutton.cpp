@@ -69,3 +69,18 @@ double JoyAxisButton::getDistanceFromDeadZone()
 {
     return axis->getDistanceFromDeadZone();
 }
+
+void JoyAxisButton::setVDPad(VDPad *vdpad)
+{
+    if (axis->isPartControlStick())
+    {
+        axis->removeControlStick();
+    }
+
+    JoyButton::setVDPad(vdpad);
+}
+
+JoyAxis* JoyAxisButton::getAxis()
+{
+    return this->axis;
+}

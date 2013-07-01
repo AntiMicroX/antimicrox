@@ -53,6 +53,8 @@ public:
     void removeControlStick();
     bool isPartControlStick();
     JoyControlStick* getControlStick();
+    bool hasControlOfButtons();
+    void removeVDPads();
 
     static const int AXISMIN;
     static const int AXISMAX;

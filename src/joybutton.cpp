@@ -3,31 +3,15 @@
 #include <cmath>
 
 #include "joybutton.h"
+#include "vdpad.h"
 #include "event.h"
 
 const QString JoyButton::xmlName = "button";
 
-JoyButton::JoyButton(QObject *parent) :
-    QObject(parent)
-{
-    slotiter = 0;
-    connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
-    connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
-    connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
-    connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
-    connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
-    connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
-
-    this->reset();
-    index = 0;
-    originset = 0;
-
-    quitEvent = true;
-}
-
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
 {
+    vdpad = 0;
     slotiter = 0;
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
@@ -52,94 +36,105 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
     buttonMutex.lock();
 
-    if (toggle && pressed && (pressed != isDown))
+    if (this->vdpad)
     {
-        this->ignoresets = ignoresets;
-        isButtonPressed = !isButtonPressed;
-        isDown = true;
-        emit clicked(index);
-
-        ignoreSetQueue.enqueue(ignoresets);
-        isButtonPressedQueue.enqueue(isButtonPressed);
-
-        if (isButtonPressed)
+        if (pressed != isButtonPressed)
         {
-            buttonHold.restart();
-            buttonHeldRelease.restart();
-            createDeskTimer.start(0);
-        }
-        else
-        {
-            releaseDeskTimer.start(0);
+            isButtonPressed = pressed;
+            this->vdpad->joyEvent(pressed, ignoresets);
         }
     }
-    else if (toggle && !pressed && isDown)
+    else
     {
-        isDown = false;
-        bool releasedCalled = distanceEvent();
-        if (releasedCalled)
+        if (toggle && pressed && (pressed != isDown))
         {
-            buttonHold.restart();
-            buttonHeldRelease.restart();
-            createDeskTimer.start(0);
-        }
-
-        emit released (index);
-    }
-
-    else if (!toggle && (pressed != isButtonPressed))
-    {
-        if (pressed)
-        {
+            this->ignoresets = ignoresets;
+            isButtonPressed = !isButtonPressed;
+            isDown = true;
             emit clicked(index);
-        }
-        else
-        {
-            emit released(index);
-        }
 
-        this->ignoresets = ignoresets;
-        isButtonPressed = pressed;
+            ignoreSetQueue.enqueue(ignoresets);
+            isButtonPressedQueue.enqueue(isButtonPressed);
 
-        ignoreSetQueue.enqueue(ignoresets);
-        isButtonPressedQueue.enqueue(isButtonPressed);
-
-        if (useTurbo && isButtonPressed)
-        {
-            buttonHold.restart();
-            buttonHeldRelease.restart();
-            connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
-            turboTimer.start();
-        }
-        else if (useTurbo && !isButtonPressed)
-        {
-            turboTimer.stop();
-            disconnect(&turboTimer, SIGNAL(timeout()), 0, 0);
-            if (isKeyPressed)
+            if (isButtonPressed)
             {
-                QTimer::singleShot(0, this, SLOT(turboEvent()));
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                createDeskTimer.start(0);
+            }
+            else
+            {
+                releaseDeskTimer.start(0);
             }
         }
-        else if (isButtonPressed)
+        else if (toggle && !pressed && isDown)
         {
-            buttonHold.restart();
-            buttonHeldRelease.restart();
-            createDeskTimer.start(0);
+            isDown = false;
+            bool releasedCalled = distanceEvent();
+            if (releasedCalled)
+            {
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                createDeskTimer.start(0);
+            }
+
+            emit released (index);
         }
-        else
+
+        else if (!toggle && (pressed != isButtonPressed))
         {
-            releaseDeskTimer.start(0);
+            if (pressed)
+            {
+                emit clicked(index);
+            }
+            else
+            {
+                emit released(index);
+            }
+
+            this->ignoresets = ignoresets;
+            isButtonPressed = pressed;
+
+            ignoreSetQueue.enqueue(ignoresets);
+            isButtonPressedQueue.enqueue(isButtonPressed);
+
+            if (useTurbo && isButtonPressed)
+            {
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
+                turboTimer.start();
+            }
+            else if (useTurbo && !isButtonPressed)
+            {
+                turboTimer.stop();
+                disconnect(&turboTimer, SIGNAL(timeout()), 0, 0);
+                if (isKeyPressed)
+                {
+                    QTimer::singleShot(0, this, SLOT(turboEvent()));
+                }
+            }
+            else if (isButtonPressed)
+            {
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                createDeskTimer.start(0);
+            }
+            else
+            {
+                releaseDeskTimer.start(0);
+            }
         }
-    }
-    else if (!useTurbo && isButtonPressed)
-    //if (pressed)
-    {
-        bool releasedCalled = distanceEvent();
-        if (releasedCalled)
+        else if (!useTurbo && isButtonPressed)
+        //if (pressed)
         {
-            buttonHold.restart();
-            buttonHeldRelease.restart();
-            createDeskTimer.start(0);
+            bool releasedCalled = distanceEvent();
+            if (releasedCalled)
+            {
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                createDeskTimer.start(0);
+            }
         }
     }
 
@@ -650,8 +645,12 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                         JoyButtonSlot *buttonslot = new JoyButtonSlot();
                         buttonslot->readConfig(xml);
                         setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
-                        //this->assignments.append(buttonslot);
                     }
+                    else
+                    {
+                        xml->skipCurrentElement();
+                    }
+
                     xml->readNextStartElement();
                 }
             }
@@ -699,44 +698,47 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 
 void JoyButton::writeConfig(QXmlStreamWriter *xml)
 {
-    xml->writeStartElement(getXmlName());
-    xml->writeAttribute("index", QString::number(getRealJoyNumber()));
-
-    xml->writeTextElement("toggle", toggle ? "true" : "false");
-    xml->writeTextElement("turbointerval", QString::number(turboInterval));
-    xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
-    xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
-    xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
-    if (setSelectionCondition != SetChangeDisabled)
+    if (this->getAssignedSlots()->size() > 0)
     {
-        xml->writeTextElement("setselect", QString::number(setSelection+1));
+        xml->writeStartElement(getXmlName());
+        xml->writeAttribute("index", QString::number(getRealJoyNumber()));
 
-        QString temptext;
-        if (setSelectionCondition == SetChangeOneWay)
+        xml->writeTextElement("toggle", toggle ? "true" : "false");
+        xml->writeTextElement("turbointerval", QString::number(turboInterval));
+        xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
+        xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
+        xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
+        if (setSelectionCondition != SetChangeDisabled)
         {
-            temptext = "one-way";
+            xml->writeTextElement("setselect", QString::number(setSelection+1));
+
+            QString temptext;
+            if (setSelectionCondition == SetChangeOneWay)
+            {
+                temptext = "one-way";
+            }
+            else if (setSelectionCondition == SetChangeTwoWay)
+            {
+                temptext = "two-way";
+            }
+            else if (setSelectionCondition == SetChangeWhileHeld)
+            {
+                temptext = "while-held";
+            }
+            xml->writeTextElement("setselectcondition", temptext);
         }
-        else if (setSelectionCondition == SetChangeTwoWay)
+
+        xml->writeStartElement("slots");
+        QListIterator<JoyButtonSlot*> iter(assignments);
+        while (iter.hasNext())
         {
-            temptext = "two-way";
+            JoyButtonSlot *buttonslot = iter.next();
+            buttonslot->writeConfig(xml);
         }
-        else if (setSelectionCondition == SetChangeWhileHeld)
-        {
-            temptext = "while-held";
-        }
-        xml->writeTextElement("setselectcondition", temptext);
+        xml->writeEndElement();
+
+        xml->writeEndElement();
     }
-
-    xml->writeStartElement("slots");
-    QListIterator<JoyButtonSlot*> iter(assignments);
-    while (iter.hasNext())
-    {
-        JoyButtonSlot *buttonslot = iter.next();
-        buttonslot->writeConfig(xml);
-    }
-    xml->writeEndElement();
-
-    xml->writeEndElement();
 }
 
 QString JoyButton::getName()
@@ -1494,4 +1496,24 @@ void JoyButton::releaseSlotEvent()
             releaseActiveSlots();
         }
     }
+}
+
+void JoyButton::setVDPad(VDPad *vdpad)
+{
+    this->vdpad = vdpad;
+}
+
+bool JoyButton::isPartVDPad()
+{
+    return (this->vdpad != 0);
+}
+
+VDPad* JoyButton::getVDPad()
+{
+    return this->vdpad;
+}
+
+void JoyButton::removeVDPad()
+{
+    this->vdpad = 0;
 }

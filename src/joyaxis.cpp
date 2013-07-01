@@ -479,6 +479,7 @@ int JoyAxis::getCurrentlyAssignedSet()
 
 void JoyAxis::setControlStick(JoyControlStick *stick)
 {
+    removeVDPads();
     this->stick = stick;
 }
 
@@ -494,5 +495,32 @@ JoyControlStick* JoyAxis::getControlStick()
 
 void JoyAxis::removeControlStick()
 {
+    stick->releaseButtonEvents();
     this->stick = 0;
+}
+
+bool JoyAxis::hasControlOfButtons()
+{
+    bool value = true;
+    if (paxisbutton->isPartVDPad() || naxisbutton->isPartVDPad())
+    {
+        value = false;
+    }
+
+    return value;
+}
+
+void JoyAxis::removeVDPads()
+{
+    if (paxisbutton->isPartVDPad())
+    {
+        paxisbutton->joyEvent(false, true);
+        paxisbutton->removeVDPad();
+    }
+
+    if (naxisbutton->isPartVDPad())
+    {
+        naxisbutton->joyEvent(false, true);
+        naxisbutton->removeVDPad();
+    }
 }

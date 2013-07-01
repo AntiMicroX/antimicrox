@@ -23,6 +23,7 @@ public:
     int getNumberAxes();
     int getNumberHats();
     int getNumberSticks();
+    int getNumberVDPads();
     SDL_Joystick* getSDLHandle ();
     int getJoyNumber ();
     int getRealJoyNumber ();

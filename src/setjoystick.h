@@ -11,6 +11,7 @@
 #include "joycontrolstick.h"
 #include "joydpad.h"
 #include "joybutton.h"
+#include "vdpad.h"
 
 class SetJoystick : public QObject
 {
@@ -24,10 +25,14 @@ public:
     JoyButton* getJoyButton(int index);
     JoyDPad* getJoyDPad(int index);
     JoyControlStick* getJoyStick(int index);
+    VDPad *getVDPad(int index);
+
     int getNumberButtons ();
     int getNumberAxes();
     int getNumberHats();
     int getNumberSticks();
+    int getNumberVDPads();
+
     int getIndex();
     void refreshButtons ();
     void refreshAxes();
@@ -35,6 +40,8 @@ public:
     void release();
     void addControlStick(int index, JoyControlStick *stick);
     void removeControlStick(int index);
+    void addVDPad(int index, VDPad *vdpad);
+    void removeVDPad(int index);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
@@ -45,11 +52,14 @@ protected:
     void deleteAxes();
     void deleteHats();
     void deleteSticks();
+    void deleteVDpads();
 
     QHash<int, JoyButton*> buttons;
     QHash<int, JoyAxis*> axes;
     QHash<int, JoyDPad*> hats;
     QHash<int, JoyControlStick*> sticks;
+    QHash<int, VDPad*> vdpads;
+
     int index;
     SDL_Joystick* joyhandle;
 

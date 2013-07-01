@@ -14,11 +14,12 @@
 
 #include "joybuttonslot.h"
 
+class VDPad;
+
 class JoyButton : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyButton(QObject *parent = 0);
     explicit JoyButton(int index, int originset, QObject *parent=0);
     ~JoyButton();
 
@@ -65,6 +66,11 @@ public:
     bool containsReleaseSlots();
 
     virtual double getDistanceFromDeadZone();
+
+    virtual void setVDPad(VDPad *vdpad);
+    void removeVDPad();
+    bool isPartVDPad();
+    VDPad* getVDPad();
 
     static const QString xmlName;
 
@@ -121,6 +127,7 @@ protected:
     QQueue<JoyButtonSlot*> mouseEventQueue;
 
     int currentRawValue;
+    VDPad *vdpad;
 
 signals:
     void clicked (int index);

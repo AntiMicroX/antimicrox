@@ -3,27 +3,26 @@
 #include <QFontMetrics>
 #include <QPainter>
 
-#include "joycontrolstickpushbutton.h"
+#include "dpadpushbutton.h"
 
-JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWidget *parent) :
+DPadPushButton::DPadPushButton(JoyDPad *dpad, QWidget *parent) :
     QPushButton(parent)
 {
-    this->stick = stick;
+    this->dpad = dpad;
 
     isflashing = false;
-
     refreshLabel();
 
-    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
-    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    connect(dpad, SIGNAL(active(int,int)), this, SLOT(flash()));
+    connect(dpad, SIGNAL(released(int,int)), this, SLOT(unflash()));
 }
 
-JoyControlStick* JoyControlStickPushButton::getStick()
+JoyDPad* DPadPushButton::getDPad()
 {
-    return stick;
+    return dpad;
 }
 
-void JoyControlStickPushButton::flash()
+void DPadPushButton::flash()
 {
     isflashing = true;
 
@@ -33,7 +32,7 @@ void JoyControlStickPushButton::flash()
     emit flashed(isflashing);
 }
 
-void JoyControlStickPushButton::unflash()
+void DPadPushButton::unflash()
 {
     isflashing = false;
 
@@ -43,37 +42,37 @@ void JoyControlStickPushButton::unflash()
     emit flashed(isflashing);
 }
 
-void JoyControlStickPushButton::refreshLabel()
+void DPadPushButton::refreshLabel()
 {
     setText(generateLabel());
 }
 
-QString JoyControlStickPushButton::generateLabel()
+QString DPadPushButton::generateLabel()
 {
     QString temp;
-    temp = tr("Stick").append(" ").append(QString::number(stick->getRealJoyIndex()));
+    temp = tr("DPad").append(" ").append(QString::number(dpad->getRealJoyNumber()));
     return temp;
 }
 
-void JoyControlStickPushButton::disableFlashes()
+void DPadPushButton::disableFlashes()
 {
-    disconnect(stick, SIGNAL(active(int, int)), 0, 0);
-    disconnect(stick, SIGNAL(released(int, int)), 0, 0);
+    disconnect(dpad, SIGNAL(active(int, int)), 0, 0);
+    disconnect(dpad, SIGNAL(released(int, int)), 0, 0);
     this->unflash();
 }
 
-void JoyControlStickPushButton::enableFlashes()
+void DPadPushButton::enableFlashes()
 {
-    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
-    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    connect(dpad, SIGNAL(active(int, int)), this, SLOT(flash()));
+    connect(dpad, SIGNAL(released(int, int)), this, SLOT(unflash()));
 }
 
-bool JoyControlStickPushButton::isButtonFlashing()
+bool DPadPushButton::isButtonFlashing()
 {
     return isflashing;
 }
 
-void JoyControlStickPushButton::paintEvent(QPaintEvent *event)
+void DPadPushButton::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
@@ -88,7 +87,7 @@ void JoyControlStickPushButton::paintEvent(QPaintEvent *event)
     //qDebug() << "FM WIDTH B4: " << fm.width(stick->getName()) << " " << text();
     QFont tempScaledFont = painter.font();
 
-    while ((this->width() < fm.width(generateLabel())) && tempScaledFont.pointSize() >= 6)
+    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 6)
     {
         tempScaledFont.setPointSize(painter.font().pointSize()-2);
         painter.setFont(tempScaledFont);

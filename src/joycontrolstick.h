@@ -56,13 +56,13 @@ public:
 
     void releaseButtonEvents();
 
-    void readConfig(QXmlStreamReader *xml);
-    void writeConfig(QXmlStreamWriter *xml);
+    virtual void readConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
 
     static const double PI;
 
 protected:
-    void populateButtons();
+    virtual void populateButtons();
     void createDeskEvent(bool ignoresets = false);
     void changeButtonEvent(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void refreshButtons();

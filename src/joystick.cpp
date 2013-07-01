@@ -1,3 +1,5 @@
+#include <typeinfo>
+
 #include <QDebug>
 #include <QHashIterator>
 
@@ -159,6 +161,11 @@ int Joystick::getNumberSticks()
     return getActiveSetJoystick()->getNumberSticks();
 }
 
+int Joystick::getNumberVDPads()
+{
+    return getActiveSetJoystick()->getNumberVDPads();
+}
+
 SetJoystick* Joystick::getSetJoystick(int index)
 {
     return joystick_sets.value(index);
@@ -303,6 +310,103 @@ void Joystick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "vdpadButtonAssociations" && xml->isStartElement())
+            {
+                int vdpadIndex = xml->attributes().value("index").toString().toInt();
+                if (vdpadIndex > 0)
+                {
+                    for (int i=0; i <joystick_sets.size(); i++)
+                    {
+                        SetJoystick *currentset = joystick_sets.value(i);
+                        VDPad *vdpad = currentset->getVDPad(vdpadIndex-1);
+                        if (!vdpad)
+                        {
+                            vdpad = new VDPad(vdpadIndex-1, i, currentset);
+                            currentset->addVDPad(vdpadIndex-1, vdpad);
+                        }
+                    }
+
+                    xml->readNextStartElement();
+                    while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "vdpadButtonAssociations"))
+                    {
+                        if (xml->name() == "vdpadButtonAssociation" && xml->isStartElement())
+                        {
+                            int vdpadAxisIndex = xml->attributes().value("axis").toString().toInt();
+                            int vdpadButtonIndex = xml->attributes().value("button").toString().toInt();
+                            int vdpadDirection = xml->attributes().value("direction").toString().toInt();
+
+                            if (vdpadAxisIndex > 0 && vdpadDirection > 0)
+                            {
+                                vdpadAxisIndex -= 1;
+                                for (int i=0; i < joystick_sets.size(); i++)
+                                {
+                                    SetJoystick *currentset = joystick_sets.value(i);
+                                    VDPad *vdpad = currentset->getVDPad(vdpadIndex-1);
+                                    if (vdpad)
+                                    {
+                                        JoyAxis *axis = currentset->getJoyAxis(vdpadAxisIndex);
+                                        if (axis)
+                                        {
+                                            JoyButton *button = 0;
+                                            if (vdpadButtonIndex == 0)
+                                            {
+                                                button = axis->getNAxisButton();
+                                            }
+                                            else if (vdpadButtonIndex == 1)
+                                            {
+                                                button = axis->getPAxisButton();
+                                            }
+
+                                            if (button)
+                                            {
+                                                vdpad->addVButton((JoyDPadButton::JoyDPadDirections)vdpadDirection, button);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (vdpadButtonIndex > 0 && vdpadDirection > 0)
+                            {
+                                vdpadButtonIndex -= 1;
+
+                                for (int i=0; i < joystick_sets.size(); i++)
+                                {
+                                    SetJoystick *currentset = joystick_sets.value(i);
+                                    VDPad *vdpad = currentset->getVDPad(vdpadIndex-1);
+                                    if (vdpad)
+                                    {
+                                        JoyButton *button = currentset->getJoyButton(vdpadButtonIndex);
+                                        if (button)
+                                        {
+                                            vdpad->addVButton((JoyDPadButton::JoyDPadDirections)vdpadDirection, button);
+                                        }
+                                    }
+                                }
+                            }
+                            xml->readNext();
+                        }
+                        else
+                        {
+                            xml->skipCurrentElement();
+                        }
+
+                        xml->readNextStartElement();
+                    }
+                }
+            }
+            else if (xml->name() == "vdpad" && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                VDPad *vdpad = joystick_sets.value(0)->getVDPad(index-1);
+                if (vdpad)
+                {
+                    vdpad->readConfig(xml);
+                }
+                else
+                {
+                    xml->skipCurrentElement();
+                }
+            }
             else
             {
                 // If none of the above, skip the element
@@ -326,6 +430,99 @@ void Joystick::writeConfig(QXmlStreamWriter *xml)
         xml->writeAttribute("index", QString::number(stick->getRealJoyIndex()));
         xml->writeAttribute("xAxis", QString::number(stick->getAxisX()->getRealJoyIndex()));
         xml->writeAttribute("yAxis", QString::number(stick->getAxisY()->getRealJoyIndex()));
+        xml->writeEndElement();
+    }
+
+    for (int i=0; i < getNumberVDPads(); i++)
+    {
+        VDPad *vdpad = getActiveSetJoystick()->getVDPad(i);
+        xml->writeStartElement("vdpadButtonAssociations");
+        xml->writeAttribute("index", QString::number(vdpad->getRealJoyNumber()));
+
+        JoyButton *button = vdpad->getVButton(JoyDPadButton::DpadUp);
+        if (button)
+        {
+            xml->writeStartElement("vdpadButtonAssociation");
+
+            if (typeid(*button) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(button);
+                xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
+                xml->writeAttribute("button", QString::number(button->getJoyNumber()));
+            }
+            else
+            {
+                xml->writeAttribute("axis", QString::number(0));
+                xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+            }
+
+            xml->writeAttribute("direction", QString::number(JoyDPadButton::DpadUp));
+            xml->writeEndElement();
+        }
+
+        button = vdpad->getVButton(JoyDPadButton::DpadDown);
+        if (button)
+        {
+            xml->writeStartElement("vdpadButtonAssociation");
+
+            if (typeid(*button) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(button);
+                xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
+                xml->writeAttribute("button", QString::number(button->getJoyNumber()));
+            }
+            else
+            {
+                xml->writeAttribute("axis", QString::number(0));
+                xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+            }
+
+            xml->writeAttribute("direction", QString::number(JoyDPadButton::DpadDown));
+            xml->writeEndElement();
+        }
+
+        button = vdpad->getVButton(JoyDPadButton::DpadLeft);
+        if (button)
+        {
+            xml->writeStartElement("vdpadButtonAssociation");
+
+            if (typeid(*button) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(button);
+                xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
+                xml->writeAttribute("button", QString::number(button->getJoyNumber()));
+            }
+            else
+            {
+                xml->writeAttribute("axis", QString::number(0));
+                xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+            }
+
+            xml->writeAttribute("direction", QString::number(JoyDPadButton::DpadLeft));
+            xml->writeEndElement();
+        }
+
+        button = vdpad->getVButton(JoyDPadButton::DpadRight);
+        if (button)
+        {
+            xml->writeStartElement("vdpadButtonAssociation");
+
+            if (typeid(*button) == typeid(JoyAxisButton))
+            {
+                JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(button);
+                xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
+                xml->writeAttribute("button", QString::number(button->getJoyNumber()));
+            }
+            else
+            {
+                xml->writeAttribute("axis", QString::number(0));
+                xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+            }
+
+            xml->writeAttribute("direction", QString::number(JoyDPadButton::DpadRight));
+            xml->writeEndElement();
+        }
+
         xml->writeEndElement();
     }
 

@@ -25,22 +25,19 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->diagonalRangeSlider->setValue(stick->getDiagonalRange());
     ui->diagonalRangeSpinBox->setValue(stick->getDiagonalRange());
 
-    ui->upPushButton->setButton(stick->getDirectionButton(JoyControlStick::StickUp));
-    ui->upPushButton->setText(stick->getDirectionButton(JoyControlStick::StickUp)->getSlotsSummary());
-
-    ui->downPushButton->setButton(stick->getDirectionButton(JoyControlStick::StickDown));
-    ui->downPushButton->setText(stick->getDirectionButton(JoyControlStick::StickDown)->getSlotsSummary());
-
-    ui->leftPushButton->setButton(stick->getDirectionButton(JoyControlStick::StickLeft));
-    ui->leftPushButton->setText(stick->getDirectionButton(JoyControlStick::StickLeft)->getSlotsSummary());
-
-    ui->rightPushButton->setButton(stick->getDirectionButton(JoyControlStick::StickRight));
-    ui->rightPushButton->setText(stick->getDirectionButton(JoyControlStick::StickRight)->getSlotsSummary());
-
     ui->xCoordinateLabel->setText(QString::number(stick->getXCoordinate()));
     ui->yCoordinateLabel->setText(QString::number(stick->getYCoordinate()));
     ui->distanceLabel->setText(QString::number(stick->getAbsoluteDistance()));
     ui->diagonalLabel->setText(QString::number(stick->calculateBearing()));
+
+    if (stick->getJoyMode() == JoyControlStick::StandardMode)
+    {
+        ui->joyModeComboBox->setCurrentIndex(0);
+    }
+    else if (stick->getJoyMode() == JoyControlStick::EightWayMode)
+    {
+        ui->joyModeComboBox->setCurrentIndex(1);
+    }
 
     ui->stickStatusBoxWidget->setStick(stick);
 
@@ -67,6 +64,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     updateVerticalSpeedConvertLabel(tempMouseSpeedY);
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
 
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
@@ -78,8 +76,6 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
     connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
-    //connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
-    //connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
@@ -88,13 +84,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
-    //connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
-
-    connect(ui->upPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedUpDialog()));
-    connect(ui->downPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedDownDialog()));
-    connect(ui->leftPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedLeftDialog()));
-    connect(ui->rightPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedRightDialog()));
 
     connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
     connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
@@ -105,58 +95,6 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
 {
     delete ui;
-}
-
-void JoyControlStickEditDialog::openAdvancedUpDialog()
-{
-    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getDirectionButton(JoyControlStick::StickUp), this);
-    dialog->show();
-
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshUpButtonLabel()));
-}
-
-void JoyControlStickEditDialog::openAdvancedDownDialog()
-{
-    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getDirectionButton(JoyControlStick::StickDown), this);
-    dialog->show();
-
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshDownButtonLabel()));
-}
-
-void JoyControlStickEditDialog::openAdvancedLeftDialog()
-{
-    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getDirectionButton(JoyControlStick::StickLeft), this);
-    dialog->show();
-
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshLeftButtonLabel()));
-}
-
-void JoyControlStickEditDialog::openAdvancedRightDialog()
-{
-    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getDirectionButton(JoyControlStick::StickRight), this);
-    dialog->show();
-
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshRightButtonLabel()));
-}
-
-void JoyControlStickEditDialog::refreshUpButtonLabel()
-{
-    ui->upPushButton->setText(stick->getDirectionButton(JoyControlStick::StickUp)->getSlotsSummary());
-}
-
-void JoyControlStickEditDialog::refreshDownButtonLabel()
-{
-    ui->downPushButton->setText(stick->getDirectionButton(JoyControlStick::StickDown)->getSlotsSummary());
-}
-
-void JoyControlStickEditDialog::refreshLeftButtonLabel()
-{
-    ui->leftPushButton->setText(stick->getDirectionButton(JoyControlStick::StickLeft)->getSlotsSummary());
-}
-
-void JoyControlStickEditDialog::refreshRightButtonLabel()
-{
-    ui->rightPushButton->setText(stick->getDirectionButton(JoyControlStick::StickRight)->getSlotsSummary());
 }
 
 void JoyControlStickEditDialog::implementPresets(int index)
@@ -172,6 +110,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         downButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement, this);
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
+        ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 2)
     {
@@ -179,6 +118,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         downButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement, this);
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
+        ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 3)
     {
@@ -186,6 +126,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         downButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement, this);
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
+        ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 4)
     {
@@ -193,6 +134,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         downButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement, this);
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
+        ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 5)
     {
@@ -200,6 +142,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         downButtonSlot = new JoyButtonSlot(keyToKeycode("Down"), JoyButtonSlot::JoyKeyboard, this);
         leftButtonSlot = new JoyButtonSlot(keyToKeycode("Left"), JoyButtonSlot::JoyKeyboard, this);
         rightButtonSlot = new JoyButtonSlot(keyToKeycode("Right"), JoyButtonSlot::JoyKeyboard, this);
+        ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 6)
     {
@@ -207,6 +150,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         downButtonSlot = new JoyButtonSlot(keyToKeycode("s"), JoyButtonSlot::JoyKeyboard, this);
         leftButtonSlot = new JoyButtonSlot(keyToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
         rightButtonSlot = new JoyButtonSlot(keyToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
+        ui->joyModeComboBox->setCurrentIndex(0);
     }
 
     if (upButtonSlot)
@@ -214,7 +158,6 @@ void JoyControlStickEditDialog::implementPresets(int index)
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickUp);
         button->clearSlotsEventReset();
         button->setAssignedSlot(upButtonSlot->getSlotCode(), upButtonSlot->getSlotMode());
-        refreshUpButtonLabel();
         upButtonSlot->deleteLater();
     }
 
@@ -223,7 +166,6 @@ void JoyControlStickEditDialog::implementPresets(int index)
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickDown);
         button->clearSlotsEventReset();
         button->setAssignedSlot(downButtonSlot->getSlotCode(), downButtonSlot->getSlotMode());
-        refreshDownButtonLabel();
         downButtonSlot->deleteLater();
     }
 
@@ -232,7 +174,6 @@ void JoyControlStickEditDialog::implementPresets(int index)
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickLeft);
         button->clearSlotsEventReset();
         button->setAssignedSlot(leftButtonSlot->getSlotCode(), leftButtonSlot->getSlotMode());
-        refreshLeftButtonLabel();
         leftButtonSlot->deleteLater();
     }
 
@@ -241,7 +182,6 @@ void JoyControlStickEditDialog::implementPresets(int index)
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickRight);
         button->clearSlotsEventReset();
         button->setAssignedSlot(rightButtonSlot->getSlotCode(), rightButtonSlot->getSlotMode());
-        refreshRightButtonLabel();
         rightButtonSlot->deleteLater();
     }
 }
@@ -302,10 +242,12 @@ void JoyControlStickEditDialog::updateConfigHorizontalSpeed(int value)
 {
     if (ui->changeMouseSpeedsCheckBox->isChecked())
     {
-        stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedX(value);
-        stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedX(value);
-        stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedX(value);
-        stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedX(value);
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+        while (iter.hasNext())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            button->setMouseSpeedX(value);
+        }
     }
 }
 
@@ -313,10 +255,12 @@ void JoyControlStickEditDialog::updateConfigVerticalSpeed(int value)
 {
     if (ui->changeMouseSpeedsCheckBox->isChecked())
     {
-        stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedY(value);
-        stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedY(value);
-        stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedY(value);
-        stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedY(value);
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+        while (iter.hasNext())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            button->setMouseSpeedY(value);
+        }
     }
 }
 
@@ -325,5 +269,19 @@ void JoyControlStickEditDialog::checkMaxZone(int value)
     if (value > ui->deadZoneSpinBox->value())
     {
         stick->setMaxZone(value);
+    }
+}
+
+void JoyControlStickEditDialog::implementModes(int index)
+{
+    stick->releaseButtonEvents();
+
+    if (index == 0)
+    {
+        stick->setJoyMode(JoyControlStick::StandardMode);
+    }
+    else if (index == 1)
+    {
+        stick->setJoyMode(JoyControlStick::EightWayMode);
     }
 }

@@ -97,6 +97,7 @@ private slots:
     void showButtonDialog();
     void showStickDialog();
     void showStickAssignmentDialog();
+    void showDPadDialog();
 
     void changeSetOne();
     void changeSetTwo();
@@ -107,6 +108,7 @@ private slots:
     void changeSetSeven();
     void changeSetEight();
     void changeCurrentSet(int index);
+    void openStickButtonDialog();
 };
 
 #endif // JOYTABWIDGET_H

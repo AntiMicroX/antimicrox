@@ -2,12 +2,16 @@
 
 #include "joydpad.h"
 
+const QString JoyDPad::xmlName = "dpad";
+
 JoyDPad::JoyDPad(QObject *parent) :
     QObject(parent)
 {
     buttons = QHash<int, JoyDPadButton*> ();
+    activeDiagonalButton = 0;
     prevDirection = JoyDPadButton::DpadCentered;
     originset = 0;
+    currentMode = StandardMode;
     populateButtons();
 }
 
@@ -16,8 +20,10 @@ JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
 {
     this->index = index;
     buttons = QHash<int, JoyDPadButton*> ();
+    activeDiagonalButton = 0;
     prevDirection = JoyDPadButton::DpadCentered;
     this->originset = originset;
+    currentMode = StandardMode;
 
     populateButtons();
 }
@@ -53,6 +59,18 @@ void JoyDPad::populateButtons()
 
     button = new JoyDPadButton(JoyDPadButton::DpadLeft, originset, this, this);
     buttons.insert(JoyDPadButton::DpadLeft, button);
+
+    button = new JoyDPadButton(JoyDPadButton::DpadLeftUp, originset, this, this);
+    buttons.insert(JoyDPadButton::DpadLeftUp, button);
+
+    button = new JoyDPadButton(JoyDPadButton::DpadRightUp, originset, this, this);
+    buttons.insert(JoyDPadButton::DpadRightUp, button);
+
+    button = new JoyDPadButton(JoyDPadButton::DpadRightDown, originset, this, this);
+    buttons.insert(JoyDPadButton::DpadRightDown, button);
+
+    button = new JoyDPadButton(JoyDPadButton::DpadLeftDown, originset, this, this);
+    buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
 QString JoyDPad::getName()
@@ -77,12 +95,17 @@ int JoyDPad::getRealJoyNumber()
     return index + 1;
 }
 
+QString JoyDPad::getXmlName()
+{
+    return this->xmlName;
+}
+
 void JoyDPad::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && xml->name() == "dpad")
+    if (xml->isStartElement() && xml->name() == getXmlName())
     {
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "dpad"))
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {
             if (xml->name() == "dpadbutton" && xml->isStartElement())
             {
@@ -97,6 +120,14 @@ void JoyDPad::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "mode" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (temptext == "eight-way")
+                {
+                    this->setJoyMode(EightWayMode);
+                }
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -109,13 +140,17 @@ void JoyDPad::readConfig(QXmlStreamReader *xml)
 
 void JoyDPad::writeConfig(QXmlStreamWriter *xml)
 {
-    xml->writeStartElement("dpad");
+    xml->writeStartElement(getXmlName());
     xml->writeAttribute("index", QString::number(index+1));
-
-    QHash<int, JoyDPadButton*>::iterator i;
-    for (i = buttons.begin(); i != buttons.end(); i++)
+    if (currentMode == EightWayMode)
     {
-        JoyDPadButton *button = (*i);
+        xml->writeTextElement("mode", "eight-way");
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
         button->writeConfig(xml);
     }
 
@@ -124,117 +159,100 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
 
 void JoyDPad::joyEvent(int value, bool ignoresets)
 {
-    JoyDPadButton *curButton;
-    JoyDPadButton *prevButton;
-    if (value != prevDirection)
+    JoyDPadButton *curButton = 0;
+    JoyDPadButton *prevButton = 0;
+
+    if (value != (int)prevDirection)
     {
-        if (prevDirection & JoyDPadButton::DpadUp)
+        if (value != JoyDPadButton::DpadCentered)
         {
-            prevButton = buttons.value(JoyDPadButton::DpadUp);
-            prevButton->joyEvent(false, ignoresets);
+            emit active(index);
         }
-        if (prevDirection & JoyDPadButton::DpadRight)
+        else
         {
-            prevButton = buttons.value(JoyDPadButton::DpadRight);
-            prevButton->joyEvent(false, ignoresets);
-        }
-        if (prevDirection & JoyDPadButton::DpadDown)
-        {
-            prevButton = buttons.value(JoyDPadButton::DpadDown);
-            prevButton->joyEvent(false, ignoresets);
+            emit released(index);
         }
 
-        if (prevDirection & JoyDPadButton::DpadLeft)
+        if (activeDiagonalButton)
         {
-            prevButton = buttons.value(JoyDPadButton::DpadLeft);
-            prevButton->joyEvent(false, ignoresets);
+            activeDiagonalButton->joyEvent(false, ignoresets);
+            activeDiagonalButton = 0;
+        }
+        else {
+            if (prevDirection & JoyDPadButton::DpadUp)
+            {
+                prevButton = buttons.value(JoyDPadButton::DpadUp);
+                prevButton->joyEvent(false, ignoresets);
+            }
+
+            if (prevDirection & JoyDPadButton::DpadRight)
+            {
+                prevButton = buttons.value(JoyDPadButton::DpadRight);
+                prevButton->joyEvent(false, ignoresets);
+            }
+
+            if (prevDirection & JoyDPadButton::DpadDown)
+            {
+                prevButton = buttons.value(JoyDPadButton::DpadDown);
+                prevButton->joyEvent(false, ignoresets);
+            }
+
+            if (prevDirection & JoyDPadButton::DpadLeft)
+            {
+                prevButton = buttons.value(JoyDPadButton::DpadLeft);
+                prevButton->joyEvent(false, ignoresets);
+            }
         }
 
-        /*if (prevDirection & JoyDPadButton::DpadRightUp)
+        if (currentMode == EightWayMode && value == JoyDPadButton::DpadLeftUp)
         {
-            prevButton = buttons.value(JoyDPadButton::DpadRightUp);
-            prevButton->joyEvent(false);
+            activeDiagonalButton = buttons.value(JoyDPadButton::DpadLeftUp);
+            activeDiagonalButton->joyEvent(true, ignoresets);
         }
-        if (prevDirection & JoyDPadButton::DpadRightDown)
+        else if (currentMode == EightWayMode && value == JoyDPadButton::DpadRightUp)
         {
-            prevButton = buttons.value(JoyDPadButton::DpadRightDown);
-            prevButton->joyEvent(false);
+            activeDiagonalButton = buttons.value(JoyDPadButton::DpadRightUp);
+            activeDiagonalButton->joyEvent(true, ignoresets);
         }
-        if (prevDirection & JoyDPadButton::DpadLeftUp)
+        else if (currentMode == EightWayMode && value == JoyDPadButton::DpadRightDown)
         {
-            prevButton = buttons.value(JoyDPadButton::DpadLeftUp);
-            prevButton->joyEvent(false);
+            activeDiagonalButton = buttons.value(JoyDPadButton::DpadRightDown);
+            activeDiagonalButton->joyEvent(true, ignoresets);
         }
-        if (prevDirection & JoyDPadButton::DpadLeftDown)
+        else if (currentMode == EightWayMode && value == JoyDPadButton::DpadLeftDown)
         {
-            prevButton = buttons.value(JoyDPadButton::DpadLeftDown);
-            prevButton->joyEvent(false);
-        }*/
+            activeDiagonalButton = buttons.value(JoyDPadButton::DpadLeftDown);
+            activeDiagonalButton->joyEvent(true, ignoresets);
+        }
+        else
+        {
+            if (value & JoyDPadButton::DpadUp)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadUp);
+                curButton->joyEvent(true, ignoresets);
+            }
 
-        if (value & JoyDPadButton::DpadUp)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadUp);
-            curButton->joyEvent(true, ignoresets);
-        }
-        if (value & JoyDPadButton::DpadRight)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadRight);
-            curButton->joyEvent(true, ignoresets);
-        }
-        if (value & JoyDPadButton::DpadDown)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadDown);
-            curButton->joyEvent(true, ignoresets);
-        }
-        if (value & JoyDPadButton::DpadLeft)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadLeft);
-            curButton->joyEvent(true, ignoresets);
-        }
-        /*if (value & JoyDPadButton::DpadRightUp)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadRightUp);
-            curButton->joyEvent(true);
-        }
-        if (value & JoyDPadButton::DpadRightDown)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadRightDown);
-            curButton->joyEvent(true);
-        }
-        if (value & JoyDPadButton::DpadLeftUp)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadLeftUp);
-            curButton->joyEvent(true);
-        }
-        if (value & JoyDPadButton::DpadLeftDown)
-        {
-            curButton = buttons.value(JoyDPadButton::DpadLeftDown);
-            curButton->joyEvent(true);
-        }*/
+            if (value & JoyDPadButton::DpadRight)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadRight);
+                curButton->joyEvent(true, ignoresets);
+            }
 
+            if (value & JoyDPadButton::DpadDown)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadDown);
+                curButton->joyEvent(true, ignoresets);
+            }
+
+            if (value & JoyDPadButton::DpadLeft)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadLeft);
+                curButton->joyEvent(true, ignoresets);
+            }
+        }
     }
 
-    prevDirection = value;
-
-
-    /*if (value == JoyDPadButton::DpadCentered && prevDirection != JoyDPadButton::DpadCentered)
-    {
-        JoyDPadButton *button = buttons.value(prevDirection);
-        button->joyEvent(false);
-    }
-    else if (value != prevDirection)
-    {
-        if (prevDirection != JoyDPadButton::DpadCentered)
-        {
-            JoyDPadButton *prevButton = buttons.value(prevDirection);
-            prevButton->joyEvent(false);
-        }
-
-        JoyDPadButton *curButton = buttons.value(value);
-        curButton->joyEvent(true);
-    }
-
-    prevDirection = value;*/
+    prevDirection = (JoyDPadButton::JoyDPadDirections)value;
 }
 
 QHash<int, JoyDPadButton*>* JoyDPad::getJoyButtons()
@@ -245,4 +263,29 @@ QHash<int, JoyDPadButton*>* JoyDPad::getJoyButtons()
 int JoyDPad::getCurrentDirection()
 {
     return prevDirection;
+}
+
+void JoyDPad::setJoyMode(JoyMode mode)
+{
+    currentMode = mode;
+}
+
+JoyDPad::JoyMode JoyDPad::getJoyMode()
+{
+    return currentMode;
+}
+
+void JoyDPad::releaseButtonEvents()
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->joyEvent(false, true);
+    }
+}
+
+QHash<int, JoyDPadButton*>* JoyDPad::getButtons()
+{
+    return &buttons;
 }

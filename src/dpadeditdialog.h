@@ -1,33 +1,32 @@
-#ifndef JOYCONTROLSTICKEDITDIALOG_H
-#define JOYCONTROLSTICKEDITDIALOG_H
+#ifndef DPADEDITDIALOG_H
+#define DPADEDITDIALOG_H
 
 #include <QDialog>
 
-#include "joycontrolstick.h"
+#include "joydpad.h"
 
 namespace Ui {
-class JoyControlStickEditDialog;
+class DPadEditDialog;
 }
 
-class JoyControlStickEditDialog : public QDialog
+class DPadEditDialog : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent = 0);
-    ~JoyControlStickEditDialog();
-    
+    explicit DPadEditDialog(JoyDPad *dpad, QWidget *parent = 0);
+    ~DPadEditDialog();
+
 protected:
-    JoyControlStick *stick;
+    JoyDPad *dpad;
 
 private:
-    Ui::JoyControlStickEditDialog *ui;
+    Ui::DPadEditDialog *ui;
 
 private slots:
     void implementPresets(int index);
     void implementModes(int index);
 
-    void refreshStickStats(int x, int y);
     void syncSpeedSpinBoxes();
     void changeMouseSpeedsInterface(bool value);
     void updateHorizontalSpeedConvertLabel(int value);
@@ -35,8 +34,6 @@ private slots:
     void moveSpeedsTogether(int value);
     void updateConfigHorizontalSpeed(int value);
     void updateConfigVerticalSpeed(int value);
-
-    void checkMaxZone(int value);
 };
 
-#endif // JOYCONTROLSTICKEDITDIALOG_H
+#endif // DPADEDITDIALOG_H

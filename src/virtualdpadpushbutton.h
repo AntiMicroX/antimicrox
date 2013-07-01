@@ -1,26 +1,26 @@
-#ifndef JOYCONTROLSTICKPUSHBUTTON_H
-#define JOYCONTROLSTICKPUSHBUTTON_H
+#ifndef VIRTUALDPADPUSHBUTTON_H
+#define VIRTUALDPADPUSHBUTTON_H
 
 #include <QPushButton>
 #include <QPaintEvent>
 
-#include "joycontrolstick.h"
+#include "vdpad.h"
 
-class JoyControlStickPushButton : public QPushButton
+class VirtualDPadPushButton : public QPushButton
 {
     Q_OBJECT
     Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
 public:
-    explicit JoyControlStickPushButton(JoyControlStick *stick, QWidget *parent = 0);
-    JoyControlStick* getStick();
+    explicit VirtualDPadPushButton(VDPad *vdpad, QWidget *parent = 0);
+    VDPad* getVDPad();
     bool isButtonFlashing();
-    
+
 protected:
     virtual void paintEvent(QPaintEvent *event);
     QString generateLabel();
 
-    JoyControlStick *stick;
+    VDPad *vdpad;
     bool isflashing;
 
 signals:
@@ -36,4 +36,4 @@ private slots:
     void unflash();
 };
 
-#endif // JOYCONTROLSTICKPUSHBUTTON_H
+#endif // VIRTUALDPADPUSHBUTTON_H

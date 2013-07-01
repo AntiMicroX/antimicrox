@@ -19,8 +19,13 @@ public:
     
 protected:
     void refreshStickConfiguration();
+    void refreshVDPadConfiguration();
 
     Joystick *joystick;
+
+signals:
+    void stickConfigurationChanged();
+    void vdpadConfigurationChanged();
 
 private:
     Ui::AdvanceStickAssignmentDialog *ui;
@@ -31,6 +36,14 @@ private slots:
 
     void changeStateStickOneWidgets(bool enabled);
     void changeStateStickTwoWidgets(bool enabled);
+    void changeStateVDPadWidgets(bool enabled);
+
+    void populateDPadComboBoxes();
+
+    void changeVDPadUpButton(int index);
+    void changeVDPadDownButton(int index);
+    void changeVDPadLeftButton(int index);
+    void changeVDPadRightButton(int index);
 };
 
 #endif // ADVANCESTICKASSIGNMENTDIALOG_H

@@ -1,7 +1,6 @@
 #include <QDebug>
 #include <QFile>
 #include <QApplication>
-#include <typeinfo>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
