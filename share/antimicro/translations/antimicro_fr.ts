@@ -1144,49 +1144,115 @@ par rapport à la zone morte.</translation>
     <name>AdvanceStickAssignmentDialog</name>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="20"/>
-        <source>Stick Assignment</source>
-        <translation>Assignement du stick</translation>
+        <source>Stick/Pad Assignment</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="35"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="41"/>
+        <source>Sticks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="46"/>
+        <source>DPads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="288"/>
         <source>Joystick %1</source>
         <translation>Manette %1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="74"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="108"/>
         <source>Stick 1</source>
         <translation>Stick 1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="100"/>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="211"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="118"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="213"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="355"/>
         <source>Enabled</source>
         <translation>Activé</translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="125"/>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="236"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="143"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="238"/>
         <source>X Axis:</source>
         <translation>Axe X :</translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="143"/>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="254"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="161"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="256"/>
         <source>Y Axis:</source>
         <translation>Axe Y :</translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="185"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="203"/>
         <source>Stick 2</source>
         <translation>Stick 2</translation>
     </message>
     <message>
-        <location filename="../../../src/advancestickassignmentdialog.cpp" line="30"/>
-        <location filename="../../../src/advancestickassignmentdialog.cpp" line="31"/>
-        <location filename="../../../src/advancestickassignmentdialog.cpp" line="33"/>
-        <location filename="../../../src/advancestickassignmentdialog.cpp" line="34"/>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="301"/>
+        <source>Number of Physical DPads: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="332"/>
+        <source>Virtual DPad 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="386"/>
+        <source>Up:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="400"/>
+        <source>Down:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="414"/>
+        <source>Left:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="428"/>
+        <source>Right:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="36"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="37"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="39"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="40"/>
         <source>Axis %1</source>
         <translation>Axe %1</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="487"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="488"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="489"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="490"/>
+        <source>Axis %1 -</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="495"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="496"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="497"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="498"/>
+        <source>Axis %1 +</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="508"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="509"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="510"/>
+        <location filename="../../../src/advancestickassignmentdialog.cpp" line="511"/>
+        <source>Button %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1470,9 +1536,111 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     </message>
 </context>
 <context>
+    <name>DPadEditDialog</name>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished">Dialogue</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="24"/>
+        <source>Presets:</source>
+        <translation type="unfinished">Pré-réglages :</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="43"/>
+        <source>Mouse (Normal)</source>
+        <translation type="unfinished">Souris (Normal)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="48"/>
+        <source>Mouse (Inverted Horizontal)</source>
+        <translation type="unfinished">Souris (Horizontal Inversé)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="53"/>
+        <source>Mouse (Inverted Vertical)</source>
+        <translation type="unfinished">Souris (Vertical Inversé)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="58"/>
+        <source>Mouse (Inverted Horizontal + Vertical)</source>
+        <translation type="unfinished">Souris (Vertical et Horizontal Inversés)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="63"/>
+        <source>Arrows</source>
+        <translation type="unfinished">Flèches</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="68"/>
+        <source>Keys: W | A | S | D</source>
+        <translation type="unfinished">Touches :W | A | S | D </translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="80"/>
+        <source>Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="94"/>
+        <source>Standard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="99"/>
+        <source>Eight Way</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="125"/>
+        <source>Configure Mouse Settings</source>
+        <translation type="unfinished">Configure les préférences de la souris</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="139"/>
+        <source>Change Speeds</source>
+        <translation type="unfinished">Modifier les vitesses</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="149"/>
+        <source>Change Together</source>
+        <translation type="unfinished">Modifier en même temps</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="164"/>
+        <source>Horizontal Speed:</source>
+        <translation type="unfinished">Vitesse horizontale :</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="186"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="221"/>
+        <source>1 = 20 pps</source>
+        <translation type="unfinished">1 = 20 pps</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="199"/>
+        <source>Vertical Speed:</source>
+        <translation type="unfinished">Vitesse verticale :</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.cpp" line="17"/>
+        <source>Set</source>
+        <translation type="unfinished">Configuration</translation>
+    </message>
+</context>
+<context>
+    <name>DPadPushButton</name>
+    <message>
+        <location filename="../../../src/dpadpushbutton.cpp" line="51"/>
+        <source>DPad</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="104"/>
+        <location filename="../../../src/joyaxis.cpp" line="96"/>
         <source>Axis</source>
         <translation>Axe</translation>
     </message>
@@ -1508,13 +1676,13 @@ de maintien ou de relâchement d&apos;un axe.</translation>
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="751"/>
+        <location filename="../../../src/joybutton.cpp" line="753"/>
         <source>Button</source>
         <translation>Bouton</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="771"/>
-        <location filename="../../../src/joybutton.cpp" line="796"/>
+        <location filename="../../../src/joybutton.cpp" line="773"/>
+        <location filename="../../../src/joybutton.cpp" line="798"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -1581,7 +1749,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="../../../src/joycontrolstick.cpp" line="412"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="432"/>
         <source>Stick</source>
         <translation>Stick</translation>
     </message>
@@ -1606,12 +1774,12 @@ de maintien ou de relâchement d&apos;un axe.</translation>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="34"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="42"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="46"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="50"/>
         <source>Left</source>
         <translation>Gauche</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="38"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="50"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="54"/>
         <source>Right</source>
         <translation>Droite</translation>
@@ -1658,110 +1826,113 @@ de maintien ou de relâchement d&apos;un axe.</translation>
         <translation>Angle :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="248"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="232"/>
         <source>Presets:</source>
         <translation>Pré-réglages :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="261"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="251"/>
         <source>Mouse (Normal)</source>
         <translation>Souris (Normal)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="266"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="256"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="271"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="261"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="276"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="266"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>Souris (Vertical et Horizontal Inversés)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="281"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="271"/>
         <source>Arrows</source>
         <translation>Flèches</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="286"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="276"/>
         <source>Keys: W | A | S | D</source>
         <translation>Touches :W | A | S | D </translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="312"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="288"/>
+        <source>Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="302"/>
+        <source>Standard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="307"/>
+        <source>Eight Way</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="333"/>
         <source>Configure Mouse Settings</source>
         <translation>Configure les préférences de la souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="326"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="347"/>
         <source>Change Speeds</source>
         <translation>Modifier les vitesses</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="336"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="357"/>
         <source>Change Together</source>
         <translation>Modifier en même temps</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="351"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="372"/>
         <source>Horizontal Speed:</source>
         <translation>Vitesse horizontale :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="373"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="408"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="394"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="429"/>
         <source>1 = 20 pps</source>
         <translation>1 = 20 pps</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="386"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="407"/>
         <source>Vertical Speed:</source>
         <translation>Vitesse verticale :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="459"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="480"/>
         <source>Dead Zone:</source>
         <translation>Zone morte :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="505"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="526"/>
         <source>Max Zone:</source>
         <translation>Zone maximale :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="554"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="575"/>
         <source>Diagonal Range:</source>
         <translation>Valleur de diagonale :</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="598"/>
-        <source>Down</source>
-        <translation>Bas</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="605"/>
-        <source>Right</source>
-        <translation>Droite</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="618"/>
-        <source>Up</source>
-        <translation>Haut</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="625"/>
-        <source>Left</source>
-        <translation>Gauche</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="17"/>
         <source>Set Stick %1</source>
         <translation>Configuration Stick %1</translation>
+    </message>
+</context>
+<context>
+    <name>JoyControlStickPushButton</name>
+    <message>
+        <location filename="../../../src/joycontrolstickpushbutton.cpp" line="54"/>
+        <source>Stick</source>
+        <translation type="unfinished">Stick</translation>
     </message>
 </context>
 <context>
@@ -1798,45 +1969,56 @@ de maintien ou de relâchement d&apos;un axe.</translation>
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="23"/>
-        <location filename="../../../src/joytabwidget.cpp" line="754"/>
+        <location filename="../../../src/joytabwidget.cpp" line="29"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1023"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;Nouveau&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="31"/>
+        <location filename="../../../src/joytabwidget.cpp" line="37"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="38"/>
+        <location filename="../../../src/joytabwidget.cpp" line="44"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="46"/>
+        <location filename="../../../src/joytabwidget.cpp" line="52"/>
         <source>Save As</source>
         <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="297"/>
-        <source>Stick Assign</source>
-        <translation>Assignement des Stick</translation>
+        <location filename="../../../src/joytabwidget.cpp" line="303"/>
+        <source>Stick/Pad Assign</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="308"/>
+        <location filename="../../../src/joytabwidget.cpp" line="314"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="339"/>
+        <location filename="../../../src/joytabwidget.cpp" line="345"/>
         <source>Open Config</source>
         <translation>Charger un fichier de configuration</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="569"/>
-        <location filename="../../../src/joytabwidget.cpp" line="639"/>
-        <location filename="../../../src/joytabwidget.cpp" line="649"/>
+        <location filename="../../../src/joytabwidget.cpp" line="457"/>
+        <source>Sticks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joytabwidget.cpp" line="563"/>
+        <location filename="../../../src/joytabwidget.cpp" line="653"/>
+        <source>DPads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joytabwidget.cpp" line="838"/>
+        <location filename="../../../src/joytabwidget.cpp" line="908"/>
+        <location filename="../../../src/joytabwidget.cpp" line="918"/>
         <source>Save Config</source>
         <translation>Enregistrer le fichier de configuration</translation>
     </message>
@@ -1844,7 +2026,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../../../src/joystick.cpp" line="66"/>
+        <location filename="../../../src/joystick.cpp" line="68"/>
         <source>Joystick</source>
         <translation>Manette</translation>
     </message>
@@ -1857,167 +2039,167 @@ de maintien ou de relâchement d&apos;un axe.</translation>
         <translation>AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="84"/>
+        <location filename="../../../src/mainwindow.ui" line="87"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
         <translation>Aucune manette n&apos;a été détéctée.
  Merci de brancher une manette et de choisir l&apos;option &quot;Mettre à jour les manettes&quot; du menu principal</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="145"/>
+        <location filename="../../../src/mainwindow.ui" line="148"/>
         <source>Tab 1</source>
         <translation>Onglet 1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="163"/>
+        <location filename="../../../src/mainwindow.ui" line="166"/>
         <source>&lt;None&gt;</source>
         <translation>&lt;Aucun&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="199"/>
+        <location filename="../../../src/mainwindow.ui" line="202"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="223"/>
+        <location filename="../../../src/mainwindow.ui" line="226"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="253"/>
+        <location filename="../../../src/mainwindow.ui" line="256"/>
         <source>Save As</source>
         <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="365"/>
+        <location filename="../../../src/mainwindow.ui" line="368"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="375"/>
+        <location filename="../../../src/mainwindow.ui" line="378"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="385"/>
+        <location filename="../../../src/mainwindow.ui" line="388"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="395"/>
+        <location filename="../../../src/mainwindow.ui" line="398"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="405"/>
+        <location filename="../../../src/mainwindow.ui" line="408"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="415"/>
+        <location filename="../../../src/mainwindow.ui" line="418"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="425"/>
+        <location filename="../../../src/mainwindow.ui" line="428"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="435"/>
+        <location filename="../../../src/mainwindow.ui" line="438"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="465"/>
-        <source>Stick Assign</source>
-        <translation>Assignement du stick</translation>
+        <location filename="../../../src/mainwindow.ui" line="468"/>
+        <source>Stick/Pad Assign</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="500"/>
+        <location filename="../../../src/mainwindow.ui" line="505"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="517"/>
+        <location filename="../../../src/mainwindow.ui" line="522"/>
         <source>Tab 2</source>
         <translation>Onglet 2</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="540"/>
+        <location filename="../../../src/mainwindow.ui" line="545"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="547"/>
+        <location filename="../../../src/mainwindow.ui" line="552"/>
         <source>&amp;Options</source>
         <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="553"/>
+        <location filename="../../../src/mainwindow.ui" line="558"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="577"/>
-        <location filename="../../../src/mainwindow.cpp" line="181"/>
+        <location filename="../../../src/mainwindow.ui" line="582"/>
+        <location filename="../../../src/mainwindow.cpp" line="184"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="580"/>
+        <location filename="../../../src/mainwindow.ui" line="585"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="590"/>
-        <location filename="../../../src/mainwindow.cpp" line="185"/>
+        <location filename="../../../src/mainwindow.ui" line="595"/>
+        <location filename="../../../src/mainwindow.cpp" line="188"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Mettre à jour les manettes</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="593"/>
+        <location filename="../../../src/mainwindow.ui" line="598"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="603"/>
-        <location filename="../../../src/mainwindow.cpp" line="171"/>
+        <location filename="../../../src/mainwindow.ui" line="608"/>
+        <location filename="../../../src/mainwindow.cpp" line="174"/>
         <source>&amp;Hide</source>
         <translation>&amp;Cacher</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="606"/>
+        <location filename="../../../src/mainwindow.ui" line="611"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="616"/>
+        <location filename="../../../src/mainwindow.ui" line="621"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="619"/>
+        <location filename="../../../src/mainwindow.ui" line="624"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="624"/>
+        <location filename="../../../src/mainwindow.ui" line="629"/>
         <source>About Qt</source>
         <translation>À propos de Qt</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="94"/>
+        <location filename="../../../src/mainwindow.cpp" line="97"/>
         <source>Joystick %1</source>
         <translation>Manette %1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="159"/>
+        <location filename="../../../src/mainwindow.cpp" line="162"/>
         <source>Open File</source>
         <translation>Ouvrir fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="176"/>
+        <location filename="../../../src/mainwindow.cpp" line="179"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>
@@ -2047,6 +2229,14 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="97"/>
         <source>Mouse</source>
         <translation>Souris</translation>
+    </message>
+</context>
+<context>
+    <name>VirtualDPadPushButton</name>
+    <message>
+        <location filename="../../../src/virtualdpadpushbutton.cpp" line="53"/>
+        <source>VDPad</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
