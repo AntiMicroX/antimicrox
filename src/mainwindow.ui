@@ -475,6 +475,13 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="quickSetPushButton">
+                <property name="text">
+                 <string>Quick Set</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>

@@ -15,6 +15,7 @@
 #include "dpadeditdialog.h"
 #include "virtualdpadpushbutton.h"
 #include "joydpadbuttonwidget.h"
+#include "quicksetdialog.h"
 
 JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     QWidget(parent)
@@ -307,6 +308,10 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
 
     horizontalLayout_3->addWidget(stickAssignPushButton);
 
+    quickSetPushButton = new QPushButton(tr("Quick Set"), this);
+    quickSetPushButton->setObjectName(QString::fromUtf8("quickSetPushButton"));
+    horizontalLayout_3->addWidget(quickSetPushButton);
+
     QSpacerItem *horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     horizontalLayout_3->addItem(horizontalSpacer_2);
@@ -336,6 +341,7 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
 
     connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
+    connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
 }
 
 void JoyTabWidget::openConfigFileDialog()
@@ -1248,4 +1254,12 @@ void JoyTabWidget::showDPadDialog()
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+}
+
+void JoyTabWidget::showQuickSetDialog()
+{
+    QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
+    dialog->show();
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    connect(dialog, SIGNAL(buttonDialogClosed()), this, SLOT(fillButtons()));
 }

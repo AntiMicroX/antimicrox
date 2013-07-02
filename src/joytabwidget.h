@@ -63,6 +63,7 @@ protected:
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *stickAssignPushButton;
+    QPushButton *quickSetPushButton;
     QSpacerItem *verticalSpacer_2;
     QStackedWidget *stackedWidget_2;
     QWidget *page;
@@ -98,6 +99,7 @@ private slots:
     void showStickDialog();
     void showStickAssignmentDialog();
     void showDPadDialog();
+    void showQuickSetDialog();
 
     void changeSetOne();
     void changeSetTwo();

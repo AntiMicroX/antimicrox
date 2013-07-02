@@ -73,6 +73,8 @@ public:
     VDPad* getVDPad();
 
     virtual bool isDefault();
+    void setIgnoreEventState(bool ignore);
+    bool getIgnoreEventState();
 
     static const QString xmlName;
 
@@ -130,6 +132,7 @@ protected:
 
     int currentRawValue;
     VDPad *vdpad;
+    bool ignoreEvents;
 
 signals:
     void clicked (int index);

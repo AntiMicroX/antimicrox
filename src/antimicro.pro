@@ -99,7 +99,8 @@ SOURCES += main.cpp\
     dpadpushbutton.cpp \
     dpadeditdialog.cpp \
     vdpad.cpp \
-    joydpadbuttonwidget.cpp
+    joydpadbuttonwidget.cpp \
+    quicksetdialog.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -144,7 +145,8 @@ HEADERS  += mainwindow.h \
     dpadpushbutton.h \
     dpadeditdialog.h \
     vdpad.h \
-    joydpadbuttonwidget.h
+    joydpadbuttonwidget.h \
+    quicksetdialog.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \
@@ -154,7 +156,8 @@ FORMS    += mainwindow.ui \
     buttoneditdialog.ui \
     joycontrolstickeditdialog.ui \
     advancestickassignmentdialog.ui \
-    dpadeditdialog.ui
+    dpadeditdialog.ui \
+    quicksetdialog.ui
 
 
 LIBS += -lSDL -lXtst -lX11

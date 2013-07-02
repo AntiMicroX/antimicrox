@@ -44,6 +44,21 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             this->vdpad->joyEvent(pressed, ignoresets);
         }
     }
+    else if (ignoreEvents)
+    {
+        if (pressed != isButtonPressed)
+        {
+            isButtonPressed = pressed;
+            if (isButtonPressed)
+            {
+                emit clicked(index);
+            }
+            else
+            {
+                emit released(index);
+            }
+        }
+    }
     else
     {
         if (toggle && pressed && (pressed != isDown))
@@ -214,6 +229,7 @@ void JoyButton::reset()
     setSelection = -1;
     setSelectionCondition = SetChangeDisabled;
     ignoresets = false;
+    ignoreEvents = false;
 }
 
 void JoyButton::reset(int index)
@@ -1530,4 +1546,14 @@ bool JoyButton::isDefault()
     value = value && (setSelectionCondition == SetChangeDisabled);
     value = value && (assignments.size() > 0);
     return value;
+}
+
+void JoyButton::setIgnoreEventState(bool ignore)
+{
+    ignoreEvents = ignore;
+}
+
+bool JoyButton::getIgnoreEventState()
+{
+    return ignoreEvents;
 }
