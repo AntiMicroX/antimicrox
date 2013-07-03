@@ -1544,7 +1544,7 @@ bool JoyButton::isDefault()
     value = value && (mouseSpeedY == 50);
     value = value && (setSelection == -1);
     value = value && (setSelectionCondition == SetChangeDisabled);
-    value = value && (assignments.size() > 0);
+    value = value && (assignments.isEmpty());
     return value;
 }
 

@@ -541,16 +541,6 @@ bool SetJoystick::isSetEmpty()
         {
             result = false;
         }
-        /*QHash<int, JoyDPadButton*> *dpadButtons = dpad->getJoyButtons();
-        QHashIterator<int, JoyDPadButton*> dpaditer(*dpadButtons);
-        while (dpaditer.hasNext() && result)
-        {
-            JoyDPadButton *button = dpaditer.next().value();
-            if (!button->isDefault())
-            {
-                result = false;
-            }
-        }*/
     }
 
     QHashIterator<int, JoyControlStick*> iter4(sticks);
@@ -561,16 +551,6 @@ bool SetJoystick::isSetEmpty()
         {
             result = false;
         }
-        /*QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickbuttons = stick->getButtons();
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> stickiter(*stickbuttons);
-        while (stickiter.hasNext() && result)
-        {
-            JoyControlStickButton *button = stickiter.next().value();
-            if (button->getAssignedSlots()->size() > 0)
-            {
-                result = false;
-            }
-        }*/
     }
 
     QHashIterator<int, VDPad*> iter5(vdpads);
@@ -581,16 +561,6 @@ bool SetJoystick::isSetEmpty()
         {
             result = false;
         }
-        /*QHash<int, JoyDPadButton*> *dpadButtons = vdpad->getJoyButtons();
-        QHashIterator<int, JoyDPadButton*> dpaditer(*dpadButtons);
-        while (dpaditer.hasNext() && result)
-        {
-            JoyDPadButton *button = dpaditer.next().value();
-            if (button->getAssignedSlots()->size() > 0)
-            {
-                result = false;
-            }
-        }*/
     }
 
     return result;
