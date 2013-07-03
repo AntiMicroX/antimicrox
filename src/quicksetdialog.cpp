@@ -8,7 +8,7 @@
 #include "buttoneditdialog.h"
 
 QuickSetDialog::QuickSetDialog(Joystick *joystick, QWidget *parent) :
-    QDialog(parent, Qt::Window),
+    QDialog(parent),
     ui(new Ui::QuickSetDialog)
 {
     ui->setupUi(this);
