@@ -155,85 +155,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 releaseDeskTimer.start(0);
             }
         }
-        /*if (toggle && pressed && (pressed != isDown))
-        {
-            this->ignoresets = ignoresets;
-            isButtonPressed = !isButtonPressed;
-            isDown = true;
-            emit clicked(index);
-
-            ignoreSetQueue.enqueue(ignoresets);
-            isButtonPressedQueue.enqueue(isButtonPressed);
-
-            if (isButtonPressed)
-            {
-                buttonHold.restart();
-                buttonHeldRelease.restart();
-                createDeskTimer.start(0);
-            }
-            else
-            {
-                releaseDeskTimer.start(0);
-            }
-        }
-        else if (toggle && !pressed && isDown)
-        {
-            isDown = false;
-            bool releasedCalled = distanceEvent();
-            if (releasedCalled)
-            {
-                buttonHold.restart();
-                buttonHeldRelease.restart();
-                createDeskTimer.start(0);
-            }
-
-            emit released (index);
-        }
-
-        else if (!toggle && (pressed != isButtonPressed))
-        {
-            if (pressed)
-            {
-                emit clicked(index);
-            }
-            else
-            {
-                emit released(index);
-            }
-
-            this->ignoresets = ignoresets;
-            isButtonPressed = pressed;
-
-            ignoreSetQueue.enqueue(ignoresets);
-            isButtonPressedQueue.enqueue(isButtonPressed);
-
-            if (useTurbo && isButtonPressed)
-            {
-                buttonHold.restart();
-                buttonHeldRelease.restart();
-                connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
-                turboTimer.start();
-            }
-            else if (useTurbo && !isButtonPressed)
-            {
-                turboTimer.stop();
-                disconnect(&turboTimer, SIGNAL(timeout()), 0, 0);
-                if (isKeyPressed)
-                {
-                    QTimer::singleShot(0, this, SLOT(turboEvent()));
-                }
-            }
-            else if (isButtonPressed)
-            {
-                buttonHold.restart();
-                buttonHeldRelease.restart();
-                createDeskTimer.start(0);
-            }
-            else
-            {
-                releaseDeskTimer.start(0);
-            }
-        }*/
         else if (!useTurbo && isButtonPressed)
         {
             bool releasedCalled = distanceEvent();
@@ -346,6 +267,15 @@ void JoyButton::turboEvent()
 {
     if (!isKeyPressed)
     {
+        if (!isButtonPressedQueue.isEmpty())
+        {
+            ignoreSetQueue.clear();
+            isButtonPressedQueue.clear();
+
+            ignoreSetQueue.enqueue(false);
+            isButtonPressedQueue.enqueue(isButtonPressed);
+        }
+
         createDeskEvent();
         isKeyPressed = true;
         if (turboTimer.isActive())
@@ -355,6 +285,12 @@ void JoyButton::turboEvent()
     }
     else
     {
+        if (!isButtonPressedQueue.isEmpty())
+        {
+            ignoreSetQueue.enqueue(false);
+            isButtonPressedQueue.enqueue(!isButtonPressed);
+        }
+
         buttonMutex.lock();
         releaseDeskEvent();
         buttonMutex.unlock();
