@@ -19,6 +19,7 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
     connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
+    connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
 
     this->reset();
     this->index = index;
@@ -61,7 +62,100 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
     }
     else
     {
-        if (toggle && pressed && (pressed != isDown))
+        if (pressed != isDown)
+        {
+            if (pressed)
+            {
+                emit clicked(index);
+            }
+            else
+            {
+                emit released(index);
+            }
+
+            bool activePress = pressed;
+
+            if (toggle && pressed)
+            {
+                isDown = true;
+                toggleActiveState = !toggleActiveState;
+
+                if (!isButtonPressed)
+                {
+                    this->ignoresets = ignoresets;
+                    isButtonPressed = !isButtonPressed;
+
+                    ignoreSetQueue.enqueue(ignoresets);
+                    isButtonPressedQueue.enqueue(isButtonPressed);
+                }
+                else
+                {
+                    activePress = false;
+                }
+            }
+            else if (toggle && !pressed && isDown)
+            {
+                isDown = false;
+
+                if (!toggleActiveState)
+                {
+                    this->ignoresets = ignoresets;
+                    isButtonPressed = !isButtonPressed;
+
+                    ignoreSetQueue.enqueue(ignoresets);
+                    isButtonPressedQueue.enqueue(isButtonPressed);
+                }
+            }
+            else
+            {
+                this->ignoresets = ignoresets;
+                isButtonPressed = isDown = pressed;
+
+                ignoreSetQueue.enqueue(ignoresets);
+                isButtonPressedQueue.enqueue(isButtonPressed);
+            }
+
+            if (useTurbo)
+            {
+                if (isButtonPressed && activePress && !turboTimer.isActive())
+                {
+                    buttonHold.restart();
+                    buttonHeldRelease.restart();
+                    turboTimer.start();
+                }
+                else if (!isButtonPressed && !activePress && turboTimer.isActive())
+                {
+                    turboTimer.stop();
+                    if (isKeyPressed)
+                    {
+                        QTimer::singleShot(0, this, SLOT(turboEvent()));
+                    }
+                }
+            }
+            // Toogle is enabled and a controller button change has occurred.
+            // Switch to a different distance zone if appropriate
+            else if (toggle && !activePress && isButtonPressed)
+            {
+                bool releasedCalled = distanceEvent();
+                if (releasedCalled)
+                {
+                    buttonHold.restart();
+                    buttonHeldRelease.restart();
+                    createDeskTimer.start(0);
+                }
+            }
+            else if (isButtonPressed && activePress)
+            {
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                createDeskTimer.start(0);
+            }
+            else if (!isButtonPressed && !activePress)
+            {
+                releaseDeskTimer.start(0);
+            }
+        }
+        /*if (toggle && pressed && (pressed != isDown))
         {
             this->ignoresets = ignoresets;
             isButtonPressed = !isButtonPressed;
@@ -139,9 +233,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 releaseDeskTimer.start(0);
             }
-        }
+        }*/
         else if (!useTurbo && isButtonPressed)
-        //if (pressed)
         {
             bool releasedCalled = distanceEvent();
             if (releasedCalled)
@@ -223,6 +316,7 @@ void JoyButton::reset()
     toggle = false;
     turboInterval = 0;
     isDown = false;
+    toggleActiveState = false;
     useTurbo = false;
     mouseSpeedX = 50;
     mouseSpeedY = 50;
@@ -254,7 +348,10 @@ void JoyButton::turboEvent()
     {
         createDeskEvent();
         isKeyPressed = true;
-        turboTimer.start(100);
+        if (turboTimer.isActive())
+        {
+            turboTimer.start(100);
+        }
     }
     else
     {
@@ -263,7 +360,11 @@ void JoyButton::turboEvent()
         buttonMutex.unlock();
 
         isKeyPressed = false;
-        turboTimer.start(turboInterval - 100);
+        if (turboTimer.isActive())
+        {
+            turboTimer.start(turboInterval - 100);
+        }
+
     }
 }
 

@@ -101,6 +101,7 @@ protected:
     QTimer releaseDeskTimer;
     QTimer mouseEventTimer;
     bool isDown;
+    bool toggleActiveState;
     bool useTurbo;
     QList<JoyButtonSlot*> assignments;
     QList<JoyButtonSlot*> activeSlots;
