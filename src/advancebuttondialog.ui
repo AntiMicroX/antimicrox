@@ -779,13 +779,16 @@ past the interval specified.</string>
             </sizepolicy>
            </property>
            <property name="minimum">
-            <number>1</number>
+            <number>2</number>
            </property>
            <property name="maximum">
-            <number>20</number>
+            <number>200</number>
            </property>
            <property name="pageStep">
-            <number>5</number>
+            <number>10</number>
+           </property>
+           <property name="value">
+            <number>10</number>
            </property>
            <property name="tracking">
             <bool>true</bool>
@@ -803,7 +806,7 @@ past the interval specified.</string>
             <enum>QSlider::TicksBelow</enum>
            </property>
            <property name="tickInterval">
-            <number>1</number>
+            <number>10</number>
            </property>
           </widget>
          </item>

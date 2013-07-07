@@ -30,7 +30,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         ui->turboSlider->setEnabled(true);
     }
 
-    int interval = (int)(this->button->getTurboInterval() / 100);
+    int interval = this->button->getTurboInterval() / 10;
     ui->turboSlider->setValue(interval);
     this->changeTurboText(interval);
 
@@ -135,13 +135,8 @@ AdvanceButtonDialog::~AdvanceButtonDialog()
 
 void AdvanceButtonDialog::changeTurboText(int value)
 {
-    if (value == 0)
-    {
-        value = 1;
-    }
-
-    double delay = value / 10.0;
-    double clicks = 100 / (value * 10.0);
+    double delay = value / 100.0;
+    double clicks = 100.0 / (double)value;
     QString delaytext = QString(QString::number(delay, 'g', 3)).append(" sec.");
     QString labeltext = QString(QString::number(clicks, 'g', 2)).append("/sec.");
 
@@ -151,7 +146,6 @@ void AdvanceButtonDialog::changeTurboText(int value)
 
 void AdvanceButtonDialog::updateSlotsScrollArea(int value)
 {
-    //ui->slotListWidget->setCurrentRow(oldRow);
     int index = ui->slotListWidget->currentRow();
     int itemcount = ui->slotListWidget->count();
 
@@ -300,42 +294,10 @@ void AdvanceButtonDialog::insertHoldSlot()
 
 int AdvanceButtonDialog::actionTimeConvert()
 {
-    int tempSeconds = 0;
     int secondsIndex = ui->actionSecondsComboBox->currentIndex();
     int millisecondsIndex = ui->actionMillisecondsComboBox->currentIndex();
-    switch (secondsIndex)
-    {
-        case 0: tempSeconds += 0; break;
-        case 1: tempSeconds += 1000; break;
-        case 2: tempSeconds += 2000; break;
-        case 3: tempSeconds += 3000; break;
-        case 4: tempSeconds += 4000; break;
-        case 5: tempSeconds += 5000; break;
-        case 6: tempSeconds += 6000; break;
-        case 7: tempSeconds += 7000; break;
-        case 8: tempSeconds += 8000; break;
-        case 9: tempSeconds += 9000; break;
-        case 10: tempSeconds += 10000; break;
-
-        default: break;
-    }
-
-    switch (millisecondsIndex)
-    {
-        case 0: tempSeconds += 0; break;
-        case 1: tempSeconds += 100; break;
-        case 2: tempSeconds += 200; break;
-        case 3: tempSeconds += 300; break;
-        case 4: tempSeconds += 400; break;
-        case 5: tempSeconds += 500; break;
-        case 6: tempSeconds += 600; break;
-        case 7: tempSeconds += 700; break;
-        case 8: tempSeconds += 800; break;
-        case 9: tempSeconds += 900; break;
-
-        default: break;
-    }
-
+    int tempSeconds = secondsIndex * 1000;
+    tempSeconds += millisecondsIndex * 100;
     return tempSeconds;
 }
 
@@ -410,12 +372,6 @@ void AdvanceButtonDialog::insertCycleSlot()
 void AdvanceButtonDialog::insertDistanceSlot()
 {
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-    /*int actionTime = actionTimeConvert();
-    if (actionTime > 0)
-    {
-        tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
-        updateSlotsScrollArea(actionTime);
-    }*/
 
     int tempDistance = 0;
     for (int i = 0; i < ui->slotListWidget->count(); i++)
@@ -431,21 +387,6 @@ void AdvanceButtonDialog::insertDistanceSlot()
             tempDistance = 0;
         }
     }
-
-    /*QListIterator<JoyButtonSlot*> iter(tempconfig->assignments);
-    int tempDistance = 0;
-    while (iter.hasNext())
-    {
-        JoyButtonSlot *slot = iter.next();
-        if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
-        {
-            tempDistance += slot->getSlotCode();
-        }
-        else if (slot->getSlotMode() == JoyButtonSlot::JoyCycle)
-        {
-            tempDistance = 0;
-        }
-    }*/
 
     int testDistance = ui->distanceSpinBox->value();
     if (testDistance + tempDistance <= 100)
@@ -464,7 +405,7 @@ void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 
 void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 {
-    button->setTurboInterval(value * 100);
+    button->setTurboInterval(value * 10);
 }
 
 void AdvanceButtonDialog::checkTurboSetting(bool state)

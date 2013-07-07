@@ -196,7 +196,7 @@ void JoyButton::setToggle(bool toggle)
 
 void JoyButton::setTurboInterval(int interval)
 {
-    if (interval > 0 && interval != this->turboInterval)
+    if (interval >= 10 && interval != this->turboInterval)
     {
         this->turboInterval = interval;
         emit turboIntervalChanged(interval);
@@ -280,7 +280,7 @@ void JoyButton::turboEvent()
         isKeyPressed = true;
         if (turboTimer.isActive())
         {
-            turboTimer.start(100);
+            turboTimer.start(10);
         }
     }
     else
@@ -298,7 +298,7 @@ void JoyButton::turboEvent()
         isKeyPressed = false;
         if (turboTimer.isActive())
         {
-            turboTimer.start(turboInterval - 100);
+            turboTimer.start(turboInterval - 10);
         }
 
     }
