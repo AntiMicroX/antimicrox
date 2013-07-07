@@ -77,6 +77,7 @@ public:
     bool getIgnoreEventState();
 
     static const QString xmlName;
+    static const int ENABLEDTURBODEFAULT;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);

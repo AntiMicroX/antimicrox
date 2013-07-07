@@ -7,6 +7,7 @@
 #include "event.h"
 
 const QString JoyButton::xmlName = "button";
+const int JoyButton::ENABLEDTURBODEFAULT = 100;
 
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
@@ -198,6 +199,13 @@ void JoyButton::setTurboInterval(int interval)
 {
     if (interval >= 10 && interval != this->turboInterval)
     {
+        this->turboInterval = interval;
+        emit turboIntervalChanged(interval);
+    }
+    else if (interval < 10 && interval != this->turboInterval)
+    {
+        interval = 0;
+        this->setUseTurbo(false);
         this->turboInterval = interval;
         emit turboIntervalChanged(interval);
     }
@@ -631,6 +639,11 @@ void JoyButton::setUseTurbo(bool useTurbo)
         if (initialState != this->useTurbo)
         {
             emit turboChanged(this->useTurbo);
+
+            if (this->useTurbo && this->turboInterval == 0)
+            {
+                this->setTurboInterval(ENABLEDTURBODEFAULT);
+            }
         }
     }
 }

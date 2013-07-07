@@ -31,6 +31,10 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     }
 
     int interval = this->button->getTurboInterval() / 10;
+    if (interval < ui->turboSlider->minimum())
+    {
+        interval = JoyButton::ENABLEDTURBODEFAULT / 10;
+    }
     ui->turboSlider->setValue(interval);
     this->changeTurboText(interval);
 
@@ -411,8 +415,13 @@ void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 void AdvanceButtonDialog::checkTurboSetting(bool state)
 {
     ui->turboCheckbox->setChecked(state);
+    ui->turboSlider->setEnabled(state);
     changeTurboForSequences();
     button->setUseTurbo(state);
+    if (button->getTurboInterval() != 0)
+    {
+        ui->turboSlider->setValue(button->getTurboInterval() / 10);
+    }
 }
 
 void AdvanceButtonDialog::updateSetSelection()
