@@ -779,7 +779,7 @@ past the interval specified.</string>
             </sizepolicy>
            </property>
            <property name="minimum">
-            <number>2</number>
+            <number>0</number>
            </property>
            <property name="maximum">
             <number>200</number>

@@ -9,6 +9,8 @@
 #include "ui_advancebuttondialog.h"
 #include "event.h"
 
+const int AdvanceButtonDialog::MINIMUMTURBO = 2;
+
 AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent, Qt::Window),
     ui(new Ui::AdvanceButtonDialog)
@@ -31,7 +33,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     }
 
     int interval = this->button->getTurboInterval() / 10;
-    if (interval < ui->turboSlider->minimum())
+    if (interval < MINIMUMTURBO)
     {
         interval = JoyButton::ENABLEDTURBODEFAULT / 10;
     }
@@ -108,7 +110,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     setWindowTitle(tr("Advanced").append(": ").append(button->getPartialName()));
 
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
-    connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTurboText(int)));
+    connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(checkTurboIntervalValue(int)));
 
     connect(ui->insertSlotButton, SIGNAL(clicked()), this, SLOT(insertSlot()));
     connect(ui->deleteSlotButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
@@ -124,7 +126,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     connect(ui->toggleCheckbox, SIGNAL(clicked(bool)), button, SLOT(setToggle(bool)));
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), this, SLOT(checkTurboSetting(bool)));
-    connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(updateTurboIntervalValue(int)));
 
     connect(ui->setSelectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateSetSelection()));
 
@@ -139,13 +140,16 @@ AdvanceButtonDialog::~AdvanceButtonDialog()
 
 void AdvanceButtonDialog::changeTurboText(int value)
 {
-    double delay = value / 100.0;
-    double clicks = 100.0 / (double)value;
-    QString delaytext = QString(QString::number(delay, 'g', 3)).append(" sec.");
-    QString labeltext = QString(QString::number(clicks, 'g', 2)).append("/sec.");
+    if (value >= MINIMUMTURBO)
+    {
+        double delay = value / 100.0;
+        double clicks = 100.0 / (double)value;
+        QString delaytext = QString(QString::number(delay, 'g', 3)).append(" sec.");
+        QString labeltext = QString(QString::number(clicks, 'g', 2)).append("/sec.");
 
-    ui->delayValueLabel->setText(delaytext);
-    ui->rateValueLabel->setText(labeltext);
+        ui->delayValueLabel->setText(delaytext);
+        ui->rateValueLabel->setText(labeltext);
+    }
 }
 
 void AdvanceButtonDialog::updateSlotsScrollArea(int value)
@@ -409,7 +413,10 @@ void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 
 void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 {
-    button->setTurboInterval(value * 10);
+    if (value >= MINIMUMTURBO)
+    {
+        button->setTurboInterval(value * 10);
+    }
 }
 
 void AdvanceButtonDialog::checkTurboSetting(bool state)
@@ -418,7 +425,7 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
     ui->turboSlider->setEnabled(state);
     changeTurboForSequences();
     button->setUseTurbo(state);
-    if (button->getTurboInterval() != 0)
+    if (button->getTurboInterval() / 10 >= MINIMUMTURBO)
     {
         ui->turboSlider->setValue(button->getTurboInterval() / 10);
     }
@@ -482,5 +489,18 @@ void AdvanceButtonDialog::updateSetSelection()
     {
         button->setChangeSetSelection(-1);
         button->setChangeSetCondition(JoyButton::SetChangeDisabled);
+    }
+}
+
+void AdvanceButtonDialog::checkTurboIntervalValue(int value)
+{
+    if (value >= MINIMUMTURBO)
+    {
+        changeTurboText(value);
+        updateTurboIntervalValue(value);
+    }
+    else
+    {
+        ui->turboSlider->setValue(MINIMUMTURBO);
     }
 }

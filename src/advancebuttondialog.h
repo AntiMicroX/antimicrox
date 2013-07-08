@@ -29,6 +29,7 @@ protected:
 
     int oldRow;
     JoyButton *button;
+    static const int MINIMUMTURBO;
 
 signals:
     void toggleChanged(bool state);
@@ -58,6 +59,7 @@ private slots:
 
     void updateActionTimeLabel();
     void updateSetSelection();
+    void checkTurboIntervalValue(int value);
 };
 
 Q_DECLARE_METATYPE(AdvanceButtonDialog*)

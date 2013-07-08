@@ -219,6 +219,7 @@ void JoyButton::reset()
     createDeskTimer.stop();
     releaseDeskTimer.stop();
     mouseEventTimer.stop();
+    holdTimer.stop();
 
     if (slotiter)
     {
@@ -610,7 +611,6 @@ void JoyButton::mouseEvent()
             {
                 mouseEventTimer.start(5);
             }
-            //QTimer::singleShot(5, this, SLOT(mouseEvent()));
         }
         else
         {
@@ -1222,19 +1222,7 @@ void JoyButton::holdEvent()
         // Activate hold event
         if (currentlyPressed && buttonHold.elapsed() > currentHold->getSlotCode())
         {
-            QListIterator<JoyButtonSlot*> iter(activeSlots);
-            while (iter.hasNext())
-            {
-                JoyButtonSlot *slot = iter.next();
-                int tempcode = slot->getSlotCode();
-                JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-                if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
-                {
-                    sendevent(tempcode, false, mode);
-                }
-            }
-
-            activeSlots.clear();
+            releaseActiveSlots();
             QTimer::singleShot(0, this, SLOT(createDeskEvent()));
             currentHold = 0;
             buttonHold.restart();
@@ -1268,6 +1256,10 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     //buttonMutex.lock();
 
     quitEvent = false;
+
+    pauseTimer.stop();
+    pauseWaitTimer.stop();
+    holdTimer.stop();
 
     releaseActiveSlots();
     if (!isButtonPressedQueue.isEmpty())
