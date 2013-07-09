@@ -734,7 +734,7 @@ p, li { white-space: pre-wrap; }
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="104"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="110"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
@@ -983,7 +983,7 @@ a certain range past the designated dead zone.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="634"/>
         <location filename="../../../src/advancebuttondialog.ui" line="681"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="861"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="864"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -998,137 +998,137 @@ a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="831"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="834"/>
         <source>Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="838"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="841"/>
         <source>10.0/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="875"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="878"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="880"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="883"/>
         <source>Select Set 1 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="885"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="888"/>
         <source>Select Set 1 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="890"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="893"/>
         <source>Select Set 1 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="895"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="898"/>
         <source>Select Set 2 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="900"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="903"/>
         <source>Select Set 2 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="905"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="908"/>
         <source>Select Set 2 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="910"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="913"/>
         <source>Select Set 3 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="915"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="918"/>
         <source>Select Set 3 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="920"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="923"/>
         <source>Select Set 3 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="925"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="928"/>
         <source>Select Set 4 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="930"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="933"/>
         <source>Select Set 4 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="935"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="938"/>
         <source>Select Set 4 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="940"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="943"/>
         <source>Select Set 5 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="945"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="948"/>
         <source>Select Set 5 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="950"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="953"/>
         <source>Select Set 5 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="955"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="958"/>
         <source>Select Set 6 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="960"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="963"/>
         <source>Select Set 6 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="965"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="968"/>
         <source>Select Set 6 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="970"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="973"/>
         <source>Select Set 7 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="975"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="978"/>
         <source>Select Set 7 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="980"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="983"/>
         <source>Select Set 7 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="985"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="988"/>
         <source>Select Set 8 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="990"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="993"/>
         <source>Select Set 8 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="995"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="998"/>
         <source>Select Set 8 While Held</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1296,32 +1296,47 @@ a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="164"/>
+        <location filename="../../../src/axiseditdialog.ui" line="120"/>
+        <source>NumPad: KP_8 | KP_2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="125"/>
+        <source>NumPad: KP_4 | KP_6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="130"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="179"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="174"/>
+        <location filename="../../../src/axiseditdialog.ui" line="189"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="192"/>
+        <location filename="../../../src/axiseditdialog.ui" line="207"/>
         <source>Set the horizontal speed used for both axes buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="272"/>
+        <location filename="../../../src/axiseditdialog.ui" line="287"/>
         <source>Set the vertical speed for both axes buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="392"/>
+        <location filename="../../../src/axiseditdialog.ui" line="407"/>
         <source>Set the value of the dead zone for an axis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="195"/>
+        <location filename="../../../src/axiseditdialog.ui" line="210"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1331,71 +1346,71 @@ a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="141"/>
+        <location filename="../../../src/axiseditdialog.ui" line="156"/>
         <source>Configure Mouse Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="253"/>
-        <location filename="../../../src/axiseditdialog.ui" line="333"/>
+        <location filename="../../../src/axiseditdialog.ui" line="268"/>
+        <location filename="../../../src/axiseditdialog.ui" line="348"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="275"/>
+        <location filename="../../../src/axiseditdialog.ui" line="290"/>
         <source>Vertical Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="414"/>
+        <location filename="../../../src/axiseditdialog.ui" line="429"/>
         <source>Dead Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="421"/>
+        <location filename="../../../src/axiseditdialog.ui" line="436"/>
         <source>Max Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="508"/>
+        <location filename="../../../src/axiseditdialog.ui" line="523"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 defective analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="532"/>
-        <location filename="../../../src/axiseditdialog.ui" line="571"/>
+        <location filename="../../../src/axiseditdialog.ui" line="547"/>
+        <location filename="../../../src/axiseditdialog.ui" line="586"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="539"/>
+        <location filename="../../../src/axiseditdialog.ui" line="554"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="553"/>
+        <location filename="../../../src/axiseditdialog.ui" line="568"/>
         <source>Negative Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="558"/>
+        <location filename="../../../src/axiseditdialog.ui" line="573"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="563"/>
+        <location filename="../../../src/axiseditdialog.ui" line="578"/>
         <source>Positive Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="645"/>
+        <location filename="../../../src/axiseditdialog.ui" line="660"/>
         <source>Current Value:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.cpp" line="20"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="21"/>
         <source>Set Axis %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1567,53 +1582,63 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="80"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="73"/>
+        <source>NumPad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="78"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="90"/>
         <source>Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="94"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="104"/>
         <source>Standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="99"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="109"/>
         <source>Eight Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="125"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="135"/>
         <source>Configure Mouse Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="139"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="149"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="149"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="159"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="164"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="174"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="186"/>
-        <location filename="../../../src/dpadeditdialog.ui" line="221"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="196"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="231"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="199"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="209"/>
         <source>Vertical Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.cpp" line="17"/>
+        <location filename="../../../src/dpadeditdialog.cpp" line="18"/>
         <source>Set</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1665,13 +1690,13 @@ interpret an axis hold or release.</source>
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="753"/>
+        <location filename="../../../src/joybutton.cpp" line="819"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="773"/>
-        <location filename="../../../src/joybutton.cpp" line="798"/>
+        <location filename="../../../src/joybutton.cpp" line="839"/>
+        <location filename="../../../src/joybutton.cpp" line="864"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1738,7 +1763,7 @@ interpret an axis hold or release.</source>
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="../../../src/joycontrolstick.cpp" line="432"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="424"/>
         <source>Stick</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1850,68 +1875,78 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="288"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="281"/>
+        <source>NumPad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="286"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="298"/>
         <source>Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="302"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="312"/>
         <source>Standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="307"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="317"/>
         <source>Eight Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="333"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="343"/>
         <source>Configure Mouse Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="347"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="357"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="357"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="367"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="372"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="382"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="394"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="429"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="404"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="439"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="407"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="417"/>
         <source>Vertical Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="480"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="490"/>
         <source>Dead Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="526"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="536"/>
         <source>Max Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="575"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="585"/>
         <source>Diagonal Range:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="17"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="18"/>
         <source>Set Stick %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1944,12 +1979,12 @@ interpret an axis hold or release.</source>
         <location filename="../../../src/joydpadbutton.cpp" line="28"/>
         <location filename="../../../src/joydpadbutton.cpp" line="36"/>
         <location filename="../../../src/joydpadbutton.cpp" line="40"/>
-        <location filename="../../../src/joydpadbutton.cpp" line="44"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joydpadbutton.cpp" line="32"/>
+        <location filename="../../../src/joydpadbutton.cpp" line="44"/>
         <location filename="../../../src/joydpadbutton.cpp" line="48"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
@@ -1958,56 +1993,61 @@ interpret an axis hold or release.</source>
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="29"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1023"/>
+        <location filename="../../../src/joytabwidget.cpp" line="30"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1029"/>
         <source>&lt;New&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="37"/>
+        <location filename="../../../src/joytabwidget.cpp" line="38"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="44"/>
+        <location filename="../../../src/joytabwidget.cpp" line="45"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="52"/>
+        <location filename="../../../src/joytabwidget.cpp" line="53"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="303"/>
+        <location filename="../../../src/joytabwidget.cpp" line="304"/>
         <source>Stick/Pad Assign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="314"/>
+        <location filename="../../../src/joytabwidget.cpp" line="311"/>
+        <source>Quick Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joytabwidget.cpp" line="319"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="345"/>
+        <location filename="../../../src/joytabwidget.cpp" line="351"/>
         <source>Open Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="457"/>
+        <location filename="../../../src/joytabwidget.cpp" line="463"/>
         <source>Sticks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="563"/>
-        <location filename="../../../src/joytabwidget.cpp" line="653"/>
+        <location filename="../../../src/joytabwidget.cpp" line="569"/>
+        <location filename="../../../src/joytabwidget.cpp" line="659"/>
         <source>DPads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="838"/>
-        <location filename="../../../src/joytabwidget.cpp" line="908"/>
-        <location filename="../../../src/joytabwidget.cpp" line="918"/>
+        <location filename="../../../src/joytabwidget.cpp" line="844"/>
+        <location filename="../../../src/joytabwidget.cpp" line="914"/>
+        <location filename="../../../src/joytabwidget.cpp" line="924"/>
         <source>Save Config</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2104,75 +2144,80 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="505"/>
+        <location filename="../../../src/mainwindow.ui" line="480"/>
+        <source>Quick Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.ui" line="512"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="522"/>
+        <location filename="../../../src/mainwindow.ui" line="529"/>
         <source>Tab 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="545"/>
+        <location filename="../../../src/mainwindow.ui" line="552"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="552"/>
+        <location filename="../../../src/mainwindow.ui" line="559"/>
         <source>&amp;Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="558"/>
+        <location filename="../../../src/mainwindow.ui" line="565"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="582"/>
-        <location filename="../../../src/mainwindow.cpp" line="184"/>
+        <location filename="../../../src/mainwindow.ui" line="589"/>
+        <location filename="../../../src/mainwindow.cpp" line="191"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="585"/>
+        <location filename="../../../src/mainwindow.ui" line="592"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="595"/>
-        <location filename="../../../src/mainwindow.cpp" line="188"/>
+        <location filename="../../../src/mainwindow.ui" line="605"/>
+        <location filename="../../../src/mainwindow.cpp" line="195"/>
         <source>&amp;Update Joysticks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="598"/>
+        <location filename="../../../src/mainwindow.ui" line="608"/>
         <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="608"/>
-        <location filename="../../../src/mainwindow.cpp" line="174"/>
+        <location filename="../../../src/mainwindow.ui" line="618"/>
+        <location filename="../../../src/mainwindow.cpp" line="181"/>
         <source>&amp;Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="611"/>
+        <location filename="../../../src/mainwindow.ui" line="621"/>
         <source>Ctrl+H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="621"/>
+        <location filename="../../../src/mainwindow.ui" line="631"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="624"/>
+        <location filename="../../../src/mainwindow.ui" line="634"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="629"/>
+        <location filename="../../../src/mainwindow.ui" line="639"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2182,13 +2227,31 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="162"/>
+        <location filename="../../../src/mainwindow.cpp" line="169"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="179"/>
+        <location filename="../../../src/mainwindow.cpp" line="186"/>
         <source>&amp;Restore</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuickSetDialog</name>
+    <message>
+        <location filename="../../../src/quicksetdialog.ui" line="14"/>
+        <source>Quick Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/quicksetdialog.ui" line="23"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on &lt;span style=&quot; font-weight:600;&quot;&gt;Joystick %1&lt;/span&gt;.&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/quicksetdialog.cpp" line="20"/>
+        <source>Quick Set Joystick %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
