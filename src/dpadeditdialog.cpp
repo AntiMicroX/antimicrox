@@ -1,4 +1,5 @@
 #include <QHashIterator>
+#include <QList>
 
 #include "dpadeditdialog.h"
 #include "ui_dpadeditdialog.h"
@@ -48,6 +49,8 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     ui->verticalSpinBox->setValue(tempMouseSpeedY);
     updateVerticalSpeedConvertLabel(tempMouseSpeedY);
+
+    selectCurrentPreset();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
@@ -307,5 +310,79 @@ void DPadEditDialog::implementModes(int index)
     else if (index == 1)
     {
         dpad->setJoyMode(JoyDPad::EightWayMode);
+    }
+}
+
+void DPadEditDialog::selectCurrentPreset()
+{
+    JoyDPadButton *upButton = dpad->getJoyButton(JoyDPadButton::DpadUp);
+    QList<JoyButtonSlot*> *upslots = upButton->getAssignedSlots();
+    JoyDPadButton *downButton = dpad->getJoyButton(JoyDPadButton::DpadDown);
+    QList<JoyButtonSlot*> *downslots = downButton->getAssignedSlots();
+    JoyDPadButton *leftButton = dpad->getJoyButton(JoyDPadButton::DpadLeft);
+    QList<JoyButtonSlot*> *leftslots = leftButton->getAssignedSlots();
+    JoyDPadButton *rightButton = dpad->getJoyButton(JoyDPadButton::DpadRight);
+    QList<JoyButtonSlot*> *rightslots = rightButton->getAssignedSlots();
+
+    if (upslots->length() == 1 && downslots->length() == 1 && leftslots->length() == 1 && rightslots->length() == 1)
+    {
+        JoyButtonSlot *upslot = upslots->at(0);
+        JoyButtonSlot *downslot = downslots->at(0);
+        JoyButtonSlot *leftslot = leftslots->at(0);
+        JoyButtonSlot *rightslot = rightslots->at(0);
+
+        if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseUp &&
+            downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseDown &&
+            leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseLeft &&
+            rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseRight)
+        {
+            ui->presetsComboBox->setCurrentIndex(1);
+        }
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseUp &&
+            downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseDown &&
+            leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseRight &&
+            rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseLeft)
+        {
+            ui->presetsComboBox->setCurrentIndex(2);
+        }
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseDown &&
+            downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseUp &&
+            leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseLeft &&
+            rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseRight)
+        {
+            ui->presetsComboBox->setCurrentIndex(3);
+        }
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseDown &&
+            downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseUp &&
+            leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseRight &&
+            rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseLeft)
+        {
+            ui->presetsComboBox->setCurrentIndex(4);
+        }
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == keyToKeycode("Up") &&
+                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == keyToKeycode("Down") &&
+                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == keyToKeycode("Left") &&
+                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == keyToKeycode("Right"))
+        {
+            ui->presetsComboBox->setCurrentIndex(5);
+        }
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == keyToKeycode("w") &&
+                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == keyToKeycode("s") &&
+                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == keyToKeycode("a") &&
+                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == keyToKeycode("d"))
+        {
+            ui->presetsComboBox->setCurrentIndex(6);
+        }
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == keyToKeycode("KP_8") &&
+                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == keyToKeycode("KP_2") &&
+                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == keyToKeycode("KP_4") &&
+                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == keyToKeycode("KP_6"))
+        {
+            ui->presetsComboBox->setCurrentIndex(7);
+        }
+    }
+    else if (upslots->length() == 0 && downslots->length() == 0 && leftslots->length() == 0 && rightslots->length() == 0)
+    {
+        ui->presetsComboBox->setCurrentIndex(8);
     }
 }

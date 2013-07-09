@@ -18,6 +18,8 @@ public:
     ~JoyControlStickEditDialog();
     
 protected:
+    void selectCurrentPreset();
+
     JoyControlStick *stick;
 
 private:

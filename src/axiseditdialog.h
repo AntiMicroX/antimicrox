@@ -20,6 +20,8 @@ public:
     ~AxisEditDialog();
 
 protected:
+    void selectCurrentPreset();
+
     JoyAxis *axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
     int initialThrottleState;
@@ -42,6 +44,7 @@ private slots:
 
     void refreshPButtonLabel();
     void refreshNButtonLabel();
+    void refreshPreset();
 
     void syncSpeedSpinBoxes();
     void moveSpeedsTogether(int value);

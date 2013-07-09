@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QList>
 
 #include "axiseditdialog.h"
 #include "ui_axiseditdialog.h"
@@ -79,7 +80,9 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
         updateVerticalSpeedConvertLabel(temp);
     }
 
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    selectCurrentPreset();
+
+    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
@@ -278,6 +281,7 @@ void AxisEditDialog::openAdvancedPDialog()
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPButtonLabel()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPreset()));
 }
 
 void AxisEditDialog::openAdvancedNDialog()
@@ -286,6 +290,7 @@ void AxisEditDialog::openAdvancedNDialog()
     dialog->show();
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshNButtonLabel()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPreset()));
 }
 
 void AxisEditDialog::refreshNButtonLabel()
@@ -352,4 +357,90 @@ void AxisEditDialog::checkFinalSettings()
     {
         setAxisThrottleConfirm->exec();
     }
+}
+
+void AxisEditDialog::selectCurrentPreset()
+{
+    JoyAxisButton *naxisbutton = axis->getNAxisButton();
+    QList<JoyButtonSlot*> *naxisslots = naxisbutton->getAssignedSlots();
+    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+    QList<JoyButtonSlot*> *paxisslots = paxisbutton->getAssignedSlots();
+
+    if (naxisslots->length() == 1 && paxisslots->length() == 1)
+    {
+        JoyButtonSlot *nslot = naxisslots->at(0);
+        JoyButtonSlot *pslot = paxisslots->at(0);
+        if (nslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && nslot->getSlotCode() == JoyButtonSlot::MouseLeft &&
+            pslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && pslot->getSlotCode() == JoyButtonSlot::MouseRight)
+        {
+            ui->presetsComboBox->setCurrentIndex(1);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && nslot->getSlotCode() == JoyButtonSlot::MouseRight &&
+            pslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && pslot->getSlotCode() == JoyButtonSlot::MouseLeft)
+        {
+            ui->presetsComboBox->setCurrentIndex(2);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && nslot->getSlotCode() == JoyButtonSlot::MouseUp &&
+            pslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && pslot->getSlotCode() == JoyButtonSlot::MouseDown)
+        {
+            ui->presetsComboBox->setCurrentIndex(3);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && nslot->getSlotCode() == JoyButtonSlot::MouseDown &&
+            pslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && pslot->getSlotCode() == JoyButtonSlot::MouseUp)
+        {
+            ui->presetsComboBox->setCurrentIndex(4);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("Up") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("Down"))
+        {
+            ui->presetsComboBox->setCurrentIndex(5);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("Left") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("Right"))
+        {
+            ui->presetsComboBox->setCurrentIndex(6);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("w") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("s"))
+        {
+            ui->presetsComboBox->setCurrentIndex(7);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("a") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("d"))
+        {
+            ui->presetsComboBox->setCurrentIndex(8);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("KP_8") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("KP_2"))
+        {
+            ui->presetsComboBox->setCurrentIndex(9);
+        }
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("KP_4") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("KP_6"))
+        {
+            ui->presetsComboBox->setCurrentIndex(10);
+        }
+        else
+        {
+            ui->presetsComboBox->setCurrentIndex(0);
+        }
+    }
+    else if (naxisslots->length() == 0 && paxisslots->length() == 0)
+    {
+        ui->presetsComboBox->setCurrentIndex(11);
+    }
+    else
+    {
+        ui->presetsComboBox->setCurrentIndex(0);
+    }
+}
+
+void AxisEditDialog::refreshPreset()
+{
+    // Disconnect event associated with presetsComboBox so a change in the index does not
+    // alter the axis buttons
+    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    selectCurrentPreset();
+    // Reconnect the event
+    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 }

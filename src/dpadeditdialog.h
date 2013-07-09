@@ -18,6 +18,8 @@ public:
     ~DPadEditDialog();
 
 protected:
+    void selectCurrentPreset();
+
     JoyDPad *dpad;
 
 private:
