@@ -60,7 +60,7 @@ void XMLConfigReader::configJoystick(Joystick *joystick)
 
 bool XMLConfigReader::read()
 {
-    bool requiredMigration = false;
+    //bool requiredMigration = false;
     bool error = false;
 
     if (configFile && configFile->exists() && joystick)

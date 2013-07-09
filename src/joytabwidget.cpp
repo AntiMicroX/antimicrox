@@ -394,8 +394,8 @@ void JoyTabWidget::fillButtons()
         int row = 0;
         int column = 0;
 
-        QWidget *child;
-        QGridLayout *current_layout;
+        QWidget *child = 0;
+        QGridLayout *current_layout = 0;
         switch (i)
         {
             case 0:
@@ -1126,8 +1126,8 @@ QString JoyTabWidget::getCurrentConfigName()
 void JoyTabWidget::changeCurrentSet(int index)
 {
     int currentPage = stackedWidget_2->currentIndex();
-    QPushButton *oldSetButton;
-    QPushButton *activeSetButton;
+    QPushButton *oldSetButton = 0;
+    QPushButton *activeSetButton = 0;
 
     switch (currentPage)
     {
@@ -1142,9 +1142,12 @@ void JoyTabWidget::changeCurrentSet(int index)
         default: break;
     }
 
-    oldSetButton->setProperty("setActive", false);
-    oldSetButton->style()->unpolish(oldSetButton);
-    oldSetButton->style()->polish(oldSetButton);
+    if (oldSetButton)
+    {
+        oldSetButton->setProperty("setActive", false);
+        oldSetButton->style()->unpolish(oldSetButton);
+        oldSetButton->style()->polish(oldSetButton);
+    }
 
     joystick->setActiveSetNumber(index);
     stackedWidget_2->setCurrentIndex(index);
@@ -1162,9 +1165,12 @@ void JoyTabWidget::changeCurrentSet(int index)
         default: break;
     }
 
-    activeSetButton->setProperty("setActive", true);
-    activeSetButton->style()->unpolish(activeSetButton);
-    activeSetButton->style()->polish(activeSetButton);
+    if (activeSetButton)
+    {
+        activeSetButton->setProperty("setActive", true);
+        activeSetButton->style()->unpolish(activeSetButton);
+        activeSetButton->style()->polish(activeSetButton);
+    }
 }
 
 void JoyTabWidget::changeSetOne()
