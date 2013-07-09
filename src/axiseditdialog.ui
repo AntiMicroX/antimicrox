@@ -65,10 +65,10 @@
         <bool>false</bool>
        </property>
        <property name="maxVisibleItems">
-        <number>10</number>
+        <number>12</number>
        </property>
        <property name="maxCount">
-        <number>10</number>
+        <number>12</number>
        </property>
        <item>
         <property name="text">
@@ -113,6 +113,21 @@
        <item>
         <property name="text">
          <string>Keys: A | D</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>NumPad: KP_8 | KP_2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>NumPad: KP_4 | KP_6</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>None</string>
         </property>
        </item>
       </widget>

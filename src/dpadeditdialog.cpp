@@ -145,6 +145,10 @@ void DPadEditDialog::implementPresets(int index)
     JoyButtonSlot *downButtonSlot = 0;
     JoyButtonSlot *leftButtonSlot = 0;
     JoyButtonSlot *rightButtonSlot = 0;
+    JoyButtonSlot *upLeftButtonSlot = 0;
+    JoyButtonSlot *upRightButtonSlot = 0;
+    JoyButtonSlot *downLeftButtonSlot = 0;
+    JoyButtonSlot *downRightButtonSlot = 0;
 
     if (index == 1)
     {
@@ -194,6 +198,38 @@ void DPadEditDialog::implementPresets(int index)
         rightButtonSlot = new JoyButtonSlot(keyToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
         ui->joyModeComboBox->setCurrentIndex(0);
     }
+    else if (index == 7)
+    {
+        if (ui->joyModeComboBox->currentIndex() == 0)
+        {
+            upButtonSlot = new JoyButtonSlot(keyToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
+            downButtonSlot = new JoyButtonSlot(keyToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+            leftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
+            rightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+        }
+        else if (ui->joyModeComboBox->currentIndex() == 1)
+        {
+            upButtonSlot = new JoyButtonSlot(keyToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
+            downButtonSlot = new JoyButtonSlot(keyToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+            leftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
+            rightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+
+            upLeftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_7"), JoyButtonSlot::JoyKeyboard, this);
+            upRightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_9"), JoyButtonSlot::JoyKeyboard, this);
+            downLeftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_1"), JoyButtonSlot::JoyKeyboard, this);
+            downRightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_3"), JoyButtonSlot::JoyKeyboard, this);
+        }
+    }
+    else if (index == 8)
+    {
+        QHash<int, JoyDPadButton*> *buttons = dpad->getButtons();
+        QHashIterator<int, JoyDPadButton*> iter(*buttons);
+        while (iter.hasNext())
+        {
+            JoyDPadButton *button = iter.next().value();
+            button->clearSlotsEventReset();
+        }
+    }
 
     if (upButtonSlot)
     {
@@ -225,6 +261,38 @@ void DPadEditDialog::implementPresets(int index)
         button->clearSlotsEventReset();
         button->setAssignedSlot(rightButtonSlot->getSlotCode(), rightButtonSlot->getSlotMode());
         rightButtonSlot->deleteLater();
+    }
+
+    if (upLeftButtonSlot)
+    {
+        JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadLeftUp);
+        button->clearSlotsEventReset();
+        button->setAssignedSlot(upLeftButtonSlot->getSlotCode(), upLeftButtonSlot->getSlotMode());
+        upLeftButtonSlot->deleteLater();
+    }
+
+    if (upRightButtonSlot)
+    {
+        JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadRightUp);
+        button->clearSlotsEventReset();
+        button->setAssignedSlot(upRightButtonSlot->getSlotCode(), upRightButtonSlot->getSlotMode());
+        upRightButtonSlot->deleteLater();
+    }
+
+    if (downLeftButtonSlot)
+    {
+        JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadLeftDown);
+        button->clearSlotsEventReset();
+        button->setAssignedSlot(downLeftButtonSlot->getSlotCode(), downLeftButtonSlot->getSlotMode());
+        downLeftButtonSlot->deleteLater();
+    }
+
+    if (downRightButtonSlot)
+    {
+        JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadRightDown);
+        button->clearSlotsEventReset();
+        button->setAssignedSlot(downRightButtonSlot->getSlotCode(), downRightButtonSlot->getSlotMode());
+        downRightButtonSlot->deleteLater();
     }
 }
 

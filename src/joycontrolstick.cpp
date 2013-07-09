@@ -70,35 +70,27 @@ void JoyControlStick::populateButtons()
 {
     JoyControlStickButton *button = new JoyControlStickButton (this, StickUp, originset, this);
     buttons.insert(StickUp, button);
-    //button->setAssignedSlot(25);
 
     button = new JoyControlStickButton (this, StickDown, originset, this);
     buttons.insert(StickDown, button);
-    //button->setAssignedSlot(39);
 
     button = new JoyControlStickButton(this, StickLeft, originset, this);
     buttons.insert(StickLeft, button);
-    //button->setAssignedSlot(38);
 
     button = new JoyControlStickButton(this, StickRight, originset, this);
     buttons.insert(StickRight, button);
-    //button->setAssignedSlot(40);
 
     button = new JoyControlStickButton(this, StickLeftUp, originset, this);
     buttons.insert(StickLeftUp, button);
-    //button->setAssignedSlot(30);
 
     button = new JoyControlStickButton(this, StickLeftDown, originset, this);
     buttons.insert(StickLeftDown, button);
-    //button->setAssignedSlot(31);
 
     button = new JoyControlStickButton(this, StickRightDown, originset, this);
     buttons.insert(StickRightDown, button);
-    //button->setAssignedSlot(32);
 
     button = new JoyControlStickButton(this, StickRightUp, originset, this);
     buttons.insert(StickRightUp, button);
-    //button->setAssignedSlot(33);
 }
 
 int JoyControlStick::getDeadZone()
@@ -672,23 +664,7 @@ void JoyControlStick::resetButtons()
 
 JoyControlStickButton* JoyControlStick::getDirectionButton(JoyStickDirections direction)
 {
-    JoyControlStickButton *button = 0;
-    switch (direction)
-    {
-        case StickUp:
-        case StickDown:
-        case StickLeft:
-        case StickRight:
-        {
-            button = buttons.value(direction);
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
-
+    JoyControlStickButton *button = buttons.value(direction);
     return button;
 }
 

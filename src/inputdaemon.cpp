@@ -11,14 +11,12 @@ InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, bool graphical, QObje
 {
     this->joysticks = joysticks;
     this->stopped = false;
-    this->sdlIgnoreEvent = true;
     this->graphical = graphical;
 
     eventWorker = new SDLEventReader(joysticks);
     thread = new QThread();
     eventWorker->moveToThread(thread);
 
-    //QTimer::singleShot(0, this, SLOT(refreshJoysticks()));
     if (graphical)
     {
         connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
@@ -46,7 +44,7 @@ InputDaemon::~InputDaemon()
 
 void InputDaemon::run ()
 {
-    if (joysticks->count() > 0 && !sdlIgnoreEvent)
+    if (joysticks->count() > 0 && !stopped)
     {
         SDL_Event event;
         event = eventWorker->getCurrentEvent();
@@ -117,17 +115,6 @@ void InputDaemon::run ()
         }
         while (SDL_PollEvent(&event) > 0);
     }
-    else if (joysticks->count() > 0 && sdlIgnoreEvent)
-    {
-        // SDL will queue events for each axis detected on
-        // a controller when first opened. Ignore initial axis motion events.
-        // Old SDL_EventState solution was not good enough
-        SDL_Event event;
-        while (SDL_PollEvent(&event) > 0)
-        {
-        }
-        sdlIgnoreEvent = false;
-    }
 
     if (stopped)
     {
@@ -137,7 +124,6 @@ void InputDaemon::run ()
         }
         emit complete();
         stopped = false;
-        sdlIgnoreEvent = true;
     }
     else
     {
@@ -184,6 +170,12 @@ void InputDaemon::refresh()
 
     QEventLoop q;
     connect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
+    q.exec();
+
+    // Put in an extra delay before refreshing the joysticks
+    QTimer temp;
+    connect(&temp, SIGNAL(timeout()), &q, SLOT(quit()));
+    temp.start(100);
     q.exec();
 
     refreshJoysticks();

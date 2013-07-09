@@ -115,6 +115,10 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         populateTrayIcon();
         trayIcon->show();
     }
+
+    ui->actionUpdate_Joysticks->setEnabled(true);
+    ui->actionHide->setEnabled(true);
+    ui->actionQuit->setEnabled(true);
 }
 
 void MainWindow::joystickRefreshPropogate(Joystick *joystick)
@@ -126,6 +130,9 @@ void MainWindow::joystickRefreshPropogate(Joystick *joystick)
 void MainWindow::startJoystickRefresh()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    ui->actionUpdate_Joysticks->setEnabled(false);
+    ui->actionHide->setEnabled(false);
+    ui->actionQuit->setEnabled(false);
     emit joystickRefreshRequested();
 }
 

@@ -593,6 +593,9 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
    </property>
   </action>
   <action name="actionUpdate_Joysticks">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset theme="view-refresh">
      <normaloff/>

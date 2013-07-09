@@ -1436,6 +1436,7 @@ void JoyButton::clearSlotsEventReset()
     createDeskTimer.stop();
     releaseDeskTimer.stop();
     mouseEventTimer.stop();
+    holdTimer.stop();
 
     if (slotiter)
     {

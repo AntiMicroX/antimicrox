@@ -163,10 +163,30 @@ void AxisEditDialog::implementPresets(int index)
         nbuttonslot = new JoyButtonSlot(keyToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
         pbuttonslot = new JoyButtonSlot(keyToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
     }
+    else if (index == 9)
+    {
+        nbuttonslot = new JoyButtonSlot(keyToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(keyToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+    }
+    else if (index == 10)
+    {
+        nbuttonslot = new JoyButtonSlot(keyToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(keyToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+    }
+    else if (index == 11)
+    {
+        JoyAxisButton *nbutton = axis->getNAxisButton();
+        JoyAxisButton *pbutton = axis->getPAxisButton();
+        nbutton->clearSlotsEventReset();
+        refreshNButtonLabel();
+
+        pbutton->clearSlotsEventReset();
+        refreshPButtonLabel();
+    }
 
     if (nbuttonslot)
     {
-        JoyButton *button = axis->getNAxisButton();
+        JoyAxisButton *button = axis->getNAxisButton();
         button->clearSlotsEventReset();
         button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotMode());
         refreshNButtonLabel();
@@ -175,7 +195,7 @@ void AxisEditDialog::implementPresets(int index)
 
     if (pbuttonslot)
     {
-        JoyButton *button = axis->getPAxisButton();
+        JoyAxisButton *button = axis->getPAxisButton();
         button->clearSlotsEventReset();
         button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotMode());
         refreshPButtonLabel();
