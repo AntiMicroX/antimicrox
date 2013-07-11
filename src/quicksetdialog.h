@@ -19,7 +19,7 @@ public:
 
 protected:
     Joystick *joystick;
-    QDialog *dialog;
+    QDialog *currentButtonDialog;
 
 private:
     Ui::QuickSetDialog *ui;

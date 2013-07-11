@@ -16,6 +16,7 @@ QuickSetDialog::QuickSetDialog(Joystick *joystick, QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
+    this->currentButtonDialog = 0;
 
     setWindowTitle(tr("Quick Set Joystick %1").arg(joystick->getRealJoyNumber()));
 
@@ -168,53 +169,53 @@ QuickSetDialog::~QuickSetDialog()
 
 void QuickSetDialog::showAxisButtonDialog()
 {
-    if (!dialog)
+    if (!currentButtonDialog)
     {
         JoyAxisButton *axisbutton = static_cast<JoyAxisButton*>(sender());
-        dialog = new ButtonEditDialog(axisbutton, this);
-        dialog->show();
-        connect(dialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
+        currentButtonDialog = new ButtonEditDialog(axisbutton, this);
+        currentButtonDialog->show();
+        connect(currentButtonDialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
     }
 }
 
 void QuickSetDialog::showButtonDialog()
 {
-    if (!dialog)
+    if (!currentButtonDialog)
     {
         JoyButton *button = static_cast<JoyButton*>(sender());
-        dialog = new ButtonEditDialog(button, this);
-        dialog->show();
-        connect(dialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
+        currentButtonDialog = new ButtonEditDialog(button, this);
+        currentButtonDialog->show();
+        connect(currentButtonDialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
     }
 }
 
 void QuickSetDialog::showStickButtonDialog()
 {
-    if (!dialog)
+    if (!currentButtonDialog)
     {
         JoyControlStickButton *stickbutton = static_cast<JoyControlStickButton*>(sender());
-        dialog = new ButtonEditDialog(stickbutton, this);
-        dialog->show();
-        connect(dialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
+        currentButtonDialog = new ButtonEditDialog(stickbutton, this);
+        currentButtonDialog->show();
+        connect(currentButtonDialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
     }
 }
 
 void QuickSetDialog::showDPadButtonDialog()
 {
-    if (!dialog)
+    if (!currentButtonDialog)
     {
         JoyDPadButton *dpadbutton = static_cast<JoyDPadButton*>(sender());
-        dialog = new ButtonEditDialog(dpadbutton, this);
-        dialog->show();
-        connect(dialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
+        currentButtonDialog = new ButtonEditDialog(dpadbutton, this);
+        currentButtonDialog->show();
+        connect(currentButtonDialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
     }
 }
 
 void QuickSetDialog::nullifyDialogPointer()
 {
-    if (dialog)
+    if (currentButtonDialog)
     {
-        dialog = 0;
+        currentButtonDialog = 0;
         emit buttonDialogClosed();
     }
 }
