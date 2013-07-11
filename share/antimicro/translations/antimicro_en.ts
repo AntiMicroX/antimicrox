@@ -1468,7 +1468,7 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="22"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="23"/>
         <source>Set</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1730,32 +1730,47 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="227"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="222"/>
+        <source>LB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="225"/>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="228"/>
+        <source>RB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="241"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="231"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="235"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="249"/>
         <source>Cycle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="239"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="253"/>
         <source>Distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="259"/>
         <source>Release</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="250"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="264"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2250,7 +2265,7 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/quicksetdialog.cpp" line="20"/>
+        <location filename="../../../src/quicksetdialog.cpp" line="21"/>
         <source>Quick Set Joystick %1</source>
         <translation type="unfinished"></translation>
     </message>

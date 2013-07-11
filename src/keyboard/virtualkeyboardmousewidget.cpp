@@ -343,13 +343,13 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     QHBoxLayout *tempInnerHBoxLayout = new QHBoxLayout();
-    pushButton = new VirtualMousePushButton("1", 1, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton("Left Button", 1, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     tempInnerHBoxLayout->addWidget(pushButton);
-    pushButton = new VirtualMousePushButton("2", 2, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton("Middle Button", 2, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     tempInnerHBoxLayout->addWidget(pushButton);
-    pushButton = new VirtualMousePushButton("3", 3, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton("Right Button", 3, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     tempInnerHBoxLayout->addWidget(pushButton);
     tempVBoxLayout->addLayout(tempInnerHBoxLayout);

@@ -1477,7 +1477,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
         <translation>Avancé</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="22"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="23"/>
         <source>Set</source>
         <translation>Configuration</translation>
     </message>
@@ -1741,32 +1741,47 @@ de maintien ou de relâchement d&apos;un axe.</translation>
         <translation>Droite</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="227"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="222"/>
+        <source>LB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="225"/>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="228"/>
+        <source>RB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="241"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="231"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
         <source>Hold</source>
         <translation>Maintenir</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="235"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="249"/>
         <source>Cycle</source>
         <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="239"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="253"/>
         <source>Distance</source>
         <translation>Distance</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="259"/>
         <source>Release</source>
         <translation>Relâchement</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="250"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="264"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -2262,7 +2277,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Merci d&apos;appuyez sur un bouton ou un axe de la &lt;span style=&quot; font-weight:600;&quot;&gt;manette %1&lt;/span&gt;.&lt;br/&gt;Une fenêtre de dialogue apparaîtra&lt;br/&gt;vous permettant de faire un assignement.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/quicksetdialog.cpp" line="20"/>
+        <location filename="../../../src/quicksetdialog.cpp" line="21"/>
         <source>Quick Set Joystick %1</source>
         <translation>Configuration Rapide de la manette %1</translation>
     </message>

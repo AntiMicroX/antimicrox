@@ -216,7 +216,21 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {
-            newlabel = newlabel.append(tr("Mouse")).append(" ").append(QString::number(deviceCode));
+            newlabel.append(tr("Mouse")).append(" ");
+            switch (deviceCode) {
+                case 1:
+                    newlabel.append(tr("LB"));
+                    break;
+                case 2:
+                    newlabel.append(tr("MB"));
+                    break;
+                case 3:
+                    newlabel.append(tr("RB"));
+                    break;
+                default:
+                    newlabel.append(QString::number(deviceCode));
+                    break;
+            }
         }
         else if (mode == JoyButtonSlot::JoyMouseMovement)
         {
