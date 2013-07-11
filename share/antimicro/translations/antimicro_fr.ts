@@ -1145,17 +1145,17 @@ par rapport à la zone morte.</translation>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Assignement du Stick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation type="unfinished"></translation>
+        <translation>Sticks</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation type="unfinished"></translation>
+        <translation>DPads</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
@@ -1195,32 +1195,32 @@ par rapport à la zone morte.</translation>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="301"/>
         <source>Number of Physical DPads: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro du DPads Physique : %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="332"/>
         <source>Virtual DPad 1</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad Virtuel 1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="386"/>
         <source>Up:</source>
-        <translation type="unfinished"></translation>
+        <translation>Haut :</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="400"/>
         <source>Down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bas :</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="414"/>
         <source>Left:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gauche :</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="428"/>
         <source>Right:</source>
-        <translation type="unfinished"></translation>
+        <translation>Droite :</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="36"/>
@@ -1236,7 +1236,7 @@ par rapport à la zone morte.</translation>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="489"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="490"/>
         <source>Axis %1 -</source>
-        <translation type="unfinished"></translation>
+        <translation>Axe %1 -</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="495"/>
@@ -1244,7 +1244,7 @@ par rapport à la zone morte.</translation>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="497"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="498"/>
         <source>Axis %1 +</source>
-        <translation type="unfinished"></translation>
+        <translation>Axe %1 +</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="508"/>
@@ -1252,7 +1252,7 @@ par rapport à la zone morte.</translation>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="510"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="511"/>
         <source>Button %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouton %1</translation>
     </message>
 </context>
 <context>
@@ -1305,17 +1305,17 @@ par rapport à la zone morte.</translation>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="120"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>Pavé Numérique : KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="125"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>Pavé Numérique : KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="130"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="179"/>
@@ -1555,103 +1555,103 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialogue</translation>
+        <translation>Dialogue</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="24"/>
         <source>Presets:</source>
-        <translation type="unfinished">Pré-réglages :</translation>
+        <translation>Pré-réglages :</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="43"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Souris (Normal)</translation>
+        <translation>Souris (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="48"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished">Souris (Horizontal Inversé)</translation>
+        <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="53"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished">Souris (Vertical Inversé)</translation>
+        <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="58"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished">Souris (Vertical et Horizontal Inversés)</translation>
+        <translation>Souris (Vertical et Horizontal Inversés)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="63"/>
         <source>Arrows</source>
-        <translation type="unfinished">Flèches</translation>
+        <translation>Flèches</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="68"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Touches :W | A | S | D </translation>
+        <translation>Touches :W | A | S | D </translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="73"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Pavé Numérique</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="78"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="90"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode :</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="104"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="109"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Eight Way</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="135"/>
         <source>Configure Mouse Settings</source>
-        <translation type="unfinished">Configure les préférences de la souris</translation>
+        <translation>Configure les préférences de la souris</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="149"/>
         <source>Change Speeds</source>
-        <translation type="unfinished">Modifier les vitesses</translation>
+        <translation>Modifier les vitesses</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="159"/>
         <source>Change Together</source>
-        <translation type="unfinished">Modifier en même temps</translation>
+        <translation>Modifier en même temps</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="174"/>
         <source>Horizontal Speed:</source>
-        <translation type="unfinished">Vitesse horizontale :</translation>
+        <translation>Vitesse horizontale :</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="196"/>
         <location filename="../../../src/dpadeditdialog.ui" line="231"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished">1 = 20 pps</translation>
+        <translation>1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="209"/>
         <source>Vertical Speed:</source>
-        <translation type="unfinished">Vitesse verticale :</translation>
+        <translation>Vitesse verticale :</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.cpp" line="18"/>
         <source>Set</source>
-        <translation type="unfinished">Configuration</translation>
+        <translation>Configuration</translation>
     </message>
 </context>
 <context>
@@ -1659,7 +1659,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/dpadpushbutton.cpp" line="51"/>
         <source>DPad</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -1888,27 +1888,27 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="281"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>NumPad</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="286"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucub</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="298"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode :</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="312"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="317"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Eight Way</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="343"/>
@@ -1967,7 +1967,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/joycontrolstickpushbutton.cpp" line="54"/>
         <source>Stick</source>
-        <translation type="unfinished">Stick</translation>
+        <translation>Stick</translation>
     </message>
 </context>
 <context>
@@ -2027,12 +2027,12 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="304"/>
         <source>Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Assignement du Stick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="311"/>
         <source>Quick Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration Rapide</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="319"/>
@@ -2047,13 +2047,13 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="463"/>
         <source>Sticks</source>
-        <translation type="unfinished"></translation>
+        <translation>Sticks</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="569"/>
         <location filename="../../../src/joytabwidget.cpp" line="659"/>
         <source>DPads</source>
-        <translation type="unfinished"></translation>
+        <translation>DPads</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="844"/>
@@ -2153,12 +2153,12 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/mainwindow.ui" line="468"/>
         <source>Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Assignement du Stick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="480"/>
         <source>Quick Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration Rapide</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="512"/>
@@ -2254,17 +2254,17 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="14"/>
         <source>Quick Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration Rapide</translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="23"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on &lt;span style=&quot; font-weight:600;&quot;&gt;Joystick %1&lt;/span&gt;.&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Merci d&apos;appuyez sur un bouton ou un axe de la &lt;span style=&quot; font-weight:600;&quot;&gt;manette %1&lt;/span&gt;.&lt;br/&gt;Une fenêtre de dialogue apparaîtra&lt;br/&gt;vous permettant de faire un assignement.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.cpp" line="20"/>
         <source>Quick Set Joystick %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration Rapide de la manette %1</translation>
     </message>
 </context>
 <context>
@@ -2299,7 +2299,7 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <message>
         <location filename="../../../src/virtualdpadpushbutton.cpp" line="53"/>
         <source>VDPad</source>
-        <translation type="unfinished"></translation>
+        <translation>VDPad</translation>
     </message>
 </context>
 <context>
