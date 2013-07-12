@@ -61,4 +61,6 @@ private slots:
     void propogateSetAxisThrottleChange(int index, int originset);
 };
 
+Q_DECLARE_METATYPE(Joystick*)
+
 #endif // JOYSTICK_H

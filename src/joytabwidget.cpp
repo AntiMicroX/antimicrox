@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QLayoutItem>
 #include <QGroupBox>
 
 #include "joytabwidget.h"
@@ -766,7 +767,6 @@ void JoyTabWidget::fillButtons()
                 axisWidget->setMinimumSize(200, 24);
 
                 connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
-                connect(axis, SIGNAL(throttleChanged()), axisWidget, SLOT(refreshLabel()));
 
                 if (column > 1)
                 {
@@ -810,7 +810,6 @@ void JoyTabWidget::showButtonDialog()
 
     ButtonEditDialog *dialog = new ButtonEditDialog(button, this);
     dialog->show();
-    connect(dialog, SIGNAL(finished(int)), buttonWidget, SLOT(refreshLabel()));
 }
 
 void JoyTabWidget::showAxisDialog()
@@ -821,7 +820,6 @@ void JoyTabWidget::showAxisDialog()
 
     axisDialog = new AxisEditDialog (axis, this);
     axisDialog->show();
-    connect(axisDialog, SIGNAL(destroyed()), axisWidget, SLOT(refreshLabel()));
 }
 
 void JoyTabWidget::showStickDialog()
@@ -890,16 +888,19 @@ void JoyTabWidget::resetJoystick()
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
     {
-        XMLConfigReader reader;
-
         QString filename = configBox->itemData(currentIndex).toString();
 
+        removeCurrentButtons();
+
+        XMLConfigReader reader;
         reader.setFileName(filename);
         reader.configJoystick(joystick);
+
         fillButtons();
     }
     else
     {
+        removeCurrentButtons();
         joystick->reset();
         fillButtons();
     }
@@ -965,23 +966,27 @@ void JoyTabWidget::changeJoyConfig(int index)
 {
     QString filename;
 
-    if (index != 0)
+    if (index > 0)
     {
         filename = configBox->itemData(index).toString();
     }
 
     if (!filename.isEmpty())
     {
-        XMLConfigReader reader;
+        removeCurrentButtons();
 
+        XMLConfigReader reader;
         reader.setFileName(filename);
         reader.configJoystick(joystick);
 
         fillButtons();
     }
-    else
+    else if (index == 0)
     {
-        emit joystickRefreshRequested(joystick);
+        removeCurrentButtons();
+        joystick->reset();
+        fillButtons();
+        //emit joystickRefreshRequested(joystick);
     }
 }
 
@@ -1021,12 +1026,15 @@ void JoyTabWidget::saveSettings(QSettings *settings)
     settings->setValue(controlLastSelected, lastfile);
 }
 
-void JoyTabWidget::loadSettings(QSettings *settings)
+void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
 {
-    if (configBox->count() > 0)
+    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+
+    if (configBox->count() > 1)
     {
         configBox->clear();
         configBox->addItem(tr("<New>"), "");
+        configBox->setCurrentIndex(-1);
     }
 
     int joyindex = joystick->getRealJoyNumber();
@@ -1080,6 +1088,8 @@ void JoyTabWidget::loadSettings(QSettings *settings)
         }
     }
 
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+
     QString lastfile = settings->value(controlLastSelected).toString();
     if (!lastfile.isEmpty())
     {
@@ -1087,10 +1097,19 @@ void JoyTabWidget::loadSettings(QSettings *settings)
         if (lastindex > 0)
         {
             configBox->setCurrentIndex(lastindex);
+            emit joystickConfigChanged(joystick->getJoyNumber());
+        }
+        else if (configBox->currentIndex() != 0 || forceRefresh)
+        {
+            configBox->setCurrentIndex(0);
+            emit joystickConfigChanged(joystick->getJoyNumber());
         }
     }
-
-    emit joystickConfigChanged(joystick->getJoyNumber());
+    else if (configBox->currentIndex() != 0 || forceRefresh)
+    {
+        configBox->setCurrentIndex(0);
+        emit joystickConfigChanged(joystick->getJoyNumber());
+    }
 }
 
 QHash<int, QString>* JoyTabWidget::recentConfigs()
@@ -1249,8 +1268,6 @@ void JoyTabWidget::openStickButtonDialog()
     JoyControlStickButtonPushButton *pushbutton = static_cast<JoyControlStickButtonPushButton*> (sender());
     ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), this);
     dialog->show();
-
-    connect(dialog, SIGNAL(finished(int)), pushbutton, SLOT(refreshLabel()));
 }
 
 void JoyTabWidget::showDPadDialog()
@@ -1267,5 +1284,65 @@ void JoyTabWidget::showQuickSetDialog()
     QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
     dialog->show();
     connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
-    connect(dialog, SIGNAL(buttonDialogClosed()), this, SLOT(fillButtons()));
+}
+
+void JoyTabWidget::removeCurrentButtons()
+{
+    for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
+    {
+        QLayoutItem *child = 0;
+        QGridLayout *current_layout = 0;
+        switch (i)
+        {
+            case 0:
+            {
+                current_layout = gridLayout;
+                break;
+            }
+            case 1:
+            {
+                current_layout = gridLayout2;
+                break;
+            }
+            case 2:
+            {
+                current_layout = gridLayout3;
+                break;
+            }
+            case 3:
+            {
+                current_layout = gridLayout4;
+                break;
+            }
+            case 4:
+            {
+                current_layout = gridLayout5;
+                break;
+            }
+            case 5:
+            {
+                current_layout = gridLayout6;
+                break;
+            }
+            case 6:
+            {
+                current_layout = gridLayout7;
+                break;
+            }
+            case 7:
+            {
+                current_layout = gridLayout8;
+                break;
+            }
+            default:
+                break;
+        }
+
+        while (current_layout && (child = current_layout->takeAt(0)) != 0)
+        {
+            current_layout->removeWidget(child->widget());
+            delete child->widget();
+            child = 0;
+        }
+    }
 }

@@ -76,17 +76,7 @@ void MainWindow::fillButtons(Joystick *joystick)
 void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
 {
     ui->stackedWidget->setCurrentIndex(0);
-
-    for (int i=0; i < ui->tabWidget->count(); i++)
-    {
-        /*QWidget *temptab = ui->tabWidget->widget(i);
-        ui->tabWidget->removeTab(i);
-        delete temptab;
-        temptab = 0;*/
-        ui->tabWidget->widget(i)->deleteLater();
-    }
-
-    ui->tabWidget->clear();
+    removeJoyTabs();
 
     for (int i=0; i < joysticks->count(); i++)
     {
@@ -95,7 +85,7 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
         tabwidget->fillButtons();
         ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
-        connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
+        //connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
         if (showTrayIcon)
         {
             connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
@@ -133,6 +123,8 @@ void MainWindow::startJoystickRefresh()
     ui->actionUpdate_Joysticks->setEnabled(false);
     ui->actionHide->setEnabled(false);
     ui->actionQuit->setEnabled(false);
+    removeJoyTabs();
+
     emit joystickRefreshRequested();
 }
 
@@ -272,13 +264,13 @@ void MainWindow::saveAppConfig()
     }
 }
 
-void MainWindow::loadAppConfig()
+void MainWindow::loadAppConfig(bool forceRefresh)
 {
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(i);
-        tabwidget->loadSettings(&settings);
+        tabwidget->loadSettings(&settings, forceRefresh);
     }
 }
 
@@ -536,4 +528,16 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
             }
         }
     }
+}
+
+void MainWindow::removeJoyTabs()
+{
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        QWidget *tab = ui->tabWidget->widget(i);
+        delete tab;
+        tab = 0;
+    }
+
+    ui->tabWidget->clear();
 }

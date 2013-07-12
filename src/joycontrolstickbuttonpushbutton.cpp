@@ -18,6 +18,7 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
 
     refreshLabel();
     enableFlashes();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
 }
 
 JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
@@ -28,10 +29,15 @@ JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
 void JoyControlStickButtonPushButton::JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
 {
     disableFlashes();
+    if (this->button)
+    {
+        disconnect(this->button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
+    }
 
     this->button = button;
     refreshLabel();
     enableFlashes();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
 }
 
 bool JoyControlStickButtonPushButton::isButtonFlashing()
@@ -64,7 +70,6 @@ void JoyControlStickButtonPushButton::refreshLabel()
     if (button)
     {
         setText(button->getSlotsSummary().replace("&", "&&"));
-        //setText(button->getName().replace("&", "&&"));
     }
 }
 

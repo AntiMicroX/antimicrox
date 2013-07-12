@@ -23,8 +23,9 @@ class JoyTabWidget : public QWidget
     Q_OBJECT
 public:
     explicit JoyTabWidget(Joystick *joystick, QWidget *parent = 0);
+
     void saveSettings(QSettings *settings);
-    void loadSettings(QSettings *settings);
+    void loadSettings(QSettings *settings, bool forceRefresh=false);
     QHash<int, QString>* recentConfigs();
     void setCurrentConfig(int index);
     int getCurrentConfigIndex();
@@ -32,6 +33,8 @@ public:
     void loadConfigFile(QString fileLocation);
 
 protected:
+    void removeCurrentButtons();
+
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
     QPushButton *loadButton;

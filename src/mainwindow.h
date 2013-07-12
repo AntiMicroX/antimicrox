@@ -57,7 +57,8 @@ public slots:
     void startJoystickRefresh();
     void hideWindow();
     void saveAppConfig();
-    void loadAppConfig();
+    void loadAppConfig(bool forceRefresh=false);
+    void removeJoyTabs();
 
 private slots:
     void quitProgram();
