@@ -35,9 +35,12 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_7">
+  <layout class="QVBoxLayout" name="verticalLayout_9">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_14">
+    <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="1,2">
+     <property name="spacing">
+      <number>30</number>
+     </property>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
@@ -223,101 +226,108 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
+      <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <property name="spacing">
+          <number>10</number>
+         </property>
          <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Presets:</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Presets:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="presetsComboBox">
+             <property name="minimumSize">
+              <size>
+               <width>282</width>
+               <height>0</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mouse (Normal)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mouse (Inverted Horizontal)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mouse (Inverted Vertical)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mouse (Inverted Horizontal + Vertical)</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Arrows</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Keys: W | A | S | D</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>NumPad</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QComboBox" name="presetsComboBox">
-           <property name="minimumSize">
-            <size>
-             <width>282</width>
-             <height>0</height>
-            </size>
-           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
-            <property name="text">
-             <string/>
-            </property>
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Mode:</string>
+             </property>
+            </widget>
            </item>
            <item>
-            <property name="text">
-             <string>Mouse (Normal)</string>
-            </property>
+            <widget class="QComboBox" name="joyModeComboBox">
+             <property name="minimumSize">
+              <size>
+               <width>282</width>
+               <height>0</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>Standard</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Eight Way</string>
+              </property>
+             </item>
+            </widget>
            </item>
-           <item>
-            <property name="text">
-             <string>Mouse (Inverted Horizontal)</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mouse (Inverted Vertical)</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mouse (Inverted Horizontal + Vertical)</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Arrows</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Keys: W | A | S | D</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>NumPad</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>None</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_13">
-         <item>
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string>Mode:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="joyModeComboBox">
-           <property name="minimumSize">
-            <size>
-             <width>282</width>
-             <height>0</height>
-            </size>
-           </property>
-           <item>
-            <property name="text">
-             <string>Standard</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Eight Way</string>
-            </property>
-           </item>
-          </widget>
+          </layout>
          </item>
         </layout>
        </item>
@@ -326,13 +336,10 @@
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Expanding</enum>
-         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>452</width>
-           <height>13</height>
+           <width>20</width>
+           <height>20</height>
           </size>
          </property>
         </spacer>
@@ -344,10 +351,19 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <property name="spacing">
-           <number>20</number>
+           <number>30</number>
           </property>
-          <property name="margin">
+          <property name="leftMargin">
            <number>8</number>
+          </property>
+          <property name="topMargin">
+           <number>8</number>
+          </property>
+          <property name="rightMargin">
+           <number>8</number>
+          </property>
+          <property name="bottomMargin">
+           <number>26</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -372,10 +388,19 @@
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <property name="spacing">
+             <number>10</number>
+            </property>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
+              <property name="spacing">
+               <number>16</number>
+              </property>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
                 <item>
                  <widget class="QLabel" name="label_5">
                   <property name="text">
@@ -409,8 +434,14 @@
             </item>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_4">
+              <property name="spacing">
+               <number>16</number>
+              </property>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_9">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
                 <item>
                  <widget class="QLabel" name="label_7">
                   <property name="text">
@@ -444,22 +475,6 @@
             </item>
            </layout>
           </item>
-          <item>
-           <spacer name="verticalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
        </item>
@@ -480,131 +495,132 @@
         </spacer>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QVBoxLayout" name="verticalLayout_6">
          <property name="spacing">
-          <number>10</number>
+          <number>4</number>
          </property>
          <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Dead Zone:</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Dead Zone:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="deadZoneSlider">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>32737</number>
+             </property>
+             <property name="singleStep">
+              <number>100</number>
+             </property>
+             <property name="pageStep">
+              <number>1000</number>
+             </property>
+             <property name="value">
+              <number>6000</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="deadZoneSpinBox">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>32737</number>
+             </property>
+             <property name="value">
+              <number>8000</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QSlider" name="deadZoneSlider">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>32737</number>
-           </property>
-           <property name="singleStep">
-            <number>100</number>
-           </property>
-           <property name="pageStep">
-            <number>1000</number>
-           </property>
-           <property name="value">
-            <number>6000</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Max Zone:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="maxZoneSlider">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>32737</number>
+             </property>
+             <property name="singleStep">
+              <number>100</number>
+             </property>
+             <property name="pageStep">
+              <number>1000</number>
+             </property>
+             <property name="value">
+              <number>32000</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="maxZoneSpinBox">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>32737</number>
+             </property>
+             <property name="value">
+              <number>32000</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QSpinBox" name="deadZoneSpinBox">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>32737</number>
-           </property>
-           <property name="value">
-            <number>8000</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_12">
-         <item>
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Max Zone:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="maxZoneSlider">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>32737</number>
-           </property>
-           <property name="singleStep">
-            <number>100</number>
-           </property>
-           <property name="pageStep">
-            <number>1000</number>
-           </property>
-           <property name="value">
-            <number>32000</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="maxZoneSpinBox">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>32737</number>
-           </property>
-           <property name="value">
-            <number>32000</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Diagonal Range:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="diagonalRangeSlider">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="diagonalRangeSpinBox">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>89</number>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Diagonal Range:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="diagonalRangeSlider">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="diagonalRangeSpinBox">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>89</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>

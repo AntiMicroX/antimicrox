@@ -217,7 +217,8 @@ QString JoyButtonSlot::getSlotString()
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {
             newlabel.append(tr("Mouse")).append(" ");
-            switch (deviceCode) {
+            switch (deviceCode)
+            {
                 case 1:
                     newlabel.append(tr("LB"));
                     break;

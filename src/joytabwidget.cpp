@@ -1036,6 +1036,10 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
         configBox->addItem(tr("<New>"), "");
         configBox->setCurrentIndex(-1);
     }
+    else if (forceRefresh)
+    {
+        configBox->setCurrentIndex(-1);
+    }
 
     int joyindex = joystick->getRealJoyNumber();
     QString controlString = QString("Controllers/Controller%1ConfigFile%2").arg(QString::number(joyindex));
@@ -1099,13 +1103,13 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
             configBox->setCurrentIndex(lastindex);
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
-        else if (configBox->currentIndex() != 0 || forceRefresh)
+        else if (configBox->currentIndex() != 0)
         {
             configBox->setCurrentIndex(0);
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
     }
-    else if (configBox->currentIndex() != 0 || forceRefresh)
+    else if (configBox->currentIndex() != 0)
     {
         configBox->setCurrentIndex(0);
         emit joystickConfigChanged(joystick->getJoyNumber());
