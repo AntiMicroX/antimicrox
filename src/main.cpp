@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
             }
 
             joypad_worker->quit();
+            w.removeJoyTabs();
 
             QHashIterator<int, Joystick*> iter(*joysticks);
             while (iter.hasNext())

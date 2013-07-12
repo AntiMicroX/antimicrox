@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>500</height>
+    <width>760</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>700</width>
-    <height>500</height>
+    <width>760</width>
+    <height>520</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -389,7 +389,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <property name="spacing">
-             <number>10</number>
+             <number>16</number>
             </property>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -404,7 +404,8 @@
                 <item>
                  <widget class="QLabel" name="label_5">
                   <property name="text">
-                   <string>Horizontal Speed:</string>
+                   <string>Horizontal
+Speed:</string>
                   </property>
                  </widget>
                 </item>
@@ -445,7 +446,8 @@
                 <item>
                  <widget class="QLabel" name="label_7">
                   <property name="text">
-                   <string>Vertical Speed:</string>
+                   <string>Vertical
+Speed:</string>
                   </property>
                  </widget>
                 </item>
