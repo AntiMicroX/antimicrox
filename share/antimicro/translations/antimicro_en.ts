@@ -1311,32 +1311,32 @@ a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="179"/>
+        <location filename="../../../src/axiseditdialog.ui" line="182"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="189"/>
+        <location filename="../../../src/axiseditdialog.ui" line="192"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="207"/>
+        <location filename="../../../src/axiseditdialog.ui" line="210"/>
         <source>Set the horizontal speed used for both axes buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="287"/>
+        <location filename="../../../src/axiseditdialog.ui" line="290"/>
         <source>Set the vertical speed for both axes buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="407"/>
+        <location filename="../../../src/axiseditdialog.ui" line="473"/>
         <source>Set the value of the dead zone for an axis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="210"/>
+        <location filename="../../../src/axiseditdialog.ui" line="213"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1351,61 +1351,61 @@ a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="268"/>
-        <location filename="../../../src/axiseditdialog.ui" line="348"/>
+        <location filename="../../../src/axiseditdialog.ui" line="271"/>
+        <location filename="../../../src/axiseditdialog.ui" line="351"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="290"/>
+        <location filename="../../../src/axiseditdialog.ui" line="293"/>
         <source>Vertical Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="429"/>
+        <location filename="../../../src/axiseditdialog.ui" line="411"/>
         <source>Dead Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="436"/>
+        <location filename="../../../src/axiseditdialog.ui" line="523"/>
         <source>Max Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="523"/>
+        <location filename="../../../src/axiseditdialog.ui" line="391"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 defective analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="547"/>
-        <location filename="../../../src/axiseditdialog.ui" line="586"/>
+        <location filename="../../../src/axiseditdialog.ui" line="534"/>
+        <location filename="../../../src/axiseditdialog.ui" line="573"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="554"/>
+        <location filename="../../../src/axiseditdialog.ui" line="541"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="568"/>
+        <location filename="../../../src/axiseditdialog.ui" line="555"/>
         <source>Negative Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="573"/>
+        <location filename="../../../src/axiseditdialog.ui" line="560"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="578"/>
+        <location filename="../../../src/axiseditdialog.ui" line="565"/>
         <source>Positive Throttle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="660"/>
+        <location filename="../../../src/axiseditdialog.ui" line="615"/>
         <source>Current Value:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1607,33 +1607,33 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="135"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="137"/>
         <source>Configure Mouse Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="149"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="160"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="159"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="170"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="174"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="185"/>
         <source>Horizontal Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="196"/>
-        <location filename="../../../src/dpadeditdialog.ui" line="231"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="207"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="242"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="209"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="220"/>
         <source>Vertical Speed:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1730,47 +1730,47 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="222"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="223"/>
         <source>LB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="225"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="226"/>
         <source>MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="228"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="229"/>
         <source>RB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="241"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="242"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="246"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="249"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="250"/>
         <source>Cycle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="253"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="254"/>
         <source>Distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="259"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="260"/>
         <source>Release</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="264"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="265"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1827,136 +1827,138 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="112"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="115"/>
         <source>X:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="125"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="155"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="185"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="215"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="128"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="158"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="188"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="218"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="142"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="145"/>
         <source>Y:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="172"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="175"/>
         <source>Distance:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="202"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="205"/>
         <source>Angle:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="232"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="240"/>
         <source>Presets:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="251"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="259"/>
         <source>Mouse (Normal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="256"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="264"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="261"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="269"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="266"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="274"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="271"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="279"/>
         <source>Arrows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="276"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="284"/>
         <source>Keys: W | A | S | D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="281"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="289"/>
         <source>NumPad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="286"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="294"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="298"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="306"/>
         <source>Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="312"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="320"/>
         <source>Standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="317"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="325"/>
         <source>Eight Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="343"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="350"/>
         <source>Configure Mouse Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="357"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="373"/>
         <source>Change Speeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="367"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="383"/>
         <source>Change Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="382"/>
-        <source>Horizontal Speed:</source>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="407"/>
+        <source>Horizontal
+Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="404"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="439"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="449"/>
+        <source>Vertical
+Speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="430"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="472"/>
         <source>1 = 20 pps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="417"/>
-        <source>Vertical Speed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="490"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="509"/>
         <source>Dead Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="536"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="555"/>
         <source>Max Zone:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="585"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="601"/>
         <source>Diagonal Range:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2008,61 +2010,61 @@ interpret an axis hold or release.</source>
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="30"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1029"/>
+        <location filename="../../../src/joytabwidget.cpp" line="31"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1036"/>
         <source>&lt;New&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="38"/>
+        <location filename="../../../src/joytabwidget.cpp" line="39"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="45"/>
+        <location filename="../../../src/joytabwidget.cpp" line="46"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="53"/>
+        <location filename="../../../src/joytabwidget.cpp" line="54"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="304"/>
+        <location filename="../../../src/joytabwidget.cpp" line="305"/>
         <source>Stick/Pad Assign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="311"/>
+        <location filename="../../../src/joytabwidget.cpp" line="312"/>
         <source>Quick Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="319"/>
+        <location filename="../../../src/joytabwidget.cpp" line="320"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="351"/>
+        <location filename="../../../src/joytabwidget.cpp" line="352"/>
         <source>Open Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="463"/>
+        <location filename="../../../src/joytabwidget.cpp" line="464"/>
         <source>Sticks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="569"/>
-        <location filename="../../../src/joytabwidget.cpp" line="659"/>
+        <location filename="../../../src/joytabwidget.cpp" line="570"/>
+        <location filename="../../../src/joytabwidget.cpp" line="660"/>
         <source>DPads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="844"/>
-        <location filename="../../../src/joytabwidget.cpp" line="914"/>
-        <location filename="../../../src/joytabwidget.cpp" line="924"/>
+        <location filename="../../../src/joytabwidget.cpp" line="842"/>
+        <location filename="../../../src/joytabwidget.cpp" line="915"/>
+        <location filename="../../../src/joytabwidget.cpp" line="925"/>
         <source>Save Config</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2190,7 +2192,7 @@ interpret an axis hold or release.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="589"/>
-        <location filename="../../../src/mainwindow.cpp" line="191"/>
+        <location filename="../../../src/mainwindow.cpp" line="183"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2201,7 +2203,7 @@ interpret an axis hold or release.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="605"/>
-        <location filename="../../../src/mainwindow.cpp" line="195"/>
+        <location filename="../../../src/mainwindow.cpp" line="187"/>
         <source>&amp;Update Joysticks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2212,7 +2214,7 @@ interpret an axis hold or release.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="618"/>
-        <location filename="../../../src/mainwindow.cpp" line="181"/>
+        <location filename="../../../src/mainwindow.cpp" line="173"/>
         <source>&amp;Hide</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2237,17 +2239,17 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="97"/>
+        <location filename="../../../src/mainwindow.cpp" line="87"/>
         <source>Joystick %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="169"/>
+        <location filename="../../../src/mainwindow.cpp" line="161"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="186"/>
+        <location filename="../../../src/mainwindow.cpp" line="178"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
