@@ -46,7 +46,8 @@ JoyAxis::~JoyAxis()
 
 void JoyAxis::joyEvent(int value, bool ignoresets)
 {
-    currentRawValue = value;
+    setCurrentRawValue(value);
+    //currentRawValue = value;
     bool safezone = !inDeadZone(currentRawValue);
     currentThrottledValue = calculateThrottledValue(value);
 
@@ -274,7 +275,8 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
                     this->setThrottle(1);
                 }
 
-                currentRawValue = currentThrottledDeadValue;
+                setCurrentRawValue(currentThrottledDeadValue);
+                //currentRawValue = currentThrottledDeadValue;
                 currentThrottledValue = calculateThrottledValue(currentRawValue);
             }
             else if (xml->name() == JoyAxisButton::xmlName && xml->isStartElement())
@@ -348,7 +350,8 @@ void JoyAxis::reset()
     activeButton = 0;
 
     adjustRange();
-    currentRawValue = currentThrottledDeadValue;
+    setCurrentRawValue(currentThrottledDeadValue);
+    //currentRawValue = currentThrottledDeadValue;
     currentThrottledValue = calculateThrottledValue(currentRawValue);
 }
 
@@ -537,4 +540,25 @@ bool JoyAxis::isDefault()
     value = value && (paxisbutton->isDefault());
     value = value && (naxisbutton->isDefault());
     return value;
+}
+
+/* Use this method to keep currentRawValue in the expected range.
+ * SDL has a minimum axis value of -32768 which should be ignored to
+ * ensure that JoyControlStick will not encounter overflow problems
+ * on a 32bit machine.
+ */
+void JoyAxis::setCurrentRawValue(int value)
+{
+    if (value >= JoyAxis::AXISMIN && value <= JoyAxis::AXISMAX)
+    {
+        currentRawValue = value;
+    }
+    else if (value > JoyAxis::AXISMAX)
+    {
+        currentRawValue = JoyAxis::AXISMAX;
+    }
+    else if (value < JoyAxis::AXISMIN)
+    {
+        currentRawValue = JoyAxis::AXISMIN;
+    }
 }
