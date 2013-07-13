@@ -49,22 +49,6 @@ A big inspiration for this program was the program QJoyPad ([http://qjoypad.sour
 I have been a user of the program for years and it is unfortunate that the program is no longer being maintained.
 The source code for QJoyPad was an invaluable resource when I made the first version of this program and the UI for this program mostly resembles QJoyPad.
 
-## Roadmap to 1.0
-
-This program has evolved pretty quickly since I started the project. I believe that
-this program has now obtained an identity beyond just being considered an updated version of
-QJoyPad. Now that a lot of the features that I have wanted are now implemented in the program,
-I have started to take into consideration what it will take before I can actually consider this program
-worthy of a 1.0 release. I have started to compile a list of possible features that I would
-like incorporated in this program before it is worthy of a 1.0 release.
-
-* Combine axes in order to specify controller sticks
-	* This will allow for more control over the range that dictates a diagonal press
-* Configuration menu for specifying aspects of a controller (number of sticks, buttons, d-pads, etc.)
-* Allow for sticks and d-pads to be considered 8-way controls with a button associated
-with each direction
-* Implement more slot actions for macros: Cycle Stop, Distance, Release
-
 ## Credits
 
 Travis Nickles <nickles.travis@gmail.com>
