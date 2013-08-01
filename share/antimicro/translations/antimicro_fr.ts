@@ -1665,7 +1665,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="96"/>
+        <location filename="../../../src/joyaxis.cpp" line="97"/>
         <source>Axis</source>
         <translation>Axe</translation>
     </message>

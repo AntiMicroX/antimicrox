@@ -1,6 +1,8 @@
 [Desktop Entry]
 Name=AntiMicro
-Comment=
+Comment=Use a gamepad to control a variety of programs
+Name[sr]=Анти-микро
+Comment[sr]=Користите џојстик или играћу тастатуру за управљање различитим програмима
 Exec=antimicro
 Icon=antimicro
 StartupNotify=true

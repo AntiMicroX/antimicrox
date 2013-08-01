@@ -56,3 +56,4 @@ Travis Nickles <nickles.travis@gmail.com>
 ## Translators
 
 Belleguic Terence <hizo@free.fr>
+Jay Alexander Fleming <tito.nehru.naser@gmail.com>
