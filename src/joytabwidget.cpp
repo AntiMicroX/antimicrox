@@ -1130,7 +1130,8 @@ QHash<int, QString>* JoyTabWidget::recentConfigs()
 
 void JoyTabWidget::setCurrentConfig(int index)
 {
-    if (index >= 1 && index < configBox->count())
+    // Allow 0 to select new/'null' config and therefore disable any mapping
+    if (index >= 0 && index < configBox->count())
     {
         configBox->setCurrentIndex(index);
     }

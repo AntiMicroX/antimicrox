@@ -406,25 +406,29 @@ void MainWindow::hideWindow()
 
 void MainWindow::trayMenuChangeJoyConfig(QAction *action)
 {
-    QMenu *tempmenu = (QMenu*)action->parent();
-    QList<QAction*> menuactions = tempmenu->actions();
-    QListIterator<QAction*> listiter (menuactions);
-    while (listiter.hasNext())
-    {
-        QAction *tempaction = listiter.next();
-        tempaction->setChecked(false);
-    }
-
+    // Obtaining the selected config
     QHash<QString, QVariant> tempmap = action->data().toHash();
     QHashIterator<QString, QVariant> iter(tempmap);
     while (iter.hasNext())
     {
         iter.next();
+
+        // Fetching indicies and tab associated with the current joypad
         int joyindex = iter.key().toInt();
         int configindex = iter.value().toInt();
         JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
-        widget->setCurrentConfig(configindex);
-        action->setChecked(true);
+
+        // Checking if the selected config has been disabled by the change (action->isChecked() represents the state of the checkbox AFTER the click)
+        if (!action->isChecked())
+        {
+            // It has - disabling - the 0th config is the new/'null' config
+            widget->setCurrentConfig(0);
+        }
+        else
+        {
+            // It hasn't - enabling - note that setting this causes the menu to be updated
+            widget->setCurrentConfig(configindex);
+        }
     }
 }
 
