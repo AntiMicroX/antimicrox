@@ -536,7 +536,9 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 
 void MainWindow::removeJoyTabs()
 {
-    for (int i=0; i < ui->tabWidget->count(); i++)
+    int oldtabcount = ui->tabWidget->count();
+
+    for (int i = oldtabcount-1; i >= 0; i--)
     {
         QWidget *tab = ui->tabWidget->widget(i);
         delete tab;
