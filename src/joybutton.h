@@ -24,6 +24,8 @@ public:
     ~JoyButton();
 
     enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay, SetChangeTwoWay, SetChangeWhileHeld};
+    enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
+
     void joyEvent (bool pressed, bool ignoresets=false);
     int getJoyNumber ();
     virtual int getRealJoyNumber ();
@@ -66,6 +68,7 @@ public:
     bool containsReleaseSlots();
 
     virtual double getDistanceFromDeadZone();
+    virtual double getSpringDistanceFromDeadZone();
 
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();
@@ -75,6 +78,9 @@ public:
     virtual bool isDefault();
     void setIgnoreEventState(bool ignore);
     bool getIgnoreEventState();
+
+    void setMouseMode(JoyMouseMovementMode mousemode);
+    JoyMouseMovementMode getMouseMode();
 
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
@@ -135,6 +141,7 @@ protected:
     int currentRawValue;
     VDPad *vdpad;
     bool ignoreEvents;
+    JoyMouseMovementMode mouseMode;
 
 signals:
     void clicked (int index);

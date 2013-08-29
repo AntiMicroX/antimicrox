@@ -2,16 +2,12 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QHashIterator>
-#include <QThread>
 #include <QDir>
 #include <QDebug>
-#include <QListWidget>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QSystemTrayIcon>
 #include <QTextStream>
-
-#include <X11/Xlib.h>
 
 #include <sys/file.h>
 #include <errno.h>
@@ -46,8 +42,6 @@ int main(int argc, char *argv[])
     qRegisterMetaType<AdvanceButtonDialog*>();
     qRegisterMetaType<Joystick*>();
 
-    XInitThreads ();
-
     QApplication a(argc, argv);
     CommandLineUtility cmdutility;
     QStringList cmdarguments = a.arguments();
@@ -76,8 +70,8 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    //Q_INIT_RESOURCE(resources);
-    //a.setQuitOnLastWindowClosed(false);
+    Q_INIT_RESOURCE(resources);
+    a.setQuitOnLastWindowClosed(false);
 
     QDir configDir (PadderCommon::configPath);
     if (!configDir.exists())
@@ -153,6 +147,7 @@ int main(int argc, char *argv[])
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
     //QObject::connect(&w, SIGNAL(joystickRefreshRequested(Joystick*)), joypad_worker, SLOT(refreshJoystick(Joystick*)));
+    QObject::connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));

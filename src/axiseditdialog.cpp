@@ -81,6 +81,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     }
 
     selectCurrentPreset();
+    selectCurrentMouseModePreset();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 
@@ -112,6 +113,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
     connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMouseMode(int)));
 
     connect(this, SIGNAL(finished(int)), this, SLOT(checkFinalSettings()));
 }
@@ -443,4 +445,37 @@ void AxisEditDialog::refreshPreset()
     selectCurrentPreset();
     // Reconnect the event
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+}
+
+void AxisEditDialog::selectCurrentMouseModePreset()
+{
+    bool presetDefined = axis->hasSameButtonsMouseMode();
+    if (presetDefined)
+    {
+        JoyButton::JoyMouseMovementMode mode = axis->getButtonsPresetMouseMode();
+        if (mode == JoyButton::MouseCursor)
+        {
+            ui->mouseModeComboBox->setCurrentIndex(1);
+        }
+        else if (mode == JoyButton::MouseSpring)
+        {
+            ui->mouseModeComboBox->setCurrentIndex(2);
+        }
+    }
+    else
+    {
+        ui->mouseModeComboBox->setCurrentIndex(0);
+    }
+}
+
+void AxisEditDialog::updateMouseMode(int index)
+{
+    if (index == 1)
+    {
+        axis->setButtonsMouseMode(JoyButton::MouseCursor);
+    }
+    else if (index == 2)
+    {
+        axis->setButtonsMouseMode(JoyButton::MouseSpring);
+    }
 }

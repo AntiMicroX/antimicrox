@@ -34,6 +34,10 @@ public:
 
     void releaseButtonEvents();
 
+    void setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode);
+    bool hasSameButtonsMouseMode();
+    JoyButton::JoyMouseMovementMode getButtonsPresetMouseMode();
+
     virtual bool isDefault();
 
     QHash<int, JoyDPadButton*>* getButtons();

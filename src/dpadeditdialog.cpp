@@ -51,6 +51,7 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     updateVerticalSpeedConvertLabel(tempMouseSpeedY);
 
     selectCurrentPreset();
+    selectCurrentMouseModePreset();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
@@ -65,6 +66,8 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
     connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
+
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMouseMode(int)));
 }
 
 DPadEditDialog::~DPadEditDialog()
@@ -384,5 +387,38 @@ void DPadEditDialog::selectCurrentPreset()
     else if (upslots->length() == 0 && downslots->length() == 0 && leftslots->length() == 0 && rightslots->length() == 0)
     {
         ui->presetsComboBox->setCurrentIndex(8);
+    }
+}
+
+void DPadEditDialog::updateMouseMode(int index)
+{
+    if (index == 1)
+    {
+        dpad->setButtonsMouseMode(JoyButton::MouseCursor);
+    }
+    else if (index == 2)
+    {
+        dpad->setButtonsMouseMode(JoyButton::MouseSpring);
+    }
+}
+
+void DPadEditDialog::selectCurrentMouseModePreset()
+{
+    bool presetDefined = dpad->hasSameButtonsMouseMode();
+    if (presetDefined)
+    {
+        JoyButton::JoyMouseMovementMode mode = dpad->getButtonsPresetMouseMode();
+        if (mode == JoyButton::MouseCursor)
+        {
+            ui->mouseModeComboBox->setCurrentIndex(1);
+        }
+        else if (mode == JoyButton::MouseSpring)
+        {
+            ui->mouseModeComboBox->setCurrentIndex(2);
+        }
+    }
+    else
+    {
+        ui->mouseModeComboBox->setCurrentIndex(0);
     }
 }

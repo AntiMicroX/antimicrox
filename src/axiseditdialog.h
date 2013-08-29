@@ -21,6 +21,7 @@ public:
 
 protected:
     void selectCurrentPreset();
+    void selectCurrentMouseModePreset();
 
     JoyAxis *axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
@@ -51,6 +52,7 @@ private slots:
     void changeMouseSpeedsInterface(bool value);
     void updateConfigHorizontalSpeed(int value);
     void updateConfigVerticalSpeed(int value);
+    void updateMouseMode(int index);
 
     void checkFinalSettings();
 };

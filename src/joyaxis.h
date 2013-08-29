@@ -43,6 +43,7 @@ public:
     int getCurrentlyAssignedSet();
 
     double getDistanceFromDeadZone();
+    double getSpringDistanceFromDeadZone();
     double calculateNormalizedAxisPlacement();
     double getAbsoluteAxisPlacement();
 
@@ -55,6 +56,10 @@ public:
     JoyControlStick* getControlStick();
     bool hasControlOfButtons();
     void removeVDPads();
+
+    void setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode);
+    bool hasSameButtonsMouseMode();
+    JoyButton::JoyMouseMovementMode getButtonsPresetMouseMode();
 
     virtual bool isDefault();
 

@@ -46,6 +46,56 @@ void sendevent(int code1, int code2)
     XUnlockDisplay (display);
 }
 
+void sendSpringEvent(double xcoor, double ycoor)
+{
+    if (xcoor >= -2.0 && xcoor <= 1.0 &&
+        ycoor >= -2.0 && ycoor <= 1.0)
+    {
+        display = X11Info::display();
+
+        XLockDisplay(display);
+
+        int xmovecoor = 0;
+        int ymovecoor = 0;
+        int width = 0;
+        int height = 0;
+        int midwidth = 0;
+        int midheight = 0;
+
+        XEvent mouseEvent;
+        Window wid = DefaultRootWindow(display);
+        XWindowAttributes xwAttr;
+
+        XQueryPointer(display, wid,
+            &mouseEvent.xbutton.root, &mouseEvent.xbutton.window,
+            &mouseEvent.xbutton.x_root, &mouseEvent.xbutton.y_root,
+            &mouseEvent.xbutton.x, &mouseEvent.xbutton.y,
+            &mouseEvent.xbutton.state);
+
+        XGetWindowAttributes(display, wid, &xwAttr);
+        width = xwAttr.width;
+        height = xwAttr.height;
+        midwidth = width / 2;
+        midheight = height / 2;
+
+        xmovecoor = (xcoor >= -1.0) ? (midwidth + (xcoor * midwidth)): mouseEvent.xbutton.x_root;
+        ymovecoor = (ycoor >= -1.0) ? (midheight + (ycoor * midheight)) : mouseEvent.xbutton.y_root;
+
+        if (xmovecoor != mouseEvent.xbutton.x_root || ymovecoor != mouseEvent.xbutton.y_root)
+        {
+            //double diffx = abs(mouseEvent.xbutton.x_root - xmovecoor);
+            //double diffy = abs(mouseEvent.xbutton.y_root - ymovecoor);
+            //if ((diffx > (width * 0.1)) || (diffy > (height * 0.1)))
+            //{
+                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+            //}
+        }
+
+        XFlush(display);
+        XUnlockDisplay(display);
+    }
+}
+
 int keyToKeycode (QString key)
 {
     int tempcode = -1;

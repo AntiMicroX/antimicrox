@@ -645,7 +645,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
  <connections>
   <connection>
    <sender>actionQuit</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
@@ -661,7 +661,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
   </connection>
   <connection>
    <sender>actionUpdate_Joysticks</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>startJoystickRefresh()</slot>
    <hints>
@@ -677,7 +677,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
   </connection>
   <connection>
    <sender>actionHide</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>hideWindow()</slot>
    <hints>
@@ -693,7 +693,7 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
   </connection>
   <connection>
    <sender>actionAbout</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>openAboutDialog()</slot>
    <hints>

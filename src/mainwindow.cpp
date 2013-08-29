@@ -202,6 +202,8 @@ void MainWindow::populateTrayIcon()
 void MainWindow::quitProgram()
 {
     this->close();
+    QApplication *app = static_cast<QApplication*> (QCoreApplication::instance());
+    app->quit();
 }
 
 void MainWindow::refreshTrayIconMenu()

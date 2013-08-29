@@ -19,6 +19,7 @@ public:
 
 protected:
     void selectCurrentPreset();
+    void selectCurrentMouseModePreset();
 
     JoyDPad *dpad;
 
@@ -36,6 +37,7 @@ private slots:
     void moveSpeedsTogether(int value);
     void updateConfigHorizontalSpeed(int value);
     void updateConfigVerticalSpeed(int value);
+    void updateMouseMode(int index);
 };
 
 #endif // DPADEDITDIALOG_H

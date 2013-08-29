@@ -305,3 +305,94 @@ bool JoyDPad::isDefault()
     }
     return value;
 }
+
+void JoyDPad::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setMouseMode(mode);
+    }
+}
+
+bool JoyDPad::hasSameButtonsMouseMode()
+{
+    bool result = true;
+
+    JoyButton::JoyMouseMovementMode initialMode = JoyButton::MouseCursor;
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            initialMode = button->getMouseMode();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
+            if (temp != initialMode)
+            {
+                result = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return result;
+}
+
+JoyButton::JoyMouseMovementMode JoyDPad::getButtonsPresetMouseMode()
+{
+    JoyButton::JoyMouseMovementMode resultMode = JoyButton::MouseCursor;
+
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            resultMode = button->getMouseMode();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
+            if (temp != resultMode)
+            {
+                resultMode = JoyButton::MouseCursor;
+                iter.toBack();
+            }
+        }
+    }
+
+    return resultMode;
+}

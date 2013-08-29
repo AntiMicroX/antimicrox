@@ -12,6 +12,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     mode = JoyKeyboard;
     distance = 0.0;
     mouseInterval = new QTime();
+    //mouseMode = Cursor;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent) :
@@ -27,7 +28,15 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     this->mode = mode;
     distance = 0.0;
     mouseInterval = new QTime();
+    //mouseMode = Cursor;
 }
+
+/*JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, JoySlotMouseMode mouseMode, QObject *parent) :
+    JoyButtonSlot(code, mode)
+{
+    this->mouseMode = mouseMode;
+}
+*/
 
 JoyButtonSlot::~JoyButtonSlot()
 {
@@ -267,3 +276,14 @@ QString JoyButtonSlot::getSlotString()
 
     return newlabel;
 }
+
+/*void JoyButtonSlot::setMouseMode(JoySlotMouseMode mode)
+{
+    mouseMode = mode;
+}
+
+JoyButtonSlot::JoySlotMouseMode JoyButtonSlot::getMouseMode()
+{
+    return mouseMode;
+}
+*/

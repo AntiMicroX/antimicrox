@@ -470,7 +470,34 @@ double JoyAxis::getDistanceFromDeadZone()
     }
 
     return distance;
+}
 
+double JoyAxis::getSpringDistanceFromDeadZone()
+{
+    double distance = 0.0;
+    double factor = JoyAxis::AXISMAX/(double)(qMin(22000.0, (double)maxZoneValue));
+
+    if (currentThrottledValue >= deadZone)
+    {
+        distance = (currentThrottledValue - deadZone)/(double)(maxZoneValue - deadZone);
+    }
+    else if (currentThrottledValue <= -deadZone)
+    {
+        distance = (currentThrottledValue + deadZone)/(double)(-maxZoneValue + deadZone);
+    }
+
+    distance *= factor;
+
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
+
+    return distance;
 }
 
 void JoyAxis::propogateThrottleChange()
@@ -561,4 +588,32 @@ void JoyAxis::setCurrentRawValue(int value)
     {
         currentRawValue = JoyAxis::AXISMIN;
     }
+}
+
+void JoyAxis::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)
+{
+    paxisbutton->setMouseMode(mode);
+    naxisbutton->setMouseMode(mode);
+}
+
+bool JoyAxis::hasSameButtonsMouseMode()
+{
+    bool result = true;
+    if (paxisbutton->getMouseMode() != naxisbutton->getMouseMode())
+    {
+        result = false;
+    }
+
+    return result;
+}
+
+JoyButton::JoyMouseMovementMode JoyAxis::getButtonsPresetMouseMode()
+{
+    JoyButton::JoyMouseMovementMode resultMode = JoyButton::MouseCursor;
+    if (paxisbutton->getMouseMode() == naxisbutton->getMouseMode())
+    {
+        resultMode = paxisbutton->getMouseMode();
+    }
+
+    return resultMode;
 }

@@ -9,6 +9,7 @@ enum JoyInputDevice {JoyKeyboard=0, JoyMouse};
 
 void sendevent (int code, bool pressed=true, JoyButtonSlot::JoySlotInputAction device=JoyButtonSlot::JoyKeyboard);
 void sendevent(int code1, int code2);
+void sendSpringEvent(double xcoor, double ycoor);
 int keyToKeycode (QString key);
 QString keycodeToKey(int keycode);
 
