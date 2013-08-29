@@ -649,6 +649,21 @@ void JoyButton::mouseEvent()
                 mouseEventTimer.start(5);
             }
         }
+        else
+        {
+            buttonslot->setDistance(0.0);
+            mouseInterval->restart();
+            mouseEventTimer.stop();
+
+            if (mousemode == JoyButton::MouseSpring)
+            {
+                double mouse1 = (mousedirection == JoyButtonSlot::MouseLeft ||
+                                 mousedirection == JoyButtonSlot::MouseRight) ? 0.0 : -2.0;
+                double mouse2 = (mousedirection == JoyButtonSlot::MouseUp ||
+                                 mousedirection == JoyButtonSlot::MouseDown) ? 0.0 : -2.0;
+                sendSpringEvent(mouse1, mouse2);
+            }
+        }
         /*else
         {
             //sendSpringEvent(0.0, 0.0);
