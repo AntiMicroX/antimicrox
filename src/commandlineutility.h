@@ -20,6 +20,7 @@ public:
     bool hasControllerNumber();
     QString getProfileLocation();
     unsigned int getControllerNumber();
+    bool isHiddenRequested();
 
     void printHelp();
     void printVersionString();
@@ -34,6 +35,7 @@ protected:
     QString profileLocation;
     unsigned int controllerNumber;
     bool encounteredError;
+    bool hiddenRequest;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -41,6 +43,7 @@ protected:
     static QRegExp noTrayRegexp;
     static QRegExp loadProfileRegexp;
     static QRegExp loadProfileForControllerRegexp;
+    static QRegExp hiddenRegexp;
     
 signals:
     

@@ -12,6 +12,7 @@ QRegExp CommandLineUtility::versionRegexp = QRegExp("(-v|--version)");
 QRegExp CommandLineUtility::noTrayRegexp = QRegExp("--no-tray");
 QRegExp CommandLineUtility::loadProfileRegexp = QRegExp("--profile");
 QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-controller");
+QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
 
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
@@ -24,6 +25,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     profileLocation = QString();
     controllerNumber = 0;
     encounteredError = false;
+    hiddenRequest = false;
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -97,6 +99,10 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 }
             }
         }
+        else if (hiddenRegexp.exactMatch(temp))
+        {
+            hiddenRequest = true;
+        }
     }
 }
 
@@ -116,6 +122,7 @@ void CommandLineUtility::printHelp()
     out << "-v, --version              " << " " << tr("Print version information.") << endl;
     out << "--tray                     " << " " << tr("Launch program in system tray only.") << endl;
     out << "--no-tray                  " << " " << tr("Launch program with the tray menu disabled.") << endl;
+    out << "--hidden                   " << " " << tr("Launch program without the main window displayed.") << endl;
     out << "--profile location         " << " " <<
            tr("Launch program with the configuration file\n                            selected as the default for all available\n                            controllers.")
         << endl;
@@ -166,4 +173,9 @@ unsigned int CommandLineUtility::getControllerNumber()
 bool CommandLineUtility::hasError()
 {
     return encounteredError;
+}
+
+bool CommandLineUtility::isHiddenRequested()
+{
+    return hiddenRequest;
 }
