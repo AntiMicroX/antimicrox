@@ -4,6 +4,7 @@
 #include <QString>
 
 #include "joybuttonslot.h"
+#include "mousehelper.h"
 
 enum JoyInputDevice {JoyKeyboard=0, JoyMouse};
 

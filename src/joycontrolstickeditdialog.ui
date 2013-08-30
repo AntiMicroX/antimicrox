@@ -643,6 +643,9 @@ Speed:</string>
              <property name="minimum">
               <number>1</number>
              </property>
+             <property name="maximum">
+              <number>89</number>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>

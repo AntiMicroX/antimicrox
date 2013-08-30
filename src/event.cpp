@@ -1,21 +1,19 @@
 #include <QDebug>
-#include <QMutex>
-#include <QChar>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include <X11/extensions/XTest.h>
+#include <cmath>
 
 #include "event.h"
 #include "x11info.h"
 
-QMutex mutex;
 Display* display;
+MouseHelper mouseHelperObj;
 
 //actually creates an XWindows event  :)
 void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
 
-    //mutex.lock();
     display = X11Info::display();
     XLockDisplay (display);
 
@@ -30,8 +28,6 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
 
     XFlush(display);
     XUnlockDisplay (display);
-
-    //mutex.unlock();
 }
 
 void sendevent(int code1, int code2)
@@ -48,13 +44,14 @@ void sendevent(int code1, int code2)
 
 void sendSpringEvent(double xcoor, double ycoor)
 {
+    display = X11Info::display();
+
+    XLockDisplay(display);
+    mouseHelperObj.mouseTimer.stop();
+
     if (xcoor >= -2.0 && xcoor <= 1.0 &&
         ycoor >= -2.0 && ycoor <= 1.0)
     {
-        display = X11Info::display();
-
-        XLockDisplay(display);
-
         int xmovecoor = 0;
         int ymovecoor = 0;
         int width = 0;
@@ -83,17 +80,47 @@ void sendSpringEvent(double xcoor, double ycoor)
 
         if (xmovecoor != mouseEvent.xbutton.x_root || ymovecoor != mouseEvent.xbutton.y_root)
         {
-            //double diffx = abs(mouseEvent.xbutton.x_root - xmovecoor);
-            //double diffy = abs(mouseEvent.xbutton.y_root - ymovecoor);
-            //if ((diffx > (width * 0.1)) || (diffy > (height * 0.1)))
-            //{
+            double diffx = abs(mouseEvent.xbutton.x_root - xmovecoor);
+            double diffy = abs(mouseEvent.xbutton.y_root - ymovecoor);
+            //double finaldiff = sqrt((diffx*diffx)+(diffy*diffy));
+            if (!mouseHelperObj.springMouseMoving && (diffx >= width*.01 || diffy >= height*.01))
+            {
+                mouseHelperObj.springMouseMoving = true;
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
-            //}
-        }
+                mouseHelperObj.mouseTimer.start(8);
+            }
+            else if (mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
+            {
+                mouseHelperObj.springMouseMoving = false;
+            }
+            else if (mouseHelperObj.springMouseMoving)
+            {
+                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+                mouseHelperObj.mouseTimer.start(8);
+            }
 
-        XFlush(display);
-        XUnlockDisplay(display);
+            mouseHelperObj.previousCursorLocation[0] = mouseEvent.xbutton.x_root;
+            mouseHelperObj.previousCursorLocation[1] = mouseEvent.xbutton.y_root;
+        }
+        else if (mouseHelperObj.previousCursorLocation[0] == xmovecoor &&
+                 mouseHelperObj.previousCursorLocation[1] == ymovecoor)
+        {
+            mouseHelperObj.springMouseMoving = false;
+        }
+        else
+        {
+            mouseHelperObj.previousCursorLocation[0] = mouseEvent.xbutton.x_root;
+            mouseHelperObj.previousCursorLocation[1] = mouseEvent.xbutton.y_root;
+            mouseHelperObj.mouseTimer.start(8);
+        }
     }
+    else
+    {
+        mouseHelperObj.springMouseMoving = false;
+    }
+
+    XFlush(display);
+    XUnlockDisplay(display);
 }
 
 int keyToKeycode (QString key)

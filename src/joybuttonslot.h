@@ -13,11 +13,9 @@ class JoyButtonSlot : public QObject
 public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement, JoyPause, JoyHold, JoyCycle, JoyDistance, JoyRelease};
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
-    //enum JoySlotMouseMode {Cursor=0, Spring};
 
     explicit JoyButtonSlot(QObject *parent = 0);
     explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=0);
-    //explicit JoyButtonSlot(int code, JoySlotInputAction mode, JoySlotMouseMode mouseMode, QObject *parent=0);
     ~JoyButtonSlot();
 
     void setSlotCode(int code);
@@ -27,8 +25,6 @@ public:
     QString movementString();
     void setMouseSpeed(int value);
     void setDistance(double distance);
-    //void setMouseMode(JoySlotMouseMode mode);
-    //JoySlotMouseMode getMouseMode();
     double getMouseDistance();
     QTime* getMouseInterval();
     void restartMouseInterval();
@@ -46,7 +42,6 @@ protected:
     JoySlotInputAction mode;
     double distance;
     QTime *mouseInterval;
-    //JoySlotMouseMode mouseMode;
 
 signals:
     

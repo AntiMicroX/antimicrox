@@ -102,7 +102,8 @@ SOURCES += main.cpp\
     dpadeditdialog.cpp \
     vdpad.cpp \
     joydpadbuttonwidget.cpp \
-    quicksetdialog.cpp
+    quicksetdialog.cpp \
+    mousehelper.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -148,7 +149,8 @@ HEADERS  += mainwindow.h \
     dpadeditdialog.h \
     vdpad.h \
     joydpadbuttonwidget.h \
-    quicksetdialog.h
+    quicksetdialog.h \
+    mousehelper.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \
