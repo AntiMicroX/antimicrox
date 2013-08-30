@@ -16,6 +16,7 @@ public:
     virtual QString getPartialName();
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
+    virtual double getSpringDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyAxis* getAxis();
     virtual void setVDPad(VDPad *vdpad);

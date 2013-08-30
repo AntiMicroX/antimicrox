@@ -70,6 +70,11 @@ double JoyAxisButton::getDistanceFromDeadZone()
     return axis->getDistanceFromDeadZone();
 }
 
+double JoyAxisButton::getSpringDistanceFromDeadZone()
+{
+    return axis->getSpringDistanceFromDeadZone();
+}
+
 void JoyAxisButton::setVDPad(VDPad *vdpad)
 {
     if (axis->isPartControlStick())

@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QComboBox>
 
 #include "keyboard/virtualkeypushbutton.h"
 #include "keyboard/virtualmousepushbutton.h"
@@ -36,6 +37,7 @@ protected:
     QSpinBox *mouseVertSpeedSpinBox;
     QPushButton *noneButton;
     QCheckBox *mouseChangeTogether;
+    QComboBox *mouseModeComboBox;
 
     static QHash<QString, QString> topRowKeys;
 
@@ -74,6 +76,7 @@ private slots:
     void updateVerticalSpeedConvertLabel(int value);
     void setButtonMouseHorizSpeed(int value);
     void setButtonMouseVertiSpeed(int value);
+    void setButtonMouseMode(int index);
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

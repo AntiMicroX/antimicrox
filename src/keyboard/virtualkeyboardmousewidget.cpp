@@ -35,6 +35,10 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
     noneButton = createNoneKey();
     mouseChangeTogether = new QCheckBox(tr("Change Together"), this);
 
+    mouseModeComboBox = new QComboBox(this);
+    mouseModeComboBox->addItem(tr("Cursor"));
+    mouseModeComboBox->addItem(tr("Spring"));
+
     this->addTab(keyboardTab, tr("Keyboard"));
     this->addTab(mouseTab, tr("Mouse"));
 
@@ -49,6 +53,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
     mouseVertSpeedSpinBox->setValue(button->getMouseSpeedY());
     updateHorizontalSpeedConvertLabel(button->getMouseSpeedX());
     updateVerticalSpeedConvertLabel(button->getMouseSpeedY());
+    mouseModeComboBox->setCurrentIndex((int)button->getMouseMode());
 
     connect(mouseChangeTogether, SIGNAL(clicked()), this, SLOT(syncSpeedSpinBoxes()));
     connect(mouseHorizSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
@@ -57,6 +62,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
     connect(mouseVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
     connect(mouseHorizSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setButtonMouseHorizSpeed(int)));
     connect(mouseVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setButtonMouseVertiSpeed(int)));
+    connect(mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setButtonMouseMode(int)));
 }
 
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
@@ -437,6 +443,14 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempInnerVBoxLayout->addWidget(mouseVertSpeedLabel);
     tempVBoxLayout->addLayout(tempInnerVBoxLayout);
 
+    tempInnerHBoxLayout = new QHBoxLayout();
+    QLabel *mouseModeLabel = new QLabel(tr("Mouse Mode").append(":"), this);
+    mouseModeLabel->setFont(font2);
+    tempInnerHBoxLayout->addWidget(mouseModeLabel);
+    tempInnerHBoxLayout->addSpacerItem(new QSpacerItem(16, 10, QSizePolicy::Fixed));
+    tempInnerHBoxLayout->addWidget(mouseModeComboBox);
+    tempVBoxLayout->addLayout(tempInnerHBoxLayout);
+
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
     tempHBoxLayout->addLayout(tempVBoxLayout);
@@ -692,4 +706,16 @@ void VirtualKeyboardMouseWidget::setButtonMouseVertiSpeed(int value)
 bool VirtualKeyboardMouseWidget::isKeyboardTabVisible()
 {
     return this->keyboardTab->isVisible();
+}
+
+void VirtualKeyboardMouseWidget::setButtonMouseMode(int index)
+{
+    if (index == 0)
+    {
+        button->setMouseMode(JoyButton::MouseCursor);
+    }
+    else if (index == 1)
+    {
+        button->setMouseMode(JoyButton::MouseSpring);
+    }
 }

@@ -28,6 +28,11 @@ public:
     double getDistanceFromDeadZone();
     double getAbsoluteDistance();
     double getNormalizedAbsoluteDistance();
+    double calculateSquareAxisXDistanceFromDeadZone();
+    double calculateSquareAxisYDistanceFromDeadZone();
+    double getSquareDistance();
+    double getNormalizedSquareDistance();
+
     int getIndex();
     void setIndex(int index);
     int getRealJoyIndex();
@@ -49,10 +54,14 @@ public:
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();
     double calculateNormalizedAxis2Placement();
-    double calculateDirectionalDistance(JoyControlStickButton *button);
+    double calculateDirectionalDistance(JoyControlStickButton *button, JoyButton::JoyMouseMovementMode=JoyButton::MouseCursor);
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();
+
+    void setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode);
+    bool hasSameButtonsMouseMode();
+    JoyButton::JoyMouseMovementMode getButtonsPresetMouseMode();
 
     void releaseButtonEvents();
 

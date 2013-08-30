@@ -18,6 +18,7 @@ public:
     virtual QString getXmlName();
     QString getDirectionName();
     virtual double getDistanceFromDeadZone();
+    virtual double getSpringDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
 
     static const QString xmlName;

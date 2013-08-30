@@ -2,10 +2,8 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QHashIterator>
-#include <QThread>
 #include <QDir>
 #include <QDebug>
-#include <QListWidget>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QSystemTrayIcon>

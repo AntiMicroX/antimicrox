@@ -70,6 +70,12 @@ QString JoyControlStickButton::getXmlName()
 double JoyControlStickButton::getDistanceFromDeadZone()
 {
     return stick->calculateDirectionalDistance(this);
+    //return stick->getNormalizedAbsoluteDistance();
+}
+
+double JoyControlStickButton::getSpringDistanceFromDeadZone()
+{
+    return stick->calculateDirectionalDistance(this, JoyButton::MouseSpring);
 }
 
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>305</height>
+    <width>532</width>
+    <height>332</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,7 +87,7 @@
        <item>
         <widget class="QLabel" name="label_11">
          <property name="text">
-          <string>Mode:</string>
+          <string>Dpad Mode:</string>
          </property>
         </widget>
        </item>
@@ -107,6 +107,42 @@
          <item>
           <property name="text">
            <string>Eight Way</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Mouse Mode:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="mouseModeComboBox">
+         <property name="minimumSize">
+          <size>
+           <width>282</width>
+           <height>0</height>
+          </size>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Cursor</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Spring</string>
           </property>
          </item>
         </widget>

@@ -19,6 +19,7 @@ public:
     
 protected:
     void selectCurrentPreset();
+    void selectCurrentMouseModePreset();
 
     JoyControlStick *stick;
 
@@ -37,6 +38,7 @@ private slots:
     void moveSpeedsTogether(int value);
     void updateConfigHorizontalSpeed(int value);
     void updateConfigVerticalSpeed(int value);
+    void updateMouseMode(int index);
 
     void checkMaxZone(int value);
 };

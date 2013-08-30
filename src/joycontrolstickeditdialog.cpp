@@ -65,6 +65,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     updateVerticalSpeedConvertLabel(tempMouseSpeedY);
 
     selectCurrentPreset();
+    selectCurrentMouseModePreset();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
@@ -93,6 +94,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
 
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMouseMode(int)));
 }
 
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
@@ -428,5 +430,38 @@ void JoyControlStickEditDialog::selectCurrentPreset()
     else if (upslots->length() == 0 && downslots->length() == 0 && leftslots->length() == 0 && rightslots->length() == 0)
     {
         ui->presetsComboBox->setCurrentIndex(8);
+    }
+}
+
+void JoyControlStickEditDialog::updateMouseMode(int index)
+{
+    if (index == 1)
+    {
+        stick->setButtonsMouseMode(JoyButton::MouseCursor);
+    }
+    else if (index == 2)
+    {
+        stick->setButtonsMouseMode(JoyButton::MouseSpring);
+    }
+}
+
+void JoyControlStickEditDialog::selectCurrentMouseModePreset()
+{
+    bool presetDefined = stick->hasSameButtonsMouseMode();
+    if (presetDefined)
+    {
+        JoyButton::JoyMouseMovementMode mode = stick->getButtonsPresetMouseMode();
+        if (mode == JoyButton::MouseCursor)
+        {
+            ui->mouseModeComboBox->setCurrentIndex(1);
+        }
+        else if (mode == JoyButton::MouseSpring)
+        {
+            ui->mouseModeComboBox->setCurrentIndex(2);
+        }
+    }
+    else
+    {
+        ui->mouseModeComboBox->setCurrentIndex(0);
     }
 }
