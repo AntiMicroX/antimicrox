@@ -804,6 +804,18 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     this->setChangeSetCondition(tempcondition);
                 }
             }
+            else if (xml->name() == "mousemode" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (temptext == "cursor")
+                {
+                    setMouseMode(MouseCursor);
+                }
+                else if (temptext == "spring")
+                {
+                    setMouseMode(MouseSpring);
+                }
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -827,6 +839,16 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
         xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
         xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
+
+        if (mouseMode == MouseCursor)
+        {
+            xml->writeTextElement("mousemode", "cursor");
+        }
+        else if (mouseMode == MouseSpring)
+        {
+            xml->writeTextElement("mousemode", "spring");
+        }
+
         if (setSelectionCondition != SetChangeDisabled)
         {
             xml->writeTextElement("setselect", QString::number(setSelection+1));
