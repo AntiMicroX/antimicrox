@@ -83,7 +83,7 @@ void sendSpringEvent(double xcoor, double ycoor)
             double diffx = abs(mouseEvent.xbutton.x_root - xmovecoor);
             double diffy = abs(mouseEvent.xbutton.y_root - ymovecoor);
             //double finaldiff = sqrt((diffx*diffx)+(diffy*diffy));
-            if (!mouseHelperObj.springMouseMoving && (diffx >= width*.01 || diffy >= height*.01))
+            if (!mouseHelperObj.springMouseMoving && (diffx >= width*.0066 || diffy >= height*.0066))
             {
                 mouseHelperObj.springMouseMoving = true;
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);

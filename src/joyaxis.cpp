@@ -486,7 +486,7 @@ double JoyAxis::getSpringDistanceFromDeadZone()
         distance = (currentThrottledValue + deadZone)/(double)(-maxZoneValue + deadZone);
     }
 
-    distance *= factor;
+    //distance *= factor;
 
     if (distance > 1.0)
     {

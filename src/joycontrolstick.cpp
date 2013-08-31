@@ -717,7 +717,7 @@ double JoyControlStick::calculateSquareAxisXDistanceFromDeadZone()
     //int squareY = sqrt(square_dist/qMax(axis1Square, axis2Square)) * axis2Value;
     double factor = JoyAxis::AXISMAX/(qMin(22000.0, (double)maxZone));
     //distance = ((abs(axis1Value) - deadX)/(double)(maxZone - deadX))*1.5;
-    distance = ((abs(axis1Value) - deadX)/(double)(maxZone - deadX))*factor;
+    distance = ((abs(axis1Value) - deadX)/(double)(maxZone - deadX));
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -767,7 +767,7 @@ double JoyControlStick::calculateSquareAxisYDistanceFromDeadZone()
     //int squareY = sqrt(square_dist/(double)qMax(axis1Square, axis2Square)) * abs(axis2Value);
     double factor = JoyAxis::AXISMAX/(qMin(22000.0, (double)maxZone));
     //distance = ((abs(axis2Value) - deadY)/(double)(maxZone - deadY))*1.5;
-    distance = ((abs(axis2Value) - deadY)/(double)(maxZone - deadY))*factor;
+    distance = ((abs(axis2Value) - deadY)/(double)(maxZone - deadY));
     if (distance > 1.0)
     {
         distance = 1.0;
