@@ -337,6 +337,9 @@ Speed:</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="maximum">
+               <number>16777215</number>
+              </property>
              </widget>
             </item>
            </layout>
@@ -354,6 +357,9 @@ Speed:</string>
              <widget class="QSpinBox" name="springHeightSpinBox">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="maximum">
+               <number>16777215</number>
               </property>
              </widget>
             </item>

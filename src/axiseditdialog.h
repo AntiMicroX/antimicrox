@@ -21,7 +21,6 @@ public:
 
 protected:
     void selectCurrentPreset();
-    void selectCurrentMouseModePreset();
 
     JoyAxis *axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
@@ -34,8 +33,6 @@ private slots:
     void implementPresets(int index);
     void updateDeadZoneBox(int value);
     void updateMaxZoneBox(int value);
-    void updateHorizontalSpeedConvertLabel(int value);
-    void updateVerticalSpeedConvertLabel(int value);
     void updateThrottleUi(int index);
     void updateJoyValue(int value);
     void updateDeadZoneSlider(QString value);
@@ -47,14 +44,8 @@ private slots:
     void refreshNButtonLabel();
     void refreshPreset();
 
-    void syncSpeedSpinBoxes();
-    void moveSpeedsTogether(int value);
-    void changeMouseSpeedsInterface(bool value);
-    void updateConfigHorizontalSpeed(int value);
-    void updateConfigVerticalSpeed(int value);
-    void updateMouseMode(int index);
-
     void checkFinalSettings();
+    void openMouseSettingsDialog();
 };
 
 #endif // AXISEDITDIALOG_H

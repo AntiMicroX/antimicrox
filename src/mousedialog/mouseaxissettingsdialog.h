@@ -1,21 +1,21 @@
-#ifndef MOUSECONTROLSTICKSETTINGSDIALOG_H
-#define MOUSECONTROLSTICKSETTINGSDIALOG_H
+#ifndef MOUSEAXISSETTINGSDIALOG_H
+#define MOUSEAXISSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
-#include "joycontrolstick.h"
+#include "joyaxis.h"
 
-class MouseControlStickSettingsDialog : public MouseSettingsDialog
+class MouseAxisSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 public:
-    explicit MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent=0);
-    
+    explicit MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent = 0);
+
 protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
 
-    JoyControlStick *stick;
+    JoyAxis *axis;
 
 signals:
     
@@ -30,4 +30,4 @@ public slots:
     void updateAccelerationCurvePresetComboBox();
 };
 
-#endif // MOUSECONTROLSTICKSETTINGSDIALOG_H
+#endif // MOUSEAXISSETTINGSDIALOG_H

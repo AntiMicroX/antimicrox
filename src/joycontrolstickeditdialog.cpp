@@ -3,7 +3,7 @@
 
 #include "joycontrolstickeditdialog.h"
 #include "ui_joycontrolstickeditdialog.h"
-#include "buttoneditdialog.h"
+#include "mousedialog/mousecontrolsticksettingsdialog.h"
 #include "event.h"
 
 JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent) :
@@ -42,41 +42,10 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     ui->stickStatusBoxWidget->setStick(stick);
 
-    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-    int tempMouseSpeedX = 0;
-    while (iter.hasNext())
-    {
-        JoyControlStickButton *button = iter.next().value();
-        tempMouseSpeedX = qMax(tempMouseSpeedX, button->getMouseSpeedX());
-    }
-
-    iter.toFront();
-    int tempMouseSpeedY = 0;
-    while (iter.hasNext())
-    {
-        JoyControlStickButton *button = iter.next().value();
-        tempMouseSpeedY = qMax(tempMouseSpeedY, button->getMouseSpeedY());
-    }
-
-    ui->horizontalSpinBox->setValue(tempMouseSpeedX);
-    updateHorizontalSpeedConvertLabel(tempMouseSpeedX);
-
-    ui->verticalSpinBox->setValue(tempMouseSpeedY);
-    updateVerticalSpeedConvertLabel(tempMouseSpeedY);
-
     selectCurrentPreset();
-    selectCurrentMouseModePreset();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
-
-    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
-    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
-    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigHorizontalSpeed(int)));
-
-    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
-    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
-    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigVerticalSpeed(int)));
 
     connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
     connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
@@ -90,11 +59,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
 
-    connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
-    connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
-
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
-    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMouseMode(int)));
+    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
 }
 
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
@@ -267,76 +233,6 @@ void JoyControlStickEditDialog::refreshStickStats(int x, int y)
     ui->diagonalLabel->setText(QString::number(stick->calculateBearing()));
 }
 
-void JoyControlStickEditDialog::syncSpeedSpinBoxes()
-{
-    int temp = ui->horizontalSpinBox->value();
-    if (temp > ui->verticalSpinBox->value())
-    {
-        ui->verticalSpinBox->setValue(temp);
-    }
-    else
-    {
-        temp = ui->verticalSpinBox->value();
-        ui->horizontalSpinBox->setValue(temp);
-    }
-}
-
-void JoyControlStickEditDialog::changeMouseSpeedsInterface(bool value)
-{
-    ui->horizontalSpinBox->setEnabled(value);
-    ui->verticalSpinBox->setEnabled(value);
-    ui->changeTogetherCheckBox->setEnabled(value);
-}
-
-void JoyControlStickEditDialog::updateHorizontalSpeedConvertLabel(int value)
-{
-    QString label = QString (QString::number(value));
-    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
-    ui->horizontalSpeedLabel->setText(label);
-}
-
-void JoyControlStickEditDialog::updateVerticalSpeedConvertLabel(int value)
-{
-    QString label = QString (QString::number(value));
-    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
-    ui->verticalSpeedLabel->setText(label);
-}
-
-void JoyControlStickEditDialog::moveSpeedsTogether(int value)
-{
-    if (ui->changeTogetherCheckBox->isChecked())
-    {
-        ui->horizontalSpinBox->setValue(value);
-        ui->verticalSpinBox->setValue(value);
-    }
-}
-
-void JoyControlStickEditDialog::updateConfigHorizontalSpeed(int value)
-{
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
-    {
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-        while (iter.hasNext())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            button->setMouseSpeedX(value);
-        }
-    }
-}
-
-void JoyControlStickEditDialog::updateConfigVerticalSpeed(int value)
-{
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
-    {
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-        while (iter.hasNext())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            button->setMouseSpeedY(value);
-        }
-    }
-}
-
 void JoyControlStickEditDialog::checkMaxZone(int value)
 {
     if (value > ui->deadZoneSpinBox->value())
@@ -445,23 +341,9 @@ void JoyControlStickEditDialog::updateMouseMode(int index)
     }
 }
 
-void JoyControlStickEditDialog::selectCurrentMouseModePreset()
+void JoyControlStickEditDialog::openMouseSettingsDialog()
 {
-    bool presetDefined = stick->hasSameButtonsMouseMode();
-    if (presetDefined)
-    {
-        JoyButton::JoyMouseMovementMode mode = stick->getButtonsPresetMouseMode();
-        if (mode == JoyButton::MouseCursor)
-        {
-            ui->mouseModeComboBox->setCurrentIndex(1);
-        }
-        else if (mode == JoyButton::MouseSpring)
-        {
-            ui->mouseModeComboBox->setCurrentIndex(2);
-        }
-    }
-    else
-    {
-        ui->mouseModeComboBox->setCurrentIndex(0);
-    }
+    MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(this->stick, this);
+    dialog->show();
+    connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
 }

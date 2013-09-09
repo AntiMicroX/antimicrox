@@ -112,7 +112,6 @@ protected:
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 
-
 signals:
     void moved(int xaxis, int yaxis);
     void active(int xaxis, int yaxis);

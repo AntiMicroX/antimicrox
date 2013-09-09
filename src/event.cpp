@@ -76,11 +76,9 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
         XGetWindowAttributes(display, wid, &xwAttr);
         width = xwAttr.width;
         height = xwAttr.height;
-
-        //width = 640;
-        //height = 480;
         midwidth = width / 2;
         midheight = height / 2;
+
         if (springWidth >= 2 && springHeight >= 2)
         {
             destSpringWidth = qMin(springWidth, width);
@@ -88,12 +86,9 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
         }
         else
         {
-            destSpringWidth = springWidth;
-            destSpringHeight = springHeight;
+            destSpringWidth = width;
+            destSpringHeight = height;
         }
-
-        destSpringWidth = 640;
-        destSpringHeight = 480;
 
         destMidWidth = destSpringWidth / 2;
         destMidHeight = destSpringHeight / 2;

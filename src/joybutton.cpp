@@ -677,7 +677,7 @@ void JoyButton::mouseEvent()
                 change = (change >= 0.0) ? change : -change;
                 //if (change > 0.005)
                 //{
-                    sendSpringEvent(mouse1, mouse2);
+                    sendSpringEvent(mouse1, mouse2, springWidth, springHeight);
                     //buttonslot->setDistance(tempdiff);
                 //}
             }

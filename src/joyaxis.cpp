@@ -617,3 +617,85 @@ JoyButton::JoyMouseMovementMode JoyAxis::getButtonsPresetMouseMode()
 
     return resultMode;
 }
+
+void JoyAxis::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
+{
+    paxisbutton->setMouseCurve(mouseCurve);
+    naxisbutton->setMouseCurve(mouseCurve);
+}
+
+bool JoyAxis::hasSameButtonsMouseCurve()
+{
+    bool result = true;
+    if (paxisbutton->getMouseCurve() != naxisbutton->getMouseCurve())
+    {
+        result = false;
+    }
+
+    return result;
+}
+
+JoyButton::JoyMouseCurve JoyAxis::getButtonsPresetMouseCurve()
+{
+    JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
+    if (paxisbutton->getMouseCurve() == naxisbutton->getMouseCurve())
+    {
+        resultCurve = paxisbutton->getMouseCurve();
+    }
+
+    return resultCurve;
+}
+
+void JoyAxis::setButtonsSpringWidth(int value)
+{
+    paxisbutton->setSpringWidth(value);
+    naxisbutton->setSpringWidth(value);
+}
+
+void JoyAxis::setButtonsSpringHeight(int value)
+{
+    paxisbutton->setSpringHeight(value);
+    naxisbutton->setSpringHeight(value);
+}
+
+int JoyAxis::getButtonsPresetSpringWidth()
+{
+    int presetSpringWidth = 0;
+
+    if (paxisbutton->getSpringWidth() == naxisbutton->getSpringWidth())
+    {
+        presetSpringWidth = paxisbutton->getSpringWidth();
+    }
+
+    return presetSpringWidth;
+}
+
+int JoyAxis::getButtonsPresetSpringHeight()
+{
+    int presetSpringHeight = 0;
+
+    if (paxisbutton->getSpringHeight() == naxisbutton->getSpringHeight())
+    {
+        presetSpringHeight = paxisbutton->getSpringHeight();
+    }
+
+    return presetSpringHeight;
+}
+
+void JoyAxis::setButtonsSensitivity(double value)
+{
+    paxisbutton->setSensitivity(value);
+    naxisbutton->setSensitivity(value);
+}
+
+double JoyAxis::getButtonsPresetSensitivity()
+{
+    double presetSensitivity = 1.0;
+
+    if (paxisbutton->getSensitivity() == naxisbutton->getSensitivity())
+    {
+        presetSensitivity = paxisbutton->getSensitivity();
+    }
+
+    return presetSensitivity;
+}

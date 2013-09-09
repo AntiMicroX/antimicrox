@@ -61,6 +61,19 @@ public:
     bool hasSameButtonsMouseMode();
     JoyButton::JoyMouseMovementMode getButtonsPresetMouseMode();
 
+    void setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve);
+    bool hasSameButtonsMouseCurve();
+    JoyButton::JoyMouseCurve getButtonsPresetMouseCurve();
+
+    void setButtonsSpringWidth(int value);
+    int getButtonsPresetSpringWidth();
+
+    void setButtonsSpringHeight(int value);
+    int getButtonsPresetSpringHeight();
+
+    void setButtonsSensitivity(double value);
+    double getButtonsPresetSensitivity();
+
     virtual bool isDefault();
 
     static const int AXISMIN;

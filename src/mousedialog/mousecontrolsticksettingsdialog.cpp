@@ -6,16 +6,20 @@
 MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent) :
     MouseSettingsDialog(parent)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
+
     this->stick = stick;
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
+    changeSpringSpinBoxStatus(ui->mouseModeComboBox->currentIndex());
     changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
     if (stick->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(stick->getButtonsPresetSensitivity());
     }
+    updateAccelerationCurvePresetComboBox();
 
     setWindowTitle(tr("Mouse Settings - ").append(tr("Stick %1").arg(stick->getRealJoyIndex())));
 
@@ -165,4 +169,29 @@ void MouseControlStickSettingsDialog::calculateMouseSpeedPreset()
 void MouseControlStickSettingsDialog::updateSensitivity(double value)
 {
     stick->setButtonsSensitivity(value);
+}
+
+void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
+{
+    JoyButton::JoyMouseCurve temp = stick->getButtonsPresetMouseCurve();
+    if (temp == JoyButton::LinearCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(1);
+    }
+    else if (temp == JoyButton::QuadraticCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(2);
+    }
+    else if (temp == JoyButton::CubicCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(3);
+    }
+    else if (temp == JoyButton::QuadraticExtremeCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(4);
+    }
+    else if (temp == JoyButton::PowerCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(5);
+    }
 }
