@@ -42,7 +42,7 @@ void sendevent(int code1, int code2)
     XUnlockDisplay (display);
 }
 
-void sendSpringEvent(double xcoor, double ycoor)
+void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeight)
 {
     display = X11Info::display();
 
@@ -58,6 +58,10 @@ void sendSpringEvent(double xcoor, double ycoor)
         int height = 0;
         int midwidth = 0;
         int midheight = 0;
+        int destSpringWidth = 0;
+        int destSpringHeight = 0;
+        int destMidWidth = 0;
+        int destMidHeight = 0;
 
         XEvent mouseEvent;
         Window wid = DefaultRootWindow(display);
@@ -72,18 +76,37 @@ void sendSpringEvent(double xcoor, double ycoor)
         XGetWindowAttributes(display, wid, &xwAttr);
         width = xwAttr.width;
         height = xwAttr.height;
+
+        //width = 640;
+        //height = 480;
         midwidth = width / 2;
         midheight = height / 2;
+        if (springWidth >= 2 && springHeight >= 2)
+        {
+            destSpringWidth = qMin(springWidth, width);
+            destSpringHeight = qMin(springHeight, height);
+        }
+        else
+        {
+            destSpringWidth = springWidth;
+            destSpringHeight = springHeight;
+        }
 
-        xmovecoor = (xcoor >= -1.0) ? (midwidth + (xcoor * midwidth)): mouseEvent.xbutton.x_root;
-        ymovecoor = (ycoor >= -1.0) ? (midheight + (ycoor * midheight)) : mouseEvent.xbutton.y_root;
+        destSpringWidth = 640;
+        destSpringHeight = 480;
+
+        destMidWidth = destSpringWidth / 2;
+        destMidHeight = destSpringHeight / 2;
+
+        xmovecoor = (xcoor >= -1.0) ? (midwidth + (xcoor * destMidWidth)): mouseEvent.xbutton.x_root;
+        ymovecoor = (ycoor >= -1.0) ? (midheight + (ycoor * destMidHeight)) : mouseEvent.xbutton.y_root;
 
         if (xmovecoor != mouseEvent.xbutton.x_root || ymovecoor != mouseEvent.xbutton.y_root)
         {
             double diffx = abs(mouseEvent.xbutton.x_root - xmovecoor);
             double diffy = abs(mouseEvent.xbutton.y_root - ymovecoor);
             //double finaldiff = sqrt((diffx*diffx)+(diffy*diffy));
-            if (!mouseHelperObj.springMouseMoving && (diffx >= width*.0066 || diffy >= height*.0066))
+            if (!mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.0066 || diffy >= destSpringHeight*.0066))
             {
                 mouseHelperObj.springMouseMoving = true;
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);

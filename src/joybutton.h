@@ -25,6 +25,7 @@ public:
 
     enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay, SetChangeTwoWay, SetChangeWhileHeld};
     enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
+    enum JoyMouseCurve {LinearCurve=0, QuadraticCurve, CubicCurve, QuadraticExtremeCurve, PowerCurve};
 
     void joyEvent (bool pressed, bool ignoresets=false);
     int getJoyNumber ();
@@ -81,6 +82,14 @@ public:
 
     void setMouseMode(JoyMouseMovementMode mousemode);
     JoyMouseMovementMode getMouseMode();
+
+    void setMouseCurve(JoyMouseCurve selectedCurve);
+    JoyMouseCurve getMouseCurve();
+
+    int getSpringWidth();
+    int getSpringHeight();
+
+    double getSensitivity();
 
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
@@ -142,6 +151,11 @@ protected:
     VDPad *vdpad;
     bool ignoreEvents;
     JoyMouseMovementMode mouseMode;
+    JoyMouseCurve mouseCurve;
+
+    int springWidth;
+    int springHeight;
+    double sensitivity;
 
 signals:
     void clicked (int index);
@@ -162,6 +176,11 @@ public slots:
     void setUseTurbo(bool useTurbo);
     void setMouseSpeedX(int speed);
     void setMouseSpeedY(int speed);
+
+    void setSpringWidth(int value);
+    void setSpringHeight(int value);
+
+    void setSensitivity(double value);
 
     virtual void reset();
     virtual void reset(int index);

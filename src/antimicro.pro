@@ -103,7 +103,9 @@ SOURCES += main.cpp\
     vdpad.cpp \
     joydpadbuttonwidget.cpp \
     quicksetdialog.cpp \
-    mousehelper.cpp
+    mousehelper.cpp \
+    mousesettingsdialog.cpp \
+    mousedialog/mousecontrolsticksettingsdialog.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -150,7 +152,9 @@ HEADERS  += mainwindow.h \
     vdpad.h \
     joydpadbuttonwidget.h \
     quicksetdialog.h \
-    mousehelper.h
+    mousehelper.h \
+    mousesettingsdialog.h \
+    mousedialog/mousecontrolsticksettingsdialog.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \
@@ -161,7 +165,8 @@ FORMS    += mainwindow.ui \
     joycontrolstickeditdialog.ui \
     advancestickassignmentdialog.ui \
     dpadeditdialog.ui \
-    quicksetdialog.ui
+    quicksetdialog.ui \
+    mousesettingsdialog.ui
 
 
 LIBS += -lSDL -lXtst -lX11

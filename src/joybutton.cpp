@@ -251,6 +251,10 @@ void JoyButton::reset()
     mouseSpeedX = 50;
     mouseSpeedY = 50;
     mouseMode = MouseCursor;
+    mouseCurve = LinearCurve;
+    springWidth = 0;
+    springHeight = 0;
+    sensitivity = 1.0;
     setSelection = -1;
     setSelectionCondition = SetChangeDisabled;
     ignoresets = false;
@@ -568,6 +572,46 @@ void JoyButton::mouseEvent()
                 int mouse1 = 0;
                 int mouse2 = 0;
                 double sumDist = buttonslot->getMouseDistance();
+                JoyMouseCurve duder = QuadraticCurve;
+
+                switch (duder)
+                {
+                    case LinearCurve:
+                    {
+                        break;
+                    }
+                    case QuadraticCurve:
+                    {
+                        difference = difference * difference;
+                        break;
+                    }
+                    case CubicCurve:
+                    {
+                        difference = difference * difference * difference;
+                        break;
+                    }
+                    case QuadraticExtremeCurve:
+                    {
+                        double temp = difference;
+                        difference = difference * difference;
+                        difference = (temp >= 0.95) ? (difference * 1.5) : difference;
+                        break;
+                    }
+                    case PowerCurve:
+                    {
+                        double tempsensitive = qMin(qMax(1.0, 1.0e-8), 1.0e+3);
+                        double temp = qMin(qMax(pow(difference, 1.0 / tempsensitive), 0.0), 1.0);
+                        difference = temp;
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+
+                //difference = qMin(qMax(difference, 0.0), 1.0);
+
                 if (mousedirection == JoyButtonSlot::MouseRight)
                 {
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
@@ -601,7 +645,6 @@ void JoyButton::mouseEvent()
                 {
                     sendevent(mouse1, mouse2);
                     sumDist = 0.0;
-
                     buttonslot->setDistance(sumDist);
                 }
             }
@@ -1682,6 +1725,10 @@ bool JoyButton::isDefault()
     value = value && (setSelectionCondition == SetChangeDisabled);
     value = value && (assignments.isEmpty());
     value = value && (mouseMode == MouseCursor);
+    value = value && (mouseCurve == LinearCurve);
+    value = value && (springWidth == 0);
+    value = value && (springHeight == 0);
+    value = value && (sensitivity == 1.0);
     return value;
 }
 
@@ -1703,4 +1750,53 @@ void JoyButton::setMouseMode(JoyMouseMovementMode mousemode)
 JoyButton::JoyMouseMovementMode JoyButton::getMouseMode()
 {
     return mouseMode;
+}
+
+void JoyButton::setMouseCurve(JoyMouseCurve selectedCurve)
+{
+    mouseCurve = selectedCurve;
+}
+
+JoyButton::JoyMouseCurve JoyButton::getMouseCurve()
+{
+    return mouseCurve;
+}
+
+void JoyButton::setSpringWidth(int value)
+{
+    if (value >= 0)
+    {
+        springWidth = value;
+    }
+}
+
+int JoyButton::getSpringWidth()
+{
+    return springWidth;
+}
+
+void JoyButton::setSpringHeight(int value)
+{
+    if (springHeight >= 0)
+    {
+        springHeight = value;
+    }
+}
+
+int JoyButton::getSpringHeight()
+{
+    return springHeight;
+}
+
+void JoyButton::setSensitivity(double value)
+{
+    if (value >= 0.001 && value <= 1000)
+    {
+        sensitivity = value;
+    }
+}
+
+double JoyButton::getSensitivity()
+{
+    return sensitivity;
 }

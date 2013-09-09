@@ -698,6 +698,7 @@ double JoyControlStick::calculateSquareAxisXDistanceFromDeadZone()
     }
 
     int deadX = (int)round(deadZone * sin(relativeAngle * PI / 180.0));
+    int maxZoneX = (int)round(maxZone * sin(relativeAngle * PI / 180.0));
     double dirLen = qMin(sqrt(square_dist) * 1.25, JoyAxis::AXISMAX * 1.0);
     int scale = qMax(1, absX > absY ? absX : absY);
     //int squareX = (axis1Value * dirLen)/scale;
@@ -727,6 +728,8 @@ double JoyControlStick::calculateSquareAxisXDistanceFromDeadZone()
         distance = 0.0;
     }
 
+    //distance *= 0.5;
+
     return distance;
 }
 
@@ -749,8 +752,11 @@ double JoyControlStick::calculateSquareAxisYDistanceFromDeadZone()
         relativeAngle = relativeAngle - 180;
     }
 
+    int maxZoneX = abs(round(maxZone * sin(relativeAngle * PI / 180.0)));
     //int deadX = (int)round(deadZone * sin(relativeAngle * PI / 180.0));
-    int deadY = abs(round(deadZone * cos(relativeAngle * PI / 180.0)));
+    int deadY = abs(round(deadZone * cos((relativeAngle * PI) / 180.0)));
+    double dudebro = cos((relativeAngle * PI) / 180.0);
+    int maxZoneY = abs(round(maxZone * cos((relativeAngle * PI) / 180.0)));
     double dirLen = qMin(sqrt(square_dist) * 1.25, JoyAxis::AXISMAX * 1.0);
     int scale = qMax(1, absX > absY ? absX : absY);
     int squareY = (axis2Value * dirLen)/scale;
@@ -767,7 +773,12 @@ double JoyControlStick::calculateSquareAxisYDistanceFromDeadZone()
     //int squareY = sqrt(square_dist/(double)qMax(axis1Square, axis2Square)) * abs(axis2Value);
     double factor = JoyAxis::AXISMAX/(qMin(22000.0, (double)maxZone));
     //distance = ((abs(axis2Value) - deadY)/(double)(maxZone - deadY))*1.5;
-    distance = ((abs(axis2Value) - deadY)/(double)(maxZone - deadY));
+    distance = (abs(axis2Value) - deadY)/(double)(maxZone - deadY);
+    if (abs(axis2Value) > maxZoneY)
+    {
+        qDebug() << "SQUEALING PIGS";
+    }
+
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -776,6 +787,9 @@ double JoyControlStick::calculateSquareAxisYDistanceFromDeadZone()
     {
         distance = 0.0;
     }
+
+    //distance *= 0.5;
+
 
     return distance;
 }
@@ -1210,4 +1224,245 @@ JoyButton::JoyMouseMovementMode JoyControlStick::getButtonsPresetMouseMode()
     }
 
     return resultMode;
+}
+
+void JoyControlStick::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setMouseCurve(mouseCurve);
+    }
+}
+
+bool JoyControlStick::hasSameButtonsMouseCurve()
+{
+    bool result = true;
+
+    JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    temphash.insert(StickUp, buttons.value(StickUp));
+    temphash.insert(StickDown, buttons.value(StickDown));
+    temphash.insert(StickLeft, buttons.value(StickLeft));
+    temphash.insert(StickRight, buttons.value(StickRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
+        temphash.insert(StickRightUp, buttons.value(StickRightUp));
+        temphash.insert(StickRightDown, buttons.value(StickRightDown));
+        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
+    }
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            initialCurve = button->getMouseCurve();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+            if (temp != initialCurve)
+            {
+                result = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return result;
+}
+
+JoyButton::JoyMouseCurve JoyControlStick::getButtonsPresetMouseCurve()
+{
+    JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
+
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    temphash.insert(StickUp, buttons.value(StickUp));
+    temphash.insert(StickDown, buttons.value(StickDown));
+    temphash.insert(StickLeft, buttons.value(StickLeft));
+    temphash.insert(StickRight, buttons.value(StickRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
+        temphash.insert(StickRightUp, buttons.value(StickRightUp));
+        temphash.insert(StickRightDown, buttons.value(StickRightDown));
+        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
+    }
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            resultCurve = button->getMouseCurve();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+            if (temp != resultCurve)
+            {
+                resultCurve = JoyButton::LinearCurve;
+                iter.toBack();
+            }
+        }
+    }
+
+    return resultCurve;
+}
+
+void JoyControlStick::setButtonsSpringWidth(int value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setSpringWidth(value);
+    }
+}
+
+void JoyControlStick::setButtonsSpringHeight(int value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setSpringHeight(value);
+    }
+}
+
+int JoyControlStick::getButtonsPresetSpringWidth()
+{
+    int presetSpringWidth = 0;
+
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    temphash.insert(StickUp, buttons.value(StickUp));
+    temphash.insert(StickDown, buttons.value(StickDown));
+    temphash.insert(StickLeft, buttons.value(StickLeft));
+    temphash.insert(StickRight, buttons.value(StickRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
+        temphash.insert(StickRightUp, buttons.value(StickRightUp));
+        temphash.insert(StickRightDown, buttons.value(StickRightDown));
+        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
+    }
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            presetSpringWidth = button->getSpringWidth();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            int temp = button->getSpringWidth();
+            if (temp != presetSpringWidth)
+            {
+                presetSpringWidth = 0;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSpringWidth;
+}
+
+int JoyControlStick::getButtonsPresetSpringHeight()
+{
+    int presetSpringHeight = 0;
+
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    temphash.insert(StickUp, buttons.value(StickUp));
+    temphash.insert(StickDown, buttons.value(StickDown));
+    temphash.insert(StickLeft, buttons.value(StickLeft));
+    temphash.insert(StickRight, buttons.value(StickRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
+        temphash.insert(StickRightUp, buttons.value(StickRightUp));
+        temphash.insert(StickRightDown, buttons.value(StickRightDown));
+        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
+    }
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            presetSpringHeight = button->getSpringHeight();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            int temp = button->getSpringHeight();
+            if (temp != presetSpringHeight)
+            {
+                presetSpringHeight = 0;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSpringHeight;
+}
+
+void JoyControlStick::setButtonsSensitivity(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setSensitivity(value);
+    }
+}
+
+double JoyControlStick::getButtonsPresetSensitivity()
+{
+    double presetSensitivity = 1.0;
+
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    temphash.insert(StickUp, buttons.value(StickUp));
+    temphash.insert(StickDown, buttons.value(StickDown));
+    temphash.insert(StickLeft, buttons.value(StickLeft));
+    temphash.insert(StickRight, buttons.value(StickRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
+        temphash.insert(StickRightUp, buttons.value(StickRightUp));
+        temphash.insert(StickRightDown, buttons.value(StickRightDown));
+        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
+    }
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            presetSensitivity = button->getSensitivity();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            double temp = button->getSensitivity();
+            if (temp != presetSensitivity)
+            {
+                presetSensitivity = 1.0;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSensitivity;
 }
