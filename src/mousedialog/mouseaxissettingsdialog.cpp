@@ -71,20 +71,14 @@ void MouseAxisSettingsDialog::changeMouseCurve(int index)
 
 void MouseAxisSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
-    {
-        axis->getPAxisButton()->setMouseSpeedX(value);
-        axis->getNAxisButton()->setMouseSpeedX(value);
-    }
+    axis->getPAxisButton()->setMouseSpeedX(value);
+    axis->getNAxisButton()->setMouseSpeedX(value);
 }
 
 void MouseAxisSettingsDialog::updateConfigVerticalSpeed(int value)
 {
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
-    {
-        axis->getPAxisButton()->setMouseSpeedY(value);
-        axis->getNAxisButton()->setMouseSpeedY(value);
-    }
+    axis->getPAxisButton()->setMouseSpeedY(value);
+    axis->getNAxisButton()->setMouseSpeedY(value);
 }
 
 void MouseAxisSettingsDialog::updateSpringWidth(int value)

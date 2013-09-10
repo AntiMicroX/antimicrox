@@ -68,7 +68,7 @@ void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 
 void MouseSettingsDialog::moveSpeedsTogether(int value)
 {
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    if (ui->changeMouseSpeedsTogetherCheckBox->isChecked())
     {
         ui->horizontalSpinBox->setValue(value);
         ui->verticalSpinBox->setValue(value);

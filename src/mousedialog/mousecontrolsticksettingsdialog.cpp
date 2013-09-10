@@ -73,27 +73,21 @@ void MouseControlStickSettingsDialog::changeMouseCurve(int index)
 
 void MouseControlStickSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+    while (iter.hasNext())
     {
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-        while (iter.hasNext())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            button->setMouseSpeedX(value);
-        }
+        JoyControlStickButton *button = iter.next().value();
+        button->setMouseSpeedX(value);
     }
 }
 
 void MouseControlStickSettingsDialog::updateConfigVerticalSpeed(int value)
 {
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
+    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+    while (iter.hasNext())
     {
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-        while (iter.hasNext())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            button->setMouseSpeedY(value);
-        }
+        JoyControlStickButton *button = iter.next().value();
+        button->setMouseSpeedY(value);
     }
 }
 

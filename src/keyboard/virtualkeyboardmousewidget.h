@@ -31,13 +31,14 @@ protected:
     JoyButton *button;
     QWidget *keyboardTab;
     QWidget *mouseTab;
-    QLabel *mouseHorizSpeedLabel;
-    QLabel *mouseVertSpeedLabel;
-    QSpinBox *mouseHorizSpeedSpinBox;
-    QSpinBox *mouseVertSpeedSpinBox;
+    //QLabel *mouseHorizSpeedLabel;
+    //QLabel *mouseVertSpeedLabel;
+    //QSpinBox *mouseHorizSpeedSpinBox;
+    //QSpinBox *mouseVertSpeedSpinBox;
     QPushButton *noneButton;
-    QCheckBox *mouseChangeTogether;
-    QComboBox *mouseModeComboBox;
+    QPushButton *mouseSettingsPushButton;
+    //QCheckBox *mouseChangeTogether;
+    //QComboBox *mouseModeComboBox;
 
     static QHash<QString, QString> topRowKeys;
 
@@ -70,13 +71,7 @@ private slots:
     void processAdvancedMouseSelection(JoyButtonSlot *tempslot);
     void clearButtonSlots();
     void clearButtonSlotsFinish();
-    void syncSpeedSpinBoxes();
-    void moveSpeedsTogether(int value);
-    void updateHorizontalSpeedConvertLabel(int value);
-    void updateVerticalSpeedConvertLabel(int value);
-    void setButtonMouseHorizSpeed(int value);
-    void setButtonMouseVertiSpeed(int value);
-    void setButtonMouseMode(int index);
+    void openMouseSettingsDialog();
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

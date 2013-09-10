@@ -106,7 +106,9 @@ SOURCES += main.cpp\
     mousehelper.cpp \
     mousesettingsdialog.cpp \
     mousedialog/mousecontrolsticksettingsdialog.cpp \
-    mousedialog/mouseaxissettingsdialog.cpp
+    mousedialog/mouseaxissettingsdialog.cpp \
+    mousedialog/mousebuttonsettingsdialog.cpp \
+    mousedialog/mousedpadsettingsdialog.cpp
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -156,7 +158,9 @@ HEADERS  += mainwindow.h \
     mousehelper.h \
     mousesettingsdialog.h \
     mousedialog/mousecontrolsticksettingsdialog.h \
-    mousedialog/mouseaxissettingsdialog.h
+    mousedialog/mouseaxissettingsdialog.h \
+    mousedialog/mousebuttonsettingsdialog.h \
+    mousedialog/mousedpadsettingsdialog.h
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \

@@ -142,7 +142,7 @@
          <number>8</number>
         </property>
         <item alignment="Qt::AlignHCenter">
-         <widget class="QCheckBox" name="changeMouseSpeedsCheckBox">
+         <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
           <property name="enabled">
            <bool>true</bool>
           </property>
