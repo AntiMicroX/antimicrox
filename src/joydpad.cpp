@@ -396,3 +396,244 @@ JoyButton::JoyMouseMovementMode JoyDPad::getButtonsPresetMouseMode()
 
     return resultMode;
 }
+
+void JoyDPad::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setMouseCurve(mouseCurve);
+    }
+}
+
+bool JoyDPad::hasSameButtonsMouseCurve()
+{
+    bool result = true;
+
+    JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            initialCurve = button->getMouseCurve();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+            if (temp != initialCurve)
+            {
+                result = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return result;
+}
+
+JoyButton::JoyMouseCurve JoyDPad::getButtonsPresetMouseCurve()
+{
+    JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
+
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            resultCurve = button->getMouseCurve();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+            if (temp != resultCurve)
+            {
+                resultCurve = JoyButton::LinearCurve;
+                iter.toBack();
+            }
+        }
+    }
+
+    return resultCurve;
+}
+
+void JoyDPad::setButtonsSpringWidth(int value)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setSpringWidth(value);
+    }
+}
+
+void JoyDPad::setButtonsSpringHeight(int value)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setSpringHeight(value);
+    }
+}
+
+int JoyDPad::getButtonsPresetSpringWidth()
+{
+    int presetSpringWidth = 0;
+
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            presetSpringWidth = button->getSpringWidth();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            int temp = button->getSpringWidth();
+            if (temp != presetSpringWidth)
+            {
+                presetSpringWidth = 0;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSpringWidth;
+}
+
+int JoyDPad::getButtonsPresetSpringHeight()
+{
+    int presetSpringHeight = 0;
+
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            presetSpringHeight = button->getSpringHeight();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            int temp = button->getSpringHeight();
+            if (temp != presetSpringHeight)
+            {
+                presetSpringHeight = 0;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSpringHeight;
+}
+
+void JoyDPad::setButtonsSensitivity(double value)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setSensitivity(value);
+    }
+}
+
+double JoyDPad::getButtonsPresetSensitivity()
+{
+    double presetSensitivity = 1.0;
+
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            presetSensitivity = button->getSensitivity();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            double temp = button->getSensitivity();
+            if (temp != presetSensitivity)
+            {
+                presetSensitivity = 1.0;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSensitivity;
+}

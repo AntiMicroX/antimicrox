@@ -2,18 +2,21 @@
 <ui version="4.0">
  <class>DPadEditDialog</class>
  <widget class="QDialog" name="DPadEditDialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>532</width>
-    <height>332</height>
+    <width>440</width>
+    <height>230</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -113,42 +116,6 @@
        </item>
       </layout>
      </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Mouse Mode:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="mouseModeComboBox">
-         <property name="minimumSize">
-          <size>
-           <width>282</width>
-           <height>0</height>
-          </size>
-         </property>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Cursor</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Spring</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
     </layout>
    </item>
    <item>
@@ -168,122 +135,15 @@
     </spacer>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Configure Mouse Settings</string>
+    <widget class="QPushButton" name="mouseSettingsPushButton">
+     <property name="text">
+      <string>Mouse Settings</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <property name="spacing">
-       <number>20</number>
-      </property>
-      <property name="leftMargin">
-       <number>8</number>
-      </property>
-      <property name="topMargin">
-       <number>8</number>
-      </property>
-      <property name="rightMargin">
-       <number>8</number>
-      </property>
-      <property name="bottomMargin">
-       <number>28</number>
-      </property>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_11">
-        <item>
-         <widget class="QCheckBox" name="changeMouseSpeedsCheckBox">
-          <property name="text">
-           <string>Change Speeds</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="changeTogetherCheckBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Change Together</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_10">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>Horizontal Speed:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="horizontalSpinBox">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>300</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item alignment="Qt::AlignRight">
-           <widget class="QLabel" name="horizontalSpeedLabel">
-            <property name="text">
-             <string>1 = 20 pps</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Vertical Speed:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="verticalSpinBox">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>300</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item alignment="Qt::AlignRight">
-           <widget class="QLabel" name="verticalSpeedLabel">
-            <property name="text">
-             <string>1 = 20 pps</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
+     <property name="icon">
+      <iconset theme="edit-select">
+       <normaloff/>
+      </iconset>
+     </property>
     </widget>
    </item>
    <item>

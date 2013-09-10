@@ -3,6 +3,7 @@
 
 #include "dpadeditdialog.h"
 #include "ui_dpadeditdialog.h"
+#include "mousedialog/mousedpadsettingsdialog.h"
 #include "event.h"
 
 DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
@@ -28,121 +29,16 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
         ui->joyModeComboBox->setCurrentIndex(1);
     }
 
-    QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
-    int tempMouseSpeedX = 0;
-    while (iter.hasNext())
-    {
-        JoyDPadButton *button = iter.next().value();
-        tempMouseSpeedX = qMax(tempMouseSpeedX, button->getMouseSpeedX());
-    }
-
-    iter.toFront();
-    int tempMouseSpeedY = 0;
-    while (iter.hasNext())
-    {
-        JoyDPadButton *button = iter.next().value();
-        tempMouseSpeedY = qMax(tempMouseSpeedY, button->getMouseSpeedY());
-    }
-
-    ui->horizontalSpinBox->setValue(tempMouseSpeedX);
-    updateHorizontalSpeedConvertLabel(tempMouseSpeedX);
-
-    ui->verticalSpinBox->setValue(tempMouseSpeedY);
-    updateVerticalSpeedConvertLabel(tempMouseSpeedY);
-
     selectCurrentPreset();
-    selectCurrentMouseModePreset();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
-
-    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
-    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
-    connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigHorizontalSpeed(int)));
-
-    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
-    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
-    connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigVerticalSpeed(int)));
-
-    connect(ui->changeTogetherCheckBox, SIGNAL(clicked(bool)), this, SLOT(syncSpeedSpinBoxes()));
-    connect(ui->changeMouseSpeedsCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeMouseSpeedsInterface(bool)));
-
-    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMouseMode(int)));
+    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
 }
 
 DPadEditDialog::~DPadEditDialog()
 {
     delete ui;
-}
-
-void DPadEditDialog::updateHorizontalSpeedConvertLabel(int value)
-{
-    QString label = QString (QString::number(value));
-    label = label.append(" = ").append(QString::number(JoyButtonSlot::JOYSPEED * value)).append(" pps");
-    ui->horizontalSpeedLabel->setText(label);
-}
-
-void DPadEditDialog::updateVerticalSpeedConvertLabel(int value)
-{
-    QString label = QString (QString::number(value));
-    label = label.append(" = ").append(QString::number(JoyButtonSlot::JOYSPEED * value)).append(" pps");
-    ui->verticalSpeedLabel->setText(label);
-}
-
-void DPadEditDialog::moveSpeedsTogether(int value)
-{
-    if (ui->changeTogetherCheckBox->isChecked())
-    {
-        ui->horizontalSpinBox->setValue(value);
-        ui->verticalSpinBox->setValue(value);
-    }
-}
-
-void DPadEditDialog::syncSpeedSpinBoxes()
-{
-    int temp = ui->horizontalSpinBox->value();
-    if (temp > ui->verticalSpinBox->value())
-    {
-        ui->verticalSpinBox->setValue(temp);
-    }
-    else
-    {
-        temp = ui->verticalSpinBox->value();
-        ui->horizontalSpinBox->setValue(temp);
-    }
-}
-
-void DPadEditDialog::changeMouseSpeedsInterface(bool value)
-{
-    ui->horizontalSpinBox->setEnabled(value);
-    ui->verticalSpinBox->setEnabled(value);
-    ui->changeTogetherCheckBox->setEnabled(value);
-}
-
-void DPadEditDialog::updateConfigHorizontalSpeed(int value)
-{
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
-    {
-        QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
-        while (iter.hasNext())
-        {
-            JoyDPadButton *button = iter.next().value();
-            button->setMouseSpeedX(value);
-        }
-    }
-}
-
-void DPadEditDialog::updateConfigVerticalSpeed(int value)
-{
-    if (ui->changeMouseSpeedsCheckBox->isChecked())
-    {
-        QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
-        while (iter.hasNext())
-        {
-            JoyDPadButton *button = iter.next().value();
-            button->setMouseSpeedY(value);
-        }
-    }
 }
 
 void DPadEditDialog::implementPresets(int index)
@@ -390,35 +286,9 @@ void DPadEditDialog::selectCurrentPreset()
     }
 }
 
-void DPadEditDialog::updateMouseMode(int index)
+void DPadEditDialog::openMouseSettingsDialog()
 {
-    if (index == 1)
-    {
-        dpad->setButtonsMouseMode(JoyButton::MouseCursor);
-    }
-    else if (index == 2)
-    {
-        dpad->setButtonsMouseMode(JoyButton::MouseSpring);
-    }
-}
-
-void DPadEditDialog::selectCurrentMouseModePreset()
-{
-    bool presetDefined = dpad->hasSameButtonsMouseMode();
-    if (presetDefined)
-    {
-        JoyButton::JoyMouseMovementMode mode = dpad->getButtonsPresetMouseMode();
-        if (mode == JoyButton::MouseCursor)
-        {
-            ui->mouseModeComboBox->setCurrentIndex(1);
-        }
-        else if (mode == JoyButton::MouseSpring)
-        {
-            ui->mouseModeComboBox->setCurrentIndex(2);
-        }
-    }
-    else
-    {
-        ui->mouseModeComboBox->setCurrentIndex(0);
-    }
+    MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(this->dpad, this);
+    dialog->show();
+    connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
 }
