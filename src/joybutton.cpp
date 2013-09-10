@@ -542,7 +542,6 @@ void JoyButton::mouseEvent()
 
         int mousedirection = buttonslot->getSlotCode();
         JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
-        //mousemode = JoyButton::MouseSpring;
         int mousespeed = 0;
         int timeElapsed = mouseInterval->elapsed();
 
@@ -612,28 +611,29 @@ void JoyButton::mouseEvent()
 
                 //difference = qMin(qMax(difference, 0.0), 1.0);
 
+                int distance = 0;
                 if (mousedirection == JoyButtonSlot::MouseRight)
                 {
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-                    int distance = (int)floor(sumDist + 0.5);
+                    distance = (int)floor(sumDist + 0.5);
                     mouse1 = distance;
                 }
                 else if (mousedirection == JoyButtonSlot::MouseLeft)
                 {
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-                    int distance = (int)floor(sumDist + 0.5);
+                    distance = (int)floor(sumDist + 0.5);
                     mouse1 = -distance;
                 }
                 else if (mousedirection == JoyButtonSlot::MouseDown)
                 {
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-                    int distance = (int)floor(sumDist + 0.5);
+                    distance = (int)floor(sumDist + 0.5);
                     mouse2 = distance;
                 }
                 else if (mousedirection == JoyButtonSlot::MouseUp)
                 {
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
-                    int distance = (int)floor(sumDist + 0.5);
+                    distance = (int)floor(sumDist + 0.5);
                     mouse2 = -distance;
                 }
 
@@ -644,7 +644,7 @@ void JoyButton::mouseEvent()
                 else if (sumDist >= 1.0)
                 {
                     sendevent(mouse1, mouse2);
-                    sumDist = 0.0;
+                    sumDist -= distance;
                     buttonslot->setDistance(sumDist);
                 }
             }
@@ -1670,7 +1670,6 @@ void JoyButton::releaseActiveSlots()
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
                 JoyMouseMovementMode mousemode = getMouseMode();
-                //mousemode = MouseSpring;
                 if (mousemode == JoyButton::MouseSpring)
                 {
                     double mouse1 = (tempcode == JoyButtonSlot::MouseLeft ||
@@ -1679,6 +1678,7 @@ void JoyButton::releaseActiveSlots()
                                      tempcode == JoyButtonSlot::MouseDown) ? 0.0 : -2.0;
                     sendSpringEvent(mouse1, mouse2);
                 }
+                slot->setDistance(0.0);
             }
         }
 
