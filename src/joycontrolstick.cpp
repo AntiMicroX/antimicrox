@@ -774,10 +774,11 @@ double JoyControlStick::calculateSquareAxisYDistanceFromDeadZone()
     double factor = JoyAxis::AXISMAX/(qMin(22000.0, (double)maxZone));
     //distance = ((abs(axis2Value) - deadY)/(double)(maxZone - deadY))*1.5;
     distance = (abs(axis2Value) - deadY)/(double)(maxZone - deadY);
-    if (abs(axis2Value) > maxZoneY)
+    /*if (abs(axis2Value) > maxZoneY)
     {
         qDebug() << "SQUEALING PIGS";
     }
+    */
 
     if (distance > 1.0)
     {
