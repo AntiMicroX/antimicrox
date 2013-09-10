@@ -599,7 +599,7 @@ void JoyButton::mouseEvent()
                     }
                     case PowerCurve:
                     {
-                        double tempsensitive = qMin(qMax(1.0, 1.0e-8), 1.0e+3);
+                        double tempsensitive = qMin(qMax(sensitivity, 1.0e-3), 1.0e+3);
                         double temp = qMin(qMax(pow(difference, 1.0 / tempsensitive), 0.0), 1.0);
                         difference = temp;
                         break;
@@ -859,6 +859,48 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     setMouseMode(MouseSpring);
                 }
             }
+            else if (xml->name() == "mouseacceleration" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (temptext == "linear")
+                {
+                    setMouseCurve(LinearCurve);
+                }
+                else if (temptext == "quadratic")
+                {
+                    setMouseCurve(QuadraticCurve);
+                }
+                else if (temptext == "cubic")
+                {
+                    setMouseCurve(CubicCurve);
+                }
+                else if (temptext == "quadratic-extreme")
+                {
+                    setMouseCurve(QuadraticExtremeCurve);
+                }
+                else if (temptext == "power")
+                {
+                    setMouseCurve(PowerCurve);
+                }
+            }
+            else if (xml->name() == "mousespringwidth" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setSpringWidth(tempchoice);
+            }
+            else if (xml->name() == "mousespringheight" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setSpringHeight(tempchoice);
+            }
+            else if (xml->name() == "mousesensitivity" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                double tempchoice = temptext.toDouble();
+                setSensitivity(tempchoice);
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -890,6 +932,30 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         else if (mouseMode == MouseSpring)
         {
             xml->writeTextElement("mousemode", "spring");
+            xml->writeTextElement("mousespringwidth", QString::number(springWidth));
+            xml->writeTextElement("mousespringheight", QString::number(springHeight));
+        }
+
+        if (mouseCurve == LinearCurve)
+        {
+            xml->writeTextElement("mouseacceleration", "linear");
+        }
+        else if (mouseCurve == QuadraticCurve)
+        {
+            xml->writeTextElement("mouseacceleration", "quadratic");
+        }
+        else if (mouseCurve == CubicCurve)
+        {
+            xml->writeTextElement("mouseacceleration", "cubic");
+        }
+        else if (mouseCurve == QuadraticExtremeCurve)
+        {
+            xml->writeTextElement("mouseacceleration", "quadratic-extreme");
+        }
+        else if (mouseCurve == PowerCurve)
+        {
+            xml->writeTextElement("mouseacceleration", "power");
+            xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
         }
 
         if (setSelectionCondition != SetChangeDisabled)
