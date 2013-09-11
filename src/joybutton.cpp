@@ -571,9 +571,9 @@ void JoyButton::mouseEvent()
                 int mouse1 = 0;
                 int mouse2 = 0;
                 double sumDist = buttonslot->getMouseDistance();
-                JoyMouseCurve duder = QuadraticCurve;
+                JoyMouseCurve currentCurve = getMouseCurve();
 
-                switch (duder)
+                switch (currentCurve)
                 {
                     case LinearCurve:
                     {
