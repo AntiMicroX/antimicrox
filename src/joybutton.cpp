@@ -637,12 +637,14 @@ void JoyButton::mouseEvent()
                     mouse2 = -distance;
                 }
 
-                sumDist -= distance;
-                buttonslot->setDistance(sumDist);
-                if (distance >= 1)
+                if (sumDist >= 1)
                 {
                     sendevent(mouse1, mouse2);
+
+                    sumDist -= distance;
                 }
+
+                buttonslot->setDistance(sumDist);
             }
             else if (mousemode == JoyButton::MouseSpring)
             {

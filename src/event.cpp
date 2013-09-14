@@ -1,4 +1,5 @@
 #include <QDebug>
+
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
@@ -15,7 +16,6 @@ MouseHelper mouseHelperObj;
 void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
 
     display = X11Info::display();
-    XLockDisplay (display);
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
@@ -27,26 +27,20 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
     }
 
     XFlush(display);
-    XUnlockDisplay (display);
 }
 
 void sendevent(int code1, int code2)
 {
     display = X11Info::display();
 
-    XLockDisplay (display);
-
     XTestFakeRelativeMotionEvent(display, code1, code2, 0);
-
     XFlush(display);
-    XUnlockDisplay (display);
 }
 
 void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeight)
 {
     display = X11Info::display();
 
-    XLockDisplay(display);
     mouseHelperObj.mouseTimer.stop();
 
     if (xcoor >= -2.0 && xcoor <= 1.0 &&
@@ -138,7 +132,6 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
     }
 
     XFlush(display);
-    XUnlockDisplay(display);
 }
 
 int keyToKeycode (QString key)
