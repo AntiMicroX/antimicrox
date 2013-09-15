@@ -640,8 +640,7 @@ void JoyButton::mouseEvent()
                 if (sumDist >= 1)
                 {
                     sendevent(mouse1, mouse2);
-
-                    sumDist -= distance;
+                    sumDist = 0.0;
                 }
 
                 buttonslot->setDistance(sumDist);
