@@ -546,7 +546,7 @@ void JoyButton::mouseEvent()
         int timeElapsed = mouseInterval->elapsed();
 
         bool isActive = activeSlots.contains(buttonslot);
-        if (isActive && timeElapsed >= 5)
+        if (isActive)
         {
             if (mousemode == JoyButton::MouseCursor)
             {
@@ -637,10 +637,13 @@ void JoyButton::mouseEvent()
                     mouse2 = -distance;
                 }
 
-                if (sumDist >= 1)
+                if (distance >= 1)
                 {
                     sendevent(mouse1, mouse2);
-                    sumDist = 0.0;
+                    //sumDist = 0.0;
+                    sumDist -= distance;
+                    mouseInterval->restart();
+                    mouseEventTimer.stop();
                 }
 
                 buttonslot->setDistance(sumDist);
@@ -677,8 +680,9 @@ void JoyButton::mouseEvent()
                     sendSpringEvent(mouse1, mouse2, springWidth, springHeight);
                     //buttonslot->setDistance(tempdiff);
                 //}
+                    mouseInterval->restart();
+                    mouseEventTimer.stop();
             }
-            mouseInterval->restart();
         }
 
         if (isActive)
