@@ -641,7 +641,7 @@ void JoyButton::mouseEvent()
                 {
                     sendevent(mouse1, mouse2);
                     //sumDist = 0.0;
-                    sumDist -= distance;
+                    sumDist = (sumDist - distance) * 0.85;
                     mouseInterval->restart();
                     mouseEventTimer.stop();
                 }
