@@ -13,6 +13,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSpinBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
 
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
@@ -52,6 +53,18 @@ void MouseSettingsDialog::changeSpringSpinBoxStatus(int index)
     }
 }
 
+void MouseSettingsDialog::changeSmoothingStatus(int index)
+{
+    if (index == 1)
+    {
+        ui->smoothingCheckBox->setEnabled(true);
+    }
+    else
+    {
+        ui->smoothingCheckBox->setEnabled(false);
+    }
+}
+
 void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 {
     QString label = QString (QString::number(value));
@@ -81,10 +94,12 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
     {
         ui->horizontalSpinBox->setEnabled(false);
         ui->verticalSpinBox->setEnabled(false);
+        ui->changeMouseSpeedsTogetherCheckBox->setEnabled(false);
     }
     else
     {
         ui->horizontalSpinBox->setEnabled(true);
         ui->verticalSpinBox->setEnabled(true);
+        ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
     }
 }

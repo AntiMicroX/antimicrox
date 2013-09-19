@@ -20,6 +20,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
         ui->sensitivityDoubleSpinBox->setValue(stick->getButtonsPresetSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
+    selectSmoothingPreset();
 
     setWindowTitle(tr("Mouse Settings - ").append(tr("Stick %1").arg(stick->getRealJoyIndex())));
 
@@ -33,6 +34,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
+    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -187,5 +189,23 @@ void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
     else if (temp == JoyButton::PowerCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(5);
+    }
+}
+
+void MouseControlStickSettingsDialog::updateSmoothingSetting(bool clicked)
+{
+    stick->setButtonsSmoothing(clicked);
+}
+
+void MouseControlStickSettingsDialog::selectSmoothingPreset()
+{
+    bool smoothing = stick->getButtonsPresetSmoothing();
+    if (smoothing)
+    {
+        ui->smoothingCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->smoothingCheckBox->setChecked(false);
     }
 }

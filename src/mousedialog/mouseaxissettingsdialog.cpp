@@ -19,6 +19,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     }
     updateAccelerationCurvePresetComboBox();
 
+    selectSmoothingPreset();
+
     setWindowTitle(tr("Mouse Settings - ").append(tr("Axis %1").arg(axis->getRealJoyIndex())));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -31,6 +33,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
+    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -167,5 +170,23 @@ void MouseAxisSettingsDialog::updateAccelerationCurvePresetComboBox()
     else if (temp == JoyButton::PowerCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(5);
+    }
+}
+
+void MouseAxisSettingsDialog::updateSmoothingSetting(bool clicked)
+{
+    axis->setButtonsSmoothing(clicked);
+}
+
+void MouseAxisSettingsDialog::selectSmoothingPreset()
+{
+    bool smoothing = axis->getButtonsPresetSmoothing();
+    if (smoothing)
+    {
+        ui->smoothingCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->smoothingCheckBox->setChecked(false);
     }
 }

@@ -343,7 +343,15 @@ void JoyControlStickEditDialog::updateMouseMode(int index)
 
 void JoyControlStickEditDialog::openMouseSettingsDialog()
 {
+    ui->mouseSettingsPushButton->setEnabled(false);
+
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(this->stick, this);
     dialog->show();
     connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+}
+
+void JoyControlStickEditDialog::enableMouseSettingButton()
+{
+    ui->mouseSettingsPushButton->setEnabled(true);
 }

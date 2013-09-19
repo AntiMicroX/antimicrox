@@ -14,6 +14,7 @@ protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
+    void selectSmoothingPreset();
 
     JoyDPad *dpad;
 
@@ -28,6 +29,7 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
+    void updateSmoothingSetting(bool clicked);
 };
 
 #endif // MOUSEDPADSETTINGSDIALOG_H

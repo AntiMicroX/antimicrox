@@ -91,8 +91,12 @@ public:
 
     double getSensitivity();
 
+    void setSmoothing(bool enabled=false);
+    bool isSmoothingEnabled();
+
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
+    static const double SMOOTHINGFACTOR;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
@@ -156,6 +160,7 @@ protected:
     int springWidth;
     int springHeight;
     double sensitivity;
+    bool smoothing;
 
 signals:
     void clicked (int index);

@@ -288,7 +288,15 @@ void DPadEditDialog::selectCurrentPreset()
 
 void DPadEditDialog::openMouseSettingsDialog()
 {
+    ui->mouseSettingsPushButton->setEnabled(false);
+
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(this->dpad, this);
     dialog->show();
     connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+}
+
+void DPadEditDialog::enableMouseSettingButton()
+{
+    ui->mouseSettingsPushButton->setEnabled(true);
 }

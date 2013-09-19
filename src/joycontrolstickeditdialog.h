@@ -34,6 +34,7 @@ private slots:
 
     void checkMaxZone(int value);
     void openMouseSettingsDialog();
+    void enableMouseSettingButton();
 };
 
 #endif // JOYCONTROLSTICKEDITDIALOG_H

@@ -19,6 +19,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->sensitivityDoubleSpinBox->setValue(button->getSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
+    selectSmoothingPreset();
 
     setWindowTitle(tr("Mouse Settings - ").append(tr("Button %1").arg(button->getRealJoyNumber())));
 
@@ -32,6 +33,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
+    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -155,5 +157,23 @@ void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
     else if (temp == JoyButton::PowerCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(5);
+    }
+}
+
+void MouseButtonSettingsDialog::updateSmoothingSetting(bool clicked)
+{
+    button->setSmoothing(clicked);
+}
+
+void MouseButtonSettingsDialog::selectSmoothingPreset()
+{
+    bool smoothing = button->isSmoothingEnabled();
+    if (smoothing)
+    {
+        ui->smoothingCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->smoothingCheckBox->setChecked(false);
     }
 }

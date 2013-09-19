@@ -74,6 +74,9 @@ public:
     void setButtonsSensitivity(double value);
     double getButtonsPresetSensitivity();
 
+    void setButtonsSmoothing(bool enabled=false);
+    bool getButtonsPresetSmoothing();
+
     virtual bool isDefault();
 
     static const int AXISMIN;

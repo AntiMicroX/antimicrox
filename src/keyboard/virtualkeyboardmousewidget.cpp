@@ -582,8 +582,16 @@ bool VirtualKeyboardMouseWidget::isKeyboardTabVisible()
 
 void VirtualKeyboardMouseWidget::openMouseSettingsDialog()
 {
+    mouseSettingsPushButton->setEnabled(false);
+
     MouseButtonSettingsDialog *dialog = new MouseButtonSettingsDialog(this->button, this);
     dialog->show();
     QDialog *parent = static_cast<QDialog*>(this->parentWidget());
     connect(parent, SIGNAL(finished(int)), dialog, SLOT(close()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+}
+
+void VirtualKeyboardMouseWidget::enableMouseSettingButton()
+{
+    mouseSettingsPushButton->setEnabled(true);
 }

@@ -25,6 +25,7 @@ public slots:
     void updateHorizontalSpeedConvertLabel(int value);
     void updateVerticalSpeedConvertLabel(int value);
     void moveSpeedsTogether(int value);
+    void changeSmoothingStatus(int index);
 };
 
 #endif // MOUSESETTINGSDIALOG_H

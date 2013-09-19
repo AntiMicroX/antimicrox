@@ -76,6 +76,9 @@ public:
     void setButtonsSensitivity(double value);
     double getButtonsPresetSensitivity();
 
+    void setButtonsSmoothing(bool enabled=false);
+    bool getButtonsPresetSmoothing();
+
     void releaseButtonEvents();
 
     virtual bool isDefault();
@@ -94,6 +97,7 @@ protected:
     void resetButtons();
     double calculateXDistanceFromDeadZone();
     double calculateYDistanceFromDeadZone();
+    QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
 
     JoyAxis *axisX;
     JoyAxis *axisY;

@@ -637,3 +637,59 @@ double JoyDPad::getButtonsPresetSensitivity()
 
     return presetSensitivity;
 }
+
+QHash<int, JoyDPadButton*> JoyDPad::getApplicableButtons()
+{
+    QHash<int, JoyDPadButton*> temphash;
+    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
+        temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
+        temphash.insert(JoyDPadButton::DpadRightDown, buttons.value(JoyDPadButton::DpadRightDown));
+        temphash.insert(JoyDPadButton::DpadLeftDown, buttons.value(JoyDPadButton::DpadLeftDown));
+    }
+
+    return temphash;
+}
+
+void JoyDPad::setButtonsSmoothing(bool enabled)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setSmoothing(enabled);
+    }
+}
+
+bool JoyDPad::getButtonsPresetSmoothing()
+{
+    bool presetSmoothing = false;
+
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            presetSmoothing = button->isSmoothingEnabled();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            bool temp = button->isSmoothingEnabled();
+            if (temp != presetSmoothing)
+            {
+                presetSmoothing = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSmoothing;
+}

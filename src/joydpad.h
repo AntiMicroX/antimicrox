@@ -51,6 +51,9 @@ public:
     void setButtonsSensitivity(double value);
     double getButtonsPresetSensitivity();
 
+    void setButtonsSmoothing(bool enabled=false);
+    bool getButtonsPresetSmoothing();
+
     virtual bool isDefault();
 
     QHash<int, JoyDPadButton*>* getButtons();
@@ -64,6 +67,7 @@ public:
 
 protected:
     void populateButtons();
+    QHash<int, JoyDPadButton*> getApplicableButtons();
 
     QHash<int, JoyDPadButton*> buttons;
     int index;

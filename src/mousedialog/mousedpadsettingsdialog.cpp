@@ -18,6 +18,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
         ui->sensitivityDoubleSpinBox->setValue(dpad->getButtonsPresetSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
+    selectSmoothingPreset();
 
     setWindowTitle(tr("Mouse Settings - ").append(tr("DPad %1").arg(dpad->getRealJoyNumber())));
 
@@ -31,6 +32,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
+    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 }
 
 void MouseDPadSettingsDialog::changeMouseMode(int index)
@@ -185,5 +187,23 @@ void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
     else if (temp == JoyButton::PowerCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(5);
+    }
+}
+
+void MouseDPadSettingsDialog::updateSmoothingSetting(bool clicked)
+{
+    dpad->setButtonsSmoothing(clicked);
+}
+
+void MouseDPadSettingsDialog::selectSmoothingPreset()
+{
+    bool smoothing = dpad->getButtonsPresetSmoothing();
+    if (smoothing)
+    {
+        ui->smoothingCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->smoothingCheckBox->setChecked(false);
     }
 }

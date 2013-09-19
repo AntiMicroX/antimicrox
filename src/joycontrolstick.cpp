@@ -1467,3 +1467,59 @@ double JoyControlStick::getButtonsPresetSensitivity()
 
     return presetSensitivity;
 }
+
+QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> JoyControlStick::getApplicableButtons()
+{
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    temphash.insert(StickUp, buttons.value(StickUp));
+    temphash.insert(StickDown, buttons.value(StickDown));
+    temphash.insert(StickLeft, buttons.value(StickLeft));
+    temphash.insert(StickRight, buttons.value(StickRight));
+    if (currentMode == EightWayMode)
+    {
+        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
+        temphash.insert(StickRightUp, buttons.value(StickRightUp));
+        temphash.insert(StickRightDown, buttons.value(StickRightDown));
+        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
+    }
+
+    return temphash;
+}
+
+void JoyControlStick::setButtonsSmoothing(bool enabled)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setSmoothing(enabled);
+    }
+}
+
+bool JoyControlStick::getButtonsPresetSmoothing()
+{
+    bool presetSmoothing = false;
+
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            presetSmoothing = button->isSmoothingEnabled();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            bool temp = button->isSmoothingEnabled();
+            if (temp != presetSmoothing)
+            {
+                presetSmoothing = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return presetSmoothing;
+}

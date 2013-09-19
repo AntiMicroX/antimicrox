@@ -72,6 +72,7 @@ private slots:
     void clearButtonSlots();
     void clearButtonSlotsFinish();
     void openMouseSettingsDialog();
+    void enableMouseSettingButton();
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

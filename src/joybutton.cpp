@@ -8,6 +8,7 @@
 
 const QString JoyButton::xmlName = "button";
 const int JoyButton::ENABLEDTURBODEFAULT = 100;
+const double JoyButton::SMOOTHINGFACTOR = 0.85;
 
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
@@ -255,6 +256,7 @@ void JoyButton::reset()
     springWidth = 0;
     springHeight = 0;
     sensitivity = 1.0;
+    smoothing = false;
     setSelection = -1;
     setSelectionCondition = SetChangeDisabled;
     ignoresets = false;
@@ -614,25 +616,25 @@ void JoyButton::mouseEvent()
                 int distance = 0;
                 if (mousedirection == JoyButtonSlot::MouseRight)
                 {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     distance = (int)floor(sumDist + 0.5);
                     mouse1 = distance;
                 }
                 else if (mousedirection == JoyButtonSlot::MouseLeft)
                 {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     distance = (int)floor(sumDist + 0.5);
                     mouse1 = -distance;
                 }
                 else if (mousedirection == JoyButtonSlot::MouseDown)
                 {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     distance = (int)floor(sumDist + 0.5);
                     mouse2 = distance;
                 }
                 else if (mousedirection == JoyButtonSlot::MouseUp)
                 {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) / 1000.0;
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     distance = (int)floor(sumDist + 0.5);
                     mouse2 = -distance;
                 }
@@ -641,7 +643,12 @@ void JoyButton::mouseEvent()
                 {
                     sendevent(mouse1, mouse2);
                     //sumDist = 0.0;
-                    sumDist = (sumDist - distance) * 0.85;
+                    //sumDist = (sumDist - distance) * 0.85;
+                    sumDist -= distance;
+                    if (smoothing)
+                    {
+                        sumDist *= SMOOTHINGFACTOR;
+                    }
                     mouseInterval->restart();
                     mouseEventTimer.stop();
                 }
@@ -902,6 +909,14 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                 double tempchoice = temptext.toDouble();
                 setSensitivity(tempchoice);
             }
+            else if (xml->name() == "mousesmoothing" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (temptext == "true")
+                {
+                    setSmoothing(true);
+                }
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -958,6 +973,8 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("mouseacceleration", "power");
             xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
         }
+
+        xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
 
         if (setSelectionCondition != SetChangeDisabled)
         {
@@ -1796,6 +1813,7 @@ bool JoyButton::isDefault()
     value = value && (springWidth == 0);
     value = value && (springHeight == 0);
     value = value && (sensitivity == 1.0);
+    value = value && (smoothing == false);
     return value;
 }
 
@@ -1866,4 +1884,14 @@ void JoyButton::setSensitivity(double value)
 double JoyButton::getSensitivity()
 {
     return sensitivity;
+}
+
+void JoyButton::setSmoothing(bool enabled)
+{
+    smoothing = enabled;
+}
+
+bool JoyButton::isSmoothingEnabled()
+{
+    return smoothing;
 }

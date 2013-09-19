@@ -352,7 +352,15 @@ void AxisEditDialog::refreshPreset()
 
 void AxisEditDialog::openMouseSettingsDialog()
 {
+    ui->mouseSettingsPushButton->setEnabled(false);
+
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, this);
     dialog->show();
     connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+}
+
+void AxisEditDialog::enableMouseSettingButton()
+{
+    ui->mouseSettingsPushButton->setEnabled(true);
 }
