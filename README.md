@@ -3,7 +3,7 @@
 ## Description
 
 Graphical program used to map keyboard keys and mouse buttons to gamepad buttons.
-Useful for playing games with no gamepad support.
+This program is useful for playing games with no gamepad support.
 
 ## License
 
@@ -14,8 +14,15 @@ The license can also be found online at [http://www.gnu.org/licenses/gpl.txt](ht
 
 ## Build Dependencies
 
-The following packages are required to be installed on your system in order to build this program:
+This program is written in C++ using the [Qt](http://qt-project.org/)
+framework. A C++ compiler and a proper C++ build environment will need to be
+installed on your system prior to building this program. Under Debian and
+Debian-based distributions like Ubuntu, the
+easiest way to get a base build environment set up is to install the
+meta-package **build-essential**. The following packages are required to be
+installed on your system in order to build this program:
 
+* g++
 * libqt4-dev
 * libsdl1.2-dev
 * libxtst-dev
@@ -24,8 +31,8 @@ The following packages are required to be installed on your system in order to b
 
 ## Building
 
-In order to build this program, open a terminal and cd into the antimicro/src directory.
-Enter the following commands in order to build the program:
+In order to build this program, open a terminal and cd into the antimicro/src
+directory. Enter the following commands in order to build the program:
 
 * cd antimicro/src
 * qmake
@@ -33,21 +40,25 @@ Enter the following commands in order to build the program:
 * make updateqm
 * sudo make install
 
-The installation path of antimicro can be customized by specifying the INSTALL_PREFIX variable for qmake.
+The installation path of antimicro can be customized by specifying the
+INSTALL_PREFIX variable for qmake.
 
 * qmake INSTALL_PREFIX=/usr
 
 This will install the antimicro executable to /usr/bin/antimicro.
 By default, the executable will be installed to /usr/local/bin/antimicro.
 
-Also, running "make updateqm" is only required if you would like to enable translations
-for the application.
+Also, running "make updateqm" is only required if you would like to enable
+translations for the application.
 
 ## Shoutout
 
-A big inspiration for this program was the program QJoyPad ([http://qjoypad.sourceforge.net/](http://qjoypad.sourceforge.net/)).
-I have been a user of the program for years and it is unfortunate that the program is no longer being maintained.
-The source code for QJoyPad was an invaluable resource when I made the first version of this program and the UI for this program mostly resembles QJoyPad.
+A big inspiration for this program was the program QJoyPad
+([http://qjoypad.sourceforge.net/](http://qjoypad.sourceforge.net/)).
+I have been a user of the program for years and it is unfortunate that the
+program is no longer being maintained. The source code for QJoyPad was an
+invaluable resource when I made the first version of this program and the UI
+for this program mostly resembles QJoyPad.
 
 ## Credits
 
@@ -55,5 +66,6 @@ Travis Nickles <nickles.travis@gmail.com>
 
 ## Translators
 
-Belleguic Terence <hizo@free.fr>
+Belleguic Terence <hizo@free.fr>  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com>
+
