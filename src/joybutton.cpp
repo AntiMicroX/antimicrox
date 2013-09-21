@@ -1323,6 +1323,13 @@ void JoyButton::pauseWaitEvent()
 
     if (currentPause)
     {
+        // If release timer is active, temporarily
+        // disable it
+        if (releaseDeskTimer.isActive())
+        {
+            releaseDeskTimer.stop();
+        }
+
         if (inpauseHold.elapsed() < currentPause->getSlotCode())
         {
             pauseWaitTimer.start(10);
@@ -1332,6 +1339,12 @@ void JoyButton::pauseWaitEvent()
             QTimer::singleShot(0, this, SLOT(createDeskEvent()));
             pauseWaitTimer.stop();
             currentPause = 0;
+            // If release timer was disabled but if the button
+            // is not pressed, restart the release timer.
+            if (!releaseDeskTimer.isActive() && !isButtonPressedQueue.last())
+            {
+                releaseDeskTimer.start(0);
+            }
         }
     }
     else
