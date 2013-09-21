@@ -1380,7 +1380,7 @@ void JoyButton::waitForDeskEvent()
 
 void JoyButton::waitForReleaseDeskEvent()
 {
-    if (quitEvent && !isButtonPressedQueue.isEmpty())
+    if (quitEvent)
     {
         buttonMutex.lock();
         releaseDeskTimer.stop();
