@@ -51,6 +51,39 @@ By default, the executable will be installed to /usr/local/bin/antimicro.
 Also, running "make updateqm" is only required if you would like to enable
 translations for the application.
 
+## Ideas For Future Features
+
+This section is where some of the ideas for future features
+for this program will be written. Since the 1.0 release,
+there has not been a plan for what to implement in future
+versions of AntiMicro. Hopefully, this will help change that.
+
+* Gamepad Status window. A window to show buttons presses and current axes values.
+* Ensure SDL 2 compatibility.
+* Setting to not display buttons that are not currently in use.
+This will especially help people using a PS3 controller.
+* Copy set assignments to a new set. This will make creating
+slightly altered sets easier.
+* Spring mode preview. There should be some way in the program
+to show the area that spring mode will use based on the settings
+specified. Either that or the program should implement something
+that will allow the user to select the region on screen that
+should be used; this would work like what would be seen in
+screencap programs.
+* Implement mouse wheel as a type of movement instead of a button press.
+* Show identifier given by SDL along with plain joystick identifier.
+* An mouse setting that will move the mouse cursor to an exact spot on the
+screen based on the position of an axis. This would work similar to spring
+mode except that it will not automatically return the mouse cursor
+to the center of the screen. This idea is mainly intended for the touchpad
+on the PS4 controller.
+
+Along with this, I will put the simple mind map that I am using to
+write ideas for future development into the repository for this
+program. Opening the mind map will require the use of the program
+FreeMind which can be downloaded from
+[http://freemind.sourceforge.net/wiki/index.php/Main_Page](http://freemind.sourceforge.net/wiki/index.php/Main_Page).
+
 ## Shoutout
 
 A big inspiration for this program was the program QJoyPad
