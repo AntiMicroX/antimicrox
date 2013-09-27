@@ -99,6 +99,6 @@ Travis Nickles <nickles.travis@gmail.com>
 
 ## Translators
 
-Belleguic Terence <hizo@free.fr>  
-Jay Alexander Fleming <tito.nehru.naser@gmail.com>
-
+Belleguic Terence <hizo@free.fr> - French
+Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian
+VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese
