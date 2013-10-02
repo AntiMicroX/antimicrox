@@ -24,22 +24,7 @@
         <translation>Crédits</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="128"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="164"/>
+        <location filename="../../../src/aboutdialog.ui" line="165"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -719,15 +704,31 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Public License instead of this License.  But first, please read&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&amp;lt;http://www.gnu.org/philosophy/why-not-lgpl.html&amp;gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="149"/>
+        <location filename="../../../src/aboutdialog.ui" line="150"/>
         <source>License</source>
         <translation>License</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="856"/>
+        <location filename="../../../src/aboutdialog.ui" line="128"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="857"/>
         <source>Copyright: 2013</source>
         <translation>Copyright: 2013</translation>
     </message>
@@ -1322,7 +1323,7 @@ par rapport à la zone morte.</translation>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="444"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <source>Change Speeds</source>
@@ -1536,7 +1537,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="125"/>
         <source>Launch program without the main window displayed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lance le logiciel sans affiché la fenêtre principale.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="127"/>
@@ -1608,12 +1609,12 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode Dpad :</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="140"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <source>Mode:</source>
@@ -1748,17 +1749,17 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="223"/>
         <source>LB</source>
-        <translation type="unfinished"></translation>
+        <translation>BG</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="226"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>BC</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="229"/>
         <source>RB</source>
-        <translation type="unfinished"></translation>
+        <translation>BD</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="242"/>
@@ -1918,12 +1919,12 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="306"/>
         <source>Stick Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode du Stick :</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="503"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <source>Mode:</source>
@@ -2280,12 +2281,12 @@ verticale :</translation>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="24"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="24"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Axe %1</translation>
+        <translation>Axe %1</translation>
     </message>
 </context>
 <context>
@@ -2293,12 +2294,12 @@ verticale :</translation>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="24"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris -</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="24"/>
         <source>Button %1</source>
-        <translation type="unfinished">Bouton %1</translation>
+        <translation>Bouton %1</translation>
     </message>
 </context>
 <context>
@@ -2306,12 +2307,12 @@ verticale :</translation>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="25"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris -</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="25"/>
         <source>Stick %1</source>
-        <translation type="unfinished">Stick %1</translation>
+        <translation>Stick %1</translation>
     </message>
 </context>
 <context>
@@ -2319,12 +2320,12 @@ verticale :</translation>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="23"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris -</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="23"/>
         <source>DPad %1</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad %1</translation>
     </message>
 </context>
 <context>
@@ -2332,107 +2333,107 @@ verticale :</translation>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="14"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="27"/>
         <source>Mouse Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode de la Souris :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="40"/>
         <source>Cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Curseur</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="45"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>Ressort</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="63"/>
         <source>Acceleration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Accélération :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="76"/>
         <source>Linear</source>
-        <translation type="unfinished"></translation>
+        <translation>Linéair</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="81"/>
         <source>Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Quadratique</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="86"/>
         <source>Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Cubique</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="91"/>
         <source>Quadratic Extreme</source>
-        <translation type="unfinished"></translation>
+        <translation>Quadratique Extreme</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="96"/>
         <source>Power Function</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonction Énergie</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="126"/>
         <source>Mouse Speed Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Vitesse de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="150"/>
         <source>Change Together</source>
-        <translation type="unfinished">Modifier en même temps</translation>
+        <translation>Modifier en même temps</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="175"/>
         <source>Horizontal
 Speed:</source>
-        <translation type="unfinished">Vitesse
+        <translation>Vitesse
 horizontale :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="201"/>
         <location filename="../../../src/mousesettingsdialog.ui" line="246"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished">1 = 20 pps</translation>
+        <translation>1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="220"/>
         <source>Vertical
 Speed:</source>
-        <translation type="unfinished">Vitesse
+        <translation>Vitesse
 verticale :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="262"/>
         <source>Sensitivity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensibilité :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="298"/>
         <source>Smoothing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lissage :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="330"/>
         <source>Spring Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration du Ressort</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="352"/>
         <source>Spring Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Largeur du Ressort :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="373"/>
         <source>Spring Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauteur du Ressort :</translation>
     </message>
 </context>
 <context>
@@ -3239,7 +3240,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="371"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="228"/>

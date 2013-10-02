@@ -72,7 +72,7 @@ should be used; this would work like what would be seen in
 screencap programs.
 * Implement mouse wheel as a type of movement instead of a button press.
 * Show identifier given by SDL along with plain joystick identifier.
-* An mouse setting that will move the mouse cursor to an exact spot on the
+* A mouse setting that will move the mouse cursor to an exact spot on the
 screen based on the position of an axis. This would work similar to spring
 mode except that it will not automatically return the mouse cursor
 to the center of the screen. This idea is mainly intended for the touchpad
