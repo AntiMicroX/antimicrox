@@ -15,7 +15,7 @@ namespace PadderCommon
     const QString configFilePath = configPath + "/" + configFileName;
     const QString pidFilePath = "/tmp/antimicro.pid";
     const int LATESTCONFIGFILEVERSION = 4;
-    const QString programVersion = "1.0";
+    const QString programVersion = "1.1";
 }
 
 #endif // COMMON_H
