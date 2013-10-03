@@ -2341,99 +2341,136 @@ verticale :</translation>
         <translation>Mode de la Souris :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="40"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="34"/>
+        <source>Cursor mode is used to move the mouse cursor
+around the screen relative to its current position
+depending on how much you move an axis
+or if a button is pressed.
+
+Spring mode is used to move the mouse cursor
+from the center of the screen depending on how
+much you move an axis. The mouse cursor will
+be returned to the center of the screen when the
+axis is moved back to the dead zone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="52"/>
         <source>Cursor</source>
         <translation>Curseur</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="45"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="57"/>
         <source>Spring</source>
         <translation>Ressort</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="63"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="75"/>
         <source>Acceleration:</source>
         <translation>Accélération :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="76"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="88"/>
         <source>Linear</source>
         <translation>Linéair</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="81"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="93"/>
         <source>Quadratic</source>
         <translation>Quadratique</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="86"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="98"/>
         <source>Cubic</source>
         <translation>Cubique</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="91"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="103"/>
         <source>Quadratic Extreme</source>
         <translation>Quadratique Extreme</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="96"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="108"/>
         <source>Power Function</source>
         <translation>Fonction Énergie</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="126"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="138"/>
         <source>Mouse Speed Settings</source>
         <translation>Configurations de la Vitesse de la Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="150"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="162"/>
         <source>Change Together</source>
         <translation>Modifier en même temps</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="175"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="187"/>
         <source>Horizontal
 Speed:</source>
         <translation>Vitesse
 horizontale :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="201"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="246"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="213"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="258"/>
         <source>1 = 20 pps</source>
         <translation>1 = 20 pps</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="220"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="232"/>
         <source>Vertical
 Speed:</source>
         <translation>Vitesse
 verticale :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="262"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="274"/>
         <source>Sensitivity:</source>
         <translation>Sensibilité :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="298"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="310"/>
         <source>Smoothing:</source>
         <translation>Lissage :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="330"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="317"/>
+        <source>Smoothing can be used to reduce the amount
+of jitter that the mouse cursor will exhibit. Using
+this option will result in the mouse movement being
+slightly less responsive due to changes in the mouse
+speed taking longer to occur.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="349"/>
         <source>Spring Settings</source>
         <translation>Configuration du Ressort</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="352"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="371"/>
         <source>Spring Width:</source>
         <translation>Largeur du Ressort :</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="373"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="381"/>
+        <source>Changes the width of the region that the cursor
+can move in spring mode. 0 will use the entire width
+of your screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="397"/>
         <source>Spring Height:</source>
         <translation>Hauteur du Ressort :</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="407"/>
+        <source>Changes the height of the region that the cursor
+can move in spring mode. 0 will use the entire height
+of your screen.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

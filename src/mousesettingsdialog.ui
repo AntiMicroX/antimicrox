@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>400</height>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,6 +30,18 @@
        </item>
        <item>
         <widget class="QComboBox" name="mouseModeComboBox">
+         <property name="toolTip">
+          <string>Cursor mode is used to move the mouse cursor
+around the screen relative to its current position
+depending on how much you move an axis
+or if a button is pressed.
+
+Spring mode is used to move the mouse cursor
+from the center of the screen depending on how
+much you move an axis. The mouse cursor will
+be returned to the center of the screen when the
+axis is moved back to the dead zone.</string>
+         </property>
          <item>
           <property name="text">
            <string/>
@@ -301,6 +313,13 @@ Speed:</string>
           </item>
           <item>
            <widget class="QCheckBox" name="smoothingCheckBox">
+            <property name="toolTip">
+             <string>Smoothing can be used to reduce the amount
+of jitter that the mouse cursor will exhibit. Using
+this option will result in the mouse movement being
+slightly less responsive due to changes in the mouse
+speed taking longer to occur.</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -358,6 +377,11 @@ Speed:</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="toolTip">
+               <string>Changes the width of the region that the cursor
+can move in spring mode. 0 will use the entire width
+of your screen.</string>
+              </property>
               <property name="maximum">
                <number>16777215</number>
               </property>
@@ -378,6 +402,11 @@ Speed:</string>
              <widget class="QSpinBox" name="springHeightSpinBox">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>Changes the height of the region that the cursor
+can move in spring mode. 0 will use the entire height
+of your screen.</string>
               </property>
               <property name="maximum">
                <number>16777215</number>
