@@ -1,1 +1,25 @@
- 
+2013-07-12 Travis Nickles <nickles.travis@gmail.com> 
+
+Version 1.0
+
+* 8-way controls have been implemented. This allows keys to be mapped
+to the diagonal directions of controller sticks and dpads. 8-way controls
+allow rougelike games to be playable.
+
+* Virtual Dpad support has been added. Axes and buttons can be mapped
+to a virtual dpad. This is useful for mapping dpads that are detected as a
+pair of axes in SDL.
+
+* A Quick Set option has been added. Using the Quick Set option, you
+can press a button on the controller and the program will bring up the edit
+window for that specific button.  The button can then be mapped to an
+assignment from the edit window. The Quick Set option also works for axes,
+controller sticks, and dpads. This is more of a convenience function than
+anything but I have found it really useful since implementing it.
+
+* Main interface button text is now updated whenever the assigned slots
+are changed. This allows the buttons' text to be in sync in many situations
+that was not possible before.
+
+* Toggle and Turbo can be used together to create automated key macros for
+use in MMORPGs.
