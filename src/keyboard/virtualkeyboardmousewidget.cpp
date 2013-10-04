@@ -124,7 +124,8 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey(tr("p")));
     tempHBoxLayout->addWidget(createNewKey(tr("bracketleft")));
     tempHBoxLayout->addWidget(createNewKey(tr("bracketright")));
-    if (QLocale::system().language() != QLocale::French)
+    if (QLocale::system().language() != QLocale::French &&
+        QLocale::system().language() != QLocale::German)
     {
         tempHBoxLayout->addWidget(createNewKey(tr("backslash")));
     }
@@ -144,7 +145,8 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey(tr("l")));
     tempHBoxLayout->addWidget(createNewKey(tr("semicolon")));
     tempHBoxLayout->addWidget(createNewKey(tr("apostrophe")));
-    if (QLocale::system().language() == QLocale::French)
+    if (QLocale::system().language() == QLocale::French ||
+        QLocale::system().language() == QLocale::German)
     {
         tempHBoxLayout->addWidget(createNewKey(tr("asterisk")));
     }
