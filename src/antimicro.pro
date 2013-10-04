@@ -26,13 +26,15 @@ deskicon.files = images/antimicro.png
 TRANSLATIONS = ../share/antimicro/translations/antimicro_en.ts \
     ../share/antimicro/translations/antimicro_fr.ts \
     ../share/antimicro/translations/antimicro_sr.ts \
-    ../share/antimicro/translations/antimicro_br.ts
+    ../share/antimicro/translations/antimicro_br.ts \
+    ../share/antimicro/translations/antimicro_de.ts
 
 programtranslations.path = $$INSTALL_PREFIX/share/antimicro/translations
 programtranslations.files = ../share/antimicro/translations/antimicro_en.qm \
     ../share/antimicro/translations/antimicro_fr.qm \
     ../share/antimicro/translations/antimicro_sr.qm \
-    ../share/antimicro/translations/antimicro_br.qm
+    ../share/antimicro/translations/antimicro_br.qm \
+    ../share/antimicro/translations/antimicro_de.qm
 
 equals(OUT_PWD, $$PWD) {
     updateqm.commands = lrelease $$_PRO_FILE_
