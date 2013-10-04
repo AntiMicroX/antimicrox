@@ -786,7 +786,9 @@ p, li { white-space: pre-wrap; }
         <source>Insert a release action. Slots after the action will only be
 executed after a button release if the button was held
 past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt eine Freigabeaktion ein. Alles weitere nach dieser Aktion
+wird nur ausgeführt, wenn der Button nach dem angegebenen 
+Interval noch gedrückt wurde. </translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="268"/>
@@ -921,27 +923,33 @@ past the interval specified.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="182"/>
         <source>Insert a pause that occurs in between key presses.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt eine Pause zwischen den Tasten ein.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="204"/>
         <source>Insert a hold action. Slots after the action will only be
 executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt eine Haltenaktion ein. Alles nach nach dieser Aktion
+wird nur ausgeführt, wenn der Button nach dem angegebenen
+Interval noch gedrückt wurde.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="221"/>
         <source>Slots past a Cycle action will be executed
 on the next button press. Multiple cycles can be added
 in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles nach der Kreislaufaktion wird beim nächsten
+Buttondruck ausgeführt. Mehrere Kreisläufe können
+hinzugefügt werden, um Trennung der Sequenz zu erzeugen.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="192"/>
         <source>Distance action specifies that the slots afterwards
 will only be executed when an axis is moved
 a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Distanzaktion gibt an das alles hier nach nur
+ausgeführt wird, wenn eine Achse die angegebene
+Distanz fern der Dead Zone überschritten hat.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="238"/>
@@ -951,27 +959,27 @@ a certain range past the designated dead zone.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="265"/>
         <source>Insert a new blank slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt eine neue leere Aktion hinzu.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="280"/>
         <source>Delete a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Löscht eine Aktion.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="295"/>
         <source>Clear all currently assigned slots.</source>
-        <translation type="unfinished"></translation>
+        <translation>Löscht alle zugewiesenen Aktionen.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="349"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gibt die Dauer der hinzugefügten Pause oder Haltenaktion an.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="569"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gibt die Distanz der Achse zur Dead Zone an, in der die Sequenz an Aktionen ausgeführt wird.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="572"/>
@@ -1321,7 +1329,7 @@ a certain range past the designated dead zone.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="258"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestimmt den Wert der Dead Zone einer Achse.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="52"/>
@@ -1342,7 +1350,7 @@ a certain range past the designated dead zone.</source>
         <location filename="../../../src/axiseditdialog.ui" line="176"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 defective analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestimmt den Maximalwert einer Achse. Nützlich dür defekte Analogsticks.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="319"/>
@@ -1354,7 +1362,8 @@ defective analog stick.</source>
         <location filename="../../../src/axiseditdialog.ui" line="326"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschleunigung gibt das Verhalten an wie das Halten
+oder Loslassen einer Achse interpretiert wird.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="340"/>
@@ -1392,7 +1401,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="50"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Um eine neue Zuweisung zu machen, drück eine Taste oder klick einen Button im Tastatur oder Mausreiter</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="67"/>
@@ -1407,12 +1416,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="77"/>
         <source>Enables a key press or release to only occur when a controller button is pressed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tasten werden erst, wenn der Button gedrückt wurde entweder festgehalten oder frei gelassen.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="105"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviert schnelles Tastendrücken oder Freigeben. Autofeuer.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="108"/>
@@ -1445,12 +1454,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="68"/>
         <source>Profile location %1 is not an XML file.</source>
-        <translation type="unfinished">Profile location %1 is not an XML file.</translation>
+        <translation>Profilort %1 ist keine XML Datei.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="78"/>
         <source>Profile location %1 does not exist.</source>
-        <translation type="unfinished">Profile location %1 does not exist.</translation>
+        <translation>Profilort %1 existiert nicht.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="97"/>
@@ -2008,7 +2017,8 @@ interpret an axis hold or release.</source>
         <location filename="../../../src/mainwindow.ui" line="87"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde kein Joystick gefunden.
+ Bitte schließe einen Joystick an und drücke die &quot;Update Joysticks&quot;-Option im Hauptmenü</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="148"/>
@@ -2250,7 +2260,15 @@ from the center of the screen depending on how
 much you move an axis. The mouse cursor will
 be returned to the center of the screen when the
 axis is moved back to the dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Zeigermodus bewegt den Mauspfeil relativ
+zu seiner aktuellen Position je nachdem wie sehr
+eine Achse bewegt oder ein Button gedrückt wurde.
+
+Der Sprungmodus bewegt den Mauspfeil vom
+Mittelpunkt des Bildschirms je nach Bewegung
+einer Achse. Der Mauspfeil wandert zu seinem
+Mittelpunkt, wenn eine Achse zur Dead
+Zone zurück kehrt.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="52"/>
@@ -2753,7 +2771,7 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="98"/>
         <source>grave</source>
-        <translation>degree</translation>
+        <translation>grave</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="103"/>
@@ -2763,12 +2781,12 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="104"/>
         <source>minus</source>
-        <translation>question</translation>
+        <translation>minus</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="105"/>
         <source>equal</source>
-        <translation>grave</translation>
+        <translation>equal</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="106"/>
@@ -2833,17 +2851,17 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="125"/>
         <source>bracketleft</source>
-        <translation>udiaeresis</translation>
+        <translation>bracketleft</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="126"/>
         <source>bracketright</source>
-        <translation>plus</translation>
+        <translation>bracketright</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="129"/>
         <source>backslash</source>
-        <translation>less</translation>
+        <translation>backslash</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="135"/>
@@ -2898,17 +2916,17 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="145"/>
         <source>semicolon</source>
-        <translation>odiaeresis</translation>
+        <translation>semicolon</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="146"/>
         <source>apostrophe</source>
-        <translation>adiaeresis</translation>
+        <translation>apostrophe</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="149"/>
         <source>asterisk</source>
-        <translation type="unfinished"></translation>
+        <translation>asterisk</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="153"/>
