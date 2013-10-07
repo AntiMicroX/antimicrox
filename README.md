@@ -59,7 +59,9 @@ there has not been a plan for what to implement in future
 versions of AntiMicro. Hopefully, this will help change that.
 
 * Gamepad Status window. A window to show buttons presses and current axes values.
-* Ensure SDL 2 compatibility.
+* Ensure SDL 2 compatibility. Looking at the docs for SDL 2, it seems
+like the main API has not really changed so AntiMicro should be compatible.
+TODO: Compile against SDL 2 to test compatibility.
 * Setting to not display buttons that are not currently in use.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
