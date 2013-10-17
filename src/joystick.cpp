@@ -86,6 +86,7 @@ void Joystick::setActiveSetNumber(int index)
         QList<int> dpadstates;
 
         SetJoystick *current_set = joystick_sets.value(active_set);
+        SetJoystick *old_set = current_set;
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
             JoyButton *button = current_set->getJoyButton(i);
@@ -111,22 +112,57 @@ void Joystick::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
             bool value = buttonstates.at(i);
+            bool tempignore = true;
             JoyButton *button = current_set->getJoyButton(i);
-            button->joyEvent(value, true);
+            JoyButton *oldButton = old_set->getJoyButton(i);
+            if (value && button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld &&
+                oldButton->getSetSelection() != index)
+            {
+                tempignore = false;
+            }
+
+            //button->joyEvent(value, true);
+            button->joyEvent(value, tempignore);
         }
 
         for (int i = 0; i < current_set->getNumberAxes(); i++)
         {
             int value = axesstates.at(i);
+            bool tempignore = true;
             JoyAxis *axis = current_set->getJoyAxis(i);
-            axis->joyEvent(value, true);
+            JoyAxisButton *oldButton = old_set->getJoyAxis(i)->getAxisButtonByValue(value);
+            JoyAxisButton *button = axis->getAxisButtonByValue(value);
+
+            if (button && oldButton)
+            {
+                if (value && button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld &&
+                    oldButton->getSetSelection() != index)
+                {
+                    tempignore = false;
+                }
+            }
+
+            axis->joyEvent(value, tempignore);
         }
 
         for (int i = 0; i < current_set->getNumberHats(); i++)
         {
             int value = dpadstates.at(i);
+            bool tempignore = true;
             JoyDPad *dpad = current_set->getJoyDPad(i);
-            dpad->joyEvent(value, true);
+            JoyDPadButton *button = dpad->getJoyButton(value);
+            JoyDPadButton *oldButton = old_set->getJoyDPad(i)->getJoyButton(value);
+
+            if (button && oldButton)
+            {
+                if (value && button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld &&
+                    oldButton->getSetSelection() != index)
+                {
+                    tempignore = false;
+                }
+            }
+
+            dpad->joyEvent(value, tempignore);
         }
     }
 }
