@@ -472,34 +472,6 @@ double JoyAxis::getDistanceFromDeadZone()
     return distance;
 }
 
-double JoyAxis::getSpringDistanceFromDeadZone()
-{
-    double distance = 0.0;
-    double factor = JoyAxis::AXISMAX/(double)(qMin(22000.0, (double)maxZoneValue));
-
-    if (currentThrottledValue >= deadZone)
-    {
-        distance = (currentThrottledValue - deadZone)/(double)(maxZoneValue - deadZone);
-    }
-    else if (currentThrottledValue <= -deadZone)
-    {
-        distance = (currentThrottledValue + deadZone)/(double)(-maxZoneValue + deadZone);
-    }
-
-    //distance *= factor;
-
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
-
-    return distance;
-}
-
 void JoyAxis::propogateThrottleChange()
 {
     emit throttleChangePropogated(this->index);
@@ -716,4 +688,20 @@ bool JoyAxis::getButtonsPresetSmoothing()
     }
 
     return presetSmoothing;
+}
+
+JoyAxisButton* JoyAxis::getAxisButtonByValue(int value)
+{
+    JoyAxisButton *eventbutton = 0;
+    int throttledValue = calculateThrottledValue(value);
+    if (throttledValue > deadZone)
+    {
+        eventbutton = paxisbutton;
+    }
+    else if (throttledValue < -deadZone)
+    {
+        eventbutton = naxisbutton;
+    }
+
+    return eventbutton;
 }

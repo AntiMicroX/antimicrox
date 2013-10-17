@@ -69,7 +69,6 @@ public:
     bool containsReleaseSlots();
 
     virtual double getDistanceFromDeadZone();
-    virtual double getSpringDistanceFromDeadZone();
 
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();

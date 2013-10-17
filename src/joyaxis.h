@@ -41,9 +41,9 @@ public:
     //int getCurrentThrottledMax();
     int getCurrentThrottledDeadValue();
     int getCurrentlyAssignedSet();
+    JoyAxisButton* getAxisButtonByValue(int value);
 
     double getDistanceFromDeadZone();
-    double getSpringDistanceFromDeadZone();
     double calculateNormalizedAxisPlacement();
     double getAbsoluteAxisPlacement();
 

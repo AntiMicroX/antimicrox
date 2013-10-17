@@ -28,10 +28,6 @@ public:
     double getDistanceFromDeadZone();
     double getAbsoluteDistance();
     double getNormalizedAbsoluteDistance();
-    double calculateSquareAxisXDistanceFromDeadZone();
-    double calculateSquareAxisYDistanceFromDeadZone();
-    double getSquareDistance();
-    double getNormalizedSquareDistance();
 
     int getIndex();
     void setIndex(int index);

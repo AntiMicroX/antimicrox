@@ -2,7 +2,8 @@
 #include <QTimer>
 #include <QEventLoop>
 #include <QHashIterator>
-#include <SDL/SDL.h>
+#include <SDL/SDL_joystick.h>
+#include <SDL/SDL_events.h>
 
 #include "inputdaemon.h"
 

@@ -5,7 +5,7 @@
 #include <QHash>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <SDL/SDL.h>
+#include <SDL/SDL_joystick.h>
 
 #include "joyaxis.h"
 #include "joycontrolstick.h"

@@ -461,7 +461,8 @@ void JoyButton::createDeskEvent()
         if (!isButtonPressedQueue.isEmpty())
         {
             bool tempButtonPressed = isButtonPressedQueue.last();
-            if (tempButtonPressed && setSelectionCondition == SetChangeWhileHeld)
+            bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
+            if (tempButtonPressed && !tempFinalIgnoreSetsState && setSelectionCondition == SetChangeWhileHeld)
             {
                 QTimer::singleShot(0, this, SLOT(checkForSetChange()));
             }
@@ -659,7 +660,7 @@ void JoyButton::mouseEvent()
             {
                 double mouse1 = -2.0;
                 double mouse2 = -2.0;
-                double difference = getSpringDistanceFromDeadZone();
+                double difference = getDistanceFromDeadZone();
                 double sumDist = buttonslot->getMouseDistance();
 
                 if (mousedirection == JoyButtonSlot::MouseRight)
@@ -1371,7 +1372,7 @@ void JoyButton::checkForSetChange()
             {
                 emit setChangeActivated(setSelection);
             }
-            else if ((tempButtonPressed == tempFinalState) && setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
+            else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
             {
                 emit setChangeActivated(setSelection);
             }
@@ -1489,6 +1490,11 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         {
             QTimer::singleShot(0, this, SLOT(checkForSetChange()));
         }
+        else
+        {
+            isButtonPressedQueue.clear();
+            ignoreSetQueue.clear();
+        }
     }
     else
     {
@@ -1562,11 +1568,6 @@ double JoyButton::getDistanceFromDeadZone()
     }
 
     return distance;
-}
-
-double JoyButton::getSpringDistanceFromDeadZone()
-{
-    return getDistanceFromDeadZone();
 }
 
 double JoyButton::getTotalSlotDistance(JoyButtonSlot *slot)

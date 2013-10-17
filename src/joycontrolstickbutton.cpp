@@ -73,11 +73,6 @@ double JoyControlStickButton::getDistanceFromDeadZone()
     //return stick->getNormalizedAbsoluteDistance();
 }
 
-double JoyControlStickButton::getSpringDistanceFromDeadZone()
-{
-    return stick->calculateDirectionalDistance(this, JoyButton::MouseSpring);
-}
-
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
     if (condition != setSelectionCondition && !passive)

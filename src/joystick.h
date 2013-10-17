@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <SDL/SDL.h>
+#include <SDL/SDL_joystick.h>
 
 #include "joyaxis.h"
 #include "joydpad.h"
