@@ -261,6 +261,7 @@ void JoyButton::reset()
     setSelectionCondition = SetChangeDisabled;
     ignoresets = false;
     ignoreEvents = false;
+    whileHeldStatus = false;
 }
 
 void JoyButton::reset(int index)
@@ -1374,6 +1375,15 @@ void JoyButton::checkForSetChange()
             }
             else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
             {
+                if (tempFinalState)
+                {
+                    whileHeldStatus = true;
+                }
+                else if (!tempFinalState)
+                {
+                    whileHeldStatus = false;
+                }
+
                 emit setChangeActivated(setSelection);
             }
         }
@@ -1908,4 +1918,14 @@ void JoyButton::setSmoothing(bool enabled)
 bool JoyButton::isSmoothingEnabled()
 {
     return smoothing;
+}
+
+bool JoyButton::getWhileHeldStatus()
+{
+    return whileHeldStatus;
+}
+
+void JoyButton::setWhileHeldStatus(bool status)
+{
+    whileHeldStatus = status;
 }

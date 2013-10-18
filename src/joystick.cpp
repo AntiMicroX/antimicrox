@@ -115,10 +115,23 @@ void Joystick::setActiveSetNumber(int index)
             bool tempignore = true;
             JoyButton *button = current_set->getJoyButton(i);
             JoyButton *oldButton = old_set->getJoyButton(i);
-            if (value && button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld &&
-                oldButton->getSetSelection() != index)
+            if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
             {
-                tempignore = false;
+                if (value)
+                {
+                    if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                    {
+                        button->setWhileHeldStatus(true);
+                    }
+                    else if (!button->getWhileHeldStatus())
+                    {
+                        tempignore = false;
+                    }
+                }
+                else
+                {
+                    button->setWhileHeldStatus(false);
+                }
             }
 
             //button->joyEvent(value, true);
@@ -135,11 +148,25 @@ void Joystick::setActiveSetNumber(int index)
 
             if (button && oldButton)
             {
-                if (value && button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld &&
-                    oldButton->getSetSelection() != index)
+                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
                 {
-                    tempignore = false;
+                    if (value)
+                    {
+                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                        {
+                            button->setWhileHeldStatus(true);
+                        }
+                        else if (!button->getWhileHeldStatus())
+                        {
+                            tempignore = false;
+                        }
+                    }
                 }
+            }
+            else if (!button)
+            {
+                axis->getPAxisButton()->setWhileHeldStatus(false);
+                axis->getNAxisButton()->setWhileHeldStatus(false);
             }
 
             axis->joyEvent(value, tempignore);
@@ -155,10 +182,28 @@ void Joystick::setActiveSetNumber(int index)
 
             if (button && oldButton)
             {
-                if (value && button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld &&
-                    oldButton->getSetSelection() != index)
+                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
                 {
-                    tempignore = false;
+                    if (value)
+                    {
+                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                        {
+                            button->setWhileHeldStatus(true);
+                        }
+                        else if (!button->getWhileHeldStatus())
+                        {
+                            tempignore = false;
+                        }
+                    }
+                }
+            }
+            else if (!button)
+            {
+                QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
+                while (iter.hasNext())
+                {
+                    JoyDPadButton *button = iter.next().value();
+                    button->setWhileHeldStatus(false);
                 }
             }
 

@@ -92,6 +92,8 @@ public:
 
     void setSmoothing(bool enabled=false);
     bool isSmoothingEnabled();
+    bool getWhileHeldStatus();
+    void setWhileHeldStatus(bool status);
 
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
@@ -160,6 +162,7 @@ protected:
     int springHeight;
     double sensitivity;
     bool smoothing;
+    bool whileHeldStatus;
 
 signals:
     void clicked (int index);
