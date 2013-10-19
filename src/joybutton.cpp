@@ -613,8 +613,6 @@ void JoyButton::mouseEvent()
                     }
                 }
 
-                //difference = qMin(qMax(difference, 0.0), 1.0);
-
                 int distance = 0;
                 if (mousedirection == JoyButtonSlot::MouseRight)
                 {
@@ -644,8 +642,6 @@ void JoyButton::mouseEvent()
                 if (distance >= 1)
                 {
                     sendevent(mouse1, mouse2);
-                    //sumDist = 0.0;
-                    //sumDist = (sumDist - distance) * 0.85;
                     sumDist -= distance;
                     if (smoothing)
                     {
@@ -717,13 +713,6 @@ void JoyButton::mouseEvent()
                 sendSpringEvent(mouse1, mouse2);
             }
         }
-        /*else
-        {
-            //sendSpringEvent(0.0, 0.0);
-            buttonslot->setDistance(0.0);
-            mouseInterval->restart();
-            mouseEventTimer.stop();
-        }*/
     }
 }
 
@@ -1361,16 +1350,39 @@ void JoyButton::checkForSetChange()
     {
         bool tempFinalState = isButtonPressedQueue.last();
         bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
-        bool tempButtonPressed = isButtonPressedQueue.dequeue();
 
         if (!tempFinalIgnoreSetsState)
         {
             if (!tempFinalState && setSelectionCondition == SetChangeOneWay && setSelection > -1)
             {
+                // If either timer is currently active,
+                // stop the timer
+                if (createDeskTimer.isActive())
+                {
+                    createDeskTimer.stop();
+                }
+
+                if (releaseDeskTimer.isActive())
+                {
+                    releaseDeskTimer.stop();
+                }
+
                 emit setChangeActivated(setSelection);
             }
             else if (!tempFinalState && setSelectionCondition == SetChangeTwoWay && setSelection > -1)
             {
+                // If either timer is currently active,
+                // stop the timer
+                if (createDeskTimer.isActive())
+                {
+                    createDeskTimer.stop();
+                }
+
+                if (releaseDeskTimer.isActive())
+                {
+                    releaseDeskTimer.stop();
+                }
+
                 emit setChangeActivated(setSelection);
             }
             else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
@@ -1384,12 +1396,42 @@ void JoyButton::checkForSetChange()
                     whileHeldStatus = false;
                 }
 
+                // If either timer is currently active,
+                // stop the timer
+                if (createDeskTimer.isActive())
+                {
+                    createDeskTimer.stop();
+                }
+
+                if (releaseDeskTimer.isActive())
+                {
+                    releaseDeskTimer.stop();
+                }
+
                 emit setChangeActivated(setSelection);
             }
         }
 
-        ignoreSetQueue.clear();
-        isButtonPressedQueue.clear();
+        // Clear queue except for a press if it is last in
+        if (!isButtonPressedQueue.isEmpty())
+        {
+            isButtonPressedQueue.clear();
+            if (tempFinalState)
+            {
+                isButtonPressedQueue.enqueue(tempFinalState);
+            }
+        }
+
+        // Clear queue except for a press if it is last in
+        if (!ignoreSetQueue.isEmpty())
+        {
+            bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
+            ignoreSetQueue.clear();
+            if (tempFinalState)
+            {
+                ignoreSetQueue.enqueue(tempFinalIgnoreSetsState);
+            }
+        }
     }
 }
 
@@ -1499,17 +1541,61 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         if (!tempButtonPressed)
         {
             QTimer::singleShot(0, this, SLOT(checkForSetChange()));
+            // If createDeskTimer is currently active,
+            // a rapid press was detected before a release
+            // started. Restart timer so checkForSetChange
+            // happens first
+            if (createDeskTimer.isActive())
+            {
+                createDeskTimer.start();
+            }
         }
         else
         {
-            isButtonPressedQueue.clear();
-            ignoreSetQueue.clear();
+            bool tempFinalState = false;
+            if (!isButtonPressedQueue.isEmpty())
+            {
+                tempFinalState = isButtonPressedQueue.last();
+                isButtonPressedQueue.clear();
+                if (tempFinalState)
+                {
+                    isButtonPressedQueue.enqueue(tempFinalState);
+                }
+            }
+
+            if (!ignoreSetQueue.isEmpty())
+            {
+                bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
+                ignoreSetQueue.clear();
+                if (tempFinalState)
+                {
+                    ignoreSetQueue.enqueue(tempFinalIgnoreSetsState);
+                }
+            }
         }
     }
     else
     {
-        isButtonPressedQueue.clear();
-        ignoreSetQueue.clear();
+        bool tempFinalState = false;
+        if (!isButtonPressedQueue.isEmpty())
+        {
+            tempFinalState = isButtonPressedQueue.last();
+            isButtonPressedQueue.clear();
+            if (tempFinalState)
+            {
+                isButtonPressedQueue.enqueue(tempFinalState);
+            }
+        }
+
+        if (!ignoreSetQueue.isEmpty())
+        {
+            bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
+            ignoreSetQueue.clear();
+            if (tempFinalState)
+            {
+                ignoreSetQueue.enqueue(tempFinalIgnoreSetsState);
+            }
+        }
     }
 
     if (slotiter && !slotiter->hasNext())
