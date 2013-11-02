@@ -11,24 +11,12 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     QWidget(parent)
 {
     this->stick = 0;
-
-    /*QSizePolicy sizePolicy1;
-    sizePolicy1.setHorizontalPolicy(QSizePolicy::Preferred);
-    sizePolicy1.setVerticalPolicy(QSizePolicy::Preferred);
-    sizePolicy1.setHeightForWidth(true);
-    this->setSizePolicy(sizePolicy1);*/
 }
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent) :
     QWidget(parent)
 {
     this->stick = stick;
-
-    /*QSizePolicy sizePolicy1;
-    sizePolicy1.setHorizontalPolicy(QSizePolicy::Preferred);
-    sizePolicy1.setVerticalPolicy(QSizePolicy::Preferred);
-    sizePolicy1.setHeightForWidth(true);
-    this->setSizePolicy(sizePolicy1);*/
 
     connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
@@ -81,6 +69,7 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
     QPixmap pix(side, side);
     pix.fill(Qt::transparent);
     QPainter painter(&pix);
+    painter.setRenderHint(QPainter::Antialiasing, true);
 
     // Draw box outline
     QPen penny;
@@ -95,7 +84,9 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 
     // Draw diagonal zones
     QList<int> anglesList = stick->getDiagonalZoneAngles();
-    painter.setPen(Qt::black);
+    penny.setWidth(0);
+    penny.setColor(Qt::black);
+    painter.setPen(penny);
     painter.setBrush(QBrush(Qt::green));
 
     painter.drawPie(-JoyAxis::AXISMAX, -JoyAxis::AXISMAX, JoyAxis::AXISMAX*2, JoyAxis::AXISMAX*2, anglesList.value(2)*16, stick->getDiagonalRange()*16);
@@ -104,14 +95,18 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
     painter.drawPie(-JoyAxis::AXISMAX, -JoyAxis::AXISMAX, JoyAxis::AXISMAX*2, JoyAxis::AXISMAX*2, anglesList.value(8)*16, stick->getDiagonalRange()*16);
 
     // Draw deadzone circle
-    painter.setPen(Qt::blue);
+    penny.setWidth(0);
+    penny.setColor(Qt::blue);
+    painter.setPen(penny);
     painter.setBrush(QBrush(Qt::red));
     painter.drawEllipse(-stick->getDeadZone(), -stick->getDeadZone(), stick->getDeadZone()*2, stick->getDeadZone()*2);
 
     painter.restore();
 
     painter.save();
-    painter.setPen(Qt::gray);
+    penny.setWidth(0);
+    penny.setColor(Qt::gray);
+    painter.setPen(penny);
     painter.scale(side / 2.0, side / 2.0);
     painter.translate(1, 1);
     // Draw Y line
@@ -123,6 +118,9 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
     painter.save();
     painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
+    penny.setWidth(0);
+    penny.setColor(Qt::black);
+    painter.setPen(penny);
 
     // Draw crosshair
     int linexstart = stick->getXCoordinate()-2000, linexend = stick->getXCoordinate()+2000;
