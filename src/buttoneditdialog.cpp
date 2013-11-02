@@ -52,13 +52,24 @@ ButtonEditDialog::~ButtonEditDialog()
 
 void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 {
-    // Do not allow closing of dialog using Escape key
-    if (event->key() == Qt::Key_Escape)
+    bool ignore = false;
+    // Ignore the following keys that might
+    // trigger an event in QDialog::keyPressEvent
+    switch(event->key())
     {
-        return;
+        case Qt::Key_Escape:
+        case Qt::Key_Enter:
+        case Qt::Key_Return:
+        {
+            ignore = true;
+            break;
+        }
     }
 
-    QDialog::keyPressEvent(event);
+    if (!ignore)
+    {
+        QDialog::keyPressEvent(event);
+    }
 }
 
 void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
