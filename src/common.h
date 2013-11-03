@@ -16,6 +16,7 @@ namespace PadderCommon
     const QString pidFilePath = "/tmp/antimicro.pid";
     const int LATESTCONFIGFILEVERSION = 4;
     const QString programVersion = "1.1";
+    const QString localSocketKey = "antimicroSignalListener";
 }
 
 #endif // COMMON_H

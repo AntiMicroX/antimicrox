@@ -2,8 +2,6 @@
 #include <QDir>
 
 #include "xmlconfigreader.h"
-#include "xmlconfigmigration.h"
-#include "xmlconfigwriter.h"
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
     QObject(parent)
@@ -60,7 +58,6 @@ void XMLConfigReader::configJoystick(Joystick *joystick)
 
 bool XMLConfigReader::read()
 {
-    //bool requiredMigration = false;
     bool error = false;
 
     if (configFile && configFile->exists() && joystick)
@@ -77,22 +74,6 @@ bool XMLConfigReader::read()
         if (xml->name() != "joystick")
         {
             xml->raiseError("Root node is not a joystick");
-        }
-        else
-        {
-            /*XMLConfigMigration *migration = new XMLConfigMigration(xml);
-            if (migration->requiresMigration())
-            {
-                QString migrationString = migration->migrate();
-                if (migrationString.length() > 0)
-                {
-                    xml->clear();
-                    xml->addData(migrationString);
-                    xml->readNextStartElement();
-                    requiredMigration = true;
-                }
-            }*/
-            //xml->readNextStartElement();
         }
 
         while (!xml->atEnd())
@@ -111,15 +92,6 @@ bool XMLConfigReader::read()
         }
 
         configFile->close();
-
-        /*if (requiredMigration && (!xml->hasError() || xml->error() == QXmlStreamReader::PrematureEndOfDocumentError))
-        {
-            XMLConfigWriter *newsave = new XMLConfigWriter();
-            newsave->setFileName(configFile->fileName());
-            newsave->write(joystick);
-            delete newsave;
-            newsave = 0;
-        }*/
 
         if (xml->hasError() && xml->error() != QXmlStreamReader::PrematureEndOfDocumentError)
         {

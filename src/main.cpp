@@ -1,3 +1,10 @@
+#include <QtGlobal>
+
+#ifdef Q_OS_WIN32
+  #include <SDL/SDL.h>
+  #undef main
+#endif
+
 #include <QApplication>
 #include <QMainWindow>
 #include <QHash>
@@ -8,33 +15,21 @@
 #include <QLibraryInfo>
 #include <QSystemTrayIcon>
 #include <QTextStream>
+#include <QLocalSocket>
 
-#include <sys/file.h>
-#include <errno.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <signal.h>
+#ifdef Q_OS_WIN32
+#include <QStyle>
+#include <QStyleFactory>
+#endif
 
 #include "mainwindow.h"
 #include "joystick.h"
 #include "joybuttonslot.h"
 #include "inputdaemon.h"
-#include "xmlconfigreader.h"
-#include "xmlconfigwriter.h"
 #include "common.h"
 #include "advancebuttondialog.h"
 #include "commandlineutility.h"
 
-MainWindow *appWindow = 0;
-
-void catchSIGUSR1(int sig) {
-    if (appWindow)
-    {
-        appWindow->loadAppConfig(true);
-    }
-
-    signal(sig, catchSIGUSR1);
-}
 
 int main(int argc, char *argv[])
 {
@@ -42,7 +37,35 @@ int main(int argc, char *argv[])
     qRegisterMetaType<AdvanceButtonDialog*>();
     qRegisterMetaType<Joystick*>();
 
+    // If running Win version, check if an explicit style
+    // was defined on the command-line. If so, make a note
+    // of it.
+#ifdef Q_OS_WIN32
+    bool styleChangeFound = false;
+    for (int i=0; i < argc && !styleChangeFound; i++)
+    {
+        char *tempchrstr = argv[i];
+        QString temp = QString::fromUtf8(tempchrstr);
+        if (temp == "-style")
+        {
+            styleChangeFound = true;
+        }
+    }
+#endif
+
     QApplication a(argc, argv);
+    //QString defaultStyleName = qApp->style()->objectName();
+
+    // If running Win version and no explicit style was
+    // defined, use the style Fusion by default. I find the
+    // windowsvista style a tad ugly
+#ifdef Q_OS_WIN32
+    if (!styleChangeFound)
+    {
+        qApp->setStyle(QStyleFactory::create("Fusion"));
+    }
+#endif
+
     CommandLineUtility cmdutility;
     QStringList cmdarguments = a.arguments();
     cmdutility.parseArguments(cmdarguments);
@@ -81,72 +104,57 @@ int main(int argc, char *argv[])
 
     QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
 
-    QFile pidFile(PadderCommon::pidFilePath);
-    pidFile.open(QIODevice::ReadWrite);
-    int pid_file = pidFile.handle();
-    int rc = flock(pid_file, LOCK_EX | LOCK_NB);
-    if (rc)
+    // Cross-platform way of performing IPC. Currently,
+    // only establish a connection and then disconnect.
+    // In the future, there might be a reason to actually send
+    // messages to the QLocalServer.
+    QLocalSocket socket;
+    socket.connectToServer(PadderCommon::localSocketKey);
+    socket.waitForConnected(1000);
+    if (socket.state() == QLocalSocket::ConnectedState)
     {
-        if (EWOULDBLOCK == errno)
+        socket.disconnectFromServer();
+
+        // An instance of this program is already running.
+        // Save app config and exit.
+        InputDaemon *joypad_worker = new InputDaemon (joysticks, false);
+        MainWindow w(joysticks, &cmdutility, false);
+
+        if (!cmdutility.hasError() && cmdutility.hasProfile())
         {
-            // An instance of this program is already running.
-            // Save app config and exit.
-            InputDaemon *joypad_worker = new InputDaemon (joysticks, false);
-            MainWindow w(joysticks, &cmdutility, false);
-            appWindow = &w;
-
-            if (!cmdutility.hasError() && cmdutility.hasProfile())
-            {
-                w.saveAppConfig();
-            }
-
-            if (pidFile.isOpen())
-            {
-                int otherpid = 0;
-                QTextStream(&pidFile) >> otherpid;
-                kill(otherpid, SIGUSR1);
-                pidFile.close();
-            }
-
-            joypad_worker->quit();
-            w.removeJoyTabs();
-
-            QHashIterator<int, Joystick*> iter(*joysticks);
-            while (iter.hasNext())
-            {
-                Joystick *joystick = iter.next().value();
-                if (joystick)
-                {
-                    delete joystick;
-                    joystick = 0;
-                }
-            }
-
-            joysticks->clear();
-            delete joysticks;
-            joysticks = 0;
-
-            delete joypad_worker;
-            joypad_worker = 0;
-
-            return 0;
+            w.saveAppConfig();
         }
-    }
-    else
-    {
-        QTextStream(&pidFile) << getpid();
+
+        joypad_worker->quit();
+        w.removeJoyTabs();
+
+        QHashIterator<int, Joystick*> iter(*joysticks);
+        while (iter.hasNext())
+        {
+            Joystick *joystick = iter.next().value();
+            if (joystick)
+            {
+                delete joystick;
+                joystick = 0;
+            }
+        }
+
+        joysticks->clear();
+        delete joysticks;
+        joysticks = 0;
+
+        delete joypad_worker;
+        joypad_worker = 0;
+
+        return 0;
     }
 
     InputDaemon *joypad_worker = new InputDaemon (joysticks);
     MainWindow w(joysticks, &cmdutility);
-    appWindow = &w;
-
-    signal(SIGUSR1, catchSIGUSR1);
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int,Joystick*>*)), &w, SLOT(fillButtons(QHash<int,Joystick*>*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
-    //QObject::connect(&w, SIGNAL(joystickRefreshRequested(Joystick*)), joypad_worker, SLOT(refreshJoystick(Joystick*)));
     QObject::connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
@@ -158,14 +166,6 @@ int main(int argc, char *argv[])
     }
 
     int app_result = a.exec();
-
-    if (pidFile.isOpen())
-    {
-        ftruncate(pidFile.handle(), 0);
-        flock(pidFile.handle(), LOCK_UN);
-        pidFile.close();
-        pidFile.remove();
-    }
 
     QHashIterator<int, Joystick*> iter(*joysticks);
     while (iter.hasNext())

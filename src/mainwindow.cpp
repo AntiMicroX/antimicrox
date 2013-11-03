@@ -1,6 +1,8 @@
 #include <QDebug>
 #include <QFile>
 #include <QApplication>
+#include <QLocalSocket>
+#include <QTextStream>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -56,9 +58,8 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmd
 
     aboutDialog = new AboutDialog(this);
 
-    QApplication *app = static_cast<QApplication*> (QCoreApplication::instance());
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
-    connect(ui->actionAbout_Qt, SIGNAL(triggered()), app, SLOT(aboutQt()));
+    connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 }
 
 MainWindow::~MainWindow()
@@ -202,8 +203,7 @@ void MainWindow::populateTrayIcon()
 void MainWindow::quitProgram()
 {
     this->close();
-    QApplication *app = static_cast<QApplication*> (QCoreApplication::instance());
-    app->quit();
+    qApp->quit();
 }
 
 void MainWindow::refreshTrayIconMenu()
@@ -548,4 +548,32 @@ void MainWindow::removeJoyTabs()
     }
 
     ui->tabWidget->clear();
+}
+
+void MainWindow::startLocalServer()
+{
+    localServer = new QLocalServer(this);
+    QLocalServer::removeServer(PadderCommon::localSocketKey);
+    localServer->setMaxPendingConnections(1);
+    if (!localServer->listen(PadderCommon::localSocketKey))
+    {
+        QTextStream errorstream(stderr);
+        QString message("Could not start signal server. Profiles cannot be reloaded\n");
+        message.append("from command-line");
+        errorstream << tr(message.toStdString().c_str()) << endl;
+    }
+    else
+    {
+        connect(localServer, SIGNAL(newConnection()), this, SLOT(handleOutsideSignals()));
+    }
+}
+
+void MainWindow::handleOutsideSignals()
+{
+    QLocalSocket *socket = localServer->nextPendingConnection();
+    if (socket)
+    {
+        socket->waitForDisconnected(1000);
+        loadAppConfig(true);
+    }
 }

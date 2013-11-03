@@ -8,8 +8,7 @@ isEmpty(INSTALL_PREFIX) {
     INSTALL_PREFIX = /usr/local
 }
 
-
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
@@ -84,7 +83,6 @@ SOURCES += main.cpp\
     joybuttonslot.cpp \
     joyaxisbutton.cpp \
     aboutdialog.cpp \
-    xmlconfigmigration.cpp \
     setjoystick.cpp \
     sdleventreader.cpp \
     setaxisthrottledialog.cpp \
@@ -135,7 +133,6 @@ HEADERS  += mainwindow.h \
     joybuttonslot.h \
     joyaxisbutton.h \
     aboutdialog.h \
-    xmlconfigmigration.h \
     setjoystick.h \
     sdleventreader.h \
     setaxisthrottledialog.h \
@@ -179,7 +176,10 @@ FORMS    += mainwindow.ui \
     mousesettingsdialog.ui
 
 
-LIBS += -lSDL -lXtst -lX11
+unix {
+  LIBS += -lSDL -lXtst -lX11
+}
+
 
 RESOURCES += \
     resources.qrc

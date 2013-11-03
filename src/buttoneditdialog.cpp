@@ -77,6 +77,8 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
     if (ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
     {
         int controlcode = event->nativeScanCode();
+        int virtualactual = event->nativeVirtualKey();
+        Q_UNUSED(virtualactual);
 
         if (!ignoreRelease)
         {

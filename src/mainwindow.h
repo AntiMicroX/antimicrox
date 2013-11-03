@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QHideEvent>
 #include <QShowEvent>
+#include <QLocalServer>
 
 #include "joystick.h"
 #include "aboutdialog.h"
@@ -42,6 +43,7 @@ protected:
     bool signalDisconnect;
     bool showTrayIcon;
     bool graphical;
+    QLocalServer *localServer;
 
 private:
     Ui::MainWindow *ui;
@@ -59,6 +61,7 @@ public slots:
     void saveAppConfig();
     void loadAppConfig(bool forceRefresh=false);
     void removeJoyTabs();
+    void startLocalServer();
 
 private slots:
     void quitProgram();
@@ -72,6 +75,7 @@ private slots:
     void joystickTrayShow();
     void populateTrayIcon();
     void openAboutDialog();
+    void handleOutsideSignals();
 };
 
 #endif // MAINWINDOW_H
