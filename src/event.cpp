@@ -47,7 +47,8 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
     if (device == JoyButtonSlot::JoyKeyboard)
     {
         temp[0].type = INPUT_KEYBOARD;
-        temp[0].ki.wScan = MapVirtualKey(code, MAPVK_VK_TO_VSC);
+        //temp[0].ki.wScan = MapVirtualKey(code, MAPVK_VK_TO_VSC);
+        temp[0].ki.wScan = WinInfo::scancodeFromVirtualKey(code);
         temp[0].ki.time = 0;
         temp[0].ki.dwExtraInfo = 0;
 
@@ -279,24 +280,24 @@ int keyToKeycode (QString key)
     }
 
 #elif defined (Q_OS_WIN32)
-    if (key.length() == 1)
-    {
-        //qDebug() << "KEY: " << key;
-        int ordinal = QVariant(key.toUtf8().constData()[0]).toInt();
-        tempcode = VkKeyScan(ordinal);
-        int modifiers = tempcode >> 8;
-        tempcode = tempcode & 0xff;
-        if ((modifiers & 1) != 0) tempcode |= VK_SHIFT;
-        if ((modifiers & 2) != 0) tempcode |= VK_CONTROL;
-        if ((modifiers & 4) != 0) tempcode |= VK_MENU;
-        //tempcode = VkKeyScan(QVariant(key.constData()).toInt());
-        //tempcode = OemKeyScan(key.toUtf8().toInt());
-        //tempcode = OemKeyScan(ordinal);
-    }
-    else if (key.length() > 0)
+    if (key.length() > 0)
     {
         tempcode = WinInfo::getVirtualKey(key);
-        qDebug() << "OTHER: " << key << " TEMPCODE: " << QString::number(tempcode);
+        if (tempcode <= 0 && key.length() == 1)
+        {
+            //qDebug() << "KEY: " << key;
+            //int shit = key.toUtf8().constData()[0];
+            int ordinal = QVariant(key.toUtf8().constData()[0]).toInt();
+            tempcode = VkKeyScan(ordinal);
+            int modifiers = tempcode >> 8;
+            tempcode = tempcode & 0xff;
+            if ((modifiers & 1) != 0) tempcode |= VK_SHIFT;
+            if ((modifiers & 2) != 0) tempcode |= VK_CONTROL;
+            if ((modifiers & 4) != 0) tempcode |= VK_MENU;
+            //tempcode = VkKeyScan(QVariant(key.constData()).toInt());
+            //tempcode = OemKeyScan(key.toUtf8().toInt());
+            //tempcode = OemKeyScan(ordinal);
+        }
     }
 
 #endif
@@ -350,45 +351,32 @@ QString keycodeToKey(int keycode)
 
 #elif defined (Q_OS_WIN32)
     wchar_t buffer[50] = {0};
-    int scancode = 0;
-    if (keycode == VK_PAUSE)
+
+    QString tempalias = WinInfo::getDisplayString(keycode);
+    if (!tempalias.isEmpty())
     {
-        scancode = 0x45;
+        newkey = tempalias;
     }
     else
     {
-        scancode = MapVirtualKey(keycode, MAPVK_VK_TO_VSC);
-    }
+        int scancode = WinInfo::scancodeFromVirtualKey(keycode);
 
-    switch (keycode)
-    {
-         case VK_LEFT: case VK_UP: case VK_RIGHT: case VK_DOWN: // arrow keys
-         case VK_PRIOR: case VK_NEXT: // page up and page down
-         case VK_END: case VK_HOME:
-         case VK_INSERT: case VK_DELETE:
-         case VK_DIVIDE: // numpad slash
-         case VK_NUMLOCK:
-         case VK_RCONTROL:
-         case VK_RMENU:
-         {
-             scancode |= 0x100; // set extended bit
-             break;
-         }
-    }
-
-    if (keycode >= VK_BROWSER_BACK && keycode <= VK_LAUNCH_APP2)
-    {
-        newkey.append("0x%1").arg(keycode, 0, 16);
-    }
-
-    int length = GetKeyNameTextW(scancode << 16, buffer, sizeof(buffer));
-    if (length > 0)
-    {
-        newkey = QString::fromWCharArray(buffer);
-    }
-    else
-    {
-        newkey.append("0x%1").arg(keycode, 0, 16);
+        if (keycode >= VK_BROWSER_BACK && keycode <= VK_LAUNCH_APP2)
+        {
+            newkey.append(QString("0x%1").arg(keycode, 0, 16));
+        }
+        else
+        {
+            int length = GetKeyNameTextW(scancode << 16, buffer, sizeof(buffer));
+            if (length > 0)
+            {
+                newkey = QString::fromWCharArray(buffer);
+            }
+            else
+            {
+                newkey.append(QString("0x%1").arg(keycode, 0, 16));
+            }
+        }
     }
 
 #endif

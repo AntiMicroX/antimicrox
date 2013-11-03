@@ -92,7 +92,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 
 #ifdef Q_OS_WIN32
-        int mapvirtual = MapVirtualKey(controlcode, MAPVK_VSC_TO_VK_EX);
+        /*int mapvirtual = MapVirtualKey(controlcode, MAPVK_VSC_TO_VK_EX);
         int extended = (controlcode & 0x0100) != 0;
 
         int finalvirtual = 0;
@@ -109,7 +109,8 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
             break;
         default:
             finalvirtual = virtualactual;
-        }
+        }*/
+        int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
 
 #endif
 

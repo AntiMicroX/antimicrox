@@ -1,7 +1,7 @@
-#include "wininfo.h"
-
 #include <windows.h>
 #include <QHashIterator>
+
+#include "wininfo.h"
 
 WinInfo WinInfo::_instance;
 
@@ -11,29 +11,12 @@ WinInfo::WinInfo(QObject *parent) :
     populateKnownAliases();
 }
 
-WinInfo::~WinInfo()
-{
-    QHashIterator<QString, KeyInfo*> iter(_instance.knownAliases);
-    while(iter.hasNext())
-    {
-        KeyInfo *info = iter.next().value();
-        if (info)
-        {
-            delete info;
-            info = 0;
-        }
-    }
-
-    _instance.knownAliases.clear();
-}
-
-QString WinInfo::getDisplayString(QString codestring)
+QString WinInfo::getDisplayString(unsigned int virtualkey)
 {
     QString temp;
-    if (_instance.knownAliases.contains(codestring))
+    if (_instance.knownAliasesVKStrings.contains(virtualkey))
     {
-        KeyInfo *currentKey = _instance.knownAliases.value(codestring);
-        temp = currentKey->name;
+        temp = _instance.knownAliasesVKStrings.value(virtualkey);
     }
 
     return temp;
@@ -42,10 +25,9 @@ QString WinInfo::getDisplayString(QString codestring)
 unsigned int WinInfo::getVirtualKey(QString codestring)
 {
     int temp = 0;
-    if (_instance.knownAliases.contains(codestring))
+    if (_instance.knownAliasesX11SymVK.contains(codestring))
     {
-        KeyInfo *currentKey = _instance.knownAliases.value(codestring);
-        temp = currentKey->vk;
+        temp = _instance.knownAliasesX11SymVK.value(codestring);
     }
 
     return temp;
@@ -54,75 +36,204 @@ unsigned int WinInfo::getVirtualKey(QString codestring)
 void WinInfo::populateKnownAliases()
 {
     // These aliases are needed for xstrings that would
-     // return empty space characters from XLookupString
-     if (knownAliases.isEmpty())
-     {
-         knownAliases.insert("Escape", new KeyInfo(VK_ESCAPE, tr("ESC")));
-         knownAliases.insert("Tab", new KeyInfo(VK_TAB, tr("Tab")));
-         knownAliases.insert("space", new KeyInfo(VK_SPACE, tr("Space")));
-         knownAliases.insert("Delete", new KeyInfo(VK_DELETE, tr("DEL")));
-         knownAliases.insert("Return", new KeyInfo(VK_RETURN, tr("Return")));
-         knownAliases.insert("KP_Enter", new KeyInfo(VK_RETURN, tr("KP_Enter")));
-         knownAliases.insert("BackSpace", new KeyInfo(VK_BACK, tr("Backspace")));
-         knownAliases.insert("F1", new KeyInfo(VK_F1, tr("F1")));
-         knownAliases.insert("F2", new KeyInfo(VK_F2, tr("F2")));
-         knownAliases.insert("F3", new KeyInfo(VK_F3, tr("F3")));
-         knownAliases.insert("F4", new KeyInfo(VK_F4, tr("F4")));
-         knownAliases.insert("F5", new KeyInfo(VK_F5, tr("F5")));
-         knownAliases.insert("F6", new KeyInfo(VK_F6, tr("F6")));
-         knownAliases.insert("F7", new KeyInfo(VK_F7, tr("F7")));
-         knownAliases.insert("F8", new KeyInfo(VK_F8, tr("F8")));
-         knownAliases.insert("F9", new KeyInfo(VK_F9, tr("F9")));
-         knownAliases.insert("F10", new KeyInfo(VK_F10, tr("F10")));
-         knownAliases.insert("F11", new KeyInfo(VK_F11, tr("F11")));
-         knownAliases.insert("F12", new KeyInfo(VK_F12, tr("F12")));
-         knownAliases.insert("Shift_L", new KeyInfo(VK_SHIFT, tr("Shift (L)")));
-         knownAliases.insert("Shift_R", new KeyInfo(VK_RSHIFT, tr("Shift (R)")));
-         knownAliases.insert("Insert", new KeyInfo(VK_INSERT, tr("Insert")));
-         knownAliases.insert("Pause", new KeyInfo(VK_PAUSE, tr("Pause")));
-         knownAliases.insert("grave", new KeyInfo(VK_OEM_3, tr("grave")));
-         knownAliases.insert("minus", new KeyInfo(VK_OEM_MINUS, tr("-")));
-         knownAliases.insert("equal", new KeyInfo(VK_OEM_PLUS, tr("=")));
-         knownAliases.insert("Caps_Lock", new KeyInfo(VK_CAPITAL, tr("Caps")));
-         knownAliases.insert("Control_L", new KeyInfo(VK_CONTROL, tr("Ctrl (L)")));
-         knownAliases.insert("Control_R", new KeyInfo(VK_RCONTROL, tr("Ctrl (R)")));
-         knownAliases.insert("Alt_L", new KeyInfo(VK_MENU, tr("Alt (L)")));
-         knownAliases.insert("Alt_R", new KeyInfo(VK_RMENU, tr("Alt (R)")));
-         knownAliases.insert("Super_L", new KeyInfo(VK_LWIN, tr("Super")));
-         knownAliases.insert("Menu", new KeyInfo(VK_RBUTTON, tr("Menu")));
-         knownAliases.insert("Prior", new KeyInfo(VK_PRIOR, tr("PgUp")));
-         knownAliases.insert("Next", new KeyInfo(VK_NEXT, tr("PgDn")));
-         knownAliases.insert("Home", new KeyInfo(VK_HOME, tr("Home")));
-         knownAliases.insert("End", new KeyInfo(VK_END, tr("End")));
-         knownAliases.insert("Up", new KeyInfo(VK_UP, tr("Up")));
-         knownAliases.insert("Down", new KeyInfo(VK_DOWN, tr("Down")));
-         knownAliases.insert("Left", new KeyInfo(VK_LEFT, tr("Left")));
-         knownAliases.insert("Right", new KeyInfo(VK_RIGHT, tr("Right")));
-         knownAliases.insert("bracketleft", new KeyInfo(VK_OEM_4, tr("[")));
-         knownAliases.insert("bracketright", new KeyInfo(VK_OEM_6, tr("]")));
-         knownAliases.insert("backslash", new KeyInfo(VK_SEPARATOR, tr("\\")));
-         knownAliases.insert("slash", new KeyInfo(VK_OEM_2, tr("/")));
-         knownAliases.insert("semicolon", new KeyInfo(VK_OEM_1, tr(";")));
-         knownAliases.insert("apostrophe", new KeyInfo(VK_OEM_7, tr("'")));
-         knownAliases.insert("comma", new KeyInfo(VK_OEM_COMMA, tr(";")));
-         knownAliases.insert("period", new KeyInfo(VK_OEM_PERIOD, tr(".")));
-         knownAliases.insert("KP_0", new KeyInfo(VK_NUMPAD0, tr("0")));
-         knownAliases.insert("KP_1", new KeyInfo(VK_NUMPAD1, tr("1")));
-         knownAliases.insert("KP_2", new KeyInfo(VK_NUMPAD2, tr("2")));
-         knownAliases.insert("KP_3", new KeyInfo(VK_NUMPAD3, tr("3")));
-         knownAliases.insert("KP_4", new KeyInfo(VK_NUMPAD4, tr("4")));
-         knownAliases.insert("KP_5", new KeyInfo(VK_NUMPAD5, tr("5")));
-         knownAliases.insert("KP_6", new KeyInfo(VK_NUMPAD6, tr("6")));
-         knownAliases.insert("KP_7", new KeyInfo(VK_NUMPAD7, tr("7")));
-         knownAliases.insert("KP_8", new KeyInfo(VK_NUMPAD8, tr("8")));
-         knownAliases.insert("KP_9", new KeyInfo(VK_NUMPAD9, tr("9")));
-         knownAliases.insert("Num_Lock", new KeyInfo(VK_NUMLOCK, tr("NUM\nLK")));
-         knownAliases.insert("KP_Divide", new KeyInfo(VK_DIVIDE, tr("/")));
-         knownAliases.insert("KP_Multiply", new KeyInfo(VK_MULTIPLY, tr("*")));
-         knownAliases.insert("KP_Subtract", new KeyInfo(VK_SUBTRACT, tr("-")));
-         knownAliases.insert("KP_Add", new KeyInfo(VK_ADD, tr("+")));
-         knownAliases.insert("KP_Decimal", new KeyInfo(VK_DECIMAL, tr(".")));
-         knownAliases.insert("Scroll_Lock", new KeyInfo(VK_SCROLL, tr("SCLK")));
-         knownAliases.insert("Print", new KeyInfo(VK_SNAPSHOT, tr("PRTSC")));
-     }
+    // return empty space characters from XLookupString
+    if (knownAliasesX11SymVK.isEmpty())
+    {
+        knownAliasesX11SymVK.insert("Escape", VK_ESCAPE);
+        knownAliasesX11SymVK.insert("Tab", VK_TAB);
+        knownAliasesX11SymVK.insert("space", VK_SPACE);
+        knownAliasesX11SymVK.insert("Delete", VK_DELETE);
+        knownAliasesX11SymVK.insert("Return", VK_RETURN);
+        knownAliasesX11SymVK.insert("KP_Enter", VK_RETURN);
+        knownAliasesX11SymVK.insert("BackSpace", VK_BACK);
+        knownAliasesX11SymVK.insert("F1", VK_F1);
+        knownAliasesX11SymVK.insert("F2", VK_F2);
+        knownAliasesX11SymVK.insert("F3", VK_F3);
+        knownAliasesX11SymVK.insert("F4", VK_F4);
+        knownAliasesX11SymVK.insert("F5", VK_F5);
+        knownAliasesX11SymVK.insert("F6", VK_F6);
+        knownAliasesX11SymVK.insert("F7", VK_F7);
+        knownAliasesX11SymVK.insert("F8", VK_F8);
+        knownAliasesX11SymVK.insert("F9", VK_F9);
+        knownAliasesX11SymVK.insert("F10", VK_F10);
+        knownAliasesX11SymVK.insert("F11", VK_F11);
+        knownAliasesX11SymVK.insert("F12", VK_F12);
+        knownAliasesX11SymVK.insert("Shift_L", VK_SHIFT);
+        knownAliasesX11SymVK.insert("Shift_R", VK_RSHIFT);
+        knownAliasesX11SymVK.insert("Insert", VK_INSERT);
+        knownAliasesX11SymVK.insert("Pause", VK_PAUSE);
+        knownAliasesX11SymVK.insert("grave", VK_OEM_3);
+        knownAliasesX11SymVK.insert("minus", VK_OEM_MINUS);
+        knownAliasesX11SymVK.insert("equal", VK_OEM_PLUS);
+        knownAliasesX11SymVK.insert("Caps_Lock", VK_CAPITAL);
+        knownAliasesX11SymVK.insert("Control_L", VK_CONTROL);
+        knownAliasesX11SymVK.insert("Control_R", VK_RCONTROL);
+        knownAliasesX11SymVK.insert("Alt_L", VK_MENU);
+        knownAliasesX11SymVK.insert("Alt_R", VK_RMENU);
+        knownAliasesX11SymVK.insert("Super_L", VK_LWIN);
+        knownAliasesX11SymVK.insert("Menu", VK_RBUTTON);
+        knownAliasesX11SymVK.insert("Prior", VK_PRIOR);
+        knownAliasesX11SymVK.insert("Next", VK_NEXT);
+        knownAliasesX11SymVK.insert("Home", VK_HOME);
+        knownAliasesX11SymVK.insert("End", VK_END);
+        knownAliasesX11SymVK.insert("Up", VK_UP);
+        knownAliasesX11SymVK.insert("Down", VK_DOWN);
+        knownAliasesX11SymVK.insert("Left", VK_LEFT);
+        knownAliasesX11SymVK.insert("Right", VK_RIGHT);
+        knownAliasesX11SymVK.insert("bracketleft", VK_OEM_4);
+        knownAliasesX11SymVK.insert("bracketright", VK_OEM_6);
+        knownAliasesX11SymVK.insert("backslash", VK_OEM_5);
+        knownAliasesX11SymVK.insert("slash", VK_OEM_2);
+        knownAliasesX11SymVK.insert("semicolon", VK_OEM_1);
+        knownAliasesX11SymVK.insert("apostrophe", VK_OEM_7);
+        knownAliasesX11SymVK.insert("comma", VK_OEM_COMMA);
+        knownAliasesX11SymVK.insert("period", VK_OEM_PERIOD);
+        knownAliasesX11SymVK.insert("KP_0", VK_NUMPAD0);
+        knownAliasesX11SymVK.insert("KP_1", VK_NUMPAD1);
+        knownAliasesX11SymVK.insert("KP_2", VK_NUMPAD2);
+        knownAliasesX11SymVK.insert("KP_3", VK_NUMPAD3);
+        knownAliasesX11SymVK.insert("KP_4", VK_NUMPAD4);
+        knownAliasesX11SymVK.insert("KP_5", VK_NUMPAD5);
+        knownAliasesX11SymVK.insert("KP_6", VK_NUMPAD6);
+        knownAliasesX11SymVK.insert("KP_7", VK_NUMPAD7);
+        knownAliasesX11SymVK.insert("KP_8", VK_NUMPAD8);
+        knownAliasesX11SymVK.insert("KP_9", VK_NUMPAD9);
+        knownAliasesX11SymVK.insert("Num_Lock", VK_NUMLOCK);
+        knownAliasesX11SymVK.insert("KP_Divide", VK_DIVIDE);
+        knownAliasesX11SymVK.insert("KP_Multiply", VK_MULTIPLY);
+        knownAliasesX11SymVK.insert("KP_Subtract", VK_SUBTRACT);
+        knownAliasesX11SymVK.insert("KP_Add", VK_ADD);
+        knownAliasesX11SymVK.insert("KP_Decimal", VK_DECIMAL);
+        knownAliasesX11SymVK.insert("Scroll_Lock", VK_SCROLL);
+        knownAliasesX11SymVK.insert("Print", VK_SNAPSHOT);
+    }
+
+    if (knownAliasesVKStrings.isEmpty())
+    {
+        knownAliasesVKStrings.insert(VK_LWIN, tr("Super"));
+        knownAliasesVKStrings.insert(VK_RBUTTON, tr("Menu"));
+
+        /*knownAliasesVKStrings.insert(VK_ESCAPE, tr("ESC"));
+        knownAliasesVKStrings.insert(VK_TAB, tr("Tab"));
+        knownAliasesVKStrings.insert(VK_SPACE, tr("Space"));
+        knownAliasesVKStrings.insert(VK_DELETE, tr("DEL"));
+        knownAliasesVKStrings.insert(VK_RETURN, tr("Return"));
+        knownAliasesVKStrings.insert(VK_RETURN, tr("KP_Enter"));
+        knownAliasesVKStrings.insert(VK_BACK, tr("Backspace"));
+        knownAliasesVKStrings.insert(VK_F1, tr("F1"));
+        knownAliasesVKStrings.insert(VK_F2, tr("F2"));
+        knownAliasesVKStrings.insert(VK_F3, tr("F3"));
+        knownAliasesVKStrings.insert(VK_F4, tr("F4"));
+        knownAliasesVKStrings.insert(VK_F5, tr("F5"));
+        knownAliasesVKStrings.insert(VK_F6, tr("F6"));
+        knownAliasesVKStrings.insert(VK_F7, tr("F7"));
+        knownAliasesVKStrings.insert(VK_F8, tr("F8"));
+        knownAliasesVKStrings.insert(VK_F9, tr("F9"));
+        knownAliasesVKStrings.insert(VK_F10, tr("F10"));
+        knownAliasesVKStrings.insert(VK_F11, tr("F11"));
+        knownAliasesVKStrings.insert(VK_F12, tr("F12"));
+        knownAliasesVKStrings.insert(VK_SHIFT, tr("Shift (L)"));
+        knownAliasesVKStrings.insert(VK_RSHIFT, tr("Shift (R)"));
+        knownAliasesVKStrings.insert(VK_INSERT, tr("Insert"));
+        knownAliasesVKStrings.insert(VK_PAUSE, tr("Pause"));
+        knownAliasesVKStrings.insert(VK_OEM_3, tr("grave"));
+        knownAliasesVKStrings.insert(VK_OEM_MINUS, tr("-"));
+        knownAliasesVKStrings.insert(VK_OEM_PLUS, tr("="));
+        knownAliasesVKStrings.insert(VK_CAPITAL, tr("Caps"));
+        knownAliasesVKStrings.insert(VK_CONTROL, tr("Ctrl (L)"));
+        knownAliasesVKStrings.insert(VK_RCONTROL, tr("Ctrl (R)"));
+        knownAliasesVKStrings.insert(VK_MENU, tr("Alt (L)"));
+        knownAliasesVKStrings.insert(VK_RMENU, tr("Alt (R)"));
+        knownAliasesVKStrings.insert(VK_LWIN, tr("Super"));
+        knownAliasesVKStrings.insert(VK_RBUTTON, tr("Menu"));
+        knownAliasesVKStrings.insert(VK_PRIOR, tr("PgUp"));
+        knownAliasesVKStrings.insert(VK_NEXT, tr("PgDn"));
+        knownAliasesVKStrings.insert(VK_HOME, tr("Home"));
+        knownAliasesVKStrings.insert(VK_END, tr("End"));
+        knownAliasesVKStrings.insert(VK_UP, tr("Up"));
+        knownAliasesVKStrings.insert(VK_DOWN, tr("Down"));
+        knownAliasesVKStrings.insert(VK_LEFT, tr("Left"));
+        knownAliasesVKStrings.insert(VK_RIGHT, tr("Right"));
+        knownAliasesVKStrings.insert(VK_OEM_4, tr("["));
+        knownAliasesVKStrings.insert(VK_OEM_6, tr("]"));
+        knownAliasesVKStrings.insert(VK_OEM_5, tr("\\"));
+        knownAliasesVKStrings.insert(VK_OEM_2, tr("/"));
+        knownAliasesVKStrings.insert(VK_OEM_1, tr(";"));
+        knownAliasesVKStrings.insert(VK_OEM_7, tr("'"));
+        knownAliasesVKStrings.insert(VK_OEM_COMMA, tr(";"));
+        knownAliasesVKStrings.insert(VK_OEM_PERIOD, tr("."));
+        knownAliasesVKStrings.insert(VK_NUMPAD0, tr("0"));
+        knownAliasesVKStrings.insert(VK_NUMPAD1, tr("1"));
+        knownAliasesVKStrings.insert(VK_NUMPAD2, tr("2"));
+        knownAliasesVKStrings.insert(VK_NUMPAD3, tr("3"));
+        knownAliasesVKStrings.insert(VK_NUMPAD4, tr("4"));
+        knownAliasesVKStrings.insert(VK_NUMPAD5, tr("5"));
+        knownAliasesVKStrings.insert(VK_NUMPAD6, tr("6"));
+        knownAliasesVKStrings.insert(VK_NUMPAD7, tr("7"));
+        knownAliasesVKStrings.insert(VK_NUMPAD8, tr("8"));
+        knownAliasesVKStrings.insert(VK_NUMPAD9, tr("9"));
+        knownAliasesVKStrings.insert(VK_NUMLOCK, tr("NUM\nLK"));
+        knownAliasesVKStrings.insert(VK_DIVIDE, tr("/"));
+        knownAliasesVKStrings.insert(VK_MULTIPLY, tr("*"));
+        knownAliasesVKStrings.insert(VK_SUBTRACT, tr("-"));
+        knownAliasesVKStrings.insert(VK_ADD, tr("+"));
+        knownAliasesVKStrings.insert(VK_DECIMAL, tr("."));
+        knownAliasesVKStrings.insert(VK_SCROLL, tr("SCLK"));
+        knownAliasesVKStrings.insert(VK_SNAPSHOT, tr("PRTSC"));*/
+    }
+}
+
+unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virtualkey)
+{
+    int mapvirtual = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
+    int extended = (scancode & 0x0100) != 0;
+
+    int finalvirtual = 0;
+    switch (virtualkey)
+    {
+    case VK_CONTROL:
+        finalvirtual = extended ? VK_RCONTROL : VK_LCONTROL;
+        break;
+    case VK_SHIFT:
+        finalvirtual = mapvirtual;
+        break;
+    case VK_MENU:
+        finalvirtual = extended ? VK_RMENU : VK_LMENU;
+        break;
+    default:
+        finalvirtual = virtualkey;
+    }
+
+    return finalvirtual;
+}
+
+unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey)
+{
+    int scancode = 0;
+    if (virtualkey == VK_PAUSE)
+    {
+        scancode = 0x45;
+    }
+    else
+    {
+        scancode = MapVirtualKey(virtualkey, MAPVK_VK_TO_VSC);
+    }
+
+    switch (virtualkey)
+    {
+         case VK_LEFT: case VK_UP: case VK_RIGHT: case VK_DOWN: // arrow keys
+         case VK_PRIOR: case VK_NEXT: // page up and page down
+         case VK_END: case VK_HOME:
+         case VK_INSERT: case VK_DELETE:
+         case VK_DIVIDE: // numpad slash
+         case VK_NUMLOCK:
+         case VK_RCONTROL:
+         case VK_RMENU:
+         {
+             scancode |= 0x100; // set extended bit
+             break;
+         }
+    }
+
+    return scancode;
 }

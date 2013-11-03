@@ -1,5 +1,6 @@
 #include "simplekeygrabberbutton.h"
 #include "event.h"
+#include "wininfo.h"
 
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
     QPushButton(parent)
@@ -62,6 +63,12 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     {
         QKeyEvent *keyEve = (QKeyEvent*) event;
         int tempcode = keyEve->nativeScanCode();
+        int virtualactual = keyEve->nativeVirtualKey();
+
+#ifndef Q_OS_WIN32
+        Q_UNUSED(virtualactual);
+#endif
+
         if ((keyEve->modifiers() & Qt::ControlModifier) && keyEve->key() == Qt::Key_X)
         {
             controlcode = 0;
@@ -74,10 +81,19 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
         else
         {
+#if defined(Q_OS_UNIX)
             controlcode = tempcode;
             buttonslot.setSlotCode(controlcode);
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
             setText(keycodeToKey(controlcode).toUpper());
+
+#elif defined(Q_OS_WIN32)
+            controlcode = WinInfo::correctVirtualKey(tempcode, virtualactual);
+            buttonslot.setSlotCode(controlcode);
+            buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
+            setText(keycodeToKey(controlcode).toUpper());
+
+#endif
         }
 
         grabNextAction = false;
