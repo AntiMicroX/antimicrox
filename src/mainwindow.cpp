@@ -572,7 +572,7 @@ void MainWindow::handleOutsideSignals()
     QLocalSocket *socket = localServer->nextPendingConnection();
     if (socket)
     {
-        socket->waitForDisconnected(1000);
+        socket->close();
         loadAppConfig(true);
     }
 }

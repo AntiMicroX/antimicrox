@@ -113,40 +113,40 @@ void JoyControlStickEditDialog::implementPresets(int index)
     }
     else if (index == 5)
     {
-        upButtonSlot = new JoyButtonSlot(keyToKeycode("Up"), JoyButtonSlot::JoyKeyboard, this);
-        downButtonSlot = new JoyButtonSlot(keyToKeycode("Down"), JoyButtonSlot::JoyKeyboard, this);
-        leftButtonSlot = new JoyButtonSlot(keyToKeycode("Left"), JoyButtonSlot::JoyKeyboard, this);
-        rightButtonSlot = new JoyButtonSlot(keyToKeycode("Right"), JoyButtonSlot::JoyKeyboard, this);
+        upButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("Up"), JoyButtonSlot::JoyKeyboard, this);
+        downButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("Down"), JoyButtonSlot::JoyKeyboard, this);
+        leftButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("Left"), JoyButtonSlot::JoyKeyboard, this);
+        rightButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("Right"), JoyButtonSlot::JoyKeyboard, this);
         ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 6)
     {
-        upButtonSlot = new JoyButtonSlot(keyToKeycode("w"), JoyButtonSlot::JoyKeyboard, this);
-        downButtonSlot = new JoyButtonSlot(keyToKeycode("s"), JoyButtonSlot::JoyKeyboard, this);
-        leftButtonSlot = new JoyButtonSlot(keyToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
-        rightButtonSlot = new JoyButtonSlot(keyToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
+        upButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("w"), JoyButtonSlot::JoyKeyboard, this);
+        downButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("s"), JoyButtonSlot::JoyKeyboard, this);
+        leftButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
+        rightButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
         ui->joyModeComboBox->setCurrentIndex(0);
     }
     else if (index == 7)
     {
         if (ui->joyModeComboBox->currentIndex() == 0)
         {
-            upButtonSlot = new JoyButtonSlot(keyToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
-            downButtonSlot = new JoyButtonSlot(keyToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
-            leftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
-            rightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+            upButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
+            downButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+            leftButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
+            rightButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
         }
         else if (ui->joyModeComboBox->currentIndex() == 1)
         {
-            upButtonSlot = new JoyButtonSlot(keyToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
-            downButtonSlot = new JoyButtonSlot(keyToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
-            leftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
-            rightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+            upButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
+            downButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+            leftButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
+            rightButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
 
-            upLeftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_7"), JoyButtonSlot::JoyKeyboard, this);
-            upRightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_9"), JoyButtonSlot::JoyKeyboard, this);
-            downLeftButtonSlot = new JoyButtonSlot(keyToKeycode("KP_1"), JoyButtonSlot::JoyKeyboard, this);
-            downRightButtonSlot = new JoyButtonSlot(keyToKeycode("KP_3"), JoyButtonSlot::JoyKeyboard, this);
+            upLeftButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_7"), JoyButtonSlot::JoyKeyboard, this);
+            upRightButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_9"), JoyButtonSlot::JoyKeyboard, this);
+            downLeftButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_1"), JoyButtonSlot::JoyKeyboard, this);
+            downRightButtonSlot = new JoyButtonSlot(X11KeySymToKeycode("KP_3"), JoyButtonSlot::JoyKeyboard, this);
         }
     }
     else if (index == 8)
@@ -301,24 +301,24 @@ void JoyControlStickEditDialog::selectCurrentPreset()
         {
             ui->presetsComboBox->setCurrentIndex(4);
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == keyToKeycode("Up") &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == keyToKeycode("Down") &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == keyToKeycode("Left") &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == keyToKeycode("Right"))
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == X11KeySymToKeycode("Up") &&
+                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == X11KeySymToKeycode("Down") &&
+                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == X11KeySymToKeycode("Left") &&
+                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == X11KeySymToKeycode("Right"))
         {
             ui->presetsComboBox->setCurrentIndex(5);
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == keyToKeycode("w") &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == keyToKeycode("s") &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == keyToKeycode("a") &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == keyToKeycode("d"))
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == X11KeySymToKeycode("w") &&
+                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == X11KeySymToKeycode("s") &&
+                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == X11KeySymToKeycode("a") &&
+                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == X11KeySymToKeycode("d"))
         {
             ui->presetsComboBox->setCurrentIndex(6);
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == keyToKeycode("KP_8") &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == keyToKeycode("KP_2") &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == keyToKeycode("KP_4") &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == keyToKeycode("KP_6"))
+        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && upslot->getSlotCode() == X11KeySymToKeycode("KP_8") &&
+                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && downslot->getSlotCode() == X11KeySymToKeycode("KP_2") &&
+                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && leftslot->getSlotCode() == X11KeySymToKeycode("KP_4") &&
+                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && rightslot->getSlotCode() == X11KeySymToKeycode("KP_6"))
         {
             ui->presetsComboBox->setCurrentIndex(7);
         }

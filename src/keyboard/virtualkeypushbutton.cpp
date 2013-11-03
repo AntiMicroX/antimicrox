@@ -11,8 +11,8 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 {
     populateKnownAliases();
 
-    //qDebug() << "Question: " << keyToKeycode("KP_7") << endl;
-    //qDebug() << "Question: " << keycodeToKey(79) << endl;
+    //qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
+    //qDebug() << "Question: " << X11KeySymToKeycode(79) << endl;
     this->keycode = 0;
     this->xcodestring = "";
     this->displayString = "";
@@ -23,7 +23,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     int temp = 0;
     if (!xcodestring.isEmpty())
     {
-        temp = keyToKeycode(xcodestring);
+        temp = X11KeySymToKeycode(xcodestring);
     }
 
     if (temp > 0)
@@ -52,7 +52,7 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
     }
     else
     {
-        temp = keycodeToKey(keyToKeycode(xcodestring));
+        temp = keycodeToKey(X11KeySymToKeycode(xcodestring));
     }
 
     if (temp.isEmpty() && !xcodestring.isEmpty())

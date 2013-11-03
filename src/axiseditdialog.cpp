@@ -115,33 +115,33 @@ void AxisEditDialog::implementPresets(int index)
     }
     else if (index == 5)
     {
-        nbuttonslot = new JoyButtonSlot(keyToKeycode("Up"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(keyToKeycode("Down"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Up"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Down"), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 6)
     {
-        nbuttonslot = new JoyButtonSlot(keyToKeycode("Left"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(keyToKeycode("Right"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Left"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Right"), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 7)
     {
-        nbuttonslot = new JoyButtonSlot(keyToKeycode("w"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(keyToKeycode("s"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("w"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("s"), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 8)
     {
-        nbuttonslot = new JoyButtonSlot(keyToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(keyToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 9)
     {
-        nbuttonslot = new JoyButtonSlot(keyToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(keyToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 10)
     {
-        nbuttonslot = new JoyButtonSlot(keyToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(keyToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 11)
     {
@@ -295,33 +295,33 @@ void AxisEditDialog::selectCurrentPreset()
         {
             ui->presetsComboBox->setCurrentIndex(4);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("Up") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("Down"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("Up") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("Down"))
         {
             ui->presetsComboBox->setCurrentIndex(5);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("Left") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("Right"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("Left") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("Right"))
         {
             ui->presetsComboBox->setCurrentIndex(6);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("w") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("s"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("w") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("s"))
         {
             ui->presetsComboBox->setCurrentIndex(7);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("a") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("d"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("a") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("d"))
         {
             ui->presetsComboBox->setCurrentIndex(8);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("KP_8") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("KP_2"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("KP_8") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("KP_2"))
         {
             ui->presetsComboBox->setCurrentIndex(9);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == keyToKeycode("KP_4") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == keyToKeycode("KP_6"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("KP_4") &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("KP_6"))
         {
             ui->presetsComboBox->setCurrentIndex(10);
         }

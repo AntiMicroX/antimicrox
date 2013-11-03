@@ -71,7 +71,7 @@ void WinInfo::populateKnownAliases()
         knownAliasesX11SymVK.insert("Alt_L", VK_MENU);
         knownAliasesX11SymVK.insert("Alt_R", VK_RMENU);
         knownAliasesX11SymVK.insert("Super_L", VK_LWIN);
-        knownAliasesX11SymVK.insert("Menu", VK_RBUTTON);
+        knownAliasesX11SymVK.insert("Menu", VK_APPS);
         knownAliasesX11SymVK.insert("Prior", VK_PRIOR);
         knownAliasesX11SymVK.insert("Next", VK_NEXT);
         knownAliasesX11SymVK.insert("Home", VK_HOME);
@@ -111,75 +111,7 @@ void WinInfo::populateKnownAliases()
     if (knownAliasesVKStrings.isEmpty())
     {
         knownAliasesVKStrings.insert(VK_LWIN, tr("Super"));
-        knownAliasesVKStrings.insert(VK_RBUTTON, tr("Menu"));
-
-        /*knownAliasesVKStrings.insert(VK_ESCAPE, tr("ESC"));
-        knownAliasesVKStrings.insert(VK_TAB, tr("Tab"));
-        knownAliasesVKStrings.insert(VK_SPACE, tr("Space"));
-        knownAliasesVKStrings.insert(VK_DELETE, tr("DEL"));
-        knownAliasesVKStrings.insert(VK_RETURN, tr("Return"));
-        knownAliasesVKStrings.insert(VK_RETURN, tr("KP_Enter"));
-        knownAliasesVKStrings.insert(VK_BACK, tr("Backspace"));
-        knownAliasesVKStrings.insert(VK_F1, tr("F1"));
-        knownAliasesVKStrings.insert(VK_F2, tr("F2"));
-        knownAliasesVKStrings.insert(VK_F3, tr("F3"));
-        knownAliasesVKStrings.insert(VK_F4, tr("F4"));
-        knownAliasesVKStrings.insert(VK_F5, tr("F5"));
-        knownAliasesVKStrings.insert(VK_F6, tr("F6"));
-        knownAliasesVKStrings.insert(VK_F7, tr("F7"));
-        knownAliasesVKStrings.insert(VK_F8, tr("F8"));
-        knownAliasesVKStrings.insert(VK_F9, tr("F9"));
-        knownAliasesVKStrings.insert(VK_F10, tr("F10"));
-        knownAliasesVKStrings.insert(VK_F11, tr("F11"));
-        knownAliasesVKStrings.insert(VK_F12, tr("F12"));
-        knownAliasesVKStrings.insert(VK_SHIFT, tr("Shift (L)"));
-        knownAliasesVKStrings.insert(VK_RSHIFT, tr("Shift (R)"));
-        knownAliasesVKStrings.insert(VK_INSERT, tr("Insert"));
-        knownAliasesVKStrings.insert(VK_PAUSE, tr("Pause"));
-        knownAliasesVKStrings.insert(VK_OEM_3, tr("grave"));
-        knownAliasesVKStrings.insert(VK_OEM_MINUS, tr("-"));
-        knownAliasesVKStrings.insert(VK_OEM_PLUS, tr("="));
-        knownAliasesVKStrings.insert(VK_CAPITAL, tr("Caps"));
-        knownAliasesVKStrings.insert(VK_CONTROL, tr("Ctrl (L)"));
-        knownAliasesVKStrings.insert(VK_RCONTROL, tr("Ctrl (R)"));
-        knownAliasesVKStrings.insert(VK_MENU, tr("Alt (L)"));
-        knownAliasesVKStrings.insert(VK_RMENU, tr("Alt (R)"));
-        knownAliasesVKStrings.insert(VK_LWIN, tr("Super"));
-        knownAliasesVKStrings.insert(VK_RBUTTON, tr("Menu"));
-        knownAliasesVKStrings.insert(VK_PRIOR, tr("PgUp"));
-        knownAliasesVKStrings.insert(VK_NEXT, tr("PgDn"));
-        knownAliasesVKStrings.insert(VK_HOME, tr("Home"));
-        knownAliasesVKStrings.insert(VK_END, tr("End"));
-        knownAliasesVKStrings.insert(VK_UP, tr("Up"));
-        knownAliasesVKStrings.insert(VK_DOWN, tr("Down"));
-        knownAliasesVKStrings.insert(VK_LEFT, tr("Left"));
-        knownAliasesVKStrings.insert(VK_RIGHT, tr("Right"));
-        knownAliasesVKStrings.insert(VK_OEM_4, tr("["));
-        knownAliasesVKStrings.insert(VK_OEM_6, tr("]"));
-        knownAliasesVKStrings.insert(VK_OEM_5, tr("\\"));
-        knownAliasesVKStrings.insert(VK_OEM_2, tr("/"));
-        knownAliasesVKStrings.insert(VK_OEM_1, tr(";"));
-        knownAliasesVKStrings.insert(VK_OEM_7, tr("'"));
-        knownAliasesVKStrings.insert(VK_OEM_COMMA, tr(";"));
-        knownAliasesVKStrings.insert(VK_OEM_PERIOD, tr("."));
-        knownAliasesVKStrings.insert(VK_NUMPAD0, tr("0"));
-        knownAliasesVKStrings.insert(VK_NUMPAD1, tr("1"));
-        knownAliasesVKStrings.insert(VK_NUMPAD2, tr("2"));
-        knownAliasesVKStrings.insert(VK_NUMPAD3, tr("3"));
-        knownAliasesVKStrings.insert(VK_NUMPAD4, tr("4"));
-        knownAliasesVKStrings.insert(VK_NUMPAD5, tr("5"));
-        knownAliasesVKStrings.insert(VK_NUMPAD6, tr("6"));
-        knownAliasesVKStrings.insert(VK_NUMPAD7, tr("7"));
-        knownAliasesVKStrings.insert(VK_NUMPAD8, tr("8"));
-        knownAliasesVKStrings.insert(VK_NUMPAD9, tr("9"));
-        knownAliasesVKStrings.insert(VK_NUMLOCK, tr("NUM\nLK"));
-        knownAliasesVKStrings.insert(VK_DIVIDE, tr("/"));
-        knownAliasesVKStrings.insert(VK_MULTIPLY, tr("*"));
-        knownAliasesVKStrings.insert(VK_SUBTRACT, tr("-"));
-        knownAliasesVKStrings.insert(VK_ADD, tr("+"));
-        knownAliasesVKStrings.insert(VK_DECIMAL, tr("."));
-        knownAliasesVKStrings.insert(VK_SCROLL, tr("SCLK"));
-        knownAliasesVKStrings.insert(VK_SNAPSHOT, tr("PRTSC"));*/
+        knownAliasesVKStrings.insert(VK_APPS, tr("Menu"));
     }
 }
 
