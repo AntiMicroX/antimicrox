@@ -1,5 +1,11 @@
 #include <QDebug>
 
+#ifdef Q_OS_WIN32
+#include <windows.h>
+#include <winuser.h>
+
+#endif
+
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
 
@@ -58,6 +64,7 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
     switch(event->key())
     {
         case Qt::Key_Escape:
+        case Qt::Key_Right:
         case Qt::Key_Enter:
         case Qt::Key_Return:
         {
@@ -78,7 +85,33 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
     {
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
+
+#ifndef Q_OS_WIN32
         Q_UNUSED(virtualactual);
+#endif
+
+
+#ifdef Q_OS_WIN32
+        int mapvirtual = MapVirtualKey(controlcode, MAPVK_VSC_TO_VK_EX);
+        int extended = (controlcode & 0x0100) != 0;
+
+        int finalvirtual = 0;
+        switch (virtualactual)
+        {
+        case VK_CONTROL:
+            finalvirtual = extended ? VK_RCONTROL : VK_LCONTROL;
+            break;
+        case VK_SHIFT:
+            finalvirtual = mapvirtual;
+            break;
+        case VK_MENU:
+            finalvirtual = extended ? VK_RMENU : VK_LMENU;
+            break;
+        default:
+            finalvirtual = virtualactual;
+        }
+
+#endif
 
         if (!ignoreRelease)
         {
@@ -102,7 +135,13 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
         if (controlcode > 0)
         {
+#if defined (Q_OS_UNIX)
             JoyButtonSlot *tempslot = new JoyButtonSlot(controlcode, JoyButtonSlot::JoyKeyboard, this);
+
+#elif defined (Q_OS_WIN32)
+            JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
+
+#endif
             emit keyGrabbed(tempslot);
         }
     }

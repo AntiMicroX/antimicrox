@@ -115,6 +115,8 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("asterisk", tr("*"));
         knownAliases.insert("less", tr("<"));
         knownAliases.insert("colon", tr(":"));
+        knownAliases.insert("Super_L", tr("Super (L)"));
+        knownAliases.insert("Menu", tr("Menu"));
     }
 }
 

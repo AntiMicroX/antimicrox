@@ -22,13 +22,13 @@
 #include <QStyleFactory>
 #endif
 
-#include "mainwindow.h"
 #include "joystick.h"
 #include "joybuttonslot.h"
 #include "inputdaemon.h"
 #include "common.h"
 #include "advancebuttondialog.h"
 #include "commandlineutility.h"
+#include "mainwindow.h"
 
 
 int main(int argc, char *argv[])

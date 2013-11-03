@@ -1,6 +1,5 @@
 #include <QDebug>
 #include <QFile>
-#include <QApplication>
 #include <QLocalSocket>
 #include <QTextStream>
 

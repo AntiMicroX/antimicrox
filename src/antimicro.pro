@@ -86,7 +86,6 @@ SOURCES += main.cpp\
     setjoystick.cpp \
     sdleventreader.cpp \
     setaxisthrottledialog.cpp \
-    x11info.cpp \
     keyboard/virtualkeypushbutton.cpp \
     keyboard/virtualkeyboardmousewidget.cpp \
     keyboard/virtualmousepushbutton.cpp \
@@ -110,7 +109,14 @@ SOURCES += main.cpp\
     mousedialog/mousecontrolsticksettingsdialog.cpp \
     mousedialog/mouseaxissettingsdialog.cpp \
     mousedialog/mousebuttonsettingsdialog.cpp \
-    mousedialog/mousedpadsettingsdialog.cpp
+    mousedialog/mousedpadsettingsdialog.cpp \
+
+
+unix {
+  SOURCES += x11info.cpp
+} else:win32 {
+  SOURCES += wininfo.cpp
+}
 
 HEADERS  += mainwindow.h \
     joybuttonwidget.h \
@@ -136,7 +142,6 @@ HEADERS  += mainwindow.h \
     setjoystick.h \
     sdleventreader.h \
     setaxisthrottledialog.h \
-    x11info.h \
     keyboard/virtualkeypushbutton.h \
     keyboard/virtualkeyboardmousewidget.h \
     keyboard/virtualmousepushbutton.h \
@@ -161,7 +166,14 @@ HEADERS  += mainwindow.h \
     mousedialog/mousecontrolsticksettingsdialog.h \
     mousedialog/mouseaxissettingsdialog.h \
     mousedialog/mousebuttonsettingsdialog.h \
-    mousedialog/mousedpadsettingsdialog.h
+    mousedialog/mousedpadsettingsdialog.h \
+
+
+unix {
+  HEADERS += x11info.h
+} else:win32 {
+  HEADERS += wininfo.h
+}
 
 FORMS    += mainwindow.ui \
     axiseditdialog.ui \
