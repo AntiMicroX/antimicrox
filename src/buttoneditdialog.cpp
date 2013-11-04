@@ -1,8 +1,9 @@
 #include <QDebug>
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include <windows.h>
 #include <winuser.h>
+#include "wininfo.h"
 
 #endif
 
@@ -86,12 +87,12 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
 
-#ifndef Q_OS_WIN32
+#ifndef Q_OS_WIN
         Q_UNUSED(virtualactual);
 #endif
 
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
         /*int mapvirtual = MapVirtualKey(controlcode, MAPVK_VSC_TO_VK_EX);
         int extended = (controlcode & 0x0100) != 0;
 
@@ -139,7 +140,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 #if defined (Q_OS_UNIX)
             JoyButtonSlot *tempslot = new JoyButtonSlot(controlcode, JoyButtonSlot::JoyKeyboard, this);
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
             JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
 
 #endif

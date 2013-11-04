@@ -11,7 +11,7 @@
 #include <X11/extensions/XTest.h>
 #include "x11info.h"
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
 #include <windows.h>
 #include <winuser.h>
 #include "wininfo.h"
@@ -42,7 +42,7 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
 
     XFlush(display);
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
     INPUT temp[1] = {};
     if (device == JoyButtonSlot::JoyKeyboard)
     {
@@ -106,7 +106,7 @@ void sendevent(int code1, int code2)
     XTestFakeRelativeMotionEvent(display, code1, code2, 0);
     XFlush(display);
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
     INPUT temp[1] = {};
     temp[0].type = INPUT_MOUSE;
     temp[0].mi.mouseData = 0;
@@ -159,7 +159,7 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
         currentMouseX = mouseEvent.xbutton.x_root;
         currentMouseY = mouseEvent.xbutton.y_root;
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
         POINT cursorPoint;
         GetCursorPos(&cursorPoint);
 
@@ -196,7 +196,7 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
             double diffy = abs(currentMouseY - ymovecoor);
             //double finaldiff = sqrt((diffx*diffx)+(diffy*diffy));
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
             INPUT temp[1] = {};
             temp[0].type = INPUT_MOUSE;
             temp[0].mi.mouseData = 0;
@@ -211,7 +211,7 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 #if defined (Q_OS_UNIX)
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
                 int fx = xmovecoor * (65535.0/(double)width);
                 int fy = ymovecoor * (65535.0/(double)height);
                 temp[0].mi.dx = fx;
@@ -230,7 +230,7 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 #if defined (Q_OS_UNIX)
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
                 int fx = xmovecoor * (65535.0/(double)width);
                 int fy = ymovecoor * (65535.0/(double)height);
                 temp[0].mi.dx = fx;
@@ -279,7 +279,7 @@ int X11KeySymToKeycode (QString key)
         tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
     }
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
     if (key.length() > 0)
     {
         tempcode = WinInfo::getVirtualKey(key);
@@ -349,7 +349,7 @@ QString keycodeToKey(int keycode)
         }
     }
 
-#elif defined (Q_OS_WIN32)
+#elif defined (Q_OS_WIN)
     wchar_t buffer[50] = {0};
 
     QString tempalias = WinInfo::getDisplayString(keycode);

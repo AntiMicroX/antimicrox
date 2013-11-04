@@ -1,6 +1,6 @@
 #include <QtGlobal>
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
   #include <SDL/SDL.h>
   #undef main
 #endif
@@ -17,7 +17,7 @@
 #include <QTextStream>
 #include <QLocalSocket>
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include <QStyle>
 #include <QStyleFactory>
 #endif
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     // If running Win version, check if an explicit style
     // was defined on the command-line. If so, make a note
     // of it.
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     bool styleChangeFound = false;
     for (int i=0; i < argc && !styleChangeFound; i++)
     {
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     // If running Win version and no explicit style was
     // defined, use the style Fusion by default. I find the
     // windowsvista style a tad ugly
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     if (!styleChangeFound)
     {
         qApp->setStyle(QStyleFactory::create("Fusion"));

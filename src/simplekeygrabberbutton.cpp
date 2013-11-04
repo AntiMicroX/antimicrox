@@ -65,7 +65,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         int tempcode = keyEve->nativeScanCode();
         int virtualactual = keyEve->nativeVirtualKey();
 
-#ifndef Q_OS_WIN32
+#ifndef Q_OS_WIN
         Q_UNUSED(virtualactual);
 #endif
 
@@ -87,7 +87,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
             setText(keycodeToKey(controlcode).toUpper());
 
-#elif defined(Q_OS_WIN32)
+#elif defined(Q_OS_WIN)
             controlcode = WinInfo::correctVirtualKey(tempcode, virtualactual);
             buttonslot.setSlotCode(controlcode);
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
