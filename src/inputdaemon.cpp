@@ -45,9 +45,11 @@ InputDaemon::~InputDaemon()
 
 void InputDaemon::run ()
 {
+    SDL_Event event;
+    event.type = SDL_NOEVENT;
+
     if (joysticks->count() > 0 && !stopped)
     {
-        SDL_Event event;
         event = eventWorker->getCurrentEvent();
 
         do
@@ -125,6 +127,16 @@ void InputDaemon::run ()
         }
         emit complete();
         stopped = false;
+
+        // Check for a grabbed instance of an SDL_QUIT event. If the last event was
+        // not an SDL_QUIT event, push an event onto the queue so SdlEventReader
+        // will finish properly.
+        if (event.type != SDL_NOEVENT && event.type != SDL_QUIT)
+        {
+            event.type = SDL_QUIT;
+            SDL_PushEvent(&event);
+            QTimer::singleShot(0, eventWorker, SLOT(performWork()));
+        }
     }
     else
     {
@@ -172,6 +184,7 @@ void InputDaemon::refresh()
     QEventLoop q;
     connect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
     q.exec();
+    disconnect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
 
     // Put in an extra delay before refreshing the joysticks
     QTimer temp;
