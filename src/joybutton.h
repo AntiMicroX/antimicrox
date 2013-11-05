@@ -7,7 +7,6 @@
 #include <QList>
 #include <QListIterator>
 #include <QHash>
-#include <QMutex>
 #include <QQueue>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -142,7 +141,6 @@ protected:
     JoyButtonSlot *currentMouseEvent;
 
     bool ignoresets;
-    QMutex buttonMutex;
     QTime buttonHold;
     QTime pauseHold;
     QTime inpauseHold;

@@ -37,8 +37,6 @@ JoyButton::~JoyButton()
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
-    buttonMutex.lock();
-
     if (this->vdpad)
     {
         if (pressed != isButtonPressed)
@@ -124,13 +122,15 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     buttonHold.restart();
                     buttonHeldRelease.restart();
                     turboTimer.start();
+                    turboEvent();
                 }
                 else if (!isButtonPressed && !activePress && turboTimer.isActive())
                 {
                     turboTimer.stop();
                     if (isKeyPressed)
                     {
-                        QTimer::singleShot(0, this, SLOT(turboEvent()));
+                        turboEvent();
+                        //QTimer::singleShot(0, this, SLOT(turboEvent()));
                     }
                 }
             }
@@ -143,18 +143,21 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 {
                     buttonHold.restart();
                     buttonHeldRelease.restart();
-                    createDeskTimer.start(0);
+                    //createDeskTimer.start(0);
+                    waitForDeskEvent();
                 }
             }
             else if (isButtonPressed && activePress)
             {
                 buttonHold.restart();
                 buttonHeldRelease.restart();
-                createDeskTimer.start(0);
+                //createDeskTimer.start(0);
+                waitForDeskEvent();
             }
             else if (!isButtonPressed && !activePress)
             {
-                releaseDeskTimer.start(0);
+                //releaseDeskTimer.start(0);
+                waitForReleaseDeskEvent();
             }
         }
         else if (!useTurbo && isButtonPressed)
@@ -164,12 +167,11 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 buttonHold.restart();
                 buttonHeldRelease.restart();
-                createDeskTimer.start(0);
+                //createDeskTimer.start(0);
+                waitForDeskEvent();
             }
         }
     }
-
-    buttonMutex.unlock();
 }
 
 int JoyButton::getJoyNumber()
@@ -308,9 +310,7 @@ void JoyButton::turboEvent()
             isButtonPressedQueue.enqueue(!isButtonPressed);
         }
 
-        buttonMutex.lock();
         releaseDeskEvent();
-        buttonMutex.unlock();
 
         isKeyPressed = false;
         if (turboTimer.isActive())
@@ -427,8 +427,6 @@ bool JoyButton::distanceEvent()
 
 void JoyButton::createDeskEvent()
 {
-    buttonMutex.lock();
-
     quitEvent = false;
 
     if (!slotiter)
@@ -469,8 +467,6 @@ void JoyButton::createDeskEvent()
             }
         }
     }
-
-    buttonMutex.unlock();
 }
 
 void JoyButton::activateSlots()
@@ -1439,8 +1435,15 @@ void JoyButton::waitForDeskEvent()
 {
     if (quitEvent && !isButtonPressedQueue.isEmpty())
     {
-        createDeskTimer.stop();
+        if (createDeskTimer.isActive())
+        {
+            createDeskTimer.stop();
+        }
         createDeskEvent();
+    }
+    else if (!createDeskTimer.isActive())
+    {
+        createDeskTimer.start(0);
     }
 }
 
@@ -1448,10 +1451,15 @@ void JoyButton::waitForReleaseDeskEvent()
 {
     if (quitEvent)
     {
-        buttonMutex.lock();
-        releaseDeskTimer.stop();
+        if (releaseDeskTimer.isActive())
+        {
+            releaseDeskTimer.stop();
+        }
         releaseDeskEvent();
-        buttonMutex.unlock();
+    }
+    else if (!releaseDeskTimer.isActive())
+    {
+        releaseDeskTimer.start(0);
     }
 }
 
@@ -1521,8 +1529,6 @@ void JoyButton::holdEvent()
 
 void JoyButton::releaseDeskEvent(bool skipsetchange)
 {
-    //buttonMutex.lock();
-
     quitEvent = false;
 
     pauseTimer.stop();
@@ -1651,8 +1657,6 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
     this->currentDistance = 0;
     quitEvent = true;
-
-    //buttonMutex.unlock();
 }
 
 double JoyButton::getDistanceFromDeadZone()

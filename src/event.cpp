@@ -286,7 +286,7 @@ int X11KeySymToKeycode (QString key)
         if (tempcode <= 0 && key.length() == 1)
         {
             //qDebug() << "KEY: " << key;
-            //int shit = key.toUtf8().constData()[0];
+            //int oridnal = key.toUtf8().constData()[0];
             int ordinal = QVariant(key.toUtf8().constData()[0]).toInt();
             tempcode = VkKeyScan(ordinal);
             int modifiers = tempcode >> 8;
