@@ -75,7 +75,8 @@ private slots:
     void joystickTrayShow();
     void populateTrayIcon();
     void openAboutDialog();
-    void handleOutsideSignals();
+    void handleOutsideConnection();
+    void handleSocketDisconnect();
 };
 
 #endif // MAINWINDOW_H

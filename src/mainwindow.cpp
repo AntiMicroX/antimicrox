@@ -563,16 +563,21 @@ void MainWindow::startLocalServer()
     }
     else
     {
-        connect(localServer, SIGNAL(newConnection()), this, SLOT(handleOutsideSignals()));
+        connect(localServer, SIGNAL(newConnection()), this, SLOT(handleOutsideConnection()));
     }
 }
 
-void MainWindow::handleOutsideSignals()
+void MainWindow::handleOutsideConnection()
 {
     QLocalSocket *socket = localServer->nextPendingConnection();
     if (socket)
     {
-        socket->close();
-        loadAppConfig(true);
+        connect(socket, SIGNAL(disconnected()), this, SLOT(handleSocketDisconnect()));
+        connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
     }
+}
+
+void MainWindow::handleSocketDisconnect()
+{
+    loadAppConfig(true);
 }

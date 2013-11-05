@@ -113,8 +113,6 @@ int main(int argc, char *argv[])
     socket.waitForConnected(1000);
     if (socket.state() == QLocalSocket::ConnectedState)
     {
-        socket.disconnectFromServer();
-
         // An instance of this program is already running.
         // Save app config and exit.
         InputDaemon *joypad_worker = new InputDaemon (joysticks, false);
@@ -127,6 +125,8 @@ int main(int argc, char *argv[])
 
         joypad_worker->quit();
         w.removeJoyTabs();
+
+        socket.disconnectFromServer();
 
         QHashIterator<int, Joystick*> iter(*joysticks);
         while (iter.hasNext())
@@ -151,6 +151,7 @@ int main(int argc, char *argv[])
 
     InputDaemon *joypad_worker = new InputDaemon (joysticks);
     MainWindow w(joysticks, &cmdutility);
+    w.startLocalServer();
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int,Joystick*>*)), &w, SLOT(fillButtons(QHash<int,Joystick*>*)));
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
