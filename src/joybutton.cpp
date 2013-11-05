@@ -1499,9 +1499,10 @@ void JoyButton::holdEvent()
         if (currentlyPressed && buttonHold.elapsed() > currentHold->getSlotCode())
         {
             releaseActiveSlots();
-            QTimer::singleShot(0, this, SLOT(createDeskEvent()));
+            //QTimer::singleShot(0, this, SLOT(createDeskEvent()));
             currentHold = 0;
             buttonHold.restart();
+            createDeskEvent();
         }
         // Elapsed time has not occurred
         else if (currentlyPressed)
