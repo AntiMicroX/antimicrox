@@ -50,17 +50,18 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
         //existingCode->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-        connectButtonEvents(existingCode);
         QListWidgetItem *item = new QListWidgetItem();
-        ui->slotListWidget->addItem(item);
-
         item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(existingCode));
         QHBoxLayout *layout= new QHBoxLayout();
+        layout->setContentsMargins(10, 0, 10, 0);
         layout->addWidget(existingCode);
         QWidget *widget = new QWidget();
         widget->setLayout(layout);
         item->setSizeHint(widget->sizeHint());
+
+        ui->slotListWidget->addItem(item);
         ui->slotListWidget->setItemWidget(item, widget);
+        connectButtonEvents(existingCode);
     }
 
     appendBlankKeyGrabber();
@@ -171,12 +172,15 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
     this->button->clearSlotsEventReset();
     for (int i = 0; i < ui->slotListWidget->count(); i++)
     {
-        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        QListWidgetItem *item = ui->slotListWidget->item(i);
+        SimpleKeyGrabberButton *button = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         JoyButtonSlot *tempbuttonslot = button->getValue();
         if (tempbuttonslot->getSlotCode() > 0)
         {
             JoyButtonSlot *buttonslot = new JoyButtonSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
             this->button->setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+            QWidget *widget = ui->slotListWidget->itemWidget(item);
+            item->setSizeHint(widget->sizeHint());
         }
     }
 
@@ -233,13 +237,16 @@ void AdvanceButtonDialog::appendBlankKeyGrabber()
 {
     SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
     QListWidgetItem *item = new QListWidgetItem();
-    ui->slotListWidget->addItem(item);
     item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
+
     QHBoxLayout *layout= new QHBoxLayout();
+    layout->setContentsMargins(10, 0, 10, 0);
     layout->addWidget(blankButton);
     QWidget *widget = new QWidget();
     widget->setLayout(layout);
     item->setSizeHint(widget->sizeHint());
+
+    ui->slotListWidget->addItem(item);
     ui->slotListWidget->setItemWidget(item, widget);
     ui->slotListWidget->setCurrentItem(item);
     connectButtonEvents(blankButton);
