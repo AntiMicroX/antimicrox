@@ -377,8 +377,17 @@ past the interval specified.</string>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <property name="spacing">
-              <number>1</number>
+              <number>10</number>
              </property>
+             <item>
+              <widget class="QComboBox" name="actionMinutesComboBox">
+               <item>
+                <property name="text">
+                 <string>0m</string>
+                </property>
+               </item>
+              </widget>
+             </item>
              <item>
               <widget class="QComboBox" name="actionSecondsComboBox">
                <property name="sizePolicy">
@@ -401,76 +410,10 @@ past the interval specified.</string>
                  <string>0s</string>
                 </property>
                </item>
-               <item>
-                <property name="text">
-                 <string>1s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>2s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>3s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>4s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>5s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>6s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>7s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>8s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>9s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>10s</string>
-                </property>
-               </item>
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>10</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QComboBox" name="actionMillisecondsComboBox">
+              <widget class="QComboBox" name="actionHundredthsComboBox">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -484,56 +427,11 @@ past the interval specified.</string>
                 </size>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <item>
                 <property name="text">
-                 <string>0.0s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.1s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.2s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.3s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.4s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.5s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.6s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.7s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.8s</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>0.9s</string>
+                 <string>0ms</string>
                 </property>
                </item>
               </widget>

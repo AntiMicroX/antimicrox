@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "joybuttonslot.h"
 #include "event.h"
 
@@ -239,11 +241,35 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyButtonSlot::JoyPause)
         {
-            newlabel.append(tr("Pause")).append(" ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+            int minutes = deviceCode / 1000 / 60;
+            int seconds = (deviceCode / 1000 % 60);
+            int hundredths = deviceCode % 1000 / 10;
+
+            newlabel.append(tr("Pause")).append(" ");
+            if (minutes > 0)
+            {
+                newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+            }
+
+            newlabel.append(QString("%1:%2")
+                    .arg(seconds, 2, 10, QChar('0'))
+                    .arg(hundredths, 2, 10, QChar('0')));
         }
         else if (mode == JoyButtonSlot::JoyHold)
         {
-            newlabel.append(tr("Hold")).append(" ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+            int minutes = deviceCode / 1000 / 60;
+            int seconds = (deviceCode / 1000 % 60);
+            int hundredths = deviceCode % 1000 / 10;
+
+            newlabel.append(tr("Hold")).append(" ");
+            if (minutes > 0)
+            {
+                newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+            }
+
+            newlabel.append(QString("%1:%2")
+                    .arg(seconds, 2, 10, QChar('0'))
+                    .arg(hundredths, 2, 10, QChar('0')));
         }
         else if (mode == JoyButtonSlot::JoyCycle)
         {
@@ -257,7 +283,19 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyButtonSlot::JoyRelease)
         {
-            newlabel.append(tr("Release")).append(" ").append(QString::number(deviceCode / 1000.0, 'g', 3));
+            int minutes = deviceCode / 1000 / 60;
+            int seconds = (deviceCode / 1000 % 60);
+            int hundredths = deviceCode % 1000 / 10;
+
+            newlabel.append(tr("Release")).append(" ");
+            if (minutes > 0)
+            {
+                newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+            }
+
+            newlabel.append(QString("%1:%2")
+                    .arg(seconds, 2, 10, QChar('0'))
+                    .arg(hundredths, 2, 10, QChar('0')));
         }
     }
     else

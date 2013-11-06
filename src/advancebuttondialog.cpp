@@ -105,6 +105,9 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         ui->setSelectionComboBox->model()->removeRows(22, 3);
     }
 
+    fillTimeComboBoxes();
+    ui->actionHundredthsComboBox->setCurrentIndex(10);
+
     updateActionTimeLabel();
     changeTurboForSequences();
 
@@ -123,7 +126,8 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->releasePushButton, SIGNAL(clicked()), this, SLOT(insertReleaseSlot()));
 
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionMillisecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
 
     connect(ui->toggleCheckbox, SIGNAL(clicked(bool)), button, SLOT(setToggle(bool)));
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), this, SLOT(checkTurboSetting(bool)));
@@ -309,18 +313,24 @@ void AdvanceButtonDialog::insertHoldSlot()
 
 int AdvanceButtonDialog::actionTimeConvert()
 {
+    int minutesIndex = ui->actionMinutesComboBox->currentIndex();
     int secondsIndex = ui->actionSecondsComboBox->currentIndex();
-    int millisecondsIndex = ui->actionMillisecondsComboBox->currentIndex();
-    int tempSeconds = secondsIndex * 1000;
-    tempSeconds += millisecondsIndex * 100;
-    return tempSeconds;
+    int hundredthsIndex = ui->actionHundredthsComboBox->currentIndex();
+    int tempMilliSeconds = minutesIndex * 1000 * 60;
+    tempMilliSeconds += secondsIndex * 1000;
+    tempMilliSeconds += hundredthsIndex * 10;
+    return tempMilliSeconds;
 }
 
 void AdvanceButtonDialog::updateActionTimeLabel()
 {
     int actionTime = actionTimeConvert();
-    QString temp("");
-    temp.append(QString::number(actionTime / 1000.0, 'g', 5)).append("s");
+    int minutes = actionTime / 1000 / 60;
+    double hundredths = actionTime % 1000 / 1000.0;
+    double seconds = (actionTime / 1000 % 60) + hundredths;
+    QString temp;
+    temp.append(QString::number(minutes)).append("m ");
+    temp.append(QString::number(seconds, 'f', 2)).append("s");
     ui->actionTimeLabel->setText(temp);
 }
 
@@ -509,5 +519,30 @@ void AdvanceButtonDialog::checkTurboIntervalValue(int value)
     else
     {
         ui->turboSlider->setValue(MINIMUMTURBO);
+    }
+}
+
+void AdvanceButtonDialog::fillTimeComboBoxes()
+{
+    ui->actionMinutesComboBox->clear();
+    ui->actionSecondsComboBox->clear();
+    ui->actionHundredthsComboBox->clear();
+
+    for (double i=0; i <= 10; i++)
+    {
+        QString temp = QString::number(i, 'g', 2).append("m");
+        ui->actionMinutesComboBox->addItem(temp);
+    }
+
+    for (double i=0; i <= 59; i++)
+    {
+        QString temp = QString::number(i, 'g', 2);
+        ui->actionSecondsComboBox->addItem(temp);
+    }
+
+    for (double i=0; i < 1.0; i+=0.01)
+    {
+        QString temp = QString::number(i, 'f', 2).append("s");
+        ui->actionHundredthsComboBox->addItem(temp);
     }
 }

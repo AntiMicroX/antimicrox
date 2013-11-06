@@ -26,6 +26,7 @@ protected:
     void appendBlankKeyGrabber();
     int actionTimeConvert();
     void changeTurboForSequences();
+    void fillTimeComboBoxes();
 
     int oldRow;
     JoyButton *button;
