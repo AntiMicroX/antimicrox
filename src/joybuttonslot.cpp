@@ -149,6 +149,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyDistance);
                 }
+                else if (temptext == "release")
+                {
+                    this->setSlotMode(JoyRelease);
+                }
             }
             else
             {
@@ -194,6 +198,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyDistance)
     {
         xml->writeCharacters("distance");
+    }
+    else if (mode == JoyRelease)
+    {
+        xml->writeCharacters("release");
     }
 
     xml->writeEndElement();
