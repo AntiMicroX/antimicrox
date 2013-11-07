@@ -190,6 +190,9 @@ FORMS    += mainwindow.ui \
 
 unix {
   LIBS += -lSDL -lXtst -lX11
+} else:win32 {
+  #LIBS += -L"" -lSDL
+  #1INCLUDEPATH += ""
 }
 
 

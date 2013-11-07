@@ -259,7 +259,7 @@ QString JoyButtonSlot::getSlotString()
                 newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
             }
 
-            newlabel.append(QString("%1:%2")
+            newlabel.append(QString("%1.%2")
                     .arg(seconds, 2, 10, QChar('0'))
                     .arg(hundredths, 2, 10, QChar('0')));
         }
@@ -275,7 +275,7 @@ QString JoyButtonSlot::getSlotString()
                 newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
             }
 
-            newlabel.append(QString("%1:%2")
+            newlabel.append(QString("%1.%2")
                     .arg(seconds, 2, 10, QChar('0'))
                     .arg(hundredths, 2, 10, QChar('0')));
         }
@@ -301,7 +301,7 @@ QString JoyButtonSlot::getSlotString()
                 newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
             }
 
-            newlabel.append(QString("%1:%2")
+            newlabel.append(QString("%1.%2")
                     .arg(seconds, 2, 10, QChar('0'))
                     .arg(hundredths, 2, 10, QChar('0')));
         }
