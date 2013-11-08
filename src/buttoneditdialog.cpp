@@ -21,9 +21,10 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     ignoreRelease = false;
 
     this->button = button;
+    ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
     ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(button, this);
-    ui->virtualKeyMouseTabWidget->setFocus();
+    //ui->virtualKeyMouseTabWidget->setFocus();
 
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
     ui->slotSummaryLabel->setText(button->getSlotsString());

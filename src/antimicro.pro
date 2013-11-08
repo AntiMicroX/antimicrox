@@ -5,7 +5,19 @@
 #-------------------------------------------------
 
 isEmpty(INSTALL_PREFIX) {
-    INSTALL_PREFIX = /usr/local
+    unix {
+        INSTALL_PREFIX = /usr/local
+    } else:win32 {
+        INSTALL_PREFIX = $${OUT_PWD}/../antimicro
+    }
+}
+
+win32 {
+    CONFIG(debug, debug|release) {
+        DESTDIR = $$OUT_PWD/release
+    } else {
+        DESTDIR = $$OUT_PWD/debug
+    }
 }
 
 QT       += core gui network
@@ -14,29 +26,28 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
 }
 
-target.path = $$INSTALL_PREFIX/bin
+unix {
+    target.path = $$INSTALL_PREFIX/bin
 
-desktop.path = $$INSTALL_PREFIX/share/applications
-desktop.files = ../other/antimicro.desktop
+    desktop.path = $$INSTALL_PREFIX/share/applications
+    desktop.files = ../other/antimicro.desktop
 
-deskicon.path = $$INSTALL_PREFIX/share/pixmaps
-deskicon.files = images/antimicro.png
+    deskicon.path = $$INSTALL_PREFIX/share/pixmaps
+    deskicon.files = images/antimicro.png
+} else:win32 {
+    target.path = $$INSTALL_PREFIX
+}
 
-TRANSLATIONS = ../share/antimicro/translations/antimicro_en.ts \
-    ../share/antimicro/translations/antimicro_fr.ts \
-    ../share/antimicro/translations/antimicro_sr.ts \
-    ../share/antimicro/translations/antimicro_br.ts \
-    ../share/antimicro/translations/antimicro_de.ts
-
+TRANSLATIONS = $$files(../share/antimicro/translations/antimicro_*.ts)
 programtranslations.path = $$INSTALL_PREFIX/share/antimicro/translations
-programtranslations.files = ../share/antimicro/translations/antimicro_en.qm \
-    ../share/antimicro/translations/antimicro_fr.qm \
-    ../share/antimicro/translations/antimicro_sr.qm \
-    ../share/antimicro/translations/antimicro_br.qm \
-    ../share/antimicro/translations/antimicro_de.qm
+for(tsfile, TRANSLATIONS): programtranslations.files += $$replace(tsfile, ".ts", ".qm")
 
 equals(OUT_PWD, $$PWD) {
-    updateqm.commands = lrelease $$_PRO_FILE_
+    unix {
+        updateqm.commands = $$[QT_INSTALL_BINS]/lrelease $$_PRO_FILE_
+    } else:win32 {
+        updateqm.commands = $$[QT_INSTALL_BINS]\\lrelease.exe $$_PRO_FILE_
+    }
 
     finaltranslations.path = $$programtranslations.path
     finaltranslations.files = $$programtranslations.files
@@ -44,13 +55,46 @@ equals(OUT_PWD, $$PWD) {
 } else {
     finaltranslations.path = $$programtranslations.path
 
-    for(transfile, TRANSLATIONS): fulltranslations += $$OUT_PWD/$$transfile
+    for(transfile, TRANSLATIONS) {
+        unix {
+            fulltranslations += $$OUT_PWD/$$transfile
+        } else:win32 {
+            fulltranslations += $$DESTDIR/$$replace(transfile, "\.\.", "")
+        }
+    }
 
-    for(qmfile, programtranslations.files): finaltranslations.files += $$OUT_PWD/$$qmfile
+    for(qmfile, programtranslations.files) {
+        unix {
+            finaltranslations.files += $$OUT_PWD/$$qmfile
+        } else:win32 {
+            finaltranslations.files += $$DESTDIR/$$replace(qmfile, "\.\.", "")
+        }
+    }
 
-    updateqm.commands = $(MKDIR) $${OUT_PWD}/../share/antimicro/translations && \
-        $(COPY_DIR) $$PWD/../share/antimicro/translations $${OUT_PWD}/../share/antimicro && \
-        lrelease $$fulltranslations
+    TRANSLATION_IN_DIR = $${PWD}/../share/antimicro/translations
+    unix {
+        TRANSLATION_OUT_DIR = $${OUT_PWD}/../share/antimicro/translations
+    } else:win32 {
+        TRANSLATION_OUT_DIR = $${DESTDIR}/share/antimicro/translations
+    }
+
+    !exists($${TRANSLATION_OUT_DIR}): mkpath($${TRANSLATION_OUT_DIR})
+
+    unix {
+        updateqm.commands = $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} && \
+            $$[QT_INSTALL_BINS]/lrelease $$fulltranslations
+    } else:win32 {
+        greaterThan(QT_MAJOR_VERSION, 4) {
+            TRANSLATION_IN_DIR = $$shell_path($$TRANSLATION_IN_DIR)
+            TRANSLATION_OUT_DIR = $$shell_path($$TRANSLATION_OUT_DIR)
+        } else {
+            TRANSLATION_IN_DIR = $$replace(TRANSLATION_DIR, "/", "\\")
+            TRANSLATION_OUT_DIR = $$replace(TRANSLATION_OUT_DIR, "/", "\\")
+        }
+
+        updateqm.commands = $(COPY_DIR) $${TRANSLATION_DIR} $${TRANSLATION_OUT_DIR} & \
+            $$[QT_INSTALL_BINS]\\lrelease.exe $$fulltranslations
+    }
 }
 
 finaltranslations.CONFIG += no_check_exist
@@ -192,14 +236,18 @@ unix {
   LIBS += -lSDL -lXtst -lX11
 } else:win32 {
   #LIBS += -L"" -lSDL
-  #1INCLUDEPATH += ""
+  #INCLUDEPATH += ""
 }
 
 
 RESOURCES += \
     resources.qrc
 
-INSTALLS += target desktop deskicon finaltranslations
+INSTALLS += target finaltranslations
+unix {
+    INSTALLS += desktop deskicon
+}
+
 
 OTHER_FILES += \
     ../gpl.txt \

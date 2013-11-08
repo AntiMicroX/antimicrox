@@ -75,7 +75,11 @@ int main(int argc, char *argv[])
     a.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
+#if defined(Q_OS_UNIX)
     myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+#elif defined(Q_OS_WIN)
+    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+#endif
     a.installTranslator(&myappTranslator);
 
     if (cmdutility.hasError())
