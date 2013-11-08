@@ -103,6 +103,7 @@ protected:
     bool distanceEvent();
     void clearAssignedSlots();
     void releaseSlotEvent();
+    void findReleaseEventEnd();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
