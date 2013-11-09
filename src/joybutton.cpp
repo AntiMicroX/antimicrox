@@ -1294,7 +1294,7 @@ void JoyButton::pauseWaitEvent()
 {
     if (currentPause)
     {
-        if (!isButtonPressedQueue.isEmpty() && isButtonPressedQueue.size() > 2)
+        if (!isButtonPressedQueue.isEmpty() && createDeskTimer.isActive())
         {
             if (slotiter)
             {
@@ -1308,11 +1308,13 @@ void JoyButton::pauseWaitEvent()
                 ignoreSetQueue.enqueue(lastIgnoreSetState);
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
+                createDeskTimer.stop();
                 releaseDeskTimer.stop();
                 pauseWaitTimer.stop();
 
                 slotiter->toFront();
                 quitEvent = true;
+                waitForDeskEvent();
             }
         }
     }
@@ -1332,14 +1334,15 @@ void JoyButton::pauseWaitEvent()
         }
         else
         {
-            QTimer::singleShot(0, this, SLOT(createDeskEvent()));
             pauseWaitTimer.stop();
             currentPause = 0;
+            createDeskEvent();
+
             // If release timer was disabled but if the button
             // is not pressed, restart the release timer.
             if (!releaseDeskTimer.isActive() && !isButtonPressedQueue.last())
             {
-                releaseDeskTimer.start(0);
+                waitForReleaseDeskEvent();
             }
         }
     }
