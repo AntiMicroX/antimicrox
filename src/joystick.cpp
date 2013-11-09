@@ -689,3 +689,15 @@ void Joystick::propogateSetAxisThrottleChange(int index, int originset)
         }
     }
 }
+
+void Joystick::removeControlStick(int index)
+{
+    for (int i=0; i < NUMBER_JOYSETS; i++)
+    {
+        SetJoystick *currentset = getSetJoystick(i);
+        if (currentset->getJoyStick(index))
+        {
+            currentset->removeControlStick(index);
+        }
+    }
+}

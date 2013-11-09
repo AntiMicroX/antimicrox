@@ -217,16 +217,16 @@ void AdvanceStickAssignmentDialog::changeStateStickOneWidgets(bool enabled)
         ui->enableTwoCheckBox->setChecked(false);
 
         JoyControlStick *controlstick = joystick->getActiveSetJoystick()->getJoyStick(0);
+        JoyControlStick *controlstick2 = joystick->getActiveSetJoystick()->getJoyStick(1);
+
+        if (controlstick2)
+        {
+            joystick->removeControlStick(1);
+        }
+
         if (controlstick)
         {
-            for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
-            {
-                SetJoystick *currentset = joystick->getSetJoystick(i);
-                if (currentset->getJoyStick(0))
-                {
-                    currentset->removeControlStick(0);
-                }
-            }
+            joystick->removeControlStick(0);
         }
     }
 }

@@ -31,6 +31,7 @@ public:
     int getActiveSetNumber();
     SetJoystick* getActiveSetJoystick();
     SetJoystick* getSetJoystick(int index);
+    void removeControlStick(int index);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
