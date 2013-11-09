@@ -1308,11 +1308,16 @@ void JoyButton::pauseWaitEvent()
                 ignoreSetQueue.enqueue(lastIgnoreSetState);
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
+                currentRelease = 0;
                 createDeskTimer.stop();
                 releaseDeskTimer.stop();
                 pauseWaitTimer.stop();
 
                 slotiter->toFront();
+                if (previousCycle)
+                {
+                    slotiter->findNext(previousCycle);
+                }
                 quitEvent = true;
                 waitForDeskEvent();
             }
@@ -1335,12 +1340,13 @@ void JoyButton::pauseWaitEvent()
         else
         {
             pauseWaitTimer.stop();
+            createDeskTimer.stop();
             currentPause = 0;
             createDeskEvent();
 
             // If release timer was disabled but if the button
             // is not pressed, restart the release timer.
-            if (!releaseDeskTimer.isActive() && !isButtonPressedQueue.last())
+            if (!releaseDeskTimer.isActive() && (isButtonPressedQueue.isEmpty() || !isButtonPressedQueue.last()))
             {
                 waitForReleaseDeskEvent();
             }
@@ -1445,7 +1451,7 @@ void JoyButton::checkForSetChange()
 
 void JoyButton::waitForDeskEvent()
 {
-    if (quitEvent && !isButtonPressedQueue.isEmpty())
+    if (quitEvent && !isButtonPressedQueue.isEmpty() && isButtonPressedQueue.last())
     {
         if (createDeskTimer.isActive())
         {
@@ -1548,12 +1554,16 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     holdTimer.stop();
 
     releaseActiveSlots();
-    if (!isButtonPressedQueue.isEmpty())
+    if (!isButtonPressedQueue.isEmpty() && !currentRelease)
     {
         releaseSlotEvent();
     }
+    else if (currentRelease)
+    {
+        currentRelease = 0;
+    }
 
-    if (!skipsetchange && !isButtonPressedQueue.isEmpty())
+    if (!skipsetchange && !isButtonPressedQueue.isEmpty() && !currentRelease)
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
         if (!tempButtonPressed)
@@ -1599,7 +1609,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         {
             tempFinalState = isButtonPressedQueue.last();
             isButtonPressedQueue.clear();
-            if (tempFinalState)
+            if (tempFinalState || currentRelease)
             {
                 isButtonPressedQueue.enqueue(tempFinalState);
             }
@@ -1609,67 +1619,74 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         {
             bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
             ignoreSetQueue.clear();
-            if (tempFinalState)
+            if (tempFinalState || currentRelease)
             {
                 ignoreSetQueue.enqueue(tempFinalIgnoreSetsState);
             }
         }
     }
 
-    if (slotiter && !slotiter->hasNext())
+    if (!currentRelease)
     {
-        // At the end of the list of assignments.
-        currentCycle = 0;
-        previousCycle = 0;
-        slotiter->toFront();
-    }
-    else if (slotiter && slotiter->hasNext() && currentCycle)
-    {
-        // Cycle at the end of a segment.
-        slotiter->toFront();
-        slotiter->findNext(currentCycle);
-    }
-    else if (slotiter && slotiter->hasPrevious() && slotiter->hasNext() && !currentCycle)
-    {
-        // Check if there is a cycle action slot after
-        // current slot. Useful after dealing with pause
-        // actions.
-        JoyButtonSlot *tempslot = 0;
-        bool exit = false;
-        while (slotiter->hasNext() && !exit)
+        if (slotiter && !slotiter->hasNext())
         {
-            tempslot = slotiter->next();
-            if (tempslot->getSlotMode() == JoyButtonSlot::JoyCycle)
+            // At the end of the list of assignments.
+            currentCycle = 0;
+            previousCycle = 0;
+            slotiter->toFront();
+        }
+        else if (slotiter && slotiter->hasNext() && currentCycle)
+        {
+            // Cycle at the end of a segment.
+            slotiter->toFront();
+            slotiter->findNext(currentCycle);
+        }
+        else if (slotiter && slotiter->hasPrevious() && slotiter->hasNext() && !currentCycle)
+        {
+            // Check if there is a cycle action slot after
+            // current slot. Useful after dealing with pause
+            // actions.
+            JoyButtonSlot *tempslot = 0;
+            bool exit = false;
+            while (slotiter->hasNext() && !exit)
             {
-                currentCycle = tempslot;
-                exit = true;
+                tempslot = slotiter->next();
+                if (tempslot->getSlotMode() == JoyButtonSlot::JoyCycle)
+                {
+                    currentCycle = tempslot;
+                    exit = true;
+                }
+            }
+
+            // Didn't find any cycle. Move iterator
+            // to the front.
+            if (!currentCycle)
+            {
+                slotiter->toFront();
+                previousCycle = 0;
             }
         }
 
-        // Didn't find any cycle. Move iterator
-        // to the front.
-        if (!currentCycle)
+        if (currentCycle)
         {
-            slotiter->toFront();
-            previousCycle = 0;
+            previousCycle = currentCycle;
+            currentCycle = 0;
         }
-    }
+        else if (slotiter && slotiter->hasNext() && containsReleaseSlots())
+        {
+            currentCycle = 0;
+            previousCycle = 0;
+            slotiter->toFront();
+        }
 
-    if (currentCycle)
-    {
-        previousCycle = currentCycle;
-        currentCycle = 0;
+        this->currentDistance = 0;
+        currentRelease = 0;
+        quitEvent = true;
     }
-    else if (slotiter && slotiter->hasNext() && containsReleaseSlots())
+    else
     {
-        currentCycle = 0;
-        previousCycle = 0;
-        slotiter->toFront();
+        createDeskTimer.stop();
     }
-
-    this->currentDistance = 0;
-    currentRelease = 0;
-    quitEvent = true;
 }
 
 double JoyButton::getDistanceFromDeadZone()
@@ -1903,11 +1920,17 @@ void JoyButton::releaseSlotEvent()
             activateSlots();
             releaseActiveSlots();
 
-            // Stop timers here to be sure that
-            // any timers activated during a release
-            // event are stopped.
-            pauseTimer.stop();
-            pauseWaitTimer.stop();
+            if (currentRelease)
+            {
+                if (!pauseTimer.isActive())
+                {
+                    currentRelease = 0;
+                }
+            }
+
+            // Stop hold timer here to be sure that
+            // a hold timer that could be activated
+            // during a release event is stopped.
             holdTimer.stop();
         }
     }
