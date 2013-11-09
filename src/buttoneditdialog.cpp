@@ -156,7 +156,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 void ButtonEditDialog::refreshSlotSummaryLabel()
 {
-    ui->slotSummaryLabel->setText(button->getSlotsString());
+    ui->slotSummaryLabel->setText(button->getSlotsString().replace("&", "&&"));
 }
 
 void ButtonEditDialog::changeToggleSetting()
