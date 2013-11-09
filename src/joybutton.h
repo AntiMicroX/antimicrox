@@ -104,6 +104,7 @@ protected:
     void clearAssignedSlots();
     void releaseSlotEvent();
     void findReleaseEventEnd();
+    void findHoldEventEnd();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -140,6 +141,7 @@ protected:
     JoyButtonSlot *previousCycle;
     JoyButtonSlot *currentDistance;
     JoyButtonSlot *currentMouseEvent;
+    JoyButtonSlot *currentRelease;
 
     bool ignoresets;
     QTime buttonHold;

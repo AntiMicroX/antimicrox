@@ -244,6 +244,7 @@ void JoyButton::reset()
     currentDistance = 0;
     currentRawValue = 0;
     currentMouseEvent = 0;
+    currentRelease = 0;
 
     isKeyPressed = isButtonPressed = false;
     toggle = false;
@@ -518,7 +519,15 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyRelease)
             {
-                findReleaseEventEnd();
+                if (!currentRelease)
+                {
+                    findReleaseEventEnd();
+                }
+                else
+                {
+                    currentRelease = 0;
+                    exit = true;
+                }
             }
         }
     }
@@ -1499,7 +1508,6 @@ void JoyButton::holdEvent()
         if (currentlyPressed && buttonHold.elapsed() > currentHold->getSlotCode())
         {
             releaseActiveSlots();
-            //QTimer::singleShot(0, this, SLOT(createDeskEvent()));
             currentHold = 0;
             buttonHold.restart();
             createDeskEvent();
@@ -1512,14 +1520,14 @@ void JoyButton::holdEvent()
         // Pre-emptive release
         else
         {
+            holdTimer.stop();
+
             if (slotiter)
             {
-                slotiter->toBack();
+                findHoldEventEnd();
                 currentHold = 0;
                 createDeskEvent();
             }
-
-            holdTimer.stop();
         }
     }
     else
@@ -1657,6 +1665,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     }
 
     this->currentDistance = 0;
+    currentRelease = 0;
     quitEvent = true;
 }
 
@@ -1880,17 +1889,14 @@ void JoyButton::releaseSlotEvent()
                 tempElapsed = 0;
                 iter.toBack();
             }
-            else if (mode == JoyButtonSlot::JoyHold)
-            {
-                tempElapsed = 0;
-                iter.toBack();
-            }
         }
 
         if (temp && slotiter)
         {
             slotiter->toFront();
             slotiter->findNext(temp);
+            currentRelease = temp;
+
             activateSlots();
             releaseActiveSlots();
 
@@ -1907,6 +1913,35 @@ void JoyButton::releaseSlotEvent()
 void JoyButton::findReleaseEventEnd()
 {
     bool found = false;
+    while (!found && slotiter->hasNext())
+    {
+        JoyButtonSlot *currentSlot = slotiter->next();
+        JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
+
+        if (mode == JoyButtonSlot::JoyRelease)
+        {
+            found = true;
+        }
+        else if (mode == JoyButtonSlot::JoyCycle)
+        {
+            found = true;
+        }
+        else if (mode == JoyButtonSlot::JoyHold)
+        {
+            found = true;
+        }
+    }
+
+    if (found && slotiter->hasPrevious())
+    {
+        slotiter->previous();
+    }
+}
+
+void JoyButton::findHoldEventEnd()
+{
+    bool found = false;
+
     while (!found && slotiter->hasNext())
     {
         JoyButtonSlot *currentSlot = slotiter->next();
