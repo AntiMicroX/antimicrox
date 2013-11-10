@@ -94,24 +94,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 
 #ifdef Q_OS_WIN
-        /*int mapvirtual = MapVirtualKey(controlcode, MAPVK_VSC_TO_VK_EX);
-        int extended = (controlcode & 0x0100) != 0;
-
-        int finalvirtual = 0;
-        switch (virtualactual)
-        {
-        case VK_CONTROL:
-            finalvirtual = extended ? VK_RCONTROL : VK_LCONTROL;
-            break;
-        case VK_SHIFT:
-            finalvirtual = mapvirtual;
-            break;
-        case VK_MENU:
-            finalvirtual = extended ? VK_RMENU : VK_LMENU;
-            break;
-        default:
-            finalvirtual = virtualactual;
-        }*/
         int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
 
 #endif
@@ -170,6 +152,8 @@ void ButtonEditDialog::changeTurboSetting()
 }
 
 void ButtonEditDialog::openAdvancedDialog(){
+    ui->advancedPushButton->setEnabled(false);
+
     AdvanceButtonDialog *dialog = new AdvanceButtonDialog(button, this);
     dialog->show();
 
@@ -222,6 +206,8 @@ void ButtonEditDialog::setTurboButtonEnabled(bool state)
 
 void ButtonEditDialog::closedAdvancedDialog()
 {
+    ui->advancedPushButton->setEnabled(true);
+
     // Re-connect previously disconnected event
     connect(this, SIGNAL(keyGrabbed(JoyButtonSlot*)), this, SLOT(processSlotAssignment(JoyButtonSlot*)));
     connect(this, SIGNAL(selectionCleared()), this, SLOT(clearButtonSlots()));
