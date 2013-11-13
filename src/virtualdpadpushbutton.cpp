@@ -56,8 +56,8 @@ QString VirtualDPadPushButton::generateLabel()
 
 void VirtualDPadPushButton::disableFlashes()
 {
-    disconnect(vdpad, SIGNAL(active(int)), 0, 0);
-    disconnect(vdpad, SIGNAL(released(int)), 0, 0);
+    disconnect(vdpad, SIGNAL(active(int)), this, 0);
+    disconnect(vdpad, SIGNAL(released(int)), this, 0);
     this->unflash();
 }
 

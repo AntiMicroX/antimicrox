@@ -70,6 +70,14 @@ signals:
     void setAssignmentStickChanged(int button, int stick, int originset, int newset, int mode);
     void setAssignmentDPadChanged(int button, int dpad, int originset, int newset, int mode);
     void setAssignmentAxisThrottleChanged(int axis, int originset);
+    void setButtonClick(int index, int button);
+    void setButtonRelease(int index, int button);
+    void setAxisButtonClick(int setindex, int axis, int button);
+    void setAxisButtonRelease(int setindex, int axis, int button);
+    void setStickButtonClick(int setindex, int stick, int button);
+    void setStickButtonRelease(int setindex, int stick, int button);
+    void setDPadButtonClick(int setindex, int dpad, int button);
+    void setDPadButtonRelease(int setindex, int dpad, int button);
 
     
 public slots:
@@ -83,7 +91,14 @@ public slots:
 
 protected slots:
     void propogateSetAxisThrottleSetting(int index);
-
+    void propogateSetButtonClick(int button);
+    void propogateSetButtonRelease(int button);
+    void propogateSetAxisButtonClick(int button);
+    void propogateSetAxisButtonRelease(int button);
+    void propogateSetStickButtonClick(int button);
+    void propogateSetStickButtonRelease(int button);
+    void propogateSetDPadButtonClick(int button);
+    void propogateSetDPadButtonRelease(int button);
 };
 
 #endif // SETJOYSTICK_H

@@ -54,8 +54,8 @@ QString DPadPushButton::generateLabel()
 
 void DPadPushButton::disableFlashes()
 {
-    disconnect(dpad, SIGNAL(active(int)), 0, 0);
-    disconnect(dpad, SIGNAL(released(int)), 0, 0);
+    disconnect(dpad, SIGNAL(active(int)), this, 0);
+    disconnect(dpad, SIGNAL(released(int)), this, 0);
     this->unflash();
 }
 

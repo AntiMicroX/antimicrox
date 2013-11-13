@@ -10,6 +10,8 @@ const int Joystick::NUMBER_JOYSETS = 8;
 Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
     QObject(parent)
 {
+    buttonDownCount = 0;
+
     this->joyhandle = joyhandle;
     joyNumber= SDL_JoystickIndex(joyhandle);
     joystick_sets = QHash<int, SetJoystick*> ();
@@ -24,8 +26,19 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
         connect(setstick, SIGNAL(setAssignmentAxisChanged(int,int,int,int,int)), this, SLOT(changeSetAxisButtonAssociation(int,int,int,int,int)));
         connect(setstick, SIGNAL(setAssignmentDPadChanged(int,int,int,int,int)), this, SLOT(changeSetDPadButtonAssociation(int,int,int,int,int)));
         connect(setstick, SIGNAL(setAssignmentStickChanged(int,int,int,int,int)), this, SLOT(changeSetStickButtonAssociation(int,int,int,int,int)));
-
         connect(setstick, SIGNAL(setAssignmentAxisThrottleChanged(int,int)), this, SLOT(propogateSetAxisThrottleChange(int, int)));
+
+        connect(setstick, SIGNAL(setButtonClick(int,int)), this, SLOT(buttonDownEvent(int,int)));
+        connect(setstick, SIGNAL(setButtonRelease(int,int)), this, SLOT(buttonUpEvent(int,int)));
+
+        connect(setstick, SIGNAL(setAxisButtonClick(int,int,int)), this, SLOT(axisButtonDownEvent(int,int,int)));
+        connect(setstick, SIGNAL(setAxisButtonRelease(int,int,int)), this, SLOT(axisButtonUpEvent(int,int,int)));
+
+        connect(setstick, SIGNAL(setDPadButtonClick(int,int,int)), this, SLOT(dpadButtonDownEvent(int,int,int)));
+        connect(setstick, SIGNAL(setDPadButtonRelease(int,int,int)), this, SLOT(dpadButtonUpEvent(int,int,int)));
+
+        connect(setstick, SIGNAL(setStickButtonClick(int,int,int)), this, SLOT(stickButtonDownEvent(int,int,int)));
+        connect(setstick, SIGNAL(setStickButtonRelease(int,int,int)), this, SLOT(stickButtonUpEvent(int,int,int)));
     }
 
     active_set = 0;
@@ -75,6 +88,8 @@ void Joystick::reset()
         SetJoystick* set = joystick_sets.value(i);
         set->reset();
     }
+
+    buttonDownCount = 0;
 }
 
 void Joystick::setActiveSetNumber(int index)
@@ -700,4 +715,77 @@ void Joystick::removeControlStick(int index)
             currentset->removeControlStick(index);
         }
     }
+}
+
+bool Joystick::isActive()
+{
+    return buttonDownCount != 0;
+}
+
+void Joystick::buttonDownEvent(int setindex, int buttonindex)
+{
+    Q_UNUSED(setindex);
+    Q_UNUSED(buttonindex);
+
+    bool old = isActive();
+    buttonDownCount += 1;
+    if (isActive() != old)
+    {
+        emit clicked(joyNumber);
+    }
+}
+
+void Joystick::buttonUpEvent(int setindex, int buttonindex)
+{
+    Q_UNUSED(setindex);
+    Q_UNUSED(buttonindex);
+
+    bool old = isActive();
+    buttonDownCount -= 1;
+    if (isActive() != old)
+    {
+        emit released(joyNumber);
+    }
+}
+
+void Joystick::axisButtonDownEvent(int setindex, int axisindex, int buttonindex)
+{
+    Q_UNUSED(axisindex);
+
+    buttonDownEvent(setindex, buttonindex);
+}
+
+void Joystick::axisButtonUpEvent(int setindex, int axisindex, int buttonindex)
+{
+    Q_UNUSED(axisindex);
+
+    buttonUpEvent(setindex, buttonindex);
+}
+
+void Joystick::dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex)
+{
+    Q_UNUSED(dpadindex);
+
+    buttonDownEvent(setindex, buttonindex);
+}
+
+void Joystick::dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex)
+{
+    Q_UNUSED(dpadindex);
+
+    buttonUpEvent(setindex, buttonindex);
+}
+
+void Joystick::stickButtonDownEvent(int setindex, int stickindex, int buttonindex)
+{
+    Q_UNUSED(stickindex);
+
+    buttonDownEvent(setindex, buttonindex);
+}
+
+void Joystick::stickButtonUpEvent(int setindex, int stickindex, int buttonindex)
+{
+    Q_UNUSED(stickindex);
+
+    buttonUpEvent(setindex, buttonindex);
 }

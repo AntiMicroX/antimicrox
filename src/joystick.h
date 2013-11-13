@@ -32,6 +32,7 @@ public:
     SetJoystick* getActiveSetJoystick();
     SetJoystick* getSetJoystick(int index);
     void removeControlStick(int index);
+    bool isActive();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
@@ -43,10 +44,13 @@ protected:
     QHash<int, SetJoystick*> joystick_sets;
     int active_set;
     int joyNumber;
+    int buttonDownCount;
 
 signals:
     void setChangeActivated(int index);
     void setAxisThrottleActivated(int index);
+    void clicked(int index);
+    void released(int index);
 
 public slots:
     void reset();
@@ -60,6 +64,14 @@ public slots:
 private slots:
     void propogateSetChange(int index);
     void propogateSetAxisThrottleChange(int index, int originset);
+    void buttonDownEvent(int setindex, int buttonindex);
+    void buttonUpEvent(int setindex, int buttonindex);
+    void axisButtonDownEvent(int setindex, int axisindex, int buttonindex);
+    void axisButtonUpEvent(int setindex, int axisindex, int buttonindex);
+    void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex);
+    void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);
+    void stickButtonDownEvent(int setindex, int stickindex, int buttonindex);
+    void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);
 };
 
 Q_DECLARE_METATYPE(Joystick*)

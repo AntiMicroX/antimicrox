@@ -56,8 +56,8 @@ void JoyAxisWidget::refreshLabel()
 
 void JoyAxisWidget::disableFlashes()
 {
-    disconnect(axis, SIGNAL(active(int)), 0, 0);
-    disconnect(axis, SIGNAL(released(int)), 0, 0);
+    disconnect(axis, SIGNAL(active(int)), this, 0);
+    disconnect(axis, SIGNAL(released(int)), this, 0);
     this->unflash();
 }
 

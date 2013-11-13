@@ -334,6 +334,9 @@ void MainWindow::disableFlashActions()
             DPadPushButton *dpadWidget = iter7.next();
             dpadWidget->disableFlashes();
         }
+
+        JoyTabWidget *tabWidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        ui->tabWidget->disableFlashes(tabWidget->getJoystick());
     }
 }
 
@@ -396,6 +399,9 @@ void MainWindow::enableFlashActions()
             DPadPushButton *dpadWidget = iter7.next();
             dpadWidget->enableFlashes();
         }
+
+        JoyTabWidget *tabWidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        ui->tabWidget->enableFlashes(tabWidget->getJoystick());
     }
 }
 
@@ -479,7 +485,7 @@ void MainWindow::hideEvent(QHideEvent *event)
             signalDisconnect = true;
         }
     }
-    else
+    else if (!signalDisconnect)
     {
         // Code is invoked by calling the hide method
         disableFlashActions();

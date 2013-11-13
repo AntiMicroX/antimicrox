@@ -31,6 +31,7 @@ public:
     int getCurrentConfigIndex();
     QString getCurrentConfigName();
     void loadConfigFile(QString fileLocation);
+    Joystick *getJoystick();
 
 protected:
     void removeCurrentButtons();

@@ -55,6 +55,8 @@ void SetJoystick::refreshButtons()
         buttons.insert(i, button);
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
+        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)));
+        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
     }
 }
 
@@ -76,6 +78,8 @@ void SetJoystick::refreshAxes()
         button = axis->getPAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
+        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
+        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
     }
 }
 
@@ -93,8 +97,10 @@ void SetJoystick::refreshHats()
         {
             JoyDPadButton *button = iter.next().value();
             connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-
             connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
+
+            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
+            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
         }
     }
 }
@@ -211,92 +217,6 @@ void SetJoystick::reset()
     refreshAxes();
     refreshButtons();
     refreshHats();
-
-    /*if (axes.contains(6) && axes.contains(7))
-    {
-        JoyButton *upButton = axes.value(7)->getNAxisButton();
-        JoyButton *downButton = axes.value(7)->getPAxisButton();
-        JoyButton *leftButton = axes.value(6)->getNAxisButton();
-        JoyButton *rightButton = axes.value(6)->getPAxisButton();
-
-        VDPad *dpad = new VDPad(upButton, downButton, leftButton, rightButton, 0, 0, this);
-        vdpads.insert(0, dpad);
-    }
-    */
-
-    /*if (axes.contains(0) && axes.contains(1))
-    {
-        JoyControlStick *stick = new JoyControlStick(axes.value(0), axes.value(1), 0, index, this);
-        stick->getDirectionButton(JoyControlStick::StickUp)->setAssignedSlot(25);
-        JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickUp);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        stick->getDirectionButton(JoyControlStick::StickDown)->setAssignedSlot(39);
-        button = stick->getDirectionButton(JoyControlStick::StickDown);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        stick->getDirectionButton(JoyControlStick::StickLeft)->setAssignedSlot(38);
-        button = stick->getDirectionButton(JoyControlStick::StickLeft);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        stick->getDirectionButton(JoyControlStick::StickRight)->setAssignedSlot(40);
-        button = stick->getDirectionButton(JoyControlStick::StickRight);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        sticks.insert(0, stick);
-
-        //axes.value(0)->setControlStick(stick);
-        //axes.value(1)->setControlStick(stick);
-    }
-
-    if (axes.contains(3) && axes.contains(4))
-    {
-        JoyControlStick *stick = new JoyControlStick(axes.value(3), axes.value(4), 1, index, this);
-        stick->getDirectionButton(JoyControlStick::StickUp)->setAssignedSlot(JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement);
-
-        JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickUp);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        //stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedX(10);
-        //stick->getDirectionButton(JoyControlStick::StickUp)->setMouseSpeedY(10);
-
-        stick->getDirectionButton(JoyControlStick::StickDown)->setAssignedSlot(JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement);
-
-        button = stick->getDirectionButton(JoyControlStick::StickDown);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        //stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedX(10);
-        //stick->getDirectionButton(JoyControlStick::StickDown)->setMouseSpeedY(10);
-
-        stick->getDirectionButton(JoyControlStick::StickLeft)->setAssignedSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement);
-
-        button = stick->getDirectionButton(JoyControlStick::StickLeft);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        //stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedX(10);
-        //stick->getDirectionButton(JoyControlStick::StickLeft)->setMouseSpeedY(10);
-
-        stick->getDirectionButton(JoyControlStick::StickRight)->setAssignedSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement);
-
-        button = stick->getDirectionButton(JoyControlStick::StickRight);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
-
-        //stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedX(10);
-        //stick->getDirectionButton(JoyControlStick::StickRight)->setMouseSpeedY(10);
-
-        sticks.insert(1, stick);
-
-        //axes.value(3)->setControlStick(stick);
-        //axes.value(4)->setControlStick(stick);
-    }*/
 }
 
 SDL_Joystick* SetJoystick::getSDLHandle()
@@ -578,6 +498,17 @@ void SetJoystick::propogateSetAxisThrottleSetting(int index)
 void SetJoystick::addControlStick(int index, JoyControlStick *stick)
 {
     sticks.insert(index, stick);
+
+    QHashIterator<JoyStickDirectionsType::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetStickButtonClick(int)));
+            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetStickButtonRelease(int)));
+        }
+    }
 }
 
 void SetJoystick::removeControlStick(int index)
@@ -594,6 +525,17 @@ void SetJoystick::removeControlStick(int index)
 void SetJoystick::addVDPad(int index, VDPad *vdpad)
 {
     vdpads.insert(index, vdpad);
+
+    QHashIterator<int, JoyDPadButton*> iter(*vdpad->getButtons());
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        if (button)
+        {
+            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
+            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
+        }
+    }
 }
 
 void SetJoystick::removeVDPad(int index)
@@ -610,4 +552,50 @@ void SetJoystick::removeVDPad(int index)
 int SetJoystick::getIndex()
 {
     return index;
+}
+
+void SetJoystick::propogateSetButtonClick(int button)
+{
+    emit setButtonClick(index, button);
+}
+
+void SetJoystick::propogateSetButtonRelease(int button)
+{
+    emit setButtonRelease(index, button);
+}
+
+void SetJoystick::propogateSetAxisButtonClick(int button)
+{
+    JoyAxis *axis = static_cast<JoyAxis*>(sender());
+    emit setAxisButtonClick(index, axis->getIndex(), button);
+}
+
+void SetJoystick::propogateSetAxisButtonRelease(int button)
+{
+    JoyAxis *axis = static_cast<JoyAxis*>(sender());
+    emit setAxisButtonRelease(index, axis->getIndex(), button);
+}
+
+void SetJoystick::propogateSetStickButtonClick(int button)
+{
+    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
+    emit setStickButtonClick(index, stick->getIndex(), button);
+}
+
+void SetJoystick::propogateSetStickButtonRelease(int button)
+{
+    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
+    emit setStickButtonRelease(index, stick->getIndex(), button);
+}
+
+void SetJoystick::propogateSetDPadButtonClick(int button)
+{
+    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
+    emit setDPadButtonClick(index, dpad->getIndex(), button);
+}
+
+void SetJoystick::propogateSetDPadButtonRelease(int button)
+{
+    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
+    emit setDPadButtonRelease(index, dpad->getIndex(), button);
 }

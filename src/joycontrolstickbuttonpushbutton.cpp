@@ -77,8 +77,8 @@ void JoyControlStickButtonPushButton::disableFlashes()
 {
     if (button)
     {
-        disconnect(button, SIGNAL(clicked(int)), 0, 0);
-        disconnect(button, SIGNAL(released(int)), 0, 0);
+        disconnect(button, SIGNAL(clicked(int)), this, 0);
+        disconnect(button, SIGNAL(released(int)), this, 0);
     }
     this->unflash();
 }

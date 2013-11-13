@@ -154,6 +154,7 @@ SOURCES += main.cpp\
     mousedialog/mouseaxissettingsdialog.cpp \
     mousedialog/mousebuttonsettingsdialog.cpp \
     mousedialog/mousedpadsettingsdialog.cpp \
+    joytabwidgetcontainer.cpp
 
 
 unix {
@@ -211,6 +212,7 @@ HEADERS  += mainwindow.h \
     mousedialog/mouseaxissettingsdialog.h \
     mousedialog/mousebuttonsettingsdialog.h \
     mousedialog/mousedpadsettingsdialog.h \
+    joytabwidgetcontainer.h
 
 
 unix {

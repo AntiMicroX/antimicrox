@@ -1351,3 +1351,8 @@ void JoyTabWidget::removeCurrentButtons()
         }
     }
 }
+
+Joystick* JoyTabWidget::getJoystick()
+{
+    return joystick;
+}
