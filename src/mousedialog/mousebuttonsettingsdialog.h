@@ -2,7 +2,7 @@
 #define MOUSEBUTTONSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
-#include "joybutton.h"
+#include <joybutton.h>
 
 class MouseButtonSettingsDialog : public MouseSettingsDialog
 {

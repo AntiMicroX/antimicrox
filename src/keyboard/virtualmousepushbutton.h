@@ -4,7 +4,7 @@
 #include <QPushButton>
 #include <QString>
 
-#include "joybuttonslot.h"
+#include <joybuttonslot.h>
 
 class VirtualMousePushButton : public QPushButton
 {

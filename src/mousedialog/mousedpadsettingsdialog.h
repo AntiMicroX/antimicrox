@@ -2,7 +2,7 @@
 #define MOUSEDPADSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
-#include "joydpad.h"
+#include <joydpad.h>
 
 class MouseDPadSettingsDialog : public MouseSettingsDialog
 {

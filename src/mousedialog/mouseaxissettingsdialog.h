@@ -2,7 +2,7 @@
 #define MOUSEAXISSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
-#include "joyaxis.h"
+#include <joyaxis.h>
 
 class MouseAxisSettingsDialog : public MouseSettingsDialog
 {

@@ -6,8 +6,8 @@
 #include <QLocale>
 
 #include "virtualkeyboardmousewidget.h"
-#include "mousedialog/mousebuttonsettingsdialog.h"
-#include "event.h"
+#include <mousedialog/mousebuttonsettingsdialog.h>
+#include <event.h>
 
 QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, QString> ();
 

@@ -13,10 +13,10 @@
 #include <QCheckBox>
 #include <QComboBox>
 
-#include "keyboard/virtualkeypushbutton.h"
-#include "keyboard/virtualmousepushbutton.h"
-#include "joybutton.h"
-#include "advancebuttondialog.h"
+#include "virtualkeypushbutton.h"
+#include "virtualmousepushbutton.h"
+#include <joybutton.h>
+#include <advancebuttondialog.h>
 
 class VirtualKeyboardMouseWidget : public QTabWidget
 {

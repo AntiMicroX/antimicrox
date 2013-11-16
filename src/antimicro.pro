@@ -239,6 +239,9 @@ unix {
 } else:win32 {
   #LIBS += -L"" -lSDL
   #INCLUDEPATH += ""
+  msvc: {
+    INCLUDEPATH +== "$$PWD"
+  }
 }
 
 

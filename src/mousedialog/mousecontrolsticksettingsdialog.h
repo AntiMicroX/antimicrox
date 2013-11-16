@@ -2,7 +2,7 @@
 #define MOUSECONTROLSTICKSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
-#include "joycontrolstick.h"
+#include <joycontrolstick.h>
 
 class MouseControlStickSettingsDialog : public MouseSettingsDialog
 {

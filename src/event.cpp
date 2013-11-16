@@ -12,8 +12,7 @@
 #include "x11info.h"
 
 #elif defined (Q_OS_WIN)
-#include <windows.h>
-#include <winuser.h>
+#include <qt_windows.h>
 #include "wininfo.h"
 
 #endif

@@ -5,7 +5,7 @@
 #include <QString>
 #include <QHash>
 
-#include "joybutton.h"
+#include <joybutton.h>
 
 class VirtualKeyPushButton : public QPushButton
 {

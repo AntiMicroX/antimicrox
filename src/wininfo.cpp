@@ -1,4 +1,4 @@
-#include <windows.h>
+#include <qt_windows.h>
 #include <QHashIterator>
 
 #include "wininfo.h"

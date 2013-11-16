@@ -2,7 +2,7 @@
 #include <QPainter>
 
 #include "virtualkeypushbutton.h"
-#include "event.h"
+#include <event.h>
 
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
 

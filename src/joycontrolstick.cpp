@@ -124,7 +124,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         int leftInitial = anglesList.value(7);
         int upLeftInitial = anglesList.value(8);
 
-        bearing = round(bearing);
+        bearing = floor(bearing + 0.5);
         if (bearing <= initialRight || bearing >= initialLeft)
         {
             currentDirection = StickUp;
@@ -320,7 +320,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
         relativeAngle = relativeAngle - 180;
     }
 
-    int deadX = (int)round(deadZone * sin(relativeAngle * PI / 180.0));
+    int deadX = (int)floor(deadZone * sin(relativeAngle * PI / 180.0) + 0.5);
     distance = (abs(axis1Value) - deadX)/(double)(maxZone - deadX);
     if (distance > 1.0)
     {
@@ -346,7 +346,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
         relativeAngle = relativeAngle - 180;
     }
 
-    int deadY = abs(round(deadZone * cos(relativeAngle * PI / 180.0)));
+    int deadY = abs(floor(deadZone * cos(relativeAngle * PI / 180.0)) + 0.5);
     distance = (abs(axis2Value) - deadY)/(double)(maxZone - deadY);
     if (distance > 1.0)
     {
@@ -697,7 +697,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)round(bearing) % 90;
+            int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -726,7 +726,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)round(bearing) % 90;
+            int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -755,7 +755,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)round(bearing) % 90;
+            int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -784,7 +784,7 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)round(bearing) % 90;
+            int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
