@@ -1,5 +1,5 @@
 #include <QDebug>
-#include <math.h>
+#include <cmath>
 
 #include "joyaxis.h"
 #include "joycontrolstick.h"

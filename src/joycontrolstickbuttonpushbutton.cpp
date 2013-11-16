@@ -26,7 +26,7 @@ JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
     return button;
 }
 
-void JoyControlStickButtonPushButton::JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
+void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
 {
     disableFlashes();
     if (this->button)

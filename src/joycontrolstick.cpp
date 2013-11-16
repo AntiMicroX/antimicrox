@@ -1,7 +1,7 @@
 #include <QDebug>
 #include <QHashIterator>
 #include <QStringList>
-#include <math.h>
+#include <cmath>
 
 #include "joycontrolstick.h"
 

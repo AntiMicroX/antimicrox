@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 
 #include "joycontrolstickbutton.h"
 #include "joycontrolstick.h"
