@@ -1519,6 +1519,7 @@ void JoyButton::holdEvent()
         {
             releaseActiveSlots();
             currentHold = 0;
+            holdTimer.stop();
             buttonHold.restart();
             createDeskEvent();
         }
@@ -1536,6 +1537,7 @@ void JoyButton::holdEvent()
             {
                 findHoldEventEnd();
                 currentHold = 0;
+                holdTimer.stop();
                 createDeskEvent();
             }
         }
