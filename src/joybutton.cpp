@@ -1462,7 +1462,11 @@ void JoyButton::waitForDeskEvent()
     }
     else if (!createDeskTimer.isActive())
     {
+#ifdef Q_CC_MSVC
+        createDeskTimer.start(1);
+#else
         createDeskTimer.start(0);
+#endif
     }
 }
 
@@ -1478,7 +1482,11 @@ void JoyButton::waitForReleaseDeskEvent()
     }
     else if (!releaseDeskTimer.isActive())
     {
+#ifdef Q_CC_MSVC
+        releaseDeskTimer.start(1);
+#else
         releaseDeskTimer.start(0);
+#endif
     }
 }
 

@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QVariant>
+#include <QApplication>
 #include <cmath>
 
 #include "event.h"
@@ -22,7 +23,7 @@
 Display* display;
 #endif
 
-MouseHelper mouseHelperObj;
+MouseHelper *mouseHelperObj = 0;
 
 //actually creates an XWindows event  :)
 void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
@@ -123,7 +124,13 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
     display = X11Info::display();
 #endif
 
-    mouseHelperObj.mouseTimer.stop();
+    if (!mouseHelperObj)
+    {
+        mouseHelperObj = new MouseHelper();
+        QObject::connect(qApp, SIGNAL(aboutToQuit()), mouseHelperObj, SLOT(deleteLater()));
+    }
+
+    mouseHelperObj->mouseTimer.stop();
 
     if (xcoor >= -2.0 && xcoor <= 1.0 &&
         ycoor >= -2.0 && ycoor <= 1.0)
@@ -203,9 +210,9 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 
 #endif
 
-            if (!mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.0066 || diffy >= destSpringHeight*.0066))
+            if (!mouseHelperObj->springMouseMoving && (diffx >= destSpringWidth*.0066 || diffy >= destSpringHeight*.0066))
             {
-                mouseHelperObj.springMouseMoving = true;
+                mouseHelperObj->springMouseMoving = true;
 
 #if defined (Q_OS_UNIX)
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
@@ -218,13 +225,13 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
                 SendInput(1, temp, sizeof(INPUT));
 #endif
 
-                mouseHelperObj.mouseTimer.start(8);
+                mouseHelperObj->mouseTimer.start(8);
             }
-            else if (mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
+            else if (mouseHelperObj->springMouseMoving && (diffx < 2 && diffy < 2))
             {
-                mouseHelperObj.springMouseMoving = false;
+                mouseHelperObj->springMouseMoving = false;
             }
-            else if (mouseHelperObj.springMouseMoving)
+            else if (mouseHelperObj->springMouseMoving)
             {
 #if defined (Q_OS_UNIX)
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
@@ -238,28 +245,28 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 
 #endif
 
-                mouseHelperObj.mouseTimer.start(8);
+                mouseHelperObj->mouseTimer.start(8);
 
             }
 
-            mouseHelperObj.previousCursorLocation[0] = currentMouseX;
-            mouseHelperObj.previousCursorLocation[1] = currentMouseY;
+            mouseHelperObj->previousCursorLocation[0] = currentMouseX;
+            mouseHelperObj->previousCursorLocation[1] = currentMouseY;
         }
-        else if (mouseHelperObj.previousCursorLocation[0] == xmovecoor &&
-                 mouseHelperObj.previousCursorLocation[1] == ymovecoor)
+        else if (mouseHelperObj->previousCursorLocation[0] == xmovecoor &&
+                 mouseHelperObj->previousCursorLocation[1] == ymovecoor)
         {
-            mouseHelperObj.springMouseMoving = false;
+            mouseHelperObj->springMouseMoving = false;
         }
         else
         {
-            mouseHelperObj.previousCursorLocation[0] = currentMouseX;
-            mouseHelperObj.previousCursorLocation[1] = currentMouseY;
-            mouseHelperObj.mouseTimer.start(8);
+            mouseHelperObj->previousCursorLocation[0] = currentMouseX;
+            mouseHelperObj->previousCursorLocation[1] = currentMouseY;
+            mouseHelperObj->mouseTimer.start(8);
         }
     }
     else
     {
-        mouseHelperObj.springMouseMoving = false;
+        mouseHelperObj->springMouseMoving = false;
     }
 
 #ifdef Q_OS_UNIX

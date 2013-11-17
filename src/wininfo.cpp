@@ -110,8 +110,8 @@ void WinInfo::populateKnownAliases()
 
     if (knownAliasesVKStrings.isEmpty())
     {
-        knownAliasesVKStrings.insert(VK_LWIN, tr("Super"));
-        knownAliasesVKStrings.insert(VK_APPS, tr("Menu"));
+        knownAliasesVKStrings.insert(VK_LWIN, QObject::tr("Super"));
+        knownAliasesVKStrings.insert(VK_APPS, QObject::tr("Menu"));
     }
 }
 
