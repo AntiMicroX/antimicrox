@@ -1537,7 +1537,6 @@ void JoyButton::holdEvent()
             {
                 findHoldEventEnd();
                 currentHold = 0;
-                holdTimer.stop();
                 createDeskEvent();
             }
         }
