@@ -66,10 +66,12 @@ translations for the application.
 * the first-time wizard will select MSVC as the default compiler, untick it and select MinGW instead
 
 * edit 'antimicro.pro' at line 240 and replace the following lines:
+
         #LIBS += -L"" -lSDL
         #INCLUDEPATH += ""
 
 * by these ones:
+
         LIBS += -L"..\sdl-1.2.15\lib" -lSDL
         INCLUDEPATH += "..\sdl-1.2.15\include"
 
@@ -82,6 +84,7 @@ translations for the application.
 * the executable needs SDL.DLL, get it from here: http://www.libsdl.org/release/SDL-1.2.15-win32.zip
 
 * it will also need some Qt DLLs that you can find inside C:\Qt\5.1.1\mingw48_32\bin
+
         icudt51.dll
         icuin51.dll
         icuuc51.dll
