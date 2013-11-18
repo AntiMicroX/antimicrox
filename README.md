@@ -29,7 +29,7 @@ installed on your system in order to build this program:
 * libX11-dev
 
 
-## Building
+## Building under Linux
 
 In order to build this program, open a terminal and cd into the antimicro/src
 directory. Enter the following commands in order to build the program:
@@ -51,6 +51,53 @@ By default, the executable will be installed to /usr/local/bin/antimicro.
 Also, running "make updateqm" is only required if you would like to enable
 translations for the application.
 
+## Building under Windows
+
+**Instructions provided by aybe @ https://github.com/aybe**
+
+* You will need Qt with MinGW support: http://qt-project.org/downloads
+
+* download SDL libraries: http://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
+
+* open the archive and drop the 'SDL-1.2.15' folder in the 'antimicro' folder
+
+* open the project in Qt Creator
+
+* the first-time wizard will select MSVC as the default compiler, untick it and select MinGW instead
+
+* edit 'antimicro.pro' at line 240 and replace the following lines:
+        #LIBS += -L"" -lSDL
+        #INCLUDEPATH += ""
+
+* by these ones:
+        LIBS += -L"..\sdl-1.2.15\lib" -lSDL
+        INCLUDEPATH += "..\sdl-1.2.15\include"
+
+* set build to 'Release' : menu Build -> Open Build and Run Kit Selector
+
+        build all : Ctrl+Shift+B
+
+* now there is a 'build-antimicro-Desktop_Qt_5_1_1_MinGW_32bit-release/release' folder in 'antimicro' folder
+
+* the executable needs SDL.DLL, get it from here: http://www.libsdl.org/release/SDL-1.2.15-win32.zip
+
+* it will also need some Qt DLLs that you can find inside C:\Qt\5.1.1\mingw48_32\bin
+        icudt51.dll
+        icuin51.dll
+        icuuc51.dll
+        libgcc_s_dw2-1.dll
+        libstdc++-6.dll
+        libwinpthread-1.dll
+        Qt5Core.dll
+        Qt5Gui.dll
+        Qt5Network.dll
+        Qt5Widgets.dll
+
+* copy them next to the executable
+
+* you have just built AntiMicro for Windows :D
+
+
 ## Ideas For Future Features
 
 This section is where some of the ideas for future features
@@ -59,9 +106,8 @@ there has not been a plan for what to implement in future
 versions of AntiMicro. Hopefully, this will help change that.
 
 * Gamepad Status window. A window to show buttons presses and current axes values.
-* Ensure SDL 2 compatibility. Looking at the docs for SDL 2, it seems
-like the main API has not really changed so AntiMicro should be compatible.
-TODO: Compile against SDL 2 to test compatibility.
+* ~~DONE. Ensure SDL 2 compatibility. Looking at the docs for SDL 2, it seems
+like the main API has not really changed so AntiMicro should be compatible.~~
 * Setting to not display buttons that are not currently in use.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
@@ -104,3 +150,4 @@ Travis Nickles <nickles.travis@gmail.com>
 Belleguic Terence <hizo@free.fr> - French  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
 VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese
+ 
