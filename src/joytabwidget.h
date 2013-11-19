@@ -38,6 +38,7 @@ protected:
 
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
+    QPushButton *removeButton;
     QPushButton *loadButton;
     QPushButton *saveButton;
     QPushButton *resetButton;
@@ -97,6 +98,7 @@ private slots:
     void saveConfigFile();
     void resetJoystick();
     void saveAsConfig();
+    void removeConfig();
     void changeJoyConfig(int index);
     void showAxisDialog();
     void showButtonDialog();

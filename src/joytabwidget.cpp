@@ -36,6 +36,13 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     spacer1 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     configHorizontalLayout->addItem(spacer1);
 
+    removeButton = new QPushButton(tr("Remove"), this);
+    removeButton->setObjectName(QString::fromUtf8("removeButton"));
+    //removeButton->setFixedWidth(100);
+    removeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    removeButton->setIcon(QIcon::fromTheme("edit-clear-list"));
+    configHorizontalLayout->addWidget(removeButton);
+
     loadButton = new QPushButton(tr("Load"), this);
     loadButton->setObjectName(QString::fromUtf8("loadButton"));
     //loadButton->setFixedWidth(100);
@@ -331,6 +338,7 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     connect(saveAsButton, SIGNAL(clicked()), this, SLOT(saveAsConfig()));
+    connect(removeButton, SIGNAL(clicked()), this, SLOT(removeConfig()));
 
     connect(setPushButton1, SIGNAL(clicked()), this, SLOT(changeSetOne()));
     connect(setPushButton2, SIGNAL(clicked()), this, SLOT(changeSetTwo()));
@@ -1355,4 +1363,14 @@ void JoyTabWidget::removeCurrentButtons()
 Joystick* JoyTabWidget::getJoystick()
 {
     return joystick;
+}
+
+void JoyTabWidget::removeConfig()
+{
+    int currentIndex = configBox->currentIndex();
+    if (currentIndex > 0)
+    {
+        configBox->removeItem(currentIndex);
+        emit joystickConfigChanged(joystick->getJoyNumber());
+    }
 }

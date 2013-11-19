@@ -22,6 +22,10 @@
   <property name="windowTitle">
    <string>AntiMicro</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/antimicro.png</normaloff>:/images/antimicro.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
 JoyAxisWidget[isflashing=&quot;true&quot;],
@@ -188,6 +192,19 @@ QStackedWidget#stackedWidget{
                </spacer>
               </item>
               <item>
+               <widget class="QPushButton" name="removeButton">
+                <property name="toolTip">
+                 <string>Remove</string>
+                </property>
+                <property name="text">
+                 <string>Remove</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="edit-clear-list"/>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="pushButton_8">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -200,6 +217,9 @@ QStackedWidget#stackedWidget{
                   <width>0</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="toolTip">
+                 <string>Load</string>
                 </property>
                 <property name="text">
                  <string>Load</string>
@@ -224,6 +244,9 @@ QStackedWidget#stackedWidget{
                   <width>90</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="toolTip">
+                 <string>Save</string>
                 </property>
                 <property name="text">
                  <string>Save</string>
@@ -254,6 +277,9 @@ QStackedWidget#stackedWidget{
                   <width>16777215</width>
                   <height>16777215</height>
                  </size>
+                </property>
+                <property name="toolTip">
+                 <string>Save As</string>
                 </property>
                 <property name="text">
                  <string>Save As</string>
@@ -644,7 +670,9 @@ QStackedWidget#stackedWidget{
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionQuit</sender>
