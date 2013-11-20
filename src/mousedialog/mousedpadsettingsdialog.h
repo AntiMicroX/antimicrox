@@ -2,6 +2,8 @@
 #define MOUSEDPADSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
+#include "springmoderegionpreview.h"
+
 #include <joydpad.h>
 
 class MouseDPadSettingsDialog : public MouseSettingsDialog
@@ -17,6 +19,7 @@ protected:
     void selectSmoothingPreset();
 
     JoyDPad *dpad;
+    SpringModeRegionPreview *springPreviewWidget;
 
 signals:
     

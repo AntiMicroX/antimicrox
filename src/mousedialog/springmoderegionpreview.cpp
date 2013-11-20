@@ -7,7 +7,7 @@
 #include "springmoderegionpreview.h"
 
 SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent) :
-    QWidget(parent, Qt::FramelessWindowHint | Qt::SplashScreen)
+    QWidget(parent, Qt::FramelessWindowHint)
 {
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);
@@ -15,6 +15,8 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
     setAttribute(Qt::WA_NoSystemBackground, true);
     setAttribute(Qt::WA_TranslucentBackground, true);
     setAttribute(Qt::WA_PaintOnScreen);
+
+    setWindowTitle(tr("Spring Mode Preview"));
 
     if (tempwidth >= 2 && tempheight >= 2)
     {
@@ -43,7 +45,7 @@ void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
     border.setColor(Qt::black);
     p.setPen(border);
 
-    p.drawRect(3, 3, width()-6, height()-6);
+    p.drawRect(1, 1, width()-3, height()-3);
 
     QWidget::paintEvent(event);
 }
@@ -122,4 +124,16 @@ void SpringModeRegionPreview::setSpringHeight(int height)
         resize(width, tempheight);
         move(0, 0);
     }
+}
+
+void SpringModeRegionPreview::setSpringSize(int width, int height)
+{
+    int tempwidth = adjustSpringSizeWidth(width);
+    int tempheight = adjustSpringSizeHeight(height);
+
+    int cw = (qApp->desktop()->width() / 2) - (tempwidth / 2);
+    int ch = (qApp->desktop()->height() / 2) - (height / 2);
+
+    resize(tempwidth, tempheight);
+    move(cw, ch);
 }

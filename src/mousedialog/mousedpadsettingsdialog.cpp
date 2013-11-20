@@ -22,6 +22,17 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     setWindowTitle(tr("Mouse Settings - ").append(tr("DPad %1").arg(dpad->getRealJoyNumber())));
 
+    if (ui->mouseModeComboBox->currentIndex() == 2)
+    {
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+    }
+    else
+    {
+        springPreviewWidget = new SpringModeRegionPreview(0, 0);
+    }
+
+    connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
+
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseCurve(int)));
 
@@ -29,7 +40,10 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateConfigVerticalSpeed(int)));
 
     connect(ui->springWidthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringWidth(int)));
+    connect(ui->springWidthSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringWidth(int)));
+
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
+    connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringHeight(int)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
@@ -40,10 +54,19 @@ void MouseDPadSettingsDialog::changeMouseMode(int index)
     if (index == 1)
     {
         dpad->setButtonsMouseMode(JoyButton::MouseCursor);
+        if (springPreviewWidget->isVisible())
+        {
+            springPreviewWidget->hide();
+        }
     }
     else if (index == 2)
     {
         dpad->setButtonsMouseMode(JoyButton::MouseSpring);
+        if (!springPreviewWidget->isVisible())
+        {
+            springPreviewWidget->setSpringWidth(ui->springWidthSpinBox->value());
+            springPreviewWidget->setSpringHeight(ui->springHeightSpinBox->value());
+        }
     }
 }
 

@@ -115,12 +115,12 @@ like the main API has not really changed so AntiMicro should be compatible.~~
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
-* Spring mode preview. There should be some way in the program
+* ~~DONE. Spring mode preview. There should be some way in the program
 to show the area that spring mode will use based on the settings
 specified. Either that or the program should implement something
 that will allow the user to select the region on screen that
 should be used; this would work like what would be seen in
-screencap programs.
+screencap programs.~~
 * Implement mouse wheel as a type of movement instead of a button press.
 * Show identifier given by SDL along with plain joystick identifier.
 * A mouse setting that will move the mouse cursor to an exact spot on the

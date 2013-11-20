@@ -2,6 +2,8 @@
 #define MOUSEBUTTONSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
+#include "springmoderegionpreview.h"
+
 #include <joybutton.h>
 
 class MouseButtonSettingsDialog : public MouseSettingsDialog
@@ -17,6 +19,7 @@ protected:
     void selectSmoothingPreset();
 
     JoyButton *button;
+    SpringModeRegionPreview *springPreviewWidget;
 
 signals:
     

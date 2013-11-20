@@ -2,6 +2,8 @@
 #define MOUSECONTROLSTICKSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
+#include "springmoderegionpreview.h"
+
 #include <joycontrolstick.h>
 
 class MouseControlStickSettingsDialog : public MouseSettingsDialog
@@ -17,6 +19,7 @@ protected:
     void selectSmoothingPreset();
 
     JoyControlStick *stick;
+    SpringModeRegionPreview *springPreviewWidget;
 
 signals:
     

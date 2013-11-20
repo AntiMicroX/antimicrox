@@ -23,7 +23,14 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     setWindowTitle(tr("Mouse Settings - ").append(tr("Axis %1").arg(axis->getRealJoyIndex())));
 
-    springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+    if (ui->mouseModeComboBox->currentIndex() == 2)
+    {
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+    }
+    else
+    {
+        springPreviewWidget = new SpringModeRegionPreview(0, 0);
+    }
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -48,10 +55,19 @@ void MouseAxisSettingsDialog::changeMouseMode(int index)
     if (index == 1)
     {
         axis->setButtonsMouseMode(JoyButton::MouseCursor);
+        if (springPreviewWidget->isVisible())
+        {
+            springPreviewWidget->hide();
+        }
     }
     else if (index == 2)
     {
         axis->setButtonsMouseMode(JoyButton::MouseSpring);
+        if (!springPreviewWidget->isVisible())
+        {
+            springPreviewWidget->setSpringWidth(ui->springWidthSpinBox->value());
+            springPreviewWidget->setSpringHeight(ui->springHeightSpinBox->value());
+        }
     }
 }
 
