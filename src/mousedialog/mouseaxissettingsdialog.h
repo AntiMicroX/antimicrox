@@ -2,7 +2,10 @@
 #define MOUSEAXISSETTINGSDIALOG_H
 
 #include "mousesettingsdialog.h"
+#include "springmoderegionpreview.h"
+
 #include <joyaxis.h>
+
 
 class MouseAxisSettingsDialog : public MouseSettingsDialog
 {
@@ -17,6 +20,7 @@ protected:
     void selectSmoothingPreset();
 
     JoyAxis *axis;
+    SpringModeRegionPreview *springPreviewWidget;
 
 signals:
     

@@ -154,7 +154,8 @@ SOURCES += main.cpp\
     mousedialog/mouseaxissettingsdialog.cpp \
     mousedialog/mousebuttonsettingsdialog.cpp \
     mousedialog/mousedpadsettingsdialog.cpp \
-    joytabwidgetcontainer.cpp
+    joytabwidgetcontainer.cpp \
+    mousedialog/springmoderegionpreview.cpp
 
 
 unix {
@@ -212,7 +213,8 @@ HEADERS  += mainwindow.h \
     mousedialog/mouseaxissettingsdialog.h \
     mousedialog/mousebuttonsettingsdialog.h \
     mousedialog/mousedpadsettingsdialog.h \
-    joytabwidgetcontainer.h
+    joytabwidgetcontainer.h \
+    mousedialog/springmoderegionpreview.h
 
 
 unix {
