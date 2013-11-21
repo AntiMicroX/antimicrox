@@ -1025,13 +1025,24 @@ QString JoyButton::getSlotsSummary()
 
     if (slotCount > 0)
     {
-        JoyButtonSlot *slot = assignments.first();
-        newlabel = newlabel.append(slot->getSlotString());
+        QListIterator<JoyButtonSlot*> iter(assignments);
+        QStringList stringlist;
 
-        if (slotCount > 1)
+        int i = 0;
+        while (iter.hasNext())
         {
-            newlabel = newlabel.append(" ...");
+            JoyButtonSlot *slot = iter.next();
+            stringlist.append(slot->getSlotString());
+            i++;
+
+            if (i > 4)
+            {
+                stringlist.append(" ...");
+                iter.toBack();
+            }
         }
+
+        newlabel = stringlist.join(", ");
     }
     else
     {
