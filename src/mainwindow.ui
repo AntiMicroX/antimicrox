@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>570</height>
+    <height>580</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -200,7 +200,9 @@ QStackedWidget#stackedWidget{
                  <string>Remove</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="edit-clear-list"/>
+                 <iconset theme="edit-clear-list">
+                  <normaloff/>
+                 </iconset>
                 </property>
                </widget>
               </item>
@@ -303,22 +305,6 @@ QStackedWidget#stackedWidget{
              </layout>
             </item>
             <item>
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>5</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
              <widget class="QStackedWidget" name="stackedWidget_2">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -342,7 +328,7 @@ QStackedWidget#stackedWidget{
                      <x>0</x>
                      <y>0</y>
                      <width>612</width>
-                     <height>353</height>
+                     <height>396</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -369,22 +355,6 @@ QStackedWidget#stackedWidget{
               <widget class="QWidget" name="page_7"/>
               <widget class="QWidget" name="page_8"/>
              </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -550,8 +520,6 @@ QStackedWidget#stackedWidget{
              </layout>
             </item>
            </layout>
-           <zorder>verticalSpacer_3</zorder>
-           <zorder>stackedWidget_2</zorder>
           </widget>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
