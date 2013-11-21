@@ -104,7 +104,7 @@ void SpringModeRegionPreview::setSpringWidth(int width)
             show();
         }
     }
-    else if (tempwidth >= 2)
+    else
     {
 #ifndef Q_OS_UNIX
         hide();
@@ -135,7 +135,7 @@ void SpringModeRegionPreview::setSpringHeight(int height)
             show();
         }
     }
-    else if (tempheight >= 2)
+    else
     {
 #ifndef Q_OS_UNIX
         hide();
