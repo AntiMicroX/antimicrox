@@ -74,6 +74,8 @@ void SetJoystick::refreshAxes()
         JoyAxisButton *button = axis->getNAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
+        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
+        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
 
         button = axis->getPAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
