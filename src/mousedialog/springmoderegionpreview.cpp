@@ -7,14 +7,19 @@
 #include "springmoderegionpreview.h"
 
 SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent) :
-    QWidget(parent, Qt::FramelessWindowHint)
+    #if defined(Q_OS_WIN)
+        QWidget(parent, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+    #else
+        QWidget(parent, Qt::FramelessWindowHint)
+    #endif
 {
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);
 
-    setAttribute(Qt::WA_NoSystemBackground, true);
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    setAttribute(Qt::WA_NoSystemBackground);
+    setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_PaintOnScreen);
+    setAttribute(Qt::WA_ShowWithoutActivating);
 
     setWindowTitle(tr("Spring Mode Preview"));
 
@@ -35,7 +40,6 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
 void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
 {
-
     Q_UNUSED(event);
 
     QPainter p(this);
@@ -46,8 +50,6 @@ void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
     p.setPen(border);
 
     p.drawRect(1, 1, width()-3, height()-3);
-
-    QWidget::paintEvent(event);
 }
 
 int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
@@ -87,17 +89,26 @@ void SpringModeRegionPreview::setSpringWidth(int width)
 
     int height = size().height();
 
+#ifdef Q_OS_UNIX
     hide();
+#endif
+
     if (tempwidth >= 2 && height >= 2)
     {
         int cw = (qApp->desktop()->width() / 2) - (tempwidth / 2);
         int ch = (qApp->desktop()->height() / 2) - (height / 2);
 
         setGeometry(cw, ch, tempwidth, height);
-        show();
+        if (!isVisible())
+        {
+            show();
+        }
     }
     else if (tempwidth >= 2)
     {
+#ifndef Q_OS_UNIX
+        hide();
+#endif
         resize(tempwidth, height);
         move(0, 0);
     }
@@ -109,18 +120,26 @@ void SpringModeRegionPreview::setSpringHeight(int height)
 
     int width = size().width();
 
+#ifdef Q_OS_UNIX
     hide();
+#endif
+
     if (width >= 2 && tempheight >= 2)
     {
         int cw = (qApp->desktop()->width() / 2) - (width / 2);
         int ch = (qApp->desktop()->height() / 2) - (tempheight / 2);
 
         setGeometry(cw, ch, width, tempheight);
-        show();
-
+        if (!isVisible())
+        {
+            show();
+        }
     }
     else if (tempheight >= 2)
     {
+#ifndef Q_OS_UNIX
+        hide();
+#endif
         resize(width, tempheight);
         move(0, 0);
     }
