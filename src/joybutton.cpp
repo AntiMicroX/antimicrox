@@ -1841,6 +1841,7 @@ void JoyButton::releaseActiveSlots()
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
         //while (iter.hasNext())
+        iter.toBack();
         while (iter.hasPrevious())
         {
             //JoyButtonSlot *slot = iter.next();
