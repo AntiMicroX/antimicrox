@@ -1840,9 +1840,11 @@ void JoyButton::releaseActiveSlots()
     {
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
-        while (iter.hasNext())
+        //while (iter.hasNext())
+        while (iter.hasPrevious())
         {
-            JoyButtonSlot *slot = iter.next();
+            //JoyButtonSlot *slot = iter.next();
+            JoyButtonSlot *slot = iter.previous();
             int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
