@@ -23,7 +23,7 @@ QuickSetDialog::QuickSetDialog(Joystick *joystick, QWidget *parent) :
     SetJoystick *currentset = joystick->getActiveSetJoystick();
 
     QString temp = ui->joystickDialogLabel->text();
-    temp = temp.arg(joystick->getRealJoyNumber());
+    temp = temp.arg(joystick->getSDLName()).arg(joystick->getRealJoyNumber());
     ui->joystickDialogLabel->setText(temp);
 
     for (int i=0; i < currentset->getNumberSticks(); i++)
