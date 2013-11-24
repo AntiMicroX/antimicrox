@@ -22,7 +22,7 @@ public:
 
     void joyEvent(int value, bool ignoresets=false);
     bool inDeadZone(int value);
-    QString getName();
+    QString getName(bool forceFullFormat=false);
     void setIndex(int index);
     int getIndex();
     int getRealJoyIndex();
@@ -77,6 +77,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
+    QString getAxisName();
+
     virtual bool isDefault();
 
     static const int AXISMIN;
@@ -114,6 +116,7 @@ protected:
     //int currentThrottledMax;
     int currentThrottledDeadValue;
     JoyControlStick *stick;
+    QString axisName;
 
 signals:
     void active(int value);
@@ -121,6 +124,7 @@ signals:
     void moved(int value);
     void throttleChangePropogated(int index);
     void throttleChanged();
+    void axisNameChanged();
 
 public slots:
     void reset();
@@ -129,6 +133,7 @@ public slots:
 
     void setDeadZone(int value);
     void setMaxZoneValue(int value);
+    void setAxisName(QString tempName);
 };
 
 #endif // JOYAXIS_H

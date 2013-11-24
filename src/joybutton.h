@@ -45,10 +45,10 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    virtual QString getPartialName();
+    virtual QString getPartialName(bool forceFullFormat=false);
     virtual QString getSlotsSummary();
     virtual QString getSlotsString();
-    virtual QString getName();
+    virtual QString getName(bool forceFullFormat=false);
     virtual QString getXmlName();
 
     int getMouseSpeedX();
@@ -93,6 +93,9 @@ public:
     bool isSmoothingEnabled();
     bool getWhileHeldStatus();
     void setWhileHeldStatus(bool status);
+
+    QString getActionName();
+    QString getButtonName();
 
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
@@ -166,6 +169,9 @@ protected:
     bool smoothing;
     bool whileHeldStatus;
 
+    QString actionName;
+    QString buttonName;
+
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -181,6 +187,8 @@ signals:
     void toggleChanged(bool state);
     void turboIntervalChanged(int interval);
     void slotsChanged();
+    void actionNameChanged();
+    void buttonNameChanged();
 
 public slots:
     void setTurboInterval (int interval);
@@ -193,6 +201,9 @@ public slots:
     void setSpringHeight(int value);
 
     void setSensitivity(double value);
+
+    void setActionName(QString tempName);
+    void setButtonName(QString tempName);
 
     virtual void reset();
     virtual void reset(int index);

@@ -57,6 +57,7 @@ void SetJoystick::refreshButtons()
         connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
         connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)));
         connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
+        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
     }
 }
 
@@ -70,18 +71,21 @@ void SetJoystick::refreshAxes()
         axes.insert(i, axis);
 
         connect(axis, SIGNAL(throttleChangePropogated(int)), this, SLOT(propogateSetAxisThrottleSetting(int)));
+        connect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
 
         JoyAxisButton *button = axis->getNAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
         connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
         connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
+        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
 
         button = axis->getPAxisButton();
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
         connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
         connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
+        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
     }
 }
 
@@ -92,6 +96,7 @@ void SetJoystick::refreshHats()
     for (int i=0; i < SDL_JoystickNumHats(joyhandle); i++)
     {
         JoyDPad *dpad = new JoyDPad(i, index, this);
+        connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadNameChange()));
         hats.insert(i, dpad);
         QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
         QHashIterator<int, JoyDPadButton*> iter(*buttons);
@@ -103,6 +108,7 @@ void SetJoystick::refreshHats()
 
             connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
             connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
+            connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
         }
     }
 }
@@ -500,6 +506,7 @@ void SetJoystick::propogateSetAxisThrottleSetting(int index)
 void SetJoystick::addControlStick(int index, JoyControlStick *stick)
 {
     sticks.insert(index, stick);
+    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(propogateSetStickNameChange()));
 
     QHashIterator<JoyStickDirectionsType::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
     while (iter.hasNext())
@@ -509,6 +516,7 @@ void SetJoystick::addControlStick(int index, JoyControlStick *stick)
         {
             connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetStickButtonClick(int)));
             connect(button, SIGNAL(released(int)), this, SLOT(propogateSetStickButtonRelease(int)));
+            connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetStickButtonNameChange()));
         }
     }
 }
@@ -527,6 +535,7 @@ void SetJoystick::removeControlStick(int index)
 void SetJoystick::addVDPad(int index, VDPad *vdpad)
 {
     vdpads.insert(index, vdpad);
+    connect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
 
     QHashIterator<int, JoyDPadButton*> iter(*vdpad->getButtons());
     while (iter.hasNext())
@@ -536,6 +545,7 @@ void SetJoystick::addVDPad(int index, VDPad *vdpad)
         {
             connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
             connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
+            connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetVDPadButtonNameChange()));
         }
     }
 }
@@ -600,4 +610,76 @@ void SetJoystick::propogateSetDPadButtonRelease(int button)
 {
     JoyDPad *dpad = static_cast<JoyDPad*>(sender());
     emit setDPadButtonRelease(index, dpad->getIndex(), button);
+}
+
+void SetJoystick::propogateSetButtonNameChange()
+{
+    JoyButton *button = static_cast<JoyButton*>(sender());
+    disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
+    emit setButtonNameChange(button->getJoyNumber());
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
+}
+
+void SetJoystick::propogateSetAxisButtonNameChange()
+{
+    JoyAxisButton *button = static_cast<JoyAxisButton*>(sender());
+    disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+    emit setAxisButtonNameChange(button->getAxis()->getIndex(), button->getJoyNumber());
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+}
+
+void SetJoystick::propogateSetStickButtonNameChange()
+{
+    JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
+    disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetStickButtonNameChange()));
+    emit setStickButtonNameChange(button->getStick()->getIndex(), button->getJoyNumber());
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetStickButtonNameChange()));
+}
+
+void SetJoystick::propogateSetDPadButtonNameChange()
+{
+    JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
+    disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
+    emit setDPadButtonNameChange(button->getDPad()->getIndex(), button->getJoyNumber());
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
+}
+
+void SetJoystick::propogateSetVDPadButtonNameChange()
+{
+    JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
+    disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetVDPadButtonNameChange()));
+    emit setVDPadButtonNameChange(button->getDPad()->getIndex(), button->getJoyNumber());
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetVDPadButtonNameChange()));
+}
+
+void SetJoystick::propogateSetAxisNameChange()
+{
+    JoyAxis *axis = static_cast<JoyAxis*>(sender());
+    disconnect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
+    emit setAxisNameChange(axis->getIndex());
+    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
+}
+
+void SetJoystick::propogateSetStickNameChange()
+{
+    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
+    disconnect(stick, SIGNAL(stickNameChanged()), this, SLOT(propogateSetStickNameChange()));
+    emit setStickNameChange(stick->getIndex());
+    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(propogateSetStickNameChange()));
+}
+
+void SetJoystick::propogateSetDPadNameChange()
+{
+    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
+    disconnect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
+    emit setDPadNameChange(dpad->getIndex());
+    connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
+}
+
+void SetJoystick::propogateSetVDPadNameChange()
+{
+    VDPad *vdpad = static_cast<VDPad*>(sender());
+    disconnect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
+    emit setVDPadNameChange(vdpad->getIndex());
+    connect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
 }

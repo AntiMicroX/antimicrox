@@ -190,6 +190,9 @@ axis is moved back to the dead zone.</string>
                  <string>Horizontal
 Speed:</string>
                 </property>
+                <property name="buddy">
+                 <cstring>horizontalSpinBox</cstring>
+                </property>
                </widget>
               </item>
               <item>
@@ -235,6 +238,9 @@ Speed:</string>
                  <string>Vertical
 Speed:</string>
                 </property>
+                <property name="buddy">
+                 <cstring>verticalSpinBox</cstring>
+                </property>
                </widget>
               </item>
               <item>
@@ -275,6 +281,9 @@ Speed:</string>
            <widget class="QLabel" name="label_6">
             <property name="text">
              <string>Sensitivity:</string>
+            </property>
+            <property name="buddy">
+             <cstring>sensitivityDoubleSpinBox</cstring>
             </property>
            </widget>
           </item>
@@ -373,6 +382,9 @@ speed taking longer to occur.</string>
               <property name="text">
                <string>Spring Width:</string>
               </property>
+              <property name="buddy">
+               <cstring>springWidthSpinBox</cstring>
+              </property>
              </widget>
             </item>
             <item>
@@ -398,6 +410,9 @@ of your screen.</string>
              <widget class="QLabel" name="label_4">
               <property name="text">
                <string>Spring Height:</string>
+              </property>
+              <property name="buddy">
+               <cstring>springHeightSpinBox</cstring>
               </property>
              </widget>
             </item>

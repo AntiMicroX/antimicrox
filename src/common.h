@@ -14,7 +14,7 @@ namespace PadderCommon
     const QString configFileName = "antimicro_settings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
     const QString pidFilePath = "/tmp/antimicro.pid";
-    const int LATESTCONFIGFILEVERSION = 4;
+    const int LATESTCONFIGFILEVERSION = 5;
     const QString programVersion = "1.1.1";
     const QString localSocketKey = "antimicroSignalListener";
 }

@@ -15,7 +15,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     this->stick = stick;
 
-    this->setWindowTitle(QString(tr("Set Stick %1")).arg(stick->getRealJoyIndex()));
+    updateWindowTitleStickName();
 
     ui->deadZoneSlider->setValue(stick->getDeadZone());
     ui->deadZoneSpinBox->setValue(stick->getDeadZone());
@@ -44,6 +44,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     selectCurrentPreset();
 
+    ui->stickNameLineEdit->setText(stick->getStickName());
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
 
@@ -61,6 +63,9 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
+
+    connect(ui->stickNameLineEdit, SIGNAL(textEdited(QString)), stick, SLOT(setStickName(QString)));
+    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(updateWindowTitleStickName()));
 }
 
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
@@ -354,4 +359,18 @@ void JoyControlStickEditDialog::openMouseSettingsDialog()
 void JoyControlStickEditDialog::enableMouseSettingButton()
 {
     ui->mouseSettingsPushButton->setEnabled(true);
+}
+
+void JoyControlStickEditDialog::updateWindowTitleStickName()
+{
+    QString temp = QString(tr("Set")).append(" ");
+    if (!stick->getStickName().isEmpty())
+    {
+        temp.append(tr("Stick ")).append(stick->getStickName());
+    }
+    else
+    {
+        temp.append(tr("Stick %1").arg(stick->getRealJoyIndex()));
+    }
+    setWindowTitle(temp);
 }

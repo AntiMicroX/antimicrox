@@ -475,6 +475,9 @@ past the interval specified.</string>
                <property name="text">
                 <string>Mouse Speed Mod:</string>
                </property>
+               <property name="buddy">
+                <cstring>mouseSpeedModSpinBox</cstring>
+               </property>
               </widget>
              </item>
              <item>
@@ -522,6 +525,9 @@ past the interval specified.</string>
                </property>
                <property name="text">
                 <string>Distance: </string>
+               </property>
+               <property name="buddy">
+                <cstring>distanceSpinBox</cstring>
                </property>
               </widget>
              </item>
@@ -574,7 +580,6 @@ past the interval specified.</string>
         <zorder></zorder>
         <zorder>verticalSpacer_6</zorder>
         <zorder>verticalSpacer_7</zorder>
-        <zorder>layoutWidget</zorder>
        </widget>
        <widget class="QWidget" name="page_2">
         <layout class="QVBoxLayout" name="verticalLayout_7">

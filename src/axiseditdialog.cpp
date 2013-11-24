@@ -18,7 +18,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     this->axis = axis;
 
-    this->setWindowTitle(QString(tr("Set Axis %1")).arg(axis->getRealJoyIndex()));
+    updateWindowTitleAxisName();
 
     initialThrottleState = axis->getThrottle();
 
@@ -30,11 +30,25 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     JoyAxisButton *nButton = axis->getNAxisButton();
 
-    ui->nPushButton->setText(nButton->getSlotsSummary());
+    if (!nButton->getActionName().isEmpty())
+    {
+        ui->nPushButton->setText(nButton->getActionName());
+    }
+    else
+    {
+        ui->nPushButton->setText(nButton->getSlotsSummary());
+    }
 
     JoyAxisButton *pButton = axis->getPAxisButton();
 
-    ui->pPushButton->setText(pButton->getSlotsSummary());
+    if (!pButton->getActionName().isEmpty())
+    {
+        ui->pPushButton->setText(pButton->getActionName());
+    }
+    else
+    {
+        ui->pPushButton->setText(pButton->getSlotsSummary());
+    }
 
     int currentThrottle = axis->getThrottle();
     ui->comboBox_2->setCurrentIndex(currentThrottle+1);
@@ -58,6 +72,8 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     selectCurrentPreset();
 
+    ui->axisNameLineEdit->setText(axis->getAxisName());
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(updateDeadZoneBox(int)));
@@ -79,7 +95,9 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     connect(ui->pPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedPDialog()));
 
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
+    connect(ui->axisNameLineEdit, SIGNAL(textEdited(QString)), axis, SLOT(setAxisName(QString)));
 
+    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(updateWindowTitleAxisName()));
     connect(this, SIGNAL(finished(int)), this, SLOT(checkFinalSettings()));
 }
 
@@ -248,12 +266,27 @@ void AxisEditDialog::openAdvancedNDialog()
 
 void AxisEditDialog::refreshNButtonLabel()
 {
-    ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
+    if (!axis->getNAxisButton()->getActionName().isEmpty())
+    {
+        ui->nPushButton->setText(axis->getNAxisButton()->getActionName());
+    }
+    else
+    {
+        ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
+    }
 }
 
 void AxisEditDialog::refreshPButtonLabel()
 {
-    ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
+    if (!axis->getPAxisButton()->getActionName().isEmpty())
+    {
+        ui->pPushButton->setText(axis->getPAxisButton()->getActionName());
+    }
+    else
+    {
+        ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
+    }
+
 }
 
 void AxisEditDialog::checkFinalSettings()
@@ -363,4 +396,18 @@ void AxisEditDialog::openMouseSettingsDialog()
 void AxisEditDialog::enableMouseSettingButton()
 {
     ui->mouseSettingsPushButton->setEnabled(true);
+}
+
+void AxisEditDialog::updateWindowTitleAxisName()
+{
+    QString temp = QString(tr("Set")).append(" ");
+    if (!axis->getAxisName().isEmpty())
+    {
+        temp.append(tr("Axis")).append(" ").append(axis->getAxisName());
+    }
+    else
+    {
+        temp.append(tr("Axis")).append(" ").append(QString::number(axis->getRealJoyIndex()));
+    }
+    setWindowTitle(temp);
 }

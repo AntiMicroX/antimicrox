@@ -27,10 +27,20 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
     ui->slotSummaryLabel->setText(button->getSlotsString());
-    setWindowTitle(tr("Set").append(" ").append(button->getPartialName()));
+    updateWindowTitleButtonName();
 
     ui->toggleCheckBox->setChecked(button->getToggleState());
     ui->turboCheckBox->setChecked(button->isUsingTurbo());
+
+    if (!button->getActionName().isEmpty())
+    {
+        ui->actionNameLineEdit->setText(button->getActionName());
+    }
+
+    if (!button->getButtonName().isEmpty())
+    {
+        ui->buttonNameLineEdit->setText(button->getButtonName());
+    }
 
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionCleared()), this, SLOT(refreshSlotSummaryLabel()));
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionFinished()), this, SLOT(close()));
@@ -47,9 +57,13 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     connect(this, SIGNAL(advancedDialogOpened()), ui->virtualKeyMouseTabWidget, SLOT(establishVirtualMouseAdvancedSignalConnections()));
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionMade(int)), this, SLOT(createTempSlot(int)));
 
+    connect(ui->actionNameLineEdit, SIGNAL(textEdited(QString)), button, SLOT(setActionName(QString)));
+    connect(ui->buttonNameLineEdit, SIGNAL(textEdited(QString)), button, SLOT(setButtonName(QString)));
+
     connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckBox, SLOT(setChecked(bool)));
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshSlotSummaryLabel()));
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(updateWindowTitleButtonName()));
 }
 
 ButtonEditDialog::~ButtonEditDialog()
@@ -82,7 +96,11 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 
 void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    if (ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
+    if (ui->actionNameLineEdit->hasFocus() || ui->buttonNameLineEdit->hasFocus())
+    {
+        QDialog::keyReleaseEvent(event);
+    }
+    else if (ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
     {
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
@@ -229,4 +247,18 @@ void ButtonEditDialog::clearButtonSlots()
 void ButtonEditDialog::sendSelectionFinished()
 {
     emit selectionFinished();
+}
+
+void ButtonEditDialog::updateWindowTitleButtonName()
+{
+    QString temp = QString(tr("Set")).append(" ");
+    if (!button->getButtonName().isEmpty())
+    {
+        temp.append(button->getPartialName(true));
+    }
+    else
+    {
+        temp.append(button->getPartialName());
+    }
+    setWindowTitle(temp);
 }

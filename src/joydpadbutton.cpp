@@ -61,9 +61,23 @@ int JoyDPadButton::getRealJoyNumber()
     return index;
 }
 
-QString JoyDPadButton::getPartialName()
+QString JoyDPadButton::getPartialName(bool forceFullFormat)
 {
-    return dpad->getName().append(" - ").append(getDirectionName());
+    QString temp = dpad->getName().append(" - ");
+    if (!buttonName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+        temp.append(buttonName);
+    }
+    else
+    {
+        temp.append(tr("Button")).append(" ");
+        temp.append(getDirectionName());
+    }
+    return temp;
 }
 
 
@@ -106,4 +120,9 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     {
         setChangeSetSelection(-1);
     }
+}
+
+JoyDPad* JoyDPadButton::getDPad()
+{
+    return dpad;
 }

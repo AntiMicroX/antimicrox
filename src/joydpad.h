@@ -26,7 +26,7 @@ public:
     int getJoyNumber();
     int getIndex();
     int getRealJoyNumber();
-    virtual QString getName();
+    virtual QString getName(bool fullForceFormat=false);
     void joyEvent(int value, bool ignoresets=false);
 
     void setJoyMode(JoyMode mode);
@@ -54,6 +54,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
+    QString getDpadName();
+
     virtual bool isDefault();
 
     QHash<int, JoyDPadButton*>* getButtons();
@@ -75,13 +77,15 @@ protected:
     JoyDPadButton *activeDiagonalButton;
     int originset;
     JoyMode currentMode;
+    QString dpadName;
 
 signals:
     void active(int index);
     void released(int index);
+    void dpadNameChanged();
 
 public slots:
-    
+    void setDPadName(QString tempName);
 };
 
 #endif // JOYDPAD_H

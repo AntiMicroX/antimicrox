@@ -419,34 +419,77 @@ int JoyControlStick::getRealJoyIndex()
     return index+1;
 }
 
-QString JoyControlStick::getName()
+QString JoyControlStick::getName(bool forceFullFormat)
 {
-    QString label(tr("Stick"));
-    label.append(" ").append(QString::number(getRealJoyIndex()));
+    QString label;
+
+    if (!stickName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Stick")).append(" ");
+        }
+
+        label.append(stickName);
+    }
+    else
+    {
+        label.append(tr("Stick")).append(" ");
+        label.append(QString::number(getRealJoyIndex()));
+    }
+
     label.append(": ");
     QStringList tempList;
     if (buttons.contains(StickUp))
     {
         JoyControlStickButton *button = buttons.value(StickUp);
-        tempList.append(button->getSlotsSummary());
+        if (!button->getButtonName().isEmpty())
+        {
+            tempList.append(button->getButtonName());
+        }
+        else
+        {
+            tempList.append(button->getSlotsSummary());
+        }
     }
 
     if (buttons.contains(StickLeft))
     {
         JoyControlStickButton *button = buttons.value(StickLeft);
-        tempList.append(button->getSlotsSummary());
+        if (!button->getButtonName().isEmpty())
+        {
+            tempList.append(button->getButtonName());
+        }
+        else
+        {
+            tempList.append(button->getSlotsSummary());
+        }
     }
 
     if (buttons.contains(StickDown))
     {
         JoyControlStickButton *button = buttons.value(StickDown);
-        tempList.append(button->getSlotsSummary());
+        if (!button->getButtonName().isEmpty())
+        {
+            tempList.append(button->getButtonName());
+        }
+        else
+        {
+            tempList.append(button->getSlotsSummary());
+        }
     }
 
     if (buttons.contains(StickRight))
     {
         JoyControlStickButton *button = buttons.value(StickRight);
-        tempList.append(button->getSlotsSummary());
+        if (!button->getButtonName().isEmpty())
+        {
+            tempList.append(button->getButtonName());
+        }
+        else
+        {
+            tempList.append(button->getSlotsSummary());
+        }
     }
 
     label.append(tempList.join(", "));
@@ -489,6 +532,7 @@ void JoyControlStick::reset()
     safezone = false;
     currentDirection = StickCentered;
     currentMode = StandardMode;
+    stickName.clear();
     resetButtons();
 }
 
@@ -1302,4 +1346,18 @@ bool JoyControlStick::getButtonsPresetSmoothing()
     }
 
     return presetSmoothing;
+}
+
+void JoyControlStick::setStickName(QString tempName)
+{
+    if (tempName.length() <= 20 && tempName != stickName)
+    {
+        stickName = tempName;
+        emit stickNameChanged();
+    }
+}
+
+QString JoyControlStick::getStickName()
+{
+    return stickName;
 }

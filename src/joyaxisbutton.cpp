@@ -12,24 +12,39 @@ JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *p
     this->axis = axis;
 }
 
-QString JoyAxisButton::getPartialName()
+QString JoyAxisButton::getPartialName(bool forceFullFormat)
 {
-    QString buttontype;
-    if (index == 0)
+    QString temp = QString(tr("Axis ")).append(QString::number(axis->getRealJoyIndex()));
+    temp.append(": ");
+
+    if (!buttonName.isEmpty())
     {
-        buttontype = tr("Negative");
-    }
-    else if (index == 1)
-    {
-        buttontype = tr("Positive");
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+        temp.append(buttonName);
     }
     else
     {
-        buttontype = tr("Unknown");
+        QString buttontype;
+        if (index == 0)
+        {
+            buttontype = tr("Negative");
+        }
+        else if (index == 1)
+        {
+            buttontype = tr("Positive");
+        }
+        else
+        {
+            buttontype = tr("Unknown");
+        }
+
+        temp.append(tr("Button")).append(" ").append(buttontype);
     }
 
-    return QString(tr("Axis ")).append(QString::number(axis->getRealJoyIndex())).append(": ")
-            .append(tr("Button")).append(" ").append(buttontype);
+    return temp;
 }
 
 QString JoyAxisButton::getXmlName()

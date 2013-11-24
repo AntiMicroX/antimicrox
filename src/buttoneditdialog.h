@@ -49,6 +49,7 @@ private slots:
     void processSlotAssignment(JoyButtonSlot *tempslot);
     void clearButtonSlots();
     void sendSelectionFinished();
+    void updateWindowTitleButtonName();
 };
 
 #endif // BUTTONEDITDIALOGTWO_H

@@ -79,6 +79,16 @@ signals:
     void setDPadButtonClick(int setindex, int dpad, int button);
     void setDPadButtonRelease(int setindex, int dpad, int button);
 
+    void setButtonNameChange(int index);
+    void setAxisButtonNameChange(int axisIndex, int buttonIndex);
+    void setStickButtonNameChange(int stickIndex, int buttonIndex);
+    void setDPadButtonNameChange(int dpadIndex, int buttonIndex);
+    void setVDPadButtonNameChange(int vdpadIndex, int buttonIndex);
+
+    void setAxisNameChange(int axisIndex);
+    void setStickNameChange(int stickIndex);
+    void setDPadNameChange(int dpadIndex);
+    void setVDPadNameChange(int vdpadIndex);
     
 public slots:
     void reset();
@@ -99,6 +109,17 @@ protected slots:
     void propogateSetStickButtonRelease(int button);
     void propogateSetDPadButtonClick(int button);
     void propogateSetDPadButtonRelease(int button);
+
+    void propogateSetButtonNameChange();
+    void propogateSetAxisButtonNameChange();
+    void propogateSetStickButtonNameChange();
+    void propogateSetDPadButtonNameChange();
+    void propogateSetVDPadButtonNameChange();
+
+    void propogateSetAxisNameChange();
+    void propogateSetStickNameChange();
+    void propogateSetDPadNameChange();
+    void propogateSetVDPadNameChange();
 };
 
 #endif // SETJOYSTICK_H

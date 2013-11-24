@@ -60,10 +60,25 @@ QString VDPad::getXmlName()
     return this->xmlName;
 }
 
-QString VDPad::getName()
+QString VDPad::getName(bool forceFullFormat)
 {
-    QString label = QString("VDPad ");
-    label = label.append(QString::number(getRealJoyNumber()));
+    QString label;
+
+    if (!dpadName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("VDPad")).append(" ");
+        }
+
+        label.append(dpadName);
+    }
+    else
+    {
+        label.append(tr("VDPad")).append(" ");
+        label.append(QString::number(getRealJoyNumber()));
+    }
+
     return label;
 }
 

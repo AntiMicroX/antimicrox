@@ -57,9 +57,24 @@ QString JoyControlStickButton::getDirectionName()
     return label;
 }
 
-QString JoyControlStickButton::getPartialName()
+QString JoyControlStickButton::getPartialName(bool forceFullFormat)
 {
-    return QString(tr("Stick %1").arg(QString::number(stick->getRealJoyIndex()))).append(": ").append(getDirectionName());
+    QString temp = QString(tr("Stick %1").arg(stick->getRealJoyIndex()));
+    temp.append(": ");
+    if (!buttonName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+        temp.append(buttonName);
+    }
+    else
+    {
+        temp.append(tr("Button")).append(" ");
+        temp.append(getDirectionName());
+    }
+    return temp;
 }
 
 QString JoyControlStickButton::getXmlName()
@@ -104,4 +119,9 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
 int JoyControlStickButton::getRealJoyNumber()
 {
     return index;
+}
+
+JoyControlStick* JoyControlStickButton::getStick()
+{
+    return stick;
 }

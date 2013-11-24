@@ -92,23 +92,72 @@ bool JoyAxis::inDeadZone(int value)
     return result;
 }
 
-QString JoyAxis::getName()
+QString JoyAxis::getName(bool forceFullFormat)
 {
-    QString label = QString(tr("Axis")).append(" ").append(QString::number(getRealJoyIndex()));
+    QString label;
+
+    if (!axisName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Axis")).append(" ");
+        }
+
+        label.append(axisName);
+    }
+    else
+    {
+        label.append(tr("Axis")).append(" ");
+        label.append(QString::number(getRealJoyIndex()));
+    }
+
     label.append(": ");
 
     if (throttle == 0)
     {
-        label.append("-").append(naxisbutton->getSlotsSummary());
-        label.append(" | +").append(paxisbutton->getSlotsSummary());
+        label.append("-");
+        if (!naxisbutton->getActionName().isEmpty())
+        {
+            label.append(naxisbutton->getActionName());
+        }
+        else
+        {
+            label.append(naxisbutton->getSlotsSummary());
+        }
+
+        label.append(" | +");
+        if (!paxisbutton->getActionName().isEmpty())
+        {
+            label.append(paxisbutton->getActionName());
+        }
+        else
+        {
+            label.append(paxisbutton->getSlotsSummary());
+        }
     }
     else if (throttle == 1)
     {
-        label.append("+").append(paxisbutton->getSlotsSummary());
+        label.append("+");
+        if (!paxisbutton->getActionName().isEmpty())
+        {
+            label.append(paxisbutton->getActionName());
+        }
+        else
+        {
+            label.append(paxisbutton->getSlotsSummary());
+        }
     }
     else if (throttle == -1)
     {
-        label.append("-").append(naxisbutton->getSlotsSummary());
+        label.append("-");
+        if (!naxisbutton->getActionName().isEmpty())
+        {
+            label.append(naxisbutton->getActionName());
+        }
+        else
+        {
+            label.append(naxisbutton->getSlotsSummary());
+        }
     }
 
     return label;
@@ -242,7 +291,7 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == "axis")
     {
-        reset();
+        //reset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "axis"))
@@ -353,6 +402,7 @@ void JoyAxis::reset()
     setCurrentRawValue(currentThrottledDeadValue);
     //currentRawValue = currentThrottledDeadValue;
     currentThrottledValue = calculateThrottledValue(currentRawValue);
+    axisName.clear();
 }
 
 void JoyAxis::reset(int index)
@@ -704,4 +754,18 @@ JoyAxisButton* JoyAxis::getAxisButtonByValue(int value)
     }
 
     return eventbutton;
+}
+
+void JoyAxis::setAxisName(QString tempName)
+{
+    if (tempName.length() <= 20 && tempName != axisName)
+    {
+        axisName = tempName;
+        emit axisNameChanged();
+    }
+}
+
+QString JoyAxis::getAxisName()
+{
+    return axisName;
 }

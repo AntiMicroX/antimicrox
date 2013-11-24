@@ -15,6 +15,7 @@ VirtualDPadPushButton::VirtualDPadPushButton(VDPad *vdpad, QWidget *parent) :
 
     connect(vdpad, SIGNAL(active(int)), this, SLOT(flash()));
     connect(vdpad, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(refreshLabel()));
 }
 
 VDPad* VirtualDPadPushButton::getVDPad()
@@ -50,7 +51,16 @@ void VirtualDPadPushButton::refreshLabel()
 QString VirtualDPadPushButton::generateLabel()
 {
     QString temp;
-    temp = tr("VDPad").append(" ").append(QString::number(vdpad->getRealJoyNumber()));
+
+    if (!vdpad->getDpadName().isEmpty())
+    {
+        temp.append(vdpad->getName());
+    }
+    else
+    {
+        temp.append(vdpad->getName(true));
+    }
+
     return temp;
 }
 

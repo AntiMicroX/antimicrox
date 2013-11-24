@@ -14,11 +14,12 @@ public:
     explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent = 0);
 
     virtual int getRealJoyNumber();
-    virtual QString getPartialName();
+    virtual QString getPartialName(bool forceFullFormat=false);
     virtual QString getXmlName();
     QString getDirectionName();
     virtual double getDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    JoyControlStick *getStick();
 
     static const QString xmlName;
 

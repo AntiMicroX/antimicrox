@@ -47,6 +47,7 @@ private slots:
     void checkFinalSettings();
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
+    void updateWindowTitleAxisName();
 };
 
 #endif // AXISEDITDIALOG_H

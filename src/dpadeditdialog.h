@@ -30,6 +30,7 @@ private slots:
     void implementModes(int index);
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
+    void updateWindowTitleDPadName();
 };
 
 #endif // DPADEDITDIALOG_H

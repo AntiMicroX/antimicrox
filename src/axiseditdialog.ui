@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>318</height>
+    <width>511</width>
+    <height>369</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -439,6 +439,23 @@ interpret an axis hold or release.</string>
     </spacer>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="axisNameLabel">
+       <property name="text">
+        <string>Name:</string>
+       </property>
+       <property name="buddy">
+        <cstring>axisNameLineEdit</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="axisNameLineEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QPushButton" name="mouseSettingsPushButton">
      <property name="text">
       <string>Mouse Settings</string>
@@ -478,6 +495,8 @@ interpret an axis hold or release.</string>
   <zorder>verticalSpacer</zorder>
   <zorder>mouseSettingsPushButton</zorder>
   <zorder>verticalSpacer_2</zorder>
+  <zorder>axisNameLabel</zorder>
+  <zorder>axisNameLineEdit</zorder>
  </widget>
  <customwidgets>
   <customwidget>

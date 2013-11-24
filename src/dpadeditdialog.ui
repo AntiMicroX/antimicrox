@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>230</height>
+    <width>474</width>
+    <height>286</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -133,6 +133,29 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="dpadNameLabel">
+       <property name="text">
+        <string>Name:</string>
+       </property>
+       <property name="buddy">
+        <cstring>dpadNameLineEdit</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="dpadNameLineEdit"/>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QPushButton" name="mouseSettingsPushButton">

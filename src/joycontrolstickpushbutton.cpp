@@ -16,6 +16,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWi
 
     connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
     connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(refreshLabel()));
 }
 
 JoyControlStick* JoyControlStickPushButton::getStick()
@@ -51,7 +52,15 @@ void JoyControlStickPushButton::refreshLabel()
 QString JoyControlStickPushButton::generateLabel()
 {
     QString temp;
-    temp = tr("Stick").append(" ").append(QString::number(stick->getRealJoyIndex()));
+    if (!stick->getStickName().isEmpty())
+    {
+        temp.append(stick->getStickName());
+    }
+    else
+    {
+        temp.append(tr("Stick")).append(" ").append(QString::number(stick->getRealJoyIndex()));
+    }
+
     return temp;
 }
 

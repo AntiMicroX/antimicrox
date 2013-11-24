@@ -15,10 +15,7 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     this->dpad = dpad;
 
-    QString tempname;
-    tempname.append(tr("Set")).append(" ");
-    tempname.append(dpad->getName());
-    this->setWindowTitle(tempname);
+    updateWindowTitleDPadName();
 
     if (dpad->getJoyMode() == JoyDPad::StandardMode)
     {
@@ -31,9 +28,13 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     selectCurrentPreset();
 
+    ui->dpadNameLineEdit->setText(dpad->getDpadName());
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
+    connect(ui->dpadNameLineEdit, SIGNAL(textEdited(QString)), dpad, SLOT(setDPadName(QString)));
+    connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(updateWindowTitleDPadName()));
 }
 
 DPadEditDialog::~DPadEditDialog()
@@ -299,4 +300,18 @@ void DPadEditDialog::openMouseSettingsDialog()
 void DPadEditDialog::enableMouseSettingButton()
 {
     ui->mouseSettingsPushButton->setEnabled(true);
+}
+
+void DPadEditDialog::updateWindowTitleDPadName()
+{
+    QString temp = QString(tr("Set")).append(" ");
+    if (!dpad->getDpadName().isEmpty())
+    {
+        temp.append(tr("DPad")).append(" ").append(dpad->getDpadName());
+    }
+    else
+    {
+        temp.append(dpad->getName(true));
+    }
+    setWindowTitle(temp);
 }

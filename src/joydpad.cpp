@@ -73,10 +73,25 @@ void JoyDPad::populateButtons()
     buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
-QString JoyDPad::getName()
+QString JoyDPad::getName(bool fullForceFormat)
 {
-    QString label = QString("DPad ");
-    label = label.append(QString::number(getRealJoyNumber()));
+    QString label;
+
+    if (!dpadName.isEmpty())
+    {
+        if (fullForceFormat)
+        {
+            label.append(tr("DPad")).append(" ");
+        }
+
+        label.append(dpadName);
+    }
+    else
+    {
+        label.append(tr("DPad")).append(" ");
+        label.append(QString::number(getRealJoyNumber()));
+    }
+
     return label;
 }
 
@@ -692,4 +707,18 @@ bool JoyDPad::getButtonsPresetSmoothing()
     }
 
     return presetSmoothing;
+}
+
+void JoyDPad::setDPadName(QString tempName)
+{
+    if (tempName.length() <= 20 && tempName != dpadName)
+    {
+        dpadName = tempName;
+        emit dpadNameChanged();
+    }
+}
+
+QString JoyDPad::getDpadName()
+{
+    return dpadName;
 }

@@ -19,7 +19,7 @@ public:
     void removeVButton(JoyButton *button);
     JoyButton* getVButton(JoyDPadButton::JoyDPadDirections direction);
     bool isEmpty();
-    virtual QString getName();
+    virtual QString getName(bool forceFullFormat=false);
     virtual QString getXmlName();
 
     static const QString xmlName;

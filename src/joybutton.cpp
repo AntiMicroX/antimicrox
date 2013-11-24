@@ -268,6 +268,8 @@ void JoyButton::reset()
     ignoresets = false;
     ignoreEvents = false;
     whileHeldStatus = false;
+    buttonName.clear();
+    actionName.clear();
 }
 
 void JoyButton::reset(int index)
@@ -774,7 +776,7 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
-        reset();
+        //reset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
@@ -925,6 +927,14 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     setSmoothing(true);
                 }
             }
+            else if (xml->name() == "actionname" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (!temptext.isEmpty())
+                {
+                    setActionName(temptext);
+                }
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -1004,6 +1014,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("setselectcondition", temptext);
         }
 
+        if (!actionName.isEmpty())
+        {
+            xml->writeTextElement("actionname", actionName);
+        }
+
         xml->writeStartElement("slots");
         QListIterator<JoyButtonSlot*> iter(assignments);
         while (iter.hasNext())
@@ -1017,16 +1032,38 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
     }
 }
 
-QString JoyButton::getName()
+QString JoyButton::getName(bool forceFullFormat)
 {
-    QString newlabel = getPartialName();
-    newlabel = newlabel.append(": ").append(getSlotsSummary());
+    QString newlabel = getPartialName(forceFullFormat);
+    newlabel.append(": ");
+    if (!actionName.isEmpty())
+    {
+        newlabel.append(actionName);
+    }
+    else
+    {
+        newlabel.append(getSlotsSummary());
+    }
     return newlabel;
 }
 
-QString JoyButton::getPartialName()
+QString JoyButton::getPartialName(bool forceFullFormat)
 {
-    return QString(tr("Button").append(" ").append(QString::number(getRealJoyNumber())));
+    QString temp;
+    if (!buttonName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+        temp.append(buttonName);
+    }
+    else
+    {
+        temp.append(tr("Button")).append(" ").append(QString::number(getRealJoyNumber()));
+    }
+
+    return temp;
 }
 
 QString JoyButton::getSlotsSummary()
@@ -2077,6 +2114,8 @@ bool JoyButton::isDefault()
     value = value && (springHeight == 0);
     value = value && (sensitivity == 1.0);
     value = value && (smoothing == false);
+    value = value && (actionName.isEmpty());
+    value = value && (buttonName.isEmpty());
     return value;
 }
 
@@ -2167,4 +2206,32 @@ bool JoyButton::getWhileHeldStatus()
 void JoyButton::setWhileHeldStatus(bool status)
 {
     whileHeldStatus = status;
+}
+
+void JoyButton::setActionName(QString tempName)
+{
+    if (tempName.length() <= 50 && tempName != actionName)
+    {
+        actionName = tempName;
+        emit actionNameChanged();
+    }
+}
+
+QString JoyButton::getActionName()
+{
+    return actionName;
+}
+
+void JoyButton::setButtonName(QString tempName)
+{
+    if (tempName.length() <= 20 && tempName != buttonName)
+    {
+        buttonName = tempName;
+        emit buttonNameChanged();
+    }
+}
+
+QString JoyButton::getButtonName()
+{
+    return buttonName;
 }

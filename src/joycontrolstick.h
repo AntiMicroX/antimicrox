@@ -34,7 +34,7 @@ public:
     int getRealJoyIndex();
     int getMaxZone();
     int getCurrentlyAssignedSet();
-    QString getName();
+    QString getName(bool forceFullFormat=false);
     JoyStickDirections getCurrentDirection();
     int getXCoordinate();
     int getYCoordinate();
@@ -76,6 +76,7 @@ public:
     bool getButtonsPresetSmoothing();
 
     void releaseButtonEvents();
+    QString getStickName();
 
     virtual bool isDefault();
 
@@ -109,6 +110,7 @@ protected:
     int index;
     JoyStickDirections currentDirection;
     JoyMode currentMode;
+    QString stickName;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 
@@ -119,12 +121,14 @@ signals:
     void deadZoneChanged(int value);
     void diagonalRangeChanged(int value);
     void maxZoneChanged(int value);
+    void stickNameChanged();
 
 public slots:
     void reset();
     void setDeadZone(int value);
     void setMaxZone(int value);
     void setDiagonalRange(int value);
+    void setStickName(QString tempName);
 };
 
 #endif // JOYCONTROLSTICK_H
