@@ -97,6 +97,7 @@ public:
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
+    static const double DEFAULTMOUSESPEEDMOD;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
@@ -164,6 +165,9 @@ protected:
     double sensitivity;
     bool smoothing;
     bool whileHeldStatus;
+
+    static double mouseSpeedModifier;
+    static QList<JoyButtonSlot*> mouseSpeedModList;
 
 signals:
     void clicked (int index);

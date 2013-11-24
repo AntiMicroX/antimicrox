@@ -153,6 +153,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyRelease);
                 }
+                else if (temptext == "mousespeedmod")
+                {
+                    this->setSlotMode(JoyMouseSpeedMod);
+                }
             }
             else
             {
@@ -202,6 +206,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyRelease)
     {
         xml->writeCharacters("release");
+    }
+    else if (mode == JoyMouseSpeedMod)
+    {
+        xml->writeCharacters("mousespeedmod");
     }
 
     xml->writeEndElement();
@@ -304,6 +312,13 @@ QString JoyButtonSlot::getSlotString()
             newlabel.append(QString("%1.%2")
                     .arg(seconds, 2, 10, QChar('0'))
                     .arg(hundredths, 2, 10, QChar('0')));
+        }
+        else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
+        {
+            QString temp;
+            temp.append(tr("Mouse Mod")).append(" ");
+            temp.append(QString::number(deviceCode).append("%"));
+            newlabel.append(temp);
         }
     }
     else

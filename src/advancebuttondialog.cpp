@@ -133,6 +133,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), this, SLOT(checkTurboSetting(bool)));
 
     connect(ui->setSelectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateSetSelection()));
+    connect(ui->mouseModPushButton, SIGNAL(clicked()), this, SLOT(insertMouseSpeedModSlot()));
 
     connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckbox, SLOT(setChecked(bool)));
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
@@ -544,5 +545,16 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
     {
         QString temp = QString(".%1s").arg(i, 2, 10, QChar('0'));
         ui->actionHundredthsComboBox->addItem(temp);
+    }
+}
+
+void AdvanceButtonDialog::insertMouseSpeedModSlot()
+{
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    int tempMouseMod = ui->mouseSpeedModSpinBox->value();
+    if (tempMouseMod > 0)
+    {
+        tempbutton->setValue(tempMouseMod, JoyButtonSlot::JoyMouseSpeedMod);
+        updateSlotsScrollArea(tempMouseMod);
     }
 }

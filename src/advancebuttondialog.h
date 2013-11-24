@@ -57,6 +57,7 @@ private slots:
     void insertCycleSlot();
     void insertDistanceSlot();
     void insertReleaseSlot();
+    void insertMouseSpeedModSlot();
 
     void updateActionTimeLabel();
     void updateSetSelection();

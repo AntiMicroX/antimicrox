@@ -9,6 +9,9 @@
 const QString JoyButton::xmlName = "button";
 const int JoyButton::ENABLEDTURBODEFAULT = 100;
 const double JoyButton::SMOOTHINGFACTOR = 0.85;
+const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
+double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
+QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
 
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
@@ -530,6 +533,12 @@ void JoyButton::activateSlots()
                     exit = true;
                 }
             }
+            else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
+            {
+                mouseSpeedModifier = tempcode * 0.01;
+                mouseSpeedModList.append(slot);
+                activeSlots.append(slot);
+            }
         }
     }
 }
@@ -620,6 +629,8 @@ void JoyButton::mouseEvent()
                 }
 
                 int distance = 0;
+                difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
+
                 if (mousedirection == JoyButtonSlot::MouseRight)
                 {
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
@@ -1840,11 +1851,9 @@ void JoyButton::releaseActiveSlots()
     {
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
-        //while (iter.hasNext())
         iter.toBack();
         while (iter.hasPrevious())
         {
-            //JoyButtonSlot *slot = iter.next();
             JoyButtonSlot *slot = iter.previous();
             int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
@@ -1865,6 +1874,20 @@ void JoyButton::releaseActiveSlots()
                     sendSpringEvent(mouse1, mouse2);
                 }
                 slot->setDistance(0.0);
+            }
+            else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
+            {
+                int queueLength = mouseSpeedModList.length();
+                if (!mouseSpeedModList.isEmpty())
+                {
+                    mouseSpeedModList.removeAll(slot);
+                    queueLength -= 1;
+                }
+
+                if (queueLength <= 0)
+                {
+                    mouseSpeedModifier = DEFAULTMOUSESPEEDMOD;
+                }
             }
         }
 

@@ -98,18 +98,6 @@
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>8</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>8</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
          <item>
           <widget class="QListWidget" name="slotListWidget">
            <property name="sizePolicy">
@@ -242,6 +230,13 @@ past the interval specified.</string>
                </property>
                <property name="text">
                 <string>Release</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QPushButton" name="mouseModPushButton">
+               <property name="text">
+                <string>Mouse Mod</string>
                </property>
               </widget>
              </item>
@@ -457,47 +452,102 @@ past the interval specified.</string>
           </spacer>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
            <property name="spacing">
             <number>20</number>
            </property>
            <item>
-            <widget class="QLabel" name="label_6">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <property name="spacing">
+              <number>20</number>
              </property>
-             <property name="toolTip">
-              <string>Specify the range past an axis dead zone in which a sequence of actions will execute.</string>
-             </property>
-             <property name="text">
-              <string>Distance: </string>
-             </property>
-            </widget>
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="toolTip">
+                <string>Specify the range past an axis dead zone in which a sequence of actions will execute.</string>
+               </property>
+               <property name="text">
+                <string>Mouse Speed Mod:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="mouseSpeedModSpinBox">
+               <property name="minimumSize">
+                <size>
+                 <width>81</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="suffix">
+                <string>%</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="singleStep">
+                <number>1</number>
+               </property>
+               <property name="value">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <widget class="QSpinBox" name="distanceSpinBox">
-             <property name="minimumSize">
-              <size>
-               <width>81</width>
-               <height>0</height>
-              </size>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <property name="spacing">
+              <number>20</number>
              </property>
-             <property name="suffix">
-              <string>%</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>100</number>
-             </property>
-             <property name="singleStep">
-              <number>1</number>
-             </property>
-            </widget>
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="toolTip">
+                <string>Specify the range past an axis dead zone in which a sequence of actions will execute.</string>
+               </property>
+               <property name="text">
+                <string>Distance: </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="distanceSpinBox">
+               <property name="minimumSize">
+                <size>
+                 <width>81</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="suffix">
+                <string>%</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="singleStep">
+                <number>1</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
@@ -524,6 +574,7 @@ past the interval specified.</string>
         <zorder></zorder>
         <zorder>verticalSpacer_6</zorder>
         <zorder>verticalSpacer_7</zorder>
+        <zorder>layoutWidget</zorder>
        </widget>
        <widget class="QWidget" name="page_2">
         <layout class="QVBoxLayout" name="verticalLayout_7">
