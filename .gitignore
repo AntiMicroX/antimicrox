@@ -13,3 +13,4 @@ ui_*.h
 *.*~
 SDL-1.2.15
 bulid-antimicro-*
+src/images/thumbs.db

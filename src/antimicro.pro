@@ -250,6 +250,10 @@ unix {
 RESOURCES += \
     resources.qrc
 
+win32 {
+  RC_FILE += antimicro.rc
+}
+
 INSTALLS += target finaltranslations
 unix {
     INSTALLS += desktop deskicon
@@ -259,5 +263,10 @@ unix {
 OTHER_FILES += \
     ../gpl.txt \
     ../other/antimicro.desktop
+
+win32 {
+  OTHER_FILES += \
+  antimicro.rc
+}
 
 QMAKE_CLEAN += $$finaltranslations.files
