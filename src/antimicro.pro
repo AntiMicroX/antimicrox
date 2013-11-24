@@ -239,8 +239,8 @@ FORMS    += mainwindow.ui \
 unix {
   LIBS += -lSDL -lXtst -lX11
 } else:win32 {
-  #LIBS += -L"" -lSDL
-  #INCLUDEPATH += ""
+  LIBS += -L"..\SDL-1.2.15\lib" -lSDL
+  INCLUDEPATH += "..\SDL-1.2.15\include"
   msvc: {
     INCLUDEPATH +== "$$PWD"
   }
