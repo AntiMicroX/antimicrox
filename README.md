@@ -57,33 +57,21 @@ translations for the application.
 
 * You will need Qt with MinGW support: http://qt-project.org/downloads
 
-* download SDL libraries: http://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
+* download SDL development package : http://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
 
 * open the archive and drop the 'SDL-1.2.15' folder in the 'antimicro' folder
 
-* open the project in Qt Creator
+* open the project (antimicro.pro) in Qt Creator
 
-* the first-time wizard will select MSVC as the default compiler, untick it and select MinGW instead
+* the first-time wizard selects MSVC as the default compiler, untick it and select MinGW instead
 
-* edit 'antimicro.pro' at line 240 and replace the following lines:
+* set build to 'Release' (menu Build -> Open Build and Run Kit Selector) and 'Build All' (Ctrl+Shift+B)
 
-        #LIBS += -L"" -lSDL
-        #INCLUDEPATH += ""
+* a 'build-antimicro-Desktop_Qt_5_1_1_MinGW_32bit-release/release' folder appears in 'antimicro' folder
 
-* by these ones:
+* the application will need SDL.DLL, find it in SDL-1.2.15\bin folder and copy it next to it
 
-        LIBS += -L"..\sdl-1.2.15\lib" -lSDL
-        INCLUDEPATH += "..\sdl-1.2.15\include"
-
-* set build to 'Release' : menu Build -> Open Build and Run Kit Selector
-
-        build all : Ctrl+Shift+B
-
-* now there is a 'build-antimicro-Desktop_Qt_5_1_1_MinGW_32bit-release/release' folder in 'antimicro' folder
-
-* the executable needs SDL.DLL, get it from here: http://www.libsdl.org/release/SDL-1.2.15-win32.zip
-
-* it will also need some Qt DLLs that you can find inside C:\Qt\5.1.1\mingw48_32\bin
+* it will also need the following Qt DLLs that you will find inside C:\Qt\5.1.1\mingw48_32\bin
 
         icudt51.dll
         icuin51.dll
@@ -96,7 +84,11 @@ translations for the application.
         Qt5Network.dll
         Qt5Widgets.dll
 
-* copy them next to the executable
+* copy them next to the application executable
+
+* last dependency is the Qt plugin platform 'qwindows.dll' located in C:\Qt\5.1.1\mingw48_32\plugins\platforms\
+
+* create a sub-folder named 'platforms' and copy it there
 
 * you have just built AntiMicro for Windows :D
 
