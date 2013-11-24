@@ -33,6 +33,7 @@ public:
     SetJoystick* getSetJoystick(int index);
     void removeControlStick(int index);
     bool isActive();
+    QString getSDLName();
 
     void setButtonName(int index, QString tempName);
     void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);

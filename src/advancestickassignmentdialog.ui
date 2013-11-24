@@ -82,7 +82,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Joystick %1</string>
+              <string>%1 (Joystick %2)</string>
              </property>
             </widget>
            </item>
@@ -285,7 +285,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Joystick %1</string>
+            <string>%1 (Joystick %2)</string>
            </property>
           </widget>
          </item>

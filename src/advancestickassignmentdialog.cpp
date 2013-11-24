@@ -17,7 +17,7 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     this->joystick = joystick;
 
     QString tempHeaderLabel = ui->joystickNumberLabel->text();
-    tempHeaderLabel = tempHeaderLabel.arg(joystick->getRealJoyNumber());
+    tempHeaderLabel = tempHeaderLabel.arg(joystick->getSDLName()).arg(joystick->getRealJoyNumber());
     ui->joystickNumberLabel->setText(tempHeaderLabel);
     ui->joystickNumberLabel2->setText(tempHeaderLabel);
 

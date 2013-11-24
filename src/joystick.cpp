@@ -1326,3 +1326,9 @@ void Joystick::updateSetVDPadNames(int vdpadIndex)
         setVDPadName(vdpadIndex, vdpad->getDpadName());
     }
 }
+
+QString Joystick::getSDLName()
+{
+    QString temp(SDL_JoystickName(joyNumber));
+    return temp;
+}
