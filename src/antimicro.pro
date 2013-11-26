@@ -239,8 +239,8 @@ FORMS    += mainwindow.ui \
 unix {
   LIBS += -lSDL -lXtst -lX11
 } else:win32 {
-  #LIBS += -L"" -lSDL
-  #INCLUDEPATH += ""
+  LIBS += -L"..\SDL-1.2.15\lib" -lSDL
+  INCLUDEPATH += "..\SDL-1.2.15\include"
   msvc: {
     INCLUDEPATH +== "$$PWD"
   }
@@ -249,6 +249,10 @@ unix {
 
 RESOURCES += \
     resources.qrc
+
+win32 {
+  RC_FILE += antimicro.rc
+}
 
 INSTALLS += target finaltranslations
 unix {
@@ -259,5 +263,10 @@ unix {
 OTHER_FILES += \
     ../gpl.txt \
     ../other/antimicro.desktop
+
+win32 {
+  OTHER_FILES += \
+  antimicro.rc
+}
 
 QMAKE_CLEAN += $$finaltranslations.files
