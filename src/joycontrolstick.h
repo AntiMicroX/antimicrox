@@ -75,6 +75,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
+    void setButtonsWheelSpeed(int value);
+
     void releaseButtonEvents();
     QString getStickName();
 

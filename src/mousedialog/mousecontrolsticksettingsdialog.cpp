@@ -33,6 +33,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
         springPreviewWidget = new SpringModeRegionPreview(0, 0);
     }
 
+    calculateWheelSpeedPreset();
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -49,6 +51,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+
+    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateMouseWheelSpeed(int)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -231,4 +235,22 @@ void MouseControlStickSettingsDialog::selectSmoothingPreset()
     {
         ui->smoothingCheckBox->setChecked(false);
     }
+}
+
+void MouseControlStickSettingsDialog::calculateWheelSpeedPreset()
+{
+    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+    int tempWheelSpeed = 0;
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        tempWheelSpeed = qMax(tempWheelSpeed, button->getWheelSpeed());
+    }
+
+    ui->wheelSpeedSpinBox->setValue(tempWheelSpeed);
+}
+
+void MouseControlStickSettingsDialog::updateMouseWheelSpeed(int value)
+{
+    stick->setButtonsWheelSpeed(value);
 }

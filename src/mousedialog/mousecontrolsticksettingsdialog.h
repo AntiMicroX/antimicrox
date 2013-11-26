@@ -17,6 +17,7 @@ protected:
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
     void selectSmoothingPreset();
+    void calculateWheelSpeedPreset();
 
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
@@ -33,6 +34,7 @@ public slots:
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
     void updateSmoothingSetting(bool clicked);
+    void updateMouseWheelSpeed(int value);
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOG_H

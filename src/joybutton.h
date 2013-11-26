@@ -53,6 +53,7 @@ public:
 
     int getMouseSpeedX();
     int getMouseSpeedY();
+    int getWheelSpeed();
 
     void setChangeSetSelection(int index);
     int getSetSelection();
@@ -126,6 +127,7 @@ protected:
     QTimer createDeskTimer;
     QTimer releaseDeskTimer;
     QTimer mouseEventTimer;
+    QTimer mouseWheelEventTimer;
     bool isDown;
     bool toggleActiveState;
     bool useTurbo;
@@ -134,6 +136,7 @@ protected:
     QString customName;
     int mouseSpeedX;
     int mouseSpeedY;
+    int wheelSpeed;
 
     int setSelection;
     SetChangeCondition setSelectionCondition;
@@ -146,6 +149,7 @@ protected:
     JoyButtonSlot *currentDistance;
     JoyButtonSlot *currentMouseEvent;
     JoyButtonSlot *currentRelease;
+    JoyButtonSlot *currentWheelEvent;
 
     bool ignoresets;
     QTime buttonHold;
@@ -156,6 +160,7 @@ protected:
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
     QQueue<JoyButtonSlot*> mouseEventQueue;
+    QQueue<JoyButtonSlot*> mouseWheelEventQueue;
 
     int currentRawValue;
     VDPad *vdpad;
@@ -196,6 +201,7 @@ public slots:
     void setUseTurbo(bool useTurbo);
     void setMouseSpeedX(int speed);
     void setMouseSpeedY(int speed);
+    void setWheelSpeed(int speed);
 
     void setSpringWidth(int value);
     void setSpringHeight(int value);
@@ -221,6 +227,7 @@ private slots:
     void waitForReleaseDeskEvent();
     void pauseEvent();
     void holdEvent();
+    void wheelEvent();
 
     void pauseWaitEvent();
     void checkForSetChange();

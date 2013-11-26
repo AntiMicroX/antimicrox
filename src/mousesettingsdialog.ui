@@ -10,16 +10,13 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>403</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Mouse Settings</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_6" stretch="1,0,5,0,1">
-   <property name="spacing">
-    <number>-1</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_9">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
@@ -134,28 +131,13 @@ axis is moved back to the dead zone.</string>
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
+    <layout class="QHBoxLayout" name="horizontalLayout_11">
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="title">
         <string>Mouse Speed Settings</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="spacing">
-         <number>-1</number>
-        </property>
-        <property name="leftMargin">
-         <number>8</number>
-        </property>
-        <property name="topMargin">
-         <number>14</number>
-        </property>
-        <property name="rightMargin">
-         <number>8</number>
-        </property>
-        <property name="bottomMargin">
-         <number>8</number>
-        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
         <item alignment="Qt::AlignHCenter">
          <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
           <property name="enabled">
@@ -167,92 +149,143 @@ axis is moved back to the dead zone.</string>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
-          <property name="spacing">
-           <number>16</number>
-          </property>
-          <property name="topMargin">
-           <number>20</number>
-          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
             <property name="spacing">
+             <number>16</number>
+            </property>
+            <property name="topMargin">
              <number>20</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <layout class="QVBoxLayout" name="verticalLayout_2">
               <property name="spacing">
-               <number>10</number>
+               <number>20</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_5">
-                <property name="text">
-                 <string>Horizontal
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>Horizontal
 Speed:</string>
-                </property>
-                <property name="buddy">
-                 <cstring>horizontalSpinBox</cstring>
-                </property>
-               </widget>
+                  </property>
+                  <property name="buddy">
+                   <cstring>horizontalSpinBox</cstring>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="horizontalSpinBox">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>300</number>
+                  </property>
+                  <property name="value">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
-              <item>
-               <widget class="QSpinBox" name="horizontalSpinBox">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>300</number>
-                </property>
-                <property name="value">
-                 <number>1</number>
+              <item alignment="Qt::AlignRight">
+               <widget class="QLabel" name="horizontalSpeedLabel">
+                <property name="text">
+                 <string>1 = 20 pps</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
-            <item alignment="Qt::AlignRight">
-             <widget class="QLabel" name="horizontalSpeedLabel">
-              <property name="text">
-               <string>1 = 20 pps</string>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <property name="spacing">
+               <number>20</number>
               </property>
-             </widget>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_9">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>Vertical
+Speed:</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>verticalSpinBox</cstring>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="verticalSpinBox">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>300</number>
+                  </property>
+                  <property name="value">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item alignment="Qt::AlignRight">
+               <widget class="QLabel" name="verticalSpeedLabel">
+                <property name="text">
+                 <string>1 = 20 pps</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <property name="spacing">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="topMargin">
              <number>20</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_9">
-              <property name="spacing">
-               <number>10</number>
-              </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="wheelSpeedLabel">
                 <property name="text">
-                 <string>Vertical
-Speed:</string>
+                 <string>Wheel Speed:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>verticalSpinBox</cstring>
+                 <cstring>wheelSpeedSpinBox</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="verticalSpinBox">
-                <property name="enabled">
-                 <bool>true</bool>
+               <widget class="QSpinBox" name="wheelSpeedSpinBox">
+                <property name="specialValueText">
+                 <string/>
                 </property>
                 <property name="minimum">
                  <number>1</number>
                 </property>
                 <property name="maximum">
-                 <number>300</number>
+                 <number>100</number>
+                </property>
+                <property name="singleStep">
+                 <number>1</number>
                 </property>
                 <property name="value">
                  <number>1</number>
@@ -262,9 +295,9 @@ Speed:</string>
              </layout>
             </item>
             <item alignment="Qt::AlignRight">
-             <widget class="QLabel" name="verticalSpeedLabel">
+             <widget class="QLabel" name="wheelSpeedUnitsLabel">
               <property name="text">
-               <string>1 = 20 pps</string>
+               <string>1 = 1 tick/s</string>
               </property>
              </widget>
             </item>
@@ -320,6 +353,9 @@ Speed:</string>
            <widget class="QLabel" name="smoothingLabel">
             <property name="text">
              <string>Smoothing:</string>
+            </property>
+            <property name="buddy">
+             <cstring>smoothingCheckBox</cstring>
             </property>
            </widget>
           </item>

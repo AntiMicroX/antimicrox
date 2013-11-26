@@ -20,6 +20,8 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
     connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
     connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
+
+    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedLabel(int)));
 }
 
 MouseSettingsDialog::~MouseSettingsDialog()
@@ -102,4 +104,12 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->verticalSpinBox->setEnabled(true);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
     }
+}
+
+void MouseSettingsDialog::updateWheelSpeedLabel(int value)
+{
+    QString label = QString(QString::number(value));
+    label.append(" = ");
+    label.append(tr("%n tick(s)/s", "", value));
+    ui->wheelSpeedUnitsLabel->setText(label);
 }

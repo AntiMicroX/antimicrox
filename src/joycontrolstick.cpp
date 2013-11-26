@@ -1361,3 +1361,13 @@ QString JoyControlStick::getStickName()
 {
     return stickName;
 }
+
+void JoyControlStick::setButtonsWheelSpeed(int value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setWheelSpeed(value);
+    }
+}

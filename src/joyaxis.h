@@ -77,6 +77,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
+    void setButtonsWheelSpeed(int value);
+
     QString getAxisName();
 
     virtual bool isDefault();

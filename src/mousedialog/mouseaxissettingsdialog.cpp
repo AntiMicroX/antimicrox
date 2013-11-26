@@ -32,6 +32,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
         springPreviewWidget = new SpringModeRegionPreview(0, 0);
     }
 
+    calculateWheelSpeedPreset();
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -48,6 +50,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+
+    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeed(int)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -212,4 +216,18 @@ void MouseAxisSettingsDialog::selectSmoothingPreset()
     {
         ui->smoothingCheckBox->setChecked(false);
     }
+}
+
+void MouseAxisSettingsDialog::updateWheelSpeed(int value)
+{
+    axis->setButtonsWheelSpeed(value);
+}
+
+void MouseAxisSettingsDialog::calculateWheelSpeedPreset()
+{
+    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+    JoyAxisButton *naxisbutton = axis->getNAxisButton();
+
+    int tempWheelSpeed = qMax(paxisbutton->getWheelSpeed(), naxisbutton->getWheelSpeed());
+    ui->wheelSpeedSpinBox->setValue(tempWheelSpeed);
 }
