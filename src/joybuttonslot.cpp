@@ -246,6 +246,14 @@ QString JoyButtonSlot::getSlotString()
                 case 3:
                     newlabel.append(tr("RB"));
                     break;
+#ifdef Q_OS_WIN
+                case 8:
+                    newlabel.append(tr("B4"));
+                    break;
+                case 9:
+                    newlabel.append(tr("B5"));
+                    break;
+#endif
                 default:
                     newlabel.append(QString::number(deviceCode));
                     break;

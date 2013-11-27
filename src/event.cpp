@@ -91,6 +91,16 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
             temp[0].mi.dwFlags = 0x01000;
             temp[0].mi.mouseData = pressed ? WHEEL_DELTA : 0;
         }
+        else if (code == 8)
+        {
+            temp[0].mi.dwFlags = XBUTTON1;
+            temp[0].mi.mouseData = pressed ? WM_XBUTTONDOWN : WM_XBUTTONUP;
+        }
+        else if (code == 9)
+        {
+            temp[0].mi.dwFlags = XBUTTON2;
+            temp[0].mi.mouseData = pressed ? WM_XBUTTONDOWN : WM_XBUTTONUP;
+        }
 
         SendInput(1, temp, sizeof(INPUT));
     }

@@ -346,6 +346,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
     tempVBoxLayout->addWidget(pushButton);
+
     tempVBoxLayout->setStretch(0, 1);
     tempVBoxLayout->setStretch(2, 1);
     tempVBoxLayout->setStretch(4, 3);
@@ -360,6 +361,29 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     pushButton = new VirtualMousePushButton(tr("Right"), JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
+    tempVBoxLayout->addWidget(pushButton);
+    tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Expanding));
+    tempHBoxLayout->addLayout(tempVBoxLayout);
+
+    tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 20, QSizePolicy::Fixed));
+
+    tempVBoxLayout = new QVBoxLayout();
+    tempVBoxLayout->setSpacing(20);
+#ifdef Q_OS_WIN
+    pushButton = new VirtualMousePushButton(tr("Button 4"), 8, JoyButtonSlot::JoyMouseButton, this);
+#else
+    pushButton = new VirtualMousePushButton(tr("Mouse 8"), 8, JoyButtonSlot::JoyMouseButton, this);
+#endif
+
+    pushButton->setMinimumHeight(40);
+    tempVBoxLayout->addWidget(pushButton);
+#ifdef Q_OS_WIN
+    pushButton = new VirtualMousePushButton(tr("Button 5"), 9, JoyButtonSlot::JoyMouseButton, this);
+#else
+    pushButton = new VirtualMousePushButton(tr("Mouse 9"), 9, JoyButtonSlot::JoyMouseButton, this);
+#endif
+
+    pushButton->setMinimumHeight(40);
     tempVBoxLayout->addWidget(pushButton);
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Expanding));
     tempHBoxLayout->addLayout(tempVBoxLayout);
