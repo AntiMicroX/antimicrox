@@ -59,7 +59,7 @@ equals(OUT_PWD, $$PWD) {
         unix {
             fulltranslations += $$OUT_PWD/$$transfile
         } else:win32 {
-            fulltranslations += $$DESTDIR/$$replace(transfile, "\.\.", "")
+            fulltranslations += $$PWD/$$transfile
         }
     }
 
@@ -87,12 +87,12 @@ equals(OUT_PWD, $$PWD) {
             TRANSLATION_IN_DIR = $$shell_path($$TRANSLATION_IN_DIR)
             TRANSLATION_OUT_DIR = $$shell_path($$TRANSLATION_OUT_DIR)
         } else {
-            TRANSLATION_IN_DIR = $$replace(TRANSLATION_DIR, "/", "\\")
+            TRANSLATION_IN_DIR = $$replace(TRANSLATION_IN_DIR, "/", "\\")
             TRANSLATION_OUT_DIR = $$replace(TRANSLATION_OUT_DIR, "/", "\\")
         }
 
         updateqm.commands = $(MKDIR) $${TRANSLATION_OUT_DIR} & \
-            $(COPY_DIR) $${TRANSLATION_DIR} $${TRANSLATION_OUT_DIR} & \
+            $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} & \
             $$[QT_INSTALL_BINS]\\lrelease.exe $$fulltranslations
     }
 }
@@ -100,8 +100,8 @@ equals(OUT_PWD, $$PWD) {
 finaltranslations.CONFIG += no_check_exist
 
 updateqm.target = updateqm
-
 QMAKE_EXTRA_TARGETS += updateqm
+PRE_TARGETDEPS += updateqm
 
 TARGET = antimicro
 TEMPLATE = app
