@@ -31,6 +31,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
         springPreviewWidget = new SpringModeRegionPreview(0, 0);
     }
 
+    calculateWheelSpeedPreset();
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -47,6 +49,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+
+    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateMouseWheelSpeed(int)));
 }
 
 void MouseDPadSettingsDialog::changeMouseMode(int index)
@@ -229,4 +233,22 @@ void MouseDPadSettingsDialog::selectSmoothingPreset()
     {
         ui->smoothingCheckBox->setChecked(false);
     }
+}
+
+void MouseDPadSettingsDialog::calculateWheelSpeedPreset()
+{
+    QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
+    int tempWheelSpeed = 0;
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        tempWheelSpeed = qMax(tempWheelSpeed, button->getWheelSpeed());
+    }
+
+    ui->wheelSpeedSpinBox->setValue(tempWheelSpeed);
+}
+
+void MouseDPadSettingsDialog::updateMouseWheelSpeed(int value)
+{
+    dpad->setButtonsWheelSpeed(value);
 }

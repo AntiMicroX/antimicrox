@@ -14,9 +14,9 @@ isEmpty(INSTALL_PREFIX) {
 
 win32 {
     CONFIG(debug, debug|release) {
-        DESTDIR = $$OUT_PWD/release
-    } else {
         DESTDIR = $$OUT_PWD/debug
+    } else {
+        DESTDIR = $$OUT_PWD/release
     }
 }
 
@@ -78,10 +78,9 @@ equals(OUT_PWD, $$PWD) {
         TRANSLATION_OUT_DIR = $${DESTDIR}/share/antimicro/translations
     }
 
-    !exists($${TRANSLATION_OUT_DIR}): mkpath($${TRANSLATION_OUT_DIR})
-
     unix {
-        updateqm.commands = $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} && \
+        updateqm.commands = $(MKDIR) $${TRANSLATION_OUT_DIR} && \
+            $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} && \
             $$[QT_INSTALL_BINS]/lrelease $$fulltranslations
     } else:win32 {
         greaterThan(QT_MAJOR_VERSION, 4) {
@@ -92,7 +91,8 @@ equals(OUT_PWD, $$PWD) {
             TRANSLATION_OUT_DIR = $$replace(TRANSLATION_OUT_DIR, "/", "\\")
         }
 
-        updateqm.commands = $(COPY_DIR) $${TRANSLATION_DIR} $${TRANSLATION_OUT_DIR} & \
+        updateqm.commands = $(MKDIR) $${TRANSLATION_OUT_DIR} & \
+            $(COPY_DIR) $${TRANSLATION_DIR} $${TRANSLATION_OUT_DIR} & \
             $$[QT_INSTALL_BINS]\\lrelease.exe $$fulltranslations
     }
 }
@@ -257,6 +257,28 @@ win32 {
 INSTALLS += target finaltranslations
 unix {
     INSTALLS += desktop deskicon
+} else:win32 {
+    extradlls = $$[QT_INSTALL_BINS]\\icudt51.dll \
+        $$[QT_INSTALL_BINS]\\icuin51.dll \
+        $$[QT_INSTALL_BINS]\\icuuc51.dll \
+        $$[QT_INSTALL_BINS]\\libgcc_s_dw2-1.dll \
+        $$[QT_INSTALL_BINS]\\libwinpthread-1.dll \
+        $$[QT_INSTALL_BINS]\\Qt5Core.dll \
+        $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
+        $$[QT_INSTALL_BINS]\\Qt5Network.dll \
+        $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
+        ..\\SDL-1.2.15\\bin\\SDL.dll
+        $$[QT_INSTALL_BINS]\\libstdc++-6.dll
+
+    copy_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
+    for(dllfile, extradlls) {
+        copy_dlls.extra +=  $(COPY) \"$$dllfile\" $${copy_dlls.path} &
+    }
+
+    copy_platforms_dll.path = $${copy_dlls.path}\\platforms
+    copy_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${copy_platforms_dll.path}
+
+    INSTALLS += copy_dlls copy_platforms_dll
 }
 
 

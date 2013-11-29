@@ -13,6 +13,7 @@ class JoyButtonSlot : public QObject
 public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement, JoyPause, JoyHold, JoyCycle, JoyDistance, JoyRelease, JoyMouseSpeedMod};
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
+    enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5};
 
     explicit JoyButtonSlot(QObject *parent = 0);
     explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=0);

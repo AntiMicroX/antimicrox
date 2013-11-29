@@ -32,6 +32,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         springPreviewWidget = new SpringModeRegionPreview(0, 0);
     }
 
+    ui->wheelSpeedSpinBox->setValue(button->getWheelSpeed());
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -48,6 +50,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+
+    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeed(int)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)

@@ -18,6 +18,7 @@ protected:
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
     void selectSmoothingPreset();
+    void calculateWheelSpeedPreset();
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
@@ -34,6 +35,7 @@ public slots:
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
     void updateSmoothingSetting(bool clicked);
+    void updateWheelSpeed(int value);
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

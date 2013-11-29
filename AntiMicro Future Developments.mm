@@ -31,11 +31,12 @@
       work on a version built with SDL 2.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
-<node CREATED="1379713072288" ID="ID_1167223802" MODIFIED="1379713080060" POSITION="right" TEXT="Mouse Wheel as Movement?"/>
+<node CREATED="1379713072288" ID="ID_1167223802" MODIFIED="1385518028334" POSITION="right" TEXT="Mouse Wheel as Movement?">
+<icon BUILTIN="button_ok"/>
+</node>
 <node CREATED="1379713112228" ID="ID_2402610" MODIFIED="1379713123344" POSITION="left" TEXT="Disable Buttons from Display?"/>
 <node CREATED="1379713177327" ID="ID_1294383668" MODIFIED="1385413564002" POSITION="right" TEXT="Spring Mode Window Preview">
 <icon BUILTIN="button_ok"/>

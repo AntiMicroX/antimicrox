@@ -25,6 +25,7 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
     connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
     connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
+    connect(&mouseWheelEventTimer, SIGNAL(timeout()), this, SLOT(wheelEvent()));
 
     this->reset();
     this->index = index;
@@ -226,6 +227,7 @@ void JoyButton::reset()
     releaseDeskTimer.stop();
     mouseEventTimer.stop();
     holdTimer.stop();
+    mouseWheelEventTimer.stop();
 
     if (slotiter)
     {
@@ -248,6 +250,7 @@ void JoyButton::reset()
     currentRawValue = 0;
     currentMouseEvent = 0;
     currentRelease = 0;
+    currentWheelEvent = 0;
 
     isKeyPressed = isButtonPressed = false;
     toggle = false;
@@ -257,6 +260,7 @@ void JoyButton::reset()
     useTurbo = false;
     mouseSpeedX = 50;
     mouseSpeedY = 50;
+    wheelSpeed = 20;
     mouseMode = MouseCursor;
     mouseCurve = LinearCurve;
     springWidth = 0;
@@ -488,10 +492,28 @@ void JoyButton::activateSlots()
             int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
-            if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
+            if (mode == JoyButtonSlot::JoyKeyboard)
             {
                 sendevent(tempcode, true, mode);
                 activeSlots.append(slot);
+            }
+            else if (mode == JoyButtonSlot::JoyMouseButton)
+            {
+                if (tempcode != JoyButtonSlot::MouseWheelUp &&
+                    tempcode != JoyButtonSlot::MouseWheelDown)
+                {
+                    sendevent(tempcode, true, mode);
+                    activeSlots.append(slot);
+                }
+                else
+                {
+                    slot->getMouseInterval()->restart();
+                    currentWheelEvent = slot;
+                    activeSlots.append(slot);
+                    wheelEvent();
+                    currentWheelEvent = 0;
+                }
+
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
@@ -548,170 +570,190 @@ void JoyButton::activateSlots()
 void JoyButton::mouseEvent()
 {
     JoyButtonSlot *buttonslot = 0;
+    bool singleShot = false;
     if (currentMouseEvent)
     {
         buttonslot = currentMouseEvent;
-    }
-    else if (!mouseEventQueue.isEmpty())
-    {
-        buttonslot = mouseEventQueue.dequeue();
+        singleShot = true;
     }
 
-    if (buttonslot)
+    if (buttonslot || !mouseEventQueue.isEmpty())
     {
-        QTime* mouseInterval = buttonslot->getMouseInterval();
+        QQueue<JoyButtonSlot*> tempQueue;
 
-        int mousedirection = buttonslot->getSlotCode();
-        JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
-        int mousespeed = 0;
-        int timeElapsed = mouseInterval->elapsed();
-
-        bool isActive = activeSlots.contains(buttonslot);
-        if (isActive)
+        if (!buttonslot)
         {
-            if (mousemode == JoyButton::MouseCursor)
+            buttonslot = mouseEventQueue.dequeue();
+        }
+
+        while (buttonslot)
+        {
+            QTime* mouseInterval = buttonslot->getMouseInterval();
+
+            int mousedirection = buttonslot->getSlotCode();
+            JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
+            int mousespeed = 0;
+            int timeElapsed = mouseInterval->elapsed();
+
+            bool isActive = activeSlots.contains(buttonslot);
+            if (isActive)
             {
-                if (mousedirection == JoyButtonSlot::MouseRight)
+                if (mousemode == JoyButton::MouseCursor)
                 {
-                    mousespeed = mouseSpeedX;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseLeft)
-                {
-                    mousespeed = mouseSpeedX;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseDown)
-                {
-                    mousespeed = mouseSpeedY;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseUp)
-                {
-                    mousespeed = mouseSpeedY;
-                }
-
-                double difference = getDistanceFromDeadZone();
-                int mouse1 = 0;
-                int mouse2 = 0;
-                double sumDist = buttonslot->getMouseDistance();
-                JoyMouseCurve currentCurve = getMouseCurve();
-
-                switch (currentCurve)
-                {
-                    case LinearCurve:
+                    if (mousedirection == JoyButtonSlot::MouseRight)
                     {
-                        break;
+                        mousespeed = mouseSpeedX;
                     }
-                    case QuadraticCurve:
+                    else if (mousedirection == JoyButtonSlot::MouseLeft)
                     {
-                        difference = difference * difference;
-                        break;
+                        mousespeed = mouseSpeedX;
                     }
-                    case CubicCurve:
+                    else if (mousedirection == JoyButtonSlot::MouseDown)
                     {
-                        difference = difference * difference * difference;
-                        break;
+                        mousespeed = mouseSpeedY;
                     }
-                    case QuadraticExtremeCurve:
+                    else if (mousedirection == JoyButtonSlot::MouseUp)
                     {
-                        double temp = difference;
-                        difference = difference * difference;
-                        difference = (temp >= 0.95) ? (difference * 1.5) : difference;
-                        break;
+                        mousespeed = mouseSpeedY;
                     }
-                    case PowerCurve:
+
+                    double difference = getDistanceFromDeadZone();
+                    int mouse1 = 0;
+                    int mouse2 = 0;
+                    double sumDist = buttonslot->getMouseDistance();
+                    JoyMouseCurve currentCurve = getMouseCurve();
+
+                    switch (currentCurve)
                     {
-                        double tempsensitive = qMin(qMax(sensitivity, 1.0e-3), 1.0e+3);
-                        double temp = qMin(qMax(pow(difference, 1.0 / tempsensitive), 0.0), 1.0);
-                        difference = temp;
-                        break;
+                        case LinearCurve:
+                        {
+                            break;
+                        }
+                        case QuadraticCurve:
+                        {
+                            difference = difference * difference;
+                            break;
+                        }
+                        case CubicCurve:
+                        {
+                            difference = difference * difference * difference;
+                            break;
+                        }
+                        case QuadraticExtremeCurve:
+                        {
+                            double temp = difference;
+                            difference = difference * difference;
+                            difference = (temp >= 0.95) ? (difference * 1.5) : difference;
+                            break;
+                        }
+                        case PowerCurve:
+                        {
+                            double tempsensitive = qMin(qMax(sensitivity, 1.0e-3), 1.0e+3);
+                            double temp = qMin(qMax(pow(difference, 1.0 / tempsensitive), 0.0), 1.0);
+                            difference = temp;
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
                     }
-                    default:
+
+                    int distance = 0;
+                    difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
+
+                    if (mousedirection == JoyButtonSlot::MouseRight)
                     {
-                        break;
+                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                        distance = (int)floor(sumDist + 0.5);
+                        mouse1 = distance;
                     }
-                }
-
-                int distance = 0;
-                difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
-
-                if (mousedirection == JoyButtonSlot::MouseRight)
-                {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    distance = (int)floor(sumDist + 0.5);
-                    mouse1 = distance;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseLeft)
-                {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    distance = (int)floor(sumDist + 0.5);
-                    mouse1 = -distance;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseDown)
-                {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    distance = (int)floor(sumDist + 0.5);
-                    mouse2 = distance;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseUp)
-                {
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    distance = (int)floor(sumDist + 0.5);
-                    mouse2 = -distance;
-                }
-
-                if (distance >= 1)
-                {
-                    sendevent(mouse1, mouse2);
-                    sumDist -= distance;
-                    if (smoothing)
+                    else if (mousedirection == JoyButtonSlot::MouseLeft)
                     {
-                        sumDist *= SMOOTHINGFACTOR;
+                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                        distance = (int)floor(sumDist + 0.5);
+                        mouse1 = -distance;
                     }
-                    mouseInterval->restart();
-                    mouseEventTimer.stop();
-                }
+                    else if (mousedirection == JoyButtonSlot::MouseDown)
+                    {
+                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                        distance = (int)floor(sumDist + 0.5);
+                        mouse2 = distance;
+                    }
+                    else if (mousedirection == JoyButtonSlot::MouseUp)
+                    {
+                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                        distance = (int)floor(sumDist + 0.5);
+                        mouse2 = -distance;
+                    }
 
-                buttonslot->setDistance(sumDist);
-            }
-            else if (mousemode == JoyButton::MouseSpring)
-            {
-                double mouse1 = -2.0;
-                double mouse2 = -2.0;
-                double difference = getDistanceFromDeadZone();
-                double sumDist = buttonslot->getMouseDistance();
+                    if (distance >= 1)
+                    {
+                        sendevent(mouse1, mouse2);
+                        sumDist -= distance;
+                        if (smoothing)
+                        {
+                            sumDist *= SMOOTHINGFACTOR;
+                        }
+                        mouseInterval->restart();
+                        mouseEventTimer.stop();
+                    }
 
-                if (mousedirection == JoyButtonSlot::MouseRight)
-                {
-                    mouse1 = difference;
+                    buttonslot->setDistance(sumDist);
                 }
-                else if (mousedirection == JoyButtonSlot::MouseLeft)
+                else if (mousemode == JoyButton::MouseSpring)
                 {
-                    mouse1 = -difference;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseDown)
-                {
-                    mouse2 = difference;
-                }
-                else if (mousedirection == JoyButtonSlot::MouseUp)
-                {
-                    mouse2 = -difference;
-                }
+                    double mouse1 = -2.0;
+                    double mouse2 = -2.0;
+                    double difference = getDistanceFromDeadZone();
+                    double sumDist = buttonslot->getMouseDistance();
 
-                double tempdiff = (difference >= 0.0) ? difference : -difference;
-                double change = sumDist - tempdiff;
-                change = (change >= 0.0) ? change : -change;
-                //if (change > 0.005)
-                //{
+                    if (mousedirection == JoyButtonSlot::MouseRight)
+                    {
+                        mouse1 = difference;
+                    }
+                    else if (mousedirection == JoyButtonSlot::MouseLeft)
+                    {
+                        mouse1 = -difference;
+                    }
+                    else if (mousedirection == JoyButtonSlot::MouseDown)
+                    {
+                        mouse2 = difference;
+                    }
+                    else if (mousedirection == JoyButtonSlot::MouseUp)
+                    {
+                        mouse2 = -difference;
+                    }
+
+                    double tempdiff = (difference >= 0.0) ? difference : -difference;
+                    double change = sumDist - tempdiff;
+                    change = (change >= 0.0) ? change : -change;
                     sendSpringEvent(mouse1, mouse2, springWidth, springHeight);
-                    //buttonslot->setDistance(tempdiff);
-                //}
                     mouseInterval->restart();
                     mouseEventTimer.stop();
+                }
+
+                tempQueue.enqueue(buttonslot);
+            }
+
+            if (!mouseEventQueue.isEmpty() && !singleShot)
+            {
+                buttonslot = mouseEventQueue.dequeue();
+            }
+            else
+            {
+                buttonslot = 0;
             }
         }
 
-        if (isActive)
+        if (!tempQueue.isEmpty())
         {
-            mouseEventQueue.enqueue(buttonslot);
+            while (!tempQueue.isEmpty())
+            {
+                JoyButtonSlot *tempslot = tempQueue.dequeue();
+                mouseEventQueue.enqueue(tempslot);
+            }
+
             if (!mouseEventTimer.isActive())
             {
                 mouseEventTimer.start(5);
@@ -719,19 +761,66 @@ void JoyButton::mouseEvent()
         }
         else
         {
-            buttonslot->setDistance(0.0);
-            mouseInterval->restart();
             mouseEventTimer.stop();
+        }
+    }
+    else
+    {
+        mouseEventTimer.stop();
+    }
+}
 
-            if (mousemode == JoyButton::MouseSpring)
+void JoyButton::wheelEvent()
+{
+    JoyButtonSlot *buttonslot = 0;
+    if (currentWheelEvent)
+    {
+        buttonslot = currentWheelEvent;
+    }
+
+    if (buttonslot && wheelSpeed != 0)
+    {
+        bool isActive = activeSlots.contains(buttonslot);
+        if (isActive)
+        {
+            sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
+            sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+            mouseWheelEventQueue.enqueue(buttonslot);
+            mouseWheelEventTimer.start(1000 / wheelSpeed);
+        }
+        else
+        {
+            mouseWheelEventTimer.stop();
+        }
+    }
+    else if (!mouseWheelEventQueue.isEmpty() && wheelSpeed != 0)
+    {
+        QQueue<JoyButtonSlot*> tempQueue;
+        while (!mouseWheelEventQueue.isEmpty())
+        {
+            buttonslot = mouseWheelEventQueue.dequeue();
+            bool isActive = activeSlots.contains(buttonslot);
+            if (isActive)
             {
-                double mouse1 = (mousedirection == JoyButtonSlot::MouseLeft ||
-                                 mousedirection == JoyButtonSlot::MouseRight) ? 0.0 : -2.0;
-                double mouse2 = (mousedirection == JoyButtonSlot::MouseUp ||
-                                 mousedirection == JoyButtonSlot::MouseDown) ? 0.0 : -2.0;
-                sendSpringEvent(mouse1, mouse2);
+                sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
+                sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                tempQueue.enqueue(buttonslot);
             }
         }
+
+        if (!tempQueue.isEmpty())
+        {
+            mouseWheelEventQueue = tempQueue;
+            mouseWheelEventTimer.start(1000 / wheelSpeed);
+        }
+        else
+        {
+            mouseWheelEventTimer.stop();
+        }
+    }
+    else
+    {
+        mouseWheelEventTimer.stop();
     }
 }
 
@@ -935,6 +1024,12 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     setActionName(temptext);
                 }
             }
+            else if (xml->name() == "wheelspeed" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setWheelSpeed(tempchoice);
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -993,6 +1088,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         }
 
         xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
+        xml->writeTextElement("wheelspeed", QString::number(wheelSpeed));
 
         if (setSelectionCondition != SetChangeDisabled)
         {
@@ -1895,9 +1991,20 @@ void JoyButton::releaseActiveSlots()
             int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
-            if (mode == JoyButtonSlot::JoyKeyboard || mode == JoyButtonSlot::JoyMouseButton)
+            if (mode == JoyButtonSlot::JoyKeyboard)
             {
                 sendevent(tempcode, false, mode);
+            }
+            else if (mode == JoyButtonSlot::JoyMouseButton)
+            {
+                if (tempcode != JoyButtonSlot::MouseWheelUp &&
+                    tempcode != JoyButtonSlot::MouseWheelDown)
+                {
+                    sendevent(tempcode, false, mode);
+                }
+
+                slot->setDistance(0.0);
+                slot->getMouseInterval()->restart();
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
@@ -1911,6 +2018,7 @@ void JoyButton::releaseActiveSlots()
                     sendSpringEvent(mouse1, mouse2);
                 }
                 slot->setDistance(0.0);
+                slot->getMouseInterval()->restart();
             }
             else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
             {
@@ -1935,6 +2043,13 @@ void JoyButton::releaseActiveSlots()
         if (!mouseEventQueue.isEmpty())
         {
             mouseEventQueue.clear();
+        }
+
+        currentWheelEvent = 0;
+        mouseWheelEventTimer.stop();
+        if (!mouseWheelEventQueue.isEmpty())
+        {
+            mouseWheelEventQueue.clear();
         }
     }
 }
@@ -2116,6 +2231,7 @@ bool JoyButton::isDefault()
     value = value && (smoothing == false);
     value = value && (actionName.isEmpty());
     value = value && (buttonName.isEmpty());
+    value = value && (wheelSpeed != 20);
     return value;
 }
 
@@ -2234,4 +2350,17 @@ void JoyButton::setButtonName(QString tempName)
 QString JoyButton::getButtonName()
 {
     return buttonName;
+}
+
+void JoyButton::setWheelSpeed(int speed)
+{
+    if (speed >= 1 && speed <= 100)
+    {
+        wheelSpeed = speed;
+    }
+}
+
+int JoyButton::getWheelSpeed()
+{
+    return wheelSpeed;
 }
