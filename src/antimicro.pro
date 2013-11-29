@@ -267,8 +267,8 @@ unix {
         $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
         $$[QT_INSTALL_BINS]\\Qt5Network.dll \
         $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
+        $$[QT_INSTALL_BINS]\\libstdc++-6.dll \
         ..\\SDL-1.2.15\\bin\\SDL.dll
-        $$[QT_INSTALL_BINS]\\libstdc++-6.dll
 
     copy_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
     for(dllfile, extradlls) {
