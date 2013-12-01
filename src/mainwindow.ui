@@ -556,6 +556,7 @@ QStackedWidget#stackedWidget{
      <string>&amp;Options</string>
     </property>
     <addaction name="actionUpdate_Joysticks"/>
+    <addaction name="actionProperties"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -626,6 +627,11 @@ QStackedWidget#stackedWidget{
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="text">
+    <string>Properties</string>
    </property>
   </action>
  </widget>

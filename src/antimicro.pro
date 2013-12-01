@@ -155,7 +155,9 @@ SOURCES += main.cpp\
     mousedialog/mousebuttonsettingsdialog.cpp \
     mousedialog/mousedpadsettingsdialog.cpp \
     joytabwidgetcontainer.cpp \
-    mousedialog/springmoderegionpreview.cpp
+    mousedialog/springmoderegionpreview.cpp \
+    joystickstatuswindow.cpp \
+    joybuttonstatusbox.cpp
 
 
 unix {
@@ -214,7 +216,9 @@ HEADERS  += mainwindow.h \
     mousedialog/mousebuttonsettingsdialog.h \
     mousedialog/mousedpadsettingsdialog.h \
     joytabwidgetcontainer.h \
-    mousedialog/springmoderegionpreview.h
+    mousedialog/springmoderegionpreview.h \
+    joystickstatuswindow.h \
+    joybuttonstatusbox.h
 
 
 unix {
@@ -233,7 +237,8 @@ FORMS    += mainwindow.ui \
     advancestickassignmentdialog.ui \
     dpadeditdialog.ui \
     quicksetdialog.ui \
-    mousesettingsdialog.ui
+    mousesettingsdialog.ui \
+    joystickstatuswindow.ui
 
 
 unix {

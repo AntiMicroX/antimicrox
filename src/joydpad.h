@@ -82,8 +82,8 @@ protected:
     QString dpadName;
 
 signals:
-    void active(int index);
-    void released(int index);
+    void active(int value);
+    void released(int value);
     void dpadNameChanged();
 
 public slots:

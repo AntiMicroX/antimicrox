@@ -184,11 +184,11 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
     {
         if (value != JoyDPadButton::DpadCentered)
         {
-            emit active(index);
+            emit active(value);
         }
         else
         {
-            emit released(index);
+            emit released(value);
         }
 
         if (activeDiagonalButton)
