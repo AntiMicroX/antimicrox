@@ -568,48 +568,80 @@ int SetJoystick::getIndex()
 
 void SetJoystick::propogateSetButtonClick(int button)
 {
-    emit setButtonClick(index, button);
+    JoyButton *jButton = static_cast<JoyButton*>(sender());
+    if (!jButton->getIgnoreEventState())
+    {
+        emit setButtonClick(index, button);
+    }
 }
 
 void SetJoystick::propogateSetButtonRelease(int button)
 {
-    emit setButtonRelease(index, button);
+    JoyButton *jButton = static_cast<JoyButton*>(sender());
+    if (!jButton->getIgnoreEventState())
+    {
+        emit setButtonRelease(index, button);
+    }
 }
 
 void SetJoystick::propogateSetAxisButtonClick(int button)
 {
-    JoyAxis *axis = static_cast<JoyAxis*>(sender());
-    emit setAxisButtonClick(index, axis->getIndex(), button);
+    JoyAxisButton *axisButton = static_cast<JoyAxisButton*>(sender());
+    JoyAxis *axis = axisButton->getAxis();
+    if (!axisButton->getIgnoreEventState())
+    {
+        emit setAxisButtonClick(index, axis->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetAxisButtonRelease(int button)
 {
-    JoyAxis *axis = static_cast<JoyAxis*>(sender());
-    emit setAxisButtonRelease(index, axis->getIndex(), button);
+    JoyAxisButton *axisButton = static_cast<JoyAxisButton*>(sender());
+    JoyAxis *axis = axisButton->getAxis();
+    if (!axisButton->getIgnoreEventState())
+    {
+        emit setAxisButtonRelease(index, axis->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetStickButtonClick(int button)
 {
-    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
-    emit setStickButtonClick(index, stick->getIndex(), button);
+    JoyControlStickButton *stickButton = static_cast<JoyControlStickButton*>(sender());
+    JoyControlStick *stick = stickButton->getStick();
+    if (!stickButton->getIgnoreEventState())
+    {
+        emit setStickButtonClick(index, stick->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetStickButtonRelease(int button)
 {
-    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
-    emit setStickButtonRelease(index, stick->getIndex(), button);
+    JoyControlStickButton *stickButton = static_cast<JoyControlStickButton*>(sender());
+    JoyControlStick *stick = stickButton->getStick();
+    if (!stickButton->getIgnoreEventState())
+    {
+        emit setStickButtonRelease(index, stick->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetDPadButtonClick(int button)
 {
-    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
-    emit setDPadButtonClick(index, dpad->getIndex(), button);
+    JoyDPadButton *dpadButton = static_cast<JoyDPadButton*>(sender());
+    JoyDPad *dpad = dpadButton->getDPad();
+    if (!dpadButton->getIgnoreEventState())
+    {
+        emit setDPadButtonClick(index, dpad->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetDPadButtonRelease(int button)
 {
-    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
-    emit setDPadButtonRelease(index, dpad->getIndex(), button);
+    JoyDPadButton *dpadButton = static_cast<JoyDPadButton*>(sender());
+    JoyDPad *dpad = dpadButton->getDPad();
+    if (!dpadButton->getIgnoreEventState())
+    {
+        emit setDPadButtonRelease(index, dpad->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetButtonNameChange()

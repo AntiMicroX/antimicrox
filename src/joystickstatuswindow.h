@@ -14,7 +14,6 @@ class JoystickStatusWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit JoystickStatusWindow(QWidget *parent = 0);
     explicit JoystickStatusWindow(Joystick *joystick, QWidget *parent = 0);
     ~JoystickStatusWindow();
 

@@ -36,6 +36,11 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
 
 JoyButton::~JoyButton()
 {
+    if (!isButtonPressedQueue.isEmpty() && isButtonPressedQueue.last())
+    {
+        emit released(index);
+    }
+
     reset();
 }
 

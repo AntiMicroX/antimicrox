@@ -53,6 +53,17 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
 
     if (this->stick)
     {
+        if (safezone && !isActive)
+        {
+            isActive = eventActive = true;
+            emit active(value);
+        }
+        else if (!safezone && isActive)
+        {
+            isActive = eventActive = false;
+            emit released(value);
+        }
+
         stick->joyEvent(ignoresets);
     }
     else
@@ -535,6 +546,7 @@ int JoyAxis::getCurrentlyAssignedSet()
 void JoyAxis::setControlStick(JoyControlStick *stick)
 {
     removeVDPads();
+    removeControlStick();
     this->stick = stick;
 }
 
@@ -550,8 +562,11 @@ JoyControlStick* JoyAxis::getControlStick()
 
 void JoyAxis::removeControlStick()
 {
-    stick->releaseButtonEvents();
-    this->stick = 0;
+    if (stick)
+    {
+        stick->releaseButtonEvents();
+        this->stick = 0;
+    }
 }
 
 bool JoyAxis::hasControlOfButtons()

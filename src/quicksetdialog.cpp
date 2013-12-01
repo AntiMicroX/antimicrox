@@ -21,6 +21,8 @@ QuickSetDialog::QuickSetDialog(Joystick *joystick, QWidget *parent) :
     setWindowTitle(tr("Quick Set Joystick %1").arg(joystick->getRealJoyNumber()));
 
     SetJoystick *currentset = joystick->getActiveSetJoystick();
+    currentset->release();
+    joystick->resetButtonDownCount();
 
     QString temp = ui->joystickDialogLabel->text();
     temp = temp.arg(joystick->getSDLName()).arg(joystick->getRealJoyNumber());
@@ -309,4 +311,6 @@ void QuickSetDialog::restoreButtonStates()
             disconnect(button, SIGNAL(clicked(int)), this, 0);
         }
     }
+
+    currentset->release();
 }

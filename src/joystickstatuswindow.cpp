@@ -9,18 +9,13 @@
 #include "ui_joystickstatuswindow.h"
 #include "joybuttonstatusbox.h"
 
-JoystickStatusWindow::JoystickStatusWindow(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::JoystickStatusWindow)
-{
-    ui->setupUi(this);
-}
 
 JoystickStatusWindow::JoystickStatusWindow(Joystick *joystick, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::JoystickStatusWindow)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
 
@@ -34,6 +29,8 @@ JoystickStatusWindow::JoystickStatusWindow(Joystick *joystick, QWidget *parent) 
     ui->joystickHatsLabel->setText(QString::number(joystick->getNumberHats()));
 
     joystick->getActiveSetJoystick()->setIgnoreEventState(true);
+    joystick->getActiveSetJoystick()->release();
+    joystick->resetButtonDownCount();
 
     QVBoxLayout *axesBox = new QVBoxLayout();
     axesBox->setSpacing(4);
@@ -130,4 +127,5 @@ JoystickStatusWindow::~JoystickStatusWindow()
 void JoystickStatusWindow::restoreButtonStates()
 {
     joystick->getActiveSetJoystick()->setIgnoreEventState(false);
+    joystick->getActiveSetJoystick()->release();
 }

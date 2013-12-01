@@ -92,7 +92,7 @@
               <number>-1</number>
              </property>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,3,3">
+              <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,3,3">
                <property name="spacing">
                 <number>-1</number>
                </property>
@@ -134,6 +134,33 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="quickAssignStick1PushButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>Assign</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout">
@@ -190,7 +217,7 @@
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,3,3">
+              <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,3,3">
                <item alignment="Qt::AlignHCenter">
                 <widget class="QLabel" name="label_6">
                  <property name="font">
@@ -229,6 +256,33 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="quickAssignStick2PushButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>Assign</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_3">

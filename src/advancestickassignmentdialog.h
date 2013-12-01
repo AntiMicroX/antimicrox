@@ -47,6 +47,17 @@ private slots:
 
     void disableVDPadComboBoxes();
     void enableVDPadComboBoxes();
+
+    void openQuickAssignDialogStick1();
+    void openQuickAssignDialogStick2();
+
+    void quickAssignStick1Axis1();
+    void quickAssignStick1Axis2();
+
+    void quickAssignStick2Axis1();
+    void quickAssignStick2Axis2();
+
+    void reenableButtonEvents();
 };
 
 #endif // ADVANCESTICKASSIGNMENTDIALOG_H

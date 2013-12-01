@@ -924,6 +924,18 @@ void JoyControlStick::replaceYAxis(JoyAxis *axis)
     this->axisY->setControlStick(this);
 }
 
+void JoyControlStick::replaceAxes(JoyAxis *axisX, JoyAxis *axisY)
+{
+    this->axisX->removeControlStick();
+    this->axisY->removeControlStick();
+
+    this->axisX = axisX;
+    this->axisY = axisY;
+
+    this->axisX->setControlStick(this);
+    this->axisY->setControlStick(this);
+}
+
 void JoyControlStick::setJoyMode(JoyMode mode)
 {
     currentMode = mode;
