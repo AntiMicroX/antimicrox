@@ -100,7 +100,7 @@ for this program will be written. Since the 1.0 release,
 there has not been a plan for what to implement in future
 versions of AntiMicro. Hopefully, this will help change that.
 
-* Gamepad Status window. A window to show buttons presses and current axes values.
+* ~~Gamepad Status window. A window to show buttons presses and current axes values.~~
 * ~~DONE. Ensure SDL 2 compatibility. Looking at the docs for SDL 2, it seems
 like the main API has not really changed so AntiMicro should be compatible.~~
 * Setting to not display buttons that are not currently in use.
