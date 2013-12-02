@@ -427,20 +427,13 @@
             </spacer>
            </item>
            <item>
-            <layout class="QFormLayout" name="formLayout">
+            <layout class="QGridLayout" name="gridLayout" columnstretch="1,2,1">
              <property name="horizontalSpacing">
               <number>41</number>
              </property>
              <property name="verticalSpacing">
               <number>20</number>
              </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_10">
-               <property name="text">
-                <string>Up:</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="1">
               <widget class="QComboBox" name="vdpadUpComboBox">
                <property name="enabled">
@@ -469,8 +462,8 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QComboBox" name="vdpadLeftComboBox">
+             <item row="3" column="1">
+              <widget class="QComboBox" name="vdpadRightComboBox">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -483,10 +476,57 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QComboBox" name="vdpadRightComboBox">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Up:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="vdpadLeftComboBox">
                <property name="enabled">
                 <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="vdpadUpPushButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Assign</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="vdpadDownPushButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Assign</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="vdpadLeftPushButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Assign</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="vdpadRightPushButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Assign</string>
                </property>
               </widget>
              </item>

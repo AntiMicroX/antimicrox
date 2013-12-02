@@ -57,6 +57,16 @@ private slots:
     void quickAssignStick2Axis1();
     void quickAssignStick2Axis2();
 
+    void openAssignVDPadUp();
+    void openAssignVDPadDown();
+    void openAssignVDPadLeft();
+    void openAssignVDPadRight();
+
+    void quickAssignVDPadUp();
+    void quickAssignVDPadDown();
+    void quickAssignVDPadLeft();
+    void quickAssignVDPadRight();
+
     void reenableButtonEvents();
 };
 

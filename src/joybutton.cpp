@@ -51,6 +51,15 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         if (pressed != isButtonPressed)
         {
             isButtonPressed = pressed;
+            if (isButtonPressed)
+            {
+                emit clicked(index);
+            }
+            else
+            {
+                emit released(index);
+            }
+
             this->vdpad->joyEvent(pressed, ignoresets);
         }
     }
@@ -2199,6 +2208,7 @@ void JoyButton::findHoldEventEnd()
 
 void JoyButton::setVDPad(VDPad *vdpad)
 {
+    joyEvent(false, true);
     this->vdpad = vdpad;
 }
 
