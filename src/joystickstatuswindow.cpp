@@ -61,6 +61,9 @@ JoystickStatusWindow::JoystickStatusWindow(Joystick *joystick, QWidget *parent) 
     ui->axesScrollArea->setLayout(axesBox);
 
     QGridLayout *buttonsGrid = new QGridLayout();
+    buttonsGrid->setHorizontalSpacing(4);
+    buttonsGrid->setVerticalSpacing(10);
+
     int currentRow = 0;
     int currentColumn = 0;
     for (int i=0; i < joystick->getNumberButtons(); i++)
