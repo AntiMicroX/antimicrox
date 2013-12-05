@@ -143,6 +143,10 @@ axis is moved back to the dead zone.</string>
           <property name="enabled">
            <bool>true</bool>
           </property>
+          <property name="toolTip">
+           <string>Enable to change the horizontal and vertical speed
+boxes at the same time.</string>
+          </property>
           <property name="text">
            <string>Change Together</string>
           </property>
@@ -275,6 +279,10 @@ Speed:</string>
               </item>
               <item>
                <widget class="QSpinBox" name="wheelSpeedSpinBox">
+                <property name="toolTip">
+                 <string>Set the speed used for mouse wheel movement according
+to number of simulated ticks per second.</string>
+                </property>
                 <property name="specialValueText">
                  <string/>
                 </property>

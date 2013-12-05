@@ -26,7 +26,7 @@ public:
     int getJoyNumber();
     int getIndex();
     int getRealJoyNumber();
-    virtual QString getName(bool fullForceFormat=false);
+    virtual QString getName(bool fullForceFormat=false, bool displayActionName=false);
     void joyEvent(int value, bool ignoresets=false);
 
     void setJoyMode(JoyMode mode);

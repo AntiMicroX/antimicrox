@@ -11,6 +11,7 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, QWidget *parent) :
     this->button = button;
 
     isflashing = false;
+    displayNames = false;
 
     refreshLabel();
 
@@ -72,8 +73,24 @@ bool JoyButtonWidget::isButtonFlashing()
 QString JoyButtonWidget::generateLabel()
 {
     QString temp;
-    temp = button->getName().replace("&", "&&");
+    temp = button->getName(false, displayNames).replace("&", "&&");
     return temp;
+}
+
+void JoyButtonWidget::toggleNameDisplay()
+{
+    displayNames = !displayNames;
+    refreshLabel();
+}
+
+void JoyButtonWidget::setDisplayNames(bool display)
+{
+    displayNames = display;
+}
+
+bool JoyButtonWidget::isDisplayingNames()
+{
+    return displayNames;
 }
 
 void JoyButtonWidget::paintEvent(QPaintEvent *event)

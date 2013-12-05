@@ -22,7 +22,7 @@ public:
 
     void joyEvent(int value, bool ignoresets=false);
     bool inDeadZone(int value);
-    QString getName(bool forceFullFormat=false);
+    QString getName(bool forceFullFormat=false, bool displayNames=false);
     void setIndex(int index);
     int getIndex();
     int getRealJoyIndex();

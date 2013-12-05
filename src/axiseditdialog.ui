@@ -451,7 +451,11 @@ interpret an axis hold or release.</string>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="axisNameLineEdit"/>
+      <widget class="QLineEdit" name="axisNameLineEdit">
+       <property name="toolTip">
+        <string>Specify the name of an axis.</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -495,8 +499,6 @@ interpret an axis hold or release.</string>
   <zorder>verticalSpacer</zorder>
   <zorder>mouseSettingsPushButton</zorder>
   <zorder>verticalSpacer_2</zorder>
-  <zorder>axisNameLabel</zorder>
-  <zorder>axisNameLineEdit</zorder>
  </widget>
  <customwidgets>
   <customwidget>

@@ -73,11 +73,11 @@ void JoyDPad::populateButtons()
     buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
-QString JoyDPad::getName(bool fullForceFormat)
+QString JoyDPad::getName(bool fullForceFormat, bool displayActionName)
 {
     QString label;
 
-    if (!dpadName.isEmpty())
+    if (!dpadName.isEmpty() && displayActionName)
     {
         if (fullForceFormat)
         {

@@ -11,6 +11,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWi
     this->stick = stick;
 
     isflashing = false;
+    displayNames = false;
 
     refreshLabel();
 
@@ -52,7 +53,7 @@ void JoyControlStickPushButton::refreshLabel()
 QString JoyControlStickPushButton::generateLabel()
 {
     QString temp;
-    if (!stick->getStickName().isEmpty())
+    if (!stick->getStickName().isEmpty() && displayNames)
     {
         temp.append(stick->getStickName());
     }
@@ -80,6 +81,22 @@ void JoyControlStickPushButton::enableFlashes()
 bool JoyControlStickPushButton::isButtonFlashing()
 {
     return isflashing;
+}
+
+void JoyControlStickPushButton::toggleNameDisplay()
+{
+    displayNames = !displayNames;
+    refreshLabel();
+}
+
+void JoyControlStickPushButton::setDisplayNames(bool display)
+{
+    displayNames = display;
+}
+
+bool JoyControlStickPushButton::isDisplayingNames()
+{
+    return displayNames;
 }
 
 void JoyControlStickPushButton::paintEvent(QPaintEvent *event)

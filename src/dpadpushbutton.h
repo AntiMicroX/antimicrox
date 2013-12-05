@@ -15,6 +15,8 @@ public:
     explicit DPadPushButton(JoyDPad *dpad, QWidget *parent = 0);
     JoyDPad* getDPad();
     bool isButtonFlashing();
+    void setDisplayNames(bool display);
+    bool isDisplayingNames();
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
@@ -22,6 +24,7 @@ protected:
 
     JoyDPad *dpad;
     bool isflashing;
+    bool displayNames;
 
 signals:
     void flashed(bool flashing);
@@ -31,6 +34,7 @@ public slots:
     void unflash();
     void disableFlashes();
     void enableFlashes();
+    void toggleNameDisplay();
 
 private slots:
     void flash();

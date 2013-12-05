@@ -103,11 +103,11 @@ bool JoyAxis::inDeadZone(int value)
     return result;
 }
 
-QString JoyAxis::getName(bool forceFullFormat)
+QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
 {
     QString label;
 
-    if (!axisName.isEmpty())
+    if (!axisName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
@@ -127,7 +127,7 @@ QString JoyAxis::getName(bool forceFullFormat)
     if (throttle == 0)
     {
         label.append("-");
-        if (!naxisbutton->getActionName().isEmpty())
+        if (!naxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(naxisbutton->getActionName());
         }
@@ -137,7 +137,7 @@ QString JoyAxis::getName(bool forceFullFormat)
         }
 
         label.append(" | +");
-        if (!paxisbutton->getActionName().isEmpty())
+        if (!paxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(paxisbutton->getActionName());
         }
@@ -149,7 +149,7 @@ QString JoyAxis::getName(bool forceFullFormat)
     else if (throttle == 1)
     {
         label.append("+");
-        if (!paxisbutton->getActionName().isEmpty())
+        if (!paxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(paxisbutton->getActionName());
         }
@@ -161,7 +161,7 @@ QString JoyAxis::getName(bool forceFullFormat)
     else if (throttle == -1)
     {
         label.append("-");
-        if (!naxisbutton->getActionName().isEmpty())
+        if (!naxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(naxisbutton->getActionName());
         }

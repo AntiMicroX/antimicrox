@@ -45,10 +45,10 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    virtual QString getPartialName(bool forceFullFormat=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getSlotsSummary();
     virtual QString getSlotsString();
-    virtual QString getName(bool forceFullFormat=false);
+    virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
 
     int getMouseSpeedX();

@@ -20,7 +20,7 @@
 
 
 #ifdef Q_OS_UNIX
-Display* display;
+static Display* display;
 #endif
 
 MouseHelper *mouseHelperObj = 0;

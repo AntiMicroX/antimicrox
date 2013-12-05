@@ -17,10 +17,13 @@ public:
     JoyControlStickButton* getButton();
     bool isButtonFlashing();
     void setButton(JoyControlStickButton *button);
+    void setDisplayNames(bool display);
+    bool isDisplayingNames();
 
 protected:
     JoyControlStickButton *button;
     bool isflashing;
+    bool displayNames;
     
 signals:
     void flashed(bool flashing);
@@ -30,6 +33,7 @@ public slots:
     void unflash();
     void disableFlashes();
     void enableFlashes();
+    void toggleNameDisplay();
 
 private slots:
     void flash();

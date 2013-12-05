@@ -1142,11 +1142,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
     }
 }
 
-QString JoyButton::getName(bool forceFullFormat)
+QString JoyButton::getName(bool forceFullFormat, bool displayNames)
 {
-    QString newlabel = getPartialName(forceFullFormat);
+    QString newlabel = getPartialName(forceFullFormat, displayNames);
     newlabel.append(": ");
-    if (!actionName.isEmpty())
+    if (!actionName.isEmpty() && displayNames)
     {
         newlabel.append(actionName);
     }
@@ -1157,10 +1157,10 @@ QString JoyButton::getName(bool forceFullFormat)
     return newlabel;
 }
 
-QString JoyButton::getPartialName(bool forceFullFormat)
+QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
     QString temp;
-    if (!buttonName.isEmpty())
+    if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
