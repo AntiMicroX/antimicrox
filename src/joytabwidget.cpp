@@ -357,7 +357,7 @@ void JoyTabWidget::openConfigFileDialog()
 {
     QString filename;
 
-    filename = QFileDialog::getOpenFileName(this, tr("Open Config"), QDir::currentPath(), "Config Files (*.xml)");
+    filename = QFileDialog::getOpenFileName(this, tr("Open Config"), QDir::homePath(), "Config Files (*.xml)");
 
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -847,7 +847,7 @@ void JoyTabWidget::saveConfigFile()
     QString filename;
     if (index == 0)
     {
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::currentPath(), "Config File (*.xml)");
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::homePath(), "Config File (*.xml)");
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -920,7 +920,7 @@ void JoyTabWidget::saveAsConfig()
     QString filename;
     if (index == 0)
     {
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::currentPath(), "Config File (*.xml)");
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::homePath(), "Config File (*.xml)");
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
