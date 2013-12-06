@@ -212,7 +212,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="83"/>
         <source>Set Selector</source>
-        <translation>Séléction de configuration</translation>
+        <translation>Séléction de réglage</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="208"/>
@@ -251,7 +251,7 @@ si celui-ci est resté appuyé au minimum le temps défini.</translation>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="290"/>
         <source>Delete</source>
-        <translation>Effacer</translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="305"/>
@@ -331,12 +331,12 @@ par rapport à la zone morte.</translation>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="387"/>
         <source>0m</source>
-        <translation type="unfinished">0m</translation>
+        <translation>0m</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="435"/>
         <source>0ms</source>
-        <translation type="unfinished">10,0/s {0m?}</translation>
+        <translation>0ms</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="533"/>
@@ -361,22 +361,24 @@ par rapport à la zone morte.</translation>
 by a specified percentage while the action is being processed.
 This can be useful for slowing down the mouse while
 sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;action du mode de la souris modifira tous les réglages de la vitesse
+de la souris par un pourcentage spécifié pendant qu&apos;elle est en cours.
+Cela peut être utile de ralentir la souris pour bien sniper.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="245"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="482"/>
         <source>Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse du Mode de la Souris :</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="498"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished"></translation>
+        <translation>Régler toutes les vitesses de la souris avec le pourcentage spécifié.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="606"/>
@@ -413,122 +415,122 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="855"/>
         <source>Select Set 1 One Way</source>
-        <translation>Séléction de la configuration N°1 : Aller</translation>
+        <translation>Séléction du réglage N°1 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="860"/>
         <source>Select Set 1 Two Way</source>
-        <translation>Séléction de la configuration N°1 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°1 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="865"/>
         <source>Select Set 1 While Held</source>
-        <translation>Séléction de la configuration N°1 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°1 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="870"/>
         <source>Select Set 2 One Way</source>
-        <translation>Séléction de la configuration N°2 : Aller</translation>
+        <translation>Séléction du réglage N°2 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="875"/>
         <source>Select Set 2 Two Way</source>
-        <translation>Séléction de la configuration N°2 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°2 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="880"/>
         <source>Select Set 2 While Held</source>
-        <translation>Séléction de la configuration N°2 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°2 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="885"/>
         <source>Select Set 3 One Way</source>
-        <translation>Séléction de la configuration N°3 : Aller</translation>
+        <translation>Séléction du réglage N°3 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="890"/>
         <source>Select Set 3 Two Way</source>
-        <translation>Séléction de la configuration N°3 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°3 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="895"/>
         <source>Select Set 3 While Held</source>
-        <translation>Séléction de la configuration N°3 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°3 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="900"/>
         <source>Select Set 4 One Way</source>
-        <translation>Séléction de la configuration N°4 : Aller</translation>
+        <translation>Séléction du réglage N°4 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="905"/>
         <source>Select Set 4 Two Way</source>
-        <translation>Séléction de la configuration N°4 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°4 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="910"/>
         <source>Select Set 4 While Held</source>
-        <translation>Séléction de la configuration N°4 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°4 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="915"/>
         <source>Select Set 5 One Way</source>
-        <translation>Séléction de la configuration N°5 : Aller</translation>
+        <translation>Séléction du réglage N°5 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="920"/>
         <source>Select Set 5 Two Way</source>
-        <translation>Séléction de la configuration N°5 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°5 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="925"/>
         <source>Select Set 5 While Held</source>
-        <translation>Séléction de la configuration N°5 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°5 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="930"/>
         <source>Select Set 6 One Way</source>
-        <translation>Séléction de la configuration N°6 : Aller</translation>
+        <translation>Séléction du réglage N°6 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="935"/>
         <source>Select Set 6 Two Way</source>
-        <translation>Séléction de la configuration N°6 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°6 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="940"/>
         <source>Select Set 6 While Held</source>
-        <translation>Séléction de la configuration N°6 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°6 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="945"/>
         <source>Select Set 7 One Way</source>
-        <translation>Séléction de la configuration N°7 : Aller</translation>
+        <translation>Séléction du réglage N°7 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="950"/>
         <source>Select Set 7 Two Way</source>
-        <translation>Séléction de la configuration N°7 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°7 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="955"/>
         <source>Select Set 7 While Held</source>
-        <translation>Séléction de la configuration N°7 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°7 : Pendant la pression</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="960"/>
         <source>Select Set 8 One Way</source>
-        <translation>Séléction de la configuration N°8 : Aller</translation>
+        <translation>Séléction du réglage N°8 : Aller</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="965"/>
         <source>Select Set 8 Two Way</source>
-        <translation>Séléction de la configuration N°8 : Aller-Retour</translation>
+        <translation>Séléction du réglage N°8 : Aller-Retour</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="970"/>
         <source>Select Set 8 While Held</source>
-        <translation>Séléction de la configuration N°8 : Pendant la pression</translation>
+        <translation>Séléction du réglage N°8 : Pendant la pression</translation>
     </message>
 </context>
 <context>
@@ -552,7 +554,7 @@ sniping.</source>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="342"/>
         <source>%1 (Joystick %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Manette %2)</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="108"/>
@@ -574,7 +576,7 @@ sniping.</source>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="519"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="529"/>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Assigner</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="170"/>
@@ -658,22 +660,22 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="863"/>
         <source>Move stick 1 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le stick 1 selon l&apos;axe X</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="877"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le stick 1 selon l&apos;axe Y</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="906"/>
         <source>Move stick 2 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le stick 2 selon l&apos;axe X</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="921"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer le stick 1 selon l&apos;axe Y</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="980"/>
@@ -681,7 +683,7 @@ sniping.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="1088"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="1142"/>
         <source>Press a button or move an axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Presser un bouton ou bouger un axe</translation>
     </message>
 </context>
 <context>
@@ -751,12 +753,12 @@ sniping.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="446"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="456"/>
         <source>Specify the name of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiquer le nom d&apos;un axe.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="465"/>
@@ -766,7 +768,7 @@ sniping.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="258"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation>Configure la valeur de la zone morte pour un axe.</translation>
+        <translation>Régler la valeur de la zone morte pour un axe.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="52"/>
@@ -787,7 +789,7 @@ sniping.</source>
         <location filename="../../../src/axiseditdialog.ui" line="176"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 defective analog stick.</source>
-        <translation>Configure la valeur à utiliser comme limite pour un axe.
+        <translation>Régle la valeur à utiliser comme limite pour un axe.
 Utile pour un stick analogique défectueux.</translation>
     </message>
     <message>
@@ -826,7 +828,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="405"/>
         <source>Set</source>
-        <translation type="unfinished">Configuration</translation>
+        <translation>Configuration</translation>
     </message>
 </context>
 <context>
@@ -879,23 +881,24 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="185"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="195"/>
         <source>Specify the name of a button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiquer le nom d&apos;un bouton.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="212"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Action :</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="222"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiquer l&apos;action qui sera exécutée pendnt le jeu
+lorsque que ce bouton est utilisé.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="249"/>
@@ -1041,12 +1044,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="148"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="158"/>
         <source>Specify the name of a dpad.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiquer le nom d&apos;un dpad.</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="167"/>
@@ -1071,7 +1074,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadeditdialog.cpp" line="310"/>
         <source>DPad</source>
-        <translation type="unfinished">DPad</translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -1173,12 +1176,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="251"/>
         <source>B4</source>
-        <translation type="unfinished"></translation>
+        <translation>B4</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="254"/>
         <source>B5</source>
-        <translation type="unfinished"></translation>
+        <translation>B5</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="272"/>
@@ -1208,7 +1211,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="327"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="334"/>
@@ -1264,7 +1267,7 @@ this button is being used.</source>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="68"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="74"/>
         <source>Button</source>
-        <translation type="unfinished">Bouton</translation>
+        <translation>Bouton</translation>
     </message>
 </context>
 <context>
@@ -1355,12 +1358,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="507"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="517"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiquer le nom d&apos;un stick analogue.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="526"/>
@@ -1395,17 +1398,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="366"/>
         <source>Set</source>
-        <translation type="unfinished">Configuration</translation>
+        <translation>Configuration</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="369"/>
         <source>Stick </source>
-        <translation type="unfinished"></translation>
+        <translation>Stick </translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="373"/>
         <source>Stick %1</source>
-        <translation type="unfinished">Stick %1</translation>
+        <translation>Stick %1</translation>
     </message>
 </context>
 <context>
@@ -1422,7 +1425,7 @@ this button is being used.</source>
         <location filename="../../../src/joydpad.cpp" line="84"/>
         <location filename="../../../src/joydpad.cpp" line="91"/>
         <source>DPad</source>
-        <translation type="unfinished">DPad</translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -1459,7 +1462,7 @@ this button is being used.</source>
         <location filename="../../../src/joydpadbutton.cpp" line="71"/>
         <location filename="../../../src/joydpadbutton.cpp" line="77"/>
         <source>Button</source>
-        <translation type="unfinished">Bouton</translation>
+        <translation>Bouton</translation>
     </message>
 </context>
 <context>
@@ -1473,12 +1476,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="39"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="41"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer la configuration depuis la liste des recents.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="47"/>
@@ -1488,7 +1491,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="49"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger un fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="55"/>
@@ -1498,7 +1501,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="57"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer les modifications dans le fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="64"/>
@@ -1508,7 +1511,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="66"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer les modifications dans un nouveau fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="316"/>
@@ -1523,12 +1526,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="331"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>Noms</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="333"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alterner nom du bouton d&apos;affichage.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="338"/>
@@ -1538,7 +1541,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="340"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler les changements de configuration. Recharger le fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="375"/>
@@ -1577,17 +1580,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="23"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="50"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="70"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="77"/>
@@ -1596,57 +1599,57 @@ this button is being used.</source>
         <location filename="../../../src/joystickstatuswindow.ui" line="158"/>
         <location filename="../../../src/joystickstatuswindow.ui" line="185"/>
         <source>%1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="97"/>
         <source>Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre :</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="124"/>
         <source>Axes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Axes :</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="151"/>
         <source>Buttons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Boutons :</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="178"/>
         <source>Hats:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hats :</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="202"/>
         <source>Axes</source>
-        <translation type="unfinished"></translation>
+        <translation>Axes</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="240"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Boutons</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="278"/>
         <source>Hats</source>
-        <translation type="unfinished"></translation>
+        <translation>Hats</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="22"/>
         <source>%1 (#%2) Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (#%2) Propriétés</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="46"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Axe %1</translation>
+        <translation>Axe %1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="99"/>
         <source>Hat %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hat %1</translation>
     </message>
 </context>
 <context>
@@ -1676,17 +1679,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="201"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer la configuration depuis la liste des recents.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="204"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger un fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="231"/>
@@ -1696,7 +1699,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="255"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer les modifications dans le fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="258"/>
@@ -1706,7 +1709,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="288"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer les modifications dans un nouveau fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="291"/>
@@ -1766,17 +1769,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="503"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alterner nom du bouton d&apos;affichage.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="506"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>Noms</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="533"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler les changements de configuration. Recharger le fichier de configuration.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="536"/>
@@ -1829,7 +1832,7 @@ this button is being used.</source>
         <location filename="../../../src/mainwindow.ui" line="633"/>
         <location filename="../../../src/mainwindow.cpp" line="178"/>
         <source>&amp;Hide</source>
-        <translation>&amp;Cacher</translation>
+        <translation>&amp;Masquer</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="636"/>
@@ -1854,12 +1857,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="659"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="90"/>
         <source>(Joystick %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Manette %1)</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="166"/>
@@ -2008,7 +2011,8 @@ est déplacé vers la zone morte.</translation>
         <location filename="../../../src/mousesettingsdialog.ui" line="147"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer la modification simultanée des boîtes
+de vitesse horizontale et verticale.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="151"/>
@@ -2038,18 +2042,19 @@ verticale :</translation>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="273"/>
         <source>Wheel Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse de rotation :</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="283"/>
         <source>Set the speed used for mouse wheel movement according
 to number of simulated ticks per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Régler la vitesse utilisée pour le defilement de la molette de la souris
+en fonction du défilement du nombre de cran simulées par seconde.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="308"/>
         <source>1 = 1 tick/s</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 1 cran/s</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="324"/>
@@ -2110,9 +2115,9 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message numerus="yes">
         <location filename="../../../src/mousesettingsdialog.cpp" line="114"/>
         <source>%n tick(s)/s</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n cran/s</numerusform>
+            <numerusform>%n cran(s)/s</numerusform>
         </translation>
     </message>
 </context>
@@ -2121,12 +2126,12 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/wininfo.cpp" line="113"/>
         <source>Super</source>
-        <translation type="unfinished"></translation>
+        <translation>Super</translation>
     </message>
     <message>
         <location filename="../../../src/wininfo.cpp" line="114"/>
         <source>Menu</source>
-        <translation type="unfinished">Menu</translation>
+        <translation>Menu</translation>
     </message>
 </context>
 <context>
@@ -2139,12 +2144,12 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="23"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Joystick %2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Merci de presser un bouton ou de déplacer un axe de %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Manette %2&lt;/span&gt;).&lt;br/&gt;Une fenêtre de dialogue apparaîtra&lt;br/&gt;permettant de faire une affectation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.cpp" line="21"/>
         <source>Quick Set Joystick %1</source>
-        <translation>Configuration Rapide de la manette %1</translation>
+        <translation>Réglage Rapide de la manette %1</translation>
     </message>
 </context>
 <context>
@@ -2179,7 +2184,7 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="24"/>
         <source>Spring Mode Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu du mode ressort</translation>
     </message>
 </context>
 <context>
@@ -2188,7 +2193,7 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
         <location filename="../../../src/vdpad.cpp" line="71"/>
         <location filename="../../../src/vdpad.cpp" line="78"/>
         <source>VDPad</source>
-        <translation type="unfinished">VDPad</translation>
+        <translation>VDPad</translation>
     </message>
 </context>
 <context>
@@ -2431,12 +2436,12 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="118"/>
         <source>Super (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>Super (G)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="119"/>
         <source>Menu</source>
-        <translation type="unfinished">Menu</translation>
+        <translation>Menu</translation>
     </message>
 </context>
 <context>
@@ -2798,7 +2803,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="208"/>
         <source>Print</source>
-        <translation>Print</translation>
+        <translation>Impr Ecran</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="209"/>
@@ -2948,22 +2953,22 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="373"/>
         <source>Button 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouton 4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="375"/>
         <source>Mouse 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="381"/>
         <source>Button 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Bouton 5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="383"/>
         <source>Mouse 9</source>
-        <translation type="unfinished"></translation>
+        <translation>Souris 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="397"/>
