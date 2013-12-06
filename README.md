@@ -138,7 +138,7 @@ for this program mostly resembles QJoyPad.
 
 ## Credits
 
-Travis Nickles <nickles.travis@gmail.com>
+Travis Nickles <nickles.travis@gmail.com>  
 aybe
 
 ## Translators
