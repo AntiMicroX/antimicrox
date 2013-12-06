@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>580</width>
-    <height>460</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -203,7 +203,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <property name="bottomMargin">
-           <number>14</number>
+           <number>4</number>
           </property>
           <item>
            <widget class="QScrollArea" name="axesScrollArea">
@@ -225,11 +225,27 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
                <x>0</x>
                <y>0</y>
                <width>350</width>
-               <height>148</height>
+               <height>138</height>
               </rect>
              </property>
             </widget>
            </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -241,7 +257,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <property name="bottomMargin">
-           <number>14</number>
+           <number>4</number>
           </property>
           <item>
            <widget class="QScrollArea" name="buttonsScrollArea">
@@ -268,6 +284,22 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
              </property>
             </widget>
            </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>

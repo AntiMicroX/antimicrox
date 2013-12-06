@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QLabel>
+#include <QSpacerItem>
 #include <QDebug>
 
 #include "joystickstatuswindow.h"
@@ -111,6 +112,8 @@ JoystickStatusWindow::JoystickStatusWindow(Joystick *joystick, QWidget *parent) 
             connect(dpad, SIGNAL(released(int)), dpadBar, SLOT(setValue(int)));
         }
     }
+
+    hatsBox->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Preferred, QSizePolicy::Fixed));
 
     if (ui->hatsGroupBox->layout())
     {
