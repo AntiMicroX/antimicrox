@@ -25,7 +25,8 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
     connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
     connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
-    connect(&mouseWheelEventTimer, SIGNAL(timeout()), this, SLOT(wheelEvent()));
+    connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
+    connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
 
     this->reset();
     this->index = index;
@@ -241,7 +242,8 @@ void JoyButton::reset()
     releaseDeskTimer.stop();
     mouseEventTimer.stop();
     holdTimer.stop();
-    mouseWheelEventTimer.stop();
+    mouseWheelVerticalEventTimer.stop();
+    mouseWheelHorizontalEventTimer.stop();
 
     if (slotiter)
     {
@@ -255,6 +257,8 @@ void JoyButton::reset()
     isButtonPressedQueue.clear();
     ignoreSetQueue.clear();
     mouseEventQueue.clear();
+    mouseWheelVerticalEventQueue.clear();
+    mouseWheelHorizontalEventQueue.clear();
 
     currentCycle = 0;
     previousCycle = 0;
@@ -264,7 +268,8 @@ void JoyButton::reset()
     currentRawValue = 0;
     currentMouseEvent = 0;
     currentRelease = 0;
-    currentWheelEvent = 0;
+    currentWheelVerticalEvent = 0;
+    currentWheelHorizontalEvent = 0;
 
     isKeyPressed = isButtonPressed = false;
     toggle = false;
@@ -274,7 +279,8 @@ void JoyButton::reset()
     useTurbo = false;
     mouseSpeedX = 50;
     mouseSpeedY = 50;
-    wheelSpeed = 20;
+    wheelSpeedX = 20;
+    wheelSpeedY = 20;
     mouseMode = MouseCursor;
     mouseCurve = LinearCurve;
     springWidth = 0;
@@ -513,21 +519,29 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
-                if (tempcode != JoyButtonSlot::MouseWheelUp &&
-                    tempcode != JoyButtonSlot::MouseWheelDown)
+                if (tempcode == JoyButtonSlot::MouseWheelUp ||
+                    tempcode == JoyButtonSlot::MouseWheelDown)
+                {
+                    slot->getMouseInterval()->restart();
+                    currentWheelVerticalEvent = slot;
+                    activeSlots.append(slot);
+                    wheelEventVertical();
+                    currentWheelVerticalEvent = 0;
+                }
+                else if (tempcode == JoyButtonSlot::MouseWheelLeft ||
+                         tempcode == JoyButtonSlot::MouseWheelRight)
+                {
+                    slot->getMouseInterval()->restart();
+                    currentWheelHorizontalEvent = slot;
+                    activeSlots.append(slot);
+                    wheelEventHorizontal();
+                    currentWheelHorizontalEvent = 0;
+                }
+                else
                 {
                     sendevent(tempcode, true, mode);
                     activeSlots.append(slot);
                 }
-                else
-                {
-                    slot->getMouseInterval()->restart();
-                    currentWheelEvent = slot;
-                    activeSlots.append(slot);
-                    wheelEvent();
-                    currentWheelEvent = 0;
-                }
-
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
@@ -784,35 +798,35 @@ void JoyButton::mouseEvent()
     }
 }
 
-void JoyButton::wheelEvent()
+void JoyButton::wheelEventVertical()
 {
     JoyButtonSlot *buttonslot = 0;
-    if (currentWheelEvent)
+    if (currentWheelVerticalEvent)
     {
-        buttonslot = currentWheelEvent;
+        buttonslot = currentWheelVerticalEvent;
     }
 
-    if (buttonslot && wheelSpeed != 0)
+    if (buttonslot && wheelSpeedY != 0)
     {
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
         {
             sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
             sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
-            mouseWheelEventQueue.enqueue(buttonslot);
-            mouseWheelEventTimer.start(1000 / wheelSpeed);
+            mouseWheelVerticalEventQueue.enqueue(buttonslot);
+            mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
         }
         else
         {
-            mouseWheelEventTimer.stop();
+            mouseWheelVerticalEventTimer.stop();
         }
     }
-    else if (!mouseWheelEventQueue.isEmpty() && wheelSpeed != 0)
+    else if (!mouseWheelVerticalEventQueue.isEmpty() && wheelSpeedY != 0)
     {
         QQueue<JoyButtonSlot*> tempQueue;
-        while (!mouseWheelEventQueue.isEmpty())
+        while (!mouseWheelVerticalEventQueue.isEmpty())
         {
-            buttonslot = mouseWheelEventQueue.dequeue();
+            buttonslot = mouseWheelVerticalEventQueue.dequeue();
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
             {
@@ -824,17 +838,71 @@ void JoyButton::wheelEvent()
 
         if (!tempQueue.isEmpty())
         {
-            mouseWheelEventQueue = tempQueue;
-            mouseWheelEventTimer.start(1000 / wheelSpeed);
+            mouseWheelVerticalEventQueue = tempQueue;
+            mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
         }
         else
         {
-            mouseWheelEventTimer.stop();
+            mouseWheelVerticalEventTimer.stop();
         }
     }
     else
     {
-        mouseWheelEventTimer.stop();
+        mouseWheelVerticalEventTimer.stop();
+    }
+}
+
+void JoyButton::wheelEventHorizontal()
+{
+    JoyButtonSlot *buttonslot = 0;
+    if (currentWheelHorizontalEvent)
+    {
+        buttonslot = currentWheelHorizontalEvent;
+    }
+
+    if (buttonslot && wheelSpeedX != 0)
+    {
+        bool isActive = activeSlots.contains(buttonslot);
+        if (isActive)
+        {
+            sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
+            sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+            mouseWheelHorizontalEventQueue.enqueue(buttonslot);
+            mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
+        }
+        else
+        {
+            mouseWheelHorizontalEventTimer.stop();
+        }
+    }
+    else if (!mouseWheelHorizontalEventQueue.isEmpty() && wheelSpeedX != 0)
+    {
+        QQueue<JoyButtonSlot*> tempQueue;
+        while (!mouseWheelHorizontalEventQueue.isEmpty())
+        {
+            buttonslot = mouseWheelHorizontalEventQueue.dequeue();
+            bool isActive = activeSlots.contains(buttonslot);
+            if (isActive)
+            {
+                sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
+                sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                tempQueue.enqueue(buttonslot);
+            }
+        }
+
+        if (!tempQueue.isEmpty())
+        {
+            mouseWheelHorizontalEventQueue = tempQueue;
+            mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
+        }
+        else
+        {
+            mouseWheelHorizontalEventTimer.stop();
+        }
+    }
+    else
+    {
+        mouseWheelHorizontalEventTimer.stop();
     }
 }
 
@@ -1038,12 +1106,24 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                     setActionName(temptext);
                 }
             }
-            else if (xml->name() == "wheelspeed" && xml->isStartElement())
+            else if (xml->name() == "wheelspeedx" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setWheelSpeedX(tempchoice);
+            }
+            else if (xml->name() == "wheelspeedy" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setWheelSpeedY(tempchoice);
+            }
+            /*else if (xml->name() == "wheelspeed" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 setWheelSpeed(tempchoice);
-            }
+            }*/
             else
             {
                 xml->skipCurrentElement();
@@ -1102,7 +1182,8 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         }
 
         xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
-        xml->writeTextElement("wheelspeed", QString::number(wheelSpeed));
+        xml->writeTextElement("wheelspeedx", QString::number(wheelSpeedX));
+        xml->writeTextElement("wheelspeedy", QString::number(wheelSpeedY));
 
         if (setSelectionCondition != SetChangeDisabled)
         {
@@ -2012,7 +2093,9 @@ void JoyButton::releaseActiveSlots()
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
                 if (tempcode != JoyButtonSlot::MouseWheelUp &&
-                    tempcode != JoyButtonSlot::MouseWheelDown)
+                    tempcode != JoyButtonSlot::MouseWheelDown &&
+                    tempcode != JoyButtonSlot::MouseWheelLeft &&
+                    tempcode != JoyButtonSlot::MouseWheelRight)
                 {
                     sendevent(tempcode, false, mode);
                 }
@@ -2059,11 +2142,16 @@ void JoyButton::releaseActiveSlots()
             mouseEventQueue.clear();
         }
 
-        currentWheelEvent = 0;
-        mouseWheelEventTimer.stop();
-        if (!mouseWheelEventQueue.isEmpty())
+        currentWheelVerticalEvent = 0;
+        mouseWheelVerticalEventTimer.stop();
+        mouseWheelHorizontalEventTimer.stop();
+        if (!mouseWheelVerticalEventQueue.isEmpty())
         {
-            mouseWheelEventQueue.clear();
+            mouseWheelVerticalEventQueue.clear();
+        }
+        if (!mouseWheelHorizontalEventQueue.isEmpty())
+        {
+            mouseWheelHorizontalEventQueue.clear();
         }
     }
 }
@@ -2246,7 +2334,8 @@ bool JoyButton::isDefault()
     value = value && (smoothing == false);
     value = value && (actionName.isEmpty());
     value = value && (buttonName.isEmpty());
-    value = value && (wheelSpeed != 20);
+    value = value && (wheelSpeedX != 20);
+    value = value && (wheelSpeedY != 20);
     return value;
 }
 
@@ -2367,15 +2456,28 @@ QString JoyButton::getButtonName()
     return buttonName;
 }
 
-void JoyButton::setWheelSpeed(int speed)
+void JoyButton::setWheelSpeedX(int speed)
 {
     if (speed >= 1 && speed <= 100)
     {
-        wheelSpeed = speed;
+        wheelSpeedX = speed;
     }
 }
 
-int JoyButton::getWheelSpeed()
+void JoyButton::setWheelSpeedY(int speed)
 {
-    return wheelSpeed;
+    if (speed >= 1 && speed <= 100)
+    {
+        wheelSpeedY = speed;
+    }
+}
+
+int JoyButton::getWheelSpeedX()
+{
+    return wheelSpeedX;
+}
+
+int JoyButton::getWheelSpeedY()
+{
+    return wheelSpeedY;
 }

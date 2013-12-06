@@ -785,8 +785,14 @@ QString JoyAxis::getAxisName()
     return axisName;
 }
 
-void JoyAxis::setButtonsWheelSpeed(int value)
+void JoyAxis::setButtonsWheelSpeedX(int value)
 {
-    paxisbutton->setWheelSpeed(value);
-    naxisbutton->setWheelSpeed(value);
+    paxisbutton->setWheelSpeedX(value);
+    naxisbutton->setWheelSpeedX(value);
+}
+
+void JoyAxis::setButtonsWheelSpeedY(int value)
+{
+    paxisbutton->setWheelSpeedY(value);
+    naxisbutton->setWheelSpeedY(value);
 }

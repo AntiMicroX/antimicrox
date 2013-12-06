@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>480</height>
+    <width>624</width>
+    <height>484</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -138,6 +138,9 @@ axis is moved back to the dead zone.</string>
         <string>Mouse Speed Settings</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_8">
+        <property name="bottomMargin">
+         <number>4</number>
+        </property>
         <item alignment="Qt::AlignHCenter">
          <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
           <property name="enabled">
@@ -153,135 +156,142 @@ boxes at the same time.</string>
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <property name="topMargin">
+           <number>20</number>
+          </property>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
             <property name="spacing">
-             <number>16</number>
-            </property>
-            <property name="topMargin">
-             <number>20</number>
+             <number>10</number>
             </property>
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
               <property name="spacing">
-               <number>20</number>
+               <number>10</number>
               </property>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_4">
-                <property name="spacing">
-                 <number>10</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_5">
-                  <property name="text">
-                   <string>Horizontal
-Speed:</string>
-                  </property>
-                  <property name="buddy">
-                   <cstring>horizontalSpinBox</cstring>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="horizontalSpinBox">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimum">
-                   <number>1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>300</number>
-                  </property>
-                  <property name="value">
-                   <number>1</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QLabel" name="horizontalSpeedLabel">
+               <widget class="QLabel" name="label_5">
                 <property name="text">
-                 <string>1 = 20 pps</string>
+                 <string>Horizontal
+Speed:</string>
+                </property>
+                <property name="buddy">
+                 <cstring>horizontalSpinBox</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="horizontalSpinBox">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>300</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <property name="spacing">
-               <number>20</number>
+            <item alignment="Qt::AlignRight">
+             <widget class="QLabel" name="horizontalSpeedLabel">
+              <property name="text">
+               <string>1 = 20 pps</string>
               </property>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <property name="spacing">
-                 <number>10</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="label_7">
-                  <property name="text">
-                   <string>Vertical
-Speed:</string>
-                  </property>
-                  <property name="buddy">
-                   <cstring>verticalSpinBox</cstring>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="verticalSpinBox">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimum">
-                   <number>1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>300</number>
-                  </property>
-                  <property name="value">
-                   <number>1</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QLabel" name="verticalSpeedLabel">
-                <property name="text">
-                 <string>1 = 20 pps</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             </widget>
             </item>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <property name="topMargin">
-             <number>20</number>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="spacing">
+             <number>10</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <property name="spacing">
+               <number>10</number>
+              </property>
               <item>
-               <widget class="QLabel" name="wheelSpeedLabel">
+               <widget class="QLabel" name="label_7">
                 <property name="text">
-                 <string>Wheel Speed:</string>
+                 <string>Vertical
+Speed:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>wheelSpeedSpinBox</cstring>
+                 <cstring>verticalSpinBox</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="wheelSpeedSpinBox">
+               <widget class="QSpinBox" name="verticalSpinBox">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>300</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item alignment="Qt::AlignRight">
+             <widget class="QLabel" name="verticalSpeedLabel">
+              <property name="text">
+               <string>1 = 20 pps</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <property name="topMargin">
+           <number>20</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="spacing">
+             <number>10</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLabel" name="wheelHoriSpeedLabel">
+                <property name="text">
+                 <string>Wheel Hori.
+Speed:</string>
+                </property>
+                <property name="buddy">
+                 <cstring>wheelHoriSpeedSpinBox</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="wheelHoriSpeedSpinBox">
                 <property name="toolTip">
-                 <string>Set the speed used for mouse wheel movement according
-to number of simulated ticks per second.</string>
+                 <string>Set the speed used for horizontal mouse wheel movement
+according to number of simulated ticks per second.</string>
                 </property>
                 <property name="specialValueText">
                  <string/>
@@ -303,9 +313,49 @@ to number of simulated ticks per second.</string>
              </layout>
             </item>
             <item alignment="Qt::AlignRight">
-             <widget class="QLabel" name="wheelSpeedUnitsLabel">
+             <widget class="QLabel" name="wheelHoriSpeedUnitsLabel">
               <property name="text">
-               <string>1 = 1 tick/s</string>
+               <string>1 = 1 notches/s</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="spacing">
+             <number>10</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QLabel" name="wheelVertSpeedLabel">
+                <property name="text">
+                 <string>Wheel Vert.
+Speed:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="wheelVertSpeedSpinBox">
+                <property name="toolTip">
+                 <string>Set the speed used for vertical mouse wheel movement
+according to number of simulated ticks per second.</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item alignment="Qt::AlignRight">
+             <widget class="QLabel" name="wheelVertSpeedUnitsLabel">
+              <property name="text">
+               <string>1 = 1 notches/s</string>
               </property>
              </widget>
             </item>
@@ -384,14 +434,17 @@ speed taking longer to occur.</string>
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer_5">
+         <spacer name="verticalSpacer_4">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>20</height>
            </size>
           </property>
          </spacer>

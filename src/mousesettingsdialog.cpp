@@ -15,6 +15,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSpinBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeWheelSpeedBoxStatus(int)));
 
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
@@ -22,7 +23,8 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateVerticalSpeedConvertLabel(int)));
     connect(ui->verticalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
 
-    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedLabel(int)));
+    connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelVerticalSpeedLabel(int)));
+    connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelHorizontalSpeedLabel(int)));
 }
 
 MouseSettingsDialog::~MouseSettingsDialog()
@@ -107,10 +109,32 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
     }
 }
 
-void MouseSettingsDialog::updateWheelSpeedLabel(int value)
+void MouseSettingsDialog::changeWheelSpeedBoxStatus(int index)
+{
+    if (index == 2)
+    {
+        ui->wheelHoriSpeedSpinBox->setEnabled(false);
+        ui->wheelVertSpeedSpinBox->setEnabled(false);
+    }
+    else
+    {
+        ui->wheelHoriSpeedSpinBox->setEnabled(true);
+        ui->wheelVertSpeedSpinBox->setEnabled(true);
+    }
+}
+
+void MouseSettingsDialog::updateWheelVerticalSpeedLabel(int value)
 {
     QString label = QString(QString::number(value));
     label.append(" = ");
-    label.append(tr("%n tick(s)/s", "", value));
-    ui->wheelSpeedUnitsLabel->setText(label);
+    label.append(tr("%n notch(es)/s", "", value));
+    ui->wheelVertSpeedUnitsLabel->setText(label);
+}
+
+void MouseSettingsDialog::updateWheelHorizontalSpeedLabel(int value)
+{
+    QString label = QString(QString::number(value));
+    label.append(" = ");
+    label.append(tr("%n notch(es)/s", "", value));
+    ui->wheelHoriSpeedUnitsLabel->setText(label);
 }

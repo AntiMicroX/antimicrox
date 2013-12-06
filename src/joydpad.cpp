@@ -723,12 +723,22 @@ QString JoyDPad::getDpadName()
     return dpadName;
 }
 
-void JoyDPad::setButtonsWheelSpeed(int value)
+void JoyDPad::setButtonsWheelSpeedX(int value)
 {
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setWheelSpeed(value);
+        button->setWheelSpeedX(value);
+    }
+}
+
+void JoyDPad::setButtonsWheelSpeedY(int value)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setWheelSpeedY(value);
     }
 }

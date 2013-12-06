@@ -54,7 +54,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
-    void setButtonsWheelSpeed(int value);
+    void setButtonsWheelSpeedX(int value);
+    void setButtonsWheelSpeedY(int value);
 
     QString getDpadName();
 

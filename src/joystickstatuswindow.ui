@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>580</width>
-    <height>440</height>
+    <height>460</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -225,7 +225,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
                <x>0</x>
                <y>0</y>
                <width>350</width>
-               <height>134</height>
+               <height>148</height>
               </rect>
              </property>
             </widget>
