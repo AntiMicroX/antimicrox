@@ -306,14 +306,14 @@ unix {
 
     install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
     for(dllfile, extradlls) {
-        install_dlls.extra +=  $(COPY) \"$$dllfile\" $${copy_dlls.path} &
+        install_dlls.extra +=  $(COPY) \"$$dllfile\" $${install_dlls.path} &
         install_dlls.files += dllfile
     }
 
     # Install path will be different for the qwindows.dll platform plugin. Needs to be separated
     # from the other copy commands
-    install_platforms_dll.path = $${copy_dlls.path}\\platforms
-    install_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${copy_platforms_dll.path}
+    install_platforms_dll.path = $${install_dlls.path}\\platforms
+    install_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${install_platforms_dll.path}
     install_platforms_dll.files = $$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll
 
     INSTALLS += install_dlls install_platforms_dll
