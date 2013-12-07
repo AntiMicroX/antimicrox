@@ -60,24 +60,6 @@ equals(OUT_PWD, $$PWD) {
     # Specify path of final installed qm files
     compiledtranslations.path = $$qmfiles.path
 
-    # Use intermediate variable in order to not interfere with lupdate
-    for(transfile, TRANSLATIONS) {
-        unix {
-            fulltranslations += $$OUT_PWD/$$transfile
-        } else:win32 {
-            fulltranslations += $$DESTDIR/$$replace(transfile, "\.\.", "")
-        }
-    }
-
-    # Build qm install files list
-    for(qmfile, qmfiles.files) {
-        unix {
-            compiledtranslations.files += $$OUT_PWD/$$qmfile
-        } else:win32 {
-            compiledtranslations.files += $$DESTDIR/$$replace(qmfile, "\.\.", "")
-        }
-    }
-
     # Determine source translation directory and intermediate output
     # translation directory
     TRANSLATION_IN_DIR = $${PWD}/../share/antimicro/translations
@@ -85,6 +67,25 @@ equals(OUT_PWD, $$PWD) {
         TRANSLATION_OUT_DIR = $${OUT_PWD}/../share/antimicro/translations
     } else:win32 {
         TRANSLATION_OUT_DIR = $${DESTDIR}/share/antimicro/translations
+    }
+
+    # Use intermediate variable in order to not interfere with lupdate
+    for(transfile, TRANSLATIONS) {
+        unix {
+            fulltranslations += $$TRANSLATION_OUT_DIR/$$basename(transfile)
+        } else:win32 {
+            # Using the raw path so the separators must be changed
+            fulltranslations += $$replace(TRANSLATION_OUT_DIR, "/", "\\")\\$$basename(transfile)
+        }
+    }
+
+    # Build qm install files list
+    for(qmfile, qmfiles.files) {
+        unix {
+            compiledtranslations.files += $$TRANSLATION_OUT_DIR/$$basename(qmfile)
+        } else:win32 {
+            compiledtranslations.files += $$TRANSLATION_OUT_DIR/$$basename(qmfile)
+        }
     }
 
     # Copy .ts files to build directory and compile
@@ -99,12 +100,12 @@ equals(OUT_PWD, $$PWD) {
             TRANSLATION_IN_DIR = $$shell_path($$TRANSLATION_IN_DIR)
             TRANSLATION_OUT_DIR = $$shell_path($$TRANSLATION_OUT_DIR)
         } else {
-            TRANSLATION_IN_DIR = $$replace(TRANSLATION_DIR, "/", "\\")
+            TRANSLATION_IN_DIR = $$replace(TRANSLATION_IN_DIR, "/", "\\")
             TRANSLATION_OUT_DIR = $$replace(TRANSLATION_OUT_DIR, "/", "\\")
         }
 
         updateqm.commands = $(MKDIR) $${TRANSLATION_OUT_DIR} & \
-            $(COPY_DIR) $${TRANSLATION_DIR} $${TRANSLATION_OUT_DIR} & \
+            $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} & \
             $$[QT_INSTALL_BINS]\\lrelease.exe $$fulltranslations
     }
 }
@@ -118,7 +119,7 @@ QMAKE_EXTRA_TARGETS += updateqm
 
 # Create rule to copy required SDL dll file to output build directory
 win32 {
-    copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $${DESTDIR}
+    copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $$replace(DESTDIR, "/", "\\")
     copy_sdl_dll.target = copy_sdl_dll
 
     QMAKE_EXTRA_TARGETS += copy_sdl_dll
@@ -290,8 +291,8 @@ INSTALLS += target compiledtranslations
 unix {
     INSTALLS += desktop deskicon
 } else:win32 {
-    # Copy all required DLL files that a packaged version
-    # of the program will need to be able to run
+    # Copy all required release build DLL files that a packaged
+    # release build of the program will need to be able to run
     extradlls = $$[QT_INSTALL_BINS]\\icudt51.dll \
         $$[QT_INSTALL_BINS]\\icuin51.dll \
         $$[QT_INSTALL_BINS]\\icuuc51.dll \
@@ -307,7 +308,7 @@ unix {
     install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
     for(dllfile, extradlls) {
         install_dlls.extra +=  $(COPY) \"$$dllfile\" $${install_dlls.path} &
-        install_dlls.files += dllfile
+        install_dlls.files += $$dllfile
     }
 
     # Install path will be different for the qwindows.dll platform plugin. Needs to be separated
