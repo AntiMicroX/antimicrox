@@ -39,8 +39,11 @@ unix {
 }
 
 TRANSLATIONS = $$files(../share/antimicro/translations/antimicro_*.ts)
-programtranslations.path = $$INSTALL_PREFIX/share/antimicro/translations
-for(tsfile, TRANSLATIONS): programtranslations.files += $$replace(tsfile, ".ts", ".qm")
+
+# qmfiles will be used to specify the path of the initial compiled translations
+# before installing
+qmfiles.path = $$INSTALL_PREFIX/share/antimicro/translations
+for(tsfile, TRANSLATIONS): qmfiles.files += $$replace(tsfile, ".ts", ".qm")
 
 equals(OUT_PWD, $$PWD) {
     unix {
@@ -49,12 +52,15 @@ equals(OUT_PWD, $$PWD) {
         updateqm.commands = $$[QT_INSTALL_BINS]\\lrelease.exe $$_PRO_FILE_
     }
 
-    finaltranslations.path = $$programtranslations.path
-    finaltranslations.files = $$programtranslations.files
+    # Compile translations files in source tree
+    compiledtranslations.path = $$qmfiles.path
+    compiledtranslations.files = $$qmfiles.files
 
 } else {
-    finaltranslations.path = $$programtranslations.path
+    # Specify path of final installed qm files
+    compiledtranslations.path = $$qmfiles.path
 
+    # Use intermediate variable in order to not interfere with lupdate
     for(transfile, TRANSLATIONS) {
         unix {
             fulltranslations += $$OUT_PWD/$$transfile
@@ -63,14 +69,17 @@ equals(OUT_PWD, $$PWD) {
         }
     }
 
-    for(qmfile, programtranslations.files) {
+    # Build qm install files list
+    for(qmfile, qmfiles.files) {
         unix {
-            finaltranslations.files += $$OUT_PWD/$$qmfile
+            compiledtranslations.files += $$OUT_PWD/$$qmfile
         } else:win32 {
-            finaltranslations.files += $$DESTDIR/$$replace(qmfile, "\.\.", "")
+            compiledtranslations.files += $$DESTDIR/$$replace(qmfile, "\.\.", "")
         }
     }
 
+    # Determine source translation directory and intermediate output
+    # translation directory
     TRANSLATION_IN_DIR = $${PWD}/../share/antimicro/translations
     unix {
         TRANSLATION_OUT_DIR = $${OUT_PWD}/../share/antimicro/translations
@@ -78,11 +87,14 @@ equals(OUT_PWD, $$PWD) {
         TRANSLATION_OUT_DIR = $${DESTDIR}/share/antimicro/translations
     }
 
+    # Copy .ts files to build directory and compile
+    # to .qm files
     unix {
         updateqm.commands = $(MKDIR) $${TRANSLATION_OUT_DIR} && \
-            $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} && \
+            $(COPY_DIR) $${TRANSLATION_IN_DIR}/* $${TRANSLATION_OUT_DIR} && \
             $$[QT_INSTALL_BINS]/lrelease $$fulltranslations
     } else:win32 {
+        # Use shell_path function here for reference. Not available in Qt4
         greaterThan(QT_MAJOR_VERSION, 4) {
             TRANSLATION_IN_DIR = $$shell_path($$TRANSLATION_IN_DIR)
             TRANSLATION_OUT_DIR = $$shell_path($$TRANSLATION_OUT_DIR)
@@ -97,11 +109,20 @@ equals(OUT_PWD, $$PWD) {
     }
 }
 
-finaltranslations.CONFIG += no_check_exist
+# qm files will not exist before running qmake. Need this to workaround that
+compiledtranslations.CONFIG += no_check_exist
 
+# Add updateqm rule to QMAKE_EXTRA_TARGETS
 updateqm.target = updateqm
-
 QMAKE_EXTRA_TARGETS += updateqm
+
+# Create rule to copy required SDL dll file to output build directory
+win32 {
+    copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $${DESTDIR}
+    copy_sdl_dll.target = copy_sdl_dll
+
+    QMAKE_EXTRA_TARGETS += copy_sdl_dll
+}
 
 TARGET = antimicro
 TEMPLATE = app
@@ -259,10 +280,18 @@ win32 {
   RC_FILE += antimicro.rc
 }
 
-INSTALLS += target finaltranslations
+# Force updateqm to run before attempting to install
+# compiled translation files
+compiledtranslations.depends = updateqm
+
+INSTALLS += target compiledtranslations
+
+# Install platform-dependent files
 unix {
     INSTALLS += desktop deskicon
 } else:win32 {
+    # Copy all required DLL files that a packaged version
+    # of the program will need to be able to run
     extradlls = $$[QT_INSTALL_BINS]\\icudt51.dll \
         $$[QT_INSTALL_BINS]\\icuin51.dll \
         $$[QT_INSTALL_BINS]\\icuuc51.dll \
@@ -275,15 +304,19 @@ unix {
         ..\\SDL-1.2.15\\bin\\SDL.dll
         $$[QT_INSTALL_BINS]\\libstdc++-6.dll
 
-    copy_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
+    install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
     for(dllfile, extradlls) {
-        copy_dlls.extra +=  $(COPY) \"$$dllfile\" $${copy_dlls.path} &
+        install_dlls.extra +=  $(COPY) \"$$dllfile\" $${copy_dlls.path} &
+        install_dlls.files += dllfile
     }
 
-    copy_platforms_dll.path = $${copy_dlls.path}\\platforms
-    copy_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${copy_platforms_dll.path}
+    # Install path will be different for the qwindows.dll platform plugin. Needs to be separated
+    # from the other copy commands
+    install_platforms_dll.path = $${copy_dlls.path}\\platforms
+    install_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${copy_platforms_dll.path}
+    install_platforms_dll.files = $$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll
 
-    INSTALLS += copy_dlls copy_platforms_dll
+    INSTALLS += install_dlls install_platforms_dll
 }
 
 
@@ -291,9 +324,12 @@ OTHER_FILES += \
     ../gpl.txt \
     ../other/antimicro.desktop
 
+
+# Add application icon on Windows
 win32 {
   OTHER_FILES += \
   antimicro.rc
 }
 
-QMAKE_CLEAN += $$finaltranslations.files
+# Have intermediate qm files deleted during make clean
+QMAKE_CLEAN += $$compiledtranslations.files
