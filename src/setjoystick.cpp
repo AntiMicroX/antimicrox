@@ -568,48 +568,80 @@ int SetJoystick::getIndex()
 
 void SetJoystick::propogateSetButtonClick(int button)
 {
-    emit setButtonClick(index, button);
+    JoyButton *jButton = static_cast<JoyButton*>(sender());
+    if (!jButton->getIgnoreEventState())
+    {
+        emit setButtonClick(index, button);
+    }
 }
 
 void SetJoystick::propogateSetButtonRelease(int button)
 {
-    emit setButtonRelease(index, button);
+    JoyButton *jButton = static_cast<JoyButton*>(sender());
+    if (!jButton->getIgnoreEventState())
+    {
+        emit setButtonRelease(index, button);
+    }
 }
 
 void SetJoystick::propogateSetAxisButtonClick(int button)
 {
-    JoyAxis *axis = static_cast<JoyAxis*>(sender());
-    emit setAxisButtonClick(index, axis->getIndex(), button);
+    JoyAxisButton *axisButton = static_cast<JoyAxisButton*>(sender());
+    JoyAxis *axis = axisButton->getAxis();
+    if (!axisButton->getIgnoreEventState())
+    {
+        emit setAxisButtonClick(index, axis->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetAxisButtonRelease(int button)
 {
-    JoyAxis *axis = static_cast<JoyAxis*>(sender());
-    emit setAxisButtonRelease(index, axis->getIndex(), button);
+    JoyAxisButton *axisButton = static_cast<JoyAxisButton*>(sender());
+    JoyAxis *axis = axisButton->getAxis();
+    if (!axisButton->getIgnoreEventState())
+    {
+        emit setAxisButtonRelease(index, axis->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetStickButtonClick(int button)
 {
-    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
-    emit setStickButtonClick(index, stick->getIndex(), button);
+    JoyControlStickButton *stickButton = static_cast<JoyControlStickButton*>(sender());
+    JoyControlStick *stick = stickButton->getStick();
+    if (!stickButton->getIgnoreEventState())
+    {
+        emit setStickButtonClick(index, stick->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetStickButtonRelease(int button)
 {
-    JoyControlStick *stick = static_cast<JoyControlStick*>(sender());
-    emit setStickButtonRelease(index, stick->getIndex(), button);
+    JoyControlStickButton *stickButton = static_cast<JoyControlStickButton*>(sender());
+    JoyControlStick *stick = stickButton->getStick();
+    if (!stickButton->getIgnoreEventState())
+    {
+        emit setStickButtonRelease(index, stick->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetDPadButtonClick(int button)
 {
-    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
-    emit setDPadButtonClick(index, dpad->getIndex(), button);
+    JoyDPadButton *dpadButton = static_cast<JoyDPadButton*>(sender());
+    JoyDPad *dpad = dpadButton->getDPad();
+    if (!dpadButton->getIgnoreEventState())
+    {
+        emit setDPadButtonClick(index, dpad->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetDPadButtonRelease(int button)
 {
-    JoyDPad *dpad = static_cast<JoyDPad*>(sender());
-    emit setDPadButtonRelease(index, dpad->getIndex(), button);
+    JoyDPadButton *dpadButton = static_cast<JoyDPadButton*>(sender());
+    JoyDPad *dpad = dpadButton->getDPad();
+    if (!dpadButton->getIgnoreEventState())
+    {
+        emit setDPadButtonRelease(index, dpad->getIndex(), button);
+    }
 }
 
 void SetJoystick::propogateSetButtonNameChange()
@@ -682,4 +714,84 @@ void SetJoystick::propogateSetVDPadNameChange()
     disconnect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
     emit setVDPadNameChange(vdpad->getIndex());
     connect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
+}
+
+void SetJoystick::setIgnoreEventState(bool ignore)
+{
+    QHashIterator<int, JoyButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyButton *button = iter.next().value();
+        if (button)
+        {
+            button->setIgnoreEventState(ignore);
+        }
+    }
+
+    QHashIterator<int, JoyAxis*> iter2(axes);
+    while (iter2.hasNext())
+    {
+        JoyAxis *axis = iter2.next().value();
+        if (axis)
+        {
+            JoyAxisButton *naxisbutton = axis->getNAxisButton();
+            naxisbutton->setIgnoreEventState(ignore);
+
+            JoyAxisButton *paxisbutton = axis->getPAxisButton();
+            paxisbutton->setIgnoreEventState(ignore);
+        }
+    }
+
+    QHashIterator<int, JoyDPad*> iter3(hats);
+    while (iter3.hasNext())
+    {
+        JoyDPad *dpad = iter3.next().value();
+
+        if (dpad)
+        {
+            QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
+            QHashIterator<int, JoyDPadButton*> iterdpadbuttons(*dpadbuttons);
+            while (iterdpadbuttons.hasNext())
+            {
+                JoyDPadButton *dpadbutton = iterdpadbuttons.next().value();
+                if (dpadbutton)
+                {
+                    dpadbutton->setIgnoreEventState(ignore);
+                }
+            }
+        }
+    }
+
+    QHashIterator<int, JoyControlStick*> iter4(sticks);
+    while (iter4.hasNext())
+    {
+        JoyControlStick *stick = iter4.next().value();
+        if (stick)
+        {
+            QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
+            QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iterstickbuttons(*stickButtons);
+            while (iterstickbuttons.hasNext())
+            {
+                JoyControlStickButton *stickbutton = iterstickbuttons.next().value();
+                stickbutton->setIgnoreEventState(ignore);
+            }
+        }
+    }
+
+    QHashIterator<int, VDPad*> iter5(vdpads);
+    while (iter5.hasNext())
+    {
+        VDPad *vdpad = iter5.next().value();
+        if (vdpad)
+        {
+            QHash<int, JoyDPadButton*>* dpadbuttons = vdpad->getButtons();
+            QHashIterator<int, JoyDPadButton*> itervdpadbuttons(*dpadbuttons);
+            while (itervdpadbuttons.hasNext())
+            {
+                JoyDPadButton *dpadbutton = itervdpadbuttons.next().value();
+                dpadbutton->setIgnoreEventState(ignore);
+            }
+        }
+    }
+
 }

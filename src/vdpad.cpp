@@ -60,11 +60,11 @@ QString VDPad::getXmlName()
     return this->xmlName;
 }
 
-QString VDPad::getName(bool forceFullFormat)
+QString VDPad::getName(bool forceFullFormat, bool displayName)
 {
     QString label;
 
-    if (!dpadName.isEmpty())
+    if (!dpadName.isEmpty() && displayName)
     {
         if (forceFullFormat)
         {

@@ -51,7 +51,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
-    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeed(int)));
+    connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
+    connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -218,16 +219,24 @@ void MouseAxisSettingsDialog::selectSmoothingPreset()
     }
 }
 
-void MouseAxisSettingsDialog::updateWheelSpeed(int value)
-{
-    axis->setButtonsWheelSpeed(value);
-}
-
 void MouseAxisSettingsDialog::calculateWheelSpeedPreset()
 {
     JoyAxisButton *paxisbutton = axis->getPAxisButton();
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
 
-    int tempWheelSpeed = qMax(paxisbutton->getWheelSpeed(), naxisbutton->getWheelSpeed());
-    ui->wheelSpeedSpinBox->setValue(tempWheelSpeed);
+    int tempWheelSpeedX = qMax(paxisbutton->getWheelSpeedX(), naxisbutton->getWheelSpeedX());
+    int tempWheelSpeedY = qMax(paxisbutton->getWheelSpeedY(), naxisbutton->getWheelSpeedY());
+
+    ui->wheelHoriSpeedSpinBox->setValue(tempWheelSpeedX);
+    ui->wheelVertSpeedSpinBox->setValue(tempWheelSpeedY);
+}
+
+void MouseAxisSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
+{
+    axis->setButtonsWheelSpeedX(value);
+}
+
+void MouseAxisSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
+{
+    axis->setButtonsWheelSpeedY(value);
 }

@@ -235,6 +235,12 @@ past the interval specified.</string>
              </item>
              <item row="2" column="1">
               <widget class="QPushButton" name="mouseModPushButton">
+               <property name="toolTip">
+                <string>Mouse mod action will modify all mouse speed settings
+by a specified percentage while the action is being processed.
+This can be useful for slowing down the mouse while
+sniping.</string>
+               </property>
                <property name="text">
                 <string>Mouse Mod</string>
                </property>
@@ -470,7 +476,7 @@ past the interval specified.</string>
                 </font>
                </property>
                <property name="toolTip">
-                <string>Specify the range past an axis dead zone in which a sequence of actions will execute.</string>
+                <string/>
                </property>
                <property name="text">
                 <string>Mouse Speed Mod:</string>
@@ -487,6 +493,9 @@ past the interval specified.</string>
                  <width>81</width>
                  <height>0</height>
                 </size>
+               </property>
+               <property name="toolTip">
+                <string>Set the percentage that mouse speeds will be modified by.</string>
                </property>
                <property name="suffix">
                 <string>%</string>
@@ -538,6 +547,9 @@ past the interval specified.</string>
                  <width>81</width>
                  <height>0</height>
                 </size>
+               </property>
+               <property name="toolTip">
+                <string>Specify the range past an axis dead zone in which a sequence of actions will execute.</string>
                </property>
                <property name="suffix">
                 <string>%</string>

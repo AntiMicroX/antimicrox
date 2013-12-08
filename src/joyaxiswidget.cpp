@@ -11,6 +11,7 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, QWidget *parent) :
     this->axis = axis;
 
     isflashing = false;
+    displayNames = false;
 
     setText(generateLabel());
 
@@ -78,8 +79,24 @@ bool JoyAxisWidget::isButtonFlashing()
 QString JoyAxisWidget::generateLabel()
 {
     QString temp;
-    temp = axis->getName().replace("&", "&&");
+    temp = axis->getName(false, displayNames).replace("&", "&&");
     return temp;
+}
+
+void JoyAxisWidget::toggleNameDisplay()
+{
+    displayNames = !displayNames;
+    refreshLabel();
+}
+
+void JoyAxisWidget::setDisplayNames(bool display)
+{
+    displayNames = display;
+}
+
+bool JoyAxisWidget::isDisplayingNames()
+{
+    return displayNames;
 }
 
 void JoyAxisWidget::paintEvent(QPaintEvent *event)

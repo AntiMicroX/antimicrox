@@ -15,6 +15,8 @@ public:
     explicit JoyAxisWidget(JoyAxis *axis, QWidget *parent=0);
     JoyAxis* getAxis();
     bool isButtonFlashing();
+    void setDisplayNames(bool display);
+    bool isDisplayingNames();
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
@@ -22,6 +24,7 @@ protected:
 
     JoyAxis *axis;
     bool isflashing;
+    bool displayNames;
 
 signals:
     void flashed(bool flashing);
@@ -30,6 +33,7 @@ public slots:
     void refreshLabel();
     void disableFlashes();
     void enableFlashes();
+    void toggleNameDisplay();
 
 private slots:
     void flash();

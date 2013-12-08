@@ -191,6 +191,9 @@
        </item>
        <item>
         <widget class="QLineEdit" name="buttonNameLineEdit">
+         <property name="toolTip">
+          <string>Specify the name of a button.</string>
+         </property>
          <property name="maxLength">
           <number>20</number>
          </property>
@@ -215,6 +218,10 @@
        </item>
        <item>
         <widget class="QLineEdit" name="actionNameLineEdit">
+         <property name="toolTip">
+          <string>Specify the action that will be performed in game while
+this button is being used.</string>
+         </property>
          <property name="maxLength">
           <number>50</number>
          </property>

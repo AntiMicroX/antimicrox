@@ -53,6 +53,17 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
 
     if (this->stick)
     {
+        if (safezone && !isActive)
+        {
+            isActive = eventActive = true;
+            emit active(value);
+        }
+        else if (!safezone && isActive)
+        {
+            isActive = eventActive = false;
+            emit released(value);
+        }
+
         stick->joyEvent(ignoresets);
     }
     else
@@ -92,11 +103,11 @@ bool JoyAxis::inDeadZone(int value)
     return result;
 }
 
-QString JoyAxis::getName(bool forceFullFormat)
+QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
 {
     QString label;
 
-    if (!axisName.isEmpty())
+    if (!axisName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
@@ -116,7 +127,7 @@ QString JoyAxis::getName(bool forceFullFormat)
     if (throttle == 0)
     {
         label.append("-");
-        if (!naxisbutton->getActionName().isEmpty())
+        if (!naxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(naxisbutton->getActionName());
         }
@@ -126,7 +137,7 @@ QString JoyAxis::getName(bool forceFullFormat)
         }
 
         label.append(" | +");
-        if (!paxisbutton->getActionName().isEmpty())
+        if (!paxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(paxisbutton->getActionName());
         }
@@ -138,7 +149,7 @@ QString JoyAxis::getName(bool forceFullFormat)
     else if (throttle == 1)
     {
         label.append("+");
-        if (!paxisbutton->getActionName().isEmpty())
+        if (!paxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(paxisbutton->getActionName());
         }
@@ -150,7 +161,7 @@ QString JoyAxis::getName(bool forceFullFormat)
     else if (throttle == -1)
     {
         label.append("-");
-        if (!naxisbutton->getActionName().isEmpty())
+        if (!naxisbutton->getActionName().isEmpty() && displayNames)
         {
             label.append(naxisbutton->getActionName());
         }
@@ -535,6 +546,7 @@ int JoyAxis::getCurrentlyAssignedSet()
 void JoyAxis::setControlStick(JoyControlStick *stick)
 {
     removeVDPads();
+    removeControlStick();
     this->stick = stick;
 }
 
@@ -550,8 +562,11 @@ JoyControlStick* JoyAxis::getControlStick()
 
 void JoyAxis::removeControlStick()
 {
-    stick->releaseButtonEvents();
-    this->stick = 0;
+    if (stick)
+    {
+        stick->releaseButtonEvents();
+        this->stick = 0;
+    }
 }
 
 bool JoyAxis::hasControlOfButtons()
@@ -770,8 +785,14 @@ QString JoyAxis::getAxisName()
     return axisName;
 }
 
-void JoyAxis::setButtonsWheelSpeed(int value)
+void JoyAxis::setButtonsWheelSpeedX(int value)
 {
-    paxisbutton->setWheelSpeed(value);
-    naxisbutton->setWheelSpeed(value);
+    paxisbutton->setWheelSpeedX(value);
+    naxisbutton->setWheelSpeedX(value);
+}
+
+void JoyAxis::setButtonsWheelSpeedY(int value)
+{
+    paxisbutton->setWheelSpeedY(value);
+    naxisbutton->setWheelSpeedY(value);
 }

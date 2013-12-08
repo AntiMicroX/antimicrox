@@ -77,6 +77,7 @@ private slots:
     void openAboutDialog();
     void handleOutsideConnection();
     void handleSocketDisconnect();
+    void openJoystickStatusWindow();
 };
 
 #endif // MAINWINDOW_H

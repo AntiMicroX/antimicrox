@@ -13,6 +13,7 @@
 #include "virtualdpadpushbutton.h"
 #include "joycontrolstickbuttonpushbutton.h"
 #include "dpadpushbutton.h"
+#include "joystickstatuswindow.h"
 #include "common.h"
 
 MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
@@ -59,6 +60,7 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmd
 
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
 }
 
 MainWindow::~MainWindow()
@@ -589,4 +591,15 @@ void MainWindow::handleOutsideConnection()
 void MainWindow::handleSocketDisconnect()
 {
     loadAppConfig(true);
+}
+
+void MainWindow::openJoystickStatusWindow()
+{
+    int index = ui->tabWidget->currentIndex();
+    Joystick *joystick = joysticks->value(index);
+    if (joystick)
+    {
+        JoystickStatusWindow *dialog = new JoystickStatusWindow(joystick, this);
+        dialog->show();
+    }
 }

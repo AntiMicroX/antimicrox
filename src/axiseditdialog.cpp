@@ -266,26 +266,28 @@ void AxisEditDialog::openAdvancedNDialog()
 
 void AxisEditDialog::refreshNButtonLabel()
 {
-    if (!axis->getNAxisButton()->getActionName().isEmpty())
+    /*if (!axis->getNAxisButton()->getActionName().isEmpty())
     {
         ui->nPushButton->setText(axis->getNAxisButton()->getActionName());
     }
     else
     {
         ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
-    }
+    }*/
+    ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
 }
 
 void AxisEditDialog::refreshPButtonLabel()
 {
-    if (!axis->getPAxisButton()->getActionName().isEmpty())
+    /*if (!axis->getPAxisButton()->getActionName().isEmpty())
     {
         ui->pPushButton->setText(axis->getPAxisButton()->getActionName());
     }
     else
     {
         ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
-    }
+    }*/
+    ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
 
 }
 

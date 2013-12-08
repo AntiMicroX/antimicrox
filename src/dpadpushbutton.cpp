@@ -11,6 +11,8 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, QWidget *parent) :
     this->dpad = dpad;
 
     isflashing = false;
+    displayNames = false;
+
     refreshLabel();
     enableFlashes();
     connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(refreshLabel()));
@@ -51,7 +53,7 @@ QString DPadPushButton::generateLabel()
     QString temp;
     if (!dpad->getDpadName().isEmpty())
     {
-        temp.append(dpad->getName());
+        temp.append(dpad->getName(false, displayNames));
     }
     else
     {
@@ -77,6 +79,22 @@ void DPadPushButton::enableFlashes()
 bool DPadPushButton::isButtonFlashing()
 {
     return isflashing;
+}
+
+void DPadPushButton::toggleNameDisplay()
+{
+    displayNames = !displayNames;
+    refreshLabel();
+}
+
+void DPadPushButton::setDisplayNames(bool display)
+{
+    displayNames = display;
+}
+
+bool DPadPushButton::isDisplayingNames()
+{
+    return displayNames;
 }
 
 void DPadPushButton::paintEvent(QPaintEvent *event)
