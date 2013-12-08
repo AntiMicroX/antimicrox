@@ -1003,6 +1003,11 @@ void Joystick::buttonUpEvent(int setindex, int buttonindex)
 
     bool old = isActive();
     buttonDownCount -= 1;
+    if (buttonDownCount < 0)
+    {
+        buttonDownCount = 0;
+    }
+
     if (isActive() != old)
     {
         emit released(joyNumber);
@@ -1331,4 +1336,10 @@ QString Joystick::getSDLName()
 {
     QString temp(SDL_JoystickName(joyNumber));
     return temp;
+}
+
+void Joystick::resetButtonDownCount()
+{
+    buttonDownCount = 0;
+    released(0);
 }

@@ -15,6 +15,8 @@ public:
     explicit JoyButtonWidget(JoyButton* button, QWidget *parent=0);
     JoyButton* getJoyButton();
     bool isButtonFlashing();
+    void setDisplayNames(bool display);
+    bool isDisplayingNames();
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
@@ -22,6 +24,7 @@ protected:
 
     JoyButton* button;
     bool isflashing;
+    bool displayNames;
 
 signals:
     void flashed(bool flashing);
@@ -30,6 +33,7 @@ public slots:
     virtual void refreshLabel();
     void disableFlashes();
     void enableFlashes();
+    void toggleNameDisplay();
 
 private slots:
     void flash();

@@ -153,7 +153,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="dpadNameLineEdit"/>
+      <widget class="QLineEdit" name="dpadNameLineEdit">
+       <property name="toolTip">
+        <string>Specify the name of a dpad.</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

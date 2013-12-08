@@ -22,11 +22,13 @@ public slots:
     void changeSensitivityStatus(int index);
     void changeSpringSpinBoxStatus(int index);
     void changeMouseSpeedBoxStatus(int index);
+    void changeWheelSpeedBoxStatus(int index);
     void updateHorizontalSpeedConvertLabel(int value);
     void updateVerticalSpeedConvertLabel(int value);
     void moveSpeedsTogether(int value);
     void changeSmoothingStatus(int index);
-    void updateWheelSpeedLabel(int value);
+    void updateWheelVerticalSpeedLabel(int value);
+    void updateWheelHorizontalSpeedLabel(int value);
 };
 
 #endif // MOUSESETTINGSDIALOG_H

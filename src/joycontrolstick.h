@@ -46,6 +46,7 @@ public:
 
     void replaceXAxis(JoyAxis *axis);
     void replaceYAxis(JoyAxis *axis);
+    void replaceAxes(JoyAxis *axisX, JoyAxis* axisY);
 
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();
@@ -75,7 +76,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
-    void setButtonsWheelSpeed(int value);
+    void setButtonsWheelSpeedX(int value);
+    void setButtonsWheelSpeedY(int value);
 
     void releaseButtonEvents();
     QString getStickName();

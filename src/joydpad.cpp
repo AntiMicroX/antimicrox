@@ -73,11 +73,11 @@ void JoyDPad::populateButtons()
     buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
-QString JoyDPad::getName(bool fullForceFormat)
+QString JoyDPad::getName(bool fullForceFormat, bool displayActionName)
 {
     QString label;
 
-    if (!dpadName.isEmpty())
+    if (!dpadName.isEmpty() && displayActionName)
     {
         if (fullForceFormat)
         {
@@ -184,11 +184,11 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
     {
         if (value != JoyDPadButton::DpadCentered)
         {
-            emit active(index);
+            emit active(value);
         }
         else
         {
-            emit released(index);
+            emit released(value);
         }
 
         if (activeDiagonalButton)
@@ -723,12 +723,22 @@ QString JoyDPad::getDpadName()
     return dpadName;
 }
 
-void JoyDPad::setButtonsWheelSpeed(int value)
+void JoyDPad::setButtonsWheelSpeedX(int value)
 {
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setWheelSpeed(value);
+        button->setWheelSpeedX(value);
+    }
+}
+
+void JoyDPad::setButtonsWheelSpeedY(int value)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setWheelSpeedY(value);
     }
 }

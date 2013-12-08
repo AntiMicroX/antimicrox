@@ -11,6 +11,8 @@ VirtualDPadPushButton::VirtualDPadPushButton(VDPad *vdpad, QWidget *parent) :
     this->vdpad = vdpad;
 
     isflashing = false;
+    displayNames = false;
+
     refreshLabel();
 
     connect(vdpad, SIGNAL(active(int)), this, SLOT(flash()));
@@ -54,7 +56,7 @@ QString VirtualDPadPushButton::generateLabel()
 
     if (!vdpad->getDpadName().isEmpty())
     {
-        temp.append(vdpad->getName());
+        temp.append(vdpad->getName(false, displayNames));
     }
     else
     {
@@ -80,6 +82,22 @@ void VirtualDPadPushButton::enableFlashes()
 bool VirtualDPadPushButton::isButtonFlashing()
 {
     return isflashing;
+}
+
+void VirtualDPadPushButton::toggleNameDisplay()
+{
+    displayNames = !displayNames;
+    refreshLabel();
+}
+
+void VirtualDPadPushButton::setDisplayNames(bool display)
+{
+    displayNames = display;
+}
+
+bool VirtualDPadPushButton::isDisplayingNames()
+{
+    return displayNames;
 }
 
 void VirtualDPadPushButton::paintEvent(QPaintEvent *event)

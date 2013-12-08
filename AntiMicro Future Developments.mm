@@ -1,13 +1,19 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1379712975572" TEXT="AntiMicro Future Developments">
-<node CREATED="1379712868552" ID="ID_1152197684" MODIFIED="1385413556814" POSITION="right" TEXT="Mouse Curves">
+<node CREATED="1379712868552" FOLDED="true" ID="ID_1152197684" MODIFIED="1386296245672" POSITION="right" TEXT="Mouse Curves">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1385413655567" ID="ID_1859704771" MODIFIED="1385413672185" TEXT="Curve options were taken from QJoyPad. Linear is still used as the default."/>
 </node>
-<node CREATED="1379712878989" ID="ID_1601152391" MODIFIED="1379712895153" POSITION="left" TEXT="Gamepad Status/Diagnosis"/>
-<node CREATED="1379712921288" ID="ID_1904560551" MODIFIED="1379712930271" POSITION="right" TEXT="Tap Time?"/>
-<node CREATED="1379713052871" ID="ID_362469693" MODIFIED="1385413543347" POSITION="left" TEXT="SDL 2 compatibility?">
+<node CREATED="1379712878989" FOLDED="true" ID="ID_1601152391" MODIFIED="1386296120777" POSITION="left" TEXT="Gamepad Status/Diagnosis">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1386295949051" ID="ID_1843601206" MODIFIED="1386296073732" TEXT="Status window shows pieces of information provided by SDL: number of buttons, number of axes, number of hats and controller display name. The window also shows the current raw values of all axes, hats, and buttons. This window will be useful for better showing exactly how SDL sees the controller."/>
+</node>
+<node CREATED="1379712921288" FOLDED="true" ID="ID_1904560551" MODIFIED="1386296255012" POSITION="right" TEXT="Tap Time?">
+<icon BUILTIN="help"/>
+<node CREATED="1386296158070" ID="ID_1324519805" MODIFIED="1386296197745" TEXT="I still haven&apos;t found a really good use case for this yet."/>
+</node>
+<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1386296150605" POSITION="left" TEXT="SDL 2 compatibility?">
 <icon BUILTIN="yes"/>
 <node CREATED="1385413319581" ID="ID_315431873" MODIFIED="1385413526247">
 <richcontent TYPE="NODE"><html>

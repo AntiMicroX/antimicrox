@@ -512,7 +512,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="stickNameLineEdit"/>
+          <widget class="QLineEdit" name="stickNameLineEdit">
+           <property name="toolTip">
+            <string>Specify the name of an analog stick.</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

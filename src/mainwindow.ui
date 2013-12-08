@@ -50,6 +50,10 @@ QPushButton#setPushButton8[setActive=&quot;false&quot;] {
 
 QStackedWidget#stackedWidget{
     padding-top: 10px;
+}
+
+QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
+	background-color: rgb(192, 255, 192);
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -194,7 +198,7 @@ QStackedWidget#stackedWidget{
               <item>
                <widget class="QPushButton" name="removeButton">
                 <property name="toolTip">
-                 <string>Remove</string>
+                 <string>Remove configuration from recent list.</string>
                 </property>
                 <property name="text">
                  <string>Remove</string>
@@ -221,7 +225,7 @@ QStackedWidget#stackedWidget{
                  </size>
                 </property>
                 <property name="toolTip">
-                 <string>Load</string>
+                 <string>Load configuration file.</string>
                 </property>
                 <property name="text">
                  <string>Load</string>
@@ -248,7 +252,7 @@ QStackedWidget#stackedWidget{
                  </size>
                 </property>
                 <property name="toolTip">
-                 <string>Save</string>
+                 <string>Save changes to configuration file.</string>
                 </property>
                 <property name="text">
                  <string>Save</string>
@@ -281,7 +285,7 @@ QStackedWidget#stackedWidget{
                  </size>
                 </property>
                 <property name="toolTip">
-                 <string>Save As</string>
+                 <string>Save changes to a new configuration file.</string>
                 </property>
                 <property name="text">
                  <string>Save As</string>
@@ -494,6 +498,24 @@ QStackedWidget#stackedWidget{
                </spacer>
               </item>
               <item>
+               <widget class="QPushButton" name="namesPushButton">
+                <property name="toolTip">
+                 <string>Toggle button name displaying.</string>
+                </property>
+                <property name="text">
+                 <string>Names</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="text-field">
+                  <normaloff/>
+                 </iconset>
+                </property>
+                <property name="isDisplayingNames" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="pushButton_9">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -506,6 +528,9 @@ QStackedWidget#stackedWidget{
                   <width>75</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="toolTip">
+                 <string>Revert changes to the configuration. Reload configuration file.</string>
                 </property>
                 <property name="text">
                  <string>Reset</string>
@@ -555,6 +580,7 @@ QStackedWidget#stackedWidget{
     <property name="title">
      <string>&amp;Options</string>
     </property>
+    <addaction name="actionProperties"/>
     <addaction name="actionUpdate_Joysticks"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -626,6 +652,11 @@ QStackedWidget#stackedWidget{
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="text">
+    <string>Properties</string>
    </property>
   </action>
  </widget>

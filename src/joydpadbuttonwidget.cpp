@@ -11,7 +11,7 @@ JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, QWidget *parent) :
 QString JoyDPadButtonWidget::generateLabel()
 {
     QString temp;
-    if (!button->getActionName().isEmpty())
+    if (!button->getActionName().isEmpty() && displayNames)
     {
         temp = button->getActionName();
     }

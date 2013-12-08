@@ -8,6 +8,7 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(QWidget *parent
 {
     this->button = 0;
     this->isflashing = false;
+    this->displayNames = false;
 }
 
 JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, QWidget *parent) :
@@ -15,6 +16,7 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
 {
     this->button = button;
     this->isflashing = false;
+    this->displayNames = false;
 
     refreshLabel();
     enableFlashes();
@@ -72,7 +74,7 @@ void JoyControlStickButtonPushButton::refreshLabel()
 {
     if (button)
     {
-        if (!button->getActionName().isEmpty())
+        if (!button->getActionName().isEmpty() && displayNames)
         {
             setText(button->getActionName().replace("&", "&&"));
         }
@@ -100,4 +102,20 @@ void JoyControlStickButtonPushButton::enableFlashes()
         connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
         connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
     }
+}
+
+void JoyControlStickButtonPushButton::toggleNameDisplay()
+{
+    displayNames = !displayNames;
+    refreshLabel();
+}
+
+void JoyControlStickButtonPushButton::setDisplayNames(bool display)
+{
+    displayNames = display;
+}
+
+bool JoyControlStickButtonPushButton::isDisplayingNames()
+{
+    return displayNames;
 }

@@ -42,6 +42,7 @@ protected:
     QPushButton *loadButton;
     QPushButton *saveButton;
     QPushButton *resetButton;
+    QPushButton *namesPushButton;
     QPushButton *saveAsButton;
     QComboBox *configBox;
     QGridLayout *gridLayout;
@@ -83,6 +84,7 @@ protected:
     QSpacerItem *verticalSpacer_3;
 
     Joystick *joystick;
+    bool displayingNames;
 
 signals:
     void joystickRefreshRequested();
@@ -97,6 +99,7 @@ public slots:
 private slots:
     void saveConfigFile();
     void resetJoystick();
+    void toggleNames();
     void saveAsConfig();
     void removeConfig();
     void changeJoyConfig(int index);

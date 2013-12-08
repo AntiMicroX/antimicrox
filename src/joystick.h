@@ -46,6 +46,8 @@ public:
     void setDPadName(int dpadIndex, QString tempName);
     void setVDPadName(int vdpadIndex, QString tempName);
 
+    void resetButtonDownCount();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 

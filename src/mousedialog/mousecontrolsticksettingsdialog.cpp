@@ -52,7 +52,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
-    connect(ui->wheelSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateMouseWheelSpeed(int)));
+    connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
+    connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -240,17 +241,25 @@ void MouseControlStickSettingsDialog::selectSmoothingPreset()
 void MouseControlStickSettingsDialog::calculateWheelSpeedPreset()
 {
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-    int tempWheelSpeed = 0;
+    int tempWheelSpeedX = 0;
+    int tempWheelSpeedY = 0;
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
-        tempWheelSpeed = qMax(tempWheelSpeed, button->getWheelSpeed());
+        tempWheelSpeedX = qMax(tempWheelSpeedX, button->getWheelSpeedX());
+        tempWheelSpeedY = qMax(tempWheelSpeedY, button->getWheelSpeedY());
     }
 
-    ui->wheelSpeedSpinBox->setValue(tempWheelSpeed);
+    ui->wheelHoriSpeedSpinBox->setValue(tempWheelSpeedX);
+    ui->wheelVertSpeedSpinBox->setValue(tempWheelSpeedY);
 }
 
-void MouseControlStickSettingsDialog::updateMouseWheelSpeed(int value)
+void MouseControlStickSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 {
-    stick->setButtonsWheelSpeed(value);
+    stick->setButtonsWheelSpeedX(value);
+}
+
+void MouseControlStickSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
+{
+    stick->setButtonsWheelSpeedY(value);
 }

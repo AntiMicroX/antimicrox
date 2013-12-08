@@ -924,6 +924,18 @@ void JoyControlStick::replaceYAxis(JoyAxis *axis)
     this->axisY->setControlStick(this);
 }
 
+void JoyControlStick::replaceAxes(JoyAxis *axisX, JoyAxis *axisY)
+{
+    this->axisX->removeControlStick();
+    this->axisY->removeControlStick();
+
+    this->axisX = axisX;
+    this->axisY = axisY;
+
+    this->axisX->setControlStick(this);
+    this->axisY->setControlStick(this);
+}
+
 void JoyControlStick::setJoyMode(JoyMode mode)
 {
     currentMode = mode;
@@ -1362,12 +1374,22 @@ QString JoyControlStick::getStickName()
     return stickName;
 }
 
-void JoyControlStick::setButtonsWheelSpeed(int value)
+void JoyControlStick::setButtonsWheelSpeedX(int value)
 {
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
-        button->setWheelSpeed(value);
+        button->setWheelSpeedX(value);
+    }
+}
+
+void JoyControlStick::setButtonsWheelSpeedY(int value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setWheelSpeedY(value);
     }
 }

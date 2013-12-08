@@ -45,15 +45,17 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    virtual QString getPartialName(bool forceFullFormat=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getSlotsSummary();
     virtual QString getSlotsString();
-    virtual QString getName(bool forceFullFormat=false);
+    virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
 
     int getMouseSpeedX();
     int getMouseSpeedY();
-    int getWheelSpeed();
+
+    int getWheelSpeedX();
+    int getWheelSpeedY();
 
     void setChangeSetSelection(int index);
     int getSetSelection();
@@ -120,6 +122,7 @@ protected:
     // Used to denote the SDL index of the actual joypad button
     int index;
     int turboInterval;
+
     QTimer turboTimer;
     QTimer pauseTimer;
     QTimer holdTimer;
@@ -127,20 +130,25 @@ protected:
     QTimer createDeskTimer;
     QTimer releaseDeskTimer;
     QTimer mouseEventTimer;
-    QTimer mouseWheelEventTimer;
+    QTimer mouseWheelVerticalEventTimer;
+    QTimer mouseWheelHorizontalEventTimer;
+
     bool isDown;
     bool toggleActiveState;
     bool useTurbo;
     QList<JoyButtonSlot*> assignments;
     QList<JoyButtonSlot*> activeSlots;
     QString customName;
+
     int mouseSpeedX;
     int mouseSpeedY;
-    int wheelSpeed;
+    int wheelSpeedX;
+    int wheelSpeedY;
 
     int setSelection;
     SetChangeCondition setSelectionCondition;
     int originset;
+
     QListIterator<JoyButtonSlot*> *slotiter;
     JoyButtonSlot *currentPause;
     JoyButtonSlot *currentHold;
@@ -149,7 +157,8 @@ protected:
     JoyButtonSlot *currentDistance;
     JoyButtonSlot *currentMouseEvent;
     JoyButtonSlot *currentRelease;
-    JoyButtonSlot *currentWheelEvent;
+    JoyButtonSlot *currentWheelVerticalEvent;
+    JoyButtonSlot *currentWheelHorizontalEvent;
 
     bool ignoresets;
     QTime buttonHold;
@@ -160,7 +169,8 @@ protected:
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
     QQueue<JoyButtonSlot*> mouseEventQueue;
-    QQueue<JoyButtonSlot*> mouseWheelEventQueue;
+    QQueue<JoyButtonSlot*> mouseWheelVerticalEventQueue;
+    QQueue<JoyButtonSlot*> mouseWheelHorizontalEventQueue;
 
     int currentRawValue;
     VDPad *vdpad;
@@ -201,7 +211,9 @@ public slots:
     void setUseTurbo(bool useTurbo);
     void setMouseSpeedX(int speed);
     void setMouseSpeedY(int speed);
-    void setWheelSpeed(int speed);
+
+    void setWheelSpeedX(int speed);
+    void setWheelSpeedY(int speed);
 
     void setSpringWidth(int value);
     void setSpringHeight(int value);
@@ -227,7 +239,9 @@ private slots:
     void waitForReleaseDeskEvent();
     void pauseEvent();
     void holdEvent();
-    void wheelEvent();
+
+    void wheelEventVertical();
+    void wheelEventHorizontal();
 
     void pauseWaitEvent();
     void checkForSetChange();

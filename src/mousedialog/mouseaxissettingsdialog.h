@@ -35,7 +35,9 @@ public slots:
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
     void updateSmoothingSetting(bool clicked);
-    void updateWheelSpeed(int value);
+
+    void updateWheelSpeedHorizontalSpeed(int value);
+    void updateWheelSpeedVerticalSpeed(int value);
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

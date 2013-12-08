@@ -42,6 +42,7 @@ public:
     void removeControlStick(int index);
     void addVDPad(int index, VDPad *vdpad);
     void removeVDPad(int index);
+    void setIgnoreEventState(bool ignore);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

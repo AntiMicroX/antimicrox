@@ -26,7 +26,7 @@ public:
     int getJoyNumber();
     int getIndex();
     int getRealJoyNumber();
-    virtual QString getName(bool fullForceFormat=false);
+    virtual QString getName(bool fullForceFormat=false, bool displayActionName=false);
     void joyEvent(int value, bool ignoresets=false);
 
     void setJoyMode(JoyMode mode);
@@ -54,7 +54,8 @@ public:
     void setButtonsSmoothing(bool enabled=false);
     bool getButtonsPresetSmoothing();
 
-    void setButtonsWheelSpeed(int value);
+    void setButtonsWheelSpeedX(int value);
+    void setButtonsWheelSpeedY(int value);
 
     QString getDpadName();
 
@@ -82,8 +83,8 @@ protected:
     QString dpadName;
 
 signals:
-    void active(int index);
-    void released(int index);
+    void active(int value);
+    void released(int value);
     void dpadNameChanged();
 
 public slots:
