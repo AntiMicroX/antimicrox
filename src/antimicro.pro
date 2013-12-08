@@ -39,11 +39,8 @@ unix {
 }
 
 TRANSLATIONS = $$files(../share/antimicro/translations/antimicro_*.ts)
-
-# qmfiles will be used to specify the path of the initial compiled translations
-# before installing
-qmfiles.path = $$INSTALL_PREFIX/share/antimicro/translations
-for(tsfile, TRANSLATIONS): qmfiles.files += $$replace(tsfile, ".ts", ".qm")
+programtranslations.path = $$INSTALL_PREFIX/share/antimicro/translations
+for(tsfile, TRANSLATIONS): programtranslations.files += $$replace(tsfile, ".ts", ".qm")
 
 equals(OUT_PWD, $$PWD) {
     unix {
@@ -52,16 +49,28 @@ equals(OUT_PWD, $$PWD) {
         updateqm.commands = $$[QT_INSTALL_BINS]\\lrelease.exe $$_PRO_FILE_
     }
 
-    # Compile translations files in source tree
-    compiledtranslations.path = $$qmfiles.path
-    compiledtranslations.files = $$qmfiles.files
+    finaltranslations.path = $$programtranslations.path
+    finaltranslations.files = $$programtranslations.files
 
 } else {
-    # Specify path of final installed qm files
-    compiledtranslations.path = $$qmfiles.path
+    finaltranslations.path = $$programtranslations.path
 
-    # Determine source translation directory and intermediate output
-    # translation directory
+    for(transfile, TRANSLATIONS) {
+        unix {
+            fulltranslations += $$OUT_PWD/$$transfile
+        } else:win32 {
+            fulltranslations += $$PWD/$$transfile
+        }
+    }
+
+    for(qmfile, programtranslations.files) {
+        unix {
+            finaltranslations.files += $$OUT_PWD/$$qmfile
+        } else:win32 {
+            finaltranslations.files += $$DESTDIR/$$replace(qmfile, "\.\.", "")
+        }
+    }
+
     TRANSLATION_IN_DIR = $${PWD}/../share/antimicro/translations
     unix {
         TRANSLATION_OUT_DIR = $${OUT_PWD}/../share/antimicro/translations
@@ -69,33 +78,11 @@ equals(OUT_PWD, $$PWD) {
         TRANSLATION_OUT_DIR = $${DESTDIR}/share/antimicro/translations
     }
 
-    # Use intermediate variable in order to not interfere with lupdate
-    for(transfile, TRANSLATIONS) {
-        unix {
-            fulltranslations += $$TRANSLATION_OUT_DIR/$$basename(transfile)
-        } else:win32 {
-            # Using the raw path so the separators must be changed
-            fulltranslations += $$replace(TRANSLATION_OUT_DIR, "/", "\\")\\$$basename(transfile)
-        }
-    }
-
-    # Build qm install files list
-    for(qmfile, qmfiles.files) {
-        unix {
-            compiledtranslations.files += $$TRANSLATION_OUT_DIR/$$basename(qmfile)
-        } else:win32 {
-            compiledtranslations.files += $$TRANSLATION_OUT_DIR/$$basename(qmfile)
-        }
-    }
-
-    # Copy .ts files to build directory and compile
-    # to .qm files
     unix {
         updateqm.commands = $(MKDIR) $${TRANSLATION_OUT_DIR} && \
-            $(COPY_DIR) $${TRANSLATION_IN_DIR}/* $${TRANSLATION_OUT_DIR} && \
+            $(COPY_DIR) $${TRANSLATION_IN_DIR} $${TRANSLATION_OUT_DIR} && \
             $$[QT_INSTALL_BINS]/lrelease $$fulltranslations
     } else:win32 {
-        # Use shell_path function here for reference. Not available in Qt4
         greaterThan(QT_MAJOR_VERSION, 4) {
             TRANSLATION_IN_DIR = $$shell_path($$TRANSLATION_IN_DIR)
             TRANSLATION_OUT_DIR = $$shell_path($$TRANSLATION_OUT_DIR)
@@ -110,20 +97,11 @@ equals(OUT_PWD, $$PWD) {
     }
 }
 
-# qm files will not exist before running qmake. Need this to workaround that
-compiledtranslations.CONFIG += no_check_exist
+finaltranslations.CONFIG += no_check_exist
 
-# Add updateqm rule to QMAKE_EXTRA_TARGETS
 updateqm.target = updateqm
 QMAKE_EXTRA_TARGETS += updateqm
-
-# Create rule to copy required SDL dll file to output build directory
-win32 {
-    copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $$replace(DESTDIR, "/", "\\")
-    copy_sdl_dll.target = copy_sdl_dll
-
-    QMAKE_EXTRA_TARGETS += copy_sdl_dll
-}
+PRE_TARGETDEPS += updateqm
 
 TARGET = antimicro
 TEMPLATE = app
@@ -177,9 +155,7 @@ SOURCES += main.cpp\
     mousedialog/mousebuttonsettingsdialog.cpp \
     mousedialog/mousedpadsettingsdialog.cpp \
     joytabwidgetcontainer.cpp \
-    mousedialog/springmoderegionpreview.cpp \
-    joystickstatuswindow.cpp \
-    joybuttonstatusbox.cpp
+    mousedialog/springmoderegionpreview.cpp
 
 
 unix {
@@ -238,9 +214,7 @@ HEADERS  += mainwindow.h \
     mousedialog/mousebuttonsettingsdialog.h \
     mousedialog/mousedpadsettingsdialog.h \
     joytabwidgetcontainer.h \
-    mousedialog/springmoderegionpreview.h \
-    joystickstatuswindow.h \
-    joybuttonstatusbox.h
+    mousedialog/springmoderegionpreview.h
 
 
 unix {
@@ -259,8 +233,7 @@ FORMS    += mainwindow.ui \
     advancestickassignmentdialog.ui \
     dpadeditdialog.ui \
     quicksetdialog.ui \
-    mousesettingsdialog.ui \
-    joystickstatuswindow.ui
+    mousesettingsdialog.ui
 
 
 unix {
@@ -281,18 +254,10 @@ win32 {
   RC_FILE += antimicro.rc
 }
 
-# Force updateqm to run before attempting to install
-# compiled translation files
-compiledtranslations.depends = updateqm
-
-INSTALLS += target compiledtranslations
-
-# Install platform-dependent files
+INSTALLS += target finaltranslations
 unix {
     INSTALLS += desktop deskicon
 } else:win32 {
-    # Copy all required release build DLL files that a packaged
-    # release build of the program will need to be able to run
     extradlls = $$[QT_INSTALL_BINS]\\icudt51.dll \
         $$[QT_INSTALL_BINS]\\icuin51.dll \
         $$[QT_INSTALL_BINS]\\icuuc51.dll \
@@ -302,50 +267,28 @@ unix {
         $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
         $$[QT_INSTALL_BINS]\\Qt5Network.dll \
         $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
+        $$[QT_INSTALL_BINS]\\libstdc++-6.dll \
         ..\\SDL-1.2.15\\bin\\SDL.dll
-        $$[QT_INSTALL_BINS]\\libstdc++-6.dll
 
-    install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
+    copy_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
     for(dllfile, extradlls) {
-        install_dlls.extra +=  $(COPY) \"$$dllfile\" $${install_dlls.path} &
-        install_dlls.files += $$dllfile
+        copy_dlls.extra +=  $(COPY) \"$$dllfile\" $${copy_dlls.path} &
     }
 
-    # Install path will be different for the qwindows.dll platform plugin. Needs to be separated
-    # from the other copy commands
-    install_platforms_dll.path = $${install_dlls.path}\\platforms
-    install_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${install_platforms_dll.path}
-    install_platforms_dll.files = $$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll
+    copy_platforms_dll.path = $${copy_dlls.path}\\platforms
+    copy_platforms_dll.extra = $(COPY) \"$$[QT_INSTALL_BINS]\\..\\plugins\\platforms\\qwindows.dll\" $${copy_platforms_dll.path}
 
-    INSTALLS += install_dlls install_platforms_dll
+    INSTALLS += copy_dlls copy_platforms_dll
 }
 
-win32 {
-    # Build MSI installer
-    MSIFOLDER = $$shell_path($${PWD}/../windows)
-    buildmsi.path = MSIFOLDER
-    buildmsi.commands = \
-                        \"$(WIX)bin\candle.exe\" \"$$MSIFOLDER\AntiMicro.wxs\" -out \"$$MSIFOLDER\AntiMicro.wixobj\" -sw1113 && \
-                        \"$(WIX)bin\light.exe\" \"$$MSIFOLDER\AntiMicro.wixobj\" -out \"$$MSIFOLDER\AntiMicro.msi\" -sw1076 -spdb
-    buildmsi.target = buildmsi
-
-    msipackage.files += \"$$MSIFOLDER\AntiMicro.wixobj\"
-    msipackage.files += \"$$MSIFOLDER\AntiMicro.msi\"
-
-    QMAKE_EXTRA_TARGETS += buildmsi
-    QMAKE_CLEAN += $$msipackage.files
-}
 
 OTHER_FILES += \
     ../gpl.txt \
     ../other/antimicro.desktop
 
-
-# Add application icon on Windows
 win32 {
   OTHER_FILES += \
   antimicro.rc
 }
 
-# Have intermediate qm files deleted during make clean
-QMAKE_CLEAN += $$compiledtranslations.files
+QMAKE_CLEAN += $$finaltranslations.files
