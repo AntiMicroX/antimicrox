@@ -320,6 +320,26 @@ unix {
     INSTALLS += install_dlls install_platforms_dll
 }
 
+win32 {
+    # Build MSI package
+#    WIX = $(WIX)
+#    isEmpty($$WIX) {
+#        message("WIX environment variable is not set or found, the MSI building process will fail.")
+#    }
+
+    MSIFOLDER = $$shell_path($${PWD}/../windows)
+    buildmsi.path = MSIFOLDER
+    buildmsi.commands = \
+                        \"$(WIX)bin\candle.exe\" \"$$MSIFOLDER\AntiMicro.wxs\" -out \"$$MSIFOLDER\AntiMicro.wixobj\" -sw1113 && \
+                        \"$(WIX)bin\light.exe\" \"$$MSIFOLDER\AntiMicro.wixobj\" -out \"$$MSIFOLDER\AntiMicro.msi\" -sw1076 -spdb
+    buildmsi.target = buildmsi
+
+    msipackage.files += \"$$MSIFOLDER\AntiMicro.wixobj\"
+    msipackage.files += \"$$MSIFOLDER\AntiMicro.msi\"
+
+    QMAKE_EXTRA_TARGETS += buildmsi
+    QMAKE_CLEAN += $$msipackage.files
+}
 
 OTHER_FILES += \
     ../gpl.txt \

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="1.1.1" Manufacturer="AntiMicro" UpgradeCode="0E59162B-FBE8-4B82-8391-88CBFFC1C15F">
+        <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" Compressed="yes" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder" Name="PFiles">
+                <Directory Id="ANTIMICRO" Name="AntiMicro">
+                    <Component Id="ANTIMICRO.EXE" Guid="90E3430C-0DE6-484D-AEDE-3DE77D1F63D9">
+                        <File Source="..\antimicro\antimicro.exe">
+                            <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="AntiMicro" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="DesktopIcon.exe" IconIndex="0" />
+                            <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="AntiMicro" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
+                        </File>
+                    </Component>
+                    <Component Id="ICUDT51.DLL" Guid="E1D9A8BF-6C31-470B-8333-ECFE5DECB701">
+                        <File Source="..\antimicro\icudt51.dll" />
+                    </Component>
+                    <Component Id="ICUIN51.DLL" Guid="B4E3E010-C40B-4250-A6DD-2144081633EE">
+                        <File Source="..\antimicro\icuin51.dll" />
+                    </Component>
+                    <Component Id="ICUUC51.DLL" Guid="C68F7C85-14B0-4F54-8B70-7CE65101ACE6">
+                        <File Source="..\antimicro\icuuc51.dll" />
+                    </Component>
+                    <Component Id="LIBGCC_S_DW2_1.DLL" Guid="497DCE36-CFB9-4380-888A-E62BB6C064CA">
+                        <File Id="LIBGCC_S_DW2_1.DLL" Source="..\antimicro\libgcc_s_dw2-1.dll" />
+                    </Component>
+                    <Component Id="LIBSTDC___6.DLL" Guid="56890D38-86FD-4476-A9EE-D555DA49203B">
+                        <File Id="LIBSTDC___6.DLL" Source="..\antimicro\libstdc++-6.dll" />
+                    </Component>
+                    <Component Id="LIBWINPTHREAD_1.DLL" Guid="D24A7934-859F-4622-B2B8-5387997B0FF4">
+                        <File Id="LIBWINPTHREAD_1.DLL" Source="..\antimicro\libwinpthread-1.dll" />
+                    </Component>
+                    <Component Id="QT5CORE.DLL" Guid="AB82425D-236A-48EE-927E-9E63AB3D33C5">
+                        <File Source="..\antimicro\Qt5Core.dll" />
+                    </Component>
+                    <Component Id="QT5GUI.DLL" Guid="BF3DC188-8F6A-4FB4-A6C7-AD7451CBA552">
+                        <File Source="..\antimicro\Qt5Gui.dll" />
+                    </Component>
+                    <Component Id="QT5NETWORK.DLL" Guid="8CBD5157-60BA-43F0-8B37-9E7A47989770">
+                        <File Source="..\antimicro\Qt5Network.dll" />
+                    </Component>
+                    <Component Id="QT5WIDGETS.DLL" Guid="A9D83DBB-D9CD-4347-9B89-F29794E92048">
+                        <File Source="..\antimicro\Qt5Widgets.dll" />
+                    </Component>
+                    <Component Id="SDL.DLL" Guid="89898F34-8345-414E-9210-85B53FD34D53">
+                        <File Source="..\antimicro\SDL.dll" />
+                    </Component>
+                    <Directory Id="PLATFORMS" Name="platforms">
+                        <Component Id="QWINDOWS.DLL" Guid="F2A419FC-7EA8-436C-8CE9-68755251E39A">
+                            <File Source="..\antimicro\platforms\qwindows.dll" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="SHARE" Name="share">
+                        <Directory Id="ANTIMICRO_1" Name="antimicro">
+                            <Directory Id="TRANSLATIONS" Name="translations">
+                                <Component Id="ANTIMICRO_BR.QM" Guid="B78BAC38-6EF6-4BFE-A904-85000FD73A9E">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_br.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_DE.QM" Guid="C318B49E-BD46-4DD7-89AF-B27AFA85569F">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_de.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_EN.QM" Guid="3DDDAA90-D307-4560-83B9-09CB70B401C5">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_en.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_FR.QM" Guid="A0A9F9F1-E999-4398-9483-CA98DD90191D">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_fr.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_SR.QM" Guid="E4EA2E15-4C20-4C00-AF5E-2048EE5717CC">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_sr.qm" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <Directory Id="DesktopFolder" />
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ProgramMenuDir" Name="AntiMicro">
+                    <Component Id="StartMenuShortcuts" Guid="9EF9C708-F53C-44A2-8604-8787CD6ECCCA">
+                        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+                        <Shortcut Id="UninstallProduct" Name="Uninstall AntiMicro" Description="Uninstalls AntiMicro" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+            <ComponentRef Id="ANTIMICRO.EXE" />
+            <ComponentRef Id="ICUDT51.DLL" />
+            <ComponentRef Id="ICUIN51.DLL" />
+            <ComponentRef Id="ICUUC51.DLL" />
+            <ComponentRef Id="LIBGCC_S_DW2_1.DLL" />
+            <ComponentRef Id="LIBSTDC___6.DLL" />
+            <ComponentRef Id="LIBWINPTHREAD_1.DLL" />
+            <ComponentRef Id="QT5CORE.DLL" />
+            <ComponentRef Id="QT5GUI.DLL" />
+            <ComponentRef Id="QT5NETWORK.DLL" />
+            <ComponentRef Id="QT5WIDGETS.DLL" />
+            <ComponentRef Id="SDL.DLL" />
+            <ComponentRef Id="QWINDOWS.DLL" />
+            <ComponentRef Id="ANTIMICRO_BR.QM" />
+            <ComponentRef Id="ANTIMICRO_DE.QM" />
+            <ComponentRef Id="ANTIMICRO_EN.QM" />
+            <ComponentRef Id="ANTIMICRO_FR.QM" />
+            <ComponentRef Id="ANTIMICRO_SR.QM" />
+            <ComponentRef Id="StartMenuShortcuts" />
+        </Feature>
+        <UI />
+        <Icon Id="DesktopIcon.exe" SourceFile="..\antimicro\antimicro.exe" />
+        <Icon Id="StartMenuIcon.exe" SourceFile="..\antimicro\antimicro.exe" />
+    </Product>
+</Wix>
