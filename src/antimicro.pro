@@ -322,20 +322,26 @@ unix {
 
 win32 {
     # Build MSI package
-#    WIX = $(WIX)
-#    isEmpty($$WIX) {
-#        message("WIX environment variable is not set or found, the MSI building process will fail.")
-#    }
-
     MSIFOLDER = $$shell_path($${PWD}/../windows)
+    WIXENV = $$(WIX)
+    WIXWXS = \"$$MSIFOLDER\AntiMicro.wxs\"
+    WIXOBJ = \"$$MSIFOLDER\AntiMicro.wixobj\"
+    WIXMSI = \"$$MSIFOLDER\AntiMicro.msi\"
+
+    isEmpty(WIXENV) {
+        buildmsi.commands = @echo MSI package build aborted: WIX environment variable not defined.
+    }
+    else {
+        buildmsi.commands = @echo MSI package build in progress, please wait ... && \
+                            \"$$WIXENV\bin\candle.exe\" $$WIXWXS -out $$WIXOBJ -sw1113 && \
+                            \"$$WIXENV\bin\light.exe\" $$WIXOBJ -out $$WIXMSI -sw1076 -spdb
+    }
+
     buildmsi.path = MSIFOLDER
-    buildmsi.commands = \
-                        \"$(WIX)bin\candle.exe\" \"$$MSIFOLDER\AntiMicro.wxs\" -out \"$$MSIFOLDER\AntiMicro.wixobj\" -sw1113 && \
-                        \"$(WIX)bin\light.exe\" \"$$MSIFOLDER\AntiMicro.wixobj\" -out \"$$MSIFOLDER\AntiMicro.msi\" -sw1076 -spdb
     buildmsi.target = buildmsi
 
-    msipackage.files += \"$$MSIFOLDER\AntiMicro.wixobj\"
-    msipackage.files += \"$$MSIFOLDER\AntiMicro.msi\"
+    msipackage.files += $$WIXOBJ
+    msipackage.files += $$WIXMSI
 
     QMAKE_EXTRA_TARGETS += buildmsi
     QMAKE_CLEAN += $$msipackage.files

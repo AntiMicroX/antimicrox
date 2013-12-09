@@ -92,7 +92,7 @@ translations for the application.
 
 * you have just built AntiMicro for Windows :D
 
-##Building the Windows Install Package (MSI) for Windows
+##Building the Windows Installer Package (MSI)
 
 (these instructions have been tested with WiX 3.8)
 
@@ -102,7 +102,9 @@ translations for the application.
 
 * if Qt Creator is running while you install or upgrade to a newer version then make sure to restart it as it will either not find that environment variable or fetch the old (incorrect) value from the previous version
 
-* to build the MSI package, add a 'Make Build Step' to the project and specify 'buildmsi' as the argument, at your convenience you'll disable/enable it as needed
+* to build the MSI package, add a 'Make Build Step' after a 'make install' step to the project and specify 'buildmsi' as the argument, at your convenience you'll disable/enable it as needed
+
+* currently it relies on INSTALL to copy files at the location they are harvested, this might change in the future
 
 Notes about the WXS file and the building process :
 
@@ -116,6 +118,7 @@ Notes about the WXS file and the building process :
 
 * all of these warnings have been made silent through the use of command-line switches.
 
+* built MSI package will be placed in /windows
 
 ## Ideas For Future Features
 
