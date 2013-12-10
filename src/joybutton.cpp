@@ -2334,8 +2334,8 @@ bool JoyButton::isDefault()
     value = value && (smoothing == false);
     value = value && (actionName.isEmpty());
     value = value && (buttonName.isEmpty());
-    value = value && (wheelSpeedX != 20);
-    value = value && (wheelSpeedY != 20);
+    value = value && (wheelSpeedX == 20);
+    value = value && (wheelSpeedY == 20);
     return value;
 }
 
