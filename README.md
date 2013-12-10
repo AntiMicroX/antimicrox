@@ -92,6 +92,33 @@ translations for the application.
 
 * you have just built AntiMicro for Windows :D
 
+##Building the Windows Installer Package (MSI)
+
+(these instructions have been tested with WiX 3.8)
+
+* you need to have WiX installed, grab it at http://wixtoolset.org/
+
+* the building process relies on the WIX environment, it is recommended that you download the installer instead of the binaries as it it will set it up for you
+
+* if Qt Creator is running while you install or upgrade to a newer version then make sure to restart it as it will either not find that environment variable or fetch the old (incorrect) value from the previous version
+
+* to build the MSI package, add a 'Make Build Step' after a 'make install' step to the project and specify 'buildmsi' as the argument, at your convenience you'll disable/enable it as needed
+
+* currently it relies on INSTALL to copy files at the location they are harvested, this might change in the future
+
+Notes about the WXS file and the building process :
+
+* the WXS file has been generated with WixEdit and manually modified to contain relative paths, it will only work from the 'windows' sub-folder (or any other)
+
+* WixCop can be run against the WXS file and it should not point out any errors as the WXS has been corrected previously with the -F switch
+
+* CNDL1113 warning : shortucts are advertised, left as-is as a nice feature about them is that if the program gets corrupted it will be repaired by Windows Installer, by design the shortcuts will not point to antimicro.exe as a regular LNK file
+
+* LGHT1073 warning : SDL.DLL does not specify its language in the language column, not a big deal; it could be recompiled but it's pretty much a time waist as it would only prevent this warning
+
+* all of these warnings have been made silent through the use of command-line switches.
+
+* built MSI package will be placed in /windows
 
 ## Ideas For Future Features
 

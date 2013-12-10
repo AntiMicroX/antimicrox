@@ -320,6 +320,32 @@ unix {
     INSTALLS += install_dlls install_platforms_dll
 }
 
+win32 {
+    # Build MSI package
+    MSIFOLDER = $$shell_path($${PWD}/../windows)
+    WIXENV = $$(WIX)
+    WIXWXS = \"$$MSIFOLDER\AntiMicro.wxs\"
+    WIXOBJ = \"$$MSIFOLDER\AntiMicro.wixobj\"
+    WIXMSI = \"$$MSIFOLDER\AntiMicro.msi\"
+
+    isEmpty(WIXENV) {
+        buildmsi.commands = @echo MSI package build aborted: WIX environment variable not defined.
+    }
+    else {
+        buildmsi.commands = @echo MSI package build in progress, please wait ... && \
+                            \"$$WIXENV\bin\candle.exe\" $$WIXWXS -out $$WIXOBJ -sw1113 && \
+                            \"$$WIXENV\bin\light.exe\" $$WIXOBJ -out $$WIXMSI -sw1076 -spdb
+    }
+
+    buildmsi.path = MSIFOLDER
+    buildmsi.target = buildmsi
+
+    msipackage.files += $$WIXOBJ
+    msipackage.files += $$WIXMSI
+
+    QMAKE_EXTRA_TARGETS += buildmsi
+    QMAKE_CLEAN += $$msipackage.files
+}
 
 OTHER_FILES += \
     ../gpl.txt \
