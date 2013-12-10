@@ -651,6 +651,10 @@ void Joystick::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement("joystick");
     xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
+    xml->writeAttribute("appversion", PadderCommon::programVersion);
+
+    xml->writeComment("The SDL name for a joystick is included for informational purposes only.");
+    xml->writeTextElement("sdlname", getSDLName());
 
     for (int i=0; i < getNumberSticks(); i++)
     {
