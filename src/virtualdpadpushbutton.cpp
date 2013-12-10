@@ -112,7 +112,7 @@ void VirtualDPadPushButton::paintEvent(QPaintEvent *event)
     bool reduce = false;
     while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 7)
     {
-        tempScaledFont.setPointSize(painter.font().pointSize()-1);
+        tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
         painter.setFont(tempScaledFont);
         fm = painter.fontMetrics();
         reduce = true;
