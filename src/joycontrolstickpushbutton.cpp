@@ -12,6 +12,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWi
 
     isflashing = false;
     displayNames = false;
+    leftAlignText = false;
 
     refreshLabel();
 
@@ -101,22 +102,41 @@ bool JoyControlStickPushButton::isDisplayingNames()
 
 void JoyControlStickPushButton::paintEvent(QPaintEvent *event)
 {
-    Q_UNUSED(event);
-
     QPainter painter(this);
 
-    QFontMetrics fm = this->fontMetrics();
-    QFont tempWidgetFont = this->font();
     QFont tempScaledFont = painter.font();
+    tempScaledFont.setPointSize(8);
+    QFontMetrics fm(tempScaledFont);
 
-    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 6)
+    bool reduce = false;
+    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 7)
     {
-        tempScaledFont.setPointSize(painter.font().pointSize()-2);
+        tempScaledFont.setPointSize(painter.font().pointSize()-1);
         painter.setFont(tempScaledFont);
         fm = painter.fontMetrics();
+        reduce = true;
     }
 
-    this->setFont(tempScaledFont);
+    bool changeFontSize = this->font().pointSize() != tempScaledFont.pointSize();
+    if (changeFontSize)
+    {
+        if (reduce && !leftAlignText)
+        {
+            leftAlignText = !leftAlignText;
+            setStyleSheet("text-align: left;");
+            this->style()->unpolish(this);
+            this->style()->polish(this);
+        }
+        else if (!reduce && leftAlignText)
+        {
+            leftAlignText = !leftAlignText;
+            setStyleSheet("text-align: center;");
+            this->style()->unpolish(this);
+            this->style()->polish(this);
+        }
+
+        this->setFont(tempScaledFont);
+    }
+
     QPushButton::paintEvent(event);
-    this->setFont(tempWidgetFont);
 }

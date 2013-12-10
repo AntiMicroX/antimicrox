@@ -25,6 +25,7 @@ protected:
     JoyAxis *axis;
     bool isflashing;
     bool displayNames;
+    bool leftAlignText;
 
 signals:
     void flashed(bool flashing);

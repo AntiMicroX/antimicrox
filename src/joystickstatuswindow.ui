@@ -195,7 +195,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_10" stretch="2,1,1">
+      <layout class="QVBoxLayout" name="verticalLayout_10" stretch="0,0,0">
        <item>
         <widget class="QGroupBox" name="axesGroupBox">
          <property name="title">
@@ -225,7 +225,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
                <x>0</x>
                <y>0</y>
                <width>350</width>
-               <height>138</height>
+               <height>131</height>
               </rect>
              </property>
             </widget>
@@ -279,7 +279,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
                <x>0</x>
                <y>0</y>
                <width>350</width>
-               <height>72</height>
+               <height>131</height>
               </rect>
              </property>
             </widget>

@@ -1274,7 +1274,7 @@ QString JoyButton::getSlotsSummary()
             stringlist.append(slot->getSlotString());
             i++;
 
-            if (i > 4)
+            if (i > 4 && iter.hasNext())
             {
                 stringlist.append(" ...");
                 iter.toBack();
