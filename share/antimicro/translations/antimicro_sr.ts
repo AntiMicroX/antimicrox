@@ -38,7 +38,19 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Травис Никлес &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;aybe&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Локализација:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Белџик Теренс &amp;lt;hizo@free.fr&amp;gt; - француски&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Џеј Алеџандар Флеминг &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - српски&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Вагнарок &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - бразилски португалски&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="151"/>
@@ -178,12 +190,149 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should also get your employer (if you work as a programmer) or school, if any, to sign a &amp;quot;copyright disclaimer&amp;quot; for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &amp;lt;http://www.gnu.org/licenses/&amp;gt;.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &amp;lt;http://www.gnu.org/philosophy/why-not-lgpl.html&amp;gt;.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ГНУ-ОВА ОПШТА ЈАВНА ЛИЦЕНЦА&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. издање, 29. јуна 2007.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ауторска права (оригиналне верзије текста):&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;http://fsf.org/&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Сваком је дозвољено да умножава и расподељује дословне примерке овог лиценцног документа, али није дозвољено да се он мења.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Испод је пуно издање ове лиценце на енглеском језику.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; * * *&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version 3, 29 June 2007&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;http://fsf.org/&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Preamble&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Developers that use the GNU GPL protect your rights with two steps:&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;(1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;For the developers&apos; and authors&apos; protection, the GPL clearly explains that there is no warranty for this free software. For both users&apos; and authors&apos; sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users&apos; freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The precise terms and conditions for copying, distribution and modification follow.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;TERMS AND CONDITIONS&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;0. Definitions.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;This License&amp;quot; refers to version 3 of the GNU General Public License.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;Copyright&amp;quot; also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;The Program&amp;quot; refers to any copyrightable work licensed under this License. Each licensee is addressed as &amp;quot;you&amp;quot;. &amp;quot;Licensees&amp;quot; and &amp;quot;recipients&amp;quot; may be individuals or organizations.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To &amp;quot;modify&amp;quot; a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a &amp;quot;modified version&amp;quot; of the earlier work or a work &amp;quot;based on&amp;quot; the earlier work.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A &amp;quot;covered work&amp;quot; means either the unmodified Program or a work based on the Program.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To &amp;quot;propagate&amp;quot; a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To &amp;quot;convey&amp;quot; a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An interactive user interface displays &amp;quot;Appropriate Legal Notices&amp;quot; to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. Source Code.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The &amp;quot;source code&amp;quot; for a work means the preferred form of the work for making modifications to it. &amp;quot;Object code&amp;quot; means any non-source form of a work.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A &amp;quot;Standard Interface&amp;quot; means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The &amp;quot;System Libraries&amp;quot; of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A &amp;quot;Major Component&amp;quot;, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The &amp;quot;Corresponding Source&amp;quot; for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work&apos;s System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Corresponding Source for a work in source code form is that same work.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. Basic Permissions.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. Protecting Users&apos; Legal Rights From Anti-Circumvention Law.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work&apos;s users, your or third parties&apos; legal rights to forbid circumvention of technological measures.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. Conveying Verbatim Copies.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may convey verbatim copies of the Program&apos;s source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. Conveying Modified Source Versions.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;a) The work must carry prominent notices stating that you modified it, and giving a relevant date.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to &amp;quot;keep intact all notices&amp;quot;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an &amp;quot;aggregate&amp;quot; if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation&apos;s users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;6. Conveying Non-Source Forms.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A &amp;quot;User Product&amp;quot; is either (1) a &amp;quot;consumer product&amp;quot;, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, &amp;quot;normally used&amp;quot; refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;Installation Information&amp;quot; for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;7. Additional Terms.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;Additional permissions&amp;quot; are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;d) Limiting the use for publicity purposes of names of licensors or authors of the material; or&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All other non-permissive additional terms are considered &amp;quot;further restrictions&amp;quot; within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;8. Termination.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;9. Acceptance Not Required for Having Copies.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;10. Automatic Licensing of Downstream Recipients.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An &amp;quot;entity transaction&amp;quot; is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party&apos;s predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;11. Patents.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A &amp;quot;contributor&amp;quot; is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor&apos;s &amp;quot;contributor version&amp;quot;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A contributor&apos;s &amp;quot;essential patent claims&amp;quot; are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, &amp;quot;control&amp;quot; includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor&apos;s essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;In the following three paragraphs, a &amp;quot;patent license&amp;quot; is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To &amp;quot;grant&amp;quot; such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. &amp;quot;Knowingly relying&amp;quot; means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient&apos;s use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A patent license is &amp;quot;discriminatory&amp;quot; if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;12. No Surrender of Others&apos; Freedom.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;13. Use with the GNU Affero General Public License.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;14. Revised Versions of this License.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License &amp;quot;or any later version&amp;quot; applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy&apos;s public statement of acceptance of a version permanently authorizes you to choose that version for the Program.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;15. Disclaimer of Warranty.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;16. Limitation of Liability.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;How to Apply These Terms to Your New Programs&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you develop a new program, and you want it to be of the greatest possible use to the public, the best way to achieve this is to make it free software which everyone can redistribute and change under these terms.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To do so, attach the following notices to the program. It is safest to attach them to the start of each source file to most effectively state the exclusion of warranty; and each file should have at least the &amp;quot;copyright&amp;quot; line and a pointer to where the full notice is found.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;one line to give the program&apos;s name and a brief idea of what it does.&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (C) &amp;lt;year&amp;gt; &amp;lt;name of author&amp;gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with this program. If not, see &amp;lt;http://www.gnu.org/licenses/&amp;gt;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Also add information on how to contact you by electronic and paper mail.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;program&amp;gt; Copyright (C) &amp;lt;year&amp;gt; &amp;lt;name of author&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program comes with ABSOLUTELY NO WARRANTY; for details type `show w&apos;. This is free software, and you are welcome to redistribute it under certain conditions; type `show c&apos; for details.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The hypothetical commands `show w&apos; and `show c&apos; should show the appropriate parts of the General Public License. Of course, your program&apos;s commands might be different; for a GUI interface, you would use an &amp;quot;about box&amp;quot;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should also get your employer (if you work as a programmer) or school, if any, to sign a &amp;quot;copyright disclaimer&amp;quot; for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &amp;lt;http://www.gnu.org/licenses/&amp;gt;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &amp;lt;http://www.gnu.org/philosophy/why-not-lgpl.html&amp;gt;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="316"/>
         <source>Copyright: 2013</source>
-        <translation>2013 — Нека права су задржана</translation>
+        <translation>Сва права задржана ©2013</translation>
     </message>
 </context>
 <context>
@@ -227,7 +376,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="220"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>Врти</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="191"/>
@@ -264,17 +413,17 @@ past the interval specified.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="372"/>
         <source>0.01s</source>
-        <translation>0,01 сек.</translation>
+        <translation>0,01 сек</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="411"/>
         <source>0s</source>
-        <translation>0 сек.</translation>
+        <translation>0 сек</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="176"/>
         <source>Insert a pause that occurs in between key presses.</source>
-        <translation type="unfinished"></translation>
+        <translation>Време између притиска два притиска дугмета.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="198"/>
@@ -304,7 +453,7 @@ a certain range past the designated dead zone.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="272"/>
         <source>Insert a new blank slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Унеси нов, празан слот.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="287"/>
@@ -314,22 +463,22 @@ a certain range past the designated dead zone.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="302"/>
         <source>Clear all currently assigned slots.</source>
-        <translation>Уклони се тренутно придружене слотове.</translation>
+        <translation>Уклони све већ придружене слотове.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="356"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Одређивање трајања за већ унет Пауза/Држи слот.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="387"/>
         <source>0m</source>
-        <translation type="unfinished">0m</translation>
+        <translation>0 мин</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="435"/>
         <source>0ms</source>
-        <translation type="unfinished">10,0/сек. {0m?}</translation>
+        <translation>0 милис</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="533"/>
@@ -354,22 +503,24 @@ a certain range past the designated dead zone.</source>
 by a specified percentage while the action is being processed.
 This can be useful for slowing down the mouse while
 sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогућава се процентуална промена свих подешавања 
+брзине миша за време трајања ове радње, што може бити 
+важно за смањење брзине померања миша („снајперисти“).</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="245"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>Мишар</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="482"/>
         <source>Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>Брзина Мишара:</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="498"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставите промену брзине померања миша у процентима.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="606"/>
@@ -386,7 +537,7 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="736"/>
         <source>0.10s</source>
-        <translation>0,10 сек.</translation>
+        <translation>0,10 сек</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="806"/>
@@ -396,7 +547,7 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="813"/>
         <source>10.0/s</source>
-        <translation>10,0/сек.</translation>
+        <translation>10,0/сек</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="850"/>
@@ -529,7 +680,7 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation>Придружвање Управљача/Тастатуре</translation>
+        <translation>Придружвање Управљача/Тастера</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="41"/>
@@ -539,13 +690,14 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation>Д-тастатуре</translation>
+        <translatorcomment>Тастери правца или смера (дирекционални)</translatorcomment>
+        <translation>Д-тастери</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="342"/>
         <source>%1 (Joystick %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Џојстик %2)</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="108"/>
@@ -567,7 +719,7 @@ sniping.</source>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="519"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="529"/>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Придружи</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="170"/>
@@ -589,12 +741,13 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="355"/>
         <source>Number of Physical DPads: %1</source>
-        <translation>Број стварних Д-тастатура: %1</translation>
+        <translation>Број стварних Д-тастера: %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="386"/>
         <source>Virtual DPad 1</source>
-        <translation>Привидна Д-тастатура 1</translation>
+        <translatorcomment>Патворено = Витуелно</translatorcomment>
+        <translation>Патворен Д-тастатер 1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="482"/>
@@ -651,22 +804,22 @@ sniping.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="863"/>
         <source>Move stick 1 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Померите хоризонтално 1. управљач</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="877"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Померите вертикално 1. управљач</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="906"/>
         <source>Move stick 2 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Померите хоризонтално 2. управљач</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="921"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Померите вертикално 2. управљач</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="980"/>
@@ -674,7 +827,7 @@ sniping.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="1088"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="1142"/>
         <source>Press a button or move an axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Притисните дугме или померите управљач</translation>
     </message>
 </context>
 <context>
@@ -744,17 +897,17 @@ sniping.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="446"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="456"/>
         <source>Specify the name of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Одредите Назив осе(правца).</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="465"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="258"/>
@@ -819,7 +972,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="405"/>
         <source>Set</source>
-        <translation type="unfinished">Подеси</translation>
+        <translation>Постави</translation>
     </message>
 </context>
 <context>
@@ -875,23 +1028,24 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="185"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="195"/>
         <source>Specify the name of a button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Унесите назив за дугме.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="212"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Радња:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="222"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Одредите радњу која ће се извршавати при 
+употреби овог дугмета.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="249"/>
@@ -914,7 +1068,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="78"/>
         <source>Profile location %1 does not exist.</source>
-        <translation>Путања до профила „%1“ не постоји</translation>
+        <translation>Путања до профила „%1“ не постоји.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="97"/>
@@ -960,7 +1114,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="125"/>
         <source>Launch program without the main window displayed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Покреће програм не приказујући главни прозор.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="127"/>
@@ -1023,7 +1177,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation>Нумерички део тастатуре</translation>
+        <translation>Нумеричка тастатура</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="81"/>
@@ -1033,22 +1187,22 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Употреба Д-тастера:</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="148"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="158"/>
         <source>Specify the name of a dpad.</source>
-        <translation type="unfinished"></translation>
+        <translation>Унесите назив за Д-тастер.</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="167"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="107"/>
@@ -1068,7 +1222,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadeditdialog.cpp" line="310"/>
         <source>DPad</source>
-        <translation type="unfinished">Д-тастатура</translation>
+        <translation>Д-тастер</translation>
     </message>
 </context>
 <context>
@@ -1170,12 +1324,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="251"/>
         <source>B4</source>
-        <translation type="unfinished"></translation>
+        <translation>Дугме 4</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="254"/>
         <source>B5</source>
-        <translation type="unfinished"></translation>
+        <translation>Дугме 5</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="272"/>
@@ -1190,7 +1344,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="300"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>Врти</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="304"/>
@@ -1205,7 +1359,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="327"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>Мишар</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="334"/>
@@ -1229,14 +1383,14 @@ this button is being used.</source>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="42"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="50"/>
         <source>Up</source>
-        <translation>Горе</translation>
+        <translation>Напред</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="30"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="46"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="54"/>
         <source>Down</source>
-        <translation>Доле</translation>
+        <translation>Назад</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="34"/>
@@ -1261,7 +1415,7 @@ this button is being used.</source>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="68"/>
         <location filename="../../../src/joycontrolstickbutton.cpp" line="74"/>
         <source>Button</source>
-        <translation type="unfinished">Дугме</translation>
+        <translation>Дугме</translation>
     </message>
 </context>
 <context>
@@ -1337,7 +1491,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="286"/>
         <source>NumPad</source>
-        <translation>Нумерички део тастатуре</translation>
+        <translation>Нумеричка тастатура</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="291"/>
@@ -1347,22 +1501,22 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="303"/>
         <source>Stick Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Начин рада управљача:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="507"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="517"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Унесите назив за аналогни управљач.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="526"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="317"/>
@@ -1392,17 +1546,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="366"/>
         <source>Set</source>
-        <translation type="unfinished">Подеси</translation>
+        <translation>Постави</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="369"/>
         <source>Stick </source>
-        <translation type="unfinished"></translation>
+        <translation>Управљач </translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="373"/>
         <source>Stick %1</source>
-        <translation type="unfinished">Управљач %1</translation>
+        <translation>Управљач %1</translation>
     </message>
 </context>
 <context>
@@ -1419,7 +1573,7 @@ this button is being used.</source>
         <location filename="../../../src/joydpad.cpp" line="84"/>
         <location filename="../../../src/joydpad.cpp" line="91"/>
         <source>DPad</source>
-        <translation type="unfinished">Д-тастатура</translation>
+        <translation>Д-тастер</translation>
     </message>
 </context>
 <context>
@@ -1456,7 +1610,7 @@ this button is being used.</source>
         <location filename="../../../src/joydpadbutton.cpp" line="71"/>
         <location filename="../../../src/joydpadbutton.cpp" line="77"/>
         <source>Button</source>
-        <translation type="unfinished">Дугме</translation>
+        <translation>Дугме</translation>
     </message>
 </context>
 <context>
@@ -1470,12 +1624,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="39"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="41"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони подешавање са текуће листе.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="47"/>
@@ -1485,7 +1639,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="49"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Учитај датотеку са подешавањима.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="55"/>
@@ -1495,17 +1649,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="57"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај измене у датотеку подешавања.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="64"/>
         <source>Save As</source>
-        <translation>Сачувај као...</translation>
+        <translation>Сачувај као</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="66"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај измене у новој датотеци подешавања.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="316"/>
@@ -1520,12 +1674,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="331"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>Називи</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="333"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>Приказивање назива преклопника.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="338"/>
@@ -1535,7 +1689,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="340"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поништи измене и учитај опет датотеку са подешавањем.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="375"/>
@@ -1551,7 +1705,7 @@ this button is being used.</source>
         <location filename="../../../src/joytabwidget.cpp" line="611"/>
         <location filename="../../../src/joytabwidget.cpp" line="719"/>
         <source>DPads</source>
-        <translation>Д-тастатуре</translation>
+        <translation>Д-тастери</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="924"/>
@@ -1574,17 +1728,17 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="23"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Особине</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="50"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Детаљи</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="70"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="77"/>
@@ -1593,57 +1747,57 @@ this button is being used.</source>
         <location filename="../../../src/joystickstatuswindow.ui" line="158"/>
         <location filename="../../../src/joystickstatuswindow.ui" line="185"/>
         <source>%1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="97"/>
         <source>Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Број:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="124"/>
         <source>Axes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Праваца:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="151"/>
         <source>Buttons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дугмади:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="178"/>
         <source>Hats:</source>
-        <translation type="unfinished"></translation>
+        <translation>Хат/ПОВ прекидача:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="202"/>
         <source>Axes</source>
-        <translation type="unfinished"></translation>
+        <translation>Правци</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="240"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Дугмад</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="278"/>
         <source>Hats</source>
-        <translation type="unfinished"></translation>
+        <translation>Хат/ПОВ прекидачи</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="22"/>
         <source>%1 (#%2) Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (#%2) Особине</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="46"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Правац %1</translation>
+        <translation>Правац %1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="99"/>
         <source>Hat %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Хат %1</translation>
     </message>
 </context>
 <context>
@@ -1658,7 +1812,7 @@ this button is being used.</source>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
         <translation>Нисам пронашао џојстик.
- Када га прикључите покрените „Пронађи џојстике“ из главног менија.</translation>
+ Када га прикључите покрените „Поставке &gt; Пронађи џојстике“ из главног менија</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="159"/>
@@ -1668,22 +1822,22 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="177"/>
         <source>&lt;None&gt;</source>
-        <translation>Ништа</translation>
+        <translation>&lt;Ништа&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="201"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони подешавање са текуће листе.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="204"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Учитај датотеку са подешавањима.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="231"/>
@@ -1693,7 +1847,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="255"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај измене у датотеку подешавања.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="258"/>
@@ -1703,12 +1857,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="288"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај измене у новој датотеци подешавања.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="291"/>
         <source>Save As</source>
-        <translation>Сачувај као...</translation>
+        <translation>Сачувај као</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="371"/>
@@ -1763,22 +1917,22 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="503"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>Приказивање назива преклопника.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="506"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>Називи</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="533"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поништи измене и учитај опет датотеку са подешавањем.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="536"/>
         <source>Reset</source>
-        <translation>Поништи</translation>
+        <translation>Врати</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="551"/>
@@ -1851,12 +2005,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="659"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Особине</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="90"/>
         <source>(Joystick %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Џојстик %1)</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="166"/>
@@ -1874,12 +2028,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="24"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="24"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Правац %1</translation>
+        <translation>Правац %1</translation>
     </message>
 </context>
 <context>
@@ -1887,12 +2041,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="24"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="24"/>
         <source>Button %1</source>
-        <translation type="unfinished">Дугме %1</translation>
+        <translation>Дугме %1</translation>
     </message>
 </context>
 <context>
@@ -1900,12 +2054,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="25"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="25"/>
         <source>Stick %1</source>
-        <translation type="unfinished">Управљач %1</translation>
+        <translation>Управљач %1</translation>
     </message>
 </context>
 <context>
@@ -1913,12 +2067,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="23"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="23"/>
         <source>DPad %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Д-тастер %1</translation>
     </message>
 </context>
 <context>
@@ -1926,12 +2080,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="17"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="27"/>
         <source>Mouse Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Мишар:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="34"/>
@@ -1945,109 +2099,114 @@ from the center of the screen depending on how
 much you move an axis. The mouse cursor will
 be returned to the center of the screen when the
 axis is moved back to the dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>У начину „показивач“, омогућава се релативно 
+померање показивача миша у односу на његову 
+текућу позицију.
+
+У „скоковитом“ начину померање показивача миша 
+је од средишта екрана у свим смеровима, 
+а када се показивач миша нађе у мртвој области 
+програм га враћа на средину екрана.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="52"/>
         <source>Cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Показивач</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="57"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>Скоковито</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="75"/>
         <source>Acceleration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрзавање:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="88"/>
         <source>Linear</source>
-        <translation type="unfinished"></translation>
+        <translation>Линеарно</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="93"/>
         <source>Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Квадратно</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="98"/>
         <source>Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Кубно</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="103"/>
         <source>Quadratic Extreme</source>
-        <translation type="unfinished"></translation>
+        <translation>Набуџено квадратно</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="108"/>
         <source>Power Function</source>
-        <translation type="unfinished"></translation>
+        <translation>Нај-функције</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="138"/>
         <source>Mouse Speed Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Брзина померања</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="147"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогућује истовремену промену брзине у оба правца.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="151"/>
         <source>Change Together</source>
-        <translation type="unfinished">Измењуј повезано</translation>
+        <translation>Измењуј повезано</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="178"/>
         <source>Horizontal
 Speed:</source>
-        <translation type="unfinished">Брзина — 
-Хоризонтално:</translation>
+        <translation>Лево→Десно:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="207"/>
         <location filename="../../../src/mousesettingsdialog.ui" line="255"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished">1 = 20 ппс</translation>
+        <translation>1 = 20 тачака/сек</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="226"/>
         <source>Vertical
 Speed:</source>
-        <translation type="unfinished">Брзина — 
-Вертикално:</translation>
+        <translation>Горе→Доле:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="273"/>
         <source>Wheel Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Брзина точкића:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="283"/>
         <source>Set the speed used for mouse wheel movement according
 to number of simulated ticks per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставља брзину померања точкића миша у односу на број направљених откуцаја у секунди.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="308"/>
         <source>1 = 1 tick/s</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 1 откуцај/сек</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="324"/>
         <source>Sensitivity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Осетљивост:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="363"/>
         <source>Smoothing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Углађеност:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="373"/>
@@ -2056,44 +2215,51 @@ of jitter that the mouse cursor will exhibit. Using
 this option will result in the mouse movement being
 slightly less responsive due to changes in the mouse
 speed taking longer to occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>Умањује одступања (треперавост) 
+којима показивач може бити изложен, али 
+на уштрб брзине одзива при померању миша 
+(спорији одзив).</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="405"/>
         <source>Spring Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Скоковито померање</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="427"/>
         <source>Spring Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>По ширини:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="440"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>Мењање ширине области за померање показивача 
+у скоковитом начину. „0“ означава искоришћавање 
+укупне ширине Вашег екрана.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="456"/>
         <source>Spring Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>По висини:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="469"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>Мењање висине области за померање показивача 
+у скоковитом начину. „0“ означава искоришћавање 
+укупне висине Вашег екрана.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../../src/mousesettingsdialog.cpp" line="114"/>
         <source>%n tick(s)/s</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n откуцај/сек</numerusform>
+            <numerusform>%n откуцаја/сек</numerusform>
+            <numerusform>%n откуцаја/сек</numerusform>
         </translation>
     </message>
 </context>
@@ -2102,12 +2268,12 @@ of your screen.</source>
     <message>
         <location filename="../../../src/wininfo.cpp" line="113"/>
         <source>Super</source>
-        <translation type="unfinished"></translation>
+        <translation>Супер</translation>
     </message>
     <message>
         <location filename="../../../src/wininfo.cpp" line="114"/>
         <source>Menu</source>
-        <translation type="unfinished">Menu</translation>
+        <translation>Изборник</translation>
     </message>
 </context>
 <context>
@@ -2120,7 +2286,7 @@ of your screen.</source>
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="23"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Joystick %2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Притисните дугме или померите палицу правца %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Џојстик %2&lt;/span&gt;).&lt;br/&gt;Отвориће се прозорче за омогућавање&lt;br/&gt; доделе наредби контролама уређаја.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.cpp" line="21"/>
@@ -2159,7 +2325,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="24"/>
         <source>Spring Mode Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Преглед за начин „Скоковито“</translation>
     </message>
 </context>
 <context>
@@ -2168,7 +2334,7 @@ Would you like to distribute this throttle change to all sets?</source>
         <location filename="../../../src/vdpad.cpp" line="71"/>
         <location filename="../../../src/vdpad.cpp" line="78"/>
         <source>VDPad</source>
-        <translation type="unfinished">ВД-тастатура</translation>
+        <translation>Патворен Д-тастер</translation>
     </message>
 </context>
 <context>
@@ -2410,12 +2576,12 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="118"/>
         <source>Super (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>Super (L)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="119"/>
         <source>Menu</source>
-        <translation type="unfinished">Menu</translation>
+        <translation>Menu</translation>
     </message>
 </context>
 <context>
@@ -2927,27 +3093,27 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="373"/>
         <source>Button 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Дугме 4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="375"/>
         <source>Mouse 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Миш 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="381"/>
         <source>Button 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Дугме 5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="383"/>
         <source>Mouse 9</source>
-        <translation type="unfinished"></translation>
+        <translation>Миш 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="397"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="230"/>
