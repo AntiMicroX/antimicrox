@@ -172,6 +172,4 @@ aybe
 
 Belleguic Terence <hizo@free.fr> - French  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
-VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese  
-phob - German
- 
+VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese
