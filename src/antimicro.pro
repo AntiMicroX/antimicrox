@@ -179,7 +179,9 @@ SOURCES += main.cpp\
     joytabwidgetcontainer.cpp \
     mousedialog/springmoderegionpreview.cpp \
     joystickstatuswindow.cpp \
-    joybuttonstatusbox.cpp
+    joybuttonstatusbox.cpp \
+    qtx11keymapper.cpp \
+    qtwinkeymapper.cpp
 
 
 unix {
@@ -240,7 +242,9 @@ HEADERS  += mainwindow.h \
     joytabwidgetcontainer.h \
     mousedialog/springmoderegionpreview.h \
     joystickstatuswindow.h \
-    joybuttonstatusbox.h
+    joybuttonstatusbox.h \
+    qtx11keymapper.h \
+    qtwinkeymapper.h
 
 
 unix {
