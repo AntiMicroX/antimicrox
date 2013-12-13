@@ -1266,14 +1266,14 @@ this button is being used.</source>
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1167"/>
-        <location filename="../../../src/joybutton.cpp" line="1173"/>
+        <location filename="../../../src/joybutton.cpp" line="1248"/>
+        <location filename="../../../src/joybutton.cpp" line="1254"/>
         <source>Button</source>
         <translation>Дугме</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1207"/>
-        <location filename="../../../src/joybutton.cpp" line="1232"/>
+        <location filename="../../../src/joybutton.cpp" line="1288"/>
+        <location filename="../../../src/joybutton.cpp" line="1313"/>
         <source>[NO KEY]</source>
         <translation>[Без тастера]</translation>
     </message>
@@ -1562,7 +1562,7 @@ this button is being used.</source>
 <context>
     <name>JoyControlStickPushButton</name>
     <message>
-        <location filename="../../../src/joycontrolstickpushbutton.cpp" line="62"/>
+        <location filename="../../../src/joycontrolstickpushbutton.cpp" line="63"/>
         <source>Stick</source>
         <translation>Управљач</translation>
     </message>
@@ -1775,27 +1775,27 @@ this button is being used.</source>
         <translation>Правци</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="240"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="256"/>
         <source>Buttons</source>
         <translation>Дугмад</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="278"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="310"/>
         <source>Hats</source>
         <translation>Хат/ПОВ прекидачи</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.cpp" line="22"/>
+        <location filename="../../../src/joystickstatuswindow.cpp" line="23"/>
         <source>%1 (#%2) Properties</source>
         <translation>%1 (#%2) Особине</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.cpp" line="46"/>
+        <location filename="../../../src/joystickstatuswindow.cpp" line="47"/>
         <source>Axis %1</source>
         <translation>Правац %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.cpp" line="99"/>
+        <location filename="../../../src/joystickstatuswindow.cpp" line="100"/>
         <source>Hat %1</source>
         <translation>Хат %1</translation>
     </message>
@@ -2154,62 +2154,76 @@ axis is moved back to the dead zone.</source>
         <translation>Брзина померања</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="147"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="150"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
         <translation>Омогућује истовремену промену брзине у оба правца.</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="151"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="154"/>
         <source>Change Together</source>
         <translation>Измењуј повезано</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="178"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="179"/>
         <source>Horizontal
 Speed:</source>
         <translation>Лево→Десно:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="207"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="255"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="208"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="256"/>
         <source>1 = 20 pps</source>
         <translation>1 = 20 тачака/сек</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="226"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="227"/>
         <source>Vertical
 Speed:</source>
         <translation>Горе→Доле:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="273"/>
-        <source>Wheel Speed:</source>
-        <translation>Брзина точкића:</translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="282"/>
+        <source>Wheel Hori.
+Speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="283"/>
-        <source>Set the speed used for mouse wheel movement according
-to number of simulated ticks per second.</source>
-        <translation>Поставља брзину померања точкића миша у односу на број направљених откуцаја у секунди.</translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="293"/>
+        <source>Set the speed used for horizontal mouse wheel movement
+according to number of simulated ticks per second.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="308"/>
-        <source>1 = 1 tick/s</source>
-        <translation>1 = 1 откуцај/сек</translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="318"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="358"/>
+        <source>1 = 1 notch(es)/s</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="324"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="334"/>
+        <source>Wheel Vert.
+Speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="342"/>
+        <source>Set the speed used for vertical mouse wheel movement
+according to number of simulated ticks per second.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="374"/>
         <source>Sensitivity:</source>
         <translation>Осетљивост:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="363"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="413"/>
         <source>Smoothing:</source>
         <translation>Углађеност:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="373"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="423"/>
         <source>Smoothing can be used to reduce the amount
 of jitter that the mouse cursor will exhibit. Using
 this option will result in the mouse movement being
@@ -2221,17 +2235,17 @@ speed taking longer to occur.</source>
 (спорији одзив).</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="405"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="458"/>
         <source>Spring Settings</source>
         <translation>Скоковито померање</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="427"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="480"/>
         <source>Spring Width:</source>
         <translation>По ширини:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="440"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="493"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
@@ -2240,12 +2254,12 @@ of your screen.</source>
 укупне ширине Вашег екрана.</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="456"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="509"/>
         <source>Spring Height:</source>
         <translation>По висини:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="469"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="522"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
@@ -2254,8 +2268,9 @@ of your screen.</source>
 укупне висине Вашег екрана.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../src/mousesettingsdialog.cpp" line="114"/>
-        <source>%n tick(s)/s</source>
+        <location filename="../../../src/mousesettingsdialog.cpp" line="130"/>
+        <location filename="../../../src/mousesettingsdialog.cpp" line="138"/>
+        <source>%n notch(es)/s</source>
         <translation>
             <numerusform>%n откуцај/сек</numerusform>
             <numerusform>%n откуцаја/сек</numerusform>

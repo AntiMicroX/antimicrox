@@ -315,7 +315,7 @@ according to number of simulated ticks per second.</string>
             <item alignment="Qt::AlignRight">
              <widget class="QLabel" name="wheelHoriSpeedUnitsLabel">
               <property name="text">
-               <string>1 = 1 notches/s</string>
+               <string>1 = 1 notch(es)/s</string>
               </property>
              </widget>
             </item>
@@ -355,7 +355,7 @@ according to number of simulated ticks per second.</string>
             <item alignment="Qt::AlignRight">
              <widget class="QLabel" name="wheelVertSpeedUnitsLabel">
               <property name="text">
-               <string>1 = 1 notches/s</string>
+               <string>1 = 1 notch(es)/s</string>
               </property>
              </widget>
             </item>
