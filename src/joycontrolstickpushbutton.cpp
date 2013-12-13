@@ -105,7 +105,8 @@ void JoyControlStickPushButton::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     QFont tempScaledFont = painter.font();
-    tempScaledFont.setPointSize(10);
+    QFont temp;
+    tempScaledFont.setPointSize(temp.pointSize());
     QFontMetrics fm(tempScaledFont);
 
     bool reduce = false;
