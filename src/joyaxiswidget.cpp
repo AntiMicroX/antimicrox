@@ -105,7 +105,7 @@ void JoyAxisWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     QFont tempScaledFont = painter.font();
-    tempScaledFont.setPointSize(8);
+    tempScaledFont.setPointSize(10);
     QFontMetrics fm(tempScaledFont);
 
     bool reduce = false;
