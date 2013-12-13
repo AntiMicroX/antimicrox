@@ -180,14 +180,15 @@ SOURCES += main.cpp\
     mousedialog/springmoderegionpreview.cpp \
     joystickstatuswindow.cpp \
     joybuttonstatusbox.cpp \
-    qtx11keymapper.cpp \
-    qtwinkeymapper.cpp
+    qtkeymapperbase.cpp
 
 
 unix {
-  SOURCES += x11info.cpp
+  SOURCES += x11info.cpp \
+             qtx11keymapper.cpp
 } else:win32 {
-  SOURCES += wininfo.cpp
+  SOURCES += wininfo.cpp \
+             qtwinkeymapper.cpp
 }
 
 HEADERS  += mainwindow.h \
@@ -243,14 +244,15 @@ HEADERS  += mainwindow.h \
     mousedialog/springmoderegionpreview.h \
     joystickstatuswindow.h \
     joybuttonstatusbox.h \
-    qtx11keymapper.h \
-    qtwinkeymapper.h
+    qtkeymapperbase.h
 
 
 unix {
-  HEADERS += x11info.h
+  HEADERS += x11info.h \
+             qtx11keymapper.h
 } else:win32 {
-  HEADERS += wininfo.h
+  HEADERS += wininfo.h \
+             qtwinkeymapper.h
 }
 
 FORMS    += mainwindow.ui \
