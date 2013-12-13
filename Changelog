@@ -1,3 +1,56 @@
+2013-12-13 Travis Nickles <nickles.travis@gmail.com>
+
+Version 1.2
+
+* Improved while held set changing so that the program should not get stuck on
+the wrong set. The changes made should behave roughly like the old while held
+workaround that used turbo.
+
+* Windows port of AntiMicro has been made.
+
+* Tweaked code used for button presses and releases in order
+to improve responsiveness.
+
+* Allow time-dependent action slots to have an interval
+as low as 0.01 seconds.
+
+* Tweaked Release action slot. Release slots can now be placed at the
+beginning of the assigned slots. This can be useful for
+Tap and Hold slot configurations.
+
+* Pause slots can now be used with Release slots.
+
+* Profiles can be removed from the recent configs list.
+
+* Spring mouse mode preview has now been enabled.
+
+* Mouse speed modifier action slot has been added. This can be used to modify
+the mouse speed settings used with any controller element while the slot is
+active. The setting will modify the mouse speed by the percentage that is
+specified. The mouse speed modifier can be used to allow for the mouse speed
+to be slowed down while sniping.
+
+* Button and action names have been added. Names can be used to describe
+the action that a slot sequence performs in the game.
+
+* Mouse wheel buttons are now used as a form of mouse movement. Mouse wheel
+scrolling is now possible without using turbo. The speed that the wheel is
+rotated can be specified in the mouse settings dialog window.
+
+* Added support for two extra mouse buttons.
+
+* A new controller properties window has been made. This window shows various
+bits of information provided by SDL about a controller as well as the current
+values of all the controller elements.
+
+* Added quick assign functionality for sticks and virtual dpads.
+
+* Windows version of the program now uses LocalAppData variable to know
+where to place the program's settings file.
+
+* New translations provided by the translation team.
+
+
 2013-10-03 Travis Nickles <nickles.travis@gmail.com>
 
 Version 1.1
