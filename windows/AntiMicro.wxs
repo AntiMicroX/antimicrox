@@ -56,9 +56,6 @@
                                 <Component Id="ANTIMICRO_BR.QM" Guid="B78BAC38-6EF6-4BFE-A904-85000FD73A9E">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_br.qm" />
                                 </Component>
-                                <Component Id="ANTIMICRO_DE.QM" Guid="C318B49E-BD46-4DD7-89AF-B27AFA85569F">
-                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_de.qm" />
-                                </Component>
                                 <Component Id="ANTIMICRO_EN.QM" Guid="3DDDAA90-D307-4560-83B9-09CB70B401C5">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_en.qm" />
                                 </Component>
@@ -99,7 +96,6 @@
             <ComponentRef Id="SDL.DLL" />
             <ComponentRef Id="QWINDOWS.DLL" />
             <ComponentRef Id="ANTIMICRO_BR.QM" />
-            <ComponentRef Id="ANTIMICRO_DE.QM" />
             <ComponentRef Id="ANTIMICRO_EN.QM" />
             <ComponentRef Id="ANTIMICRO_FR.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
