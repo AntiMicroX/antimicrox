@@ -14,7 +14,7 @@ public:
     enum {
         AntKey_Shift_R = 0x400000E5, // SDLK_RSHIFT
         AntKey_Control_R = 0x400000E4, // SDLK_RCTRL
-        AntKey_Shift_Lock = 0x11000003,
+        AntKey_Shift_Lock = 0x1100ffe6, // XK_Shift_Lock | 0x11000000
         AntKey_Meta_R = 0x400000E7, // SDLK_RGUI
         AntKey_Alt_R = 0x400000E6, // SDLK_RALT
         AntKey_KP_Divide = 0x40000054, // SDLK_KP_DIVIDE
