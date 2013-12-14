@@ -1,12 +1,10 @@
 #include <QDebug>
 #include <QStyle>
-#include <QFontMetrics>
-#include <QPainter>
 
 #include "virtualdpadpushbutton.h"
 
 VirtualDPadPushButton::VirtualDPadPushButton(VDPad *vdpad, QWidget *parent) :
-    QPushButton(parent)
+    FlashButtonWidget(parent)
 {
     this->vdpad = vdpad;
 
@@ -24,31 +22,6 @@ VirtualDPadPushButton::VirtualDPadPushButton(VDPad *vdpad, QWidget *parent) :
 VDPad* VirtualDPadPushButton::getVDPad()
 {
     return vdpad;
-}
-
-void VirtualDPadPushButton::flash()
-{
-    isflashing = true;
-
-    this->style()->unpolish(this);
-    this->style()->polish(this);
-
-    emit flashed(isflashing);
-}
-
-void VirtualDPadPushButton::unflash()
-{
-    isflashing = false;
-
-    this->style()->unpolish(this);
-    this->style()->polish(this);
-
-    emit flashed(isflashing);
-}
-
-void VirtualDPadPushButton::refreshLabel()
-{
-    setText(generateLabel());
 }
 
 QString VirtualDPadPushButton::generateLabel()
@@ -78,66 +51,4 @@ void VirtualDPadPushButton::enableFlashes()
 {
     connect(vdpad, SIGNAL(active(int)), this, SLOT(flash()));
     connect(vdpad, SIGNAL(released(int)), this, SLOT(unflash()));
-}
-
-bool VirtualDPadPushButton::isButtonFlashing()
-{
-    return isflashing;
-}
-
-void VirtualDPadPushButton::toggleNameDisplay()
-{
-    displayNames = !displayNames;
-    refreshLabel();
-}
-
-void VirtualDPadPushButton::setDisplayNames(bool display)
-{
-    displayNames = display;
-}
-
-bool VirtualDPadPushButton::isDisplayingNames()
-{
-    return displayNames;
-}
-
-void VirtualDPadPushButton::paintEvent(QPaintEvent *event)
-{
-    QPainter painter(this);
-
-    QFont tempScaledFont = painter.font();
-    tempScaledFont.setPointSize(8);
-    QFontMetrics fm(tempScaledFont);
-
-    bool reduce = false;
-    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 7)
-    {
-        tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
-        painter.setFont(tempScaledFont);
-        fm = painter.fontMetrics();
-        reduce = true;
-    }
-
-    bool changeFontSize = this->font().pointSize() != tempScaledFont.pointSize();
-    if (changeFontSize)
-    {
-        if (reduce && !leftAlignText)
-        {
-            leftAlignText = !leftAlignText;
-            setStyleSheet("text-align: left;");
-            this->style()->unpolish(this);
-            this->style()->polish(this);
-        }
-        else if (!reduce && leftAlignText)
-        {
-            leftAlignText = !leftAlignText;
-            setStyleSheet("text-align: center;");
-            this->style()->unpolish(this);
-            this->style()->polish(this);
-        }
-
-        this->setFont(tempScaledFont);
-    }
-
-    QPushButton::paintEvent(event);
 }

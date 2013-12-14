@@ -180,7 +180,8 @@ SOURCES += main.cpp\
     mousedialog/springmoderegionpreview.cpp \
     joystickstatuswindow.cpp \
     joybuttonstatusbox.cpp \
-    qtkeymapperbase.cpp
+    qtkeymapperbase.cpp \
+    flashbuttonwidget.cpp
 
 
 unix {
@@ -244,7 +245,8 @@ HEADERS  += mainwindow.h \
     mousedialog/springmoderegionpreview.h \
     joystickstatuswindow.h \
     joybuttonstatusbox.h \
-    qtkeymapperbase.h
+    qtkeymapperbase.h \
+    flashbuttonwidget.h
 
 
 unix {
@@ -308,7 +310,7 @@ unix {
         $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
         $$[QT_INSTALL_BINS]\\Qt5Network.dll \
         $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
-        ..\\SDL-1.2.15\\bin\\SDL.dll
+        ..\\SDL-1.2.15\\bin\\SDL.dll \
         $$[QT_INSTALL_BINS]\\libstdc++-6.dll
 
     install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")

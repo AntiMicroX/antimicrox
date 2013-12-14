@@ -22,7 +22,7 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const QString configFileName = "antimicro_settings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
     const int LATESTCONFIGFILEVERSION = 5;
-    const QString programVersion = "1.1.1";
+    const QString programVersion = "1.2";
     const QString localSocketKey = "antimicroSignalListener";
 }
 
