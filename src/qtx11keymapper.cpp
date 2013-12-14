@@ -291,5 +291,5 @@ unsigned int QtX11KeyMapper::returnQtKey(unsigned int key)
 
 unsigned int QtX11KeyMapper::returnVirtualKey(unsigned int qkey)
 {
-    return _instance.returnVirtualKey(qkey);
+    return _instance.returnInstanceVirtualKey(qkey);
 }
