@@ -236,7 +236,7 @@ void QtX11KeyMapper::populateMappingHashes()
         }
 
         // Map [ to ` ASCII keys
-        for (int i=0; i <= (XK_quoteleft - XK_bracketleft); i++)
+        for (int i=0; i <= (XK_qrave - XK_bracketleft); i++)
         {
             qtKeyToVirtualKey[Qt::Key_BracketLeft + i] = XK_bracketleft + i;
         }

@@ -1,7 +1,4 @@
-#ifdef Q_OS_WIN
 #include <qt_windows.h>
-#endif
-
 #include <QHashIterator>
 
 #include "qtwinkeymapper.h"
@@ -52,10 +49,10 @@ static void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Sleep] = VK_SLEEP;
 
         qtKeyToVirtualKey[Qt::Key_Asterisk] = VK_MULTIPLY;
-        qtKeyToVirtualKey[Qt::Key_Plus] = VK_ADD;
+        qtKeyToVirtualKey[AntKey_KP_Add] = VK_ADD;
         qtKeyToVirtualKey[Qt::Key_Comma] = VK_SEPARATOR;
-        qtKeyToVirtualKey[Qt::Key_Minus] = VK_SUBTRACT;
-        qtKeyToVirtualKey[Qt::Key_Period] = VK_DECIMAL;
+        qtKeyToVirtualKey[AntKey_KP_Subtract] = VK_SUBTRACT;
+        qtKeyToVirtualKey[AntKey_KP_Decimal] = VK_DECIMAL;
         qtKeyToVirtualKey[Qt::Key_Slash] = VK_DIVIDE;
 
         qtKeyToVirtualKey[Qt::Key_NumLock] = VK_NUMLOCK;
@@ -88,29 +85,28 @@ static void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Launch0] = VK_LAUNCH_APP1;
         qtKeyToVirtualKey[Qt::Key_Launch1] = VK_LAUNCH_APP2;
 
-        qtKeyToVirtualKey[Qt::Key_Play] = VK_PLAY;
-        qtKeyToVirtualKey[Qt::Key_Zoom] = VK_ZOOM;
-        //qtKeyToWinVirtualKey[Qt::Key_Clear] = VK_OEM_CLEAR;
-
+        qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
+        qtKeyToVirtualKey[Qt::Key_Plus] = VK_OEM_2;
+        qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
+        qtKeyToVirtualKey[Qt::Key_Period]  = VK_OEM_PERIOD;
         qtKeyToVirtualKey[Qt::Key_QuoteLeft] = VK_OEM_3;
         qtKeyToVirtualKey[Qt::Key_BracketLeft] = VK_OEM_4;
         qtKeyToVirtualKey[Qt::Key_Backslash] = VK_OEM_5;
         qtKeyToVirtualKey[Qt::Key_BracketRight] = VK_OEM_6;
+        qtKeyToVirtualKey[Qt::Key_QuoteLeft] = VK_OEM_7;
+
+        qtKeyToVirtualKey[Qt::Key_Play] = VK_PLAY;
+        qtKeyToVirtualKey[Qt::Key_Zoom] = VK_ZOOM;
+        //qtKeyToWinVirtualKey[Qt::Key_Clear] = VK_OEM_CLEAR;
 
         // Map 0-9 ASCII codes
-        for (int i=0; i <= (VK_9 - VK_0); i++)
+        for (int i=0; i <= (0x39 - 0x30); i++)
         {
-            qtKeyToVirtualKey[Qt::Key_0 + i] = VK_0 + i;
-        }
-
-        // Map [-` ASCII codes
-        for (int i=0; i <= (VK_9 - VK_0); i++)
-        {
-            qtKeyToVirtualKey[Qt::Key_0 + i] = VK_0 + i;
+            qtKeyToVirtualKey[Qt::Key_0 + i] = 0x39 + i;
         }
 
         // Map A-Z ASCII codes
-        for (int i=0; i <= (VK_Z - VK_A); i++)
+        for (int i=0; i <= (0x5a - 0x41); i++)
         {
             qtKeyToVirtualKey[Qt::Key_A + i] = VK_A + i;
         }
@@ -133,6 +129,8 @@ static void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Shift_R] = VK_RSHIFT;
         qtKeyToVirtualKey[AntKey_Control_R] = VK_RCONTROL;
 
+        // Populate other hash. Flip key and value so mapping
+        // goes VK -> Qt Key
         QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
         {
