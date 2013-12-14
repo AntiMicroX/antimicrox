@@ -11,7 +11,7 @@ QtWinKeyMapper::QtWinKeyMapper(QObject *parent) :
     populateMappingHashes();
 }
 
-static void QtWinKeyMapper::populateMappingHashes()
+void QtWinKeyMapper::populateMappingHashes()
 {
     if (qtKeyToVirtualKey.isEmpty())
     {
