@@ -179,7 +179,8 @@ SOURCES += main.cpp\
     joytabwidgetcontainer.cpp \
     mousedialog/springmoderegionpreview.cpp \
     joystickstatuswindow.cpp \
-    joybuttonstatusbox.cpp
+    joybuttonstatusbox.cpp \
+    flashbuttonwidget.cpp
 
 
 unix {
@@ -240,7 +241,8 @@ HEADERS  += mainwindow.h \
     joytabwidgetcontainer.h \
     mousedialog/springmoderegionpreview.h \
     joystickstatuswindow.h \
-    joybuttonstatusbox.h
+    joybuttonstatusbox.h \
+    flashbuttonwidget.h
 
 
 unix {

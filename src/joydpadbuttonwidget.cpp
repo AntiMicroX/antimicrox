@@ -22,8 +22,3 @@ QString JoyDPadButtonWidget::generateLabel()
     temp.replace("&", "&&");
     return temp;
 }
-
-void JoyDPadButtonWidget::refreshLabel()
-{
-    setText(generateLabel());
-}

@@ -10,12 +10,11 @@ public:
     explicit JoyDPadButtonWidget(JoyButton* button, QWidget *parent = 0);
 
 protected:
-    QString generateLabel();
+    virtual QString generateLabel();
 
 signals:
     
 public slots:
-    virtual void refreshLabel();
 };
 
 #endif // JOYDPADBUTTONWIDGET_H
