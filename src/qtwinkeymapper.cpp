@@ -108,7 +108,7 @@ void QtWinKeyMapper::populateMappingHashes()
         // Map A-Z ASCII codes
         for (int i=0; i <= (0x5a - 0x41); i++)
         {
-            qtKeyToVirtualKey[Qt::Key_A + i] = VK_A + i;
+            qtKeyToVirtualKey[Qt::Key_A + i] = 0x41 + i;
         }
 
         // Map function keys
