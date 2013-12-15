@@ -8,6 +8,7 @@
 
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
+#include "qtx11keymapper.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -108,6 +109,11 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
     {
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
+        int checkalias = QtX11KeyMapper::returnQtKey(virtualactual);
+        if (checkalias <= 0)
+        {
+            controlcode = 0;
+        }
 
 #ifndef Q_OS_WIN
         Q_UNUSED(virtualactual);
@@ -142,7 +148,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         if (controlcode > 0)
         {
 #if defined (Q_OS_UNIX)
-            JoyButtonSlot *tempslot = new JoyButtonSlot(controlcode, JoyButtonSlot::JoyKeyboard, this);
+            JoyButtonSlot *tempslot = new JoyButtonSlot(virtualactual, JoyButtonSlot::JoyKeyboard, this);
 
 #elif defined (Q_OS_WIN)
             JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);

@@ -13,5 +13,7 @@ void sendevent(int code1, int code2);
 void sendSpringEvent(double xcoor, double ycoor, int springWidth=0, int springHeight=0);
 int X11KeySymToKeycode (QString key);
 QString keycodeToKey(int keycode);
+unsigned int X11KeyCodeToX11KeySym(unsigned int keycode);
+QString keysymToKey(int keysym);
 
 #endif // EVENT_H

@@ -23,7 +23,7 @@
 static Display* display;
 #endif
 
-MouseHelper *mouseHelperObj = 0;
+static MouseHelper *mouseHelperObj = 0;
 
 //actually creates an XWindows event  :)
 void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
@@ -33,7 +33,11 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
-        XTestFakeKeyEvent(display, code, pressed, 0);
+        unsigned int tempcode = XKeysymToKeycode(display, code);
+        if (tempcode > 0)
+        {
+            XTestFakeKeyEvent(display, tempcode, pressed, 0);
+        }
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
@@ -397,5 +401,25 @@ QString keycodeToKey(int keycode)
 
 #endif
 
+    return newkey;
+}
+
+unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
+{
+    display = X11Info::display();
+    unsigned int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
+    return tempcode;
+}
+
+QString keysymToKey(int keysym)
+{
+    QString newkey;
+#if defined (Q_OS_UNIX)
+    display = X11Info::display();
+    unsigned int keycode = XKeysymToKeycode(display, keysym);
+    newkey = keycodeToKey(keycode);
+#else
+    newkey = keycodeToKey(keysym);
+#endif
     return newkey;
 }

@@ -28,7 +28,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 
     if (temp > 0)
     {
-        this->keycode = temp;
+        this->keycode = X11KeyCodeToX11KeySym(temp);
         this->xcodestring = xcodestring;
         this->displayString = setDisplayString(xcodestring);
     }

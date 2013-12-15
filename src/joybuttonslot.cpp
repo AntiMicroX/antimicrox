@@ -1,6 +1,8 @@
 #include <QDebug>
+#include <X11/XKBlib.h>
 
 #include "joybuttonslot.h"
+#include "qtx11keymapper.h"
 #include "event.h"
 
 const int JoyButtonSlot::JOYSPEED = 20;
@@ -114,8 +116,12 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             if (xml->name() == "code" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setSlotCode(tempchoice);
+                bool ok = false;
+                unsigned int tempchoice = temptext.toInt(&ok, 0);
+                if (ok)
+                {
+                    this->setSlotCode(tempchoice);
+                }
             }
             else if (xml->name() == "mode" && xml->isStartElement())
             {
@@ -165,6 +171,15 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
+        if (this->getSlotMode() == JoyButtonSlot::JoyKeyboard)
+        {
+            //unsigned int virtualkey = X11KeyCodeToX11KeySym(this->getSlotCode());
+            unsigned int virtualkey = QtX11KeyMapper::returnVirtualKey(this->getSlotCode());
+            if (virtualkey)
+            {
+                this->setSlotCode(virtualkey);
+            }
+        }
     }
 
 }
@@ -173,7 +188,17 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement(getXmlName());
 
-    xml->writeTextElement("code", QString::number(deviceCode));
+    if (mode == JoyKeyboard)
+    {
+        unsigned int qtkey = QtX11KeyMapper::returnQtKey(deviceCode);
+        qDebug() << "QT KEY: " << QString::number(qtkey, 16);
+        xml->writeTextElement("code", QString("0x%1").arg(QtX11KeyMapper::returnQtKey(deviceCode), 0, 16));
+    }
+    else
+    {
+        xml->writeTextElement("code", QString::number(deviceCode));
+    }
+
     xml->writeStartElement("mode");
     if (mode == JoyKeyboard)
     {
@@ -230,7 +255,7 @@ QString JoyButtonSlot::getSlotString()
     {
         if (mode == JoyButtonSlot::JoyKeyboard)
         {
-            newlabel = newlabel.append(keycodeToKey(deviceCode).toUpper());
+            newlabel = newlabel.append(keysymToKey(deviceCode).toUpper());
         }
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {
