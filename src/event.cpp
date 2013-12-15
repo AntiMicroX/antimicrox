@@ -406,9 +406,13 @@ QString keycodeToKey(int keycode)
 
 unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
 {
+#ifdef Q_OS_WIN
+    return 0;
+#else
     display = X11Info::display();
     unsigned int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
     return tempcode;
+#endif
 }
 
 QString keysymToKey(int keysym)

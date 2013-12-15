@@ -157,5 +157,5 @@ unsigned int QtWinKeyMapper::returnQtKey(unsigned int key)
 
 unsigned int QtWinKeyMapper::returnVirtualKey(unsigned int qkey)
 {
-    return _instance.returnVirtualKey(qkey);
+    return _instance.returnInstanceVirtualKey(qkey);
 }
