@@ -122,6 +122,19 @@ JoystickStatusWindow::JoystickStatusWindow(Joystick *joystick, QWidget *parent) 
 
     ui->hatsGroupBox->setLayout(hatsBox);
 
+    QString guidString = joystick->getGUIDString();
+    if (!guidString.isEmpty())
+    {
+        ui->guidHeaderLabel->show();
+        ui->guidLabel->setText(guidString);
+        ui->guidLabel->show();
+    }
+    else
+    {
+        ui->guidHeaderLabel->hide();
+        ui->guidLabel->hide();
+    }
+
     connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates()));
 }
 

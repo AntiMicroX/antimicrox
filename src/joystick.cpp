@@ -1360,3 +1360,16 @@ void Joystick::resetButtonDownCount()
     buttonDownCount = 0;
     released(0);
 }
+
+QString Joystick::getGUIDString()
+{
+    QString temp;
+#ifdef USE_SDL_2
+    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joyhandle);
+    char guidString[65] = {'0'};
+    SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
+    temp = QString(guidString);
+#endif
+    // Not available on SDL 1.2. Return empty string in that case.
+    return temp;
+}

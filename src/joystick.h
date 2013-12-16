@@ -39,6 +39,7 @@ public:
     void removeControlStick(int index);
     bool isActive();
     QString getSDLName();
+    QString getGUIDString(); // GUID available on SDL 2.
 
     void setButtonName(int index, QString tempName);
     void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);
