@@ -214,6 +214,9 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
             <property name="margin">
              <number>10</number>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
          </layout>
