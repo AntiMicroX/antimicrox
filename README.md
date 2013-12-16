@@ -2,8 +2,8 @@
 
 ## Description
 
-Graphical program used to map keyboard keys and mouse buttons to gamepad buttons.
-This program is useful for playing games with no gamepad support.
+Graphical program used to map keyboard keys and mouse controls to a gamepad.
+This program is useful for playing PC games with no built-in gamepad support.
 
 ## License
 
@@ -37,7 +37,6 @@ directory. Enter the following commands in order to build the program:
 * cd antimicro/src
 * qmake
 * make
-* make updateqm
 * sudo make install
 
 The installation path of antimicro can be customized by specifying the
@@ -47,9 +46,6 @@ INSTALL_PREFIX variable for qmake.
 
 This will install the antimicro executable to /usr/bin/antimicro.
 By default, the executable will be installed to /usr/local/bin/antimicro.
-
-Also, running "make updateqm" is only required if you would like to enable
-translations for the application.
 
 ## Building under Windows
 
@@ -127,21 +123,11 @@ for this program will be written. Since the 1.0 release,
 there has not been a plan for what to implement in future
 versions of AntiMicro. Hopefully, this will help change that.
 
-* ~~DONE. Gamepad Status window. A window to show buttons presses and current axes values.~~
-* ~~DONE. Ensure SDL 2 compatibility. Looking at the docs for SDL 2, it seems
-like the main API has not really changed so AntiMicro should be compatible.~~
+* ~~DONE. Allow program to be compiled against SDL 2.0 as well as SDL 1.2.~~
 * Setting to not display buttons that are not currently in use.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
-* ~~DONE. Spring mode preview. There should be some way in the program
-to show the area that spring mode will use based on the settings
-specified. Either that or the program should implement something
-that will allow the user to select the region on screen that
-should be used; this would work like what would be seen in
-screencap programs.~~
-* ~~DONE. Implement mouse wheel as a type of movement instead of a button press.~~
-* ~~DONE. Show identifier given by SDL along with plain joystick identifier.~~
 * A mouse setting that will move the mouse cursor to an exact spot on the
 screen based on the position of an axis. This would work similar to spring
 mode except that it will not automatically return the mouse cursor
@@ -158,7 +144,7 @@ FreeMind which can be downloaded from
 
 A big inspiration for this program was the program QJoyPad
 ([http://qjoypad.sourceforge.net/](http://qjoypad.sourceforge.net/)).
-I have been a user of the program for years and it is unfortunate that the
+I was a user of the program for years and it is unfortunate that the
 program is no longer being maintained. The source code for QJoyPad was an
 invaluable resource when I made the first version of this program and the UI
 for this program mostly resembles QJoyPad.

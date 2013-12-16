@@ -13,7 +13,7 @@
 <icon BUILTIN="help"/>
 <node CREATED="1386296158070" ID="ID_1324519805" MODIFIED="1386296197745" TEXT="I still haven&apos;t found a really good use case for this yet."/>
 </node>
-<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1386798767795" POSITION="left" TEXT="SDL 2 compatibility?">
+<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1387234158043" POSITION="left" TEXT="SDL 2 compatibility?">
 <icon BUILTIN="yes"/>
 <node CREATED="1385413319581" HGAP="246" ID="ID_315431873" MODIFIED="1386729226005" VSHIFT="-44">
 <richcontent TYPE="NODE"><html>
@@ -40,7 +40,8 @@
 </html></richcontent>
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1386727091342" FOLDED="true" HGAP="241" ID="ID_606065535" MODIFIED="1386798744058" TEXT="Allow compilation against SDL 2 using Joystick API" VSHIFT="-23">
+<node CREATED="1386727091342" FOLDED="true" HGAP="241" ID="ID_606065535" MODIFIED="1387234156848" TEXT="Allow compilation against SDL 2 using Joystick API" VSHIFT="-23">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1386728036714" ID="ID_653911559" MODIFIED="1386729799546" TEXT="Different flags must be passed to SDL_Init. Use SDL_INIT_JOYSTICK. Do not use SDL_INIT_VIDEO.&#xa;&#xa;Enabling video support without actually creating a window in SDL causes&#xa;some major problems with joystick support in SDL 2; no axes support and only button up events are provided. Enabling video&#xa;was required in SDL 1.2 because that would also enable the events system&#xa;in SDL.">
 <icon BUILTIN="info"/>
 </node>
