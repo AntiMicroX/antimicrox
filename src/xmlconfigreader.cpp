@@ -1,6 +1,8 @@
 #include <QDebug>
 #include <QDir>
 
+#include "xmlconfigmigration.h"
+#include "xmlconfigwriter.h"
 #include "xmlconfigreader.h"
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
@@ -75,6 +77,30 @@ bool XMLConfigReader::read()
         {
             xml->raiseError("Root node is not a joystick");
         }
+        else
+        {
+            XMLConfigMigration migration(xml);
+            if (migration.requiresMigration())
+            {
+                QString migrationString = migration.migrate();
+                if (migrationString.length() > 0)
+                {
+                    // Remove QFile from reader and clear state
+                    xml->clear();
+                    // Add converted XML string to reader
+                    xml->addData(migrationString);
+                    // Skip joystick root node
+                    xml->readNextStartElement();
+                    // Close current config file
+                    configFile->close();
+
+                    // Write converted XML to file
+                    configFile->open(QFile::WriteOnly | QFile::Text);
+                    configFile->write(migrationString.toLocal8Bit());
+                    configFile->close();
+                }
+            }
+        }
 
         while (!xml->atEnd())
         {
@@ -91,7 +117,10 @@ bool XMLConfigReader::read()
             xml->readNextStartElement();
         }
 
-        configFile->close();
+        if (configFile->isOpen())
+        {
+            configFile->close();
+        }
 
         if (xml->hasError() && xml->error() != QXmlStreamReader::PrematureEndOfDocumentError)
         {

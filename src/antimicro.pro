@@ -181,7 +181,8 @@ SOURCES += main.cpp\
     joystickstatuswindow.cpp \
     joybuttonstatusbox.cpp \
     qtkeymapperbase.cpp \
-    flashbuttonwidget.cpp
+    flashbuttonwidget.cpp \
+    xmlconfigmigration.cpp
 
 
 unix {
@@ -246,7 +247,8 @@ HEADERS  += mainwindow.h \
     joystickstatuswindow.h \
     joybuttonstatusbox.h \
     qtkeymapperbase.h \
-    flashbuttonwidget.h
+    flashbuttonwidget.h \
+    xmlconfigmigration.h
 
 
 unix {
