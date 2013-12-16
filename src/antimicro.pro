@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+#USE_SDL_2 = 1
+
 isEmpty(INSTALL_PREFIX) {
     unix {
         INSTALL_PREFIX = /usr/local
@@ -266,7 +268,12 @@ FORMS    += mainwindow.ui \
 
 
 unix {
-  LIBS += -lSDL -lXtst -lX11
+  !isEmpty(USE_SDL_2) {
+    LIBS += -lSDL2
+  } else {
+    LIBS += -lSDL
+  }
+  LIBS += -lXtst -lX11
 } else:win32 {
   LIBS += -L"..\SDL-1.2.15\lib" -lSDL
   INCLUDEPATH += "..\SDL-1.2.15\include"
@@ -362,3 +369,7 @@ win32 {
 
 # Have intermediate qm files deleted during make clean
 QMAKE_CLEAN += $$compiledtranslations.files
+
+!isEmpty(USE_SDL_2) {
+  DEFINES += USE_SDL_2
+}

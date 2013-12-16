@@ -3,7 +3,11 @@
 
 #include <QObject>
 #include <QHash>
+#ifdef USE_SDL_2
+#include <SDL2/SDL.h>
+#else
 #include <SDL/SDL.h>
+#endif
 
 #include "joystick.h"
 
@@ -21,7 +25,11 @@ protected:
     void closeSDL();
     void clearEvents();
 
+#ifdef USE_SDL_2
+    QHash<SDL_JoystickID, Joystick*> *joysticks;
+#else
     QHash<int, Joystick*> *joysticks;
+#endif
     SDL_Event currentEvent;
     bool sdlIsOpen;
 

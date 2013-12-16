@@ -1,7 +1,11 @@
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
+  #ifdef USE_SDL_2
+  #include <SDL2/SDL.h>
+  #else
   #include <SDL/SDL.h>
+  #endif
   #undef main
 #endif
 
@@ -106,7 +110,11 @@ int main(int argc, char *argv[])
         configDir.mkpath(PadderCommon::configPath);
     }
 
-    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*> ();
+#ifdef USE_SDL_2
+    QHash<SDL_JoystickID, Joystick*> *joysticks = new QHash<SDL_JoystickID, Joystick*>();
+#else
+    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*>();
+#endif
 
     // Cross-platform way of performing IPC. Currently,
     // only establish a connection and then disconnect.
@@ -119,7 +127,7 @@ int main(int argc, char *argv[])
     {
         // An instance of this program is already running.
         // Save app config and exit.
-        InputDaemon *joypad_worker = new InputDaemon (joysticks, false);
+        InputDaemon *joypad_worker = new InputDaemon(joysticks, false);
         MainWindow w(joysticks, &cmdutility, false);
 
         if (!cmdutility.hasError() && cmdutility.hasProfile())
@@ -132,7 +140,12 @@ int main(int argc, char *argv[])
 
         socket.disconnectFromServer();
 
+#ifdef USE_SDL_2
+        QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+#else
         QHashIterator<int, Joystick*> iter(*joysticks);
+#endif
+
         while (iter.hasNext())
         {
             Joystick *joystick = iter.next().value();
@@ -157,7 +170,11 @@ int main(int argc, char *argv[])
     MainWindow w(joysticks, &cmdutility);
     w.startLocalServer();
 
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int,Joystick*>*)), &w, SLOT(fillButtons(QHash<int,Joystick*>*)));
+#ifdef USE_SDL_2
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, Joystick*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, Joystick*>*)));
+#else
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int, Joystick*>*)), &w, SLOT(fillButtons(QHash<int, Joystick*>*)));
+#endif
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
     QObject::connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()));
@@ -172,7 +189,12 @@ int main(int argc, char *argv[])
 
     int app_result = a.exec();
 
+#ifdef USE_SDL_2
+    QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+#else
     QHashIterator<int, Joystick*> iter(*joysticks);
+#endif
+
     while (iter.hasNext())
     {
         Joystick *joystick = iter.next().value();

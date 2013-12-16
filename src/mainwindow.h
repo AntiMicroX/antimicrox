@@ -11,6 +11,10 @@
 #include <QShowEvent>
 #include <QLocalServer>
 
+#ifdef USE_SDL_2
+#include <SDL2/SDL_joystick.h>
+#endif
+
 #include "joystick.h"
 #include "aboutdialog.h"
 #include "commandlineutility.h"
@@ -24,7 +28,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+#ifdef USE_SDL_2
+    MainWindow(QHash<SDL_JoystickID, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+#else
+    MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+#endif
     ~MainWindow();
     
 protected:
@@ -32,7 +40,12 @@ protected:
     virtual void showEvent(QShowEvent *event);
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
 
+#ifdef USE_SDL_2
+    QHash<SDL_JoystickID, Joystick*> *joysticks;
+#else
     QHash<int, Joystick*> *joysticks;
+#endif
+
     QSystemTrayIcon *trayIcon;
     QAction *hideAction;
     QAction *restoreAction;
@@ -55,7 +68,11 @@ signals:
 
 public slots:
     void fillButtons(Joystick *joystick);
-    void fillButtons(QHash<int, Joystick*>* joysticks);
+#ifdef USE_SDL_2
+    void fillButtons(QHash<SDL_JoystickID, Joystick*> *joysticks);
+#else
+    void fillButtons(QHash<int, Joystick*> *joysticks);
+#endif
     void startJoystickRefresh();
     void hideWindow();
     void saveAppConfig();
