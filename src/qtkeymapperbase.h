@@ -11,38 +11,42 @@ public:
     virtual unsigned int returnInstanceVirtualKey(unsigned int qkey) = 0;
     virtual unsigned int returnInstanceQtKey(unsigned int key) = 0;
 
+    static const unsigned int customQtKeyPrefix = 0x10000000;
+    static const unsigned int customKeyPrefix = 0x20000000;
+    static const unsigned int nativeKeyPrefix = 0x60000000;
+
     enum {
-        AntKey_Shift_R = 0x400000E5, // SDLK_RSHIFT
-        AntKey_Control_R = 0x400000E4, // SDLK_RCTRL
-        AntKey_Shift_Lock = 0x1100ffe6, // XK_Shift_Lock | 0x11000000
-        AntKey_Meta_R = 0x400000E7, // SDLK_RGUI
-        AntKey_Alt_R = 0x400000E6, // SDLK_RALT
-        AntKey_KP_Divide = 0x40000054, // SDLK_KP_DIVIDE
-        AntKey_KP_Multiply = 0x40000055, // SDLK_KP_MULTIPLY
-        AntKey_KP_Subtract = 0x40000056, // SDLK_KP_MINUS
-        AntKey_KP_Add = 0x40000057, // SDLK_KP_PLUS
-        AntKey_KP_Decimal = 0x40000063, // SDLK_KP_PERIOD
-        AntKey_KP_Insert = 0x40000049, // SDLK_INSERT
-        AntKey_KP_Delete = 0x110000b1, // Final part taken from SDLK_DELETE
-        AntKey_KP_End = 0x4000004D, // SDLK_END
-        AntKey_KP_Down = 0x40000051, // SDLK_DOWN
-        AntKey_KP_Prior = 0x4000009D, // SDLK_PRIOR
-        AntKey_KP_Left = 0x40000050, // SDLK_LEFT
-        AntKey_KP_Begin = 0x400000D8, // SDLK_KP_CLEAR
-        AntKey_KP_Right = 0x4000004F, // SDLK_RIGHT
-        AntKey_KP_Home = 0x4000004A, // SDLK_HOME
-        AntKey_KP_Up = 0x40000052, // SDLK_UP
-        AntKey_KP_Next = 0x4000004E, // SDLK_PAGEDOWN
-        AntKey_KP_0 = 0x40000059, // SDLK_KP_0
-        AntKey_KP_1 = 0x4000005a, // SDLK_KP_1
-        AntKey_KP_2 = 0x4000005b, // SDLK_KP_2
-        AntKey_KP_3 = 0x4000005c, // SDLK_KP_3
-        AntKey_KP_4 = 0x4000005d, // SDLK_KP_4
-        AntKey_KP_5 = 0x4000005e, // SDLK_KP_5
-        AntKey_KP_6 = 0x4000005f, // SDLK_KP_6
-        AntKey_KP_7 = 0x40000060, // SDLK_KP_7
-        AntKey_KP_8 = 0x40000061, // SDLK_KP_8
-        AntKey_KP_9 = 0x40000062 // SDLK_KP_9
+        AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
+        AntKey_Control_R = Qt::Key_Control | customQtKeyPrefix,
+        AntKey_Shift_Lock = 0xffe6 | customQtKeyPrefix, // XK_Shift_Lock | 0x10000000
+        AntKey_Meta_R = Qt::Key_Meta | customQtKeyPrefix,
+        AntKey_Alt_R = Qt::Key_Alt | customQtKeyPrefix,
+        AntKey_KP_Divide = Qt::Key_Slash | customQtKeyPrefix,
+        AntKey_KP_Multiply = Qt::Key_Asterisk | customQtKeyPrefix,
+        AntKey_KP_Subtract = Qt::Key_Minus | customQtKeyPrefix,
+        AntKey_KP_Add = Qt::Key_Plus | customQtKeyPrefix,
+        AntKey_KP_Decimal = Qt::Key_Period | customQtKeyPrefix,
+        AntKey_KP_Insert = Qt::Key_Insert | customQtKeyPrefix,
+        AntKey_KP_Delete = Qt::Key_Delete | customQtKeyPrefix,
+        AntKey_KP_End = Qt::Key_End | customQtKeyPrefix,
+        AntKey_KP_Down = Qt::Key_Down | customQtKeyPrefix,
+        AntKey_KP_Prior = Qt::Key_PageDown | customQtKeyPrefix,
+        AntKey_KP_Left = Qt::Key_Left | customQtKeyPrefix,
+        AntKey_KP_Begin = Qt::Key_Clear | customQtKeyPrefix,
+        AntKey_KP_Right = Qt::Key_Right | customQtKeyPrefix,
+        AntKey_KP_Home = Qt::Key_Home | customQtKeyPrefix,
+        AntKey_KP_Up = Qt::Key_Up | customQtKeyPrefix,
+        AntKey_KP_Next = Qt::Key_PageUp | customQtKeyPrefix,
+        AntKey_KP_0 = Qt::Key_0 | customQtKeyPrefix,
+        AntKey_KP_1 = Qt::Key_1 | customQtKeyPrefix,
+        AntKey_KP_2 = Qt::Key_2 | customQtKeyPrefix,
+        AntKey_KP_3 = Qt::Key_3 | customQtKeyPrefix,
+        AntKey_KP_4 = Qt::Key_4 | customQtKeyPrefix,
+        AntKey_KP_5 = Qt::Key_5 | customQtKeyPrefix,
+        AntKey_KP_6 = Qt::Key_6 | customQtKeyPrefix,
+        AntKey_KP_7 = Qt::Key_7 | customQtKeyPrefix,
+        AntKey_KP_8 = Qt::Key_8 | customQtKeyPrefix,
+        AntKey_KP_9 = Qt::Key_9 | customQtKeyPrefix
     };
 
 protected:
