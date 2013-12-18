@@ -2,12 +2,7 @@
 
 #include "joybuttonslot.h"
 
-#ifdef Q_OS_WIN
-#include "qtwinkeymapper.h"
-#else
-#include "qtx11keymapper.h"
-#endif
-
+#include "antkeymapper.h"
 #include "event.h"
 
 const int JoyButtonSlot::JOYSPEED = 20;
@@ -177,12 +172,13 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
         }
         if (this->getSlotMode() == JoyButtonSlot::JoyKeyboard)
         {
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
             unsigned int virtualkey = QtWinKeyMapper::returnVirtualKey(this->getSlotCode());
 #else
             //unsigned int virtualkey = X11KeyCodeToX11KeySym(this->getSlotCode());
             unsigned int virtualkey = QtX11KeyMapper::returnVirtualKey(this->getSlotCode());
-#endif
+#endif*/
+            unsigned int virtualkey = AntKeyMapper::returnVirtualKey(this->getSlotCode());
             if (virtualkey)
             {
                 this->setSlotCode(virtualkey);
@@ -198,17 +194,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 
     if (mode == JoyKeyboard)
     {
-#ifdef Q_OS_WIN
-        unsigned int qtkey = QtWinKeyMapper::returnQtKey(deviceCode);
+        unsigned int qtkey = AntKeyMapper::returnQtKey(deviceCode);
         qDebug() << "QT KEY: " << QString::number(qtkey, 16);
         xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
 
-#else
-        unsigned int qtkey = QtX11KeyMapper::returnQtKey(deviceCode);
-        qDebug() << "QT KEY: " << QString::number(qtkey, 16);
-        xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
-
-#endif
     }
     else
     {

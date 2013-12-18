@@ -1,0 +1,18 @@
+#include "antkeymapper.h"
+
+AntKeyMapper AntKeyMapper::_instance;
+
+AntKeyMapper::AntKeyMapper(QObject *parent) :
+    QObject(parent)
+{
+}
+
+unsigned int AntKeyMapper::returnQtKey(unsigned int key)
+{
+    return _instance.internalMapper.returnQtKey(key);
+}
+
+unsigned int AntKeyMapper::returnVirtualKey(unsigned int qkey)
+{
+    return _instance.internalMapper.returnVirtualKey(qkey);
+}

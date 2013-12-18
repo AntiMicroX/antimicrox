@@ -9,11 +9,7 @@
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
 
-#ifdef Q_OS_WIN
-#include "qtwinkeymapper.h"
-#else
-#include "qtx11keymapper.h"
-#endif
+#include "antkeymapper.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -114,11 +110,9 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
     {
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
-#ifdef Q_OS_WIN
-        int checkalias = QtWinKeyMapper::returnQtKey(virtualactual);
-#else
-        int checkalias = QtX11KeyMapper::returnQtKey(virtualactual);
-#endif
+
+        int checkalias = AntKeyMapper::returnQtKey(virtualactual);
+
         if (checkalias <= 0)
         {
             controlcode = 0;

@@ -1,4 +1,5 @@
 #include "event.h"
+#include "antkeymapper.h"
 
 #include "xmlconfigmigration.h"
 
@@ -112,11 +113,11 @@ QString XMLConfigMigration::version0006Migration()
             {
                 if (slotmode == "keyboard")
                 {
-    #ifdef Q_OS_WIN
-                    slotcode = QtWinKeyMapper::returnQtKey(slotcode);
-    #else
-                    slotcode = QtX11KeyMapper::returnQtKey(X11KeyCodeToX11KeySym(slotcode));
-    #endif
+#ifdef Q_OS_WIN
+                    slotcode = AntKeyMapper::returnQtKey(slotcode);
+#else
+                    slotcode = AntKeyMapper::returnQtKey(X11KeyCodeToX11KeySym(slotcode));
+#endif
                     writer.writeTextElement("code", QString("0x%1").arg(slotcode, 0, 16));
                 }
                 else

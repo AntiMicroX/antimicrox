@@ -9,7 +9,6 @@
 
 #include "qtx11keymapper.h"
 
-QtX11KeyMapper QtX11KeyMapper::_instance;
 
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
@@ -272,24 +271,4 @@ void QtX11KeyMapper::populateMappingHashes()
             virtualKeyToQtKey[iter.value()] = iter.key();
         }
     }
-}
-
-unsigned int QtX11KeyMapper::returnInstanceQtKey(unsigned int key)
-{
-    return virtualKeyToQtKey.value(key);
-}
-
-unsigned int QtX11KeyMapper::returnInstanceVirtualKey(unsigned int qkey)
-{
-    return qtKeyToVirtualKey.value(qkey);
-}
-
-unsigned int QtX11KeyMapper::returnQtKey(unsigned int key)
-{
-    return _instance.returnInstanceQtKey(key);
-}
-
-unsigned int QtX11KeyMapper::returnVirtualKey(unsigned int qkey)
-{
-    return _instance.returnInstanceVirtualKey(qkey);
 }

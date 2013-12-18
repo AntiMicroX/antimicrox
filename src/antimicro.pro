@@ -183,7 +183,8 @@ SOURCES += main.cpp\
     qtkeymapperbase.cpp \
     flashbuttonwidget.cpp \
     xmlconfigmigration.cpp \
-    qkeydisplaydialog.cpp
+    qkeydisplaydialog.cpp \
+    antkeymapper.cpp
 
 
 unix {
@@ -250,7 +251,8 @@ HEADERS  += mainwindow.h \
     qtkeymapperbase.h \
     flashbuttonwidget.h \
     xmlconfigmigration.h \
-    qkeydisplaydialog.h
+    qkeydisplaydialog.h \
+    antkeymapper.h
 
 
 unix {

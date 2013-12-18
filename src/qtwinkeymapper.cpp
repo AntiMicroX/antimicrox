@@ -3,8 +3,6 @@
 
 #include "qtwinkeymapper.h"
 
-QtWinKeyMapper QtWinKeyMapper::_instance;
-
 QtWinKeyMapper::QtWinKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
@@ -138,24 +136,4 @@ void QtWinKeyMapper::populateMappingHashes()
             virtualKeyToQtKey[iter.value()] = iter.key();
         }
     }
-}
-
-unsigned int QtWinKeyMapper::returnInstanceQtKey(unsigned int key)
-{
-    return virtualKeyToQtKey.value(key);
-}
-
-unsigned int QtWinKeyMapper::returnInstanceVirtualKey(unsigned int qkey)
-{
-    return qtKeyToVirtualKey.value(qkey);
-}
-
-unsigned int QtWinKeyMapper::returnQtKey(unsigned int key)
-{
-    return _instance.returnInstanceQtKey(key);
-}
-
-unsigned int QtWinKeyMapper::returnVirtualKey(unsigned int qkey)
-{
-    return _instance.returnInstanceVirtualKey(qkey);
 }

@@ -5,12 +5,6 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#ifdef Q_OS_WIN
-#include "qtwinkeymapper.h"
-#else
-#include "qtx11keymapper.h"
-#endif
-
 #include "common.h"
 
 class XMLConfigMigration : public QObject

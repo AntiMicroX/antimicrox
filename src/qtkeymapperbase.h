@@ -8,8 +8,10 @@ class QtKeyMapperBase : public QObject
 {
     Q_OBJECT
 public:
-    virtual unsigned int returnInstanceVirtualKey(unsigned int qkey) = 0;
-    virtual unsigned int returnInstanceQtKey(unsigned int key) = 0;
+    explicit QtKeyMapperBase(QObject *parent = 0);
+
+    virtual unsigned int returnVirtualKey(unsigned int qkey);
+    virtual unsigned int returnQtKey(unsigned int key);
 
     static const unsigned int customQtKeyPrefix = 0x10000000;
     static const unsigned int customKeyPrefix = 0x20000000;
@@ -50,8 +52,10 @@ public:
     };
 
 protected:
-    explicit QtKeyMapperBase(QObject *parent = 0);
     virtual void populateMappingHashes() = 0;
+
+    QHash<unsigned int, unsigned int> qtKeyToVirtualKey;
+    QHash<unsigned int, unsigned int> virtualKeyToQtKey;
 
 signals:
 
