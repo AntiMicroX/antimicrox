@@ -58,7 +58,7 @@ void QtX11KeyMapper::populateMappingHashes()
         //qtKeyToX11KeySym[Qt::Key_Shift] = XK_Shift_Lock;
         qtKeyToVirtualKey[Qt::Key_Control] = XK_Control_L;
         //qtKeyToX11KeySym[Qt::Key_Control] = XK_Control_R;
-        qtKeyToVirtualKey[Qt::Key_Meta] = XK_Meta_L;
+        //qtKeyToVirtualKey[Qt::Key_Meta] = XK_Meta_L;
         //qtKeyToX11KeySym[Qt::Key_Meta] = XK_Meta_R;
         qtKeyToVirtualKey[Qt::Key_Alt] = XK_Alt_L;
         //qtKeyToX11KeySym[Qt::Key_Alt] = XK_Alt_R;
@@ -66,8 +66,10 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_CapsLock] = XK_Caps_Lock;
         qtKeyToVirtualKey[Qt::Key_NumLock] = XK_Num_Lock;
         qtKeyToVirtualKey[Qt::Key_ScrollLock] = XK_Scroll_Lock;
-        qtKeyToVirtualKey[Qt::Key_Super_L] = XK_Super_L;
-        qtKeyToVirtualKey[Qt::Key_Super_R] = XK_Super_R;
+        qtKeyToVirtualKey[Qt::Key_Meta] = XK_Super_L;
+        qtKeyToVirtualKey[AntKey_Meta_R] = XK_Super_R;
+        //qtKeyToVirtualKey[Qt::Key_Super_L] = XK_Super_L;
+        //qtKeyToVirtualKey[Qt::Key_Super_R] = XK_Super_R;
         qtKeyToVirtualKey[Qt::Key_Menu] = XK_Menu;
         qtKeyToVirtualKey[Qt::Key_Hyper_L] = XK_Hyper_L;
         qtKeyToVirtualKey[Qt::Key_Hyper_R] = XK_Hyper_R;
@@ -256,7 +258,7 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Shift_R] = XK_Shift_R;
         qtKeyToVirtualKey[AntKey_Control_R] = XK_Control_R;
         //qtKeyToX11KeySym[AntKey_Shift_Lock] = XK_Shift_Lock;
-        qtKeyToVirtualKey[AntKey_Meta_R] = XK_Meta_R;
+        //qtKeyToVirtualKey[AntKey_Meta_R] = XK_Meta_R;
         qtKeyToVirtualKey[AntKey_Alt_R] = XK_Alt_R;
 
         for (int i=0; i <= (XK_KP_9 - XK_KP_0); i++)

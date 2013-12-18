@@ -20,7 +20,7 @@ public:
     enum {
         AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
         AntKey_Control_R = Qt::Key_Control | customQtKeyPrefix,
-        AntKey_Shift_Lock = 0xffe6 | customQtKeyPrefix, // XK_Shift_Lock | 0x10000000
+        AntKey_Shift_Lock = 0xffe6 | customKeyPrefix, // XK_Shift_Lock | 0x20000000
         AntKey_Meta_R = Qt::Key_Meta | customQtKeyPrefix,
         AntKey_Alt_R = Qt::Key_Alt | customQtKeyPrefix,
         AntKey_KP_Divide = Qt::Key_Slash | customQtKeyPrefix,
