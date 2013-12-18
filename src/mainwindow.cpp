@@ -2,6 +2,8 @@
 #include <QFile>
 #include <QLocalSocket>
 #include <QTextStream>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -14,6 +16,7 @@
 #include "joycontrolstickbuttonpushbutton.h"
 #include "dpadpushbutton.h"
 #include "joystickstatuswindow.h"
+#include "qkeydisplaydialog.h"
 #include "common.h"
 
 MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
@@ -59,8 +62,11 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmd
     aboutDialog = new AboutDialog(this);
 
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
+    connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
+    connect(ui->actionHomePage, SIGNAL(triggered()), this, SLOT(openProjectHomePage()));
+    connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
 }
 
 MainWindow::~MainWindow()
@@ -602,4 +608,20 @@ void MainWindow::openJoystickStatusWindow()
         JoystickStatusWindow *dialog = new JoystickStatusWindow(joystick, this);
         dialog->show();
     }
+}
+
+void MainWindow::openKeyCheckerDialog()
+{
+    QKeyDisplayDialog *dialog = new QKeyDisplayDialog(this);
+    dialog->show();
+}
+
+void MainWindow::openProjectHomePage()
+{
+    QDesktopServices::openUrl(QUrl(PadderCommon::projectHomePage));
+}
+
+void MainWindow::openGitHubPage()
+{
+    QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage));
 }

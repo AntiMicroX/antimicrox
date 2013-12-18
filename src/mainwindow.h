@@ -78,6 +78,9 @@ private slots:
     void handleOutsideConnection();
     void handleSocketDisconnect();
     void openJoystickStatusWindow();
+    void openKeyCheckerDialog();
+    void openProjectHomePage();
+    void openGitHubPage();
 };
 
 #endif // MAINWINDOW_H

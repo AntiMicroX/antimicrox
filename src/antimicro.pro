@@ -182,7 +182,8 @@ SOURCES += main.cpp\
     joybuttonstatusbox.cpp \
     qtkeymapperbase.cpp \
     flashbuttonwidget.cpp \
-    xmlconfigmigration.cpp
+    xmlconfigmigration.cpp \
+    qkeydisplaydialog.cpp
 
 
 unix {
@@ -248,7 +249,8 @@ HEADERS  += mainwindow.h \
     joybuttonstatusbox.h \
     qtkeymapperbase.h \
     flashbuttonwidget.h \
-    xmlconfigmigration.h
+    xmlconfigmigration.h \
+    qkeydisplaydialog.h
 
 
 unix {
@@ -270,7 +272,8 @@ FORMS    += mainwindow.ui \
     dpadeditdialog.ui \
     quicksetdialog.ui \
     mousesettingsdialog.ui \
-    joystickstatuswindow.ui
+    joystickstatuswindow.ui \
+    qkeydisplaydialog.ui
 
 
 unix {

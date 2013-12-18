@@ -24,6 +24,8 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const int LATESTCONFIGFILEVERSION = 5;
     const QString programVersion = "1.2";
     const QString localSocketKey = "antimicroSignalListener";
+    const QString projectHomePage = "http://ryochan7.com/projects/antimicro/";
+    const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
 }
 
 #endif // COMMON_H

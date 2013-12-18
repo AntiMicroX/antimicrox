@@ -581,12 +581,16 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <string>&amp;Options</string>
     </property>
     <addaction name="actionProperties"/>
+    <addaction name="actionKeyValue"/>
     <addaction name="actionUpdate_Joysticks"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="actionHomePage"/>
+    <addaction name="actionGitHubPage"/>
+    <addaction name="separator"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
    </widget>
@@ -657,6 +661,21 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionProperties">
    <property name="text">
     <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionKeyValue">
+   <property name="text">
+    <string>Key Checker</string>
+   </property>
+  </action>
+  <action name="actionHomePage">
+   <property name="text">
+    <string>Home Page</string>
+   </property>
+  </action>
+  <action name="actionGitHubPage">
+   <property name="text">
+    <string>GitHub Page</string>
    </property>
   </action>
  </widget>
