@@ -14,7 +14,11 @@ SDLEventReader::~SDLEventReader()
 
 void SDLEventReader::initSDL()
 {
+#ifdef USE_SDL_2
+    SDL_Init(SDL_INIT_JOYSTICK);
+#else
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
+#endif
     SDL_JoystickEventState(SDL_ENABLE);
     sdlIsOpen = true;
 
@@ -24,14 +28,32 @@ void SDLEventReader::initSDL()
 void SDLEventReader::closeSDL()
 {
     SDL_Event event;
+#ifdef USE_SDL_2
+    QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+    while (iter.hasNext())
+    {
+        iter.next();
+
+        //SDL_JoystickID currentSdlId = iter.key();
+        Joystick *current = iter.value();
+        SDL_Joystick *sdlHandle = current->getSDLHandle();
+
+        if (sdlHandle && SDL_JoystickGetAttached(sdlHandle))
+        {
+            SDL_JoystickClose(sdlHandle);
+        }
+    }
+#else
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
+
         if (SDL_JoystickOpened(i) && joysticks->value(i))
         {
             SDL_Joystick *handle = (joysticks->value(i))->getSDLHandle();
             SDL_JoystickClose(handle);
         }
     }
+#endif
 
     // Clear any pending events
     while (SDL_PollEvent(&event) > 0)

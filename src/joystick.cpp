@@ -13,7 +13,12 @@ Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
     buttonDownCount = 0;
 
     this->joyhandle = joyhandle;
+#ifdef USE_SDL_2
+    joyNumber = SDL_JoystickInstanceID(joyhandle);
+#else
     joyNumber= SDL_JoystickIndex(joyhandle);
+#endif
+
     joystick_sets = QHash<int, SetJoystick*> ();
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
@@ -1338,7 +1343,15 @@ void Joystick::updateSetVDPadNames(int vdpadIndex)
 
 QString Joystick::getSDLName()
 {
-    QString temp(SDL_JoystickName(joyNumber));
+    QString temp;
+#ifdef USE_SDL_2
+    if (joyhandle)
+    {
+        temp = SDL_JoystickName(joyhandle);
+    }
+#else
+    temp = SDL_JoystickName(joyNumber);
+#endif
     return temp;
 }
 
@@ -1346,4 +1359,17 @@ void Joystick::resetButtonDownCount()
 {
     buttonDownCount = 0;
     released(0);
+}
+
+QString Joystick::getGUIDString()
+{
+    QString temp;
+#ifdef USE_SDL_2
+    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joyhandle);
+    char guidString[65] = {'0'};
+    SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
+    temp = QString(guidString);
+#endif
+    // Not available on SDL 1.2. Return empty string in that case.
+    return temp;
 }

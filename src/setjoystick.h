@@ -5,7 +5,12 @@
 #include <QHash>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+
+#ifdef USE_SDL_2
+#include <SDL2/SDL_joystick.h>
+#else
 #include <SDL/SDL_joystick.h>
+#endif
 
 #include "joyaxis.h"
 #include "joycontrolstick.h"

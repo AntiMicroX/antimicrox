@@ -12,6 +12,7 @@ qrc_resources.cpp
 ui_*.h
 *.*~
 SDL-1.2.15/
+SDL2-2.0.1/
 build-antimicro-Desktop_Qt_5_1_1_MinGW_32bit-Debug/
 build-antimicro-Desktop_Qt_5_1_1_MinGW_32bit-release/
 windows/*.msi

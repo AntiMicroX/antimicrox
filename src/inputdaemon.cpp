@@ -2,12 +2,24 @@
 #include <QTimer>
 #include <QEventLoop>
 #include <QHashIterator>
+
+#ifdef USE_SDL_2
+#include <SDL2/SDL_joystick.h>
+#include <SDL2/SDL_events.h>
+
+#else
 #include <SDL/SDL_joystick.h>
 #include <SDL/SDL_events.h>
 
+#endif
+
 #include "inputdaemon.h"
 
+#ifdef USE_SDL_2
+InputDaemon::InputDaemon(QHash<SDL_JoystickID, Joystick*> *joysticks, bool graphical, QObject *parent) :
+#else
 InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, bool graphical, QObject *parent) :
+#endif
     QObject(parent)
 {
     this->joysticks = joysticks;
@@ -46,7 +58,11 @@ InputDaemon::~InputDaemon()
 void InputDaemon::run ()
 {
     SDL_Event event;
+#ifdef USE_SDL_2
+    event.type = SDL_FIRSTEVENT;
+#else
     event.type = SDL_NOEVENT;
+#endif
 
     if (joysticks->count() > 0 && !stopped)
     {
@@ -58,9 +74,9 @@ void InputDaemon::run ()
             {
                 case SDL_JOYBUTTONDOWN:
                 {
-                    Joystick *joy = joysticks->value(event.button.which);
+                    Joystick *joy = joysticks->value(event.jbutton.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
-                    JoyButton *button = set->getJoyButton(event.button.button);
+                    JoyButton *button = set->getJoyButton(event.jbutton.button);
 
                     if (button)
                     {
@@ -71,9 +87,9 @@ void InputDaemon::run ()
 
                 case SDL_JOYBUTTONUP:
                 {
-                    Joystick *joy = joysticks->value(event.button.which);
+                    Joystick *joy = joysticks->value(event.jbutton.which);
                     SetJoystick* set = joy->getActiveSetJoystick();
-                    JoyButton *button = set->getJoyButton(event.button.button);
+                    JoyButton *button = set->getJoyButton(event.jbutton.button);
 
                     if (button)
                     {
@@ -131,7 +147,11 @@ void InputDaemon::run ()
         // Check for a grabbed instance of an SDL_QUIT event. If the last event was
         // not an SDL_QUIT event, push an event onto the queue so SdlEventReader
         // will finish properly.
+#ifdef USE_SDL_2
+        if (event.type != SDL_FIRSTEVENT && event.type != SDL_QUIT)
+#else
         if (event.type != SDL_NOEVENT && event.type != SDL_QUIT)
+#endif
         {
             event.type = SDL_QUIT;
             SDL_PushEvent(&event);
@@ -161,10 +181,14 @@ void InputDaemon::refreshJoysticks()
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
-        SDL_Joystick* joystick = SDL_JoystickOpen (i);
-        Joystick *curJoystick = new Joystick (joystick, this);
-
+        SDL_Joystick *joystick = SDL_JoystickOpen(i);
+        Joystick *curJoystick = new Joystick(joystick, this);
+#ifdef USE_SDL_2
+        SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
+        joysticks->insert(joystickID, curJoystick);
+#else
         joysticks->insert(i, curJoystick);
+#endif
     }
 
     emit joysticksRefreshed(joysticks);

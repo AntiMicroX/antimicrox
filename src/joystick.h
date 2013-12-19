@@ -4,7 +4,12 @@
 #include <QObject>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+
+#ifdef USE_SDL_2
+#include <SDL2/SDL_joystick.h>
+#else
 #include <SDL/SDL_joystick.h>
+#endif
 
 #include "joyaxis.h"
 #include "joydpad.h"
@@ -34,6 +39,7 @@ public:
     void removeControlStick(int index);
     bool isActive();
     QString getSDLName();
+    QString getGUIDString(); // GUID available on SDL 2.
 
     void setButtonName(int index, QString tempName);
     void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);

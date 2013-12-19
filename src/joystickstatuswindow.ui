@@ -49,13 +49,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
        <property name="title">
         <string>Details</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_9">
-        <property name="leftMargin">
-         <number>8</number>
-        </property>
-        <property name="bottomMargin">
-         <number>14</number>
-        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_13">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -186,6 +180,42 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
             </property>
             <property name="indent">
              <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="guidVerticalLayout">
+          <item>
+           <widget class="QLabel" name="guidHeaderLabel">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>GUID:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="guidLabel">
+            <property name="text">
+             <string>%1</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="margin">
+             <number>10</number>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
