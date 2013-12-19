@@ -51,7 +51,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Comma] = VK_SEPARATOR;
         qtKeyToVirtualKey[AntKey_KP_Subtract] = VK_SUBTRACT;
         qtKeyToVirtualKey[AntKey_KP_Decimal] = VK_DECIMAL;
-        qtKeyToVirtualKey[Qt::Key_Slash] = VK_DIVIDE;
+        qtKeyToVirtualKey[AntKey_KP_Divide] = VK_DIVIDE;
 
         qtKeyToVirtualKey[Qt::Key_NumLock] = VK_NUMLOCK;
         qtKeyToVirtualKey[Qt::Key_ScrollLock] = VK_SCROLL;
@@ -84,7 +84,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Launch1] = VK_LAUNCH_APP2;
 
         qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
-        qtKeyToVirtualKey[Qt::Key_Plus] = VK_OEM_2;
+        qtKeyToVirtualKey[Qt::Key_Slash] = VK_OEM_2;
         qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
         qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
         qtKeyToVirtualKey[Qt::Key_Period]  = VK_OEM_PERIOD;

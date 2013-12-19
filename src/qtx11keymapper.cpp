@@ -94,7 +94,7 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_KP_Delete] = XK_KP_Delete;
         qtKeyToVirtualKey[AntKey_KP_Delete] = XK_KP_Delete;
         //qtKeyToX11KeySym[AntKey_KP_Equal] = XK_KP_Equal;
-        qtKeyToVirtualKey[AntKey_KP_Multiply] = XK_KP_Multiply;
+        qtKeyToVirtualKey[Qt::Key_Asterisk] = XK_KP_Multiply;
         qtKeyToVirtualKey[AntKey_KP_Add] = XK_KP_Add;
         //qtKeyToX11KeySym[AntKey_KP_Separator] = XK_KP_Separator;
         qtKeyToVirtualKey[AntKey_KP_Subtract] = XK_KP_Subtract;
