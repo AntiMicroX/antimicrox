@@ -275,8 +275,13 @@ unix {
   }
   LIBS += -lXtst -lX11
 } else:win32 {
-  LIBS += -L"..\SDL-1.2.15\lib" -lSDL
-  INCLUDEPATH += "..\SDL-1.2.15\include"
+  !isEmpty(USE_SDL_2) {
+    LIBS += -L"..\SDL2-2.0.1\i686-w64-mingw32\lib" -lSDL2
+    INCLUDEPATH += "..\SDL2-2.0.1\i686-w64-mingw32\include"
+  } else {
+    LIBS += -L"..\SDL-1.2.15\lib" -lSDL
+    INCLUDEPATH += "..\SDL-1.2.15\include"
+  }
   msvc: {
     INCLUDEPATH +== "$$PWD"
   }
