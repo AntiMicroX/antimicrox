@@ -18,6 +18,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Tab] = VK_TAB;
         qtKeyToVirtualKey[Qt::Key_Clear] = VK_CLEAR;
         qtKeyToVirtualKey[Qt::Key_Return] = VK_RETURN;
+        qtKeyToVirtualKey[Qt::Key_Enter] = VK_RETURN;
         //qtKeyToWinVirtualKey[Qt::Key_Shift] = VK_SHIFT;
         //qtKeyToWinVirtualKey[Qt::Key_Control] = VK_CONTROL;
         //qtKeyToWinVirtualKey[Qt::Key_Alt] = VK_MENU;
@@ -137,5 +138,8 @@ void QtWinKeyMapper::populateMappingHashes()
             iter.next();
             virtualKeyToQtKey[iter.value()] = iter.key();
         }
+
+        // Override current item for VK_RETURN
+        virtualKeyToQtKey[VK_RETURN] = Qt::Key_Return;
     }
 }
