@@ -46,7 +46,8 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Menu] = VK_APPS;
         qtKeyToVirtualKey[Qt::Key_Sleep] = VK_SLEEP;
 
-        qtKeyToVirtualKey[Qt::Key_Asterisk] = VK_MULTIPLY;
+        qtKeyToVirtualKey[AntKey_KP_Multiply] = VK_MULTIPLY;
+        //qtKeyToVirtualKey[Qt::Key_Asterisk] = VK_MULTIPLY;
         qtKeyToVirtualKey[AntKey_KP_Add] = VK_ADD;
         qtKeyToVirtualKey[Qt::Key_Comma] = VK_SEPARATOR;
         qtKeyToVirtualKey[AntKey_KP_Subtract] = VK_SUBTRACT;

@@ -94,7 +94,6 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_KP_Delete] = XK_KP_Delete;
         qtKeyToVirtualKey[AntKey_KP_Delete] = XK_KP_Delete;
         //qtKeyToX11KeySym[AntKey_KP_Equal] = XK_KP_Equal;
-        qtKeyToVirtualKey[Qt::Key_Asterisk] = XK_KP_Multiply;
         qtKeyToVirtualKey[AntKey_KP_Add] = XK_KP_Add;
         //qtKeyToX11KeySym[AntKey_KP_Separator] = XK_KP_Separator;
         qtKeyToVirtualKey[AntKey_KP_Subtract] = XK_KP_Subtract;
@@ -260,6 +259,7 @@ void QtX11KeyMapper::populateMappingHashes()
         //qtKeyToX11KeySym[AntKey_Shift_Lock] = XK_Shift_Lock;
         //qtKeyToVirtualKey[AntKey_Meta_R] = XK_Meta_R;
         qtKeyToVirtualKey[AntKey_Alt_R] = XK_Alt_R;
+        qtKeyToVirtualKey[AntKey_KP_Multiply] = XK_KP_Multiply;
 
         for (int i=0; i <= (XK_KP_9 - XK_KP_0); i++)
         {
