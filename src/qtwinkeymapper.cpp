@@ -85,13 +85,14 @@ void QtWinKeyMapper::populateMappingHashes()
 
         qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
         qtKeyToVirtualKey[Qt::Key_Plus] = VK_OEM_2;
+        qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
         qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
         qtKeyToVirtualKey[Qt::Key_Period]  = VK_OEM_PERIOD;
         qtKeyToVirtualKey[Qt::Key_QuoteLeft] = VK_OEM_3;
         qtKeyToVirtualKey[Qt::Key_BracketLeft] = VK_OEM_4;
         qtKeyToVirtualKey[Qt::Key_Backslash] = VK_OEM_5;
         qtKeyToVirtualKey[Qt::Key_BracketRight] = VK_OEM_6;
-        qtKeyToVirtualKey[Qt::Key_QuoteLeft] = VK_OEM_7;
+        qtKeyToVirtualKey[Qt::Key_Apostrophe] = VK_OEM_7;
 
         qtKeyToVirtualKey[Qt::Key_Play] = VK_PLAY;
         qtKeyToVirtualKey[Qt::Key_Zoom] = VK_ZOOM;

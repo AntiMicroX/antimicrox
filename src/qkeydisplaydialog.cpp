@@ -1,6 +1,10 @@
 #include "qkeydisplaydialog.h"
 #include "ui_qkeydisplaydialog.h"
 
+#ifdef Q_OS_WIN
+#include "wininfo.h"
+#endif
+
 #include "antkeymapper.h"
 
 QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
@@ -33,8 +37,15 @@ void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 
 void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    ui->nativeKeyLabel->setText(QString("0x%1").arg(event->nativeVirtualKey(), 0, 16));
+    unsigned int scancode = event->nativeScanCode();
+    unsigned int virtualkey = event->nativeVirtualKey();
+#ifdef Q_OS_WIN
+    unsigned int finalvirtual = WinInfo::correctVirtualKey(scancode, virtualkey);
+#else
+    unsigned int finalvirtual = virtualkey;
+#endif
+    ui->nativeKeyLabel->setText(QString("0x%1").arg(finalvirtual, 0, 16));
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));
-    QString tempValue = QString("0x%1").arg(AntKeyMapper::returnQtKey(event->nativeVirtualKey()), 0, 16);
+    QString tempValue = QString("0x%1").arg(AntKeyMapper::returnQtKey(finalvirtual), 0, 16);
     ui->antimicroKeyLabel->setText(tempValue);
 }
