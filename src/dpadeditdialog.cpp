@@ -307,7 +307,7 @@ void DPadEditDialog::updateWindowTitleDPadName()
     QString temp = QString(tr("Set")).append(" ");
     if (!dpad->getDpadName().isEmpty())
     {
-        temp.append(tr("DPad")).append(" ").append(dpad->getDpadName());
+        temp.append(dpad->getName(true, true));
     }
     else
     {

@@ -13,7 +13,7 @@ class JoyAxisButton : public JoyButton
 public:
     explicit JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent=0);
     
-    virtual QString getPartialName(bool forceFullFormat=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);

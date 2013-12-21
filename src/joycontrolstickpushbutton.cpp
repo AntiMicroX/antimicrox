@@ -37,8 +37,8 @@ QString JoyControlStickPushButton::generateLabel()
 
 void JoyControlStickPushButton::disableFlashes()
 {
-    disconnect(stick, SIGNAL(active(int, int)), this, 0);
-    disconnect(stick, SIGNAL(released(int, int)), this, 0);
+    disconnect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
+    disconnect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
     this->unflash();
 }
 

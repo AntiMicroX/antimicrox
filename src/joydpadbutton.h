@@ -13,7 +13,7 @@ public:
 
     QString getDirectionName();
     virtual int getRealJoyNumber();
-    virtual QString getPartialName(bool forceFullFormat=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     JoyDPad *getDPad();
 

@@ -14,7 +14,6 @@
 #include "joycontrolstickbuttonpushbutton.h"
 #include "dpadpushbutton.h"
 #include "dpadeditdialog.h"
-#include "virtualdpadpushbutton.h"
 #include "joydpadbuttonwidget.h"
 #include "quicksetdialog.h"
 
@@ -768,7 +767,7 @@ void JoyTabWidget::fillButtons()
             connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
             tempalayout->addWidget(pushbutton, 1, 0);
 
-            VirtualDPadPushButton *dpadpushbutton = new VirtualDPadPushButton(vdpad, attemp);
+            DPadPushButton *dpadpushbutton = new DPadPushButton(vdpad, attemp);
             dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
             dpadpushbutton->setDisplayNames(displayingNames);
             connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));

@@ -30,8 +30,8 @@ JoyAxis* JoyAxisWidget::getAxis()
 
 void JoyAxisWidget::disableFlashes()
 {
-    disconnect(axis, SIGNAL(active(int)), this, 0);
-    disconnect(axis, SIGNAL(released(int)), this, 0);
+    disconnect(axis, SIGNAL(active(int)), this, SLOT(flash()));
+    disconnect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
     this->unflash();
 }
 
