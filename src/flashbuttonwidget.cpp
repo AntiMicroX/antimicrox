@@ -13,6 +13,14 @@ FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
     leftAlignText = false;
 }
 
+FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
+    QPushButton(parent)
+{
+    isflashing = false;
+    this->displayNames = displayNames;
+    leftAlignText = false;
+}
+
 void FlashButtonWidget::flash()
 {
     isflashing = true;

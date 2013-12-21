@@ -1,10 +1,7 @@
-#include <QDebug>
-#include <QStyle>
-
 #include "joyaxiswidget.h"
 
-JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, QWidget *parent) :
-    FlashButtonWidget(parent)
+JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->axis = axis;
 
@@ -30,8 +27,8 @@ JoyAxis* JoyAxisWidget::getAxis()
 
 void JoyAxisWidget::disableFlashes()
 {
-    disconnect(axis, SIGNAL(active(int)), this, 0);
-    disconnect(axis, SIGNAL(released(int)), this, 0);
+    disconnect(axis, SIGNAL(active(int)), this, SLOT(flash()));
+    disconnect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
     this->unflash();
 }
 

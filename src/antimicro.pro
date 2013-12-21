@@ -166,7 +166,6 @@ SOURCES += main.cpp\
     joycontrolstickbuttonpushbutton.cpp \
     joycontrolstickstatusbox.cpp \
     advancestickassignmentdialog.cpp \
-    virtualdpadpushbutton.cpp \
     dpadpushbutton.cpp \
     dpadeditdialog.cpp \
     vdpad.cpp \
@@ -234,7 +233,6 @@ HEADERS  += mainwindow.h \
     joycontrolstickbuttonpushbutton.h \
     joycontrolstickstatusbox.h \
     advancestickassignmentdialog.h \
-    virtualdpadpushbutton.h \
     dpadpushbutton.h \
     dpadeditdialog.h \
     vdpad.h \

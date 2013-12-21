@@ -1,10 +1,7 @@
-#include <QDebug>
-#include <QStyle>
-
 #include "joycontrolstickpushbutton.h"
 
-JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWidget *parent) :
-    FlashButtonWidget(parent)
+JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->stick = stick;
 
@@ -37,8 +34,8 @@ QString JoyControlStickPushButton::generateLabel()
 
 void JoyControlStickPushButton::disableFlashes()
 {
-    disconnect(stick, SIGNAL(active(int, int)), this, 0);
-    disconnect(stick, SIGNAL(released(int, int)), this, 0);
+    disconnect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
+    disconnect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
     this->unflash();
 }
 

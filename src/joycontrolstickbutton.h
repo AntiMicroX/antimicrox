@@ -14,7 +14,7 @@ public:
     explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent = 0);
 
     virtual int getRealJoyNumber();
-    virtual QString getPartialName(bool forceFullFormat=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     QString getDirectionName();
     virtual double getDistanceFromDeadZone();

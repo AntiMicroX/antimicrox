@@ -11,6 +11,7 @@ class FlashButtonWidget : public QPushButton
 
 public:
     explicit FlashButtonWidget(QWidget *parent = 0);
+    explicit FlashButtonWidget(bool displayNames, QWidget *parent = 0);
 
     bool isButtonFlashing();
     void setDisplayNames(bool display);

@@ -1,10 +1,7 @@
-#include <QDebug>
-#include <QStyle>
-
 #include "joybuttonwidget.h"
 
-JoyButtonWidget::JoyButtonWidget(JoyButton *button, QWidget *parent) :
-    FlashButtonWidget(parent)
+JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->button = button;
 
@@ -24,15 +21,15 @@ JoyButton* JoyButtonWidget::getJoyButton()
 
 void JoyButtonWidget::disableFlashes()
 {
-    disconnect (button, SIGNAL(clicked(int)), this, 0);
-    disconnect (button, SIGNAL(released(int)), this, 0);
+    disconnect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
+    disconnect(button, SIGNAL(released(int)), this, SLOT(unflash()));
     this->unflash();
 }
 
 void JoyButtonWidget::enableFlashes()
 {
-    connect (button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    connect (button, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
+    connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
 }
 
 QString JoyButtonWidget::generateLabel()

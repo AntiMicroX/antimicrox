@@ -20,7 +20,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     updateAccelerationCurvePresetComboBox();
     selectSmoothingPreset();
 
-    setWindowTitle(tr("Mouse Settings - ").append(tr("DPad %1").arg(dpad->getRealJoyNumber())));
+    updateWindowTitleDPadName();
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
@@ -260,4 +260,18 @@ void MouseDPadSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 void MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
     dpad->setButtonsWheelSpeedY(value);
+}
+
+void MouseDPadSettingsDialog::updateWindowTitleDPadName()
+{
+    QString temp = QString(tr("Mouse Settings")).append(" - ");
+    if (!dpad->getDpadName().isEmpty())
+    {
+        temp.append(dpad->getName(true, true));
+    }
+    else
+    {
+        temp.append(dpad->getName(true));
+    }
+    setWindowTitle(temp);
 }

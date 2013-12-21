@@ -9,7 +9,7 @@ class JoyAxisWidget : public FlashButtonWidget
     Q_OBJECT
 
 public:
-    explicit JoyAxisWidget(JoyAxis *axis, QWidget *parent=0);
+    explicit JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent=0);
     JoyAxis* getAxis();
 
 protected:

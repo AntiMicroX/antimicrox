@@ -12,7 +12,6 @@
 #include "joycontrolstickpushbutton.h"
 #include "joytabwidget.h"
 #include "joydpadbuttonwidget.h"
-#include "virtualdpadpushbutton.h"
 #include "joycontrolstickbuttonpushbutton.h"
 #include "dpadpushbutton.h"
 #include "joystickstatuswindow.h"
@@ -399,14 +398,6 @@ void MainWindow::disableFlashActions()
             dpadWidget->disableFlashes();
         }
 
-        QList<VirtualDPadPushButton*> list5 = ui->tabWidget->widget(i)->findChildren<VirtualDPadPushButton*>();
-        QListIterator<VirtualDPadPushButton*> iter5(list5);
-        while (iter5.hasNext())
-        {
-            VirtualDPadPushButton *dpadWidget = iter5.next();
-            dpadWidget->disableFlashes();
-        }
-
         QList<JoyControlStickButtonPushButton*> list6 = ui->tabWidget->widget(i)->findChildren<JoyControlStickButtonPushButton*>();
         QListIterator<JoyControlStickButtonPushButton*> iter6(list6);
         while (iter6.hasNext())
@@ -461,14 +452,6 @@ void MainWindow::enableFlashActions()
         while (iter4.hasNext())
         {
             JoyDPadButtonWidget *dpadWidget = iter4.next();
-            dpadWidget->enableFlashes();
-        }
-
-        QList<VirtualDPadPushButton*> list5 = ui->tabWidget->widget(i)->findChildren<VirtualDPadPushButton*>();
-        QListIterator<VirtualDPadPushButton*> iter5(list5);
-        while (iter5.hasNext())
-        {
-            VirtualDPadPushButton *dpadWidget = iter5.next();
             dpadWidget->enableFlashes();
         }
 

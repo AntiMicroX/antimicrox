@@ -12,12 +12,12 @@ JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *p
     this->axis = axis;
 }
 
-QString JoyAxisButton::getPartialName(bool forceFullFormat)
+QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
     QString temp = QString(tr("Axis ")).append(QString::number(axis->getRealJoyIndex()));
     temp.append(": ");
 
-    if (!buttonName.isEmpty())
+    if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {

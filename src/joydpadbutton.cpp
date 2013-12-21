@@ -61,10 +61,10 @@ int JoyDPadButton::getRealJoyNumber()
     return index;
 }
 
-QString JoyDPadButton::getPartialName(bool forceFullFormat)
+QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
     QString temp = dpad->getName().append(" - ");
-    if (!buttonName.isEmpty())
+    if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {

@@ -166,7 +166,11 @@ void InputDaemon::run ()
 
 void InputDaemon::refreshJoysticks()
 {
+#ifdef USE_SDL_2
+    QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+#else
     QHashIterator<int, Joystick*> iter(*joysticks);
+#endif
     while (iter.hasNext())
     {
         Joystick *joystick = iter.next().value();
