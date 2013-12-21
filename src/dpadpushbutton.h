@@ -9,7 +9,7 @@ class DPadPushButton : public FlashButtonWidget
     Q_OBJECT
 
 public:
-    explicit DPadPushButton(JoyDPad *dpad, QWidget *parent = 0);
+    explicit DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent = 0);
     JoyDPad* getDPad();
 
 protected:

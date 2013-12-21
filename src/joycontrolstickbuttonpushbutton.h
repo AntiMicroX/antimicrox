@@ -10,7 +10,7 @@ class JoyControlStickButtonPushButton : public FlashButtonWidget
     Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
 public:
-    explicit JoyControlStickButtonPushButton(JoyControlStickButton *button, QWidget *parent = 0);
+    explicit JoyControlStickButtonPushButton(JoyControlStickButton *button, bool displayNames, QWidget *parent = 0);
 
     JoyControlStickButton* getButton();
     void setButton(JoyControlStickButton *button);

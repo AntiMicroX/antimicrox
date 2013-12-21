@@ -9,7 +9,7 @@ class JoyButtonWidget : public FlashButtonWidget
     Q_OBJECT
 
 public:
-    explicit JoyButtonWidget(JoyButton* button, QWidget *parent=0);
+    explicit JoyButtonWidget(JoyButton* button, bool displayNames, QWidget *parent=0);
     JoyButton* getJoyButton();
 
 protected:

@@ -9,7 +9,7 @@ class JoyControlStickPushButton : public FlashButtonWidget
     Q_OBJECT
 
 public:
-    explicit JoyControlStickPushButton(JoyControlStick *stick, QWidget *parent = 0);
+    explicit JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent = 0);
     JoyControlStick* getStick();
     
 protected:

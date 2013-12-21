@@ -1,10 +1,7 @@
-#include <QDebug>
-#include <QStyle>
-
 #include "joybuttonwidget.h"
 
-JoyButtonWidget::JoyButtonWidget(JoyButton *button, QWidget *parent) :
-    FlashButtonWidget(parent)
+JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->button = button;
 

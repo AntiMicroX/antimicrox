@@ -1,7 +1,7 @@
 #include "dpadpushbutton.h"
 
-DPadPushButton::DPadPushButton(JoyDPad *dpad, QWidget *parent) :
-    FlashButtonWidget(parent)
+DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->dpad = dpad;
 

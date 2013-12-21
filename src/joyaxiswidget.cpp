@@ -1,10 +1,7 @@
-#include <QDebug>
-#include <QStyle>
-
 #include "joyaxiswidget.h"
 
-JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, QWidget *parent) :
-    FlashButtonWidget(parent)
+JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->axis = axis;
 

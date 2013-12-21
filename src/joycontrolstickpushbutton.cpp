@@ -1,10 +1,7 @@
-#include <QDebug>
-#include <QStyle>
-
 #include "joycontrolstickpushbutton.h"
 
-JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, QWidget *parent) :
-    FlashButtonWidget(parent)
+JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent) :
+    FlashButtonWidget(displayNames, parent)
 {
     this->stick = stick;
 
