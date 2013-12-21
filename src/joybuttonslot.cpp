@@ -39,7 +39,10 @@ JoyButtonSlot::~JoyButtonSlot()
 
 void JoyButtonSlot::setSlotCode(int code)
 {
-    deviceCode = code;
+    if (code >= 0)
+    {
+        deviceCode = code;
+    }
 }
 
 int JoyButtonSlot::getSlotCode()
@@ -183,6 +186,11 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             {
                 this->setSlotCode(virtualkey);
             }
+            else if (this->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
+            {
+                unsigned int temp = this->getSlotCode() - QtKeyMapperBase::nativeKeyPrefix;
+                this->setSlotCode(temp);
+            }
         }
     }
 
@@ -195,8 +203,17 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     if (mode == JoyKeyboard)
     {
         unsigned int qtkey = AntKeyMapper::returnQtKey(deviceCode);
-        qDebug() << "QT KEY: " << QString::number(qtkey, 16);
-        xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
+        if (qtkey)
+        {
+            qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
+            xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
+        }
+        else if (qtkey > 0)
+        {
+            unsigned int tempkey = qtkey | QtKeyMapperBase::nativeKeyPrefix;
+            qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
+            xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
+        }
 
     }
     else

@@ -113,12 +113,20 @@ QString XMLConfigMigration::version0006Migration()
             {
                 if (slotmode == "keyboard")
                 {
+                    unsigned int tempcode = slotcode;
 #ifdef Q_OS_WIN
                     slotcode = AntKeyMapper::returnQtKey(slotcode);
 #else
                     slotcode = AntKeyMapper::returnQtKey(X11KeyCodeToX11KeySym(slotcode));
 #endif
-                    writer.writeTextElement("code", QString("0x%1").arg(slotcode, 0, 16));
+                    if (slotcode > 0)
+                    {
+                        writer.writeTextElement("code", QString("0x%1").arg(slotcode, 0, 16));
+                    }
+                    else if (tempcode > 0)
+                    {
+                        writer.writeTextElement("code", QString("0x%1").arg(tempcode | QtKeyMapperBase::nativeKeyPrefix, 0, 16));
+                    }
                 }
                 else
                 {

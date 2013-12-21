@@ -288,7 +288,7 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 #endif
 }
 
-int X11KeySymToKeycode (QString key)
+int X11KeySymToKeycode(QString key)
 {
     int tempcode = 0;
 #if defined (Q_OS_UNIX)
