@@ -12,7 +12,7 @@
 const int AdvanceButtonDialog::MINIMUMTURBO = 2;
 
 AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
-    QDialog(parent, Qt::Window),
+    QDialog(parent, Qt::Dialog),
     ui(new Ui::AdvanceButtonDialog)
 {
     ui->setupUi(this);
