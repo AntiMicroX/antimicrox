@@ -100,10 +100,10 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
         Joystick *joystick = iter.value();
 
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
-        tabwidget->fillButtons();
         QString joytabName = joystick->getSDLName();
         joytabName.append(" ").append(tr("(Joystick %1)").arg(joystick->getRealJoyNumber()));
         ui->tabWidget->addTab(tabwidget, joytabName);
+        tabwidget->fillButtons();
         //ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
         //connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
         if (showTrayIcon)
