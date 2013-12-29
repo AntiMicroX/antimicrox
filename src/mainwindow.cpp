@@ -68,7 +68,9 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
+#ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
+#endif
 }
 
 MainWindow::~MainWindow()

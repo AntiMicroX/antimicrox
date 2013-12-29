@@ -183,8 +183,10 @@ int main(int argc, char *argv[])
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+#ifdef USE_SDL_2
     QObject::connect(&w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
     QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), &w, SLOT(testMappingUpdateNow(int,InputDevice*)));
+#endif
 
     if (!cmdutility.isHiddenRequested() && (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
     {
