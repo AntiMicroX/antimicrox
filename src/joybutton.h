@@ -100,6 +100,9 @@ public:
     QString getActionName();
     QString getButtonName();
 
+    virtual void setDefaultButtonName(QString tempname);
+    virtual QString getDefaultButtonName();
+
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
@@ -185,7 +188,8 @@ protected:
     bool whileHeldStatus;
 
     QString actionName;
-    QString buttonName;
+    QString buttonName; // User specified button name
+    QString defaultButtonName; // Name used by the system
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;

@@ -51,14 +51,18 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     }
 
     int currentThrottle = axis->getThrottle();
-    ui->comboBox_2->setCurrentIndex(currentThrottle+1);
-    if (currentThrottle == -1)
+    //ui->comboBox_2->setCurrentIndex(currentThrottle+1);
+    if (currentThrottle == JoyAxis::NegativeThrottle || currentThrottle == JoyAxis::NegativeHalfThrottle)
     {
+        int tempindex = currentThrottle == JoyAxis::NegativeHalfThrottle ? 0 : 1;
+        ui->comboBox_2->setCurrentIndex(tempindex);
         ui->nPushButton->setEnabled(true);
         ui->pPushButton->setEnabled(false);
     }
-    else if (currentThrottle == 1)
+    else if (currentThrottle == JoyAxis::PositiveThrottle || currentThrottle == JoyAxis::PositiveHalfThrottle)
     {
+        int tempindex = currentThrottle == JoyAxis::PositiveThrottle ? 3 : 4;
+        ui->comboBox_2->setCurrentIndex(tempindex);
         ui->pPushButton->setEnabled(true);
         ui->nPushButton->setEnabled(false);
     }
@@ -203,24 +207,28 @@ void AxisEditDialog::updateMaxZoneBox(int value)
 
 void AxisEditDialog::updateThrottleUi(int index)
 {
-    if (index == 0)
+    int tempthrottle = 0;
+    if (index == 0 || index == 1)
     {
         ui->nPushButton->setEnabled(true);
         ui->pPushButton->setEnabled(false);
-    }
-    else if (index == 1)
-    {
-        ui->nPushButton->setEnabled(true);
-        ui->pPushButton->setEnabled(true);
+        tempthrottle = index == 0 ? JoyAxis::NegativeHalfThrottle : JoyAxis::NegativeThrottle;
     }
     else if (index == 2)
     {
+        ui->nPushButton->setEnabled(true);
+        ui->pPushButton->setEnabled(true);
+        tempthrottle = JoyAxis::NormalThrottle;
+    }
+    else if (index == 3 || index == 4)
+    {
         ui->pPushButton->setEnabled(true);
         ui->nPushButton->setEnabled(false);
+        tempthrottle = index == 3 ? JoyAxis::PositiveThrottle : JoyAxis::PositiveHalfThrottle;
     }
 
-    ui->axisstatusBox->setThrottle(index - 1);
-    axis->setThrottle(index - 1);
+    axis->setThrottle(tempthrottle);
+    ui->axisstatusBox->setThrottle(tempthrottle);
 }
 
 void AxisEditDialog::updateJoyValue(int value)

@@ -29,9 +29,9 @@ class MainWindow : public QMainWindow
     
 public:
 #ifdef USE_SDL_2
-    MainWindow(QHash<SDL_JoystickID, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
 #else
-    MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
 #endif
     ~MainWindow();
     
@@ -41,9 +41,9 @@ protected:
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
 
 #ifdef USE_SDL_2
-    QHash<SDL_JoystickID, Joystick*> *joysticks;
+    QHash<SDL_JoystickID, InputDevice*> *joysticks;
 #else
-    QHash<int, Joystick*> *joysticks;
+    QHash<int, InputDevice*> *joysticks;
 #endif
 
     QSystemTrayIcon *trayIcon;
@@ -63,15 +63,16 @@ private:
 
 signals:
     void joystickRefreshRequested();
-    void joystickRefreshRequested(Joystick *joystick);
+    void joystickRefreshRequested(InputDevice *joystick);
     void readConfig(int index);
+    void mappingUpdated(QString mapping, InputDevice *device);
 
 public slots:
-    void fillButtons(Joystick *joystick);
+    void fillButtons(InputDevice *joystick);
 #ifdef USE_SDL_2
-    void fillButtons(QHash<SDL_JoystickID, Joystick*> *joysticks);
+    void fillButtons(QHash<SDL_JoystickID, InputDevice*> *joysticks);
 #else
-    void fillButtons(QHash<int, Joystick*> *joysticks);
+    void fillButtons(QHash<int, InputDevice*> *joysticks);
 #endif
     void startJoystickRefresh();
     void hideWindow();
@@ -79,6 +80,9 @@ public slots:
     void loadAppConfig(bool forceRefresh=false);
     void removeJoyTabs();
     void startLocalServer();
+#ifdef USE_SDL_2
+    void testMappingUpdateNow(int index, InputDevice *device);
+#endif
 
 private slots:
     void quitProgram();
@@ -87,7 +91,7 @@ private slots:
     void mainMenuChange();
     void disableFlashActions();
     void enableFlashActions();
-    void joystickRefreshPropogate(Joystick *joystick);
+    void joystickRefreshPropogate(InputDevice *joystick);
     void trayMenuChangeJoyConfig(QAction *action);
     void joystickTrayShow();
     void populateTrayIcon();
@@ -95,6 +99,10 @@ private slots:
     void handleOutsideConnection();
     void handleSocketDisconnect();
     void openJoystickStatusWindow();
+#ifdef USE_SDL_2
+    void openGameControllerMappingWindow();
+    void propogateMappingUpdate(QString mapping, InputDevice *device);
+#endif
 };
 
 #endif // MAINWINDOW_H

@@ -17,7 +17,11 @@
 #include "joydpadbuttonwidget.h"
 #include "quicksetdialog.h"
 
-JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
+#ifdef USE_SDL_2
+#include "gamecontroller.h"
+#endif
+
+JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
     QWidget(parent)
 {
     this->joystick = joystick;
@@ -345,6 +349,14 @@ JoyTabWidget::JoyTabWidget(Joystick *joystick, QWidget *parent) :
     verticalLayout->addLayout(horizontalLayout_3);
 
     displayingNames = false;
+
+#ifdef USE_SDL_2
+    if (qobject_cast<GameController*>(joystick) != 0)
+    {
+        stickAssignPushButton->setEnabled(false);
+        stickAssignPushButton->setVisible(false);
+    }
+#endif
 
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
@@ -1038,7 +1050,7 @@ void JoyTabWidget::changeJoyConfig(int index)
         removeCurrentButtons();
         joystick->reset();
         fillButtons();
-        //emit joystickRefreshRequested(joystick);
+        emit joystickRefreshRequested(joystick);
     }
 }
 
@@ -1291,9 +1303,10 @@ void JoyTabWidget::changeSetEight()
 
 void JoyTabWidget::showStickAssignmentDialog()
 {
-    AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
-    dialog->show();
+    Joystick *temp = static_cast<Joystick*>(joystick);
+    AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(temp, this);
     connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    dialog->show();
 }
 
 void JoyTabWidget::loadConfigFile(QString fileLocation)
@@ -1339,8 +1352,8 @@ void JoyTabWidget::showDPadDialog()
 void JoyTabWidget::showQuickSetDialog()
 {
     QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
-    dialog->show();
     connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    dialog->show();
 }
 
 void JoyTabWidget::removeCurrentButtons()
@@ -1402,7 +1415,7 @@ void JoyTabWidget::removeCurrentButtons()
     }
 }
 
-Joystick* JoyTabWidget::getJoystick()
+InputDevice *JoyTabWidget::getJoystick()
 {
     return joystick;
 }

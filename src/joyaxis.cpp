@@ -116,6 +116,14 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
 
         label.append(axisName);
     }
+    else if (!defaultAxisName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Axis")).append(" ");
+        }
+        label.append(defaultAxisName);
+    }
     else
     {
         label.append(tr("Axis")).append(" ");
@@ -124,7 +132,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
 
     label.append(": ");
 
-    if (throttle == 0)
+    if (throttle == NormalThrottle)
     {
         label.append("-");
         if (!naxisbutton->getActionName().isEmpty() && displayNames)
@@ -146,7 +154,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
             label.append(paxisbutton->getSlotsSummary());
         }
     }
-    else if (throttle == 1)
+    else if (throttle == PositiveThrottle || throttle == PositiveHalfThrottle)
     {
         label.append("+");
         if (!paxisbutton->getActionName().isEmpty() && displayNames)
@@ -158,7 +166,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
             label.append(paxisbutton->getSlotsSummary());
         }
     }
-    else if (throttle == -1)
+    else if (throttle == NegativeThrottle || throttle == NegativeHalfThrottle)
     {
         label.append("-");
         if (!naxisbutton->getActionName().isEmpty() && displayNames)
@@ -188,13 +196,23 @@ int JoyAxis::calculateThrottledValue(int value)
 {
     int temp = value;
 
-    if (throttle == -1)
+    if (throttle == NegativeHalfThrottle)
+    {
+        value = value <= 0 ? value : -value;
+        temp = value;
+    }
+    if (throttle == NegativeThrottle)
     {
         temp = (value + AXISMIN) / 2;
     }
-    else if (throttle == 1)
+    else if (throttle == PositiveThrottle)
     {
         temp = (value + AXISMAX) / 2;
+    }
+    else if (throttle == PositiveHalfThrottle)
+    {
+        value = value >= 0 ? value : -value;
+        temp = value;
     }
 
     return temp;
@@ -282,7 +300,7 @@ int JoyAxis::getMaxZoneValue()
 
 void JoyAxis::setThrottle(int value)
 {
-    if (value >= -1 && value <= 1)
+    if (value >= JoyAxis::NegativeHalfThrottle && value <= JoyAxis::PositiveHalfThrottle)
     {
         if (value != throttle)
         {
@@ -322,17 +340,25 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
             else if (xml->name() == "throttle" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
-                if (temptext == "negative")
+                if (temptext == "negativehalf")
                 {
-                    this->setThrottle(-1);
+                    this->setThrottle(JoyAxis::NegativeHalfThrottle);
+                }
+                else if (temptext == "negative")
+                {
+                    this->setThrottle(JoyAxis::NegativeThrottle);
                 }
                 else if (temptext == "normal")
                 {
-                    this->setThrottle(0);
+                    this->setThrottle(JoyAxis::NormalThrottle);
                 }
                 else if (temptext == "positive")
                 {
-                    this->setThrottle(1);
+                    this->setThrottle(JoyAxis::PositiveThrottle);
+                }
+                else if (temptext == "positivehalf")
+                {
+                    this->setThrottle(JoyAxis::PositiveHalfThrottle);
                 }
 
                 setCurrentRawValue(currentThrottledDeadValue);
@@ -372,18 +398,28 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
         xml->writeTextElement("maxZone", QString::number(maxZoneValue));
 
         xml->writeStartElement("throttle");
-        if (throttle == -1)
+
+        if (throttle == JoyAxis::NegativeHalfThrottle)
+        {
+            xml->writeCharacters("negativehalf");
+        }
+        else if (throttle == JoyAxis::NegativeThrottle)
         {
             xml->writeCharacters("negative");
         }
-        else if (throttle == 0)
+        else if (throttle == JoyAxis::NormalThrottle)
         {
             xml->writeCharacters("normal");
         }
-        else if (throttle == 1)
+        else if (throttle == JoyAxis::PositiveThrottle)
         {
             xml->writeCharacters("positive");
         }
+        else if (throttle == JoyAxis::PositiveHalfThrottle)
+        {
+            xml->writeCharacters("positivehalf");
+        }
+
         xml->writeEndElement();
 
         naxisbutton->writeConfig(xml);
@@ -795,4 +831,14 @@ void JoyAxis::setButtonsWheelSpeedY(int value)
 {
     paxisbutton->setWheelSpeedY(value);
     naxisbutton->setWheelSpeedY(value);
+}
+
+void JoyAxis::setDefaultAxisName(QString tempname)
+{
+    defaultAxisName = tempname;
+}
+
+QString JoyAxis::getDefaultAxisName()
+{
+    return defaultAxisName;
 }

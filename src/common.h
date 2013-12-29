@@ -19,8 +19,11 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
                 QDir::homePath() + "/.config/antimicro";
 
 #endif
+
     const QString configFileName = "antimicro_settings.ini";
+    const QString controllerMappingFileName = "controller_mappings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
+    const QString controllerMappingFilePath = configPath + "/" + controllerMappingFileName;
     const int LATESTCONFIGFILEVERSION = 5;
     const QString programVersion = "1.2";
     const QString localSocketKey = "antimicroSignalListener";

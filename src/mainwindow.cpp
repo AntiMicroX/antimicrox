@@ -16,9 +16,13 @@
 #include "common.h"
 
 #ifdef USE_SDL_2
-MainWindow::MainWindow(QHash<SDL_JoystickID, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
+#include "gamecontrollermappingdialog.h"
+#endif
+
+#ifdef USE_SDL_2
+MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
 #else
-MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
 #endif
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -64,6 +68,7 @@ MainWindow::MainWindow(QHash<int, Joystick*> *joysticks, CommandLineUtility *cmd
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
+    connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
 }
 
 MainWindow::~MainWindow()
@@ -71,7 +76,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::fillButtons(Joystick *joystick)
+void MainWindow::fillButtons(InputDevice *joystick)
 {
     int joyindex = joystick->getJoyNumber();
     JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
@@ -79,29 +84,29 @@ void MainWindow::fillButtons(Joystick *joystick)
 }
 
 #ifdef USE_SDL_2
-void MainWindow::fillButtons(QHash<SDL_JoystickID, Joystick *> *joysticks)
+void MainWindow::fillButtons(QHash<SDL_JoystickID, InputDevice *> *joysticks)
 #else
-void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
+void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
 #endif
 {
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
 #ifdef USE_SDL_2
-    QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 #else
-    QHashIterator<int, Joystick*> iter(*joysticks);
+    QHashIterator<int, InputDevice*> iter(*joysticks);
 #endif
 
     while (iter.hasNext())
     {
         iter.next();
 
-        Joystick *joystick = iter.value();
+        InputDevice *joystick = iter.value();
 
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
         QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(tr("(Joystick %1)").arg(joystick->getRealJoyNumber()));
+        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->fillButtons();
         //ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
@@ -148,7 +153,7 @@ void MainWindow::fillButtons(QHash<int, Joystick *> *joysticks)
     ui->actionQuit->setEnabled(true);
 }
 
-void MainWindow::joystickRefreshPropogate(Joystick *joystick)
+void MainWindow::joystickRefreshPropogate(InputDevice *joystick)
 {
     emit joystickRefreshRequested(joystick);
 }
@@ -172,15 +177,15 @@ void MainWindow::populateTrayIcon()
     if (joysticks->count() > 0)
     {
 #ifdef USE_SDL_2
-        QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+        QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 #else
-        QHashIterator<int, Joystick*> iter(*joysticks);
+        QHashIterator<int, InputDevice*> iter(*joysticks);
 #endif
         int i = 0;
         while (iter.hasNext())
         {
             iter.next();
-            Joystick *current = iter.value();
+            InputDevice *current = iter.value();
 
             QMenu *joysticksub = trayIconMenu->addMenu(current->getName());
             JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
@@ -326,6 +331,10 @@ void MainWindow::mainMenuChange()
     {
         ui->actionHide->setEnabled(false);
     }
+
+#ifndef USE_SDL_2
+    ui->actionGameController_Mapping->setVisible(false);
+#endif
 }
 
 void MainWindow::saveAppConfig()
@@ -657,10 +666,48 @@ void MainWindow::openJoystickStatusWindow()
 {
     int index = ui->tabWidget->currentIndex();
     JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
-    Joystick *joystick = joyTab->getJoystick();
+    InputDevice *joystick = joyTab->getJoystick();
     if (joystick)
     {
         JoystickStatusWindow *dialog = new JoystickStatusWindow(joystick, this);
         dialog->show();
     }
 }
+
+#ifdef USE_SDL_2
+void MainWindow::openGameControllerMappingWindow()
+{
+    int index = ui->tabWidget->currentIndex();
+    JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+    InputDevice *joystick = joyTab->getJoystick();
+    if (joystick)
+    {
+        GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, this);
+        dialog->show();
+        connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+    }
+}
+
+void MainWindow::propogateMappingUpdate(QString mapping, InputDevice *device)
+{
+    emit mappingUpdated(mapping, device);
+}
+
+void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
+{
+    QWidget *tab = ui->tabWidget->widget(index);
+    if (tab)
+    {
+        ui->tabWidget->removeTab(index);
+        delete tab;
+        tab = 0;
+    }
+
+    JoyTabWidget *tabwidget = new JoyTabWidget(device, this);
+    QString joytabName = device->getSDLName();
+    joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+    ui->tabWidget->insertTab(index, tabwidget, joytabName);
+    tabwidget->fillButtons();
+    ui->tabWidget->setCurrentIndex(index);
+}
+#endif

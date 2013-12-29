@@ -12,7 +12,7 @@ int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string)
 
 int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 {
-    Joystick *joystick = widget->getJoystick();
+    InputDevice *joystick = widget->getJoystick();
 
     if (joystick)
     {
@@ -24,23 +24,23 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 
 void JoyTabWidgetContainer::flash()
 {
-    Joystick *joystick = static_cast<Joystick*>(sender());
+    InputDevice *joystick = static_cast<InputDevice*>(sender());
     tabBar()->setTabTextColor(joystick->getJoyNumber(), Qt::red);
 }
 
 void JoyTabWidgetContainer::unflash()
 {
-    Joystick *joystick = static_cast<Joystick*>(sender());
+    InputDevice *joystick = static_cast<InputDevice*>(sender());
     tabBar()->setTabTextColor(joystick->getJoyNumber(), Qt::black);
 }
 
-void JoyTabWidgetContainer::disableFlashes(Joystick *joystick)
+void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 {
     disconnect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
     disconnect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));
 }
 
-void JoyTabWidgetContainer::enableFlashes(Joystick *joystick)
+void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
     connect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
     connect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));

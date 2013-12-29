@@ -73,6 +73,14 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
 
         label.append(dpadName);
     }
+    else if (!defaultDPadName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("VDPad")).append(" ");
+        }
+        label.append(defaultDPadName);
+    }
     else
     {
         label.append(tr("VDPad")).append(" ");

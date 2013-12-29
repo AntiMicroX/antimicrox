@@ -7,7 +7,7 @@
 #include "setjoystick.h"
 #include "buttoneditdialog.h"
 
-QuickSetDialog::QuickSetDialog(Joystick *joystick, QWidget *parent) :
+QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QuickSetDialog)
 {

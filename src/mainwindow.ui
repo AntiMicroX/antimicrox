@@ -3,7 +3,7 @@
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="windowModality">
-   <enum>Qt::NonModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -581,6 +581,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     </property>
     <addaction name="actionProperties"/>
     <addaction name="actionUpdate_Joysticks"/>
+    <addaction name="actionGameController_Mapping"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -656,6 +657,11 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionProperties">
    <property name="text">
     <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionGameController_Mapping">
+   <property name="text">
+    <string>GameController Mapping</string>
    </property>
   </action>
  </widget>

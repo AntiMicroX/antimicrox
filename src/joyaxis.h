@@ -20,6 +20,14 @@ public:
     explicit JoyAxis(int index, int originset, QObject *parent=0);
     ~JoyAxis();
 
+    enum ThrottleTypes {
+        NegativeHalfThrottle = -2,
+        NegativeThrottle = -1,
+        NormalThrottle = 0,
+        PositiveThrottle = 1,
+        PositiveHalfThrottle = 2
+    };
+
     void joyEvent(int value, bool ignoresets=false);
     bool inDeadZone(int value);
     QString getName(bool forceFullFormat=false, bool displayNames=false);
@@ -80,7 +88,10 @@ public:
     void setButtonsWheelSpeedX(int value);
     void setButtonsWheelSpeedY(int value);
 
-    QString getAxisName();
+    virtual QString getAxisName();
+
+    virtual void setDefaultAxisName(QString tempname);
+    virtual QString getDefaultAxisName();
 
     virtual bool isDefault();
 
@@ -120,6 +131,7 @@ protected:
     int currentThrottledDeadValue;
     JoyControlStick *stick;
     QString axisName;
+    QString defaultAxisName;
 
 signals:
     void active(int value);

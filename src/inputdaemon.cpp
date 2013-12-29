@@ -3,22 +3,12 @@
 #include <QEventLoop>
 #include <QHashIterator>
 
-#ifdef USE_SDL_2
-#include <SDL2/SDL_joystick.h>
-#include <SDL2/SDL_events.h>
-
-#else
-#include <SDL/SDL_joystick.h>
-#include <SDL/SDL_events.h>
-
-#endif
-
 #include "inputdaemon.h"
 
 #ifdef USE_SDL_2
-InputDaemon::InputDaemon(QHash<SDL_JoystickID, Joystick*> *joysticks, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, bool graphical, QObject *parent) :
 #else
-InputDaemon::InputDaemon(QHash<int, Joystick*> *joysticks, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QHash<int, InputDevice*> *joysticks, bool graphical, QObject *parent) :
 #endif
     QObject(parent)
 {
@@ -74,53 +64,121 @@ void InputDaemon::run ()
             {
                 case SDL_JOYBUTTONDOWN:
                 {
-                    Joystick *joy = joysticks->value(event.jbutton.which);
-                    SetJoystick* set = joy->getActiveSetJoystick();
-                    JoyButton *button = set->getJoyButton(event.jbutton.button);
-
-                    if (button)
+#ifdef USE_SDL_2
+                    InputDevice *joy = trackjoysticks.value(event.jbutton.which);
+#else
+                    InputDevice *joy = joysticks->value(event.jbutton.which);
+#endif
+                    if (joy)
                     {
-                        button->joyEvent(true);
+                        SetJoystick* set = joy->getActiveSetJoystick();
+                        JoyButton *button = set->getJoyButton(event.jbutton.button);
+
+                        if (button)
+                        {
+                            button->joyEvent(true);
+                        }
                     }
+
                     break;
                 }
 
                 case SDL_JOYBUTTONUP:
                 {
-                    Joystick *joy = joysticks->value(event.jbutton.which);
-                    SetJoystick* set = joy->getActiveSetJoystick();
-                    JoyButton *button = set->getJoyButton(event.jbutton.button);
-
-                    if (button)
+#ifdef USE_SDL_2
+                    InputDevice *joy = trackjoysticks.value(event.jbutton.which);
+#else
+                    InputDevice *joy = joysticks->value(event.jbutton.which);
+#endif
+                    if (joy)
                     {
-                        button->joyEvent(false);
+                        SetJoystick* set = joy->getActiveSetJoystick();
+                        JoyButton *button = set->getJoyButton(event.jbutton.button);
+
+                        if (button)
+                        {
+                            button->joyEvent(false);
+                        }
                     }
+
                     break;
                 }
 
                 case SDL_JOYAXISMOTION:
                 {
-                    Joystick *joy = joysticks->value(event.jaxis.which);
-                    SetJoystick* set = joy->getActiveSetJoystick();
-                    JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
-                    if (axis)
+#ifdef USE_SDL_2
+                    InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+#else
+                    InputDevice *joy = joysticks->value(event.jaxis.which);
+#endif
+                    if (joy)
                     {
-                        axis->joyEvent(event.jaxis.value);
+                        SetJoystick* set = joy->getActiveSetJoystick();
+                        JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
+                        if (axis)
+                        {
+                            axis->joyEvent(event.jaxis.value);
+                        }
                     }
+
                     break;
                 }
 
                 case SDL_JOYHATMOTION:
                 {
-                    Joystick *joy = joysticks->value(event.jhat.which);
-                    SetJoystick* set = joy->getActiveSetJoystick();
-                    JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
-                    if (dpad)
+#ifdef USE_SDL_2
+                    InputDevice *joy = trackjoysticks.value(event.jhat.which);
+#else
+                    InputDevice *joy = joysticks->value(event.jhat.which);
+#endif
+                    if (joy)
                     {
-                        dpad->joyEvent(event.jhat.value);
+                        SetJoystick* set = joy->getActiveSetJoystick();
+                        JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
+                        if (dpad)
+                        {
+                            dpad->joyEvent(event.jhat.value);
+                        }
+                    }
+
+                    break;
+                }
+
+#ifdef USE_SDL_2
+                case SDL_CONTROLLERAXISMOTION:
+                {
+                    InputDevice *joy = trackcontrollers.value(event.caxis.which);
+                    if (joy)
+                    {
+                        SetJoystick* set = joy->getActiveSetJoystick();
+                        JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
+                        if (axis)
+                        {
+                            axis->joyEvent(event.caxis.value);
+                        }
                     }
                     break;
                 }
+
+                case SDL_CONTROLLERBUTTONDOWN:
+                case SDL_CONTROLLERBUTTONUP:
+                {
+                    //InputDevice *joy = joysticks->value(event.cbutton.which);
+                    InputDevice *joy = trackcontrollers.value(event.cbutton.which);
+                    if (joy)
+                    {
+                        SetJoystick* set = joy->getActiveSetJoystick();
+                        JoyButton *button = set->getJoyButton(event.cbutton.button);
+
+                        if (button)
+                        {
+                            button->joyEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
+                        }
+                    }
+
+                    break;
+                }
+#endif
 
                 case SDL_QUIT:
                 {
@@ -167,13 +225,13 @@ void InputDaemon::run ()
 void InputDaemon::refreshJoysticks()
 {
 #ifdef USE_SDL_2
-    QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 #else
-    QHashIterator<int, Joystick*> iter(*joysticks);
+    QHashIterator<int, InputDevice*> iter(*joysticks);
 #endif
     while (iter.hasNext())
     {
-        Joystick *joystick = iter.next().value();
+        InputDevice *joystick = iter.next().value();
         if (joystick)
         {
             delete joystick;
@@ -182,15 +240,34 @@ void InputDaemon::refreshJoysticks()
     }
 
     joysticks->clear();
+#ifdef USE_SDL_2
+    trackjoysticks.clear();
+    trackcontrollers.clear();
+#endif
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
+#ifdef USE_SDL_2
+        if (SDL_IsGameController(i))
+        {
+            SDL_GameController *controller = SDL_GameControllerOpen(i);
+            GameController *damncontroller = new GameController(controller, this);
+            SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
+            SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
+            joysticks->insert(joystickID, damncontroller);
+            trackcontrollers.insert(joystickID, damncontroller);
+        }
+        else
+        {
+            SDL_Joystick *joystick = SDL_JoystickOpen(i);
+            Joystick *curJoystick = new Joystick(joystick, this);
+            SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
+            joysticks->insert(joystickID, curJoystick);
+            trackjoysticks.insert(joystickID, curJoystick);
+        }
+#else
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
         Joystick *curJoystick = new Joystick(joystick, this);
-#ifdef USE_SDL_2
-        SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
-        joysticks->insert(joystickID, curJoystick);
-#else
         joysticks->insert(i, curJoystick);
 #endif
     }
@@ -224,7 +301,7 @@ void InputDaemon::refresh()
     QTimer::singleShot(0, eventWorker, SLOT(performWork()));
 }
 
-void InputDaemon::refreshJoystick(Joystick *joystick)
+void InputDaemon::refreshJoystick(InputDevice *joystick)
 {
     joystick->reset();
 
@@ -248,3 +325,50 @@ void InputDaemon::quit()
     delete eventWorker;
     eventWorker = 0;
 }
+
+#ifdef USE_SDL_2
+void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
+{
+    bool found = false;
+
+    for (int i=0; i < SDL_NumJoysticks() && !found; i++)
+    {
+        SDL_Joystick *joystick = SDL_JoystickOpen(i);
+        SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
+        if (device->getJoyNumber() == joystickID)
+        {
+            found = true;
+
+            if (SDL_IsGameController(i))
+            {
+                // Mapping string updated. Perform basic refresh
+                QByteArray tempbarray = mapping.toUtf8();
+                SDL_GameControllerAddMapping(tempbarray.data());
+            }
+            else
+            {
+                // Previously registered as a plain joystick. Add
+                // mapping and check for validity. If SDL accepts it,
+                // close current device and re-open as
+                // a game controller.
+                SDL_GameControllerAddMapping(mapping.toUtf8().constData());
+
+                if (SDL_IsGameController(i))
+                {
+                    device->closeSDLDevice();
+                    trackjoysticks.remove(joystickID);
+                    joysticks->remove(joystickID);
+
+                    SDL_GameController *controller = SDL_GameControllerOpen(i);
+                    GameController *damncontroller = new GameController(controller, this);
+                    SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
+                    joystickID = SDL_JoystickInstanceID(sdlStick);
+                    joysticks->insert(joystickID, damncontroller);
+                    trackcontrollers.insert(joystickID, damncontroller);
+                    emit deviceUpdated(i, damncontroller);
+                }
+            }
+        }
+    }
+}
+#endif

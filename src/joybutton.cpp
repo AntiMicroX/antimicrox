@@ -1249,6 +1249,14 @@ QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
         }
         temp.append(buttonName);
     }
+    else if (!defaultButtonName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+        temp.append(defaultButtonName);
+    }
     else
     {
         temp.append(tr("Button")).append(" ").append(QString::number(getRealJoyNumber()));
@@ -2333,7 +2341,7 @@ bool JoyButton::isDefault()
     value = value && (sensitivity == 1.0);
     value = value && (smoothing == false);
     value = value && (actionName.isEmpty());
-    value = value && (buttonName.isEmpty());
+    //value = value && (buttonName.isEmpty());
     value = value && (wheelSpeedX == 20);
     value = value && (wheelSpeedY == 20);
     return value;
@@ -2480,4 +2488,14 @@ int JoyButton::getWheelSpeedX()
 int JoyButton::getWheelSpeedY()
 {
     return wheelSpeedY;
+}
+
+void JoyButton::setDefaultButtonName(QString tempname)
+{
+    defaultButtonName = tempname;
+}
+
+QString JoyButton::getDefaultButtonName()
+{
+    return defaultButtonName;
 }

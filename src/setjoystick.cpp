@@ -2,13 +2,14 @@
 #include <QHashIterator>
 
 #include "setjoystick.h"
+#include "inputdevice.h"
 
-SetJoystick::SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent) :
+SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     QObject(parent)
 {
-    this->joyhandle = joyhandle;
+    this->device = device;
     this->index = index;
-    this->reset();
+    reset();
 }
 
 SetJoystick::~SetJoystick()
@@ -49,15 +50,12 @@ void SetJoystick::refreshButtons()
 {
     deleteButtons();
 
-    for (int i=0; i < SDL_JoystickNumButtons(joyhandle); i++)
+    //for (int i=0; i < SDL_JoystickNumButtons(joyhandle); i++)
+    for (int i=0; i < device->getNumberRawButtons(); i++)
     {
         JoyButton *button = new JoyButton (i, index, this);
         buttons.insert(i, button);
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
-        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)));
-        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
-        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
+        enableButtonConnections(button);
     }
 }
 
@@ -65,27 +63,12 @@ void SetJoystick::refreshAxes()
 {
     deleteAxes();
 
-    for (int i=0; i < SDL_JoystickNumAxes(joyhandle); i++)
+    //for (int i=0; i < SDL_JoystickNumAxes(joyhandle); i++)
+    for (int i=0; i < device->getNumberRawAxes(); i++)
     {
         JoyAxis *axis = new JoyAxis(i, index, this);
         axes.insert(i, axis);
-
-        connect(axis, SIGNAL(throttleChangePropogated(int)), this, SLOT(propogateSetAxisThrottleSetting(int)));
-        connect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
-
-        JoyAxisButton *button = axis->getNAxisButton();
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
-        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
-        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
-        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
-
-        button = axis->getPAxisButton();
-        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
-        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
-        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
-        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+        enableAxisConnections(axis);
     }
 }
 
@@ -93,23 +76,12 @@ void SetJoystick::refreshHats()
 {
     deleteHats();
 
-    for (int i=0; i < SDL_JoystickNumHats(joyhandle); i++)
+    //for (int i=0; i < SDL_JoystickNumHats(joyhandle); i++)
+    for (int i=0; i < device->getNumberRawHats(); i++)
     {
         JoyDPad *dpad = new JoyDPad(i, index, this);
-        connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadNameChange()));
         hats.insert(i, dpad);
-        QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
-        QHashIterator<int, JoyDPadButton*> iter(*buttons);
-        while (iter.hasNext())
-        {
-            JoyDPadButton *button = iter.next().value();
-            connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-            connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
-
-            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
-            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
-            connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
-        }
+        enableHatConnections(dpad);
     }
 }
 
@@ -225,11 +197,6 @@ void SetJoystick::reset()
     refreshAxes();
     refreshButtons();
     refreshHats();
-}
-
-SDL_Joystick* SetJoystick::getSDLHandle()
-{
-    return joyhandle;
 }
 
 void SetJoystick::propogateSetChange(int index)
@@ -794,4 +761,58 @@ void SetJoystick::setIgnoreEventState(bool ignore)
         }
     }
 
+}
+
+void SetJoystick::propogateSetAxisActivated(int value)
+{
+    JoyAxis *axis = static_cast<JoyAxis*>(sender());
+    emit setAxisActivated(this->index, axis->getIndex(), value);
+}
+
+void SetJoystick::enableButtonConnections(JoyButton *button)
+{
+    connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+    connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)));
+    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
+}
+
+void SetJoystick::enableAxisConnections(JoyAxis *axis)
+{
+    connect(axis, SIGNAL(throttleChangePropogated(int)), this, SLOT(propogateSetAxisThrottleSetting(int)));
+    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
+    connect(axis, SIGNAL(active(int)), this, SLOT(propogateSetAxisActivated(int)));
+
+    JoyAxisButton *button = axis->getNAxisButton();
+    connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+    connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
+    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+
+    button = axis->getPAxisButton();
+    connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+    connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
+    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
+    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+}
+
+void SetJoystick::enableHatConnections(JoyDPad *dpad)
+{
+    connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadNameChange()));
+
+    QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
+    QHashIterator<int, JoyDPadButton*> iter(*buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+        connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
+
+        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
+        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
+        connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
+    }
 }

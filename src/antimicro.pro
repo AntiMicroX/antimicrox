@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-#USE_SDL_2 = 1
+USE_SDL_2 = 1
 
 isEmpty(INSTALL_PREFIX) {
     unix {
@@ -181,13 +181,22 @@ SOURCES += main.cpp\
     mousedialog/springmoderegionpreview.cpp \
     joystickstatuswindow.cpp \
     joybuttonstatusbox.cpp \
-    flashbuttonwidget.cpp
+    flashbuttonwidget.cpp \
+    inputdevice.cpp
 
 
 unix {
   SOURCES += x11info.cpp
 } else:win32 {
   SOURCES += wininfo.cpp
+}
+
+!isEmpty(USE_SDL_2) {
+  SOURCES += gamecontroller.cpp \
+    gamecontrollerdpad.cpp \
+    gamecontrollerset.cpp \
+    gamecontrollertrigger.cpp \
+    gamecontrollermappingdialog.cpp
 }
 
 HEADERS  += mainwindow.h \
@@ -242,8 +251,16 @@ HEADERS  += mainwindow.h \
     mousedialog/springmoderegionpreview.h \
     joystickstatuswindow.h \
     joybuttonstatusbox.h \
-    flashbuttonwidget.h
+    flashbuttonwidget.h \
+    inputdevice.h
 
+!isEmpty(USE_SDL_2) {
+  HEADERS  += gamecontroller.h \
+    gamecontrollerdpad.h \
+    gamecontrollerset.h \
+    gamecontrollertrigger.h \
+    gamecontrollermappingdialog.h
+}
 
 unix {
   HEADERS += x11info.h
@@ -262,7 +279,8 @@ FORMS    += mainwindow.ui \
     dpadeditdialog.ui \
     quicksetdialog.ui \
     mousesettingsdialog.ui \
-    joystickstatuswindow.ui
+    joystickstatuswindow.ui \
+    gamecontrollermappingdialog.ui
 
 
 unix {

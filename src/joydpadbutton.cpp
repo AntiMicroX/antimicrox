@@ -72,6 +72,14 @@ QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
         }
         temp.append(buttonName);
     }
+    else if (!defaultButtonName.isEmpty() && displayNames)
+    {
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+        temp.append(defaultButtonName);
+    }
     else
     {
         temp.append(tr("Button")).append(" ");
