@@ -82,6 +82,8 @@ public slots:
     void startLocalServer();
 #ifdef USE_SDL_2
     void testMappingUpdateNow(int index, InputDevice *device);
+    void removeJoyTab(SDL_JoystickID deviceID);
+    void addJoyTab(InputDevice *device);
 #endif
 
 private slots:

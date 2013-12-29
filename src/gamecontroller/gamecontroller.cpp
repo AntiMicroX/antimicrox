@@ -2,12 +2,13 @@
 
 const QString GameController::xmlName = "gamecontroller";
 
-GameController::GameController(SDL_GameController *controller, QObject *parent) :
-    InputDevice(parent)
+GameController::GameController(SDL_GameController *controller, int deviceIndex, QObject *parent) :
+    InputDevice(deviceIndex, parent)
 {
     this->controller = controller;
     SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
-    joyNumber = SDL_JoystickInstanceID(joyhandle);
+    joystickID = SDL_JoystickInstanceID(joyhandle);
+
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
         SetJoystick *setstick = new GameControllerSet(this, i, this);
@@ -461,7 +462,5 @@ void GameController::axisActivatedEvent(int setindex, int axisindex, int value)
 
 SDL_JoystickID GameController::getSDLJoystickID()
 {
-    SDL_Joystick *temphandle = SDL_GameControllerGetJoystick(controller);
-    SDL_JoystickID tempid = SDL_JoystickInstanceID(temphandle);
-    return tempid;
+    return joystickID;
 }

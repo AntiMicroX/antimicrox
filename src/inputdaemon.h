@@ -56,6 +56,8 @@ signals:
 
 #ifdef USE_SDL_2
     void deviceUpdated(int index, InputDevice *device);
+    void deviceRemoved(SDL_JoystickID deviceID);
+    void deviceAdded(InputDevice *device);
 #endif
 
 public slots:
@@ -66,6 +68,11 @@ public slots:
     void refreshJoysticks();
 #ifdef USE_SDL_2
     void refreshMapping(QString mapping, InputDevice *device);
+    void removeDevice(InputDevice *device);
+    void addJoystick(int index);
+    void addController(int index);
+    void refreshIndexes();
+
 #endif
 
 private slots:

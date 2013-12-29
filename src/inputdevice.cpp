@@ -4,12 +4,13 @@
 
 const int InputDevice::NUMBER_JOYSETS = 8;
 
-InputDevice::InputDevice(QObject *parent) :
+InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     QObject(parent)
 {
     buttonDownCount = 0;
-    joyNumber = 0;
+    joyNumber = deviceIndex;
     active_set = 0;
+    joystickID = 0;
 }
 
 InputDevice::~InputDevice()
@@ -914,14 +915,18 @@ void InputDevice::axisButtonUpEvent(int setindex, int axisindex, int buttonindex
     buttonUpEvent(setindex, buttonindex);
 }
 
-void InputDevice::dpadButtonClickEvent(int dpadindex, int buttonindex)
+void InputDevice::dpadButtonClickEvent(int buttonindex)
 {
-    emit rawDPadButtonClick(dpadindex, buttonindex);
+    JoyDPadButton *dpadbutton = static_cast<JoyDPadButton*>(sender());
+
+    emit rawDPadButtonClick(dpadbutton->getDPad()->getIndex(), buttonindex);
 }
 
-void InputDevice::dpadButtonReleaseEvent(int dpadindex, int buttonindex)
+void InputDevice::dpadButtonReleaseEvent(int buttonindex)
 {
-    emit rawDPadButtonRelease(dpadindex, buttonindex);
+    JoyDPadButton *dpadbutton = static_cast<JoyDPadButton*>(sender());
+
+    emit rawDPadButtonRelease(dpadbutton->getDPad()->getIndex(), buttonindex);
 }
 
 void InputDevice::dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex)
@@ -1276,6 +1281,18 @@ void InputDevice::axisActivatedEvent(int setindex, int axisindex, int value)
     Q_UNUSED(setindex);
 
     emit rawAxisActivated(axisindex, value);
+}
+
+void InputDevice::setIndex(int index)
+{
+    if (index >= 0)
+    {
+        joyNumber = index;
+    }
+    else
+    {
+        joyNumber = 0;
+    }
 }
 
 #ifdef USE_SDL_2

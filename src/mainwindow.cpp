@@ -111,30 +111,12 @@ void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
         joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->fillButtons();
-        //ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
-        //connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
+
         if (showTrayIcon)
         {
             connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
         }
     }
-
-    /*for (int i=0; i < joysticks->count(); i++)
-    {
-        Joystick *joystick = joysticks->value(i);
-
-        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
-        tabwidget->fillButtons();
-        QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(tr("(Joystick %1)").arg(joystick->getRealJoyNumber()));
-        ui->tabWidget->addTab(tabwidget, joytabName);
-        //ui->tabWidget->addTab(tabwidget, QString(tr("Joystick %1")).arg(joystick->getRealJoyNumber()));
-        //connect(tabwidget, SIGNAL(joystickRefreshRequested(Joystick*)), this, SLOT(joystickRefreshPropogate(Joystick*)));
-        if (showTrayIcon)
-        {
-            connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
-        }
-    }*/
 
     if (joysticks->count() > 0)
     {
@@ -221,39 +203,6 @@ void MainWindow::populateTrayIcon()
 
             i++;
         }
-
-        /*for (int i=0; i < joysticks->count(); i++)
-        {
-            QMenu *joysticksub = trayIconMenu->addMenu(joysticks->value(i)->getName());
-            JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
-            QHash<int, QString> *configs = widget->recentConfigs();
-            QHashIterator<int, QString> iter(*configs);
-            while (iter.hasNext())
-            {
-                iter.next();
-                QAction *newaction = new QAction(iter.value(), joysticksub);
-                newaction->setCheckable(true);
-                newaction->setChecked(false);
-
-                if (iter.key() == widget->getCurrentConfigIndex())
-                {
-                    newaction->setChecked(true);
-                }
-                QHash<QString, QVariant> *tempmap = new QHash<QString, QVariant> ();
-                tempmap->insert(QString::number(i), QVariant (iter.key()));
-                QVariant tempvar (*tempmap);
-                newaction->setData(tempvar);
-                joysticksub->addAction(newaction);
-            }
-
-            QAction *newaction = new QAction(tr("Open File"), joysticksub);
-            newaction->setIcon(QIcon::fromTheme("document-open"));
-            connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
-            joysticksub->addAction(newaction);
-
-            connect(joysticksub, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
-            connect(joysticksub, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
-        }*/
 
         trayIconMenu->addSeparator();
     }
@@ -712,4 +661,68 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     tabwidget->fillButtons();
     ui->tabWidget->setCurrentIndex(index);
 }
+
+void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
+{
+    bool found = false;
+    for (int i=0; i < ui->tabWidget->count() && !found; i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (tab && deviceID == tab->getJoystick()->getSDLJoystickID())
+        {
+            ui->tabWidget->disableFlashes(tab->getJoystick());
+            ui->tabWidget->removeTab(i);
+            delete tab;
+            tab = 0;
+            found = true;
+        }
+    }
+
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (tab)
+        {
+            InputDevice *device = tab->getJoystick();
+            QString joytabName = device->getSDLName();
+            joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+            ui->tabWidget->setTabText(i, joytabName);
+        }
+    }
+
+    if (showTrayIcon)
+    {
+        populateTrayIcon();
+        trayIcon->show();
+    }
+
+    if (ui->tabWidget->count() == 0)
+    {
+        ui->stackedWidget->setCurrentIndex(0);
+    }
+}
+
+void MainWindow::addJoyTab(InputDevice *device)
+{
+    JoyTabWidget *tabwidget = new JoyTabWidget(device, this);
+    QString joytabName = device->getSDLName();
+    joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+    ui->tabWidget->addTab(tabwidget, joytabName);
+    tabwidget->fillButtons();
+
+    if (showTrayIcon)
+    {
+        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+    }
+
+    if (showTrayIcon)
+    {
+        populateTrayIcon();
+        trayIcon->show();
+    }
+
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
 #endif
+

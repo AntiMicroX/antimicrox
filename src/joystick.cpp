@@ -7,12 +7,12 @@
 
 const QString Joystick::xmlName = "joystick";
 
-Joystick::Joystick(SDL_Joystick *joyhandle, QObject *parent) :
-    InputDevice(parent)
+Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex, QObject *parent) :
+    InputDevice(deviceIndex, parent)
 {
     this->joyhandle = joyhandle;
 #ifdef USE_SDL_2
-    joyNumber = SDL_JoystickInstanceID(joyhandle);
+    joystickID = SDL_JoystickInstanceID(joyhandle);
 #else
     joyNumber = SDL_JoystickIndex(joyhandle);
 #endif
@@ -1384,7 +1384,6 @@ int Joystick::getNumberRawHats()
 #ifdef USE_SDL_2
 SDL_JoystickID Joystick::getSDLJoystickID()
 {
-    SDL_JoystickID temp = SDL_JoystickInstanceID(joyhandle);
-    return temp;
+    return joystickID;
 }
 #endif

@@ -20,7 +20,7 @@ class InputDevice : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputDevice(QObject *parent = 0);
+    explicit InputDevice(int deviceIndex, QObject *parent = 0);
     virtual ~InputDevice();
 
     virtual int getNumberButtons();
@@ -67,6 +67,8 @@ public:
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
 
+    void setIndex(int index);
+
     static const int NUMBER_JOYSETS;
 
 protected:
@@ -77,6 +79,7 @@ protected:
     int active_set;
     int joyNumber;
     int buttonDownCount;
+    SDL_JoystickID joystickID;
 
 signals:
     void setChangeActivated(int index);
@@ -112,8 +115,8 @@ protected slots:
     virtual void axisButtonUpEvent(int setindex, int axisindex, int buttonindex);
     virtual void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex);
     virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);
-    virtual void dpadButtonClickEvent(int dpadindex, int buttonindex);
-    virtual void dpadButtonReleaseEvent(int dpadindex, int buttonindex);
+    virtual void dpadButtonClickEvent(int buttonindex);
+    virtual void dpadButtonReleaseEvent(int buttonindex);
     virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex);
     virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);
 

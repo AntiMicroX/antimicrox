@@ -186,6 +186,8 @@ int main(int argc, char *argv[])
 #ifdef USE_SDL_2
     QObject::connect(&w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
     QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), &w, SLOT(testMappingUpdateNow(int,InputDevice*)));
+    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), &w, SLOT(removeJoyTab(SDL_JoystickID)));
+    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), &w, SLOT(addJoyTab(InputDevice*)));
 #endif
 
     if (!cmdutility.isHiddenRequested() && (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))

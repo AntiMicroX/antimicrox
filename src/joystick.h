@@ -28,7 +28,7 @@ class Joystick : public InputDevice
 {
     Q_OBJECT
 public:
-    explicit Joystick(SDL_Joystick *joyhandle, QObject *parent=0);
+    explicit Joystick(SDL_Joystick *joyhandle, int deviceIndex, QObject *parent=0);
 
     virtual QString getName();
     virtual QString getSDLName();

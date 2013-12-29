@@ -93,6 +93,9 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QW
         populateGameControllerBindings(static_cast<GameController*>(device));
     }
 
+    QString tempWindowTitle = QString(tr("Game Controller Mapping (%1)")).arg(device->getSDLName());
+    setWindowTitle(tempWindowTitle);
+
     enableDeviceConnections();
 
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(testsave()));

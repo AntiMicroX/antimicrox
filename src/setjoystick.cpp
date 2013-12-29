@@ -814,9 +814,9 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
 
         connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
-        connect(button, SIGNAL(clicked(int)), device, SLOT(dpadButtonClickEvent(int,int)));
+        connect(button, SIGNAL(clicked(int)), device, SLOT(dpadButtonClickEvent(int)));
         connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
-        connect(button, SIGNAL(released(int)), device, SLOT(dpadButtonReleaseEvent(int,int)));
+        connect(button, SIGNAL(released(int)), device, SLOT(dpadButtonReleaseEvent(int)));
         connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
     }
 }
