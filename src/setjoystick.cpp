@@ -774,7 +774,9 @@ void SetJoystick::enableButtonConnections(JoyButton *button)
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
     connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
     connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)));
+    connect(button, SIGNAL(clicked(int)), device, SLOT(buttonClickEvent(int)));
     connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
+    connect(button, SIGNAL(released(int)), device, SLOT(buttonReleaseEvent(int)));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
 }
 
@@ -812,7 +814,9 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
 
         connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
+        connect(button, SIGNAL(clicked(int)), device, SLOT(dpadButtonClickEvent(int,int)));
         connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
+        connect(button, SIGNAL(released(int)), device, SLOT(dpadButtonReleaseEvent(int,int)));
         connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
     }
 }

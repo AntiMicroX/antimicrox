@@ -395,10 +395,8 @@ SDL_GameControllerButtonBind GameController::getBindForButton(int index)
     return bind;
 }
 
-void GameController::buttonClickEvent(int setindex, int buttonindex)
+void GameController::buttonClickEvent(int buttonindex)
 {
-    Q_UNUSED(setindex);
-
     SDL_GameControllerButtonBind bind = getBindForButton((SDL_GameControllerButton)buttonindex);
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
@@ -418,10 +416,8 @@ void GameController::buttonClickEvent(int setindex, int buttonindex)
     }
 }
 
-void GameController::buttonReleaseEvent(int setindex, int buttonindex)
+void GameController::buttonReleaseEvent(int buttonindex)
 {
-    Q_UNUSED(setindex);
-
     SDL_GameControllerButtonBind bind = getBindForButton((SDL_GameControllerButton)buttonindex);
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
@@ -438,20 +434,6 @@ void GameController::buttonReleaseEvent(int setindex, int buttonindex)
             emit rawDPadButtonRelease(bind.value.hat.hat, bind.value.hat.hat_mask);
         }
     }
-}
-
-void GameController::axisButtonDownEvent(int setindex, int axisindex, int buttonindex)
-{
-    Q_UNUSED(axisindex);
-
-    buttonDownEvent(setindex, buttonindex);
-}
-
-void GameController::axisButtonUpEvent(int setindex, int axisindex, int buttonindex)
-{
-    Q_UNUSED(axisindex);
-
-    buttonUpEvent(setindex, buttonindex);
 }
 
 void GameController::axisActivatedEvent(int setindex, int axisindex, int value)
@@ -475,20 +457,6 @@ void GameController::axisActivatedEvent(int setindex, int axisindex, int value)
             emit rawDPadButtonClick(bind.value.hat.hat, bind.value.hat.hat_mask);
         }
     }
-}
-
-void GameController::dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex)
-{
-    Q_UNUSED(dpadindex);
-
-    buttonDownEvent(setindex, buttonindex);
-}
-
-void GameController::dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex)
-{
-    Q_UNUSED(dpadindex);
-
-    buttonUpEvent(setindex, buttonindex);
 }
 
 SDL_JoystickID GameController::getSDLJoystickID()

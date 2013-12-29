@@ -85,14 +85,19 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QW
 
     this->device = device;
 
+    device->getActiveSetJoystick()->setIgnoreEventState(true);
+    device->getActiveSetJoystick()->release();
+
     if (qobject_cast<GameController*>(device) != 0)
     {
         populateGameControllerBindings(static_cast<GameController*>(device));
     }
 
     enableDeviceConnections();
+
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(testsave()));
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(testOther(QAbstractButton*)));
+    connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents()));
 }
 
 GameControllerMappingDialog::~GameControllerMappingDialog()
@@ -239,6 +244,7 @@ void GameControllerMappingDialog::testsave()
     QStringList templist;
     templist.append(device->getGUIDString());
     templist.append(device->getSDLName());
+    templist.append(QString("platform:").append(device->getSDLPlatform()));
 
     for (int i=0; i < ui->buttonMappingTableWidget->rowCount(); i++)
     {
@@ -410,4 +416,10 @@ void GameControllerMappingDialog::disableDeviceConnections()
     disconnect(device, SIGNAL(rawButtonClick(int)), this, SLOT(testButtonAssign(int)));
     disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(testAxisAssign(int,int)));
     disconnect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(testDPadAssign(int,int)));
+}
+
+void GameControllerMappingDialog::enableButtonEvents()
+{
+    device->getActiveSetJoystick()->setIgnoreEventState(false);
+    device->getActiveSetJoystick()->release();
 }

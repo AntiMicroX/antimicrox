@@ -890,17 +890,13 @@ void InputDevice::buttonUpEvent(int setindex, int buttonindex)
     }
 }
 
-void InputDevice::buttonClickEvent(int setindex, int buttonindex)
+void InputDevice::buttonClickEvent(int buttonindex)
 {
-    Q_UNUSED(setindex);
-
     emit rawButtonClick(buttonindex);
 }
 
-void InputDevice::buttonReleaseEvent(int setindex, int buttonindex)
+void InputDevice::buttonReleaseEvent(int buttonindex)
 {
-    Q_UNUSED(setindex);
-
     emit rawButtonRelease(buttonindex);
 }
 
@@ -918,16 +914,28 @@ void InputDevice::axisButtonUpEvent(int setindex, int axisindex, int buttonindex
     buttonUpEvent(setindex, buttonindex);
 }
 
+void InputDevice::dpadButtonClickEvent(int dpadindex, int buttonindex)
+{
+    emit rawDPadButtonClick(dpadindex, buttonindex);
+}
+
+void InputDevice::dpadButtonReleaseEvent(int dpadindex, int buttonindex)
+{
+    emit rawDPadButtonRelease(dpadindex, buttonindex);
+}
+
 void InputDevice::dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex)
 {
+    Q_UNUSED(dpadindex);
+
     buttonDownEvent(setindex, buttonindex);
-    emit rawDPadButtonClick(dpadindex, buttonindex);
 }
 
 void InputDevice::dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex)
 {
+    Q_UNUSED(dpadindex);
+
     buttonUpEvent(setindex, buttonindex);
-    emit rawDPadButtonRelease(dpadindex, buttonindex);
 }
 
 void InputDevice::stickButtonDownEvent(int setindex, int stickindex, int buttonindex)
@@ -1238,10 +1246,8 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
     connect(setstick, SIGNAL(setAssignmentAxisThrottleChanged(int,int)), this, SLOT(propogateSetAxisThrottleChange(int, int)));
 
     connect(setstick, SIGNAL(setButtonClick(int,int)), this, SLOT(buttonDownEvent(int,int)));
-    connect(setstick, SIGNAL(setButtonClick(int,int)), this, SLOT(buttonClickEvent(int,int)));
 
     connect(setstick, SIGNAL(setButtonRelease(int,int)), this, SLOT(buttonUpEvent(int,int)));
-    connect(setstick, SIGNAL(setButtonRelease(int,int)), this, SLOT(buttonReleaseEvent(int,int)));
 
     connect(setstick, SIGNAL(setAxisButtonClick(int,int,int)), this, SLOT(axisButtonDownEvent(int,int,int)));
     connect(setstick, SIGNAL(setAxisButtonRelease(int,int,int)), this, SLOT(axisButtonUpEvent(int,int,int)));
@@ -1271,3 +1277,12 @@ void InputDevice::axisActivatedEvent(int setindex, int axisindex, int value)
 
     emit rawAxisActivated(axisindex, value);
 }
+
+#ifdef USE_SDL_2
+QString InputDevice::getSDLPlatform()
+{
+    QString temp = SDL_GetPlatform();
+    return temp;
+}
+
+#endif

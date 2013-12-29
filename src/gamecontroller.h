@@ -48,12 +48,8 @@ public slots:
 
 protected slots:
     virtual void axisActivatedEvent(int setindex, int axisindex, int value);
-    virtual void buttonClickEvent(int setindex, int buttonindex);
-    virtual void buttonReleaseEvent(int setindex, int buttonindex);
-    virtual void axisButtonDownEvent(int setindex, int axisindex, int buttonindex);
-    virtual void axisButtonUpEvent(int setindex, int axisindex, int buttonindex);
-    virtual void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex);
-    virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);
+    virtual void buttonClickEvent(int buttonindex);
+    virtual void buttonReleaseEvent(int buttonindex);
 };
 
 #endif // GAMECONTROLLER_H

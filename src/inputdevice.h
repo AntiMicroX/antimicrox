@@ -7,6 +7,7 @@
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
+#include <SDL2/SDL_platform.h>
 #else
 #include <SDL/SDL_joystick.h>
 typedef Sint32 SDL_JoystickID;
@@ -43,6 +44,7 @@ public:
     virtual void closeSDLDevice() = 0;
 #ifdef USE_SDL_2
     virtual SDL_JoystickID getSDLJoystickID() = 0;
+    QString getSDLPlatform();
 #endif
 
     void setButtonName(int index, QString tempName);
@@ -104,12 +106,14 @@ protected slots:
     void buttonDownEvent(int setindex, int buttonindex);
     void buttonUpEvent(int setindex, int buttonindex);
     virtual void axisActivatedEvent(int setindex, int axisindex, int value);
-    virtual void buttonClickEvent(int setindex, int buttonindex);
-    virtual void buttonReleaseEvent(int setindex, int buttonindex);
+    virtual void buttonClickEvent(int buttonindex);
+    virtual void buttonReleaseEvent(int buttonindex);
     virtual void axisButtonDownEvent(int setindex, int axisindex, int buttonindex);
     virtual void axisButtonUpEvent(int setindex, int axisindex, int buttonindex);
     virtual void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex);
     virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);
+    virtual void dpadButtonClickEvent(int dpadindex, int buttonindex);
+    virtual void dpadButtonReleaseEvent(int dpadindex, int buttonindex);
     virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex);
     virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);
 
