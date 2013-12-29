@@ -7,7 +7,7 @@
 
 #include <SDL2/SDL_gamecontroller.h>
 
-#include "setjoystick.h"
+#include <setjoystick.h>
 #include "gamecontrollerdpad.h"
 #include "gamecontrollertrigger.h"
 

@@ -381,10 +381,10 @@ void GameControllerMappingDialog::testOther(QAbstractButton *button)
         QMessageBox msgBox;
         msgBox.setWindowTitle(tr("Discard Controller Mapping?"));
         msgBox.setText(tr("Discard mapping for this controller?\n\nIf discarded, the controller will be reverted to a joystick once you refresh all joysticks."));
-        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Close);
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
 
         int status = msgBox.exec();
-        if (status == QMessageBox::Ok)
+        if (status == QMessageBox::Yes)
         {
             removeControllerMapping();
             close();

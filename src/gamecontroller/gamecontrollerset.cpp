@@ -1,5 +1,5 @@
 #include "gamecontrollerset.h"
-#include "inputdevice.h"
+#include <inputdevice.h>
 
 GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent) :
     SetJoystick(device, index, parent)

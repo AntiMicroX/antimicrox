@@ -5,7 +5,7 @@
 
 #include <SDL2/SDL_gamecontroller.h>
 
-#include "joyaxis.h"
+#include <joyaxis.h>
 
 class GameControllerTrigger : public JoyAxis
 {

@@ -6,7 +6,7 @@
 #include <QAbstractButton>
 
 #include "inputdevice.h"
-#include "gamecontroller.h"
+#include "gamecontroller/gamecontroller.h"
 
 namespace Ui {
 class GameControllerMappingDialog;

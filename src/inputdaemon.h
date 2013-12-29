@@ -7,7 +7,7 @@
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
 #include <SDL2/SDL_events.h>
-#include "gamecontroller.h"
+#include "gamecontroller/gamecontroller.h"
 
 #else
 #include <SDL/SDL_joystick.h>

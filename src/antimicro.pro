@@ -192,10 +192,10 @@ unix {
 }
 
 !isEmpty(USE_SDL_2) {
-  SOURCES += gamecontroller.cpp \
-    gamecontrollerdpad.cpp \
-    gamecontrollerset.cpp \
-    gamecontrollertrigger.cpp \
+  SOURCES += gamecontroller/gamecontroller.cpp \
+    gamecontroller/gamecontrollerdpad.cpp \
+    gamecontroller/gamecontrollerset.cpp \
+    gamecontroller/gamecontrollertrigger.cpp \
     gamecontrollermappingdialog.cpp
 }
 
@@ -255,10 +255,10 @@ HEADERS  += mainwindow.h \
     inputdevice.h
 
 !isEmpty(USE_SDL_2) {
-  HEADERS  += gamecontroller.h \
-    gamecontrollerdpad.h \
-    gamecontrollerset.h \
-    gamecontrollertrigger.h \
+  HEADERS  += gamecontroller/gamecontroller.h \
+    gamecontroller/gamecontrollerdpad.h \
+    gamecontroller/gamecontrollerset.h \
+    gamecontroller/gamecontrollertrigger.h \
     gamecontrollermappingdialog.h
 }
 

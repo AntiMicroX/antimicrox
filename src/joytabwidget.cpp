@@ -18,7 +18,7 @@
 #include "quicksetdialog.h"
 
 #ifdef USE_SDL_2
-#include "gamecontroller.h"
+#include "gamecontroller/gamecontroller.h"
 #endif
 
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :

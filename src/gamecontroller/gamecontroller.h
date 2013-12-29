@@ -6,7 +6,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#include "inputdevice.h"
+#include <inputdevice.h>
 #include "gamecontrollerdpad.h"
 #include "gamecontrollerset.h"
 
