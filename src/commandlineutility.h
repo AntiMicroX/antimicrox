@@ -18,8 +18,11 @@ public:
     bool isTrayHidden();
     bool hasProfile();
     bool hasControllerNumber();
+    bool hasControllerID();
+
     QString getProfileLocation();
     unsigned int getControllerNumber();
+    QString getControllerID();
     bool isHiddenRequested();
 
     void printHelp();
@@ -34,6 +37,7 @@ protected:
     bool hideTrayIcon;
     QString profileLocation;
     unsigned int controllerNumber;
+    QString controllerIDString;
     bool encounteredError;
     bool hiddenRequest;
 

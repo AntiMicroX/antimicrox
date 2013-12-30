@@ -57,6 +57,10 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
         {
             loadConfigFile(cmdutility->getProfileLocation(), cmdutility->getControllerNumber());
         }
+        else if (cmdutility->hasControllerID())
+        {
+            loadConfigFile(cmdutility->getProfileLocation());
+        }
         else
         {
             loadConfigFile(cmdutility->getProfileLocation());
@@ -564,6 +568,30 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
             if (widget)
             {
                 widget->loadConfigFile(fileLocation);
+            }
+        }
+    }
+}
+
+void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
+{
+    if (!controllerID.isEmpty())
+    {
+        QListIterator<QObject*> iter(ui->tabWidget->children());
+        while (iter.hasNext())
+        {
+            JoyTabWidget *tab = static_cast<JoyTabWidget*>(iter.next());
+            if (tab)
+            {
+                InputDevice *tempdevice = tab->getJoystick();
+                if (controllerID == tempdevice->getGUIDString())
+                {
+                    tab->loadConfigFile(fileLocation);
+                }
+                else if (controllerID == tempdevice->getSDLName())
+                {
+                    tab->loadConfigFile(fileLocation);
+                }
             }
         }
     }

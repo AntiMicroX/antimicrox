@@ -39,6 +39,7 @@ protected:
     virtual void hideEvent(QHideEvent * event);
     virtual void showEvent(QShowEvent *event);
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
+    void loadConfigFile(QString fileLocation, QString controllerID);
 
 #ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;
