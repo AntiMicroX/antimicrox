@@ -126,9 +126,7 @@ Notes about the WXS file and the building process :
 ## Ideas For Future Features
 
 This section is where some of the ideas for future features
-for this program will be written. Since the 1.0 release,
-there has not been a plan for what to implement in future
-versions of AntiMicro. Hopefully, this will help change that.
+for this program will be written.
 
 * ~~DONE. Allow program to be compiled against SDL 2.0 as well as SDL 1.2.~~
 * ~~DONE. Enable use of the GameController API provided by SDL 2.~~
