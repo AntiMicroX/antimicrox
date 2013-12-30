@@ -31,7 +31,7 @@ installed on your system in order to build this program:
 
 * g++
 * libqt4-dev
-* libsdl1.2-dev
+* libsdl1.2-dev (or libsdl2-dev)
 * libxtst-dev
 * libX11-dev
 
@@ -41,18 +41,25 @@ installed on your system in order to build this program:
 In order to build this program, open a terminal and cd into the antimicro/src
 directory. Enter the following commands in order to build the program:
 
-* cd antimicro/src
-* qmake
-* make
-* sudo make install
+    cd antimicro/src
+    qmake
+    make
+    sudo make install
 
 The installation path of antimicro can be customized by specifying the
-INSTALL_PREFIX variable for qmake.
+INSTALL_PREFIX variable while running qmake.
 
-* qmake INSTALL_PREFIX=/usr
+    qmake INSTALL_PREFIX=/usr
 
 This will install the antimicro executable to /usr/bin/antimicro.
 By default, the executable will be installed to /usr/local/bin/antimicro.
+
+If you would like to compile the program to use SDL 2, you can use the
+USE_SDL_2 variable while running qmake. By default, the program
+will be compiled against SDL 1.2.x. That will likely change in the
+future.
+
+    qmake USE_SDL_2=1
 
 ## Building under Windows
 
