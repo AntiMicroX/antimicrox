@@ -20,7 +20,7 @@
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="joystickDialogLabel">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Joystick %2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

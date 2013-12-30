@@ -119,15 +119,10 @@ protected:
     bool eventActive;
     int currentThrottledValue;
     int currentRawValue;
-    //QTimer *timer;
-    //QTime interval;
     int throttle;
-    //float sumDist;
     JoyAxisButton *activeButton;
     int originset;
 
-    //int currentThrottledMin;
-    //int currentThrottledMax;
     int currentThrottledDeadValue;
     JoyControlStick *stick;
     QString axisName;

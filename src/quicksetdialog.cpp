@@ -18,14 +18,14 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
     this->joystick = joystick;
     this->currentButtonDialog = 0;
 
-    setWindowTitle(tr("Quick Set Joystick %1").arg(joystick->getRealJoyNumber()));
+    setWindowTitle(tr("Quick Set %1").arg(joystick->getName()));
 
     SetJoystick *currentset = joystick->getActiveSetJoystick();
     currentset->release();
     joystick->resetButtonDownCount();
 
     QString temp = ui->joystickDialogLabel->text();
-    temp = temp.arg(joystick->getSDLName()).arg(joystick->getRealJoyNumber());
+    temp = temp.arg(joystick->getSDLName()).arg(joystick->getName());
     ui->joystickDialogLabel->setText(temp);
 
     for (int i=0; i < currentset->getNumberSticks(); i++)
