@@ -284,7 +284,7 @@ void GameControllerMappingDialog::testsave()
     qDebug() << templist.join(",");
     qDebug();
 
-    QSettings settings(PadderCommon::controllerMappingFilePath, QSettings::IniFormat);
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings.setValue(QString("Mappings/").append(device->getGUIDString()), templist.join(","));
     emit mappingUpdate(templist.join(","), device);
 }
@@ -403,7 +403,7 @@ void GameControllerMappingDialog::testOther(QAbstractButton *button)
 
 void GameControllerMappingDialog::removeControllerMapping()
 {
-    QSettings settings(PadderCommon::controllerMappingFilePath, QSettings::IniFormat);
+    QSettings settings(PadderCommon::configFileName, QSettings::IniFormat);
     settings.remove(QString("Mappings/").append(device->getGUIDString()));
 }
 

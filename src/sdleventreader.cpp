@@ -27,7 +27,8 @@ void SDLEventReader::initSDL()
     sdlIsOpen = true;
 
 #ifdef USE_SDL_2
-    QSettings settings(PadderCommon::controllerMappingFilePath, QSettings::IniFormat);
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings.beginGroup("Mappings");
     QStringList mappings = settings.allKeys();
     QStringListIterator iter(mappings);
     while (iter.hasNext())

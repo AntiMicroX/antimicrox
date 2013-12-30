@@ -296,8 +296,8 @@ void MainWindow::saveAppConfig()
     if (joysticks->count() > 0)
     {
         QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-        settings.clear();
         settings.beginGroup("Controllers");
+        settings.remove("");
 
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
