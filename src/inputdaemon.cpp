@@ -55,7 +55,7 @@ void InputDaemon::run ()
     event.type = SDL_NOEVENT;
 #endif
 
-    if (joysticks->count() > 0 && !stopped)
+    if (!stopped)
     {
         event = eventWorker->getCurrentEvent();
 
