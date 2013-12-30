@@ -2,14 +2,21 @@
 
 ## Description
 
-Graphical program used to map keyboard keys and mouse controls to a gamepad.
-This program is useful for playing PC games with no built-in gamepad support.
+AntiMicro is a graphical program used to map keyboard keys and mouse controls
+to a gamepad. This program is useful for playing PC games using a gamepad that
+do not have any form of built-in gamepad support. However, you can use this 
+program to control any desktop application with a gamepad; on Linux, this
+means that your system has to be running an X environment in order to run
+this program. This program is currently supported under various Linux
+distributions and Windows Vista and later; this program should be able to run
+under Windows XP but it has not been tested.
 
 ## License
 
 This program is licensed under the GPL v.3. Please read the gpl.txt text document
 included with the source code if you would like to read the terms of the license.
-The license can also be found online at [http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
+The license can also be found online at
+[http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
 
 
 ## Build Dependencies
@@ -124,6 +131,8 @@ there has not been a plan for what to implement in future
 versions of AntiMicro. Hopefully, this will help change that.
 
 * ~~DONE. Allow program to be compiled against SDL 2.0 as well as SDL 1.2.~~
+* ~~DONE. Enable use of the GameController API provided by SDL 2.~~
+* ~~DONE. Enable joystick hotplugging.~~
 * Setting to not display buttons that are not currently in use.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
@@ -136,7 +145,8 @@ on the PS4 controller.
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this
-program. Opening the mind map will require the use of the program
+program. The mind map will include extra notes that are not available in
+this README. Opening the mind map will require the use of the program
 FreeMind which can be downloaded from
 [http://freemind.sourceforge.net/wiki/index.php/Main_Page](http://freemind.sourceforge.net/wiki/index.php/Main_Page).
 
