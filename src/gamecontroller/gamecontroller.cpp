@@ -11,9 +11,9 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
 
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
-        SetJoystick *setstick = new GameControllerSet(this, i, this);
-        joystick_sets.insert(i, setstick);
-        enableSetConnections(setstick);
+        GameControllerSet *controllerset = new GameControllerSet(this, i, this);
+        joystick_sets.insert(i, controllerset);
+        enableSetConnections(controllerset);
     }
 }
 

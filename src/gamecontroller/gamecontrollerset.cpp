@@ -2,9 +2,9 @@
 #include <inputdevice.h>
 
 GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent) :
-    SetJoystick(device, index, parent)
+    SetJoystick(device, index, false, parent)
 {
-    populateSticksDPad();
+    reset();
 }
 
 void GameControllerSet::reset()

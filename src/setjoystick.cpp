@@ -12,6 +12,17 @@ SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     reset();
 }
 
+SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent) :
+    QObject(parent)
+{
+    this->device = device;
+    this->index = index;
+    if (runreset)
+    {
+        reset();
+    }
+}
+
 SetJoystick::~SetJoystick()
 {
     deleteSticks();
@@ -50,7 +61,6 @@ void SetJoystick::refreshButtons()
 {
     deleteButtons();
 
-    //for (int i=0; i < SDL_JoystickNumButtons(joyhandle); i++)
     for (int i=0; i < device->getNumberRawButtons(); i++)
     {
         JoyButton *button = new JoyButton (i, index, this);

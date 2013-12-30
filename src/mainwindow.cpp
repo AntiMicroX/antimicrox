@@ -171,7 +171,10 @@ void MainWindow::populateTrayIcon()
             iter.next();
             InputDevice *current = iter.value();
 
-            QMenu *joysticksub = trayIconMenu->addMenu(current->getName());
+            QString joytabName = current->getSDLName();
+            joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
+
+            QMenu *joysticksub = trayIconMenu->addMenu(joytabName);
             JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
             QHash<int, QString> *configs = widget->recentConfigs();
             QHashIterator<int, QString> iter(*configs);
