@@ -336,7 +336,6 @@ void InputDaemon::refreshJoystick(InputDevice *joystick)
 void InputDaemon::quit()
 {
     stopped = true;
-    eventWorker->stop();
 
     // Wait for SDL to finish. Let worker destructor close SDL.
     // Let InputDaemon destructor close thread instance.
@@ -346,9 +345,15 @@ void InputDaemon::quit()
         QTimer temptime;
         connect(eventWorker, SIGNAL(finished()), &q, SLOT(quit()));
         connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
+
+        eventWorker->stop();
         temptime.start(1000);
         q.exec();
         temptime.stop();
+    }
+    else
+    {
+        eventWorker->stop();
     }
 
     delete eventWorker;

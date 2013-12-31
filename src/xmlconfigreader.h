@@ -6,6 +6,7 @@
 #include <QFile>
 
 #include "inputdevice.h"
+#include "joystick.h"
 #include "common.h"
 
 class XMLConfigReader : public QObject

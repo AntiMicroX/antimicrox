@@ -37,7 +37,7 @@ void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 
 void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    unsigned int scancode = event->nativeScanCode();
+    //unsigned int scancode = event->nativeScanCode();
     unsigned int virtualkey = event->nativeVirtualKey();
 #ifdef Q_OS_WIN
     unsigned int finalvirtual = WinInfo::correctVirtualKey(scancode, virtualkey);

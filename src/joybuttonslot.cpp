@@ -186,7 +186,7 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             {
                 this->setSlotCode(virtualkey);
             }
-            else if (this->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
+            else if ((unsigned int)this->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
             {
                 unsigned int temp = this->getSlotCode() - QtKeyMapperBase::nativeKeyPrefix;
                 this->setSlotCode(temp);

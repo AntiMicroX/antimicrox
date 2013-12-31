@@ -6,6 +6,7 @@
 #include "buttoneditdialog.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "event.h"
+#include "antkeymapper.h"
 
 AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -137,33 +138,33 @@ void AxisEditDialog::implementPresets(int index)
     }
     else if (index == 5)
     {
-        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Up"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Down"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Up), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Down), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 6)
     {
-        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Left"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("Right"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Left), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Right), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 7)
     {
-        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("w"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("s"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_W), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_S), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 8)
     {
-        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("a"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("d"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_A), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_D), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 9)
     {
-        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_8"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_2"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_8), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_2), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 10)
     {
-        nbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_4"), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(X11KeySymToKeycode("KP_6"), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_4), JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_6), JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 11)
     {
@@ -338,33 +339,33 @@ void AxisEditDialog::selectCurrentPreset()
         {
             ui->presetsComboBox->setCurrentIndex(4);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("Up") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("Down"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)nslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_Up) &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)pslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_Down))
         {
             ui->presetsComboBox->setCurrentIndex(5);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("Left") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("Right"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)nslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_Left) &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)pslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_Right))
         {
             ui->presetsComboBox->setCurrentIndex(6);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("w") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("s"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)nslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_W) &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)pslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_S))
         {
             ui->presetsComboBox->setCurrentIndex(7);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("a") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("d"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)nslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_A) &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)pslot->getSlotCode() == AntKeyMapper::returnVirtualKey(Qt::Key_D))
         {
             ui->presetsComboBox->setCurrentIndex(8);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("KP_8") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("KP_2"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)nslot->getSlotCode() == AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_8) &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)pslot->getSlotCode() == AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_2))
         {
             ui->presetsComboBox->setCurrentIndex(9);
         }
-        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && nslot->getSlotCode() == X11KeySymToKeycode("KP_4") &&
-                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && pslot->getSlotCode() == X11KeySymToKeycode("KP_6"))
+        else if (nslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)nslot->getSlotCode() == AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_4) &&
+                 pslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && (unsigned int)pslot->getSlotCode() == AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_6))
         {
             ui->presetsComboBox->setCurrentIndex(10);
         }

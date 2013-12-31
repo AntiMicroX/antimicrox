@@ -77,7 +77,7 @@ bool XMLConfigReader::read()
         {
             xml->raiseError("Root node is not a joystick");
         }
-        else
+        else if (xml->name() == Joystick::xmlName)
         {
             XMLConfigMigration migration(xml);
             if (migration.requiresMigration())

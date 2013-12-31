@@ -3,6 +3,7 @@
 
 #include "virtualkeypushbutton.h"
 #include <event.h>
+#include <antkeymapper.h>
 
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
 
@@ -21,8 +22,17 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     this->button = button;
 
     int temp = 0;
-    if (!xcodestring.isEmpty())
+    if (!xcodestring.isEmpty())// && xcodestring.toInt(0, 16) > 0)
     {
+        /*int qkey = xcodestring.toInt(0, 16);
+        if (qkey > QtKeyMapperBase::customKeyPrefix)
+        {
+            temp = qkey - QtKeyMapperBase::customKeyPrefix;
+        }
+        else
+        {
+            temp = AntKeyMapper::returnVirtualKey(qkey);
+        }*/
         temp = X11KeySymToKeycode(xcodestring);
     }
 
@@ -32,6 +42,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
         this->keycode = temp;
 #else
         this->keycode = X11KeyCodeToX11KeySym(temp);
+        //this->keycode = temp;
 #endif
         this->xcodestring = xcodestring;
         this->displayString = setDisplayString(xcodestring);

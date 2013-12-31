@@ -18,7 +18,7 @@ QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
 
 /*
  * The following mappings are mainly taken from qkeymapper_x11.cpp.
- * There are portions of the mapping are customized to work around
+ * There are portions of the mapping that are customized to work around
  * some of the ambiguity introduced with some Qt keys
  * (XK_Alt_L and XK_Alt_R become Qt::Key_Alt
  */
