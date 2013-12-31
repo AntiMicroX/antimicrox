@@ -16,6 +16,7 @@
 #include "dpadpushbutton.h"
 #include "joystickstatuswindow.h"
 #include "qkeydisplaydialog.h"
+#include "mainsettingsdialog.h"
 #include "common.h"
 
 #ifdef USE_SDL_2
@@ -80,6 +81,7 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
+    connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
 #endif
 }
 
@@ -775,6 +777,12 @@ void MainWindow::addJoyTab(InputDevice *device)
     }
 
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::openMainSettingsDialog()
+{
+    MainSettingsDialog *dialog = new MainSettingsDialog(this);
+    dialog->show();
 }
 
 #endif

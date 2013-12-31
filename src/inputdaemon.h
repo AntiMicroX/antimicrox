@@ -69,8 +69,7 @@ public slots:
 #ifdef USE_SDL_2
     void refreshMapping(QString mapping, InputDevice *device);
     void removeDevice(InputDevice *device);
-    void addJoystick(int index);
-    void addController(int index);
+    void addInputDevice(int index);
     void refreshIndexes();
 
 #endif

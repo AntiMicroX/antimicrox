@@ -581,8 +581,9 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     </property>
     <addaction name="actionProperties"/>
     <addaction name="actionKeyValue"/>
-    <addaction name="actionUpdate_Joysticks"/>
     <addaction name="actionGameController_Mapping"/>
+    <addaction name="actionOptions"/>
+    <addaction name="actionUpdate_Joysticks"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -681,6 +682,11 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionGameController_Mapping">
    <property name="text">
     <string>GameController Mapping</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>Options</string>
    </property>
   </action>
  </widget>

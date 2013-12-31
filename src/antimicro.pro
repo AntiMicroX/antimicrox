@@ -186,7 +186,8 @@ SOURCES += main.cpp\
     xmlconfigmigration.cpp \
     qkeydisplaydialog.cpp \
     antkeymapper.cpp \
-    inputdevice.cpp
+    inputdevice.cpp \
+    mainsettingsdialog.cpp
 
 
 unix {
@@ -262,7 +263,8 @@ HEADERS  += mainwindow.h \
     xmlconfigmigration.h \
     qkeydisplaydialog.h \
     antkeymapper.h \
-    inputdevice.h
+    inputdevice.h \
+    mainsettingsdialog.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
@@ -293,7 +295,8 @@ FORMS    += mainwindow.ui \
     mousesettingsdialog.ui \
     joystickstatuswindow.ui \
     qkeydisplaydialog.ui \
-    gamecontrollermappingdialog.ui
+    gamecontrollermappingdialog.ui \
+    mainsettingsdialog.ui
 
 
 unix {
