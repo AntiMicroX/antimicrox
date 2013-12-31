@@ -86,6 +86,14 @@ QString JoyDPad::getName(bool fullForceFormat, bool displayActionName)
 
         label.append(dpadName);
     }
+    else if (!defaultDPadName.isEmpty())
+    {
+        if (fullForceFormat)
+        {
+            label.append(tr("DPad")).append(" ");
+        }
+        label.append(defaultDPadName);
+    }
     else
     {
         label.append(tr("DPad")).append(" ");
@@ -741,4 +749,14 @@ void JoyDPad::setButtonsWheelSpeedY(int value)
         JoyDPadButton *button = iter.next().value();
         button->setWheelSpeedY(value);
     }
+}
+
+void JoyDPad::setDefaultDPadName(QString tempname)
+{
+    defaultDPadName = tempname;
+}
+
+QString JoyDPad::getDefaultDPadName()
+{
+    return defaultDPadName;
 }

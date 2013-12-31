@@ -31,7 +31,7 @@ XMLConfigWriter::~XMLConfigWriter()
     }
 }
 
-void XMLConfigWriter::write(Joystick *joystick)
+void XMLConfigWriter::write(InputDevice *joystick)
 {
     if (!configFile->isOpen())
     {

@@ -10,12 +10,13 @@
 #endif
 
 #include "joystick.h"
+#include "inputdevice.h"
 
 class SDLEventReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit SDLEventReader(QHash<int, Joystick*> *joysticks, QObject *parent = 0);
+    explicit SDLEventReader(QHash<int, InputDevice*> *joysticks, QObject *parent = 0);
     ~SDLEventReader();
     SDL_Event& getCurrentEvent();
     bool isSDLOpen();
@@ -26,9 +27,9 @@ protected:
     void clearEvents();
 
 #ifdef USE_SDL_2
-    QHash<SDL_JoystickID, Joystick*> *joysticks;
+    QHash<SDL_JoystickID, InputDevice*> *joysticks;
 #else
-    QHash<int, Joystick*> *joysticks;
+    QHash<int, InputDevice*> *joysticks;
 #endif
     SDL_Event currentEvent;
     bool sdlIsOpen;

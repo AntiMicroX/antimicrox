@@ -68,6 +68,9 @@ public:
 
     virtual QString getXmlName();
 
+    virtual void setDefaultDPadName(QString tempname);
+    virtual QString getDefaultDPadName();
+
     static const QString xmlName;
 
 protected:
@@ -81,6 +84,7 @@ protected:
     int originset;
     JoyMode currentMode;
     QString dpadName;
+    QString defaultDPadName;
 
 signals:
     void active(int value);

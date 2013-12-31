@@ -20,8 +20,8 @@ protected:
 signals:
 
 public slots:
-    void disableFlashes(Joystick *joystick);
-    void enableFlashes(Joystick *joystick);
+    void disableFlashes(InputDevice *joystick);
+    void enableFlashes(InputDevice *joystick);
 
 private slots:
     void flash();

@@ -92,9 +92,13 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 {
                     controllerNumber = tempNumber;
                 }
+                else if (!temp.isEmpty())
+                {
+                    controllerIDString = temp;
+                }
                 else
                 {
-                    errorsteam << tr("Controller number is not a valid number.") << endl;
+                    errorsteam << tr("Controller identifier is not a valid value.") << endl;
                     encounteredError = true;
                 }
             }
@@ -126,7 +130,8 @@ void CommandLineUtility::printHelp()
     out << "--profile location         " << " " <<
            tr("Launch program with the configuration file\n                            selected as the default for all available\n                            controllers.")
         << endl;
-    out << "--profile-controller number" << " " << tr("Apply configuration file to a specific controller.") << endl;
+    out << "--profile-controller value " << " "
+        << tr("Apply configuration file to a specific controller.\n                            Value can be a controller index, name, or GUID.") << endl;
 }
 
 bool CommandLineUtility::isHelpRequested()
@@ -178,4 +183,14 @@ bool CommandLineUtility::hasError()
 bool CommandLineUtility::isHiddenRequested()
 {
     return hiddenRequest;
+}
+
+bool CommandLineUtility::hasControllerID()
+{
+    return controllerIDString.isEmpty();
+}
+
+QString CommandLineUtility::getControllerID()
+{
+    return controllerIDString;
 }

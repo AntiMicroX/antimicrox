@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "joystick.h"
+#include "inputdevice.h"
 
 namespace Ui {
 class QuickSetDialog;
@@ -14,11 +14,11 @@ class QuickSetDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QuickSetDialog(Joystick *joystick, QWidget *parent = 0);
+    explicit QuickSetDialog(InputDevice *joystick, QWidget *parent = 0);
     ~QuickSetDialog();
 
 protected:
-    Joystick *joystick;
+    InputDevice *joystick;
     QDialog *currentButtonDialog;
 
 private:

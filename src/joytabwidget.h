@@ -17,12 +17,14 @@
 
 #include "joystick.h"
 #include "axiseditdialog.h"
+#include "inputdevice.h"
+
 
 class JoyTabWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit JoyTabWidget(Joystick *joystick, QWidget *parent = 0);
+    explicit JoyTabWidget(InputDevice *joystick, QWidget *parent = 0);
 
     void saveSettings(QSettings *settings);
     void loadSettings(QSettings *settings, bool forceRefresh=false);
@@ -31,7 +33,7 @@ public:
     int getCurrentConfigIndex();
     QString getCurrentConfigName();
     void loadConfigFile(QString fileLocation);
-    Joystick *getJoystick();
+    InputDevice *getJoystick();
 
 protected:
     void removeCurrentButtons();
@@ -83,12 +85,12 @@ protected:
     QPushButton *pushButton;
     QSpacerItem *verticalSpacer_3;
 
-    Joystick *joystick;
+    InputDevice *joystick;
     bool displayingNames;
 
 signals:
     void joystickRefreshRequested();
-    void joystickRefreshRequested(Joystick *joystick);
+    void joystickRefreshRequested(InputDevice *joystick);
     void joystickConfigChanged(int index);
     void joystickAxisRefreshLabels(int axisIndex);
 

@@ -11,7 +11,7 @@
 #include "joybuttonstatusbox.h"
 
 
-JoystickStatusWindow::JoystickStatusWindow(Joystick *joystick, QWidget *parent) :
+JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::JoystickStatusWindow)
 {

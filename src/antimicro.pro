@@ -185,7 +185,8 @@ SOURCES += main.cpp\
     flashbuttonwidget.cpp \
     xmlconfigmigration.cpp \
     qkeydisplaydialog.cpp \
-    antkeymapper.cpp
+    antkeymapper.cpp \
+    inputdevice.cpp
 
 
 unix {
@@ -194,6 +195,14 @@ unix {
 } else:win32 {
   SOURCES += wininfo.cpp \
              qtwinkeymapper.cpp
+}
+
+!isEmpty(USE_SDL_2) {
+  SOURCES += gamecontroller/gamecontroller.cpp \
+    gamecontroller/gamecontrollerdpad.cpp \
+    gamecontroller/gamecontrollerset.cpp \
+    gamecontroller/gamecontrollertrigger.cpp \
+    gamecontrollermappingdialog.cpp
 }
 
 HEADERS  += mainwindow.h \
@@ -252,8 +261,16 @@ HEADERS  += mainwindow.h \
     flashbuttonwidget.h \
     xmlconfigmigration.h \
     qkeydisplaydialog.h \
-    antkeymapper.h
+    antkeymapper.h \
+    inputdevice.h
 
+!isEmpty(USE_SDL_2) {
+  HEADERS  += gamecontroller/gamecontroller.h \
+    gamecontroller/gamecontrollerdpad.h \
+    gamecontroller/gamecontrollerset.h \
+    gamecontroller/gamecontrollertrigger.h \
+    gamecontrollermappingdialog.h
+}
 
 unix {
   HEADERS += x11info.h \
@@ -275,7 +292,8 @@ FORMS    += mainwindow.ui \
     quicksetdialog.ui \
     mousesettingsdialog.ui \
     joystickstatuswindow.ui \
-    qkeydisplaydialog.ui
+    qkeydisplaydialog.ui \
+    gamecontrollermappingdialog.ui
 
 
 unix {

@@ -327,14 +327,19 @@ defective analog stick.</string>
 interpret an axis hold or release.</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <property name="maxVisibleItems">
-        <number>3</number>
+        <number>5</number>
        </property>
        <property name="maxCount">
-        <number>3</number>
+        <number>5</number>
        </property>
+       <item>
+        <property name="text">
+         <string>Negative Half Throttle</string>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>Negative Throttle</string>
@@ -348,6 +353,11 @@ interpret an axis hold or release.</string>
        <item>
         <property name="text">
          <string>Positive Throttle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Positive Half Throttle</string>
         </property>
        </item>
       </widget>

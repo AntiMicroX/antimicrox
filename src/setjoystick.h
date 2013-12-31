@@ -18,14 +18,16 @@
 #include "joybutton.h"
 #include "vdpad.h"
 
+class InputDevice;
+
 class SetJoystick : public QObject
 {
     Q_OBJECT
 public:
-    explicit SetJoystick(SDL_Joystick *joyhandle, int index, QObject *parent=0);
+    explicit SetJoystick(InputDevice *device, int index, QObject *parent=0);
+    explicit SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent=0);
     ~SetJoystick();
 
-    SDL_Joystick* getSDLHandle ();
     JoyAxis* getJoyAxis(int index);
     JoyButton* getJoyButton(int index);
     JoyDPad* getJoyDPad(int index);
@@ -39,9 +41,9 @@ public:
     int getNumberVDPads();
 
     int getIndex();
-    void refreshButtons ();
-    void refreshAxes();
-    void refreshHats();
+    virtual void refreshButtons ();
+    virtual void refreshAxes();
+    virtual void refreshHats();
     void release();
     void addControlStick(int index, JoyControlStick *stick);
     void removeControlStick(int index);
@@ -60,6 +62,10 @@ protected:
     void deleteSticks();
     void deleteVDpads();
 
+    void enableButtonConnections(JoyButton *button);
+    void enableAxisConnections(JoyAxis *axis);
+    void enableHatConnections(JoyDPad *dpad);
+
     QHash<int, JoyButton*> buttons;
     QHash<int, JoyAxis*> axes;
     QHash<int, JoyDPad*> hats;
@@ -67,7 +73,8 @@ protected:
     QHash<int, VDPad*> vdpads;
 
     int index;
-    SDL_Joystick* joyhandle;
+    //SDL_Joystick* joyhandle;
+    InputDevice *device;
 
 signals:
     void setChangeActivated(int index);
@@ -80,6 +87,7 @@ signals:
     void setButtonRelease(int index, int button);
     void setAxisButtonClick(int setindex, int axis, int button);
     void setAxisButtonRelease(int setindex, int axis, int button);
+    void setAxisActivated(int setindex, int axis, int value);
     void setStickButtonClick(int setindex, int stick, int button);
     void setStickButtonRelease(int setindex, int stick, int button);
     void setDPadButtonClick(int setindex, int dpad, int button);
@@ -97,13 +105,12 @@ signals:
     void setVDPadNameChange(int vdpadIndex);
     
 public slots:
-    void reset();
+    virtual void reset();
     void propogateSetChange(int index);
     void propogateSetButtonAssociation(int button, int newset, int mode);
     void propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode);
     void propogateSetStickButtonAssociation(int button, int stick, int newset, int mode);
     void propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode);
-
 
 protected slots:
     void propogateSetAxisThrottleSetting(int index);
@@ -115,6 +122,7 @@ protected slots:
     void propogateSetStickButtonRelease(int button);
     void propogateSetDPadButtonClick(int button);
     void propogateSetDPadButtonRelease(int button);
+    void propogateSetAxisActivated(int value);
 
     void propogateSetButtonNameChange();
     void propogateSetAxisButtonNameChange();

@@ -33,7 +33,7 @@ XMLConfigReader::~XMLConfigReader()
     }
 }
 
-void XMLConfigReader::setJoystick(Joystick *joystick)
+void XMLConfigReader::setJoystick(InputDevice *joystick)
 {
     this->joystick = joystick;
 }
@@ -52,7 +52,7 @@ void XMLConfigReader::setFileName(QString filename)
     }
 }
 
-void XMLConfigReader::configJoystick(Joystick *joystick)
+void XMLConfigReader::configJoystick(InputDevice *joystick)
 {
     this->joystick = joystick;
     read();
@@ -73,7 +73,7 @@ bool XMLConfigReader::read()
         }
 
         xml->readNextStartElement();
-        if (xml->name() != "joystick")
+        if (xml->name() != joystick->getXmlName())
         {
             xml->raiseError("Root node is not a joystick");
         }
@@ -104,7 +104,7 @@ bool XMLConfigReader::read()
 
         while (!xml->atEnd())
         {
-            if (xml->name() == "joystick" && xml->isStartElement())
+            if (xml->name() == joystick->getXmlName() && xml->isStartElement())
             {
                 joystick->readConfig(xml);
             }

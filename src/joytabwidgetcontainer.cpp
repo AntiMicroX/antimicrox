@@ -12,7 +12,7 @@ int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string)
 
 int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 {
-    Joystick *joystick = widget->getJoystick();
+    InputDevice *joystick = widget->getJoystick();
 
     if (joystick)
     {
@@ -24,23 +24,45 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 
 void JoyTabWidgetContainer::flash()
 {
-    Joystick *joystick = static_cast<Joystick*>(sender());
-    tabBar()->setTabTextColor(joystick->getJoyNumber(), Qt::red);
+    InputDevice *joystick = static_cast<InputDevice*>(sender());
+
+    bool found = false;
+    for (int i = 0; i < tabBar()->count() && !found; i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
+        if (tab && tab->getJoystick() == joystick)
+        {
+            tabBar()->setTabTextColor(i, Qt::red);
+            found = true;
+        }
+    }
 }
 
 void JoyTabWidgetContainer::unflash()
 {
-    Joystick *joystick = static_cast<Joystick*>(sender());
-    tabBar()->setTabTextColor(joystick->getJoyNumber(), Qt::black);
+    InputDevice *joystick = static_cast<InputDevice*>(sender());
+
+    bool found = false;
+    for (int i = 0; i < tabBar()->count() && !found; i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
+        if (tab && tab->getJoystick() == joystick)
+        {
+            tabBar()->setTabTextColor(i, Qt::black);
+            found = true;
+        }
+    }
 }
 
-void JoyTabWidgetContainer::disableFlashes(Joystick *joystick)
+void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 {
+    unflash();
+
     disconnect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
     disconnect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));
 }
 
-void JoyTabWidgetContainer::enableFlashes(Joystick *joystick)
+void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
     connect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
     connect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));

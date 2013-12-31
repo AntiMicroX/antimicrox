@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QXmlStreamWriter>
 
-#include "joystick.h"
+#include "inputdevice.h"
 #include "common.h"
 
 class XMLConfigWriter : public QObject
@@ -20,12 +20,12 @@ protected:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
-    Joystick* joystick;
+    InputDevice* joystick;
 
 signals:
     
 public slots:
-    void write(Joystick* joystick);
+    void write(InputDevice* joystick);
 
 };
 

@@ -33,13 +33,15 @@
 #include "advancebuttondialog.h"
 #include "commandlineutility.h"
 #include "mainwindow.h"
+#include "inputdevice.h"
 
 
 int main(int argc, char *argv[])
 {
     qRegisterMetaType<JoyButtonSlot*>();
     qRegisterMetaType<AdvanceButtonDialog*>();
-    qRegisterMetaType<Joystick*>();
+    //qRegisterMetaType<Joystick*>();
+    qRegisterMetaType<InputDevice*>();
 
     // If running Win version, check if an explicit style
     // was defined on the command-line. If so, make a note
@@ -111,9 +113,9 @@ int main(int argc, char *argv[])
     }
 
 #ifdef USE_SDL_2
-    QHash<SDL_JoystickID, Joystick*> *joysticks = new QHash<SDL_JoystickID, Joystick*>();
+    QHash<SDL_JoystickID, InputDevice*> *joysticks = new QHash<SDL_JoystickID, InputDevice*>();
 #else
-    QHash<int, Joystick*> *joysticks = new QHash<int, Joystick*>();
+    QHash<int, InputDevice*> *joysticks = new QHash<int, InputDevice*>();
 #endif
 
     // Cross-platform way of performing IPC. Currently,
@@ -141,14 +143,14 @@ int main(int argc, char *argv[])
         socket.disconnectFromServer();
 
 #ifdef USE_SDL_2
-        QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+        QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 #else
-        QHashIterator<int, Joystick*> iter(*joysticks);
+        QHashIterator<int, InputDevice*> iter(*joysticks);
 #endif
 
         while (iter.hasNext())
         {
-            Joystick *joystick = iter.next().value();
+            InputDevice *joystick = iter.next().value();
             if (joystick)
             {
                 delete joystick;
@@ -171,16 +173,22 @@ int main(int argc, char *argv[])
     w.startLocalServer();
 
 #ifdef USE_SDL_2
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, Joystick*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, Joystick*>*)));
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
 #else
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int, Joystick*>*)), &w, SLOT(fillButtons(QHash<int, Joystick*>*)));
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int, InputDevice*>*)), &w, SLOT(fillButtons(QHash<int, InputDevice*>*)));
 #endif
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
-    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(Joystick*)), &w, SLOT(fillButtons(Joystick*)));
+    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), &w, SLOT(fillButtons(InputDevice*)));
     QObject::connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+#ifdef USE_SDL_2
+    QObject::connect(&w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
+    QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), &w, SLOT(testMappingUpdateNow(int,InputDevice*)));
+    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), &w, SLOT(removeJoyTab(SDL_JoystickID)));
+    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), &w, SLOT(addJoyTab(InputDevice*)));
+#endif
 
     if (!cmdutility.isHiddenRequested() && (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
     {
@@ -190,14 +198,14 @@ int main(int argc, char *argv[])
     int app_result = a.exec();
 
 #ifdef USE_SDL_2
-    QHashIterator<SDL_JoystickID, Joystick*> iter(*joysticks);
+    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 #else
-    QHashIterator<int, Joystick*> iter(*joysticks);
+    QHashIterator<int, InputDevice*> iter(*joysticks);
 #endif
 
     while (iter.hasNext())
     {
-        Joystick *joystick = iter.next().value();
+        InputDevice *joystick = iter.next().value();
         if (joystick)
         {
             delete joystick;
