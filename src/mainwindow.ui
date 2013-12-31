@@ -676,6 +676,8 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionGitHubPage">
    <property name="text">
     <string>GitHub Page</string>
+   </property>
+  </action>
   <action name="actionGameController_Mapping">
    <property name="text">
     <string>GameController Mapping</string>
