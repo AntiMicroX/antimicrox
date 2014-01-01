@@ -194,6 +194,10 @@ protected:
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
+    static QList<int> cursorXSpeeds;
+    static QList<int> cursorYSpeeds;
+    static QTimer cursorDelayTimer;
+
 signals:
     void clicked (int index);
     void released (int index);
@@ -249,6 +253,7 @@ private slots:
 
     void pauseWaitEvent();
     void checkForSetChange();
+    void moveMouseCursor();
 };
 
 

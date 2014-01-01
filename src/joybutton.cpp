@@ -12,6 +12,9 @@ const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
+QTimer JoyButton::cursorDelayTimer;
+QList<int> JoyButton::cursorXSpeeds;
+QList<int> JoyButton::cursorYSpeeds;
 
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
@@ -27,6 +30,8 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
     connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
+    disconnect(&cursorDelayTimer, 0, 0, 0);
+    connect(&cursorDelayTimer, SIGNAL(timeout()), this, SLOT(moveMouseCursor()));
 
     this->reset();
     this->index = index;
@@ -717,7 +722,15 @@ void JoyButton::mouseEvent()
 
                     if (distance >= 1)
                     {
-                        sendevent(mouse1, mouse2);
+                        cursorXSpeeds.append(mouse1);
+                        cursorYSpeeds.append(mouse2);
+
+                        if (!cursorDelayTimer.isActive())
+                        {
+                            cursorDelayTimer.start(0);
+                        }
+
+                        //sendevent(mouse1, mouse2);
                         sumDist -= distance;
                         if (smoothing)
                         {
@@ -2498,4 +2511,31 @@ void JoyButton::setDefaultButtonName(QString tempname)
 QString JoyButton::getDefaultButtonName()
 {
     return defaultButtonName;
+}
+
+void JoyButton::moveMouseCursor()
+{
+    int finalx = 0;
+    int finaly = 0;
+
+    if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
+        cursorXSpeeds.length() > 0)
+    {
+        int queueLength = cursorXSpeeds.length();
+        for (int i=0; i < queueLength; i++)
+        {
+            finalx += cursorXSpeeds.takeFirst();
+            finaly += cursorYSpeeds.takeFirst();
+        }
+
+        sendevent(finalx, finaly);
+        cursorDelayTimer.start(5);
+    }
+    else
+    {
+        cursorDelayTimer.stop();
+    }
+
+    cursorXSpeeds.clear();
+    cursorYSpeeds.clear();
 }

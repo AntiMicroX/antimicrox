@@ -47,7 +47,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Below is a list of the custom mappings that has been saved. You can use the following table to delete mappings or have mappings temporarily disabled (including mappings provided directly provided by SDL).
+            <string>Below is a list of the custom mappings that has been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</string>
            </property>
