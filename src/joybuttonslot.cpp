@@ -184,10 +184,13 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             unsigned int virtualkey = AntKeyMapper::returnVirtualKey(this->getSlotCode());
             if (virtualkey)
             {
+                // Mapping found a valid native keysym.
                 this->setSlotCode(virtualkey);
             }
             else if ((unsigned int)this->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
             {
+                // Value is in the native key range. Remove prefix and use
+                // new value as a native keysym.
                 unsigned int temp = this->getSlotCode() - QtKeyMapperBase::nativeKeyPrefix;
                 this->setSlotCode(temp);
             }
@@ -203,15 +206,17 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     if (mode == JoyKeyboard)
     {
         unsigned int qtkey = AntKeyMapper::returnQtKey(deviceCode);
-        if (qtkey)
+        if (qtkey > 0)
         {
-            qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
+            // Found a valid abstract keysym.
+            //qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
             xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
         }
-        else if (qtkey > 0)
+        else if (deviceCode > 0)
         {
-            unsigned int tempkey = qtkey | QtKeyMapperBase::nativeKeyPrefix;
-            qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
+            // No abstraction provided for key. Add prefix to native keysym.
+            unsigned int tempkey = deviceCode | QtKeyMapperBase::nativeKeyPrefix;
+            //qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
             xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
         }
 

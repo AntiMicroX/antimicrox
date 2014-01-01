@@ -25,9 +25,9 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     if (!xcodestring.isEmpty())// && xcodestring.toInt(0, 16) > 0)
     {
         /*int qkey = xcodestring.toInt(0, 16);
-        if (qkey > QtKeyMapperBase::customKeyPrefix)
+        if (qkey > QtKeyMapperBase::nativeKeyPrefix)
         {
-            temp = qkey - QtKeyMapperBase::customKeyPrefix;
+            temp = qkey - QtKeyMapperBase::nativeKeyPrefix;
         }
         else
         {
