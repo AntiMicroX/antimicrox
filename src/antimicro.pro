@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-USE_SDL_2 = 1
+#USE_SDL_2 = 1
 
 isEmpty(INSTALL_PREFIX) {
     unix {
