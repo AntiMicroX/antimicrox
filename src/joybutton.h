@@ -198,6 +198,10 @@ protected:
     static QList<int> cursorYSpeeds;
     static QTimer cursorDelayTimer;
 
+    static QList<double> springXSpeeds;
+    static QList<double> springYSpeeds;
+    static QTimer springDelayTimer;
+
 signals:
     void clicked (int index);
     void released (int index);
@@ -254,6 +258,7 @@ private slots:
     void pauseWaitEvent();
     void checkForSetChange();
     void moveMouseCursor();
+    void moveSpringMouse();
 };
 
 
