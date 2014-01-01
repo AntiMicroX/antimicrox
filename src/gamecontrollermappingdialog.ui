@@ -15,9 +15,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout"/>
-   </item>
-   <item>
     <widget class="QTableWidget" name="buttonMappingTableWidget">
      <property name="frameShadow">
       <enum>QFrame::Sunken</enum>

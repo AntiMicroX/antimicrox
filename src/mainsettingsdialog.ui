@@ -13,6 +13,12 @@
     <height>415</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>300</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Edit Settings</string>
   </property>
@@ -47,9 +53,12 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Below is a list of the custom mappings that has been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
+            <string>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</string>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -82,12 +91,22 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              <property name="text">
               <string>Delete</string>
              </property>
+             <property name="icon">
+              <iconset theme="edit-table-delete-row">
+               <normaloff/>
+              </iconset>
+             </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="mappngInsertPushButton">
              <property name="text">
               <string>Insert</string>
+             </property>
+             <property name="icon">
+              <iconset theme="edit-table-insert-row-below">
+               <normaloff/>
+              </iconset>
              </property>
             </widget>
            </item>
