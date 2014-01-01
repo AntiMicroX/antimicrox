@@ -24,7 +24,7 @@ bool XMLConfigMigration::requiresMigration()
     {
         toMigrate = false;
     }
-    else if (fileVersion < 6)
+    else if (fileVersion < PadderCommon::LATESTCONFIGFILEVERSION)
     {
         toMigrate = true;
     }
@@ -45,8 +45,10 @@ QString XMLConfigMigration::migrate()
         if (tempFileVersion == 5)
         {
             tempXmlString = version0006Migration();
-            tempFileVersion = 6;
+            //tempFileVersion = 6;
         }
+
+        tempFileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
     }
 
     return tempXmlString;

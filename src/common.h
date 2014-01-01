@@ -21,11 +21,9 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
 #endif
 
     const QString configFileName = "antimicro_settings.ini";
-    const QString controllerMappingFileName = "controller_mappings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
-    //const QString controllerMappingFilePath = configPath + "/" + controllerMappingFileName;
-    const int LATESTCONFIGFILEVERSION = 5;
-    const QString programVersion = "1.2";
+    const int LATESTCONFIGFILEVERSION = 6;
+    const QString programVersion = "1.9";
     const QString localSocketKey = "antimicroSignalListener";
     const QString projectHomePage = "http://ryochan7.com/projects/antimicro/";
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
