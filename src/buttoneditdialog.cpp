@@ -119,7 +119,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         int checkalias = AntKeyMapper::returnQtKey(virtualactual);
 
 #else
-        Q_UNUSED(virtualactual);
 
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         int finalvirtual = X11KeyCodeToX11KeySym(controlcode);
@@ -127,11 +126,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
 
 #endif
-
-        if (checkalias <= 0)
-        {
-            controlcode = 0;
-        }
 
         if (!ignoreRelease)
         {
@@ -141,7 +135,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
                 ignoreRelease = true;
                 emit selectionCleared();
             }
-            else if (controlcode < 0)
+            else if (controlcode <= 0)
             {
                 controlcode = 0;
             }
@@ -155,8 +149,16 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
         if (controlcode > 0)
         {
-            JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
-            emit keyGrabbed(tempslot);
+            if (checkalias > 0)
+            {
+                JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
+                emit keyGrabbed(tempslot);
+            }
+            else
+            {
+                JoyButtonSlot *tempslot = new JoyButtonSlot(virtualactual, JoyButtonSlot::JoyKeyboard, this);
+                emit keyGrabbed(tempslot);
+            }
         }
     }
     else

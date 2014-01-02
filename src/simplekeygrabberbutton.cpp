@@ -76,7 +76,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         int checkalias = AntKeyMapper::returnQtKey(virtualactual);
 
 #else
-        Q_UNUSED(virtualactual);
 
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         int finalvirtual = X11KeyCodeToX11KeySym(tempcode);
@@ -85,10 +84,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
 #endif
 
-        if (checkalias > 0)
-        {
-            controlcode = tempcode;
-        }
+        controlcode = tempcode;
 
         if ((keyEve->modifiers() & Qt::ControlModifier) && keyEve->key() == Qt::Key_X)
         {
@@ -102,7 +98,15 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
         else
         {
-            buttonslot.setSlotCode(finalvirtual);
+            if (checkalias > 0)
+            {
+                buttonslot.setSlotCode(finalvirtual);
+            }
+            else
+            {
+                buttonslot.setSlotCode(virtualactual);
+            }
+
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
             setText(keysymToKey(finalvirtual).toUpper());
         }
