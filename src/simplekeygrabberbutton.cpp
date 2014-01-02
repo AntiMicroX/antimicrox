@@ -1,6 +1,10 @@
 #include "simplekeygrabberbutton.h"
 #include "event.h"
+#include "antkeymapper.h"
+
+#ifdef Q_OS_WIN
 #include "wininfo.h"
+#endif
 
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
     QPushButton(parent)
@@ -65,35 +69,42 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         int tempcode = keyEve->nativeScanCode();
         int virtualactual = keyEve->nativeVirtualKey();
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_WIN
+        // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
+        // by checking for extended bit in scan code.
+        int finalvirtual = WinInfo::correctVirtualKey(tempcode, virtualactual);
+        int checkalias = AntKeyMapper::returnQtKey(virtualactual);
+
+#else
         Q_UNUSED(virtualactual);
+
+        // Obtain group 1 X11 keysym. Removes effects from modifiers.
+        int finalvirtual = X11KeyCodeToX11KeySym(tempcode);
+        // Check for alias against group 1 keysym.
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+
 #endif
+
+        if (checkalias > 0)
+        {
+            controlcode = tempcode;
+        }
 
         if ((keyEve->modifiers() & Qt::ControlModifier) && keyEve->key() == Qt::Key_X)
         {
             controlcode = 0;
             setText("");
         }
-        else if (controlcode < 0)
+        else if (controlcode <= 0)
         {
             controlcode = 0;
             setText("");
         }
         else
         {
-#if defined(Q_OS_UNIX)
-            controlcode = tempcode;
-            buttonslot.setSlotCode(controlcode);
+            buttonslot.setSlotCode(finalvirtual);
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
-            setText(keycodeToKey(controlcode).toUpper());
-
-#elif defined(Q_OS_WIN)
-            controlcode = WinInfo::correctVirtualKey(tempcode, virtualactual);
-            buttonslot.setSlotCode(controlcode);
-            buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
-            setText(keycodeToKey(controlcode).toUpper());
-
-#endif
+            setText(keysymToKey(finalvirtual).toUpper());
         }
 
         grabNextAction = false;

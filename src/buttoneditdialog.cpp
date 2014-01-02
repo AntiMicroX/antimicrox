@@ -9,6 +9,7 @@
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
 
+#include "event.h"
 #include "antkeymapper.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
@@ -29,7 +30,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
     ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(button, this);
-    //ui->virtualKeyMouseTabWidget->setFocus();
+    ui->virtualKeyMouseTabWidget->setFocus();
 
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
     ui->slotSummaryLabel->setText(button->getSlotsString());
@@ -112,22 +113,25 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         int virtualactual = event->nativeVirtualKey();
 
 #ifdef Q_OS_WIN
+        // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
+        // by checking for extended bit in scan code.
         int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
         int checkalias = AntKeyMapper::returnQtKey(virtualactual);
 
 #else
-        int checkalias = AntKeyMapper::returnQtKey(virtualactual);
+        Q_UNUSED(virtualactual);
+
+        // Obtain group 1 X11 keysym. Removes effects from modifiers.
+        int finalvirtual = X11KeyCodeToX11KeySym(controlcode);
+        // Check for alias against group 1 keysym.
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+
 #endif
 
         if (checkalias <= 0)
         {
             controlcode = 0;
         }
-
-#ifndef Q_OS_WIN
-        Q_UNUSED(virtualactual);
-#endif
-
 
         if (!ignoreRelease)
         {
@@ -151,13 +155,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
         if (controlcode > 0)
         {
-#if defined (Q_OS_UNIX)
-            JoyButtonSlot *tempslot = new JoyButtonSlot(virtualactual, JoyButtonSlot::JoyKeyboard, this);
-
-#elif defined (Q_OS_WIN)
             JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
-
-#endif
             emit keyGrabbed(tempslot);
         }
     }
@@ -266,6 +264,7 @@ void ButtonEditDialog::sendSelectionFinished()
 void ButtonEditDialog::updateWindowTitleButtonName()
 {
     QString temp = QString(tr("Set")).append(" ");
+
     if (!button->getButtonName().isEmpty())
     {
         temp.append(button->getPartialName(true));
@@ -274,5 +273,6 @@ void ButtonEditDialog::updateWindowTitleButtonName()
     {
         temp.append(button->getPartialName());
     }
+
     setWindowTitle(temp);
 }

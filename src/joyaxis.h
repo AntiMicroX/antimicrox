@@ -16,7 +16,6 @@ class JoyAxis : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyAxis(QObject *parent = 0);
     explicit JoyAxis(int index, int originset, QObject *parent=0);
     ~JoyAxis();
 
@@ -30,7 +29,11 @@ public:
 
     void joyEvent(int value, bool ignoresets=false);
     bool inDeadZone(int value);
-    QString getName(bool forceFullFormat=false, bool displayNames=false);
+
+    virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
+    virtual QString getXmlName();
+
     void setIndex(int index);
     int getIndex();
     int getRealJoyIndex();
@@ -89,6 +92,9 @@ public:
     void setButtonsWheelSpeedY(int value);
 
     virtual QString getAxisName();
+    virtual int getDefaultDeadZone();
+    virtual int getDefaultMaxZone();
+    virtual ThrottleTypes getDefaultThrottle();
 
     virtual void setDefaultAxisName(QString tempname);
     virtual QString getDefaultAxisName();
@@ -99,8 +105,11 @@ public:
     static const int AXISMAX;
     static const int AXISDEADZONE;
     static const int AXISMAXZONE;
+    static const ThrottleTypes DEFAULTTHROTTLE;
 
     static const float JOYSPEED;
+
+    static const QString xmlName;
 
 protected:
     void createDeskEvent(bool ignoresets = false);
@@ -137,8 +146,8 @@ signals:
     void axisNameChanged();
 
 public slots:
-    void reset();
-    void reset(int index);
+    virtual void reset();
+    virtual void reset(int index);
     void propogateThrottleChange();    
 
     void setDeadZone(int value);

@@ -1149,12 +1149,6 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 setWheelSpeedY(tempchoice);
             }
-            /*else if (xml->name() == "wheelspeed" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                setWheelSpeed(tempchoice);
-            }*/
             else
             {
                 xml->skipCurrentElement();

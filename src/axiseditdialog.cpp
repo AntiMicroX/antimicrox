@@ -412,13 +412,15 @@ void AxisEditDialog::enableMouseSettingButton()
 void AxisEditDialog::updateWindowTitleAxisName()
 {
     QString temp = QString(tr("Set")).append(" ");
+
     if (!axis->getAxisName().isEmpty())
     {
-        temp.append(tr("Axis")).append(" ").append(axis->getAxisName());
+        temp.append(axis->getPartialName(true));
     }
     else
     {
-        temp.append(tr("Axis")).append(" ").append(QString::number(axis->getRealJoyIndex()));
+        temp.append(axis->getPartialName());
     }
+
     setWindowTitle(temp);
 }

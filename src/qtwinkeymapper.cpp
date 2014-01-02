@@ -141,5 +141,11 @@ void QtWinKeyMapper::populateMappingHashes()
 
         // Override current item for VK_RETURN
         virtualKeyToQtKey[VK_RETURN] = Qt::Key_Return;
+
+        // Insert more aliases that would have resulted in
+        // overwrites in other hash.
+        virtualKeyToQtKey[VK_SHIFT] = Qt::Key_Shift;
+        virtualKeyToQtKey[VK_CONTROL] =  Qt::Key_Control;
+        virtualKeyToQtKey[VK_MENU] = Qt::Key_Alt;
     }
 }

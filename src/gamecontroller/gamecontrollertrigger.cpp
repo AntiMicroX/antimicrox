@@ -1,18 +1,108 @@
 #include "gamecontrollertrigger.h"
 
+const int GameControllerTrigger::AXISDEADZONE = 2000;
+const int GameControllerTrigger::AXISMAXZONE = 32000;
+const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTLE = GameControllerTrigger::PositiveHalfThrottle;
+
+const QString GameControllerTrigger::xmlName = "trigger";
+
 GameControllerTrigger::GameControllerTrigger(int index, int originset, QObject *parent) :
     JoyAxis(index, originset, parent)
 {
-    this->setThrottle(JoyAxis::PositiveHalfThrottle);
+    naxisbutton = new GameControllerTriggerButton(this, 0, originset);
+    paxisbutton = new GameControllerTriggerButton(this, 1, originset);
+    reset(index);
 }
 
-bool GameControllerTrigger::isDefault()
+QString GameControllerTrigger::getXmlName()
 {
-    bool value = true;
-    value = value && (deadZone == AXISDEADZONE);
-    value = value && (maxZoneValue == AXISMAXZONE);
-    value = value && (throttle == PositiveHalfThrottle);
-    value = value && (paxisbutton->isDefault());
-    value = value && (naxisbutton->isDefault());
-    return value;
+    return this->xmlName;
+}
+
+QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool displayNames)
+{
+    QString label;
+
+    if (!axisName.isEmpty() && displayNames)
+    {
+        label.append(axisName);
+
+        if (forceFullFormat)
+        {
+            label.append(" ").append(tr("Trigger"));
+        }
+    }
+    else if (!defaultAxisName.isEmpty())
+    {
+        label.append(defaultAxisName);
+
+        if (forceFullFormat)
+        {
+            label.append(" ").append(tr("Trigger"));
+        }
+    }
+    else
+    {
+        label.append(tr("Trigger")).append(" ");
+        label.append(QString::number(getRealJoyIndex() - SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+    }
+
+    return label;
+}
+
+void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
+{
+    if (!isDefault())
+    {
+        xml->writeStartElement(getXmlName());
+        xml->writeAttribute("index", QString::number((index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+
+        xml->writeTextElement("deadZone", QString::number(deadZone));
+        xml->writeTextElement("maxZone", QString::number(maxZoneValue));
+
+        xml->writeStartElement("throttle");
+
+        if (throttle == JoyAxis::NegativeHalfThrottle)
+        {
+            xml->writeCharacters("negativehalf");
+        }
+        else if (throttle == JoyAxis::NegativeThrottle)
+        {
+            xml->writeCharacters("negative");
+        }
+        else if (throttle == JoyAxis::NormalThrottle)
+        {
+            xml->writeCharacters("normal");
+        }
+        else if (throttle == JoyAxis::PositiveThrottle)
+        {
+            xml->writeCharacters("positive");
+        }
+        else if (throttle == JoyAxis::PositiveHalfThrottle)
+        {
+            xml->writeCharacters("positivehalf");
+        }
+
+        xml->writeEndElement();
+
+        naxisbutton->writeConfig(xml);
+        paxisbutton->writeConfig(xml);
+
+        xml->writeEndElement();
+    }
+}
+
+int GameControllerTrigger::getDefaultDeadZone()
+{
+    return this->AXISDEADZONE;
+}
+
+int GameControllerTrigger::getDefaultMaxZone()
+{
+    return this->AXISMAXZONE;
+}
+
+JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
+{
+    return (ThrottleTypes)this->DEFAULTTHROTTLE;
 }

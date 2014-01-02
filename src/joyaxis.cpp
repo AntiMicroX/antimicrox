@@ -13,18 +13,9 @@ const int JoyAxis::AXISMAXZONE = 32000;
 // Speed in pixels/second
 const float JoyAxis::JOYSPEED = 20.0;
 
+const JoyAxis::ThrottleTypes JoyAxis::DEFAULTTHROTTLE = JoyAxis::NormalThrottle;
 
-JoyAxis::JoyAxis(QObject *parent) :
-    QObject(parent)
-{
-    originset = 0;
-    stick = 0;
-    naxisbutton = new JoyAxisButton(this, 0, originset);
-    paxisbutton = new JoyAxisButton(this, 1, originset);
-
-    reset();
-    index = 0;
-}
+const QString JoyAxis::xmlName = "axis";
 
 JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
     QObject(parent)
@@ -105,7 +96,8 @@ bool JoyAxis::inDeadZone(int value)
 
 QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
 {
-    QString label;
+    QString label = getPartialName(forceFullFormat, displayNames);
+    /*QString label;
 
     if (!axisName.isEmpty() && displayNames)
     {
@@ -129,6 +121,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
         label.append(tr("Axis")).append(" ");
         label.append(QString::number(getRealJoyIndex()));
     }
+*/
 
     label.append(": ");
 
@@ -318,12 +311,12 @@ int JoyAxis::getThrottle()
 
 void JoyAxis::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && xml->name() == "axis")
+    if (xml->isStartElement() && xml->name() == getXmlName())
     {
         //reset();
 
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "axis"))
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {
             if (xml->name() == "deadZone" && xml->isStartElement())
             {
@@ -391,7 +384,7 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 {
     if (!isDefault())
     {
-        xml->writeStartElement("axis");
+        xml->writeStartElement(getXmlName());
         xml->writeAttribute("index", QString::number(index+1));
 
         xml->writeTextElement("deadZone", QString::number(deadZone));
@@ -431,15 +424,12 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 
 void JoyAxis::reset()
 {
-    deadZone = AXISDEADZONE;
+    deadZone = getDefaultDeadZone();
     isActive = false;
 
-    //timer->stop();
-    //interval = QTime ();
     eventActive = false;
-    maxZoneValue = AXISMAXZONE;
-    throttle = 0;
-    //sumDist = 0.0;
+    maxZoneValue = getDefaultMaxZone();
+    throttle = getDefaultThrottle();
 
     paxisbutton->reset();
     naxisbutton->reset();
@@ -447,7 +437,6 @@ void JoyAxis::reset()
 
     adjustRange();
     setCurrentRawValue(currentThrottledDeadValue);
-    //currentRawValue = currentThrottledDeadValue;
     currentThrottledValue = calculateThrottledValue(currentRawValue);
     axisName.clear();
 }
@@ -618,9 +607,9 @@ void JoyAxis::removeVDPads()
 bool JoyAxis::isDefault()
 {
     bool value = true;
-    value = value && (deadZone == AXISDEADZONE);
-    value = value && (maxZoneValue == AXISMAXZONE);
-    value = value && (throttle == 0);
+    value = value && (deadZone == getDefaultDeadZone());
+    value = value && (maxZoneValue == getDefaultMaxZone());
+    value = value && (throttle == getDefaultThrottle());
     value = value && (paxisbutton->isDefault());
     value = value && (naxisbutton->isDefault());
     return value;
@@ -825,4 +814,54 @@ void JoyAxis::setDefaultAxisName(QString tempname)
 QString JoyAxis::getDefaultAxisName()
 {
     return defaultAxisName;
+}
+
+QString JoyAxis::getPartialName(bool forceFullFormat, bool displayNames)
+{
+    QString label;
+
+    if (!axisName.isEmpty() && displayNames)
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Axis")).append(" ");
+        }
+
+        label.append(axisName);
+    }
+    else if (!defaultAxisName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Axis")).append(" ");
+        }
+        label.append(defaultAxisName);
+    }
+    else
+    {
+        label.append(tr("Axis")).append(" ");
+        label.append(QString::number(getRealJoyIndex()));
+    }
+
+    return label;
+}
+
+QString JoyAxis::getXmlName()
+{
+    return this->xmlName;
+}
+
+int JoyAxis::getDefaultDeadZone()
+{
+    return this->AXISDEADZONE;
+}
+
+int JoyAxis::getDefaultMaxZone()
+{
+    return this->AXISMAXZONE;
+}
+
+JoyAxis::ThrottleTypes JoyAxis::getDefaultThrottle()
+{
+    return (ThrottleTypes)this->throttle;
 }

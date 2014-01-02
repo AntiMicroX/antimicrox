@@ -74,10 +74,10 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
-            else if (xml->name() == "axis" && xml->isStartElement())
+            else if (xml->name() == "trigger" && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
-                JoyAxis *axis = getJoyAxis(index-1);
+                GameControllerTrigger *axis = qobject_cast<GameControllerTrigger*>(getJoyAxis((index-1) + SDL_CONTROLLER_AXIS_TRIGGERLEFT));
                 if (axis)
                 {
                     axis->readConfig(xml);
@@ -112,7 +112,7 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
             else if (xml->name() == "dpad" && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
-                VDPad *vdpad = getVDPad(index-1);
+                GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(getVDPad(index-1));
                 if (vdpad)
                 {
                     vdpad->readConfig(xml);

@@ -129,14 +129,15 @@ void GameController::readConfig(QXmlStreamReader *xml)
                             setButtonName(index, temp);
                         }
                     }
-                    else if (xml->name() == "axisbuttonname" && xml->isStartElement())
+                    else if (xml->name() == "triggerbuttonname" && xml->isStartElement())
                     {
                         int index = xml->attributes().value("index").toString().toInt();
                         int buttonIndex = xml->attributes().value("button").toString().toInt();
                         QString temp = xml->readElementText();
-                        index = index - 1;
+                        index = (index - 1) + SDL_CONTROLLER_AXIS_TRIGGERLEFT;
                         buttonIndex = buttonIndex - 1;
-                        if (index >= 0 && !temp.isEmpty())
+                        if ((index == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
+                             index == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) && !temp.isEmpty())
                         {
                             setAxisButtonName(index, buttonIndex, temp);
                         }
@@ -163,12 +164,13 @@ void GameController::readConfig(QXmlStreamReader *xml)
                             setVDPadButtonName(index, buttonIndex, temp);
                         }
                     }
-                    else if (xml->name() == "axisname" && xml->isStartElement())
+                    else if (xml->name() == "triggername" && xml->isStartElement())
                     {
                         int index = xml->attributes().value("index").toString().toInt();
                         QString temp = xml->readElementText();
-                        index = index - 1;
-                        if (index >= 0 && !temp.isEmpty())
+                        index = (index - 1) + SDL_CONTROLLER_AXIS_TRIGGERLEFT;
+                        if ((index == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
+                             index == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) && !temp.isEmpty())
                         {
                             setAxisName(index, temp);
                         }

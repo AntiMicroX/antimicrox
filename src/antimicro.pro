@@ -187,7 +187,8 @@ SOURCES += main.cpp\
     qkeydisplaydialog.cpp \
     antkeymapper.cpp \
     inputdevice.cpp \
-    mainsettingsdialog.cpp
+    mainsettingsdialog.cpp \
+    gamecontroller/gamecontrollertriggerbutton.cpp
 
 
 unix {
@@ -264,7 +265,8 @@ HEADERS  += mainwindow.h \
     qkeydisplaydialog.h \
     antkeymapper.h \
     inputdevice.h \
-    mainsettingsdialog.h
+    mainsettingsdialog.h \
+    gamecontroller/gamecontrollertriggerbutton.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
