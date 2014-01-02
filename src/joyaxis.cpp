@@ -358,7 +358,7 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
                 //currentRawValue = currentThrottledDeadValue;
                 currentThrottledValue = calculateThrottledValue(currentRawValue);
             }
-            else if (xml->name() == JoyAxisButton::xmlName && xml->isStartElement())
+            else if (xml->name() == naxisbutton->getXmlName() && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 if (index == 1)
