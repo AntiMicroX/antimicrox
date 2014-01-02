@@ -8,7 +8,11 @@ GameControllerTrigger::GameControllerTrigger(int index, int originset, QObject *
 
 bool GameControllerTrigger::isDefault()
 {
-    bool temp = JoyAxis::isDefault();
-    temp = temp && (throttle == PositiveHalfThrottle);
-    return temp;
+    bool value = true;
+    value = value && (deadZone == AXISDEADZONE);
+    value = value && (maxZoneValue == AXISMAXZONE);
+    value = value && (throttle == PositiveHalfThrottle);
+    value = value && (paxisbutton->isDefault());
+    value = value && (naxisbutton->isDefault());
+    return value;
 }
