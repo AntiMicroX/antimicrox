@@ -58,8 +58,6 @@ public:
     void setDPadName(int dpadIndex, QString tempName);
     void setVDPadName(int vdpadIndex, QString tempName);
 
-    void resetButtonDownCount();
-
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
@@ -97,6 +95,7 @@ signals:
 
 public slots:
     void reset();
+    void resetButtonDownCount();
     void setActiveSetNumber(int index);
     void changeSetButtonAssociation(int button_index, int originset, int newset, int mode);
     void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);

@@ -1241,6 +1241,7 @@ void InputDevice::resetButtonDownCount()
 
 void InputDevice::enableSetConnections(SetJoystick *setstick)
 {
+    connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(resetButtonDownCount()));
     connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(setActiveSetNumber(int)));
     connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
     connect(setstick, SIGNAL(setAssignmentButtonChanged(int,int,int,int)), this, SLOT(changeSetButtonAssociation(int,int,int,int)));
