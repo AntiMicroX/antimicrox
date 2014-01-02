@@ -111,7 +111,13 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
 
+#ifdef Q_OS_WIN
+        int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
         int checkalias = AntKeyMapper::returnQtKey(virtualactual);
+
+#else
+        int checkalias = AntKeyMapper::returnQtKey(virtualactual);
+#endif
 
         if (checkalias <= 0)
         {
@@ -122,11 +128,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         Q_UNUSED(virtualactual);
 #endif
 
-
-#ifdef Q_OS_WIN
-        int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
-
-#endif
 
         if (!ignoreRelease)
         {
