@@ -58,8 +58,8 @@ public:
     double calculateNormalizedAxisPlacement();
     double getAbsoluteAxisPlacement();
 
-    void readConfig(QXmlStreamReader *xml);
-    void writeConfig(QXmlStreamWriter *xml);
+    virtual void readConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
 
     void setControlStick(JoyControlStick *stick);
     void removeControlStick();
