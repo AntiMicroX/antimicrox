@@ -407,6 +407,7 @@ QString keycodeToKey(int keycode)
 unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
 {
 #ifdef Q_OS_WIN
+    Q_UNUSED(keycode);
     return 0;
 #else
     display = X11Info::display();

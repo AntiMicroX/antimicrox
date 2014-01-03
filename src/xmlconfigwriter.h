@@ -15,12 +15,16 @@ public:
     explicit XMLConfigWriter(QObject *parent = 0);
     ~XMLConfigWriter();
     void setFileName(QString filename);
+    bool hasError();
+    QString getErrorString();
 
 protected:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
     InputDevice* joystick;
+    bool writerError;
+    QString writerErrorString;
 
 signals:
     

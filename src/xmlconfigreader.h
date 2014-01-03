@@ -17,7 +17,8 @@ public:
     ~XMLConfigReader();
     void setJoystick(InputDevice *joystick);
     void setFileName(QString filename);
-
+    QString getErrorString();
+    bool hasError();
     bool read();
 
 

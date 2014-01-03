@@ -96,8 +96,15 @@ bool XMLConfigReader::read()
 
                     // Write converted XML to file
                     configFile->open(QFile::WriteOnly | QFile::Text);
-                    configFile->write(migrationString.toLocal8Bit());
-                    configFile->close();
+                    if (configFile->isOpen())
+                    {
+                        configFile->write(migrationString.toLocal8Bit());
+                        configFile->close();
+                    }
+                    else
+                    {
+                        xml->raiseError(tr("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
+                    }
                 }
             }
         }
@@ -126,7 +133,27 @@ bool XMLConfigReader::read()
         {
             error = true;
         }
+        else if (xml->hasError() && xml->error() == QXmlStreamReader::PrematureEndOfDocumentError)
+        {
+            xml->clear();
+        }
     }
 
     return error;
+}
+
+QString XMLConfigReader::getErrorString()
+{
+    QString temp;
+    if (xml->hasError())
+    {
+        temp = xml->errorString();
+    }
+
+    return temp;
+}
+
+bool XMLConfigReader::hasError()
+{
+    return xml->hasError();
 }

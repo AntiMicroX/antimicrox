@@ -40,6 +40,7 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
     delete ui->tab;
     ui->tab = 0;
 
+    this->cmdutility = cmdutility;
     this->graphical = graphical;
     signalDisconnect = false;
     showTrayIcon = !cmdutility->isTrayHidden() && graphical;
@@ -52,6 +53,22 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
         trayIcon = new QSystemTrayIcon(this);
         connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
         connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
+    }
+
+    // Look at flags and call setEnabled as desired; defaults to true.
+    // enabled status is used to specify whether errors
+    // in profile loading and saving should be
+    // display in a window or written to stderr.
+    if (graphical)
+    {
+        if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
+        {
+            setEnabled(false);
+        }
+    }
+    else
+    {
+        setEnabled(false);
     }
 
     fillButtons(joysticks);
@@ -83,6 +100,21 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
 #endif
+
+    // Check flags to see if user requested for the main window and the tray icon
+    // to not be displayed.
+    if (graphical)
+    {
+        if (!cmdutility->isHiddenRequested() && (!cmdutility->isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
+        {
+            show();
+        }
+        else if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
+        {
+            hide();
+            setEnabled(false); // Should already be disabled. Do it again just to be sure.
+        }
+    }
 }
 
 MainWindow::~MainWindow()

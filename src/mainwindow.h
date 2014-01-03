@@ -58,6 +58,7 @@ protected:
     bool showTrayIcon;
     bool graphical;
     QLocalServer *localServer;
+    CommandLineUtility *cmdutility;
 
 private:
     Ui::MainWindow *ui;

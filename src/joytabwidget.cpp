@@ -1,6 +1,9 @@
 #include <QDebug>
 #include <QLayoutItem>
 #include <QGroupBox>
+#include <QMessageBox>
+#include <QTextStream>
+
 
 #include "joytabwidget.h"
 #include "joyaxiswidget.h"
@@ -927,22 +930,38 @@ void JoyTabWidget::saveConfigFile()
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
 
-        int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
-        if (existingIndex == -1)
+        if (writer.hasError() && this->window()->isEnabled())
         {
-            if (configBox->count() == 6)
-            {
-                configBox->removeItem(5);
-            }
-
-            configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
-            configBox->setCurrentIndex(1);
-            emit joystickConfigChanged(joystick->getJoyNumber());
+            QMessageBox msg;
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setText(writer.getErrorString());
+            msg.setModal(true);
+            msg.show();
+        }
+        else if (writer.hasError() && !this->window()->isEnabled())
+        {
+            QTextStream error(stderr);
+            error << writer.getErrorString() << endl;
         }
         else
         {
-            configBox->setCurrentIndex(existingIndex);
-            emit joystickConfigChanged(joystick->getJoyNumber());
+            int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
+            if (existingIndex == -1)
+            {
+                if (configBox->count() == 6)
+                {
+                    configBox->removeItem(5);
+                }
+
+                configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+                configBox->setCurrentIndex(1);
+                emit joystickConfigChanged(joystick->getJoyNumber());
+            }
+            else
+            {
+                configBox->setCurrentIndex(existingIndex);
+                emit joystickConfigChanged(joystick->getJoyNumber());
+            }
         }
     }
 }
@@ -959,6 +978,20 @@ void JoyTabWidget::resetJoystick()
         XMLConfigReader reader;
         reader.setFileName(filename);
         reader.configJoystick(joystick);
+
+        if (reader.hasError() && this->window()->isEnabled())
+        {
+            QMessageBox msg;
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setText(reader.getErrorString());
+            msg.setModal(true);
+            msg.show();
+        }
+        else if (reader.hasError() && !this->window()->isEnabled())
+        {
+            QTextStream error(stderr);
+            error << reader.getErrorString() << endl;
+        }
 
         fillButtons();
     }
@@ -1006,22 +1039,38 @@ void JoyTabWidget::saveAsConfig()
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
 
-        int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
-        if (existingIndex == -1)
+        if (writer.hasError() && this->window()->isEnabled())
         {
-            if (configBox->count() == 6)
-            {
-                configBox->removeItem(5);
-            }
-
-            configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
-            configBox->setCurrentIndex(1);
-            emit joystickConfigChanged(joystick->getJoyNumber());
+            QMessageBox msg;
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setText(writer.getErrorString());
+            msg.setModal(true);
+            msg.show();
+        }
+        else if (writer.hasError() && !this->window()->isEnabled())
+        {
+            QTextStream error(stderr);
+            error << writer.getErrorString() << endl;
         }
         else
         {
-            configBox->setCurrentIndex(existingIndex);
-            emit joystickConfigChanged(joystick->getJoyNumber());
+            int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
+            if (existingIndex == -1)
+            {
+                if (configBox->count() == 6)
+                {
+                    configBox->removeItem(5);
+                }
+
+                configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+                configBox->setCurrentIndex(1);
+                emit joystickConfigChanged(joystick->getJoyNumber());
+            }
+            else
+            {
+                configBox->setCurrentIndex(existingIndex);
+                emit joystickConfigChanged(joystick->getJoyNumber());
+            }
         }
     }
 }
@@ -1043,7 +1092,22 @@ void JoyTabWidget::changeJoyConfig(int index)
         reader.setFileName(filename);
         reader.configJoystick(joystick);
 
+        if (reader.hasError() && this->window()->isEnabled())
+        {
+            QMessageBox msg;
+            msg.setStandardButtons(QMessageBox::Close);
+            msg.setText(reader.getErrorString());
+            msg.setModal(true);
+            msg.show();
+        }
+        else if (reader.hasError() && !this->window()->isEnabled())
+        {
+            QTextStream error(stderr);
+            error << reader.getErrorString() << endl;
+        }
+
         fillButtons();
+
     }
     else if (index == 0)
     {

@@ -9,6 +9,7 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     xml->setAutoFormatting(true);
     configFile = 0;
     joystick = 0;
+    writerError = false;
 }
 
 XMLConfigWriter::~XMLConfigWriter()
@@ -33,19 +34,30 @@ XMLConfigWriter::~XMLConfigWriter()
 
 void XMLConfigWriter::write(InputDevice *joystick)
 {
+    writerError = false;
+
     if (!configFile->isOpen())
     {
         configFile->open(QFile::WriteOnly | QFile::Text);
         xml->setDevice(configFile);
     }
+    else
+    {
+        writerError = true;
+        writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
+    }
 
-    xml->writeStartDocument();
+    if (!writerError)
+    {
+        xml->writeStartDocument();
+        joystick->writeConfig(xml);
+        xml->writeEndDocument();
+    }
 
-    joystick->writeConfig(xml);
-
-    xml->writeEndDocument();
-
-    configFile->close();
+    if (configFile->isOpen())
+    {
+        configFile->close();
+    }
 }
 
 void XMLConfigWriter::setFileName(QString filename)
@@ -53,4 +65,14 @@ void XMLConfigWriter::setFileName(QString filename)
     QFile *temp = new QFile(filename);
     fileName = filename;
     configFile = temp;
+}
+
+bool XMLConfigWriter::hasError()
+{
+    return writerError;
+}
+
+QString XMLConfigWriter::getErrorString()
+{
+    return writerErrorString;
 }

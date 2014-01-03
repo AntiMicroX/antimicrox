@@ -190,10 +190,10 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), &w, SLOT(addJoyTab(InputDevice*)));
 #endif
 
-    if (!cmdutility.isHiddenRequested() && (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
+    /*if (!cmdutility.isHiddenRequested() && (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
     {
         w.show();
-    }
+    }*/
 
     int app_result = a.exec();
 
