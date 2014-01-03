@@ -2556,15 +2556,15 @@ void JoyButton::moveMouseCursor()
 
 void JoyButton::moveSpringMouse()
 {
-    double finalx = 0;
-    double finaly = 0;
+    double finalx = -2.0;
+    double finaly = -2.0;
 
     if (springXSpeeds.length() == springYSpeeds.length() &&
         springXSpeeds.length() > 0)
     {
         int queueLength = springXSpeeds.length();
         bool complete = false;
-        for (int i=queueLength-1; i >= 0 && !complete; i++)
+        for (int i=queueLength-1; i >= 0 && !complete; i--)
         {
             double tempx = -2.0;
             double tempy = -2.0;
@@ -2582,7 +2582,7 @@ void JoyButton::moveSpringMouse()
                 finaly = tempy;
             }
 
-            if (finalx != -2.0 && finaly != 2.0)
+            if (finalx != -2.0 && finaly != -2.0)
             {
                 complete = true;
             }
@@ -2593,6 +2593,7 @@ void JoyButton::moveSpringMouse()
     }
     else
     {
+        sendSpringEvent(0, 0, springWidth, springHeight);
         springDelayTimer.stop();
     }
 

@@ -14,7 +14,7 @@ JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *p
 
 QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
-    QString temp = QString(axis->getPartialName());
+    QString temp = QString(axis->getPartialName(forceFullFormat, displayNames));
     temp.append(": ");
 
     if (!buttonName.isEmpty() && displayNames)

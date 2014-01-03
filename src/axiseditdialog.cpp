@@ -415,7 +415,7 @@ void AxisEditDialog::updateWindowTitleAxisName()
 
     if (!axis->getAxisName().isEmpty())
     {
-        temp.append(axis->getPartialName(true));
+        temp.append(axis->getPartialName(false, true));
     }
     else
     {

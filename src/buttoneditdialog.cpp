@@ -269,11 +269,11 @@ void ButtonEditDialog::updateWindowTitleButtonName()
 
     if (!button->getButtonName().isEmpty())
     {
-        temp.append(button->getPartialName(true));
+        temp.append(button->getPartialName(false, true));
     }
     else
     {
-        temp.append(button->getPartialName());
+        temp.append(button->getPartialName(false, true));
     }
 
     setWindowTitle(temp);

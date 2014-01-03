@@ -97,31 +97,6 @@ bool JoyAxis::inDeadZone(int value)
 QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
 {
     QString label = getPartialName(forceFullFormat, displayNames);
-    /*QString label;
-
-    if (!axisName.isEmpty() && displayNames)
-    {
-        if (forceFullFormat)
-        {
-            label.append(tr("Axis")).append(" ");
-        }
-
-        label.append(axisName);
-    }
-    else if (!defaultAxisName.isEmpty())
-    {
-        if (forceFullFormat)
-        {
-            label.append(tr("Axis")).append(" ");
-        }
-        label.append(defaultAxisName);
-    }
-    else
-    {
-        label.append(tr("Axis")).append(" ");
-        label.append(QString::number(getRealJoyIndex()));
-    }
-*/
 
     label.append(": ");
 
@@ -863,5 +838,5 @@ int JoyAxis::getDefaultMaxZone()
 
 JoyAxis::ThrottleTypes JoyAxis::getDefaultThrottle()
 {
-    return (ThrottleTypes)this->throttle;
+    return (ThrottleTypes)this->DEFAULTTHROTTLE;
 }
