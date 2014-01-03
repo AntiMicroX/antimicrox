@@ -113,6 +113,38 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         {
             unloadProfile = true;
             profileLocation = "";
+
+            if (iter.hasNext())
+            {
+                temp = iter.next();
+
+                if (!temp.startsWith("--") && !temp.startsWith("-"))
+                {
+                    // A value has been passed. Attempt
+                    // to validate the value.
+                    bool validNumber = false;
+                    int tempNumber = temp.toInt(&validNumber);
+                    if (validNumber)
+                    {
+                        controllerNumber = tempNumber;
+                    }
+                    else if (!temp.isEmpty())
+                    {
+                        controllerIDString = temp;
+                    }
+                    else
+                    {
+                        errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                        encounteredError = true;
+                    }
+                }
+                else
+                {
+                    // Grabbed a possible command-line option.
+                    // Move iterator back to previous item.
+                    iter.previous();
+                }
+            }
         }
     }
 }
