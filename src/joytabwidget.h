@@ -34,6 +34,7 @@ public:
     QString getCurrentConfigName();
     void loadConfigFile(QString fileLocation);
     InputDevice *getJoystick();
+    void unloadConfig();
 
 protected:
     void removeCurrentButtons();

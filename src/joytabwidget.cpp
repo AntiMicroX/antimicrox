@@ -1519,3 +1519,8 @@ void JoyTabWidget::toggleNames()
     namesPushButton->style()->unpolish(namesPushButton);
     namesPushButton->style()->polish(namesPushButton);
 }
+
+void JoyTabWidget::unloadConfig()
+{
+    configBox->setCurrentIndex(0);
+}

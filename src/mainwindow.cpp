@@ -80,11 +80,26 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
         }
         else if (cmdutility->hasControllerID())
         {
-            loadConfigFile(cmdutility->getProfileLocation());
+            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->hasControllerID());
         }
         else
         {
             loadConfigFile(cmdutility->getProfileLocation());
+        }
+    }
+    else if (cmdutility->isUnloadRequested())
+    {
+        if (cmdutility->hasControllerNumber())
+        {
+            unloadCurrentConfig(cmdutility->getControllerNumber());
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            unloadCurrentConfig(cmdutility->hasControllerID());
+        }
+        else
+        {
+            unloadCurrentConfig(0);
         }
     }
 
@@ -710,6 +725,53 @@ void MainWindow::openProjectHomePage()
 void MainWindow::openGitHubPage()
 {
     QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage));
+}
+
+void MainWindow::unloadCurrentConfig(int joystickIndex)
+{
+    if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(joystickIndex-1));
+        if (widget)
+        {
+            widget->unloadConfig();
+        }
+    }
+    else if (joystickIndex <= 0)
+    {
+        for (int i=0; i < ui->tabWidget->count(); i++)
+        {
+            JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(i));
+            if (widget)
+            {
+                widget->unloadConfig();
+            }
+        }
+    }
+}
+
+void MainWindow::unloadCurrentConfig(QString controllerID)
+{
+    if (!controllerID.isEmpty())
+    {
+        QListIterator<QObject*> iter(ui->tabWidget->children());
+        while (iter.hasNext())
+        {
+            JoyTabWidget *tab = static_cast<JoyTabWidget*>(iter.next());
+            if (tab)
+            {
+                InputDevice *tempdevice = tab->getJoystick();
+                if (controllerID == tempdevice->getGUIDString())
+                {
+                    tab->unloadConfig();
+                }
+                else if (controllerID == tempdevice->getSDLName())
+                {
+                    tab->unloadConfig();
+                }
+            }
+        }
+    }
 }
 
 #ifdef USE_SDL_2

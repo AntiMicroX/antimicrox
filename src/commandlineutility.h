@@ -24,6 +24,7 @@ public:
     unsigned int getControllerNumber();
     QString getControllerID();
     bool isHiddenRequested();
+    bool isUnloadRequested();
 
     void printHelp();
     void printVersionString();
@@ -40,6 +41,7 @@ protected:
     QString controllerIDString;
     bool encounteredError;
     bool hiddenRequest;
+    bool unloadProfile;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -48,6 +50,7 @@ protected:
     static QRegExp loadProfileRegexp;
     static QRegExp loadProfileForControllerRegexp;
     static QRegExp hiddenRegexp;
+    static QRegExp unloadRegexp;
     
 signals:
     

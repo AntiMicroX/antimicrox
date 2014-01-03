@@ -40,6 +40,8 @@ protected:
     virtual void showEvent(QShowEvent *event);
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
     void loadConfigFile(QString fileLocation, QString controllerID);
+    void unloadCurrentConfig(int joystickIndex=0);
+    void unloadCurrentConfig(QString controllerID);
 
 #ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;

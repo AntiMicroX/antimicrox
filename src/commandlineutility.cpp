@@ -13,6 +13,7 @@ QRegExp CommandLineUtility::noTrayRegexp = QRegExp("--no-tray");
 QRegExp CommandLineUtility::loadProfileRegexp = QRegExp("--profile");
 QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-controller");
 QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
+QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
@@ -26,6 +27,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     controllerNumber = 0;
     encounteredError = false;
     hiddenRequest = false;
+    unloadProfile = false;
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -107,6 +109,11 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         {
             hiddenRequest = true;
         }
+        else if (unloadRegexp.exactMatch(temp))
+        {
+            unloadProfile = true;
+            profileLocation = "";
+        }
     }
 }
 
@@ -119,19 +126,22 @@ void CommandLineUtility::printHelp()
 {
     QTextStream out(stdout);
     out << tr("AntiMicro version") << " " << PadderCommon::programVersion << endl;
-    out << tr("Usage: antimicro [option]") << endl;
+    out << tr("Usage: antimicro [options]") << endl;
     out << endl;
     out << tr("Options") << ":" << endl;
-    out << "-h, --help                 " << " " << tr("Print help text.") << endl;
-    out << "-v, --version              " << " " << tr("Print version information.") << endl;
-    out << "--tray                     " << " " << tr("Launch program in system tray only.") << endl;
-    out << "--no-tray                  " << " " << tr("Launch program with the tray menu disabled.") << endl;
-    out << "--hidden                   " << " " << tr("Launch program without the main window displayed.") << endl;
-    out << "--profile location         " << " " <<
-           tr("Launch program with the configuration file\n                            selected as the default for all available\n                            controllers.")
+    out << "-h, --help                    " << " " << tr("Print help text.") << endl;
+    out << "-v, --version                 " << " " << tr("Print version information.") << endl;
+    out << "--tray                        " << " " << tr("Launch program in system tray only.") << endl;
+    out << "--no-tray                     " << " " << tr("Launch program with the tray menu disabled.") << endl;
+    out << "--hidden                      " << " " << tr("Launch program without the main window\n                               displayed.") << endl;
+    out << "--profile <location>          " << " " <<
+           tr("Launch program with the configuration file\n                               selected as the default for selected\n                               controllers. Defaults to all controllers.")
         << endl;
-    out << "--profile-controller value " << " "
-        << tr("Apply configuration file to a specific controller.\n                            Value can be a controller index, name, or GUID.") << endl;
+    out << "--profile-controller <value>  " << " "
+        << tr("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
+        << endl;
+    out << "--unload [<value>]            " << " " << tr("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
+        << endl;
 }
 
 bool CommandLineUtility::isHelpRequested()
@@ -193,4 +203,9 @@ bool CommandLineUtility::hasControllerID()
 QString CommandLineUtility::getControllerID()
 {
     return controllerIDString;
+}
+
+bool CommandLineUtility::isUnloadRequested()
+{
+    return unloadProfile;
 }
