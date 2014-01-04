@@ -702,12 +702,15 @@ void MainWindow::handleSocketDisconnect()
 void MainWindow::openJoystickStatusWindow()
 {
     int index = ui->tabWidget->currentIndex();
-    JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
-    InputDevice *joystick = joyTab->getJoystick();
-    if (joystick)
+    if (index >= 0)
     {
-        JoystickStatusWindow *dialog = new JoystickStatusWindow(joystick, this);
-        dialog->show();
+        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        InputDevice *joystick = joyTab->getJoystick();
+        if (joystick)
+        {
+            JoystickStatusWindow *dialog = new JoystickStatusWindow(joystick, this);
+            dialog->show();
+        }
     }
 }
 
@@ -778,13 +781,16 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
 void MainWindow::openGameControllerMappingWindow()
 {
     int index = ui->tabWidget->currentIndex();
-    JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
-    InputDevice *joystick = joyTab->getJoystick();
-    if (joystick)
+    if (index >= 0)
     {
-        GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, this);
-        dialog->show();
-        connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        InputDevice *joystick = joyTab->getJoystick();
+        if (joystick)
+        {
+            GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, this);
+            dialog->show();
+            connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+        }
     }
 }
 

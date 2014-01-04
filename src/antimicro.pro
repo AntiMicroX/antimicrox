@@ -121,8 +121,13 @@ QMAKE_EXTRA_TARGETS += updateqm
 
 # Create rule to copy required SDL dll file to output build directory
 win32 {
-    copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $$replace(DESTDIR, "/", "\\")
-    copy_sdl_dll.target = copy_sdl_dll
+    isEmpty(USE_SDL_2) {
+      copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $$replace(DESTDIR, "/", "\\")
+      copy_sdl_dll.target = copy_sdl_dll
+    } else {
+      copy_sdl_dll.commands = $(COPY) ..\\SDL2-2.0.1\\i686-w64-mingw32\\bin\\SDL2.dll $$replace(DESTDIR, "/", "\\")
+      copy_sdl_dll.target = copy_sdl_dll
+    }
 
     QMAKE_EXTRA_TARGETS += copy_sdl_dll
 }
@@ -350,8 +355,13 @@ unix {
         $$[QT_INSTALL_BINS]\\Qt5Gui.dll \
         $$[QT_INSTALL_BINS]\\Qt5Network.dll \
         $$[QT_INSTALL_BINS]\\Qt5Widgets.dll \
-        ..\\SDL-1.2.15\\bin\\SDL.dll \
         $$[QT_INSTALL_BINS]\\libstdc++-6.dll
+
+    isEmpty(USE_SDL_2) {
+        extradlls += ..\\SDL-1.2.15\\bin\\SDL.dll
+    } else {
+        extradlls += ..\\SDL2-2.0.1\\i686-w64-mingw32\\bin\\SDL2.dll
+    }
 
     install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
     for(dllfile, extradlls) {

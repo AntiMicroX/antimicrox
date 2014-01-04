@@ -101,9 +101,10 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QW
 
     ui->buttonMappingTableWidget->setCurrentCell(0, 0);
 
+    connect(device, SIGNAL(destroyed()), this, SLOT(obliterate()));
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveChanges()));
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(discardMapping(QAbstractButton*)));
-    connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents()));
+    connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents(int)));
 }
 
 GameControllerMappingDialog::~GameControllerMappingDialog()
@@ -402,10 +403,13 @@ void GameControllerMappingDialog::disableDeviceConnections()
     disconnect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
 }
 
-void GameControllerMappingDialog::enableButtonEvents()
+void GameControllerMappingDialog::enableButtonEvents(int code)
 {
-    device->getActiveSetJoystick()->setIgnoreEventState(false);
-    device->getActiveSetJoystick()->release();
+    if (code == QDialogButtonBox::AcceptRole)
+    {
+        device->getActiveSetJoystick()->setIgnoreEventState(false);
+        device->getActiveSetJoystick()->release();
+    }
 }
 
 QString GameControllerMappingDialog::generateSDLMappingString()
@@ -447,4 +451,9 @@ QString GameControllerMappingDialog::generateSDLMappingString()
     }
 
     return templist.join(",");
+}
+
+void GameControllerMappingDialog::obliterate()
+{
+    this->done(QDialogButtonBox::DestructiveRole);
 }

@@ -135,7 +135,8 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
         ui->guidLabel->hide();
     }
 
-    connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates()));
+    connect(joystick, SIGNAL(destroyed()), this, SLOT(obliterate()));
+    connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates(int)));
 }
 
 JoystickStatusWindow::~JoystickStatusWindow()
@@ -143,8 +144,16 @@ JoystickStatusWindow::~JoystickStatusWindow()
     delete ui;
 }
 
-void JoystickStatusWindow::restoreButtonStates()
+void JoystickStatusWindow::restoreButtonStates(int code)
 {
-    joystick->getActiveSetJoystick()->setIgnoreEventState(false);
-    joystick->getActiveSetJoystick()->release();
+    if (code == QDialogButtonBox::AcceptRole)
+    {
+        joystick->getActiveSetJoystick()->setIgnoreEventState(false);
+        joystick->getActiveSetJoystick()->release();
+    }
+}
+
+void JoystickStatusWindow::obliterate()
+{
+    this->done(QDialogButtonBox::DestructiveRole);
 }

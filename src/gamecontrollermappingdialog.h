@@ -48,7 +48,8 @@ private slots:
     void dpadAssign(int dpad, int buttonindex);
     void saveChanges();
     void discardMapping(QAbstractButton *button);
-    void enableButtonEvents();
+    void enableButtonEvents(int code);
+    void obliterate();
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOG_H

@@ -24,7 +24,8 @@ private:
     Ui::JoystickStatusWindow *ui;
 
 private slots:
-    void restoreButtonStates();
+    void restoreButtonStates(int code);
+    void obliterate();
 };
 
 #endif // JOYSTICKSTATUSWINDOW_H
