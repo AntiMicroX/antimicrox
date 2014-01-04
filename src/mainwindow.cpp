@@ -827,6 +827,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
         }
     }
 
+    // Refresh tab text to reflect new index values.
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
@@ -859,13 +860,22 @@ void MainWindow::addJoyTab(InputDevice *device)
     ui->tabWidget->addTab(tabwidget, joytabName);
     tabwidget->fillButtons();
 
-    if (showTrayIcon)
+    // Refresh tab text to reflect new index values.
+    for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (tab)
+        {
+            InputDevice *device = tab->getJoystick();
+            QString joytabName = device->getSDLName();
+            joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+            ui->tabWidget->setTabText(i, joytabName);
+        }
     }
 
     if (showTrayIcon)
     {
+        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
         populateTrayIcon();
         trayIcon->show();
     }
