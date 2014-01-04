@@ -18,12 +18,16 @@ void GameControllerSet::populateSticksDPad()
     // Left Stick Assignment
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
-    addControlStick(0, new JoyControlStick(axisX, axisY, 0, index, this));
+    JoyControlStick *stick1 = new JoyControlStick(axisX, axisY, 0, index, this);
+    stick1->setDefaultStickName("L Stick");
+    addControlStick(0, stick1);
 
     // Right Stick Assignment
     axisX = getJoyAxis(SDL_CONTROLLER_AXIS_RIGHTX);
     axisY = getJoyAxis(SDL_CONTROLLER_AXIS_RIGHTY);
-    addControlStick(1, new JoyControlStick(axisX, axisY, 1, index, this));
+    JoyControlStick *stick2 = new JoyControlStick(axisX, axisY, 1, index, this);
+    stick2->setDefaultStickName("R Stick");
+    addControlStick(1, stick2);
 
     // Assign DPad buttons as a virtual DPad. Allows rougelike controls
     // to be assigned.
@@ -32,6 +36,7 @@ void GameControllerSet::populateSticksDPad()
     JoyButton *buttonLeft = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_LEFT);
     JoyButton *buttonRight = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
     GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, index, this);
+    controllerDPad->setDefaultDPadName("DPad");
     addVDPad(0, controllerDPad);
 
     // Give default names to buttons
@@ -44,12 +49,12 @@ void GameControllerSet::populateSticksDPad()
     getJoyButton(SDL_CONTROLLER_BUTTON_START)->setDefaultButtonName("Start");
     getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSTICK)->setDefaultButtonName("LS Click");
     getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSTICK)->setDefaultButtonName("RS Click");
-    getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSHOULDER)->setDefaultButtonName("LB");
-    getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)->setDefaultButtonName("RB");
+    getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSHOULDER)->setDefaultButtonName("L Shoulder");
+    getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)->setDefaultButtonName("R Shoulder");
 
     // Give default names to triggers
-    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT)->setDefaultAxisName("Left Trigger");
-    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->setDefaultAxisName("Right Trigger");
+    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT)->setDefaultAxisName("L Trigger");
+    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->setDefaultAxisName("R Trigger");
 }
 
 void GameControllerSet::readConfig(QXmlStreamReader *xml)

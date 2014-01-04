@@ -419,24 +419,9 @@ int JoyControlStick::getRealJoyIndex()
     return index+1;
 }
 
-QString JoyControlStick::getName(bool forceFullFormat)
+QString JoyControlStick::getName(bool forceFullFormat, bool displayNames)
 {
-    QString label;
-
-    if (!stickName.isEmpty())
-    {
-        if (forceFullFormat)
-        {
-            label.append(tr("Stick")).append(" ");
-        }
-
-        label.append(stickName);
-    }
-    else
-    {
-        label.append(tr("Stick")).append(" ");
-        label.append(QString::number(getRealJoyIndex()));
-    }
+    QString label = getPartialName(forceFullFormat, displayNames);
 
     label.append(": ");
     QStringList tempList;
@@ -494,6 +479,48 @@ QString JoyControlStick::getName(bool forceFullFormat)
 
     label.append(tempList.join(", "));
     return label;
+}
+
+QString JoyControlStick::getPartialName(bool forceFullFormat, bool displayNames)
+{
+    QString label;
+
+    if (!stickName.isEmpty() && displayNames)
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Stick")).append(" ");
+        }
+
+        label.append(stickName);
+    }
+    else if (!defaultStickName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            label.append(tr("Stick")).append(" ");
+        }
+
+        label.append(defaultStickName);
+    }
+    else
+    {
+        label.append(tr("Stick")).append(" ");
+        label.append(QString::number(getRealJoyIndex()));
+    }
+
+    return label;
+}
+
+void JoyControlStick::setDefaultStickName(QString tempname)
+{
+    defaultStickName = tempname;
+    emit stickNameChanged();
+}
+
+QString JoyControlStick::getDefaultStickName()
+{
+    return defaultStickName;
 }
 
 int JoyControlStick::getMaxZone()

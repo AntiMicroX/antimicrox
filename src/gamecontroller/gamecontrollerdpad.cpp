@@ -27,6 +27,7 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
         {
             label.append(tr("DPad")).append(" ");
         }
+
         label.append(defaultDPadName);
     }
     else

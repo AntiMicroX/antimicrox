@@ -365,13 +365,15 @@ void JoyControlStickEditDialog::enableMouseSettingButton()
 void JoyControlStickEditDialog::updateWindowTitleStickName()
 {
     QString temp = QString(tr("Set")).append(" ");
+
     if (!stick->getStickName().isEmpty())
     {
-        temp.append(tr("Stick ")).append(stick->getStickName());
+        temp.append(stick->getPartialName(false, true));
     }
     else
     {
-        temp.append(tr("Stick %1").arg(stick->getRealJoyIndex()));
+        temp.append(stick->getPartialName());
     }
+
     setWindowTitle(temp);
 }

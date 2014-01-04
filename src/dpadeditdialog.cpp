@@ -306,13 +306,15 @@ void DPadEditDialog::enableMouseSettingButton()
 void DPadEditDialog::updateWindowTitleDPadName()
 {
     QString temp = QString(tr("Set")).append(" ");
+
     if (!dpad->getDpadName().isEmpty())
     {
-        temp.append(dpad->getName(true, true));
+        temp.append(dpad->getName(false, true));
     }
     else
     {
-        temp.append(dpad->getName(true));
+        temp.append(dpad->getName());
     }
+
     setWindowTitle(temp);
 }

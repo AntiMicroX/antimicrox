@@ -18,6 +18,7 @@ protected:
     void calculateMouseSpeedPreset();
     void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
+    void updateWindowTitleStickName();
 
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;

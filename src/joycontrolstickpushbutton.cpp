@@ -22,11 +22,11 @@ QString JoyControlStickPushButton::generateLabel()
     QString temp;
     if (!stick->getStickName().isEmpty() && displayNames)
     {
-        temp.append(stick->getStickName());
+        temp.append(stick->getPartialName(false, true));
     }
     else
     {
-        temp.append(tr("Stick")).append(" ").append(QString::number(stick->getRealJoyIndex()));
+        temp.append(stick->getPartialName(false));
     }
 
     return temp;

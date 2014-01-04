@@ -29,6 +29,7 @@ protected:
     void removeControllerMapping();
     void enableDeviceConnections();
     void disableDeviceConnections();
+    QString generateSDLMappingString();
 
     QString bindingString(SDL_GameControllerButtonBind bind);
     QList<QVariant> bindingValues(SDL_GameControllerButtonBind bind);
@@ -42,11 +43,11 @@ signals:
     void mappingUpdate(QString mapping, InputDevice *device);
 
 private slots:
-    void testButtonAssign(int buttonindex);
-    void testAxisAssign(int axis, int value);
-    void testDPadAssign(int dpad, int buttonindex);
-    void testsave();
-    void testOther(QAbstractButton *button);
+    void buttonAssign(int buttonindex);
+    void axisAssign(int axis, int value);
+    void dpadAssign(int dpad, int buttonindex);
+    void saveChanges();
+    void discardMapping(QAbstractButton *button);
     void enableButtonEvents();
 };
 

@@ -34,7 +34,8 @@ public:
     int getRealJoyIndex();
     int getMaxZone();
     int getCurrentlyAssignedSet();
-    QString getName(bool forceFullFormat=false);
+    virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     JoyStickDirections getCurrentDirection();
     int getXCoordinate();
     int getYCoordinate();
@@ -84,6 +85,9 @@ public:
 
     virtual bool isDefault();
 
+    virtual void setDefaultStickName(QString tempname);
+    virtual QString getDefaultStickName();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
@@ -115,6 +119,7 @@ protected:
     JoyStickDirections currentDirection;
     JoyMode currentMode;
     QString stickName;
+    QString defaultStickName;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 

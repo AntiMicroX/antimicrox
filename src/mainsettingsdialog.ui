@@ -67,6 +67,9 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          </item>
          <item>
           <widget class="QTableWidget" name="controllerMappingsTableWidget">
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SingleSelection</enum>
+           </property>
            <column>
             <property name="text">
              <string>GUID</string>

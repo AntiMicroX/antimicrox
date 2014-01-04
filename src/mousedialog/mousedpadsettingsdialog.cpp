@@ -265,13 +265,15 @@ void MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 void MouseDPadSettingsDialog::updateWindowTitleDPadName()
 {
     QString temp = QString(tr("Mouse Settings")).append(" - ");
+
     if (!dpad->getDpadName().isEmpty())
     {
-        temp.append(dpad->getName(true, true));
+        temp.append(dpad->getName(false, true));
     }
     else
     {
-        temp.append(dpad->getName(true));
+        temp.append(dpad->getName());
     }
+
     setWindowTitle(temp);
 }

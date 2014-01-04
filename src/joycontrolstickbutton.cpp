@@ -59,15 +59,27 @@ QString JoyControlStickButton::getDirectionName()
 
 QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
-    QString temp = QString(tr("Stick %1").arg(stick->getRealJoyIndex()));
+    QString temp = stick->getPartialName(forceFullFormat, displayNames);
+
     temp.append(": ");
+
     if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
             temp.append(tr("Button")).append(" ");
         }
+
         temp.append(buttonName);
+    }
+    else if (!defaultButtonName.isEmpty())
+    {
+        if (forceFullFormat)
+        {
+            temp.append(tr("Button")).append(" ");
+        }
+
+        temp.append(defaultButtonName);
     }
     else
     {

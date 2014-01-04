@@ -22,7 +22,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     updateAccelerationCurvePresetComboBox();
     selectSmoothingPreset();
 
-    setWindowTitle(tr("Mouse Settings - ").append(tr("Stick %1").arg(stick->getRealJoyIndex())));
+    updateWindowTitleStickName();
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
@@ -262,4 +262,20 @@ void MouseControlStickSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 void MouseControlStickSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
     stick->setButtonsWheelSpeedY(value);
+}
+
+void MouseControlStickSettingsDialog::updateWindowTitleStickName()
+{
+    QString temp = QString(tr("Mouse Settings")).append(" - ");
+
+    if (!stick->getStickName().isEmpty())
+    {
+        temp.append(stick->getPartialName(false, true));
+    }
+    else
+    {
+        temp.append(stick->getPartialName());
+    }
+
+    setWindowTitle(temp);
 }

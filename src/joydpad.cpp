@@ -73,11 +73,11 @@ void JoyDPad::populateButtons()
     buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
-QString JoyDPad::getName(bool fullForceFormat, bool displayActionName)
+QString JoyDPad::getName(bool fullForceFormat, bool displayNames)
 {
     QString label;
 
-    if (!dpadName.isEmpty() && displayActionName)
+    if (!dpadName.isEmpty() && displayNames)
     {
         if (fullForceFormat)
         {
@@ -754,6 +754,7 @@ void JoyDPad::setButtonsWheelSpeedY(int value)
 void JoyDPad::setDefaultDPadName(QString tempname)
 {
     defaultDPadName = tempname;
+    emit dpadNameChanged();
 }
 
 QString JoyDPad::getDefaultDPadName()

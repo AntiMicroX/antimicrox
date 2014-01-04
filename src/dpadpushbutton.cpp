@@ -24,7 +24,7 @@ QString DPadPushButton::generateLabel()
     }
     else
     {
-        temp.append(dpad->getName(true));
+        temp.append(dpad->getName());
     }
 
     return temp;

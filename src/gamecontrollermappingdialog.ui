@@ -6,14 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>669</width>
-    <height>474</height>
+    <width>670</width>
+    <height>520</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>400</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Game Controller Mapping</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GameController API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;AntiMicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QTableWidget" name="buttonMappingTableWidget">
      <property name="frameShadow">
@@ -72,6 +91,9 @@
      </attribute>
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>100</number>
      </attribute>
      <attribute name="horizontalHeaderHighlightSections">
       <bool>true</bool>
@@ -134,12 +156,12 @@
      </row>
      <row>
       <property name="text">
-       <string>Left Bumper</string>
+       <string>Left Shoulder</string>
       </property>
      </row>
      <row>
       <property name="text">
-       <string>Right Bumper</string>
+       <string>Right Shoulder</string>
       </property>
      </row>
      <row>
@@ -207,6 +229,44 @@
        <string>Mapping</string>
       </property>
      </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>SDL 2 GameController Mapping String</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="mappingStringPlainTextEdit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
