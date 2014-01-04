@@ -42,8 +42,8 @@
                     <Component Id="QT5WIDGETS.DLL" Guid="A9D83DBB-D9CD-4347-9B89-F29794E92048">
                         <File Source="..\antimicro\Qt5Widgets.dll" />
                     </Component>
-                    <Component Id="SDL.DLL" Guid="89898F34-8345-414E-9210-85B53FD34D53">
-                        <File Source="..\antimicro\SDL.dll" />
+                    <Component Id="SDL2.DLL" Guid="89898F34-8345-414E-9210-85B53FD34D53">
+                        <File Source="..\antimicro\SDL2.dll" />
                     </Component>
                     <Directory Id="PLATFORMS" Name="platforms">
                         <Component Id="QWINDOWS.DLL" Guid="F2A419FC-7EA8-436C-8CE9-68755251E39A">
@@ -93,7 +93,7 @@
             <ComponentRef Id="QT5GUI.DLL" />
             <ComponentRef Id="QT5NETWORK.DLL" />
             <ComponentRef Id="QT5WIDGETS.DLL" />
-            <ComponentRef Id="SDL.DLL" />
+            <ComponentRef Id="SDL2.DLL" />
             <ComponentRef Id="QWINDOWS.DLL" />
             <ComponentRef Id="ANTIMICRO_BR.QM" />
             <ComponentRef Id="ANTIMICRO_EN.QM" />
