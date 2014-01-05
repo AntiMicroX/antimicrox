@@ -14,17 +14,22 @@
         <translation>AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="99"/>
+        <location filename="../../../src/aboutdialog.ui" line="104"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="113"/>
+        <location filename="../../../src/aboutdialog.ui" line="114"/>
+        <source>Using SDL %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="125"/>
         <source>Credits</source>
         <translation>Crédits</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="128"/>
+        <location filename="../../../src/aboutdialog.ui" line="140"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -41,12 +46,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="151"/>
+        <location filename="../../../src/aboutdialog.ui" line="163"/>
         <source>License</source>
         <translation>License</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="166"/>
+        <location filename="../../../src/aboutdialog.ui" line="178"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -181,9 +186,9 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="316"/>
-        <source>Copyright: 2013</source>
-        <translation>Copyright: 2013</translation>
+        <location filename="../../../src/aboutdialog.ui" line="328"/>
+        <source>Copyright: 2013-2014</source>
+        <translation type="unfinished">Copyright: 2013-2014</translation>
     </message>
 </context>
 <context>
@@ -690,8 +695,6 @@ Cela peut être utile de ralentir la souris pour bien sniper.</translation>
     <name>AxisEditDialog</name>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="32"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="408"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="412"/>
         <source>Axis</source>
         <translation>Axe</translation>
     </message>
@@ -751,17 +754,27 @@ Cela peut être utile de ralentir la souris pour bien sniper.</translation>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="446"/>
+        <location filename="../../../src/axiseditdialog.ui" line="340"/>
+        <source>Negative Half Throttle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="360"/>
+        <source>Positive Half Throttle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="456"/>
         <source>Name:</source>
         <translation>Nom :</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="456"/>
+        <location filename="../../../src/axiseditdialog.ui" line="466"/>
         <source>Specify the name of an axis.</source>
         <translation>Indiquer le nom d&apos;un axe.</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="465"/>
+        <location filename="../../../src/axiseditdialog.ui" line="475"/>
         <source>Mouse Settings</source>
         <translation>Configurations de la Souris</translation>
     </message>
@@ -794,7 +807,7 @@ Utile pour un stick analogique défectueux.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="319"/>
-        <location filename="../../../src/axiseditdialog.ui" line="358"/>
+        <location filename="../../../src/axiseditdialog.ui" line="368"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -806,27 +819,27 @@ interpret an axis hold or release.</source>
 de maintien ou de relâchement d&apos;un axe.</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="340"/>
+        <location filename="../../../src/axiseditdialog.ui" line="345"/>
         <source>Negative Throttle</source>
         <translation>Accélération négative</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="345"/>
+        <location filename="../../../src/axiseditdialog.ui" line="350"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="350"/>
+        <location filename="../../../src/axiseditdialog.ui" line="355"/>
         <source>Positive Throttle</source>
         <translation>Accélération positive</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="400"/>
+        <location filename="../../../src/axiseditdialog.ui" line="410"/>
         <source>Current Value:</source>
         <translation>Valeur actuelle :</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.cpp" line="405"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="414"/>
         <source>Set</source>
         <translation>Configuration</translation>
     </message>
@@ -906,7 +919,7 @@ lorsque que ce bouton est utilisé.</translation>
         <translation>Avancé</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="258"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="268"/>
         <source>Set</source>
         <translation>Configuration</translation>
     </message>
@@ -914,74 +927,82 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>CommandLineUtility</name>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="68"/>
+        <location filename="../../../src/commandlineutility.cpp" line="70"/>
         <source>Profile location %1 is not an XML file.</source>
         <translation>Le fichier profile %1 n&apos;est pas un fichier XML.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="78"/>
+        <location filename="../../../src/commandlineutility.cpp" line="80"/>
         <source>Profile location %1 does not exist.</source>
         <translation>Le fichier profile %1 n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="97"/>
-        <source>Controller number is not a valid number.</source>
-        <translation>Le numéro du contrôleur n&apos;est pas un nombre valide.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="117"/>
-        <location filename="../../../src/commandlineutility.cpp" line="145"/>
+        <location filename="../../../src/commandlineutility.cpp" line="160"/>
+        <location filename="../../../src/commandlineutility.cpp" line="192"/>
         <source>AntiMicro version</source>
         <translation>Version d&apos;AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="118"/>
-        <source>Usage: antimicro [option]</source>
-        <translation>Utilisation : antimicro [option]</translation>
+        <location filename="../../../src/commandlineutility.cpp" line="103"/>
+        <location filename="../../../src/commandlineutility.cpp" line="137"/>
+        <source>Controller identifier is not a valid value.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="120"/>
+        <location filename="../../../src/commandlineutility.cpp" line="161"/>
+        <source>Usage: antimicro [options]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="163"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="121"/>
+        <location filename="../../../src/commandlineutility.cpp" line="164"/>
         <source>Print help text.</source>
         <translation>Affiche le texte d&apos;aide.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="122"/>
+        <location filename="../../../src/commandlineutility.cpp" line="165"/>
         <source>Print version information.</source>
         <translation>Affiche des informations sur la version.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="123"/>
+        <location filename="../../../src/commandlineutility.cpp" line="166"/>
         <source>Launch program in system tray only.</source>
         <translation>Lance le logiciel directement dans la zone de notification.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="124"/>
+        <location filename="../../../src/commandlineutility.cpp" line="167"/>
         <source>Launch program with the tray menu disabled.</source>
         <translation>Lance le logiciel avec le menu de la zone de notification désactivé.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="125"/>
-        <source>Launch program without the main window displayed.</source>
-        <translation>Lance le logiciel sans affiché la fenêtre principale.</translation>
+        <location filename="../../../src/commandlineutility.cpp" line="168"/>
+        <source>Launch program without the main window
+                               displayed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="127"/>
+        <location filename="../../../src/commandlineutility.cpp" line="170"/>
         <source>Launch program with the configuration file
-                            selected as the default for all available
-                            controllers.</source>
-        <translation>Lance le logiciel avec le fichier de configuration
-                            séléctionné par defaut pour tous
-                            contrôleurs disponnibles.                                </translation>
+                               selected as the default for selected
+                               controllers. Defaults to all controllers.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="129"/>
-        <source>Apply configuration file to a specific controller.</source>
-        <translation>Apllique le fichier de configuration à un contrôleur spécifique.</translation>
+        <location filename="../../../src/commandlineutility.cpp" line="173"/>
+        <source>Apply configuration file to a specific
+                               controller. Value can be a
+                               controller index, name, or GUID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="175"/>
+        <source>Unload currently enabled profile(s). 
+                               Value can be a controller index, name, or GUID.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1067,21 +1088,190 @@ lorsque que ce bouton est utilisé.</translation>
         <translation>Eight Way</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.cpp" line="307"/>
+        <location filename="../../../src/dpadeditdialog.cpp" line="308"/>
         <source>Set</source>
         <translation>Configuration</translation>
     </message>
+</context>
+<context>
+    <name>GameController</name>
     <message>
-        <location filename="../../../src/dpadeditdialog.cpp" line="310"/>
+        <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="22"/>
+        <source>GameController</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GameControllerDPad</name>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="19"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="28"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="35"/>
         <source>DPad</source>
-        <translation>DPad</translation>
+        <translation type="unfinished">DPad</translation>
+    </message>
+</context>
+<context>
+    <name>GameControllerMappingDialog</name>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="20"/>
+        <source>Game Controller Mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="26"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GameController API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;AntiMicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="124"/>
+        <source>A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="129"/>
+        <source>B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="134"/>
+        <source>X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="139"/>
+        <source>Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="144"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="149"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="154"/>
+        <source>Guide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="159"/>
+        <source>Left Shoulder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="164"/>
+        <source>Right Shoulder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="169"/>
+        <source>Left Stick Click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="174"/>
+        <source>Right Stick Click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="179"/>
+        <source>Left Stick X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="184"/>
+        <source>Left Stick Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="189"/>
+        <source>Right Stick X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="194"/>
+        <source>Right Stick Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="199"/>
+        <source>Left Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="204"/>
+        <source>Right Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="209"/>
+        <source>DPad Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="214"/>
+        <source>DPad Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="219"/>
+        <source>DPad Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="224"/>
+        <source>DPad Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="229"/>
+        <source>Mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.ui" line="243"/>
+        <source>SDL 2 GameController Mapping String</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="97"/>
+        <source>Game Controller Mapping (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="367"/>
+        <source>Discard Controller Mapping?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="368"/>
+        <source>Discard mapping for this controller?
+
+If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GameControllerTrigger</name>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="32"/>
+        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="41"/>
+        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="46"/>
+        <source>Trigger</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="114"/>
-        <location filename="../../../src/joyaxis.cpp" line="121"/>
+        <location filename="../../../src/joyaxis.cpp" line="802"/>
+        <location filename="../../../src/joyaxis.cpp" line="811"/>
+        <location filename="../../../src/joyaxis.cpp" line="817"/>
         <source>Axis</source>
         <translation>Axe</translation>
     </message>
@@ -1089,28 +1279,24 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>JoyAxisButton</name>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="33"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="41"/>
         <source>Negative</source>
         <translation>Négatif</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="37"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="45"/>
         <source>Positive</source>
         <translation>Positif</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="41"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="49"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="17"/>
-        <source>Axis </source>
-        <translation>Axe</translation>
-    </message>
-    <message>
         <location filename="../../../src/joyaxisbutton.cpp" line="24"/>
-        <location filename="../../../src/joyaxisbutton.cpp" line="44"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="32"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="52"/>
         <source>Button</source>
         <translation>Bouton</translation>
     </message>
@@ -1118,14 +1304,15 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1248"/>
-        <location filename="../../../src/joybutton.cpp" line="1254"/>
+        <location filename="../../../src/joybutton.cpp" line="1273"/>
+        <location filename="../../../src/joybutton.cpp" line="1281"/>
+        <location filename="../../../src/joybutton.cpp" line="1287"/>
         <source>Button</source>
         <translation>Bouton</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1288"/>
-        <location filename="../../../src/joybutton.cpp" line="1313"/>
+        <location filename="../../../src/joybutton.cpp" line="1321"/>
+        <location filename="../../../src/joybutton.cpp" line="1346"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -1133,88 +1320,88 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="65"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="237"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="69"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="289"/>
         <source>Mouse</source>
         <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="68"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="72"/>
         <source>Up</source>
         <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="72"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="76"/>
         <source>Down</source>
         <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="76"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="80"/>
         <source>Left</source>
         <translation>Gauche</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="80"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="84"/>
         <source>Right</source>
         <translation>Droite</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="241"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="293"/>
         <source>LB</source>
         <translation>BG</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="244"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="296"/>
         <source>MB</source>
         <translation>BC</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="247"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="299"/>
         <source>RB</source>
         <translation>BD</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="251"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="303"/>
         <source>B4</source>
         <translation>B4</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="254"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="306"/>
         <source>B5</source>
         <translation>B5</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="272"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="324"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="288"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="340"/>
         <source>Hold</source>
         <translation>Maintenir</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="300"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="352"/>
         <source>Cycle</source>
         <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="304"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="356"/>
         <source>Distance</source>
         <translation>Distance</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="314"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="366"/>
         <source>Release</source>
         <translation>Relâchement</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="327"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="379"/>
         <source>Mouse Mod</source>
         <translation>Mode de la Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="334"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="386"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -1222,8 +1409,9 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="../../../src/joycontrolstick.cpp" line="430"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="437"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="492"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="501"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="508"/>
         <source>Stick</source>
         <translation>Stick</translation>
     </message>
@@ -1259,13 +1447,9 @@ lorsque que ce bouton est utilisé.</translation>
         <translation>Droite</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="62"/>
-        <source>Stick %1</source>
-        <translation>Stick %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="68"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="74"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="70"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="79"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="86"/>
         <source>Button</source>
         <translation>Bouton</translation>
     </message>
@@ -1396,34 +1580,17 @@ lorsque que ce bouton est utilisé.</translation>
         <translation>Valleur de diagonale :</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="366"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="367"/>
         <source>Set</source>
         <translation>Configuration</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="369"/>
-        <source>Stick </source>
-        <translation>Stick </translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="373"/>
-        <source>Stick %1</source>
-        <translation>Stick %1</translation>
-    </message>
-</context>
-<context>
-    <name>JoyControlStickPushButton</name>
-    <message>
-        <location filename="../../../src/joycontrolstickpushbutton.cpp" line="63"/>
-        <source>Stick</source>
-        <translation>Stick</translation>
     </message>
 </context>
 <context>
     <name>JoyDPad</name>
     <message>
         <location filename="../../../src/joydpad.cpp" line="84"/>
-        <location filename="../../../src/joydpad.cpp" line="91"/>
+        <location filename="../../../src/joydpad.cpp" line="93"/>
+        <location filename="../../../src/joydpad.cpp" line="99"/>
         <source>DPad</source>
         <translation>DPad</translation>
     </message>
@@ -1460,7 +1627,8 @@ lorsque que ce bouton est utilisé.</translation>
     </message>
     <message>
         <location filename="../../../src/joydpadbutton.cpp" line="71"/>
-        <location filename="../../../src/joydpadbutton.cpp" line="77"/>
+        <location filename="../../../src/joydpadbutton.cpp" line="79"/>
+        <location filename="../../../src/joydpadbutton.cpp" line="85"/>
         <source>Button</source>
         <translation>Bouton</translation>
     </message>
@@ -1468,101 +1636,101 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="31"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1118"/>
+        <location filename="../../../src/joytabwidget.cpp" line="37"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1192"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;Nouveau&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="39"/>
+        <location filename="../../../src/joytabwidget.cpp" line="45"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="41"/>
+        <location filename="../../../src/joytabwidget.cpp" line="47"/>
         <source>Remove configuration from recent list.</source>
         <translation>Supprimer la configuration depuis la liste des recents.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="47"/>
+        <location filename="../../../src/joytabwidget.cpp" line="53"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="49"/>
+        <location filename="../../../src/joytabwidget.cpp" line="55"/>
         <source>Load configuration file.</source>
         <translation>Charger un fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="55"/>
+        <location filename="../../../src/joytabwidget.cpp" line="61"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="57"/>
+        <location filename="../../../src/joytabwidget.cpp" line="63"/>
         <source>Save changes to configuration file.</source>
         <translation>Enregistrer les modifications dans le fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="64"/>
+        <location filename="../../../src/joytabwidget.cpp" line="70"/>
         <source>Save As</source>
         <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="66"/>
+        <location filename="../../../src/joytabwidget.cpp" line="72"/>
         <source>Save changes to a new configuration file.</source>
         <translation>Enregistrer les modifications dans un nouveau fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="316"/>
+        <location filename="../../../src/joytabwidget.cpp" line="322"/>
         <source>Stick/Pad Assign</source>
         <translation>Assignement du Stick/Pad</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="323"/>
+        <location filename="../../../src/joytabwidget.cpp" line="329"/>
         <source>Quick Set</source>
         <translation>Configuration Rapide</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="331"/>
+        <location filename="../../../src/joytabwidget.cpp" line="337"/>
         <source>Names</source>
         <translation>Noms</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="333"/>
+        <location filename="../../../src/joytabwidget.cpp" line="339"/>
         <source>Toggle button name displaying.</source>
         <translation>Alterner nom du bouton d&apos;affichage.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="338"/>
+        <location filename="../../../src/joytabwidget.cpp" line="344"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="340"/>
+        <location filename="../../../src/joytabwidget.cpp" line="346"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>Annuler les changements de configuration. Recharger le fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="375"/>
+        <location filename="../../../src/joytabwidget.cpp" line="389"/>
         <source>Open Config</source>
         <translation>Charger un fichier de configuration</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="487"/>
+        <location filename="../../../src/joytabwidget.cpp" line="501"/>
         <source>Sticks</source>
         <translation>Sticks</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="611"/>
-        <location filename="../../../src/joytabwidget.cpp" line="719"/>
+        <location filename="../../../src/joytabwidget.cpp" line="616"/>
+        <location filename="../../../src/joytabwidget.cpp" line="715"/>
         <source>DPads</source>
         <translation>DPads</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="924"/>
-        <location filename="../../../src/joytabwidget.cpp" line="997"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1007"/>
+        <location filename="../../../src/joytabwidget.cpp" line="909"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1012"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1022"/>
         <source>Save Config</source>
         <translation>Enregistrer le fichier de configuration</translation>
     </message>
@@ -1570,7 +1738,7 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../../../src/joystick.cpp" line="92"/>
+        <location filename="../../../src/joystick.cpp" line="30"/>
         <source>Joystick</source>
         <translation>Manette</translation>
     </message>
@@ -1588,51 +1756,57 @@ lorsque que ce bouton est utilisé.</translation>
         <translation>Détails</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="70"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="64"/>
         <source>Name:</source>
         <translation>Nom :</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="77"/>
-        <location filename="../../../src/joystickstatuswindow.ui" line="104"/>
-        <location filename="../../../src/joystickstatuswindow.ui" line="131"/>
-        <location filename="../../../src/joystickstatuswindow.ui" line="158"/>
-        <location filename="../../../src/joystickstatuswindow.ui" line="185"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="71"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="98"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="125"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="152"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="179"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="209"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="97"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="91"/>
         <source>Number:</source>
         <translation>Nombre :</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="124"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="118"/>
         <source>Axes:</source>
         <translation>Axes :</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="151"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="145"/>
         <source>Buttons:</source>
         <translation>Boutons :</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="178"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="172"/>
         <source>Hats:</source>
         <translation>Hats :</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="202"/>
+        <source>GUID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joystickstatuswindow.ui" line="232"/>
         <source>Axes</source>
         <translation>Axes</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="256"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="286"/>
         <source>Buttons</source>
         <translation>Boutons</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="310"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="340"/>
         <source>Hats</source>
         <translation>Hats</translation>
     </message>
@@ -1653,6 +1827,51 @@ lorsque que ce bouton est utilisé.</translation>
     </message>
 </context>
 <context>
+    <name>MainSettingsDialog</name>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="23"/>
+        <source>Edit Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="44"/>
+        <source>Controller Mappings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="56"/>
+        <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
+
+Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="75"/>
+        <source>GUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="80"/>
+        <source>Mapping String</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="85"/>
+        <source>Disable?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="95"/>
+        <source>Delete</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="107"/>
+        <source>Insert</source>
+        <translation type="unfinished">Insérer</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../../src/mainwindow.ui" line="23"/>
@@ -1660,217 +1879,247 @@ lorsque que ce bouton est utilisé.</translation>
         <translation>AntiMicro</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="98"/>
+        <location filename="../../../src/mainwindow.ui" line="97"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
         <translation>Aucune manette n&apos;a été détéctée.
  Merci de brancher une manette et de choisir l&apos;option &quot;Mettre à jour les manettes&quot; du menu principal</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="159"/>
+        <location filename="../../../src/mainwindow.ui" line="158"/>
         <source>Tab 1</source>
         <translation>Onglet 1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="177"/>
+        <location filename="../../../src/mainwindow.ui" line="176"/>
         <source>&lt;None&gt;</source>
         <translation>&lt;Aucun&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="201"/>
+        <location filename="../../../src/mainwindow.ui" line="200"/>
         <source>Remove configuration from recent list.</source>
         <translation>Supprimer la configuration depuis la liste des recents.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="204"/>
+        <location filename="../../../src/mainwindow.ui" line="203"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="228"/>
+        <location filename="../../../src/mainwindow.ui" line="227"/>
         <source>Load configuration file.</source>
         <translation>Charger un fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="231"/>
+        <location filename="../../../src/mainwindow.ui" line="230"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="255"/>
+        <location filename="../../../src/mainwindow.ui" line="254"/>
         <source>Save changes to configuration file.</source>
         <translation>Enregistrer les modifications dans le fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="258"/>
+        <location filename="../../../src/mainwindow.ui" line="257"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="288"/>
+        <location filename="../../../src/mainwindow.ui" line="287"/>
         <source>Save changes to a new configuration file.</source>
         <translation>Enregistrer les modifications dans un nouveau fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="291"/>
+        <location filename="../../../src/mainwindow.ui" line="290"/>
         <source>Save As</source>
         <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="371"/>
+        <location filename="../../../src/mainwindow.ui" line="370"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="381"/>
+        <location filename="../../../src/mainwindow.ui" line="380"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="391"/>
+        <location filename="../../../src/mainwindow.ui" line="390"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="401"/>
+        <location filename="../../../src/mainwindow.ui" line="400"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="411"/>
+        <location filename="../../../src/mainwindow.ui" line="410"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="421"/>
+        <location filename="../../../src/mainwindow.ui" line="420"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="431"/>
+        <location filename="../../../src/mainwindow.ui" line="430"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="441"/>
+        <location filename="../../../src/mainwindow.ui" line="440"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="471"/>
+        <location filename="../../../src/mainwindow.ui" line="470"/>
         <source>Stick/Pad Assign</source>
         <translation>Assignement du Stick/Pad</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="483"/>
+        <location filename="../../../src/mainwindow.ui" line="482"/>
         <source>Quick Set</source>
         <translation>Configuration Rapide</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="503"/>
+        <location filename="../../../src/mainwindow.ui" line="502"/>
         <source>Toggle button name displaying.</source>
         <translation>Alterner nom du bouton d&apos;affichage.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="506"/>
+        <location filename="../../../src/mainwindow.ui" line="505"/>
         <source>Names</source>
         <translation>Noms</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="533"/>
+        <location filename="../../../src/mainwindow.ui" line="532"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>Annuler les changements de configuration. Recharger le fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="536"/>
+        <location filename="../../../src/mainwindow.ui" line="535"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="551"/>
+        <location filename="../../../src/mainwindow.ui" line="550"/>
         <source>Tab 2</source>
         <translation>Onglet 2</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="574"/>
+        <location filename="../../../src/mainwindow.ui" line="573"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="581"/>
+        <location filename="../../../src/mainwindow.ui" line="580"/>
         <source>&amp;Options</source>
         <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="588"/>
+        <location filename="../../../src/mainwindow.ui" line="590"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="604"/>
-        <location filename="../../../src/mainwindow.cpp" line="188"/>
+        <location filename="../../../src/mainwindow.ui" line="609"/>
+        <location filename="../../../src/mainwindow.cpp" line="282"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="607"/>
+        <location filename="../../../src/mainwindow.ui" line="612"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="620"/>
-        <location filename="../../../src/mainwindow.cpp" line="192"/>
+        <location filename="../../../src/mainwindow.ui" line="625"/>
+        <location filename="../../../src/mainwindow.cpp" line="286"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Mettre à jour les manettes</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="623"/>
+        <location filename="../../../src/mainwindow.ui" line="628"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="633"/>
-        <location filename="../../../src/mainwindow.cpp" line="178"/>
+        <location filename="../../../src/mainwindow.ui" line="638"/>
+        <location filename="../../../src/mainwindow.cpp" line="272"/>
         <source>&amp;Hide</source>
         <translation>&amp;Masquer</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="636"/>
+        <location filename="../../../src/mainwindow.ui" line="641"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="646"/>
+        <location filename="../../../src/mainwindow.ui" line="651"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="649"/>
+        <location filename="../../../src/mainwindow.ui" line="654"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="654"/>
+        <location filename="../../../src/mainwindow.ui" line="659"/>
         <source>About Qt</source>
         <translation>À propos de Qt</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="659"/>
+        <location filename="../../../src/mainwindow.ui" line="664"/>
         <source>Properties</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="90"/>
-        <source>(Joystick %1)</source>
-        <translation>(Manette %1)</translation>
+        <location filename="../../../src/mainwindow.ui" line="669"/>
+        <source>Key Checker</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="166"/>
+        <location filename="../../../src/mainwindow.ui" line="674"/>
+        <source>Home Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.ui" line="679"/>
+        <source>GitHub Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.ui" line="684"/>
+        <source>GameController Mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.ui" line="689"/>
+        <source>Options</source>
+        <translation type="unfinished">Options</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.cpp" line="170"/>
+        <location filename="../../../src/mainwindow.cpp" line="234"/>
+        <location filename="../../../src/mainwindow.cpp" line="815"/>
+        <location filename="../../../src/mainwindow.cpp" line="845"/>
+        <location filename="../../../src/mainwindow.cpp" line="866"/>
+        <location filename="../../../src/mainwindow.cpp" line="878"/>
+        <source>(%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.cpp" line="258"/>
         <source>Open File</source>
         <translation>Ouvrir fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="183"/>
+        <location filename="../../../src/mainwindow.cpp" line="277"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>
@@ -1904,27 +2153,17 @@ lorsque que ce bouton est utilisé.</translation>
 <context>
     <name>MouseControlStickSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="25"/>
-        <source>Mouse Settings - </source>
-        <translation>Configurations de la Souris -</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="25"/>
-        <source>Stick %1</source>
-        <translation>Stick %1</translation>
+        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="269"/>
+        <source>Mouse Settings</source>
+        <translation type="unfinished">Configurations de la Souris</translation>
     </message>
 </context>
 <context>
     <name>MouseDPadSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="23"/>
-        <source>Mouse Settings - </source>
-        <translation>Configurations de la Souris -</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="23"/>
-        <source>DPad %1</source>
-        <translation>DPad %1</translation>
+        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="267"/>
+        <source>Mouse Settings</source>
+        <translation type="unfinished">Configurations de la Souris</translation>
     </message>
 </context>
 <context>
@@ -2136,6 +2375,41 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     </message>
 </context>
 <context>
+    <name>QKeyDisplayDialog</name>
+    <message>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="26"/>
+        <source>Key Checker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="41"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicro.&lt;/p&gt;&lt;p&gt;The AntiMicro key value and the Qt key value will usually be the same. AntiMicro tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://qt-project.org/doc/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://qt-project.org/doc/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicro&apos;s &lt;a href=&quot;https://github.com/Ryochan7/antimicro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="96"/>
+        <source>Native Key Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="103"/>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="126"/>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="149"/>
+        <source>0x00000000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="119"/>
+        <source>Qt Key Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/qkeydisplaydialog.ui" line="142"/>
+        <source>AntiMicro Key Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../../../src/wininfo.cpp" line="113"/>
@@ -2157,13 +2431,13 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="23"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Joystick %2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Merci de presser un bouton ou de déplacer un axe de %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;Manette %2&lt;/span&gt;).&lt;br/&gt;Une fenêtre de dialogue apparaîtra&lt;br/&gt;permettant de faire une affectation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.cpp" line="21"/>
-        <source>Quick Set Joystick %1</source>
-        <translation>Réglage Rapide de la manette %1</translation>
+        <source>Quick Set %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2187,8 +2461,8 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
 <context>
     <name>SimpleKeyGrabberButton</name>
     <message>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="52"/>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="113"/>
+        <location filename="../../../src/simplekeygrabberbutton.cpp" line="56"/>
+        <location filename="../../../src/simplekeygrabberbutton.cpp" line="128"/>
         <source>Mouse</source>
         <translation>Souris</translation>
     </message>
@@ -2205,7 +2479,8 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <name>VDPad</name>
     <message>
         <location filename="../../../src/vdpad.cpp" line="71"/>
-        <location filename="../../../src/vdpad.cpp" line="78"/>
+        <location filename="../../../src/vdpad.cpp" line="80"/>
+        <location filename="../../../src/vdpad.cpp" line="86"/>
         <source>VDPad</source>
         <translation>VDPad</translation>
     </message>
@@ -2213,218 +2488,218 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
 <context>
     <name>VirtualKeyPushButton</name>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="70"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="85"/>
         <source>Space</source>
         <translation>Espace</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="71"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="86"/>
         <source>Tab</source>
         <translation>Tab</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="72"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="87"/>
         <source>Shift (L)</source>
         <translation>Maj (G)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="73"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="88"/>
         <source>Shift (R)</source>
         <translation>Maj (D)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="74"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="89"/>
         <source>Ctrl (L)</source>
         <translation>Ctrl (G)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="75"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="90"/>
         <source>Ctrl (R)</source>
         <translation>Ctrl (D)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="76"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="91"/>
         <source>Alt (L)</source>
         <translation>Alt (G)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="77"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="92"/>
         <source>Alt (R)</source>
         <translation>Alt (D)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="78"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="93"/>
         <source>`</source>
         <translation>`</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="79"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="94"/>
         <source>~</source>
         <translation>~</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="80"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="111"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="95"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="126"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="81"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="96"/>
         <source>=</source>
         <translation>=</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="82"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="97"/>
         <source>[</source>
         <translation>[</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="83"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="98"/>
         <source>]</source>
         <translation>]</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="84"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="99"/>
         <source>\</source>
         <translation>\</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="85"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="100"/>
         <source>Caps</source>
         <translation>Verr Maj</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="86"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="101"/>
         <source>;</source>
         <translation>;</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="87"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="102"/>
         <source>&apos;</source>
         <translation>&apos;</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="88"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="103"/>
         <source>,</source>
         <translation>,</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="89"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="114"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="104"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="129"/>
         <source>.</source>
         <translation>.</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="90"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="109"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="105"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="124"/>
         <source>/</source>
         <translation>/</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="91"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="106"/>
         <source>ESC</source>
         <translation>ECHAP</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="92"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="107"/>
         <source>PRTSC</source>
         <translation>Impr Ecran</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="93"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="108"/>
         <source>SCLK</source>
         <translation>Arrêt Defil</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="94"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="109"/>
         <source>INS</source>
         <translation>INSER</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="95"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="110"/>
         <source>PGUP</source>
         <translation>PGUP</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="96"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="111"/>
         <source>DEL</source>
         <translation>SUPPR</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="97"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="112"/>
         <source>PGDN</source>
         <translation>PGDN</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="98"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="113"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="99"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="114"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="100"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="115"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="101"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="116"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="102"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="117"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="103"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="118"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="104"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="119"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="105"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="120"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="106"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="121"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="107"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="122"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="108"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="123"/>
         <source>NUM
 LK</source>
         <translation>VERR
 NUM</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="110"/>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="115"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="125"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="130"/>
         <source>*</source>
         <translation>*</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="112"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="127"/>
         <source>+</source>
         <translation>+</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="113"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="128"/>
         <source>E
 N
 T
@@ -2438,22 +2713,22 @@ R
 E</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="116"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="131"/>
         <source>&lt;</source>
         <translation>&lt;</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="117"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="132"/>
         <source>:</source>
         <translation>:</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="118"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Super (L)</source>
         <translation>Super (G)</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="119"/>
+        <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="134"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
@@ -3051,6 +3326,22 @@ E</translation>
         <location filename="../../../src/x11info.cpp" line="57"/>
         <source>Backspace</source>
         <translation>Retour arrière</translation>
+    </message>
+</context>
+<context>
+    <name>XMLConfigReader</name>
+    <message>
+        <location filename="../../../src/xmlconfigreader.cpp" line="106"/>
+        <source>Could not write updated profile XML to file %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>XMLConfigWriter</name>
+    <message>
+        <location filename="../../../src/xmlconfigwriter.cpp" line="47"/>
+        <source>Could not write to profile at %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
