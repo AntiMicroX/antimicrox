@@ -347,6 +347,7 @@ void MainWindow::mainMenuChange()
 
 #ifndef USE_SDL_2
     ui->actionGameController_Mapping->setVisible(false);
+    ui->actionOptions->setVisible(false);
 #endif
 }
 

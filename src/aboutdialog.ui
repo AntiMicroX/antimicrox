@@ -325,7 +325,7 @@ p, li { white-space: pre-wrap; }
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Copyright: 2013</string>
+      <string>Copyright: 2013-2014</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
