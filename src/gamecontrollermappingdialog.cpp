@@ -385,8 +385,11 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
 
 void GameControllerMappingDialog::removeControllerMapping()
 {
-    QSettings settings(PadderCommon::configFileName, QSettings::IniFormat);
-    settings.remove(QString("Mappings/").append(device->getGUIDString()));
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings.beginGroup("Mappings");
+    settings.remove(device->getGUIDString());
+    settings.remove(QString("%1Disable").arg(device->getGUIDString()));
+    settings.endGroup();
 }
 
 void GameControllerMappingDialog::enableDeviceConnections()
