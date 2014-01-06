@@ -9,7 +9,7 @@
 #include "common.h"
 
 AboutDialog::AboutDialog(QWidget *parent) :
-    QDialog(parent, Qt::Window),
+    QDialog(parent),
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);

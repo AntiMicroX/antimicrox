@@ -187,6 +187,7 @@ void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
 
     if (showTrayIcon)
     {
+        trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();
     }
@@ -849,6 +850,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 
     if (showTrayIcon)
     {
+        trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();
     }
@@ -883,6 +885,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     if (showTrayIcon)
     {
         connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();
     }
