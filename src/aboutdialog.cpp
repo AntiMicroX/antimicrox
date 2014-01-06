@@ -16,13 +16,23 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     ui->versionLabel->setText(PadderCommon::programVersion);
 
-    QString sdlVersionNumber("%1.%2.%3");
-    SDL_version tempver;
-    SDL_VERSION(&tempver);
-    sdlVersionNumber = sdlVersionNumber.arg(tempver.major).arg(tempver.minor).arg(tempver.patch);
-    QString sdlPlaceeholder = ui->sdlVersionLabel->text();
-    sdlPlaceeholder = sdlPlaceeholder.arg(sdlVersionNumber);
-    ui->sdlVersionLabel->setText(sdlPlaceeholder);
+    QString sdlCompiledVersionNumber("%1.%2.%3");
+    QString sdlLinkedVersionNumber("%1.%2.%3");
+
+    SDL_version compiledver;
+    SDL_version linkedver;
+    SDL_VERSION(&compiledver);
+    SDL_GetVersion(&linkedver);
+
+    sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
+    QString sdlCompiledPlaceHolder = ui->sdlCompiledVersionLabel->text();
+    sdlCompiledPlaceHolder = sdlCompiledPlaceHolder.arg(sdlCompiledVersionNumber);
+    ui->sdlCompiledVersionLabel->setText(sdlCompiledPlaceHolder);
+
+    sdlLinkedVersionNumber = sdlLinkedVersionNumber.arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
+    QString sdlLinkedPlaceHolder = ui->sdlLinkedVersionLabel->text();
+    sdlLinkedPlaceHolder = sdlLinkedPlaceHolder.arg(sdlLinkedVersionNumber);
+    ui->sdlLinkedVersionLabel->setText(sdlLinkedPlaceHolder);
 }
 
 AboutDialog::~AboutDialog()

@@ -108,12 +108,23 @@
      </property>
     </widget>
    </item>
-   <item alignment="Qt::AlignHCenter">
-    <widget class="QLabel" name="sdlVersionLabel">
-     <property name="text">
-      <string>Using SDL %1</string>
-     </property>
-    </widget>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item alignment="Qt::AlignHCenter">
+      <widget class="QLabel" name="sdlCompiledVersionLabel">
+       <property name="text">
+        <string>Built against SDL %1</string>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignHCenter">
+      <widget class="QLabel" name="sdlLinkedVersionLabel">
+       <property name="text">
+        <string>Using SDL %1</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
