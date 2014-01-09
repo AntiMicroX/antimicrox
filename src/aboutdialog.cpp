@@ -22,7 +22,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
     SDL_version compiledver;
     SDL_version linkedver;
     SDL_VERSION(&compiledver);
+#ifdef USE_SDL_2
     SDL_GetVersion(&linkedver);
+#else
+    linkedver = *(SDL_Linked_Version());
+#endif
 
     sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
     QString sdlCompiledPlaceHolder = ui->sdlCompiledVersionLabel->text();
