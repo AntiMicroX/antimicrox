@@ -1559,7 +1559,7 @@ void JoyButton::pauseEvent()
 {
     if (currentPause)
     {
-        if (pauseHold.elapsed() > 100)
+        if (pauseHold.elapsed() > 10)
         {
             releaseActiveSlots();
             inpauseHold.restart();
@@ -1597,7 +1597,7 @@ void JoyButton::pauseWaitEvent()
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
                 currentRelease = 0;
-                createDeskTimer.stop();
+                //createDeskTimer.stop();
                 releaseDeskTimer.stop();
                 pauseWaitTimer.stop();
 
@@ -1874,10 +1874,10 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
             // a rapid press was detected before a release
             // started. Restart timer so checkForSetChange
             // happens first
-            if (createDeskTimer.isActive())
-            {
-                createDeskTimer.start();
-            }
+            //if (createDeskTimer.isActive())
+            //{
+            //    createDeskTimer.start();
+            //}
         }
         else
         {
@@ -1983,6 +1983,17 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         this->currentDistance = 0;
         currentRelease = 0;
         quitEvent = true;
+
+        if (createDeskTimer.isActive() && !isButtonPressedQueue.isEmpty() &&
+            isButtonPressedQueue.last())
+        {
+            int timerinterval = createDeskTimer.interval();
+            createDeskTimer.start(timerinterval);
+        }
+        else
+        {
+            createDeskTimer.stop();
+        }
     }
     else
     {
