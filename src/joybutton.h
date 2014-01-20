@@ -201,6 +201,7 @@ protected:
     static QList<double> springXSpeeds;
     static QList<double> springYSpeeds;
     static QTimer springDelayTimer;
+    static QHash<unsigned int, int> activeKeys;
 
 signals:
     void clicked (int index);

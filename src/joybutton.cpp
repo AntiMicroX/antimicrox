@@ -20,6 +20,8 @@ QTimer JoyButton::springDelayTimer;
 QList<double> JoyButton::springXSpeeds;
 QList<double> JoyButton::springYSpeeds;
 
+QHash<unsigned int, int> JoyButton::activeKeys;
+
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
 {
@@ -531,6 +533,8 @@ void JoyButton::activateSlots()
             {
                 sendevent(tempcode, true, mode);
                 activeSlots.append(slot);
+                int oldvalue = activeKeys.value(tempcode, 0) + 1;
+                activeKeys.insert(tempcode, oldvalue);
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
@@ -1740,15 +1744,19 @@ void JoyButton::waitForDeskEvent()
         if (createDeskTimer.isActive())
         {
             createDeskTimer.stop();
+            createDeskEvent();
         }
-        createDeskEvent();
+        else
+        {
+            createDeskTimer.start(1);
+        }
     }
     else if (!createDeskTimer.isActive())
     {
 #ifdef Q_CC_MSVC
         createDeskTimer.start(1);
 #else
-        createDeskTimer.start(0);
+        createDeskTimer.start(1);
 #endif
     }
 }
@@ -2121,7 +2129,16 @@ void JoyButton::releaseActiveSlots()
 
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
-                sendevent(tempcode, false, mode);
+                int referencecount = activeKeys.value(tempcode, 1) - 1;
+                if (referencecount <= 0)
+                {
+                    sendevent(tempcode, false, mode);
+                    activeKeys.remove(tempcode);
+                }
+                else
+                {
+                    activeKeys.insert(tempcode, referencecount);
+                }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
