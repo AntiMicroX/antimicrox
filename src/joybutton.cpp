@@ -27,6 +27,8 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
 {
     vdpad = 0;
     slotiter = 0;
+    setChangeTimer.setSingleShot(true);
+
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
     connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
@@ -36,6 +38,7 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
     connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
+    connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
 
     // Workaround to have a static QTimer
     disconnect(&cursorDelayTimer, 0, 0, 0);
@@ -482,7 +485,8 @@ void JoyButton::createDeskEvent()
         bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
         if (tempButtonPressed && !tempFinalIgnoreSetsState && setSelectionCondition == SetChangeWhileHeld)
         {
-            QTimer::singleShot(0, this, SLOT(checkForSetChange()));
+            setChangeTimer.start();
+            //QTimer::singleShot(0, this, SLOT(checkForSetChange()));
             quitEvent = true;
         }
     }
@@ -1596,6 +1600,7 @@ void JoyButton::pauseWaitEvent()
                 ignoreSetQueue.enqueue(lastIgnoreSetState);
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
+                JoyButtonSlot *oldCurrentRelease = currentRelease;
                 currentRelease = 0;
                 //createDeskTimer.stop();
                 releaseDeskTimer.stop();
@@ -1608,6 +1613,13 @@ void JoyButton::pauseWaitEvent()
                 }
                 quitEvent = true;
                 waitForDeskEvent();
+                // Assuming that if this is the case, a pause from
+                // a release slot was previously active. setChangeTimer
+                // should not be active at this point.
+                if (oldCurrentRelease && setChangeTimer.isActive())
+                {
+                    setChangeTimer.stop();
+                }
             }
         }
     }
@@ -1749,14 +1761,17 @@ void JoyButton::waitForDeskEvent()
         else
         {
             createDeskTimer.start(1);
+            releaseDeskTimer.stop();
         }
     }
     else if (!createDeskTimer.isActive())
     {
 #ifdef Q_CC_MSVC
         createDeskTimer.start(1);
+        releaseDeskTimer.stop();
 #else
         createDeskTimer.start(1);
+        releaseDeskTimer.stop();
 #endif
     }
 }
@@ -1769,14 +1784,17 @@ void JoyButton::waitForReleaseDeskEvent()
         {
             releaseDeskTimer.stop();
         }
+        createDeskTimer.stop();
         releaseDeskEvent();
     }
     else if (!releaseDeskTimer.isActive())
     {
 #ifdef Q_CC_MSVC
         releaseDeskTimer.start(1);
+        createDeskTimer.stop();
 #else
         releaseDeskTimer.start(0);
+        createDeskTimer.stop();
 #endif
     }
 }
@@ -1869,7 +1887,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         bool tempButtonPressed = isButtonPressedQueue.last();
         if (!tempButtonPressed)
         {
-            QTimer::singleShot(0, this, SLOT(checkForSetChange()));
+            setChangeTimer.start();
+            //QTimer::singleShot(0, this, SLOT(checkForSetChange()));
             // If createDeskTimer is currently active,
             // a rapid press was detected before a release
             // started. Restart timer so checkForSetChange
@@ -2282,14 +2301,10 @@ void JoyButton::releaseSlotEvent()
             currentRelease = temp;
 
             activateSlots();
-            releaseActiveSlots();
-
-            if (currentRelease)
+            if (!pauseTimer.isActive())
             {
-                if (!pauseTimer.isActive())
-                {
-                    currentRelease = 0;
-                }
+                releaseActiveSlots();
+                currentRelease = 0;
             }
 
             // Stop hold timer here to be sure that

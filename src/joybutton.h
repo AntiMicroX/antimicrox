@@ -135,6 +135,7 @@ protected:
     QTimer mouseEventTimer;
     QTimer mouseWheelVerticalEventTimer;
     QTimer mouseWheelHorizontalEventTimer;
+    QTimer setChangeTimer;
 
     bool isDown;
     bool toggleActiveState;
