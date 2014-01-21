@@ -1559,7 +1559,7 @@ void JoyButton::pauseEvent()
 {
     if (currentPause)
     {
-        if (pauseHold.elapsed() > 10)
+        if (pauseHold.elapsed() > 100)
         {
             releaseActiveSlots();
             inpauseHold.restart();
