@@ -115,6 +115,7 @@ protected:
     void releaseSlotEvent();
     void findReleaseEventEnd();
     void findHoldEventEnd();
+    bool checkForDelaySequence();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -136,6 +137,7 @@ protected:
     QTimer mouseWheelVerticalEventTimer;
     QTimer mouseWheelHorizontalEventTimer;
     QTimer setChangeTimer;
+    QTimer keyDelayTimer;
 
     bool isDown;
     bool toggleActiveState;
@@ -169,6 +171,7 @@ protected:
     QTime pauseHold;
     QTime inpauseHold;
     QTime buttonHeldRelease;
+    QTime keyDelayHold;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
@@ -192,6 +195,8 @@ protected:
     QString buttonName; // User specified button name
     QString defaultButtonName; // Name used by the system
 
+    unsigned int keyDelay;
+
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -203,6 +208,7 @@ protected:
     static QList<double> springYSpeeds;
     static QTimer springDelayTimer;
     static QHash<unsigned int, int> activeKeys;
+    static int globalKeyDelay;
 
 signals:
     void clicked (int index);
@@ -261,6 +267,7 @@ private slots:
     void checkForSetChange();
     void moveMouseCursor();
     void moveSpringMouse();
+    void keydelayEvent();
 };
 
 

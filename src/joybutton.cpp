@@ -22,15 +22,19 @@ QList<double> JoyButton::springYSpeeds;
 
 QHash<unsigned int, int> JoyButton::activeKeys;
 
+int JoyButton::globalKeyDelay = 100;
+
 JoyButton::JoyButton(int index, int originset, QObject *parent) :
     QObject(parent)
 {
     vdpad = 0;
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
+    keyDelay = 0;
 
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
+    connect(&keyDelayTimer, SIGNAL(timeout()), this, SLOT(keydelayEvent()));
     connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
     connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
@@ -264,6 +268,8 @@ void JoyButton::reset()
     holdTimer.stop();
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
+    setChangeTimer.stop();
+    keyDelayTimer.stop();
 
     if (slotiter)
     {
@@ -483,10 +489,10 @@ void JoyButton::createDeskEvent()
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
         bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
-        if (tempButtonPressed && !tempFinalIgnoreSetsState && setSelectionCondition == SetChangeWhileHeld)
+        if (tempButtonPressed && !tempFinalIgnoreSetsState &&
+            setSelectionCondition == SetChangeWhileHeld && !currentRelease)
         {
             setChangeTimer.start();
-            //QTimer::singleShot(0, this, SLOT(checkForSetChange()));
             quitEvent = true;
         }
     }
@@ -514,7 +520,7 @@ void JoyButton::createDeskEvent()
         {
             quitEvent = true;
         }
-        else if (!currentPause && !currentHold)
+        else if (!currentPause && !currentHold && !keyDelayTimer.isActive())
         {
             quitEvent = true;
         }
@@ -526,6 +532,7 @@ void JoyButton::activateSlots()
     if (slotiter)
     {
         bool exit = false;
+        bool delaySequence = checkForDelaySequence();
 
         while (slotiter->hasNext() && !exit)
         {
@@ -576,10 +583,23 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyPause)
             {
-                currentPause = slot;
-                pauseHold.restart();
-                pauseTimer.start(0);
-                exit = true;
+                if (!activeSlots.isEmpty())
+                {
+                    if (slotiter->hasPrevious())
+                    {
+                        slotiter->previous();
+                    }
+                    exit = true;
+                }
+                else
+                {
+                    currentPause = slot;
+                    pauseHold.restart();
+                    //pauseTimer.start(0);
+                    inpauseHold.restart();
+                    pauseWaitTimer.start(0);
+                    exit = true;
+                }
             }
             else if (mode == JoyButtonSlot::JoyHold)
             {
@@ -614,6 +634,12 @@ void JoyButton::activateSlots()
                 mouseSpeedModList.append(slot);
                 activeSlots.append(slot);
             }
+        }
+
+        if (delaySequence && !activeSlots.isEmpty())
+        {
+            keyDelayHold.restart();
+            keydelayEvent();
         }
     }
 }
@@ -1601,7 +1627,7 @@ void JoyButton::pauseWaitEvent()
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
                 JoyButtonSlot *oldCurrentRelease = currentRelease;
-                currentRelease = 0;
+                //currentRelease = 0;
                 //createDeskTimer.stop();
                 releaseDeskTimer.stop();
                 pauseWaitTimer.stop();
@@ -1612,14 +1638,15 @@ void JoyButton::pauseWaitEvent()
                     slotiter->findNext(previousCycle);
                 }
                 quitEvent = true;
-                waitForDeskEvent();
+                keyDelayHold.restart();
+                //waitForDeskEvent();
                 // Assuming that if this is the case, a pause from
                 // a release slot was previously active. setChangeTimer
                 // should not be active at this point.
-                if (oldCurrentRelease && setChangeTimer.isActive())
-                {
-                    setChangeTimer.stop();
-                }
+                //if (oldCurrentRelease && setChangeTimer.isActive())
+                //{
+                //    setChangeTimer.stop();
+                //}
             }
         }
     }
@@ -1755,24 +1782,33 @@ void JoyButton::waitForDeskEvent()
     {
         if (createDeskTimer.isActive())
         {
+            keyDelayHold.restart();
             createDeskTimer.stop();
             createDeskEvent();
         }
         else
         {
-            createDeskTimer.start(1);
+            createDeskTimer.start(5);
             releaseDeskTimer.stop();
+            keyDelayHold.restart();
         }
     }
     else if (!createDeskTimer.isActive())
     {
 #ifdef Q_CC_MSVC
-        createDeskTimer.start(1);
+        createDeskTimer.start(5);
         releaseDeskTimer.stop();
 #else
+        createDeskTimer.start(5);
+        releaseDeskTimer.stop();
+        keyDelayHold.restart();
+#endif
+    }
+    else if (createDeskTimer.isActive())
+    {
+        // Decrease timer interval of active timer.
         createDeskTimer.start(1);
         releaseDeskTimer.stop();
-#endif
     }
 }
 
@@ -2301,7 +2337,7 @@ void JoyButton::releaseSlotEvent()
             currentRelease = temp;
 
             activateSlots();
-            if (!pauseTimer.isActive())
+            if (!keyDelayTimer.isActive())
             {
                 releaseActiveSlots();
                 currentRelease = 0;
@@ -2642,4 +2678,64 @@ void JoyButton::moveSpringMouse()
 
     springXSpeeds.clear();
     springYSpeeds.clear();
+}
+
+void JoyButton::keydelayEvent()
+{
+    //qDebug() << "RADIO EDIT: " << keyDelayHold.elapsed();
+    if (keyDelayTimer.isActive() && keyDelayHold.elapsed() >= globalKeyDelay)
+    {
+        keyDelayTimer.stop();
+        keyDelayHold.restart();
+        releaseActiveSlots();
+
+        if (currentRelease)
+        {
+            createDeskEvent();
+            waitForReleaseDeskEvent();
+        }
+        else
+        {
+            createDeskEvent();
+        }
+    }
+    else
+    {
+        int proposedInterval = globalKeyDelay - keyDelayHold.elapsed();
+        proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
+        qDebug() << "NEVER: " << proposedInterval;
+        int newTimerInterval = qMin(10, proposedInterval);
+        keyDelayTimer.start(newTimerInterval);
+    }
+}
+
+bool JoyButton::checkForDelaySequence()
+{
+    bool result = false;
+
+    QListIterator<JoyButtonSlot*> tempiter(assignments);
+
+    // Move iterator to start of cycle.
+    if (previousCycle)
+    {
+        tempiter.findNext(previousCycle);
+    }
+
+    while (tempiter.hasNext())
+    {
+        JoyButtonSlot *slot = tempiter.next();
+        JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+        if (mode == JoyButtonSlot::JoyPause || mode == JoyButtonSlot::JoyRelease)
+        {
+            result = true;
+            tempiter.toBack();
+        }
+        else if (mode == JoyButtonSlot::JoyCycle)
+        {
+            result = false;
+            tempiter.toBack();
+        }
+    }
+
+    return result;
 }
