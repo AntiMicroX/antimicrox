@@ -164,6 +164,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 {
                     buttonHold.restart();
                     buttonHeldRelease.restart();
+                    keyDelayHold.restart();
                     turboTimer.start();
                     turboEvent();
                 }
@@ -186,6 +187,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 {
                     buttonHold.restart();
                     buttonHeldRelease.restart();
+                    keyDelayHold.restart();
                     //createDeskTimer.start(0);
                     waitForDeskEvent();
                 }
@@ -194,6 +196,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 buttonHold.restart();
                 buttonHeldRelease.restart();
+                keyDelayHold.restart();
                 //createDeskTimer.start(0);
                 waitForDeskEvent();
             }
@@ -210,6 +213,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 buttonHold.restart();
                 buttonHeldRelease.restart();
+                keyDelayHold.restart();
                 //createDeskTimer.start(0);
                 waitForDeskEvent();
             }
@@ -495,6 +499,10 @@ void JoyButton::createDeskEvent()
             setChangeTimer.start();
             quitEvent = true;
         }
+        else if (tempButtonPressed && currentRelease)
+        {
+            currentRelease = 0;
+        }
     }
 
     if (!quitEvent)
@@ -622,9 +630,17 @@ void JoyButton::activateSlots()
                 {
                     findReleaseEventEnd();
                 }
-                else
+                else if (currentRelease && activeSlots.isEmpty())
                 {
-                    currentRelease = 0;
+                    //currentRelease = 0;
+                    exit = true;
+                }
+                else if (currentRelease && !activeSlots.isEmpty())
+                {
+                    if (slotiter->hasPrevious())
+                    {
+                        slotiter->previous();
+                    }
                     exit = true;
                 }
             }
@@ -1626,7 +1642,7 @@ void JoyButton::pauseWaitEvent()
                 ignoreSetQueue.enqueue(lastIgnoreSetState);
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
-                JoyButtonSlot *oldCurrentRelease = currentRelease;
+                //JoyButtonSlot *oldCurrentRelease = currentRelease;
                 //currentRelease = 0;
                 //createDeskTimer.stop();
                 releaseDeskTimer.stop();
@@ -1790,7 +1806,7 @@ void JoyButton::waitForDeskEvent()
         {
             createDeskTimer.start(5);
             releaseDeskTimer.stop();
-            keyDelayHold.restart();
+            //keyDelayHold.restart();
         }
     }
     else if (!createDeskTimer.isActive())
@@ -1801,13 +1817,13 @@ void JoyButton::waitForDeskEvent()
 #else
         createDeskTimer.start(5);
         releaseDeskTimer.stop();
-        keyDelayHold.restart();
+        //keyDelayHold.restart();
 #endif
     }
     else if (createDeskTimer.isActive())
     {
         // Decrease timer interval of active timer.
-        createDeskTimer.start(1);
+        createDeskTimer.start(0);
         releaseDeskTimer.stop();
     }
 }
@@ -2689,8 +2705,12 @@ void JoyButton::keydelayEvent()
         keyDelayHold.restart();
         releaseActiveSlots();
 
+        createDeskTimer.stop();
+
         if (currentRelease)
         {
+            releaseDeskTimer.stop();
+
             createDeskEvent();
             waitForReleaseDeskEvent();
         }
@@ -2701,9 +2721,12 @@ void JoyButton::keydelayEvent()
     }
     else
     {
+        createDeskTimer.stop();
+        //releaseDeskTimer.stop();
+
         int proposedInterval = globalKeyDelay - keyDelayHold.elapsed();
         proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
-        qDebug() << "NEVER: " << proposedInterval;
+        //qDebug() << "NEVER: " << proposedInterval;
         int newTimerInterval = qMin(10, proposedInterval);
         keyDelayTimer.start(newTimerInterval);
     }
