@@ -59,6 +59,7 @@ void InputDevice::setActiveSetNumber(int index)
         QList<int> axesstates;
         QList<int> dpadstates;
 
+        // Grab current states for all elements in old set
         SetJoystick *current_set = joystick_sets.value(active_set);
         SetJoystick *old_set = current_set;
         for (int i = 0; i < current_set->getNumberButtons(); i++)
@@ -79,9 +80,11 @@ void InputDevice::setActiveSetNumber(int index)
             dpadstates.append(dpad->getCurrentDirection());
         }
 
+        // Release all current pressed elements and change set number
         joystick_sets.value(active_set)->release();
         active_set = index;
 
+        // Activate all buttons in the switched set
         current_set = joystick_sets.value(active_set);
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
@@ -95,23 +98,29 @@ void InputDevice::setActiveSetNumber(int index)
                 {
                     if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
                     {
+                        // Button from old set involved in a while held set
+                        // change. Carry over to new set button to ensure
+                        // set changes are done in the proper order.
                         button->setWhileHeldStatus(true);
                     }
                     else if (!button->getWhileHeldStatus())
                     {
+                        // Ensure that set change events are performed if needed.
                         tempignore = false;
                     }
                 }
                 else
                 {
+                    // Ensure that set change events are performed if needed.
                     button->setWhileHeldStatus(false);
+                    tempignore = false;
                 }
             }
 
-            //button->joyEvent(value, true);
             button->joyEvent(value, tempignore);
         }
 
+        // Activate all axis buttons in the switched set
         for (int i = 0; i < current_set->getNumberAxes(); i++)
         {
             int value = axesstates.at(i);
@@ -124,28 +133,32 @@ void InputDevice::setActiveSetNumber(int index)
             {
                 if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
                 {
-                    if (value)
+                    if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
                     {
-                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
-                        {
-                            button->setWhileHeldStatus(true);
-                        }
-                        else if (!button->getWhileHeldStatus())
-                        {
-                            tempignore = false;
-                        }
+                        // Button from old set involved in a while held set
+                        // change. Carry over to new set button to ensure
+                        // set changes are done in the proper order.
+                        button->setWhileHeldStatus(true);
+                    }
+                    else if (!button->getWhileHeldStatus())
+                    {
+                        // Ensure that set change events are performed if needed.
+                        tempignore = false;
                     }
                 }
             }
             else if (!button)
             {
+                // Ensure that set change events are performed if needed.
                 axis->getPAxisButton()->setWhileHeldStatus(false);
                 axis->getNAxisButton()->setWhileHeldStatus(false);
+                tempignore = false;
             }
 
             axis->joyEvent(value, tempignore);
         }
 
+        // Activate all dpad buttons in the switched set
         for (int i = 0; i < current_set->getNumberHats(); i++)
         {
             int value = dpadstates.at(i);
@@ -162,10 +175,14 @@ void InputDevice::setActiveSetNumber(int index)
                     {
                         if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
                         {
+                            // Button from old set involved in a while held set
+                            // change. Carry over to new set button to ensure
+                            // set changes are done in the proper order.
                             button->setWhileHeldStatus(true);
                         }
                         else if (!button->getWhileHeldStatus())
                         {
+                            // Ensure that set change events are performed if needed.
                             tempignore = false;
                         }
                     }
@@ -176,8 +193,10 @@ void InputDevice::setActiveSetNumber(int index)
                 QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
                 while (iter.hasNext())
                 {
+                    // Ensure that set change events are performed if needed.
                     JoyDPadButton *button = iter.next().value();
                     button->setWhileHeldStatus(false);
+                    tempignore = false;
                 }
             }
 

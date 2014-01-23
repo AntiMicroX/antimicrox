@@ -14,6 +14,7 @@
 #include "joybuttonslot.h"
 
 class VDPad;
+class SetJoystick;
 
 class JoyButton : public QObject
 {
@@ -195,6 +196,8 @@ protected:
     QString buttonName; // User specified button name
     QString defaultButtonName; // Name used by the system
 
+    //SetJoystick *parentSet; // Pointer to set that button is assigned to.
+
     unsigned int keyDelay;
 
     static double mouseSpeedModifier;
@@ -248,6 +251,9 @@ public slots:
 
     virtual void clearSlotsEventReset();
 
+    void moveMouseCursor();
+    void moveSpringMouse();
+
 private slots:
     void turboEvent();
     virtual void mouseEvent();
@@ -265,8 +271,6 @@ private slots:
 
     void pauseWaitEvent();
     void checkForSetChange();
-    void moveMouseCursor();
-    void moveSpringMouse();
     void keydelayEvent();
 };
 

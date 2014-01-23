@@ -788,6 +788,7 @@ void SetJoystick::enableButtonConnections(JoyButton *button)
     connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
     connect(button, SIGNAL(released(int)), device, SLOT(buttonReleaseEvent(int)));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
+    //connect(&cursorDelayTimer, SIGNAL(timeout()), button, SLOT(moveMouseCursor()));
 }
 
 void SetJoystick::enableAxisConnections(JoyAxis *axis)
@@ -802,6 +803,7 @@ void SetJoystick::enableAxisConnections(JoyAxis *axis)
     connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
     connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+    connect(&cursorDelayTimer, SIGNAL(timeout()), button, SLOT(moveMouseCursor()));
 
     button = axis->getPAxisButton();
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
@@ -809,6 +811,7 @@ void SetJoystick::enableAxisConnections(JoyAxis *axis)
     connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
     connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
+    //connect(&cursorDelayTimer, SIGNAL(timeout()), button, SLOT(moveMouseCursor()));
 }
 
 void SetJoystick::enableHatConnections(JoyDPad *dpad)
@@ -828,5 +831,17 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
         connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
         connect(button, SIGNAL(released(int)), device, SLOT(dpadButtonReleaseEvent(int)));
         connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
+        //connect(&cursorDelayTimer, SIGNAL(timeout()), button, SLOT(moveMouseCursor()));
     }
+}
+
+
+QTimer* SetJoystick::getCursorDelayTimer()
+{
+    return &cursorDelayTimer;
+}
+
+QTimer* SetJoystick::getSpringDelayTimer()
+{
+    return &springDelayTimer;
 }

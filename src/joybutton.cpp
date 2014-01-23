@@ -2,6 +2,7 @@
 #include <QStringList>
 #include <cmath>
 
+#include "setjoystick.h"
 #include "joybutton.h"
 #include "vdpad.h"
 #include "event.h"
@@ -31,6 +32,7 @@ JoyButton::JoyButton(int index, int originset, QObject *parent) :
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
     keyDelay = 0;
+    //parentSet = parent;
 
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
@@ -189,7 +191,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     buttonHeldRelease.restart();
                     keyDelayHold.restart();
                     //createDeskTimer.start(0);
-                    waitForDeskEvent();
+                    if (!keyDelayTimer.isActive())
+                    {
+                        waitForDeskEvent();
+                    }
                 }
             }
             else if (isButtonPressed && activePress)
@@ -198,7 +203,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 buttonHeldRelease.restart();
                 keyDelayHold.restart();
                 //createDeskTimer.start(0);
-                waitForDeskEvent();
+                if (!keyDelayTimer.isActive())
+                {
+                    waitForDeskEvent();
+                }
             }
             else if (!isButtonPressed && !activePress)
             {
@@ -215,7 +223,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 buttonHeldRelease.restart();
                 keyDelayHold.restart();
                 //createDeskTimer.start(0);
-                waitForDeskEvent();
+                if (!keyDelayTimer.isActive())
+                {
+                    waitForDeskEvent();
+                }
             }
         }
     }
@@ -493,16 +504,27 @@ void JoyButton::createDeskEvent()
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
         bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
-        if (tempButtonPressed && !tempFinalIgnoreSetsState &&
-            setSelectionCondition == SetChangeWhileHeld && !currentRelease)
+
+        if (!whileHeldStatus)
         {
-            setChangeTimer.start();
-            quitEvent = true;
+            if (tempButtonPressed && !tempFinalIgnoreSetsState &&
+                setSelectionCondition == SetChangeWhileHeld && (originset != 2) && !currentRelease)
+            {
+                setChangeTimer.start();
+                quitEvent = true;
+            }
         }
-        else if (tempButtonPressed && currentRelease)
+
+        else if (tempButtonPressed && !tempFinalIgnoreSetsState &&
+                 setSelectionCondition == SetChangeWhileHeld && (originset == 2) && !currentRelease)
         {
-            currentRelease = 0;
+            qDebug() << "QUEUE THE BACON";
         }
+
+        //else if (tempButtonPressed && currentRelease)
+        //{
+        //    currentRelease = 0;
+        //}
     }
 
     if (!quitEvent)
@@ -1643,7 +1665,7 @@ void JoyButton::pauseWaitEvent()
                 isButtonPressedQueue.enqueue(lastIsButtonPressed);
                 currentPause = 0;
                 //JoyButtonSlot *oldCurrentRelease = currentRelease;
-                //currentRelease = 0;
+                currentRelease = 0;
                 //createDeskTimer.stop();
                 releaseDeskTimer.stop();
                 pauseWaitTimer.stop();
@@ -1724,6 +1746,9 @@ void JoyButton::checkForSetChange()
                     releaseDeskTimer.stop();
                 }
 
+                isButtonPressedQueue.clear();
+                ignoreSetQueue.clear();
+
                 emit setChangeActivated(setSelection);
             }
             else if (!tempFinalState && setSelectionCondition == SetChangeTwoWay && setSelection > -1)
@@ -1739,6 +1764,9 @@ void JoyButton::checkForSetChange()
                 {
                     releaseDeskTimer.stop();
                 }
+
+                isButtonPressedQueue.clear();
+                ignoreSetQueue.clear();
 
                 emit setChangeActivated(setSelection);
             }
@@ -1764,6 +1792,9 @@ void JoyButton::checkForSetChange()
                 {
                     releaseDeskTimer.stop();
                 }
+
+                isButtonPressedQueue.clear();
+                ignoreSetQueue.clear();
 
                 emit setChangeActivated(setSelection);
             }
@@ -1823,14 +1854,14 @@ void JoyButton::waitForDeskEvent()
     else if (createDeskTimer.isActive())
     {
         // Decrease timer interval of active timer.
-        createDeskTimer.start(0);
+        createDeskTimer.start(1);
         releaseDeskTimer.stop();
     }
 }
 
 void JoyButton::waitForReleaseDeskEvent()
 {
-    if (quitEvent)
+    if (quitEvent && !keyDelayTimer.isActive())
     {
         if (releaseDeskTimer.isActive())
         {
@@ -1845,9 +1876,13 @@ void JoyButton::waitForReleaseDeskEvent()
         releaseDeskTimer.start(1);
         createDeskTimer.stop();
 #else
-        releaseDeskTimer.start(0);
+        releaseDeskTimer.start(1);
         createDeskTimer.stop();
 #endif
+    }
+    else if (releaseDeskTimer.isActive())
+    {
+        createDeskTimer.stop();
     }
 }
 
@@ -1934,12 +1969,20 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         currentRelease = 0;
     }
 
-    if (!skipsetchange && !isButtonPressedQueue.isEmpty() && !currentRelease)
+    if (!skipsetchange && setSelectionCondition != SetChangeDisabled &&
+        !isButtonPressedQueue.isEmpty() && !currentRelease)
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
         if (!tempButtonPressed)
         {
-            setChangeTimer.start();
+            if (setSelectionCondition == SetChangeWhileHeld && whileHeldStatus)
+            {
+                setChangeTimer.start();
+            }
+            else if (setSelectionCondition != SetChangeWhileHeld)
+            {
+                setChangeTimer.start();
+            }
             //QTimer::singleShot(0, this, SLOT(checkForSetChange()));
             // If createDeskTimer is currently active,
             // a rapid press was detected before a release
@@ -2055,7 +2098,10 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         currentRelease = 0;
         quitEvent = true;
 
-        if (createDeskTimer.isActive() && !isButtonPressedQueue.isEmpty() &&
+        createDeskTimer.stop();
+        keyDelayTimer.stop();
+
+        /*if (createDeskTimer.isActive() && !isButtonPressedQueue.isEmpty() &&
             isButtonPressedQueue.last())
         {
             int timerinterval = createDeskTimer.interval();
@@ -2064,7 +2110,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         else
         {
             createDeskTimer.stop();
-        }
+        }*/
     }
     else
     {
@@ -2729,6 +2775,13 @@ void JoyButton::keydelayEvent()
         //qDebug() << "NEVER: " << proposedInterval;
         int newTimerInterval = qMin(10, proposedInterval);
         keyDelayTimer.start(newTimerInterval);
+        // If release timer is active, push next run until
+        // after keyDelayTimer will timeout again. Helps
+        // reduce CPU usage of an excessively repeating timer.
+        if (releaseDeskTimer.isActive())
+        {
+            releaseDeskTimer.start(proposedInterval);
+        }
     }
 }
 
