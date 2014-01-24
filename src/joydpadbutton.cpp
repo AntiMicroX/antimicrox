@@ -5,8 +5,8 @@
 const QString JoyDPadButton::xmlName = "dpadbutton";
 
 // Initially, qualify direction as the button's index
-JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad* dpad, QObject *parent) :
-    JoyButton(direction, originset, parent)
+JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent) :
+    JoyButton(direction, originset, parentSet, parent)
 {
     this->direction = direction;
     this->dpad = dpad;

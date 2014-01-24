@@ -6,14 +6,14 @@
 
 const QString JoyControlStickButton::xmlName = "stickbutton";
 
-JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, QObject *parent) :
-    JoyButton(index, originset, parent)
+JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyButton(index, originset, parentSet, parent)
 {
     this->stick = stick;
 }
 
-JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent) :
-    JoyButton((int)index, originset, parent)
+JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyButton((int)index, originset, parentSet, parent)
 {
     this->stick = stick;
 }

@@ -20,7 +20,7 @@ class JoyButton : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyButton(int index, int originset, QObject *parent=0);
+    explicit JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyButton();
 
     enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay, SetChangeTwoWay, SetChangeWhileHeld};
@@ -104,6 +104,8 @@ public:
     virtual void setDefaultButtonName(QString tempname);
     virtual QString getDefaultButtonName();
 
+    SetJoystick* getParentSet();
+
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
@@ -117,6 +119,7 @@ protected:
     void findReleaseEventEnd();
     void findHoldEventEnd();
     bool checkForDelaySequence();
+    void checkForPressedSetChange();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -196,7 +199,7 @@ protected:
     QString buttonName; // User specified button name
     QString defaultButtonName; // Name used by the system
 
-    //SetJoystick *parentSet; // Pointer to set that button is assigned to.
+    SetJoystick *parentSet; // Pointer to set that button is assigned to.
 
     unsigned int keyDelay;
 

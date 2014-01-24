@@ -2,8 +2,8 @@
 
 const QString GameControllerTriggerButton::xmlName = "triggerbutton";
 
-GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int index, int originset, QObject *parent) :
-    JoyAxisButton(axis, index, originset, parent)
+GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyAxisButton(axis, index, originset, parentSet, parent)
 {
 }
 

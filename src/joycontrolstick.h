@@ -91,6 +91,8 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
+    SetJoystick* getParentSet();
+
     static const double PI;
 
 protected:

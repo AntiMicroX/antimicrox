@@ -16,7 +16,7 @@ class JoyAxis : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyAxis(int index, int originset, QObject *parent=0);
+    explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyAxis();
 
     enum ThrottleTypes {
@@ -99,6 +99,8 @@ public:
     virtual void setDefaultAxisName(QString tempname);
     virtual QString getDefaultAxisName();
 
+    SetJoystick* getParentSet();
+
     virtual bool isDefault();
 
     static const int AXISMIN;
@@ -136,6 +138,7 @@ protected:
     JoyControlStick *stick;
     QString axisName;
     QString defaultAxisName;
+    SetJoystick *parentSet;
 
 signals:
     void active(int value);

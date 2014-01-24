@@ -3,8 +3,8 @@
 const QString GameControllerDPad::xmlName = "dpad";
 
 GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
-                                       int index, int originset, QObject *parent) :
-    VDPad(upButton, downButton, leftButton, rightButton, index, originset, parent)
+                                       int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
 }
 

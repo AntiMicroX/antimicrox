@@ -113,7 +113,7 @@ void InputDevice::setActiveSetNumber(int index)
                 {
                     // Ensure that set change events are performed if needed.
                     button->setWhileHeldStatus(false);
-                    tempignore = false;
+                    //tempignore = false;
                 }
             }
 
@@ -152,7 +152,6 @@ void InputDevice::setActiveSetNumber(int index)
                 // Ensure that set change events are performed if needed.
                 axis->getPAxisButton()->setWhileHeldStatus(false);
                 axis->getNAxisButton()->setWhileHeldStatus(false);
-                tempignore = false;
             }
 
             axis->joyEvent(value, tempignore);
@@ -196,7 +195,6 @@ void InputDevice::setActiveSetNumber(int index)
                     // Ensure that set change events are performed if needed.
                     JoyDPadButton *button = iter.next().value();
                     button->setWhileHeldStatus(false);
-                    tempignore = false;
                 }
             }
 

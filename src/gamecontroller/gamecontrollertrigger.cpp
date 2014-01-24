@@ -6,11 +6,11 @@ const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTL
 
 const QString GameControllerTrigger::xmlName = "trigger";
 
-GameControllerTrigger::GameControllerTrigger(int index, int originset, QObject *parent) :
-    JoyAxis(index, originset, parent)
+GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyAxis(index, originset, parentSet, parent)
 {
-    naxisbutton = new GameControllerTriggerButton(this, 0, originset);
-    paxisbutton = new GameControllerTriggerButton(this, 1, originset);
+    naxisbutton = new GameControllerTriggerButton(this, 0, originset, parentSet, this);
+    paxisbutton = new GameControllerTriggerButton(this, 1, originset, parentSet, this);
     reset(index);
 }
 

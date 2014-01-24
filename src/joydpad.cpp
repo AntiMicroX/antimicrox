@@ -4,18 +4,7 @@
 
 const QString JoyDPad::xmlName = "dpad";
 
-JoyDPad::JoyDPad(QObject *parent) :
-    QObject(parent)
-{
-    buttons = QHash<int, JoyDPadButton*> ();
-    activeDiagonalButton = 0;
-    prevDirection = JoyDPadButton::DpadCentered;
-    originset = 0;
-    currentMode = StandardMode;
-    populateButtons();
-}
-
-JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
+JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {
     this->index = index;
@@ -24,6 +13,7 @@ JoyDPad::JoyDPad(int index, int originset, QObject *parent) :
     prevDirection = JoyDPadButton::DpadCentered;
     this->originset = originset;
     currentMode = StandardMode;
+    this->parentSet = parentSet;
 
     populateButtons();
 }
@@ -48,28 +38,28 @@ JoyDPadButton *JoyDPad::getJoyButton(int index)
 
 void JoyDPad::populateButtons()
 {
-    JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, originset, this, this);
+    JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadUp, button);
 
-    button = new JoyDPadButton (JoyDPadButton::DpadDown, originset, this, this);
+    button = new JoyDPadButton (JoyDPadButton::DpadDown, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadDown, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRight, originset, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRight, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadRight, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeft, originset, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeft, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadLeft, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeftUp, originset, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeftUp, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadLeftUp, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRightUp, originset, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRightUp, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadRightUp, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRightDown, originset, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRightDown, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadRightDown, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeftDown, originset, this, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeftDown, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
@@ -760,4 +750,9 @@ void JoyDPad::setDefaultDPadName(QString tempname)
 QString JoyDPad::getDefaultDPadName()
 {
     return defaultDPadName;
+}
+
+SetJoystick* JoyDPad::getParentSet()
+{
+    return parentSet;
 }

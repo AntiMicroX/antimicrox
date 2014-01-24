@@ -12,6 +12,10 @@ const int JoyButton::ENABLEDTURBODEFAULT = 100;
 const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
+int JoyButton::globalKeyDelay = 100;
+QHash<unsigned int, int> JoyButton::activeKeys;
+
+
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
 QTimer JoyButton::cursorDelayTimer;
 QList<int> JoyButton::cursorXSpeeds;
@@ -21,18 +25,15 @@ QTimer JoyButton::springDelayTimer;
 QList<double> JoyButton::springXSpeeds;
 QList<double> JoyButton::springYSpeeds;
 
-QHash<unsigned int, int> JoyButton::activeKeys;
 
-int JoyButton::globalKeyDelay = 100;
-
-JoyButton::JoyButton(int index, int originset, QObject *parent) :
+JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {
     vdpad = 0;
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
     keyDelay = 0;
-    //parentSet = parent;
+    this->parentSet = parentSet;
 
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
@@ -119,6 +120,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
 
             bool activePress = pressed;
+            setChangeTimer.stop();
 
             if (toggle && pressed)
             {
@@ -153,11 +155,20 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else
             {
-                this->ignoresets = ignoresets;
-                isButtonPressed = isDown = pressed;
+                //if (!setChangeTimer.isActive())
+                //{
+                    //setChangeTimer.stop();
+                    this->ignoresets = ignoresets;
+                    isButtonPressed = isDown = pressed;
 
-                ignoreSetQueue.enqueue(ignoresets);
-                isButtonPressedQueue.enqueue(isButtonPressed);
+                    ignoreSetQueue.enqueue(ignoresets);
+                    isButtonPressedQueue.enqueue(isButtonPressed);
+                //}
+                /*else
+                {
+                    QString ham = activePress ? "true" : "false";
+                    qDebug() << "HAMTARO " << ham;
+                }*/
             }
 
             if (useTurbo)
@@ -191,6 +202,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     buttonHeldRelease.restart();
                     keyDelayHold.restart();
                     //createDeskTimer.start(0);
+                    releaseDeskTimer.stop();
                     if (!keyDelayTimer.isActive())
                     {
                         waitForDeskEvent();
@@ -199,33 +211,57 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else if (isButtonPressed && activePress)
             {
-                buttonHold.restart();
-                buttonHeldRelease.restart();
-                keyDelayHold.restart();
-                //createDeskTimer.start(0);
-                if (!keyDelayTimer.isActive())
-                {
-                    waitForDeskEvent();
-                }
+                //if (!setChangeTimer.isActive())
+                //{
+                    buttonHold.restart();
+                    buttonHeldRelease.restart();
+                    keyDelayHold.restart();
+                    //createDeskTimer.start(0);
+                    releaseDeskTimer.stop();
+
+                    if (!keyDelayTimer.isActive())
+                    {
+                        checkForPressedSetChange();
+                        if (!setChangeTimer.isActive())
+                        {
+                            waitForDeskEvent();
+                        }
+                    }
+                //}
+                //else
+                //{
+                 //   qDebug() << "MASTER PASSION GREED";
+                //}
             }
             else if (!isButtonPressed && !activePress)
             {
                 //releaseDeskTimer.start(0);
-                waitForReleaseDeskEvent();
+                //if (!setChangeTimer.isActive())
+                //{
+                    waitForReleaseDeskEvent();
+                //}
+                //else
+                //{
+                //    qDebug() << "DUDE";
+                //}
             }
         }
         else if (!useTurbo && isButtonPressed)
         {
-            bool releasedCalled = distanceEvent();
-            if (releasedCalled)
+            if (!setChangeTimer.isActive())
             {
-                buttonHold.restart();
-                buttonHeldRelease.restart();
-                keyDelayHold.restart();
-                //createDeskTimer.start(0);
-                if (!keyDelayTimer.isActive())
+                bool releasedCalled = distanceEvent();
+                if (releasedCalled)
                 {
-                    waitForDeskEvent();
+                    buttonHold.restart();
+                    buttonHeldRelease.restart();
+                    keyDelayHold.restart();
+                    //createDeskTimer.start(0);
+                    releaseDeskTimer.stop();
+                    if (!keyDelayTimer.isActive())
+                    {
+                        waitForDeskEvent();
+                    }
                 }
             }
         }
@@ -500,60 +536,30 @@ void JoyButton::createDeskEvent()
 {
     quitEvent = false;
 
-    if (!isButtonPressedQueue.isEmpty())
+    if (!slotiter)
     {
-        bool tempButtonPressed = isButtonPressedQueue.last();
-        bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
-
-        if (!whileHeldStatus)
-        {
-            if (tempButtonPressed && !tempFinalIgnoreSetsState &&
-                setSelectionCondition == SetChangeWhileHeld && (originset != 2) && !currentRelease)
-            {
-                setChangeTimer.start();
-                quitEvent = true;
-            }
-        }
-
-        else if (tempButtonPressed && !tempFinalIgnoreSetsState &&
-                 setSelectionCondition == SetChangeWhileHeld && (originset == 2) && !currentRelease)
-        {
-            qDebug() << "QUEUE THE BACON";
-        }
-
-        //else if (tempButtonPressed && currentRelease)
-        //{
-        //    currentRelease = 0;
-        //}
+        slotiter = new QListIterator<JoyButtonSlot*> (assignments);
+        distanceEvent();
+    }
+    else if (!slotiter->hasPrevious())
+    {
+        distanceEvent();
+    }
+    else if (currentCycle)
+    {
+        currentCycle = 0;
+        distanceEvent();
     }
 
-    if (!quitEvent)
+    activateSlots();
+
+    if (currentCycle)
     {
-        if (!slotiter)
-        {
-            slotiter = new QListIterator<JoyButtonSlot*> (assignments);
-            distanceEvent();
-        }
-        else if (!slotiter->hasPrevious())
-        {
-            distanceEvent();
-        }
-        else if (currentCycle)
-        {
-            currentCycle = 0;
-            distanceEvent();
-        }
-
-        activateSlots();
-
-        if (currentCycle)
-        {
-            quitEvent = true;
-        }
-        else if (!currentPause && !currentHold && !keyDelayTimer.isActive())
-        {
-            quitEvent = true;
-        }
+        quitEvent = true;
+    }
+    else if (!currentPause && !currentHold && !keyDelayTimer.isActive())
+    {
+        quitEvent = true;
     }
 }
 
@@ -652,6 +658,12 @@ void JoyButton::activateSlots()
                 {
                     findReleaseEventEnd();
                 }
+                /*else
+                {
+                    currentRelease = 0;
+                    exit = true;
+                }*/
+
                 else if (currentRelease && activeSlots.isEmpty())
                 {
                     //currentRelease = 0;
@@ -1749,6 +1761,7 @@ void JoyButton::checkForSetChange()
                 isButtonPressedQueue.clear();
                 ignoreSetQueue.clear();
 
+                emit released(index);
                 emit setChangeActivated(setSelection);
             }
             else if (!tempFinalState && setSelectionCondition == SetChangeTwoWay && setSelection > -1)
@@ -1768,6 +1781,7 @@ void JoyButton::checkForSetChange()
                 isButtonPressedQueue.clear();
                 ignoreSetQueue.clear();
 
+                emit released(index);
                 emit setChangeActivated(setSelection);
             }
             else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
@@ -1796,6 +1810,7 @@ void JoyButton::checkForSetChange()
                 isButtonPressedQueue.clear();
                 ignoreSetQueue.clear();
 
+                emit released(index);
                 emit setChangeActivated(setSelection);
             }
         }
@@ -1830,6 +1845,7 @@ void JoyButton::waitForDeskEvent()
         if (createDeskTimer.isActive())
         {
             keyDelayHold.restart();
+            keyDelayTimer.stop();
             createDeskTimer.stop();
             createDeskEvent();
         }
@@ -1868,6 +1884,7 @@ void JoyButton::waitForReleaseDeskEvent()
             releaseDeskTimer.stop();
         }
         createDeskTimer.stop();
+        keyDelayTimer.stop();
         releaseDeskEvent();
     }
     else if (!releaseDeskTimer.isActive())
@@ -1958,6 +1975,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     pauseTimer.stop();
     pauseWaitTimer.stop();
     holdTimer.stop();
+    createDeskTimer.stop();
+    keyDelayTimer.stop();
 
     releaseActiveSlots();
     if (!isButtonPressedQueue.isEmpty() && !currentRelease)
@@ -1973,11 +1992,23 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         !isButtonPressedQueue.isEmpty() && !currentRelease)
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
-        if (!tempButtonPressed)
+        bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
+
+        if (!tempButtonPressed && !tempFinalIgnoreSetsState)
         {
             if (setSelectionCondition == SetChangeWhileHeld && whileHeldStatus)
             {
-                setChangeTimer.start();
+                /*if (originset == 1)
+                {
+                    qDebug() << "QUEUE THE BOLTON";
+                    setChangeTimer.start(0);
+                }
+                else
+                {
+                    setChangeTimer.start(0);
+                }*/
+                //qDebug() << "ORIGIN SET: " << originset;
+                setChangeTimer.start(0);
             }
             else if (setSelectionCondition != SetChangeWhileHeld)
             {
@@ -2095,26 +2126,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         }
 
         this->currentDistance = 0;
-        currentRelease = 0;
         quitEvent = true;
-
-        createDeskTimer.stop();
-        keyDelayTimer.stop();
-
-        /*if (createDeskTimer.isActive() && !isButtonPressedQueue.isEmpty() &&
-            isButtonPressedQueue.last())
-        {
-            int timerinterval = createDeskTimer.interval();
-            createDeskTimer.start(timerinterval);
-        }
-        else
-        {
-            createDeskTimer.stop();
-        }*/
-    }
-    else
-    {
-        createDeskTimer.stop();
     }
 }
 
@@ -2814,4 +2826,37 @@ bool JoyButton::checkForDelaySequence()
     }
 
     return result;
+}
+
+SetJoystick* JoyButton::getParentSet()
+{
+    return parentSet;
+}
+
+void JoyButton::checkForPressedSetChange()
+{
+    if (!isButtonPressedQueue.isEmpty())
+    {
+        bool tempButtonPressed = isButtonPressedQueue.last();
+        bool tempFinalIgnoreSetsState = ignoreSetQueue.last();
+
+        if (!whileHeldStatus)
+        {
+            if (tempButtonPressed && !tempFinalIgnoreSetsState &&
+                setSelectionCondition == SetChangeWhileHeld && !currentRelease)
+            {
+                setChangeTimer.start(0);
+                quitEvent = true;
+            }
+            /*else if (tempButtonPressed && !tempFinalIgnoreSetsState &&
+                     setSelectionCondition == SetChangeWhileHeld && !currentRelease)
+            {
+                qDebug() << "QUEUE THE BACON";
+            }*/
+        }
+        //else if (tempButtonPressed && currentRelease)
+        //{
+        //    currentRelease = 0;
+        //}
+    }
 }

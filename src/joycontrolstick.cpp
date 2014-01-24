@@ -68,28 +68,28 @@ bool JoyControlStick::inDeadZone()
 
 void JoyControlStick::populateButtons()
 {
-    JoyControlStickButton *button = new JoyControlStickButton (this, StickUp, originset, this);
+    JoyControlStickButton *button = new JoyControlStickButton (this, StickUp, originset, getParentSet(), this);
     buttons.insert(StickUp, button);
 
-    button = new JoyControlStickButton (this, StickDown, originset, this);
+    button = new JoyControlStickButton (this, StickDown, originset, getParentSet(), this);
     buttons.insert(StickDown, button);
 
-    button = new JoyControlStickButton(this, StickLeft, originset, this);
+    button = new JoyControlStickButton(this, StickLeft, originset, getParentSet(), this);
     buttons.insert(StickLeft, button);
 
-    button = new JoyControlStickButton(this, StickRight, originset, this);
+    button = new JoyControlStickButton(this, StickRight, originset, getParentSet(), this);
     buttons.insert(StickRight, button);
 
-    button = new JoyControlStickButton(this, StickLeftUp, originset, this);
+    button = new JoyControlStickButton(this, StickLeftUp, originset, getParentSet(), this);
     buttons.insert(StickLeftUp, button);
 
-    button = new JoyControlStickButton(this, StickLeftDown, originset, this);
+    button = new JoyControlStickButton(this, StickLeftDown, originset, getParentSet(), this);
     buttons.insert(StickLeftDown, button);
 
-    button = new JoyControlStickButton(this, StickRightDown, originset, this);
+    button = new JoyControlStickButton(this, StickRightDown, originset, getParentSet(), this);
     buttons.insert(StickRightDown, button);
 
-    button = new JoyControlStickButton(this, StickRightUp, originset, this);
+    button = new JoyControlStickButton(this, StickRightUp, originset, getParentSet(), this);
     buttons.insert(StickRightUp, button);
 }
 
@@ -939,28 +939,37 @@ JoyAxis* JoyControlStick::getAxisY()
 
 void JoyControlStick::replaceXAxis(JoyAxis *axis)
 {
-    axisX->removeControlStick();
-    this->axisX = axis;
-    this->axisX->setControlStick(this);
+    if (axis->getParentSet() == axisY->getParentSet())
+    {
+        axisX->removeControlStick();
+        this->axisX = axis;
+        this->axisX->setControlStick(this);
+    }
 }
 
 void JoyControlStick::replaceYAxis(JoyAxis *axis)
 {
-    axisY->removeControlStick();
-    this->axisY = axis;
-    this->axisY->setControlStick(this);
+    if (axis->getParentSet() == axisX->getParentSet())
+    {
+        axisY->removeControlStick();
+        this->axisY = axis;
+        this->axisY->setControlStick(this);
+    }
 }
 
 void JoyControlStick::replaceAxes(JoyAxis *axisX, JoyAxis *axisY)
 {
-    this->axisX->removeControlStick();
-    this->axisY->removeControlStick();
+    if (axisX->getParentSet() == axisY->getParentSet())
+    {
+        this->axisX->removeControlStick();
+        this->axisY->removeControlStick();
 
-    this->axisX = axisX;
-    this->axisY = axisY;
+        this->axisX = axisX;
+        this->axisY = axisY;
 
-    this->axisX->setControlStick(this);
-    this->axisY->setControlStick(this);
+        this->axisX->setControlStick(this);
+        this->axisY->setControlStick(this);
+    }
 }
 
 void JoyControlStick::setJoyMode(JoyMode mode)
@@ -1419,4 +1428,18 @@ void JoyControlStick::setButtonsWheelSpeedY(int value)
         JoyControlStickButton *button = iter.next().value();
         button->setWheelSpeedY(value);
     }
+}
+
+SetJoystick* JoyControlStick::getParentSet()
+{
+    SetJoystick *temp = 0;
+    if (axisX)
+    {
+        temp = axisX->getParentSet();
+    }
+    else if (axisY)
+    {
+        temp = axisY->getParentSet();
+    }
+    return temp;
 }

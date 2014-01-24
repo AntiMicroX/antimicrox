@@ -8,9 +8,9 @@ class VDPad : public JoyDPad
 {
     Q_OBJECT
 public:
-    explicit VDPad(int index, int originset, QObject *parent = 0);
+    explicit VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
     explicit VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
-                   int index, int originset, QObject *parent = 0);
+                   int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
     ~VDPad();
 
     void joyEvent (bool pressed, bool ignoresets=false);

@@ -6,8 +6,8 @@
 
 const QString JoyAxisButton::xmlName = "axisbutton";
 
-JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent) :
-    JoyButton(index, originset, parent)
+JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyButton(index, originset, parentSet, parent)
 {
     this->axis = axis;
 }

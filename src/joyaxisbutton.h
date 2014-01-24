@@ -11,7 +11,7 @@ class JoyAxisButton : public JoyButton
 {
     Q_OBJECT
 public:
-    explicit JoyAxisButton(JoyAxis *axis, int index, int originset, QObject *parent=0);
+    explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();

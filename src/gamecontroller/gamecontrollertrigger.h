@@ -15,7 +15,7 @@ class GameControllerTrigger : public JoyAxis
 {
     Q_OBJECT
 public:
-    explicit GameControllerTrigger(int index, int originset, QObject *parent = 0);
+    explicit GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
 
     virtual QString getXmlName();
     virtual QString getPartialName(bool forceFullFormat, bool displayNames);

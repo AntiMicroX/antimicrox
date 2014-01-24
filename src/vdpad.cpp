@@ -2,8 +2,8 @@
 
 const QString VDPad::xmlName = "vdpad";
 
-VDPad::VDPad(int index, int originset, QObject *parent) :
-    JoyDPad(index, originset, parent)
+VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyDPad(index, originset, parentSet, parent)
 {
     this->upButton = 0;
     this->downButton = 0;
@@ -12,8 +12,8 @@ VDPad::VDPad(int index, int originset, QObject *parent) :
 }
 
 VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
-             int index, int originset, QObject *parent) :
-    JoyDPad(index, originset, parent)
+             int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyDPad(index, originset, parentSet, parent)
 {
     this->upButton = upButton;
     upButton->setVDPad(this);

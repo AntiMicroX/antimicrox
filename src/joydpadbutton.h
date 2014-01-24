@@ -9,7 +9,7 @@ class JoyDPadButton : public JoyButton
 {
     Q_OBJECT
 public:
-    JoyDPadButton(int direction, int originset, JoyDPad* dpad, QObject *parent=0);
+    JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent=0);
 
     QString getDirectionName();
     virtual int getRealJoyNumber();

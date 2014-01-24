@@ -13,8 +13,7 @@ class JoyDPad : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyDPad(QObject *parent = 0);
-    explicit JoyDPad(int index, int originset, QObject *parent=0);
+    explicit JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyDPad();
 
     enum JoyMode {StandardMode=0, EightWayMode};
@@ -71,6 +70,8 @@ public:
     virtual void setDefaultDPadName(QString tempname);
     virtual QString getDefaultDPadName();
 
+    SetJoystick* getParentSet();
+
     static const QString xmlName;
 
 protected:
@@ -85,6 +86,7 @@ protected:
     JoyMode currentMode;
     QString dpadName;
     QString defaultDPadName;
+    SetJoystick *parentSet;
 
 signals:
     void active(int value);

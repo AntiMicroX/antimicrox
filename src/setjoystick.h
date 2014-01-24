@@ -7,12 +7,6 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#ifdef USE_SDL_2
-#include <SDL2/SDL_joystick.h>
-#else
-#include <SDL/SDL_joystick.h>
-#endif
-
 #include "joyaxis.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
@@ -51,8 +45,6 @@ public:
     void addVDPad(int index, VDPad *vdpad);
     void removeVDPad(int index);
     void setIgnoreEventState(bool ignore);
-    QTimer* getCursorDelayTimer();
-    QTimer* getSpringDelayTimer();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
@@ -76,10 +68,7 @@ protected:
     QHash<int, VDPad*> vdpads;
 
     int index;
-    //SDL_Joystick* joyhandle;
     InputDevice *device;
-    QTimer cursorDelayTimer;
-    QTimer springDelayTimer;
 
 signals:
     void setChangeActivated(int index);

@@ -17,13 +17,14 @@ const JoyAxis::ThrottleTypes JoyAxis::DEFAULTTHROTTLE = JoyAxis::NormalThrottle;
 
 const QString JoyAxis::xmlName = "axis";
 
-JoyAxis::JoyAxis(int index, int originset, QObject *parent) :
+JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {
     stick = 0;
     this->originset = originset;
-    naxisbutton = new JoyAxisButton(this, 0, originset);
-    paxisbutton = new JoyAxisButton(this, 1, originset);
+    this->parentSet = parentSet;
+    naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);
+    paxisbutton = new JoyAxisButton(this, 1, originset, parentSet, this);
 
     reset();
     this->index = index;
@@ -839,4 +840,9 @@ int JoyAxis::getDefaultMaxZone()
 JoyAxis::ThrottleTypes JoyAxis::getDefaultThrottle()
 {
     return (ThrottleTypes)this->DEFAULTTHROTTLE;
+}
+
+SetJoystick* JoyAxis::getParentSet()
+{
+    return parentSet;
 }

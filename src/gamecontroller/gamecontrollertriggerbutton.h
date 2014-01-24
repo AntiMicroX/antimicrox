@@ -9,7 +9,7 @@ class GameControllerTriggerButton : public JoyAxisButton
 {
     Q_OBJECT
 public:
-    explicit GameControllerTriggerButton(JoyAxis *axis, int index, int originset, QObject *parent = 0);
+    explicit GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
 
     virtual QString getXmlName();
 

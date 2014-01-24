@@ -10,8 +10,8 @@ class JoyControlStickButton : public JoyButton
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, QObject *parent = 0);
-    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, QObject *parent = 0);
+    explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent = 0);
 
     virtual int getRealJoyNumber();
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
