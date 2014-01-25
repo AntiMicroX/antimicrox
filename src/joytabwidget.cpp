@@ -3,6 +3,7 @@
 #include <QGroupBox>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QStringListIterator>
 
 
 #include "joytabwidget.h"
@@ -401,11 +402,13 @@ void JoyTabWidget::openConfigFileDialog()
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
+            saveDeviceSettings();
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
         else
         {
             configBox->setCurrentIndex(searchIndex);
+            saveDeviceSettings();
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
     }
@@ -955,11 +958,13 @@ void JoyTabWidget::saveConfigFile()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
+                saveDeviceSettings();
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
                 configBox->setCurrentIndex(existingIndex);
+                saveDeviceSettings();
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
         }
@@ -1064,11 +1069,13 @@ void JoyTabWidget::saveAsConfig()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
+                saveDeviceSettings();
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
                 configBox->setCurrentIndex(existingIndex);
+                saveDeviceSettings();
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
         }
@@ -1126,11 +1133,29 @@ void JoyTabWidget::saveSettings(QSettings *settings)
     int index = configBox->currentIndex();
     int currentjoy = 1;
 
+    QString controlGUIDPrefix = QString("Controller%1").arg(joystick->getGUIDString());
     QString controlGUIDString = QString("Controller%1ConfigFile%2").arg(joystick->getGUIDString());
     QString controlGUIDLastSelected = QString("Controller%1LastSelected").arg(joystick->getGUIDString());
 
+    QString controlSDLNamePrefix = QString("Controller%1").arg(joystick->getSDLName());
     QString controlSDLNameString = QString("Controller%1ConfigFile%2").arg(joystick->getSDLName());
     QString controlSDLNameLastSelected = QString("Controller%1LastSelected").arg(joystick->getSDLName());
+
+    // Remove current settings for a controller
+    QStringList tempkeys = settings->allKeys();
+    QStringListIterator iter(tempkeys);
+    while (iter.hasNext())
+    {
+        QString tempstring = iter.next();
+        if (tempstring.startsWith(controlGUIDPrefix))
+        {
+            settings->remove(tempstring);
+        }
+        else if (tempstring.startsWith(controlSDLNamePrefix))
+        {
+            settings->remove(tempstring);
+        }
+    }
 
     // Output currently selected profile as first profile on the list
     if (index != 0)
@@ -1508,6 +1533,7 @@ void JoyTabWidget::removeConfig()
     if (currentIndex > 0)
     {
         configBox->removeItem(currentIndex);
+        saveDeviceSettings();
         emit joystickConfigChanged(joystick->getJoyNumber());
     }
 }
@@ -1523,4 +1549,12 @@ void JoyTabWidget::toggleNames()
 void JoyTabWidget::unloadConfig()
 {
     configBox->setCurrentIndex(0);
+}
+
+void JoyTabWidget::saveDeviceSettings()
+{
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings.beginGroup("Controllers");
+    saveSettings(&settings);
+    settings.endGroup();
 }

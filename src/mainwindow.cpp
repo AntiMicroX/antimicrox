@@ -359,11 +359,47 @@ void MainWindow::saveAppConfig()
         QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         settings.beginGroup("Controllers");
         settings.remove("");
+        QStringList tempGUIDHolder;
+        QStringList tempNameHolder;
 
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
+            bool prepareSave = true;
+
             JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(i);
-            tabwidget->saveSettings(&settings);
+            InputDevice *device = tabwidget->getJoystick();
+
+            // Do not allow multi-controller adapters to overwrite each
+            // others recent config file list. Use first controller
+            // detected to save recent config list. Flag controller string
+            // afterwards.
+            if (!device->getGUIDString().isEmpty())
+            {
+                if (tempGUIDHolder.contains(device->getGUIDString()))
+                {
+                    prepareSave = false;
+                }
+                else
+                {
+                    tempGUIDHolder.append(device->getGUIDString());
+                }
+            }
+            else if (!device->getSDLName().isEmpty())
+            {
+                if (tempNameHolder.contains(device->getSDLName()))
+                {
+                    prepareSave = false;
+                }
+                else
+                {
+                    tempNameHolder.append(device->getSDLName());
+                }
+            }
+
+            if (prepareSave)
+            {
+                tabwidget->saveSettings(&settings);
+            }
         }
 
         settings.endGroup();

@@ -1998,31 +1998,12 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         {
             if (setSelectionCondition == SetChangeWhileHeld && whileHeldStatus)
             {
-                /*if (originset == 1)
-                {
-                    qDebug() << "QUEUE THE BOLTON";
-                    setChangeTimer.start(0);
-                }
-                else
-                {
-                    setChangeTimer.start(0);
-                }*/
-                //qDebug() << "ORIGIN SET: " << originset;
                 setChangeTimer.start(0);
             }
             else if (setSelectionCondition != SetChangeWhileHeld)
             {
                 setChangeTimer.start();
             }
-            //QTimer::singleShot(0, this, SLOT(checkForSetChange()));
-            // If createDeskTimer is currently active,
-            // a rapid press was detected before a release
-            // started. Restart timer so checkForSetChange
-            // happens first
-            //if (createDeskTimer.isActive())
-            //{
-            //    createDeskTimer.start();
-            //}
         }
         else
         {
@@ -2848,15 +2829,6 @@ void JoyButton::checkForPressedSetChange()
                 setChangeTimer.start(0);
                 quitEvent = true;
             }
-            /*else if (tempButtonPressed && !tempFinalIgnoreSetsState &&
-                     setSelectionCondition == SetChangeWhileHeld && !currentRelease)
-            {
-                qDebug() << "QUEUE THE BACON";
-            }*/
         }
-        //else if (tempButtonPressed && currentRelease)
-        //{
-        //    currentRelease = 0;
-        //}
     }
 }

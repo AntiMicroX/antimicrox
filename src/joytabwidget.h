@@ -123,6 +123,7 @@ private slots:
     void changeSetEight();
     void changeCurrentSet(int index);
     void openStickButtonDialog();
+    void saveDeviceSettings();
 };
 
 #endif // JOYTABWIDGET_H
