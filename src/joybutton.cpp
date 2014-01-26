@@ -349,6 +349,8 @@ void JoyButton::reset()
     currentWheelHorizontalEvent = 0;
 
     isKeyPressed = isButtonPressed = false;
+    wheelVerticalActive = false;
+    wheelHorizontalActive = false;
     toggle = false;
     turboInterval = 0;
     isDown = false;
@@ -921,19 +923,22 @@ void JoyButton::wheelEventVertical()
         buttonslot = currentWheelVerticalEvent;
     }
 
-    if (buttonslot && wheelSpeedY != 0)
+    if (buttonslot && wheelSpeedY != 0 && !wheelVerticalActive)
     {
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
         {
             sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-            sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+            //sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
             mouseWheelVerticalEventQueue.enqueue(buttonslot);
-            mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
+            //mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
+            mouseWheelVerticalEventTimer.start(0);
+            wheelVerticalActive = true;
         }
         else
         {
             mouseWheelVerticalEventTimer.stop();
+            wheelVerticalActive = false;
         }
     }
     else if (!mouseWheelVerticalEventQueue.isEmpty() && wheelSpeedY != 0)
@@ -945,8 +950,15 @@ void JoyButton::wheelEventVertical()
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
             {
-                sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-                sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                if (!wheelVerticalActive)
+                {
+                    sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
+                }
+                else
+                {
+                    sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                }
+
                 tempQueue.enqueue(buttonslot);
             }
         }
@@ -954,16 +966,29 @@ void JoyButton::wheelEventVertical()
         if (!tempQueue.isEmpty())
         {
             mouseWheelVerticalEventQueue = tempQueue;
-            mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
+            //mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
+            if (!wheelVerticalActive)
+            {
+                mouseWheelVerticalEventTimer.start(0);
+                wheelVerticalActive = true;
+            }
+            else
+            {
+                int delay = qMax((1000 / wheelSpeedY), 0);
+                mouseWheelVerticalEventTimer.start(delay);
+                wheelVerticalActive = false;
+            }
         }
         else
         {
             mouseWheelVerticalEventTimer.stop();
+            wheelVerticalActive = false;
         }
     }
     else
     {
         mouseWheelVerticalEventTimer.stop();
+        wheelVerticalActive = false;
     }
 }
 
@@ -975,19 +1000,22 @@ void JoyButton::wheelEventHorizontal()
         buttonslot = currentWheelHorizontalEvent;
     }
 
-    if (buttonslot && wheelSpeedX != 0)
+    if (buttonslot && wheelSpeedX != 0 && wheelHorizontalActive)
     {
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
         {
             sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-            sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+            //sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
             mouseWheelHorizontalEventQueue.enqueue(buttonslot);
-            mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
+            //mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
+            mouseWheelHorizontalEventTimer.start(0);
+            wheelHorizontalActive = true;
         }
         else
         {
             mouseWheelHorizontalEventTimer.stop();
+            wheelHorizontalActive = false;
         }
     }
     else if (!mouseWheelHorizontalEventQueue.isEmpty() && wheelSpeedX != 0)
@@ -999,8 +1027,15 @@ void JoyButton::wheelEventHorizontal()
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
             {
-                sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-                sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                if (!wheelHorizontalActive)
+                {
+                    sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
+                }
+                else
+                {
+                    sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                }
+
                 tempQueue.enqueue(buttonslot);
             }
         }
@@ -1008,16 +1043,30 @@ void JoyButton::wheelEventHorizontal()
         if (!tempQueue.isEmpty())
         {
             mouseWheelHorizontalEventQueue = tempQueue;
-            mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
+            if (!wheelHorizontalActive)
+            {
+                mouseWheelHorizontalEventTimer.start(0);
+                wheelHorizontalActive = true;
+            }
+            else
+            {
+                int delay = qMax((1000 / wheelSpeedX), 0);
+                mouseWheelHorizontalEventTimer.start(delay);
+                wheelHorizontalActive = false;
+            }
+            //mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
+
         }
         else
         {
             mouseWheelHorizontalEventTimer.stop();
+            wheelHorizontalActive = false;
         }
     }
     else
     {
         mouseWheelHorizontalEventTimer.stop();
+        wheelHorizontalActive = false;
     }
 }
 
@@ -2316,8 +2365,11 @@ void JoyButton::releaseActiveSlots()
         }
 
         currentWheelVerticalEvent = 0;
+        currentWheelHorizontalEvent = 0;
         mouseWheelVerticalEventTimer.stop();
         mouseWheelHorizontalEventTimer.stop();
+        wheelVerticalActive = false;
+        wheelHorizontalActive = false;
         if (!mouseWheelVerticalEventQueue.isEmpty())
         {
             mouseWheelVerticalEventQueue.clear();
