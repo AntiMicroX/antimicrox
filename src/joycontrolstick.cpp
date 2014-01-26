@@ -199,7 +199,81 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         }
     }
 
-    if (eventbutton2 || activeButton2)
+    // Release any currently active stick buttons
+    if (!eventbutton1 && activeButton1)
+    {
+        // Currently in deadzone. Disable currently active button.
+        performButtonRelease(activeButton1, ignoresets);
+    }
+    else if (eventbutton1 && activeButton1 && eventbutton1 != activeButton1)
+    {
+        // Deadzone skipped. Button for new event is not the currently
+        // active button. Disable the active button.
+        performButtonRelease(activeButton1, ignoresets);
+    }
+
+    if (!eventbutton2 && activeButton2)
+    {
+        // Currently in deadzone. Disable currently active button.
+        performButtonRelease(activeButton2, ignoresets);
+    }
+    else if (eventbutton2 && activeButton2 && eventbutton2 != activeButton2)
+    {
+        // Deadzone skipped. Button for new event is not the currently
+        // active button. Disable the active button.
+        performButtonRelease(activeButton2, ignoresets);
+    }
+
+    if (!eventbutton3 && activeButton3)
+    {
+        // Currently in deadzone. Disable currently active button.
+        performButtonRelease(activeButton3, ignoresets);
+    }
+    else if (eventbutton3 && activeButton3 && eventbutton3 != activeButton3)
+    {
+        // Deadzone skipped. Button for new event is not the currently
+        // active button. Disable the active button.
+        performButtonRelease(activeButton3, ignoresets);
+    }
+
+    // Enable stick buttons
+    if (eventbutton1 && !activeButton1)
+    {
+        // There is no active button. Call joyEvent and set current
+        // button as active button
+        performButtonPress(eventbutton1, activeButton1, ignoresets);
+    }
+    else if (eventbutton1 && activeButton1 && eventbutton1 == activeButton1)
+    {
+        // Button is currently active. Just pass current value
+        performButtonPress(eventbutton1, activeButton1, ignoresets);
+    }
+
+    if (eventbutton2 && !activeButton2)
+    {
+        // There is no active button. Call joyEvent and set current
+        // button as active button
+        performButtonPress(eventbutton2, activeButton2, ignoresets);
+    }
+    else if (eventbutton2 && activeButton2 && eventbutton2 == activeButton2)
+    {
+        // Button is currently active. Just pass current value
+        performButtonPress(eventbutton2, activeButton2, ignoresets);
+    }
+
+    if (eventbutton3 && !activeButton3)
+    {
+        // There is no active button. Call joyEvent and set current
+        // button as active button
+        performButtonPress(eventbutton3, activeButton3, ignoresets);
+    }
+    else if (eventbutton3 && activeButton3 && eventbutton3 == activeButton3)
+    {
+        // Button is currently active. Just pass current value
+        performButtonPress(eventbutton3, activeButton3, ignoresets);
+    }
+
+    /*if (eventbutton2 || activeButton2)
     {
         changeButtonEvent(eventbutton2, activeButton2, ignoresets);
     }
@@ -212,7 +286,7 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     if (eventbutton3 || activeButton3)
     {
         changeButtonEvent(eventbutton3, activeButton3, ignoresets);
-    }
+    }*/
 }
 
 double JoyControlStick::calculateBearing()
@@ -257,7 +331,7 @@ double JoyControlStick::calculateBearing()
 
 void JoyControlStick::changeButtonEvent(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets)
 {
-    if (eventbutton && !activebutton)
+    /*if (eventbutton && !activebutton)
     {
         // There is no active button. Call joyEvent and set current
         // button as active button
@@ -272,7 +346,7 @@ void JoyControlStick::changeButtonEvent(JoyControlStickButton *eventbutton, JoyC
     }
     else if (eventbutton && activebutton && eventbutton == activebutton)
     {
-        //Button is currently active. Just pass current value
+        // Button is currently active. Just pass current value
         eventbutton->joyEvent(true, ignoresets);
     }
     else if (eventbutton && activebutton && eventbutton != activebutton)
@@ -283,7 +357,7 @@ void JoyControlStick::changeButtonEvent(JoyControlStickButton *eventbutton, JoyC
         activebutton->joyEvent(false, ignoresets);
         eventbutton->joyEvent(true, ignoresets);
         activebutton = eventbutton;
-    }
+    }*/
 }
 
 double JoyControlStick::getDistanceFromDeadZone()
@@ -1442,4 +1516,16 @@ SetJoystick* JoyControlStick::getParentSet()
         temp = axisY->getParentSet();
     }
     return temp;
+}
+
+void JoyControlStick::performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets)
+{
+    eventbutton->joyEvent(true, ignoresets);
+    activebutton = eventbutton;
+}
+
+void JoyControlStick::performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets)
+{
+    eventbutton->joyEvent(false, ignoresets);
+    eventbutton = 0;
 }

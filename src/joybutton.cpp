@@ -1847,14 +1847,23 @@ void JoyButton::waitForDeskEvent()
             keyDelayHold.restart();
             keyDelayTimer.stop();
             createDeskTimer.stop();
+            releaseDeskTimer.stop();
             createDeskEvent();
         }
         else
         {
-            createDeskTimer.start(5);
+            keyDelayHold.restart();
+            keyDelayTimer.stop();
+            createDeskTimer.stop();
             releaseDeskTimer.stop();
-            //keyDelayHold.restart();
+            createDeskEvent();
         }
+        /*else
+        {
+            createDeskTimer.start(0);
+            releaseDeskTimer.stop();
+            keyDelayHold.restart();
+        }*/
     }
     else if (!createDeskTimer.isActive())
     {
@@ -1862,7 +1871,7 @@ void JoyButton::waitForDeskEvent()
         createDeskTimer.start(5);
         releaseDeskTimer.stop();
 #else
-        createDeskTimer.start(5);
+        createDeskTimer.start(0);
         releaseDeskTimer.stop();
         //keyDelayHold.restart();
 #endif
@@ -1870,7 +1879,7 @@ void JoyButton::waitForDeskEvent()
     else if (createDeskTimer.isActive())
     {
         // Decrease timer interval of active timer.
-        createDeskTimer.start(1);
+        createDeskTimer.start(0);
         releaseDeskTimer.stop();
     }
 }
