@@ -57,7 +57,7 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
         temp[0].ki.dwExtraInfo = 0;
 
         temp[0].ki.wVk = code;
-        temp[0].ki.dwFlags = pressed ? KEYEVENTF_UNICODE: (KEYEVENTF_KEYUP | KEYEVENTF_UNICODE); // 0 for key press
+        temp[0].ki.dwFlags = pressed ? 0 : KEYEVENTF_KEYUP; // 0 for key press
         SendInput(1, temp, sizeof(INPUT));
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
