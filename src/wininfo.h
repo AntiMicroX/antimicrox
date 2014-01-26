@@ -15,6 +15,8 @@ public:
                                           unsigned int virtualkey);
     static unsigned int scancodeFromVirtualKey(unsigned int virtualkey);
 
+    static const unsigned int EXTENDED_FLAG;
+
 protected:
     explicit WinInfo(QObject *parent = 0);
     void populateKnownAliases();

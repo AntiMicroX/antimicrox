@@ -3,6 +3,7 @@
 
 #include "wininfo.h"
 
+const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
 WinInfo WinInfo::_instance;
 
 WinInfo::WinInfo(QObject *parent) :
@@ -118,7 +119,7 @@ void WinInfo::populateKnownAliases()
 unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virtualkey)
 {
     int mapvirtual = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
-    int extended = (scancode & 0x0100) != 0;
+    int extended = (scancode & EXTENDED_FLAG) != 0;
 
     int finalvirtual = 0;
     switch (virtualkey)
@@ -162,7 +163,7 @@ unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey)
          case VK_RCONTROL:
          case VK_RMENU:
          {
-             scancode |= 0x100; // set extended bit
+             scancode |= EXTENDED_FLAG; // set extended bit
              break;
          }
     }

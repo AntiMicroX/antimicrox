@@ -50,14 +50,18 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
     INPUT temp[1] = {};
     if (device == JoyButtonSlot::JoyKeyboard)
     {
+        unsigned int scancode = WinInfo::scancodeFromVirtualKey(code);
+        int extended = (scancode & WinInfo::EXTENDED_FLAG) != 0;
+        int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
         temp[0].type = INPUT_KEYBOARD;
         //temp[0].ki.wScan = MapVirtualKey(code, MAPVK_VK_TO_VSC);
-        temp[0].ki.wScan = WinInfo::scancodeFromVirtualKey(code);
+        temp[0].ki.wScan = scancode;
         temp[0].ki.time = 0;
         temp[0].ki.dwExtraInfo = 0;
 
         temp[0].ki.wVk = code;
-        temp[0].ki.dwFlags = pressed ? 0 : KEYEVENTF_KEYUP; // 0 for key press
+        temp[0].ki.dwFlags = pressed ? tempflags : (tempflags | KEYEVENTF_KEYUP); // 0 for key press
         SendInput(1, temp, sizeof(INPUT));
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
