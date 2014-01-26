@@ -202,8 +202,6 @@ protected:
     SetJoystick *parentSet; // Pointer to set that button is assigned to.
 
     unsigned int keyDelay;
-    bool wheelVerticalActive;
-    bool wheelHorizontalActive;
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
