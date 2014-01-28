@@ -155,20 +155,11 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else
             {
-                //if (!setChangeTimer.isActive())
-                //{
-                    //setChangeTimer.stop();
-                    this->ignoresets = ignoresets;
-                    isButtonPressed = isDown = pressed;
+                this->ignoresets = ignoresets;
+                isButtonPressed = isDown = pressed;
 
-                    ignoreSetQueue.enqueue(ignoresets);
-                    isButtonPressedQueue.enqueue(isButtonPressed);
-                //}
-                /*else
-                {
-                    QString ham = activePress ? "true" : "false";
-                    qDebug() << "HAMTARO " << ham;
-                }*/
+                ignoreSetQueue.enqueue(ignoresets);
+                isButtonPressedQueue.enqueue(isButtonPressed);
             }
 
             if (useTurbo)
@@ -211,39 +202,24 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else if (isButtonPressed && activePress)
             {
-                //if (!setChangeTimer.isActive())
-                //{
-                    buttonHold.restart();
-                    buttonHeldRelease.restart();
-                    keyDelayHold.restart();
-                    //createDeskTimer.start(0);
-                    releaseDeskTimer.stop();
+                buttonHold.restart();
+                buttonHeldRelease.restart();
+                keyDelayHold.restart();
+                //createDeskTimer.start(0);
+                releaseDeskTimer.stop();
 
-                    if (!keyDelayTimer.isActive())
+                if (!keyDelayTimer.isActive())
+                {
+                    checkForPressedSetChange();
+                    if (!setChangeTimer.isActive())
                     {
-                        checkForPressedSetChange();
-                        if (!setChangeTimer.isActive())
-                        {
-                            waitForDeskEvent();
-                        }
+                        waitForDeskEvent();
                     }
-                //}
-                //else
-                //{
-                 //   qDebug() << "MASTER PASSION GREED";
-                //}
+                }
             }
             else if (!isButtonPressed && !activePress)
             {
-                //releaseDeskTimer.start(0);
-                //if (!setChangeTimer.isActive())
-                //{
-                    waitForReleaseDeskEvent();
-                //}
-                //else
-                //{
-                //    qDebug() << "DUDE";
-                //}
+                waitForReleaseDeskEvent();
             }
         }
         else if (!useTurbo && isButtonPressed)
@@ -568,7 +544,8 @@ void JoyButton::activateSlots()
     if (slotiter)
     {
         bool exit = false;
-        bool delaySequence = checkForDelaySequence();
+        //bool delaySequence = checkForDelaySequence();
+        bool delaySequence = false;
 
         while (slotiter->hasNext() && !exit)
         {
@@ -625,6 +602,7 @@ void JoyButton::activateSlots()
                     {
                         slotiter->previous();
                     }
+                    delaySequence = true;
                     exit = true;
                 }
                 else
@@ -675,6 +653,7 @@ void JoyButton::activateSlots()
                     {
                         slotiter->previous();
                     }
+                    delaySequence = true;
                     exit = true;
                 }
             }
@@ -1844,7 +1823,6 @@ void JoyButton::waitForDeskEvent()
     {
         if (createDeskTimer.isActive())
         {
-            keyDelayHold.restart();
             keyDelayTimer.stop();
             createDeskTimer.stop();
             releaseDeskTimer.stop();
@@ -1852,9 +1830,7 @@ void JoyButton::waitForDeskEvent()
         }
         else
         {
-            keyDelayHold.restart();
             keyDelayTimer.stop();
-            createDeskTimer.stop();
             releaseDeskTimer.stop();
             createDeskEvent();
         }
@@ -1873,7 +1849,6 @@ void JoyButton::waitForDeskEvent()
 #else
         createDeskTimer.start(0);
         releaseDeskTimer.stop();
-        //keyDelayHold.restart();
 #endif
     }
     else if (createDeskTimer.isActive())
