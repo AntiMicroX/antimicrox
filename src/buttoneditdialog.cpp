@@ -152,6 +152,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
             if (checkalias > 0)
             {
                 JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
+                tempslot->setSlotCode(finalvirtual, event->key());
                 emit keyGrabbed(tempslot);
             }
             else

@@ -31,6 +31,8 @@ public:
     void restartMouseInterval();
     QString getXmlName();
     QString getSlotString();
+    void setSlotCode(int code, unsigned int alias);
+    unsigned int getSlotCodeAlias();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
@@ -40,6 +42,7 @@ public:
     
 protected:
     int deviceCode;
+    unsigned int qkeyaliasCode;
     JoySlotInputAction mode;
     double distance;
     QTime *mouseInterval;

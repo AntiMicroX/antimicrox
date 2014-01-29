@@ -14,6 +14,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     deviceCode = 0;
     mode = JoyKeyboard;
     distance = 0.0;
+    qkeyaliasCode = 0;
     mouseInterval = new QTime();
 }
 
@@ -21,6 +22,7 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     QObject(parent)
 {
     deviceCode = 0;
+    qkeyaliasCode = 0;
 
     if (code > 0)
     {
@@ -43,6 +45,20 @@ void JoyButtonSlot::setSlotCode(int code)
     {
         deviceCode = code;
     }
+}
+
+void JoyButtonSlot::setSlotCode(int code, unsigned int alias)
+{
+    if (mode == JoyButtonSlot::JoyKeyboard && code >= 0)
+    {
+        deviceCode = code;
+        qkeyaliasCode = alias;
+    }
+}
+
+unsigned int JoyButtonSlot::getSlotCodeAlias()
+{
+    return qkeyaliasCode;
 }
 
 int JoyButtonSlot::getSlotCode()
@@ -182,10 +198,12 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             unsigned int virtualkey = QtX11KeyMapper::returnVirtualKey(this->getSlotCode());
 #endif*/
             unsigned int virtualkey = AntKeyMapper::returnVirtualKey(this->getSlotCode());
+            unsigned int tempkey = this->getSlotCode();
+
             if (virtualkey)
             {
                 // Mapping found a valid native keysym.
-                this->setSlotCode(virtualkey);
+                this->setSlotCode(virtualkey, tempkey);
             }
             else if ((unsigned int)this->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
             {
@@ -205,7 +223,8 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 
     if (mode == JoyKeyboard)
     {
-        unsigned int qtkey = AntKeyMapper::returnQtKey(deviceCode);
+        //unsigned int qtkey = AntKeyMapper::returnQtKey(deviceCode);
+        unsigned int qtkey = this->getSlotCodeAlias();
         if (qtkey > 0)
         {
             // Found a valid abstract keysym.

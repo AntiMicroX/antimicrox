@@ -8,7 +8,7 @@
 
 enum JoyInputDevice {JoyKeyboard=0, JoyMouse};
 
-void sendevent (int code, bool pressed=true, JoyButtonSlot::JoySlotInputAction device=JoyButtonSlot::JoyKeyboard);
+void sendevent (JoyButtonSlot *slot, bool pressed=true);
 void sendevent(int code1, int code2);
 void sendSpringEvent(double xcoor, double ycoor, int springWidth=0, int springHeight=0);
 int X11KeySymToKeycode(QString key);

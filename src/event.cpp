@@ -26,7 +26,10 @@ static Display* display;
 static MouseHelper *mouseHelperObj = 0;
 
 //actually creates an XWindows event  :)
-void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device) {
+void sendevent(JoyButtonSlot *slot, bool pressed)
+{
+    int code = slot->getSlotCode();
+    JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
 #if defined (Q_OS_UNIX)
     display = X11Info::display();
@@ -52,6 +55,10 @@ void sendevent( int code, bool pressed, JoyButtonSlot::JoySlotInputAction device
     {
         unsigned int scancode = WinInfo::scancodeFromVirtualKey(code);
         int extended = (scancode & WinInfo::EXTENDED_FLAG) != 0;
+        if (code == VK_RETURN && slot->getSlotCodeAlias() == Qt::Key_Return)
+        {
+            extended = 1;
+        }
         int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
 
         temp[0].type = INPUT_KEYBOARD;

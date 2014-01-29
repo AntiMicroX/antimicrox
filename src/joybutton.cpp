@@ -555,7 +555,7 @@ void JoyButton::activateSlots()
 
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
-                sendevent(tempcode, true, mode);
+                sendevent(slot, true);
                 activeSlots.append(slot);
                 int oldvalue = activeKeys.value(tempcode, 0) + 1;
                 activeKeys.insert(tempcode, oldvalue);
@@ -582,7 +582,7 @@ void JoyButton::activateSlots()
                 }
                 else
                 {
-                    sendevent(tempcode, true, mode);
+                    sendevent(slot, true);
                     activeSlots.append(slot);
                 }
             }
@@ -905,8 +905,8 @@ void JoyButton::wheelEventVertical()
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
         {
-            sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-            sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+            sendevent(buttonslot, true);
+            sendevent(buttonslot, false);
             mouseWheelVerticalEventQueue.enqueue(buttonslot);
             mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
         }
@@ -924,8 +924,8 @@ void JoyButton::wheelEventVertical()
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
             {
-                sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-                sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                sendevent(buttonslot, true);
+                sendevent(buttonslot, false);
                 tempQueue.enqueue(buttonslot);
             }
         }
@@ -959,8 +959,8 @@ void JoyButton::wheelEventHorizontal()
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
         {
-            sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-            sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+            sendevent(buttonslot, true);
+            sendevent(buttonslot, false);
             mouseWheelHorizontalEventQueue.enqueue(buttonslot);
             mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
         }
@@ -978,8 +978,8 @@ void JoyButton::wheelEventHorizontal()
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
             {
-                sendevent(buttonslot->getSlotCode(), true, buttonslot->getSlotMode());
-                sendevent(buttonslot->getSlotCode(), false, buttonslot->getSlotMode());
+                sendevent(buttonslot, true);
+                sendevent(buttonslot, false);
                 tempQueue.enqueue(buttonslot);
             }
         }
@@ -2237,7 +2237,7 @@ void JoyButton::releaseActiveSlots()
                 int referencecount = activeKeys.value(tempcode, 1) - 1;
                 if (referencecount <= 0)
                 {
-                    sendevent(tempcode, false, mode);
+                    sendevent(slot, false);
                     activeKeys.remove(tempcode);
                 }
                 else
@@ -2252,7 +2252,7 @@ void JoyButton::releaseActiveSlots()
                     tempcode != JoyButtonSlot::MouseWheelLeft &&
                     tempcode != JoyButtonSlot::MouseWheelRight)
                 {
-                    sendevent(tempcode, false, mode);
+                    sendevent(slot, false);
                 }
 
                 slot->setDistance(0.0);
