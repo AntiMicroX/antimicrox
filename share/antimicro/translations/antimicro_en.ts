@@ -19,17 +19,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="114"/>
+        <location filename="../../../src/aboutdialog.ui" line="116"/>
+        <source>Built against SDL %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="123"/>
         <source>Using SDL %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="125"/>
+        <location filename="../../../src/aboutdialog.ui" line="136"/>
         <source>Credits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="140"/>
+        <location filename="../../../src/aboutdialog.ui" line="151"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -46,12 +51,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="163"/>
+        <location filename="../../../src/aboutdialog.ui" line="174"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="178"/>
+        <location filename="../../../src/aboutdialog.ui" line="189"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -186,7 +191,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="328"/>
+        <location filename="../../../src/aboutdialog.ui" line="339"/>
         <source>Copyright: 2013-2014</source>
         <translation type="unfinished"></translation>
     </message>
@@ -907,7 +912,7 @@ this button is being used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="268"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="269"/>
         <source>Set</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1257,9 +1262,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="802"/>
-        <location filename="../../../src/joyaxis.cpp" line="811"/>
-        <location filename="../../../src/joyaxis.cpp" line="817"/>
+        <location filename="../../../src/joyaxis.cpp" line="803"/>
+        <location filename="../../../src/joyaxis.cpp" line="812"/>
+        <location filename="../../../src/joyaxis.cpp" line="818"/>
         <source>Axis</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1292,15 +1297,15 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1273"/>
-        <location filename="../../../src/joybutton.cpp" line="1281"/>
-        <location filename="../../../src/joybutton.cpp" line="1287"/>
+        <location filename="../../../src/joybutton.cpp" line="1336"/>
+        <location filename="../../../src/joybutton.cpp" line="1344"/>
+        <location filename="../../../src/joybutton.cpp" line="1350"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1321"/>
-        <location filename="../../../src/joybutton.cpp" line="1346"/>
+        <location filename="../../../src/joybutton.cpp" line="1384"/>
+        <location filename="../../../src/joybutton.cpp" line="1409"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1308,88 +1313,88 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="69"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="289"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="85"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="308"/>
         <source>Mouse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="72"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="88"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="76"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="92"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="80"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="96"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="84"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="100"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="293"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="312"/>
         <source>LB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="296"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="315"/>
         <source>MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="299"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="318"/>
         <source>RB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="303"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="322"/>
         <source>B4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="306"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="325"/>
         <source>B5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="324"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="343"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="340"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="359"/>
         <source>Hold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="352"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="371"/>
         <source>Cycle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="356"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="375"/>
         <source>Distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="366"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="385"/>
         <source>Release</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="379"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="398"/>
         <source>Mouse Mod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="386"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="405"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1397,9 +1402,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="../../../src/joycontrolstick.cpp" line="492"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="501"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="508"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="566"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="575"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="582"/>
         <source>Stick</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1576,9 +1581,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyDPad</name>
     <message>
-        <location filename="../../../src/joydpad.cpp" line="84"/>
-        <location filename="../../../src/joydpad.cpp" line="93"/>
-        <location filename="../../../src/joydpad.cpp" line="99"/>
+        <location filename="../../../src/joydpad.cpp" line="74"/>
+        <location filename="../../../src/joydpad.cpp" line="83"/>
+        <location filename="../../../src/joydpad.cpp" line="89"/>
         <source>DPad</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1624,101 +1629,101 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="37"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1192"/>
+        <location filename="../../../src/joytabwidget.cpp" line="38"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1217"/>
         <source>&lt;New&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="45"/>
+        <location filename="../../../src/joytabwidget.cpp" line="46"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="47"/>
+        <location filename="../../../src/joytabwidget.cpp" line="48"/>
         <source>Remove configuration from recent list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="53"/>
+        <location filename="../../../src/joytabwidget.cpp" line="54"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="55"/>
+        <location filename="../../../src/joytabwidget.cpp" line="56"/>
         <source>Load configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="61"/>
+        <location filename="../../../src/joytabwidget.cpp" line="62"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="63"/>
+        <location filename="../../../src/joytabwidget.cpp" line="64"/>
         <source>Save changes to configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="70"/>
+        <location filename="../../../src/joytabwidget.cpp" line="71"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="72"/>
+        <location filename="../../../src/joytabwidget.cpp" line="73"/>
         <source>Save changes to a new configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="322"/>
+        <location filename="../../../src/joytabwidget.cpp" line="323"/>
         <source>Stick/Pad Assign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="329"/>
+        <location filename="../../../src/joytabwidget.cpp" line="330"/>
         <source>Quick Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="337"/>
+        <location filename="../../../src/joytabwidget.cpp" line="338"/>
         <source>Names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="339"/>
+        <location filename="../../../src/joytabwidget.cpp" line="340"/>
         <source>Toggle button name displaying.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="344"/>
+        <location filename="../../../src/joytabwidget.cpp" line="345"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="346"/>
+        <location filename="../../../src/joytabwidget.cpp" line="347"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="389"/>
+        <location filename="../../../src/joytabwidget.cpp" line="390"/>
         <source>Open Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="501"/>
+        <location filename="../../../src/joytabwidget.cpp" line="504"/>
         <source>Sticks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="616"/>
-        <location filename="../../../src/joytabwidget.cpp" line="715"/>
+        <location filename="../../../src/joytabwidget.cpp" line="619"/>
+        <location filename="../../../src/joytabwidget.cpp" line="718"/>
         <source>DPads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="909"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1012"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1022"/>
+        <location filename="../../../src/joytabwidget.cpp" line="912"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1017"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1027"/>
         <source>Save Config</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2014,7 +2019,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="609"/>
-        <location filename="../../../src/mainwindow.cpp" line="282"/>
+        <location filename="../../../src/mainwindow.cpp" line="283"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2025,7 +2030,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="625"/>
-        <location filename="../../../src/mainwindow.cpp" line="286"/>
+        <location filename="../../../src/mainwindow.cpp" line="287"/>
         <source>&amp;Update Joysticks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2036,7 +2041,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="638"/>
-        <location filename="../../../src/mainwindow.cpp" line="272"/>
+        <location filename="../../../src/mainwindow.cpp" line="273"/>
         <source>&amp;Hide</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2092,21 +2097,21 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="170"/>
-        <location filename="../../../src/mainwindow.cpp" line="234"/>
-        <location filename="../../../src/mainwindow.cpp" line="815"/>
-        <location filename="../../../src/mainwindow.cpp" line="845"/>
-        <location filename="../../../src/mainwindow.cpp" line="866"/>
-        <location filename="../../../src/mainwindow.cpp" line="878"/>
+        <location filename="../../../src/mainwindow.cpp" line="235"/>
+        <location filename="../../../src/mainwindow.cpp" line="852"/>
+        <location filename="../../../src/mainwindow.cpp" line="882"/>
+        <location filename="../../../src/mainwindow.cpp" line="904"/>
+        <location filename="../../../src/mainwindow.cpp" line="916"/>
         <source>(%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="258"/>
+        <location filename="../../../src/mainwindow.cpp" line="259"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="277"/>
+        <location filename="../../../src/mainwindow.cpp" line="278"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2379,12 +2384,12 @@ of your screen.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../../src/wininfo.cpp" line="113"/>
+        <location filename="../../../src/wininfo.cpp" line="114"/>
         <source>Super</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/wininfo.cpp" line="114"/>
+        <location filename="../../../src/wininfo.cpp" line="115"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
