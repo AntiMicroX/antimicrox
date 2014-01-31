@@ -3,6 +3,93 @@
 
 #include "qtwinkeymapper.h"
 
+static QHash<unsigned int, unsigned int> initDynamicKeyMapping()
+{
+    QHash<unsigned int, unsigned int> temp;
+    temp[VK_OEM_1] = 0;
+    temp[VK_OEM_PLUS] = 0;
+    temp[VK_OEM_COMMA] = 0;
+    temp[VK_OEM_MINUS] = 0;
+    temp[VK_OEM_PERIOD] = 0;
+    temp[VK_OEM_2] = 0;
+    temp[VK_OEM_3] = 0;
+    temp[VK_OEM_4] = 0;
+    temp[VK_OEM_5] = 0;
+    temp[VK_OEM_6] = 0;
+    temp[VK_OEM_7] = 0;
+    temp[VK_OEM_8] = 0;
+    temp[VK_OEM_102] = 0;
+
+    return temp;
+}
+
+static QHash<QString, unsigned int> intCharToQtKey()
+{
+    QHash<QString, unsigned int> temp;
+    temp.insert(QString('!'), Qt::Key_Exclam);
+    temp.insert(QString('"'), Qt::Key_QuoteDbl);
+    temp.insert(QString('#'), Qt::Key_NumberSign);
+    temp.insert(QString('$'), Qt::Key_Dollar);
+    temp.insert(QString('\''), Qt::Key_QuoteLeft);
+    temp.insert(QString('('), Qt::Key_ParenLeft);
+    temp.insert(QString(')'), Qt::Key_ParenRight);
+    temp.insert(QString('*'), Qt::Key_Asterisk);
+    temp.insert(QString('+'), Qt::Key_Plus);
+    temp.insert(QString(','), Qt::Key_Comma);
+    temp.insert(QString('-'), Qt::Key_Minus);
+    temp.insert(QString('.'), Qt::Key_Period);
+    temp.insert(QString('/'), Qt::Key_Slash);
+    temp.insert(QString(':'), Qt::Key_Colon);
+    temp.insert(QString(';'), Qt::Key_Semicolon);
+    temp.insert(QString('<'), Qt::Key_Less);
+    temp.insert(QString('='), Qt::Key_Equal);
+    temp.insert(QString('>'), Qt::Key_Greater);
+    temp.insert(QString('@'), Qt::Key_At);
+    temp.insert(QString('['), Qt::Key_BracketLeft);
+    temp.insert(QString('\\'), Qt::Key_Backslash);
+    temp.insert(QString(']'), Qt::Key_BracketRight);
+    temp.insert(QString('^'), Qt::Key_AsciiCircum);
+    temp.insert(QString('_'), Qt::Key_Underscore);
+    temp.insert(QString('`'), Qt::Key_Agrave);
+    temp.insert(QString('{'), Qt::Key_BraceLeft);
+    temp.insert(QString('}'), Qt::Key_BraceRight);
+    temp.insert(QString::fromUtf8("\u00A1"), Qt::Key_exclamdown);
+    //temp.insert(QString::fromUtf8("\u20A0"), Qt::Key_)
+
+    return temp;
+}
+
+static QHash<QString, unsigned int> initDeadKeyToQtKey()
+{
+    QHash<QString, unsigned int> temp;
+    temp.insert(QString('`'), Qt::Key_Dead_Grave);
+    temp.insert(QString('\''), Qt::Key_Dead_Acute);
+    temp.insert(QString::fromUtf8("\u00B4"), Qt::Key_Dead_Grave);
+    temp.insert(QString('^'), Qt::Key_Dead_Circumflex);
+    temp.insert(QString('~'), Qt::Key_Dead_Tilde);
+    temp.insert(QString::fromUtf8("\u02DC"), Qt::Key_Dead_Tilde);
+    temp.insert(QString::fromUtf8("\u00AF"), Qt::Key_Dead_Macron);
+    temp.insert(QString::fromUtf8("\u02D8"), Qt::Key_Dead_Breve);
+    temp.insert(QString::fromUtf8("\u02D9"), Qt::Key_Dead_Abovedot);
+    temp.insert(QString('"'), Qt::Key_Dead_Diaeresis);
+    temp.insert(QString::fromUtf8("\u00A8"), Qt::Key_Dead_Diaeresis);
+    temp.insert(QString::fromUtf8("\u02DA"), Qt::Key_Dead_Abovering);
+    temp.insert(QString::fromUtf8("\u02DD"), Qt::Key_Dead_Doubleacute);
+    temp.insert(QString::fromUtf8("\u02C7"), Qt::Key_Dead_Caron);
+    temp.insert(QString(','), Qt::Key_Dead_Cedilla);
+    temp.insert(QString::fromUtf8("\u00B8"), Qt::Key_Dead_Cedilla);
+    temp.insert(QString::fromUtf8("\u02DB"), Qt::Key_Dead_Ogonek);
+    temp.insert(QString::fromUtf8("\u037A"), Qt::Key_Dead_Iota);
+    temp.insert(QString::fromUtf8("\u309B"), Qt::Key_Dead_Voiced_Sound);
+    temp.insert(QString::fromUtf8("\u309C"), Qt::Key_Dead_Semivoiced_Sound);
+
+    return temp;
+}
+
+static QHash<unsigned int, unsigned int> dynamicOEMToQtKeyHash = initDynamicKeyMapping();
+static QHash<QString, unsigned int> charToQtKeyHash = intCharToQtKey();
+static QHash<QString, unsigned int> deadKeyToQtKeyHash = initDeadKeyToQtKey();
+
 QtWinKeyMapper::QtWinKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
@@ -85,7 +172,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Launch0] = VK_LAUNCH_APP1;
         qtKeyToVirtualKey[Qt::Key_Launch1] = VK_LAUNCH_APP2;
 
-        qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
+        /*qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
         qtKeyToVirtualKey[Qt::Key_Slash] = VK_OEM_2;
         qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
         qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
@@ -94,7 +181,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_BracketLeft] = VK_OEM_4;
         qtKeyToVirtualKey[Qt::Key_Backslash] = VK_OEM_5;
         qtKeyToVirtualKey[Qt::Key_BracketRight] = VK_OEM_6;
-        qtKeyToVirtualKey[Qt::Key_Apostrophe] = VK_OEM_7;
+        qtKeyToVirtualKey[Qt::Key_Apostrophe] = VK_OEM_7;*/
 
         qtKeyToVirtualKey[Qt::Key_Play] = VK_PLAY;
         qtKeyToVirtualKey[Qt::Key_Zoom] = VK_ZOOM;
@@ -130,8 +217,65 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Shift_R] = VK_RSHIFT;
         qtKeyToVirtualKey[AntKey_Control_R] = VK_RCONTROL;
 
+        // Go through VK_OEM_* values and find the appropriate association
+        // with a key defined in Qt. Association is decided based on char
+        // returned from Windows for the VK_OEM_* key.
+        QHashIterator<unsigned int, unsigned int> iterDynamic(dynamicOEMToQtKeyHash);
+        while (iterDynamic.hasNext())
+        {
+            iterDynamic.next();
+
+            char cbuf[2] = {'\0','\0'};
+            unsigned int oemkey = iterDynamic.key();
+            unsigned int scancode = MapVirtualKey(oemkey, 0);
+            int charlength = ToAscii(oemkey, scancode, (WORD*)cbuf, 0);
+            if (charlength < 0)
+            {
+                QString temp = QString::fromUtf8(cbuf);
+                QHashIterator<QString, unsigned int> tempiter(deadKeyToQtKeyHash);
+                while (tempiter.hasNext())
+                {
+                    tempiter.next();
+                    QString currentChar = tempiter.key();
+                    if (currentChar == temp)
+                    {
+                        dynamicOEMToQtKeyHash[oemkey] = tempiter.value();
+                        tempiter.toBack();
+                    }
+                }
+            }
+            else if (charlength == 1)
+            {
+                QString temp = QString::fromUtf8(cbuf);
+                QHashIterator<QString, unsigned int> tempiter(charToQtKeyHash);
+                while (tempiter.hasNext())
+                {
+                    tempiter.next();
+                    QString currentChar = tempiter.key();
+                    if (currentChar == temp)
+                    {
+                        dynamicOEMToQtKeyHash[oemkey] = tempiter.value();
+                        tempiter.toBack();
+                    }
+                }
+            }
+        }
+
+        // Populate hash with values found for the VK_OEM_* keys.
+        // Values will likely be different across various keyboard
+        // layouts.
+        iterDynamic.toFront();
+        while (iterDynamic.hasNext())
+        {
+            iterDynamic.next();
+            if (iterDynamic.value() != 0)
+            {
+                qtKeyToVirtualKey.insert(iterDynamic.value(), iterDynamic.key());
+            }
+        }
+
         // Populate other hash. Flip key and value so mapping
-        // goes VK -> Qt Key
+        // goes VK -> Qt Key.
         QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
         {
