@@ -386,8 +386,21 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
 void JoyTabWidget::openConfigFileDialog()
 {
     QString filename;
+    QString lookupDir = QDir::homePath();
 
-    filename = QFileDialog::getOpenFileName(this, tr("Open Config"), QDir::homePath(), QString("Config Files (*.xml)"));
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+
+    QString lastProfileDir = settings.value("LastProfileDir", "").toString();
+    if (!lastProfileDir.isEmpty())
+    {
+        QFileInfo dirinfo(lastProfileDir);
+        if (dirinfo.isDir() && dirinfo.isReadable())
+        {
+            lookupDir = lastProfileDir;
+        }
+    }
+
+    filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
 
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -411,6 +424,8 @@ void JoyTabWidget::openConfigFileDialog()
             saveDeviceSettings();
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
+
+        settings.setValue("LastProfileDir", fileinfo.absoluteDir().absolutePath());
     }
 }
 
@@ -1544,6 +1559,7 @@ void JoyTabWidget::toggleNames()
     namesPushButton->setProperty("isDisplayingNames", displayingNames);
     namesPushButton->style()->unpolish(namesPushButton);
     namesPushButton->style()->polish(namesPushButton);
+    emit namesDisplayChanged(displayingNames);
 }
 
 void JoyTabWidget::unloadConfig()
@@ -1565,4 +1581,9 @@ void JoyTabWidget::loadDeviceSettings()
     //settings.beginGroup("Controllers");
     loadSettings(&settings);
     settings.endGroup();
+}
+
+bool JoyTabWidget::isDisplayingNames()
+{
+    return displayingNames;
 }

@@ -170,6 +170,7 @@ void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
         joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->fillButtons();
+        connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
 
         if (showTrayIcon)
         {
@@ -815,6 +816,22 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
     }
 }
 
+void MainWindow::propogateNameDisplayStatus(bool displayNames)
+{
+    JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(sender());
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (tab && tab != tabwidget)
+        {
+            if (tab->isDisplayingNames() != displayNames)
+            {
+                tab->toggleNames();
+            }
+        }
+    }
+}
+
 #ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow()
 {
@@ -919,6 +936,7 @@ void MainWindow::addJoyTab(InputDevice *device)
         }
     }
 
+    connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
     if (showTrayIcon)
     {
         connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
@@ -937,4 +955,3 @@ void MainWindow::openMainSettingsDialog()
 }
 
 #endif
-

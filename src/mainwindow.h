@@ -108,6 +108,8 @@ private slots:
     void openKeyCheckerDialog();
     void openProjectHomePage();
     void openGitHubPage();
+    void propogateNameDisplayStatus(bool displayNames);
+
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);

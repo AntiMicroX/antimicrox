@@ -35,6 +35,7 @@ public:
     void loadConfigFile(QString fileLocation);
     InputDevice *getJoystick();
     void unloadConfig();
+    bool isDisplayingNames();
 
 protected:
     void removeCurrentButtons();
@@ -94,17 +95,18 @@ signals:
     void joystickRefreshRequested(InputDevice *joystick);
     void joystickConfigChanged(int index);
     void joystickAxisRefreshLabels(int axisIndex);
+    void namesDisplayChanged(bool status);
 
 public slots:
     void openConfigFileDialog();
     void fillButtons();
     void saveDeviceSettings();
     void loadDeviceSettings();
+    void toggleNames();
 
 private slots:
     void saveConfigFile();
     void resetJoystick();
-    void toggleNames();
     void saveAsConfig();
     void removeConfig();
     void changeJoyConfig(int index);
