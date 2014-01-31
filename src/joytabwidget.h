@@ -98,6 +98,8 @@ signals:
 public slots:
     void openConfigFileDialog();
     void fillButtons();
+    void saveDeviceSettings();
+    void loadDeviceSettings();
 
 private slots:
     void saveConfigFile();
@@ -123,7 +125,6 @@ private slots:
     void changeSetEight();
     void changeCurrentSet(int index);
     void openStickButtonDialog();
-    void saveDeviceSettings();
 };
 
 #endif // JOYTABWIDGET_H

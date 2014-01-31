@@ -1558,3 +1558,11 @@ void JoyTabWidget::saveDeviceSettings()
     saveSettings(&settings);
     settings.endGroup();
 }
+
+void JoyTabWidget::loadDeviceSettings()
+{
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //settings.beginGroup("Controllers");
+    loadSettings(&settings);
+    settings.endGroup();
+}

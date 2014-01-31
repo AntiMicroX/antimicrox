@@ -903,6 +903,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->addTab(tabwidget, joytabName);
+    tabwidget->loadDeviceSettings();
     tabwidget->fillButtons();
 
     // Refresh tab text to reflect new index values.
