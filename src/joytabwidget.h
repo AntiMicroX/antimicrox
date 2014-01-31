@@ -102,7 +102,7 @@ public slots:
     void fillButtons();
     void saveDeviceSettings();
     void loadDeviceSettings();
-    void toggleNames();
+    void changeNameDisplay(bool displayNames);
 
 private slots:
     void saveConfigFile();
@@ -116,6 +116,7 @@ private slots:
     void showStickAssignmentDialog();
     void showDPadDialog();
     void showQuickSetDialog();
+    void toggleNames();
 
     void changeSetOne();
     void changeSetTwo();

@@ -35,6 +35,19 @@
 #include "mainwindow.h"
 #include "inputdevice.h"
 
+#ifndef Q_OS_WIN
+#include <signal.h>
+#endif
+
+#ifndef Q_OS_WIN
+static void termSignalHandler(int signal)
+{
+    Q_UNUSED(signal);
+
+    qApp->exit(0);
+}
+#endif
+
 
 int main(int argc, char *argv[])
 {
@@ -171,6 +184,15 @@ int main(int argc, char *argv[])
     InputDaemon *joypad_worker = new InputDaemon (joysticks);
     MainWindow w(joysticks, &cmdutility);
     w.startLocalServer();
+
+#ifndef Q_OS_WIN
+    struct sigaction termaction;
+    termaction.sa_handler = &termSignalHandler;
+    sigemptyset(&termaction.sa_mask);
+    termaction.sa_flags = 0;
+
+    sigaction(SIGTERM, &termaction, 0);
+#endif
 
 #ifdef USE_SDL_2
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));

@@ -826,7 +826,7 @@ void MainWindow::propogateNameDisplayStatus(bool displayNames)
         {
             if (tab->isDisplayingNames() != displayNames)
             {
-                tab->toggleNames();
+                tab->changeNameDisplay(displayNames);
             }
         }
     }

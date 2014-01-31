@@ -1587,3 +1587,11 @@ bool JoyTabWidget::isDisplayingNames()
 {
     return displayingNames;
 }
+
+void JoyTabWidget::changeNameDisplay(bool displayNames)
+{
+    displayingNames = displayNames;
+    namesPushButton->setProperty("isDisplayingNames", displayingNames);
+    namesPushButton->style()->unpolish(namesPushButton);
+    namesPushButton->style()->polish(namesPushButton);
+}
