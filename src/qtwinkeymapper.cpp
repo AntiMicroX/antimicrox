@@ -7,10 +7,10 @@ static QHash<unsigned int, unsigned int> initDynamicKeyMapping()
 {
     QHash<unsigned int, unsigned int> temp;
     temp[VK_OEM_1] = 0;
-    temp[VK_OEM_PLUS] = 0;
-    temp[VK_OEM_COMMA] = 0;
-    temp[VK_OEM_MINUS] = 0;
-    temp[VK_OEM_PERIOD] = 0;
+    //temp[VK_OEM_PLUS] = 0;
+    //temp[VK_OEM_COMMA] = 0;
+    //temp[VK_OEM_MINUS] = 0;
+    //temp[VK_OEM_PERIOD] = 0;
     temp[VK_OEM_2] = 0;
     temp[VK_OEM_3] = 0;
     temp[VK_OEM_4] = 0;
@@ -30,7 +30,7 @@ static QHash<QString, unsigned int> intCharToQtKey()
     temp.insert(QString('"'), Qt::Key_QuoteDbl);
     temp.insert(QString('#'), Qt::Key_NumberSign);
     temp.insert(QString('$'), Qt::Key_Dollar);
-    temp.insert(QString('\''), Qt::Key_QuoteLeft);
+    temp.insert(QString('\''), Qt::Key_Apostrophe);
     temp.insert(QString('('), Qt::Key_ParenLeft);
     temp.insert(QString(')'), Qt::Key_ParenRight);
     temp.insert(QString('*'), Qt::Key_Asterisk);
@@ -50,7 +50,7 @@ static QHash<QString, unsigned int> intCharToQtKey()
     temp.insert(QString(']'), Qt::Key_BracketRight);
     temp.insert(QString('^'), Qt::Key_AsciiCircum);
     temp.insert(QString('_'), Qt::Key_Underscore);
-    temp.insert(QString('`'), Qt::Key_Agrave);
+    temp.insert(QString('`'), Qt::Key_QuoteLeft);
     temp.insert(QString('{'), Qt::Key_BraceLeft);
     temp.insert(QString('}'), Qt::Key_BraceRight);
     temp.insert(QString::fromUtf8("\u00A1"), Qt::Key_exclamdown);
@@ -137,7 +137,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_KP_Multiply] = VK_MULTIPLY;
         //qtKeyToVirtualKey[Qt::Key_Asterisk] = VK_MULTIPLY;
         qtKeyToVirtualKey[AntKey_KP_Add] = VK_ADD;
-        qtKeyToVirtualKey[Qt::Key_Comma] = VK_SEPARATOR;
+        //qtKeyToVirtualKey[Qt::Key_Comma] = VK_SEPARATOR;
         qtKeyToVirtualKey[AntKey_KP_Subtract] = VK_SUBTRACT;
         qtKeyToVirtualKey[AntKey_KP_Decimal] = VK_DECIMAL;
         qtKeyToVirtualKey[AntKey_KP_Divide] = VK_DIVIDE;
@@ -172,6 +172,12 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Launch0] = VK_LAUNCH_APP1;
         qtKeyToVirtualKey[Qt::Key_Launch1] = VK_LAUNCH_APP2;
 
+        // The following VK_OEM_* keys are consistent across all
+        // keyboard layouts.
+        qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
+        qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
+        qtKeyToVirtualKey[Qt::Key_Period]  = VK_OEM_PERIOD;
+        qtKeyToVirtualKey[Qt::Key_Comma] = VK_OEM_COMMA;
         /*qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
         qtKeyToVirtualKey[Qt::Key_Slash] = VK_OEM_2;
         qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
@@ -225,10 +231,12 @@ void QtWinKeyMapper::populateMappingHashes()
         {
             iterDynamic.next();
 
-            char cbuf[2] = {'\0','\0'};
+            byte ks[256];
+            char cbuf[2] = {'\0', '\0'};
+            GetKeyboardState(ks);
             unsigned int oemkey = iterDynamic.key();
             unsigned int scancode = MapVirtualKey(oemkey, 0);
-            int charlength = ToAscii(oemkey, scancode, (WORD*)cbuf, 0);
+            int charlength = ToAscii(oemkey, scancode, ks, (WORD*)cbuf, 0);
             if (charlength < 0)
             {
                 QString temp = QString::fromUtf8(cbuf);
@@ -264,13 +272,14 @@ void QtWinKeyMapper::populateMappingHashes()
         // Populate hash with values found for the VK_OEM_* keys.
         // Values will likely be different across various keyboard
         // layouts.
-        iterDynamic.toFront();
+        iterDynamic = QHashIterator<unsigned int, unsigned int>(dynamicOEMToQtKeyHash);
         while (iterDynamic.hasNext())
         {
             iterDynamic.next();
-            if (iterDynamic.value() != 0)
+            unsigned int tempvalue = iterDynamic.value();
+            if (tempvalue != 0 && !qtKeyToVirtualKey.contains(tempvalue))
             {
-                qtKeyToVirtualKey.insert(iterDynamic.value(), iterDynamic.key());
+                qtKeyToVirtualKey.insert(tempvalue, iterDynamic.key());
             }
         }
 
