@@ -53,12 +53,8 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     INPUT temp[1] = {};
     if (device == JoyButtonSlot::JoyKeyboard)
     {
-        unsigned int scancode = WinInfo::scancodeFromVirtualKey(code);
+        unsigned int scancode = WinInfo::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
         int extended = (scancode & WinInfo::EXTENDED_FLAG) != 0;
-        if (code == VK_RETURN && slot->getSlotCodeAlias() == Qt::Key_Enter)
-        {
-            extended = 1;
-        }
         int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
 
         temp[0].type = INPUT_KEYBOARD;
@@ -336,7 +332,7 @@ int X11KeySymToKeycode(QString key)
     return tempcode;
 }
 
-QString keycodeToKey(int keycode)
+QString keycodeToKey(int keycode, unsigned int alias)
 {
     QString newkey;
 
@@ -390,7 +386,7 @@ QString keycodeToKey(int keycode)
     }
     else
     {
-        int scancode = WinInfo::scancodeFromVirtualKey(keycode);
+        int scancode = WinInfo::scancodeFromVirtualKey(keycode, alias);
 
         if (keycode >= VK_BROWSER_BACK && keycode <= VK_LAUNCH_APP2)
         {
@@ -427,7 +423,7 @@ unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
 #endif
 }
 
-QString keysymToKey(int keysym)
+QString keysymToKey(int keysym, unsigned int alias)
 {
     QString newkey;
 #if defined (Q_OS_UNIX)
@@ -435,7 +431,7 @@ QString keysymToKey(int keysym)
     unsigned int keycode = XKeysymToKeycode(display, keysym);
     newkey = keycodeToKey(keycode);
 #else
-    newkey = keycodeToKey(keysym);
+    newkey = keycodeToKey(keysym, alias);
 #endif
     return newkey;
 }

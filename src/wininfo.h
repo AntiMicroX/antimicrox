@@ -13,7 +13,7 @@ public:
     static unsigned int getVirtualKey(QString codestring);
     static unsigned int correctVirtualKey(unsigned int scancode,
                                           unsigned int virtualkey);
-    static unsigned int scancodeFromVirtualKey(unsigned int virtualkey);
+    static unsigned int scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias=0);
 
     static const unsigned int EXTENDED_FLAG;
 

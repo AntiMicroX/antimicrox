@@ -11,7 +11,7 @@ public:
     explicit QtKeyMapperBase(QObject *parent = 0);
 
     virtual unsigned int returnVirtualKey(unsigned int qkey);
-    virtual unsigned int returnQtKey(unsigned int key);
+    virtual unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
 
     static const unsigned int customQtKeyPrefix = 0x10000000;
     static const unsigned int customKeyPrefix = 0x20000000;

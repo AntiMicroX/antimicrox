@@ -9,8 +9,10 @@ QtKeyMapperBase::QtKeyMapperBase(QObject *parent) :
 {
 }
 
-unsigned int QtKeyMapperBase::returnQtKey(unsigned int key)
+unsigned int QtKeyMapperBase::returnQtKey(unsigned int key, unsigned int scancode)
 {
+    Q_UNUSED(scancode);
+
     return virtualKeyToQtKey.value(key);
 }
 

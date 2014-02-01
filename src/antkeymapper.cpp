@@ -7,9 +7,9 @@ AntKeyMapper::AntKeyMapper(QObject *parent) :
 {
 }
 
-unsigned int AntKeyMapper::returnQtKey(unsigned int key)
+unsigned int AntKeyMapper::returnQtKey(unsigned int key, unsigned int scancode)
 {
-    return _instance.internalMapper.returnQtKey(key);
+    return _instance.internalMapper.returnQtKey(key, scancode);
 }
 
 unsigned int AntKeyMapper::returnVirtualKey(unsigned int qkey)

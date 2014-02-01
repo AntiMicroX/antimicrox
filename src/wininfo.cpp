@@ -140,7 +140,7 @@ unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virt
     return finalvirtual;
 }
 
-unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey)
+unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias)
 {
     int scancode = 0;
     if (virtualkey == VK_PAUSE)
@@ -165,6 +165,14 @@ unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey)
          {
              scancode |= EXTENDED_FLAG; // set extended bit
              break;
+         }
+         case VK_RETURN:
+         {
+             if (alias == Qt::Key_Enter)
+             {
+                 scancode |= EXTENDED_FLAG; // set extended bit
+                 break;
+             }
          }
     }
 

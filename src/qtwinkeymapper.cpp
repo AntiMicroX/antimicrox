@@ -1,6 +1,7 @@
 #include <qt_windows.h>
 #include <QHashIterator>
 
+#include "wininfo.h"
 #include "qtwinkeymapper.h"
 
 static QHash<unsigned int, unsigned int> initDynamicKeyMapping()
@@ -301,4 +302,15 @@ void QtWinKeyMapper::populateMappingHashes()
         virtualKeyToQtKey[VK_CONTROL] =  Qt::Key_Control;
         virtualKeyToQtKey[VK_MENU] = Qt::Key_Alt;
     }
+}
+
+unsigned int QtWinKeyMapper::returnQtKey(unsigned int key, unsigned int scancode)
+{
+    unsigned int tempkey = virtualKeyToQtKey.value(key);
+    if (key == VK_RETURN && (scancode & WinInfo::EXTENDED_FLAG != 0))
+    {
+        tempkey = Qt::Key_Enter;
+    }
+
+    return tempkey;
 }
