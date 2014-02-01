@@ -307,7 +307,8 @@ void QtWinKeyMapper::populateMappingHashes()
 unsigned int QtWinKeyMapper::returnQtKey(unsigned int key, unsigned int scancode)
 {
     unsigned int tempkey = virtualKeyToQtKey.value(key);
-    if (key == VK_RETURN && (scancode & WinInfo::EXTENDED_FLAG != 0))
+    int extended = scancode & WinInfo::EXTENDED_FLAG;
+    if (key == VK_RETURN && extended)
     {
         tempkey = Qt::Key_Enter;
     }
