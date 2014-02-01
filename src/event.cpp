@@ -55,7 +55,7 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     {
         unsigned int scancode = WinInfo::scancodeFromVirtualKey(code);
         int extended = (scancode & WinInfo::EXTENDED_FLAG) != 0;
-        if (code == VK_RETURN && slot->getSlotCodeAlias() == Qt::Key_Return)
+        if (code == VK_RETURN && slot->getSlotCodeAlias() == Qt::Key_Enter)
         {
             extended = 1;
         }
