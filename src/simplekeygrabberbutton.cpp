@@ -14,14 +14,6 @@ SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
     this->installEventFilter(this);
 }
 
-SimpleKeyGrabberButton::SimpleKeyGrabberButton(int controlcode, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent) :
-    QPushButton(parent)
-{
-    grabNextAction = false;
-    grabbingWheel = false;
-    setValue(controlcode, mode);
-}
-
 void SimpleKeyGrabberButton::keyPressEvent(QKeyEvent *event)
 {
     // Do not allow closing of dialog using Escape key
@@ -179,6 +171,14 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 void SimpleKeyGrabberButton::setValue(int value, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode)
 {
     buttonslot.setSlotCode(value, alias);
+    buttonslot.setSlotMode(mode);
+
+    setText(buttonslot.getSlotString());
+}
+
+void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputAction mode)
+{
+    buttonslot.setSlotCode(value);
     buttonslot.setSlotMode(mode);
 
     setText(buttonslot.getSlotString());

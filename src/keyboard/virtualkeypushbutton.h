@@ -15,6 +15,7 @@ public:
     
 protected:
     int keycode;
+    unsigned int qkeyalias;
     QString xcodestring;
     QString displayString;
     bool currentlyActive;
@@ -27,7 +28,7 @@ protected:
     virtual void paintEvent(QPaintEvent *event);
 
 signals:
-    void keycodeObtained(int code);
+    void keycodeObtained(int code, unsigned int alias);
 
 public slots:
 

@@ -46,7 +46,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         JoyButtonSlot *buttonslot = iter.next();
         SimpleKeyGrabberButton *existingCode = new SimpleKeyGrabberButton(this);
         existingCode->setText(buttonslot->getSlotString());
-        existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+        existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotCodeAlias(), buttonslot->getSlotMode());
 
         //existingCode->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 

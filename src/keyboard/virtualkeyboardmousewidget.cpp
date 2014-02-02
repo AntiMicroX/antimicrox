@@ -489,10 +489,10 @@ QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
     return pushButton;
 }
 
-void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode)
+void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode, unsigned int alias)
 {
     button->clearSlotsEventReset();
-    button->setAssignedSlot(keycode);
+    button->setAssignedSlot(keycode, alias);
 
     emit selectionFinished();
 }
@@ -541,8 +541,8 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
     while (iter.hasNext())
     {
         VirtualKeyPushButton *keybutton = iter.next();
-        disconnect(keybutton, SIGNAL(keycodeObtained(int)), 0, 0);
-        connect(keybutton, SIGNAL(keycodeObtained(int)), this, SLOT(processSingleKeyboardSelection(int)));
+        disconnect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), 0, 0);
+        connect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), this, SLOT(processSingleKeyboardSelection(int, unsigned int)));
     }
 
     disconnect(noneButton, SIGNAL(clicked()), 0, 0);
@@ -557,8 +557,8 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
     while (iter.hasNext())
     {
         VirtualKeyPushButton *keybutton = iter.next();
-        disconnect(keybutton, SIGNAL(keycodeObtained(int)), 0, 0);
-        connect(keybutton, SIGNAL(keycodeObtained(int)), this, SLOT(processAdvancedKeyboardSelection(int)));
+        disconnect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), 0, 0);
+        connect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), this, SLOT(processAdvancedKeyboardSelection(int)));
     }
 
     disconnect(noneButton, SIGNAL(clicked()), 0, 0);

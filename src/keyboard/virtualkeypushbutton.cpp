@@ -15,6 +15,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     //qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
     //qDebug() << "Question: " << X11KeySymToKeycode(79) << endl;
     this->keycode = 0;
+    this->qkeyalias = 0;
     this->xcodestring = "";
     this->displayString = "";
     this->currentlyActive = false;
@@ -40,8 +41,15 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     {
 #ifdef Q_OS_WIN
         this->keycode = temp;
+        this->qkeyalias = AntKeyMapper::returnQtKey(this->keycode);
+        // Special exception for Numpad Enter on Windows.
+        if (temp == VK_RETURN && xcodestring == "KP_Enter")
+        {
+            this->qkeyalias = Qt::Key_Enter;
+        }
 #else
         this->keycode = X11KeyCodeToX11KeySym(temp);
+        this->qkeyalias = AntKeyMapper::returnQtKey(this->keycode);
         //this->keycode = temp;
 #endif
         this->xcodestring = xcodestring;
@@ -55,7 +63,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 
 void VirtualKeyPushButton::processSingleSelection()
 {
-    emit keycodeObtained(keycode);
+    emit keycodeObtained(keycode, qkeyalias);
 }
 
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)

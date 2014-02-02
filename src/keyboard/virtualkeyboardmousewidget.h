@@ -65,7 +65,7 @@ public slots:
     void establishVirtualMouseAdvancedSignalConnections();
 
 private slots:
-    void processSingleKeyboardSelection(int keycode);
+    void processSingleKeyboardSelection(int keycode, unsigned int alias);
     void processAdvancedKeyboardSelection(int keycode);
     void processSingleMouseSelection(JoyButtonSlot *tempslot);
     void processAdvancedMouseSelection(JoyButtonSlot *tempslot);
