@@ -15,7 +15,7 @@ public:
     explicit SimpleKeyGrabberButton(QWidget *parent = 0);
     explicit SimpleKeyGrabberButton(int controlcode, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard, QWidget *parent = 0);
 
-    void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void setValue(int value, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     JoyButtonSlot* getValue();
 
 

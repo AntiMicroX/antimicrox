@@ -73,7 +73,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
         // by checking for extended bit in scan code.
         int finalvirtual = WinInfo::correctVirtualKey(tempcode, virtualactual);
-        int checkalias = AntKeyMapper::returnQtKey(virtualactual);
+        int checkalias = AntKeyMapper::returnQtKey(virtualactual, tempcode);
 
 #else
 
@@ -100,15 +100,16 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             if (checkalias > 0)
             {
-                buttonslot.setSlotCode(finalvirtual);
+                buttonslot.setSlotCode(finalvirtual, checkalias);
+                buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
+                setText(keysymToKey(finalvirtual, checkalias).toUpper());
             }
             else
             {
                 buttonslot.setSlotCode(virtualactual);
+                buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
+                setText(keysymToKey(finalvirtual).toUpper());
             }
-
-            buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
-            setText(keysymToKey(finalvirtual).toUpper());
         }
 
         grabNextAction = false;
@@ -175,9 +176,9 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
-void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputAction mode)
+void SimpleKeyGrabberButton::setValue(int value, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode)
 {
-    buttonslot.setSlotCode(value);
+    buttonslot.setSlotCode(value, alias);
     buttonslot.setSlotMode(mode);
 
     setText(buttonslot.getSlotString());

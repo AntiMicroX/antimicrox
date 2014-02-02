@@ -182,8 +182,7 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
         JoyButtonSlot *tempbuttonslot = button->getValue();
         if (tempbuttonslot->getSlotCode() > 0)
         {
-            JoyButtonSlot *buttonslot = new JoyButtonSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotMode());
-            this->button->setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+            this->button->setAssignedSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotCodeAlias(), tempbuttonslot->getSlotMode());
             QWidget *widget = ui->slotListWidget->itemWidget(item);
             item->setSizeHint(widget->sizeHint());
         }
@@ -425,8 +424,9 @@ void AdvanceButtonDialog::insertDistanceSlot()
 void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 {
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-    tempbutton->setValue(slot->getSlotCode(), slot->getSlotMode());
+    tempbutton->setValue(slot->getSlotCode(), slot->getSlotCodeAlias(), slot->getSlotMode());
     updateSlotsScrollArea(slot->getSlotCode());
+    slot->deleteLater();
 }
 
 void AdvanceButtonDialog::updateTurboIntervalValue(int value)

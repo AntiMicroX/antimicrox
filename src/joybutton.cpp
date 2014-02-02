@@ -1087,9 +1087,15 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
                 {
                     if (xml->name() == "slot" && xml->isStartElement())
                     {
-                        JoyButtonSlot *buttonslot = new JoyButtonSlot();
+                        JoyButtonSlot *buttonslot = new JoyButtonSlot(this);
                         buttonslot->readConfig(xml);
-                        setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+                        //setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+                        bool inserted = setAssignedSlot(buttonslot);
+                        if (!inserted)
+                        {
+                            delete buttonslot;
+                            buttonslot = 0;
+                        }
                     }
                     else
                     {
@@ -1422,7 +1428,7 @@ QString JoyButton::getCustomName()
     return customName;
 }
 
-void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
+bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
 {
     bool slotInserted = false;
     JoyButtonSlot *slot = new JoyButtonSlot(code, mode, this);
@@ -1465,9 +1471,58 @@ void JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
             slot = 0;
         }
     }
+
+    return slotInserted;
 }
 
-void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInputAction mode)
+bool JoyButton::setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode)
+{
+    bool slotInserted = false;
+    JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
+    if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
+    {
+        if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
+        {
+            double tempDistance = getTotalSlotDistance(slot);
+            if (tempDistance <= 1.0)
+            {
+                assignments.append(slot);
+                slotInserted = true;
+            }
+        }
+    }
+    else if (slot->getSlotCode() > 0)
+    {
+        assignments.append(slot);
+        slotInserted = true;
+    }
+
+    if (slotInserted)
+    {
+        if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
+            slot->getSlotMode() == JoyButtonSlot::JoyHold ||
+            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
+            slot->getSlotMode() == JoyButtonSlot::JoyRelease
+           )
+        {
+            setUseTurbo(false);
+        }
+
+        emit slotsChanged();
+    }
+    else
+    {
+        if (slot)
+        {
+            delete slot;
+            slot = 0;
+        }
+    }
+
+    return slotInserted;
+}
+
+bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
 {
     bool permitSlot = true;
 
@@ -1524,6 +1579,47 @@ void JoyButton::setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInput
             slot = 0;
         }
     }
+
+    return permitSlot;
+}
+
+bool JoyButton::setAssignedSlot(JoyButtonSlot *newslot)
+{
+    bool slotInserted = false;
+
+    if (newslot->getSlotMode() == JoyButtonSlot::JoyDistance)
+    {
+        if (newslot->getSlotCode() >= 1 && newslot->getSlotCode() <= 100)
+        {
+            double tempDistance = getTotalSlotDistance(newslot);
+            if (tempDistance <= 1.0)
+            {
+                assignments.append(newslot);
+                slotInserted = true;
+            }
+        }
+    }
+    else if (newslot->getSlotCode() > 0)
+    {
+        assignments.append(newslot);
+        slotInserted = true;
+    }
+
+    if (slotInserted)
+    {
+        if (newslot->getSlotMode() == JoyButtonSlot::JoyPause ||
+            newslot->getSlotMode() == JoyButtonSlot::JoyHold ||
+            newslot->getSlotMode() == JoyButtonSlot::JoyDistance ||
+            newslot->getSlotMode() == JoyButtonSlot::JoyRelease
+           )
+        {
+            setUseTurbo(false);
+        }
+
+        emit slotsChanged();
+    }
+
+    return slotInserted;
 }
 
 QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()

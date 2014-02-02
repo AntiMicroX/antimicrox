@@ -17,6 +17,7 @@ public:
 
     explicit JoyButtonSlot(QObject *parent = 0);
     explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=0);
+    explicit JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mode, QObject *parent=0);
     ~JoyButtonSlot();
 
     void setSlotCode(int code);

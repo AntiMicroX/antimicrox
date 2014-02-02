@@ -34,6 +34,27 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     mouseInterval = new QTime();
 }
 
+JoyButtonSlot::JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mode, QObject *parent) :
+    QObject(parent)
+{
+    deviceCode = 0;
+    qkeyaliasCode = 0;
+
+    if (code > 0)
+    {
+        deviceCode = code;
+    }
+
+    if (alias > 0)
+    {
+        qkeyaliasCode = alias;
+    }
+
+    this->mode = mode;
+    distance = 0.0;
+    mouseInterval = new QTime();
+}
+
 JoyButtonSlot::~JoyButtonSlot()
 {
     delete mouseInterval;
@@ -44,6 +65,7 @@ void JoyButtonSlot::setSlotCode(int code)
     if (code >= 0)
     {
         deviceCode = code;
+        qkeyaliasCode = 0;
     }
 }
 

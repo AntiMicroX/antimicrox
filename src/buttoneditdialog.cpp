@@ -151,8 +151,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         {
             if (checkalias > 0)
             {
-                JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, JoyButtonSlot::JoyKeyboard, this);
-                tempslot->setSlotCode(finalvirtual, event->key());
+                JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, checkalias, JoyButtonSlot::JoyKeyboard, this);
                 emit keyGrabbed(tempslot);
             }
             else
@@ -250,8 +249,9 @@ void ButtonEditDialog::closedAdvancedDialog()
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
     button->clearSlotsEventReset();
-    button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotMode());
+    button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), tempslot->getSlotMode());
     this->close();
+    tempslot->deleteLater();
 }
 
 void ButtonEditDialog::clearButtonSlots()

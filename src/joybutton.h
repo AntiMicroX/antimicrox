@@ -37,8 +37,10 @@ public:
     bool isUsingTurbo();
     void setCustomName(QString name);
     QString getCustomName();
-    void setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    void setAssignedSlot(int code, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
     void removeAssignedSlot(int index);
 
     QList<JoyButtonSlot*> *getAssignedSlots();
@@ -120,6 +122,7 @@ protected:
     void findHoldEventEnd();
     bool checkForDelaySequence();
     void checkForPressedSetChange();
+    bool setAssignedSlot(JoyButtonSlot *newslot);
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;

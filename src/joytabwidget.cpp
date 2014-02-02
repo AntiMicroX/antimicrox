@@ -1580,7 +1580,7 @@ void JoyTabWidget::loadDeviceSettings()
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     //settings.beginGroup("Controllers");
     loadSettings(&settings);
-    settings.endGroup();
+    //settings.endGroup();
 }
 
 bool JoyTabWidget::isDisplayingNames()
