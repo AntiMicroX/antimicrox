@@ -1,3 +1,33 @@
+2014-02-10 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.0.1
+
+* Active keyboard keys now use a reference count. This will
+be useful for keeping modifier keys held when moving a stick
+from a diagonal direction to a cardinal direction. This will allow a run
+to be maintained properly.
+
+* A release delay has been added to release slot events. This is needed
+for some games where a key press and release might happen too quickly
+for a game, such as The Elder Scrolls IV: Oblivion, to catch it.
+
+* Altered data sent to SendInput under Windows. The change should allow
+games that rely exclusively on scancode data to detect keyboard
+key presses now. Previously, keyboard emulation would not work
+while playing The Elder Scrolls IV: Oblivion on Windows.
+
+* Improved key associations under Windows. VK_OEM_* keys associations
+are now generated at runtime which will allow associations
+to be more layout independent.
+
+* Changed some portions of the Windows version so that the Numpad
+Enter key can be emulated.
+
+* The recent profile list is now updated when a profile is added
+or removed from the list as opposed to when the program is closed.
+This allows the list to be in sync while utilizing hotplugging.
+
+
 2014-01-04 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.0

@@ -29,7 +29,7 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
     const int ANTIMICRO_MAJOR_VERSION = 2;
     const int ANTIMICRO_MINOR_VERSION = 0;
-    const int ANTIMICRO_PATCH_VERSION = 0;
+    const int ANTIMICRO_PATCH_VERSION = 1;
 }
 
 #endif // COMMON_H

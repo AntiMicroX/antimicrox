@@ -135,9 +135,6 @@ Notes about the WXS file and the building process :
 This section is where some of the ideas for future features
 for this program will be written.
 
-* ~~DONE. Allow program to be compiled against SDL 2.0 as well as SDL 1.2.~~
-* ~~DONE. Enable use of the GameController API provided by SDL 2.~~
-* ~~DONE. Enable joystick hotplugging.~~
 * Setting to not display buttons that are not currently in use.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating

@@ -429,7 +429,7 @@ void InputDaemon::removeDevice(InputDevice *device)
 
         refreshIndexes();
 
-        deviceRemoved(deviceID);
+        emit deviceRemoved(deviceID);
         device->deleteLater();
     }
 }
@@ -486,7 +486,7 @@ void InputDaemon::addInputDevice(int index)
                         delete settings;
                         settings = 0;
 
-                        deviceAdded(damncontroller);
+                        emit deviceAdded(damncontroller);
                     }
                 }
             }
@@ -501,7 +501,7 @@ void InputDaemon::addInputDevice(int index)
                 delete settings;
                 settings = 0;
 
-                deviceAdded(curJoystick);
+                emit deviceAdded(curJoystick);
             }
         }
     }
