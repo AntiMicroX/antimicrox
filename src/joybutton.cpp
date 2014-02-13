@@ -1787,7 +1787,10 @@ void JoyButton::pauseWaitEvent()
 
         if (inpauseHold.elapsed() < currentPause->getSlotCode())
         {
-            pauseWaitTimer.start(10);
+            int proposedInterval = currentPause->getSlotCode() - inpauseHold.elapsed();
+            proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
+            int newTimerInterval = qMin(10, proposedInterval);
+            pauseWaitTimer.start(newTimerInterval);
         }
         else
         {

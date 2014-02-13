@@ -4,7 +4,6 @@
 #include <QtGlobal>
 #include <QString>
 #include <QDir>
-#include <QSettings>
 
 namespace PadderCommon
 {
@@ -23,13 +22,18 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const QString configFileName = "antimicro_settings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
     const int LATESTCONFIGFILEVERSION = 6;
-    const QString programVersion = "2.0";
     const QString localSocketKey = "antimicroSignalListener";
     const QString projectHomePage = "http://ryochan7.com/projects/antimicro/";
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
     const int ANTIMICRO_MAJOR_VERSION = 2;
     const int ANTIMICRO_MINOR_VERSION = 0;
     const int ANTIMICRO_PATCH_VERSION = 1;
+
+    const QString programVersion = (ANTIMICRO_PATCH_VERSION > 0) ?
+        QString("%1.%2.%3").arg(ANTIMICRO_MAJOR_VERSION)
+            .arg(ANTIMICRO_MINOR_VERSION).arg(ANTIMICRO_PATCH_VERSION) :
+        QString("%1.%2").arg(ANTIMICRO_MAJOR_VERSION)
+            .arg(ANTIMICRO_MINOR_VERSION);
 }
 
 #endif // COMMON_H

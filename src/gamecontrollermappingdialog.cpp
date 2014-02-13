@@ -6,6 +6,7 @@
 #include <QVariant>
 #include <QStringList>
 #include <QMessageBox>
+#include <QSettings>
 
 #include "gamecontrollermappingdialog.h"
 #include "ui_gamecontrollermappingdialog.h"
