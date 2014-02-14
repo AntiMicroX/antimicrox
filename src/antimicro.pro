@@ -193,7 +193,8 @@ SOURCES += main.cpp\
     antkeymapper.cpp \
     inputdevice.cpp \
     mainsettingsdialog.cpp \
-    gamecontroller/gamecontrollertriggerbutton.cpp
+    gamecontroller/gamecontrollertriggerbutton.cpp \
+    keydelaydialog.cpp
 
 
 unix {
@@ -271,7 +272,8 @@ HEADERS  += mainwindow.h \
     antkeymapper.h \
     inputdevice.h \
     mainsettingsdialog.h \
-    gamecontroller/gamecontrollertriggerbutton.h
+    gamecontroller/gamecontrollertriggerbutton.h \
+    keydelaydialog.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
@@ -303,7 +305,8 @@ FORMS    += mainwindow.ui \
     joystickstatuswindow.ui \
     qkeydisplaydialog.ui \
     gamecontrollermappingdialog.ui \
-    mainsettingsdialog.ui
+    mainsettingsdialog.ui \
+    keydelaydialog.ui
 
 
 unix {

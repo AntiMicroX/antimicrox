@@ -828,3 +828,8 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
         connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
     }
 }
+
+InputDevice* SetJoystick::getInputDevice()
+{
+    return device;
+}

@@ -65,9 +65,12 @@ public:
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
 
+    unsigned int getDeviceKeyDelay();
+
     void setIndex(int index);
 
     static const int NUMBER_JOYSETS;
+    static const int DEFAULTKEYDELAY;
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
@@ -78,6 +81,7 @@ protected:
     int joyNumber;
     int buttonDownCount;
     SDL_JoystickID joystickID;
+    unsigned int keyDelay;
 
 signals:
     void setChangeActivated(int index);
@@ -101,6 +105,7 @@ public slots:
     void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
+    void setDeviceKeyDelay(unsigned int newDelay);
 
 protected slots:
     void propogateSetChange(int index);

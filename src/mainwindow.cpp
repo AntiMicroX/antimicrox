@@ -102,6 +102,21 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
             unloadCurrentConfig(0);
         }
     }
+    else if (cmdutility->getStartSetNumber() > 0)
+    {
+        if (cmdutility->hasControllerNumber())
+        {
+            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerNumber());
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerID());
+        }
+        else
+        {
+            changeStartSetNumber(cmdutility->getJoyStartSetNumber());
+        }
+    }
 
     aboutDialog = new AboutDialog(this);
 
@@ -357,7 +372,11 @@ void MainWindow::saveAppConfig()
 {
     if (joysticks->count() > 0)
     {
+        JoyTabWidget *temptabwidget = (JoyTabWidget*)ui->tabWidget->widget(0);
         QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+        settings.setValue("DisplayNames",
+            temptabwidget->isDisplayingNames() ? "true" : "false");
+
         settings.beginGroup("Controllers");
         settings.remove("");
         QStringList tempGUIDHolder;
@@ -827,6 +846,53 @@ void MainWindow::propogateNameDisplayStatus(bool displayNames)
             if (tab->isDisplayingNames() != displayNames)
             {
                 tab->changeNameDisplay(displayNames);
+            }
+        }
+    }
+}
+
+void MainWindow::changeStartSetNumber(unsigned int startSetNumber, QString controllerID)
+{
+    if (!controllerID.isEmpty())
+    {
+        QListIterator<QObject*> iter(ui->tabWidget->children());
+        while (iter.hasNext())
+        {
+            JoyTabWidget *tab = static_cast<JoyTabWidget*>(iter.next());
+            if (tab)
+            {
+                InputDevice *tempdevice = tab->getJoystick();
+                if (controllerID == tempdevice->getGUIDString())
+                {
+                    tab->changeCurrentSet(startSetNumber);
+                }
+                else if (controllerID == tempdevice->getSDLName())
+                {
+                    tab->changeCurrentSet(startSetNumber);
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex)
+{
+    if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex-1));
+        if (widget)
+        {
+            widget->changeCurrentSet(startSetNumber);
+        }
+    }
+    else if (joystickIndex <= 0)
+    {
+        for (int i=0; i < ui->tabWidget->count(); i++)
+        {
+            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+            if (widget)
+            {
+                widget->changeCurrentSet(startSetNumber);
             }
         }
     }

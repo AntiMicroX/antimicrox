@@ -20,6 +20,7 @@
 #include "dpadeditdialog.h"
 #include "joydpadbuttonwidget.h"
 #include "quicksetdialog.h"
+#include "keydelaydialog.h"
 
 #ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
@@ -342,6 +343,12 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
     namesPushButton->setIcon(QIcon::fromTheme("text-field"));
     horizontalLayout_3->addWidget(namesPushButton);
 
+    delayButton = new QPushButton(tr("Pref"), this);
+    delayButton->setObjectName(QString::fromUtf8("delayButton"));
+    delayButton->setToolTip(tr("Change global profile settings."));
+    delayButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    horizontalLayout_3->addWidget(delayButton);
+
     resetButton = new QPushButton(tr("Reset"), this);
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
     resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
@@ -368,6 +375,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
     connect(namesPushButton, SIGNAL(clicked()), this, SLOT(toggleNames()));
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     connect(saveAsButton, SIGNAL(clicked()), this, SLOT(saveAsConfig()));
+    connect(delayButton, SIGNAL(clicked()), this, SLOT(showKeyDelayDialog()));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeConfig()));
 
     connect(setPushButton1, SIGNAL(clicked()), this, SLOT(changeSetOne()));
@@ -1237,6 +1245,12 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
         configBox->setCurrentIndex(-1);
     }
 
+    bool shouldisplaynames = settings->value("DisplayNames", "false").toBool();
+    if (shouldisplaynames)
+    {
+        changeNameDisplay(shouldisplaynames);
+    }
+
     settings->beginGroup("Controllers");
     QString controlGUIDString = QString("Controller%1ConfigFile%2").arg(joystick->getGUIDString());
     QString controlGUIDLastSelected = QString("Controller%1LastSelected").arg(joystick->getGUIDString());
@@ -1475,6 +1489,12 @@ void JoyTabWidget::showQuickSetDialog()
 {
     QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
     connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    dialog->show();
+}
+
+void JoyTabWidget::showKeyDelayDialog()
+{
+    KeyDelayDialog *dialog = new KeyDelayDialog(joystick, this);
     dialog->show();
 }
 

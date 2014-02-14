@@ -46,6 +46,8 @@ public:
     void removeVDPad(int index);
     void setIgnoreEventState(bool ignore);
 
+    InputDevice* getInputDevice();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 

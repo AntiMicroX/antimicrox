@@ -3,6 +3,7 @@
 #include "inputdevice.h"
 
 const int InputDevice::NUMBER_JOYSETS = 8;
+const int InputDevice::DEFAULTKEYDELAY = 100;
 
 InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     QObject(parent)
@@ -11,6 +12,7 @@ InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     joyNumber = deviceIndex;
     active_set = 0;
     joystickID = 0;
+    keyDelay = 0;
 }
 
 InputDevice::~InputDevice()
@@ -526,6 +528,15 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
                     xml->readNextStartElement();
                 }
             }
+            else if (xml->name() == "keyPressTime" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                if (tempchoice >= 10)
+                {
+                    this->setDeviceKeyDelay(tempchoice);
+                }
+            }
             else
             {
                 // If none of the above, skip the element
@@ -789,6 +800,11 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
         }
     }
     xml->writeEndElement(); // </names>
+
+    if (keyDelay > 0)
+    {
+        xml->writeTextElement("keyPressTime", QString::number(keyDelay));
+    }
 
     xml->writeStartElement("sets");
     for (int i=0; i < joystick_sets.size(); i++)
@@ -1311,6 +1327,16 @@ void InputDevice::setIndex(int index)
     {
         joyNumber = 0;
     }
+}
+
+void InputDevice::setDeviceKeyDelay(unsigned int newDelay)
+{
+    keyDelay = newDelay;
+}
+
+unsigned int InputDevice::getDeviceKeyDelay()
+{
+    return keyDelay;
 }
 
 #ifdef USE_SDL_2

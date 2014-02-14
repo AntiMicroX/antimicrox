@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "setjoystick.h"
+#include "inputdevice.h"
 #include "joybutton.h"
 #include "vdpad.h"
 #include "event.h"
@@ -12,7 +13,6 @@ const int JoyButton::ENABLEDTURBODEFAULT = 100;
 const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
-int JoyButton::globalKeyDelay = 100;
 QHash<unsigned int, int> JoyButton::activeKeys;
 
 
@@ -32,7 +32,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     vdpad = 0;
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
-    keyDelay = 0;
     this->parentSet = parentSet;
 
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
@@ -1526,7 +1525,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
 {
     bool permitSlot = true;
 
-    JoyButtonSlot *slot = new JoyButtonSlot(code, mode, this);
+    JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
         if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
@@ -2823,7 +2822,7 @@ void JoyButton::moveSpringMouse()
 void JoyButton::keydelayEvent()
 {
     //qDebug() << "RADIO EDIT: " << keyDelayHold.elapsed();
-    if (keyDelayTimer.isActive() && keyDelayHold.elapsed() >= globalKeyDelay)
+    if (keyDelayTimer.isActive() && keyDelayHold.elapsed() >= getPreferredKeyDelay())
     {
         keyDelayTimer.stop();
         keyDelayHold.restart();
@@ -2848,7 +2847,8 @@ void JoyButton::keydelayEvent()
         createDeskTimer.stop();
         //releaseDeskTimer.stop();
 
-        int proposedInterval = globalKeyDelay - keyDelayHold.elapsed();
+        unsigned int preferredDelay = getPreferredKeyDelay();
+        int proposedInterval = preferredDelay - keyDelayHold.elapsed();
         proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
         //qDebug() << "NEVER: " << proposedInterval;
         int newTimerInterval = qMin(10, proposedInterval);
@@ -2916,4 +2916,15 @@ void JoyButton::checkForPressedSetChange()
             }
         }
     }
+}
+
+unsigned int JoyButton::getPreferredKeyDelay()
+{
+    unsigned int tempDelay = InputDevice::DEFAULTKEYDELAY;
+    if (parentSet->getInputDevice()->getDeviceKeyDelay() > 0)
+    {
+        tempDelay = parentSet->getInputDevice()->getDeviceKeyDelay();
+    }
+
+    return tempDelay;
 }

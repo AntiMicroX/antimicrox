@@ -42,6 +42,8 @@ protected:
     void loadConfigFile(QString fileLocation, QString controllerID);
     void unloadCurrentConfig(int joystickIndex=0);
     void unloadCurrentConfig(QString controllerID);
+    void changeStartSetNumber(unsigned int startSetNumber, QString controllerID);
+    void changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex=0);
 
 #ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;

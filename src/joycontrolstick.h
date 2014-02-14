@@ -98,7 +98,6 @@ public:
 protected:
     virtual void populateButtons();
     void createDeskEvent(bool ignoresets = false);
-    void changeButtonEvent(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
 
     void performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets);

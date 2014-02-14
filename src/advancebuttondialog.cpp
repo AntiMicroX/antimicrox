@@ -150,8 +150,8 @@ void AdvanceButtonDialog::changeTurboText(int value)
     {
         double delay = value / 100.0;
         double clicks = 100.0 / (double)value;
-        QString delaytext = QString(QString::number(delay, 'g', 3)).append(" sec.");
-        QString labeltext = QString(QString::number(clicks, 'g', 2)).append("/sec.");
+        QString delaytext = QString::number(delay, 'g', 3).append(" ").append(tr("sec."));
+        QString labeltext = QString::number(clicks, 'g', 2).append(" ").append(tr("/sec."));
 
         ui->delayValueLabel->setText(delaytext);
         ui->rateValueLabel->setText(labeltext);

@@ -14,6 +14,7 @@ QRegExp CommandLineUtility::loadProfileRegexp = QRegExp("--profile");
 QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-controller");
 QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
 QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
+QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
 
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
@@ -28,6 +29,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     encounteredError = false;
     hiddenRequest = false;
     unloadProfile = false;
+    startSetNumber = 0;
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -146,6 +148,48 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 }
             }
         }
+        else if (startSetRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+                temp = iter.next();
+
+                bool validNumber = false;
+                int tempNumber = temp.toInt(&validNumber);
+                if (validNumber && tempNumber >= 1 && tempNumber <= 8)
+                {
+                    startSetNumber = tempNumber;
+                }
+                else if (validNumber)
+                {
+                    errorsteam << tr("An invalid set number was specified.") << endl;
+                    encounteredError = true;
+                }
+
+                if (iter.hasNext())
+                {
+                    temp = iter.next();
+                    if (validNumber)
+                    {
+                        controllerNumber = tempNumber;
+                    }
+                    else if (!temp.isEmpty())
+                    {
+                        controllerIDString = temp;
+                    }
+                    else
+                    {
+                        errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                        encounteredError = true;
+                    }
+                }
+            }
+            else
+            {
+                errorsteam << tr("No set number was specified.") << endl;
+                encounteredError = true;
+            }
+        }
     }
 }
 
@@ -173,6 +217,8 @@ void CommandLineUtility::printHelp()
         << tr("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
         << endl;
     out << "--unload [<value>]            " << " " << tr("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
+        << endl;
+    out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
         << endl;
 }
 
@@ -229,7 +275,7 @@ bool CommandLineUtility::isHiddenRequested()
 
 bool CommandLineUtility::hasControllerID()
 {
-    return controllerIDString.isEmpty();
+    return !controllerIDString.isEmpty();
 }
 
 QString CommandLineUtility::getControllerID()
@@ -240,4 +286,14 @@ QString CommandLineUtility::getControllerID()
 bool CommandLineUtility::isUnloadRequested()
 {
     return unloadProfile;
+}
+
+unsigned int CommandLineUtility::getStartSetNumber()
+{
+    return startSetNumber;
+}
+
+unsigned int CommandLineUtility::getJoyStartSetNumber()
+{
+    return startSetNumber-1;
 }

@@ -123,6 +123,7 @@ protected:
     bool checkForDelaySequence();
     void checkForPressedSetChange();
     bool setAssignedSlot(JoyButtonSlot *newslot);
+    unsigned int getPreferredKeyDelay();
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -204,8 +205,6 @@ protected:
 
     SetJoystick *parentSet; // Pointer to set that button is assigned to.
 
-    unsigned int keyDelay;
-
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -217,7 +216,6 @@ protected:
     static QList<double> springYSpeeds;
     static QTimer springDelayTimer;
     static QHash<unsigned int, int> activeKeys;
-    static int globalKeyDelay;
 
 signals:
     void clicked (int index);

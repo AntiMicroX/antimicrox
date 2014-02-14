@@ -1,23 +1,6 @@
 #ifndef JOYSTICK_H
 #define JOYSTICK_H
 
-/*#include <QObject>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
-
-#ifdef USE_SDL_2
-#include <SDL2/SDL_joystick.h>
-#else
-#include <SDL/SDL_joystick.h>
-#endif
-
-#include "joyaxis.h"
-#include "joydpad.h"
-#include "joybutton.h"
-#include "setjoystick.h"
-#include "common.h"
-*/
-
 #include <QObject>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>

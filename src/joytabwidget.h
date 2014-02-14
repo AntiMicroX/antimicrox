@@ -48,6 +48,7 @@ protected:
     QPushButton *resetButton;
     QPushButton *namesPushButton;
     QPushButton *saveAsButton;
+    QPushButton *delayButton;
     QComboBox *configBox;
     QGridLayout *gridLayout;
     QGridLayout *gridLayout2;
@@ -103,6 +104,7 @@ public slots:
     void saveDeviceSettings();
     void loadDeviceSettings();
     void changeNameDisplay(bool displayNames);
+    void changeCurrentSet(int index);
 
 private slots:
     void saveConfigFile();
@@ -116,6 +118,7 @@ private slots:
     void showStickAssignmentDialog();
     void showDPadDialog();
     void showQuickSetDialog();
+    void showKeyDelayDialog();
     void toggleNames();
 
     void changeSetOne();
@@ -126,7 +129,6 @@ private slots:
     void changeSetSix();
     void changeSetSeven();
     void changeSetEight();
-    void changeCurrentSet(int index);
     void openStickButtonDialog();
 };
 

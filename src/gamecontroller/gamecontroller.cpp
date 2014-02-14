@@ -204,6 +204,15 @@ void GameController::readConfig(QXmlStreamReader *xml)
                     xml->readNextStartElement();
                 }
             }
+            else if (xml->name() == "keyPressTime" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                if (tempchoice >= 10)
+                {
+                    this->setDeviceKeyDelay(tempchoice);
+                }
+            }
             else
             {
                 // If none of the above, skip the element
@@ -334,6 +343,11 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
         }
     }
     xml->writeEndElement(); // </names>
+
+    if (keyDelay > 0)
+    {
+        xml->writeTextElement("keyPressTime", QString::number(keyDelay));
+    }
 
     xml->writeStartElement("sets");
     for (int i=0; i < joystick_sets.size(); i++)

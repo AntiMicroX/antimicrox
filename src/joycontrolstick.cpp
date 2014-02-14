@@ -329,37 +329,6 @@ double JoyControlStick::calculateBearing()
     return finalAngle;
 }
 
-void JoyControlStick::changeButtonEvent(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets)
-{
-    /*if (eventbutton && !activebutton)
-    {
-        // There is no active button. Call joyEvent and set current
-        // button as active button
-        eventbutton->joyEvent(true, ignoresets);
-        activebutton = eventbutton;
-    }
-    else if (!eventbutton && activebutton)
-    {
-        // Currently in deadzone. Disable currently active button.
-        activebutton->joyEvent(false, ignoresets);
-        activebutton = 0;
-    }
-    else if (eventbutton && activebutton && eventbutton == activebutton)
-    {
-        // Button is currently active. Just pass current value
-        eventbutton->joyEvent(true, ignoresets);
-    }
-    else if (eventbutton && activebutton && eventbutton != activebutton)
-    {
-        // Deadzone skipped. Button for new event is not the currently
-        // active button. Disable the active button before enabling
-        // the new button
-        activebutton->joyEvent(false, ignoresets);
-        eventbutton->joyEvent(true, ignoresets);
-        activebutton = eventbutton;
-    }*/
-}
-
 double JoyControlStick::getDistanceFromDeadZone()
 {
     double distance = 0.0;

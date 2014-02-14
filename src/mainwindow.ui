@@ -497,6 +497,13 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
                </spacer>
               </item>
               <item>
+               <widget class="QPushButton" name="delayPushButton">
+                <property name="text">
+                 <string>Pref</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="namesPushButton">
                 <property name="toolTip">
                  <string>Toggle button name displaying.</string>

@@ -26,6 +26,9 @@ public:
     bool isHiddenRequested();
     bool isUnloadRequested();
 
+    unsigned int getStartSetNumber();
+    unsigned int getJoyStartSetNumber();
+
     void printHelp();
     void printVersionString();
 
@@ -42,6 +45,7 @@ protected:
     bool encounteredError;
     bool hiddenRequest;
     bool unloadProfile;
+    unsigned int startSetNumber;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -51,6 +55,7 @@ protected:
     static QRegExp loadProfileForControllerRegexp;
     static QRegExp hiddenRegexp;
     static QRegExp unloadRegexp;
+    static QRegExp startSetRegexp;
     
 signals:
     
