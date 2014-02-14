@@ -362,6 +362,22 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
+               <widget class="QPushButton" name="setsMenuButton">
+                <property name="text">
+                 <string>Sets</string>
+                </property>
+                <property name="autoDefault">
+                 <bool>false</bool>
+                </property>
+                <property name="default">
+                 <bool>false</bool>
+                </property>
+                <property name="flat">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="setPushButton1">
                 <property name="styleSheet">
                  <string notr="true"/>
@@ -688,7 +704,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionGameController_Mapping">
    <property name="text">
-    <string>GameController Mapping</string>
+    <string>Game Controller Mapping</string>
    </property>
   </action>
   <action name="actionOptions">

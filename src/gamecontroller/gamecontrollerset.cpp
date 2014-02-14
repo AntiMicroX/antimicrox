@@ -127,6 +127,14 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "name" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (!temptext.isEmpty())
+                {
+                    setName(temptext);
+                }
+            }
             else
             {
                 // If none of the above, skip the element

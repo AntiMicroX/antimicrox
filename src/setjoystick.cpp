@@ -205,6 +205,7 @@ void SetJoystick::reset()
     refreshAxes();
     refreshButtons();
     refreshHats();
+    name = QString();
 }
 
 void SetJoystick::propogateSetChange(int index)
@@ -351,6 +352,14 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "name" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                if (!temptext.isEmpty())
+                {
+                    setName(temptext);
+                }
+            }
             else
             {
                 // If none of the above, skip the element
@@ -369,6 +378,11 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
         xml->writeStartElement("set");
 
         xml->writeAttribute("index", QString::number(index+1));
+
+        if (!name.isEmpty())
+        {
+            xml->writeTextElement("name", name);
+        }
 
         for (int i=0; i < getNumberSticks(); i++)
         {
@@ -832,4 +846,23 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
 InputDevice* SetJoystick::getInputDevice()
 {
     return device;
+}
+
+void SetJoystick::setName(QString name)
+{
+    if (name.length() <= 50)
+    {
+        this->name = name;
+    }
+    else if (name.length() > 50)
+    {
+        // Truncate name to 47 characters. Add ellipses at the end.
+        name.truncate(47);
+        this->name = QString(name).append("...");
+    }
+}
+
+QString SetJoystick::getName()
+{
+    return name;
 }

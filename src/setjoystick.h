@@ -48,6 +48,9 @@ public:
 
     InputDevice* getInputDevice();
 
+    void setName(QString name);
+    QString getName();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
@@ -71,6 +74,7 @@ protected:
 
     int index;
     InputDevice *device;
+    QString name;
 
 signals:
     void setChangeActivated(int index);

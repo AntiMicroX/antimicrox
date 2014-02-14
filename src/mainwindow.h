@@ -86,6 +86,7 @@ public slots:
     void loadAppConfig(bool forceRefresh=false);
     void removeJoyTabs();
     void startLocalServer();
+
 #ifdef USE_SDL_2
     void testMappingUpdateNow(int index, InputDevice *device);
     void removeJoyTab(SDL_JoystickID deviceID);

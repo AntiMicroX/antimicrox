@@ -337,6 +337,8 @@ QString keycodeToKey(int keycode, unsigned int alias)
     QString newkey;
 
 #if defined (Q_OS_UNIX)
+    Q_UNUSED(alias);
+
     display = X11Info::display();
     if (keycode <= 0)
     {
@@ -427,6 +429,8 @@ QString keysymToKey(int keysym, unsigned int alias)
 {
     QString newkey;
 #if defined (Q_OS_UNIX)
+    Q_UNUSED(alias);
+
     display = X11Info::display();
     unsigned int keycode = XKeysymToKeycode(display, keysym);
     newkey = keycodeToKey(keycode);

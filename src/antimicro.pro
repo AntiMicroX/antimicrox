@@ -194,7 +194,8 @@ SOURCES += main.cpp\
     inputdevice.cpp \
     mainsettingsdialog.cpp \
     gamecontroller/gamecontrollertriggerbutton.cpp \
-    keydelaydialog.cpp
+    keydelaydialog.cpp \
+    setnamesdialog.cpp
 
 
 unix {
@@ -273,7 +274,8 @@ HEADERS  += mainwindow.h \
     inputdevice.h \
     mainsettingsdialog.h \
     gamecontroller/gamecontrollertriggerbutton.h \
-    keydelaydialog.h
+    keydelaydialog.h \
+    setnamesdialog.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
@@ -306,7 +308,8 @@ FORMS    += mainwindow.ui \
     qkeydisplaydialog.ui \
     gamecontrollermappingdialog.ui \
     mainsettingsdialog.ui \
-    keydelaydialog.ui
+    keydelaydialog.ui \
+    setnamesdialog.ui
 
 
 unix {

@@ -63,6 +63,7 @@ protected:
     QSpacerItem *spacer2;
     QSpacerItem *spacer3;
     AxisEditDialog *axisDialog;
+
     QPushButton *setPushButton1;
     QPushButton *setPushButton2;
     QPushButton *setPushButton3;
@@ -71,6 +72,17 @@ protected:
     QPushButton *setPushButton6;
     QPushButton *setPushButton7;
     QPushButton *setPushButton8;
+
+    QPushButton *setsMenuButton;
+    QAction *setAction1;
+    QAction *setAction2;
+    QAction *setAction3;
+    QAction *setAction4;
+    QAction *setAction5;
+    QAction *setAction6;
+    QAction *setAction7;
+    QAction *setAction8;
+
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *stickAssignPushButton;
@@ -105,6 +117,7 @@ public slots:
     void loadDeviceSettings();
     void changeNameDisplay(bool displayNames);
     void changeCurrentSet(int index);
+    void refreshSetButtons();
 
 private slots:
     void saveConfigFile();
@@ -119,6 +132,7 @@ private slots:
     void showDPadDialog();
     void showQuickSetDialog();
     void showKeyDelayDialog();
+    void showSetNamesDialog();
     void toggleNames();
 
     void changeSetOne();

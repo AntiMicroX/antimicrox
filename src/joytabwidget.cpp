@@ -4,7 +4,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QStringListIterator>
-
+#include <QMenu>
 
 #include "joytabwidget.h"
 #include "joyaxiswidget.h"
@@ -21,6 +21,7 @@
 #include "joydpadbuttonwidget.h"
 #include "quicksetdialog.h"
 #include "keydelaydialog.h"
+#include "setnamesdialog.h"
 
 #ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
@@ -265,6 +266,49 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
     horizontalLayout_2 = new QHBoxLayout();
     horizontalLayout_2->setSpacing(6);
     horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+
+    setsMenuButton = new QPushButton(tr("Sets"), this);
+    QMenu *setMenu = new QMenu(setsMenuButton);
+    QAction *setSettingsAction = new QAction(tr("Settings"), setMenu);
+    connect(setSettingsAction, SIGNAL(triggered()), this, SLOT(showSetNamesDialog()));
+    setMenu->addAction(setSettingsAction);
+    setMenu->addSeparator();
+
+    setAction1 = new QAction(tr("Set 1"), setMenu);
+    connect(setAction1, SIGNAL(triggered()), this, SLOT(changeSetOne()));
+    setMenu->addAction(setAction1);
+
+    setAction2 = new QAction(tr("Set 2"), setMenu);
+    connect(setAction2, SIGNAL(triggered()), this, SLOT(changeSetTwo()));
+    setMenu->addAction(setAction2);
+
+    setAction3 = new QAction(tr("Set 3"), setMenu);
+    connect(setAction3, SIGNAL(triggered()), this, SLOT(changeSetThree()));
+    setMenu->addAction(setAction3);
+
+    setAction4 = new QAction(tr("Set 4"), setMenu);
+    connect(setAction4, SIGNAL(triggered()), this, SLOT(changeSetFour()));
+    setMenu->addAction(setAction4);
+
+    setAction5 = new QAction(tr("Set 5"), setMenu);
+    connect(setAction5, SIGNAL(triggered()), this, SLOT(changeSetFive()));
+    setMenu->addAction(setAction5);
+
+    setAction6 = new QAction(tr("Set 6"), setMenu);
+    connect(setAction6, SIGNAL(triggered()), this, SLOT(changeSetSix()));
+    setMenu->addAction(setAction6);
+
+    setAction7 = new QAction(tr("Set 7"), setMenu);
+    connect(setAction7, SIGNAL(triggered()), this, SLOT(changeSetSeven()));
+    setMenu->addAction(setAction7);
+
+    setAction8 = new QAction(tr("Set 8"), setMenu);
+    connect(setAction8, SIGNAL(triggered()), this, SLOT(changeSetEight()));
+    setMenu->addAction(setAction8);
+
+    setsMenuButton->setMenu(setMenu);
+    horizontalLayout_2->addWidget(setsMenuButton);
+
     setPushButton1 = new QPushButton("1", this);
     setPushButton1->setObjectName(QString::fromUtf8("setPushButton1"));
     setPushButton1->setProperty("setActive", true);
@@ -312,6 +356,8 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
     setPushButton8->setProperty("setActive", false);
 
     horizontalLayout_2->addWidget(setPushButton8);
+
+    refreshSetButtons();
 
     verticalLayout->addLayout(horizontalLayout_2);
 
@@ -389,6 +435,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
 
     connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
+    connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
 }
 
 void JoyTabWidget::openConfigFileDialog()
@@ -1022,12 +1069,14 @@ void JoyTabWidget::resetJoystick()
         }
 
         fillButtons();
+        refreshSetButtons();
     }
     else
     {
         removeCurrentButtons();
         joystick->reset();
         fillButtons();
+        refreshSetButtons();
     }
 }
 
@@ -1137,13 +1186,14 @@ void JoyTabWidget::changeJoyConfig(int index)
         }
 
         fillButtons();
-
+        refreshSetButtons();
     }
     else if (index == 0)
     {
         removeCurrentButtons();
         joystick->reset();
         fillButtons();
+        refreshSetButtons();
         emit joystickRefreshRequested(joystick);
     }
 }
@@ -1498,6 +1548,13 @@ void JoyTabWidget::showKeyDelayDialog()
     dialog->show();
 }
 
+void JoyTabWidget::showSetNamesDialog()
+{
+    SetNamesDialog *dialog = new SetNamesDialog(joystick, this);
+    connect(dialog, SIGNAL(accepted()), this, SLOT(refreshSetButtons()));
+    dialog->show();
+}
+
 void JoyTabWidget::removeCurrentButtons()
 {
     for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
@@ -1614,4 +1671,65 @@ void JoyTabWidget::changeNameDisplay(bool displayNames)
     namesPushButton->setProperty("isDisplayingNames", displayingNames);
     namesPushButton->style()->unpolish(namesPushButton);
     namesPushButton->style()->polish(namesPushButton);
+}
+
+void JoyTabWidget::refreshSetButtons()
+{
+    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    {
+        QPushButton *tempSetButton = 0;
+        QAction *tempSetAction = 0;
+        SetJoystick *tempSet = joystick->getSetJoystick(i);
+        switch (i)
+        {
+            case 0:
+                tempSetButton = setPushButton1;
+                tempSetAction = setAction1;
+                break;
+            case 1:
+                tempSetButton = setPushButton2;
+                tempSetAction = setAction2;
+                break;
+            case 2:
+                tempSetButton = setPushButton3;
+                tempSetAction = setAction3;
+                break;
+            case 3:
+                tempSetButton = setPushButton4;
+                tempSetAction = setAction4;
+                break;
+            case 4:
+                tempSetButton = setPushButton5;
+                tempSetAction = setAction5;
+                break;
+            case 5:
+                tempSetButton = setPushButton6;
+                tempSetAction = setAction6;
+                break;
+            case 6:
+                tempSetButton = setPushButton7;
+                tempSetAction = setAction7;
+                break;
+            case 7:
+                tempSetButton = setPushButton8;
+                tempSetAction = setAction8;
+                break;
+        }
+
+        if (!tempSet->getName().isEmpty())
+        {
+            QString tempName = tempSet->getName();
+            tempSetButton->setText(tempName);
+            tempSetButton->setToolTip(tempName);
+
+            tempSetAction->setText(tr("Set").append(" %1: %2").arg(i+1).arg(tempName));
+        }
+        else
+        {
+            tempSetButton->setText(QString::number(i+1));
+            tempSetButton->setToolTip("");
+
+            tempSetAction->setText(tr("Set").append(" %1").arg(i+1));
+        }
+    }
 }
