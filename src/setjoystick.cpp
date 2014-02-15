@@ -850,14 +850,14 @@ InputDevice* SetJoystick::getInputDevice()
 
 void SetJoystick::setName(QString name)
 {
-    if (name.length() <= 50)
+    if (name.length() <= 20)
     {
         this->name = name;
     }
-    else if (name.length() > 50)
+    else if (name.length() > 20)
     {
-        // Truncate name to 47 characters. Add ellipses at the end.
-        name.truncate(47);
+        // Truncate name to 17 characters. Add ellipsis at the end.
+        name.truncate(17);
         this->name = QString(name).append("...");
     }
 }

@@ -1295,8 +1295,8 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
         configBox->setCurrentIndex(-1);
     }
 
-    bool shouldisplaynames = settings->value("DisplayNames", "false").toBool();
-    if (shouldisplaynames)
+    int shouldisplaynames = settings->value("DisplayNames", "0").toInt();
+    if (shouldisplaynames == 1)
     {
         changeNameDisplay(shouldisplaynames);
     }

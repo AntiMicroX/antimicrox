@@ -272,6 +272,9 @@ void MainWindow::populateTrayIcon()
                 joysticksub->addAction(newaction);
             }
 
+            delete configs;
+            configs = 0;
+
             QAction *newaction = new QAction(tr("Open File"), joysticksub);
             newaction->setIcon(QIcon::fromTheme("document-open"));
             connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
@@ -375,7 +378,7 @@ void MainWindow::saveAppConfig()
         JoyTabWidget *temptabwidget = (JoyTabWidget*)ui->tabWidget->widget(0);
         QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         settings.setValue("DisplayNames",
-            temptabwidget->isDisplayingNames() ? "true" : "false");
+            temptabwidget->isDisplayingNames() ? "1" : "0");
 
         settings.beginGroup("Controllers");
         settings.remove("");
