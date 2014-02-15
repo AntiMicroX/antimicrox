@@ -1,19 +1,21 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1386798703703" TEXT="AntiMicro Future Developments">
-<node CREATED="1379712868552" FOLDED="true" ID="ID_1152197684" MODIFIED="1388425867399" POSITION="right" TEXT="Mouse Curves">
+<node CREATED="1379712868552" FOLDED="true" ID="ID_1152197684" MODIFIED="1392361496339" POSITION="right" TEXT="Mouse Curves">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1385413655567" ID="ID_1859704771" MODIFIED="1385413672185" TEXT="Curve options were taken from QJoyPad. Linear is still used as the default."/>
 </node>
-<node CREATED="1379712878989" FOLDED="true" ID="ID_1601152391" MODIFIED="1386296120777" POSITION="left" TEXT="Gamepad Status/Diagnosis">
+<node CREATED="1379712878989" FOLDED="true" ID="ID_1601152391" MODIFIED="1392361529837" POSITION="left" TEXT="Gamepad Status/Diagnosis">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1386295949051" ID="ID_1843601206" MODIFIED="1386296073732" TEXT="Status window shows pieces of information provided by SDL: number of buttons, number of axes, number of hats and controller display name. The window also shows the current raw values of all axes, hats, and buttons. This window will be useful for better showing exactly how SDL sees the controller."/>
 </node>
-<node CREATED="1379712921288" FOLDED="true" ID="ID_1904560551" MODIFIED="1388425856967" POSITION="right" TEXT="Tap Time?">
-<icon BUILTIN="help"/>
-<node CREATED="1386296158070" ID="ID_1324519805" MODIFIED="1386296197745" TEXT="I still haven&apos;t found a really good use case for this yet."/>
+<node CREATED="1379712921288" ID="ID_1904560551" MODIFIED="1392361620864" POSITION="right" TEXT="Tap Time?">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1386296158070" ID="ID_1324519805" MODIFIED="1392361566372" TEXT="This is mainly useful for Release slot events and Pause slot events. This will help ensure that a key is held down for long enough for a game to properly catch the keydown event.">
+<icon BUILTIN="info"/>
 </node>
-<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1388425834580" POSITION="left" TEXT="SDL 2 compatibility?">
+</node>
+<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1392361620066" POSITION="left" TEXT="SDL 2 compatibility?">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1385413319581" HGAP="246" ID="ID_315431873" MODIFIED="1386729226005" VSHIFT="-44">
 <richcontent TYPE="NODE"><html>
@@ -40,9 +42,9 @@
 </html></richcontent>
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1386727091342" FOLDED="true" HGAP="241" ID="ID_606065535" MODIFIED="1388425767746" TEXT="Allow compilation against SDL 2 using Joystick API" VSHIFT="-23">
+<node CREATED="1386727091342" FOLDED="true" HGAP="241" ID="ID_606065535" MODIFIED="1392361600287" TEXT="Allow compilation against SDL 2 using Joystick API" VSHIFT="-23">
 <icon BUILTIN="button_ok"/>
-<node CREATED="1386728036714" ID="ID_653911559" MODIFIED="1386729799546" TEXT="Different flags must be passed to SDL_Init. Use SDL_INIT_JOYSTICK. Do not use SDL_INIT_VIDEO.&#xa;&#xa;Enabling video support without actually creating a window in SDL causes&#xa;some major problems with joystick support in SDL 2; no axes support and only button up events are provided. Enabling video&#xa;was required in SDL 1.2 because that would also enable the events system&#xa;in SDL.">
+<node CREATED="1386728036714" HGAP="52" ID="ID_653911559" MODIFIED="1392361578740" TEXT="Different flags must be passed to SDL_Init. Use SDL_INIT_JOYSTICK. Do not use SDL_INIT_VIDEO.&#xa;&#xa;Enabling video support without actually creating a window in SDL causes&#xa;some major problems with joystick support in SDL 2; no axes support and only button up events are provided. Enabling video&#xa;was required in SDL 1.2 because that would also enable the events system&#xa;in SDL." VSHIFT="-35">
 <icon BUILTIN="info"/>
 </node>
 </node>

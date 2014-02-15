@@ -43,7 +43,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
         this->keycode = temp;
         this->qkeyalias = AntKeyMapper::returnQtKey(this->keycode);
         // Special exception for Numpad Enter on Windows.
-        if (temp == VK_RETURN && xcodestring == "KP_Enter")
+        if (xcodestring == "KP_Enter")
         {
             this->qkeyalias = Qt::Key_Enter;
         }
