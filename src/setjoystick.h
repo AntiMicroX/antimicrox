@@ -54,6 +54,8 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
+    static const int MAXNAMELENGTH;
+
 protected:
     bool isSetEmpty();
     void deleteButtons();

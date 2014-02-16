@@ -35,6 +35,8 @@ public:
     bool hasError();
 
 protected:
+    bool isPossibleCommand(QString temp);
+
     bool launchInTray;
     bool helpRequest;
     bool versionRequest;

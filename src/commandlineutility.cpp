@@ -120,7 +120,7 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             {
                 temp = iter.next();
 
-                if (!temp.startsWith("--") && !temp.startsWith("-"))
+                if (!isPossibleCommand(temp))
                 {
                     // A value has been passed. Attempt
                     // to validate the value.
@@ -169,18 +169,28 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 if (iter.hasNext())
                 {
                     temp = iter.next();
-                    if (validNumber)
+
+                    if (!isPossibleCommand(temp))
                     {
-                        controllerNumber = tempNumber;
-                    }
-                    else if (!temp.isEmpty())
-                    {
-                        controllerIDString = temp;
+                        if (validNumber)
+                        {
+                            controllerNumber = tempNumber;
+                        }
+                        else if (!temp.isEmpty())
+                        {
+                            controllerIDString = temp;
+                        }
+                        else
+                        {
+                            errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                            encounteredError = true;
+                        }
                     }
                     else
                     {
-                        errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                        encounteredError = true;
+                        // Grabbed a possible command-line option.
+                        // Move iterator back to previous item.
+                        iter.previous();
                     }
                 }
             }
@@ -296,4 +306,16 @@ unsigned int CommandLineUtility::getStartSetNumber()
 unsigned int CommandLineUtility::getJoyStartSetNumber()
 {
     return startSetNumber-1;
+}
+
+bool CommandLineUtility::isPossibleCommand(QString temp)
+{
+    bool result = false;
+
+    if (temp.startsWith("--") || temp.startsWith("-"))
+    {
+        result = true;
+    }
+
+    return result;
 }

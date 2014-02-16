@@ -4,6 +4,8 @@
 #include "setjoystick.h"
 #include "inputdevice.h"
 
+const int SetJoystick::MAXNAMELENGTH = 30;
+
 SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     QObject(parent)
 {
@@ -850,14 +852,14 @@ InputDevice* SetJoystick::getInputDevice()
 
 void SetJoystick::setName(QString name)
 {
-    if (name.length() <= 20)
+    if (name.length() <= MAXNAMELENGTH)
     {
         this->name = name;
     }
-    else if (name.length() > 20)
+    else if (name.length() > MAXNAMELENGTH)
     {
-        // Truncate name to 17 characters. Add ellipsis at the end.
-        name.truncate(17);
+        // Truncate name to 27 characters. Add ellipsis at the end.
+        name.truncate(MAXNAMELENGTH-3);
         this->name = QString(name).append("...");
     }
 }
