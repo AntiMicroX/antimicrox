@@ -16,7 +16,7 @@ public:
     explicit JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyDPad();
 
-    enum JoyMode {StandardMode=0, EightWayMode};
+    enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
 
     JoyDPadButton* getJoyButton(int index);
     QHash<int, JoyDPadButton*>* getJoyButtons();

@@ -26,6 +26,14 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     {
         ui->joyModeComboBox->setCurrentIndex(1);
     }
+    else if (dpad->getJoyMode() == JoyDPad::FourWayCardinal)
+    {
+        ui->joyModeComboBox->setCurrentIndex(2);
+    }
+    else if (dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+    {
+        ui->joyModeComboBox->setCurrentIndex(3);
+    }
 
     selectCurrentPreset();
 
@@ -211,6 +219,14 @@ void DPadEditDialog::implementModes(int index)
     else if (index == 1)
     {
         dpad->setJoyMode(JoyDPad::EightWayMode);
+    }
+    else if (index == 2)
+    {
+        dpad->setJoyMode(JoyDPad::FourWayCardinal);
+    }
+    else if (index == 3)
+    {
+        dpad->setJoyMode(JoyDPad::FourWayDiagonal);
     }
 }
 

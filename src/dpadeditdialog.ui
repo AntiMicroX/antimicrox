@@ -112,6 +112,16 @@
            <string>Eight Way</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>4 Way Cardinal</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4 Way Diagonal</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
