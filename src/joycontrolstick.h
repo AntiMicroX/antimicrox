@@ -19,7 +19,7 @@ public:
     explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY, int index, int originset = 0, QObject *parent = 0);
     ~JoyControlStick();
 
-    enum JoyMode {StandardMode=0, EightWayMode};
+    enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
 
     void joyEvent(bool ignoresets=false);
     bool inDeadZone();
@@ -41,6 +41,8 @@ public:
     int getYCoordinate();
     double calculateBearing();
     QList<int> getDiagonalZoneAngles();
+    QList<int> getFourWayCardinalZoneAngles();
+    QList<int> getFourWayDiagonalZoneAngles();
     QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();
     JoyAxis* getAxisX();
     JoyAxis* getAxisY();
@@ -99,6 +101,11 @@ protected:
     virtual void populateButtons();
     void createDeskEvent(bool ignoresets = false);
 
+    void determineStandardModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2);
+    void determineEightWayModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2, JoyControlStickButton *&eventbutton3);
+    void determineFourWayCardinalEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2);
+    void determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3);
+
     void performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets);
 
@@ -136,6 +143,7 @@ signals:
     void diagonalRangeChanged(int value);
     void maxZoneChanged(int value);
     void stickNameChanged();
+    void joyModeChanged();
 
 public slots:
     void reset();

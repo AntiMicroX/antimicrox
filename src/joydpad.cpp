@@ -140,7 +140,7 @@ void JoyDPad::readConfig(QXmlStreamReader *xml)
                 {
                     this->setJoyMode(EightWayMode);
                 }
-                else if (temptext == "fourway")
+                else if (temptext == "four-way")
                 {
                     this->setJoyMode(FourWayCardinal);
                 }
@@ -171,7 +171,7 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
         }
         else if (currentMode == FourWayCardinal)
         {
-            xml->writeTextElement("mode", "fourway");
+            xml->writeTextElement("mode", "four-way");
         }
         else if (currentMode == FourWayDiagonal)
         {

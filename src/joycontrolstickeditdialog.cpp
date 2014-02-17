@@ -40,6 +40,18 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     {
         ui->joyModeComboBox->setCurrentIndex(1);
     }
+    else if (stick->getJoyMode() == JoyControlStick::FourWayCardinal)
+    {
+        ui->joyModeComboBox->setCurrentIndex(2);
+        ui->diagonalRangeSlider->setEnabled(false);
+        ui->diagonalRangeSpinBox->setEnabled(false);
+    }
+    else if (stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
+    {
+        ui->joyModeComboBox->setCurrentIndex(3);
+        ui->diagonalRangeSlider->setEnabled(false);
+        ui->diagonalRangeSpinBox->setEnabled(false);
+    }
 
     ui->stickStatusBoxWidget->setStick(stick);
 
@@ -254,10 +266,26 @@ void JoyControlStickEditDialog::implementModes(int index)
     if (index == 0)
     {
         stick->setJoyMode(JoyControlStick::StandardMode);
+        ui->diagonalRangeSlider->setEnabled(true);
+        ui->diagonalRangeSpinBox->setEnabled(true);
     }
     else if (index == 1)
     {
         stick->setJoyMode(JoyControlStick::EightWayMode);
+        ui->diagonalRangeSlider->setEnabled(true);
+        ui->diagonalRangeSpinBox->setEnabled(true);
+    }
+    else if (index == 2)
+    {
+        stick->setJoyMode(JoyControlStick::FourWayCardinal);
+        ui->diagonalRangeSlider->setEnabled(false);
+        ui->diagonalRangeSpinBox->setEnabled(false);
+    }
+    else if (index == 3)
+    {
+        stick->setJoyMode(JoyControlStick::FourWayDiagonal);
+        ui->diagonalRangeSlider->setEnabled(false);
+        ui->diagonalRangeSpinBox->setEnabled(false);
     }
 }
 

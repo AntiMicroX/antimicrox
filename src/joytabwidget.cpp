@@ -588,7 +588,8 @@ void JoyTabWidget::fillButtons()
 
             JoyControlStickButton *button = 0;
             JoyControlStickButtonPushButton *pushbutton = 0;
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode)
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
             {
                 button = stickButtons->value(JoyControlStick::StickLeftUp);
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
@@ -597,13 +598,17 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 0, 0);
             }
 
-            button = stickButtons->value(JoyControlStick::StickUp);
-            pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 0, 1);
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickUp);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 0, 1);
+            }
 
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode)
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
             {
                 button = stickButtons->value(JoyControlStick::StickRightUp);
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
@@ -612,11 +617,14 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 0, 2);
             }
 
-            button = stickButtons->value(JoyControlStick::StickLeft);
-            pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 1, 0);
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickLeft);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 1, 0);
+            }
 
             JoyControlStickPushButton *stickWidget = new JoyControlStickPushButton(stick, displayingNames, attemp);
             stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
@@ -624,13 +632,18 @@ void JoyTabWidget::fillButtons()
             connect(namesPushButton, SIGNAL(clicked()), stickWidget, SLOT(toggleNameDisplay()));
             tempalayout->addWidget(stickWidget, 1, 1);
 
-            button = stickButtons->value(JoyControlStick::StickRight);
-            pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 1, 2);
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickRight);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 1, 2);
+            }
 
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode)
+
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
             {
                 button = stickButtons->value(JoyControlStick::StickLeftDown);
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
@@ -639,13 +652,17 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 2, 0);
             }
 
-            button = stickButtons->value(JoyControlStick::StickDown);
-            pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 2, 1);
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickDown);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 2, 1);
+            }
 
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode)
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
             {
                 button = stickButtons->value(JoyControlStick::StickRightDown);
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
@@ -704,7 +721,8 @@ void JoyTabWidget::fillButtons()
 
             JoyDPadButton *button = 0;
             JoyDPadButtonWidget *pushbutton = 0;
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode)
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadLeftUp);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -713,13 +731,17 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 0, 0);
             }
 
-            button = buttons->value(JoyDPadButton::DpadUp);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 0, 1);
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 0, 1);
+            }
 
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode)
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadRightUp);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -728,11 +750,14 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 0, 2);
             }
 
-            button = buttons->value(JoyDPadButton::DpadLeft);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 1, 0);
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeft);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 1, 0);
+            }
 
             DPadPushButton *dpadpushbutton = new DPadPushButton(dpad, displayingNames, attemp);
             dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
@@ -740,13 +765,17 @@ void JoyTabWidget::fillButtons()
             connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
             tempalayout->addWidget(dpadpushbutton, 1, 1);
 
-            button = buttons->value(JoyDPadButton::DpadRight);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 1, 2);
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRight);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 1, 2);
+            }
 
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode)
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadLeftDown);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -755,13 +784,17 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 2, 0);
             }
 
-            button = buttons->value(JoyDPadButton::DpadDown);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 2, 1);
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 2, 1);
+            }
 
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode)
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadRightDown);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -803,7 +836,8 @@ void JoyTabWidget::fillButtons()
 
             JoyDPadButton *button = 0;
             JoyDPadButtonWidget *pushbutton = 0;
-            if (vdpad->getJoyMode() == VDPad::EightWayMode)
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadLeftUp);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -812,13 +846,17 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 0, 0);
             }
 
-            button = buttons->value(JoyDPadButton::DpadUp);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 0, 1);
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 0, 1);
+            }
 
-            if (vdpad->getJoyMode() == VDPad::EightWayMode)
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadRightUp);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -827,11 +865,14 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 0, 2);
             }
 
-            button = buttons->value(JoyDPadButton::DpadLeft);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 1, 0);
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeft);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 1, 0);
+            }
 
             DPadPushButton *dpadpushbutton = new DPadPushButton(vdpad, displayingNames, attemp);
             dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
@@ -839,13 +880,17 @@ void JoyTabWidget::fillButtons()
             connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
             tempalayout->addWidget(dpadpushbutton, 1, 1);
 
-            button = buttons->value(JoyDPadButton::DpadRight);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 1, 2);
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRight);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 1, 2);
+            }
 
-            if (vdpad->getJoyMode() == VDPad::EightWayMode)
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadLeftDown);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
@@ -854,13 +899,17 @@ void JoyTabWidget::fillButtons()
                 tempalayout->addWidget(pushbutton, 2, 0);
             }
 
-            button = buttons->value(JoyDPadButton::DpadDown);
-            pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-            connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(pushbutton, 2, 1);
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                tempalayout->addWidget(pushbutton, 2, 1);
+            }
 
-            if (vdpad->getJoyMode() == VDPad::EightWayMode)
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
             {
                 button = buttons->value(JoyDPadButton::DpadRightDown);
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);

@@ -111,95 +111,27 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
 
     if (safezone)
     {
-        double bearing = calculateBearing();
-
-        QList<int> anglesList = getDiagonalZoneAngles();
-        int initialLeft = anglesList.value(0);
-        int initialRight = anglesList.value(1);
-        int upRightInitial = anglesList.value(2);
-        int rightInitial = anglesList.value(3);
-        int downRightInitial = anglesList.value(4);
-        int downInitial = anglesList.value(5);
-        int downLeftInitial = anglesList.value(6);
-        int leftInitial = anglesList.value(7);
-        int upLeftInitial = anglesList.value(8);
-
-        bearing = floor(bearing + 0.5);
-        if (bearing <= initialRight || bearing >= initialLeft)
+        if (currentMode == StandardMode)
         {
-            currentDirection = StickUp;
-            eventbutton2 = buttons.value(StickUp);
+            determineStandardModeEvent(eventbutton1, eventbutton2);
         }
-        else if (bearing >= upRightInitial && bearing < rightInitial)
+        else if (currentMode == EightWayMode)
         {
-            currentDirection = StickRightUp;
-            if (currentMode == EightWayMode && buttons.contains(StickRightUp))
-            {
-                eventbutton3 = buttons.value(StickRightUp);
-            }
-            else
-            {
-                eventbutton1 = buttons.value(StickRight);
-                eventbutton2 = buttons.value(StickUp);
-            }
+            determineEightWayModeEvent(eventbutton1, eventbutton2, eventbutton3);
         }
-        else if (bearing >= rightInitial && bearing < downRightInitial)
+        else if (currentMode == FourWayCardinal)
         {
-            currentDirection = StickRight;
-            eventbutton1 = buttons.value(StickRight);
+            determineFourWayCardinalEvent(eventbutton1, eventbutton2);
         }
-        else if (bearing >= downRightInitial && bearing < downInitial)
+        else if (currentMode == FourWayDiagonal)
         {
-            currentDirection = StickRightDown;
-            if (currentMode == EightWayMode && buttons.contains(StickRightDown))
-            {
-                eventbutton3 = buttons.value(StickRightDown);
-            }
-            else
-            {
-                eventbutton1 = buttons.value(StickRight);
-                eventbutton2 = buttons.value(StickDown);
-            }
-        }
-        else if (bearing >= downInitial && bearing < downLeftInitial)
-        {
-            currentDirection = StickDown;
-            eventbutton2 = buttons.value(StickDown);
-        }
-        else if (bearing >= downLeftInitial && bearing < leftInitial)
-        {
-            currentDirection = StickLeftDown;
-            if (currentMode == EightWayMode && buttons.contains(StickLeftDown))
-            {
-                eventbutton3 = buttons.value(StickLeftDown);
-            }
-            else
-            {
-                eventbutton1 = buttons.value(StickLeft);
-                eventbutton2 = buttons.value(StickDown);
-            }
-        }
-        else if (bearing >= leftInitial && bearing < upLeftInitial)
-        {
-            currentDirection = StickLeft;
-            eventbutton1 = buttons.value(StickLeft);
-        }
-        else if (bearing >= upLeftInitial && bearing < initialLeft)
-        {
-            currentDirection = StickLeftUp;
-            if (currentMode == EightWayMode && buttons.contains(StickLeftUp))
-            {
-                eventbutton3 = buttons.value(StickLeftUp);
-            }
-            else
-            {
-                eventbutton1 = buttons.value(StickLeft);
-                eventbutton2 = buttons.value(StickUp);
-            }
+            determineFourWayDiagonalEvent(eventbutton3);
         }
     }
 
-    // Release any currently active stick buttons
+    /*
+     * Release any currently active stick buttons.
+     */
     if (!eventbutton1 && activeButton1)
     {
         // Currently in deadzone. Disable currently active button.
@@ -236,7 +168,9 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         performButtonRelease(activeButton3, ignoresets);
     }
 
-    // Enable stick buttons
+    /*
+     * Enable stick buttons.
+     */
     if (eventbutton1 && !activeButton1)
     {
         // There is no active button. Call joyEvent and set current
@@ -272,21 +206,6 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         // Button is currently active. Just pass current value
         performButtonPress(eventbutton3, activeButton3, ignoresets);
     }
-
-    /*if (eventbutton2 || activeButton2)
-    {
-        changeButtonEvent(eventbutton2, activeButton2, ignoresets);
-    }
-
-    if (eventbutton1 || activeButton1)
-    {
-        changeButtonEvent(eventbutton1, activeButton1, ignoresets);
-    }
-
-    if (eventbutton3 || activeButton3)
-    {
-        changeButtonEvent(eventbutton3, activeButton3, ignoresets);
-    }*/
 }
 
 double JoyControlStick::calculateBearing()
@@ -709,6 +628,14 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 {
                     this->setJoyMode(EightWayMode);
                 }
+                else if (temptext == "four-way")
+                {
+                    this->setJoyMode(FourWayCardinal);
+                }
+                else if (temptext == "diagonal")
+                {
+                    this->setJoyMode(FourWayDiagonal);
+                }
             }
             else if (xml->name() == JoyControlStickButton::xmlName && xml->isStartElement())
             {
@@ -741,10 +668,22 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         xml->writeAttribute("index", QString::number(index+1));
         xml->writeTextElement("deadZone", QString::number(deadZone));
         xml->writeTextElement("maxZone", QString::number(maxZone));
-        xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
+        if (currentMode == StandardMode || currentMode == EightWayMode)
+        {
+            xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
+        }
+
         if (currentMode == EightWayMode)
         {
             xml->writeTextElement("mode", "eight-way");
+        }
+        else if (currentMode == FourWayCardinal)
+        {
+            xml->writeTextElement("mode", "four-way");
+        }
+        else if (currentMode == FourWayDiagonal)
+        {
+            xml->writeTextElement("mode", "diagonal");
         }
 
         QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
@@ -945,7 +884,7 @@ QList<int> JoyControlStick::getDiagonalZoneAngles()
     }
 
     int upRightInitial = initialRight + 1;
-    int rightInitial = upRightInitial + diagonalAngle ;
+    int rightInitial = upRightInitial + diagonalAngle;
     int downRightInitial = rightInitial + cardinalAngle;
     int downInitial = downRightInitial + diagonalAngle;
     int downLeftInitial = downInitial + cardinalAngle;
@@ -962,6 +901,42 @@ QList<int> JoyControlStick::getDiagonalZoneAngles()
     anglesList.append(leftInitial);
     anglesList.append(upLeftInitial);
 
+    return anglesList;
+}
+
+QList<int> JoyControlStick::getFourWayCardinalZoneAngles()
+{
+    QList<int> anglesList;
+
+    int zoneRange = 90;
+
+    int rightInitial = 45;
+    int downInitial = rightInitial + zoneRange;
+    int leftInitial = downInitial + zoneRange;
+    int upInitial = leftInitial + zoneRange;
+
+    anglesList.append(rightInitial);
+    anglesList.append(downInitial);
+    anglesList.append(leftInitial);
+    anglesList.append(upInitial);
+    return anglesList;
+}
+
+QList<int> JoyControlStick::getFourWayDiagonalZoneAngles()
+{
+    QList<int> anglesList;
+
+    int zoneRange = 90;
+
+    int upRightInitial = 0;
+    int downRightInitial = zoneRange;
+    int downLeftInitial = downRightInitial + zoneRange;
+    int upLeftInitial = downLeftInitial + zoneRange;
+
+    anglesList.append(upRightInitial);
+    anglesList.append(downRightInitial);
+    anglesList.append(downLeftInitial);
+    anglesList.append(upLeftInitial);
     return anglesList;
 }
 
@@ -1018,6 +993,7 @@ void JoyControlStick::replaceAxes(JoyAxis *axisX, JoyAxis *axisY)
 void JoyControlStick::setJoyMode(JoyMode mode)
 {
     currentMode = mode;
+    emit joyModeChanged();
 }
 
 JoyControlStick::JoyMode JoyControlStick::getJoyMode()
@@ -1497,4 +1473,198 @@ void JoyControlStick::performButtonRelease(JoyControlStickButton *&eventbutton, 
 {
     eventbutton->joyEvent(false, ignoresets);
     eventbutton = 0;
+}
+
+void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2)
+{
+    double bearing = calculateBearing();
+
+    QList<int> anglesList = getDiagonalZoneAngles();
+    int initialLeft = anglesList.value(0);
+    int initialRight = anglesList.value(1);
+    int upRightInitial = anglesList.value(2);
+    int rightInitial = anglesList.value(3);
+    int downRightInitial = anglesList.value(4);
+    int downInitial = anglesList.value(5);
+    int downLeftInitial = anglesList.value(6);
+    int leftInitial = anglesList.value(7);
+    int upLeftInitial = anglesList.value(8);
+
+    bearing = floor(bearing + 0.5);
+    if (bearing <= initialRight || bearing >= initialLeft)
+    {
+        currentDirection = StickUp;
+        eventbutton2 = buttons.value(StickUp);
+    }
+    else if (bearing >= upRightInitial && bearing < rightInitial)
+    {
+        currentDirection = StickRightUp;
+        eventbutton1 = buttons.value(StickRight);
+        eventbutton2 = buttons.value(StickUp);
+    }
+    else if (bearing >= rightInitial && bearing < downRightInitial)
+    {
+        currentDirection = StickRight;
+        eventbutton1 = buttons.value(StickRight);
+    }
+    else if (bearing >= downRightInitial && bearing < downInitial)
+    {
+        currentDirection = StickRightDown;
+        eventbutton1 = buttons.value(StickRight);
+        eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= downInitial && bearing < downLeftInitial)
+    {
+        currentDirection = StickDown;
+        eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= downLeftInitial && bearing < leftInitial)
+    {
+        currentDirection = StickLeftDown;
+        eventbutton1 = buttons.value(StickLeft);
+        eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= leftInitial && bearing < upLeftInitial)
+    {
+        currentDirection = StickLeft;
+        eventbutton1 = buttons.value(StickLeft);
+    }
+    else if (bearing >= upLeftInitial && bearing < initialLeft)
+    {
+        currentDirection = StickLeftUp;
+        eventbutton1 = buttons.value(StickLeft);
+        eventbutton2 = buttons.value(StickUp);
+    }
+}
+
+void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2, JoyControlStickButton *&eventbutton3)
+{
+    double bearing = calculateBearing();
+
+    QList<int> anglesList = getDiagonalZoneAngles();
+    int initialLeft = anglesList.value(0);
+    int initialRight = anglesList.value(1);
+    int upRightInitial = anglesList.value(2);
+    int rightInitial = anglesList.value(3);
+    int downRightInitial = anglesList.value(4);
+    int downInitial = anglesList.value(5);
+    int downLeftInitial = anglesList.value(6);
+    int leftInitial = anglesList.value(7);
+    int upLeftInitial = anglesList.value(8);
+
+    bearing = floor(bearing + 0.5);
+    if (bearing <= initialRight || bearing >= initialLeft)
+    {
+        currentDirection = StickUp;
+        eventbutton2 = buttons.value(StickUp);
+    }
+    else if (bearing >= upRightInitial && bearing < rightInitial)
+    {
+        currentDirection = StickRightUp;
+        eventbutton3 = buttons.value(StickRightUp);
+    }
+    else if (bearing >= rightInitial && bearing < downRightInitial)
+    {
+        currentDirection = StickRight;
+        eventbutton1 = buttons.value(StickRight);
+    }
+    else if (bearing >= downRightInitial && bearing < downInitial)
+    {
+        currentDirection = StickRightDown;
+        eventbutton3 = buttons.value(StickRightDown);
+    }
+    else if (bearing >= downInitial && bearing < downLeftInitial)
+    {
+        currentDirection = StickDown;
+        eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= downLeftInitial && bearing < leftInitial)
+    {
+        currentDirection = StickLeftDown;
+        eventbutton3 = buttons.value(StickLeftDown);
+    }
+    else if (bearing >= leftInitial && bearing < upLeftInitial)
+    {
+        currentDirection = StickLeft;
+        eventbutton1 = buttons.value(StickLeft);
+    }
+    else if (bearing >= upLeftInitial && bearing < initialLeft)
+    {
+        currentDirection = StickLeftUp;
+        eventbutton3 = buttons.value(StickLeftUp);
+    }
+}
+
+void JoyControlStick::determineFourWayCardinalEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2)
+{
+    double bearing = calculateBearing();
+
+    QList<int> anglesList = getFourWayCardinalZoneAngles();
+    int rightInitial = anglesList.value(0);
+    int downInitial = anglesList.value(1);
+    int leftInitial = anglesList.value(2);
+    int upInitial = anglesList.value(3);
+
+    bearing = floor(bearing + 0.5);
+    if (bearing < rightInitial || bearing >= upInitial)
+    {
+        currentDirection = StickUp;
+        eventbutton2 = buttons.value(StickUp);
+    }
+    else if (bearing >= rightInitial && bearing < downInitial)
+    {
+        currentDirection = StickRight;
+        eventbutton1 = buttons.value(StickRight);
+    }
+    else if (bearing >= downInitial && bearing < leftInitial)
+    {
+        currentDirection = StickDown;
+        eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= leftInitial && bearing < upInitial)
+    {
+        currentDirection = StickLeft;
+        eventbutton1 = buttons.value(StickLeft);
+    }
+}
+
+void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3)
+{
+    double bearing = calculateBearing();
+
+    QList<int> anglesList = getFourWayDiagonalZoneAngles();
+    int upRightInitial = anglesList.value(0);
+    int downRightInitial = anglesList.value(1);
+    int downLeftInitial = anglesList.value(2);
+    int upLeftInitial = anglesList.value(3);
+
+    bearing = floor(bearing + 0.5);
+    if (bearing >= upRightInitial && bearing < downRightInitial)
+    {
+        currentDirection = StickRightUp;
+        eventbutton3 = buttons.value(StickRightUp);
+        //eventbutton1 = buttons.value(StickRight);
+        //eventbutton2 = buttons.value(StickUp);
+    }
+    else if (bearing >= downRightInitial && bearing < downLeftInitial)
+    {
+        currentDirection = StickRightDown;
+        eventbutton3 = buttons.value(StickRightDown);
+        //eventbutton1 = buttons.value(StickRight);
+        //eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= downLeftInitial && bearing < upLeftInitial)
+    {
+        currentDirection = StickLeftDown;
+        eventbutton3 = buttons.value(StickLeftDown);
+        //eventbutton1 = buttons.value(StickLeft);
+        //eventbutton2 = buttons.value(StickDown);
+    }
+    else if (bearing >= upLeftInitial)
+    {
+        currentDirection = StickLeftUp;
+        eventbutton3 = buttons.value(StickLeftUp);
+        //eventbutton1 = buttons.value(StickLeft);
+        //eventbutton2 = buttons.value(StickUp);
+    }
 }

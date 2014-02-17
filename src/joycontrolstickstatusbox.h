@@ -23,6 +23,9 @@ public:
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
+    void drawEightWayBox();
+    void drawFourWayCardinalBox();
+    void drawFourWayDiagonalBox();
 
     JoyControlStick *stick;
 
