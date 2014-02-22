@@ -440,22 +440,12 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
 
 void JoyTabWidget::openConfigFileDialog()
 {
-    QString filename;
-    QString lookupDir = QDir::homePath();
-
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
-    QString lastProfileDir = settings.value("LastProfileDir", "").toString();
-    if (!lastProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(lastProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = lastProfileDir;
-        }
-    }
+    int numberRecentProfiles = settings.value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+    QString lookupDir = preferredProfileDir(settings);
 
-    filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
 
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -463,9 +453,9 @@ void JoyTabWidget::openConfigFileDialog()
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         if (searchIndex == -1)
         {
-            if (configBox->count() == 6)
+            if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles + 1)
             {
-                configBox->removeItem(5);
+                configBox->removeItem(numberRecentProfiles);
             }
 
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
@@ -1025,10 +1015,14 @@ void JoyTabWidget::showStickDialog()
 void JoyTabWidget::saveConfigFile()
 {
     int index = configBox->currentIndex();
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+
+    int numberRecentProfiles = settings.value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
     if (index == 0)
     {
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::homePath(), QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
+        QString lookupDir = preferredProfileDir(settings);
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -1070,9 +1064,9 @@ void JoyTabWidget::saveConfigFile()
             int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
             if (existingIndex == -1)
             {
-                if (configBox->count() == 6)
+                if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
                 {
-                    configBox->removeItem(5);
+                    configBox->removeItem(numberRecentProfiles);
                 }
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
@@ -1132,10 +1126,14 @@ void JoyTabWidget::resetJoystick()
 void JoyTabWidget::saveAsConfig()
 {
     int index = configBox->currentIndex();
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+
+    int numberRecentProfiles = settings.value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
     if (index == 0)
     {
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), QDir::homePath(), QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
+        QString lookupDir = preferredProfileDir(settings);
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -1183,9 +1181,9 @@ void JoyTabWidget::saveAsConfig()
             int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
             if (existingIndex == -1)
             {
-                if (configBox->count() == 6)
+                if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
                 {
-                    configBox->removeItem(5);
+                    configBox->removeItem(numberRecentProfiles);
                 }
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
@@ -1350,6 +1348,8 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
         changeNameDisplay(shouldisplaynames);
     }
 
+    int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+
     settings->beginGroup("Controllers");
     QString controlGUIDString = QString("Controller%1ConfigFile%2").arg(joystick->getGUIDString());
     QString controlGUIDLastSelected = QString("Controller%1LastSelected").arg(joystick->getGUIDString());
@@ -1357,7 +1357,8 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
     QString controlSDLNameString = QString("Controller%1ConfigFile%2").arg(joystick->getSDLName());
     QString controlSDLNameLastSelected = QString("Controller%1LastSelected").arg(joystick->getSDLName());
 
-    for (int i=1; i <= 5; i++)
+    bool finished = false;
+    for (int i=1; !finished; i++)
     {
         QString tempfilepath;
 
@@ -1377,6 +1378,15 @@ void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
             {
                 configBox->addItem(fileInfo.baseName(), fileInfo.absoluteFilePath());
             }
+        }
+        else
+        {
+            finished = true;
+        }
+
+        if (numberRecentProfiles > 0 && (i == numberRecentProfiles))
+        {
+            finished = true;
         }
     }
 
@@ -1781,4 +1791,36 @@ void JoyTabWidget::refreshSetButtons()
             tempSetAction->setText(tr("Set").append(" %1").arg(i+1));
         }
     }
+}
+
+QString JoyTabWidget::preferredProfileDir(QSettings &settings)
+{
+    QString lastProfileDir = settings.value("LastProfileDir", "").toString();
+    QString defaultProfileDir = settings.value("DefaultProfileDir", "").toString();
+    QString lookupDir;
+
+    if (!defaultProfileDir.isEmpty())
+    {
+        QFileInfo dirinfo(defaultProfileDir);
+        if (dirinfo.isDir() && dirinfo.isReadable())
+        {
+            lookupDir = defaultProfileDir;
+        }
+    }
+
+    if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
+    {
+        QFileInfo dirinfo(lastProfileDir);
+        if (dirinfo.isDir() && dirinfo.isReadable())
+        {
+            lookupDir = lastProfileDir;
+        }
+    }
+
+    if (lookupDir.isEmpty())
+    {
+        lookupDir = QDir::homePath();
+    }
+
+    return lookupDir;
 }

@@ -1,5 +1,7 @@
 #include <QSettings>
 #include <common.h>
+#include <QDir>
+#include <QFileDialog>
 
 #include "mainsettingsdialog.h"
 #include "ui_mainsettingsdialog.h"
@@ -11,12 +13,26 @@ MainSettingsDialog::MainSettingsDialog(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    fillControllerMappingsTable();
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
+    fillControllerMappingsTable(settings);
+    QString defaultProfileDir = settings.value("DefaultProfileDir", "").toString();
+    int numberRecentProfiles = settings.value("NumberRecentProfiles", 5).toInt();
+
+    if (!defaultProfileDir.isEmpty() && QDir(defaultProfileDir).exists())
+    {
+        ui->profileDefaultDirLineEdit->setText(defaultProfileDir);
+    }
+
+    ui->numberRecentProfileSpinBox->setValue(numberRecentProfiles);
+
+    connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
     connect(ui->mappngInsertPushButton, SIGNAL(clicked()), this, SLOT(insertMappingRow()));
-    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(syncMappingSettings()));
+    //connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(syncMappingSettings()));
+    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveNewSettings()));
+    connect(ui->profileOpenDirPushButton, SIGNAL(clicked()), this, SLOT(selectDefaultProfileDir()));
 }
 
 MainSettingsDialog::~MainSettingsDialog()
@@ -24,7 +40,7 @@ MainSettingsDialog::~MainSettingsDialog()
     delete ui;
 }
 
-void MainSettingsDialog::fillControllerMappingsTable()
+void MainSettingsDialog::fillControllerMappingsTable(QSettings &settings)
 {
     /*QList<QVariant> tempvariant = bindingValues(bind);
     QTableWidgetItem* item = new QTableWidgetItem();
@@ -35,7 +51,6 @@ void MainSettingsDialog::fillControllerMappingsTable()
 
     QHash<QString, QList<QVariant> > tempHash;
 
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings.beginGroup("Mappings");
 
     QStringList mappings = settings.allKeys();
@@ -163,9 +178,8 @@ void MainSettingsDialog::deleteMappingRow()
     }
 }
 
-void MainSettingsDialog::syncMappingSettings()
+void MainSettingsDialog::syncMappingSettings(QSettings &settings)
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings.beginGroup("Mappings");
     settings.remove("");
 
@@ -188,4 +202,37 @@ void MainSettingsDialog::syncMappingSettings()
     }
 
     settings.endGroup();
+}
+
+void MainSettingsDialog::saveNewSettings()
+{
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    syncMappingSettings(settings);
+    QString oldProfileDir = settings.value("DefaultProfileDir", "").toString();
+    QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
+
+    if (oldProfileDir != possibleProfileDir)
+    {
+        if (QFileInfo(possibleProfileDir).exists())
+        {
+            settings.setValue("DefaultProfileDir", possibleProfileDir);
+        }
+        else if (possibleProfileDir.isEmpty())
+        {
+            settings.remove("DefaultProfileDir");
+        }
+    }
+
+    int numRecentProfiles = ui->numberRecentProfileSpinBox->value();
+    settings.setValue("NumberRecentProfiles", numRecentProfiles);
+}
+
+void MainSettingsDialog::selectDefaultProfileDir()
+{
+    QString lookupDir = QDir::homePath();
+    QString directory = QFileDialog::getExistingDirectory(this, tr("Select Default Profile Directory"), lookupDir);
+    if (!directory.isEmpty() && QFileInfo(directory).exists())
+    {
+        ui->profileDefaultDirLineEdit->setText(directory);
+    }
 }

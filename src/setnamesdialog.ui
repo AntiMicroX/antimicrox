@@ -22,6 +22,9 @@
      <property name="lineWidth">
       <number>1</number>
      </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
      <property name="showGrid">
       <bool>true</bool>
      </property>

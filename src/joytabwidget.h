@@ -39,6 +39,7 @@ public:
 
 protected:
     void removeCurrentButtons();
+    QString preferredProfileDir(QSettings &settings);
 
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
@@ -102,6 +103,8 @@ protected:
 
     InputDevice *joystick;
     bool displayingNames;
+
+    static const int DEFAULTNUMBERPROFILES = 5;
 
 signals:
     void joystickRefreshRequested();

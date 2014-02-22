@@ -18,7 +18,7 @@ public:
     ~MainSettingsDialog();
 
 protected:
-    void fillControllerMappingsTable();
+    void fillControllerMappingsTable(QSettings &settings);
 
 private:
     void insertTempControllerMapping(QHash<QString, QList<QVariant> > &hash, QString newGUID);
@@ -29,8 +29,9 @@ protected slots:
     void mappingsTableItemChanged(QTableWidgetItem *item);
     void insertMappingRow();
     void deleteMappingRow();
-    void syncMappingSettings();
-
+    void syncMappingSettings(QSettings &settings);
+    void saveNewSettings();
+    void selectDefaultProfileDir();
 };
 
 #endif // MAINSETTINGSDIALOG_H
