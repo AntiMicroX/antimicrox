@@ -19,9 +19,6 @@
 #endif
 
 
-#ifdef Q_OS_UNIX
-static Display* display;
-#endif
 
 static MouseHelper *mouseHelperObj = 0;
 
@@ -32,7 +29,7 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
 #if defined (Q_OS_UNIX)
-    display = X11Info::display();
+    Display* display = X11Info::display();
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
@@ -122,7 +119,7 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 void sendevent(int code1, int code2)
 {
 #if defined (Q_OS_UNIX)
-    display = X11Info::display();
+    Display* display = X11Info::display();
 
     XTestFakeRelativeMotionEvent(display, code1, code2, 0);
     XFlush(display);
@@ -142,7 +139,7 @@ void sendevent(int code1, int code2)
 void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeight)
 {
 #ifdef Q_OS_UNIX
-    display = X11Info::display();
+    Display* display = X11Info::display();
 #endif
 
     if (!mouseHelperObj)
@@ -339,7 +336,7 @@ QString keycodeToKey(int keycode, unsigned int alias)
 #if defined (Q_OS_UNIX)
     Q_UNUSED(alias);
 
-    display = X11Info::display();
+    Display* display = X11Info::display();
     if (keycode <= 0)
     {
         newkey = "[NO KEY]";
@@ -419,7 +416,7 @@ unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
     Q_UNUSED(keycode);
     return 0;
 #else
-    display = X11Info::display();
+    Display* display = X11Info::display();
     unsigned int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
     return tempcode;
 #endif
@@ -431,7 +428,7 @@ QString keysymToKey(int keysym, unsigned int alias)
 #if defined (Q_OS_UNIX)
     Q_UNUSED(alias);
 
-    display = X11Info::display();
+    Display* display = X11Info::display();
     unsigned int keycode = XKeysymToKeycode(display, keysym);
     newkey = keycodeToKey(keycode);
 #else
