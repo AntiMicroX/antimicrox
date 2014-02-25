@@ -14,11 +14,13 @@ class MainSettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MainSettingsDialog(QWidget *parent = 0);
+    explicit MainSettingsDialog(QSettings *settings, QWidget *parent = 0);
     ~MainSettingsDialog();
 
 protected:
-    void fillControllerMappingsTable(QSettings &settings);
+    void fillControllerMappingsTable();
+
+    QSettings *settings;
 
 private:
     void insertTempControllerMapping(QHash<QString, QList<QVariant> > &hash, QString newGUID);
@@ -29,7 +31,7 @@ protected slots:
     void mappingsTableItemChanged(QTableWidgetItem *item);
     void insertMappingRow();
     void deleteMappingRow();
-    void syncMappingSettings(QSettings &settings);
+    void syncMappingSettings();
     void saveNewSettings();
     void selectDefaultProfileDir();
 };

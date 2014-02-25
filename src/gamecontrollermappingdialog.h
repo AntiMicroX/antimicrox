@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QHash>
 #include <QAbstractButton>
+#include <QSettings>
 
 #include "inputdevice.h"
 #include "gamecontroller/gamecontroller.h"
@@ -17,7 +18,7 @@ class GameControllerMappingDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit GameControllerMappingDialog(InputDevice *device, QWidget *parent = 0);
+    explicit GameControllerMappingDialog(InputDevice *device, QSettings *settings, QWidget *parent = 0);
     ~GameControllerMappingDialog();
 
     static QHash<int, QString> tempaliases;
@@ -35,6 +36,7 @@ protected:
     QList<QVariant> bindingValues(SDL_GameControllerButtonBind bind);
 
     InputDevice *device;
+    QSettings *settings;
 
 private:
     Ui::GameControllerMappingDialog *ui;

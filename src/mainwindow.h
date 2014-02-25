@@ -10,6 +10,7 @@
 #include <QHideEvent>
 #include <QShowEvent>
 #include <QLocalServer>
+#include <QSettings>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -29,9 +30,9 @@ class MainWindow : public QMainWindow
     
 public:
 #ifdef USE_SDL_2
-    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
 #else
-    MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
 #endif
     ~MainWindow();
     
@@ -63,6 +64,7 @@ protected:
     bool graphical;
     QLocalServer *localServer;
     CommandLineUtility *cmdutility;
+    QSettings *settings;
 
 private:
     Ui::MainWindow *ui;

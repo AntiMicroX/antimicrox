@@ -3,6 +3,7 @@
 
 #include <QHash>
 #include <QThread>
+#include <QSettings>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -23,9 +24,9 @@ class InputDaemon : public QObject
     Q_OBJECT
 public:
 #ifdef USE_SDL_2
-    explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, bool graphical=true, QObject *parent=0);
+    explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical=true, QObject *parent=0);
 #else
-    explicit InputDaemon (QHash<int, InputDevice*> *joysticks, bool graphical=true, QObject *parent=0);
+    explicit InputDaemon (QHash<int, InputDevice*> *joysticks, QSettings *settings, bool graphical=true, QObject *parent=0);
 #endif
     ~InputDaemon();
 
@@ -43,6 +44,7 @@ protected:
 
     SDLEventReader *eventWorker;
     QThread *thread;
+    QSettings *settings;
 
 signals:
     void joystickRefreshed (InputDevice *joystick);

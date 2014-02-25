@@ -24,9 +24,9 @@
 #endif
 
 #ifdef USE_SDL_2
-MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
 #else
-MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
 #endif
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -42,6 +42,7 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
 
     this->cmdutility = cmdutility;
     this->graphical = graphical;
+    this->settings = settings;
     signalDisconnect = false;
     showTrayIcon = !cmdutility->isTrayHidden() && graphical;
 
@@ -180,7 +181,7 @@ void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
 
         InputDevice *joystick = iter.value();
 
-        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, this);
+        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, settings, this);
         QString joytabName = joystick->getSDLName();
         joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
@@ -376,12 +377,12 @@ void MainWindow::saveAppConfig()
     if (joysticks->count() > 0)
     {
         JoyTabWidget *temptabwidget = (JoyTabWidget*)ui->tabWidget->widget(0);
-        QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-        settings.setValue("DisplayNames",
+        //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+        settings->setValue("DisplayNames",
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
-        settings.beginGroup("Controllers");
-        settings.remove("");
+        settings->beginGroup("Controllers");
+        settings->remove("");
         QStringList tempGUIDHolder;
         QStringList tempNameHolder;
 
@@ -421,21 +422,21 @@ void MainWindow::saveAppConfig()
 
             if (prepareSave)
             {
-                tabwidget->saveSettings(&settings);
+                tabwidget->saveSettings();
             }
         }
 
-        settings.endGroup();
+        settings->endGroup();
     }
 }
 
 void MainWindow::loadAppConfig(bool forceRefresh)
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(i);
-        tabwidget->loadSettings(&settings, forceRefresh);
+        tabwidget->loadSettings(forceRefresh);
     }
 }
 
@@ -911,7 +912,7 @@ void MainWindow::openGameControllerMappingWindow()
         InputDevice *joystick = joyTab->getJoystick();
         if (joystick)
         {
-            GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, this);
+            GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
             dialog->show();
             connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
         }
@@ -933,7 +934,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
         tab = 0;
     }
 
-    JoyTabWidget *tabwidget = new JoyTabWidget(device, this);
+    JoyTabWidget *tabwidget = new JoyTabWidget(device, settings, this);
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->insertTab(index, tabwidget, joytabName);
@@ -985,7 +986,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 
 void MainWindow::addJoyTab(InputDevice *device)
 {
-    JoyTabWidget *tabwidget = new JoyTabWidget(device, this);
+    JoyTabWidget *tabwidget = new JoyTabWidget(device, settings, this);
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->addTab(tabwidget, joytabName);
@@ -1019,7 +1020,7 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::openMainSettingsDialog()
 {
-    MainSettingsDialog *dialog = new MainSettingsDialog(this);
+    MainSettingsDialog *dialog = new MainSettingsDialog(settings, this);
     dialog->show();
 }
 

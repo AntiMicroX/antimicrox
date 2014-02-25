@@ -6,18 +6,19 @@
 #include "mainsettingsdialog.h"
 #include "ui_mainsettingsdialog.h"
 
-MainSettingsDialog::MainSettingsDialog(QWidget *parent) :
+MainSettingsDialog::MainSettingsDialog(QSettings *settings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainSettingsDialog)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    this->settings = settings;
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
-    fillControllerMappingsTable(settings);
-    QString defaultProfileDir = settings.value("DefaultProfileDir", "").toString();
-    int numberRecentProfiles = settings.value("NumberRecentProfiles", 5).toInt();
+    fillControllerMappingsTable();
+    QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
+    int numberRecentProfiles = settings->value("NumberRecentProfiles", 5).toInt();
 
     if (!defaultProfileDir.isEmpty() && QDir(defaultProfileDir).exists())
     {
@@ -40,7 +41,7 @@ MainSettingsDialog::~MainSettingsDialog()
     delete ui;
 }
 
-void MainSettingsDialog::fillControllerMappingsTable(QSettings &settings)
+void MainSettingsDialog::fillControllerMappingsTable()
 {
     /*QList<QVariant> tempvariant = bindingValues(bind);
     QTableWidgetItem* item = new QTableWidgetItem();
@@ -51,9 +52,9 @@ void MainSettingsDialog::fillControllerMappingsTable(QSettings &settings)
 
     QHash<QString, QList<QVariant> > tempHash;
 
-    settings.beginGroup("Mappings");
+    settings->beginGroup("Mappings");
 
-    QStringList mappings = settings.allKeys();
+    QStringList mappings = settings->allKeys();
     QStringListIterator iter(mappings);
     while (iter.hasNext())
     {
@@ -62,7 +63,7 @@ void MainSettingsDialog::fillControllerMappingsTable(QSettings &settings)
 
         if (tempkey.contains("Disable"))
         {
-            bool disableGameController = settings.value(tempkey, false).toBool();
+            bool disableGameController = settings->value(tempkey, false).toBool();
             tempGUID = tempkey.remove("Disable");
             insertTempControllerMapping(tempHash, tempGUID);
             if (tempHash.contains(tempGUID))
@@ -74,7 +75,7 @@ void MainSettingsDialog::fillControllerMappingsTable(QSettings &settings)
         }
         else
         {
-            QString mappingString = settings.value(tempkey, QString()).toString();
+            QString mappingString = settings->value(tempkey, QString()).toString();
             if (!mappingString.isEmpty())
             {
                 tempGUID = tempkey;
@@ -89,7 +90,7 @@ void MainSettingsDialog::fillControllerMappingsTable(QSettings &settings)
         }
     }
 
-    settings.endGroup();
+    settings->endGroup();
 
     QHashIterator<QString, QList<QVariant> > iter2(tempHash);
     int i = 0;
@@ -178,10 +179,10 @@ void MainSettingsDialog::deleteMappingRow()
     }
 }
 
-void MainSettingsDialog::syncMappingSettings(QSettings &settings)
+void MainSettingsDialog::syncMappingSettings()
 {
-    settings.beginGroup("Mappings");
-    settings.remove("");
+    settings->beginGroup("Mappings");
+    settings->remove("");
 
     for (int i=0; i < ui->controllerMappingsTableWidget->rowCount(); i++)
     {
@@ -194,37 +195,38 @@ void MainSettingsDialog::syncMappingSettings(QSettings &settings)
             bool disableController = itemDisable->checkState() == Qt::Checked ? true : false;
             if (itemMapping && !itemMapping->text().isEmpty())
             {
-                settings.setValue(itemGUID->text(), itemMapping->text());
+                settings->setValue(itemGUID->text(), itemMapping->text());
             }
 
-            settings.setValue(QString("%1Disable").arg(itemGUID->text()), disableController);
+            settings->setValue(QString("%1Disable").arg(itemGUID->text()), disableController);
         }
     }
 
-    settings.endGroup();
+    settings->endGroup();
 }
 
 void MainSettingsDialog::saveNewSettings()
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    syncMappingSettings(settings);
-    QString oldProfileDir = settings.value("DefaultProfileDir", "").toString();
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    syncMappingSettings();
+    QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
 
     if (oldProfileDir != possibleProfileDir)
     {
         if (QFileInfo(possibleProfileDir).exists())
         {
-            settings.setValue("DefaultProfileDir", possibleProfileDir);
+            settings->setValue("DefaultProfileDir", possibleProfileDir);
         }
         else if (possibleProfileDir.isEmpty())
         {
-            settings.remove("DefaultProfileDir");
+            settings->remove("DefaultProfileDir");
         }
     }
 
     int numRecentProfiles = ui->numberRecentProfileSpinBox->value();
-    settings.setValue("NumberRecentProfiles", numRecentProfiles);
+    settings->setValue("NumberRecentProfiles", numRecentProfiles);
+    settings->sync();
 }
 
 void MainSettingsDialog::selectDefaultProfileDir()

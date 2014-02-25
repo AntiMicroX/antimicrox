@@ -7,15 +7,16 @@
 #include "inputdaemon.h"
 
 #ifdef USE_SDL_2
-InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical, QObject *parent) :
 #else
-InputDaemon::InputDaemon(QHash<int, InputDevice*> *joysticks, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QHash<int, InputDevice*> *joysticks, QSettings *settings, bool graphical, QObject *parent) :
 #endif
     QObject(parent)
 {
     this->joysticks = joysticks;
     this->stopped = false;
     this->graphical = graphical;
+    this->settings = settings;
 
     eventWorker = new SDLEventReader(joysticks);
     thread = new QThread();
@@ -264,8 +265,7 @@ void InputDaemon::refreshJoysticks()
 #endif
 
 #ifdef USE_SDL_2
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    settings.beginGroup("Mappings");
+    settings->beginGroup("Mappings");
 #endif
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
@@ -280,7 +280,7 @@ void InputDaemon::refreshJoysticks()
         SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
         temp = QString(guidString);
 
-        bool disableGameController = settings.value(QString("%1Disable").arg(temp), false).toBool();
+        bool disableGameController = settings->value(QString("%1Disable").arg(temp), false).toBool();
 
         if (SDL_IsGameController(i) && !disableGameController)
         {
@@ -306,7 +306,7 @@ void InputDaemon::refreshJoysticks()
     }
 
 #ifdef USE_SDL_2
-    settings.endGroup();
+    settings->endGroup();
 #endif
 
     emit joysticksRefreshed(joysticks);
@@ -458,7 +458,6 @@ void InputDaemon::addInputDevice(int index)
 
         if (!joysticks->contains(tempJoystickID))
         {
-            QSettings *settings = new QSettings(PadderCommon::configFilePath, QSettings::IniFormat);
             settings->beginGroup("Mappings");
 
             QString temp;
@@ -482,10 +481,7 @@ void InputDaemon::addInputDevice(int index)
                         joysticks->insert(tempJoystickID, damncontroller);
                         trackcontrollers.insert(tempJoystickID, damncontroller);
 
-                        // Force close of settings file.
                         settings->endGroup();
-                        delete settings;
-                        settings = 0;
 
                         emit deviceAdded(damncontroller);
                     }
@@ -497,10 +493,7 @@ void InputDaemon::addInputDevice(int index)
                 joysticks->insert(tempJoystickID, curJoystick);
                 trackjoysticks.insert(tempJoystickID, curJoystick);
 
-                // Force close of settings file.
                 settings->endGroup();
-                delete settings;
-                settings = 0;
 
                 emit deviceAdded(curJoystick);
             }

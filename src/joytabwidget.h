@@ -24,10 +24,10 @@ class JoyTabWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit JoyTabWidget(InputDevice *joystick, QWidget *parent = 0);
+    explicit JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *parent = 0);
 
-    void saveSettings(QSettings *settings);
-    void loadSettings(QSettings *settings, bool forceRefresh=false);
+    void saveSettings();
+    void loadSettings(bool forceRefresh=false);
     QHash<int, QString>* recentConfigs();
     void setCurrentConfig(int index);
     int getCurrentConfigIndex();
@@ -39,7 +39,7 @@ public:
 
 protected:
     void removeCurrentButtons();
-    QString preferredProfileDir(QSettings &settings);
+    QString preferredProfileDir(QSettings *settings);
 
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
@@ -103,6 +103,7 @@ protected:
 
     InputDevice *joystick;
     bool displayingNames;
+    QSettings *settings;
 
     static const int DEFAULTNUMBERPROFILES = 5;
 
@@ -116,7 +117,7 @@ signals:
 public slots:
     void openConfigFileDialog();
     void fillButtons();
-    void saveDeviceSettings();
+    void saveDeviceSettings(bool sync=false);
     void loadDeviceSettings();
     void changeNameDisplay(bool displayNames);
     void changeCurrentSet(int index);

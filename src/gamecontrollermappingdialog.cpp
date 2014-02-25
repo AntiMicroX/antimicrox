@@ -6,7 +6,6 @@
 #include <QVariant>
 #include <QStringList>
 #include <QMessageBox>
-#include <QSettings>
 
 #include "gamecontrollermappingdialog.h"
 #include "ui_gamecontrollermappingdialog.h"
@@ -76,7 +75,7 @@ QHash<int, QString> GameControllerMappingDialog::tempaliases = initAliases();
 QHash<SDL_GameControllerButton, int> GameControllerMappingDialog::buttonPlacement =  initButtonPlacement();
 QHash<SDL_GameControllerAxis, int> GameControllerMappingDialog::axisPlacement = initAxisPlacement();
 
-GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QWidget *parent) :
+GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QSettings *settings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GameControllerMappingDialog)
 {
@@ -84,6 +83,7 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QW
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
+    this->settings = settings;
 
     device->getActiveSetJoystick()->setIgnoreEventState(true);
     device->getActiveSetJoystick()->release();
@@ -267,8 +267,9 @@ void GameControllerMappingDialog::saveChanges()
 
     QString mappingString = generateSDLMappingString();
 
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    settings.setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
+    settings->sync();
     emit mappingUpdate(mappingString, device);
 }
 
@@ -386,11 +387,12 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
 
 void GameControllerMappingDialog::removeControllerMapping()
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    settings.beginGroup("Mappings");
-    settings.remove(device->getGUIDString());
-    settings.remove(QString("%1Disable").arg(device->getGUIDString()));
-    settings.endGroup();
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings->beginGroup("Mappings");
+    settings->remove(device->getGUIDString());
+    settings->remove(QString("%1Disable").arg(device->getGUIDString()));
+    settings->endGroup();
+    settings->sync();
 }
 
 void GameControllerMappingDialog::enableDeviceConnections()

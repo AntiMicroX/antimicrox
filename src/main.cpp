@@ -20,6 +20,7 @@
 #include <QSystemTrayIcon>
 #include <QTextStream>
 #include <QLocalSocket>
+#include <QSettings>
 
 #ifdef Q_OS_WIN
 #include <QStyle>
@@ -48,6 +49,26 @@ static void termSignalHandler(int signal)
 }
 #endif
 
+void deleteInputDevices(QHash<SDL_JoystickID, InputDevice*> *joysticks)
+{
+#ifdef USE_SDL_2
+    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+#else
+    QHashIterator<int, InputDevice*> iter(*joysticks);
+#endif
+
+    while (iter.hasNext())
+    {
+        InputDevice *joystick = iter.next().value();
+        if (joystick)
+        {
+            delete joystick;
+            joystick = 0;
+        }
+    }
+
+    joysticks->clear();
+}
 
 int main(int argc, char *argv[])
 {
@@ -142,8 +163,9 @@ int main(int argc, char *argv[])
     {
         // An instance of this program is already running.
         // Save app config and exit.
-        InputDaemon *joypad_worker = new InputDaemon(joysticks, false);
-        MainWindow w(joysticks, &cmdutility, false);
+        QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+        InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
+        MainWindow w(joysticks, &cmdutility, &settings, false);
 
         if (!cmdutility.hasError() && cmdutility.hasProfile())
         {
@@ -155,23 +177,7 @@ int main(int argc, char *argv[])
 
         socket.disconnectFromServer();
 
-#ifdef USE_SDL_2
-        QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#else
-        QHashIterator<int, InputDevice*> iter(*joysticks);
-#endif
-
-        while (iter.hasNext())
-        {
-            InputDevice *joystick = iter.next().value();
-            if (joystick)
-            {
-                delete joystick;
-                joystick = 0;
-            }
-        }
-
-        joysticks->clear();
+        deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
 
@@ -181,11 +187,13 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    InputDaemon *joypad_worker = new InputDaemon (joysticks);
-    MainWindow w(joysticks, &cmdutility);
+    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
+    MainWindow w(joysticks, &cmdutility, &settings);
     w.startLocalServer();
 
 #ifndef Q_OS_WIN
+    // Have program handle signal terminate
     struct sigaction termaction;
     termaction.sa_handler = &termSignalHandler;
     sigemptyset(&termaction.sa_mask);
@@ -219,23 +227,7 @@ int main(int argc, char *argv[])
 
     int app_result = a.exec();
 
-#ifdef USE_SDL_2
-    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#else
-    QHashIterator<int, InputDevice*> iter(*joysticks);
-#endif
-
-    while (iter.hasNext())
-    {
-        InputDevice *joystick = iter.next().value();
-        if (joystick)
-        {
-            delete joystick;
-            joystick = 0;
-        }
-    }
-
-    joysticks->clear();
+    deleteInputDevices(joysticks);
     delete joysticks;
     joysticks = 0;
 

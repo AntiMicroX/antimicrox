@@ -27,10 +27,11 @@
 #include "gamecontroller/gamecontroller.h"
 #endif
 
-JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
+JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *parent) :
     QWidget(parent)
 {
     this->joystick = joystick;
+    this->settings = settings;
 
     verticalLayout = new QVBoxLayout (this);
     verticalLayout->setContentsMargins(4, 4, 4, 4);
@@ -440,9 +441,9 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QWidget *parent) :
 
 void JoyTabWidget::openConfigFileDialog()
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
-    int numberRecentProfiles = settings.value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+    int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = preferredProfileDir(settings);
 
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
@@ -470,7 +471,8 @@ void JoyTabWidget::openConfigFileDialog()
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
 
-        settings.setValue("LastProfileDir", fileinfo.absoluteDir().absolutePath());
+        settings->setValue("LastProfileDir", fileinfo.absoluteDir().absolutePath());
+        settings->sync();
     }
 }
 
@@ -1015,9 +1017,9 @@ void JoyTabWidget::showStickDialog()
 void JoyTabWidget::saveConfigFile()
 {
     int index = configBox->currentIndex();
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
-    int numberRecentProfiles = settings.value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+    int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
     if (index == 0)
     {
@@ -1071,13 +1073,13 @@ void JoyTabWidget::saveConfigFile()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
-                saveDeviceSettings();
+                saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
                 configBox->setCurrentIndex(existingIndex);
-                saveDeviceSettings();
+                saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
         }
@@ -1126,9 +1128,9 @@ void JoyTabWidget::resetJoystick()
 void JoyTabWidget::saveAsConfig()
 {
     int index = configBox->currentIndex();
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
-    int numberRecentProfiles = settings.value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+    int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
     if (index == 0)
     {
@@ -1188,13 +1190,13 @@ void JoyTabWidget::saveAsConfig()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
-                saveDeviceSettings();
+                saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
                 configBox->setCurrentIndex(existingIndex);
-                saveDeviceSettings();
+                saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
         }
@@ -1245,7 +1247,7 @@ void JoyTabWidget::changeJoyConfig(int index)
     }
 }
 
-void JoyTabWidget::saveSettings(QSettings *settings)
+void JoyTabWidget::saveSettings()
 {
     QString filename = "";
     QString lastfile = "";
@@ -1327,7 +1329,7 @@ void JoyTabWidget::saveSettings(QSettings *settings)
     }
 }
 
-void JoyTabWidget::loadSettings(QSettings *settings, bool forceRefresh)
+void JoyTabWidget::loadSettings(bool forceRefresh)
 {
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
 
@@ -1684,7 +1686,7 @@ void JoyTabWidget::removeConfig()
     if (currentIndex > 0)
     {
         configBox->removeItem(currentIndex);
-        saveDeviceSettings();
+        saveDeviceSettings(true);
         emit joystickConfigChanged(joystick->getJoyNumber());
     }
 }
@@ -1703,19 +1705,24 @@ void JoyTabWidget::unloadConfig()
     configBox->setCurrentIndex(0);
 }
 
-void JoyTabWidget::saveDeviceSettings()
+void JoyTabWidget::saveDeviceSettings(bool sync)
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    settings.beginGroup("Controllers");
-    saveSettings(&settings);
-    settings.endGroup();
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings->beginGroup("Controllers");
+    saveSettings();
+    settings->endGroup();
+
+    if (sync)
+    {
+        settings->sync();
+    }
 }
 
 void JoyTabWidget::loadDeviceSettings()
 {
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     //settings.beginGroup("Controllers");
-    loadSettings(&settings);
+    loadSettings();
     //settings.endGroup();
 }
 
@@ -1793,10 +1800,10 @@ void JoyTabWidget::refreshSetButtons()
     }
 }
 
-QString JoyTabWidget::preferredProfileDir(QSettings &settings)
+QString JoyTabWidget::preferredProfileDir(QSettings *settings)
 {
-    QString lastProfileDir = settings.value("LastProfileDir", "").toString();
-    QString defaultProfileDir = settings.value("DefaultProfileDir", "").toString();
+    QString lastProfileDir = settings->value("LastProfileDir", "").toString();
+    QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString lookupDir;
 
     if (!defaultProfileDir.isEmpty())
