@@ -623,7 +623,6 @@ void MainWindow::hideEvent(QHideEvent *event)
         // Check if a system tray exists and hide window if one is available
         if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
         {
-            hide();
             disableFlashActions();
             signalDisconnect = true;
         }
@@ -652,14 +651,37 @@ void MainWindow::showEvent(QShowEvent *event)
         // Restore flashing buttons
         enableFlashActions();
         signalDisconnect = false;
+
         // Only needed if hidden with the system tray enabled
         if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
         {
-            showNormal();
+            if (isMaximized())
+            {
+                showMaximized();
+            }
+            else
+            {
+                showNormal();
+            }
+            activateWindow();
         }
     }
 
     QMainWindow::showEvent(event);
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::WindowStateChange)
+    {
+        QWindowStateChangeEvent *e = (QWindowStateChangeEvent*)event;
+        if (e->oldState() != Qt::WindowMinimized && isMinimized())
+        {
+            hide();
+        }
+    }
+
+    QMainWindow::changeEvent(event);
 }
 
 void MainWindow::openAboutDialog()

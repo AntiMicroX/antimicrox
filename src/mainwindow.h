@@ -39,6 +39,7 @@ public:
 protected:
     virtual void hideEvent(QHideEvent * event);
     virtual void showEvent(QShowEvent *event);
+    virtual void changeEvent(QEvent *event);
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
     void loadConfigFile(QString fileLocation, QString controllerID);
     void unloadCurrentConfig(int joystickIndex=0);
