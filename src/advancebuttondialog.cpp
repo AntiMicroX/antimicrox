@@ -1,9 +1,6 @@
+#include <QDebug>
 #include <QPushButton>
 #include <QHBoxLayout>
-#include <QListWidget>
-#include <QListWidgetItem>
-#include <QScrollBar>
-#include <QDebug>
 
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
