@@ -142,7 +142,7 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
         }
         else if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
         {
-            hide();
+            hideWindow();
             setEnabled(false); // Should already be disabled. Do it again just to be sure.
         }
     }
@@ -292,7 +292,7 @@ void MainWindow::populateTrayIcon()
 
     hideAction = new QAction(tr("&Hide"), trayIconMenu);
     hideAction->setIcon(QIcon::fromTheme("view-restore"));
-    connect(hideAction, SIGNAL(triggered()), this, SLOT(hide()));
+    connect(hideAction, SIGNAL(triggered()), this, SLOT(hideWindow()));
     //connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
 
     restoreAction = new QAction(tr("&Restore"), trayIconMenu);
@@ -349,7 +349,7 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
         }
         else
         {
-            this->hide();
+            this->hideWindow();
         }
     }
 
@@ -557,6 +557,8 @@ void MainWindow::enableFlashActions()
 // Intermediate slot used in Design mode
 void MainWindow::hideWindow()
 {
+    disableFlashActions();
+    signalDisconnect = true;
     hide();
 }
 
@@ -615,34 +617,6 @@ void MainWindow::joystickTrayShow()
     }
 }
 
-void MainWindow::hideEvent(QHideEvent *event)
-{
-    // Perform if window is minimized via the window manager
-    if (event->spontaneous())
-    {
-        // Check if a system tray exists and hide window if one is available
-        if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
-        {
-            disableFlashActions();
-            signalDisconnect = true;
-        }
-        // No system tray found. Disconnect processing of flashing buttons
-        else
-        {
-            disableFlashActions();
-            signalDisconnect = true;
-        }
-    }
-    else if (!signalDisconnect)
-    {
-        // Code is invoked by calling the hide method
-        disableFlashActions();
-        signalDisconnect = true;
-    }
-
-    QMainWindow::hideEvent(event);
-}
-
 void MainWindow::showEvent(QShowEvent *event)
 {
     // Check if hideEvent has been processed
@@ -663,6 +637,7 @@ void MainWindow::showEvent(QShowEvent *event)
             {
                 showNormal();
             }
+
             activateWindow();
         }
     }
@@ -677,7 +652,24 @@ void MainWindow::changeEvent(QEvent *event)
         QWindowStateChangeEvent *e = (QWindowStateChangeEvent*)event;
         if (e->oldState() != Qt::WindowMinimized && isMinimized())
         {
-            hide();
+            if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
+            {
+                hideWindow();
+            }
+            else
+            {
+                disableFlashActions();
+                signalDisconnect = true;
+            }
+        }
+        else if (e->oldState() == Qt::WindowMinimized)
+        {
+            if (signalDisconnect)
+            {
+                // Restore flashing buttons
+                enableFlashActions();
+                signalDisconnect = false;
+            }
         }
     }
 

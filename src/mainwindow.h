@@ -37,7 +37,6 @@ public:
     ~MainWindow();
     
 protected:
-    virtual void hideEvent(QHideEvent * event);
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
