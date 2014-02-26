@@ -31,6 +31,7 @@ signals:
     void buttonCodeChanged(int value);
     
 public slots:
+    void refreshButtonLabel();
 
 protected slots:
 

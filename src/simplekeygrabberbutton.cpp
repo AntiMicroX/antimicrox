@@ -188,3 +188,8 @@ JoyButtonSlot* SimpleKeyGrabberButton::getValue()
 {
     return &buttonslot;
 }
+
+void SimpleKeyGrabberButton::refreshButtonLabel()
+{
+    setText(buttonslot.getSlotString());
+}

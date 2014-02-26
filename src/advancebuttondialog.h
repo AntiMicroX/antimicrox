@@ -2,6 +2,7 @@
 #define ADVANCEBUTTONDIALOG_H
 
 #include <QDialog>
+#include <QListWidgetItem>
 
 #include "joybutton.h"
 #include "simplekeygrabberbutton.h"
@@ -27,6 +28,7 @@ protected:
     int actionTimeConvert();
     void changeTurboForSequences();
     void fillTimeComboBoxes();
+    void refreshTimeComboBoxes(JoyButtonSlot *slot);
 
     int oldRow;
     JoyButton *button;
@@ -62,6 +64,14 @@ private slots:
     void updateActionTimeLabel();
     void updateSetSelection();
     void checkTurboIntervalValue(int value);
+    void performStatsWidgetRefresh(QListWidgetItem *item);
+    void performSlotTimeRefresh(JoyButtonSlot *slot);
+    void performSlotMouseSpeedRefresh(JoyButtonSlot *slot);
+    void performSlotDistanceRefresh(JoyButtonSlot *slot);
+
+    void checkSlotTimeUpdate();
+    void checkSlotMouseModUpdate();
+    void checkSlotDistanceUpdate();
 };
 
 Q_DECLARE_METATYPE(AdvanceButtonDialog*)
