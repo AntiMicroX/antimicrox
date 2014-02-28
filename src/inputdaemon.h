@@ -31,6 +31,8 @@ public:
     ~InputDaemon();
 
 protected:
+    void resetMouseTimers();
+
 #ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;
     QHash<SDL_JoystickID, Joystick*> trackjoysticks;

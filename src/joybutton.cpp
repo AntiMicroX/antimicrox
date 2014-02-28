@@ -46,13 +46,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
 
-    // Workaround to have a static QTimer
-    disconnect(&cursorDelayTimer, 0, 0, 0);
-    connect(&cursorDelayTimer, SIGNAL(timeout()), this, SLOT(moveMouseCursor()));
-
-    // Workaround to have a static QTimer
-    disconnect(&springDelayTimer, 0, 0, 0);
-    connect(&springDelayTimer, SIGNAL(timeout()), this, SLOT(moveSpringMouse()));
+    establishMouseTimerConnections();
 
     this->reset();
     this->index = index;
@@ -2927,4 +2921,15 @@ unsigned int JoyButton::getPreferredKeyDelay()
     }
 
     return tempDelay;
+}
+
+void JoyButton::establishMouseTimerConnections()
+{
+    // Workaround to have a static QTimer
+    disconnect(&cursorDelayTimer, 0, 0, 0);
+    connect(&cursorDelayTimer, SIGNAL(timeout()), this, SLOT(moveMouseCursor()));
+
+    // Workaround to have a static QTimer
+    disconnect(&springDelayTimer, 0, 0, 0);
+    connect(&springDelayTimer, SIGNAL(timeout()), this, SLOT(moveSpringMouse()));
 }

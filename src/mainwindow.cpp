@@ -382,7 +382,7 @@ void MainWindow::saveAppConfig()
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
         settings->beginGroup("Controllers");
-        settings->remove("");
+        //settings->remove("");
         QStringList tempGUIDHolder;
         QStringList tempNameHolder;
 

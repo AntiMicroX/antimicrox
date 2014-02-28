@@ -257,6 +257,7 @@ public slots:
 
     void moveMouseCursor();
     void moveSpringMouse();
+    void establishMouseTimerConnections();
 
 private slots:
     void turboEvent();
