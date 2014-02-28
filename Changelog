@@ -1,3 +1,16 @@
+2014-02-28 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.1
+
+* Added new stick and dpad modes.
+
+* Added set names.
+
+* Minor fixes for Windows.
+
+* Fixed QSettings usage to reduce reads and write to config file.
+
+
 2014-02-10 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.0.1
@@ -38,15 +51,15 @@ joystick profiles will be migrated when first loaded by the program.
 
 * Program can now be compiled against SDL 2.
 
-* The GameController API provided by SDL 2 has been integrated into the
+* The Game Controller API provided by SDL 2 has been integrated into the
 application. The API is used to abstract various gamepads to a unified 
-standard. Profiles made against the GameController API can be used with
+standard. Profiles made against the Game Controller API can be used with
 any controller that is supported. Unsupported controllers will have to be 
 mapped in the program.
 
-* A simple GameController mapping window has been made so people that are using 
+* A simple Game Controller mapping window has been made so people that are using
 an unsupported controller can map that controller so that it can be used with
-the GameController API. Any saved mapping string will be loaded into
+the Game Controller API. Any saved mapping string will be loaded into
 SDL when AntiMicro is first launched or when you select the
 "Update Joysticks" option in the main window.
 
@@ -67,7 +80,7 @@ time. This problem would really affect people trying to play Call of Duty with a
 if the GUID is not available (compiled against SDL 1.2).
 
 * Program options window has been made. For right now, it is only being used to 
-allow users to be able to disable GameController integration for specific 
+allow users to be able to disable Game Controller integration for specific
 controllers.
 
 * Mouse events are queued before a mouse event is sent to the system. This 
