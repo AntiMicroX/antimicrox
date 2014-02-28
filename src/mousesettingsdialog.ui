@@ -291,7 +291,7 @@ Speed:</string>
                <widget class="QSpinBox" name="wheelHoriSpeedSpinBox">
                 <property name="toolTip">
                  <string>Set the speed used for horizontal mouse wheel movement
-according to number of simulated ticks per second.</string>
+according to number of simulated notches per second.</string>
                 </property>
                 <property name="specialValueText">
                  <string/>
@@ -340,7 +340,7 @@ Speed:</string>
                <widget class="QSpinBox" name="wheelVertSpeedSpinBox">
                 <property name="toolTip">
                  <string>Set the speed used for vertical mouse wheel movement
-according to number of simulated ticks per second.</string>
+according to number of simulated notches per second.</string>
                 </property>
                 <property name="minimum">
                  <number>1</number>
