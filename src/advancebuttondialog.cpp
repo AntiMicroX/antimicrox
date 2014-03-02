@@ -169,16 +169,24 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
 
     if (index == (itemcount - 1) && value > 0)
     {
+        // New slot added on the old blank button. Append
+        // new blank button to the end of the list.
         appendBlankKeyGrabber();
     }
     else if (index < (itemcount - 1) && value == 0)
     {
+        // Delete a button on the list.
         QListWidgetItem *item = ui->slotListWidget->takeItem(index);
         delete item;
         item = 0;
     }
 
+    // Stop all events on JoyButton and erase currently allocated
+    // slots.
     this->button->clearSlotsEventReset();
+
+    // Go through all grabber buttons in list, assign values as new slots
+    // to JoyButton.
     for (int i = 0; i < ui->slotListWidget->count(); i++)
     {
         QListWidgetItem *item = ui->slotListWidget->item(i);
@@ -192,6 +200,7 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
         }
     }
 
+    // Alter interface if turbo cannot be used.
     changeTurboForSequences();
 
     emit slotsChanged();
@@ -610,49 +619,6 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     }
 }
 
-void AdvanceButtonDialog::performSlotTimeRefresh(JoyButtonSlot *slot)
-{
-    int actionTime = actionTimeConvert();
-    if (actionTime > 0)
-    {
-        slot->setSlotCode(actionTime);
-    }
-}
-
-void AdvanceButtonDialog::performSlotMouseSpeedRefresh(JoyButtonSlot *slot)
-{
-    int tempMouseMod = ui->mouseSpeedModSpinBox->value();
-    if (tempMouseMod > 0)
-    {
-        slot->setSlotCode(tempMouseMod);
-    }
-}
-
-void AdvanceButtonDialog::performSlotDistanceRefresh(JoyButtonSlot *slot)
-{
-    int tempDistance = 0;
-
-    for (int i = 0; i < ui->slotListWidget->count(); i++)
-    {
-        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-        JoyButtonSlot *tempbuttonslot = button->getValue();
-        if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyDistance)
-        {
-            tempDistance += tempbuttonslot->getSlotCode();
-        }
-        else if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyCycle)
-        {
-            tempDistance = 0;
-        }
-    }
-
-    int testDistance = ui->distanceSpinBox->value();
-    if (testDistance + tempDistance <= 100)
-    {
-        slot->setSlotCode(testDistance);
-    }
-}
-
 void AdvanceButtonDialog::checkSlotTimeUpdate()
 {
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -666,6 +632,7 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
         {
             tempbuttonslot->setSlotCode(actionTime);
             tempbutton->refreshButtonLabel();
+            updateSlotsScrollArea(actionTime);
         }
     }
 }
@@ -680,6 +647,7 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
     {
         tempbuttonslot->setSlotCode(tempMouseMod);
         tempbutton->refreshButtonLabel();
+        updateSlotsScrollArea(tempMouseMod);
     }
 }
 
@@ -706,10 +674,12 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
         }
 
         int testDistance = ui->distanceSpinBox->value();
-        if (testDistance + tempDistance <= 100)
+        tempDistance += testDistance - buttonslot->getSlotCode();
+        if (tempDistance <= 100)
         {
             buttonslot->setSlotCode(testDistance);
             tempbutton->refreshButtonLabel();
+            updateSlotsScrollArea(testDistance);
         }
     }
 }

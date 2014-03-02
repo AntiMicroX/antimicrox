@@ -65,9 +65,6 @@ private slots:
     void updateSetSelection();
     void checkTurboIntervalValue(int value);
     void performStatsWidgetRefresh(QListWidgetItem *item);
-    void performSlotTimeRefresh(JoyButtonSlot *slot);
-    void performSlotMouseSpeedRefresh(JoyButtonSlot *slot);
-    void performSlotDistanceRefresh(JoyButtonSlot *slot);
 
     void checkSlotTimeUpdate();
     void checkSlotMouseModUpdate();
