@@ -52,6 +52,7 @@ private slots:
     void discardMapping(QAbstractButton *button);
     void enableButtonEvents(int code);
     void obliterate();
+    void changeButtonDisplay();
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOG_H

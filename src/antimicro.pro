@@ -211,7 +211,8 @@ unix {
     gamecontroller/gamecontrollerdpad.cpp \
     gamecontroller/gamecontrollerset.cpp \
     gamecontroller/gamecontrollertrigger.cpp \
-    gamecontrollermappingdialog.cpp
+    gamecontrollermappingdialog.cpp \
+    gamecontrollerexample.cpp
 }
 
 HEADERS  += mainwindow.h \
@@ -282,7 +283,8 @@ HEADERS  += mainwindow.h \
     gamecontroller/gamecontrollerdpad.h \
     gamecontroller/gamecontrollerset.h \
     gamecontroller/gamecontrollertrigger.h \
-    gamecontrollermappingdialog.h
+    gamecontrollermappingdialog.h \
+    gamecontrollerexample.h
 }
 
 unix {

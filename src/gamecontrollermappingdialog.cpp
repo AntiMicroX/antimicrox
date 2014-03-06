@@ -105,6 +105,7 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QS
     connect(device, SIGNAL(destroyed()), this, SLOT(obliterate()));
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveChanges()));
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(discardMapping(QAbstractButton*)));
+    connect(ui->buttonMappingTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeButtonDisplay()));
     connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents(int)));
 }
 
@@ -462,4 +463,10 @@ QString GameControllerMappingDialog::generateSDLMappingString()
 void GameControllerMappingDialog::obliterate()
 {
     this->done(QDialogButtonBox::DestructiveRole);
+}
+
+void GameControllerMappingDialog::changeButtonDisplay()
+{
+
+    ui->gameControllerDisplayWidget->setActiveButton(ui->buttonMappingTableWidget->currentRow());
 }

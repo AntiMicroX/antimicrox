@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>images/antimicro.png</file>
         <file>images/antimicro_trayicon.png</file>
+        <file>images/controllermap.png</file>
+        <file>images/axis.png</file>
+        <file>images/button.png</file>
     </qresource>
 </RCC>
