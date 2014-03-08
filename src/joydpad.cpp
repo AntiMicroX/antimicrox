@@ -302,31 +302,25 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
                 activeDiagonalButton = buttons.value(JoyDPadButton::DpadLeftDown);
                 activeDiagonalButton->joyEvent(true, ignoresets);
             }
-            else
+            else if (value == JoyDPadButton::DpadUp)
             {
-                if ((value & JoyDPadButton::DpadUp) && (!(prevDirection & JoyDPadButton::DpadUp)))
-                {
-                    curButton = buttons.value(JoyDPadButton::DpadUp);
-                    curButton->joyEvent(true, ignoresets);
-                }
-
-                if ((value & JoyDPadButton::DpadDown) && (!(prevDirection & JoyDPadButton::DpadDown)))
-                {
-                    curButton = buttons.value(JoyDPadButton::DpadDown);
-                    curButton->joyEvent(true, ignoresets);
-                }
-
-                if ((value & JoyDPadButton::DpadLeft) && (!(prevDirection & JoyDPadButton::DpadLeft)))
-                {
-                    curButton = buttons.value(JoyDPadButton::DpadLeft);
-                    curButton->joyEvent(true, ignoresets);
-                }
-
-                if ((value & JoyDPadButton::DpadRight) && (!(prevDirection & JoyDPadButton::DpadRight)))
-                {
-                    curButton = buttons.value(JoyDPadButton::DpadRight);
-                    curButton->joyEvent(true, ignoresets);
-                }
+                curButton = buttons.value(JoyDPadButton::DpadUp);
+                curButton->joyEvent(true, ignoresets);
+            }
+            else if (value == JoyDPadButton::DpadDown)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadDown);
+                curButton->joyEvent(true, ignoresets);
+            }
+            else if (value == JoyDPadButton::DpadLeft)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadLeft);
+                curButton->joyEvent(true, ignoresets);
+            }
+            else if (value == JoyDPadButton::DpadRight)
+            {
+                curButton = buttons.value(JoyDPadButton::DpadRight);
+                curButton->joyEvent(true, ignoresets);
             }
         }
         else if (currentMode == FourWayCardinal)
