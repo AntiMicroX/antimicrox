@@ -218,8 +218,8 @@ double JoyControlStick::calculateBearing()
     }
     else
     {
-        double temp1 = axisX->getCurrentRawValue() / (double)maxZone;
-        double temp2 = axisY->getCurrentRawValue() / (double)maxZone;
+        double temp1 = axisX->getCurrentRawValue();
+        double temp2 = axisY->getCurrentRawValue();
 
         double angle = (atan2(temp1, -temp2) * 180) / PI;
 

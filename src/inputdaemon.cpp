@@ -409,7 +409,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
     {
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
         SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
-        if (device->getJoyNumber() == joystickID)
+        if (device->getSDLJoystickID() == joystickID)
         {
             found = true;
 
