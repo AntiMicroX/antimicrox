@@ -1785,10 +1785,12 @@ void JoyTabWidget::refreshSetButtons()
         if (!tempSet->getName().isEmpty())
         {
             QString tempName = tempSet->getName();
-            tempSetButton->setText(tempName);
+            QString tempNameEscaped = tempName;
+            tempNameEscaped.replace("&", "&&");
+            tempSetButton->setText(tempNameEscaped);
             tempSetButton->setToolTip(tempName);
 
-            tempSetAction->setText(tr("Set").append(" %1: %2").arg(i+1).arg(tempName));
+            tempSetAction->setText(tr("Set").append(" %1: %2").arg(i+1).arg(tempNameEscaped));
         }
         else
         {
