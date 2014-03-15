@@ -245,10 +245,17 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 
     if (mode == JoyKeyboard)
     {
-        //unsigned int qtkey = AntKeyMapper::returnQtKey(deviceCode);
+        unsigned int basekey = AntKeyMapper::returnQtKey(deviceCode);
         unsigned int qtkey = this->getSlotCodeAlias();
-        if (qtkey > 0)
+        if (qtkey > 0 || basekey > 0)
         {
+            // Did not add an alias to slot. If a possible Qt key value
+            // was found, use it.
+            if (qtkey == 0 && basekey > 0)
+            {
+                qtkey = basekey;
+            }
+
             // Found a valid abstract keysym.
             //qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
             xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));

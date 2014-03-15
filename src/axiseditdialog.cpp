@@ -138,33 +138,33 @@ void AxisEditDialog::implementPresets(int index)
     }
     else if (index == 5)
     {
-        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Up), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Down), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Up), Qt::Key_Up, JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Down), Qt::Key_Down, JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 6)
     {
-        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Left), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Right), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Left), Qt::Key_Left, JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_Right), Qt::Key_Right, JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 7)
     {
-        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_W), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_S), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_W), Qt::Key_W, JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_S), Qt::Key_S, JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 8)
     {
-        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_A), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_D), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_A), Qt::Key_A, JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(Qt::Key_D), Qt::Key_D, JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 9)
     {
-        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_8), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_2), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_8), QtKeyMapperBase::AntKey_KP_8, JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_2), QtKeyMapperBase::AntKey_KP_2, JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 10)
     {
-        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_4), JoyButtonSlot::JoyKeyboard, this);
-        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_6), JoyButtonSlot::JoyKeyboard, this);
+        nbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_4), QtKeyMapperBase::AntKey_KP_4, JoyButtonSlot::JoyKeyboard, this);
+        pbuttonslot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_6), QtKeyMapperBase::AntKey_KP_6, JoyButtonSlot::JoyKeyboard, this);
     }
     else if (index == 11)
     {
@@ -181,7 +181,7 @@ void AxisEditDialog::implementPresets(int index)
     {
         JoyAxisButton *button = axis->getNAxisButton();
         button->clearSlotsEventReset();
-        button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotMode());
+        button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
         refreshNButtonLabel();
         nbuttonslot->deleteLater();
     }
@@ -190,7 +190,7 @@ void AxisEditDialog::implementPresets(int index)
     {
         JoyAxisButton *button = axis->getPAxisButton();
         button->clearSlotsEventReset();
-        button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotMode());
+        button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
     }
