@@ -25,5 +25,6 @@
         <file>icons/16x16/actions/edit-table-delete-row.png</file>
         <file>icons/16x16/actions/edit-table-insert-row-below.png</file>
         <file>icons/16x16/actions/help-about.png</file>
+        <file>icons/16x16/actions/view-fullscreen.png</file>
     </qresource>
 </RCC>
