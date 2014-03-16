@@ -148,7 +148,7 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
 
             setEnabled(false); // Should already be disabled. Do it again just to be sure.
         }
-        else if (cmdutility->isHiddenRequested())
+        else if (cmdutility->isHiddenRequested() || cmdutility->isLaunchInTrayEnabled())
         {
             // Window should already be hidden but make sure
             // to disable flashing buttons.
