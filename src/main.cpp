@@ -104,6 +104,8 @@ int main(int argc, char *argv[])
     {
         qApp->setStyle(QStyleFactory::create("Fusion"));
     }
+
+    QIcon::setThemeName("/");
 #endif
 
     CommandLineUtility cmdutility;

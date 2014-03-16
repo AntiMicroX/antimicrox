@@ -334,11 +334,10 @@ unix {
   }
 }
 
-
-RESOURCES += \
-    resources.qrc
+RESOURCES += resources.qrc
 
 win32 {
+  RESOURCES += resources_windows.qrc
   RC_FILE += antimicro.rc
 }
 

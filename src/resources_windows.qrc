@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/16x16/actions/application-exit.png</file>
+        <file>icons/16x16/actions/archive-insert.png</file>
+        <file>icons/16x16/actions/dialog-cancel.png</file>
+        <file>icons/16x16/actions/dialog-close.png</file>
+        <file>icons/16x16/actions/dialog-ok.png</file>
+        <file>icons/16x16/actions/document-close.png</file>
+        <file>icons/16x16/actions/document-open-folder.png</file>
+        <file>icons/16x16/actions/document-open.png</file>
+        <file>icons/16x16/actions/document-revert-small.png</file>
+        <file>icons/16x16/actions/document-revert.png</file>
+        <file>icons/16x16/actions/document-save-as.png</file>
+        <file>icons/16x16/actions/document-save.png</file>
+        <file>icons/16x16/actions/edit-clear-list.png</file>
+        <file>icons/16x16/actions/edit-clear.png</file>
+        <file>icons/16x16/actions/edit-delete.png</file>
+        <file>icons/16x16/actions/edit-select.png</file>
+        <file>icons/16x16/actions/games-config-custom.png</file>
+        <file>icons/16x16/actions/games-config-options.png</file>
+        <file>icons/16x16/actions/text-field.png</file>
+        <file>icons/16x16/actions/view-refresh.png</file>
+        <file>icons/16x16/actions/view-restore.png</file>
+        <file>icons/index.theme</file>
+    </qresource>
+</RCC>
