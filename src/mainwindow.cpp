@@ -260,14 +260,14 @@ void MainWindow::populateTrayIcon()
             QString joytabName = current->getSDLName();
             joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
 
-            QMenu *joysticksub = trayIconMenu->addMenu(joytabName);
+            QMenu *joysticksubMenu = trayIconMenu->addMenu(joytabName);
             JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
             QHash<int, QString> *configs = widget->recentConfigs();
             QHashIterator<int, QString> iter(*configs);
             while (iter.hasNext())
             {
                 iter.next();
-                QAction *newaction = new QAction(iter.value(), joysticksub);
+                QAction *newaction = new QAction(iter.value(), joysticksubMenu);
                 newaction->setCheckable(true);
                 newaction->setChecked(false);
 
@@ -275,23 +275,25 @@ void MainWindow::populateTrayIcon()
                 {
                     newaction->setChecked(true);
                 }
+
                 QHash<QString, QVariant> *tempmap = new QHash<QString, QVariant> ();
                 tempmap->insert(QString::number(i), QVariant (iter.key()));
                 QVariant tempvar (*tempmap);
                 newaction->setData(tempvar);
-                joysticksub->addAction(newaction);
+                joysticksubMenu->addAction(newaction);
             }
 
             delete configs;
             configs = 0;
 
-            QAction *newaction = new QAction(tr("Open File"), joysticksub);
+            QAction *newaction = new QAction(tr("Open File"), joysticksubMenu);
             newaction->setIcon(QIcon::fromTheme("document-open"));
             connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
-            joysticksub->addAction(newaction);
+            joysticksubMenu->addAction(newaction);
 
-            connect(joysticksub, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
-            connect(joysticksub, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+            connect(joysticksubMenu, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
+            connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+            connect(widget->getJoystick(), SIGNAL(deviceSlotsEdited()), this, SLOT(displayFileNotification()));
 
             i++;
         }
@@ -621,6 +623,19 @@ void MainWindow::joystickTrayShow()
             if (configindex == widget->getCurrentConfigIndex())
             {
                 action->setChecked(true);
+
+                if (widget->getJoystick()->isDeviceEdited())
+                {
+                    action->setIcon(QIcon::fromTheme("document-save-as"));
+                }
+                else if (!action->icon().isNull())
+                {
+                    action->setIcon(QIcon());
+                }
+            }
+            else if (!action->icon().isNull())
+            {
+                action->setIcon(QIcon());
             }
         }
     }

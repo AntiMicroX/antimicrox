@@ -68,6 +68,7 @@ public:
     unsigned int getDeviceKeyDelay();
 
     void setIndex(int index);
+    bool isDeviceEdited();
 
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYDELAY;
@@ -82,6 +83,7 @@ protected:
     int buttonDownCount;
     SDL_JoystickID joystickID;
     unsigned int keyDelay;
+    bool deviceEdited;
 
 signals:
     void setChangeActivated(int index);
@@ -96,6 +98,7 @@ signals:
     void rawDPadButtonClick(int dpad, int buttonindex);
     void rawDPadButtonRelease(int dpad, int buttonindex);
     void rawAxisActivated(int axis, int value);
+    void deviceSlotsEdited();
 
 public slots:
     void reset();
@@ -106,6 +109,7 @@ public slots:
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
     void setDeviceKeyDelay(unsigned int newDelay);
+    void profileEdited();
 
 protected slots:
     void propogateSetChange(int index);

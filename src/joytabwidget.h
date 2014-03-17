@@ -148,6 +148,8 @@ private slots:
     void changeSetSeven();
     void changeSetEight();
     void openStickButtonDialog();
+    void displayProfileEditNotification();
+    void removeProfileEditNotification();
 };
 
 #endif // JOYTABWIDGET_H

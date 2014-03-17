@@ -437,6 +437,8 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
+    connect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
 }
 
 void JoyTabWidget::openConfigFileDialog()
@@ -1123,6 +1125,8 @@ void JoyTabWidget::resetJoystick()
         fillButtons();
         refreshSetButtons();
     }
+
+    configBox->setItemIcon(currentIndex, QIcon());
 }
 
 void JoyTabWidget::saveAsConfig()
@@ -1205,6 +1209,8 @@ void JoyTabWidget::saveAsConfig()
 
 void JoyTabWidget::changeJoyConfig(int index)
 {
+    disconnect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
+
     QString filename;
 
     if (index > 0)
@@ -1245,6 +1251,8 @@ void JoyTabWidget::changeJoyConfig(int index)
         refreshSetButtons();
         emit joystickRefreshRequested(joystick);
     }
+
+    connect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
 }
 
 void JoyTabWidget::saveSettings()
@@ -1832,4 +1840,21 @@ QString JoyTabWidget::preferredProfileDir(QSettings *settings)
     }
 
     return lookupDir;
+}
+
+void JoyTabWidget::displayProfileEditNotification()
+{
+    int currentIndex = configBox->currentIndex();
+    configBox->setItemIcon(currentIndex, QIcon::fromTheme("document-save-as"));
+}
+
+void JoyTabWidget::removeProfileEditNotification()
+{
+    for (int i=0; i < configBox->count(); i++)
+    {
+        if (!configBox->itemIcon(i).isNull())
+        {
+            configBox->setItemIcon(i, QIcon());
+        }
+    }
 }

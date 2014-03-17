@@ -279,6 +279,8 @@ void JoyButton::setTurboInterval(int interval)
 
 void JoyButton::reset()
 {
+    disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
+
     turboTimer.stop();
     pauseTimer.stop();
     pauseWaitTimer.stop();
@@ -340,6 +342,8 @@ void JoyButton::reset()
     whileHeldStatus = false;
     buttonName.clear();
     actionName.clear();
+
+    connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 
 void JoyButton::reset(int index)
@@ -1035,6 +1039,7 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
         //reset();
+        disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
@@ -1218,8 +1223,9 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
-    }
 
+        connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
+    }
 }
 
 void JoyButton::writeConfig(QXmlStreamWriter *xml)

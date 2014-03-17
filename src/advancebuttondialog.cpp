@@ -341,6 +341,10 @@ void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
     disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
 
+    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+
     int slottime = slot->getSlotCode();
     int tempMinutes = slottime / 1000 / 60;
     int tempSeconds = slottime / 1000 % 60;
@@ -351,9 +355,14 @@ void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
     ui->actionHundredthsComboBox->setCurrentIndex(tempMilliSeconds);
     updateActionTimeLabel();
 
+
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+
+    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
 }
 
 void AdvanceButtonDialog::updateActionTimeLabel()

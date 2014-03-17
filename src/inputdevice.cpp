@@ -13,6 +13,7 @@ InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     active_set = 0;
     joystickID = 0;
     keyDelay = 0;
+    deviceEdited = false;
 }
 
 InputDevice::~InputDevice()
@@ -51,6 +52,7 @@ void InputDevice::reset()
     }
 
     buttonDownCount = 0;
+    deviceEdited = false;
 }
 
 void InputDevice::setActiveSetNumber(int index)
@@ -1337,6 +1339,20 @@ void InputDevice::setDeviceKeyDelay(unsigned int newDelay)
 unsigned int InputDevice::getDeviceKeyDelay()
 {
     return keyDelay;
+}
+
+void InputDevice::profileEdited()
+{
+    if (!deviceEdited)
+    {
+        deviceEdited = true;
+        emit deviceSlotsEdited();
+    }
+}
+
+bool InputDevice::isDeviceEdited()
+{
+    return deviceEdited;
 }
 
 #ifdef USE_SDL_2
