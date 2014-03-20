@@ -41,12 +41,20 @@
 #endif
 
 #ifndef Q_OS_WIN
-static void termSignalHandler(int signal)
+static void termSignalTermHandler(int signal)
 {
     Q_UNUSED(signal);
 
     qApp->exit(0);
 }
+
+static void termSignalIntHandler(int signal)
+{
+    Q_UNUSED(signal);
+
+    qApp->exit(0);
+}
+
 #endif
 
 void deleteInputDevices(QHash<SDL_JoystickID, InputDevice*> *joysticks)
@@ -195,13 +203,21 @@ int main(int argc, char *argv[])
     w.startLocalServer();
 
 #ifndef Q_OS_WIN
-    // Have program handle signal terminate
+    // Have program handle SIGTERM
     struct sigaction termaction;
-    termaction.sa_handler = &termSignalHandler;
+    termaction.sa_handler = &termSignalTermHandler;
     sigemptyset(&termaction.sa_mask);
     termaction.sa_flags = 0;
 
     sigaction(SIGTERM, &termaction, 0);
+
+    // Have program handle SIGINT
+    struct sigaction termint;
+    termint.sa_handler = &termSignalIntHandler;
+    sigemptyset(&termint.sa_mask);
+    termint.sa_flags = 0;
+
+    sigaction(SIGINT, &termint, 0);
 #endif
 
 #ifdef USE_SDL_2
@@ -221,11 +237,6 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), &w, SLOT(removeJoyTab(SDL_JoystickID)));
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), &w, SLOT(addJoyTab(InputDevice*)));
 #endif
-
-    /*if (!cmdutility.isHiddenRequested() && (!cmdutility.isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
-    {
-        w.show();
-    }*/
 
     int app_result = a.exec();
 
