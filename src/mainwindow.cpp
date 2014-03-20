@@ -293,7 +293,6 @@ void MainWindow::populateTrayIcon()
 
             connect(joysticksubMenu, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
             connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
-            connect(widget->getJoystick(), SIGNAL(deviceSlotsEdited()), this, SLOT(displayFileNotification()));
 
             i++;
         }
