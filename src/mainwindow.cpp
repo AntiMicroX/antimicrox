@@ -21,12 +21,13 @@
 
 #ifdef USE_SDL_2
 #include "gamecontrollermappingdialog.h"
+#include "autoprofileinfo.h"
 #endif
 
 #ifdef USE_SDL_2
-MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
 #else
-MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
 #endif
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -34,15 +35,26 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
 
-    delete ui->tab_2;
-    ui->tab_2 = 0;
+    //delete ui->tab_2;
+    //ui->tab_2 = 0;
 
-    delete ui->tab;
-    ui->tab = 0;
+    //delete ui->tab;
+    //ui->tab = 0;
 
+    this->translator = translator;
     this->cmdutility = cmdutility;
     this->graphical = graphical;
     this->settings = settings;
+    //this->appWatcher = 0;
+    //QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
+
+    this->appWatcher = new AutoProfileWatcher(settings, this);
+    checkAutoProfileWatcherTimer();
+    /*if (autoProfileActive == "1")
+    {
+        this->appWatcher->startTimer();
+    }*/
+
     signalDisconnect = false;
     showTrayIcon = !cmdutility->isTrayHidden() && graphical;
 
@@ -127,9 +139,11 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
     connect(ui->actionHomePage, SIGNAL(triggered()), this, SLOT(openProjectHomePage()));
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
+
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
+    connect(appWatcher, SIGNAL(foundApplicableProfile(QString,QString)), this, SLOT(autoprofileLoad(QString,QString)));
 #endif
 
     // Check flags to see if user requested for the main window and the tray icon
@@ -939,6 +953,65 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int 
     }
 }
 
+void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
+{
+    for (int i = 0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (widget)
+        {
+            if (guid == "all")
+            {
+                // If the all option for a Default profile was found,
+                // first check for controller specific associations. If one exists,
+                // skip changing the profile on the controller. A later call will
+                // be used to switch the profile for that controller.
+                QList<AutoProfileInfo*> *customs = appWatcher->getCustomDefaults();
+                bool found = false;
+                QListIterator<AutoProfileInfo*> iter(*customs);
+                while (iter.hasNext())
+                {
+                    AutoProfileInfo *info = iter.next();
+                    if (info->getGUID() == widget->getJoystick()->getGUIDString())
+                    {
+                        found = true;
+                        iter.toBack();
+                    }
+                }
+
+                delete customs;
+                customs = 0;
+
+                if (!found)
+                {
+                    widget->loadConfigFile(profileLocation);
+                }
+            }
+            else if (guid == widget->getJoystick()->getGUIDString())
+            {
+                widget->loadConfigFile(profileLocation);
+            }
+            else if (guid == widget->getJoystick()->getSDLName())
+            {
+                widget->loadConfigFile(profileLocation);
+            }
+        }
+    }
+}
+
+void MainWindow::checkAutoProfileWatcherTimer()
+{
+    QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
+    if (autoProfileActive == "1")
+    {
+        appWatcher->startTimer();
+    }
+    else
+    {
+        appWatcher->stopTimer();
+    }
+}
+
 #ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow()
 {
@@ -1057,8 +1130,26 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::openMainSettingsDialog()
 {
-    MainSettingsDialog *dialog = new MainSettingsDialog(settings, this);
+    QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
+    MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
+    connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
+    connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
+    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
     dialog->show();
+}
+
+void MainWindow::changeLanguage(QString language)
+{
+    qApp->removeTranslator(translator);
+#if defined(Q_OS_UNIX)
+    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+#elif defined(Q_OS_WIN)
+    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+#endif
+    qApp->installTranslator(translator);
+    ui->retranslateUi(this);
+    delete aboutDialog;
+    aboutDialog = new AboutDialog(this);
 }
 
 #endif

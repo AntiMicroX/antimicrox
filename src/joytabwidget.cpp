@@ -1580,7 +1580,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
             configBox->setCurrentIndex(1);
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
-        else
+        else if (searchIndex != configBox->currentIndex())
         {
             configBox->setCurrentIndex(searchIndex);
             emit joystickConfigChanged(joystick->getJoyNumber());
@@ -1857,4 +1857,44 @@ void JoyTabWidget::removeProfileEditNotification()
             configBox->setItemIcon(i, QIcon());
         }
     }
+}
+
+void JoyTabWidget::languageChange()
+{
+    removeButton->setText(tr("Remove"));
+    removeButton->setToolTip(tr("Remove configuration from recent list."));
+
+    loadButton->setText(tr("Load"));
+    loadButton->setToolTip(tr("Load configuration file."));
+
+    saveButton->setText(tr("Save"));
+    saveButton->setToolTip(tr("Save changes to configuration file."));
+
+    saveAsButton->setText(tr("Save As"));
+    saveAsButton->setToolTip(tr("Save changes to a new configuration file."));
+
+    setsMenuButton->setText(tr("Sets"));
+    setAction1->setText(tr("Set 1"));
+    setAction2->setText(tr("Set 2"));
+    setAction3->setText(tr("Set 3"));
+    setAction4->setText(tr("Set 4"));
+    setAction5->setText(tr("Set 5"));
+    setAction6->setText(tr("Set 6"));
+    setAction7->setText(tr("Set 7"));
+    setAction8->setText(tr("Set 8"));
+
+    refreshSetButtons();
+
+    stickAssignPushButton->setText(tr("Stick/Pad Assign"));
+    quickSetPushButton->setText(tr("Quick Set"));
+
+    namesPushButton->setText(tr("Names"));
+    namesPushButton->setToolTip(tr("Toggle button name displaying."));
+
+    delayButton->setText(tr("Pref"));
+    delayButton->setToolTip(tr("Change global profile settings."));
+
+    resetButton->setText(tr("Reset"));
+    resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
+    fillButtons();
 }

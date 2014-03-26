@@ -35,6 +35,7 @@
 #include "commandlineutility.h"
 #include "mainwindow.h"
 #include "inputdevice.h"
+#include "autoprofileinfo.h"
 
 #ifndef Q_OS_WIN
 #include <signal.h>
@@ -84,6 +85,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<AdvanceButtonDialog*>();
     //qRegisterMetaType<Joystick*>();
     qRegisterMetaType<InputDevice*>();
+    qRegisterMetaType<AutoProfileInfo*>();
 
     // If running Win version, check if an explicit style
     // was defined on the command-line. If so, make a note
@@ -132,6 +134,8 @@ int main(int argc, char *argv[])
 #endif
     a.installTranslator(&myappTranslator);
 
+    qDebug() << QLocale::system().language();
+
     if (cmdutility.hasError())
     {
         return 1;
@@ -175,7 +179,7 @@ int main(int argc, char *argv[])
         // Save app config and exit.
         QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
-        MainWindow w(joysticks, &cmdutility, &settings, false);
+        MainWindow w(joysticks, &myappTranslator, &cmdutility, &settings, false);
 
         if (!cmdutility.hasError() && cmdutility.hasProfile())
         {
@@ -199,7 +203,7 @@ int main(int argc, char *argv[])
 
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
-    MainWindow w(joysticks, &cmdutility, &settings);
+    MainWindow w(joysticks, &myappTranslator, &cmdutility, &settings);
     w.startLocalServer();
 
 #ifndef Q_OS_WIN

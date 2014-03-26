@@ -15,6 +15,9 @@ public:
     static unsigned long appRootWindow(int screen = -1);
     static Display* display();
     static QString getDisplayString(QString xcodestring);
+    static int getApplicationPid(Window &window);
+    static QString getApplicationLocation(int pid);
+    static Window findClientInChildren(Window &window);
 
 protected:
     explicit X11Info(QObject *parent = 0);

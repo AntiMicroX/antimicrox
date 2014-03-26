@@ -39,6 +39,7 @@ public:
 
 protected:
     void removeCurrentButtons();
+    virtual void languageChange();
     QString preferredProfileDir(QSettings *settings);
 
     QVBoxLayout *verticalLayout;

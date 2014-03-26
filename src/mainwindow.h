@@ -11,6 +11,7 @@
 #include <QShowEvent>
 #include <QLocalServer>
 #include <QSettings>
+#include <QTranslator>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -19,6 +20,7 @@
 #include "joystick.h"
 #include "aboutdialog.h"
 #include "commandlineutility.h"
+#include "autoprofilewatcher.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,9 +32,11 @@ class MainWindow : public QMainWindow
     
 public:
 #ifdef USE_SDL_2
-    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
+    //MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
 #else
-    MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
+    //MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
 #endif
     ~MainWindow();
     
@@ -65,6 +69,8 @@ protected:
     QLocalServer *localServer;
     CommandLineUtility *cmdutility;
     QSettings *settings;
+    QTranslator *translator;
+    AutoProfileWatcher *appWatcher;
 
 private:
     Ui::MainWindow *ui;
@@ -114,6 +120,9 @@ private slots:
     void openProjectHomePage();
     void openGitHubPage();
     void propogateNameDisplayStatus(bool displayNames);
+    void changeLanguage(QString language);
+    void autoprofileLoad(QString guid, QString profileLocation);
+    void checkAutoProfileWatcherTimer();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();

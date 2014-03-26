@@ -20,6 +20,7 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual QString generateLabel() = 0;
+    virtual void languageChange();
 
     bool isflashing;
     bool displayNames;

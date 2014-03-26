@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-#USE_SDL_2 = 1
+USE_SDL_2 = 1
 
 isEmpty(INSTALL_PREFIX) {
     unix {
@@ -195,7 +195,11 @@ SOURCES += main.cpp\
     mainsettingsdialog.cpp \
     gamecontroller/gamecontrollertriggerbutton.cpp \
     keydelaydialog.cpp \
-    setnamesdialog.cpp
+    setnamesdialog.cpp \
+    autoprofilewatcher.cpp \
+    autoprofileinfo.cpp \
+    addeditautoprofiledialog.cpp \
+    editalldefaultautoprofiledialog.cpp
 
 
 unix {
@@ -276,7 +280,11 @@ HEADERS  += mainwindow.h \
     mainsettingsdialog.h \
     gamecontroller/gamecontrollertriggerbutton.h \
     keydelaydialog.h \
-    setnamesdialog.h
+    setnamesdialog.h \
+    autoprofilewatcher.h \
+    autoprofileinfo.h \
+    addeditautoprofiledialog.h \
+    editalldefaultautoprofiledialog.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
@@ -311,7 +319,9 @@ FORMS    += mainwindow.ui \
     gamecontrollermappingdialog.ui \
     mainsettingsdialog.ui \
     keydelaydialog.ui \
-    setnamesdialog.ui
+    setnamesdialog.ui \
+    addeditautoprofiledialog.ui \
+    editalldefaultautoprofiledialog.ui
 
 
 unix {
