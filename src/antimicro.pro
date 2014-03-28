@@ -344,6 +344,7 @@ unix {
     LIBS += -L"..\SDL-1.2.15\lib" -lSDL
     INCLUDEPATH += "..\SDL-1.2.15\include"
   }
+  LIBS += "-lpsapi"
   msvc: {
     INCLUDEPATH +== "$$PWD"
   }

@@ -1,4 +1,7 @@
+#define _WIN32_WINNT 0x0600
+
 #include <qt_windows.h>
+#include <psapi.h>
 #include <QHashIterator>
 
 #include "wininfo.h"
@@ -196,7 +199,7 @@ QString WinInfo::getForegroundWindowExePath()
     if (foreground)
     {
         DWORD processId;
-        GetWindowThreadProcessId(shit, &processId);
+        GetWindowThreadProcessId(foreground, &processId);
         windowProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, true, processId);
     }
 
@@ -213,7 +216,7 @@ QString WinInfo::getForegroundWindowExePath()
         }
         else
         {
-            DWORD pathLength = GetModuleFileNameEx(damn, NULL, filename, MAX_PATH * sizeof(TCHAR));
+            DWORD pathLength = GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
             //qDebug() << pathLength;
         }
 

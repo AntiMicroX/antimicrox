@@ -100,7 +100,12 @@ void MainSettingsDialog::fillControllerMappingsTable()
     item->setData(Qt::UserRole, tempvariant);
     */
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    ui->controllerMappingsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+#else
     ui->controllerMappingsTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+#endif
+
     QHash<QString, QList<QVariant> > tempHash;
 
     settings->beginGroup("Mappings");
@@ -480,7 +485,12 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
     //ui->autoProfileTableWidget->setHorizontalHeaderLabels(tableHeader);
     //ui->autoProfileTableWidget->horizontalHeader()->setVisible(true);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+#else
     ui->autoProfileTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+#endif
+
     ui->autoProfileTableWidget->hideColumn(5);
 
     if (defaultAutoProfiles.contains(guid) ||
@@ -542,7 +552,7 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
         while (iter.hasNext())
         {
             AutoProfileInfo *info = iter.next();
-            if (defaultForGUID && info != defaultForGUID)
+            if (!defaultForGUID || info != defaultForGUID)
             {
                 ui->autoProfileTableWidget->insertRow(i);
 
@@ -722,7 +732,12 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
 
     ui->autoProfileTableWidget->horizontalHeader()->setVisible(true);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+#else
     ui->autoProfileTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+#endif
+
     ui->autoProfileTableWidget->hideColumn(5);
 
     int i = 0;
@@ -894,15 +909,15 @@ void MainSettingsDialog::openAddAutoProfileDialog()
     int selectedRow = ui->autoProfileTableWidget->currentRow();
     if (selectedRow >= 0)
     {
-        if (ui->devicesComboBox->currentIndex() != 0 || selectedRow != 0)
-        {
+        //if (ui->devicesComboBox->currentIndex() != 0 || selectedRow != 0)
+        //{
             QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
             AutoProfileInfo *info = new AutoProfileInfo(this);
             AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
             connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
             connect(dialog, SIGNAL(rejected()), info, SLOT(deleteLater()));
             dialog->show();
-        }
+        //}
     }
 }
 
@@ -1005,7 +1020,7 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
 
         if (info == allDefaultProfile)
         {
-            ui->autoProfileAddPushButton->setEnabled(false);
+            ui->autoProfileAddPushButton->setEnabled(true);
             ui->autoProfileEditPushButton->setEnabled(true);
             ui->autoProfileDeletePushButton->setEnabled(false);
         }

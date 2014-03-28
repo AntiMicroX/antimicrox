@@ -8,11 +8,16 @@
 
 #include "autoprofilewatcher.h"
 
+#if defined(Q_OS_UNIX)
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include "x11info.h"
 
-#include <x11info.h>
+#elif defined(Q_OS_WIN)
+#include "wininfo.h"
+
+#endif
 
 AutoProfileWatcher::AutoProfileWatcher(QSettings *settings, QObject *parent) :
     QObject(parent)
@@ -41,6 +46,8 @@ void AutoProfileWatcher::runAppCheck()
     QString appLocation = findAppLocation();
     if (!appLocation.isEmpty() && appLocation != currentApplication)
     {
+        currentApplication = appLocation;
+
         if (appProfileAssignments.contains(appLocation))
         {
             QList<AutoProfileInfo*> autoentries = appProfileAssignments.value(appLocation);
@@ -55,8 +62,6 @@ void AutoProfileWatcher::runAppCheck()
                     emit foundApplicableProfile(guid, profileLocation);
                 }
             }
-
-            currentApplication = appLocation;
         }
         else if ((!defaultProfileAssignments.isEmpty() || allDefaultInfo) &&
                  qApp->applicationFilePath() != appLocation)
@@ -213,16 +218,9 @@ QString AutoProfileWatcher::findAppLocation()
 {
     QString exepath;
 
+#if defined(Q_OS_UNIX)
     Window currentWindow = 0;
     int focusState = 0;
-
-    Atom atom, actual_type;
-    int actual_format = 0;
-    unsigned long nitems = 0;
-    unsigned long bytes_after = 0;
-    unsigned char *prop = 0;
-    //int pid = 0;
-    int status = 0;
 
     Display *display = X11Info::display();
     XGetInputFocus(display, &currentWindow, &focusState);
@@ -231,6 +229,11 @@ QString AutoProfileWatcher::findAppLocation()
     {
         exepath = X11Info::getApplicationLocation(pid);
     }
+
+#elif defined(Q_OS_WIN)
+    exepath = WinInfo::getForegroundWindowExePath();
+    //qDebug() << exepath;
+#endif
 
     /*atom = XInternAtom(display, "_NET_WM_PID", True);
     status = XGetWindowProperty(display, currentWindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);

@@ -20,6 +20,6 @@ WinAppProfileTimerDialog::~WinAppProfileTimerDialog()
 
 void WinAppProfileTimerDialog::startTimer()
 {
-    appTimer.start(ui->intervalSpinBox->value());
+    appTimer.start(ui->intervalSpinBox->value() * 1000);
     this->setEnabled(false);
 }
