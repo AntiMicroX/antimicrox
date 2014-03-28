@@ -28,7 +28,10 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     this->allDefaultProfile = 0;
     this->connectedDevices = devices;
 
+#ifdef USE_SDL_2
     fillControllerMappingsTable();
+#endif
+
     QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     int numberRecentProfiles = settings->value("NumberRecentProfiles", 5).toInt();
 
@@ -39,9 +42,20 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
 
     ui->numberRecentProfileSpinBox->setValue(numberRecentProfiles);
     findLocaleItem();
+
+#ifdef USE_SDL_2
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
+#else
+    delete ui->categoriesListWidget->item(3);
+    delete ui->categoriesListWidget->item(1);
+    ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
+    ui->stackedWidget->removeWidget(ui->page_2);
+#endif
+
+    delete ui->categoriesListWidget->item(2);
+    ui->stackedWidget->removeWidget(ui->page);
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
     if (!autoProfileActive.isEmpty() && autoProfileActive == "1")
@@ -245,7 +259,10 @@ void MainSettingsDialog::syncMappingSettings()
 void MainSettingsDialog::saveNewSettings()
 {
     //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+#ifdef USE_SDL_2
     syncMappingSettings();
+#endif
+
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
 
@@ -263,8 +280,11 @@ void MainSettingsDialog::saveNewSettings()
 
     int numRecentProfiles = ui->numberRecentProfileSpinBox->value();
     settings->setValue("NumberRecentProfiles", numRecentProfiles);
-    checkLocaleChange();
+    //checkLocaleChange();
+#ifdef USE_SDL_2
     saveAutoProfileSettings();
+#endif
+
     settings->sync();
 }
 

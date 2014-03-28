@@ -199,15 +199,17 @@ SOURCES += main.cpp\
     autoprofilewatcher.cpp \
     autoprofileinfo.cpp \
     addeditautoprofiledialog.cpp \
-    editalldefaultautoprofiledialog.cpp
-
+    editalldefaultautoprofiledialog.cpp \
+    common.cpp
 
 unix {
   SOURCES += x11info.cpp \
              qtx11keymapper.cpp
 } else:win32 {
   SOURCES += wininfo.cpp \
-             qtwinkeymapper.cpp
+             qtwinkeymapper.cpp \
+             winappprofiletimerdialog.cpp
+
 }
 
 !isEmpty(USE_SDL_2) {
@@ -300,7 +302,9 @@ unix {
              qtx11keymapper.h
 } else:win32 {
   HEADERS += wininfo.h \
-             qtwinkeymapper.h
+             qtwinkeymapper.h \
+             winappprofiletimerdialog.h
+
 }
 
 FORMS    += mainwindow.ui \
@@ -321,7 +325,8 @@ FORMS    += mainwindow.ui \
     keydelaydialog.ui \
     setnamesdialog.ui \
     addeditautoprofiledialog.ui \
-    editalldefaultautoprofiledialog.ui
+    editalldefaultautoprofiledialog.ui \
+    winappprofiletimerdialog.ui
 
 
 unix {

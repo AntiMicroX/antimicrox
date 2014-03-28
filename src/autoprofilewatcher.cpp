@@ -37,7 +37,7 @@ void AutoProfileWatcher::stopTimer()
 
 void AutoProfileWatcher::runAppCheck()
 {
-    qDebug() << qApp->applicationFilePath();
+    //qDebug() << qApp->applicationFilePath();
     QString appLocation = findAppLocation();
     if (!appLocation.isEmpty() && appLocation != currentApplication)
     {

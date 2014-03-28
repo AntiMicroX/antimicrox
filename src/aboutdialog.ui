@@ -364,7 +364,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="standardButtons">
-        <set>QDialogButtonBox::Close</set>
+        <set>QDialogButtonBox::Close|QDialogButtonBox::Ok</set>
        </property>
       </widget>
      </item>

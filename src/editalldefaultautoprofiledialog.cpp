@@ -1,5 +1,6 @@
 #include <QFileInfo>
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include "editalldefaultautoprofiledialog.h"
 #include "ui_editalldefaultautoprofiledialog.h"
@@ -10,6 +11,7 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
     ui(new Ui::EditAllDefaultAutoProfileDialog)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     this->info = info;
     this->settings = settings;
@@ -19,13 +21,7 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
         ui->profileLineEdit->setText(info->getProfileLocation());
     }
 
-    /*if (!info->getExe().isEmpty())
-    {
-        ui->applicationLineEdit->setText(info->getExe());
-    }*/
-
     connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));
-    //connect(ui->applicationPushButton, SIGNAL(clicked()), this, SLOT(openApplicationBrowseDialog()));
     connect(this, SIGNAL(accepted()), this, SLOT(saveAutoProfileInformation()));
 }
 
@@ -44,25 +40,44 @@ void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
     }
 }
 
-void EditAllDefaultAutoProfileDialog::openApplicationBrowseDialog()
-{
-    QString filename = QFileDialog::getOpenFileName(this, tr("Select Program"), QDir::homePath(), QString());
-    if (!filename.isNull() && !filename.isEmpty())
-    {
-        QFileInfo exe(filename);
-        if (exe.exists() && exe.isExecutable())
-        {
-            //ui->applicationLineEdit->setText(filename);
-        }
-    }
-}
-
 void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
 {
     info->setProfileLocation(ui->profileLineEdit->text());
     info->setGUID("all");
-    //info->setExe(ui->applicationLineEdit->text());
     info->setActive(true);
+}
+
+void EditAllDefaultAutoProfileDialog::accept()
+{
+    bool validForm = true;
+    QString errorString;
+    if (ui->profileLineEdit->text().length() > 0)
+    {
+        QString profileFilename = ui->profileLineEdit->text();
+        QFileInfo info(profileFilename);
+        if (!info.exists())
+        {
+            validForm = false;
+            errorString = tr("Profile file path is invalid.");
+        }
+    }
+    else
+    {
+        validForm = false;
+        errorString = tr("No profile selected.");
+    }
+
+    if (validForm)
+    {
+        QDialog::accept();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText(errorString);
+        msgBox.setStandardButtons(QMessageBox::Close);
+        msgBox.exec();
+    }
 }
 
 QString EditAllDefaultAutoProfileDialog::preferredProfileDir()

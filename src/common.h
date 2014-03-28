@@ -4,6 +4,7 @@
 #include <QtGlobal>
 #include <QString>
 #include <QDir>
+#include <QSettings>
 
 namespace PadderCommon
 {
@@ -34,6 +35,8 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
             .arg(ANTIMICRO_MINOR_VERSION).arg(ANTIMICRO_PATCH_VERSION) :
         QString("%1.%2").arg(ANTIMICRO_MAJOR_VERSION)
             .arg(ANTIMICRO_MINOR_VERSION);
+
+    QString preferredProfileDir(QSettings *settings);
 }
 
 #endif // COMMON_H

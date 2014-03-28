@@ -45,15 +45,13 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *transla
     this->cmdutility = cmdutility;
     this->graphical = graphical;
     this->settings = settings;
-    //this->appWatcher = 0;
-    //QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
 
+#ifdef USE_SDL_2
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
-    /*if (autoProfileActive == "1")
-    {
-        this->appWatcher->startTimer();
-    }*/
+#else
+    this->appWatcher = 0;
+#endif
 
     signalDisconnect = false;
     showTrayIcon = !cmdutility->isTrayHidden() && graphical;
@@ -1012,6 +1010,30 @@ void MainWindow::checkAutoProfileWatcherTimer()
     }
 }
 
+void MainWindow::openMainSettingsDialog()
+{
+    QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
+    MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
+    connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
+    connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
+    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
+    dialog->show();
+}
+
+void MainWindow::changeLanguage(QString language)
+{
+    qApp->removeTranslator(translator);
+#if defined(Q_OS_UNIX)
+    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+#elif defined(Q_OS_WIN)
+    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+#endif
+    qApp->installTranslator(translator);
+    ui->retranslateUi(this);
+    delete aboutDialog;
+    aboutDialog = new AboutDialog(this);
+}
+
 #ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow()
 {
@@ -1126,30 +1148,6 @@ void MainWindow::addJoyTab(InputDevice *device)
     }
 
     ui->stackedWidget->setCurrentIndex(1);
-}
-
-void MainWindow::openMainSettingsDialog()
-{
-    QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
-    MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
-    connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
-    connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
-    dialog->show();
-}
-
-void MainWindow::changeLanguage(QString language)
-{
-    qApp->removeTranslator(translator);
-#if defined(Q_OS_UNIX)
-    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
-#elif defined(Q_OS_WIN)
-    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-#endif
-    qApp->installTranslator(translator);
-    ui->retranslateUi(this);
-    delete aboutDialog;
-    aboutDialog = new AboutDialog(this);
 }
 
 #endif

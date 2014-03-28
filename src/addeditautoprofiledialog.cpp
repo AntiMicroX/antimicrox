@@ -9,10 +9,17 @@
 #include "addeditautoprofiledialog.h"
 #include "ui_addeditautoprofiledialog.h"
 
+#if defined(Q_OS_UNIX)
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h> // for XGrabPointer
 #include "x11info.h"
 #include "antkeymapper.h"
+
+#elif defined(Q_OS_WIN)
+#include "winappprofiletimerdialog.h"
+#include "wininfo.h"
+
+#endif
 
 AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, QSettings *settings,
                                                    QList<InputDevice*> *devices,
@@ -107,7 +114,12 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, QSetti
     connect(ui->applicationPushButton, SIGNAL(clicked()), this, SLOT(openApplicationBrowseDialog()));
     connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForReservedGUIDs(int)));
     connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus(QString)));
+
+#if defined(Q_OS_LINUX)
     connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(selectWindowWithCursor()));
+#elif defined(Q_OS_WIN)
+    connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(openWinAppProfileDialog()));
+#endif
     //connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT()
     //connect(ui->asDefaultCheckBox, SIGNAL(clicked(bool)), this, SLOT());
     //connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT());
@@ -249,6 +261,7 @@ QString AddEditAutoProfileDialog::getOriginalExe()
     return originalExe;
 }
 
+#ifdef Q_OS_UNIX
 void AddEditAutoProfileDialog::selectWindowWithCursor()
 {
     Cursor cursor;
@@ -302,6 +315,7 @@ void AddEditAutoProfileDialog::selectWindowWithCursor()
         }
     }
 }
+#endif
 
 void AddEditAutoProfileDialog::checkForDefaultStatus(QString text)
 {
@@ -387,3 +401,22 @@ bool AddEditAutoProfileDialog::validateForm()
 
     return true;
 }
+
+#ifdef Q_OS_WIN
+void AddEditAutoProfileDialog::openWinAppProfileDialog()
+{
+    WinAppProfileTimerDialog *dialog = new WinAppProfileTimerDialog(this);
+    connect(dialog, SIGNAL(accepted()), this, SLOT(captureWindowsApplicationPath()));
+    dialog->show();
+}
+
+void AddEditAutoProfileDialog::captureWindowsApplicationPath()
+{
+    QString temp = WinInfo::getForegroundWindowExePath();
+    if (!temp.isEmpty())
+    {
+        ui->applicationLineEdit->setText(temp);
+    }
+}
+
+#endif

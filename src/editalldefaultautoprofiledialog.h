@@ -22,6 +22,7 @@ public:
 
 protected:
     QString preferredProfileDir();
+    virtual void accept();
 
     AutoProfileInfo *info;
     QSettings *settings;
@@ -31,7 +32,6 @@ private:
 
 private slots:
     void openProfileBrowseDialog();
-    void openApplicationBrowseDialog();
     void saveAutoProfileInformation();
 };
 

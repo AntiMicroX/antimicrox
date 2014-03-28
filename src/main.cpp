@@ -83,9 +83,7 @@ int main(int argc, char *argv[])
 {
     qRegisterMetaType<JoyButtonSlot*>();
     qRegisterMetaType<AdvanceButtonDialog*>();
-    //qRegisterMetaType<Joystick*>();
     qRegisterMetaType<InputDevice*>();
-    qRegisterMetaType<AutoProfileInfo*>();
 
     // If running Win version, check if an explicit style
     // was defined on the command-line. If so, make a note
@@ -134,7 +132,7 @@ int main(int argc, char *argv[])
 #endif
     a.installTranslator(&myappTranslator);
 
-    qDebug() << QLocale::system().language();
+    //qDebug() << QLocale::system().language();
 
     if (cmdutility.hasError())
     {

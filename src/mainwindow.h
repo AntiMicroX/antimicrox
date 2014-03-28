@@ -13,11 +13,7 @@
 #include <QSettings>
 #include <QTranslator>
 
-#ifdef USE_SDL_2
-#include <SDL2/SDL_joystick.h>
-#endif
-
-#include "joystick.h"
+#include "inputdevice.h"
 #include "aboutdialog.h"
 #include "commandlineutility.h"
 #include "autoprofilewatcher.h"
@@ -121,13 +117,13 @@ private slots:
     void openGitHubPage();
     void propogateNameDisplayStatus(bool displayNames);
     void changeLanguage(QString language);
-    void autoprofileLoad(QString guid, QString profileLocation);
-    void checkAutoProfileWatcherTimer();
+    void openMainSettingsDialog();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);
-    void openMainSettingsDialog();
+    void autoprofileLoad(QString guid, QString profileLocation);
+    void checkAutoProfileWatcherTimer();
 #endif
 };
 

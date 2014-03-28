@@ -16,6 +16,7 @@ public:
     static unsigned int scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias=0);
 
     static const unsigned int EXTENDED_FLAG;
+    static QString getForegroundWindowExePath();
 
 protected:
     explicit WinInfo(QObject *parent = 0);

@@ -3,6 +3,15 @@
 
 #include "wininfo.h"
 
+static bool isWindowsVistaOrHigher()
+{
+    OSVERSIONINFO osvi;
+    memset(&osvi, 0, sizeof(osvi));
+    osvi.dwOSVersionInfoSize = sizeof(osvi);
+    GetVersionEx(&osvi);
+    return (osvi.dwPlatformId == VER_PLATFORM_WIN32_NT && osvi.dwMajorVersion >= 6);
+}
+
 const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
 WinInfo WinInfo::_instance;
 
@@ -177,4 +186,41 @@ unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned i
     }
 
     return scancode;
+}
+
+QString WinInfo::getForegroundWindowExePath()
+{
+    QString exePath;
+    HWND foreground = GetForegroundWindow();
+    HANDLE windowProcess = NULL;
+    if (foreground)
+    {
+        DWORD processId;
+        GetWindowThreadProcessId(shit, &processId);
+        windowProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, true, processId);
+    }
+
+    if (windowProcess != NULL)
+    {
+        TCHAR filename[MAX_PATH];
+        memset(filename, 0, sizeof(filename));
+        //qDebug() << QString::number(sizeof(filename)/sizeof(TCHAR));
+        if (isWindowsVistaOrHigher())
+        {
+            DWORD pathLength = MAX_PATH * sizeof(TCHAR);
+            QueryFullProcessImageNameW(windowProcess, 0, filename, &pathLength);
+            //qDebug() << pathLength;
+        }
+        else
+        {
+            DWORD pathLength = GetModuleFileNameEx(damn, NULL, filename, MAX_PATH * sizeof(TCHAR));
+            //qDebug() << pathLength;
+        }
+
+        exePath = QString::fromWCharArray(filename);
+        //qDebug() << QString::fromWCharArray(filename);
+        CloseHandle(windowProcess);
+    }
+
+    return exePath;
 }
