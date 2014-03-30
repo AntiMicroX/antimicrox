@@ -4,7 +4,6 @@
 #include <QFileInfo>
 #include <QListIterator>
 #include <QApplication>
-#include <unistd.h>
 
 #include "autoprofilewatcher.h"
 
@@ -234,71 +233,6 @@ QString AutoProfileWatcher::findAppLocation()
     exepath = WinInfo::getForegroundWindowExePath();
     //qDebug() << exepath;
 #endif
-
-    /*atom = XInternAtom(display, "_NET_WM_PID", True);
-    status = XGetWindowProperty(display, currentWindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-    if (status == 0 && prop)
-    {
-        pid = prop[1] << 8;
-        pid += prop[0];
-        qDebug() << status;
-        qDebug() << pid;
-        XFree(prop);
-    }
-    else if (status == 0)
-    {
-        XFree(prop);
-
-        Window parent = 1;
-        Window root = 0;
-        Window * children;
-        unsigned int num_children;
-        bool quitTraversal = false;
-
-        while (!quitTraversal)
-        {
-            XQueryTree(display, currentWindow, &root, &parent, &children, &num_children);
-            if (children) { //must test for null
-                XFree(children);
-            }
-            status = XGetWindowProperty(display, parent, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-            if (status == 0 && prop)
-            {
-                pid = prop[1] * 256;
-                pid += prop[0];
-                qDebug() << status;
-                qDebug() << pid;
-
-                quitTraversal = true;
-            }
-            else if (parent == root)
-            {
-                quitTraversal = true;
-            }
-            else
-            {
-                currentWindow = parent;
-            }
-
-            XFree(prop);
-        }
-    }
-
-    qDebug() << "PID: " << pid;
-    if (pid > 0)
-    {
-        QString procString = QString("/proc/%1/exe").arg(pid);
-        char buf[1024];
-        QByteArray tempByteArray = procString.toLocal8Bit();
-        ssize_t len = readlink(tempByteArray.constData(), buf, sizeof(buf)-1);
-        if (len != -1)
-        {
-            buf[len] = '\0';
-        }
-        exepath = QString::fromLocal8Bit(buf);
-        qDebug() << exepath;
-        qDebug() << "REBEL REBEL";
-    }*/
 
     return exepath;
 }

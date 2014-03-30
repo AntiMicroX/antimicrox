@@ -324,7 +324,7 @@ void MainWindow::populateTrayIcon()
 
     closeAction = new QAction(tr("&Quit"), trayIconMenu);
     closeAction->setIcon(QIcon::fromTheme("application-exit"));
-    connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
+    connect(closeAction, SIGNAL(triggered()), this, SLOT(quitProgram()));
 
     updateJoy = new QAction(tr("&Update Joysticks"), trayIconMenu);
     updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
@@ -343,7 +343,7 @@ void MainWindow::populateTrayIcon()
 
 void MainWindow::quitProgram()
 {
-    this->close();
+    //this->close();
     qApp->quit();
 }
 
@@ -1032,6 +1032,21 @@ void MainWindow::changeLanguage(QString language)
     ui->retranslateUi(this);
     delete aboutDialog;
     aboutDialog = new AboutDialog(this);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    bool closeToTray = settings->value("CloseToTray", false).toBool();
+    if (closeToTray)
+    {
+        this->hideWindow();
+    }
+    else
+    {
+        qApp->quit();
+    }
+
+    QMainWindow::closeEvent(event);
 }
 
 #ifdef USE_SDL_2

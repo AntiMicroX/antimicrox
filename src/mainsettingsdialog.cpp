@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <common.h>
 #include <QDir>
 #include <QFileDialog>
 #include <QLocale>
@@ -14,11 +13,13 @@
 
 #include "mainsettingsdialog.h"
 #include "ui_mainsettingsdialog.h"
+
 #include "addeditautoprofiledialog.h"
 #include "editalldefaultautoprofiledialog.h"
+#include "common.h"
 
 MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *> *devices, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Dialog),
     ui(new Ui::MainSettingsDialog)
 {
     ui->setupUi(this);
@@ -34,6 +35,7 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
 
     QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     int numberRecentProfiles = settings->value("NumberRecentProfiles", 5).toInt();
+    bool closeToTray = settings->value("CloseToTray", false).toBool();
 
     if (!defaultProfileDir.isEmpty() && QDir(defaultProfileDir).exists())
     {
@@ -41,6 +43,12 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     }
 
     ui->numberRecentProfileSpinBox->setValue(numberRecentProfiles);
+
+    if (closeToTray)
+    {
+        ui->closeToTrayCheckBox->setChecked(true);
+    }
+
     findLocaleItem();
 
 #ifdef USE_SDL_2
@@ -158,11 +166,13 @@ void MainSettingsDialog::fillControllerMappingsTable()
         QTableWidgetItem* item = new QTableWidgetItem(templist.at(0).toString());
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         item->setData(Qt::UserRole, iter2.key());
+        item->setToolTip(templist.at(0).toString());
         ui->controllerMappingsTableWidget->setItem(i, 0, item);
 
         item = new QTableWidgetItem(templist.at(1).toString());
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         item->setData(Qt::UserRole, iter2.key());
+        //item->setToolTip(templist.at(1).toString());
         ui->controllerMappingsTableWidget->setItem(i, 1, item);
 
         bool disableController = templist.at(2).toBool();
@@ -270,6 +280,7 @@ void MainSettingsDialog::saveNewSettings()
 
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
+    bool closeToTray = ui->closeToTrayCheckBox->isChecked();
 
     if (oldProfileDir != possibleProfileDir)
     {
@@ -285,6 +296,15 @@ void MainSettingsDialog::saveNewSettings()
 
     int numRecentProfiles = ui->numberRecentProfileSpinBox->value();
     settings->setValue("NumberRecentProfiles", numRecentProfiles);
+
+    if (closeToTray)
+    {
+        settings->setValue("CloseToTray", closeToTray ? "1" : "0");
+    }
+    else
+    {
+        settings->remove("CloseToTray");
+    }
     //checkLocaleChange();
 #ifdef USE_SDL_2
     saveAutoProfileSettings();

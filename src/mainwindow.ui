@@ -300,7 +300,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
    <sender>actionQuit</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>close()</slot>
+   <slot>quitProgram()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -365,5 +365,6 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <slot>startJoystickRefresh()</slot>
   <slot>hideWindow()</slot>
   <slot>openAboutDialog()</slot>
+  <slot>quitProgram()</slot>
  </slots>
 </ui>

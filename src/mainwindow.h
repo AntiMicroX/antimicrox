@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QHideEvent>
 #include <QShowEvent>
+#include <QCloseEvent>
 #include <QLocalServer>
 #include <QSettings>
 #include <QTranslator>
@@ -39,6 +40,7 @@ public:
 protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
+    virtual void closeEvent(QCloseEvent *event);
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
     void loadConfigFile(QString fileLocation, QString controllerID);
     void unloadCurrentConfig(int joystickIndex=0);
@@ -90,6 +92,7 @@ public slots:
     void loadAppConfig(bool forceRefresh=false);
     void removeJoyTabs();
     void startLocalServer();
+    void quitProgram();
 
 #ifdef USE_SDL_2
     void testMappingUpdateNow(int index, InputDevice *device);
@@ -98,7 +101,6 @@ public slots:
 #endif
 
 private slots:
-    void quitProgram();
     void refreshTrayIconMenu();
     void trayIconClickAction(QSystemTrayIcon::ActivationReason reason);
     void mainMenuChange();
