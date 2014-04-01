@@ -796,6 +796,7 @@ void MainWindow::handleOutsideConnection()
 
 void MainWindow::handleSocketDisconnect()
 {
+	settings->sync();
     loadAppConfig(true);
 }
 
