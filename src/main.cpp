@@ -187,6 +187,7 @@ int main(int argc, char *argv[])
         joypad_worker->quit();
         w.removeJoyTabs();
 
+        settings.sync();
         socket.disconnectFromServer();
 
         deleteInputDevices(joysticks);
