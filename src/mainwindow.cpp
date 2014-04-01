@@ -7,6 +7,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
 #include "joycontrolstickpushbutton.h"
@@ -128,6 +129,9 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *transla
             changeStartSetNumber(cmdutility->getJoyStartSetNumber());
         }
     }
+
+    resize(settings->value("WindowSize", size()).toSize());
+    move(settings->value("WindowPosition", pos()).toPoint());
 
     aboutDialog = new AboutDialog(this);
 
@@ -315,11 +319,9 @@ void MainWindow::populateTrayIcon()
     hideAction = new QAction(tr("&Hide"), trayIconMenu);
     hideAction->setIcon(QIcon::fromTheme("view-restore"));
     connect(hideAction, SIGNAL(triggered()), this, SLOT(hideWindow()));
-    //connect(hideAction, SIGNAL(triggered()), this, SLOT(disableFlashActions()));
 
     restoreAction = new QAction(tr("&Restore"), trayIconMenu);
     restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
-    //connect(restoreAction, SIGNAL(triggered()), this, SLOT(enableFlashActions()));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
 
     closeAction = new QAction(tr("&Quit"), trayIconMenu);
@@ -336,14 +338,12 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(closeAction);
 
     QIcon icon = QIcon(":/images/antimicro_trayicon.png");
-    //trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 }
 
 void MainWindow::quitProgram()
 {
-    //this->close();
     qApp->quit();
 }
 
@@ -390,7 +390,6 @@ void MainWindow::mainMenuChange()
 
 #ifndef USE_SDL_2
     ui->actionGameController_Mapping->setVisible(false);
-    ui->actionOptions->setVisible(false);
 #endif
 }
 
@@ -399,12 +398,10 @@ void MainWindow::saveAppConfig()
     if (joysticks->count() > 0)
     {
         JoyTabWidget *temptabwidget = (JoyTabWidget*)ui->tabWidget->widget(0);
-        //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         settings->setValue("DisplayNames",
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
         settings->beginGroup("Controllers");
-        //settings->remove("");
         QStringList tempGUIDHolder;
         QStringList tempNameHolder;
 
@@ -450,11 +447,13 @@ void MainWindow::saveAppConfig()
 
         settings->endGroup();
     }
+
+    settings->setValue("WindowSize", size());
+    settings->setValue("WindowPosition", pos());
 }
 
 void MainWindow::loadAppConfig(bool forceRefresh)
 {
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(i);
@@ -1038,7 +1037,7 @@ void MainWindow::changeLanguage(QString language)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     bool closeToTray = settings->value("CloseToTray", false).toBool();
-    if (closeToTray)
+    if (closeToTray && QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
     {
         this->hideWindow();
     }

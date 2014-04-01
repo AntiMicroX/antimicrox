@@ -163,6 +163,10 @@
          </item>
          <item>
           <widget class="QCheckBox" name="closeToTrayCheckBox">
+           <property name="toolTip">
+            <string>Hide main window when the main window close button is
+clicked instead of quitting the program.</string>
+           </property>
            <property name="text">
             <string>Close To Tray</string>
            </property>
