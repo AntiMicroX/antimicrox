@@ -1355,6 +1355,28 @@ bool InputDevice::isDeviceEdited()
     return deviceEdited;
 }
 
+void InputDevice::revertProfileEdited()
+{
+    deviceEdited = false;
+}
+
+QString InputDevice::getStringIdentifier()
+{
+    QString identifier;
+    QString tempGUID = getGUIDString();
+    QString tempName = getSDLName();
+    if (!tempGUID.isEmpty())
+    {
+        identifier = tempGUID;
+    }
+    else if (!tempName.isEmpty())
+    {
+        identifier = tempName;
+    }
+
+    return identifier;
+}
+
 #ifdef USE_SDL_2
 QString InputDevice::getSDLPlatform()
 {

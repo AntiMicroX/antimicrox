@@ -85,7 +85,7 @@ void AutoProfileWatcher::runAppCheck()
                 }
             }
 
-            currentApplication = "";
+            //currentApplication = "";
         }
     }
 }
@@ -142,7 +142,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     if (!allProfile.isEmpty())
     {
         bool defaultActive = allActive == "1" ? true : false;
-        allDefaultInfo = new AutoProfileInfo("all", profile, defaultActive, this);
+        allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, this);
         allDefaultInfo->setDefaultState(true);
     }
 

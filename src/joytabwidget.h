@@ -123,6 +123,7 @@ public slots:
     void changeNameDisplay(bool displayNames);
     void changeCurrentSet(int index);
     void refreshSetButtons();
+    void checkForUnsavedProfile();
 
 private slots:
     void saveConfigFile();

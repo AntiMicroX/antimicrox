@@ -420,6 +420,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
     connect(namesPushButton, SIGNAL(clicked()), this, SLOT(toggleNames()));
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile()));
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     connect(saveAsButton, SIGNAL(clicked()), this, SLOT(saveAsConfig()));
     connect(delayButton, SIGNAL(clicked()), this, SLOT(showKeyDelayDialog()));
@@ -1075,12 +1076,16 @@ void JoyTabWidget::saveConfigFile()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
+                //configBox->setItemIcon(1, QIcon());
+                joystick->revertProfileEdited();
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
                 configBox->setCurrentIndex(existingIndex);
+                configBox->setItemIcon(existingIndex, QIcon());
+                joystick->revertProfileEdited();
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
@@ -1194,12 +1199,16 @@ void JoyTabWidget::saveAsConfig()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
+                //configBox->setItemIcon(1, QIcon());
+                joystick->revertProfileEdited();
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
                 configBox->setCurrentIndex(existingIndex);
+                configBox->setItemIcon(existingIndex, QIcon());
+                joystick->revertProfileEdited();
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
@@ -1900,4 +1909,8 @@ void JoyTabWidget::languageChange()
     resetButton->setText(tr("Reset"));
     resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
     fillButtons();
+}
+
+void JoyTabWidget::checkForUnsavedProfile()
+{
 }

@@ -182,6 +182,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 bool releasedCalled = distanceEvent();
                 if (releasedCalled)
                 {
+                    quitEvent = true;
                     buttonHold.restart();
                     buttonHeldRelease.restart();
                     keyDelayHold.restart();
@@ -222,6 +223,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 bool releasedCalled = distanceEvent();
                 if (releasedCalled)
                 {
+                    quitEvent = true;
                     buttonHold.restart();
                     buttonHeldRelease.restart();
                     keyDelayHold.restart();
@@ -459,6 +461,7 @@ bool JoyButton::distanceEvent()
                     // Release stuff
                     releaseActiveSlots();
                     currentPause = currentHold = 0;
+                    //quitEvent = true;
 
                     slotiter->toFront();
                     if (previousCycle)
@@ -486,6 +489,7 @@ bool JoyButton::distanceEvent()
                     // Release stuff
                     releaseActiveSlots();
                     currentPause = currentHold = 0;
+                    //quitEvent = true;
 
                     slotiter->toFront();
                     if (previousCycle)

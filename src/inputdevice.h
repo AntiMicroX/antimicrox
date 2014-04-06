@@ -40,6 +40,7 @@ public:
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
     virtual QString getGUIDString() = 0; // GUID available on SDL 2.
+    virtual QString getStringIdentifier();
     virtual QString getXmlName() = 0;
     virtual void closeSDLDevice() = 0;
 #ifdef USE_SDL_2
@@ -69,6 +70,7 @@ public:
 
     void setIndex(int index);
     bool isDeviceEdited();
+    void revertProfileEdited();
 
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYDELAY;
