@@ -141,10 +141,10 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *transla
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
     connect(ui->actionHomePage, SIGNAL(triggered()), this, SLOT(openProjectHomePage()));
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
+    connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
 
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
-    connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
     connect(appWatcher, SIGNAL(foundApplicableProfile(QString,QString)), this, SLOT(autoprofileLoad(QString,QString)));
 #endif
 
@@ -951,72 +951,17 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int 
     }
 }
 
-void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
-{
-    for (int i = 0; i < ui->tabWidget->count(); i++)
-    {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (widget)
-        {
-            if (guid == "all")
-            {
-                // If the all option for a Default profile was found,
-                // first check for controller specific associations. If one exists,
-                // skip changing the profile on the controller. A later call will
-                // be used to switch the profile for that controller.
-                QList<AutoProfileInfo*> *customs = appWatcher->getCustomDefaults();
-                bool found = false;
-                QListIterator<AutoProfileInfo*> iter(*customs);
-                while (iter.hasNext())
-                {
-                    AutoProfileInfo *info = iter.next();
-                    if (info->getGUID() == widget->getJoystick()->getGUIDString())
-                    {
-                        found = true;
-                        iter.toBack();
-                    }
-                }
-
-                delete customs;
-                customs = 0;
-
-                if (!found)
-                {
-                    widget->loadConfigFile(profileLocation);
-                }
-            }
-            else if (guid == widget->getJoystick()->getGUIDString())
-            {
-                widget->loadConfigFile(profileLocation);
-            }
-            else if (guid == widget->getJoystick()->getSDLName())
-            {
-                widget->loadConfigFile(profileLocation);
-            }
-        }
-    }
-}
-
-void MainWindow::checkAutoProfileWatcherTimer()
-{
-    QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
-    if (autoProfileActive == "1")
-    {
-        appWatcher->startTimer();
-    }
-    else
-    {
-        appWatcher->stopTimer();
-    }
-}
-
 void MainWindow::openMainSettingsDialog()
 {
     QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
     MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
-    connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
+    //connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
+
+#ifdef USE_SDL_2
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
+#endif
+
     dialog->show();
 }
 
@@ -1048,6 +993,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     QMainWindow::closeEvent(event);
 }
+
 
 #ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow()
@@ -1163,6 +1109,65 @@ void MainWindow::addJoyTab(InputDevice *device)
     }
 
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
+{
+    for (int i = 0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (widget)
+        {
+            if (guid == "all")
+            {
+                // If the all option for a Default profile was found,
+                // first check for controller specific associations. If one exists,
+                // skip changing the profile on the controller. A later call will
+                // be used to switch the profile for that controller.
+                QList<AutoProfileInfo*> *customs = appWatcher->getCustomDefaults();
+                bool found = false;
+                QListIterator<AutoProfileInfo*> iter(*customs);
+                while (iter.hasNext())
+                {
+                    AutoProfileInfo *info = iter.next();
+                    if (info->getGUID() == widget->getJoystick()->getGUIDString())
+                    {
+                        found = true;
+                        iter.toBack();
+                    }
+                }
+
+                delete customs;
+                customs = 0;
+
+                if (!found)
+                {
+                    widget->loadConfigFile(profileLocation);
+                }
+            }
+            else if (guid == widget->getJoystick()->getGUIDString())
+            {
+                widget->loadConfigFile(profileLocation);
+            }
+            else if (guid == widget->getJoystick()->getSDLName())
+            {
+                widget->loadConfigFile(profileLocation);
+            }
+        }
+    }
+}
+
+void MainWindow::checkAutoProfileWatcherTimer()
+{
+    QString autoProfileActive = settings->value("Auto4Profiles/AutoProfilesActive", "0").toString();
+    if (autoProfileActive == "1")
+    {
+        appWatcher->startTimer();
+    }
+    else
+    {
+        appWatcher->stopTimer();
+    }
 }
 
 #endif

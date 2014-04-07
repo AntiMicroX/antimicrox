@@ -51,19 +51,19 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
 
     findLocaleItem();
 
+    delete ui->categoriesListWidget->item(2);
+    ui->stackedWidget->removeWidget(ui->page);
+
 #ifdef USE_SDL_2
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
 #else
-    delete ui->categoriesListWidget->item(3);
+    delete ui->categoriesListWidget->item(2);
     delete ui->categoriesListWidget->item(1);
     ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
     ui->stackedWidget->removeWidget(ui->page_2);
 #endif
-
-    delete ui->categoriesListWidget->item(2);
-    ui->stackedWidget->removeWidget(ui->page);
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
     if (!autoProfileActive.isEmpty() && autoProfileActive == "1")
