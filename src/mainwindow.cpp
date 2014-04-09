@@ -1159,7 +1159,7 @@ void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
 
 void MainWindow::checkAutoProfileWatcherTimer()
 {
-    QString autoProfileActive = settings->value("Auto4Profiles/AutoProfilesActive", "0").toString();
+    QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
     if (autoProfileActive == "1")
     {
         appWatcher->startTimer();
