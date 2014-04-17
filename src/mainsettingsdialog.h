@@ -75,6 +75,7 @@ protected slots:
     void changeAutoProfileButtonsState();
     void transferEditsToCurrentTableRow();
     void addNewAutoProfile();
+    void autoProfileButtonsActiveState(bool enabled);
 };
 
 #endif // MAINSETTINGSDIALOG_H

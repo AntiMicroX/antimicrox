@@ -55,7 +55,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, QSetti
         allowDefault = true;
     }
 
-    if (allowDefault)
+    if (allowDefault && info->getExe().isEmpty())
     {
         ui->asDefaultCheckBox->setEnabled(true);
         if (info->isCurrentDefault())
@@ -322,6 +322,11 @@ void AddEditAutoProfileDialog::checkForDefaultStatus(QString text)
     if (text.length() > 0)
     {
         ui->asDefaultCheckBox->setChecked(false);
+        ui->asDefaultCheckBox->setEnabled(false);
+    }
+    else
+    {
+        ui->asDefaultCheckBox->setEnabled(true);
     }
 }
 

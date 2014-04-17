@@ -125,6 +125,12 @@ protected:
     bool setAssignedSlot(JoyButtonSlot *newslot);
     unsigned int getPreferredKeyDelay();
 
+    typedef struct springModeInfo {
+        double displacement;
+        unsigned int width;
+        unsigned int height;
+    } springModeInfo;
+
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
     // Used to denote whether the virtual key is pressed
@@ -212,8 +218,8 @@ protected:
     static QList<int> cursorYSpeeds;
     static QTimer cursorDelayTimer;
 
-    static QList<double> springXSpeeds;
-    static QList<double> springYSpeeds;
+    static QList<springModeInfo> springXSpeeds;
+    static QList<springModeInfo> springYSpeeds;
     static QTimer springDelayTimer;
     static QHash<unsigned int, int> activeKeys;
 

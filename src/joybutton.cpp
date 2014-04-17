@@ -15,15 +15,14 @@ const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
 QHash<unsigned int, int> JoyButton::activeKeys;
 
-
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
 QTimer JoyButton::cursorDelayTimer;
 QList<int> JoyButton::cursorXSpeeds;
 QList<int> JoyButton::cursorYSpeeds;
 
 QTimer JoyButton::springDelayTimer;
-QList<double> JoyButton::springXSpeeds;
-QList<double> JoyButton::springYSpeeds;
+QList<JoyButton::springModeInfo> JoyButton::springXSpeeds;
+QList<JoyButton::springModeInfo> JoyButton::springYSpeeds;
 
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
@@ -844,8 +843,19 @@ void JoyButton::mouseEvent()
                     double change = sumDist - tempdiff;
                     change = (change >= 0.0) ? change : -change;
 
-                    springXSpeeds.append(mouse1);
-                    springYSpeeds.append(mouse2);
+                    //springXSpeeds.append(mouse1);
+                    //springYSpeeds.append(mouse2);
+
+                    springModeInfo info;
+                    info.displacement = mouse1;
+                    info.width = springWidth;
+                    info.height = springHeight;
+                    springXSpeeds.append(info);
+
+                    info.displacement = mouse2;
+                    info.width = springWidth;
+                    info.height = springHeight;
+                    springYSpeeds.append(info);
 
                     if (!springDelayTimer.isActive())
                     {
@@ -2369,8 +2379,19 @@ void JoyButton::releaseActiveSlots()
                                      tempcode == JoyButtonSlot::MouseRight) ? 0.0 : -2.0;
                     double mouse2 = (tempcode == JoyButtonSlot::MouseUp ||
                                      tempcode == JoyButtonSlot::MouseDown) ? 0.0 : -2.0;
-                    springXSpeeds.append(mouse1);
-                    springYSpeeds.append(mouse2);
+                    //springXSpeeds.append(mouse1);
+                    //springYSpeeds.append(mouse2);
+
+                    springModeInfo info;
+                    info.displacement = mouse1;
+                    info.width = springWidth;
+                    info.height = springHeight;
+                    springXSpeeds.append(info);
+
+                    info.displacement = mouse2;
+                    info.width = springWidth;
+                    info.height = springHeight;
+                    springYSpeeds.append(info);
                     //sendSpringEvent(mouse1, mouse2);
                 }
                 slot->setDistance(0.0);
@@ -2780,6 +2801,8 @@ void JoyButton::moveSpringMouse()
 {
     double finalx = -2.0;
     double finaly = -2.0;
+    unsigned int springHeight = 0;
+    unsigned int springWidth = 0;
 
     if (springXSpeeds.length() == springYSpeeds.length() &&
         springXSpeeds.length() > 0)
@@ -2791,8 +2814,19 @@ void JoyButton::moveSpringMouse()
             double tempx = -2.0;
             double tempy = -2.0;
 
-            tempx = springXSpeeds.takeLast();
-            tempy = springYSpeeds.takeLast();
+            springModeInfo infoX;
+            springModeInfo infoY;
+
+            infoX = springXSpeeds.takeLast();
+            infoY = springYSpeeds.takeLast();
+
+            tempx = infoX.displacement;
+            tempy = infoY.displacement;
+
+            // Use largest found width and height for spring
+            // mode dimensions.
+            springHeight = qMax(infoX.height, springHeight);
+            springWidth = qMax(infoX.width, springWidth);
 
             if (finalx == -2.0 && tempx != -2.0)
             {

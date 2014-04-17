@@ -66,10 +66,11 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
 #endif
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
-    if (!autoProfileActive.isEmpty() && autoProfileActive == "1")
+    if (autoProfileActive == "1")
     {
         ui->activeCheckBox->setChecked(true);
         ui->autoProfileTableWidget->setEnabled(true);
+        ui->autoProfileAddPushButton->setEnabled(true);
     }
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
@@ -80,6 +81,7 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     connect(this, SIGNAL(accepted()), this, SLOT(saveNewSettings()));
     connect(ui->profileOpenDirPushButton, SIGNAL(clicked()), this, SLOT(selectDefaultProfileDir()));
     connect(ui->activeCheckBox, SIGNAL(toggled(bool)), ui->autoProfileTableWidget, SLOT(setEnabled(bool)));
+    connect(ui->activeCheckBox, SIGNAL(toggled(bool)), this, SLOT(autoProfileButtonsActiveState(bool)));
     //connect(ui->activeCheckBox, SIGNAL(toggled(bool)), ui->devicesComboBox, SLOT(setEnabled(bool)));
     connect(ui->devicesComboBox, SIGNAL(activated(int)), this, SLOT(changeDeviceForProfileTable(int)));
     connect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
@@ -926,9 +928,9 @@ void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
 
 void MainSettingsDialog::openAddAutoProfileDialog()
 {
-    int selectedRow = ui->autoProfileTableWidget->currentRow();
-    if (selectedRow >= 0)
-    {
+//    /int selectedRow = ui->autoProfileTableWidget->currentRow();
+    //if (selectedRow >= 0)
+    //{
         //if (ui->devicesComboBox->currentIndex() != 0 || selectedRow != 0)
         //{
             QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
@@ -938,7 +940,7 @@ void MainSettingsDialog::openAddAutoProfileDialog()
             connect(dialog, SIGNAL(rejected()), info, SLOT(deleteLater()));
             dialog->show();
         //}
-    }
+    //}
 }
 
 void MainSettingsDialog::openEditAutoProfileDialog()
@@ -1053,7 +1055,7 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
     }
     else
     {
-        ui->autoProfileAddPushButton->setEnabled(false);
+        ui->autoProfileAddPushButton->setEnabled(true);
         ui->autoProfileDeletePushButton->setEnabled(false);
         ui->autoProfileEditPushButton->setEnabled(false);
     }
@@ -1249,5 +1251,19 @@ void MainSettingsDialog::addNewAutoProfile()
 
         fillGUIDComboBox();
         changeDeviceForProfileTable(ui->devicesComboBox->currentIndex());
+    }
+}
+
+void MainSettingsDialog::autoProfileButtonsActiveState(bool enabled)
+{
+    if (enabled)
+    {
+        changeAutoProfileButtonsState();
+    }
+    else
+    {
+        ui->autoProfileAddPushButton->setEnabled(false);
+        ui->autoProfileEditPushButton->setEnabled(false);
+        ui->autoProfileDeletePushButton->setEnabled(false);
     }
 }
