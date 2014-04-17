@@ -19,7 +19,7 @@ unix {
     }
 
     # Finalize SDL library choice
-    !isEmpty(USE_SDL_2) {
+    equals(USE_SDL_2, 1) {
         isEmpty(FOUND_SDL) {
             packagesExist(sdl2) {
                 message("Compiling with SDL 2 Support")
@@ -30,6 +30,7 @@ unix {
             message("Compiling with SDL 2 Support")
         }
     } else {
+        clear(USE_SDL_2)
         isEmpty(FOUND_SDL) {
             packagesExist(sdl) {
                 message("Compiling with SDL 1.2 Support")
