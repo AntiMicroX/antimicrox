@@ -4,7 +4,44 @@
 #
 #-------------------------------------------------
 
-#USE_SDL_2 = 1
+unix {
+    # Check if USE_SDL_2 variable was specified and check for
+    # appropriate an default SDL library
+    isEmpty(USE_SDL_2) {
+        packagesExist(sdl2) {
+            USE_SDL_2 = 1
+            FOUND_SDL = 1
+        } else:packageExist(sdl) {
+            FOUND_SDL = 1
+        } else {
+            error("SDL library was not found")
+        }
+    }
+
+    # Finalize SDL library choice
+    !isEmpty(USE_SDL_2) {
+        isEmpty(FOUND_SDL) {
+            packagesExist(sdl2) {
+                message("Compiling with SDL 2 Support")
+            } else {
+                error("SDL 2 library was not found")
+            }
+        } else {
+            message("Compiling with SDL 2 Support")
+        }
+    } else {
+        isEmpty(FOUND_SDL) {
+            packagesExist(sdl) {
+                message("Compiling with SDL 1.2 Support")
+            } else {
+                error("SDL 1.2 library was not found")
+            }
+        } else {
+            message("Compiling with SDL 1.2 Support")
+        }
+    }
+}
+
 
 isEmpty(INSTALL_PREFIX) {
     unix {
