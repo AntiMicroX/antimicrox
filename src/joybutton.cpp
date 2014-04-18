@@ -319,6 +319,7 @@ void JoyButton::reset()
     currentRelease = 0;
     currentWheelVerticalEvent = 0;
     currentWheelHorizontalEvent = 0;
+    currentKeyPress = 0;
 
     isKeyPressed = isButtonPressed = false;
     toggle = false;
@@ -559,6 +560,8 @@ void JoyButton::activateSlots()
                 activeSlots.append(slot);
                 int oldvalue = activeKeys.value(tempcode, 0) + 1;
                 activeKeys.insert(tempcode, oldvalue);
+                //delaySequence = true;
+                //currentKeyPress = new JoyButtonSlot(2000, JoyButtonSlot::JoyKeyPress, this);
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
@@ -662,6 +665,24 @@ void JoyButton::activateSlots()
                 mouseSpeedModifier = tempcode * 0.01;
                 mouseSpeedModList.append(slot);
                 activeSlots.append(slot);
+            }
+            else if (mode == JoyButtonSlot::JoyKeyPress)
+            {
+                if (activeSlots.isEmpty())
+                {
+                    delaySequence = true;
+                    //currentKeyPress = new JoyButtonSlot(2000, JoyButtonSlot::JoyKeyPress, this);
+                    currentKeyPress = slot;
+                }
+                else
+                {
+                    if (slotiter->hasPrevious())
+                    {
+                        slotiter->previous();
+                    }
+                    delaySequence = true;
+                    exit = true;
+                }
             }
         }
 
@@ -2203,6 +2224,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         }
 
         this->currentDistance = 0;
+        this->currentKeyPress = 0;
         quitEvent = true;
     }
 }
@@ -2862,6 +2884,8 @@ void JoyButton::keydelayEvent()
     //qDebug() << "RADIO EDIT: " << keyDelayHold.elapsed();
     if (keyDelayTimer.isActive() && keyDelayHold.elapsed() >= getPreferredKeyDelay())
     {
+        currentKeyPress = 0;
+
         keyDelayTimer.stop();
         keyDelayHold.restart();
         releaseActiveSlots();
@@ -2959,7 +2983,11 @@ void JoyButton::checkForPressedSetChange()
 unsigned int JoyButton::getPreferredKeyDelay()
 {
     unsigned int tempDelay = InputDevice::DEFAULTKEYDELAY;
-    if (parentSet->getInputDevice()->getDeviceKeyDelay() > 0)
+    if (currentKeyPress && currentKeyPress->getSlotCode() > 0)
+    {
+        tempDelay = (unsigned int)currentKeyPress->getSlotCode();
+    }
+    else if (parentSet->getInputDevice()->getDeviceKeyDelay() > 0)
     {
         tempDelay = parentSet->getInputDevice()->getDeviceKeyDelay();
     }

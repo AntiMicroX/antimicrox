@@ -203,6 +203,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyMouseSpeedMod);
                 }
+                else if (temptext == "keypress")
+                {
+                    this->setSlotMode(JoyKeyPress);
+                }
             }
             else
             {
@@ -310,6 +314,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyMouseSpeedMod)
     {
         xml->writeCharacters("mousespeedmod");
+    }
+    else if (mode == JoyKeyPress)
+    {
+        xml->writeCharacters("keypress");
     }
 
     xml->writeEndElement();
@@ -426,6 +434,25 @@ QString JoyButtonSlot::getSlotString()
             QString temp;
             temp.append(tr("Mouse Mod")).append(" ");
             temp.append(QString::number(deviceCode).append("%"));
+            newlabel.append(temp);
+        }
+        else if (mode == JoyButtonSlot::JoyKeyPress)
+        {
+            int minutes = deviceCode / 1000 / 60;
+            int seconds = (deviceCode / 1000 % 60);
+            int hundredths = deviceCode % 1000 / 10;
+
+            QString temp;
+            temp.append(tr("Press Time")).append(" ");
+            if (minutes > 0)
+            {
+                temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+            }
+
+            temp.append(QString("%1.%2")
+                    .arg(seconds, 2, 10, QChar('0'))
+                    .arg(hundredths, 2, 10, QChar('0')));
+
             newlabel.append(temp);
         }
     }

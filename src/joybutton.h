@@ -179,6 +179,7 @@ protected:
     JoyButtonSlot *currentRelease;
     JoyButtonSlot *currentWheelVerticalEvent;
     JoyButtonSlot *currentWheelHorizontalEvent;
+    JoyButtonSlot *currentKeyPress;
 
     bool ignoresets;
     QTime buttonHold;

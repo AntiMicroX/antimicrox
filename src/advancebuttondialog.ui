@@ -246,6 +246,17 @@ sniping.</string>
                </property>
               </widget>
              </item>
+             <item row="3" column="0">
+              <widget class="QPushButton" name="pressTimePushButton">
+               <property name="toolTip">
+                <string>Specify the time that keys past this slot should be
+held down.</string>
+               </property>
+               <property name="text">
+                <string>Press Time</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>

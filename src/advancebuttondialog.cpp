@@ -138,6 +138,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
     connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
+    connect(ui->pressTimePushButton, SIGNAL(clicked()), this, SLOT(insertKeyPressSlot()));
 
     connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckbox, SLOT(setChecked(bool)));
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
@@ -602,6 +603,17 @@ void AdvanceButtonDialog::insertMouseSpeedModSlot()
     }
 }
 
+void AdvanceButtonDialog::insertKeyPressSlot()
+{
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    int actionTime = actionTimeConvert();
+    if (actionTime > 0)
+    {
+        tempbutton->setValue(actionTime, JoyButtonSlot::JoyKeyPress);
+        updateSlotsScrollArea(actionTime);
+    }
+}
+
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 {
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -615,6 +627,10 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
         refreshTimeComboBoxes(slot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
+    {
+        refreshTimeComboBoxes(slot);
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyKeyPress)
     {
         refreshTimeComboBoxes(slot);
     }
@@ -634,7 +650,8 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
     JoyButtonSlot *tempbuttonslot = tempbutton->getValue();
     if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyPause ||
         tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyHold ||
-        tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyRelease)
+        tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyRelease ||
+        tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyKeyPress)
     {
         int actionTime = actionTimeConvert();
         if (actionTime > 0)

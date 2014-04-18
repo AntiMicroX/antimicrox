@@ -60,6 +60,7 @@ private slots:
     void insertDistanceSlot();
     void insertReleaseSlot();
     void insertMouseSpeedModSlot();
+    void insertKeyPressSlot();
 
     void updateActionTimeLabel();
     void updateSetSelection();
