@@ -334,7 +334,7 @@ QString JoyButtonSlot::getSlotString()
 {
     QString newlabel;
 
-    if (deviceCode > 0)
+    if (deviceCode >= 0)
     {
         if (mode == JoyButtonSlot::JoyKeyboard)
         {

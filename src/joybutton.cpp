@@ -608,7 +608,8 @@ void JoyButton::activateSlots()
                     delaySequence = true;
                     exit = true;
                 }
-                else
+                // Segment can be ignored on a 0 interval pause
+                else if (tempcode > 0)
                 {
                     currentPause = slot;
                     pauseHold.restart();
@@ -1478,7 +1479,7 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
             }
         }
     }
-    else if (slot->getSlotCode() > 0)
+    else if (slot->getSlotCode() >= 0)
     {
         assignments.append(slot);
         slotInserted = true;
@@ -1525,7 +1526,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::Joy
             }
         }
     }
-    else if (slot->getSlotCode() > 0)
+    else if (slot->getSlotCode() >= 0)
     {
         assignments.append(slot);
         slotInserted = true;
@@ -1576,7 +1577,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
             permitSlot = false;
         }
     }
-    else if (slot->getSlotCode() <= 0)
+    else if (slot->getSlotCode() < 0)
     {
         permitSlot = false;
     }
@@ -1633,7 +1634,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *newslot)
             }
         }
     }
-    else if (newslot->getSlotCode() > 0)
+    else if (newslot->getSlotCode() >= 0)
     {
         assignments.append(newslot);
         slotInserted = true;

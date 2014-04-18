@@ -17,7 +17,7 @@ public:
     void setValue(int value, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     JoyButtonSlot* getValue();
-
+    bool isEdited();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
@@ -25,6 +25,7 @@ protected:
 
     bool grabNextAction;
     bool grabbingWheel;
+    bool edited;
     JoyButtonSlot buttonslot;
 
 signals:

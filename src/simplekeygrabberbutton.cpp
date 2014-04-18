@@ -11,6 +11,7 @@ SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
 {
     grabNextAction = false;
     grabbingWheel = false;
+    edited = false;
     this->installEventFilter(this);
 }
 
@@ -49,6 +50,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
+        edited = true;
         releaseMouse();
         releaseKeyboard();
 
@@ -106,6 +108,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         grabNextAction = false;
         grabbingWheel = false;
+        edited = true;
         releaseMouse();
         releaseKeyboard();
 
@@ -144,6 +147,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
             grabNextAction = false;
             grabbingWheel = false;
+            edited = true;
             releaseMouse();
             releaseKeyboard();
             buttonslot.setSlotCode(controlcode);
@@ -172,6 +176,7 @@ void SimpleKeyGrabberButton::setValue(int value, unsigned int alias, JoyButtonSl
 {
     buttonslot.setSlotCode(value, alias);
     buttonslot.setSlotMode(mode);
+    edited = true;
 
     setText(buttonslot.getSlotString());
 }
@@ -180,6 +185,7 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
 {
     buttonslot.setSlotCode(value);
     buttonslot.setSlotMode(mode);
+    edited = true;
 
     setText(buttonslot.getSlotString());
 }
@@ -192,4 +198,9 @@ JoyButtonSlot* SimpleKeyGrabberButton::getValue()
 void SimpleKeyGrabberButton::refreshButtonLabel()
 {
     setText(buttonslot.getSlotString());
+}
+
+bool SimpleKeyGrabberButton::isEdited()
+{
+    return edited;
 }

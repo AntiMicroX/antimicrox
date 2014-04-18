@@ -170,19 +170,19 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
     int index = ui->slotListWidget->currentRow();
     int itemcount = ui->slotListWidget->count();
 
-    if (index == (itemcount - 1) && value > 0)
+    if (index == (itemcount - 1) && value >= 0)
     {
         // New slot added on the old blank button. Append
         // new blank button to the end of the list.
         appendBlankKeyGrabber();
     }
-    else if (index < (itemcount - 1) && value == 0)
+    /*else if (index < (itemcount - 1) && value == 0)
     {
         // Delete a button on the list.
         QListWidgetItem *item = ui->slotListWidget->takeItem(index);
         delete item;
         item = 0;
-    }
+    }*/
 
     // Stop all events on JoyButton and erase currently allocated
     // slots.
@@ -195,7 +195,7 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
         QListWidgetItem *item = ui->slotListWidget->item(i);
         SimpleKeyGrabberButton *button = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         JoyButtonSlot *tempbuttonslot = button->getValue();
-        if (tempbuttonslot->getSlotCode() > 0)
+        if (button->isEdited() && tempbuttonslot->getSlotCode() >= 0)
         {
             this->button->setAssignedSlot(tempbuttonslot->getSlotCode(), tempbuttonslot->getSlotCodeAlias(), tempbuttonslot->getSlotMode());
             QWidget *widget = ui->slotListWidget->itemWidget(item);
@@ -298,7 +298,7 @@ void AdvanceButtonDialog::insertPauseSlot()
 {
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
-    if (actionTime > 0)
+    if (actionTime >= 0)
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
         updateSlotsScrollArea(actionTime);
