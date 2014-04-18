@@ -1479,6 +1479,12 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
             }
         }
     }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard &&
+             slot->getSlotCode() > 0)
+    {
+        assignments.append(slot);
+        slotInserted = true;
+    }
     else if (slot->getSlotCode() >= 0)
     {
         assignments.append(slot);
@@ -1525,6 +1531,12 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::Joy
                 slotInserted = true;
             }
         }
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard &&
+             slot->getSlotCode() > 0)
+    {
+        assignments.append(slot);
+        slotInserted = true;
     }
     else if (slot->getSlotCode() >= 0)
     {
@@ -1576,6 +1588,11 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
         {
             permitSlot = false;
         }
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard &&
+             slot->getSlotCode() <= 0)
+    {
+        permitSlot = false;
     }
     else if (slot->getSlotCode() < 0)
     {
@@ -1633,6 +1650,12 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *newslot)
                 slotInserted = true;
             }
         }
+    }
+    else if (newslot->getSlotMode() == JoyButtonSlot::JoyKeyboard &&
+             newslot->getSlotCode() > 0)
+    {
+        assignments.append(newslot);
+        slotInserted = true;
     }
     else if (newslot->getSlotCode() >= 0)
     {

@@ -18,6 +18,7 @@
 #include "joystickstatuswindow.h"
 #include "qkeydisplaydialog.h"
 #include "mainsettingsdialog.h"
+#include "advancestickassignmentdialog.h"
 #include "common.h"
 
 #ifdef USE_SDL_2
@@ -46,6 +47,11 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *transla
     this->cmdutility = cmdutility;
     this->graphical = graphical;
     this->settings = settings;
+
+#ifndef USE_SDL_2
+    ui->actionGameController_Mapping->setVisible(false);
+    ui->actionStick_Pad_Assign->setVisible(false);
+#endif
 
 #ifdef USE_SDL_2
     this->appWatcher = new AutoProfileWatcher(settings, this);
@@ -146,6 +152,7 @@ MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *transla
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
     connect(appWatcher, SIGNAL(foundApplicableProfile(QString,QString)), this, SLOT(autoprofileLoad(QString,QString)));
+    connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
 #endif
 
     // Check flags to see if user requested for the main window and the tray icon
@@ -212,6 +219,7 @@ void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->fillButtons();
         connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
+        connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
 
         if (showTrayIcon)
         {
@@ -995,6 +1003,20 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 
 
+void MainWindow::showStickAssignmentDialog()
+{
+    int index = ui->tabWidget->currentIndex();
+    if (index >= 0)
+    {
+        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        Joystick *joystick = static_cast<Joystick*>(joyTab->getJoystick());
+
+        AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
+        connect(dialog, SIGNAL(finished(int)), joyTab, SLOT(fillButtons()));
+        dialog->show();
+    }
+}
+
 #ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow()
 {
@@ -1033,6 +1055,16 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     ui->tabWidget->insertTab(index, tabwidget, joytabName);
     tabwidget->fillButtons();
     ui->tabWidget->setCurrentIndex(index);
+
+    connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
+    connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
+    if (showTrayIcon)
+    {
+        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        trayIcon->hide();
+        populateTrayIcon();
+        trayIcon->show();
+    }
 }
 
 void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
@@ -1100,6 +1132,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     }
 
     connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
+    connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
     if (showTrayIcon)
     {
         connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
@@ -1167,6 +1200,25 @@ void MainWindow::checkAutoProfileWatcherTimer()
     else
     {
         appWatcher->stopTimer();
+    }
+}
+
+void MainWindow::updateMenuOptions()
+{
+    int index = ui->tabWidget->currentIndex();
+    if (index >= 0)
+    {
+        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        InputDevice *joystick = joyTab->getJoystick();
+
+        if (qobject_cast<GameController*>(joystick) != 0)
+        {
+            ui->actionStick_Pad_Assign->setEnabled(false);
+        }
+        else
+        {
+            ui->actionStick_Pad_Assign->setEnabled(true);
+        }
     }
 }
 

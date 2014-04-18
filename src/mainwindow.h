@@ -77,7 +77,10 @@ signals:
     void joystickRefreshRequested();
     void joystickRefreshRequested(InputDevice *joystick);
     void readConfig(int index);
+
+#ifdef USE_SDL_2
     void mappingUpdated(QString mapping, InputDevice *device);
+#endif
 
 public slots:
     void fillButtons(InputDevice *joystick);
@@ -120,12 +123,14 @@ private slots:
     void propogateNameDisplayStatus(bool displayNames);
     void changeLanguage(QString language);
     void openMainSettingsDialog();
+    void showStickAssignmentDialog();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(QString guid, QString profileLocation);
     void checkAutoProfileWatcherTimer();
+    void updateMenuOptions();
 #endif
 };
 

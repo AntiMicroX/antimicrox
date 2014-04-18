@@ -25,6 +25,7 @@
 
 #ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
+#include "gamecontrollermappingdialog.h"
 #endif
 
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *parent) :
@@ -368,12 +369,19 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     horizontalLayout_3 = new QHBoxLayout();
     horizontalLayout_3->setSpacing(6);
     horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+
     stickAssignPushButton = new QPushButton(tr("Stick/Pad Assign"), this);
     stickAssignPushButton->setObjectName(QString::fromUtf8("stickAssignPushButton"));
     QIcon icon7(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     stickAssignPushButton->setIcon(icon7);
-
     horizontalLayout_3->addWidget(stickAssignPushButton);
+
+    gameControllerMappingPushButton = new QPushButton(tr("Controller Mapping"), this);
+    gameControllerMappingPushButton->setObjectName(QString::fromUtf8("gameControllerMappingPushButton"));
+    gameControllerMappingPushButton->setIcon(QIcon::fromTheme("games-config-options"));
+    gameControllerMappingPushButton->setEnabled(false);
+    gameControllerMappingPushButton->setVisible(false);
+    horizontalLayout_3->addWidget(gameControllerMappingPushButton);
 
     quickSetPushButton = new QPushButton(tr("Quick Set"), this);
     quickSetPushButton->setObjectName(QString::fromUtf8("quickSetPushButton"));
@@ -409,11 +417,12 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     displayingNames = false;
 
 #ifdef USE_SDL_2
-    if (qobject_cast<GameController*>(joystick) != 0)
-    {
-        stickAssignPushButton->setEnabled(false);
-        stickAssignPushButton->setVisible(false);
-    }
+    stickAssignPushButton->setEnabled(false);
+    stickAssignPushButton->setVisible(false);
+
+    gameControllerMappingPushButton->setEnabled(true);
+    gameControllerMappingPushButton->setVisible(true);
+
 #endif
 
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
@@ -436,6 +445,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
 
     connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
+    connect(gameControllerMappingPushButton, SIGNAL(clicked()), this, SLOT(openGameControllerMappingWindow()));
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
     connect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
@@ -1057,7 +1067,7 @@ void JoyTabWidget::saveConfigFile()
             msg.setStandardButtons(QMessageBox::Close);
             msg.setText(writer.getErrorString());
             msg.setModal(true);
-            msg.show();
+            msg.exec();
         }
         else if (writer.hasError() && !this->window()->isEnabled())
         {
@@ -1101,6 +1111,7 @@ void JoyTabWidget::resetJoystick()
         QString filename = configBox->itemData(currentIndex).toString();
 
         removeCurrentButtons();
+        joystick->reset();
 
         XMLConfigReader reader;
         reader.setFileName(filename);
@@ -1112,7 +1123,7 @@ void JoyTabWidget::resetJoystick()
             msg.setStandardButtons(QMessageBox::Close);
             msg.setText(reader.getErrorString());
             msg.setModal(true);
-            msg.show();
+            msg.exec();
         }
         else if (reader.hasError() && !this->window()->isEnabled())
         {
@@ -1180,7 +1191,7 @@ void JoyTabWidget::saveAsConfig()
             msg.setStandardButtons(QMessageBox::Close);
             msg.setText(writer.getErrorString());
             msg.setModal(true);
-            msg.show();
+            msg.exec();
         }
         else if (writer.hasError() && !this->window()->isEnabled())
         {
@@ -1241,7 +1252,7 @@ void JoyTabWidget::changeJoyConfig(int index)
             msg.setStandardButtons(QMessageBox::Close);
             msg.setText(reader.getErrorString());
             msg.setModal(true);
-            msg.show();
+            msg.exec();
         }
         else if (reader.hasError() && !this->window()->isEnabled())
         {
@@ -1914,3 +1925,18 @@ void JoyTabWidget::languageChange()
 void JoyTabWidget::checkForUnsavedProfile()
 {
 }
+
+#ifdef USE_SDL_2
+void JoyTabWidget::openGameControllerMappingWindow()
+{
+    GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
+    dialog->show();
+    connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+}
+
+void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
+{
+    emit mappingUpdated(mapping, device);
+}
+
+#endif

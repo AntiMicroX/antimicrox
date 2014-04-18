@@ -89,6 +89,7 @@ protected:
     QHBoxLayout *horizontalLayout_3;
     QPushButton *stickAssignPushButton;
     QPushButton *quickSetPushButton;
+    QPushButton *gameControllerMappingPushButton;
     QSpacerItem *verticalSpacer_2;
     QStackedWidget *stackedWidget_2;
     QWidget *page;
@@ -114,6 +115,9 @@ signals:
     void joystickConfigChanged(int index);
     void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);
+#ifdef USE_SDL_2
+    void mappingUpdated(QString mapping, InputDevice *device);
+#endif
 
 public slots:
     void openConfigFileDialog();
@@ -152,6 +156,11 @@ private slots:
     void openStickButtonDialog();
     void displayProfileEditNotification();
     void removeProfileEditNotification();
+
+#ifdef USE_SDL_2
+    void openGameControllerMappingWindow();
+    void propogateMappingUpdate(QString mapping, InputDevice *device);
+#endif
 };
 
 #endif // JOYTABWIDGET_H

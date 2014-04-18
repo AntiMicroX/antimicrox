@@ -175,6 +175,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <addaction name="actionProperties"/>
     <addaction name="actionKeyValue"/>
     <addaction name="actionGameController_Mapping"/>
+    <addaction name="actionStick_Pad_Assign"/>
     <addaction name="actionOptions"/>
     <addaction name="actionUpdate_Joysticks"/>
    </widget>
@@ -282,6 +283,11 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <string>Options</string>
    </property>
   </action>
+  <action name="actionStick_Pad_Assign">
+   <property name="text">
+    <string>Stick/Pad Assign</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -360,11 +366,28 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionStick_Pad_Assign</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showStickAssignmentDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>289</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>startJoystickRefresh()</slot>
   <slot>hideWindow()</slot>
   <slot>openAboutDialog()</slot>
   <slot>quitProgram()</slot>
+  <slot>showStickAssignmentDialog()</slot>
  </slots>
 </ui>

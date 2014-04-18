@@ -79,16 +79,20 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 #endif
 
         controlcode = tempcode;
+        bool valueUpdated = false;
 
         if ((keyEve->modifiers() & Qt::ControlModifier) && keyEve->key() == Qt::Key_X)
         {
             controlcode = 0;
-            setText("");
+            refreshButtonLabel();
+            //setText("");
         }
         else if (controlcode <= 0)
         {
             controlcode = 0;
             setText("");
+            valueUpdated = true;
+            edited = true;
         }
         else
         {
@@ -104,15 +108,20 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
                 buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
                 setText(keysymToKey(finalvirtual).toUpper());
             }
+
+            edited = true;
+            valueUpdated = true;
         }
 
         grabNextAction = false;
         grabbingWheel = false;
-        edited = true;
         releaseMouse();
         releaseKeyboard();
 
-        emit buttonCodeChanged(controlcode);
+        if (valueUpdated)
+        {
+            emit buttonCodeChanged(controlcode);
+        }
     }
     else if (grabNextAction && event->type() == QEvent::Wheel && !grabbingWheel)
     {

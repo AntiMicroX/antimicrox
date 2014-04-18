@@ -49,6 +49,10 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     populateDPadComboBoxes();
     refreshVDPadConfiguration();
 
+#ifndef USE_SDL_2
+    ui->versionTwoMessageLabel->setVisible(false);
+#endif
+
     connect(ui->enableOneCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeStateStickOneWidgets(bool)));
     connect(ui->enableTwoCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeStateStickTwoWidgets(bool)));
 

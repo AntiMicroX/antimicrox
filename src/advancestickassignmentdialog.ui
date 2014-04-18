@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>770</width>
-    <height>400</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -72,7 +72,23 @@
        <widget class="QWidget" name="sticks">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,3">
+          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1,3">
+           <item>
+            <widget class="QLabel" name="versionTwoMessageLabel">
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Note: This window is meant for backwards compatibility with profiles made before AntiMicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
            <item alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="joystickNumberLabel">
              <property name="font">

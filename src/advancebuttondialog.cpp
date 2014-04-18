@@ -134,10 +134,12 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->mouseModPushButton, SIGNAL(clicked()), this, SLOT(insertMouseSpeedModSlot()));
 
     connect(ui->slotListWidget, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(performStatsWidgetRefresh(QListWidgetItem*)));
+
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+
     connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
     connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
     connect(ui->pressTimePushButton, SIGNAL(clicked()), this, SLOT(insertKeyPressSlot()));
@@ -635,6 +637,7 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 {
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *slot = tempbutton->getValue();
+
     if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
     {
         refreshTimeComboBoxes(slot);
@@ -653,11 +656,15 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
+        disconnect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
         ui->distanceSpinBox->setValue(slot->getSlotCode());
+        connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseSpeedMod)
     {
+        disconnect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
         ui->mouseSpeedModSpinBox->setValue(slot->getSlotCode());
+        connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
     }
 }
 
