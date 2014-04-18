@@ -1,21 +1,22 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1386798703703" TEXT="AntiMicro Future Developments">
-<node CREATED="1379712868552" FOLDED="true" ID="ID_1152197684" MODIFIED="1392361496339" POSITION="right" TEXT="Mouse Curves">
+<node CREATED="1379712868552" FOLDED="true" ID="ID_1152197684" MODIFIED="1397800095248" POSITION="right" TEXT="Mouse Curves">
 <icon BUILTIN="button_ok"/>
-<node CREATED="1385413655567" ID="ID_1859704771" MODIFIED="1385413672185" TEXT="Curve options were taken from QJoyPad. Linear is still used as the default."/>
+<node CREATED="1385413655567" HGAP="19" ID="ID_1859704771" MODIFIED="1397800091525" TEXT="Curve options were taken from QJoyPad. Linear is still used as the default." VSHIFT="-7"/>
 </node>
-<node CREATED="1379712878989" FOLDED="true" ID="ID_1601152391" MODIFIED="1392361529837" POSITION="left" TEXT="Gamepad Status/Diagnosis">
+<node CREATED="1379712878989" FOLDED="true" ID="ID_1601152391" MODIFIED="1397800659877" POSITION="left" TEXT="Gamepad Status/Diagnosis">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1386295949051" ID="ID_1843601206" MODIFIED="1386296073732" TEXT="Status window shows pieces of information provided by SDL: number of buttons, number of axes, number of hats and controller display name. The window also shows the current raw values of all axes, hats, and buttons. This window will be useful for better showing exactly how SDL sees the controller."/>
 </node>
-<node CREATED="1379712921288" ID="ID_1904560551" MODIFIED="1392361620864" POSITION="right" TEXT="Tap Time?">
+<node CREATED="1379712921288" FOLDED="true" ID="ID_1904560551" MODIFIED="1397800066304" POSITION="right" TEXT="Tap Time?">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1386296158070" ID="ID_1324519805" MODIFIED="1392361566372" TEXT="This is mainly useful for Release slot events and Pause slot events. This will help ensure that a key is held down for long enough for a game to properly catch the keydown event.">
 <icon BUILTIN="info"/>
 </node>
+<node CREATED="1397799753075" ID="ID_1841197131" MODIFIED="1397799773659" TEXT="Created Tap Time equivalent as Key Press Time."/>
 </node>
-<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1392361620066" POSITION="left" TEXT="SDL 2 compatibility?">
+<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1397799779445" POSITION="left" TEXT="SDL 2 compatibility?">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1385413319581" HGAP="246" ID="ID_315431873" MODIFIED="1386729226005" VSHIFT="-44">
 <richcontent TYPE="NODE"><html>
@@ -52,16 +53,18 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1379713072288" ID="ID_1167223802" MODIFIED="1385518028334" POSITION="right" TEXT="Mouse Wheel as Movement?">
+<node CREATED="1379713072288" FOLDED="true" ID="ID_1167223802" MODIFIED="1397800142009" POSITION="right" TEXT="Mouse Wheel as Movement">
 <icon BUILTIN="button_ok"/>
+<node CREATED="1397799820690" ID="ID_880207160" MODIFIED="1397799968234" TEXT="Useful for scrolling a page on a web browser and quick weapon cycling in a game. The later benefit is more important.&#xa;&#xa;With small speed values, single press control is possible."/>
 </node>
 <node CREATED="1379713112228" ID="ID_2402610" MODIFIED="1379713123344" POSITION="left" TEXT="Disable Buttons from Display?"/>
 <node CREATED="1379713177327" ID="ID_1294383668" MODIFIED="1385413564002" POSITION="right" TEXT="Spring Mode Window Preview">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1379719159629" ID="ID_1413165164" MODIFIED="1385413551068" POSITION="left" TEXT="Gamepad Identifier (Using SDL_JoystickName?)">
+<node CREATED="1379719159629" FOLDED="true" ID="ID_1413165164" MODIFIED="1397800626072" POSITION="left" TEXT="Gamepad Identifier">
 <icon BUILTIN="button_ok"/>
+<node CREATED="1397800112456" ID="ID_1680308708" MODIFIED="1397800147196" TEXT="For SDL 2, use GUID. For SDL 1.2, use value returned from SDL_JoystickName."/>
 </node>
-<node CREATED="1379742754449" ID="ID_146831130" MODIFIED="1379742761336" POSITION="right" TEXT="Copy Set Assignments to New Set"/>
+<node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1397799811735" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="1"/>
 </node>
 </map>
