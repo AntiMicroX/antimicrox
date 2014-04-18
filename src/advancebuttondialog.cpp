@@ -103,7 +103,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     }
 
     fillTimeComboBoxes();
-    ui->actionHundredthsComboBox->setCurrentIndex(10);
+    ui->actionTenthsComboBox->setCurrentIndex(1);
 
     updateActionTimeLabel();
     changeTurboForSequences();
@@ -125,6 +125,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
 
     connect(ui->toggleCheckbox, SIGNAL(clicked(bool)), button, SLOT(setToggle(bool)));
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), this, SLOT(checkTurboSetting(bool)));
@@ -134,6 +135,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     connect(ui->slotListWidget, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(performStatsWidgetRefresh(QListWidgetItem*)));
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
@@ -330,8 +332,11 @@ int AdvanceButtonDialog::actionTimeConvert()
     int minutesIndex = ui->actionMinutesComboBox->currentIndex();
     int secondsIndex = ui->actionSecondsComboBox->currentIndex();
     int hundredthsIndex = ui->actionHundredthsComboBox->currentIndex();
+    int tenthsIndex = ui->actionTenthsComboBox->currentIndex();
+
     int tempMilliSeconds = minutesIndex * 1000 * 60;
     tempMilliSeconds += secondsIndex * 1000;
+    tempMilliSeconds += tenthsIndex * 100;
     tempMilliSeconds += hundredthsIndex * 10;
     return tempMilliSeconds;
 }
@@ -341,29 +346,34 @@ void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
     disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
 
     disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
 
     int slottime = slot->getSlotCode();
     int tempMinutes = slottime / 1000 / 60;
     int tempSeconds = slottime / 1000 % 60;
-    int tempMilliSeconds = (slottime % 1000) / 10;
+    int tempTenthsSeconds = (slottime % 1000) / 100;
+    int tempHundredthsSeconds = (slottime % 1000 % 100) / 10;
 
     ui->actionMinutesComboBox->setCurrentIndex(tempMinutes);
     ui->actionSecondsComboBox->setCurrentIndex(tempSeconds);
-    ui->actionHundredthsComboBox->setCurrentIndex(tempMilliSeconds);
+    ui->actionTenthsComboBox->setCurrentIndex(tempTenthsSeconds);
+    ui->actionHundredthsComboBox->setCurrentIndex(tempHundredthsSeconds);
     updateActionTimeLabel();
-
 
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
 
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
 }
 
 void AdvanceButtonDialog::updateActionTimeLabel()
@@ -572,6 +582,7 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
     ui->actionMinutesComboBox->clear();
     ui->actionSecondsComboBox->clear();
     ui->actionHundredthsComboBox->clear();
+    ui->actionTenthsComboBox->clear();
 
     for (double i=0; i <= 10; i++)
     {
@@ -585,9 +596,15 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
         ui->actionSecondsComboBox->addItem(temp);
     }
 
-    for (int i=0; i < 100; i++)
+    for (int i=0; i < 10; i++)
     {
-        QString temp = QString(".%1s").arg(i, 2, 10, QChar('0'));
+        QString temp = QString(".%1").arg(i, 1, 10, QChar('0'));
+        ui->actionTenthsComboBox->addItem(temp);
+    }
+
+    for (int i=0; i < 10; i++)
+    {
+        QString temp = QString("%1s").arg(i, 1, 10, QChar('0'));
         ui->actionHundredthsComboBox->addItem(temp);
     }
 }

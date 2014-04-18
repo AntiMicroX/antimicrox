@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>430</height>
+    <height>439</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -410,7 +410,7 @@ held down.</string>
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>0</width>
                  <height>0</height>
                 </size>
                </property>
@@ -419,13 +419,13 @@ held down.</string>
                </property>
                <item>
                 <property name="text">
-                 <string>0s</string>
+                 <string>0</string>
                 </property>
                </item>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="actionHundredthsComboBox">
+              <widget class="QComboBox" name="actionTenthsComboBox">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -434,7 +434,7 @@ held down.</string>
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>0</width>
                  <height>0</height>
                 </size>
                </property>
@@ -443,7 +443,16 @@ held down.</string>
                </property>
                <item>
                 <property name="text">
-                 <string>0ms</string>
+                 <string>0</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="actionHundredthsComboBox">
+               <item>
+                <property name="text">
+                 <string>0s</string>
                 </property>
                </item>
               </widget>
