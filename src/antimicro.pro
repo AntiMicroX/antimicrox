@@ -163,7 +163,7 @@ win32 {
       copy_sdl_dll.commands = $(COPY) ..\\SDL-1.2.15\\bin\\SDL.dll $$replace(DESTDIR, "/", "\\")
       copy_sdl_dll.target = copy_sdl_dll
     } else {
-      copy_sdl_dll.commands = $(COPY) ..\\SDL2-2.0.1\\i686-w64-mingw32\\bin\\SDL2.dll $$replace(DESTDIR, "/", "\\")
+      copy_sdl_dll.commands = $(COPY) ..\\SDL2-2.0.3\\i686-w64-mingw32\\bin\\SDL2.dll $$replace(DESTDIR, "/", "\\")
       copy_sdl_dll.target = copy_sdl_dll
     }
 
@@ -376,8 +376,8 @@ unix {
   LIBS += -lXtst -lX11
 } else:win32 {
   !isEmpty(USE_SDL_2) {
-    LIBS += -L"..\SDL2-2.0.1\i686-w64-mingw32\lib" -lSDL2
-    INCLUDEPATH += "..\SDL2-2.0.1\i686-w64-mingw32\include"
+    LIBS += -L"..\SDL2-2.0.3\i686-w64-mingw32\lib" -lSDL2
+    INCLUDEPATH += "..\SDL2-2.0.3\i686-w64-mingw32\include"
   } else {
     LIBS += -L"..\SDL-1.2.15\lib" -lSDL
     INCLUDEPATH += "..\SDL-1.2.15\include"
@@ -421,7 +421,7 @@ unix {
     isEmpty(USE_SDL_2) {
         extradlls += ..\\SDL-1.2.15\\bin\\SDL.dll
     } else {
-        extradlls += ..\\SDL2-2.0.1\\i686-w64-mingw32\\bin\\SDL2.dll
+        extradlls += ..\\SDL2-2.0.3\\i686-w64-mingw32\\bin\\SDL2.dll
     }
 
     install_dlls.path = $$replace(INSTALL_PREFIX, "/", "\\")
