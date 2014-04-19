@@ -67,9 +67,9 @@ future.
 
 * You will need Qt with MinGW support: http://qt-project.org/downloads
 
-* download SDL development package : http://www.libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
+* download SDL development package : http://www.libsdl.org/release/SDL2-devel-2.0.3-mingw.tar.gz
 
-* open the archive and drop the 'SDL-1.2.15' folder in the 'antimicro' folder
+* open the archive and drop the 'SDL2-2.0.3' folder in the 'antimicro' folder
 
 * open the project (antimicro.pro) in Qt Creator
 
@@ -79,7 +79,7 @@ future.
 
 * a 'build-antimicro-Desktop_Qt_5_1_1_MinGW_32bit-release/release' folder appears in 'antimicro' folder
 
-* the application will need SDL.DLL, find it in SDL-1.2.15\bin folder and copy it next to it
+* the application will need SDL2.DLL, find it in SDL2-2.0.3\bin folder and copy it next to it
 
 * it will also need the following Qt DLLs that you will find inside C:\Qt\5.1.1\mingw48_32\bin
 
@@ -124,7 +124,7 @@ Notes about the WXS file and the building process :
 
 * CNDL1113 warning : shortucts are advertised, left as-is as a nice feature about them is that if the program gets corrupted it will be repaired by Windows Installer, by design the shortcuts will not point to antimicro.exe as a regular LNK file
 
-* LGHT1073 warning : SDL.DLL does not specify its language in the language column, not a big deal; it could be recompiled but it's pretty much a time waist as it would only prevent this warning
+* LGHT1073 warning : SDL2.DLL does not specify its language in the language column, not a big deal; it could be recompiled but it's pretty much a time waist as it would only prevent this warning
 
 * all of these warnings have been made silent through the use of command-line switches.
 
