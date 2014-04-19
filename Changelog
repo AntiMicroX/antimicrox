@@ -1,3 +1,34 @@
+2014-04-19 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.2
+
+* Added example controller display to Game Controller Mapping
+dialog window.
+
+* Added Auto Profile support. Allows for profiles to be associated
+with specific applications.
+
+* Added button icons in Windows version.
+
+* Added a press time slot type. That slot type is used
+to have keys active for a specific period of time.
+
+* Allow Pause slots to have a 0 second interval. Allows
+for a forced key release.
+
+* Windows version is now built with SDL 2.0.3.
+
+* Fixed 8-Way D-Pad mode.
+
+* Fixed preset options in various dialogs to account for new aliases.
+
+* Fixed ampersand rendering in set buttons.
+
+* Fixed spring mouse mode dimension support.
+
+* Fixed spring mouse mode accuracy under Windows.
+
+
 2014-02-28 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.1
