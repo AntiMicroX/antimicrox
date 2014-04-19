@@ -27,7 +27,7 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const QString projectHomePage = "http://ryochan7.com/projects/antimicro/";
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
     const int ANTIMICRO_MAJOR_VERSION = 2;
-    const int ANTIMICRO_MINOR_VERSION = 1;
+    const int ANTIMICRO_MINOR_VERSION = 2;
     const int ANTIMICRO_PATCH_VERSION = 0;
 
     const QString programVersion = (ANTIMICRO_PATCH_VERSION > 0) ?
