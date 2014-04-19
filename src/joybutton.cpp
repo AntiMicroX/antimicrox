@@ -2895,7 +2895,7 @@ void JoyButton::moveSpringMouse()
     }
     else
     {
-        sendSpringEvent(0, 0, springWidth, springHeight);
+        //sendSpringEvent(0, 0, springWidth, springHeight);
         springDelayTimer.stop();
     }
 

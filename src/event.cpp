@@ -236,8 +236,8 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined (Q_OS_WIN)
-                int fx = xmovecoor * (65535.0/(double)width);
-                int fy = ymovecoor * (65535.0/(double)height);
+                int fx = ceil(xmovecoor * (65535.0/(double)width));
+                int fy = ceil(ymovecoor * (65535.0/(double)height));
                 temp[0].mi.dx = fx;
                 temp[0].mi.dy = fy;
                 SendInput(1, temp, sizeof(INPUT));
@@ -255,8 +255,8 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined (Q_OS_WIN)
-                int fx = xmovecoor * (65535.0/(double)width);
-                int fy = ymovecoor * (65535.0/(double)height);
+                int fx = ceil(xmovecoor * (65535.0/(double)width));
+                int fy = ceil(ymovecoor * (65535.0/(double)height));
                 temp[0].mi.dx = fx;
                 temp[0].mi.dy = fy;
                 SendInput(1, temp, sizeof(INPUT));
