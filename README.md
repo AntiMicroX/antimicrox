@@ -54,10 +54,16 @@ INSTALL_PREFIX variable while running qmake.
 This will install the antimicro executable to /usr/bin/antimicro.
 By default, the executable will be installed to /usr/local/bin/antimicro.
 
-If you would like to compile the program to use SDL 2, you can use the
-USE_SDL_2 variable while running qmake. By default, the program
-will be compiled against SDL 1.2.x. That will likely change in the
-future.
+The qmake step will use pkg-config to attempt to find any SDL
+libraries that you have installed. The project is set up to
+look for a copy of SDL 2 followed by SDL 1.2. This behavior should work
+fine for most people. You can override this behavior by using the USE_SDL_2
+variable when you run qmake. Using USE_SDL_2=1 when you run qmake will mean
+that you want AntiMicro compiled with SDL 2 support. Using USE_SDL_2=0 when
+you run qmake will mean that you want AntiMicro compiled with SDL 1.2 support.
+
+Here is an example of how to specify that you want AntiMicro to be compiled
+with SDL 2 support when you run qmake.
 
     qmake USE_SDL_2=1
 
@@ -165,6 +171,7 @@ for this program mostly resembles QJoyPad.
 
 Travis Nickles <nickles.travis@gmail.com>  
 aybe
+Zerro Alvein
 
 ## Translators
 

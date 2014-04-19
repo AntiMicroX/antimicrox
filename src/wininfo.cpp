@@ -216,7 +216,7 @@ QString WinInfo::getForegroundWindowExePath()
         }
         else
         {
-            DWORD pathLength = GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
+            GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
             //qDebug() << pathLength;
         }
 
