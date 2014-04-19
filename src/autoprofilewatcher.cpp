@@ -1,5 +1,5 @@
-#include <QStringListIterator>
 #include <QDebug>
+#include <QStringListIterator>
 #include <QFile>
 #include <QFileInfo>
 #include <QListIterator>
@@ -133,6 +133,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     QString profile;
     QString active;
 
+    QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
     QStringList defaultkeys = settings->allKeys();
     settings->endGroup();
 
@@ -146,7 +147,7 @@ void AutoProfileWatcher::syncProfileAssignment()
         allDefaultInfo->setDefaultState(true);
     }
 
-    QStringListIterator iter(defaultkeys);
+    QStringListIterator iter(registeredGUIDs);
     while (iter.hasNext())
     {
         QString tempkey = iter.next();

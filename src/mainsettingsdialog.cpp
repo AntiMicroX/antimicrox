@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QSettings>
 #include <QDir>
 #include <QFileDialog>
@@ -8,7 +9,6 @@
 #include <QTableWidgetItem>
 #include <QMapIterator>
 #include <QVariant>
-#include <QDebug>
 #include <QMessageBox>
 
 #include "mainsettingsdialog.h"
@@ -260,7 +260,7 @@ void MainSettingsDialog::syncMappingSettings()
 
         if (itemGUID && !itemGUID->text().isEmpty() && itemDisable)
         {
-            bool disableController = itemDisable->checkState() == Qt::Checked ? true : false;
+            QString disableController = itemDisable->checkState() == Qt::Checked ? "1" : "0";
             if (itemMapping && !itemMapping->text().isEmpty())
             {
                 settings->setValue(itemGUID->text(), itemMapping->text());
@@ -392,7 +392,8 @@ void MainSettingsDialog::populateAutoProfiles()
     defaultAutoProfiles.clear();
 
     settings->beginGroup("DefaultAutoProfiles");
-    QStringList defaultkeys = settings->allKeys();
+    QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
+    //QStringList defaultkeys = settings->allKeys();
     settings->endGroup();
 
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
@@ -410,11 +411,12 @@ void MainSettingsDialog::populateAutoProfiles()
         allDefaultProfile->setDefaultState(true);
     }
 
-    QStringListIterator iter(defaultkeys);
+    QStringListIterator iter(registeredGUIDs);
     while (iter.hasNext())
     {
         QString tempkey = iter.next();
-        QString guid = QString(tempkey).replace("GUID", "");
+        QString guid = tempkey;
+        //QString guid = QString(tempkey).replace("GUID", "");
 
         QString profile = settings->value(QString("DefaultAutoProfile-%1/Profile").arg(guid), "").toString();
         QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(guid), "0").toString();
@@ -708,17 +710,24 @@ void MainSettingsDialog::saveAutoProfileSettings()
     }
 
     QMapIterator<QString, AutoProfileInfo*> iter(defaultAutoProfiles);
+    QStringList registeredGUIDs;
     while (iter.hasNext())
     {
         iter.next();
         QString guid = iter.key();
+        registeredGUIDs.append(guid);
         AutoProfileInfo *info = iter.value();
         QString profileActive = info->isActive() ? "1" : "0";
         QString deviceName = info->getDeviceName();
-        settings->setValue(QString("DefaultAutoProfiles/GUID%1").arg(guid), guid);
+        //settings->setValue(QString("DefaultAutoProfiles/GUID%1").arg(guid), guid);
         settings->setValue(QString("DefaultAutoProfile-%1/Profile").arg(guid), info->getProfileLocation());
         settings->setValue(QString("DefaultAutoProfile-%1/Active").arg(guid), profileActive);
         settings->setValue(QString("DefaultAutoProfile-%1/DeviceName").arg(guid), deviceName);
+    }
+
+    if (!registeredGUIDs.isEmpty())
+    {
+        settings->setValue("DefaultAutoProfiles/GUIDs", registeredGUIDs);
     }
 
     settings->beginGroup("AutoProfiles");
