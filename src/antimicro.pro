@@ -11,7 +11,7 @@ unix {
         packagesExist(sdl2) {
             USE_SDL_2 = 1
             FOUND_SDL = 1
-        } else:packageExist(sdl) {
+        } else:packagesExist(sdl) {
             FOUND_SDL = 1
         } else {
             error("SDL library was not found")
