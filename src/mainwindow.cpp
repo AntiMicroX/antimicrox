@@ -219,7 +219,9 @@ void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->fillButtons();
         connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
+#ifdef USE_SDL_2
         connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
+#endif
 
         if (showTrayIcon)
         {

@@ -445,7 +445,10 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
 
     connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
+#ifdef USE_SDL_2
     connect(gameControllerMappingPushButton, SIGNAL(clicked()), this, SLOT(openGameControllerMappingWindow()));
+#endif
+
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
     connect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
