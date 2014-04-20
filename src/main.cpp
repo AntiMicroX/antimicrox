@@ -82,7 +82,6 @@ void deleteInputDevices(QHash<SDL_JoystickID, InputDevice*> *joysticks)
 int main(int argc, char *argv[])
 {
     qRegisterMetaType<JoyButtonSlot*>();
-    qRegisterMetaType<AdvanceButtonDialog*>();
     qRegisterMetaType<InputDevice*>();
 
     // If running Win version, check if an explicit style

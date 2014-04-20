@@ -322,6 +322,8 @@ void JoyButton::reset()
     currentKeyPress = 0;
 
     isKeyPressed = isButtonPressed = false;
+    quitEvent = true;
+
     toggle = false;
     turboInterval = 0;
     isDown = false;
@@ -1604,7 +1606,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
         if (index >= 0 && index < assignments.count())
         {
             // Slot already exists. Override code and place into desired slot
-            assignments.insert(index, slot);
+            assignments.replace(index, slot);
         }
         else if (index >= assignments.count())
         {
@@ -2352,6 +2354,10 @@ void JoyButton::clearSlotsEventReset()
     releaseDeskTimer.stop();
     mouseEventTimer.stop();
     holdTimer.stop();
+    mouseWheelVerticalEventTimer.stop();
+    mouseWheelHorizontalEventTimer.stop();
+    setChangeTimer.stop();
+    keyDelayTimer.stop();
 
     if (slotiter)
     {
@@ -2365,6 +2371,8 @@ void JoyButton::clearSlotsEventReset()
     isButtonPressedQueue.clear();
     ignoreSetQueue.clear();
     mouseEventQueue.clear();
+    mouseWheelVerticalEventQueue.clear();
+    mouseWheelHorizontalEventQueue.clear();
 
     currentCycle = 0;
     previousCycle = 0;
@@ -2373,8 +2381,60 @@ void JoyButton::clearSlotsEventReset()
     currentDistance = 0;
     currentRawValue = 0;
     currentMouseEvent = 0;
+    currentRelease = 0;
+    currentWheelVerticalEvent = 0;
+    currentWheelHorizontalEvent = 0;
+    currentKeyPress = 0;
 
     isKeyPressed = isButtonPressed = false;
+
+    quitEvent = true;
+}
+
+void JoyButton::eventReset()
+{
+    turboTimer.stop();
+    pauseTimer.stop();
+    pauseWaitTimer.stop();
+    createDeskTimer.stop();
+    releaseDeskTimer.stop();
+    mouseEventTimer.stop();
+    holdTimer.stop();
+    mouseWheelVerticalEventTimer.stop();
+    mouseWheelHorizontalEventTimer.stop();
+    setChangeTimer.stop();
+    keyDelayTimer.stop();
+
+    if (slotiter)
+    {
+        delete slotiter;
+        slotiter = 0;
+    }
+
+    isButtonPressedQueue.clear();
+    ignoreSetQueue.clear();
+    mouseEventQueue.clear();
+    mouseWheelVerticalEventQueue.clear();
+    mouseWheelHorizontalEventQueue.clear();
+
+    currentCycle = 0;
+    previousCycle = 0;
+    currentPause = 0;
+    currentHold = 0;
+    currentDistance = 0;
+    currentRawValue = 0;
+    currentMouseEvent = 0;
+    currentRelease = 0;
+    currentWheelVerticalEvent = 0;
+    currentWheelHorizontalEvent = 0;
+    currentKeyPress = 0;
+
+    isKeyPressed = isButtonPressed = false;
+
+    releaseActiveSlots();
+
+    quitEvent = true;
+    //clearAssignedSlots();
 }
 
 void JoyButton::releaseActiveSlots()

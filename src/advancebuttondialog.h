@@ -53,6 +53,7 @@ private slots:
     void deleteSlot();
     void changeSelectedSlot();
     void insertSlot();
+    void updateSelectedSlot(int value);
 
     void insertPauseSlot();
     void insertHoldSlot();
@@ -71,7 +72,5 @@ private slots:
     void checkSlotMouseModUpdate();
     void checkSlotDistanceUpdate();
 };
-
-Q_DECLARE_METATYPE(AdvanceButtonDialog*)
 
 #endif // ADVANCEBUTTONDIALOG_H

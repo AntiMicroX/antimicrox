@@ -261,6 +261,7 @@ public slots:
     virtual void reset(int index);
 
     virtual void clearSlotsEventReset();
+    virtual void eventReset();
 
     void moveMouseCursor();
     void moveSpringMouse();

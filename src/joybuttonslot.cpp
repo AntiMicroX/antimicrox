@@ -71,10 +71,15 @@ void JoyButtonSlot::setSlotCode(int code)
 
 void JoyButtonSlot::setSlotCode(int code, unsigned int alias)
 {
-    if (mode == JoyButtonSlot::JoyKeyboard && code >= 0)
+    if (mode == JoyButtonSlot::JoyKeyboard && code > 0)
     {
         deviceCode = code;
         qkeyaliasCode = alias;
+    }
+    else if (code >= 0)
+    {
+        deviceCode = code;
+        qkeyaliasCode = 0;
     }
 }
 
