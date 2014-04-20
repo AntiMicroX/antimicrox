@@ -6,6 +6,12 @@
 
 #include "wininfo.h"
 
+typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD,LPTSTR,PDWORD);
+// Check if QueryFullProcessImageNameW function exists in kernel32.dll.
+// Function does not exist in Windows XP.
+static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
+            GetModuleHandle(TEXT("kernel32.dll")), "QueryFullProcessImageNameW");
+
 static bool isWindowsVistaOrHigher()
 {
     OSVERSIONINFO osvi;
@@ -208,14 +214,16 @@ QString WinInfo::getForegroundWindowExePath()
         TCHAR filename[MAX_PATH];
         memset(filename, 0, sizeof(filename));
         //qDebug() << QString::number(sizeof(filename)/sizeof(TCHAR));
-        if (isWindowsVistaOrHigher())
+        if (pQueryFullProcessImageNameW)
         {
+            // Windows Vista and later
             DWORD pathLength = MAX_PATH * sizeof(TCHAR);
-            QueryFullProcessImageNameW(windowProcess, 0, filename, &pathLength);
+            pQueryFullProcessImageNameW(windowProcess, 0, filename, &pathLength);
             //qDebug() << pathLength;
         }
         else
         {
+            // Windows XP
             GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
             //qDebug() << pathLength;
         }
