@@ -6,11 +6,7 @@
 
 #include "inputdaemon.h"
 
-#ifdef USE_SDL_2
 InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical, QObject *parent) :
-#else
-InputDaemon::InputDaemon(QHash<int, InputDevice*> *joysticks, QSettings *settings, bool graphical, QObject *parent) :
-#endif
     QObject(parent)
 {
     this->joysticks = joysticks;
@@ -243,11 +239,8 @@ void InputDaemon::run ()
 
 void InputDaemon::refreshJoysticks()
 {
-#ifdef USE_SDL_2
     QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#else
-    QHashIterator<int, InputDevice*> iter(*joysticks);
-#endif
+
     while (iter.hasNext())
     {
         InputDevice *joystick = iter.next().value();
@@ -376,11 +369,8 @@ void InputDaemon::resetMouseTimers()
 {
     if (joysticks->size() > 0)
     {
-    #ifdef USE_SDL_2
         QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-    #else
-        QHashIterator<int, InputDevice*> iter(*joysticks);
-    #endif
+
         while (iter.hasNext())
         {
             InputDevice *joystick = iter.next().value();

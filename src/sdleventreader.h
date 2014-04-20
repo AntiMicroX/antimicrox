@@ -16,7 +16,7 @@ class SDLEventReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit SDLEventReader(QHash<int, InputDevice*> *joysticks, QObject *parent = 0);
+    explicit SDLEventReader(QHash<SDL_JoystickID, InputDevice*> *joysticks, QObject *parent = 0);
     ~SDLEventReader();
     SDL_Event& getCurrentEvent();
     bool isSDLOpen();
@@ -26,11 +26,7 @@ protected:
     void closeSDL();
     void clearEvents();
 
-#ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;
-#else
-    QHash<int, InputDevice*> *joysticks;
-#endif
     SDL_Event currentEvent;
     bool sdlIsOpen;
 

@@ -26,11 +26,7 @@
 #include "autoprofileinfo.h"
 #endif
 
-#ifdef USE_SDL_2
 MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
-#else
-MainWindow::MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
-#endif
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -192,20 +188,12 @@ void MainWindow::fillButtons(InputDevice *joystick)
     tabwidget->fillButtons();
 }
 
-#ifdef USE_SDL_2
 void MainWindow::fillButtons(QHash<SDL_JoystickID, InputDevice *> *joysticks)
-#else
-void MainWindow::fillButtons(QHash<int, InputDevice *> *joysticks)
-#endif
 {
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
-#ifdef USE_SDL_2
     QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#else
-    QHashIterator<int, InputDevice*> iter(*joysticks);
-#endif
 
     while (iter.hasNext())
     {
@@ -272,11 +260,8 @@ void MainWindow::populateTrayIcon()
 
     if (joysticks->count() > 0)
     {
-#ifdef USE_SDL_2
         QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#else
-        QHashIterator<int, InputDevice*> iter(*joysticks);
-#endif
+
         int i = 0;
         while (iter.hasNext())
         {

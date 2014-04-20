@@ -60,11 +60,7 @@ static void termSignalIntHandler(int signal)
 
 void deleteInputDevices(QHash<SDL_JoystickID, InputDevice*> *joysticks)
 {
-#ifdef USE_SDL_2
     QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#else
-    QHashIterator<int, InputDevice*> iter(*joysticks);
-#endif
 
     while (iter.hasNext())
     {
@@ -157,11 +153,7 @@ int main(int argc, char *argv[])
         configDir.mkpath(PadderCommon::configPath);
     }
 
-#ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks = new QHash<SDL_JoystickID, InputDevice*>();
-#else
-    QHash<int, InputDevice*> *joysticks = new QHash<int, InputDevice*>();
-#endif
 
     // Cross-platform way of performing IPC. Currently,
     // only establish a connection and then disconnect.
@@ -222,14 +214,9 @@ int main(int argc, char *argv[])
     sigaction(SIGINT, &termint, 0);
 #endif
 
-#ifdef USE_SDL_2
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
-#else
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<int, InputDevice*>*)), &w, SLOT(fillButtons(QHash<int, InputDevice*>*)));
-#endif
     QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), &w, SLOT(fillButtons(InputDevice*)));
-    //QObject::connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));

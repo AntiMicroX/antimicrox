@@ -28,13 +28,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-#ifdef USE_SDL_2
-    //MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
     MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
-#else
-    MainWindow(QHash<int, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
-    //MainWindow(QHash<int, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
-#endif
     ~MainWindow();
     
 protected:
@@ -84,11 +78,7 @@ signals:
 
 public slots:
     void fillButtons(InputDevice *joystick);
-#ifdef USE_SDL_2
     void fillButtons(QHash<SDL_JoystickID, InputDevice*> *joysticks);
-#else
-    void fillButtons(QHash<int, InputDevice*> *joysticks);
-#endif
     void startJoystickRefresh();
     void hideWindow();
     void saveAppConfig();

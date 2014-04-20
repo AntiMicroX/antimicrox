@@ -5,7 +5,7 @@
 
 #include "sdleventreader.h"
 
-SDLEventReader::SDLEventReader(QHash<int, InputDevice *> *joysticks, QObject *parent) :
+SDLEventReader::SDLEventReader(QHash<SDL_JoystickID, InputDevice *> *joysticks, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
@@ -22,8 +22,10 @@ void SDLEventReader::initSDL()
 #ifdef USE_SDL_2
     SDL_Init(SDL_INIT_GAMECONTROLLER);
 #else
+    // Video support is required to use event system in SDL 1.2.s
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 #endif
+
     SDL_JoystickEventState(SDL_ENABLE);
     sdlIsOpen = true;
 
@@ -53,40 +55,14 @@ void SDLEventReader::initSDL()
 void SDLEventReader::closeSDL()
 {
     SDL_Event event;
-#ifdef USE_SDL_2
+
     QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
     while (iter.hasNext())
     {
         iter.next();
-
-        //SDL_JoystickID currentSdlId = iter.key();
-        InputDevice *current = iter.value();
-        //SDL_Joystick *sdlHandle = current->getSDLHandle();
-
-        /*if (sdlHandle && SDL_JoystickGetAttached(sdlHandle))
-        {
-            SDL_JoystickClose(sdlHandle);
-        }*/
-        current->closeSDLDevice();
-    }
-#else
-    QHashIterator<int, InputDevice*> iter(*joysticks);
-    while (iter.hasNext())
-    {
-        iter.next();
         InputDevice *current = iter.value();
         current->closeSDLDevice();
     }
-    /*for (int i=0; i < SDL_NumJoysticks(); i++)
-    {
-
-        if (SDL_JoystickOpened(i) && joysticks->value(i))
-        {
-            SDL_Joystick *handle = (joysticks->value(i))->getSDLHandle();
-            SDL_JoystickClose(handle);
-        }
-    }*/
-#endif
 
     // Clear any pending events
     while (SDL_PollEvent(&event) > 0)

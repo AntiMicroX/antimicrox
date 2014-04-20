@@ -23,24 +23,20 @@ class InputDaemon : public QObject
 {
     Q_OBJECT
 public:
-#ifdef USE_SDL_2
     explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical=true, QObject *parent=0);
-#else
-    explicit InputDaemon (QHash<int, InputDevice*> *joysticks, QSettings *settings, bool graphical=true, QObject *parent=0);
-#endif
     ~InputDaemon();
 
 protected:
     void resetMouseTimers();
 
-#ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;
+
+#ifdef USE_SDL_2
     QHash<SDL_JoystickID, Joystick*> trackjoysticks;
     QHash<SDL_JoystickID, GameController*> trackcontrollers;
 
-#else
-    QHash<int, InputDevice*> *joysticks;
 #endif
+
     bool stopped;
     bool graphical;
 
@@ -50,11 +46,7 @@ protected:
 
 signals:
     void joystickRefreshed (InputDevice *joystick);
-#ifdef USE_SDL_2
     void joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*> *joysticks);
-#else
-    void joysticksRefreshed(QHash<int, InputDevice*> *joysticks);
-#endif
     void complete(InputDevice* joystick);
     void complete();
 
