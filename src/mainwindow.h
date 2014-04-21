@@ -42,11 +42,7 @@ protected:
     void changeStartSetNumber(unsigned int startSetNumber, QString controllerID);
     void changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex=0);
 
-#ifdef USE_SDL_2
     QHash<SDL_JoystickID, InputDevice*> *joysticks;
-#else
-    QHash<int, InputDevice*> *joysticks;
-#endif
 
     QSystemTrayIcon *trayIcon;
     QAction *hideAction;
@@ -54,6 +50,7 @@ protected:
     QAction *closeAction;
     QAction *updateJoy;
     QMenu *trayIconMenu;
+    QList<QAction*> profileActions;
     AboutDialog *aboutDialog;
     bool signalDisconnect;
     bool showTrayIcon;
@@ -100,8 +97,11 @@ private slots:
     void disableFlashActions();
     void enableFlashActions();
     void joystickRefreshPropogate(InputDevice *joystick);
-    void trayMenuChangeJoyConfig(QAction *action);
+
     void joystickTrayShow();
+    void singleTrayProfileMenuShow();
+    void profileTrayActionTriggered(bool checked);
+
     void populateTrayIcon();
     void openAboutDialog();
     void handleOutsideConnection();

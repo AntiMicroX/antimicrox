@@ -257,8 +257,10 @@ void MainWindow::startJoystickRefresh()
 void MainWindow::populateTrayIcon()
 {
     trayIconMenu->clear();
+    profileActions.clear();
+    unsigned int joystickCount = joysticks->count();
 
-    if (joysticks->count() > 0)
+    if (joystickCount > 0)
     {
         QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
@@ -270,8 +272,13 @@ void MainWindow::populateTrayIcon()
 
             QString joytabName = current->getSDLName();
             joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
+            QMenu *joysticksubMenu = 0;
 
-            QMenu *joysticksubMenu = trayIconMenu->addMenu(joytabName);
+            if (joystickCount > 1)
+            {
+                joysticksubMenu = trayIconMenu->addMenu(joytabName);
+            }
+
             JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
             QHash<int, QString> *configs = widget->recentConfigs();
             QHashIterator<int, QString> iter(*configs);
@@ -291,7 +298,16 @@ void MainWindow::populateTrayIcon()
                 tempmap->insert(QString::number(i), QVariant (iter.key()));
                 QVariant tempvar (*tempmap);
                 newaction->setData(tempvar);
-                joysticksubMenu->addAction(newaction);
+                connect(newaction, SIGNAL(triggered(bool)), this, SLOT(profileTrayActionTriggered(bool)));
+
+                if (joystickCount == 1)
+                {
+                    profileActions.append(newaction);
+                }
+                else
+                {
+                    joysticksubMenu->addAction(newaction);
+                }
             }
 
             delete configs;
@@ -300,10 +316,18 @@ void MainWindow::populateTrayIcon()
             QAction *newaction = new QAction(tr("Open File"), joysticksubMenu);
             newaction->setIcon(QIcon::fromTheme("document-open"));
             connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
-            joysticksubMenu->addAction(newaction);
 
-            connect(joysticksubMenu, SIGNAL(triggered(QAction*)), this, SLOT(trayMenuChangeJoyConfig(QAction*)));
-            connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+            if (joystickCount == 1)
+            {
+                trayIconMenu->addActions(profileActions);
+                trayIconMenu->addAction(newaction);
+                connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
+            }
+            else
+            {
+                joysticksubMenu->addAction(newaction);
+                connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+            }
 
             i++;
         }
@@ -566,37 +590,9 @@ void MainWindow::hideWindow()
     hide();
 }
 
-void MainWindow::trayMenuChangeJoyConfig(QAction *action)
-{
-    // Obtaining the selected config
-    QHash<QString, QVariant> tempmap = action->data().toHash();
-    QHashIterator<QString, QVariant> iter(tempmap);
-    while (iter.hasNext())
-    {
-        iter.next();
-
-        // Fetching indicies and tab associated with the current joypad
-        int joyindex = iter.key().toInt();
-        int configindex = iter.value().toInt();
-        JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
-
-        // Checking if the selected config has been disabled by the change (action->isChecked() represents the state of the checkbox AFTER the click)
-        if (!action->isChecked())
-        {
-            // It has - disabling - the 0th config is the new/'null' config
-            widget->setCurrentConfig(0);
-        }
-        else
-        {
-            // It hasn't - enabling - note that setting this causes the menu to be updated
-            widget->setCurrentConfig(configindex);
-        }
-    }
-}
-
 void MainWindow::joystickTrayShow()
 {
-    QMenu *tempmenu = (QMenu*) sender();
+    QMenu *tempmenu = static_cast<QMenu*>(sender());
     QList<QAction*> menuactions = tempmenu->actions();
     QListIterator<QAction*> listiter (menuactions);
     while (listiter.hasNext())
@@ -977,6 +973,78 @@ void MainWindow::showStickAssignmentDialog()
         AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
         connect(dialog, SIGNAL(finished(int)), joyTab, SLOT(fillButtons()));
         dialog->show();
+    }
+}
+
+void MainWindow::singleTrayProfileMenuShow()
+{
+    if (!profileActions.isEmpty())
+    {
+        QList<QAction*> menuactions = profileActions;
+        QListIterator<QAction*> listiter (menuactions);
+        while (listiter.hasNext())
+        {
+            QAction *action = listiter.next();
+            action->setChecked(false);
+
+            QHash<QString, QVariant> tempmap = action->data().toHash();
+            QHashIterator<QString, QVariant> iter(tempmap);
+            while (iter.hasNext())
+            {
+                iter.next();
+                int joyindex = iter.key().toInt();
+                int configindex = iter.value().toInt();
+                JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+
+                if (configindex == widget->getCurrentConfigIndex())
+                {
+                    action->setChecked(true);
+
+                    if (widget->getJoystick()->isDeviceEdited())
+                    {
+                        action->setIcon(QIcon::fromTheme("document-save-as"));
+                    }
+                    else if (!action->icon().isNull())
+                    {
+                        action->setIcon(QIcon());
+                    }
+                }
+                else if (!action->icon().isNull())
+                {
+                    action->setIcon(QIcon());
+                }
+            }
+        }
+    }
+}
+
+
+void MainWindow::profileTrayActionTriggered(bool checked)
+{
+    // Obtaining the selected config
+    QAction *action = static_cast<QAction*>(sender());
+    QHash<QString, QVariant> tempmap = action->data().toHash();
+    QHashIterator<QString, QVariant> iter(tempmap);
+    while (iter.hasNext())
+    {
+        iter.next();
+
+        // Fetching indicies and tab associated with the current joypad
+        int joyindex = iter.key().toInt();
+        int configindex = iter.value().toInt();
+        JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+
+        // Checking if the selected config has been disabled by the change (action->isChecked() represents the state of the checkbox AFTER the click)
+        if (!checked)
+        {
+            // It has - disabling - the 0th config is the new/'null' config
+            widget->setCurrentConfig(0);
+        }
+        else
+        {
+            // It hasn't - enabling - note that setting this causes the menu to be updated
+            widget->setCurrentConfig(configindex);
+        }
     }
 }
 
