@@ -397,8 +397,7 @@ void MainWindow::saveAppConfig()
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
         settings->beginGroup("Controllers");
-        QStringList tempGUIDHolder;
-        QStringList tempNameHolder;
+        QStringList tempIdentifierHolder;
 
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
@@ -411,26 +410,15 @@ void MainWindow::saveAppConfig()
             // others recent config file list. Use first controller
             // detected to save recent config list. Flag controller string
             // afterwards.
-            if (!device->getGUIDString().isEmpty())
+            if (!device->getStringIdentifier().isEmpty())
             {
-                if (tempGUIDHolder.contains(device->getGUIDString()))
+                if (tempIdentifierHolder.contains(device->getStringIdentifier()))
                 {
                     prepareSave = false;
                 }
                 else
                 {
-                    tempGUIDHolder.append(device->getGUIDString());
-                }
-            }
-            else if (!device->getSDLName().isEmpty())
-            {
-                if (tempNameHolder.contains(device->getSDLName()))
-                {
-                    prepareSave = false;
-                }
-                else
-                {
-                    tempNameHolder.append(device->getSDLName());
+                    tempIdentifierHolder.append(device->getStringIdentifier());
                 }
             }
 
@@ -744,11 +732,7 @@ void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
             if (tab)
             {
                 InputDevice *tempdevice = tab->getJoystick();
-                if (controllerID == tempdevice->getGUIDString())
-                {
-                    tab->loadConfigFile(fileLocation);
-                }
-                else if (controllerID == tempdevice->getSDLName())
+                if (controllerID == tempdevice->getStringIdentifier())
                 {
                     tab->loadConfigFile(fileLocation);
                 }
@@ -870,11 +854,7 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
             if (tab)
             {
                 InputDevice *tempdevice = tab->getJoystick();
-                if (controllerID == tempdevice->getGUIDString())
-                {
-                    tab->unloadConfig();
-                }
-                else if (controllerID == tempdevice->getSDLName())
+                if (controllerID == tempdevice->getStringIdentifier())
                 {
                     tab->unloadConfig();
                 }
@@ -910,11 +890,7 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, QString contr
             if (tab)
             {
                 InputDevice *tempdevice = tab->getJoystick();
-                if (controllerID == tempdevice->getGUIDString())
-                {
-                    tab->changeCurrentSet(startSetNumber);
-                }
-                else if (controllerID == tempdevice->getSDLName())
+                if (controllerID == tempdevice->getStringIdentifier())
                 {
                     tab->changeCurrentSet(startSetNumber);
                 }
@@ -1165,11 +1141,7 @@ void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
                     widget->loadConfigFile(profileLocation);
                 }
             }
-            else if (guid == widget->getJoystick()->getGUIDString())
-            {
-                widget->loadConfigFile(profileLocation);
-            }
-            else if (guid == widget->getJoystick()->getSDLName())
+            else if (guid == widget->getJoystick()->getStringIdentifier())
             {
                 widget->loadConfigFile(profileLocation);
             }

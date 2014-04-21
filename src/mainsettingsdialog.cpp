@@ -275,7 +275,6 @@ void MainSettingsDialog::syncMappingSettings()
 
 void MainSettingsDialog::saveNewSettings()
 {
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 #ifdef USE_SDL_2
     syncMappingSettings();
 #endif

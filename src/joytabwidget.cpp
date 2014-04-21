@@ -1286,16 +1286,11 @@ void JoyTabWidget::saveSettings()
     int index = configBox->currentIndex();
     int currentjoy = 1;
 
-    QString guidString = joystick->getGUIDString();
-    QString sdlName = joystick->getSDLName();
+    QString identifier = joystick->getStringIdentifier();
 
-    QString controlGUIDPrefix = QString("Controller%1").arg(guidString);
-    QString controlGUIDString = QString("Controller%1ConfigFile%2").arg(guidString);
-    QString controlGUIDLastSelected = QString("Controller%1LastSelected").arg(guidString);
-
-    QString controlSDLNamePrefix = QString("Controller%1").arg(sdlName);
-    QString controlSDLNameString = QString("Controller%1ConfigFile%2").arg(sdlName);
-    QString controlSDLNameLastSelected = QString("Controller%1LastSelected").arg(sdlName);
+    QString controlEntryPrefix = QString("Controller%1").arg(identifier);
+    QString controlEntryString = QString("Controller%1ConfigFile%2").arg(identifier);
+    QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
 
     // Remove current settings for a controller
     QStringList tempkeys = settings->allKeys();
@@ -1303,11 +1298,7 @@ void JoyTabWidget::saveSettings()
     while (iter.hasNext())
     {
         QString tempstring = iter.next();
-        if (!guidString.isEmpty() && tempstring.startsWith(controlGUIDPrefix))
-        {
-            settings->remove(tempstring);
-        }
-        else if (!sdlName.isEmpty() && tempstring.startsWith(controlSDLNamePrefix))
+        if (!identifier.isEmpty() && tempstring.startsWith(controlEntryPrefix))
         {
             settings->remove(tempstring);
         }
@@ -1317,13 +1308,9 @@ void JoyTabWidget::saveSettings()
     if (index != 0)
     {
         filename = lastfile = configBox->itemData(index).toString();
-        if (!guidString.isEmpty())
+        if (!identifier.isEmpty())
         {
-            settings->setValue(controlGUIDString.arg(currentjoy), filename);
-        }
-        else if (!sdlName.isEmpty())
-        {
-            settings->setValue(controlSDLNameString.arg(currentjoy), filename);
+            settings->setValue(controlEntryString.arg(currentjoy), filename);
         }
 
         currentjoy++;
@@ -1340,26 +1327,18 @@ void JoyTabWidget::saveSettings()
         {
            filename = configBox->itemData(i).toString();
 
-           if (!guidString.isEmpty())
+           if (!identifier.isEmpty())
            {
-               settings->setValue(controlGUIDString.arg(currentjoy), filename);
-           }
-           else if (!sdlName.isEmpty())
-           {
-               settings->setValue(controlSDLNameString.arg(currentjoy), filename);
+               settings->setValue(controlEntryString.arg(currentjoy), filename);
            }
 
            currentjoy++;
         }
     }
 
-    if (!guidString.isEmpty())
+    if (!identifier.isEmpty())
     {
-        settings->setValue(controlGUIDLastSelected, lastfile);
-    }
-    else if (!sdlName.isEmpty())
-    {
-        settings->setValue(controlSDLNameLastSelected, lastfile);
+        settings->setValue(controlEntryLastSelected, lastfile);
     }
 }
 
@@ -1387,24 +1366,18 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
 
     settings->beginGroup("Controllers");
-    QString controlGUIDString = QString("Controller%1ConfigFile%2").arg(joystick->getGUIDString());
-    QString controlGUIDLastSelected = QString("Controller%1LastSelected").arg(joystick->getGUIDString());
 
-    QString controlSDLNameString = QString("Controller%1ConfigFile%2").arg(joystick->getSDLName());
-    QString controlSDLNameLastSelected = QString("Controller%1LastSelected").arg(joystick->getSDLName());
+    QString controlEntryString = QString("Controller%1ConfigFile%2").arg(joystick->getStringIdentifier());
+    QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(joystick->getStringIdentifier());
 
     bool finished = false;
     for (int i=1; !finished; i++)
     {
         QString tempfilepath;
 
-        if (!joystick->getGUIDString().isEmpty())
+        if (!joystick->getStringIdentifier().isEmpty())
         {
-            tempfilepath = settings->value(controlGUIDString.arg(i), "").toString();
-        }
-        else if (!joystick->getSDLName().isEmpty())
-        {
-            tempfilepath = settings->value(controlSDLNameString.arg(i), "").toString();
+            tempfilepath = settings->value(controlEntryString.arg(i), "").toString();
         }
 
         if (!tempfilepath.isEmpty())
@@ -1429,13 +1402,10 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
 
     QString lastfile;
-    if (!joystick->getGUIDString().isEmpty())
+
+    if (!joystick->getStringIdentifier().isEmpty())
     {
-        lastfile = settings->value(controlGUIDLastSelected, "").toString();
-    }
-    else if (!joystick->getSDLName().isEmpty())
-    {
-        lastfile = settings->value(controlSDLNameLastSelected, "").toString();
+        lastfile = settings->value(controlEntryLastSelected, "").toString();
     }
 
     settings->endGroup();

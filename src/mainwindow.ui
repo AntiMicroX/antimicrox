@@ -280,7 +280,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionOptions">
    <property name="text">
-    <string>Options</string>
+    <string>Settings</string>
    </property>
   </action>
   <action name="actionStick_Pad_Assign">
