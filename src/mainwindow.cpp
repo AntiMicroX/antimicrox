@@ -256,6 +256,8 @@ void MainWindow::startJoystickRefresh()
 
 void MainWindow::populateTrayIcon()
 {
+    disconnect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
+
     trayIconMenu->clear();
     profileActions.clear();
     unsigned int joystickCount = joysticks->count();
