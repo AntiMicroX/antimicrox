@@ -18,6 +18,8 @@
 #include "editalldefaultautoprofiledialog.h"
 #include "common.h"
 
+static const QString RUNATSTARTUPKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
+
 MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *> *devices, QWidget *parent) :
     QDialog(parent, Qt::Dialog),
     ui(new Ui::MainSettingsDialog)
@@ -72,6 +74,17 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
         ui->autoProfileTableWidget->setEnabled(true);
         ui->autoProfileAddPushButton->setEnabled(true);
     }
+
+#ifdef Q_OS_WIN
+    QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
+    QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
+    if (!autoRunEntry.isEmpty())
+    {
+        ui->launchAtWinStartupCheckBox->setChecked(true);
+    }
+#else
+    ui->launchAtWinStartupCheckBox->setVisible(false);
+#endif
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
@@ -309,6 +322,15 @@ void MainSettingsDialog::saveNewSettings()
     //checkLocaleChange();
 #ifdef USE_SDL_2
     saveAutoProfileSettings();
+#endif
+
+#ifdef Q_OS_WIN
+    if (ui->launchAtWinStartupCheckBox->isChecked())
+    {
+        QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
+        QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
+        autoRunReg.setValue("antimicro", nativeFilePath);
+    }
 #endif
 
     settings->sync();

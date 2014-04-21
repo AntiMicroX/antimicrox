@@ -173,6 +173,13 @@ clicked instead of quitting the program.</string>
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="launchAtWinStartupCheckBox">
+           <property name="text">
+            <string>Launch At Startup</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
