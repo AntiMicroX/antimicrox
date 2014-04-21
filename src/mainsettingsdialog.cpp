@@ -325,12 +325,19 @@ void MainSettingsDialog::saveNewSettings()
 #endif
 
 #ifdef Q_OS_WIN
+    QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
+    QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
+
     if (ui->launchAtWinStartupCheckBox->isChecked())
     {
-        QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
         QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
         autoRunReg.setValue("antimicro", nativeFilePath);
     }
+    else if (!autoRunEntry.isEmpty())
+    {
+        autoRunReg.remove("antimicro");
+    }
+
 #endif
 
     settings->sync();
