@@ -174,8 +174,23 @@ clicked instead of quitting the program.</string>
          </item>
          <item>
           <widget class="QCheckBox" name="launchAtWinStartupCheckBox">
+           <property name="toolTip">
+            <string>Have Windows start AntiMicro at system startup</string>
+           </property>
            <property name="text">
-            <string>Launch At Startup</string>
+            <string>Launch At Windows Startup</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="traySingleProfileListCheckBox">
+           <property name="toolTip">
+            <string>Display recent profiles for all controllers
+as a single list in the tray menu. Defaults
+to using sub-menus.</string>
+           </property>
+           <property name="text">
+            <string>Single Profile List in Tray</string>
            </property>
           </widget>
          </item>

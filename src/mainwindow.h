@@ -50,7 +50,7 @@ protected:
     QAction *closeAction;
     QAction *updateJoy;
     QMenu *trayIconMenu;
-    QList<QAction*> profileActions;
+    QMap<int, QList<QAction*> > profileActions;
     AboutDialog *aboutDialog;
     bool signalDisconnect;
     bool showTrayIcon;

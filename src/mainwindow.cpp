@@ -265,6 +265,11 @@ void MainWindow::populateTrayIcon()
     if (joystickCount > 0)
     {
         QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        bool useSingleList = settings->value("TrayProfileList", false).toBool();
+        if (!useSingleList && joystickCount == 1)
+        {
+            useSingleList = true;
+        }
 
         int i = 0;
         while (iter.hasNext())
@@ -276,35 +281,36 @@ void MainWindow::populateTrayIcon()
             joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
             QMenu *joysticksubMenu = 0;
 
-            if (joystickCount > 1)
+            if (!useSingleList)
             {
                 joysticksubMenu = trayIconMenu->addMenu(joytabName);
             }
 
             JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
             QHash<int, QString> *configs = widget->recentConfigs();
-            QHashIterator<int, QString> iter(*configs);
-            while (iter.hasNext())
+            QHashIterator<int, QString> configIter(*configs);
+            QList<QAction*> tempProfileList;
+            while (configIter.hasNext())
             {
-                iter.next();
-                QAction *newaction = new QAction(iter.value(), joysticksubMenu);
+                configIter.next();
+                QAction *newaction = new QAction(configIter.value(), joysticksubMenu);
                 newaction->setCheckable(true);
                 newaction->setChecked(false);
 
-                if (iter.key() == widget->getCurrentConfigIndex())
+                if (configIter.key() == widget->getCurrentConfigIndex())
                 {
                     newaction->setChecked(true);
                 }
 
                 QHash<QString, QVariant> *tempmap = new QHash<QString, QVariant> ();
-                tempmap->insert(QString::number(i), QVariant (iter.key()));
+                tempmap->insert(QString::number(i), QVariant (configIter.key()));
                 QVariant tempvar (*tempmap);
                 newaction->setData(tempvar);
                 connect(newaction, SIGNAL(triggered(bool)), this, SLOT(profileTrayActionTriggered(bool)));
 
-                if (joystickCount == 1)
+                if (useSingleList)
                 {
-                    profileActions.append(newaction);
+                    tempProfileList.append(newaction);
                 }
                 else
                 {
@@ -319,11 +325,25 @@ void MainWindow::populateTrayIcon()
             newaction->setIcon(QIcon::fromTheme("document-open"));
             connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
 
-            if (joystickCount == 1)
+            if (useSingleList)
             {
-                trayIconMenu->addActions(profileActions);
+                QAction *titleAction = new QAction(joytabName, trayIconMenu);
+                titleAction->setCheckable(false);
+
+                QFont actionFont = titleAction->font();
+                actionFont.setBold(true);
+                titleAction->setFont(actionFont);
+
+                trayIconMenu->addAction(titleAction);
+                trayIconMenu->addActions(tempProfileList);
                 trayIconMenu->addAction(newaction);
-                connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
+
+                profileActions.insert(i, tempProfileList);
+
+                if (iter.hasNext())
+                {
+                    trayIconMenu->addSeparator();
+                }
             }
             else
             {
@@ -332,6 +352,11 @@ void MainWindow::populateTrayIcon()
             }
 
             i++;
+        }
+
+        if (useSingleList)
+        {
+            connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
         }
 
         trayIconMenu->addSeparator();
@@ -931,6 +956,8 @@ void MainWindow::openMainSettingsDialog()
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
 #endif
 
+    connect(dialog, SIGNAL(accepted()), this, SLOT(populateTrayIcon()));
+
     dialog->show();
 }
 
@@ -982,38 +1009,43 @@ void MainWindow::singleTrayProfileMenuShow()
 {
     if (!profileActions.isEmpty())
     {
-        QList<QAction*> menuactions = profileActions;
-        QListIterator<QAction*> listiter (menuactions);
-        while (listiter.hasNext())
+        QMapIterator<int, QList<QAction*> > mapIter(profileActions);
+        while (mapIter.hasNext())
         {
-            QAction *action = listiter.next();
-            action->setChecked(false);
-
-            QHash<QString, QVariant> tempmap = action->data().toHash();
-            QHashIterator<QString, QVariant> iter(tempmap);
-            while (iter.hasNext())
+            mapIter.next();
+            QList<QAction*> menuactions = mapIter.value();
+            QListIterator<QAction*> listiter (menuactions);
+            while (listiter.hasNext())
             {
-                iter.next();
-                int joyindex = iter.key().toInt();
-                int configindex = iter.value().toInt();
-                JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+                QAction *action = listiter.next();
+                action->setChecked(false);
 
-                if (configindex == widget->getCurrentConfigIndex())
+                QHash<QString, QVariant> tempmap = action->data().toHash();
+                QHashIterator<QString, QVariant> iter(tempmap);
+                while (iter.hasNext())
                 {
-                    action->setChecked(true);
+                    iter.next();
+                    int joyindex = iter.key().toInt();
+                    int configindex = iter.value().toInt();
+                    JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
 
-                    if (widget->getJoystick()->isDeviceEdited())
+                    if (configindex == widget->getCurrentConfigIndex())
                     {
-                        action->setIcon(QIcon::fromTheme("document-save-as"));
+                        action->setChecked(true);
+
+                        if (widget->getJoystick()->isDeviceEdited())
+                        {
+                            action->setIcon(QIcon::fromTheme("document-save-as"));
+                        }
+                        else if (!action->icon().isNull())
+                        {
+                            action->setIcon(QIcon());
+                        }
                     }
                     else if (!action->icon().isNull())
                     {
                         action->setIcon(QIcon());
                     }
-                }
-                else if (!action->icon().isNull())
-                {
-                    action->setIcon(QIcon());
                 }
             }
         }

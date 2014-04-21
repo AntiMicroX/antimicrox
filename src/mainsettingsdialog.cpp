@@ -86,6 +86,12 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     ui->launchAtWinStartupCheckBox->setVisible(false);
 #endif
 
+    bool useSingleProfileList = settings->value("TrayProfileList", false).toBool();
+    if (useSingleProfileList)
+    {
+        ui->traySingleProfileListCheckBox->setChecked(true);
+    }
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -339,6 +345,15 @@ void MainSettingsDialog::saveNewSettings()
     }
 
 #endif
+
+    if (ui->traySingleProfileListCheckBox->isChecked())
+    {
+        settings->setValue("TrayProfileList", "1");
+    }
+    else
+    {
+        settings->setValue("TrayProfileList", "0");
+    }
 
     settings->sync();
 }
