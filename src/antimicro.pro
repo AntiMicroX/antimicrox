@@ -11,8 +11,12 @@ unix {
         packagesExist(sdl2) {
             USE_SDL_2 = 1
             FOUND_SDL = 1
+			CONFIG+=link_pkgconfig
+			PKGCONFIG+=sdl2
         } else:packagesExist(sdl) {
             FOUND_SDL = 1
+			CONFIG+=link_pkgconfig
+			PKGCONFIG+=sdl
         } else {
             error("SDL library was not found")
         }
