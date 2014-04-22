@@ -43,6 +43,16 @@ InputDaemon::~InputDaemon()
     }
 }
 
+void InputDaemon::startWorker()
+{
+    if (!thread->isRunning())
+    {
+        connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+        connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+        thread->start();
+    }
+}
+
 void InputDaemon::run ()
 {
     SDL_Event event;

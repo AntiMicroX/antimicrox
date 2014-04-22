@@ -26,6 +26,8 @@ public:
     explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical=true, QObject *parent=0);
     ~InputDaemon();
 
+    void startWorker();
+
 protected:
     void resetMouseTimers();
 

@@ -36,6 +36,7 @@
 #include "mainwindow.h"
 #include "inputdevice.h"
 #include "autoprofileinfo.h"
+#include "localantimicroserver.h"
 
 #ifndef Q_OS_WIN
 #include <signal.h>
@@ -196,6 +197,9 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    LocalAntiMicroServer localServer;
+    localServer.startLocalServer();
+
 #ifndef Q_OS_WIN
     if (cmdutility.launchAsDaemon())
     {
@@ -248,7 +252,6 @@ int main(int argc, char *argv[])
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
     MainWindow w(joysticks, &myappTranslator, &cmdutility, &settings);
-    w.startLocalServer();
 
 #ifndef Q_OS_WIN
     // Have program handle SIGTERM
@@ -275,6 +278,7 @@ int main(int argc, char *argv[])
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+    QObject::connect(&localServer, SIGNAL(clientdisconnect()), &w, SLOT(handleInstanceDisconnect()));
 
 #ifdef USE_SDL_2
     QObject::connect(&w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));

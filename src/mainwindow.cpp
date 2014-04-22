@@ -778,37 +778,9 @@ void MainWindow::removeJoyTabs()
     ui->tabWidget->clear();
 }
 
-void MainWindow::startLocalServer()
+void MainWindow::handleInstanceDisconnect()
 {
-    localServer = new QLocalServer(this);
-    QLocalServer::removeServer(PadderCommon::localSocketKey);
-    localServer->setMaxPendingConnections(1);
-    if (!localServer->listen(PadderCommon::localSocketKey))
-    {
-        QTextStream errorstream(stderr);
-        QString message("Could not start signal server. Profiles cannot be reloaded\n");
-        message.append("from command-line");
-        errorstream << tr(message.toStdString().c_str()) << endl;
-    }
-    else
-    {
-        connect(localServer, SIGNAL(newConnection()), this, SLOT(handleOutsideConnection()));
-    }
-}
-
-void MainWindow::handleOutsideConnection()
-{
-    QLocalSocket *socket = localServer->nextPendingConnection();
-    if (socket)
-    {
-        connect(socket, SIGNAL(disconnected()), this, SLOT(handleSocketDisconnect()));
-        connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
-    }
-}
-
-void MainWindow::handleSocketDisconnect()
-{
-	settings->sync();
+    settings->sync();
     loadAppConfig(true);
 }
 

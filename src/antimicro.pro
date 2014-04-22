@@ -238,7 +238,8 @@ SOURCES += main.cpp\
     autoprofileinfo.cpp \
     addeditautoprofiledialog.cpp \
     editalldefaultautoprofiledialog.cpp \
-    common.cpp
+    common.cpp \
+    localantimicroserver.cpp
 
 unix {
   SOURCES += x11info.cpp \
@@ -324,7 +325,8 @@ HEADERS  += mainwindow.h \
     autoprofilewatcher.h \
     autoprofileinfo.h \
     addeditautoprofiledialog.h \
-    editalldefaultautoprofiledialog.h
+    editalldefaultautoprofiledialog.h \
+    localantimicroserver.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \

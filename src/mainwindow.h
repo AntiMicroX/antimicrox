@@ -81,7 +81,6 @@ public slots:
     void saveAppConfig();
     void loadAppConfig(bool forceRefresh=false);
     void removeJoyTabs();
-    void startLocalServer();
     void quitProgram();
 
 #ifdef USE_SDL_2
@@ -104,8 +103,7 @@ private slots:
 
     void populateTrayIcon();
     void openAboutDialog();
-    void handleOutsideConnection();
-    void handleSocketDisconnect();
+    void handleInstanceDisconnect();
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
     void openProjectHomePage();
