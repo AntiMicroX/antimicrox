@@ -40,6 +40,7 @@ public:
     bool setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     bool setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     bool setAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool insertAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     void removeAssignedSlot(int index);
 

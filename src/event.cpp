@@ -429,7 +429,12 @@ QString keysymToKey(int keysym, unsigned int alias)
     Q_UNUSED(alias);
 
     Display* display = X11Info::display();
-    unsigned int keycode = XKeysymToKeycode(display, keysym);
+    unsigned int keycode = 0;
+    if (keysym > 0)
+    {
+        keycode = XKeysymToKeycode(display, keysym);
+    }
+
     newkey = keycodeToKey(keycode);
 #else
     newkey = keycodeToKey(keysym, alias);

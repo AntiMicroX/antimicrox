@@ -296,6 +296,9 @@ void AdvanceButtonDialog::insertSlot()
         ui->slotListWidget->setItemWidget(item, widget);
         ui->slotListWidget->setCurrentItem(item);
         connectButtonEvents(blankButton);
+        blankButton->refreshButtonLabel();
+
+        this->button->insertAssignedSlot(0, 0, current);
     }
 }
 
