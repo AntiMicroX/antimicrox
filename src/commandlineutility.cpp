@@ -15,7 +15,7 @@ QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-
 QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
 QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
-
+QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)
@@ -30,6 +30,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     hiddenRequest = false;
     unloadProfile = false;
     startSetNumber = 0;
+    daemonMode = false;
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -200,6 +201,12 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 encounteredError = true;
             }
         }
+#ifdef Q_OS_UNIX
+        else if (daemonRegexp.exactMatch(temp))
+        {
+            daemonMode = true;
+        }
+#endif
     }
 }
 
@@ -230,6 +237,11 @@ void CommandLineUtility::printHelp()
         << endl;
     out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
         << endl;
+#ifdef Q_OS_UNIX
+    out << "-d, --daemon                  " << " "
+           << tr("Launch program as a daemon.") << endl;
+#endif
+
 }
 
 bool CommandLineUtility::isHelpRequested()
@@ -319,3 +331,10 @@ bool CommandLineUtility::isPossibleCommand(QString temp)
 
     return result;
 }
+
+#ifdef Q_OS_UNIX
+bool CommandLineUtility::launchAsDaemon()
+{
+    return daemonMode;
+}
+#endif

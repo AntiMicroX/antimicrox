@@ -29,6 +29,10 @@ public:
     unsigned int getStartSetNumber();
     unsigned int getJoyStartSetNumber();
 
+#ifdef Q_OS_UNIX
+    bool launchAsDaemon();
+#endif
+
     void printHelp();
     void printVersionString();
 
@@ -48,6 +52,7 @@ protected:
     bool hiddenRequest;
     bool unloadProfile;
     unsigned int startSetNumber;
+    bool daemonMode;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -58,6 +63,9 @@ protected:
     static QRegExp hiddenRegexp;
     static QRegExp unloadRegexp;
     static QRegExp startSetRegexp;
+#ifdef Q_OS_UNIX
+    static QRegExp daemonRegexp;
+#endif
     
 signals:
     

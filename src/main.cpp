@@ -39,6 +39,13 @@
 
 #ifndef Q_OS_WIN
 #include <signal.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include "x11info.h"
+
 #endif
 
 #ifndef Q_OS_WIN
@@ -127,8 +134,6 @@ int main(int argc, char *argv[])
 #endif
     a.installTranslator(&myappTranslator);
 
-    //qDebug() << QLocale::system().language();
-
     if (cmdutility.hasError())
     {
         return 1;
@@ -191,6 +196,55 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+#ifndef Q_OS_WIN
+    if (cmdutility.launchAsDaemon())
+    {
+        pid_t pid, sid;
+
+        //Fork the Parent Process
+        pid = fork();
+
+        if (pid < 0) {
+            QTextStream errorstream(stderr);
+            errorstream << QObject::tr("Failed to launch daemon") << endl;
+            exit(EXIT_FAILURE);
+        }
+        //We got a good pid, Close the Parent Process
+        else if (pid > 0) {
+            QTextStream outstream(stdout);
+            outstream << QObject::tr("Launching daemon") << endl;
+            exit(EXIT_SUCCESS);
+        }
+
+        //X11Info::closeDisplay();
+        X11Info::syncDisplay();
+
+        //Change File Mask
+        umask(0);
+
+        //Create a new Signature Id for our child
+        sid = setsid();
+        if (sid < 0) {
+            QTextStream errorstream(stderr);
+            errorstream << QObject::tr("Failed to set a signature id for the daemon") << endl;
+            exit(EXIT_FAILURE);
+        }
+
+        if ((chdir("/")) < 0) {
+            QTextStream errorstream(stderr);
+            errorstream << QObject::tr("Failed to change working directory to /")
+                        << endl;
+            exit(EXIT_FAILURE);
+        }
+
+        //Close Standard File Descriptors
+        close(STDIN_FILENO);
+        close(STDOUT_FILENO);
+        close(STDERR_FILENO);
+    }
+
+#endif
+
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
     MainWindow w(joysticks, &myappTranslator, &cmdutility, &settings);
@@ -212,6 +266,7 @@ int main(int argc, char *argv[])
     termint.sa_flags = 0;
 
     sigaction(SIGINT, &termint, 0);
+
 #endif
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
@@ -220,6 +275,7 @@ int main(int argc, char *argv[])
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
     QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+
 #ifdef USE_SDL_2
     QObject::connect(&w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
     QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), &w, SLOT(testMappingUpdateNow(int,InputDevice*)));

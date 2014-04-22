@@ -27,6 +27,20 @@ Display* X11Info::display()
     return _instance._display;
 }
 
+void X11Info::closeDisplay()
+{
+    if (_instance._display)
+    {
+        XCloseDisplay(display());
+        _instance._display = 0;
+    }
+}
+
+void X11Info::syncDisplay()
+{
+    _instance._display = XOpenDisplay(NULL);
+}
+
 unsigned long X11Info::appRootWindow(int screen)
 {
     return screen == -1 ? XDefaultRootWindow(display()) : XRootWindowOfScreen(XScreenOfDisplay(display(), screen));

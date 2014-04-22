@@ -18,6 +18,8 @@ public:
     static int getApplicationPid(Window &window);
     static QString getApplicationLocation(int pid);
     static Window findClientInChildren(Window &window);
+    static void closeDisplay();
+    static void syncDisplay();
 
 protected:
     explicit X11Info(QObject *parent = 0);
