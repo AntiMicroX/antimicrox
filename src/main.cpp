@@ -211,12 +211,22 @@ int main(int argc, char *argv[])
         if (pid < 0) {
             QTextStream errorstream(stderr);
             errorstream << QObject::tr("Failed to launch daemon") << endl;
+
+            deleteInputDevices(joysticks);
+            delete joysticks;
+            joysticks = 0;
+
             exit(EXIT_FAILURE);
         }
         //We got a good pid, Close the Parent Process
         else if (pid > 0) {
             QTextStream outstream(stdout);
             outstream << QObject::tr("Launching daemon") << endl;
+
+            deleteInputDevices(joysticks);
+            delete joysticks;
+            joysticks = 0;
+
             exit(EXIT_SUCCESS);
         }
 
@@ -231,6 +241,11 @@ int main(int argc, char *argv[])
         if (sid < 0) {
             QTextStream errorstream(stderr);
             errorstream << QObject::tr("Failed to set a signature id for the daemon") << endl;
+
+            deleteInputDevices(joysticks);
+            delete joysticks;
+            joysticks = 0;
+
             exit(EXIT_FAILURE);
         }
 
@@ -238,6 +253,11 @@ int main(int argc, char *argv[])
             QTextStream errorstream(stderr);
             errorstream << QObject::tr("Failed to change working directory to /")
                         << endl;
+
+            deleteInputDevices(joysticks);
+            delete joysticks;
+            joysticks = 0;
+
             exit(EXIT_FAILURE);
         }
 
