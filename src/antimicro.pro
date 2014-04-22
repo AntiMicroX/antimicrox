@@ -11,12 +11,12 @@ unix {
         packagesExist(sdl2) {
             USE_SDL_2 = 1
             FOUND_SDL = 1
-			CONFIG+=link_pkgconfig
-			PKGCONFIG+=sdl2
+            CONFIG+=link_pkgconfig
+            PKGCONFIG+=sdl2
         } else:packagesExist(sdl) {
             FOUND_SDL = 1
-			CONFIG+=link_pkgconfig
-			PKGCONFIG+=sdl
+            CONFIG+=link_pkgconfig
+            PKGCONFIG+=sdl
         } else {
             error("SDL library was not found")
         }
@@ -27,6 +27,8 @@ unix {
         isEmpty(FOUND_SDL) {
             packagesExist(sdl2) {
                 message("Compiling with SDL 2 Support")
+                CONFIG+=link_pkgconfig
+                PKGCONFIG+=sdl2
             } else {
                 error("SDL 2 library was not found")
             }
@@ -38,6 +40,8 @@ unix {
         isEmpty(FOUND_SDL) {
             packagesExist(sdl) {
                 message("Compiling with SDL 1.2 Support")
+                CONFIG+=link_pkgconfig
+                PKGCONFIG+=sdl
             } else {
                 error("SDL 1.2 library was not found")
             }
@@ -374,11 +378,6 @@ FORMS    += mainwindow.ui \
 
 
 unix {
-  !isEmpty(USE_SDL_2) {
-    LIBS += -lSDL2
-  } else {
-    LIBS += -lSDL
-  }
   LIBS += -lXtst -lX11
 } else:win32 {
   !isEmpty(USE_SDL_2) {
