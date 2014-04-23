@@ -383,7 +383,8 @@ void JoyButton::turboEvent()
         isKeyPressed = true;
         if (turboTimer.isActive())
         {
-            turboTimer.start(10);
+            turboTimer.start(turboInterval / 2);
+            //turboTimer.start(10);
         }
     }
     else
@@ -399,7 +400,8 @@ void JoyButton::turboEvent()
         isKeyPressed = false;
         if (turboTimer.isActive())
         {
-            turboTimer.start(turboInterval - 10);
+            turboTimer.start(turboInterval / 2);
+            //turboTimer.start(turboInterval - 10);
         }
 
     }
