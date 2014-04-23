@@ -15,7 +15,9 @@ QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-
 QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
 QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
+#ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
+#endif
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)

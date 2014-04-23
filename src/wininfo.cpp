@@ -12,7 +12,7 @@ typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD,LPTSTR,PDWORD);
 static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
             GetModuleHandle(TEXT("kernel32.dll")), "QueryFullProcessImageNameW");
 
-static bool isWindowsVistaOrHigher()
+/*static bool isWindowsVistaOrHigher()
 {
     OSVERSIONINFO osvi;
     memset(&osvi, 0, sizeof(osvi));
@@ -20,6 +20,7 @@ static bool isWindowsVistaOrHigher()
     GetVersionEx(&osvi);
     return (osvi.dwPlatformId == VER_PLATFORM_WIN32_NT && osvi.dwMajorVersion >= 6);
 }
+*/
 
 const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
 WinInfo WinInfo::_instance;
