@@ -457,7 +457,7 @@ QString GameControllerMappingDialog::generateSDLMappingString()
         }
     }
 
-    return templist.join(",");
+    return templist.join(",").append(",");
 }
 
 void GameControllerMappingDialog::obliterate()

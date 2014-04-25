@@ -26,12 +26,14 @@ public:
     bool hasError();
     bool read();
 
-
 protected:
+    void initDeviceTypes();
+
     QXmlStreamReader *xml;
     QString fileName;
     QFile *configFile;
     InputDevice* joystick;
+    QStringList deviceTypes;
 
 signals:
     

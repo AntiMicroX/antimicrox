@@ -2,22 +2,9 @@
 #include <QDir>
 #include <QStringList>
 
+#include "xmlconfigreader.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
-#include "xmlconfigreader.h"
-
-static QStringList initTypes()
-{
-    QStringList types;
-    types.append(Joystick::xmlName);
-#ifdef USE_SDL_2
-    types.append(GameController::xmlName);
-#endif
-
-    return types;
-}
-
-static QStringList deviceTypes = initTypes();
 
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
@@ -26,6 +13,7 @@ XMLConfigReader::XMLConfigReader(QObject *parent) :
     xml = new QXmlStreamReader();
     configFile = 0;
     joystick = 0;
+    initDeviceTypes();
 }
 
 XMLConfigReader::~XMLConfigReader()
@@ -171,4 +159,14 @@ QString XMLConfigReader::getErrorString()
 bool XMLConfigReader::hasError()
 {
     return xml->hasError();
+}
+
+void XMLConfigReader::initDeviceTypes()
+{
+    deviceTypes.clear();
+
+    deviceTypes.append(Joystick::xmlName);
+#ifdef USE_SDL_2
+    deviceTypes.append(GameController::xmlName);
+#endif
 }
