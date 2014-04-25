@@ -1,9 +1,24 @@
 #include <QDebug>
 #include <QDir>
+#include <QStringList>
 
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
 #include "xmlconfigreader.h"
+
+static QStringList initTypes()
+{
+    QStringList types;
+    types.append(Joystick::xmlName);
+#ifdef USE_SDL_2
+    types.append(GameController::xmlName);
+#endif
+
+    return types;
+}
+
+static QStringList deviceTypes = initTypes();
+
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
     QObject(parent)
@@ -73,8 +88,7 @@ bool XMLConfigReader::read()
         }
 
         xml->readNextStartElement();
-        if (xml->name() != Joystick::xmlName &&
-            xml->name() != GameController::xmlName)
+        if (!deviceTypes.contains(xml->name().toString()))
         {
             xml->raiseError("Root node is not a joystick or controller");
         }
@@ -112,9 +126,7 @@ bool XMLConfigReader::read()
 
         while (!xml->atEnd())
         {
-            if (xml->isStartElement() &&
-                (xml->name() == Joystick::xmlName ||
-                 xml->name() == GameController::xmlName))
+            if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
                 joystick->readConfig(xml);
             }

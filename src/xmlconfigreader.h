@@ -7,7 +7,11 @@
 
 #include "inputdevice.h"
 #include "joystick.h"
+
+#ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
+#endif
+
 #include "common.h"
 
 class XMLConfigReader : public QObject
