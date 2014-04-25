@@ -73,9 +73,10 @@ bool XMLConfigReader::read()
         }
 
         xml->readNextStartElement();
-        if (xml->name() != joystick->getXmlName())
+        if (xml->name() != Joystick::xmlName &&
+            xml->name() != GameController::xmlName)
         {
-            xml->raiseError("Root node is not a joystick");
+            xml->raiseError("Root node is not a joystick or controller");
         }
         else if (xml->name() == Joystick::xmlName)
         {
@@ -111,7 +112,9 @@ bool XMLConfigReader::read()
 
         while (!xml->atEnd())
         {
-            if (xml->name() == joystick->getXmlName() && xml->isStartElement())
+            if (xml->isStartElement() &&
+                (xml->name() == Joystick::xmlName ||
+                 xml->name() == GameController::xmlName))
             {
                 joystick->readConfig(xml);
             }

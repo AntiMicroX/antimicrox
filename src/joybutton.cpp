@@ -1078,185 +1078,13 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
-        //reset();
         disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {
-            if (xml->name() == "toggle" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "true")
-                {
-                    this->setToggle(true);
-                }
-            }
-            else if (xml->name() == "turbointerval" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setTurboInterval(tempchoice);
-            }
-            else if (xml->name() == "useturbo" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "true")
-                {
-                    this->setUseTurbo(true);
-                }
-            }
-            else if (xml->name() == "mousespeedx" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMouseSpeedX(tempchoice);
-            }
-            else if (xml->name() == "mousespeedy" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMouseSpeedY(tempchoice);
-            }
-            else if (xml->name() == "slots" && xml->isStartElement())
-            {
-                xml->readNextStartElement();
-                while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "slots"))
-                {
-                    if (xml->name() == "slot" && xml->isStartElement())
-                    {
-                        JoyButtonSlot *buttonslot = new JoyButtonSlot(this);
-                        buttonslot->readConfig(xml);
-                        //setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
-                        bool inserted = setAssignedSlot(buttonslot);
-                        if (!inserted)
-                        {
-                            delete buttonslot;
-                            buttonslot = 0;
-                        }
-                    }
-                    else
-                    {
-                        xml->skipCurrentElement();
-                    }
-
-                    xml->readNextStartElement();
-                }
-            }
-            else if (xml->name() == "setselect" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                if (tempchoice >= 1 && tempchoice <= 8)
-                {
-                    this->setChangeSetSelection(tempchoice - 1);
-                }
-            }
-            else if (xml->name() == "setselectcondition" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                SetChangeCondition tempcondition = SetChangeDisabled;
-                if (temptext == "one-way")
-                {
-                    tempcondition = SetChangeOneWay;
-                }
-                else if (temptext == "two-way")
-                {
-                    tempcondition = SetChangeTwoWay;
-                }
-                else if (temptext == "while-held")
-                {
-                    tempcondition = SetChangeWhileHeld;
-                }
-
-                if (tempcondition != SetChangeDisabled)
-                {
-                    this->setChangeSetCondition(tempcondition);
-                }
-            }
-            else if (xml->name() == "mousemode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "cursor")
-                {
-                    setMouseMode(MouseCursor);
-                }
-                else if (temptext == "spring")
-                {
-                    setMouseMode(MouseSpring);
-                }
-            }
-            else if (xml->name() == "mouseacceleration" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "linear")
-                {
-                    setMouseCurve(LinearCurve);
-                }
-                else if (temptext == "quadratic")
-                {
-                    setMouseCurve(QuadraticCurve);
-                }
-                else if (temptext == "cubic")
-                {
-                    setMouseCurve(CubicCurve);
-                }
-                else if (temptext == "quadratic-extreme")
-                {
-                    setMouseCurve(QuadraticExtremeCurve);
-                }
-                else if (temptext == "power")
-                {
-                    setMouseCurve(PowerCurve);
-                }
-            }
-            else if (xml->name() == "mousespringwidth" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                setSpringWidth(tempchoice);
-            }
-            else if (xml->name() == "mousespringheight" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                setSpringHeight(tempchoice);
-            }
-            else if (xml->name() == "mousesensitivity" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                double tempchoice = temptext.toDouble();
-                setSensitivity(tempchoice);
-            }
-            else if (xml->name() == "mousesmoothing" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "true")
-                {
-                    setSmoothing(true);
-                }
-            }
-            else if (xml->name() == "actionname" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (!temptext.isEmpty())
-                {
-                    setActionName(temptext);
-                }
-            }
-            else if (xml->name() == "wheelspeedx" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                setWheelSpeedX(tempchoice);
-            }
-            else if (xml->name() == "wheelspeedy" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                setWheelSpeedY(tempchoice);
-            }
-            else
+            bool found = readButtonConfig(xml);
+            if (!found)
             {
                 xml->skipCurrentElement();
             }
@@ -1354,6 +1182,203 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 
         xml->writeEndElement();
     }
+}
+
+bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
+{
+    bool found = false;
+
+    if (xml->name() == "toggle" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "true")
+        {
+            this->setToggle(true);
+        }
+    }
+    else if (xml->name() == "turbointerval" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        this->setTurboInterval(tempchoice);
+    }
+    else if (xml->name() == "useturbo" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "true")
+        {
+            this->setUseTurbo(true);
+        }
+    }
+    else if (xml->name() == "mousespeedx" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        this->setMouseSpeedX(tempchoice);
+    }
+    else if (xml->name() == "mousespeedy" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        this->setMouseSpeedY(tempchoice);
+    }
+    else if (xml->name() == "slots" && xml->isStartElement())
+    {
+        found = true;
+        xml->readNextStartElement();
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "slots"))
+        {
+            if (xml->name() == "slot" && xml->isStartElement())
+            {
+                JoyButtonSlot *buttonslot = new JoyButtonSlot(this);
+                buttonslot->readConfig(xml);
+                //setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
+                bool inserted = setAssignedSlot(buttonslot);
+                if (!inserted)
+                {
+                    delete buttonslot;
+                    buttonslot = 0;
+                }
+            }
+            else
+            {
+                xml->skipCurrentElement();
+            }
+
+            xml->readNextStartElement();
+        }
+    }
+    else if (xml->name() == "setselect" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        if (tempchoice >= 1 && tempchoice <= 8)
+        {
+            this->setChangeSetSelection(tempchoice - 1);
+        }
+    }
+    else if (xml->name() == "setselectcondition" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        SetChangeCondition tempcondition = SetChangeDisabled;
+        if (temptext == "one-way")
+        {
+            tempcondition = SetChangeOneWay;
+        }
+        else if (temptext == "two-way")
+        {
+            tempcondition = SetChangeTwoWay;
+        }
+        else if (temptext == "while-held")
+        {
+            tempcondition = SetChangeWhileHeld;
+        }
+
+        if (tempcondition != SetChangeDisabled)
+        {
+            this->setChangeSetCondition(tempcondition);
+        }
+    }
+    else if (xml->name() == "mousemode" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "cursor")
+        {
+            setMouseMode(MouseCursor);
+        }
+        else if (temptext == "spring")
+        {
+            setMouseMode(MouseSpring);
+        }
+    }
+    else if (xml->name() == "mouseacceleration" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "linear")
+        {
+            setMouseCurve(LinearCurve);
+        }
+        else if (temptext == "quadratic")
+        {
+            setMouseCurve(QuadraticCurve);
+        }
+        else if (temptext == "cubic")
+        {
+            setMouseCurve(CubicCurve);
+        }
+        else if (temptext == "quadratic-extreme")
+        {
+            setMouseCurve(QuadraticExtremeCurve);
+        }
+        else if (temptext == "power")
+        {
+            setMouseCurve(PowerCurve);
+        }
+    }
+    else if (xml->name() == "mousespringwidth" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        setSpringWidth(tempchoice);
+    }
+    else if (xml->name() == "mousespringheight" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        setSpringHeight(tempchoice);
+    }
+    else if (xml->name() == "mousesensitivity" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setSensitivity(tempchoice);
+    }
+    else if (xml->name() == "mousesmoothing" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "true")
+        {
+            setSmoothing(true);
+        }
+    }
+    else if (xml->name() == "actionname" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (!temptext.isEmpty())
+        {
+            setActionName(temptext);
+        }
+    }
+    else if (xml->name() == "wheelspeedx" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        setWheelSpeedX(tempchoice);
+    }
+    else if (xml->name() == "wheelspeedy" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        setWheelSpeedY(tempchoice);
+    }
+
+    return found;
 }
 
 QString JoyButton::getName(bool forceFullFormat, bool displayNames)

@@ -2,6 +2,7 @@
 #define GAMECONTROLLERBUTTON_H
 
 #include <QObject>
+#include <QXmlStreamReader>
 
 #include <joyaxisbutton.h>
 
@@ -12,6 +13,7 @@ public:
     explicit GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
 
     virtual QString getXmlName();
+    void readJoystickConfig(QXmlStreamReader *xml);
 
     static const QString xmlName;
 

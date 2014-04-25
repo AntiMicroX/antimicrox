@@ -126,6 +126,8 @@ protected:
     bool setAssignedSlot(JoyButtonSlot *newslot);
     unsigned int getPreferredKeyDelay();
 
+    virtual bool readButtonConfig(QXmlStreamReader *xml);
+
     typedef struct springModeInfo {
         double displacement;
         unsigned int width;

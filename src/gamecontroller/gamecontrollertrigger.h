@@ -24,6 +24,8 @@ public:
     virtual int getDefaultMaxZone();
     virtual ThrottleTypes getDefaultThrottle();
 
+    void readJoystickConfig(QXmlStreamReader *xml);
+
     virtual void writeConfig(QXmlStreamWriter *xml);
 
     static const int AXISDEADZONE;
@@ -31,6 +33,9 @@ public:
     static const ThrottleTypes DEFAULTTHROTTLE;
 
     static const QString xmlName;
+
+protected:
+    void correctJoystickThrottle();
 
 signals:
 

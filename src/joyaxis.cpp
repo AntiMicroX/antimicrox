@@ -294,59 +294,15 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {
-            if (xml->name() == "deadZone" && xml->isStartElement())
+            bool found = false;
+            found = readMainConfig(xml);
+            if (!found && xml->name() == naxisbutton->getXmlName() && xml->isStartElement())
             {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setDeadZone(tempchoice);
+                found = true;
+                readButtonConfig(xml);
             }
-            else if (xml->name() == "maxZone" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMaxZoneValue(tempchoice);
-            }
-            else if (xml->name() == "throttle" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "negativehalf")
-                {
-                    this->setThrottle(JoyAxis::NegativeHalfThrottle);
-                }
-                else if (temptext == "negative")
-                {
-                    this->setThrottle(JoyAxis::NegativeThrottle);
-                }
-                else if (temptext == "normal")
-                {
-                    this->setThrottle(JoyAxis::NormalThrottle);
-                }
-                else if (temptext == "positive")
-                {
-                    this->setThrottle(JoyAxis::PositiveThrottle);
-                }
-                else if (temptext == "positivehalf")
-                {
-                    this->setThrottle(JoyAxis::PositiveHalfThrottle);
-                }
 
-                setCurrentRawValue(currentThrottledDeadValue);
-                //currentRawValue = currentThrottledDeadValue;
-                currentThrottledValue = calculateThrottledValue(currentRawValue);
-            }
-            else if (xml->name() == naxisbutton->getXmlName() && xml->isStartElement())
-            {
-                int index = xml->attributes().value("index").toString().toInt();
-                if (index == 1)
-                {
-                    naxisbutton->readConfig(xml);
-                }
-                else if (index == 2)
-                {
-                    paxisbutton->readConfig(xml);
-                }
-            }
-            else
+            if (!found)
             {
                 xml->skipCurrentElement();
             }
@@ -396,6 +352,77 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 
         xml->writeEndElement();
     }
+}
+
+
+bool JoyAxis::readMainConfig(QXmlStreamReader *xml)
+{
+    bool found = false;
+
+    if (xml->name() == "deadZone" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        this->setDeadZone(tempchoice);
+    }
+    else if (xml->name() == "maxZone" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        this->setMaxZoneValue(tempchoice);
+    }
+    else if (xml->name() == "throttle" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "negativehalf")
+        {
+            this->setThrottle(JoyAxis::NegativeHalfThrottle);
+        }
+        else if (temptext == "negative")
+        {
+            this->setThrottle(JoyAxis::NegativeThrottle);
+        }
+        else if (temptext == "normal")
+        {
+            this->setThrottle(JoyAxis::NormalThrottle);
+        }
+        else if (temptext == "positive")
+        {
+            this->setThrottle(JoyAxis::PositiveThrottle);
+        }
+        else if (temptext == "positivehalf")
+        {
+            this->setThrottle(JoyAxis::PositiveHalfThrottle);
+        }
+
+        setCurrentRawValue(currentThrottledDeadValue);
+        //currentRawValue = currentThrottledDeadValue;
+        currentThrottledValue = calculateThrottledValue(currentRawValue);
+    }
+
+    return found;
+}
+
+bool JoyAxis::readButtonConfig(QXmlStreamReader *xml)
+{
+    bool found = false;
+
+    int index = xml->attributes().value("index").toString().toInt();
+    if (index == 1)
+    {
+        found = true;
+        naxisbutton->readConfig(xml);
+    }
+    else if (index == 2)
+    {
+        found = true;
+        paxisbutton->readConfig(xml);
+    }
+
+    return found;
 }
 
 void JoyAxis::reset()

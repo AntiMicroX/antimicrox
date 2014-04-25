@@ -1120,6 +1120,9 @@ void JoyTabWidget::resetJoystick()
         reader.setFileName(filename);
         reader.configJoystick(joystick);
 
+        fillButtons();
+        refreshSetButtons();
+
         if (reader.hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
@@ -1133,9 +1136,6 @@ void JoyTabWidget::resetJoystick()
             QTextStream error(stderr);
             error << reader.getErrorString() << endl;
         }
-
-        fillButtons();
-        refreshSetButtons();
     }
     else
     {
@@ -1249,6 +1249,9 @@ void JoyTabWidget::changeJoyConfig(int index)
         reader.setFileName(filename);
         reader.configJoystick(joystick);
 
+        fillButtons();
+        refreshSetButtons();
+
         if (reader.hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
@@ -1262,9 +1265,6 @@ void JoyTabWidget::changeJoyConfig(int index)
             QTextStream error(stderr);
             error << reader.getErrorString() << endl;
         }
-
-        fillButtons();
-        refreshSetButtons();
     }
     else if (index == 0)
     {

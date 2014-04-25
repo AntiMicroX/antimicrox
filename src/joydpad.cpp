@@ -120,36 +120,8 @@ void JoyDPad::readConfig(QXmlStreamReader *xml)
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {
-            if (xml->name() == "dpadbutton" && xml->isStartElement())
-            {
-                int index = xml->attributes().value("index").toString().toInt();
-                JoyDPadButton* button = this->getJoyButton(index);
-                if (button)
-                {
-                    button->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
-            }
-            else if (xml->name() == "mode" && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                if (temptext == "eight-way")
-                {
-                    this->setJoyMode(EightWayMode);
-                }
-                else if (temptext == "four-way")
-                {
-                    this->setJoyMode(FourWayCardinal);
-                }
-                else if (temptext == "diagonal")
-                {
-                    this->setJoyMode(FourWayDiagonal);
-                }
-            }
-            else
+            bool found = readMainConfig(xml);
+            if (!found)
             {
                 xml->skipCurrentElement();
             }
@@ -157,6 +129,45 @@ void JoyDPad::readConfig(QXmlStreamReader *xml)
             xml->readNextStartElement();
         }
     }
+}
+
+bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
+{
+    bool found = false;
+
+    if (xml->name() == "dpadbutton" && xml->isStartElement())
+    {
+        found = true;
+        int index = xml->attributes().value("index").toString().toInt();
+        JoyDPadButton* button = this->getJoyButton(index);
+        if (button)
+        {
+            button->readConfig(xml);
+        }
+        else
+        {
+            xml->skipCurrentElement();
+        }
+    }
+    else if (xml->name() == "mode" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "eight-way")
+        {
+            this->setJoyMode(EightWayMode);
+        }
+        else if (temptext == "four-way")
+        {
+            this->setJoyMode(FourWayCardinal);
+        }
+        else if (temptext == "diagonal")
+        {
+            this->setJoyMode(FourWayDiagonal);
+        }
+    }
+
+    return found;
 }
 
 void JoyDPad::writeConfig(QXmlStreamWriter *xml)

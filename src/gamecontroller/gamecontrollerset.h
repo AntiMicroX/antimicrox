@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QHash>
 
 #include <SDL2/SDL_gamecontroller.h>
 
@@ -20,6 +21,10 @@ public:
     virtual void refreshAxes();
 
     virtual void readConfig(QXmlStreamReader *xml);
+    virtual void readJoystickConfig(QXmlStreamReader *xml,
+                            QHash<unsigned int, SDL_GameControllerButton> &buttons,
+                            QHash<unsigned int, SDL_GameControllerAxis> &axes,
+                            QList<SDL_GameControllerButtonBind> &hatButtons);
 
 protected:
     void populateSticksDPad();

@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "gamecontrollertrigger.h"
 
 const int GameControllerTrigger::AXISDEADZONE = 2000;
@@ -48,6 +50,60 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
     }
 
     return label;
+}
+
+void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
+{
+    if (xml->isStartElement() && xml->name() == JoyAxis::xmlName)
+    {
+        xml->readNextStartElement();
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != JoyAxis::xmlName))
+        {
+            bool found = readMainConfig(xml);
+            if (!found && xml->name() == JoyAxisButton::xmlName && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                if (index == 1)
+                {
+                    found = true;
+                    GameControllerTriggerButton *triggerButton = static_cast<GameControllerTriggerButton*>(naxisbutton);
+                    triggerButton->readJoystickConfig(xml);
+                }
+                else if (index == 2)
+                {
+                    found = true;
+                    GameControllerTriggerButton *triggerButton = static_cast<GameControllerTriggerButton*>(paxisbutton);
+                    triggerButton->readJoystickConfig(xml);
+                }
+            }
+
+            if (!found)
+            {
+                xml->skipCurrentElement();
+            }
+
+            xml->readNextStartElement();
+        }
+    }
+
+    if (this->throttle != PositiveHalfThrottle)
+    {
+        this->setThrottle(PositiveHalfThrottle);
+
+        setCurrentRawValue(currentThrottledDeadValue);
+        currentThrottledValue = calculateThrottledValue(currentRawValue);
+    }
+}
+
+void GameControllerTrigger::correctJoystickThrottle()
+{
+    if (this->throttle != PositiveHalfThrottle)
+    {
+        this->setThrottle(PositiveHalfThrottle);
+
+        setCurrentRawValue(currentThrottledDeadValue);
+        currentThrottledValue = calculateThrottledValue(currentRawValue);
+    }
 }
 
 void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)

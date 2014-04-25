@@ -119,6 +119,9 @@ protected:
     int calculateThrottledValue(int value);
     void setCurrentRawValue(int value);
 
+    virtual bool readMainConfig(QXmlStreamReader *xml);
+    virtual bool readButtonConfig(QXmlStreamReader *xml);
+
     int index;
     int deadZone;
     int maxZoneValue;

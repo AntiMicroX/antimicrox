@@ -15,6 +15,8 @@ public:
     virtual QString getName(bool forceFullFormat, bool displayName);
     virtual QString getXmlName();
 
+    void readJoystickConfig(QXmlStreamReader *xml);
+
     static const QString xmlName;
 
 signals:

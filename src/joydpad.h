@@ -77,6 +77,7 @@ public:
 protected:
     void populateButtons();
     QHash<int, JoyDPadButton*> getApplicableButtons();
+    bool readMainConfig(QXmlStreamReader *xml);
 
     QHash<int, JoyDPadButton*> buttons;
     int index;

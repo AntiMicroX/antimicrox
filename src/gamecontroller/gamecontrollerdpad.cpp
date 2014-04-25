@@ -43,3 +43,21 @@ QString GameControllerDPad::getXmlName()
 {
     return this->xmlName;
 }
+
+void GameControllerDPad::readJoystickConfig(QXmlStreamReader *xml)
+{
+    if (xml->isStartElement() && xml->name() == VDPad::xmlName)
+    {
+        xml->readNextStartElement();
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != VDPad::xmlName))
+        {
+            bool found = readMainConfig(xml);
+            if (!found)
+            {
+                xml->skipCurrentElement();
+            }
+
+            xml->readNextStartElement();
+        }
+    }
+}

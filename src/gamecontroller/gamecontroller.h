@@ -39,6 +39,8 @@ public:
     static const QString xmlName;
 
 protected:
+    void readJoystickConfig(QXmlStreamReader *xml);
+
     SDL_GameController *controller;
 
 signals:
