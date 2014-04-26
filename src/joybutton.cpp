@@ -2672,7 +2672,7 @@ void JoyButton::releaseSlotEvent()
             currentRelease = temp;
 
             activateSlots();
-            if (!keyDelayTimer.isActive())
+            if (!keyDelayTimer.isActive() && !pauseWaitTimer.isActive())
             {
                 releaseActiveSlots();
                 currentRelease = 0;
