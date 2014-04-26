@@ -5,6 +5,7 @@
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
 #include "event.h"
+#include "setjoystick.h"
 
 const int AdvanceButtonDialog::MINIMUMTURBO = 2;
 
@@ -107,8 +108,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     updateActionTimeLabel();
     changeTurboForSequences();
-
-    setWindowTitle(tr("Advanced").append(": ").append(button->getPartialName()));
+    updateWindowTitleButtonName();
 
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
     connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(checkTurboIntervalValue(int)));
@@ -800,4 +800,26 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
             updateSlotsScrollArea(testDistance);
         }
     }
+}
+
+void AdvanceButtonDialog::updateWindowTitleButtonName()
+{
+    QString temp;
+    temp.append(tr("Advanced").append(": ")).append(button->getPartialName());
+
+    if (button->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = button->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = button->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
+    }
+
+    setWindowTitle(temp);
 }

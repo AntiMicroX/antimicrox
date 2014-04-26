@@ -6,6 +6,7 @@
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 #include "event.h"
 #include "antkeymapper.h"
+#include "setjoystick.h"
 
 JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -401,6 +402,20 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
     else
     {
         temp.append(stick->getPartialName());
+    }
+
+    if (stick->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = stick->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = stick->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
     }
 
     setWindowTitle(temp);

@@ -36,6 +36,7 @@ public:
     int getNumberVDPads();
 
     int getIndex();
+    unsigned int getRealIndex();
     virtual void refreshButtons ();
     virtual void refreshAxes();
     virtual void refreshHats();

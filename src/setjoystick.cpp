@@ -557,6 +557,11 @@ int SetJoystick::getIndex()
     return index;
 }
 
+unsigned int SetJoystick::getRealIndex()
+{
+    return index + 1;
+}
+
 void SetJoystick::propogateSetButtonClick(int button)
 {
     JoyButton *jButton = static_cast<JoyButton*>(sender());

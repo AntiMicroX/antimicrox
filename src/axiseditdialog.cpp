@@ -7,6 +7,7 @@
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "event.h"
 #include "antkeymapper.h"
+#include "setjoystick.h"
 
 AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -420,6 +421,20 @@ void AxisEditDialog::updateWindowTitleAxisName()
     else
     {
         temp.append(axis->getPartialName());
+    }
+
+    if (axis->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = axis->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = axis->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
     }
 
     setWindowTitle(temp);

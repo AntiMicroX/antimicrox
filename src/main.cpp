@@ -104,36 +104,9 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    QApplication a(argc, argv);
-    //QString defaultStyleName = qApp->style()->objectName();
-
-    // If running Win version and no explicit style was
-    // defined, use the style Fusion by default. I find the
-    // windowsvista style a tad ugly
-#ifdef Q_OS_WIN
-    if (!styleChangeFound)
-    {
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-    }
-
-    QIcon::setThemeName("/");
-#endif
-
     CommandLineUtility cmdutility;
-    QStringList cmdarguments = a.arguments();
+    QStringList cmdarguments = PadderCommon::arguments(argc, argv);
     cmdutility.parseArguments(cmdarguments);
-
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&qtTranslator);
-
-    QTranslator myappTranslator;
-#if defined(Q_OS_UNIX)
-    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
-#elif defined(Q_OS_WIN)
-    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-#endif
-    a.installTranslator(&myappTranslator);
 
     if (cmdutility.hasError())
     {
@@ -151,7 +124,6 @@ int main(int argc, char *argv[])
     }
 
     Q_INIT_RESOURCE(resources);
-    a.setQuitOnLastWindowClosed(false);
 
     QDir configDir (PadderCommon::configPath);
     if (!configDir.exists())
@@ -172,9 +144,10 @@ int main(int argc, char *argv[])
     {
         // An instance of this program is already running.
         // Save app config and exit.
+        QApplication a(argc, argv);
         QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
-        MainWindow w(joysticks, &myappTranslator, &cmdutility, &settings, false);
+        MainWindow w(joysticks, &cmdutility, &settings, false);
 
         if (!cmdutility.hasError() && cmdutility.hasProfile())
         {
@@ -194,11 +167,15 @@ int main(int argc, char *argv[])
         delete joypad_worker;
         joypad_worker = 0;
 
+        //delete a;
+        //a = 0;
+
         return 0;
     }
 
-    LocalAntiMicroServer localServer;
-    localServer.startLocalServer();
+    LocalAntiMicroServer *localServer = 0;
+    QApplication *a = 0;
+    //localServer->startLocalServer();
 
 #ifndef Q_OS_WIN
     if (cmdutility.launchAsDaemon())
@@ -208,7 +185,16 @@ int main(int argc, char *argv[])
         //Fork the Parent Process
         pid = fork();
 
-        if (pid < 0) {
+        if (pid == 0)
+        {
+            QTextStream outstream(stdout);
+            outstream << QObject::tr("Daemon launched") << endl;
+
+            a = new QApplication(argc, argv);
+            localServer = new LocalAntiMicroServer();
+            localServer->startLocalServer();
+        }
+        else if (pid < 0) {
             QTextStream errorstream(stderr);
             errorstream << QObject::tr("Failed to launch daemon") << endl;
 
@@ -246,6 +232,9 @@ int main(int argc, char *argv[])
             delete joysticks;
             joysticks = 0;
 
+            delete localServer;
+            localServer = 0;
+
             exit(EXIT_FAILURE);
         }
 
@@ -258,6 +247,9 @@ int main(int argc, char *argv[])
             delete joysticks;
             joysticks = 0;
 
+            delete localServer;
+            localServer = 0;
+
             exit(EXIT_FAILURE);
         }
 
@@ -266,12 +258,46 @@ int main(int argc, char *argv[])
         close(STDOUT_FILENO);
         close(STDERR_FILENO);
     }
-
+    else
+    {
+        a = new QApplication(argc, argv);
+    }
+#else
+    a = new QApplication (argc, argv);
 #endif
+
+    //QApplication a(argc, argv);
+    a->setQuitOnLastWindowClosed(false);
+
+    //QString defaultStyleName = qApp->style()->objectName();
+
+    // If running Win version and no explicit style was
+    // defined, use the style Fusion by default. I find the
+    // windowsvista style a tad ugly
+#ifdef Q_OS_WIN
+    if (!styleChangeFound)
+    {
+        qApp->setStyle(QStyleFactory::create("Fusion"));
+    }
+
+    QIcon::setThemeName("/");
+#endif
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a->installTranslator(&qtTranslator);
+
+    QTranslator myappTranslator;
+#if defined(Q_OS_UNIX)
+    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+#elif defined(Q_OS_WIN)
+    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+#endif
+    a->installTranslator(&myappTranslator);
 
     QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
-    MainWindow w(joysticks, &myappTranslator, &cmdutility, &settings);
+    MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
 #ifndef Q_OS_WIN
     // Have program handle SIGTERM
@@ -292,22 +318,22 @@ int main(int argc, char *argv[])
 
 #endif
 
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), &w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
-    QObject::connect(&w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
-    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), &w, SLOT(fillButtons(InputDevice*)));
-    QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(saveAppConfig()));
-    QObject::connect(&a, SIGNAL(aboutToQuit()), &w, SLOT(removeJoyTabs()));
-    QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
-    QObject::connect(&localServer, SIGNAL(clientdisconnect()), &w, SLOT(handleInstanceDisconnect()));
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
+    QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
+    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), w, SLOT(fillButtons(InputDevice*)));
+    QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+    QObject::connect(localServer, SIGNAL(clientdisconnect()), w, SLOT(handleInstanceDisconnect()));
 
 #ifdef USE_SDL_2
-    QObject::connect(&w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
-    QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), &w, SLOT(testMappingUpdateNow(int,InputDevice*)));
-    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), &w, SLOT(removeJoyTab(SDL_JoystickID)));
-    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), &w, SLOT(addJoyTab(InputDevice*)));
+    QObject::connect(w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
+    QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), w, SLOT(testMappingUpdateNow(int,InputDevice*)));
+    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), w, SLOT(removeJoyTab(SDL_JoystickID)));
+    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)));
 #endif
 
-    int app_result = a.exec();
+    int app_result = a->exec();
 
     deleteInputDevices(joysticks);
     delete joysticks;
@@ -315,6 +341,15 @@ int main(int argc, char *argv[])
 
     delete joypad_worker;
     joypad_worker = 0;
+
+    delete localServer;
+    localServer = 0;
+
+    delete w;
+    w = 0;
+
+    delete a;
+    a = 0;
 
     return app_result;
 }

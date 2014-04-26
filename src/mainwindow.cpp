@@ -26,7 +26,7 @@
 #include "autoprofileinfo.h"
 #endif
 
-MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -39,7 +39,7 @@ MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslat
     //delete ui->tab;
     //ui->tab = 0;
 
-    this->translator = translator;
+    this->translator = 0;
     this->cmdutility = cmdutility;
     this->graphical = graphical;
     this->settings = settings;
@@ -935,16 +935,19 @@ void MainWindow::openMainSettingsDialog()
 
 void MainWindow::changeLanguage(QString language)
 {
-    qApp->removeTranslator(translator);
-#if defined(Q_OS_UNIX)
-    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
-#elif defined(Q_OS_WIN)
-    translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-#endif
-    qApp->installTranslator(translator);
-    ui->retranslateUi(this);
-    delete aboutDialog;
-    aboutDialog = new AboutDialog(this);
+    if (translator)
+    {
+        qApp->removeTranslator(translator);
+    #if defined(Q_OS_UNIX)
+        translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+    #elif defined(Q_OS_WIN)
+        translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+    #endif
+        qApp->installTranslator(translator);
+        ui->retranslateUi(this);
+        delete aboutDialog;
+        aboutDialog = new AboutDialog(this);
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

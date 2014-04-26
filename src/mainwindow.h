@@ -28,7 +28,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, QTranslator *translator, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
     ~MainWindow();
     
 protected:

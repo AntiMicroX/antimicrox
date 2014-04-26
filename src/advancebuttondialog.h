@@ -29,6 +29,7 @@ protected:
     void changeTurboForSequences();
     void fillTimeComboBoxes();
     void refreshTimeComboBoxes(JoyButtonSlot *slot);
+    void updateWindowTitleButtonName();
 
     int oldRow;
     JoyButton *button;

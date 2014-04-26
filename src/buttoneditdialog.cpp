@@ -11,6 +11,7 @@
 
 #include "event.h"
 #include "antkeymapper.h"
+#include "setjoystick.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -275,6 +276,19 @@ void ButtonEditDialog::updateWindowTitleButtonName()
     else
     {
         temp.append(button->getPartialName(false, true));
+    }
+
+    if (button->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = button->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+        QString setName = button->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
     }
 
     setWindowTitle(temp);

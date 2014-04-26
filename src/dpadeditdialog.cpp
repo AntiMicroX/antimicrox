@@ -6,6 +6,7 @@
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "event.h"
 #include "antkeymapper.h"
+#include "setjoystick.h"
 
 DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -330,6 +331,20 @@ void DPadEditDialog::updateWindowTitleDPadName()
     else
     {
         temp.append(dpad->getName());
+    }
+
+    if (dpad->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = dpad->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = dpad->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
     }
 
     setWindowTitle(temp);
