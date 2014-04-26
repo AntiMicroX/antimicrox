@@ -109,6 +109,12 @@ public:
 
     SetJoystick* getParentSet();
 
+    void setCycleResetTime(unsigned int interval);
+    unsigned int getCycleResetTime();
+
+    void setCycleResetStatus(bool enabled);
+    bool isCycleResetActive();
+
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
@@ -214,6 +220,10 @@ protected:
     QString defaultButtonName; // Name used by the system
 
     SetJoystick *parentSet; // Pointer to set that button is assigned to.
+
+    bool cycleResetActive;
+    unsigned int cycleResetInterval;
+    QTime cycleResetHold;
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;

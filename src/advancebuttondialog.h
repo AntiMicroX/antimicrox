@@ -30,6 +30,7 @@ protected:
     void fillTimeComboBoxes();
     void refreshTimeComboBoxes(JoyButtonSlot *slot);
     void updateWindowTitleButtonName();
+    void populateAutoResetInterval();
 
     int oldRow;
     JoyButton *button;
@@ -72,6 +73,10 @@ private slots:
     void checkSlotTimeUpdate();
     void checkSlotMouseModUpdate();
     void checkSlotDistanceUpdate();
+
+    void checkCycleResetWidgetStatus(bool enabled);
+    void setButtonCycleResetInterval(double value);
+    void setButtonCycleReset(bool enabled);
 };
 
 #endif // ADVANCEBUTTONDIALOG_H

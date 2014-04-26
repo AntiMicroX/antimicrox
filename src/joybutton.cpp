@@ -158,9 +158,18 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 if (isButtonPressed && activePress && !turboTimer.isActive())
                 {
+                    if (cycleResetActive &&
+                        cycleResetHold.elapsed() >= cycleResetInterval && slotiter)
+                    {
+                        slotiter->toFront();
+                        currentCycle = 0;
+                        previousCycle = 0;
+                    }
+
                     buttonHold.restart();
                     buttonHeldRelease.restart();
                     keyDelayHold.restart();
+                    cycleResetHold.restart();
                     turboTimer.start();
                     turboEvent();
                 }
@@ -195,8 +204,17 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else if (isButtonPressed && activePress)
             {
+                if (cycleResetActive &&
+                    cycleResetHold.elapsed() >= cycleResetInterval && slotiter)
+                {
+                    slotiter->toFront();
+                    currentCycle = 0;
+                    previousCycle = 0;
+                }
+
                 buttonHold.restart();
                 buttonHeldRelease.restart();
+                cycleResetHold.restart();
                 keyDelayHold.restart();
                 //createDeskTimer.start(0);
                 releaseDeskTimer.stop();
@@ -346,6 +364,8 @@ void JoyButton::reset()
     whileHeldStatus = false;
     buttonName.clear();
     actionName.clear();
+    cycleResetActive = false;
+    cycleResetInterval = 0;
 
     connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
@@ -1171,6 +1191,16 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("actionname", actionName);
         }
 
+        if (cycleResetActive)
+        {
+            xml->writeTextElement("cycleresetactive", "true");
+        }
+
+        if (cycleResetInterval >= 10)
+        {
+            xml->writeTextElement("cycleresetinterval", QString::number(cycleResetInterval));
+        }
+
         xml->writeStartElement("slots");
         QListIterator<JoyButtonSlot*> iter(assignments);
         while (iter.hasNext())
@@ -1226,6 +1256,25 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         this->setMouseSpeedY(tempchoice);
+    }
+    else if (xml->name() == "cycleresetactive" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "true")
+        {
+            this->setCycleResetStatus(true);
+        }
+    }
+    else if (xml->name() == "cycleresetinterval" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        unsigned int tempchoice = temptext.toInt();
+        if (tempchoice >= 10)
+        {
+            this->setCycleResetTime(tempchoice);
+        }
     }
     else if (xml->name() == "slots" && xml->isStartElement())
     {
@@ -2682,6 +2731,10 @@ void JoyButton::releaseSlotEvent()
             // a hold timer that could be activated
             // during a release event is stopped.
             holdTimer.stop();
+            if (currentHold)
+            {
+                currentHold = 0;
+            }
         }
     }
 }
@@ -3142,6 +3195,36 @@ unsigned int JoyButton::getPreferredKeyDelay()
     }
 
     return tempDelay;
+}
+
+void JoyButton::setCycleResetTime(unsigned int interval)
+{
+    if (interval >= 10)
+    {
+        unsigned int ceiling = 60;
+        unsigned int temp = qMax(interval, ceiling);
+        cycleResetInterval = temp;
+    }
+    else
+    {
+        interval = 0;
+        cycleResetActive = false;
+    }
+}
+
+unsigned int JoyButton::getCycleResetTime()
+{
+    return cycleResetInterval;
+}
+
+void JoyButton::setCycleResetStatus(bool enabled)
+{
+    cycleResetActive = enabled;
+}
+
+bool JoyButton::isCycleResetActive()
+{
+    return cycleResetActive;
 }
 
 void JoyButton::establishMouseTimerConnections()

@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <cmath>
 
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
@@ -108,6 +109,19 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     updateActionTimeLabel();
     changeTurboForSequences();
+
+    if (button->isCycleResetActive())
+    {
+        ui->autoResetCycleCheckBox->setEnabled(true);
+        ui->autoResetCycleCheckBox->setChecked(true);
+        checkCycleResetWidgetStatus(true);
+    }
+
+    if (button->getCycleResetTime() != 0)
+    {
+        populateAutoResetInterval();
+    }
+
     updateWindowTitleButtonName();
 
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
@@ -143,6 +157,10 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
     connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
     connect(ui->pressTimePushButton, SIGNAL(clicked()), this, SLOT(insertKeyPressSlot()));
+
+    connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(checkCycleResetWidgetStatus(bool)));
+    connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(setButtonCycleReset(bool)));
+    connect(ui->resetCycleDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setButtonCycleResetInterval(double)));
 
     connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckbox, SLOT(setChecked(bool)));
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
@@ -822,4 +840,49 @@ void AdvanceButtonDialog::updateWindowTitleButtonName()
     }
 
     setWindowTitle(temp);
+}
+
+void AdvanceButtonDialog::checkCycleResetWidgetStatus(bool enabled)
+{
+    if (enabled)
+    {
+        ui->resetCycleDoubleSpinBox->setEnabled(true);
+    }
+    else
+    {
+        ui->resetCycleDoubleSpinBox->setEnabled(false);
+    }
+}
+
+void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
+{
+    //qDebug() << "VALUE: " << value;
+    //qDebug() << fmod(value, 1.0);
+    //qDebug() << fmod(value, 1.0) * 1000;
+    unsigned int milliseconds = ((int)value * 1000) + (fmod(value, 1.0) * 1000);
+    //qDebug() << "OUTPUT: " << milliseconds;
+    button->setCycleResetTime(milliseconds);
+}
+
+void AdvanceButtonDialog::populateAutoResetInterval()
+{
+    double seconds = button->getCycleResetTime() / 1000.0;
+    ui->resetCycleDoubleSpinBox->setValue(seconds);
+}
+
+void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
+{
+    if (enabled)
+    {
+        button->setCycleResetStatus(true);
+        if (button->getCycleResetTime() == 0 && ui->resetCycleDoubleSpinBox->value() > 0.0)
+        {
+            double current = ui->resetCycleDoubleSpinBox->value();
+            setButtonCycleResetInterval(current);
+        }
+    }
+    else
+    {
+        button->setCycleResetStatus(false);
+    }
 }
