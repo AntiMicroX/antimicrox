@@ -261,9 +261,13 @@ int main(int argc, char *argv[])
     else
     {
         a = new QApplication(argc, argv);
+        localServer = new LocalAntiMicroServer();
+        localServer->startLocalServer();
     }
 #else
     a = new QApplication (argc, argv);
+    localServer = new LocalAntiMicroServer();
+    localServer->startLocalServer();
 #endif
 
     //QApplication a(argc, argv);
