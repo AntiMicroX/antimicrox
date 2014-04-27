@@ -47,6 +47,11 @@ void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
     info->setActive(true);
 }
 
+AutoProfileInfo* EditAllDefaultAutoProfileDialog::getAutoProfile()
+{
+    return info;
+}
+
 void EditAllDefaultAutoProfileDialog::accept()
 {
     bool validForm = true;

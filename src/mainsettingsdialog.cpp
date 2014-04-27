@@ -968,8 +968,7 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
 
 void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
 {
-    int selectedRow = ui->autoProfileTableWidget->currentRow();
-    if (selectedRow >= 0 && item->column() == 0)
+    if (item && item->column() == 0)
     {
         qDebug() << item->row();
         QTableWidgetItem *infoitem = ui->autoProfileTableWidget->item(item->row(), 5);
@@ -1030,7 +1029,7 @@ void MainSettingsDialog::openEditAutoProfileDialog()
         {
             EditAllDefaultAutoProfileDialog *dialog = new EditAllDefaultAutoProfileDialog(info, settings, this);
             dialog->show();
-            connect(dialog, SIGNAL(accepted()), this, SLOT(transferEditsToCurrentTableRow()));
+            connect(dialog, SIGNAL(accepted()), this, SLOT(transferAllProfileEditToCurrentTableRow()));
         }
     }
 }
@@ -1119,6 +1118,14 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
         ui->autoProfileDeletePushButton->setEnabled(false);
         ui->autoProfileEditPushButton->setEnabled(false);
     }
+}
+
+void MainSettingsDialog::transferAllProfileEditToCurrentTableRow()
+{
+    EditAllDefaultAutoProfileDialog *dialog = static_cast<EditAllDefaultAutoProfileDialog*>(sender());
+    AutoProfileInfo *info = dialog->getAutoProfile();
+    allDefaultProfile = info;
+    changeDeviceForProfileTable(0);
 }
 
 void MainSettingsDialog::transferEditsToCurrentTableRow()

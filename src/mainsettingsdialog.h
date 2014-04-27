@@ -74,6 +74,7 @@ protected slots:
     void openDeleteAutoProfileConfirmDialog();
     void changeAutoProfileButtonsState();
     void transferEditsToCurrentTableRow();
+    void transferAllProfileEditToCurrentTableRow();
     void addNewAutoProfile();
     void autoProfileButtonsActiveState(bool enabled);
 };

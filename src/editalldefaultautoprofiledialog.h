@@ -20,6 +20,8 @@ public:
                                              QWidget *parent = 0);
     ~EditAllDefaultAutoProfileDialog();
 
+    AutoProfileInfo* getAutoProfile();
+
 protected:
     QString preferredProfileDir();
     virtual void accept();
