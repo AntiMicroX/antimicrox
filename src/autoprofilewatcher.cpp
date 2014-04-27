@@ -221,10 +221,15 @@ QString AutoProfileWatcher::findAppLocation()
 #if defined(Q_OS_UNIX)
     Window currentWindow = 0;
     int focusState = 0;
+    int pid = 0;
 
     Display *display = X11Info::display();
     XGetInputFocus(display, &currentWindow, &focusState);
-    int pid = X11Info::getApplicationPid(currentWindow);
+    if (currentWindow)
+    {
+        pid = X11Info::getApplicationPid(currentWindow);
+    }
+
     if (pid > 0)
     {
         exepath = X11Info::getApplicationLocation(pid);

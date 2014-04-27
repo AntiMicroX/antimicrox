@@ -496,7 +496,7 @@ void MainSettingsDialog::populateAutoProfiles()
 
         // Check if all required elements exist. If not, assume that the end of the
         // list has been reached.
-        if (!exe.isEmpty() && !guid.isEmpty() && !profile.isEmpty() && !deviceName.isEmpty())
+        if (!exe.isEmpty() && !guid.isEmpty() && !profile.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
             QList<AutoProfileInfo*> templist;
@@ -511,22 +511,29 @@ void MainSettingsDialog::populateAutoProfiles()
                 tempguids = tempAssociation.value(exe);
             }
 
-            if (!tempguids.contains(guid) && guid != "all")
+            if (!tempguids.contains(guid))
             {
                 AutoProfileInfo *info = new AutoProfileInfo(guid, profile, exe, profileActive, this);
-                info->setDeviceName(deviceName);
+                if (!deviceName.isEmpty())
+                {
+                    info->setDeviceName(deviceName);
+                }
+
                 tempguids.append(guid);
                 tempAssociation.insert(exe, tempguids);
                 templist.append(info);
                 exeAutoProfiles.insert(exe, templist);
                 profileList.append(info);
                 QList<AutoProfileInfo*> templist;
-                if (deviceAutoProfiles.contains(guid))
+                if (guid != "all")
                 {
-                    templist = deviceAutoProfiles.value(guid);
+                    if (deviceAutoProfiles.contains(guid))
+                    {
+                        templist = deviceAutoProfiles.value(guid);
+                    }
+                    templist.append(info);
+                    deviceAutoProfiles.insert(guid, templist);
                 }
-                templist.append(info);
-                deviceAutoProfiles.insert(guid, templist);
             }
         }
         else
@@ -788,6 +795,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
         settings->setValue(QString("AutoProfile%1Profile").arg(i), info->getProfileLocation());
         settings->setValue(QString("AutoProfile%1Active").arg(i), defaultActive);
         settings->setValue(QString("AutoProfile%1DeviceName").arg(i), info->getDeviceName());
+        i++;
     }
     settings->endGroup();
 }
@@ -1290,14 +1298,17 @@ void MainSettingsDialog::addNewAutoProfile()
                 exeAutoProfiles.insert(info->getExe(), templist);
                 profileList.append(info);
 
-                QList<AutoProfileInfo*> tempDevProfileList;
-                if (deviceAutoProfiles.contains(info->getGUID()))
+                if (info->getGUID() != "all")
                 {
-                    tempDevProfileList = deviceAutoProfiles.value(info->getGUID());
-                }
+                    QList<AutoProfileInfo*> tempDevProfileList;
+                    if (deviceAutoProfiles.contains(info->getGUID()))
+                    {
+                        tempDevProfileList = deviceAutoProfiles.value(info->getGUID());
+                    }
 
-                tempDevProfileList.append(info);
-                deviceAutoProfiles.insert(info->getGUID(), tempDevProfileList);
+                    tempDevProfileList.append(info);
+                    deviceAutoProfiles.insert(info->getGUID(), tempDevProfileList);
+                }
             }
         }
 
