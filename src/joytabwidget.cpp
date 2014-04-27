@@ -1044,6 +1044,14 @@ void JoyTabWidget::saveConfigFile()
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
+
+            QFileInfo fileinfo(filename);
+            QString deviceTypeName = joystick->getXmlName();
+            QString fileSuffix = deviceTypeName.append(".xml");
+            if (fileinfo.suffix() != "xml")
+            {
+                filename = filename.append(".").append(fileSuffix);
+            }
         }
     }
     else
@@ -1054,11 +1062,6 @@ void JoyTabWidget::saveConfigFile()
     if (!filename.isEmpty())
     {
         QFileInfo fileinfo(filename);
-        if (fileinfo.suffix() != "xml")
-        {
-            filename = filename.append(".xml");
-        }
-        fileinfo.setFile(filename);
 
         XMLConfigWriter writer;
         writer.setFileName(fileinfo.absoluteFilePath());
@@ -1178,9 +1181,11 @@ void JoyTabWidget::saveAsConfig()
     if (!filename.isEmpty())
     {
         QFileInfo fileinfo(filename);
+        QString deviceTypeName = joystick->getXmlName();
+        QString fileSuffix = deviceTypeName.append(".xml");
         if (fileinfo.suffix() != "xml")
         {
-            filename = filename.append(".xml");
+            filename = filename.append(".").append(fileSuffix);
         }
         fileinfo.setFile(filename);
 

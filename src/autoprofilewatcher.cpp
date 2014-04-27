@@ -67,9 +67,12 @@ void AutoProfileWatcher::runAppCheck()
         {
             if (allDefaultInfo)
             {
-                QString guid = allDefaultInfo->getGUID();
-                QString profileLocation = allDefaultInfo->getProfileLocation();
-                emit foundApplicableProfile(guid, profileLocation);
+                if (allDefaultInfo->isActive())
+                {
+                    QString guid = allDefaultInfo->getGUID();
+                    QString profileLocation = allDefaultInfo->getProfileLocation();
+                    emit foundApplicableProfile(guid, profileLocation);
+                }
             }
 
             QHashIterator<QString, AutoProfileInfo*> iter(defaultProfileAssignments);
