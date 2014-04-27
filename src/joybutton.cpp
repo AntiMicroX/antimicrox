@@ -2838,6 +2838,8 @@ bool JoyButton::isDefault()
     //value = value && (buttonName.isEmpty());
     value = value && (wheelSpeedX == 20);
     value = value && (wheelSpeedY == 20);
+    value = value && (cycleResetActive == false);
+    value = value && (cycleResetInterval == 0);
     return value;
 }
 
