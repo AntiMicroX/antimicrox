@@ -96,37 +96,56 @@ int X11Info::getApplicationPid(Window &window)
     {
         XFree(prop);
 
-        Window parent = 1;
+        Window parent = 0;
         Window root = 0;
-        Window * children;
+        Window *children;
         unsigned int num_children;
         bool quitTraversal = false;
 
         while (!quitTraversal)
         {
             children = 0;
-            XQueryTree(display, window, &root, &parent, &children, &num_children);
-            if (children) { //must test for null
-                XFree(children);
-            }
-            status = XGetWindowProperty(display, parent, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-            if (status == 0 && prop)
-            {
-                pid = prop[1] << 8;
-                pid += prop[0];
 
-                quitTraversal = true;
-            }
-            else if (parent == root)
+            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
             {
-                quitTraversal = true;
+                if (children) { // must test for null
+                    XFree(children);
+                }
+
+                if (parent)
+                {
+                    status = XGetWindowProperty(display, parent, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                    if (status == 0 && prop)
+                    {
+                        pid = prop[1] << 8;
+                        pid += prop[0];
+
+                        quitTraversal = true;
+                    }
+                    else if (parent == 0)
+                    {
+                        quitTraversal = true;
+                    }
+                    else if (parent == root)
+                    {
+                        quitTraversal = true;
+                    }
+                    else
+                    {
+                        window = parent;
+                    }
+
+                    XFree(prop);
+                }
+                else
+                {
+                    quitTraversal = true;
+                }
             }
             else
             {
-                window = parent;
+                quitTraversal = true;
             }
-
-            XFree(prop);
         }
     }
 
