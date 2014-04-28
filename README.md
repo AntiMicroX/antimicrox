@@ -147,6 +147,7 @@ This will especially help people using a PS3 controller.
 slightly altered sets easier.
 * Improve SteamOS support.
 * Write documentation for portions of the program.
+* Add Delay slot type.
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this

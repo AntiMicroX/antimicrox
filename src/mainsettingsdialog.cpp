@@ -1243,8 +1243,8 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
     }
 
     fillGUIDComboBox();
-    int deviceIndex = ui->devicesComboBox->findData(QVariant(info->getGUID()));
-    ui->devicesComboBox->setCurrentIndex(deviceIndex);
+    int currentIndex = ui->devicesComboBox->currentIndex();
+    changeDeviceForProfileTable(currentIndex);
 }
 
 void MainSettingsDialog::addNewAutoProfile()
