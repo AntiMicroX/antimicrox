@@ -1,70 +1,17 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1386798703703" TEXT="AntiMicro Future Developments">
-<node CREATED="1379712868552" FOLDED="true" ID="ID_1152197684" MODIFIED="1397800095248" POSITION="right" TEXT="Mouse Curves">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1385413655567" HGAP="19" ID="ID_1859704771" MODIFIED="1397800091525" TEXT="Curve options were taken from QJoyPad. Linear is still used as the default." VSHIFT="-7"/>
+<node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1398677098612" TEXT="AntiMicro Future Developments">
+<node CREATED="1379713112228" HGAP="18" ID="ID_2402610" MODIFIED="1398677372059" POSITION="left" TEXT="Disable Buttons from Display?" VSHIFT="1"/>
+<node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1398676885501" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="-7"/>
+<node CREATED="1398676376577" FOLDED="true" HGAP="19" ID="ID_1223827762" MODIFIED="1398677513608" POSITION="left" TEXT="Split Actions into a Seperate Entity?" VSHIFT="-5">
+<icon BUILTIN="help"/>
+<node CREATED="1398676422304" ID="ID_744925725" MODIFIED="1398676855592" TEXT="Unlike the current system where assignment slots are assigned to controller buttons, actions would hold all applicable slots and a button would then be assigned an action. The major benefit behind doing that would be that complex macro assignments can be assigned to multiple buttons without completely mapping the sequence out again. Also, it would be much easier to assign the sequence to a different button.&#xa;&#xa;This type of change would probably require a complete program refactor. I honestly don&apos;t see this feature ever being incorporated into AntiMicro."/>
 </node>
-<node CREATED="1379712878989" FOLDED="true" ID="ID_1601152391" MODIFIED="1397800659877" POSITION="left" TEXT="Gamepad Status/Diagnosis">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1386295949051" ID="ID_1843601206" MODIFIED="1386296073732" TEXT="Status window shows pieces of information provided by SDL: number of buttons, number of axes, number of hats and controller display name. The window also shows the current raw values of all axes, hats, and buttons. This window will be useful for better showing exactly how SDL sees the controller."/>
+<node CREATED="1398676874185" FOLDED="true" HGAP="27" ID="ID_282049175" MODIFIED="1398677362659" POSITION="right" TEXT="Improve SteamOS Support" VSHIFT="-3">
+<node CREATED="1398676892603" ID="ID_226300967" MODIFIED="1398677002203" TEXT="Auto Profile support should work in the SteamOS BPM session. Allow for more control over the process via the command line."/>
 </node>
-<node CREATED="1379712921288" FOLDED="true" ID="ID_1904560551" MODIFIED="1397800066304" POSITION="right" TEXT="Tap Time?">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1386296158070" ID="ID_1324519805" MODIFIED="1392361566372" TEXT="This is mainly useful for Release slot events and Pause slot events. This will help ensure that a key is held down for long enough for a game to properly catch the keydown event.">
-<icon BUILTIN="info"/>
-</node>
-<node CREATED="1397799753075" ID="ID_1841197131" MODIFIED="1397799773659" TEXT="Created Tap Time equivalent as Key Press Time."/>
-</node>
-<node CREATED="1379713052871" FOLDED="true" ID="ID_362469693" MODIFIED="1397799779445" POSITION="left" TEXT="SDL 2 compatibility?">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1385413319581" HGAP="246" ID="ID_315431873" MODIFIED="1386729226005" VSHIFT="-44">
-<richcontent TYPE="NODE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      Most of the Joystick API is the same but there are some problems.
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      The biggest problem is regarding the Xbox 360 controller under Windows. SDL 2 uses XInput with an Xbox 360 controller as opposed to the old behavior of using DirectInput. The button layout of the 360 controller is completely different when using XInput. Because of this, any Windows
-    </p>
-    <p>
-      controller profile made with a version of AntiMicro built using SDL 1.2 will not
-    </p>
-    <p>
-      work on a version built with SDL 2.
-    </p>
-  </body>
-</html></richcontent>
-<icon BUILTIN="info"/>
-</node>
-<node CREATED="1386727091342" FOLDED="true" HGAP="241" ID="ID_606065535" MODIFIED="1392361600287" TEXT="Allow compilation against SDL 2 using Joystick API" VSHIFT="-23">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1386728036714" HGAP="52" ID="ID_653911559" MODIFIED="1392361578740" TEXT="Different flags must be passed to SDL_Init. Use SDL_INIT_JOYSTICK. Do not use SDL_INIT_VIDEO.&#xa;&#xa;Enabling video support without actually creating a window in SDL causes&#xa;some major problems with joystick support in SDL 2; no axes support and only button up events are provided. Enabling video&#xa;was required in SDL 1.2 because that would also enable the events system&#xa;in SDL." VSHIFT="-35">
-<icon BUILTIN="info"/>
-</node>
-</node>
-<node CREATED="1386727260315" HGAP="331" ID="ID_367093659" MODIFIED="1388425763979" TEXT="Allow use of GameController API. Can be used to allow for unified configuration files.&#xa;&#xa;Hopefully, there will be a way to implement a gamecontroller mapping program&#xa;so that controllers not currently supported by SDL can still use the API.&#xa;Think Steam Big Picture controller configuration." VSHIFT="37">
-<icon BUILTIN="button_ok"/>
-</node>
-</node>
-<node CREATED="1379713072288" FOLDED="true" ID="ID_1167223802" MODIFIED="1397800142009" POSITION="right" TEXT="Mouse Wheel as Movement">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1397799820690" ID="ID_880207160" MODIFIED="1397799968234" TEXT="Useful for scrolling a page on a web browser and quick weapon cycling in a game. The later benefit is more important.&#xa;&#xa;With small speed values, single press control is possible."/>
-</node>
-<node CREATED="1379713112228" ID="ID_2402610" MODIFIED="1379713123344" POSITION="left" TEXT="Disable Buttons from Display?"/>
-<node CREATED="1379713177327" ID="ID_1294383668" MODIFIED="1385413564002" POSITION="right" TEXT="Spring Mode Window Preview">
-<icon BUILTIN="button_ok"/>
-</node>
-<node CREATED="1379719159629" FOLDED="true" ID="ID_1413165164" MODIFIED="1397800626072" POSITION="left" TEXT="Gamepad Identifier">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1397800112456" ID="ID_1680308708" MODIFIED="1397800147196" TEXT="For SDL 2, use GUID. For SDL 1.2, use value returned from SDL_JoystickName."/>
-</node>
-<node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1397799811735" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="1"/>
+<node CREATED="1398677022243" HGAP="22" ID="ID_1460866844" MODIFIED="1398677343259" POSITION="right" TEXT="Refactor Main Interface for Different Devices" VSHIFT="-6"/>
+<node CREATED="1398677269018" HGAP="14" ID="ID_1391547769" MODIFIED="1398677391581" POSITION="left" TEXT="Wizards for Assigning More Complex Actions" VSHIFT="-7"/>
+<node CREATED="1398677595039" ID="ID_356404126" MODIFIED="1398677644585" POSITION="right" TEXT="Add Documentation for Portions of the Program"/>
 </node>
 </map>

@@ -145,11 +145,8 @@ for this program will be written.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
-* A mouse setting that will move the mouse cursor to an exact spot on the
-screen based on the position of an axis. This would work similar to spring
-mode except that it will not automatically return the mouse cursor
-to the center of the screen. This idea is mainly intended for the touchpad
-on the PS4 controller.
+* Improve SteamOS support.
+* Write documentation for portions of the program.
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this
