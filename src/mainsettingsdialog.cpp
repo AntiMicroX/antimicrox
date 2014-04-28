@@ -707,6 +707,8 @@ void MainSettingsDialog::fillGUIDComboBox()
 
 void MainSettingsDialog::changeDeviceForProfileTable(int index)
 {
+    disconnect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
+
     if (index == 0)
     {
         fillAllAutoProfilesTable();
@@ -716,6 +718,8 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
         QString guid = ui->devicesComboBox->itemData(index).toString();
         fillAutoProfilesTable(guid);
     }
+
+    connect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
 }
 
 void MainSettingsDialog::saveAutoProfileSettings()
@@ -970,7 +974,6 @@ void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
 {
     if (item && item->column() == 0)
     {
-        qDebug() << item->row();
         QTableWidgetItem *infoitem = ui->autoProfileTableWidget->item(item->row(), 5);
         AutoProfileInfo *info = infoitem->data(Qt::UserRole).value<AutoProfileInfo*>();
         Qt::CheckState active = item->checkState();
@@ -987,19 +990,12 @@ void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
 
 void MainSettingsDialog::openAddAutoProfileDialog()
 {
-//    /int selectedRow = ui->autoProfileTableWidget->currentRow();
-    //if (selectedRow >= 0)
-    //{
-        //if (ui->devicesComboBox->currentIndex() != 0 || selectedRow != 0)
-        //{
-            QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
-            AutoProfileInfo *info = new AutoProfileInfo(this);
-            AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
-            connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
-            connect(dialog, SIGNAL(rejected()), info, SLOT(deleteLater()));
-            dialog->show();
-        //}
-    //}
+    QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
+    AutoProfileInfo *info = new AutoProfileInfo(this);
+    AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
+    connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
+    connect(dialog, SIGNAL(rejected()), info, SLOT(deleteLater()));
+    dialog->show();
 }
 
 void MainSettingsDialog::openEditAutoProfileDialog()
@@ -1247,7 +1243,8 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
     }
 
     fillGUIDComboBox();
-    changeDeviceForProfileTable(ui->devicesComboBox->currentIndex());
+    int deviceIndex = ui->devicesComboBox->findData(QVariant(info->getGUID()));
+    ui->devicesComboBox->setCurrentIndex(deviceIndex);
 }
 
 void MainSettingsDialog::addNewAutoProfile()
