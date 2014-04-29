@@ -73,7 +73,7 @@ public:
     void revertProfileEdited();
 
     static const int NUMBER_JOYSETS;
-    static const int DEFAULTKEYDELAY;
+    static const int DEFAULTKEYPRESSTIME;
 
 protected:
     void enableSetConnections(SetJoystick *setstick);

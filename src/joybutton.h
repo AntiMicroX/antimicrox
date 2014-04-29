@@ -130,7 +130,7 @@ protected:
     bool checkForDelaySequence();
     void checkForPressedSetChange();
     bool setAssignedSlot(JoyButtonSlot *newslot);
-    unsigned int getPreferredKeyDelay();
+    unsigned int getPreferredKeyPressTime();
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
@@ -160,7 +160,8 @@ protected:
     QTimer mouseWheelVerticalEventTimer;
     QTimer mouseWheelHorizontalEventTimer;
     QTimer setChangeTimer;
-    QTimer keyDelayTimer;
+    QTimer keyPressTimer;
+    QTimer delayTimer;
 
     bool isDown;
     bool toggleActiveState;
@@ -189,13 +190,15 @@ protected:
     JoyButtonSlot *currentWheelVerticalEvent;
     JoyButtonSlot *currentWheelHorizontalEvent;
     JoyButtonSlot *currentKeyPress;
+    JoyButtonSlot *currentDelay;
 
     bool ignoresets;
     QTime buttonHold;
     QTime pauseHold;
     QTime inpauseHold;
     QTime buttonHeldRelease;
-    QTime keyDelayHold;
+    QTime keyPressHold;
+    QTime buttonDelay;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
@@ -291,13 +294,14 @@ private slots:
     void waitForReleaseDeskEvent();
     void pauseEvent();
     void holdEvent();
+    void delayEvent();
 
     void wheelEventVertical();
     void wheelEventHorizontal();
 
     void pauseWaitEvent();
     void checkForSetChange();
-    void keydelayEvent();
+    void keyPressEvent();
 };
 
 

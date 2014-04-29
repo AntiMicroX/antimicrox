@@ -3,7 +3,7 @@
 #include "inputdevice.h"
 
 const int InputDevice::NUMBER_JOYSETS = 8;
-const int InputDevice::DEFAULTKEYDELAY = 100;
+const int InputDevice::DEFAULTKEYPRESSTIME = 100;
 
 InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     QObject(parent)

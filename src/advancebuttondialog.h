@@ -31,6 +31,9 @@ protected:
     void refreshTimeComboBoxes(JoyButtonSlot *slot);
     void updateWindowTitleButtonName();
     void populateAutoResetInterval();
+    void disconnectTimeBoxesEvents();
+    void connectTimeBoxesEvents();
+    void resetTimeBoxes();
 
     int oldRow;
     JoyButton *button;
@@ -64,6 +67,7 @@ private slots:
     void insertReleaseSlot();
     void insertMouseSpeedModSlot();
     void insertKeyPressSlot();
+    void insertDelaySlot();
 
     void updateActionTimeLabel();
     void updateSetSelection();

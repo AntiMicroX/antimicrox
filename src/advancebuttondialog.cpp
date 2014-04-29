@@ -47,8 +47,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         existingCode->setText(buttonslot->getSlotString());
         existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotCodeAlias(), buttonslot->getSlotMode());
 
-        //existingCode->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
         QListWidgetItem *item = new QListWidgetItem();
         item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(existingCode));
         QHBoxLayout *layout= new QHBoxLayout();
@@ -157,6 +155,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
     connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
     connect(ui->pressTimePushButton, SIGNAL(clicked()), this, SLOT(insertKeyPressSlot()));
+    connect(ui->delayPushButton, SIGNAL(clicked()), this, SLOT(insertDelaySlot()));
 
     connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(checkCycleResetWidgetStatus(bool)));
     connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(setButtonCycleReset(bool)));
@@ -384,15 +383,7 @@ int AdvanceButtonDialog::actionTimeConvert()
 
 void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
 {
-    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-
-    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnectTimeBoxesEvents();
 
     int slottime = slot->getSlotCode();
     int tempMinutes = slottime / 1000 / 60;
@@ -406,15 +397,7 @@ void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
     ui->actionHundredthsComboBox->setCurrentIndex(tempHundredthsSeconds);
     updateActionTimeLabel();
 
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connectTimeBoxesEvents();
 }
 
 void AdvanceButtonDialog::updateActionTimeLabel()
@@ -702,6 +685,22 @@ void AdvanceButtonDialog::insertKeyPressSlot()
     }
 }
 
+void AdvanceButtonDialog::insertDelaySlot()
+{
+    int index = ui->slotListWidget->currentRow();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    int actionTime = actionTimeConvert();
+    if (actionTime > 0)
+    {
+        tempbutton->setValue(actionTime, JoyButtonSlot::JoyDelay);
+        // Stop all events on JoyButton
+        this->button->eventReset();
+
+        this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyDelay);
+        updateSlotsScrollArea(actionTime);
+    }
+}
+
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 {
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -720,6 +719,10 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
         refreshTimeComboBoxes(slot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyKeyPress)
+    {
+        refreshTimeComboBoxes(slot);
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyDelay)
     {
         refreshTimeComboBoxes(slot);
     }
@@ -745,7 +748,8 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
     if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyPause ||
         tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyHold ||
         tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyRelease ||
-        tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyKeyPress)
+        tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyKeyPress ||
+        tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyDelay)
     {
         int actionTime = actionTimeConvert();
         if (actionTime > 0)
@@ -856,11 +860,7 @@ void AdvanceButtonDialog::checkCycleResetWidgetStatus(bool enabled)
 
 void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 {
-    //qDebug() << "VALUE: " << value;
-    //qDebug() << fmod(value, 1.0);
-    //qDebug() << fmod(value, 1.0) * 1000;
     unsigned int milliseconds = ((int)value * 1000) + (fmod(value, 1.0) * 1000);
-    //qDebug() << "OUTPUT: " << milliseconds;
     button->setCycleResetTime(milliseconds);
 }
 
@@ -885,4 +885,43 @@ void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
     {
         button->setCycleResetStatus(false);
     }
+}
+
+void AdvanceButtonDialog::resetTimeBoxes()
+{
+    disconnectTimeBoxesEvents();
+
+    ui->actionMinutesComboBox->setCurrentIndex(0);
+    ui->actionSecondsComboBox->setCurrentIndex(0);
+    ui->actionTenthsComboBox->setCurrentIndex(1);
+    ui->actionHundredthsComboBox->setCurrentIndex(0);
+
+    updateActionTimeLabel();
+    connectTimeBoxesEvents();
+}
+
+void AdvanceButtonDialog::disconnectTimeBoxesEvents()
+{
+    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+
+    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+}
+
+void AdvanceButtonDialog::connectTimeBoxesEvents()
+{
+    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+
+    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
 }

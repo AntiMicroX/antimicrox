@@ -46,10 +46,11 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             controlcode = mouseEve->button();
         }
 
-        setText(QString(tr("Mouse")).append(" ").append(QString::number(controlcode)));
+        //setText(QString(tr("Mouse")).append(" ").append(QString::number(controlcode)));
 
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
+        refreshButtonLabel();
         edited = true;
         releaseMouse();
         releaseKeyboard();

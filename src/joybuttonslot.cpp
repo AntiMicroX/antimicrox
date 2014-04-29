@@ -212,6 +212,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyKeyPress);
                 }
+                else if (temptext == "delay")
+                {
+                    this->setSlotMode(JoyDelay);
+                }
             }
             else
             {
@@ -323,6 +327,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyKeyPress)
     {
         xml->writeCharacters("keypress");
+    }
+    else if (mode == JoyDelay)
+    {
+        xml->writeCharacters("delay");
     }
 
     xml->writeEndElement();
@@ -449,6 +457,25 @@ QString JoyButtonSlot::getSlotString()
 
             QString temp;
             temp.append(tr("Press Time")).append(" ");
+            if (minutes > 0)
+            {
+                temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+            }
+
+            temp.append(QString("%1.%2")
+                    .arg(seconds, 2, 10, QChar('0'))
+                    .arg(hundredths, 2, 10, QChar('0')));
+
+            newlabel.append(temp);
+        }
+        else if (mode == JoyDelay)
+        {
+            int minutes = deviceCode / 1000 / 60;
+            int seconds = (deviceCode / 1000 % 60);
+            int hundredths = deviceCode % 1000 / 10;
+
+            QString temp;
+            temp.append(tr("Delay")).append(" ");
             if (minutes > 0)
             {
                 temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));

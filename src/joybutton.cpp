@@ -35,8 +35,9 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
 
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
-    connect(&keyDelayTimer, SIGNAL(timeout()), this, SLOT(keydelayEvent()));
+    connect(&keyPressTimer, SIGNAL(timeout()), this, SLOT(keyPressEvent()));
     connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
+    connect(&delayTimer, SIGNAL(timeout()), this, SLOT(delayEvent()));
     connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
     connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
@@ -168,7 +169,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 
                     buttonHold.restart();
                     buttonHeldRelease.restart();
-                    keyDelayHold.restart();
+                    keyPressHold.restart();
                     cycleResetHold.restart();
                     turboTimer.start();
                     turboEvent();
@@ -193,10 +194,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     quitEvent = true;
                     buttonHold.restart();
                     buttonHeldRelease.restart();
-                    keyDelayHold.restart();
+                    keyPressHold.restart();
                     //createDeskTimer.start(0);
                     releaseDeskTimer.stop();
-                    if (!keyDelayTimer.isActive())
+                    if (!keyPressTimer.isActive())
                     {
                         waitForDeskEvent();
                     }
@@ -215,11 +216,11 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 buttonHold.restart();
                 buttonHeldRelease.restart();
                 cycleResetHold.restart();
-                keyDelayHold.restart();
+                keyPressHold.restart();
                 //createDeskTimer.start(0);
                 releaseDeskTimer.stop();
 
-                if (!keyDelayTimer.isActive())
+                if (!keyPressTimer.isActive())
                 {
                     checkForPressedSetChange();
                     if (!setChangeTimer.isActive())
@@ -243,10 +244,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     quitEvent = true;
                     buttonHold.restart();
                     buttonHeldRelease.restart();
-                    keyDelayHold.restart();
+                    keyPressHold.restart();
                     //createDeskTimer.start(0);
                     releaseDeskTimer.stop();
-                    if (!keyDelayTimer.isActive())
+                    if (!keyPressTimer.isActive())
                     {
                         waitForDeskEvent();
                     }
@@ -310,7 +311,8 @@ void JoyButton::reset()
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
     setChangeTimer.stop();
-    keyDelayTimer.stop();
+    keyPressTimer.stop();
+    delayTimer.stop();
 
     if (slotiter)
     {
@@ -338,6 +340,7 @@ void JoyButton::reset()
     currentWheelVerticalEvent = 0;
     currentWheelHorizontalEvent = 0;
     currentKeyPress = 0;
+    currentDelay = 0;
 
     isKeyPressed = isButtonPressed = false;
     quitEvent = true;
@@ -558,7 +561,7 @@ void JoyButton::createDeskEvent()
     {
         quitEvent = true;
     }
-    else if (!currentPause && !currentHold && !keyDelayTimer.isActive())
+    else if (!currentPause && !currentHold && !keyPressTimer.isActive())
     {
         quitEvent = true;
     }
@@ -649,6 +652,13 @@ void JoyButton::activateSlots()
                 holdTimer.start(0);
                 exit = true;
             }
+            else if (mode == JoyButtonSlot::JoyDelay)
+            {
+                currentDelay = slot;
+                buttonDelay.restart();
+                delayTimer.start(0);
+                exit = true;
+            }
             else if (mode == JoyButtonSlot::JoyCycle)
             {
                 currentCycle = slot;
@@ -713,8 +723,8 @@ void JoyButton::activateSlots()
 
         if (delaySequence && !activeSlots.isEmpty())
         {
-            keyDelayHold.restart();
-            keydelayEvent();
+            keyPressHold.restart();
+            keyPressEvent();
         }
     }
 }
@@ -1937,7 +1947,7 @@ void JoyButton::pauseWaitEvent()
                     slotiter->findNext(previousCycle);
                 }
                 quitEvent = true;
-                keyDelayHold.restart();
+                keyPressHold.restart();
                 //waitForDeskEvent();
                 // Assuming that if this is the case, a pause from
                 // a release slot was previously active. setChangeTimer
@@ -2096,14 +2106,14 @@ void JoyButton::waitForDeskEvent()
     {
         if (createDeskTimer.isActive())
         {
-            keyDelayTimer.stop();
+            keyPressTimer.stop();
             createDeskTimer.stop();
             releaseDeskTimer.stop();
             createDeskEvent();
         }
         else
         {
-            keyDelayTimer.stop();
+            keyPressTimer.stop();
             releaseDeskTimer.stop();
             createDeskEvent();
         }
@@ -2134,14 +2144,14 @@ void JoyButton::waitForDeskEvent()
 
 void JoyButton::waitForReleaseDeskEvent()
 {
-    if (quitEvent && !keyDelayTimer.isActive())
+    if (quitEvent && !keyPressTimer.isActive())
     {
         if (releaseDeskTimer.isActive())
         {
             releaseDeskTimer.stop();
         }
         createDeskTimer.stop();
-        keyDelayTimer.stop();
+        keyPressTimer.stop();
         releaseDeskEvent();
     }
     else if (!releaseDeskTimer.isActive())
@@ -2225,6 +2235,45 @@ void JoyButton::holdEvent()
     }
 }
 
+void JoyButton::delayEvent()
+{
+    if (currentDelay)
+    {
+        bool currentlyPressed = false;
+        if (!isButtonPressedQueue.isEmpty())
+        {
+            currentlyPressed = isButtonPressedQueue.last();
+        }
+
+        // Delay time has elapsed. Continue processing slots.
+        if (currentDelay && buttonDelay.elapsed() > currentDelay->getSlotCode())
+        {
+            currentDelay = 0;
+            delayTimer.stop();
+            buttonDelay.restart();
+            createDeskEvent();
+        }
+        // Elapsed time has not occurred
+        else if (currentlyPressed)
+        {
+            unsigned int delayTime = currentDelay->getSlotCode();
+            int proposedInterval = delayTime - buttonDelay.elapsed();
+            proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
+            int newTimerInterval = qMin(10, proposedInterval);
+            delayTimer.start(newTimerInterval);
+        }
+        // Pre-emptive release
+        else
+        {
+            delayTimer.stop();
+        }
+    }
+    else
+    {
+        delayTimer.stop();
+    }
+}
+
 void JoyButton::releaseDeskEvent(bool skipsetchange)
 {
     quitEvent = false;
@@ -2233,7 +2282,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     pauseWaitTimer.stop();
     holdTimer.stop();
     createDeskTimer.stop();
-    keyDelayTimer.stop();
+    keyPressTimer.stop();
+    delayTimer.stop();
 
     releaseActiveSlots();
     if (!isButtonPressedQueue.isEmpty() && !currentRelease)
@@ -2471,7 +2521,8 @@ void JoyButton::clearSlotsEventReset()
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
     setChangeTimer.stop();
-    keyDelayTimer.stop();
+    keyPressTimer.stop();
+    delayTimer.stop();
 
     if (slotiter)
     {
@@ -2499,6 +2550,7 @@ void JoyButton::clearSlotsEventReset()
     currentWheelVerticalEvent = 0;
     currentWheelHorizontalEvent = 0;
     currentKeyPress = 0;
+    currentDelay = 0;
 
     isKeyPressed = isButtonPressed = false;
 
@@ -2517,7 +2569,8 @@ void JoyButton::eventReset()
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
     setChangeTimer.stop();
-    keyDelayTimer.stop();
+    keyPressTimer.stop();
+    delayTimer.stop();
 
     if (slotiter)
     {
@@ -2542,13 +2595,13 @@ void JoyButton::eventReset()
     currentWheelVerticalEvent = 0;
     currentWheelHorizontalEvent = 0;
     currentKeyPress = 0;
+    currentDelay = 0;
 
     isKeyPressed = isButtonPressed = false;
 
     releaseActiveSlots();
 
     quitEvent = true;
-    //clearAssignedSlots();
 }
 
 void JoyButton::releaseActiveSlots()
@@ -2721,7 +2774,7 @@ void JoyButton::releaseSlotEvent()
             currentRelease = temp;
 
             activateSlots();
-            if (!keyDelayTimer.isActive() && !pauseWaitTimer.isActive())
+            if (!keyPressTimer.isActive() && !pauseWaitTimer.isActive())
             {
                 releaseActiveSlots();
                 currentRelease = 0;
@@ -3083,15 +3136,15 @@ void JoyButton::moveSpringMouse()
     springYSpeeds.clear();
 }
 
-void JoyButton::keydelayEvent()
+void JoyButton::keyPressEvent()
 {
     //qDebug() << "RADIO EDIT: " << keyDelayHold.elapsed();
-    if (keyDelayTimer.isActive() && keyDelayHold.elapsed() >= getPreferredKeyDelay())
+    if (keyPressTimer.isActive() && keyPressHold.elapsed() >= getPreferredKeyPressTime())
     {
         currentKeyPress = 0;
 
-        keyDelayTimer.stop();
-        keyDelayHold.restart();
+        keyPressTimer.stop();
+        keyPressHold.restart();
         releaseActiveSlots();
 
         createDeskTimer.stop();
@@ -3113,12 +3166,11 @@ void JoyButton::keydelayEvent()
         createDeskTimer.stop();
         //releaseDeskTimer.stop();
 
-        unsigned int preferredDelay = getPreferredKeyDelay();
-        int proposedInterval = preferredDelay - keyDelayHold.elapsed();
+        unsigned int preferredDelay = getPreferredKeyPressTime();
+        int proposedInterval = preferredDelay - keyPressHold.elapsed();
         proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
-        //qDebug() << "NEVER: " << proposedInterval;
         int newTimerInterval = qMin(10, proposedInterval);
-        keyDelayTimer.start(newTimerInterval);
+        keyPressTimer.start(newTimerInterval);
         // If release timer is active, push next run until
         // after keyDelayTimer will timeout again. Helps
         // reduce CPU usage of an excessively repeating timer.
@@ -3184,9 +3236,9 @@ void JoyButton::checkForPressedSetChange()
     }
 }
 
-unsigned int JoyButton::getPreferredKeyDelay()
+unsigned int JoyButton::getPreferredKeyPressTime()
 {
-    unsigned int tempDelay = InputDevice::DEFAULTKEYDELAY;
+    unsigned int tempDelay = InputDevice::DEFAULTKEYPRESSTIME;
     if (currentKeyPress && currentKeyPress->getSlotCode() > 0)
     {
         tempDelay = (unsigned int)currentKeyPress->getSlotCode();
