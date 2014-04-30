@@ -3260,7 +3260,7 @@ void JoyButton::setCycleResetTime(unsigned int interval)
 {
     if (interval >= 10)
     {
-        unsigned int ceiling = 60;
+        unsigned int ceiling = 6000;
         unsigned int temp = qMax(interval, ceiling);
         cycleResetInterval = temp;
     }
