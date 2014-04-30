@@ -267,16 +267,7 @@ void ButtonEditDialog::sendSelectionFinished()
 
 void ButtonEditDialog::updateWindowTitleButtonName()
 {
-    QString temp = QString(tr("Set")).append(" ");
-
-    if (!button->getButtonName().isEmpty())
-    {
-        temp.append(button->getPartialName(false, true));
-    }
-    else
-    {
-        temp.append(button->getPartialName(false, true));
-    }
+    QString temp = QString(tr("Set")).append(" ").append(button->getPartialName(false, true));
 
     if (button->getParentSet()->getIndex() != 0)
     {

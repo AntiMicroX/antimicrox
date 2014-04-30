@@ -827,7 +827,7 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
 void AdvanceButtonDialog::updateWindowTitleButtonName()
 {
     QString temp;
-    temp.append(tr("Advanced").append(": ")).append(button->getPartialName());
+    temp.append(tr("Advanced").append(": ")).append(button->getPartialName(false, true));
 
     if (button->getParentSet()->getIndex() != 0)
     {

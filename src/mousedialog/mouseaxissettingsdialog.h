@@ -19,6 +19,7 @@ protected:
     void calculateMouseSpeedPreset();
     void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
+    void updateWindowTitleAxisName();
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;

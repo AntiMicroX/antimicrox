@@ -395,7 +395,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 if (tempchoice >= 10)
                 {
-                    this->setDeviceKeyDelay(tempchoice);
+                    this->setDeviceKeyPressTime(tempchoice);
                 }
             }
             else
@@ -539,7 +539,7 @@ void GameController::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 if (tempchoice >= 10)
                 {
-                    this->setDeviceKeyDelay(tempchoice);
+                    this->setDeviceKeyPressTime(tempchoice);
                 }
             }
             else
@@ -677,9 +677,9 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
     }
     xml->writeEndElement(); // </names>
 
-    if (keyDelay > 0)
+    if (keyPressTime > 0)
     {
-        xml->writeTextElement("keyPressTime", QString::number(keyDelay));
+        xml->writeTextElement("keyPressTime", QString::number(keyPressTime));
     }
 
     xml->writeStartElement("sets");

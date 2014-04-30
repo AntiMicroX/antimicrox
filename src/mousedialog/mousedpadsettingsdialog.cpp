@@ -1,6 +1,8 @@
 #include "mousedpadsettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <setjoystick.h>
+
 MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent) :
     MouseSettingsDialog(parent)
 {
@@ -273,6 +275,20 @@ void MouseDPadSettingsDialog::updateWindowTitleDPadName()
     else
     {
         temp.append(dpad->getName());
+    }
+
+    if (dpad->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = dpad->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = dpad->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
     }
 
     setWindowTitle(temp);

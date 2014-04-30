@@ -3243,17 +3243,17 @@ void JoyButton::checkForPressedSetChange()
 
 unsigned int JoyButton::getPreferredKeyPressTime()
 {
-    unsigned int tempDelay = InputDevice::DEFAULTKEYPRESSTIME;
+    unsigned int tempPressTime = InputDevice::DEFAULTKEYPRESSTIME;
     if (currentKeyPress && currentKeyPress->getSlotCode() > 0)
     {
-        tempDelay = (unsigned int)currentKeyPress->getSlotCode();
+        tempPressTime = (unsigned int)currentKeyPress->getSlotCode();
     }
-    else if (parentSet->getInputDevice()->getDeviceKeyDelay() > 0)
+    else if (parentSet->getInputDevice()->getDeviceKeyPressTime() > 0)
     {
-        tempDelay = parentSet->getInputDevice()->getDeviceKeyDelay();
+        tempPressTime = parentSet->getInputDevice()->getDeviceKeyPressTime();
     }
 
-    return tempDelay;
+    return tempPressTime;
 }
 
 void JoyButton::setCycleResetTime(unsigned int interval)

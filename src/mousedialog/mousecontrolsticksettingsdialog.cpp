@@ -3,6 +3,9 @@
 #include "mousecontrolsticksettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <setjoystick.h>
+
+
 MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent) :
     MouseSettingsDialog(parent)
 {
@@ -275,6 +278,20 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
     else
     {
         temp.append(stick->getPartialName());
+    }
+
+    if (stick->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = stick->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = stick->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
     }
 
     setWindowTitle(temp);

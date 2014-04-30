@@ -17,6 +17,7 @@ protected:
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
     void selectSmoothingPreset();
+    void updateWindowTitleButtonName();
 
     JoyButton *button;
     SpringModeRegionPreview *springPreviewWidget;

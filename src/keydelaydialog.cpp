@@ -13,10 +13,10 @@ KeyDelayDialog::KeyDelayDialog(InputDevice *device, QWidget *parent) :
     this->device = device;
 
     ui->delayValueLabel->setText(QString::number(0.10, 'g', 3).append("").append(tr("ms")));
-    if (device->getDeviceKeyDelay() > 0)
+    if (device->getDeviceKeyPressTime() > 0)
     {
-        int tempdelay = device->getDeviceKeyDelay();
-        ui->keyDelayHorizontalSlider->setValue(device->getDeviceKeyDelay() / 10);
+        int tempdelay = device->getDeviceKeyPressTime();
+        ui->keyDelayHorizontalSlider->setValue(device->getDeviceKeyPressTime() / 10);
         if (tempdelay >= 1000)
         {
             ui->delayValueLabel->setText(QString::number(tempdelay / 1000.0, 'g', 3).append("").append(tr("s")));
@@ -39,7 +39,7 @@ KeyDelayDialog::~KeyDelayDialog()
 void KeyDelayDialog::changeDeviceKeyDelay(int value)
 {
     int tempdelay = value * 10;
-    device->setDeviceKeyDelay(tempdelay);
+    device->setDeviceKeyPressTime(tempdelay);
     if (tempdelay >= 1000)
     {
         ui->delayValueLabel->setText(QString::number(tempdelay / 1000.0, 'g', 3).append("").append(tr("s")));

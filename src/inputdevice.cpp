@@ -12,7 +12,7 @@ InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     joyNumber = deviceIndex;
     active_set = 0;
     joystickID = 0;
-    keyDelay = 0;
+    keyPressTime = 0;
     deviceEdited = false;
 }
 
@@ -536,7 +536,7 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 if (tempchoice >= 10)
                 {
-                    this->setDeviceKeyDelay(tempchoice);
+                    this->setDeviceKeyPressTime(tempchoice);
                 }
             }
             else
@@ -803,9 +803,9 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
     }
     xml->writeEndElement(); // </names>
 
-    if (keyDelay > 0)
+    if (keyPressTime > 0)
     {
-        xml->writeTextElement("keyPressTime", QString::number(keyDelay));
+        xml->writeTextElement("keyPressTime", QString::number(keyPressTime));
     }
 
     xml->writeStartElement("sets");
@@ -1331,14 +1331,14 @@ void InputDevice::setIndex(int index)
     }
 }
 
-void InputDevice::setDeviceKeyDelay(unsigned int newDelay)
+void InputDevice::setDeviceKeyPressTime(unsigned int newPressTime)
 {
-    keyDelay = newDelay;
+    keyPressTime = newPressTime;
 }
 
-unsigned int InputDevice::getDeviceKeyDelay()
+unsigned int InputDevice::getDeviceKeyPressTime()
 {
-    return keyDelay;
+    return keyPressTime;
 }
 
 void InputDevice::profileEdited()

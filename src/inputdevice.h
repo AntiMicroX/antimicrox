@@ -66,7 +66,7 @@ public:
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
 
-    unsigned int getDeviceKeyDelay();
+    unsigned int getDeviceKeyPressTime();
 
     void setIndex(int index);
     bool isDeviceEdited();
@@ -84,7 +84,7 @@ protected:
     int joyNumber;
     int buttonDownCount;
     SDL_JoystickID joystickID;
-    unsigned int keyDelay;
+    unsigned int keyPressTime;
     bool deviceEdited;
 
 signals:
@@ -110,7 +110,7 @@ public slots:
     void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
-    void setDeviceKeyDelay(unsigned int newDelay);
+    void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
 
 protected slots:

@@ -1,6 +1,8 @@
 #include "mousebuttonsettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <setjoystick.h>
+
 MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget *parent) :
     MouseSettingsDialog(parent)
 {
@@ -21,7 +23,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     updateAccelerationCurvePresetComboBox();
     selectSmoothingPreset();
 
-    setWindowTitle(tr("Mouse Settings - ").append(tr("Button %1").arg(button->getRealJoyNumber())));
+    updateWindowTitleButtonName();
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
@@ -206,3 +208,27 @@ void MouseButtonSettingsDialog::selectSmoothingPreset()
         ui->smoothingCheckBox->setChecked(false);
     }
 }
+
+void MouseButtonSettingsDialog::updateWindowTitleButtonName()
+{
+    QString temp;
+    temp.append(tr("Mouse Settings - ")).append(button->getPartialName(false, true));
+
+
+    if (button->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = button->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = button->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
+    }
+
+    setWindowTitle(temp);
+}
+

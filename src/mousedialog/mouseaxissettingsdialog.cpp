@@ -1,6 +1,8 @@
 #include "mouseaxissettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <setjoystick.h>
+
 MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent) :
     MouseSettingsDialog(parent)
 {
@@ -20,8 +22,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     updateAccelerationCurvePresetComboBox();
 
     selectSmoothingPreset();
-
-    setWindowTitle(tr("Mouse Settings - ").append(tr("Axis %1").arg(axis->getRealJoyIndex())));
+    updateWindowTitleAxisName();
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
@@ -239,4 +240,35 @@ void MouseAxisSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 void MouseAxisSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
     axis->setButtonsWheelSpeedY(value);
+}
+
+void MouseAxisSettingsDialog::updateWindowTitleAxisName()
+{
+    QString temp;
+    temp.append(tr("Mouse Settings - "));
+
+    if (!axis->getAxisName().isEmpty())
+    {
+        temp.append(axis->getPartialName(false, true));
+    }
+    else
+    {
+        temp.append(axis->getPartialName());
+    }
+
+    if (axis->getParentSet()->getIndex() != 0)
+    {
+        unsigned int setIndex = axis->getParentSet()->getRealIndex();
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
+
+        QString setName = axis->getParentSet()->getName();
+        if (!setName.isEmpty())
+        {
+            temp.append(": ").append(setName);
+        }
+
+        temp.append("]");
+    }
+
+    setWindowTitle(temp);
 }

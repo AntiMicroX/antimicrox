@@ -259,6 +259,12 @@ past the interval specified.</string>
              </item>
              <item row="1" column="2">
               <widget class="QPushButton" name="delayPushButton">
+               <property name="toolTip">
+                <string>Delays the time that the next slot is activated
+by the time specified. Slots activated before the
+delay will remain active after the delay time
+has passed.</string>
+               </property>
                <property name="text">
                 <string>Delay</string>
                </property>
@@ -687,8 +693,6 @@ past the interval specified.</string>
         <zorder></zorder>
         <zorder>verticalSpacer_7</zorder>
         <zorder>verticalSpacer_9</zorder>
-        <zorder>cyclePushButton</zorder>
-        <zorder>clearAllPushButton</zorder>
         <zorder>verticalSpacer_6</zorder>
        </widget>
        <widget class="QWidget" name="page_2">
