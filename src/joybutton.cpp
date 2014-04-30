@@ -2214,17 +2214,21 @@ void JoyButton::holdEvent()
         // Elapsed time has not occurred
         else if (currentlyPressed)
         {
-            holdTimer.start(10);
+            unsigned int holdTime = currentDelay->getSlotCode();
+            int proposedInterval = holdTime - buttonHold.elapsed();
+            proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
+            int newTimerInterval = qMin(10, proposedInterval);
+            holdTimer.start(newTimerInterval);
         }
         // Pre-emptive release
         else
         {
+            currentHold = 0;
             holdTimer.stop();
 
             if (slotiter)
             {
                 findHoldEventEnd();
-                currentHold = 0;
                 createDeskEvent();
             }
         }
@@ -2265,6 +2269,7 @@ void JoyButton::delayEvent()
         // Pre-emptive release
         else
         {
+            currentDelay = 0;
             delayTimer.stop();
         }
     }

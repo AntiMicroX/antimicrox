@@ -147,7 +147,7 @@ MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLi
 
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
-    connect(appWatcher, SIGNAL(foundApplicableProfile(QString,QString)), this, SLOT(autoprofileLoad(QString,QString)));
+    connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
 #endif
 
@@ -1184,14 +1184,14 @@ void MainWindow::addJoyTab(InputDevice *device)
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
+void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         if (widget)
         {
-            if (guid == "all")
+            if (info->getGUID() == "all")
             {
                 // If the all option for a Default profile was found,
                 // first check for controller specific associations. If one exists,
@@ -1202,8 +1202,9 @@ void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
                 QListIterator<AutoProfileInfo*> iter(*customs);
                 while (iter.hasNext())
                 {
-                    AutoProfileInfo *info = iter.next();
-                    if (info->getGUID() == widget->getJoystick()->getGUIDString())
+                    AutoProfileInfo *tempinfo = iter.next();
+                    if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
+                        info->isCurrentDefault())
                     {
                         found = true;
                         iter.toBack();
@@ -1215,12 +1216,12 @@ void MainWindow::autoprofileLoad(QString guid, QString profileLocation)
 
                 if (!found)
                 {
-                    widget->loadConfigFile(profileLocation);
+                    widget->loadConfigFile(info->getProfileLocation());
                 }
             }
-            else if (guid == widget->getJoystick()->getStringIdentifier())
+            else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
             {
-                widget->loadConfigFile(profileLocation);
+                widget->loadConfigFile(info->getProfileLocation());
             }
         }
     }

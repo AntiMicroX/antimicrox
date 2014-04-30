@@ -56,9 +56,7 @@ void AutoProfileWatcher::runAppCheck()
                 AutoProfileInfo *info = iter.next();
                 if (info->isActive())
                 {
-                    QString guid = info->getGUID();
-                    QString profileLocation = info->getProfileLocation();
-                    emit foundApplicableProfile(guid, profileLocation);
+                    emit foundApplicableProfile(info);
                 }
             }
         }
@@ -69,9 +67,7 @@ void AutoProfileWatcher::runAppCheck()
             {
                 if (allDefaultInfo->isActive())
                 {
-                    QString guid = allDefaultInfo->getGUID();
-                    QString profileLocation = allDefaultInfo->getProfileLocation();
-                    emit foundApplicableProfile(guid, profileLocation);
+                    emit foundApplicableProfile(allDefaultInfo);
                 }
             }
 
@@ -82,9 +78,7 @@ void AutoProfileWatcher::runAppCheck()
                 AutoProfileInfo *info = iter.value();
                 if (info->isActive())
                 {
-                    QString guid = info->getGUID();
-                    QString profileLocation = info->getProfileLocation();
-                    emit foundApplicableProfile(guid, profileLocation);
+                    emit foundApplicableProfile(info);
                 }
             }
 
@@ -137,7 +131,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     QString active;
 
     QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
-    QStringList defaultkeys = settings->allKeys();
+    //QStringList defaultkeys = settings->allKeys();
     settings->endGroup();
 
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
@@ -146,8 +140,11 @@ void AutoProfileWatcher::syncProfileAssignment()
     if (!allProfile.isEmpty())
     {
         bool defaultActive = allActive == "1" ? true : false;
-        allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, this);
-        allDefaultInfo->setDefaultState(true);
+        if (defaultActive)
+        {
+            allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, this);
+            allDefaultInfo->setDefaultState(true);
+        }
     }
 
     QStringListIterator iter(registeredGUIDs);
@@ -162,7 +159,7 @@ void AutoProfileWatcher::syncProfileAssignment()
         if (!guid.isEmpty() && !profile.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
-            if (guid != "all")
+            if (profileActive && guid != "all")
             {
                 AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
                 info->setDefaultState(true);
@@ -187,25 +184,28 @@ void AutoProfileWatcher::syncProfileAssignment()
         if (!exe.isEmpty() && !guid.isEmpty() && !profile.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
-            QList<AutoProfileInfo*> templist;
-            if (appProfileAssignments.contains(exe))
+            if (profileActive)
             {
-                templist = appProfileAssignments.value(exe);
-            }
+                QList<AutoProfileInfo*> templist;
+                if (appProfileAssignments.contains(exe))
+                {
+                    templist = appProfileAssignments.value(exe);
+                }
 
-            QList<QString> tempguids;
-            if (tempAssociation.contains(exe))
-            {
-                tempguids = tempAssociation.value(exe);
-            }
+                QList<QString> tempguids;
+                if (tempAssociation.contains(exe))
+                {
+                    tempguids = tempAssociation.value(exe);
+                }
 
-            if (!tempguids.contains(guid))
-            {
-                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
-                tempguids.append(guid);
-                tempAssociation.insert(exe, tempguids);
-                templist.append(info);
-                appProfileAssignments.insert(exe, templist);
+                if (!tempguids.contains(guid))
+                {
+                    AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
+                    tempguids.append(guid);
+                    tempAssociation.insert(exe, tempguids);
+                    templist.append(info);
+                    appProfileAssignments.insert(exe, templist);
+                }
             }
         }
         else

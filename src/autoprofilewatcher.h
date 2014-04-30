@@ -36,7 +36,7 @@ protected:
     QString currentApplication;
 
 signals:
-    void foundApplicableProfile(QString guid, QString fileLocation);
+    void foundApplicableProfile(AutoProfileInfo *info);
 
 public slots:
     void syncProfileAssignment();

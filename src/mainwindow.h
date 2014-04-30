@@ -116,7 +116,7 @@ private slots:
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);
-    void autoprofileLoad(QString guid, QString profileLocation);
+    void autoprofileLoad(AutoProfileInfo *info);
     void checkAutoProfileWatcherTimer();
     void updateMenuOptions();
 #endif
