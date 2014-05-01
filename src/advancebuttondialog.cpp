@@ -6,7 +6,7 @@
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
 #include "event.h"
-#include "setjoystick.h"
+#include "inputdevice.h"
 
 const int AdvanceButtonDialog::MINIMUMTURBO = 2;
 
@@ -62,44 +62,18 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     }
 
     appendBlankKeyGrabber();
+    populateSetSelectionComboBox();
 
     if (this->button->getSetSelection() > -1 && this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled)
     {
-        int offset = (int)this->button->getChangeSetCondition();
-        ui->setSelectionComboBox->setCurrentIndex((this->button->getSetSelection() * 3) + offset);
-    }
+        int selectIndex = (int)this->button->getChangeSetCondition();
+        selectIndex += this->button->getSetSelection() * 3;
+        if (this->button->getOriginSet() < this->button->getSetSelection())
+        {
+            selectIndex -= 3;
+        }
 
-    if (this->button->getOriginSet() == 0)
-    {
-        ui->setSelectionComboBox->model()->removeRows(1, 3);
-    }
-    else if (this->button->getOriginSet() == 1)
-    {
-        ui->setSelectionComboBox->model()->removeRows(4, 3);
-    }
-    else if (this->button->getOriginSet() == 2)
-    {
-        ui->setSelectionComboBox->model()->removeRows(7, 3);
-    }
-    else if (this->button->getOriginSet() == 3)
-    {
-        ui->setSelectionComboBox->model()->removeRows(10, 3);
-    }
-    else if (this->button->getOriginSet() == 4)
-    {
-        ui->setSelectionComboBox->model()->removeRows(13, 3);
-    }
-    else if (this->button->getOriginSet() == 5)
-    {
-        ui->setSelectionComboBox->model()->removeRows(16, 3);
-    }
-    else if (this->button->getOriginSet() == 6)
-    {
-        ui->setSelectionComboBox->model()->removeRows(19, 3);
-    }
-    else if (this->button->getOriginSet() == 7)
-    {
-        ui->setSelectionComboBox->model()->removeRows(22, 3);
+        ui->setSelectionComboBox->setCurrentIndex(selectIndex);
     }
 
     fillTimeComboBoxes();
@@ -924,4 +898,56 @@ void AdvanceButtonDialog::connectTimeBoxesEvents()
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+}
+
+void AdvanceButtonDialog::populateSetSelectionComboBox()
+{
+    ui->setSelectionComboBox->clear();
+
+    /*if (this->button->getSetSelection() > -1 && this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled)
+    {
+        int offset = (int)this->button->getChangeSetCondition();
+        ui->setSelectionComboBox->setCurrentIndex((this->button->getSetSelection() * 3) + offset);
+    }*/
+
+    ui->setSelectionComboBox->insertItem(0, tr("Disabled"));
+
+    int currentIndex = 1;
+    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    {
+        if (this->button->getOriginSet() != i)
+        {
+            QString temp;
+            temp.append(tr("Select Set %1").arg(i+1));
+
+            InputDevice *tempdevice = button->getParentSet()->getInputDevice();
+            SetJoystick *tempset = tempdevice->getSetJoystick(i);
+            if (tempset)
+            {
+                QString setName = tempset->getName();
+                if (!setName.isEmpty())
+                {
+                    temp.append(" ").append("[");
+                    temp.append(setName).append("]").append(" ");
+                }
+            }
+
+            QString oneWayText;
+            oneWayText.append(temp).append(" ").append(tr("One Way"));
+
+            QString twoWayText;
+            twoWayText.append(temp).append(" ").append(tr("Two Way"));
+
+            QString whileHeldText;
+            whileHeldText.append(temp).append(" ").append(tr("While Held"));
+
+            QStringList setChoices;
+            setChoices.append(oneWayText);
+            setChoices.append(twoWayText);
+            setChoices.append(whileHeldText);
+
+            ui->setSelectionComboBox->insertItems(currentIndex, setChoices);
+            currentIndex += 3;
+        }
+    }
 }

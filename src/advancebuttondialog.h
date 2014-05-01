@@ -34,6 +34,7 @@ protected:
     void disconnectTimeBoxesEvents();
     void connectTimeBoxesEvents();
     void resetTimeBoxes();
+    void populateSetSelectionComboBox();
 
     int oldRow;
     JoyButton *button;
