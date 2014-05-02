@@ -148,9 +148,9 @@ for this program will be written.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
-~~* Improve SteamOS support.~~
+* ~~Improve SteamOS support.~~
 * Write documentation for portions of the program.
-~~* Add Delay slot type.~~
+* ~~Add Delay slot type.~~
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this
