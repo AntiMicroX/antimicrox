@@ -449,8 +449,8 @@ win32 {
     MSIFOLDER = $$shell_path($${PWD}/../windows)
     WIXENV = $$(WIX)
     WIXWXS = \"$$MSIFOLDER\AntiMicro.wxs\"
-    WIXOBJ = \"$$MSIFOLDER\AntiMicro.wixobj\"
-    WIXMSI = \"$$MSIFOLDER\AntiMicro.msi\"
+    WIXOBJ = \"$$MSIFOLDER\antimicro.wixobj\"
+    WIXMSI = \"$$MSIFOLDER\antimicro.msi\"
 
     isEmpty(WIXENV) {
         buildmsi.commands = @echo MSI package build aborted: WIX environment variable not defined.

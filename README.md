@@ -7,9 +7,14 @@ to a gamepad. This program is useful for playing PC games using a gamepad that
 do not have any form of built-in gamepad support. However, you can use this 
 program to control any desktop application with a gamepad; on Linux, this
 means that your system has to be running an X environment in order to run
-this program. This program is currently supported under various Linux
-distributions and Windows Vista and later; this program should be able to run
-under Windows XP but it has not been tested.
+this program.
+
+This program is currently supported under various Linux
+distributions and Windows Vista and later. At the time of writing this,
+AntiMicro works in Windows XP but, since Windows XP is no longer supported,
+running the program in Windows XP will not be officially supported.
+However, efforts will be made to not intentionally break compatibility
+with Windows XP.
 
 ## License
 
@@ -17,7 +22,6 @@ This program is licensed under the GPL v.3. Please read the gpl.txt text documen
 included with the source code if you would like to read the terms of the license.
 The license can also be found online at
 [http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
-
 
 ## Build Dependencies
 
@@ -34,7 +38,6 @@ installed on your system in order to build this program:
 * libsdl1.2-dev (or libsdl2-dev)
 * libxtst-dev
 * libX11-dev
-
 
 ## Building under Linux
 
@@ -145,9 +148,9 @@ for this program will be written.
 This will especially help people using a PS3 controller.
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
-* Improve SteamOS support.
+~~* Improve SteamOS support.~~
 * Write documentation for portions of the program.
-* Add Delay slot type.
+~~* Add Delay slot type.~~
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this

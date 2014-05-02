@@ -1,3 +1,52 @@
+2014-05-02 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.3
+
+* Added a daemon mode.
+
+* Added joystick profile compatibility parser for game controllers.
+Old profiles are now usable when using SDL Game Controller support.
+Old profiles have to be mapped against the same controller that
+is connected.
+
+* Added cycle reset support. Sequences with cycles can now get
+returned to the first cycle zone in a sequence after a period of
+time.
+
+* Changed Auto Profile support to work properly in SteamOS
+while running the SteamOS Big Picture Mode session. On many
+tested games (Duke Nukem 3D, SuperTux, World of Goo), the
+game had to be run in windowed mode in order for Auto Profile
+support to be able to detect the application. It is recommended
+that you run games in windowed mode when using Auto Profile support
+in the SteamOS BPM session. This is not an issue when running the Steam
+desktop client in desktop mode.
+
+* Added a delay slot type. A delay slot can be used for
+key presses in a key combination. Unlike other macro slots, slots
+placed before a delay slot will remain active after the specified
+time has passed.
+
+* Added option to allow the program to start on Windows startup.
+
+* Changed dialogs for secondary set buttons to display the set
+that the button is currently in.
+
+* Changed turbo mode to give more control. Key presses are now given
+more time to be active. Key presses and releases now run for a
+duration of t/2 seconds.
+
+* Altered tray menu to display a single list when only one controller
+is connected. An option has been added to allow for a single
+list to also be used when multiple controllers are detected.
+
+* Fixed issue with Windows XP Auto Profile workaround.
+On the plus side, now the program is confirmed to work in
+Windows XP.
+
+* Fixed issues with Auto Profile support saving and precendence.
+
+
 2014-04-19 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.2

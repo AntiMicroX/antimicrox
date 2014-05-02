@@ -21,7 +21,7 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
 
 QString GameController::getName()
 {
-    return QString(tr("GameController")).append(" ").append(QString::number(getRealJoyNumber()));
+    return QString(tr("Game Controller")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 QString GameController::getSDLName()
