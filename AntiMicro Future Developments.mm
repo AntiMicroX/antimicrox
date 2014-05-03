@@ -18,5 +18,6 @@
 <icon BUILTIN="button_ok"/>
 <node CREATED="1398682402644" ID="ID_693533160" MODIFIED="1398682514273" TEXT="A Delay slot will work almost like the current Hold slot type. The big difference is that any currently active slots will not be released after the delay time has been exceeded."/>
 </node>
+<node CREATED="1399110391534" ID="ID_198612384" MODIFIED="1399110427473" POSITION="right" TEXT="Convert to using CMake instead of qmake"/>
 </node>
 </map>

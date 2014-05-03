@@ -6,25 +6,25 @@
 #include "inputdevice.h"
 
 namespace Ui {
-class KeyDelayDialog;
+class KeyPressDialog;
 }
 
-class KeyDelayDialog : public QDialog
+class KeyPressDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit KeyDelayDialog(InputDevice *device, QWidget *parent = 0);
-    ~KeyDelayDialog();
+    explicit KeyPressDialog(InputDevice *device, QWidget *parent = 0);
+    ~KeyPressDialog();
 
 protected:
     InputDevice *device;
 
 private:
-    Ui::KeyDelayDialog *ui;
+    Ui::KeyPressDialog *ui;
 
 private slots:
-    void changeDeviceKeyDelay(int value);
+    void changeDeviceKeyPress(int value);
 };
 
 #endif // KEYDELAYDIALOG_H

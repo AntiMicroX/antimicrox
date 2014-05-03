@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>KeyDelayDialog</class>
- <widget class="QDialog" name="KeyDelayDialog">
+ <class>KeyPressDialog</class>
+ <widget class="QDialog" name="KeyPressDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -47,7 +47,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSlider" name="keyDelayHorizontalSlider">
+        <widget class="QSlider" name="keyPressHorizontalSlider">
          <property name="minimum">
           <number>1</number>
          </property>
@@ -65,7 +65,7 @@
       </layout>
      </item>
      <item alignment="Qt::AlignRight">
-      <widget class="QLabel" name="delayValueLabel">
+      <widget class="QLabel" name="pressValueLabel">
        <property name="text">
         <string>0.00 ms</string>
        </property>
@@ -90,7 +90,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>KeyDelayDialog</receiver>
+   <receiver>KeyPressDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -106,7 +106,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>KeyDelayDialog</receiver>
+   <receiver>KeyPressDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

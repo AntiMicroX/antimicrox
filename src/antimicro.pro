@@ -240,14 +240,14 @@ SOURCES += main.cpp\
     inputdevice.cpp \
     mainsettingsdialog.cpp \
     gamecontroller/gamecontrollertriggerbutton.cpp \
-    keydelaydialog.cpp \
     setnamesdialog.cpp \
     autoprofilewatcher.cpp \
     autoprofileinfo.cpp \
     addeditautoprofiledialog.cpp \
     editalldefaultautoprofiledialog.cpp \
     common.cpp \
-    localantimicroserver.cpp
+    localantimicroserver.cpp \
+    keypressdialog.cpp
 
 unix {
   SOURCES += x11info.cpp \
@@ -328,13 +328,13 @@ HEADERS  += mainwindow.h \
     inputdevice.h \
     mainsettingsdialog.h \
     gamecontroller/gamecontrollertriggerbutton.h \
-    keydelaydialog.h \
     setnamesdialog.h \
     autoprofilewatcher.h \
     autoprofileinfo.h \
     addeditautoprofiledialog.h \
     editalldefaultautoprofiledialog.h \
-    localantimicroserver.h
+    localantimicroserver.h \
+    keypressdialog.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
@@ -370,11 +370,11 @@ FORMS    += mainwindow.ui \
     qkeydisplaydialog.ui \
     gamecontrollermappingdialog.ui \
     mainsettingsdialog.ui \
-    keydelaydialog.ui \
     setnamesdialog.ui \
     addeditautoprofiledialog.ui \
     editalldefaultautoprofiledialog.ui \
-    winappprofiletimerdialog.ui
+    winappprofiletimerdialog.ui \
+    keypressdialog.ui
 
 
 unix {
