@@ -36,11 +36,16 @@ public:
     InputDevice *getJoystick();
     void unloadConfig();
     bool isDisplayingNames();
+    bool discardUnsavedProfileChanges();
 
 protected:
     void removeCurrentButtons();
     virtual void languageChange();
     QString preferredProfileDir(QSettings *settings);
+    void disconnectMainComboBoxEvents();
+    void reconnectMainComboBoxEvents();
+    void disconnectCheckUnsavedEvent();
+    void reconnectCheckUnsavedEvent();
 
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
@@ -106,6 +111,7 @@ protected:
     InputDevice *joystick;
     bool displayingNames;
     QSettings *settings;
+    int comboBoxIndex;
 
     static const int DEFAULTNUMBERPROFILES = 5;
 
@@ -127,7 +133,6 @@ public slots:
     void changeNameDisplay(bool displayNames);
     void changeCurrentSet(int index);
     void refreshSetButtons();
-    void checkForUnsavedProfile();
 
 private slots:
     void saveConfigFile();
@@ -156,6 +161,7 @@ private slots:
     void openStickButtonDialog();
     void displayProfileEditNotification();
     void removeProfileEditNotification();
+    void checkForUnsavedProfile(int newindex);
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();

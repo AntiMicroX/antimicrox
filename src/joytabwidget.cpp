@@ -34,6 +34,8 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     this->joystick = joystick;
     this->settings = settings;
 
+    comboBoxIndex = 0;
+
     verticalLayout = new QVBoxLayout (this);
     verticalLayout->setContentsMargins(4, 4, 4, 4);
 
@@ -429,12 +431,10 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
     connect(namesPushButton, SIGNAL(clicked()), this, SLOT(toggleNames()));
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile()));
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+
     connect(saveAsButton, SIGNAL(clicked()), this, SLOT(saveAsConfig()));
     connect(delayButton, SIGNAL(clicked()), this, SLOT(showKeyDelayDialog()));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeConfig()));
-
     connect(setPushButton1, SIGNAL(clicked()), this, SLOT(changeSetOne()));
     connect(setPushButton2, SIGNAL(clicked()), this, SLOT(changeSetTwo()));
     connect(setPushButton3, SIGNAL(clicked()), this, SLOT(changeSetThree()));
@@ -452,13 +452,13 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
     connect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
+
+    reconnectCheckUnsavedEvent();
+    reconnectMainComboBoxEvents();
 }
 
 void JoyTabWidget::openConfigFileDialog()
 {
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = preferredProfileDir(settings);
 
@@ -1033,7 +1033,6 @@ void JoyTabWidget::showStickDialog()
 void JoyTabWidget::saveConfigFile()
 {
     int index = configBox->currentIndex();
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
@@ -1090,18 +1089,17 @@ void JoyTabWidget::saveConfigFile()
                     configBox->removeItem(numberRecentProfiles);
                 }
 
+                joystick->revertProfileEdited();
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
-                //configBox->setItemIcon(1, QIcon());
-                joystick->revertProfileEdited();
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
-                configBox->setCurrentIndex(existingIndex);
-                configBox->setItemIcon(existingIndex, QIcon());
                 joystick->revertProfileEdited();
+                //configBox->setCurrentIndex(existingIndex);
+                configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
@@ -1279,6 +1277,8 @@ void JoyTabWidget::changeJoyConfig(int index)
         refreshSetButtons();
         emit joystickRefreshRequested(joystick);
     }
+
+    comboBoxIndex = index;
 
     connect(joystick, SIGNAL(deviceSlotsEdited()), this, SLOT(displayProfileEditNotification()));
 }
@@ -1900,8 +1900,120 @@ void JoyTabWidget::languageChange()
     fillButtons();
 }
 
-void JoyTabWidget::checkForUnsavedProfile()
+void JoyTabWidget::checkForUnsavedProfile(int newindex)
 {
+    if (joystick->isDeviceEdited())
+    {
+        disconnectCheckUnsavedEvent();
+        disconnectMainComboBoxEvents();
+
+        configBox->setCurrentIndex(comboBoxIndex);
+
+        QMessageBox msg;
+        msg.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msg.setWindowTitle(tr("Save Profile Changes?"));
+        if (comboBoxIndex == 0)
+        {
+            msg.setText(tr("Changes to the new profile have not been saved. Would you like to save or discard the current profile?"));
+        }
+        else
+        {
+            msg.setText(tr("Changes to the profile \"%1\" have not been saved. Would you like to save or discard changes to the current profile?")
+                        .arg(configBox->currentText()));
+        }
+
+        int status = msg.exec();
+        if (status == QMessageBox::Save)
+        {
+            saveConfigFile();
+            reconnectCheckUnsavedEvent();
+            reconnectMainComboBoxEvents();
+            configBox->setCurrentIndex(newindex);
+        }
+        else if (status == QMessageBox::Discard)
+        {
+            joystick->revertProfileEdited();
+            reconnectCheckUnsavedEvent();
+            reconnectMainComboBoxEvents();
+            configBox->setCurrentIndex(newindex);
+        }
+        else if (status == QMessageBox::Cancel)
+        {
+            reconnectCheckUnsavedEvent();
+            reconnectMainComboBoxEvents();
+        }
+    }
+}
+
+bool JoyTabWidget::discardUnsavedProfileChanges()
+{
+    bool discarded = true;
+
+    if (joystick->isDeviceEdited())
+    {
+        disconnectCheckUnsavedEvent();
+
+        QMessageBox msg;
+        msg.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msg.setWindowTitle(tr("Save Profile Changes?"));
+        int currentIndex = configBox->currentIndex();
+        if (currentIndex == 0)
+        {
+            msg.setText(tr("Changes to the new profile have not been saved. Would you like to save or discard the current profile?"));
+        }
+        else
+        {
+            msg.setText(tr("Changes to the profile \"%1\" have not been saved. Would you like to save or discard changes to the current profile?")
+                        .arg(configBox->currentText()));
+        }
+
+        int status = msg.exec();
+        if (status == QMessageBox::Save)
+        {
+            saveConfigFile();
+            if (currentIndex == 0 && currentIndex == configBox->currentIndex())
+            {
+                discarded = false;
+            }
+        }
+        else if (status == QMessageBox::Discard)
+        {
+            joystick->revertProfileEdited();
+            resetJoystick();
+        }
+        else if (status == QMessageBox::Cancel)
+        {
+            discarded = false;
+        }
+
+        disconnectMainComboBoxEvents();
+        reconnectCheckUnsavedEvent();
+        reconnectMainComboBoxEvents();
+    }
+
+    return discarded;
+}
+
+void JoyTabWidget::disconnectMainComboBoxEvents()
+{
+    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
+}
+
+void JoyTabWidget::reconnectMainComboBoxEvents()
+{
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
+}
+
+void JoyTabWidget::disconnectCheckUnsavedEvent()
+{
+    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
+}
+
+void JoyTabWidget::reconnectCheckUnsavedEvent()
+{
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
 }
 
 #ifdef USE_SDL_2

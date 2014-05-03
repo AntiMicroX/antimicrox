@@ -390,7 +390,17 @@ void MainWindow::populateTrayIcon()
 
 void MainWindow::quitProgram()
 {
-    qApp->quit();
+    bool discard = true;
+    for (int i=0; i < ui->tabWidget->count() && discard; i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        discard = tab->discardUnsavedProfileChanges();
+    }
+
+    if (discard)
+    {
+        qApp->quit();
+    }
 }
 
 void MainWindow::refreshTrayIconMenu()
