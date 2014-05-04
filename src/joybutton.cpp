@@ -278,6 +278,7 @@ void JoyButton::setToggle(bool toggle)
     {
         this->toggle = toggle;
         emit toggleChanged(toggle);
+        emit propertyUpdated();
     }
 }
 
@@ -287,6 +288,7 @@ void JoyButton::setTurboInterval(int interval)
     {
         this->turboInterval = interval;
         emit turboIntervalChanged(interval);
+        emit propertyUpdated();
     }
     else if (interval < 10 && interval != this->turboInterval)
     {
@@ -294,6 +296,7 @@ void JoyButton::setTurboInterval(int interval)
         this->setUseTurbo(false);
         this->turboInterval = interval;
         emit turboIntervalChanged(interval);
+        emit propertyUpdated();
     }
 }
 
@@ -1085,6 +1088,7 @@ void JoyButton::setUseTurbo(bool useTurbo)
         if (initialState != this->useTurbo)
         {
             emit turboChanged(this->useTurbo);
+            emit propertyUpdated();
 
             if (this->useTurbo && this->turboInterval == 0)
             {
@@ -1817,6 +1821,7 @@ void JoyButton::setMouseSpeedX(int speed)
     if (speed >= 1 && speed <= 300)
     {
         mouseSpeedX = speed;
+        emit propertyUpdated();
     }
 }
 
@@ -1830,6 +1835,7 @@ void JoyButton::setMouseSpeedY(int speed)
     if (speed >= 1 && speed <= 300)
     {
         mouseSpeedY = speed;
+        emit propertyUpdated();
     }
 }
 
@@ -1843,6 +1849,7 @@ void JoyButton::setChangeSetSelection(int index)
     if (index >= 0 && index <= 7)
     {
         setSelection = index;
+        emit propertyUpdated();
     }
 }
 
@@ -1859,11 +1866,13 @@ void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive
         {
             // Set new condition
             emit setAssignmentChanged(index, setSelection, condition);
+            emit propertyUpdated();
         }
         else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
         {
             // Remove old condition
             emit setAssignmentChanged(index, setSelection, SetChangeDisabled);
+            emit propertyUpdated();
         }
 
         setSelectionCondition = condition;
@@ -2858,6 +2867,7 @@ void JoyButton::setVDPad(VDPad *vdpad)
 {
     joyEvent(false, true);
     this->vdpad = vdpad;
+    emit propertyUpdated();
 }
 
 bool JoyButton::isPartVDPad()
@@ -2873,6 +2883,7 @@ VDPad* JoyButton::getVDPad()
 void JoyButton::removeVDPad()
 {
     this->vdpad = 0;
+    emit propertyUpdated();
 }
 
 bool JoyButton::isDefault()
@@ -2914,6 +2925,7 @@ bool JoyButton::getIgnoreEventState()
 void JoyButton::setMouseMode(JoyMouseMovementMode mousemode)
 {
     this->mouseMode = mousemode;
+    emit propertyUpdated();
 }
 
 JoyButton::JoyMouseMovementMode JoyButton::getMouseMode()
@@ -2924,6 +2936,7 @@ JoyButton::JoyMouseMovementMode JoyButton::getMouseMode()
 void JoyButton::setMouseCurve(JoyMouseCurve selectedCurve)
 {
     mouseCurve = selectedCurve;
+    emit propertyUpdated();
 }
 
 JoyButton::JoyMouseCurve JoyButton::getMouseCurve()
@@ -2936,6 +2949,7 @@ void JoyButton::setSpringWidth(int value)
     if (value >= 0)
     {
         springWidth = value;
+        emit propertyUpdated();
     }
 }
 
@@ -2949,6 +2963,7 @@ void JoyButton::setSpringHeight(int value)
     if (springHeight >= 0)
     {
         springHeight = value;
+        emit propertyUpdated();
     }
 }
 
@@ -2962,6 +2977,7 @@ void JoyButton::setSensitivity(double value)
     if (value >= 0.001 && value <= 1000)
     {
         sensitivity = value;
+        emit propertyUpdated();
     }
 }
 
@@ -2973,6 +2989,7 @@ double JoyButton::getSensitivity()
 void JoyButton::setSmoothing(bool enabled)
 {
     smoothing = enabled;
+    emit propertyUpdated();
 }
 
 bool JoyButton::isSmoothingEnabled()
@@ -2988,6 +3005,7 @@ bool JoyButton::getWhileHeldStatus()
 void JoyButton::setWhileHeldStatus(bool status)
 {
     whileHeldStatus = status;
+    emit propertyUpdated();
 }
 
 void JoyButton::setActionName(QString tempName)
@@ -2996,6 +3014,7 @@ void JoyButton::setActionName(QString tempName)
     {
         actionName = tempName;
         emit actionNameChanged();
+        emit propertyUpdated();
     }
 }
 
@@ -3010,6 +3029,7 @@ void JoyButton::setButtonName(QString tempName)
     {
         buttonName = tempName;
         emit buttonNameChanged();
+        emit propertyUpdated();
     }
 }
 
@@ -3023,6 +3043,7 @@ void JoyButton::setWheelSpeedX(int speed)
     if (speed >= 1 && speed <= 100)
     {
         wheelSpeedX = speed;
+        emit propertyUpdated();
     }
 }
 
@@ -3031,6 +3052,7 @@ void JoyButton::setWheelSpeedY(int speed)
     if (speed >= 1 && speed <= 100)
     {
         wheelSpeedY = speed;
+        emit propertyUpdated();
     }
 }
 
@@ -3263,11 +3285,13 @@ void JoyButton::setCycleResetTime(unsigned int interval)
         unsigned int ceiling = 6000;
         unsigned int temp = qMax(interval, ceiling);
         cycleResetInterval = temp;
+        emit propertyUpdated();
     }
     else
     {
         interval = 0;
         cycleResetActive = false;
+        emit propertyUpdated();
     }
 }
 
@@ -3279,11 +3303,22 @@ unsigned int JoyButton::getCycleResetTime()
 void JoyButton::setCycleResetStatus(bool enabled)
 {
     cycleResetActive = enabled;
+    emit propertyUpdated();
 }
 
 bool JoyButton::isCycleResetActive()
 {
     return cycleResetActive;
+}
+
+void JoyButton::establishPropertyUpdatedConnection()
+{
+    connect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
+}
+
+void JoyButton::disconnectPropertyUpdatedConnection()
+{
+    disconnect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 
 void JoyButton::establishMouseTimerConnections()

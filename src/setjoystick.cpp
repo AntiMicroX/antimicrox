@@ -860,16 +860,28 @@ void SetJoystick::setName(QString name)
     if (name.length() <= MAXNAMELENGTH)
     {
         this->name = name;
+        emit propertyUpdated();
     }
     else if (name.length() > MAXNAMELENGTH)
     {
         // Truncate name to 27 characters. Add ellipsis at the end.
         name.truncate(MAXNAMELENGTH-3);
         this->name = QString(name).append("...");
+        emit propertyUpdated();
     }
 }
 
 QString SetJoystick::getName()
 {
     return name;
+}
+
+void SetJoystick::establishPropertyUpdatedConnection()
+{
+    connect(this, SIGNAL(propertyUpdated()), getInputDevice(), SLOT(profileEdited()));
+}
+
+void SetJoystick::disconnectPropertyUpdatedConnection()
+{
+    disconnect(this, SIGNAL(propertyUpdated()), getInputDevice(), SLOT(profileEdited()));
 }

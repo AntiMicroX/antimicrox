@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "joycontrolstick.h"
+#include "inputdevice.h"
 
 const double JoyControlStick::PI = acos(-1.0);
 
@@ -537,6 +538,7 @@ void JoyControlStick::setDeadZone(int value)
     {
         deadZone = value;
         emit deadZoneChanged(value);
+        emit propertyUpdated();
     }
 }
 
@@ -552,6 +554,7 @@ void JoyControlStick::setMaxZone(int value)
     {
         maxZone = value;
         emit maxZoneChanged(value);
+        emit propertyUpdated();
     }
 }
 
@@ -570,6 +573,7 @@ void JoyControlStick::setDiagonalRange(int value)
     {
         diagonalRange = value;
         emit diagonalRangeChanged(value);
+        emit propertyUpdated();
     }
 }
 
@@ -994,6 +998,7 @@ void JoyControlStick::setJoyMode(JoyMode mode)
 {
     currentMode = mode;
     emit joyModeChanged();
+    emit propertyUpdated();
 }
 
 JoyControlStick::JoyMode JoyControlStick::getJoyMode()
@@ -1421,6 +1426,7 @@ void JoyControlStick::setStickName(QString tempName)
     {
         stickName = tempName;
         emit stickNameChanged();
+        emit propertyUpdated();
     }
 }
 
@@ -1667,4 +1673,14 @@ void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&even
         //eventbutton1 = buttons.value(StickLeft);
         //eventbutton2 = buttons.value(StickUp);
     }
+}
+
+void JoyControlStick::establishPropertyUpdatedConnection()
+{
+    connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+}
+
+void JoyControlStick::disconnectPropertyUpdatedConnection()
+{
+    disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }

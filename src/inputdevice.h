@@ -100,7 +100,8 @@ signals:
     void rawDPadButtonClick(int dpad, int buttonindex);
     void rawDPadButtonRelease(int dpad, int buttonindex);
     void rawAxisActivated(int axis, int value);
-    void deviceSlotsEdited();
+    void profileUpdated();
+    void propertyUpdated();
 
 public slots:
     void reset();
@@ -112,6 +113,9 @@ public slots:
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
     void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
+
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
 
 protected slots:
     void propogateSetChange(int index);

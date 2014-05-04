@@ -144,6 +144,7 @@ signals:
     void maxZoneChanged(int value);
     void stickNameChanged();
     void joyModeChanged();
+    void propertyUpdated();
 
 public slots:
     void reset();
@@ -151,6 +152,8 @@ public slots:
     void setMaxZone(int value);
     void setDiagonalRange(int value);
     void setStickName(QString tempName);
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
 };
 
 #endif // JOYCONTROLSTICK_H

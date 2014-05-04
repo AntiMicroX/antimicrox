@@ -106,6 +106,7 @@ signals:
     void setStickNameChange(int stickIndex);
     void setDPadNameChange(int dpadIndex);
     void setVDPadNameChange(int vdpadIndex);
+    void propertyUpdated();
     
 public slots:
     virtual void reset();
@@ -114,6 +115,8 @@ public slots:
     void propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode);
     void propogateSetStickButtonAssociation(int button, int stick, int newset, int mode);
     void propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode);
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
 
 protected slots:
     void propogateSetAxisThrottleSetting(int index);

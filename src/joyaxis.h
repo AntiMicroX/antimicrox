@@ -150,6 +150,7 @@ signals:
     void throttleChangePropogated(int index);
     void throttleChanged();
     void axisNameChanged();
+    void propertyUpdated();
 
 public slots:
     virtual void reset();
@@ -159,6 +160,9 @@ public slots:
     void setDeadZone(int value);
     void setMaxZoneValue(int value);
     void setAxisName(QString tempName);
+
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
 };
 
 #endif // JOYAXIS_H

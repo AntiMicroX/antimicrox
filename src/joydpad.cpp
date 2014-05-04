@@ -1,6 +1,7 @@
 #include <QHashIterator>
 
 #include "joydpad.h"
+#include "inputdevice.h"
 
 const QString JoyDPad::xmlName = "dpad";
 
@@ -398,6 +399,7 @@ int JoyDPad::getCurrentDirection()
 void JoyDPad::setJoyMode(JoyMode mode)
 {
     currentMode = mode;
+    emit propertyUpdated();
 }
 
 JoyDPad::JoyMode JoyDPad::getJoyMode()
@@ -827,6 +829,7 @@ void JoyDPad::setDPadName(QString tempName)
     {
         dpadName = tempName;
         emit dpadNameChanged();
+        emit propertyUpdated();
     }
 }
 
@@ -869,4 +872,14 @@ QString JoyDPad::getDefaultDPadName()
 SetJoystick* JoyDPad::getParentSet()
 {
     return parentSet;
+}
+
+void JoyDPad::establishPropertyUpdatedConnection()
+{
+    connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+}
+
+void JoyDPad::disconnectPropertyUpdatedConnection()
+{
+    disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }

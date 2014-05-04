@@ -1334,6 +1334,7 @@ void InputDevice::setIndex(int index)
 void InputDevice::setDeviceKeyPressTime(unsigned int newPressTime)
 {
     keyPressTime = newPressTime;
+    emit propertyUpdated();
 }
 
 unsigned int InputDevice::getDeviceKeyPressTime()
@@ -1346,7 +1347,7 @@ void InputDevice::profileEdited()
     if (!deviceEdited)
     {
         deviceEdited = true;
-        emit deviceSlotsEdited();
+        emit profileUpdated();
     }
 }
 
@@ -1375,6 +1376,16 @@ QString InputDevice::getStringIdentifier()
     }
 
     return identifier;
+}
+
+void InputDevice::establishPropertyUpdatedConnection()
+{
+    connect(this, SIGNAL(propertyUpdated()), this, SLOT(profileEdited()));
+}
+
+void InputDevice::disconnectPropertyUpdatedConnection()
+{
+    disconnect(this, SIGNAL(propertyUpdated()), this, SLOT(profileEdited()));
 }
 
 #ifdef USE_SDL_2

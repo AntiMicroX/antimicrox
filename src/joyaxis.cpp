@@ -3,6 +3,7 @@
 
 #include "joyaxis.h"
 #include "joycontrolstick.h"
+#include "inputdevice.h"
 #include "event.h"
 
 const int JoyAxis::AXISMIN = -32767;
@@ -242,6 +243,7 @@ void JoyAxis::createDeskEvent(bool ignoresets)
 void JoyAxis::setDeadZone(int value)
 {
     deadZone = abs(value);
+    emit propertyUpdated();
 }
 
 int JoyAxis::getDeadZone()
@@ -255,10 +257,12 @@ void JoyAxis::setMaxZoneValue(int value)
     if (value >= AXISMAX)
     {
         maxZoneValue = AXISMAX;
+        emit propertyUpdated();
     }
     else
     {
         maxZoneValue = value;
+        emit propertyUpdated();
     }
 }
 
@@ -276,6 +280,7 @@ void JoyAxis::setThrottle(int value)
             throttle = value;
             adjustRange();
             emit throttleChanged();
+            emit propertyUpdated();
         }
     }
 }
@@ -560,6 +565,7 @@ void JoyAxis::setControlStick(JoyControlStick *stick)
     removeVDPads();
     removeControlStick();
     this->stick = stick;
+    emit propertyUpdated();
 }
 
 bool JoyAxis::isPartControlStick()
@@ -578,6 +584,7 @@ void JoyAxis::removeControlStick()
     {
         stick->releaseButtonEvents();
         this->stick = 0;
+        emit propertyUpdated();
     }
 }
 
@@ -789,6 +796,7 @@ void JoyAxis::setAxisName(QString tempName)
     {
         axisName = tempName;
         emit axisNameChanged();
+        emit propertyUpdated();
     }
 }
 
@@ -872,4 +880,14 @@ JoyAxis::ThrottleTypes JoyAxis::getDefaultThrottle()
 SetJoystick* JoyAxis::getParentSet()
 {
     return parentSet;
+}
+
+void JoyAxis::establishPropertyUpdatedConnection()
+{
+    connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+}
+
+void JoyAxis::disconnectPropertyUpdatedConnection()
+{
+    disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }

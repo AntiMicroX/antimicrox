@@ -93,9 +93,12 @@ signals:
     void active(int value);
     void released(int value);
     void dpadNameChanged();
+    void propertyUpdated();
 
 public slots:
     void setDPadName(QString tempName);
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
 };
 
 #endif // JOYDPAD_H

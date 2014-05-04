@@ -254,6 +254,7 @@ signals:
     void slotsChanged();
     void actionNameChanged();
     void buttonNameChanged();
+    void propertyUpdated();
 
 public slots:
     void setTurboInterval (int interval);
@@ -282,6 +283,8 @@ public slots:
     void moveMouseCursor();
     void moveSpringMouse();
     void establishMouseTimerConnections();
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
 
 private slots:
     void turboEvent();
