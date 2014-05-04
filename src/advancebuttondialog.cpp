@@ -746,7 +746,8 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
     JoyButtonSlot *tempbuttonslot = tempbutton->getValue();
 
     int tempMouseMod = ui->mouseSpeedModSpinBox->value();
-    if (tempMouseMod > 0)
+    if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyMouseSpeedMod &&
+        tempMouseMod > 0)
     {
         //tempbuttonslot->setSlotCode(tempMouseMod);
         tempbutton->setValue(tempMouseMod, tempbuttonslot->getSlotMode());
