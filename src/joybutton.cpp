@@ -302,7 +302,7 @@ void JoyButton::setTurboInterval(int interval)
 
 void JoyButton::reset()
 {
-    disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
+    disconnectPropertyUpdatedConnections();
 
     turboTimer.stop();
     pauseTimer.stop();
@@ -372,8 +372,6 @@ void JoyButton::reset()
     actionName.clear();
     cycleResetActive = false;
     cycleResetInterval = 0;
-
-    connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 
 void JoyButton::reset(int index)
@@ -1112,8 +1110,6 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
-        disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
-
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
         {
@@ -1125,8 +1121,6 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
-
-        connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
     }
 }
 
@@ -3311,13 +3305,15 @@ bool JoyButton::isCycleResetActive()
     return cycleResetActive;
 }
 
-void JoyButton::establishPropertyUpdatedConnection()
+void JoyButton::establishPropertyUpdatedConnections()
 {
+    connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
     connect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 
-void JoyButton::disconnectPropertyUpdatedConnection()
+void JoyButton::disconnectPropertyUpdatedConnections()
 {
+    disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
     disconnect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 

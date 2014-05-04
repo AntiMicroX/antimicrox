@@ -20,8 +20,8 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     connect(pAxisButton, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
 
     axis->establishPropertyUpdatedConnection();
-    nAxisButton->establishPropertyUpdatedConnection();
-    pAxisButton->establishPropertyUpdatedConnection();
+    nAxisButton->establishPropertyUpdatedConnections();
+    pAxisButton->establishPropertyUpdatedConnections();
 }
 
 JoyAxis* JoyAxisWidget::getAxis()

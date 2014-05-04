@@ -608,7 +608,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 0);
             }
 
@@ -618,7 +618,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 1);
             }
 
@@ -629,7 +629,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 2);
             }
 
@@ -639,7 +639,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 1, 0);
             }
 
@@ -647,7 +647,7 @@ void JoyTabWidget::fillButtons()
             stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
             connect(stickWidget, SIGNAL(clicked()), this, SLOT(showStickDialog()));
             connect(namesPushButton, SIGNAL(clicked()), stickWidget, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnection();
+            button->establishPropertyUpdatedConnections();
             tempalayout->addWidget(stickWidget, 1, 1);
 
             if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
@@ -656,7 +656,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 1, 2);
             }
 
@@ -668,7 +668,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 0);
             }
 
@@ -678,7 +678,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 1);
             }
 
@@ -689,7 +689,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 2);
             }
 
@@ -751,7 +751,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 0);
             }
 
@@ -761,7 +761,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 1);
             }
 
@@ -772,7 +772,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 2);
             }
 
@@ -782,7 +782,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 1, 0);
             }
 
@@ -790,7 +790,7 @@ void JoyTabWidget::fillButtons()
             dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
             connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
             connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnection();
+            button->establishPropertyUpdatedConnections();
             tempalayout->addWidget(dpadpushbutton, 1, 1);
 
             if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
@@ -799,7 +799,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 1, 2);
             }
 
@@ -810,7 +810,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 0);
             }
 
@@ -820,7 +820,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 1);
             }
 
@@ -831,7 +831,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 2);
             }
 
@@ -876,7 +876,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 0);
             }
 
@@ -886,7 +886,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 1);
             }
 
@@ -897,7 +897,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 0, 2);
             }
 
@@ -907,7 +907,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 1, 0);
             }
 
@@ -915,7 +915,7 @@ void JoyTabWidget::fillButtons()
             dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
             connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
             connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnection();
+            button->establishPropertyUpdatedConnections();
             tempalayout->addWidget(dpadpushbutton, 1, 1);
 
             if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
@@ -924,7 +924,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 1, 2);
             }
 
@@ -935,7 +935,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 0);
             }
 
@@ -945,7 +945,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 1);
             }
 
@@ -956,7 +956,7 @@ void JoyTabWidget::fillButtons()
                 pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
                 connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
                 tempalayout->addWidget(pushbutton, 2, 2);
             }
 
@@ -1019,7 +1019,7 @@ void JoyTabWidget::fillButtons()
 
                 connect(buttonWidget, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
                 connect(namesPushButton, SIGNAL(clicked()), buttonWidget, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnection();
+                button->establishPropertyUpdatedConnections();
 
                 if (column > 1)
                 {

@@ -283,8 +283,8 @@ public slots:
     void moveMouseCursor();
     void moveSpringMouse();
     void establishMouseTimerConnections();
-    void establishPropertyUpdatedConnection();
-    void disconnectPropertyUpdatedConnection();
+    void establishPropertyUpdatedConnections();
+    void disconnectPropertyUpdatedConnections();
 
 private slots:
     void turboEvent();
