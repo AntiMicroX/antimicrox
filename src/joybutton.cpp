@@ -13,6 +13,8 @@ const int JoyButton::ENABLEDTURBODEFAULT = 100;
 const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
+const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
+const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 times per second
 QHash<unsigned int, int> JoyButton::activeKeys;
 
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
@@ -45,6 +47,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
+    connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
 
     establishMouseTimerConnections();
 
@@ -316,6 +319,7 @@ void JoyButton::reset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+    keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -727,6 +731,12 @@ void JoyButton::activateSlots()
             keyPressHold.restart();
             keyPressEvent();
         }
+#ifdef Q_OS_WIN
+        else if (!activeSlots.isEmpty() && !useTurbo)
+        {
+            keyRepeatTimer.start(DEFAULTKEYREPEATDELAY);
+        }
+#endif
     }
 }
 
@@ -2292,6 +2302,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     createDeskTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+    keyRepeatTimer.stop();
 
     releaseActiveSlots();
     if (!isButtonPressedQueue.isEmpty() && !currentRelease)
@@ -2531,6 +2542,7 @@ void JoyButton::clearSlotsEventReset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+    keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -2579,6 +2591,7 @@ void JoyButton::eventReset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+    keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -3303,6 +3316,29 @@ void JoyButton::setCycleResetStatus(bool enabled)
 bool JoyButton::isCycleResetActive()
 {
     return cycleResetActive;
+}
+
+void JoyButton::repeatKeysEvent()
+{
+    if (!activeSlots.isEmpty())
+    {
+        QListIterator<JoyButtonSlot*> iter(activeSlots);
+
+        while (iter.hasPrevious())
+        {
+            JoyButtonSlot *slot = iter.previous();
+            //int tempcode = slot->getSlotCode();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+
+            if (mode == JoyButtonSlot::JoyKeyboard)
+            {
+                // Send another key press to fake a key repeat
+                sendevent(slot);
+            }
+        }
+
+        keyRepeatTimer.start(DEFAULTKEYREPEATRATE);
+    }
 }
 
 void JoyButton::establishPropertyUpdatedConnections()

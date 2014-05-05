@@ -119,6 +119,8 @@ public:
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
     static const double DEFAULTMOUSESPEEDMOD;
+    static const unsigned int DEFAULTKEYREPEATDELAY;
+    static const unsigned int DEFAULTKEYREPEATRATE;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
@@ -162,6 +164,7 @@ protected:
     QTimer setChangeTimer;
     QTimer keyPressTimer;
     QTimer delayTimer;
+    QTimer keyRepeatTimer;
 
     bool isDown;
     bool toggleActiveState;
@@ -298,6 +301,7 @@ private slots:
     void pauseEvent();
     void holdEvent();
     void delayEvent();
+    void repeatKeysEvent();
 
     void wheelEventVertical();
     void wheelEventHorizontal();
