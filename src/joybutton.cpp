@@ -3324,9 +3324,9 @@ void JoyButton::repeatKeysEvent()
     {
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
-        while (iter.hasPrevious())
+        while (iter.hasNext())
         {
-            JoyButtonSlot *slot = iter.previous();
+            JoyButtonSlot *slot = iter.next();
             //int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
