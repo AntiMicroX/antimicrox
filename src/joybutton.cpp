@@ -14,7 +14,7 @@ const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
 const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
-const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 times per second
+const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 QHash<unsigned int, int> JoyButton::activeKeys;
 
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
