@@ -4,6 +4,8 @@
 
 const int InputDevice::NUMBER_JOYSETS = 8;
 const int InputDevice::DEFAULTKEYPRESSTIME = 100;
+const unsigned int InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
+const unsigned int InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 
 InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     QObject(parent)
@@ -14,6 +16,9 @@ InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     joystickID = 0;
     keyPressTime = 0;
     deviceEdited = false;
+    keyRepeatEnabled = false;
+    keyRepeatDelay = 0;
+    keyRepeatRate = 0;
 }
 
 InputDevice::~InputDevice()
@@ -1386,6 +1391,54 @@ void InputDevice::establishPropertyUpdatedConnection()
 void InputDevice::disconnectPropertyUpdatedConnection()
 {
     disconnect(this, SIGNAL(propertyUpdated()), this, SLOT(profileEdited()));
+}
+
+void InputDevice::setKeyRepeatStatus(bool enabled)
+{
+    keyRepeatEnabled = enabled;
+}
+
+void InputDevice::setKeyRepeatDelay(int delay)
+{
+    if (delay >= 250 && delay <= 1000)
+    {
+        keyRepeatDelay = delay;
+    }
+}
+
+void InputDevice::setKeyRepeatRate(int rate)
+{
+    if (rate >= 5 && rate <= 50)
+    {
+        keyRepeatRate = rate;
+    }
+}
+
+bool InputDevice::isKeyRepeatEnabled()
+{
+    return keyRepeatEnabled;
+}
+
+int InputDevice::getKeyRepeatDelay()
+{
+    int tempKeyRepeatDelay = DEFAULTKEYREPEATDELAY;
+    if (keyRepeatDelay != 0)
+    {
+        tempKeyRepeatDelay = keyRepeatDelay;
+    }
+
+    return tempKeyRepeatDelay;
+}
+
+int InputDevice::getKeyRepeatRate()
+{
+    int tempKeyRepeatRate = DEFAULTKEYREPEATRATE;
+    if (keyRepeatRate != 0)
+    {
+        tempKeyRepeatRate = keyRepeatRate;
+    }
+
+    return tempKeyRepeatRate;
 }
 
 #ifdef USE_SDL_2

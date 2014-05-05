@@ -731,10 +731,15 @@ void JoyButton::activateSlots()
             keyPressHold.restart();
             keyPressEvent();
         }
+
 #ifdef Q_OS_WIN
         else if (!activeSlots.isEmpty() && !useTurbo)
         {
-            keyRepeatTimer.start(DEFAULTKEYREPEATDELAY);
+            InputDevice *device = getParentSet()->getInputDevice();
+            if (device->isKeyRepeatEnabled())
+            {
+                keyRepeatTimer.start(device->getKeyRepeatDelay());
+            }
         }
 #endif
     }
@@ -3337,7 +3342,8 @@ void JoyButton::repeatKeysEvent()
             }
         }
 
-        keyRepeatTimer.start(DEFAULTKEYREPEATRATE);
+        InputDevice *device = getParentSet()->getInputDevice();
+        keyRepeatTimer.start(device->getKeyRepeatRate());
     }
 }
 

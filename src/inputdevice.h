@@ -72,8 +72,18 @@ public:
     bool isDeviceEdited();
     void revertProfileEdited();
 
+    void setKeyRepeatStatus(bool enabled);
+    void setKeyRepeatDelay(int delay);
+    void setKeyRepeatRate(int rate);
+
+    bool isKeyRepeatEnabled();
+    int getKeyRepeatDelay();
+    int getKeyRepeatRate();
+
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
+    static const unsigned int DEFAULTKEYREPEATDELAY;
+    static const unsigned int DEFAULTKEYREPEATRATE;
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
@@ -86,6 +96,10 @@ protected:
     SDL_JoystickID joystickID;
     unsigned int keyPressTime;
     bool deviceEdited;
+
+    bool keyRepeatEnabled;
+    int keyRepeatDelay;
+    int keyRepeatRate;
 
 signals:
     void setChangeActivated(int index);

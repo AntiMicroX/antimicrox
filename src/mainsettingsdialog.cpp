@@ -82,8 +82,30 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     {
         ui->launchAtWinStartupCheckBox->setChecked(true);
     }
+
+    bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", false).toBool();
+    if (keyRepeatEnabled)
+    {
+        ui->keyRepeatActiveCheckBox->setChecked(true);
+        ui->keyDelayHorizontalSlider->setEnabled(true);
+        ui->keyDelaySpinBox->setEnabled(true);
+        ui->keyRateHorizontalSlider->setEnabled(true);
+        ui->keyRateSpinBox->setEnabled(true);
+    }
+
+    int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
+    int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
+
+    ui->keyDelayHorizontalSlider->setValue(keyRepeatDelay);
+    ui->keyDelaySpinBox->setValue(keyRepeatDelay);
+
+    ui->keyRateHorizontalSlider->setValue(1000/keyRepeatRate);
+    ui->keyRateSpinBox->setValue(1000/keyRepeatRate);
+
 #else
     ui->launchAtWinStartupCheckBox->setVisible(false);
+    ui->keyRepeatGroupBox->setVisible(false);
+
 #endif
 
     bool useSingleProfileList = settings->value("TrayProfileList", false).toBool();
@@ -108,6 +130,11 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     connect(ui->autoProfileDeletePushButton, SIGNAL(clicked()), this, SLOT(openDeleteAutoProfileConfirmDialog()));
     connect(ui->autoProfileEditPushButton, SIGNAL(clicked()), this, SLOT(openEditAutoProfileDialog()));
     connect(ui->autoProfileTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeAutoProfileButtonsState()));
+
+    connect(ui->keyDelayHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyDelaySpinBox, SLOT(setValue(int)));
+    connect(ui->keyDelaySpinBox, SIGNAL(valueChanged(int)), ui->keyDelayHorizontalSlider, SLOT(setValue(int)));
+    connect(ui->keyRateHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyRateSpinBox, SLOT(setValue(int)));
+    connect(ui->keyRateSpinBox, SIGNAL(valueChanged(int)), ui->keyRateHorizontalSlider, SLOT(setValue(int)));
 }
 
 MainSettingsDialog::~MainSettingsDialog()
@@ -343,6 +370,10 @@ void MainSettingsDialog::saveNewSettings()
     {
         autoRunReg.remove("antimicro");
     }
+
+    settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatActiveCheckBox->isChecked() ? "1" : "0");
+    settings->setValue("KeyRepeat/KeyRepeatDelay", ui->keyDelaySpinBox->value());
+    settings->setValue("KeyRepeat/KeyRepeatRate", 1000/ui->keyRateSpinBox->value());
 
 #endif
 

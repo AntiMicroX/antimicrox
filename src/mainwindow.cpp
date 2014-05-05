@@ -940,6 +940,11 @@ void MainWindow::openMainSettingsDialog()
 
     connect(dialog, SIGNAL(accepted()), this, SLOT(populateTrayIcon()));
 
+#ifdef Q_OS_WIN
+    connect(dialog, SIGNAL(accepted()), this, SLOT(checkKeyRepeatOptions()));
+
+#endif
+
     dialog->show();
 }
 
@@ -1064,6 +1069,22 @@ void MainWindow::profileTrayActionTriggered(bool checked)
             // It hasn't - enabling - note that setting this causes the menu to be updated
             widget->setCurrentConfig(configindex);
         }
+    }
+}
+
+void MainWindow::checkKeyRepeatOptions()
+{
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        InputDevice *device = static_cast<InputDevice*>(tab->getJoystick());
+        bool keyRepeatActive = settings->value("KeyRepeat/KeyRepeatEnabled", false).toBool();
+        int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
+        int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
+
+        device->setKeyRepeatStatus(keyRepeatActive);
+        device->setKeyRepeatDelay(keyRepeatDelay);
+        device->setKeyRepeatRate(keyRepeatRate);
     }
 }
 
