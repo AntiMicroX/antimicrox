@@ -201,7 +201,7 @@ to using sub-menus.</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QCheckBox" name="keyRepeatActiveCheckBox">
+             <widget class="QCheckBox" name="keyRepeatEnableCheckBox">
               <property name="toolTip">
                <string>Active keys will be repeatly pressed when this
 option is enabled.</string>

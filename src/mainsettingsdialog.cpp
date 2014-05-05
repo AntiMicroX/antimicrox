@@ -83,10 +83,10 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
         ui->launchAtWinStartupCheckBox->setChecked(true);
     }
 
-    bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", false).toBool();
+    bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
     if (keyRepeatEnabled)
     {
-        ui->keyRepeatActiveCheckBox->setChecked(true);
+        ui->keyRepeatEnableCheckBox->setChecked(true);
         ui->keyDelayHorizontalSlider->setEnabled(true);
         ui->keyDelaySpinBox->setEnabled(true);
         ui->keyRateHorizontalSlider->setEnabled(true);
@@ -131,6 +131,7 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     connect(ui->autoProfileEditPushButton, SIGNAL(clicked()), this, SLOT(openEditAutoProfileDialog()));
     connect(ui->autoProfileTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeAutoProfileButtonsState()));
 
+    connect(ui->keyRepeatEnableCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeKeyRepeatWidgetsStatus(bool)));
     connect(ui->keyDelayHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyDelaySpinBox, SLOT(setValue(int)));
     connect(ui->keyDelaySpinBox, SIGNAL(valueChanged(int)), ui->keyDelayHorizontalSlider, SLOT(setValue(int)));
     connect(ui->keyRateHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyRateSpinBox, SLOT(setValue(int)));
@@ -371,7 +372,7 @@ void MainSettingsDialog::saveNewSettings()
         autoRunReg.remove("antimicro");
     }
 
-    settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatActiveCheckBox->isChecked() ? "1" : "0");
+    settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatEnableCheckBox->isChecked() ? "1" : "0");
     settings->setValue("KeyRepeat/KeyRepeatDelay", ui->keyDelaySpinBox->value());
     settings->setValue("KeyRepeat/KeyRepeatRate", 1000/ui->keyRateSpinBox->value());
 
@@ -1364,4 +1365,12 @@ void MainSettingsDialog::autoProfileButtonsActiveState(bool enabled)
         ui->autoProfileEditPushButton->setEnabled(false);
         ui->autoProfileDeletePushButton->setEnabled(false);
     }
+}
+
+void MainSettingsDialog::changeKeyRepeatWidgetsStatus(bool enabled)
+{
+    ui->keyDelayHorizontalSlider->setEnabled(enabled);
+    ui->keyDelaySpinBox->setEnabled(enabled);
+    ui->keyRateHorizontalSlider->setEnabled(enabled);
+    ui->keyRateSpinBox->setEnabled(enabled);
 }

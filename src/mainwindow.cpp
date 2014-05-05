@@ -1078,7 +1078,7 @@ void MainWindow::checkKeyRepeatOptions()
     {
         JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         InputDevice *device = static_cast<InputDevice*>(tab->getJoystick());
-        bool keyRepeatActive = settings->value("KeyRepeat/KeyRepeatEnabled", false).toBool();
+        bool keyRepeatActive = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
         int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
         int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
 
