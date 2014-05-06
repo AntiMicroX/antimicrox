@@ -1066,7 +1066,7 @@ void JoyTabWidget::showStickDialog()
 
     JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog (stick, this);
     dialog->show();
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
 }
 
 void JoyTabWidget::saveConfigFile()
@@ -1600,7 +1600,7 @@ void JoyTabWidget::showStickAssignmentDialog()
 {
     Joystick *temp = static_cast<Joystick*>(joystick);
     AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(temp, this);
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
     dialog->show();
 }
 
@@ -1641,13 +1641,13 @@ void JoyTabWidget::showDPadDialog()
     DPadEditDialog *dialog = new DPadEditDialog(pushbutton->getDPad(), this);
     dialog->show();
 
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
 }
 
 void JoyTabWidget::showQuickSetDialog()
 {
     QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(fillButtons()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
     dialog->show();
 }
 
@@ -1942,7 +1942,7 @@ void JoyTabWidget::languageChange()
 
     resetButton->setText(tr("Reset"));
     resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
-    fillButtons();
+    refreshButtons();
 }
 
 void JoyTabWidget::checkForUnsavedProfile(int newindex)
@@ -2059,6 +2059,12 @@ void JoyTabWidget::disconnectCheckUnsavedEvent()
 void JoyTabWidget::reconnectCheckUnsavedEvent()
 {
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
+}
+
+void JoyTabWidget::refreshButtons()
+{
+    removeCurrentButtons();
+    fillButtons();
 }
 
 #ifdef Q_OS_WIN

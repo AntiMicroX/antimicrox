@@ -165,6 +165,7 @@ private slots:
     void displayProfileEditNotification();
     void removeProfileEditNotification();
     void checkForUnsavedProfile(int newindex);
+    void refreshButtons();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();
