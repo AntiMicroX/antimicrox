@@ -3017,7 +3017,6 @@ bool JoyButton::getWhileHeldStatus()
 void JoyButton::setWhileHeldStatus(bool status)
 {
     whileHeldStatus = status;
-    emit propertyUpdated();
 }
 
 void JoyButton::setActionName(QString tempName)
