@@ -856,7 +856,7 @@ has passed.</string>
             <number>0</number>
            </property>
            <property name="maximum">
-            <number>200</number>
+            <number>400</number>
            </property>
            <property name="pageStep">
             <number>10</number>
