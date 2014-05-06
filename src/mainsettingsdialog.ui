@@ -87,7 +87,7 @@
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
-          <number>20</number>
+          <number>16</number>
          </property>
          <property name="leftMargin">
           <number>10</number>
@@ -191,6 +191,18 @@ to using sub-menus.</string>
            </property>
            <property name="text">
             <string>Single Profile List in Tray</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="minimizeTaskbarCheckBox">
+           <property name="toolTip">
+            <string>Have the program minimize to the taskbar.
+By default, the program minimizes to the system
+tray if available.</string>
+           </property>
+           <property name="text">
+            <string>Minimize to Taskbar</string>
            </property>
           </widget>
          </item>

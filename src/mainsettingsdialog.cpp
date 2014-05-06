@@ -114,6 +114,12 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
         ui->traySingleProfileListCheckBox->setChecked(true);
     }
 
+    bool minimizeToTaskBar = settings->value("MinimizeToTaskbar", false).toBool();
+    if (minimizeToTaskBar)
+    {
+        ui->minimizeTaskbarCheckBox->setChecked(true);
+    }
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -386,6 +392,9 @@ void MainSettingsDialog::saveNewSettings()
     {
         settings->setValue("TrayProfileList", "0");
     }
+
+    bool minimizeToTaskbar = ui->minimizeTaskbarCheckBox->isChecked();
+    settings->setValue("MinimizeToTaskbar", minimizeToTaskbar ? "1" : "0");
 
     settings->sync();
 }

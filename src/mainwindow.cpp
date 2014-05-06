@@ -702,7 +702,8 @@ void MainWindow::changeEvent(QEvent *event)
         QWindowStateChangeEvent *e = (QWindowStateChangeEvent*)event;
         if (e->oldState() != Qt::WindowMinimized && isMinimized())
         {
-            if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
+            bool minimizeToTaskbar = settings->value("MinimizeToTaskbar", false).toBool();
+            if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon && !minimizeToTaskbar)
             {
                 hideWindow();
             }
