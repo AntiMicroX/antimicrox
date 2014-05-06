@@ -427,6 +427,10 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
 
 #endif
 
+#ifdef Q_OS_WIN
+    deviceKeyRepeatSettings();
+#endif
+
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
@@ -2056,6 +2060,19 @@ void JoyTabWidget::reconnectCheckUnsavedEvent()
 {
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
 }
+
+#ifdef Q_OS_WIN
+void JoyTabWidget::deviceKeyRepeatSettings()
+{
+    bool keyRepeatActive = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
+    int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
+    int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
+
+    joystick->setKeyRepeatStatus(keyRepeatActive);
+    joystick->setKeyRepeatDelay(keyRepeatDelay);
+    joystick->setKeyRepeatRate(keyRepeatRate);
+}
+#endif
 
 #ifdef USE_SDL_2
 void JoyTabWidget::openGameControllerMappingWindow()

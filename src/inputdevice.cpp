@@ -16,7 +16,12 @@ InputDevice::InputDevice(int deviceIndex, QObject *parent) :
     joystickID = 0;
     keyPressTime = 0;
     deviceEdited = false;
+#ifdef Q_OS_WIN
+    keyRepeatEnabled = true;
+#else
     keyRepeatEnabled = false;
+#endif
+
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
 }
@@ -1408,7 +1413,7 @@ void InputDevice::setKeyRepeatDelay(int delay)
 
 void InputDevice::setKeyRepeatRate(int rate)
 {
-    if (rate >= 5 && rate <= 50)
+    if (rate >= 20 && rate <= 200)
     {
         keyRepeatRate = rate;
     }

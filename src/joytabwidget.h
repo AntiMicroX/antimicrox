@@ -37,6 +37,9 @@ public:
     void unloadConfig();
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
+#ifdef Q_OS_WIN
+    void deviceKeyRepeatSettings();
+#endif
 
 protected:
     void removeCurrentButtons();

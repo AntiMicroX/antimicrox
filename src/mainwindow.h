@@ -112,7 +112,9 @@ private slots:
     void changeLanguage(QString language);
     void openMainSettingsDialog();
     void showStickAssignmentDialog();
+#ifdef Q_OS_WIN
     void checkKeyRepeatOptions();
+#endif
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();
