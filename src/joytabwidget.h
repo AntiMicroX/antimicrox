@@ -37,6 +37,8 @@ public:
     void unloadConfig();
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
+    void checkHideEmptyOption();
+
 #ifdef Q_OS_WIN
     void deviceKeyRepeatSettings();
 #endif
@@ -49,6 +51,9 @@ protected:
     void reconnectMainComboBoxEvents();
     void disconnectCheckUnsavedEvent();
     void reconnectCheckUnsavedEvent();
+
+    void fillSetButtons(SetJoystick *set);
+    void removeSetButtons(SetJoystick *set);
 
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
@@ -115,6 +120,7 @@ protected:
     bool displayingNames;
     QSettings *settings;
     int comboBoxIndex;
+    bool hideEmptyButtons;
 
     static const int DEFAULTNUMBERPROFILES = 5;
 
@@ -166,6 +172,16 @@ private slots:
     void removeProfileEditNotification();
     void checkForUnsavedProfile(int newindex);
     void refreshButtons();
+
+    void checkStickDisplay();
+    void checkDPadButtonDisplay();
+    void checkAxisButtonDisplay();
+    void checkButtonDisplay();
+
+    void checkStickEmptyDisplay();
+    void checkDPadButtonEmptyDisplay();
+    void checkAxisButtonEmptyDisplay();
+    void checkButtonEmptyDisplay();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();

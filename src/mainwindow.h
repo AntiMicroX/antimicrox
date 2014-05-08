@@ -112,6 +112,8 @@ private slots:
     void changeLanguage(QString language);
     void openMainSettingsDialog();
     void showStickAssignmentDialog();
+    void checkHideEmptyOption();
+
 #ifdef Q_OS_WIN
     void checkKeyRepeatOptions();
 #endif

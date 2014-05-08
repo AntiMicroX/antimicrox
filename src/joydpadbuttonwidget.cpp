@@ -4,8 +4,8 @@ JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, Q
     JoyButtonWidget(button, displayNames, parent)
 {
     refreshLabel();
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
+    //connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
+    //connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
 }
 
 QString JoyDPadButtonWidget::generateLabel()

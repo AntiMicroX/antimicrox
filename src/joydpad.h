@@ -71,6 +71,7 @@ public:
     virtual QString getDefaultDPadName();
 
     SetJoystick* getParentSet();
+    bool hasSlotsAssigned();
 
     static const QString xmlName;
 

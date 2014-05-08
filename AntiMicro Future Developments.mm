@@ -1,7 +1,9 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1398677098612" TEXT="AntiMicro Future Developments">
-<node CREATED="1379713112228" HGAP="18" ID="ID_2402610" MODIFIED="1398677372059" POSITION="left" TEXT="Disable Buttons from Display?" VSHIFT="1"/>
+<node CREATED="1379713112228" HGAP="18" ID="ID_2402610" MODIFIED="1399513217204" POSITION="left" TEXT="Disable Buttons from Display?" VSHIFT="1">
+<icon BUILTIN="button_ok"/>
+</node>
 <node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1398676885501" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="-7"/>
 <node CREATED="1398676376577" FOLDED="true" HGAP="19" ID="ID_1223827762" MODIFIED="1399029523759" POSITION="left" TEXT="Split Actions into a Seperate Entity?" VSHIFT="-5">
 <icon BUILTIN="help"/>

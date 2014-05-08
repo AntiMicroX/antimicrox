@@ -883,3 +883,24 @@ void JoyDPad::disconnectPropertyUpdatedConnection()
 {
     disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }
+
+bool JoyDPad::hasSlotsAssigned()
+{
+    bool hasSlots = false;
+
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        if (button)
+        {
+            if (button->getAssignedSlots()->count() > 0)
+            {
+                hasSlots = true;
+                iter.toBack();
+            }
+        }
+    }
+
+    return hasSlots;
+}

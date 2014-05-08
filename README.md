@@ -144,8 +144,8 @@ Notes about the WXS file and the building process :
 This section is where some of the ideas for future features
 for this program will be written.
 
-* Setting to not display buttons that are not currently in use.
-This will especially help people using a PS3 controller.
+* ~~Setting to not display buttons that are not currently in use.
+This will especially help people using a PS3 controller.~~
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
 * ~~Improve SteamOS support.~~

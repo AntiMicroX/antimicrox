@@ -87,7 +87,7 @@
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
-          <number>16</number>
+          <number>12</number>
          </property>
          <property name="leftMargin">
           <number>10</number>
@@ -203,6 +203,19 @@ tray if available.</string>
            </property>
            <property name="text">
             <string>Minimize to Taskbar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="hideEmptyCheckBox">
+           <property name="toolTip">
+            <string>This option will cause the program to hide all
+buttons that have no slots assigned to them.
+The Quick Set dialog window will have to be used
+to bring up the edit dialog for gamepad buttons.</string>
+           </property>
+           <property name="text">
+            <string>Hide Empty Buttons</string>
            </property>
           </widget>
          </item>

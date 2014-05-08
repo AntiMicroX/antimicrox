@@ -125,7 +125,7 @@ public:
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
     bool distanceEvent();
-    void clearAssignedSlots();
+    void clearAssignedSlots(bool signalEmit=true);
     void releaseSlotEvent();
     void findReleaseEventEnd();
     void findHoldEventEnd();
@@ -280,7 +280,7 @@ public slots:
     virtual void reset();
     virtual void reset(int index);
 
-    virtual void clearSlotsEventReset();
+    virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
 
     void moveMouseCursor();

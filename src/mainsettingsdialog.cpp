@@ -120,6 +120,12 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
         ui->minimizeTaskbarCheckBox->setChecked(true);
     }
 
+    bool hideEmpty = settings->value("HideEmptyButtons", false).toBool();
+    if (hideEmpty)
+    {
+        ui->hideEmptyCheckBox->setChecked(true);
+    }
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -395,6 +401,9 @@ void MainSettingsDialog::saveNewSettings()
 
     bool minimizeToTaskbar = ui->minimizeTaskbarCheckBox->isChecked();
     settings->setValue("MinimizeToTaskbar", minimizeToTaskbar ? "1" : "0");
+
+    bool hideEmpty = ui->hideEmptyCheckBox->isChecked();
+    settings->setValue("HideEmptyButtons", hideEmpty ? "1" : "0");
 
     settings->sync();
 }

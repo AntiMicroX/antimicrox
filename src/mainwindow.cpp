@@ -940,6 +940,7 @@ void MainWindow::openMainSettingsDialog()
 #endif
 
     connect(dialog, SIGNAL(accepted()), this, SLOT(populateTrayIcon()));
+    connect(dialog, SIGNAL(accepted()), this, SLOT(checkHideEmptyOption()));
 
 #ifdef Q_OS_WIN
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkKeyRepeatOptions()));
@@ -1069,6 +1070,18 @@ void MainWindow::profileTrayActionTriggered(bool checked)
         {
             // It hasn't - enabling - note that setting this causes the menu to be updated
             widget->setCurrentConfig(configindex);
+        }
+    }
+}
+
+void MainWindow::checkHideEmptyOption()
+{
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (tab)
+        {
+            tab->checkHideEmptyOption();
         }
     }
 }

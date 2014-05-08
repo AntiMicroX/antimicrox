@@ -94,6 +94,7 @@ public:
     virtual void writeConfig(QXmlStreamWriter *xml);
 
     SetJoystick* getParentSet();
+    bool hasSlotsAssigned();
 
     static const double PI;
 

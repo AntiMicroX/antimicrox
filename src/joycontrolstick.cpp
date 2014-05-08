@@ -1684,3 +1684,24 @@ void JoyControlStick::disconnectPropertyUpdatedConnection()
 {
     disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }
+
+bool JoyControlStick::hasSlotsAssigned()
+{
+    bool hasSlots = false;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyButton *button = iter.next().value();
+        if (button)
+        {
+            if (button->getAssignedSlots()->count() > 0)
+            {
+                hasSlots = true;
+                iter.toBack();
+            }
+        }
+    }
+
+    return hasSlots;
+}

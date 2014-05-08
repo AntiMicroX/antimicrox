@@ -35,6 +35,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     this->settings = settings;
 
     comboBoxIndex = 0;
+    hideEmptyButtons = false;
 
     verticalLayout = new QVBoxLayout (this);
     verticalLayout->setContentsMargins(4, 4, 4, 4);
@@ -431,6 +432,8 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     deviceKeyRepeatSettings();
 #endif
 
+    checkHideEmptyOption();
+
     connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
@@ -517,531 +520,14 @@ void JoyTabWidget::fillButtons()
 
     for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
     {
-        int row = 0;
-        int column = 0;
-
-        QWidget *child = 0;
-        QGridLayout *current_layout = 0;
-        switch (i)
-        {
-            case 0:
-            {
-                current_layout = gridLayout;
-                break;
-            }
-            case 1:
-            {
-                current_layout = gridLayout2;
-                break;
-            }
-            case 2:
-            {
-                current_layout = gridLayout3;
-                break;
-            }
-            case 3:
-            {
-                current_layout = gridLayout4;
-                break;
-            }
-            case 4:
-            {
-                current_layout = gridLayout5;
-                break;
-            }
-            case 5:
-            {
-                current_layout = gridLayout6;
-                break;
-            }
-            case 6:
-            {
-                current_layout = gridLayout7;
-                break;
-            }
-            case 7:
-            {
-                current_layout = gridLayout8;
-                break;
-            }
-            default:
-                break;
-        }
-
-        while (current_layout && current_layout->count() > 0)
-        {
-            child = current_layout->takeAt(0)->widget();
-            current_layout->removeWidget (child);
-            delete child;
-            child = 0;
-        }
-
-        QGridLayout *stickGrid = 0;
-        QGroupBox *stickGroup = 0;
-        int stickGridColumn = 0;
-        int stickGridRow = 0;
-        for (int j=0; j < joystick->getNumberSticks(); j++)
-        {
-            SetJoystick *currentSet = joystick->getSetJoystick(i);
-            currentSet->establishPropertyUpdatedConnection();
-
-            if (!stickGroup)
-            {
-                stickGroup = new QGroupBox(tr("Sticks"), this);
-            }
-
-            if (!stickGrid)
-            {
-                stickGrid = new QGridLayout();
-                stickGridColumn = 0;
-                stickGridRow = 0;
-            }
-
-            JoyControlStick *stick = joystick->getSetJoystick(i)->getJoyStick(j);
-            stick->establishPropertyUpdatedConnection();
-            QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
-            QGridLayout *tempalayout = new QGridLayout();
-            QWidget *attemp = new QWidget(stickGroup);
-
-            JoyControlStickButton *button = 0;
-            JoyControlStickButtonPushButton *pushbutton = 0;
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickLeftUp);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 0);
-            }
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickUp);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 1);
-            }
-
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickRightUp);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 2);
-            }
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickLeft);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 1, 0);
-            }
-
-            JoyControlStickPushButton *stickWidget = new JoyControlStickPushButton(stick, displayingNames, attemp);
-            stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-            connect(stickWidget, SIGNAL(clicked()), this, SLOT(showStickDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), stickWidget, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnections();
-            tempalayout->addWidget(stickWidget, 1, 1);
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickRight);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 1, 2);
-            }
-
-
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickLeftDown);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 0);
-            }
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickDown);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 1);
-            }
-
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickRightDown);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 2);
-            }
-
-            if (stickGridColumn > 1)
-            {
-                stickGridColumn = 0;
-                stickGridRow++;
-            }
-
-            attemp->setLayout(tempalayout);
-            stickGrid->addWidget(attemp, stickGridRow, stickGridColumn);
-            stickGridColumn++;
-        }
-
-        if (stickGroup)
-        {
-            QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
-            QVBoxLayout *tempvbox = new QVBoxLayout();
-            tempvbox->addLayout(stickGrid);
-            tempvbox->addItem(tempspacer);
-            stickGroup->setLayout(tempvbox);
-            current_layout->addWidget(stickGroup, row, column, 1, 2);
-        }
-
-        row++;
-        column = 0;
-
-        QGridLayout *hatGrid = 0;
-        QGroupBox *hatGroup = 0;
-        int hatGridColumn = 0;
-        int hatGridRow = 0;
-        for (int j=0; j < joystick->getNumberHats(); j++)
-        {
-            if (!hatGroup)
-            {
-                hatGroup = new QGroupBox(tr("DPads"), this);
-            }
-
-            if (!hatGrid)
-            {
-                hatGrid = new QGridLayout();
-                hatGridColumn = 0;
-                hatGridRow = 0;
-            }
-
-            JoyDPad *dpad = joystick->getSetJoystick(i)->getJoyDPad(j);
-            dpad->establishPropertyUpdatedConnection();
-            QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
-
-            QGridLayout *tempalayout = new QGridLayout();
-            QWidget *attemp = new QWidget(hatGroup);
-
-            JoyDPadButton *button = 0;
-            JoyDPadButtonWidget *pushbutton = 0;
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 0);
-            }
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 1);
-            }
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 2);
-            }
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeft);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 1, 0);
-            }
-
-            DPadPushButton *dpadpushbutton = new DPadPushButton(dpad, displayingNames, attemp);
-            dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-            connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnections();
-            tempalayout->addWidget(dpadpushbutton, 1, 1);
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRight);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 1, 2);
-            }
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 0);
-            }
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 1);
-            }
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 2);
-            }
-
-            if (hatGridColumn > 1)
-            {
-                hatGridColumn = 0;
-                hatGridRow++;
-            }
-
-            attemp->setLayout(tempalayout);
-            hatGrid->addWidget(attemp, hatGridRow, hatGridColumn);
-            hatGridColumn++;
-        }
-
-        for (int j=0; j < joystick->getNumberVDPads(); j++)
-        {
-            if (!hatGroup)
-            {
-                hatGroup = new QGroupBox(tr("DPads"), this);
-            }
-
-            if (!hatGrid)
-            {
-                hatGrid = new QGridLayout();
-                hatGridColumn = 0;
-                hatGridRow = 0;
-            }
-
-            VDPad *vdpad = joystick->getSetJoystick(i)->getVDPad(j);
-            vdpad->establishPropertyUpdatedConnection();
-            QHash<int, JoyDPadButton*> *buttons = vdpad->getButtons();
-
-            QGridLayout *tempalayout = new QGridLayout();
-            QWidget *attemp = new QWidget(hatGroup);
-
-            JoyDPadButton *button = 0;
-            JoyDPadButtonWidget *pushbutton = 0;
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 0);
-            }
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 1);
-            }
-
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 0, 2);
-            }
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeft);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 1, 0);
-            }
-
-            DPadPushButton *dpadpushbutton = new DPadPushButton(vdpad, displayingNames, attemp);
-            dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-            connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnections();
-            tempalayout->addWidget(dpadpushbutton, 1, 1);
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRight);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 1, 2);
-            }
-
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 0);
-            }
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 1);
-            }
-
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                tempalayout->addWidget(pushbutton, 2, 2);
-            }
-
-            if (hatGridColumn > 1)
-            {
-                hatGridColumn = 0;
-                hatGridRow++;
-            }
-
-            attemp->setLayout(tempalayout);
-            hatGrid->addWidget(attemp, hatGridRow, hatGridColumn);
-            hatGridColumn++;
-        }
-
-        if (hatGroup)
-        {
-            QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
-            QVBoxLayout *tempvbox = new QVBoxLayout();
-            tempvbox->addLayout(hatGrid);
-            tempvbox->addItem(tempspacer);
-            hatGroup->setLayout(tempvbox);
-            current_layout->addWidget(hatGroup, row, column, 1, 2);
-        }
-
-        row++;
-        column = 0;
-
-        for (int j=0; j < joystick->getNumberAxes(); j++)
-        {
-            JoyAxis *axis = joystick->getSetJoystick(i)->getJoyAxis(j);
-            if (!axis->isPartControlStick() && axis->hasControlOfButtons())
-            {
-                JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, displayingNames, this);
-                axisWidget->setText(axis->getName());
-                axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-                axisWidget->setMinimumSize(200, 24);
-
-                connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), axisWidget, SLOT(toggleNameDisplay()));
-
-                if (column > 1)
-                {
-                    column = 0;
-                    row++;
-                }
-                current_layout->addWidget(axisWidget, row, column);
-                column++;
-            }
-        }
-
-        for (int j=0; j < joystick->getNumberButtons(); j++)
-        {
-            JoyButton *button = joystick->getSetJoystick(i)->getJoyButton(j);
-            if (button && !button->isPartVDPad())
-            {
-                JoyButtonWidget *buttonWidget = new JoyButtonWidget (button, displayingNames, this);
-                buttonWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-                buttonWidget->setText(buttonWidget->text());
-                buttonWidget->setMinimumSize(200, 24);
-
-                connect(buttonWidget, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), buttonWidget, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-
-                if (column > 1)
-                {
-                    column = 0;
-                    row++;
-                }
-
-                current_layout->addWidget(buttonWidget, row, column);
-                column++;
-            }
-        }
+        SetJoystick *currentSet = joystick->getSetJoystick(i);
+        fillSetButtons(currentSet);
     }
 }
 
 void JoyTabWidget::showButtonDialog()
 {
-    QObject *sender = QObject::sender();
-    JoyButtonWidget *buttonWidget = (JoyButtonWidget*)sender;
+    JoyButtonWidget *buttonWidget = static_cast<JoyButtonWidget*>(sender());
     JoyButton *button = buttonWidget->getJoyButton();
 
     ButtonEditDialog *dialog = new ButtonEditDialog(button, this);
@@ -1050,8 +536,7 @@ void JoyTabWidget::showButtonDialog()
 
 void JoyTabWidget::showAxisDialog()
 {
-    QObject *sender = QObject::sender();
-    JoyAxisWidget *axisWidget = (JoyAxisWidget*) sender;
+    JoyAxisWidget *axisWidget = static_cast<JoyAxisWidget*>(sender());
     JoyAxis *axis = axisWidget->getAxis();
 
     axisDialog = new AxisEditDialog (axis, this);
@@ -1060,8 +545,7 @@ void JoyTabWidget::showAxisDialog()
 
 void JoyTabWidget::showStickDialog()
 {
-    QObject *sender = QObject::sender();
-    JoyControlStickPushButton *stickWidget = (JoyControlStickPushButton*) sender;
+    JoyControlStickPushButton *stickWidget = static_cast<JoyControlStickPushButton*>(sender());
     JoyControlStick *stick = stickWidget->getStick();
 
     JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog (stick, this);
@@ -1137,7 +621,6 @@ void JoyTabWidget::saveConfigFile()
             else
             {
                 joystick->revertProfileEdited();
-                //configBox->setCurrentIndex(existingIndex);
                 configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
@@ -1191,7 +674,6 @@ void JoyTabWidget::resetJoystick()
 void JoyTabWidget::saveAsConfig()
 {
     int index = configBox->currentIndex();
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
 
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
@@ -1255,7 +737,6 @@ void JoyTabWidget::saveAsConfig()
 
                 configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
-                //configBox->setItemIcon(1, QIcon());
                 joystick->revertProfileEdited();
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
@@ -1672,60 +1153,7 @@ void JoyTabWidget::removeCurrentButtons()
     for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
     {
         SetJoystick *currentSet = joystick->getSetJoystick(i);
-        currentSet->disconnectPropertyUpdatedConnection();
-
-        QLayoutItem *child = 0;
-        QGridLayout *current_layout = 0;
-        switch (i)
-        {
-            case 0:
-            {
-                current_layout = gridLayout;
-                break;
-            }
-            case 1:
-            {
-                current_layout = gridLayout2;
-                break;
-            }
-            case 2:
-            {
-                current_layout = gridLayout3;
-                break;
-            }
-            case 3:
-            {
-                current_layout = gridLayout4;
-                break;
-            }
-            case 4:
-            {
-                current_layout = gridLayout5;
-                break;
-            }
-            case 5:
-            {
-                current_layout = gridLayout6;
-                break;
-            }
-            case 6:
-            {
-                current_layout = gridLayout7;
-                break;
-            }
-            case 7:
-            {
-                current_layout = gridLayout8;
-                break;
-            }
-        }
-
-        while (current_layout && (child = current_layout->takeAt(0)) != 0)
-        {
-            current_layout->removeWidget(child->widget());
-            delete child->widget();
-            child = 0;
-        }
+        removeSetButtons(currentSet);
     }
 }
 
@@ -2065,6 +1493,970 @@ void JoyTabWidget::refreshButtons()
 {
     removeCurrentButtons();
     fillButtons();
+}
+
+void JoyTabWidget::checkStickDisplay()
+{
+    JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
+    JoyControlStick *stick = button->getStick();
+    if (stick && stick->hasSlotsAssigned())
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkDPadButtonDisplay()
+{
+    JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
+    JoyDPad *dpad = button->getDPad();
+    if (dpad && dpad->hasSlotsAssigned())
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkAxisButtonDisplay()
+{
+    JoyAxisButton *button = static_cast<JoyAxisButton*>(sender());
+    if (button->getAssignedSlots()->count() > 0)
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkButtonDisplay()
+{
+    JoyButton *button = static_cast<JoyButton*>(sender());
+    if (button->getAssignedSlots()->count() > 0)
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkStickEmptyDisplay()
+{
+    JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
+    JoyControlStick *stick = button->getStick();
+    if (stick && !stick->hasSlotsAssigned())
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkDPadButtonEmptyDisplay()
+{
+    JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
+    JoyDPad *dpad = button->getDPad();
+    if (dpad && !dpad->hasSlotsAssigned())
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkAxisButtonEmptyDisplay()
+{
+    JoyAxisButton *button = static_cast<JoyAxisButton*>(sender());
+    if (button->getAssignedSlots()->count() == 0)
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkButtonEmptyDisplay()
+{
+    JoyButton *button = static_cast<JoyButton*>(sender());
+    if (button->getAssignedSlots()->count() == 0)
+    {
+        SetJoystick *currentSet = joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkHideEmptyOption()
+{
+    bool currentHideEmptyButtons = settings->value("HideEmptyButtons", false).toBool();
+    if (currentHideEmptyButtons != hideEmptyButtons)
+    {
+        hideEmptyButtons = currentHideEmptyButtons;
+        refreshButtons();
+    }
+}
+
+void JoyTabWidget::fillSetButtons(SetJoystick *set)
+{
+    int row = 0;
+    int column = 0;
+
+    QWidget *child = 0;
+    QGridLayout *current_layout = 0;
+    switch (set->getIndex())
+    {
+        case 0:
+        {
+            current_layout = gridLayout;
+            break;
+        }
+        case 1:
+        {
+            current_layout = gridLayout2;
+            break;
+        }
+        case 2:
+        {
+            current_layout = gridLayout3;
+            break;
+        }
+        case 3:
+        {
+            current_layout = gridLayout4;
+            break;
+        }
+        case 4:
+        {
+            current_layout = gridLayout5;
+            break;
+        }
+        case 5:
+        {
+            current_layout = gridLayout6;
+            break;
+        }
+        case 6:
+        {
+            current_layout = gridLayout7;
+            break;
+        }
+        case 7:
+        {
+            current_layout = gridLayout8;
+            break;
+        }
+        default:
+            break;
+    }
+
+    while (current_layout && current_layout->count() > 0)
+    {
+        child = current_layout->takeAt(0)->widget();
+        current_layout->removeWidget (child);
+        delete child;
+        child = 0;
+    }
+
+    SetJoystick *currentSet = set;
+    currentSet->establishPropertyUpdatedConnection();
+
+    QGridLayout *stickGrid = 0;
+    QGroupBox *stickGroup = 0;
+    int stickGridColumn = 0;
+    int stickGridRow = 0;
+
+    for (int j=0; j < joystick->getNumberSticks(); j++)
+    {
+        JoyControlStick *stick = currentSet->getJoyStick(j);
+        stick->establishPropertyUpdatedConnection();
+        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
+
+        if (!hideEmptyButtons || stick->hasSlotsAssigned())
+        {
+            if (!stickGroup)
+            {
+                stickGroup = new QGroupBox(tr("Sticks"), this);
+            }
+
+            if (!stickGrid)
+            {
+                stickGrid = new QGridLayout();
+                stickGridColumn = 0;
+                stickGridRow = 0;
+            }
+
+            QGridLayout *tempalayout = new QGridLayout();
+            QWidget *attemp = new QWidget(stickGroup);
+
+            JoyControlStickButton *button = 0;
+            JoyControlStickButtonPushButton *pushbutton = 0;
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickLeftUp);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 0);
+            }
+
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickUp);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 1);
+            }
+
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickRightUp);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 2);
+            }
+
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickLeft);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 1, 0);
+            }
+
+            JoyControlStickPushButton *stickWidget = new JoyControlStickPushButton(stick, displayingNames, attemp);
+            stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
+            connect(stickWidget, SIGNAL(clicked()), this, SLOT(showStickDialog()));
+            connect(namesPushButton, SIGNAL(clicked()), stickWidget, SLOT(toggleNameDisplay()));
+            tempalayout->addWidget(stickWidget, 1, 1);
+
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickRight);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 1, 2);
+            }
+
+
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickLeftDown);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 0);
+            }
+
+            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickDown);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 1);
+            }
+
+            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
+                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
+            {
+                button = stickButtons->value(JoyControlStick::StickRightDown);
+                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 2);
+            }
+
+            if (stickGridColumn > 1)
+            {
+                stickGridColumn = 0;
+                stickGridRow++;
+            }
+
+            attemp->setLayout(tempalayout);
+            stickGrid->addWidget(attemp, stickGridRow, stickGridColumn);
+            stickGridColumn++;
+        }
+        else
+        {
+            QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> tempiter(*stickButtons);
+            while (tempiter.hasNext())
+            {
+                JoyControlStickButton *button = tempiter.next().value();
+                button->establishPropertyUpdatedConnections();
+                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickDisplay()));
+            }
+        }
+    }
+
+    if (stickGroup)
+    {
+        QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        QVBoxLayout *tempvbox = new QVBoxLayout();
+        tempvbox->addLayout(stickGrid);
+        tempvbox->addItem(tempspacer);
+        stickGroup->setLayout(tempvbox);
+        current_layout->addWidget(stickGroup, row, column, 1, 2, Qt::AlignTop);
+        row++;
+    }
+
+    column = 0;
+
+    QGridLayout *hatGrid = 0;
+    QGroupBox *hatGroup = 0;
+    int hatGridColumn = 0;
+    int hatGridRow = 0;
+    for (int j=0; j < joystick->getNumberHats(); j++)
+    {
+        JoyDPad *dpad = currentSet->getJoyDPad(j);
+        dpad->establishPropertyUpdatedConnection();
+        QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
+
+        if (!hideEmptyButtons || dpad->hasSlotsAssigned())
+        {
+            if (!hatGroup)
+            {
+                hatGroup = new QGroupBox(tr("DPads"), this);
+            }
+
+            if (!hatGrid)
+            {
+                hatGrid = new QGridLayout();
+                hatGridColumn = 0;
+                hatGridRow = 0;
+            }
+
+            QGridLayout *tempalayout = new QGridLayout();
+            QWidget *attemp = new QWidget(hatGroup);
+
+            JoyDPadButton *button = 0;
+            JoyDPadButtonWidget *pushbutton = 0;
+
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeftUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 0);
+            }
+
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 1);
+            }
+
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRightUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 2);
+            }
+
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeft);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 1, 0);
+            }
+
+            DPadPushButton *dpadpushbutton = new DPadPushButton(dpad, displayingNames, attemp);
+            dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
+            connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
+            connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
+            tempalayout->addWidget(dpadpushbutton, 1, 1);
+
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRight);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 1, 2);
+            }
+
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeftDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 0);
+            }
+
+            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 1);
+            }
+
+            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
+                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRightDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 2);
+            }
+
+            if (hatGridColumn > 1)
+            {
+                hatGridColumn = 0;
+                hatGridRow++;
+            }
+
+            attemp->setLayout(tempalayout);
+            hatGrid->addWidget(attemp, hatGridRow, hatGridColumn);
+            hatGridColumn++;
+        }
+        else
+        {
+            QHashIterator<int, JoyDPadButton*> tempiter(*buttons);
+            while (tempiter.hasNext())
+            {
+                JoyDPadButton *button = tempiter.next().value();
+                button->establishPropertyUpdatedConnections();
+                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
+            }
+        }
+    }
+
+    for (int j=0; j < joystick->getNumberVDPads(); j++)
+    {
+        VDPad *vdpad = currentSet->getVDPad(j);
+        vdpad->establishPropertyUpdatedConnection();
+        QHash<int, JoyDPadButton*> *buttons = vdpad->getButtons();
+
+        if (!hideEmptyButtons || vdpad->hasSlotsAssigned())
+        {
+            if (!hatGroup)
+            {
+                hatGroup = new QGroupBox(tr("DPads"), this);
+            }
+
+            if (!hatGrid)
+            {
+                hatGrid = new QGridLayout();
+                hatGridColumn = 0;
+                hatGridRow = 0;
+            }
+
+
+            QGridLayout *tempalayout = new QGridLayout();
+            QWidget *attemp = new QWidget(hatGroup);
+
+            JoyDPadButton *button = 0;
+            JoyDPadButtonWidget *pushbutton = 0;
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeftUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 0);
+            }
+
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 1);
+            }
+
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRightUp);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 0, 2);
+            }
+
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeft);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 1, 0);
+            }
+
+            DPadPushButton *dpadpushbutton = new DPadPushButton(vdpad, displayingNames, attemp);
+            dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
+            connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
+            connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
+            button->establishPropertyUpdatedConnections();
+            tempalayout->addWidget(dpadpushbutton, 1, 1);
+
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRight);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 1, 2);
+            }
+
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadLeftDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 0);
+            }
+
+            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 1);
+            }
+
+            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
+                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
+            {
+                button = buttons->value(JoyDPadButton::DpadRightDown);
+                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
+                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
+                button->establishPropertyUpdatedConnections();
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                }
+
+                tempalayout->addWidget(pushbutton, 2, 2);
+            }
+
+            if (hatGridColumn > 1)
+            {
+                hatGridColumn = 0;
+                hatGridRow++;
+            }
+
+            attemp->setLayout(tempalayout);
+            hatGrid->addWidget(attemp, hatGridRow, hatGridColumn);
+            hatGridColumn++;
+
+        }
+        else
+        {
+            QHashIterator<int, JoyDPadButton*> tempiter(*buttons);
+            while (tempiter.hasNext())
+            {
+                JoyDPadButton *button = tempiter.next().value();
+                button->establishPropertyUpdatedConnections();
+                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
+            }
+        }
+    }
+
+    if (hatGroup)
+    {
+        QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        QVBoxLayout *tempvbox = new QVBoxLayout();
+        tempvbox->addLayout(hatGrid);
+        tempvbox->addItem(tempspacer);
+        hatGroup->setLayout(tempvbox);
+        current_layout->addWidget(hatGroup, row, column, 1, 2, Qt::AlignTop);
+        row++;
+    }
+
+    column = 0;
+
+    for (int j=0; j < joystick->getNumberAxes(); j++)
+    {
+        JoyAxis *axis = currentSet->getJoyAxis(j);
+
+        if (!axis->isPartControlStick() && axis->hasControlOfButtons())
+        {
+            JoyAxisButton *paxisbutton = axis->getPAxisButton();
+            JoyAxisButton *naxisbutton = axis->getNAxisButton();
+
+            if (!hideEmptyButtons ||
+               (paxisbutton->getAssignedSlots()->count() > 0 ||
+                naxisbutton->getAssignedSlots()->count() > 0))
+            {
+                JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, displayingNames, this);
+                axisWidget->setText(axis->getName());
+                axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+                axisWidget->setMinimumSize(200, 24);
+
+                connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), axisWidget, SLOT(toggleNameDisplay()));
+                if (hideEmptyButtons)
+                {
+                    connect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
+                    connect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
+                }
+
+                if (column > 1)
+                {
+                    column = 0;
+                    row++;
+                }
+                current_layout->addWidget(axisWidget, row, column);
+                column++;
+            }
+            else
+            {
+                paxisbutton->establishPropertyUpdatedConnections();
+                naxisbutton->establishPropertyUpdatedConnections();
+
+                connect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
+                connect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
+            }
+        }
+    }
+
+    for (int j=0; j < joystick->getNumberButtons(); j++)
+    {
+        JoyButton *button = currentSet->getJoyButton(j);
+        if (button && !button->isPartVDPad())
+        {
+            button->establishPropertyUpdatedConnections();
+
+            if (!hideEmptyButtons || button->getAssignedSlots()->count() > 0)
+            {
+                JoyButtonWidget *buttonWidget = new JoyButtonWidget (button, displayingNames, this);
+                buttonWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+                buttonWidget->setText(buttonWidget->text());
+                buttonWidget->setMinimumSize(200, 24);
+
+                connect(buttonWidget, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
+                connect(namesPushButton, SIGNAL(clicked()), buttonWidget, SLOT(toggleNameDisplay()));
+                if (hideEmptyButtons)
+                {
+                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonEmptyDisplay()));
+                }
+
+                if (column > 1)
+                {
+                    column = 0;
+                    row++;
+                }
+
+                current_layout->addWidget(buttonWidget, row, column);
+                column++;
+            }
+            else
+            {
+                button->establishPropertyUpdatedConnections();
+                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonDisplay()));
+            }
+        }
+    }
+
+    if (current_layout->count() == 0)
+    {
+        QLabel *newlabel = new QLabel(tr("No buttons have been assigned. Please use Quick Set to assign keys\nto buttons or disable hiding empty buttons."));
+        current_layout->addWidget(newlabel, 0, 0, Qt::AlignCenter);
+    }
+}
+
+void JoyTabWidget::removeSetButtons(SetJoystick *set)
+{
+    SetJoystick *currentSet = set;
+    currentSet->disconnectPropertyUpdatedConnection();
+
+    QLayoutItem *child = 0;
+    QGridLayout *current_layout = 0;
+    switch (currentSet->getIndex())
+    {
+        case 0:
+        {
+            current_layout = gridLayout;
+            break;
+        }
+        case 1:
+        {
+            current_layout = gridLayout2;
+            break;
+        }
+        case 2:
+        {
+            current_layout = gridLayout3;
+            break;
+        }
+        case 3:
+        {
+            current_layout = gridLayout4;
+            break;
+        }
+        case 4:
+        {
+            current_layout = gridLayout5;
+            break;
+        }
+        case 5:
+        {
+            current_layout = gridLayout6;
+            break;
+        }
+        case 6:
+        {
+            current_layout = gridLayout7;
+            break;
+        }
+        case 7:
+        {
+            current_layout = gridLayout8;
+            break;
+        }
+    }
+
+    while (current_layout && (child = current_layout->takeAt(0)) != 0)
+    {
+        current_layout->removeWidget(child->widget());
+        delete child->widget();
+        child = 0;
+    }
+
+    for (int j=0; j < joystick->getNumberSticks(); j++)
+    {
+        JoyControlStick *stick = currentSet->getJoyStick(j);
+        stick->disconnectPropertyUpdatedConnection();
+        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
+
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> tempiter(*stickButtons);
+        while (tempiter.hasNext())
+        {
+            JoyControlStickButton *button = tempiter.next().value();
+            button->disconnectPropertyUpdatedConnections();
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickDisplay()));
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+        }
+    }
+
+    for (int j=0; j < joystick->getNumberHats(); j++)
+    {
+        JoyDPad *dpad = currentSet->getJoyDPad(j);
+        dpad->establishPropertyUpdatedConnection();
+        QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
+
+        QHashIterator<int, JoyDPadButton*> tempiter(*buttons);
+        while (tempiter.hasNext())
+        {
+            JoyDPadButton *button = tempiter.next().value();
+            button->disconnectPropertyUpdatedConnections();
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+        }
+    }
+
+    for (int j=0; j < joystick->getNumberVDPads(); j++)
+    {
+        VDPad *vdpad = currentSet->getVDPad(j);
+        vdpad->establishPropertyUpdatedConnection();
+        QHash<int, JoyDPadButton*> *buttons = vdpad->getButtons();
+
+        QHashIterator<int, JoyDPadButton*> tempiter(*buttons);
+        while (tempiter.hasNext())
+        {
+            JoyDPadButton *button = tempiter.next().value();
+            button->disconnectPropertyUpdatedConnections();
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+        }
+    }
+
+    for (int j=0; j < joystick->getNumberAxes(); j++)
+    {
+        JoyAxis *axis = currentSet->getJoyAxis(j);
+
+        if (!axis->isPartControlStick() && axis->hasControlOfButtons())
+        {
+            JoyAxisButton *paxisbutton = axis->getPAxisButton();
+            JoyAxisButton *naxisbutton = axis->getNAxisButton();
+
+            paxisbutton->disconnectPropertyUpdatedConnections();
+            naxisbutton->disconnectPropertyUpdatedConnections();
+
+            disconnect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
+            disconnect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
+            disconnect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
+            disconnect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
+        }
+    }
+
+    for (int j=0; j < joystick->getNumberButtons(); j++)
+    {
+        JoyButton *button = currentSet->getJoyButton(j);
+        if (button && !button->isPartVDPad())
+        {
+            button->disconnectPropertyUpdatedConnections();
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonDisplay()));
+            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonEmptyDisplay()));
+        }
+    }
 }
 
 #ifdef Q_OS_WIN

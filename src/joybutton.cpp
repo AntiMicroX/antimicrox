@@ -2501,7 +2501,7 @@ bool JoyButton::containsDistanceSlots()
     return result;
 }
 
-void JoyButton::clearAssignedSlots()
+void JoyButton::clearAssignedSlots(bool signalEmit)
 {
     QListIterator<JoyButtonSlot*> iter(assignments);
     while (iter.hasNext())
@@ -2515,7 +2515,10 @@ void JoyButton::clearAssignedSlots()
     }
 
     assignments.clear();
-    emit slotsChanged();
+    if (signalEmit)
+    {
+        emit slotsChanged();
+    }
 }
 
 void JoyButton::removeAssignedSlot(int index)
@@ -2533,7 +2536,7 @@ void JoyButton::removeAssignedSlot(int index)
     }
 }
 
-void JoyButton::clearSlotsEventReset()
+void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 {
     turboTimer.stop();
     pauseTimer.stop();
@@ -2556,7 +2559,7 @@ void JoyButton::clearSlotsEventReset()
     }
 
     releaseDeskEvent(true);
-    clearAssignedSlots();
+    clearAssignedSlots(clearSignalEmit);
 
     isButtonPressedQueue.clear();
     ignoreSetQueue.clear();
@@ -3354,7 +3357,7 @@ void JoyButton::establishPropertyUpdatedConnections()
 
 void JoyButton::disconnectPropertyUpdatedConnections()
 {
-    disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
+    disconnect(this, SIGNAL(slotsChanged()), 0, 0);
     disconnect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 

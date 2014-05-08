@@ -249,7 +249,7 @@ void ButtonEditDialog::closedAdvancedDialog()
 
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
-    button->clearSlotsEventReset();
+    button->clearSlotsEventReset(false);
     button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), tempslot->getSlotMode());
     this->close();
     tempslot->deleteLater();

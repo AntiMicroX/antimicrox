@@ -181,7 +181,7 @@ void AxisEditDialog::implementPresets(int index)
     if (nbuttonslot)
     {
         JoyAxisButton *button = axis->getNAxisButton();
-        button->clearSlotsEventReset();
+        button->clearSlotsEventReset(false);
         button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
         refreshNButtonLabel();
         nbuttonslot->deleteLater();
@@ -190,7 +190,7 @@ void AxisEditDialog::implementPresets(int index)
     if (pbuttonslot)
     {
         JoyAxisButton *button = axis->getPAxisButton();
-        button->clearSlotsEventReset();
+        button->clearSlotsEventReset(false);
         button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
