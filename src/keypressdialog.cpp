@@ -20,7 +20,13 @@ KeyPressDialog::KeyPressDialog(InputDevice *device, QWidget *parent) :
         ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
     }
 
+    if (!device->getProfileName().isEmpty())
+    {
+        ui->profileNameLineEdit->setText(device->getProfileName());
+    }
+
     connect(ui->keyPressHorizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeDeviceKeyPress(int)));
+    connect(ui->profileNameLineEdit, SIGNAL(textChanged(QString)), device, SLOT(setProfileName(QString)));
 }
 
 KeyPressDialog::~KeyPressDialog()

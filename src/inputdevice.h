@@ -80,6 +80,8 @@ public:
     int getKeyRepeatDelay();
     int getKeyRepeatRate();
 
+    QString getProfileName();
+
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
     static const unsigned int DEFAULTKEYREPEATDELAY;
@@ -100,6 +102,7 @@ protected:
     bool keyRepeatEnabled;
     int keyRepeatDelay;
     int keyRepeatRate;
+    QString profileName;
 
 signals:
     void setChangeActivated(int index);
@@ -116,6 +119,7 @@ signals:
     void rawAxisActivated(int axis, int value);
     void profileUpdated();
     void propertyUpdated();
+    void profileNameEdited(QString text);
 
 public slots:
     void reset();
@@ -127,6 +131,7 @@ public slots:
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
     void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
+    void setProfileName(QString value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

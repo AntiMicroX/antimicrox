@@ -542,6 +542,11 @@ void GameController::readConfig(QXmlStreamReader *xml)
                     this->setDeviceKeyPressTime(tempchoice);
                 }
             }
+            else if (xml->name() == "profilename" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                this->setProfileName(temptext);
+            }
             else
             {
                 // If none of the above, skip the element
@@ -565,6 +570,11 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeComment("The SDL name for a joystick is included for informational purposes only.");
     xml->writeTextElement("sdlname", getSDLName());
+
+    if (!profileName.isEmpty())
+    {
+        xml->writeTextElement("profilename", profileName);
+    }
 
     xml->writeStartElement("names"); // <names>
 

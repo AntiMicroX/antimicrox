@@ -63,6 +63,7 @@ void InputDevice::reset()
 
     buttonDownCount = 0;
     deviceEdited = false;
+    profileName = "";
 }
 
 void InputDevice::setActiveSetNumber(int index)
@@ -549,6 +550,11 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
                     this->setDeviceKeyPressTime(tempchoice);
                 }
             }
+            else if (xml->name() == "profilename" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                this->setProfileName(temptext);
+            }
             else
             {
                 // If none of the above, skip the element
@@ -568,6 +574,11 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeComment("The SDL name for a joystick is included for informational purposes only.");
     xml->writeTextElement("sdlname", getSDLName());
+
+    if (!profileName.isEmpty())
+    {
+        xml->writeTextElement("profilename", profileName);
+    }
 
     for (int i=0; i < getNumberSticks(); i++)
     {
@@ -1444,6 +1455,27 @@ int InputDevice::getKeyRepeatRate()
     }
 
     return tempKeyRepeatRate;
+}
+
+void InputDevice::setProfileName(QString value)
+{
+    if (profileName != value)
+    {
+        if (value.size() > 50)
+        {
+            value.truncate(47);
+            value.append("...");
+        }
+
+        profileName = value;
+        emit propertyUpdated();
+        emit profileNameEdited(value);
+    }
+}
+
+QString InputDevice::getProfileName()
+{
+    return profileName;
 }
 
 #ifdef USE_SDL_2

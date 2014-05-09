@@ -32,6 +32,7 @@ public:
     void setCurrentConfig(int index);
     int getCurrentConfigIndex();
     QString getCurrentConfigName();
+    QString getConfigName(int index);
     void loadConfigFile(QString fileLocation);
     InputDevice *getJoystick();
     void unloadConfig();
@@ -121,6 +122,7 @@ protected:
     QSettings *settings;
     int comboBoxIndex;
     bool hideEmptyButtons;
+    QString oldProfileName;
 
     static const int DEFAULTNUMBERPROFILES = 5;
 
@@ -182,6 +184,7 @@ private slots:
     void checkDPadButtonEmptyDisplay();
     void checkAxisButtonEmptyDisplay();
     void checkButtonEmptyDisplay();
+    void editCurrentProfileItemText(QString text);
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();

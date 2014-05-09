@@ -663,6 +663,11 @@ void MainWindow::joystickTrayShow()
             {
                 action->setIcon(QIcon());
             }
+
+            if (action->text() != widget->getConfigName(configindex))
+            {
+                action->setText(widget->getConfigName(configindex));
+            }
         }
     }
 }
@@ -1037,6 +1042,11 @@ void MainWindow::singleTrayProfileMenuShow()
                     else if (!action->icon().isNull())
                     {
                         action->setIcon(QIcon());
+                    }
+
+                    if (action->text() != widget->getConfigName(configindex))
+                    {
+                        action->setText(widget->getConfigName(configindex));
                     }
                 }
             }

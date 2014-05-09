@@ -578,7 +578,7 @@ void JoyTabWidget::saveConfigFile()
     }
     else
     {
-        filename = configBox->itemData(index).value<QString> ();
+        filename = configBox->itemData(index).toString();
     }
 
     if (!filename.isEmpty())
@@ -646,6 +646,8 @@ void JoyTabWidget::resetJoystick()
         fillButtons();
         refreshSetButtons();
 
+        configBox->setItemText(currentIndex, oldProfileName);
+
         if (reader.hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
@@ -662,6 +664,7 @@ void JoyTabWidget::resetJoystick()
     }
     else
     {
+        configBox->setItemText(0, tr("<New>"));
         removeCurrentButtons();
         joystick->reset();
         fillButtons();
@@ -774,6 +777,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
         fillButtons();
         refreshSetButtons();
+        configBox->setItemText(0, tr("<New>"));
 
         if (reader.hasError() && this->window()->isEnabled())
         {
@@ -788,6 +792,18 @@ void JoyTabWidget::changeJoyConfig(int index)
             QTextStream error(stderr);
             error << reader.getErrorString() << endl;
         }
+
+        QString profileName;
+        if (!joystick->getProfileName().isEmpty())
+        {
+            profileName = joystick->getProfileName();
+            oldProfileName = profileName;
+        }
+        else
+        {
+            QFileInfo profile(filename);
+            oldProfileName = profile.baseName();
+        }
     }
     else if (index == 0)
     {
@@ -795,6 +811,8 @@ void JoyTabWidget::changeJoyConfig(int index)
         joystick->reset();
         fillButtons();
         refreshSetButtons();
+        configBox->setItemText(0, tr("<New>"));
+        oldProfileName = "";
         emit joystickRefreshRequested(joystick);
     }
 
@@ -816,6 +834,7 @@ void JoyTabWidget::saveSettings()
     QString controlEntryPrefix = QString("Controller%1").arg(identifier);
     QString controlEntryString = QString("Controller%1ConfigFile%2").arg(identifier);
     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
+    QString controlEntryProfileName = QString("Controller%1ProfileName%2").arg(joystick->getStringIdentifier());
 
     // Remove current settings for a controller
     QStringList tempkeys = settings->allKeys();
@@ -833,9 +852,15 @@ void JoyTabWidget::saveSettings()
     if (index != 0)
     {
         filename = lastfile = configBox->itemData(index).toString();
+        QString profileText = configBox->itemText(index);
         if (!identifier.isEmpty())
         {
             settings->setValue(controlEntryString.arg(currentjoy), filename);
+            QFileInfo profileBaseFile(filename);
+            if (profileBaseFile.baseName() != profileText)
+            {
+                settings->setValue(controlEntryProfileName.arg(currentjoy), profileText);
+            }
         }
 
         currentjoy++;
@@ -851,10 +876,15 @@ void JoyTabWidget::saveSettings()
         if (i != index)
         {
            filename = configBox->itemData(i).toString();
-
+           QString profileText = configBox->itemText(i);
            if (!identifier.isEmpty())
            {
                settings->setValue(controlEntryString.arg(currentjoy), filename);
+               QFileInfo profileBaseFile(filename);
+               if (profileBaseFile.baseName() != profileText)
+               {
+                   settings->setValue(controlEntryProfileName.arg(currentjoy), profileText);
+               }
            }
 
            currentjoy++;
@@ -894,6 +924,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
     QString controlEntryString = QString("Controller%1ConfigFile%2").arg(joystick->getStringIdentifier());
     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(joystick->getStringIdentifier());
+    QString controlEntryProfileName = QString("Controller%1ProfileName%2").arg(joystick->getStringIdentifier());
 
     bool finished = false;
     for (int i=1; !finished; i++)
@@ -910,7 +941,9 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             QFileInfo fileInfo(tempfilepath);
             if (configBox->findData(fileInfo.absoluteFilePath()) == -1)
             {
-                configBox->addItem(fileInfo.baseName(), fileInfo.absoluteFilePath());
+                QString profileName = settings->value(controlEntryProfileName.arg(i), "").toString();
+                profileName = !profileName.isEmpty() ? profileName : fileInfo.baseName();
+                configBox->addItem(profileName, fileInfo.absoluteFilePath());
             }
         }
         else
@@ -985,6 +1018,11 @@ int JoyTabWidget::getCurrentConfigIndex()
 QString JoyTabWidget::getCurrentConfigName()
 {
     return configBox->currentText();
+}
+
+QString JoyTabWidget::getConfigName(int index)
+{
+    return configBox->itemText(index);
 }
 
 void JoyTabWidget::changeCurrentSet(int index)
@@ -1087,15 +1125,17 @@ void JoyTabWidget::showStickAssignmentDialog()
 
 void JoyTabWidget::loadConfigFile(QString fileLocation)
 {
+    int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QFileInfo fileinfo(fileLocation);
     if (fileinfo.exists() && fileinfo.suffix() == "xml")
     {
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         if (searchIndex == -1)
         {
-            if (configBox->count() == 6)
+            if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
             {
-                configBox->removeItem(5);
+                configBox->removeItem(numberRecentProfiles-1);
+                //configBox->removeItem(5);
             }
             configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
@@ -1406,6 +1446,7 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
         else if (status == QMessageBox::Discard)
         {
             joystick->revertProfileEdited();
+            configBox->setItemText(comboBoxIndex, oldProfileName);
             reconnectCheckUnsavedEvent();
             reconnectMainComboBoxEvents();
             configBox->setCurrentIndex(newindex);
@@ -1452,6 +1493,7 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
         else if (status == QMessageBox::Discard)
         {
             joystick->revertProfileEdited();
+            configBox->setItemText(currentIndex, oldProfileName);
             resetJoystick();
         }
         else if (status == QMessageBox::Cancel)
@@ -1471,12 +1513,14 @@ void JoyTabWidget::disconnectMainComboBoxEvents()
 {
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
+    disconnect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
 }
 
 void JoyTabWidget::reconnectMainComboBoxEvents()
 {
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
+    connect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
 }
 
 void JoyTabWidget::disconnectCheckUnsavedEvent()
@@ -2131,7 +2175,6 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
             connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
             connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            button->establishPropertyUpdatedConnections();
             tempalayout->addWidget(dpadpushbutton, 1, 1);
 
             if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
@@ -2455,6 +2498,27 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
             button->disconnectPropertyUpdatedConnections();
             disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonDisplay()));
             disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonEmptyDisplay()));
+        }
+    }
+}
+
+void JoyTabWidget::editCurrentProfileItemText(QString text)
+{
+    int currentIndex = configBox->currentIndex();
+    if (currentIndex >= 0)
+    {
+        if (!text.isEmpty())
+        {
+            configBox->setItemText(currentIndex, text);
+        }
+        else if (currentIndex == 0)
+        {
+            configBox->setItemText(currentIndex, tr("<New>"));
+        }
+        else if (currentIndex > 0)
+        {
+            QFileInfo profileName(configBox->itemData(currentIndex).toString());
+            configBox->setItemText(currentIndex, profileName.baseName());
         }
     }
 }
