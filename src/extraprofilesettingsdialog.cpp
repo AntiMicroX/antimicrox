@@ -1,11 +1,11 @@
 #include <QDebug>
 
-#include "keypressdialog.h"
-#include "ui_keypressdialog.h"
+#include "extraprofilesettingsdialog.h"
+#include "ui_extraprofilesettingsdialog.h"
 
-KeyPressDialog::KeyPressDialog(InputDevice *device, QWidget *parent) :
+ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::KeyPressDialog)
+    ui(new Ui::ExtraProfileSettingsDialog)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -29,12 +29,12 @@ KeyPressDialog::KeyPressDialog(InputDevice *device, QWidget *parent) :
     connect(ui->profileNameLineEdit, SIGNAL(textChanged(QString)), device, SLOT(setProfileName(QString)));
 }
 
-KeyPressDialog::~KeyPressDialog()
+ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog()
 {
     delete ui;
 }
 
-void KeyPressDialog::changeDeviceKeyPress(int value)
+void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
 {
     int temppress = value * 10;
     device->setDeviceKeyPressTime(temppress);

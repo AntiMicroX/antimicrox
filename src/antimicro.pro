@@ -247,7 +247,7 @@ SOURCES += main.cpp\
     editalldefaultautoprofiledialog.cpp \
     common.cpp \
     localantimicroserver.cpp \
-    keypressdialog.cpp
+    extraprofilesettingsdialog.cpp
 
 unix {
   SOURCES += x11info.cpp \
@@ -334,7 +334,7 @@ HEADERS  += mainwindow.h \
     addeditautoprofiledialog.h \
     editalldefaultautoprofiledialog.h \
     localantimicroserver.h \
-    keypressdialog.h
+    extraprofilesettingsdialog.h
 
 !isEmpty(USE_SDL_2) {
   HEADERS  += gamecontroller/gamecontroller.h \
@@ -374,7 +374,7 @@ FORMS    += mainwindow.ui \
     addeditautoprofiledialog.ui \
     editalldefaultautoprofiledialog.ui \
     winappprofiletimerdialog.ui \
-    keypressdialog.ui
+    extraprofilesettingsdialog.ui
 
 
 unix {

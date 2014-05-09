@@ -152,7 +152,7 @@ slightly altered sets easier.
 * Write documentation for portions of the program.
 * ~~Add Delay slot type.~~
 * Convert code base to use CMake as opposed to qmake.
-* Add profile name. Use filename as a backup name.
+* ~~Add profile name. Use filename as a backup name.~~
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this

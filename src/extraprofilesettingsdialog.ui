@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>KeyPressDialog</class>
- <widget class="QDialog" name="KeyPressDialog">
+ <class>ExtraProfileSettingsDialog</class>
+ <widget class="QDialog" name="ExtraProfileSettingsDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -127,7 +127,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>KeyPressDialog</receiver>
+   <receiver>ExtraProfileSettingsDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -143,7 +143,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>KeyPressDialog</receiver>
+   <receiver>ExtraProfileSettingsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

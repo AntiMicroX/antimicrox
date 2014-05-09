@@ -20,7 +20,7 @@
 #include "dpadeditdialog.h"
 #include "joydpadbuttonwidget.h"
 #include "quicksetdialog.h"
-#include "keypressdialog.h"
+#include "extraprofilesettingsdialog.h"
 #include "setnamesdialog.h"
 
 #ifdef USE_SDL_2
@@ -1174,7 +1174,7 @@ void JoyTabWidget::showQuickSetDialog()
 
 void JoyTabWidget::showKeyDelayDialog()
 {
-    KeyPressDialog *dialog = new KeyPressDialog(joystick, this);
+    ExtraProfileSettingsDialog *dialog = new ExtraProfileSettingsDialog(joystick, this);
     dialog->show();
 }
 

@@ -5,7 +5,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1398676885501" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="-7"/>
-<node CREATED="1398676376577" FOLDED="true" HGAP="19" ID="ID_1223827762" MODIFIED="1399029523759" POSITION="left" TEXT="Split Actions into a Seperate Entity?" VSHIFT="-5">
+<node CREATED="1398676376577" FOLDED="true" HGAP="19" ID="ID_1223827762" MODIFIED="1399599674842" POSITION="left" TEXT="Split Actions into a Seperate Entity?" VSHIFT="-5">
 <icon BUILTIN="help"/>
 <node CREATED="1398676422304" ID="ID_744925725" MODIFIED="1398676855592" TEXT="Unlike the current system where assignment slots are assigned to controller buttons, actions would hold all applicable slots and a button would then be assigned an action. The major benefit behind doing that would be that complex macro assignments can be assigned to multiple buttons without completely mapping the sequence out again. Also, it would be much easier to assign the sequence to a different button.&#xa;&#xa;This type of change would probably require a complete program refactor. I honestly don&apos;t see this feature ever being incorporated into AntiMicro."/>
 </node>
@@ -21,7 +21,8 @@
 <node CREATED="1398682402644" ID="ID_693533160" MODIFIED="1398682514273" TEXT="A Delay slot will work almost like the current Hold slot type. The big difference is that any currently active slots will not be released after the delay time has been exceeded."/>
 </node>
 <node CREATED="1399110391534" ID="ID_198612384" MODIFIED="1399110427473" POSITION="right" TEXT="Convert to using CMake instead of qmake"/>
-<node CREATED="1399164906083" FOLDED="true" ID="ID_719184118" MODIFIED="1399165197313" POSITION="left" TEXT="Add Profile Names">
+<node CREATED="1399164906083" FOLDED="true" ID="ID_719184118" MODIFIED="1399599636302" POSITION="left" TEXT="Add Profile Names">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1399164933013" ID="ID_1336467156" MODIFIED="1399165195098" TEXT="Currently, the basename of the profile filename is displayed in the interface to identify the profile. The filebrowser application bundled with Mezzanine alters filenames of files uploaded to the server. Filenames are converted to lowercase and spaces are converted to underscores. Because of this, the intended profile display name will not show up for someone who downloads the profile.&#xa;&#xa;There are other cases where it would be beneficial for the displayed name of the profile to be different from the associated profile filename."/>
 </node>
 </node>

@@ -6,22 +6,22 @@
 #include "inputdevice.h"
 
 namespace Ui {
-class KeyPressDialog;
+class ExtraProfileSettingsDialog;
 }
 
-class KeyPressDialog : public QDialog
+class ExtraProfileSettingsDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit KeyPressDialog(InputDevice *device, QWidget *parent = 0);
-    ~KeyPressDialog();
+    explicit ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent = 0);
+    ~ExtraProfileSettingsDialog();
 
 protected:
     InputDevice *device;
 
 private:
-    Ui::KeyPressDialog *ui;
+    Ui::ExtraProfileSettingsDialog *ui;
 
 private slots:
     void changeDeviceKeyPress(int value);
