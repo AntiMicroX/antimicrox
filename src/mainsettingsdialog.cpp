@@ -126,6 +126,16 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
         ui->hideEmptyCheckBox->setChecked(true);
     }
 
+    bool autoOpenLastProfile = settings->value("AutoOpenLastProfile", true).toBool();
+    if (autoOpenLastProfile)
+    {
+        ui->autoLoadPreviousCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->autoLoadPreviousCheckBox->setChecked(false);
+    }
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -404,6 +414,9 @@ void MainSettingsDialog::saveNewSettings()
 
     bool hideEmpty = ui->hideEmptyCheckBox->isChecked();
     settings->setValue("HideEmptyButtons", hideEmpty ? "1" : "0");
+
+    bool autoOpenLastProfile = ui->autoLoadPreviousCheckBox->isChecked();
+    settings->setValue("AutoOpenLastProfile", autoOpenLastProfile ? "1" : "0");
 
     settings->sync();
 }

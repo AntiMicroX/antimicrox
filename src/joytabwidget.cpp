@@ -919,6 +919,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     }
 
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+    bool autoOpenLastProfile = settings->value("AutoOpenLastProfile", true).toBool();
 
     settings->beginGroup("Controllers");
 
@@ -961,7 +962,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
     QString lastfile;
 
-    if (!joystick->getStringIdentifier().isEmpty())
+    if (!joystick->getStringIdentifier().isEmpty() && autoOpenLastProfile)
     {
         lastfile = settings->value(controlEntryLastSelected, "").toString();
     }
