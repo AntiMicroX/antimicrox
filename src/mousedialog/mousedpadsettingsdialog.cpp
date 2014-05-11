@@ -99,6 +99,10 @@ void MouseDPadSettingsDialog::changeMouseCurve(int index)
     {
         dpad->setButtonsMouseCurve(JoyButton::PowerCurve);
     }
+    else if (index == 6)
+    {
+        dpad->setButtonsMouseCurve(JoyButton::PrecisionCenterCurve);
+    }
 }
 
 void MouseDPadSettingsDialog::updateConfigHorizontalSpeed(int value)
@@ -217,6 +221,10 @@ void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
     else if (temp == JoyButton::PowerCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(5);
+    }
+    else if (temp == JoyButton::PrecisionCenterCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(6);
     }
 }
 

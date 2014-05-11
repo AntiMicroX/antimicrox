@@ -108,6 +108,11 @@ axis is moved back to the dead zone.</string>
            <string>Power Function</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>Precision Center</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

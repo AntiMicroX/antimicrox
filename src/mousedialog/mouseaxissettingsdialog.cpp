@@ -99,6 +99,10 @@ void MouseAxisSettingsDialog::changeMouseCurve(int index)
     {
         axis->setButtonsMouseCurve(JoyButton::PowerCurve);
     }
+    else if (index == 6)
+    {
+        axis->setButtonsMouseCurve(JoyButton::PrecisionCenterCurve);
+    }
 }
 
 void MouseAxisSettingsDialog::updateConfigHorizontalSpeed(int value)
@@ -199,6 +203,10 @@ void MouseAxisSettingsDialog::updateAccelerationCurvePresetComboBox()
     else if (temp == JoyButton::PowerCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(5);
+    }
+    else if (temp == JoyButton::PrecisionCenterCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(6);
     }
 }
 

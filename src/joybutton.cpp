@@ -800,6 +800,7 @@ void JoyButton::mouseEvent()
                     int mouse2 = 0;
                     double sumDist = buttonslot->getMouseDistance();
                     JoyMouseCurve currentCurve = getMouseCurve();
+                    //currentCurve = PrecisionCenterCurve;
 
                     switch (currentCurve)
                     {
@@ -829,6 +830,15 @@ void JoyButton::mouseEvent()
                             double tempsensitive = qMin(qMax(sensitivity, 1.0e-3), 1.0e+3);
                             double temp = qMin(qMax(pow(difference, 1.0 / tempsensitive), 0.0), 1.0);
                             difference = temp;
+                            break;
+                        }
+                        case PrecisionCenterCurve:
+                        {
+                            // Force Quadratic for small axis movement. Use Linear for larger axis movement.
+                            // Allows more precise controls near the center and faster controls further
+                            // away from the center.
+                            double temp = difference;
+                            difference = (temp > 0.33) ? difference : (difference * difference);
                             break;
                         }
                         default:
@@ -1184,6 +1194,10 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("mouseacceleration", "power");
             xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
         }
+        else if (mouseCurve == PrecisionCenterCurve)
+        {
+            xml->writeTextElement("mouseacceleration", "precisioncenter");
+        }
 
         xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
         xml->writeTextElement("wheelspeedx", QString::number(wheelSpeedX));
@@ -1394,6 +1408,10 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         else if (temptext == "power")
         {
             setMouseCurve(PowerCurve);
+        }
+        else if (temptext == "precisioncenter")
+        {
+            setMouseCurve(PrecisionCenterCurve);
         }
     }
     else if (xml->name() == "mousespringwidth" && xml->isStartElement())
