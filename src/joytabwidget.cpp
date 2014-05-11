@@ -605,6 +605,7 @@ void JoyTabWidget::saveConfigFile()
         else
         {
             int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
+
             if (existingIndex == -1)
             {
                 if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
@@ -613,7 +614,14 @@ void JoyTabWidget::saveConfigFile()
                 }
 
                 joystick->revertProfileEdited();
-                configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+                QString tempProfileName = fileinfo.baseName();
+                if (!joystick->getProfileName().isEmpty())
+                {
+                    oldProfileName = joystick->getProfileName();
+                    tempProfileName = oldProfileName;
+                }
+
+                configBox->insertItem(1, tempProfileName, fileinfo.absoluteFilePath());
                 configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
@@ -621,6 +629,11 @@ void JoyTabWidget::saveConfigFile()
             else
             {
                 joystick->revertProfileEdited();
+                if (!joystick->getProfileName().isEmpty())
+                {
+                    oldProfileName = joystick->getProfileName();
+                }
+
                 configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
@@ -646,7 +659,19 @@ void JoyTabWidget::resetJoystick()
         fillButtons();
         refreshSetButtons();
 
-        configBox->setItemText(currentIndex, oldProfileName);
+        QString tempProfileName;
+        if (!joystick->getProfileName().isEmpty())
+        {
+            tempProfileName = joystick->getProfileName();
+            configBox->setItemText(currentIndex, tempProfileName);
+        }
+        else
+        {
+            tempProfileName = oldProfileName;
+            configBox->setItemText(currentIndex, oldProfileName);
+        }
+
+        oldProfileName = tempProfileName;
 
         if (reader.hasError() && this->window()->isEnabled())
         {
