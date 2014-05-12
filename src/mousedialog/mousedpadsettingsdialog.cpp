@@ -101,7 +101,7 @@ void MouseDPadSettingsDialog::changeMouseCurve(int index)
     }
     else if (index == 6)
     {
-        dpad->setButtonsMouseCurve(JoyButton::PrecisionCenterCurve);
+        dpad->setButtonsMouseCurve(JoyButton::CameraCurve);
     }
 }
 
@@ -222,7 +222,7 @@ void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
     {
         ui->accelerationComboBox->setCurrentIndex(5);
     }
-    else if (temp == JoyButton::PrecisionCenterCurve)
+    else if (temp == JoyButton::CameraCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(6);
     }

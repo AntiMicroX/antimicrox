@@ -103,7 +103,7 @@ void MouseButtonSettingsDialog::changeMouseCurve(int index)
     }
     else if (index == 6)
     {
-        button->setMouseCurve(JoyButton::PrecisionCenterCurve);
+        button->setMouseCurve(JoyButton::CameraCurve);
     }
 }
 
@@ -193,7 +193,7 @@ void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
     {
         ui->accelerationComboBox->setCurrentIndex(5);
     }
-    else if (temp == JoyButton::PrecisionCenterCurve)
+    else if (temp == JoyButton::CameraCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(6);
     }

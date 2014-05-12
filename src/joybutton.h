@@ -25,7 +25,7 @@ public:
 
     enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay, SetChangeTwoWay, SetChangeWhileHeld};
     enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
-    enum JoyMouseCurve {LinearCurve=0, QuadraticCurve, CubicCurve, QuadraticExtremeCurve, PowerCurve, PrecisionCenterCurve};
+    enum JoyMouseCurve {LinearCurve=0, QuadraticCurve, CubicCurve, QuadraticExtremeCurve, PowerCurve, CameraCurve};
 
     void joyEvent (bool pressed, bool ignoresets=false);
     int getJoyNumber ();

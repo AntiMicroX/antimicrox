@@ -110,7 +110,7 @@ axis is moved back to the dead zone.</string>
          </item>
          <item>
           <property name="text">
-           <string>Precision Center</string>
+           <string>Camera</string>
           </property>
          </item>
         </widget>

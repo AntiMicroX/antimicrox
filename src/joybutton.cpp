@@ -800,7 +800,6 @@ void JoyButton::mouseEvent()
                     int mouse2 = 0;
                     double sumDist = buttonslot->getMouseDistance();
                     JoyMouseCurve currentCurve = getMouseCurve();
-                    //currentCurve = PrecisionCenterCurve;
 
                     switch (currentCurve)
                     {
@@ -832,13 +831,29 @@ void JoyButton::mouseEvent()
                             difference = temp;
                             break;
                         }
-                        case PrecisionCenterCurve:
+                        case CameraCurve:
                         {
-                            // Force Quadratic for small axis movement. Use Linear for larger axis movement.
-                            // Allows more precise controls near the center and faster controls further
-                            // away from the center.
+                            // Perform different forms of acceleration depending on
+                            // the range of the element from its assigned dead zone.
+                            // Useful for more precise controls with an axis.
                             double temp = difference;
-                            difference = (temp > 0.33) ? difference : (difference * difference);
+                            if (temp <= 0.33)
+                            {
+                                // Perform Quadratic acceleration.
+                                difference = difference * difference;
+                            }
+                            else if (temp <= 0.7)
+                            {
+                                // Perform Linear accleration with an appropriate
+                                // offset.
+                                difference = difference - 0.221;
+                            }
+                            else if (temp > 0.7)
+                            {
+                                // Perform mouse acceleration. Make up the difference
+                                // due to the previous two segments. Maxes out at 1.0.
+                                difference = (difference * 1.737) - 0.737;
+                            }
                             break;
                         }
                         default:
@@ -1194,9 +1209,9 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("mouseacceleration", "power");
             xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
         }
-        else if (mouseCurve == PrecisionCenterCurve)
+        else if (mouseCurve == CameraCurve)
         {
-            xml->writeTextElement("mouseacceleration", "precisioncenter");
+            xml->writeTextElement("mouseacceleration", "camera");
         }
 
         xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
@@ -1409,9 +1424,9 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         {
             setMouseCurve(PowerCurve);
         }
-        else if (temptext == "precisioncenter")
+        else if (temptext == "camera")
         {
-            setMouseCurve(PrecisionCenterCurve);
+            setMouseCurve(CameraCurve);
         }
     }
     else if (xml->name() == "mousespringwidth" && xml->isStartElement())

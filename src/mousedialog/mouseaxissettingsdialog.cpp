@@ -101,7 +101,7 @@ void MouseAxisSettingsDialog::changeMouseCurve(int index)
     }
     else if (index == 6)
     {
-        axis->setButtonsMouseCurve(JoyButton::PrecisionCenterCurve);
+        axis->setButtonsMouseCurve(JoyButton::CameraCurve);
     }
 }
 
@@ -204,7 +204,7 @@ void MouseAxisSettingsDialog::updateAccelerationCurvePresetComboBox()
     {
         ui->accelerationComboBox->setCurrentIndex(5);
     }
-    else if (temp == JoyButton::PrecisionCenterCurve)
+    else if (temp == JoyButton::CameraCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(6);
     }

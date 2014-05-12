@@ -104,7 +104,7 @@ void MouseControlStickSettingsDialog::changeMouseCurve(int index)
     }
     else if (index == 6)
     {
-        stick->setButtonsMouseCurve(JoyButton::PrecisionCenterCurve);
+        stick->setButtonsMouseCurve(JoyButton::CameraCurve);
     }
 }
 
@@ -225,7 +225,7 @@ void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
     {
         ui->accelerationComboBox->setCurrentIndex(5);
     }
-    else if (temp == JoyButton::PrecisionCenterCurve)
+    else if (temp == JoyButton::CameraCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(6);
     }
