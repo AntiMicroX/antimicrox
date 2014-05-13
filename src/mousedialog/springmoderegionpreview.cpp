@@ -18,7 +18,7 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
     setAttribute(Qt::WA_NoSystemBackground);
     setAttribute(Qt::WA_TranslucentBackground);
-#ifdef Q_OS_UNIX
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     setAttribute(Qt::WA_PaintOnScreen);
 #endif
 
