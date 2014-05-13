@@ -34,6 +34,7 @@ public slots:
     void changeSmoothingStatus(int index);
     void updateWheelVerticalSpeedLabel(int value);
     void updateWheelHorizontalSpeedLabel(int value);
+    void changeSensitivityStatusForMouseMode(int index);
 
     virtual void changeMouseMode(int index) = 0;
     virtual void changeMouseCurve(int index) = 0;

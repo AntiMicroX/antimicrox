@@ -144,15 +144,10 @@ Notes about the WXS file and the building process :
 This section is where some of the ideas for future features
 for this program will be written.
 
-* ~~Setting to not display buttons that are not currently in use.
-This will especially help people using a PS3 controller.~~
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
-* ~~Improve SteamOS support.~~
 * Write documentation for portions of the program.
-* ~~Add Delay slot type.~~
 * Convert code base to use CMake as opposed to qmake.
-* ~~Add profile name. Use filename as a backup name.~~
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this

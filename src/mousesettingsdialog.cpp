@@ -16,6 +16,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeWheelSpeedBoxStatus(int)));
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatusForMouseMode(int)));
 
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateHorizontalSpeedConvertLabel(int)));
     connect(ui->horizontalSpinBox, SIGNAL(valueChanged(int)), this, SLOT(moveSpeedsTogether(int)));
@@ -35,8 +36,9 @@ MouseSettingsDialog::~MouseSettingsDialog()
 void MouseSettingsDialog::changeSensitivityStatus(int index)
 {
     JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(index);
+    int currentMouseMode = ui->mouseModeComboBox->currentIndex();
 
-    if (temp == JoyButton::PowerCurve)
+    if (currentMouseMode == 1 && temp == JoyButton::PowerCurve)
     {
         ui->sensitivityDoubleSpinBox->setEnabled(true);
     }
@@ -199,4 +201,25 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
     }
 
     return temp;
+}
+
+void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
+{
+    if (index == 2)
+    {
+        ui->sensitivityDoubleSpinBox->setEnabled(false);
+    }
+    else if (index == 1)
+    {
+        int currentCurveIndex = ui->accelerationComboBox->currentIndex();
+        JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(currentCurveIndex);
+        if (temp == JoyButton::PowerCurve)
+        {
+            ui->sensitivityDoubleSpinBox->setEnabled(true);
+        }
+    }
+    else
+    {
+        ui->sensitivityDoubleSpinBox->setEnabled(false);
+    }
 }
