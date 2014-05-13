@@ -2265,7 +2265,7 @@ void JoyButton::holdEvent()
         // Elapsed time has not occurred
         else if (currentlyPressed)
         {
-            unsigned int holdTime = currentDelay->getSlotCode();
+            unsigned int holdTime = currentHold->getSlotCode();
             int proposedInterval = holdTime - buttonHold.elapsed();
             proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
             int newTimerInterval = qMin(10, proposedInterval);
