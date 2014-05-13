@@ -34,7 +34,9 @@ MouseSettingsDialog::~MouseSettingsDialog()
 
 void MouseSettingsDialog::changeSensitivityStatus(int index)
 {
-    if (index == 5)
+    JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(index);
+
+    if (temp == JoyButton::PowerCurve)
     {
         ui->sensitivityDoubleSpinBox->setEnabled(true);
     }
