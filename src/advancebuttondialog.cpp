@@ -521,11 +521,9 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
 
 void AdvanceButtonDialog::updateSetSelection()
 {
-    JoyButton::SetChangeCondition oldCondition = button->getChangeSetCondition();
     int condition_choice = 0;
-    JoyButton::SetChangeCondition set_selection_condition = JoyButton::SetChangeDisabled;
     int chosen_set = -1;
-
+    JoyButton::SetChangeCondition set_selection_condition = JoyButton::SetChangeDisabled;
 
     if (ui->setSelectionComboBox->currentIndex() > 0)
     {
@@ -566,16 +564,15 @@ void AdvanceButtonDialog::updateSetSelection()
 
     if (chosen_set > -1 && set_selection_condition != JoyButton::SetChangeDisabled)
     {
-        // Revert old set condition before entering new set condition.
-        // Also, do not emit signals on first change
-        button->setChangeSetCondition(oldCondition, true);
+        // First, remove old condition for the button in both sets.
+        // After that, make the new assignment.
+        button->setChangeSetCondition(JoyButton::SetChangeDisabled);
 
         button->setChangeSetSelection(chosen_set);
         button->setChangeSetCondition(set_selection_condition);
     }
     else
     {
-        button->setChangeSetSelection(-1);
         button->setChangeSetCondition(JoyButton::SetChangeDisabled);
     }
 }

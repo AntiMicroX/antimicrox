@@ -1888,7 +1888,7 @@ int JoyButton::getMouseSpeedY()
 
 void JoyButton::setChangeSetSelection(int index)
 {
-    if (index >= 0 && index <= 7)
+    if (index >= -1 && index <= 7)
     {
         setSelection = index;
         emit propertyUpdated();
