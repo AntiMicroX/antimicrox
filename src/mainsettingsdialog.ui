@@ -259,7 +259,7 @@ previous session.</string>
             <item>
              <widget class="QCheckBox" name="keyRepeatEnableCheckBox">
               <property name="toolTip">
-               <string>Active keys will be repeatly pressed when this
+               <string>Active keys will be repeatedly pressed when this
 option is enabled.</string>
               </property>
               <property name="text">

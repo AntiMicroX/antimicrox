@@ -2256,7 +2256,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="47"/>
         <source>Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eixo %1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="100"/>
@@ -2382,138 +2382,138 @@ previous session.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="240"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="256"/>
         <source>Key Repeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="246"/>
-        <source>Active keys will be repeatly pressed when this
+        <location filename="../../../src/mainsettingsdialog.ui" line="262"/>
+        <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="250"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="266"/>
         <source>Enable Key Repeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="259"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="275"/>
         <source>Delay:</source>
         <translation type="unfinished">Atrasar:</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="297"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="313"/>
         <source> ms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="320"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="336"/>
         <source>Rate:</source>
         <translation type="unfinished">Taxa:</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="352"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="368"/>
         <source> times/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="393"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="409"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="418"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="434"/>
         <source>GUID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="423"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="439"/>
         <source>Mapping String</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="428"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="444"/>
         <source>Disable?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="438"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="670"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="454"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="686"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="450"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="466"/>
         <source>Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="469"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="485"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="474"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="490"/>
         <source>Brazilian Portuguese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="479"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="495"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="484"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="500"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="498"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="590"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="514"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="606"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="523"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="539"/>
         <source>Devices:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="531"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="547"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="745"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="595"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="611"/>
         <source>Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="600"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="616"/>
         <source>Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="605"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="621"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="610"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="626"/>
         <source>Default?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="640"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="656"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="655"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="671"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
