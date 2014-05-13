@@ -1,3 +1,25 @@
+2014-05-13 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.3.1
+
+* Added new Enhanced Precision mouse curve. It is now the default
+mouse curve. The new mouse curve will make the cursor move slowly
+towards the low end of an axis and the cursor movement will be
+accelerated towards the high end of an axis.
+
+* Added unsaved profile dialogs.
+
+* Added key repeating behavior under Windows.
+
+* Increased maximum turbo interval.
+
+* Added more options to the Edit Settings dialog.
+
+* Added profile name display editing.
+
+* Fixed invalid pointer issue for Hold events.
+
+
 2014-05-02 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.3
