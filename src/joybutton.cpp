@@ -15,6 +15,7 @@ const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
 const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
 const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
+const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
 QHash<unsigned int, int> JoyButton::activeKeys;
 
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
@@ -362,7 +363,7 @@ void JoyButton::reset()
     wheelSpeedX = 20;
     wheelSpeedY = 20;
     mouseMode = MouseCursor;
-    mouseCurve = LinearCurve;
+    mouseCurve = DEFAULTMOUSECURVE;
     springWidth = 0;
     springHeight = 0;
     sensitivity = 1.0;
@@ -831,7 +832,7 @@ void JoyButton::mouseEvent()
                             difference = temp;
                             break;
                         }
-                        case CameraCurve:
+                        case EnhancedPrecisionCurve:
                         {
                             // Perform different forms of acceleration depending on
                             // the range of the element from its assigned dead zone.
@@ -1209,9 +1210,9 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("mouseacceleration", "power");
             xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
         }
-        else if (mouseCurve == CameraCurve)
+        else if (mouseCurve == EnhancedPrecisionCurve)
         {
-            xml->writeTextElement("mouseacceleration", "camera");
+            xml->writeTextElement("mouseacceleration", "precision");
         }
 
         xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
@@ -1424,9 +1425,9 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         {
             setMouseCurve(PowerCurve);
         }
-        else if (temptext == "camera")
+        else if (temptext == "precision")
         {
-            setMouseCurve(CameraCurve);
+            setMouseCurve(EnhancedPrecisionCurve);
         }
     }
     else if (xml->name() == "mousespringwidth" && xml->isStartElement())
@@ -2946,7 +2947,7 @@ bool JoyButton::isDefault()
     value = value && (setSelectionCondition == SetChangeDisabled);
     value = value && (assignments.isEmpty());
     value = value && (mouseMode == MouseCursor);
-    value = value && (mouseCurve == LinearCurve);
+    value = value && (mouseCurve == DEFAULTMOUSECURVE);
     value = value && (springWidth == 0);
     value = value && (springHeight == 0);
     value = value && (sensitivity == 1.0);

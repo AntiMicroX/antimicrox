@@ -85,6 +85,11 @@ axis is moved back to the dead zone.</string>
          </item>
          <item>
           <property name="text">
+           <string>Enhanced Precision</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>Linear</string>
           </property>
          </item>
@@ -106,11 +111,6 @@ axis is moved back to the dead zone.</string>
          <item>
           <property name="text">
            <string>Power Function</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Camera</string>
           </property>
          </item>
         </widget>

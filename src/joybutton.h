@@ -23,9 +23,12 @@ public:
     explicit JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyButton();
 
-    enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay, SetChangeTwoWay, SetChangeWhileHeld};
+    enum SetChangeCondition {SetChangeDisabled=0, SetChangeOneWay,
+                             SetChangeTwoWay, SetChangeWhileHeld};
+
     enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
-    enum JoyMouseCurve {LinearCurve=0, QuadraticCurve, CubicCurve, QuadraticExtremeCurve, PowerCurve, CameraCurve};
+    enum JoyMouseCurve {EnhancedPrecisionCurve=0, LinearCurve, QuadraticCurve,
+                        CubicCurve, QuadraticExtremeCurve, PowerCurve};
 
     void joyEvent (bool pressed, bool ignoresets=false);
     int getJoyNumber ();
@@ -37,10 +40,17 @@ public:
     bool isUsingTurbo();
     void setCustomName(QString name);
     QString getCustomName();
-    bool setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    bool setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    bool setAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    bool insertAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(int code,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
+    bool setAssignedSlot(int code, unsigned int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
+    bool setAssignedSlot(int code, unsigned int alias, int index,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
+    bool insertAssignedSlot(int code, unsigned int alias, int index,
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     void removeAssignedSlot(int index);
 
@@ -121,6 +131,7 @@ public:
     static const double DEFAULTMOUSESPEEDMOD;
     static const unsigned int DEFAULTKEYREPEATDELAY;
     static const unsigned int DEFAULTKEYREPEATRATE;
+    static const JoyMouseCurve DEFAULTMOUSECURVE;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);

@@ -79,30 +79,8 @@ void MouseDPadSettingsDialog::changeMouseMode(int index)
 
 void MouseDPadSettingsDialog::changeMouseCurve(int index)
 {
-    if (index == 1)
-    {
-        dpad->setButtonsMouseCurve(JoyButton::LinearCurve);
-    }
-    else if (index == 2)
-    {
-        dpad->setButtonsMouseCurve(JoyButton::QuadraticCurve);
-    }
-    else if (index == 3)
-    {
-        dpad->setButtonsMouseCurve(JoyButton::CubicCurve);
-    }
-    else if (index == 4)
-    {
-        dpad->setButtonsMouseCurve(JoyButton::QuadraticExtremeCurve);
-    }
-    else if (index == 5)
-    {
-        dpad->setButtonsMouseCurve(JoyButton::PowerCurve);
-    }
-    else if (index == 6)
-    {
-        dpad->setButtonsMouseCurve(JoyButton::CameraCurve);
-    }
+    JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
+    dpad->setButtonsMouseCurve(temp);
 }
 
 void MouseDPadSettingsDialog::updateConfigHorizontalSpeed(int value)
@@ -202,30 +180,7 @@ void MouseDPadSettingsDialog::updateSensitivity(double value)
 void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
     JoyButton::JoyMouseCurve temp = dpad->getButtonsPresetMouseCurve();
-    if (temp == JoyButton::LinearCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(1);
-    }
-    else if (temp == JoyButton::QuadraticCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(2);
-    }
-    else if (temp == JoyButton::CubicCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(3);
-    }
-    else if (temp == JoyButton::QuadraticExtremeCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(4);
-    }
-    else if (temp == JoyButton::PowerCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(5);
-    }
-    else if (temp == JoyButton::CameraCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(6);
-    }
+    MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseDPadSettingsDialog::updateSmoothingSetting(bool clicked)

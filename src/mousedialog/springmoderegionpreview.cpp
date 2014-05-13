@@ -18,7 +18,10 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
     setAttribute(Qt::WA_NoSystemBackground);
     setAttribute(Qt::WA_TranslucentBackground);
+#ifdef Q_OS_UNIX
     setAttribute(Qt::WA_PaintOnScreen);
+#endif
+
     setAttribute(Qt::WA_ShowWithoutActivating);
 
     setWindowTitle(tr("Spring Mode Preview"));

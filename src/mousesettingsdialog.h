@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "joybutton.h"
+
 namespace Ui {
 class MouseSettingsDialog;
 }
@@ -16,6 +18,9 @@ public:
     ~MouseSettingsDialog();
     
 protected:
+    void updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve);
+    JoyButton::JoyMouseCurve getMouseCurveForIndex(int index);
+
     Ui::MouseSettingsDialog *ui;
 
 public slots:
@@ -29,6 +34,9 @@ public slots:
     void changeSmoothingStatus(int index);
     void updateWheelVerticalSpeedLabel(int value);
     void updateWheelHorizontalSpeedLabel(int value);
+
+    virtual void changeMouseMode(int index) = 0;
+    virtual void changeMouseCurve(int index) = 0;
 };
 
 #endif // MOUSESETTINGSDIALOG_H

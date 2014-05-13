@@ -81,30 +81,8 @@ void MouseButtonSettingsDialog::changeMouseMode(int index)
 
 void MouseButtonSettingsDialog::changeMouseCurve(int index)
 {
-    if (index == 1)
-    {
-        button->setMouseCurve(JoyButton::LinearCurve);
-    }
-    else if (index == 2)
-    {
-        button->setMouseCurve(JoyButton::QuadraticCurve);
-    }
-    else if (index == 3)
-    {
-        button->setMouseCurve(JoyButton::CubicCurve);
-    }
-    else if (index == 4)
-    {
-        button->setMouseCurve(JoyButton::QuadraticExtremeCurve);
-    }
-    else if (index == 5)
-    {
-        button->setMouseCurve(JoyButton::PowerCurve);
-    }
-    else if (index == 6)
-    {
-        button->setMouseCurve(JoyButton::CameraCurve);
-    }
+    JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
+    button->setMouseCurve(temp);
 }
 
 void MouseButtonSettingsDialog::updateConfigHorizontalSpeed(int value)
@@ -173,30 +151,7 @@ void MouseButtonSettingsDialog::updateSensitivity(double value)
 void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
     JoyButton::JoyMouseCurve temp = button->getMouseCurve();
-    if (temp == JoyButton::LinearCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(1);
-    }
-    else if (temp == JoyButton::QuadraticCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(2);
-    }
-    else if (temp == JoyButton::CubicCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(3);
-    }
-    else if (temp == JoyButton::QuadraticExtremeCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(4);
-    }
-    else if (temp == JoyButton::PowerCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(5);
-    }
-    else if (temp == JoyButton::CameraCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(6);
-    }
+    MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseButtonSettingsDialog::updateSmoothingSetting(bool clicked)

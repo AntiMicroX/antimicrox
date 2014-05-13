@@ -82,30 +82,8 @@ void MouseControlStickSettingsDialog::changeMouseMode(int index)
 
 void MouseControlStickSettingsDialog::changeMouseCurve(int index)
 {
-    if (index == 1)
-    {
-        stick->setButtonsMouseCurve(JoyButton::LinearCurve);
-    }
-    else if (index == 2)
-    {
-        stick->setButtonsMouseCurve(JoyButton::QuadraticCurve);
-    }
-    else if (index == 3)
-    {
-        stick->setButtonsMouseCurve(JoyButton::CubicCurve);
-    }
-    else if (index == 4)
-    {
-        stick->setButtonsMouseCurve(JoyButton::QuadraticExtremeCurve);
-    }
-    else if (index == 5)
-    {
-        stick->setButtonsMouseCurve(JoyButton::PowerCurve);
-    }
-    else if (index == 6)
-    {
-        stick->setButtonsMouseCurve(JoyButton::CameraCurve);
-    }
+    JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
+    stick->setButtonsMouseCurve(temp);
 }
 
 void MouseControlStickSettingsDialog::updateConfigHorizontalSpeed(int value)
@@ -205,30 +183,7 @@ void MouseControlStickSettingsDialog::updateSensitivity(double value)
 void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
     JoyButton::JoyMouseCurve temp = stick->getButtonsPresetMouseCurve();
-    if (temp == JoyButton::LinearCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(1);
-    }
-    else if (temp == JoyButton::QuadraticCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(2);
-    }
-    else if (temp == JoyButton::CubicCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(3);
-    }
-    else if (temp == JoyButton::QuadraticExtremeCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(4);
-    }
-    else if (temp == JoyButton::PowerCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(5);
-    }
-    else if (temp == JoyButton::CameraCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(6);
-    }
+    MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseControlStickSettingsDialog::updateSmoothingSetting(bool clicked)

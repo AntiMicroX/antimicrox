@@ -138,3 +138,63 @@ void MouseSettingsDialog::updateWheelHorizontalSpeedLabel(int value)
     label.append(tr("%n notch(es)/s", "", value));
     ui->wheelHoriSpeedUnitsLabel->setText(label);
 }
+
+void MouseSettingsDialog::updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve)
+{
+    if (mouseCurve == JoyButton::EnhancedPrecisionCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(1);
+    }
+    else if (mouseCurve == JoyButton::LinearCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(2);
+    }
+    else if (mouseCurve == JoyButton::QuadraticCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(3);
+    }
+    else if (mouseCurve == JoyButton::CubicCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(4);
+    }
+    else if (mouseCurve == JoyButton::QuadraticExtremeCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(5);
+    }
+    else if (mouseCurve == JoyButton::PowerCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(6);
+    }
+}
+
+JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
+{
+    JoyButton::JoyMouseCurve temp = JoyButton::DEFAULTMOUSECURVE;
+
+    if (index == 1)
+    {
+        temp = JoyButton::EnhancedPrecisionCurve;
+    }
+    else if (index == 2)
+    {
+        temp = JoyButton::LinearCurve;
+    }
+    else if (index == 3)
+    {
+        temp = JoyButton::QuadraticCurve;
+    }
+    else if (index == 4)
+    {
+        temp = JoyButton::CubicCurve;
+    }
+    else if (index == 5)
+    {
+        temp = JoyButton::QuadraticExtremeCurve;
+    }
+    else if (index == 6)
+    {
+        temp = JoyButton::PowerCurve;
+    }
+
+    return temp;
+}
