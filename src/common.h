@@ -24,6 +24,9 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const QString configFileName = "antimicro_settings.ini";
     const QString configFilePath = configPath + "/" + configFileName;
     const int LATESTCONFIGFILEVERSION = 8;
+    // Specify the last known profile version that requires a migration
+    // to be performed in order to be compatible with the latest version.
+    const int LATESTCONFIGMIGRATIONVERSION = 5;
     const QString localSocketKey = "antimicroSignalListener";
     const QString projectHomePage = "http://ryochan7.com/projects/antimicro/";
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";

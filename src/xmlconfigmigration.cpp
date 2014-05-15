@@ -24,7 +24,7 @@ bool XMLConfigMigration::requiresMigration()
     {
         toMigrate = false;
     }
-    else if (fileVersion >= 2 && fileVersion < PadderCommon::LATESTCONFIGFILEVERSION)
+    else if (fileVersion >= 2 && fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION)
     {
         toMigrate = true;
     }
