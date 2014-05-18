@@ -82,6 +82,12 @@ unix {
 
     deskicon.path = $$INSTALL_PREFIX/share/pixmaps
     deskicon.files = images/antimicro.png
+
+    manpage.files = ../other/antimicro.1
+    manpage.commands = gzip -k $$manpage.files
+    manpage.path = $$INSTALL_PREFIX/share/man/man1
+    manpage.depends = $$manpage.files
+    QMAKE_EXTRA_TARGETS += manpage 
 } else:win32 {
     target.path = $$INSTALL_PREFIX
 }
@@ -408,7 +414,7 @@ INSTALLS += target compiledtranslations
 
 # Install platform-dependent files
 unix {
-    INSTALLS += desktop deskicon
+    INSTALLS += desktop deskicon manpage
 } else:win32 {
     # Copy all required release build DLL files that a packaged
     # release build of the program will need to be able to run
