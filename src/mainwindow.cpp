@@ -1166,6 +1166,11 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
         JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         if (tab && deviceID == tab->getJoystick()->getSDLJoystickID())
         {
+            // Save most recent profile list to settings before removing tab.
+            tab->saveDeviceSettings();
+
+            // Remove flash event connections between buttons and
+            // the tab before deleting tab.
             ui->tabWidget->disableFlashes(tab->getJoystick());
             ui->tabWidget->removeTab(i);
             delete tab;

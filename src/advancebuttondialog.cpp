@@ -119,7 +119,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->setSelectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateSetSelection()));
     connect(ui->mouseModPushButton, SIGNAL(clicked()), this, SLOT(insertMouseSpeedModSlot()));
 
-    connect(ui->slotListWidget, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(performStatsWidgetRefresh(QListWidgetItem*)));
+    connect(ui->slotListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(performStatsWidgetRefresh(QListWidgetItem*)));
 
     connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
