@@ -34,7 +34,11 @@ WinInfo::WinInfo(QObject *parent) :
 QString WinInfo::getDisplayString(unsigned int virtualkey)
 {
     QString temp;
-    if (_instance.knownAliasesVKStrings.contains(virtualkey))
+    if (virtualkey <= 0)
+    {
+        temp = tr("[NO KEY]");
+    }
+    else if (_instance.knownAliasesVKStrings.contains(virtualkey))
     {
         temp = _instance.knownAliasesVKStrings.value(virtualkey);
     }

@@ -290,6 +290,7 @@ void AdvanceButtonDialog::insertSlot()
         blankButton->refreshButtonLabel();
 
         this->button->insertAssignedSlot(0, 0, current);
+        updateSlotsScrollArea(0);
     }
 }
 
