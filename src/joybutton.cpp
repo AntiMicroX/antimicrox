@@ -20,8 +20,8 @@ QHash<unsigned int, int> JoyButton::activeKeys;
 
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
 QTimer JoyButton::cursorDelayTimer;
-QList<int> JoyButton::cursorXSpeeds;
-QList<int> JoyButton::cursorYSpeeds;
+QList<JoyButton::mouseCursorInfo> JoyButton::cursorXSpeeds;
+QList<JoyButton::mouseCursorInfo> JoyButton::cursorYSpeeds;
 
 QTimer JoyButton::springDelayTimer;
 QList<JoyButton::springModeInfo> JoyButton::springXSpeeds;
@@ -838,22 +838,22 @@ void JoyButton::mouseEvent()
                             // the range of the element from its assigned dead zone.
                             // Useful for more precise controls with an axis.
                             double temp = difference;
-                            if (temp <= 0.33)
+                            if (temp <= 0.4)
                             {
                                 // Perform Quadratic acceleration.
                                 difference = difference * difference;
                             }
-                            else if (temp <= 0.7)
+                            else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.221;
+                                difference = difference - 0.24;
                             }
-                            else if (temp > 0.7)
+                            else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 1.737) - 0.737;
+                                difference = (difference * 2.2) - 1.2;
                             }
                             break;
                         }
@@ -893,8 +893,15 @@ void JoyButton::mouseEvent()
 
                     if (distance >= 1)
                     {
-                        cursorXSpeeds.append(mouse1);
-                        cursorYSpeeds.append(mouse2);
+                        mouseCursorInfo infoX;
+                        infoX.code = mouse1;
+                        infoX.slot = buttonslot;
+                        cursorXSpeeds.append(infoX);
+
+                        mouseCursorInfo infoY;
+                        infoY.code = mouse2;
+                        infoY.slot = buttonslot;
+                        cursorYSpeeds.append(infoY);
 
                         if (!cursorDelayTimer.isActive())
                         {
@@ -2702,6 +2709,16 @@ void JoyButton::releaseActiveSlots()
                 {
                     sendevent(slot, false);
                 }
+                else if (tempcode == JoyButtonSlot::MouseWheelUp ||
+                         tempcode == JoyButtonSlot::MouseWheelDown)
+                {
+                    mouseWheelVerticalEventQueue.removeAll(slot);
+                }
+                else if (tempcode == JoyButtonSlot::MouseWheelLeft ||
+                         tempcode == JoyButtonSlot::MouseWheelRight)
+                {
+                    mouseWheelHorizontalEventQueue.removeAll(slot);
+                }
 
                 slot->setDistance(0.0);
                 slot->getMouseInterval()->restart();
@@ -2709,7 +2726,33 @@ void JoyButton::releaseActiveSlots()
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
                 JoyMouseMovementMode mousemode = getMouseMode();
-                if (mousemode == JoyButton::MouseSpring)
+                if (mousemode == MouseCursor)
+                {
+                    QListIterator<mouseCursorInfo> iterX(cursorXSpeeds);
+                    unsigned int i = 0;
+                    while (iterX.hasNext())
+                    {
+                        mouseCursorInfo info = iterX.next();
+                        if (info.slot == slot)
+                        {
+                            cursorXSpeeds.removeAt(i);
+                            iterX.toBack();
+                        }
+                    }
+
+                    i = 0;
+                    QListIterator<mouseCursorInfo> iterY(cursorYSpeeds);
+                    while (iterY.hasNext())
+                    {
+                        mouseCursorInfo info = iterY.next();
+                        if (info.slot == slot)
+                        {
+                            cursorYSpeeds.removeAt(i);
+                            iterY.toBack();
+                        }
+                    }
+                }
+                else if (mousemode == JoyButton::MouseSpring)
                 {
                     double mouse1 = (tempcode == JoyButtonSlot::MouseLeft ||
                                      tempcode == JoyButtonSlot::MouseRight) ? 0.0 : -2.0;
@@ -2730,6 +2773,8 @@ void JoyButton::releaseActiveSlots()
                     springYSpeeds.append(info);
                     //sendSpringEvent(mouse1, mouse2);
                 }
+
+                mouseEventQueue.removeAll(slot);
                 slot->setDistance(0.0);
                 slot->getMouseInterval()->restart();
             }
@@ -2762,14 +2807,38 @@ void JoyButton::releaseActiveSlots()
         currentWheelHorizontalEvent = 0;
         mouseWheelVerticalEventTimer.stop();
         mouseWheelHorizontalEventTimer.stop();
+        /*if (mouseWheelVerticalEventQueue.isEmpty())
+        {
+            mouseWheelVerticalEventTimer.stop();
+        }
+
+        if (mouseWheelHorizontalEventQueue.isEmpty())
+        {
+            mouseWheelHorizontalEventTimer.stop();
+        }*/
 
         if (!mouseWheelVerticalEventQueue.isEmpty())
         {
             mouseWheelVerticalEventQueue.clear();
         }
+
         if (!mouseWheelHorizontalEventQueue.isEmpty())
         {
             mouseWheelHorizontalEventQueue.clear();
+        }
+
+        // Only need to check one list since both cursorXSpeeds
+        // and cursorYSpeeds will be the same size.
+        if (cursorXSpeeds.size() == 0)
+        {
+            cursorDelayTimer.stop();
+        }
+
+        // Only need to check one list since both springXSpeeds
+        // and springXSpeeds will be the same size.
+        if (springXSpeeds.size() == 0)
+        {
+            springDelayTimer.stop();
         }
     }
 }
@@ -3135,8 +3204,10 @@ void JoyButton::moveMouseCursor()
         int queueLength = cursorXSpeeds.length();
         for (int i=0; i < queueLength; i++)
         {
-            finalx += cursorXSpeeds.takeFirst();
-            finaly += cursorYSpeeds.takeFirst();
+            mouseCursorInfo infoX = cursorXSpeeds.takeFirst();
+            mouseCursorInfo infoY = cursorYSpeeds.takeFirst();
+            finalx += infoX.code;
+            finaly += infoY.code;
         }
 
         sendevent(finalx, finaly);

@@ -147,11 +147,19 @@ protected:
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
-    typedef struct springModeInfo {
+    typedef struct springModeInfo
+    {
         double displacement;
         unsigned int width;
         unsigned int height;
     } springModeInfo;
+
+    typedef struct mouseCursorInfo
+    {
+        JoyButton *button;
+        JoyButtonSlot *slot;
+        unsigned int code;
+    } mouseCursorInfo;
 
     // Used to denote whether the actual joypad button is pressed
     bool isButtonPressed;
@@ -245,8 +253,8 @@ protected:
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
-    static QList<int> cursorXSpeeds;
-    static QList<int> cursorYSpeeds;
+    static QList<mouseCursorInfo> cursorXSpeeds;
+    static QList<mouseCursorInfo> cursorYSpeeds;
     static QTimer cursorDelayTimer;
 
     static QList<springModeInfo> springXSpeeds;
