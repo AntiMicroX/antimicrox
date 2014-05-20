@@ -7,6 +7,8 @@
 #include <QSettings>
 #include <QStringList>
 
+#include "config.h"
+
 namespace PadderCommon
 {
 #if defined(Q_OS_WIN)
@@ -30,9 +32,9 @@ const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
     const QString localSocketKey = "antimicroSignalListener";
     const QString projectHomePage = "http://ryochan7.com/projects/antimicro/";
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
-    const int ANTIMICRO_MAJOR_VERSION = 2;
-    const int ANTIMICRO_MINOR_VERSION = 3;
-    const int ANTIMICRO_PATCH_VERSION = 2;
+    const int ANTIMICRO_MAJOR_VERSION = PROJECT_MAJOR_VERSION;
+    const int ANTIMICRO_MINOR_VERSION = PROJECT_MINOR_VERSION;
+    const int ANTIMICRO_PATCH_VERSION = PROJECT_PATCH_VERSION;
 
     const QString programVersion = (ANTIMICRO_PATCH_VERSION > 0) ?
         QString("%1.%2.%3").arg(ANTIMICRO_MAJOR_VERSION)
