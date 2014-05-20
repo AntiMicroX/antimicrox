@@ -2835,7 +2835,7 @@ void JoyButton::releaseActiveSlots()
         }
 
         // Only need to check one list since both springXSpeeds
-        // and springXSpeeds will be the same size.
+        // and springYSpeeds will be the same size.
         if (springXSpeeds.size() == 0)
         {
             springDelayTimer.stop();

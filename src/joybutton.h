@@ -156,7 +156,6 @@ protected:
 
     typedef struct mouseCursorInfo
     {
-        JoyButton *button;
         JoyButtonSlot *slot;
         unsigned int code;
     } mouseCursorInfo;

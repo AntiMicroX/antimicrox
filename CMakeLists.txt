@@ -432,7 +432,9 @@ elseif(WIN32)
 	install(TARGETS antimicro RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(UNIX)
 
-install(FILES other/antimicro.desktop DESTINATION "share/applications")
+if(UNIX)
+    install(FILES other/antimicro.desktop DESTINATION "share/applications")
+endif(UNIX)
 
 # uninstall target
 configure_file(
@@ -463,8 +465,7 @@ if(WIN32)
     # Obtain location of Qt5 DLL files and assign them to a list.
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
-    string(REPLACE "Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-	message(${QTCORE_DLL_LOCATION})
+    string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
     set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt51.dll"
         "${QTCORE_DLL_LOCATION}/icuin51.dll"
         "${QTCORE_DLL_LOCATION}/icuuc51.dll"
