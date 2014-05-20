@@ -505,17 +505,9 @@ void MainSettingsDialog::populateAutoProfiles()
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
 
-    if (!allProfile.isEmpty())
-    {
-        bool defaultActive = allActive == "1" ? true : false;
-        allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, this);
-        allDefaultProfile->setDefaultState(true);
-    }
-    else
-    {
-        allDefaultProfile = new AutoProfileInfo("all", "", false, this);
-        allDefaultProfile->setDefaultState(true);
-    }
+    bool defaultActive = allActive == "1" ? true : false;
+    allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, this);
+    allDefaultProfile->setDefaultState(true);
 
     QStringListIterator iter(registeredGUIDs);
     while (iter.hasNext())
@@ -819,11 +811,8 @@ void MainSettingsDialog::saveAutoProfileSettings()
     {
         QString profile = allDefaultProfile->getProfileLocation();
         QString defaultActive = allDefaultProfile->isActive() ? "1" : "0";
-        if (!profile.isEmpty())
-        {
-            settings->setValue(QString("DefaultAutoProfileAll/Profile"), profile);
-            settings->setValue(QString("DefaultAutoProfileAll/Active"), defaultActive);
-        }
+        settings->setValue(QString("DefaultAutoProfileAll/Profile"), profile);
+        settings->setValue(QString("DefaultAutoProfileAll/Active"), defaultActive);
     }
 
     QMapIterator<QString, AutoProfileInfo*> iter(defaultAutoProfiles);

@@ -137,14 +137,11 @@ void AutoProfileWatcher::syncProfileAssignment()
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
 
-    if (!allProfile.isEmpty())
+    bool defaultActive = allActive == "1" ? true : false;
+    if (defaultActive)
     {
-        bool defaultActive = allActive == "1" ? true : false;
-        if (defaultActive)
-        {
-            allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, this);
-            allDefaultInfo->setDefaultState(true);
-        }
+        allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, this);
+        allDefaultInfo->setDefaultState(true);
     }
 
     QStringListIterator iter(registeredGUIDs);

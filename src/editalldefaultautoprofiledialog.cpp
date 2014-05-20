@@ -4,6 +4,7 @@
 
 #include "editalldefaultautoprofiledialog.h"
 #include "ui_editalldefaultautoprofiledialog.h"
+#include "common.h"
 
 EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, QSettings *settings,
                                                                  QWidget *parent) :
@@ -32,7 +33,7 @@ EditAllDefaultAutoProfileDialog::~EditAllDefaultAutoProfileDialog()
 
 void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 {
-    QString lookupDir = preferredProfileDir();
+    QString lookupDir = PadderCommon::preferredProfileDir(settings);
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -42,8 +43,8 @@ void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 
 void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
 {
-    info->setProfileLocation(ui->profileLineEdit->text());
     info->setGUID("all");
+    info->setProfileLocation(ui->profileLineEdit->text());
     info->setActive(true);
 }
 
@@ -66,11 +67,6 @@ void EditAllDefaultAutoProfileDialog::accept()
             errorString = tr("Profile file path is invalid.");
         }
     }
-    else
-    {
-        validForm = false;
-        errorString = tr("No profile selected.");
-    }
 
     if (validForm)
     {
@@ -83,36 +79,4 @@ void EditAllDefaultAutoProfileDialog::accept()
         msgBox.setStandardButtons(QMessageBox::Close);
         msgBox.exec();
     }
-}
-
-QString EditAllDefaultAutoProfileDialog::preferredProfileDir()
-{
-    QString lastProfileDir = settings->value("LastProfileDir", "").toString();
-    QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
-    QString lookupDir;
-
-    if (!defaultProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(defaultProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = defaultProfileDir;
-        }
-    }
-
-    if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(lastProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = lastProfileDir;
-        }
-    }
-
-    if (lookupDir.isEmpty())
-    {
-        lookupDir = QDir::homePath();
-    }
-
-    return lookupDir;
 }

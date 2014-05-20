@@ -23,7 +23,6 @@ public:
     AutoProfileInfo* getAutoProfile();
 
 protected:
-    QString preferredProfileDir();
     virtual void accept();
 
     AutoProfileInfo *info;

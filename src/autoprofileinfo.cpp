@@ -52,6 +52,10 @@ void AutoProfileInfo::setProfileLocation(QString profileLocation)
     {
         this->profileLocation = profileLocation;
     }
+    else if (guid == "all" && profileLocation.isEmpty())
+    {
+        this->profileLocation = "";
+    }
 }
 
 QString AutoProfileInfo::getProfileLocation()

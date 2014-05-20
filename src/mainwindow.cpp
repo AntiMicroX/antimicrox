@@ -1272,7 +1272,16 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
                 if (!found)
                 {
-                    widget->loadConfigFile(info->getProfileLocation());
+                    // If the profile location is empty, assume
+                    // that an empty profile should get loaded.
+                    if (info->getProfileLocation().isEmpty())
+                    {
+                        widget->setCurrentConfig(0);
+                    }
+                    else
+                    {
+                        widget->loadConfigFile(info->getProfileLocation());
+                    }
                 }
             }
             else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
