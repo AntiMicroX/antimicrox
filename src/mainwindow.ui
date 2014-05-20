@@ -111,6 +111,12 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
        </layout>
       </widget>
       <widget class="QWidget" name="joystick_tabs">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="margin">
          <number>0</number>

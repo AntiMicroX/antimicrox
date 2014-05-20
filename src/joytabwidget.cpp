@@ -101,7 +101,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page->setObjectName(QString::fromUtf8("page"));
 
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout(page);
-    QScrollArea *scrollArea = new QScrollArea(page);
+    QScrollArea *scrollArea = new QScrollArea();
     scrollArea->setObjectName(QString::fromUtf8("scrollArea1"));
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     //sizePolicy.setHorizontalStretch(0);
@@ -124,7 +124,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_2->setObjectName(QString::fromUtf8("page_2"));
 
     tempVBoxLayout = new QVBoxLayout(page_2);
-    QScrollArea *scrollArea2 = new QScrollArea(page_2);
+    QScrollArea *scrollArea2 = new QScrollArea();
     scrollArea2->setObjectName(QString::fromUtf8("scrollArea2"));
     scrollArea2->setSizePolicy(sizePolicy);
     scrollArea2->setWidgetResizable(true);
@@ -145,7 +145,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_3->setObjectName(QString::fromUtf8("page_3"));
 
     tempVBoxLayout = new QVBoxLayout(page_3);
-    QScrollArea *scrollArea3 = new QScrollArea(page_3);
+    QScrollArea *scrollArea3 = new QScrollArea();
     scrollArea3->setObjectName(QString::fromUtf8("scrollArea3"));
     scrollArea3->setSizePolicy(sizePolicy);
     scrollArea3->setWidgetResizable(true);
@@ -166,7 +166,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_4->setObjectName(QString::fromUtf8("page_4"));
 
     tempVBoxLayout = new QVBoxLayout(page_4);
-    QScrollArea *scrollArea4 = new QScrollArea(page_4);
+    QScrollArea *scrollArea4 = new QScrollArea();
     scrollArea4->setObjectName(QString::fromUtf8("scrollArea4"));
     scrollArea4->setSizePolicy(sizePolicy);
     scrollArea4->setWidgetResizable(true);
@@ -186,7 +186,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_5->setObjectName(QString::fromUtf8("page_5"));
 
     tempVBoxLayout = new QVBoxLayout(page_5);
-    QScrollArea *scrollArea5 = new QScrollArea(page_5);
+    QScrollArea *scrollArea5 = new QScrollArea();
     scrollArea5->setObjectName(QString::fromUtf8("scrollArea5"));
     scrollArea5->setSizePolicy(sizePolicy);
     scrollArea5->setWidgetResizable(true);
@@ -206,7 +206,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_6->setObjectName(QString::fromUtf8("page_6"));
 
     tempVBoxLayout = new QVBoxLayout(page_6);
-    QScrollArea *scrollArea6 = new QScrollArea(page_6);
+    QScrollArea *scrollArea6 = new QScrollArea();
     scrollArea6->setObjectName(QString::fromUtf8("scrollArea6"));
     scrollArea6->setSizePolicy(sizePolicy);
     scrollArea6->setWidgetResizable(true);
@@ -226,7 +226,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_7->setObjectName(QString::fromUtf8("page_7"));
 
     tempVBoxLayout = new QVBoxLayout(page_7);
-    QScrollArea *scrollArea7 = new QScrollArea(page_7);
+    QScrollArea *scrollArea7 = new QScrollArea();
     scrollArea7->setObjectName(QString::fromUtf8("scrollArea7"));
     scrollArea7->setSizePolicy(sizePolicy);
     scrollArea7->setWidgetResizable(true);
@@ -246,7 +246,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
     page_8->setObjectName(QString::fromUtf8("page_8"));
 
     tempVBoxLayout = new QVBoxLayout(page_8);
-    QScrollArea *scrollArea8 = new QScrollArea(page_8);
+    QScrollArea *scrollArea8 = new QScrollArea();
     scrollArea8->setObjectName(QString::fromUtf8("scrollArea8"));
     scrollArea8->setSizePolicy(sizePolicy);
     scrollArea8->setWidgetResizable(true);

@@ -20,7 +20,9 @@
 <icon BUILTIN="button_ok"/>
 <node CREATED="1398682402644" ID="ID_693533160" MODIFIED="1398682514273" TEXT="A Delay slot will work almost like the current Hold slot type. The big difference is that any currently active slots will not be released after the delay time has been exceeded."/>
 </node>
-<node CREATED="1399110391534" ID="ID_198612384" MODIFIED="1399110427473" POSITION="right" TEXT="Convert to using CMake instead of qmake"/>
+<node CREATED="1399110391534" ID="ID_198612384" MODIFIED="1400563261415" POSITION="right" TEXT="Convert to using CMake instead of qmake">
+<icon BUILTIN="button_ok"/>
+</node>
 <node CREATED="1399164906083" FOLDED="true" ID="ID_719184118" MODIFIED="1399599636302" POSITION="left" TEXT="Add Profile Names">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1399164933013" ID="ID_1336467156" MODIFIED="1399165195098" TEXT="Currently, the basename of the profile filename is displayed in the interface to identify the profile. The filebrowser application bundled with Mezzanine alters filenames of files uploaded to the server. Filenames are converted to lowercase and spaces are converted to underscores. Because of this, the intended profile display name will not show up for someone who downloads the profile.&#xa;&#xa;There are other cases where it would be beneficial for the displayed name of the profile to be different from the associated profile filename."/>

@@ -75,7 +75,8 @@ with SDL 2 support when you run qmake.
 
 ## Building under Windows
 
-**Instructions provided by aybe @ https://github.com/aybe**
+**Instructions provided by aybe @ https://github.com/aybe.
+Modified by Travis Nickles.**
 
 * Download and install CMake: http://www.cmake.org/cmake/resources/software.html
 
