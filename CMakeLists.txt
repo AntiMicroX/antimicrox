@@ -436,6 +436,12 @@ if(UNIX)
     install(FILES other/antimicro.desktop DESTINATION "share/applications")
 endif(UNIX)
 
+# Add man pages for *nix platforms
+if(UNIX)
+    add_custom_command(TARGET antimicro POST_BUILD COMMAND gzip -k other/antimicro.1 VERBATIM)
+    install(FILES other/antimicro.1.gz DESTINATION "share/man/man1")
+endif(UNIX)
+
 # uninstall target
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"

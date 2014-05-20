@@ -1,0 +1,48 @@
+.\" Manpage for antimicro.
+.\" Contact jeff.backus@gmail.com to correct errors or typos.
+.TH ANTIMICRO "1" "17 May 2014" "AntiMicro 2.3.2" "User Commands"
+.SH NAME
+antimicro \- map keyboard keys and mouse controls to a gamepad
+.SH SYNOPSIS
+.B antimicro
+[\fIOPTION\fR]...
+.SH DESCRIPTION
+.PP
+AntiMicro is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad.
+.TP
+\fB\-\-tray\fR
+launch program in system tray only
+.TP
+\fB\-\-no\-tray\fR
+launch program with the tray menu disabled
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+display this help and exit
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+output version information and exit
+.TP
+\fB\-\-profile\fR \fI<location>\fR
+use specified profile as default for selected controllers. Defaults to all controllers.
+.TP
+\fB\-\-profile-controller\fR \fI<value>\fR
+apply configuration file to a specific controller. <value> can be an controller index, name, or GUID.
+.TP
+\fB\-\-hidden\fR
+launch program without the main window
+.TP
+\fB\-\-unload\fR
+unload currently enabled profile(s).
+.TP
+\fB\-\-startSet\fR
+start joysticks on a specific set.
+.TP
+\fB\-d\fR, \fB\-\-daemon\fR
+launch program as a daemon.
+
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Travis Nickles (nickles.travis@gmail.com)
+.SH "REPORTING BUGS"
+Report dir bugs to AntiMicro home page: https://github.com/Ryochan7/antimicro
