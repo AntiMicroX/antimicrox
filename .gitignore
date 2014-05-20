@@ -17,3 +17,4 @@ windows/*.wix*
 build/
 Build/
 CMakeLists.txt.user
+other/antimicro.1.gz

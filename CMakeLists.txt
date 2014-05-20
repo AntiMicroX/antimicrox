@@ -438,8 +438,10 @@ endif(UNIX)
 
 # Add man pages for *nix platforms
 if(UNIX)
-    add_custom_command(TARGET antimicro POST_BUILD COMMAND gzip -k other/antimicro.1 VERBATIM)
-    install(FILES other/antimicro.1.gz DESTINATION "share/man/man1")
+    add_subdirectory(other)
+
+    # Only way to force install target to be dependent on manpage.
+    install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} manpage WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
 endif(UNIX)
 
 # uninstall target
