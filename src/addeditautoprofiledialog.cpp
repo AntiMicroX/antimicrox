@@ -21,6 +21,8 @@
 
 #endif
 
+#include "common.h"
+
 AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, QSettings *settings,
                                                    QList<InputDevice*> *devices,
                                                    QList<QString> &reservedGUIDS, bool edit, QWidget *parent) :
@@ -133,7 +135,7 @@ AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
 
 void AddEditAutoProfileDialog::openProfileBrowseDialog()
 {
-    QString lookupDir = preferredProfileDir();
+    QString lookupDir = PadderCommon::preferredProfileDir(settings);
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -191,38 +193,6 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
     info->setExe(ui->applicationLineEdit->text());
     info->setDefaultState(ui->asDefaultCheckBox->isChecked());
     //info->setActive(true);
-}
-
-QString AddEditAutoProfileDialog::preferredProfileDir()
-{
-    QString lastProfileDir = settings->value("LastProfileDir", "").toString();
-    QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
-    QString lookupDir;
-
-    if (!defaultProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(defaultProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = defaultProfileDir;
-        }
-    }
-
-    if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(lastProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = lastProfileDir;
-        }
-    }
-
-    if (lookupDir.isEmpty())
-    {
-        lookupDir = QDir::homePath();
-    }
-
-    return lookupDir;
 }
 
 void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)

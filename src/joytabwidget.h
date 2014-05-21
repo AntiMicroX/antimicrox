@@ -47,7 +47,6 @@ public:
 protected:
     void removeCurrentButtons();
     virtual void languageChange();
-    QString preferredProfileDir(QSettings *settings);
     void disconnectMainComboBoxEvents();
     void reconnectMainComboBoxEvents();
     void disconnectCheckUnsavedEvent();

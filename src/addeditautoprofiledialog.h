@@ -26,7 +26,6 @@ public:
     QString getOriginalExe();
 
 protected:
-    QString preferredProfileDir();
     virtual void accept();
     bool validateForm();
 

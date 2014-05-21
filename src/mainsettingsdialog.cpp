@@ -43,6 +43,10 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     {
         ui->profileDefaultDirLineEdit->setText(defaultProfileDir);
     }
+    else
+    {
+        ui->profileDefaultDirLineEdit->setText(PadderCommon::preferredProfileDir(settings));
+    }
 
     ui->numberRecentProfileSpinBox->setValue(numberRecentProfiles);
 
@@ -423,7 +427,7 @@ void MainSettingsDialog::saveNewSettings()
 
 void MainSettingsDialog::selectDefaultProfileDir()
 {
-    QString lookupDir = QDir::homePath();
+    QString lookupDir = PadderCommon::preferredProfileDir(settings);
     QString directory = QFileDialog::getExistingDirectory(this, tr("Select Default Profile Directory"), lookupDir);
     if (!directory.isEmpty() && QFileInfo(directory).exists())
     {

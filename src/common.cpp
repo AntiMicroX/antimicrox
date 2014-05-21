@@ -28,7 +28,19 @@ namespace PadderCommon
 
         if (lookupDir.isEmpty())
         {
+#ifdef Q_OS_WIN
+            QString portableProDir = QDir::currentPath().append("/profiles");
+            if (QFile::exists(portableProDir))
+            {
+                lookupDir = portableProDir;
+            }
+            else
+            {
+                lookupDir =  QDir::currentPath();
+            }
+#else
             lookupDir = QDir::homePath();
+#endif
         }
 
         return lookupDir;

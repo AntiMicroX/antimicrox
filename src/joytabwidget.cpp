@@ -22,6 +22,7 @@
 #include "quicksetdialog.h"
 #include "extraprofilesettingsdialog.h"
 #include "setnamesdialog.h"
+#include "common.h"
 
 #ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
@@ -467,7 +468,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *
 void JoyTabWidget::openConfigFileDialog()
 {
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
-    QString lookupDir = preferredProfileDir(settings);
+    QString lookupDir = PadderCommon::preferredProfileDir(settings);
 
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
 
@@ -561,7 +562,7 @@ void JoyTabWidget::saveConfigFile()
     QString filename;
     if (index == 0)
     {
-        QString lookupDir = preferredProfileDir(settings);
+        QString lookupDir = PadderCommon::preferredProfileDir(settings);
         QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
@@ -707,7 +708,7 @@ void JoyTabWidget::saveAsConfig()
     QString filename;
     if (index == 0)
     {
-        QString lookupDir = preferredProfileDir(settings);
+        QString lookupDir = PadderCommon::preferredProfileDir(settings);
         QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
@@ -1348,38 +1349,6 @@ void JoyTabWidget::refreshSetButtons()
             tempSetAction->setText(tr("Set").append(" %1").arg(i+1));
         }
     }
-}
-
-QString JoyTabWidget::preferredProfileDir(QSettings *settings)
-{
-    QString lastProfileDir = settings->value("LastProfileDir", "").toString();
-    QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
-    QString lookupDir;
-
-    if (!defaultProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(defaultProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = defaultProfileDir;
-        }
-    }
-
-    if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
-    {
-        QFileInfo dirinfo(lastProfileDir);
-        if (dirinfo.isDir() && dirinfo.isReadable())
-        {
-            lookupDir = lastProfileDir;
-        }
-    }
-
-    if (lookupDir.isEmpty())
-    {
-        lookupDir = QDir::homePath();
-    }
-
-    return lookupDir;
 }
 
 void JoyTabWidget::displayProfileEditNotification()

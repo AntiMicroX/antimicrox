@@ -11,8 +11,10 @@
 
 namespace PadderCommon
 {
-#if defined(Q_OS_WIN)
-const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+    const QString configPath = QDir::currentPath();
+#elif defined(Q_OS_WIN)
+    const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
             QString(qgetenv("LocalAppData")) + "/antimicro" :
             QDir::homePath() + "/.antimicro";
 
