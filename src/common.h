@@ -6,17 +6,66 @@
 #include <QDir>
 #include <QSettings>
 #include <QStringList>
+#include <QFileInfo>
 
 #include "config.h"
 
+#ifdef Q_OS_WIN
+static QString findWinSystemConfigPath()
+{
+    QString temp;
+    temp = (!qgetenv("LocalAppData").isEmpty()) ?
+                QString(qgetenv("LocalAppData")) + "/antimicro" :
+                QDir::homePath() + "/.antimicro";
+    return temp;
+}
+
+static QString findWinLocalConfigPath()
+{
+    QString temp = QDir::currentPath();
+    return temp;
+}
+
+static QString findWinDefaultConfigPath()
+{
+    QString temp = findWinLocalConfigPath();
+    QFileInfo dirInfo(temp);
+    if (!dirInfo.isWritable())
+    {
+        temp = findWinSystemConfigPath();
+    }
+
+    return temp;
+}
+
+static QString findWinConfigPath(QString configFileName)
+{
+    QString temp;
+    QFileInfo localConfigInfo(findWinLocalConfigPath().append("/").append(configFileName));
+    QFileInfo systemConfigInfo(findWinSystemConfigPath().append("/").append(configFileName));
+    if (localConfigInfo.exists() && localConfigInfo.isWritable())
+    {
+        temp = localConfigInfo.absoluteFilePath();
+    }
+    else if (systemConfigInfo.exists() && systemConfigInfo.isWritable())
+    {
+        temp = systemConfigInfo.absoluteFilePath();
+    }
+    else
+    {
+        temp = findWinDefaultConfigPath().append("/").append(configFileName);
+    }
+
+    return temp;
+}
+
+#endif
+
+
 namespace PadderCommon
 {
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-    const QString configPath = QDir::currentPath();
-#elif defined(Q_OS_WIN)
-    const QString configPath = (!qgetenv("LocalAppData").isEmpty()) ?
-            QString(qgetenv("LocalAppData")) + "/antimicro" :
-            QDir::homePath() + "/.antimicro";
+#ifdef Q_OS_WIN
+    const QString configPath = findWinDefaultConfigPath();
 
 #else
     const QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
@@ -26,7 +75,12 @@ namespace PadderCommon
 #endif
 
     const QString configFileName = "antimicro_settings.ini";
-    const QString configFilePath = configPath + "/" + configFileName;
+#ifdef Q_OS_WIN
+    const QString configFilePath = findWinConfigPath(configFileName);
+#else
+    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+#endif
+
     const int LATESTCONFIGFILEVERSION = 8;
     // Specify the last known profile version that requires a migration
     // to be performed in order to be compatible with the latest version.
