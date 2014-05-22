@@ -234,7 +234,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
         unsigned int pivotX = midwidth;
         unsigned int pivotY = midheight;
-        if (mouseHelperObj->pivotPoint[0] != 0)
+        if (mouseHelperObj->pivotPoint[0] != -1)
         {
             pivotX = mouseHelperObj->pivotPoint[0];
         }
@@ -243,7 +243,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             pivotX = currentMouseX;
         }
 
-        if (mouseHelperObj->pivotPoint[1] != 0)
+        if (mouseHelperObj->pivotPoint[1] != -1)
         {
             pivotY = mouseHelperObj->pivotPoint[1];
         }
@@ -328,9 +328,9 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 finalSpringEvent(temp, xmovecoor, ymovecoor);
 #endif
 
-                qDebug() << QTime::currentTime();
-                qDebug() << "X: " << xmovecoor;
-                qDebug() << "Y: " << ymovecoor;
+                //qDebug() << QTime::currentTime();
+                //qDebug() << "X: " << xmovecoor;
+                //qDebug() << "Y: " << ymovecoor;
 
                 mouseHelperObj->mouseTimer.start(8);
             }
@@ -348,9 +348,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 finalSpringEvent(temp, xmovecoor, ymovecoor);
 #endif
 
-                qDebug() << QTime::currentTime();
-                qDebug() << "X: " << xmovecoor;
-                qDebug() << "Y: " << ymovecoor;
 
                 mouseHelperObj->mouseTimer.start(8);
             }
@@ -378,8 +375,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
     else
     {
         mouseHelperObj->springMouseMoving = false;
-        mouseHelperObj->pivotPoint[0] = 0;
-        mouseHelperObj->pivotPoint[1] = 0;
+        mouseHelperObj->pivotPoint[0] = -1;
+        mouseHelperObj->pivotPoint[1] = -1;
     }
 
 #ifdef Q_OS_UNIX

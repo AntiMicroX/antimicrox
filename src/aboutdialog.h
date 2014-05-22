@@ -17,6 +17,9 @@ public:
     
 private:
     Ui::AboutDialog *ui;
+
+protected:
+    void fillInfoTextBrowser();
 };
 
 #endif // ABOUTDIALOG_H

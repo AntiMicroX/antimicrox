@@ -3251,16 +3251,6 @@ void JoyButton::moveSpringMouse()
     PadderCommon::springModeInfo relativeSpring = {
         -2.0, -2.0, 0, 0, false
     };
-    /*double fullFinalx = -2.0;
-    double fullFinaly = -2.0;
-    unsigned int fullSpringHeight = 0;
-    unsigned int fullSpringWidth = 0;
-
-    bool relative = false;
-    double relativeFinalx = -2.0;
-    double relativeFinaly = -2.0;
-    unsigned int relativeSpringHeight = 0;
-    unsigned int relativeSpringWidth = 0;*/
 
     if (springXSpeeds.length() == springYSpeeds.length() &&
         springXSpeeds.length() > 0)
@@ -3281,9 +3271,6 @@ void JoyButton::moveSpringMouse()
             tempx = infoX.displacementX;
             tempy = infoY.displacementY;
 
-            //temprelative = infoX.relative;
-            //temprelative = infoY.relative;
-
             if (infoX.relative)
             {
                 if (relativeSpring.displacementX == -2.0)
@@ -3291,6 +3278,8 @@ void JoyButton::moveSpringMouse()
                     relativeSpring.displacementX = tempx;
                 }
                 relativeSpring.relative = true;
+                // Use largest found width for spring
+                // mode dimensions.
                 relativeSpring.width = qMax(infoX.width, relativeSpring.width);
             }
             else
@@ -3299,7 +3288,7 @@ void JoyButton::moveSpringMouse()
                 {
                     fullSpring.displacementX = tempx;
                 }
-                // Use largest found width and height for spring
+                // Use largest found width for spring
                 // mode dimensions.
                 fullSpring.width = qMax(infoX.width, fullSpring.width);
             }
@@ -3312,6 +3301,8 @@ void JoyButton::moveSpringMouse()
                 }
 
                 relativeSpring.relative = true;
+                // Use largest found height for spring
+                // mode dimensions.
                 relativeSpring.height = qMax(infoX.height, relativeSpring.height);
             }
             else
@@ -3320,7 +3311,7 @@ void JoyButton::moveSpringMouse()
                 {
                     fullSpring.displacementY = tempy;
                 }
-                // Use largest found width and height for spring
+                // Use largest found height for spring
                 // mode dimensions.
                 fullSpring.height = qMax(infoX.height, fullSpring.height);
             }
@@ -3328,27 +3319,8 @@ void JoyButton::moveSpringMouse()
             if ((relativeSpring.displacementX != -2.0 && relativeSpring.displacementY != -2.0) &&
                 (fullSpring.displacementX != -2.0 && fullSpring.displacementY != -2.0))
             {
-                qDebug() << "RELATIVE X: " << relativeSpring.displacementX;
-                qDebug() << "RELATIVE Y: " << relativeSpring.displacementY;
-                qDebug() << "FULL X: " << fullSpring.displacementX;
-                qDebug() << "FULL Y: " << fullSpring.displacementY;
                 complete = true;
             }
-
-            /*if (fullFinalx == -2.0 && tempx != -2.0)
-            {
-                fullFinalx = tempx;
-            }
-
-            if (fullFinaly == -2.0 && tempy != -2.0)
-            {
-                fullFinaly = tempy;
-            }
-
-            if (fullFinalx != -2.0 && fullFinaly != -2.0)
-            {
-                complete = true;
-            }*/
         }
 
         if (relativeSpring.relative)
@@ -3359,12 +3331,11 @@ void JoyButton::moveSpringMouse()
         {
             sendSpringEvent(&fullSpring);
         }
-        //sendSpringEvent(fullFinalx, fullFinaly, fullSpringWidth, fullSpringHeight);
+
         springDelayTimer.start(5);
     }
     else
     {
-        //sendSpringEvent(0, 0, springWidth, springHeight);
         springDelayTimer.stop();
     }
 

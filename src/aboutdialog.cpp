@@ -15,6 +15,20 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui->setupUi(this);
 
     ui->versionLabel->setText(PadderCommon::programVersion);
+    fillInfoTextBrowser();
+}
+
+AboutDialog::~AboutDialog()
+{
+    delete ui;
+}
+
+void AboutDialog::fillInfoTextBrowser()
+{
+    QStringList finalInfoText;
+
+    finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
+    finalInfoText.append(tr("Program Compiled on %1 %2").arg(__DATE__).arg(__TIME__));
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");
@@ -29,17 +43,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
 #endif
 
     sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
-    QString sdlCompiledPlaceHolder = ui->sdlCompiledVersionLabel->text();
-    sdlCompiledPlaceHolder = sdlCompiledPlaceHolder.arg(sdlCompiledVersionNumber);
-    ui->sdlCompiledVersionLabel->setText(sdlCompiledPlaceHolder);
+    finalInfoText.append(tr("Built Against SDL %1").arg(sdlCompiledVersionNumber));
 
     sdlLinkedVersionNumber = sdlLinkedVersionNumber.arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
-    QString sdlLinkedPlaceHolder = ui->sdlLinkedVersionLabel->text();
-    sdlLinkedPlaceHolder = sdlLinkedPlaceHolder.arg(sdlLinkedVersionNumber);
-    ui->sdlLinkedVersionLabel->setText(sdlLinkedPlaceHolder);
-}
+    finalInfoText.append(tr("Running With SDL %1").arg(sdlLinkedVersionNumber));
 
-AboutDialog::~AboutDialog()
-{
-    delete ui;
+    ui->infoTextBrowser->setText(finalInfoText.join("\n"));
 }

@@ -46,8 +46,7 @@ In order to build this program, open a terminal and cd into the antimicro
 directory. Enter the following commands in order to build the program:
 
     cd antimicro
-    mkdir build
-    cd build
+    mkdir build && cd build
     cmake ..
     make
     sudo make install
@@ -185,11 +184,15 @@ for this program mostly resembles QJoyPad.
 
 ## Credits
 
-Travis Nickles <nickles.travis@gmail.com>  
-aybe  
-Zerro Alvein
+### Main Developer
+Travis Nickles <nickles.travis@gmail.com>
 
-## Translators
+### Contributors
+aybe  
+Zerro Alvein  
+Jeff Backus <jeff.backus@gmail.com>
+
+### Translators
 
 Belleguic Terence <hizo@free.fr> - French  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
