@@ -764,17 +764,28 @@ void JoyTabWidget::saveAsConfig()
                     configBox->removeItem(numberRecentProfiles);
                 }
 
-                configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
-                configBox->setCurrentIndex(1);
                 joystick->revertProfileEdited();
+                QString tempProfileName = fileinfo.baseName();
+                if (!joystick->getProfileName().isEmpty())
+                {
+                    oldProfileName = joystick->getProfileName();
+                    tempProfileName = oldProfileName;
+                }
+
+                configBox->insertItem(1, tempProfileName, fileinfo.absoluteFilePath());
+                configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
-                configBox->setCurrentIndex(existingIndex);
-                configBox->setItemIcon(existingIndex, QIcon());
                 joystick->revertProfileEdited();
+                if (!joystick->getProfileName().isEmpty())
+                {
+                    oldProfileName = joystick->getProfileName();
+                }
+
+                configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
