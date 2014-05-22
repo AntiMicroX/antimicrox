@@ -14,7 +14,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSpinBoxStatus(ui->mouseModeComboBox->currentIndex());
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
     if (button->getSensitivity() > 0.0)
     {
@@ -37,6 +37,11 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     ui->wheelHoriSpeedSpinBox->setValue(button->getWheelSpeedX());
     ui->wheelVertSpeedSpinBox->setValue(button->getWheelSpeedY());
 
+    if (button->isRelativeSpring())
+    {
+        ui->relativeSpringCheckBox->setChecked(true);
+    }
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -50,6 +55,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringHeight(int)));
+
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
@@ -170,6 +177,11 @@ void MouseButtonSettingsDialog::selectSmoothingPreset()
     {
         ui->smoothingCheckBox->setChecked(false);
     }
+}
+
+void MouseButtonSettingsDialog::updateSpringRelativeStatus(bool value)
+{
+    button->setSpringRelativeStatus(value);
 }
 
 void MouseButtonSettingsDialog::updateWindowTitleButtonName()

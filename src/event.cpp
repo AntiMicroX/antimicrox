@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QVariant>
 #include <QApplication>
+#include <QTime>
 #include <cmath>
 
 #include "event.h"
@@ -18,9 +19,24 @@
 
 #endif
 
-
-
 static MouseHelper *mouseHelperObj = 0;
+
+#ifdef Q_OS_UNIX
+    static void finalSpringEvent(Display *display, unsigned int xmovecoor, unsigned int ymovecoor)
+    {
+        XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+    }
+
+#elif defined(Q_OS_WIN)
+    static void finalSpringEvent(INPUT &event, unsigned int xmovecoor, unsigned int ymovecoor)
+    {
+        int fx = ceil(xmovecoor * (65535.0/(double)width));
+        int fy = ceil(ymovecoor * (65535.0/(double)height));
+        temp[0].mi.dx = fx;
+        temp[0].mi.dy = fy;
+        SendInput(1, event, sizeof(INPUT));
+    }
+#endif
 
 //actually creates an XWindows event  :)
 void sendevent(JoyButtonSlot *slot, bool pressed)
@@ -136,7 +152,7 @@ void sendevent(int code1, int code2)
 #endif
 }
 
-void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeight)
+void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring)
 {
 #ifdef Q_OS_UNIX
     Display* display = X11Info::display();
@@ -150,8 +166,10 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 
     mouseHelperObj->mouseTimer.stop();
 
-    if (xcoor >= -2.0 && xcoor <= 1.0 &&
-        ycoor >= -2.0 && ycoor <= 1.0)
+    if ((fullSpring->displacementX >= -2.0 && fullSpring->displacementX <= 1.0 &&
+        fullSpring->displacementY >= -2.0 && fullSpring->displacementY <= 1.0) ||
+        (relativeSpring->displacementX >= -2.0 && relativeSpring->displacementX <= 1.0 &&
+        relativeSpring->displacementY >= -2.0 && relativeSpring->displacementY <= 1.0))
     {
         int xmovecoor = 0;
         int ymovecoor = 0;
@@ -197,6 +215,9 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
         midwidth = width / 2;
         midheight = height / 2;
 
+        int springWidth = fullSpring->width;
+        int springHeight = fullSpring->height;
+
         if (springWidth >= 2 && springHeight >= 2)
         {
             destSpringWidth = qMin(springWidth, width);
@@ -211,8 +232,54 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
         destMidWidth = destSpringWidth / 2;
         destMidHeight = destSpringHeight / 2;
 
-        xmovecoor = (xcoor >= -1.0) ? (midwidth + (xcoor * destMidWidth)): currentMouseX;
-        ymovecoor = (ycoor >= -1.0) ? (midheight + (ycoor * destMidHeight)) : currentMouseY;
+        unsigned int pivotX = midwidth;
+        unsigned int pivotY = midheight;
+        if (mouseHelperObj->pivotPoint[0] != 0)
+        {
+            pivotX = mouseHelperObj->pivotPoint[0];
+        }
+        else
+        {
+            pivotX = currentMouseX;
+        }
+
+        if (mouseHelperObj->pivotPoint[1] != 0)
+        {
+            pivotY = mouseHelperObj->pivotPoint[1];
+        }
+        else
+        {
+            pivotY = currentMouseY;
+        }
+
+        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (fullSpring->displacementX * destMidWidth)): pivotX;
+        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (fullSpring->displacementY * destMidHeight)) : pivotY;
+
+        unsigned int fullSpringDestX = xmovecoor;
+        unsigned int fullSpringDestY = ymovecoor;
+
+        unsigned int destRelativeWidth = 0;
+        unsigned int destRelativeHeight = 0;
+        if (relativeSpring && relativeSpring->width >= 2 && relativeSpring->height >= 2)
+        {
+            destRelativeWidth = relativeSpring->width;
+            destRelativeHeight = relativeSpring->height;
+
+            int xRelativeMoovCoor = 0;
+            if (relativeSpring->displacementX >= -1.0)
+            {
+                xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
+            }
+
+            int yRelativeMoovCoor = 0;
+            if (relativeSpring->displacementY >= -1.0)
+            {
+                yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
+            }
+
+            xmovecoor += xRelativeMoovCoor;
+            ymovecoor += yRelativeMoovCoor;
+        }
 
         if (xmovecoor != currentMouseX || ymovecoor != currentMouseY)
         {
@@ -228,47 +295,70 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
 
 #endif
 
-            if (!mouseHelperObj->springMouseMoving && (diffx >= destSpringWidth*.0066 || diffy >= destSpringHeight*.0066))
+            // If either position is set to center, force update.
+            if (xmovecoor == midwidth || ymovecoor == midheight)
             {
-                mouseHelperObj->springMouseMoving = true;
-
-#if defined (Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
-#elif defined (Q_OS_WIN)
-                int fx = ceil(xmovecoor * (65535.0/(double)width));
-                int fy = ceil(ymovecoor * (65535.0/(double)height));
-                temp[0].mi.dx = fx;
-                temp[0].mi.dy = fy;
-                SendInput(1, temp, sizeof(INPUT));
+#elif defined(Q_OS_WIN)
+                finalSpringEvent(temp, xmovecoor, ymovecoor);
 #endif
+            }
+            else if (!mouseHelperObj->springMouseMoving && relativeSpring &&
+                (relativeSpring->displacementX >= -1.0 || relativeSpring->displacementY >= -1.0) &&
+                (diffx >= destRelativeWidth*.013 || diffy >= destRelativeHeight*.013))
+            {
+                mouseHelperObj->springMouseMoving = true;
+#if defined(Q_OS_UNIX)
+                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+
+#elif defined(Q_OS_WIN)
+                finalSpringEvent(temp, xmovecoor, ymovecoor);
+#endif
+                mouseHelperObj->mouseTimer.start(8);
+            }
+            else if (!mouseHelperObj->springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
+            {
+                mouseHelperObj->springMouseMoving = true;
+#if defined(Q_OS_UNIX)
+                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+
+#elif defined(Q_OS_WIN)
+                finalSpringEvent(temp, xmovecoor, ymovecoor);
+#endif
+
+                qDebug() << QTime::currentTime();
+                qDebug() << "X: " << xmovecoor;
+                qDebug() << "Y: " << ymovecoor;
 
                 mouseHelperObj->mouseTimer.start(8);
             }
+
             else if (mouseHelperObj->springMouseMoving && (diffx < 2 && diffy < 2))
             {
                 mouseHelperObj->springMouseMoving = false;
             }
             else if (mouseHelperObj->springMouseMoving)
             {
-#if defined (Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
-#elif defined (Q_OS_WIN)
-                int fx = ceil(xmovecoor * (65535.0/(double)width));
-                int fy = ceil(ymovecoor * (65535.0/(double)height));
-                temp[0].mi.dx = fx;
-                temp[0].mi.dy = fy;
-                SendInput(1, temp, sizeof(INPUT));
-
+#elif defined(Q_OS_WIN)
+                finalSpringEvent(temp, xmovecoor, ymovecoor);
 #endif
 
-                mouseHelperObj->mouseTimer.start(8);
+                qDebug() << QTime::currentTime();
+                qDebug() << "X: " << xmovecoor;
+                qDebug() << "Y: " << ymovecoor;
 
+                mouseHelperObj->mouseTimer.start(8);
             }
 
             mouseHelperObj->previousCursorLocation[0] = currentMouseX;
             mouseHelperObj->previousCursorLocation[1] = currentMouseY;
+            mouseHelperObj->pivotPoint[0] = fullSpringDestX;
+            mouseHelperObj->pivotPoint[1] = fullSpringDestY;
         }
         else if (mouseHelperObj->previousCursorLocation[0] == xmovecoor &&
                  mouseHelperObj->previousCursorLocation[1] == ymovecoor)
@@ -279,12 +369,17 @@ void sendSpringEvent(double xcoor, double ycoor, int springWidth, int springHeig
         {
             mouseHelperObj->previousCursorLocation[0] = currentMouseX;
             mouseHelperObj->previousCursorLocation[1] = currentMouseY;
+            mouseHelperObj->pivotPoint[0] = fullSpringDestX;
+            mouseHelperObj->pivotPoint[1] = fullSpringDestY;
+
             mouseHelperObj->mouseTimer.start(8);
         }
     }
     else
     {
         mouseHelperObj->springMouseMoving = false;
+        mouseHelperObj->pivotPoint[0] = 0;
+        mouseHelperObj->pivotPoint[1] = 0;
     }
 
 #ifdef Q_OS_UNIX

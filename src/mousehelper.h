@@ -12,6 +12,7 @@ public:
 
     bool springMouseMoving;
     int previousCursorLocation[2];
+    int pivotPoint[2];
     QTimer mouseTimer;
     
 signals:

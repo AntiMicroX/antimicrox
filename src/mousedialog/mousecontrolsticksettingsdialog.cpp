@@ -16,7 +16,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSpinBoxStatus(ui->mouseModeComboBox->currentIndex());
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
     if (stick->getButtonsPresetSensitivity() > 0.0)
     {
@@ -38,6 +38,11 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     calculateWheelSpeedPreset();
 
+    if (stick->isRelativeSpring())
+    {
+        ui->relativeSpringCheckBox->setChecked(true);
+    }
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -51,6 +56,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringHeight(int)));
+
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
@@ -228,6 +235,11 @@ void MouseControlStickSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 void MouseControlStickSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
     stick->setButtonsWheelSpeedY(value);
+}
+
+void MouseControlStickSettingsDialog::updateSpringRelativeStatus(bool value)
+{
+    stick->setButtonsSpringRelativeStatus(value);
 }
 
 void MouseControlStickSettingsDialog::updateWindowTitleStickName()

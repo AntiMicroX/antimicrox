@@ -1705,3 +1705,40 @@ bool JoyControlStick::hasSlotsAssigned()
 
     return hasSlots;
 }
+
+void JoyControlStick::setButtonsSpringRelativeStatus(bool value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setSpringRelativeStatus(value);
+    }
+}
+
+bool JoyControlStick::isRelativeSpring()
+{
+    bool relative = false;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            relative = button->isRelativeSpring();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            bool temp = button->isRelativeSpring();
+            if (temp != relative)
+            {
+                relative = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return relative;
+}

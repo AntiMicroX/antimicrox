@@ -73,6 +73,8 @@ public:
     SetJoystick* getParentSet();
     bool hasSlotsAssigned();
 
+    bool isRelativeSpring();
+
     static const QString xmlName;
 
 protected:
@@ -98,6 +100,8 @@ signals:
 
 public slots:
     void setDPadName(QString tempName);
+    void setButtonsSpringRelativeStatus(bool value);
+
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 };

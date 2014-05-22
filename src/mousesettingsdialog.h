@@ -25,7 +25,7 @@ protected:
 
 public slots:
     void changeSensitivityStatus(int index);
-    void changeSpringSpinBoxStatus(int index);
+    void changeSpringSectionStatus(int index);
     void changeMouseSpeedBoxStatus(int index);
     void changeWheelSpeedBoxStatus(int index);
     void updateHorizontalSpeedConvertLabel(int value);

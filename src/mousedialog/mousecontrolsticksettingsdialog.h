@@ -37,6 +37,7 @@ public slots:
     void updateSmoothingSetting(bool clicked);
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
+    void updateSpringRelativeStatus(bool value);
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOG_H

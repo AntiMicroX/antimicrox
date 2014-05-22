@@ -24,8 +24,8 @@ QList<JoyButton::mouseCursorInfo> JoyButton::cursorXSpeeds;
 QList<JoyButton::mouseCursorInfo> JoyButton::cursorYSpeeds;
 
 QTimer JoyButton::springDelayTimer;
-QList<JoyButton::springModeInfo> JoyButton::springXSpeeds;
-QList<JoyButton::springModeInfo> JoyButton::springYSpeeds;
+QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
+QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
@@ -377,6 +377,7 @@ void JoyButton::reset()
     actionName.clear();
     cycleResetActive = false;
     cycleResetInterval = 0;
+    relativeSpring = false;
 }
 
 void JoyButton::reset(int index)
@@ -951,16 +952,19 @@ void JoyButton::mouseEvent()
                     //springXSpeeds.append(mouse1);
                     //springYSpeeds.append(mouse2);
 
-                    springModeInfo info;
-                    info.displacement = mouse1;
-                    info.width = springWidth;
-                    info.height = springHeight;
-                    springXSpeeds.append(info);
+                    PadderCommon::springModeInfo infoX;
+                    infoX.displacementX = mouse1;
+                    infoX.width = springWidth;
+                    infoX.height = springHeight;
+                    infoX.relative = relativeSpring;
+                    springXSpeeds.append(infoX);
 
-                    info.displacement = mouse2;
-                    info.width = springWidth;
-                    info.height = springHeight;
-                    springYSpeeds.append(info);
+                    PadderCommon::springModeInfo infoY;
+                    infoY.displacementY = mouse2;
+                    infoY.width = springWidth;
+                    infoY.height = springHeight;
+                    infoY.relative = relativeSpring;
+                    springYSpeeds.append(infoY);
 
                     if (!springDelayTimer.isActive())
                     {
@@ -1261,6 +1265,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("cycleresetinterval", QString::number(cycleResetInterval));
         }
 
+        if (relativeSpring == true)
+        {
+            xml->writeTextElement("relativespring", "true");
+        }
+
         xml->writeStartElement("slots");
         QListIterator<JoyButtonSlot*> iter(assignments);
         while (iter.hasNext())
@@ -1489,6 +1498,15 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         setWheelSpeedY(tempchoice);
+    }
+    else if (xml->name() == "relativespring" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "true")
+        {
+            this->setSpringRelativeStatus(true);
+        }
     }
 
     return found;
@@ -2758,20 +2776,22 @@ void JoyButton::releaseActiveSlots()
                                      tempcode == JoyButtonSlot::MouseRight) ? 0.0 : -2.0;
                     double mouse2 = (tempcode == JoyButtonSlot::MouseUp ||
                                      tempcode == JoyButtonSlot::MouseDown) ? 0.0 : -2.0;
-                    //springXSpeeds.append(mouse1);
-                    //springYSpeeds.append(mouse2);
 
-                    springModeInfo info;
-                    info.displacement = mouse1;
-                    info.width = springWidth;
-                    info.height = springHeight;
-                    springXSpeeds.append(info);
+                    PadderCommon::springModeInfo infoX;
+                    infoX.displacementX = mouse1;
+                    infoX.displacementY = -2.0;
+                    infoX.width = springWidth;
+                    infoX.height = springHeight;
+                    infoX.relative = relativeSpring;
+                    springXSpeeds.append(infoX);
 
-                    info.displacement = mouse2;
-                    info.width = springWidth;
-                    info.height = springHeight;
-                    springYSpeeds.append(info);
-                    //sendSpringEvent(mouse1, mouse2);
+                    PadderCommon::springModeInfo infoY;
+                    infoY.displacementX = -2.0;
+                    infoY.displacementY = mouse2;
+                    infoY.width = springWidth;
+                    infoY.height = springHeight;
+                    infoY.relative = relativeSpring;
+                    springYSpeeds.append(infoY);
                 }
 
                 mouseEventQueue.removeAll(slot);
@@ -3027,6 +3047,7 @@ bool JoyButton::isDefault()
     value = value && (wheelSpeedY == 20);
     value = value && (cycleResetActive == false);
     value = value && (cycleResetInterval == 0);
+    value = value && (relativeSpring == false);
     return value;
 }
 
@@ -3224,10 +3245,22 @@ void JoyButton::moveMouseCursor()
 
 void JoyButton::moveSpringMouse()
 {
-    double finalx = -2.0;
-    double finaly = -2.0;
-    unsigned int springHeight = 0;
-    unsigned int springWidth = 0;
+    PadderCommon::springModeInfo fullSpring = {
+        -2.0, -2.0, 0, 0, false
+    };
+    PadderCommon::springModeInfo relativeSpring = {
+        -2.0, -2.0, 0, 0, false
+    };
+    /*double fullFinalx = -2.0;
+    double fullFinaly = -2.0;
+    unsigned int fullSpringHeight = 0;
+    unsigned int fullSpringWidth = 0;
+
+    bool relative = false;
+    double relativeFinalx = -2.0;
+    double relativeFinaly = -2.0;
+    unsigned int relativeSpringHeight = 0;
+    unsigned int relativeSpringWidth = 0;*/
 
     if (springXSpeeds.length() == springYSpeeds.length() &&
         springXSpeeds.length() > 0)
@@ -3239,37 +3272,94 @@ void JoyButton::moveSpringMouse()
             double tempx = -2.0;
             double tempy = -2.0;
 
-            springModeInfo infoX;
-            springModeInfo infoY;
+            PadderCommon::springModeInfo infoX;
+            PadderCommon::springModeInfo infoY;
 
             infoX = springXSpeeds.takeLast();
             infoY = springYSpeeds.takeLast();
 
-            tempx = infoX.displacement;
-            tempy = infoY.displacement;
+            tempx = infoX.displacementX;
+            tempy = infoY.displacementY;
 
-            // Use largest found width and height for spring
-            // mode dimensions.
-            springHeight = qMax(infoX.height, springHeight);
-            springWidth = qMax(infoX.width, springWidth);
+            //temprelative = infoX.relative;
+            //temprelative = infoY.relative;
 
-            if (finalx == -2.0 && tempx != -2.0)
+            if (infoX.relative)
             {
-                finalx = tempx;
+                if (relativeSpring.displacementX == -2.0)
+                {
+                    relativeSpring.displacementX = tempx;
+                }
+                relativeSpring.relative = true;
+                relativeSpring.width = qMax(infoX.width, relativeSpring.width);
+            }
+            else
+            {
+                if (fullSpring.displacementX == -2.0)
+                {
+                    fullSpring.displacementX = tempx;
+                }
+                // Use largest found width and height for spring
+                // mode dimensions.
+                fullSpring.width = qMax(infoX.width, fullSpring.width);
             }
 
-            if (finaly == -2.0 && tempy != -2.0)
+            if (infoY.relative)
             {
-                finaly = tempy;
+                if (relativeSpring.displacementY == -2.0)
+                {
+                    relativeSpring.displacementY = tempy;
+                }
+
+                relativeSpring.relative = true;
+                relativeSpring.height = qMax(infoX.height, relativeSpring.height);
+            }
+            else
+            {
+                if (fullSpring.displacementY == -2.0)
+                {
+                    fullSpring.displacementY = tempy;
+                }
+                // Use largest found width and height for spring
+                // mode dimensions.
+                fullSpring.height = qMax(infoX.height, fullSpring.height);
             }
 
-            if (finalx != -2.0 && finaly != -2.0)
+            if ((relativeSpring.displacementX != -2.0 && relativeSpring.displacementY != -2.0) &&
+                (fullSpring.displacementX != -2.0 && fullSpring.displacementY != -2.0))
             {
+                qDebug() << "RELATIVE X: " << relativeSpring.displacementX;
+                qDebug() << "RELATIVE Y: " << relativeSpring.displacementY;
+                qDebug() << "FULL X: " << fullSpring.displacementX;
+                qDebug() << "FULL Y: " << fullSpring.displacementY;
                 complete = true;
             }
+
+            /*if (fullFinalx == -2.0 && tempx != -2.0)
+            {
+                fullFinalx = tempx;
+            }
+
+            if (fullFinaly == -2.0 && tempy != -2.0)
+            {
+                fullFinaly = tempy;
+            }
+
+            if (fullFinalx != -2.0 && fullFinaly != -2.0)
+            {
+                complete = true;
+            }*/
         }
 
-        sendSpringEvent(finalx, finaly, springWidth, springHeight);
+        if (relativeSpring.relative)
+        {
+            sendSpringEvent(&fullSpring, &relativeSpring);
+        }
+        else
+        {
+            sendSpringEvent(&fullSpring);
+        }
+        //sendSpringEvent(fullFinalx, fullFinaly, fullSpringWidth, fullSpringHeight);
         springDelayTimer.start(5);
     }
     else
@@ -3475,4 +3565,14 @@ void JoyButton::establishMouseTimerConnections()
     // Workaround to have a static QTimer
     disconnect(&springDelayTimer, 0, 0, 0);
     connect(&springDelayTimer, SIGNAL(timeout()), this, SLOT(moveSpringMouse()));
+}
+
+void JoyButton::setSpringRelativeStatus(bool value)
+{
+    relativeSpring = value;
+}
+
+bool JoyButton::isRelativeSpring()
+{
+    return relativeSpring;
 }

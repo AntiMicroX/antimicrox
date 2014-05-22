@@ -891,3 +891,21 @@ void JoyAxis::disconnectPropertyUpdatedConnection()
 {
     disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }
+
+void JoyAxis::setButtonsSpringRelativeStatus(bool value)
+{
+    paxisbutton->setSpringRelativeStatus(value);
+    naxisbutton->setSpringRelativeStatus(value);
+}
+
+bool JoyAxis::isRelativeSpring()
+{
+    bool relative = false;
+
+    if (paxisbutton->isRelativeSpring() == naxisbutton->isRelativeSpring())
+    {
+        relative = paxisbutton->isRelativeSpring();
+    }
+
+    return relative;
+}

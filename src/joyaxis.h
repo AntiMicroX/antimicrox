@@ -103,6 +103,8 @@ public:
 
     virtual bool isDefault();
 
+    bool isRelativeSpring();
+
     static const int AXISMIN;
     static const int AXISMAX;
     static const int AXISDEADZONE;
@@ -160,6 +162,7 @@ public slots:
     void setDeadZone(int value);
     void setMaxZoneValue(int value);
     void setAxisName(QString tempName);
+    void setButtonsSpringRelativeStatus(bool value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

@@ -13,7 +13,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSpinBoxStatus(ui->mouseModeComboBox->currentIndex());
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
     if (dpad->getButtonsPresetSensitivity() > 0.0)
     {
@@ -35,6 +35,11 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     calculateWheelSpeedPreset();
 
+    if (dpad->isRelativeSpring())
+    {
+        ui->relativeSpringCheckBox->setChecked(true);
+    }
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -48,6 +53,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringHeight(int)));
+
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
@@ -225,6 +232,11 @@ void MouseDPadSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 void MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
     dpad->setButtonsWheelSpeedY(value);
+}
+
+void MouseDPadSettingsDialog::updateSpringRelativeStatus(bool value)
+{
+    dpad->setButtonsSpringRelativeStatus(value);
 }
 
 void MouseDPadSettingsDialog::updateWindowTitleDPadName()

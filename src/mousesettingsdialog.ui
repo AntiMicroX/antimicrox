@@ -538,6 +538,20 @@ of your screen.</string>
          </layout>
         </item>
         <item>
+         <widget class="QCheckBox" name="relativeSpringCheckBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>Specifies that the spring area will be relative to the
+mouse position set by a non-relative spring.</string>
+          </property>
+          <property name="text">
+           <string>Relative</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="verticalSpacer_3">
           <property name="orientation">
            <enum>Qt::Vertical</enum>

@@ -34,6 +34,7 @@ public slots:
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
     void updateSmoothingSetting(bool clicked);
+    void updateSpringRelativeStatus(bool value);
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOG_H

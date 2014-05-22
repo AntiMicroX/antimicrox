@@ -904,3 +904,41 @@ bool JoyDPad::hasSlotsAssigned()
 
     return hasSlots;
 }
+
+void JoyDPad::setButtonsSpringRelativeStatus(bool value)
+{
+    QHashIterator<int, JoyDPadButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setSpringRelativeStatus(value);
+    }
+}
+
+bool JoyDPad::isRelativeSpring()
+{
+    bool relative = false;
+
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            relative = button->isRelativeSpring();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            bool temp = button->isRelativeSpring();
+            if (temp != relative)
+            {
+                relative = false;
+                iter.toBack();
+            }
+        }
+    }
+
+    return relative;
+}

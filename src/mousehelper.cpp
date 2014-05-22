@@ -6,6 +6,8 @@ MouseHelper::MouseHelper(QObject *parent) :
     springMouseMoving = false;
     previousCursorLocation[0] = 0;
     previousCursorLocation[1] = 0;
+    pivotPoint[0] = 0;
+    pivotPoint[1] = 0;
     mouseTimer.setSingleShot(true);
     QObject::connect(&mouseTimer, SIGNAL(timeout()), this, SLOT(resetSpringMouseMoving()));
 }

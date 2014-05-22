@@ -96,6 +96,8 @@ public:
     SetJoystick* getParentSet();
     bool hasSlotsAssigned();
 
+    bool isRelativeSpring();
+
     static const double PI;
 
 protected:
@@ -153,6 +155,8 @@ public slots:
     void setMaxZone(int value);
     void setDiagonalRange(int value);
     void setStickName(QString tempName);
+    void setButtonsSpringRelativeStatus(bool value);
+
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 };

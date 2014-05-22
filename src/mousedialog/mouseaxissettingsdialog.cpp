@@ -13,7 +13,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSpinBoxStatus(ui->mouseModeComboBox->currentIndex());
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
     if (axis->getButtonsPresetSensitivity() > 0.0)
     {
@@ -35,6 +35,11 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     calculateWheelSpeedPreset();
 
+    if (axis->isRelativeSpring())
+    {
+        ui->relativeSpringCheckBox->setChecked(true);
+    }
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -48,6 +53,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringHeight(int)));
+
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
     connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
@@ -203,6 +210,11 @@ void MouseAxisSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 void MouseAxisSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
     axis->setButtonsWheelSpeedY(value);
+}
+
+void MouseAxisSettingsDialog::updateSpringRelativeStatus(bool value)
+{
+    axis->setButtonsSpringRelativeStatus(value);
 }
 
 void MouseAxisSettingsDialog::updateWindowTitleAxisName()

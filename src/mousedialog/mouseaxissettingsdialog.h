@@ -39,6 +39,7 @@ public slots:
 
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
+    void updateSpringRelativeStatus(bool value);
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

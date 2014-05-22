@@ -187,6 +187,8 @@ set(antimicro_HEADERS src/mainwindow.h
     src/editalldefaultautoprofiledialog.h
     src/localantimicroserver.h
     src/extraprofilesettingsdialog.h
+    src/joycontrolstickdirectionstype.h
+    src/springmousemoveinfo.h
 )
 
 # Platform dependent files.

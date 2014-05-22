@@ -12,7 +12,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatus(int)));
-    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSpinBoxStatus(int)));
+    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSectionStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeWheelSpeedBoxStatus(int)));
@@ -48,17 +48,19 @@ void MouseSettingsDialog::changeSensitivityStatus(int index)
     }
 }
 
-void MouseSettingsDialog::changeSpringSpinBoxStatus(int index)
+void MouseSettingsDialog::changeSpringSectionStatus(int index)
 {
     if (index == 2)
     {
         ui->springWidthSpinBox->setEnabled(true);
         ui->springHeightSpinBox->setEnabled(true);
+        ui->relativeSpringCheckBox->setEnabled(true);
     }
     else
     {
         ui->springWidthSpinBox->setEnabled(false);
         ui->springHeightSpinBox->setEnabled(false);
+        ui->relativeSpringCheckBox->setEnabled(false);
     }
 }
 

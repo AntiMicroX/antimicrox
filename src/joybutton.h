@@ -12,6 +12,7 @@
 #include <QXmlStreamWriter>
 
 #include "joybuttonslot.h"
+#include "springmousemoveinfo.h"
 
 class VDPad;
 class SetJoystick;
@@ -125,6 +126,8 @@ public:
     void setCycleResetStatus(bool enabled);
     bool isCycleResetActive();
 
+    bool isRelativeSpring();
+
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
@@ -147,12 +150,7 @@ protected:
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
-    typedef struct springModeInfo
-    {
-        double displacement;
-        unsigned int width;
-        unsigned int height;
-    } springModeInfo;
+
 
     typedef struct mouseCursorInfo
     {
@@ -249,6 +247,8 @@ protected:
     unsigned int cycleResetInterval;
     QTime cycleResetHold;
 
+    bool relativeSpring;
+
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -256,8 +256,8 @@ protected:
     static QList<mouseCursorInfo> cursorYSpeeds;
     static QTimer cursorDelayTimer;
 
-    static QList<springModeInfo> springXSpeeds;
-    static QList<springModeInfo> springYSpeeds;
+    static QList<PadderCommon::springModeInfo> springXSpeeds;
+    static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QTimer springDelayTimer;
     static QHash<unsigned int, int> activeKeys;
 
@@ -291,6 +291,7 @@ public slots:
     void setSpringHeight(int value);
 
     void setSensitivity(double value);
+    void setSpringRelativeStatus(bool value);
 
     void setActionName(QString tempName);
     void setButtonName(QString tempName);
