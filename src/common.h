@@ -11,7 +11,6 @@
 #include "config.h"
 
 #ifdef Q_OS_WIN
-extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 
 static QString findWinSystemConfigPath()
 {
@@ -30,8 +29,6 @@ static QString findWinLocalConfigPath()
 
 static QString findWinDefaultConfigPath()
 {
-    qt_ntfs_permission_lookup++;
-
     QString temp = findWinLocalConfigPath();
     QFileInfo dirInfo(temp);
     if (!dirInfo.isWritable())
@@ -39,15 +36,11 @@ static QString findWinDefaultConfigPath()
         temp = findWinSystemConfigPath();
     }
 
-    qt_ntfs_permission_lookup--;
-
     return temp;
 }
 
 static QString findWinConfigPath(QString configFileName)
 {
-    qt_ntfs_permission_lookup++;
-
     QString temp;
     QFileInfo localConfigInfo(findWinLocalConfigPath().append("/").append(configFileName));
     QFileInfo systemConfigInfo(findWinSystemConfigPath().append("/").append(configFileName));
@@ -64,7 +57,6 @@ static QString findWinConfigPath(QString configFileName)
         temp = findWinDefaultConfigPath().append("/").append(configFileName);
     }
 
-    qt_ntfs_permission_lookup--;
     return temp;
 }
 

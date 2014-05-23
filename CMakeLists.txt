@@ -19,6 +19,7 @@ set(ANTIMICRO_MINOR_VERSION 3)
 set(ANTIMICRO_PATCH_VERSION 2)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1" ON)
+
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
 
@@ -548,14 +549,4 @@ if(WIN32)
 
     # Copy extra files to include in the final archive.
     install(FILES gpl.txt Changelog README.md DESTINATION ${CMAKE_INSTALL_PREFIX})
-endif(WIN32)
-
-if(WIN32)
-    # Only way to force install target to be dependent on manpage.
-    add_custom_target(createprofiledir)
-    add_custom_command(TARGET createprofiledir PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/profiles"
-    )
-    install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} createprofiledir WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
-    install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/profiles" DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(WIN32)

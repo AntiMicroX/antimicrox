@@ -1,13 +1,13 @@
 #include "common.h"
 
+#ifdef Q_OS_WIN
+#include <QStanardPaths>
+#endif
+
 namespace PadderCommon
 {
     QString preferredProfileDir(QSettings *settings)
     {
-#ifdef Q_OS_WIN
-        qt_ntfs_permission_lookup++;
-#endif
-
         QString lastProfileDir = settings->value("LastProfileDir", "").toString();
         QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
         QString lookupDir;
@@ -33,22 +33,22 @@ namespace PadderCommon
         if (lookupDir.isEmpty())
         {
 #ifdef Q_OS_WIN
+    #ifdef WIN_PORTABLE_PACKAGE
             QString portableProDir = QDir::currentPath().append("/profiles");
-            QFileInfo portableProDirInfo(portableProDir)
+            QFileInfo portableProDirInfo(portableProDir);
             if (portableProDirInfo.isDir() && portableProDirInfo.isReadable())
             {
                 lookupDir = portableProDir;
             }
             else
             {
-                lookupDir =  QDir::homePath();
+                lookupDir =  QStandardPaths::writeLocation(QStandardPaths::DocumentsLocation);
             }
+    #else
+            lookupDir =  QStandardPaths::writeLocation(QStandardPaths::DocumentsLocation);
+    #endif
 #else
             lookupDir = QDir::homePath();
-#endif
-
-#ifdef Q_OS_WIN
-            qt_ntfs_permission_lookup--;
 #endif
         }
 

@@ -32,8 +32,8 @@ static MouseHelper *mouseHelperObj = 0;
     {
         int fx = ceil(xmovecoor * (65535.0/(double)width));
         int fy = ceil(ymovecoor * (65535.0/(double)height));
-        temp[0].mi.dx = fx;
-        temp[0].mi.dy = fy;
+        event[0].mi.dx = fx;
+        event[0].mi.dy = fy;
         SendInput(1, event, sizeof(INPUT));
     }
 #endif
