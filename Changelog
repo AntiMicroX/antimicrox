@@ -1,3 +1,17 @@
+2014-05-23 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.3.3
+
+* Tweaked Enhanced Precision mouse acceleration curve.
+
+* Tweaked "all" option in Auto Profile. No profile assigned to "all" now
+implies that a blank configuration should be loaded.
+
+* Manpage created by Jeff Backus.
+
+* Migrated to the CMake build system.
+
+
 2014-05-15 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.3.2

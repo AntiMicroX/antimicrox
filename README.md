@@ -164,7 +164,7 @@ for this program will be written.
 * Copy set assignments to a new set. This will make creating
 slightly altered sets easier.
 * Write documentation for portions of the program.
-* Convert code base to use CMake as opposed to qmake.
+* ~~Convert code base to use CMake as opposed to qmake.~~
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this
