@@ -4,6 +4,10 @@ namespace PadderCommon
 {
     QString preferredProfileDir(QSettings *settings)
     {
+#ifdef Q_OS_WIN
+        qt_ntfs_permission_lookup++;
+#endif
+
         QString lastProfileDir = settings->value("LastProfileDir", "").toString();
         QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
         QString lookupDir;
@@ -37,10 +41,14 @@ namespace PadderCommon
             }
             else
             {
-                lookupDir =  QDir::currentPath();
+                lookupDir =  QDir::homePath();
             }
 #else
             lookupDir = QDir::homePath();
+#endif
+
+#ifdef Q_OS_WIN
+            qt_ntfs_permission_lookup--;
 #endif
         }
 
