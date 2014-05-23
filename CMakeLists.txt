@@ -26,7 +26,7 @@ if(WIN32)
     if(PORTABLE_PACKAGE)
         add_definitions(-DWIN_PORTABLE_PACKAGE)
 
-        # Only way to force install target to be dependent on manpage.
+        # Only way to force install target to be dependent on createprofiledir.
         add_custom_target(createprofiledir)
         add_custom_command(TARGET createprofiledir PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/profiles"
