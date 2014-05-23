@@ -1,7 +1,7 @@
 #include "common.h"
 
 #ifdef Q_OS_WIN
-#include <QStanardPaths>
+#include <QStandardPaths>
 #endif
 
 namespace PadderCommon
@@ -42,10 +42,10 @@ namespace PadderCommon
             }
             else
             {
-                lookupDir =  QStandardPaths::writeLocation(QStandardPaths::DocumentsLocation);
+                lookupDir =  QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
             }
     #else
-            lookupDir =  QStandardPaths::writeLocation(QStandardPaths::DocumentsLocation);
+            lookupDir =  QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     #endif
 #else
             lookupDir = QDir::homePath();

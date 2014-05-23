@@ -65,9 +65,10 @@ static QString findWinConfigPath(QString configFileName)
 
 namespace PadderCommon
 {
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
     const QString configPath = findWinDefaultConfigPath();
-
+#elif defined(Q_OS_WIN)
+    const QString configPath = findWinSystemConfigPath();
 #else
     const QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
                 QString(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
@@ -76,8 +77,10 @@ namespace PadderCommon
 #endif
 
     const QString configFileName = "antimicro_settings.ini";
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
     const QString configFilePath = findWinConfigPath(configFileName);
+#elif defined(Q_OS_WIN)
+    const QString configFilePath = QString(configPath).append("/").append(configFileName);
 #else
     const QString configFilePath = QString(configPath).append("/").append(configFileName);
 #endif
