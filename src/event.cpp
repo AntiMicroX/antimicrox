@@ -28,7 +28,7 @@ static MouseHelper *mouseHelperObj = 0;
     }
 
 #elif defined(Q_OS_WIN)
-    static void finalSpringEvent(INPUT &event, unsigned int xmovecoor, unsigned int ymovecoor)
+    static void finalSpringEvent(INPUT *event, unsigned int xmovecoor, unsigned int ymovecoor, unsigned int width, unsigned int height)
     {
         int fx = ceil(xmovecoor * (65535.0/(double)width));
         int fy = ceil(ymovecoor * (65535.0/(double)height));
@@ -38,7 +38,7 @@ static MouseHelper *mouseHelperObj = 0;
     }
 #endif
 
-//actually creates an XWindows event  :)
+// Create the event used by the operating system.
 void sendevent(JoyButtonSlot *slot, bool pressed)
 {
     int code = slot->getSlotCode();
@@ -302,7 +302,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor);
+                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
 #endif
             }
             else if (!mouseHelperObj->springMouseMoving && relativeSpring &&
@@ -314,7 +314,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor);
+                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
 #endif
                 mouseHelperObj->mouseTimer.start(8);
             }
@@ -325,7 +325,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor);
+                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
 #endif
 
                 //qDebug() << QTime::currentTime();
@@ -345,7 +345,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor);
+                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
 #endif
 
 

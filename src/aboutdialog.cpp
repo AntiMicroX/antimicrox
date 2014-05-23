@@ -1,3 +1,5 @@
+#include <QtGlobal>
+
 #ifdef USE_SDL_2
 #include <SDL2/SDL_version.h>
 #else
@@ -28,7 +30,7 @@ void AboutDialog::fillInfoTextBrowser()
     QStringList finalInfoText;
 
     finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
-    finalInfoText.append(tr("Program Compiled on %1 %2").arg(__DATE__).arg(__TIME__));
+    finalInfoText.append(tr("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");
@@ -47,6 +49,8 @@ void AboutDialog::fillInfoTextBrowser()
 
     sdlLinkedVersionNumber = sdlLinkedVersionNumber.arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
     finalInfoText.append(tr("Running With SDL %1").arg(sdlLinkedVersionNumber));
+
+    finalInfoText.append(tr("Using Qt %1").arg(qVersion()));
 
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
 }
