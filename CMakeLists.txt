@@ -449,6 +449,7 @@ elseif(WIN32)
 endif(UNIX)
 
 if(UNIX)
+    install(FILES src/images/antimicro.png DESTINATION "share/pixmaps")
     install(FILES other/antimicro.desktop DESTINATION "share/applications")
 endif(UNIX)
 
