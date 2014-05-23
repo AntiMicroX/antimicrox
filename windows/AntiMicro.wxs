@@ -45,6 +45,15 @@
                     <Component Id="SDL2.DLL" Guid="89898F34-8345-414E-9210-85B53FD34D53">
                         <File Source="..\antimicro\SDL2.dll" />
                     </Component>
+                    <Component Id="README.MD" Guid="72F83989-7487-44C9-B5CD-AC37898274D7">
+                        <File Source="..\antimicro\README.md" />
+                    </Component>
+                    <Component Id="GPL.TXT" Guid="5ED021DD-5160-4618-8E51-BAEF278250B1">
+                        <File Source="..\antimicro\gpl.txt" />
+                    </Component>
+                    <Component Id="CHANGELOG" Guid="49AA82FA-AE90-47D7-B55B-E6C28F7161CB">
+                        <File Source="..\antimicro\Changelog" />
+                    </Component>
                     <Directory Id="PLATFORMS" Name="platforms">
                         <Component Id="QWINDOWS.DLL" Guid="F2A419FC-7EA8-436C-8CE9-68755251E39A">
                             <File Source="..\antimicro\platforms\qwindows.dll" />
@@ -55,6 +64,9 @@
                             <Directory Id="TRANSLATIONS" Name="translations">
                                 <Component Id="ANTIMICRO_BR.QM" Guid="B78BAC38-6EF6-4BFE-A904-85000FD73A9E">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_br.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_DE.QM" Guid="F6A15AE8-59FE-4C3A-A8AD-85710F0EF813">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_de.qm" />
                                 </Component>
                                 <Component Id="ANTIMICRO_EN.QM" Guid="3DDDAA90-D307-4560-83B9-09CB70B401C5">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_en.qm" />
@@ -95,7 +107,11 @@
             <ComponentRef Id="QT5WIDGETS.DLL" />
             <ComponentRef Id="SDL2.DLL" />
             <ComponentRef Id="QWINDOWS.DLL" />
+            <ComponentRef Id="README.MD" />
+            <ComponentRef Id="GPL.TXT" />
+            <ComponentRef Id="CHANGELOG" />
             <ComponentRef Id="ANTIMICRO_BR.QM" />
+            <ComponentRef Id="ANTIMICRO_DE.QM" />
             <ComponentRef Id="ANTIMICRO_EN.QM" />
             <ComponentRef Id="ANTIMICRO_FR.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
