@@ -1,1 +1,4 @@
+#include "winuser.h"
+
  IDI_ICON1               ICON    DISCARDABLE     "images/antimicro.ico"
+ CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "antimicro.exe.manifest"

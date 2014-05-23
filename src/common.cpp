@@ -30,7 +30,8 @@ namespace PadderCommon
         {
 #ifdef Q_OS_WIN
             QString portableProDir = QDir::currentPath().append("/profiles");
-            if (QFile::exists(portableProDir))
+            QFileInfo portableProDirInfo(portableProDir)
+            if (portableProDirInfo.isDir() && portableProDirInfo.isReadable())
             {
                 lookupDir = portableProDir;
             }
