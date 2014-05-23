@@ -622,7 +622,14 @@ void JoyTabWidget::saveConfigFile()
                     tempProfileName = oldProfileName;
                 }
 
+                disconnectCheckUnsavedEvent();
+                disconnectMainComboBoxEvents();
+
                 configBox->insertItem(1, tempProfileName, fileinfo.absoluteFilePath());
+
+                reconnectCheckUnsavedEvent();
+                reconnectMainComboBoxEvents();
+
                 configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
@@ -759,6 +766,9 @@ void JoyTabWidget::saveAsConfig()
             int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
             if (existingIndex == -1)
             {
+                disconnectCheckUnsavedEvent();
+                disconnectMainComboBoxEvents();
+
                 if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
                 {
                     configBox->removeItem(numberRecentProfiles);
@@ -773,6 +783,10 @@ void JoyTabWidget::saveAsConfig()
                 }
 
                 configBox->insertItem(1, tempProfileName, fileinfo.absoluteFilePath());
+
+                reconnectCheckUnsavedEvent();
+                reconnectMainComboBoxEvents();
+
                 configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
                 emit joystickConfigChanged(joystick->getJoyNumber());
