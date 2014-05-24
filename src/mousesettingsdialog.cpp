@@ -11,7 +11,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->relativeSpringCheckBox->setVisible(false);
+    //ui->relativeSpringCheckBox->setVisible(false);
 
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSectionStatus(int)));
