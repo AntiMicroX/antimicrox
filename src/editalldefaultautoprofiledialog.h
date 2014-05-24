@@ -2,10 +2,9 @@
 #define EDITALLDEFAULTAUTOPROFILEDIALOG_H
 
 #include <QDialog>
-#include <QSettings>
 
 #include "autoprofileinfo.h"
-
+#include "antimicrosettings.h"
 
 namespace Ui {
 class EditAllDefaultAutoProfileDialog;
@@ -16,7 +15,7 @@ class EditAllDefaultAutoProfileDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, QSettings *settings,
+    explicit EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
                                              QWidget *parent = 0);
     ~EditAllDefaultAutoProfileDialog();
 
@@ -26,7 +25,7 @@ protected:
     virtual void accept();
 
     AutoProfileInfo *info;
-    QSettings *settings;
+    AntiMicroSettings *settings;
 
 private:
     Ui::EditAllDefaultAutoProfileDialog *ui;

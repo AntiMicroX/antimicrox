@@ -37,6 +37,7 @@
 #include "inputdevice.h"
 #include "autoprofileinfo.h"
 #include "localantimicroserver.h"
+#include "antimicrosettings.h"
 
 #ifndef Q_OS_WIN
 #include <signal.h>
@@ -146,7 +147,7 @@ int main(int argc, char *argv[])
         // An instance of this program is already running.
         // Save app config and exit.
         QApplication a(argc, argv);
-        QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+        AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
         MainWindow w(joysticks, &cmdutility, &settings, false);
 
@@ -300,7 +301,9 @@ int main(int argc, char *argv[])
 #endif
     a->installTranslator(&myappTranslator);
 
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings.importFromCommandLine(cmdutility);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 

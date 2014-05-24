@@ -1,5 +1,4 @@
 #include <QDebug>
-#include <QSettings>
 #include <QDir>
 #include <QFileDialog>
 #include <QLocale>
@@ -18,9 +17,10 @@
 #include "editalldefaultautoprofiledialog.h"
 #include "common.h"
 
+
 static const QString RUNATSTARTUPKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 
-MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *> *devices, QWidget *parent) :
+MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice *> *devices, QWidget *parent) :
     QDialog(parent, Qt::Dialog),
     ui(new Ui::MainSettingsDialog)
 {
@@ -138,6 +138,12 @@ MainSettingsDialog::MainSettingsDialog(QSettings *settings, QList<InputDevice *>
     else
     {
         ui->autoLoadPreviousCheckBox->setChecked(false);
+    }
+
+    bool launchInTray = settings->value("LaunchInTray", false).toBool();
+    if (launchInTray)
+    {
+        ui->launchInTrayCheckBox->setChecked(true);
     }
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
@@ -421,6 +427,9 @@ void MainSettingsDialog::saveNewSettings()
 
     bool autoOpenLastProfile = ui->autoLoadPreviousCheckBox->isChecked();
     settings->setValue("AutoOpenLastProfile", autoOpenLastProfile ? "1" : "0");
+
+    bool launchInTray = ui->launchInTrayCheckBox->isChecked();
+    settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
 
     settings->sync();
 }

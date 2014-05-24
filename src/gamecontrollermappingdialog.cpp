@@ -75,7 +75,7 @@ QHash<int, QString> GameControllerMappingDialog::tempaliases = initAliases();
 QHash<SDL_GameControllerButton, int> GameControllerMappingDialog::buttonPlacement =  initButtonPlacement();
 QHash<SDL_GameControllerAxis, int> GameControllerMappingDialog::axisPlacement = initAxisPlacement();
 
-GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, QSettings *settings, QWidget *parent) :
+GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, AntiMicroSettings *settings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GameControllerMappingDialog)
 {
@@ -268,7 +268,6 @@ void GameControllerMappingDialog::saveChanges()
 
     QString mappingString = generateSDLMappingString();
 
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
     settings->sync();
     emit mappingUpdate(mappingString, device);
@@ -388,7 +387,6 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
 
 void GameControllerMappingDialog::removeControllerMapping()
 {
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings->beginGroup("Mappings");
     settings->remove(device->getGUIDString());
     settings->remove(QString("%1Disable").arg(device->getGUIDString()));

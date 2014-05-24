@@ -18,7 +18,7 @@
 
 #endif
 
-AutoProfileWatcher::AutoProfileWatcher(QSettings *settings, QObject *parent) :
+AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
     this->settings = settings;

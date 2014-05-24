@@ -6,7 +6,7 @@
 #include "ui_editalldefaultautoprofiledialog.h"
 #include "common.h"
 
-EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, QSettings *settings,
+EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
                                                                  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditAllDefaultAutoProfileDialog)

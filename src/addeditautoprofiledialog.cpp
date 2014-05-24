@@ -23,7 +23,7 @@
 
 #include "common.h"
 
-AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, QSettings *settings,
+AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
                                                    QList<InputDevice*> *devices,
                                                    QList<QString> &reservedGUIDS, bool edit, QWidget *parent) :
     QDialog(parent),

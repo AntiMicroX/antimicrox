@@ -235,6 +235,17 @@ previous session.</string>
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="launchInTrayCheckBox">
+           <property name="toolTip">
+            <string>Only show the system tray icon when the program
+first launches.</string>
+           </property>
+           <property name="text">
+            <string>Launch in Tray</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_4">
            <property name="orientation">
             <enum>Qt::Vertical</enum>

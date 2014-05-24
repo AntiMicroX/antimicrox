@@ -115,6 +115,7 @@ set(antimicro_SOURCES src/main.cpp
     src/common.cpp
     src/localantimicroserver.cpp
     src/extraprofilesettingsdialog.cpp
+    src/antimicrosettings.cpp
 )
 
 # Platform dependent files.
@@ -203,6 +204,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/editalldefaultautoprofiledialog.h
     src/localantimicroserver.h
     src/extraprofilesettingsdialog.h
+    src/antimicrosettings.h
 )
 
 # Platform dependent files.

@@ -3,7 +3,6 @@
 
 #include <QHash>
 #include <QThread>
-#include <QSettings>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -18,12 +17,13 @@
 
 #include "joystick.h"
 #include "sdleventreader.h"
+#include "antimicrosettings.h"
 
 class InputDaemon : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical=true, QObject *parent=0);
+    explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical=true, QObject *parent=0);
     ~InputDaemon();
 
     void startWorker();
@@ -44,7 +44,7 @@ protected:
 
     SDLEventReader *eventWorker;
     QThread *thread;
-    QSettings *settings;
+    AntiMicroSettings *settings;
 
 signals:
     void joystickRefreshed (InputDevice *joystick);

@@ -4,11 +4,11 @@
 #include <QtGlobal>
 #include <QString>
 #include <QDir>
-#include <QSettings>
 #include <QStringList>
 #include <QFileInfo>
 
 #include "config.h"
+#include "antimicrosettings.h"
 
 #ifdef Q_OS_WIN
 
@@ -102,7 +102,7 @@ namespace PadderCommon
         QString("%1.%2").arg(ANTIMICRO_MAJOR_VERSION)
             .arg(ANTIMICRO_MINOR_VERSION);
 
-    QString preferredProfileDir(QSettings *settings);
+    QString preferredProfileDir(AntiMicroSettings *settings);
     QStringList arguments(int &argc, char **argv);
 }
 

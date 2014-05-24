@@ -2,11 +2,10 @@
 #include <QTimer>
 #include <QEventLoop>
 #include <QHashIterator>
-#include <QSettings>
 
 #include "inputdaemon.h"
 
-InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, QSettings *settings, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;

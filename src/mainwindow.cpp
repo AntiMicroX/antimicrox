@@ -26,7 +26,7 @@
 #include "autoprofileinfo.h"
 #endif
 
-MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -155,7 +155,8 @@ MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLi
     // to not be displayed.
     if (graphical)
     {
-        if (!cmdutility->isHiddenRequested() && (!cmdutility->isLaunchInTrayEnabled() || !QSystemTrayIcon::isSystemTrayAvailable()))
+        bool launchInTraySetting = settings->runtimeValue("LaunchInTray", false).toBool();
+        if (!cmdutility->isHiddenRequested() && (!launchInTraySetting || !QSystemTrayIcon::isSystemTrayAvailable()))
         {
             show();
         }
@@ -167,7 +168,7 @@ MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLi
 
             setEnabled(false); // Should already be disabled. Do it again just to be sure.
         }
-        else if (cmdutility->isHiddenRequested() || cmdutility->isLaunchInTrayEnabled())
+        else if (cmdutility->isHiddenRequested() || launchInTraySetting)
         {
             // Window should already be hidden but make sure
             // to disable flashing buttons.

@@ -5,16 +5,16 @@
 #include <QTimer>
 #include <QHash>
 #include <QList>
-#include <QSettings>
 
 #include "autoprofileinfo.h"
+#include "antimicrosettings.h"
 
 
 class AutoProfileWatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit AutoProfileWatcher(QSettings *settings, QObject *parent = 0);
+    explicit AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent = 0);
     void startTimer();
     void stopTimer();
     QList<AutoProfileInfo*>* getCustomDefaults();
@@ -26,7 +26,7 @@ protected:
     QString findAppLocation();
 
     QTimer appTimer;
-    QSettings *settings;
+    AntiMicroSettings *settings;
     QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
     QHash<QString, AutoProfileInfo*> defaultProfileAssignments;
     //QHash<QString, QList<QHash<QString, QString> > > appProfileAssignments;

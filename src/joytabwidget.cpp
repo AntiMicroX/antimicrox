@@ -29,7 +29,7 @@
 #include "gamecontrollermappingdialog.h"
 #endif
 
-JoyTabWidget::JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *parent) :
+JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent) :
     QWidget(parent)
 {
     this->joystick = joystick;
@@ -1281,7 +1281,6 @@ void JoyTabWidget::unloadConfig()
 
 void JoyTabWidget::saveDeviceSettings(bool sync)
 {
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings->beginGroup("Controllers");
     saveSettings();
     settings->endGroup();
@@ -1294,7 +1293,6 @@ void JoyTabWidget::saveDeviceSettings(bool sync)
 
 void JoyTabWidget::loadDeviceSettings()
 {
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     //settings.beginGroup("Controllers");
     loadSettings();
     //settings.endGroup();

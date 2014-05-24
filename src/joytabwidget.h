@@ -9,7 +9,6 @@
 #include <QComboBox>
 #include <QSpacerItem>
 #include <QFileDialog>
-#include <QSettings>
 #include <QHash>
 #include <QStackedWidget>
 #include <QScrollArea>
@@ -18,13 +17,14 @@
 #include "joystick.h"
 #include "axiseditdialog.h"
 #include "inputdevice.h"
+#include "antimicrosettings.h"
 
 
 class JoyTabWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit JoyTabWidget(InputDevice *joystick, QSettings *settings, QWidget *parent = 0);
+    explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = 0);
 
     void saveSettings();
     void loadSettings(bool forceRefresh=false);
@@ -118,7 +118,7 @@ protected:
 
     InputDevice *joystick;
     bool displayingNames;
-    QSettings *settings;
+    AntiMicroSettings *settings;
     int comboBoxIndex;
     bool hideEmptyButtons;
     QString oldProfileName;

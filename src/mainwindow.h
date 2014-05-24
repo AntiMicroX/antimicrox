@@ -11,12 +11,12 @@
 #include <QShowEvent>
 #include <QCloseEvent>
 #include <QLocalServer>
-#include <QSettings>
 #include <QTranslator>
 
 #include "inputdevice.h"
 #include "aboutdialog.h"
 #include "commandlineutility.h"
+#include "antimicrosettings.h"
 #include "autoprofilewatcher.h"
 
 namespace Ui {
@@ -28,7 +28,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, QSettings *settings, bool graphical=true, QWidget *parent = 0);
+    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings,
+               bool graphical=true, QWidget *parent = 0);
     ~MainWindow();
     
 protected:
@@ -57,7 +58,7 @@ protected:
     bool graphical;
     QLocalServer *localServer;
     CommandLineUtility *cmdutility;
-    QSettings *settings;
+    AntiMicroSettings *settings;
     QTranslator *translator;
     AutoProfileWatcher *appWatcher;
 

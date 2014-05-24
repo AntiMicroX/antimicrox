@@ -6,7 +6,7 @@
 
 namespace PadderCommon
 {
-    QString preferredProfileDir(QSettings *settings)
+    QString preferredProfileDir(AntiMicroSettings *settings)
     {
         QString lastProfileDir = settings->value("LastProfileDir", "").toString();
         QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
