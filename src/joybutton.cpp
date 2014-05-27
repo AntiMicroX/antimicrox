@@ -17,6 +17,7 @@ const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
 const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
 QHash<unsigned int, int> JoyButton::activeKeys;
+JoyButtonSlot* JoyButton::lastActiveKey = 0;
 
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
 QTimer JoyButton::cursorDelayTimer;
@@ -594,8 +595,10 @@ void JoyButton::activateSlots()
                 activeSlots.append(slot);
                 int oldvalue = activeKeys.value(tempcode, 0) + 1;
                 activeKeys.insert(tempcode, oldvalue);
-                //delaySequence = true;
-                //currentKeyPress = new JoyButtonSlot(2000, JoyButtonSlot::JoyKeyPress, this);
+                if (!slot->isModifierKey())
+                {
+                    lastActiveKey = slot;
+                }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
@@ -735,7 +738,8 @@ void JoyButton::activateSlots()
         }
 
 #ifdef Q_OS_WIN
-        else if (!activeSlots.isEmpty() && !useTurbo)
+        else if (lastActiveKey && activeSlots.contains(lastActiveKey) &&
+                 !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
             if (device->isKeyRepeatEnabled())
@@ -2717,6 +2721,11 @@ void JoyButton::releaseActiveSlots()
                 {
                     activeKeys.insert(tempcode, referencecount);
                 }
+
+                if (lastActiveKey == slot)
+                {
+                    lastActiveKey = 0;
+                }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
@@ -3493,25 +3502,19 @@ bool JoyButton::isCycleResetActive()
 
 void JoyButton::repeatKeysEvent()
 {
-    if (!activeSlots.isEmpty())
+    if (!activeSlots.isEmpty() && lastActiveKey && activeSlots.contains(lastActiveKey))
     {
-        QListIterator<JoyButtonSlot*> iter(activeSlots);
+        JoyButtonSlot *slot = lastActiveKey;
 
-        while (iter.hasNext())
-        {
-            JoyButtonSlot *slot = iter.next();
-            //int tempcode = slot->getSlotCode();
-            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-
-            if (mode == JoyButtonSlot::JoyKeyboard)
-            {
-                // Send another key press to fake a key repeat
-                sendevent(slot);
-            }
-        }
+        // Send another key press to fake a key repeat
+        sendevent(slot);
 
         InputDevice *device = getParentSet()->getInputDevice();
         keyRepeatTimer.start(device->getKeyRepeatRate());
+    }
+    else
+    {
+        keyRepeatTimer.stop();
     }
 }
 

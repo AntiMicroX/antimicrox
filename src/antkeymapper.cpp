@@ -16,3 +16,8 @@ unsigned int AntKeyMapper::returnVirtualKey(unsigned int qkey)
 {
     return _instance.internalMapper.returnVirtualKey(qkey);
 }
+
+bool AntKeyMapper::isModifierKey(unsigned int qkey)
+{
+    return _instance.internalMapper.isModifier(qkey);
+}

@@ -15,6 +15,7 @@ class AntKeyMapper : public QObject
 public:
     static unsigned int returnVirtualKey(unsigned int qkey);
     static unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
+    static bool isModifierKey(unsigned int qkey);
 
 protected:
     explicit AntKeyMapper(QObject *parent = 0);

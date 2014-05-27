@@ -37,6 +37,7 @@ public:
     QString getSlotString();
     void setSlotCode(int code, unsigned int alias);
     unsigned int getSlotCodeAlias();
+    bool isModifierKey();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

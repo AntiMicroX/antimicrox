@@ -495,3 +495,14 @@ QString JoyButtonSlot::getSlotString()
 
     return newlabel;
 }
+
+bool JoyButtonSlot::isModifierKey()
+{
+    bool modifier = false;
+    if (mode == JoyKeyboard && AntKeyMapper::isModifierKey(qkeyaliasCode))
+    {
+        modifier = true;
+    }
+
+    return modifier;
+}

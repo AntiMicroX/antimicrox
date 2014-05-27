@@ -12,6 +12,7 @@ public:
 
     virtual unsigned int returnVirtualKey(unsigned int qkey);
     virtual unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
+    virtual bool isModifier(unsigned int qkey);
 
     static const unsigned int customQtKeyPrefix = 0x10000000;
     static const unsigned int customKeyPrefix = 0x20000000;
