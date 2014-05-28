@@ -174,6 +174,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     for (int i = 1; !quitSearch; i++)
     {
         exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
+        exe = QDir::toNativeSeparators(exe);
         guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
         profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();

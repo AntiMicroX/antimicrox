@@ -139,7 +139,7 @@ void AddEditAutoProfileDialog::openProfileBrowseDialog()
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
     if (!filename.isNull() && !filename.isEmpty())
     {
-        ui->profileLineEdit->setText(filename);
+        ui->profileLineEdit->setText(QDir::toNativeSeparators(filename));
     }
 }
 
