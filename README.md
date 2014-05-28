@@ -64,7 +64,7 @@ libraries that you have installed. The project is set up to
 look for a copy of SDL 2 followed by SDL 1.2. This behavior should work
 fine for most people. You can override this behavior by using the -DUSE_SDL_2
 option when you run cmake. Using -DUSE_SDL_2=ON when you run cmake will mean
-that you want AntiMicro compiled with SDL 2 support. Using -DUSE_SDL_2=0FF when
+that you want AntiMicro compiled with SDL 2 support. Using -DUSE_SDL_2=OFF when
 you run cmake will mean that you want AntiMicro compiled with SDL 1.2 support.
 
 Here is an example of how to specify that you want AntiMicro to be compiled
