@@ -493,9 +493,9 @@ if(WIN32)
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
     string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt51.dll"
-        "${QTCORE_DLL_LOCATION}/icuin51.dll"
-        "${QTCORE_DLL_LOCATION}/icuuc51.dll"
+    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt52.dll"
+        "${QTCORE_DLL_LOCATION}/icuin52.dll"
+        "${QTCORE_DLL_LOCATION}/icuuc52.dll"
         "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
         "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Core.dll"

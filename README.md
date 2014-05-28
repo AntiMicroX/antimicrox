@@ -95,7 +95,7 @@ under the root antimicro folder and choose that for the build location.
 ```-DCMAKE_PREFIX_PATH=<Path to mingw48_32 Qt install>```
 -DCMAKE_BUILD_TYPE=Release. Replace "```<Path to mingw48_32 Qt install>```"
 with the actual path to your Qt installation. The default path for version
-Qt 5.1.1 is C:\Qt\5.1.1\mingw48_32\.
+Qt 5.3.0 is C:\Qt\Qt5.3.0\5.3\mingw482_32\.
 
 * Choose "MinGW Generator" for the Generator option in the Run CMake section
 
