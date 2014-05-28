@@ -92,8 +92,8 @@ the first time you open the project in Qt Creator.
 under the root antimicro folder and choose that for the build location.
 
 * In the Run CMake section, in the Arguments field, please input
--DCMAKE_PREFIX_PATH=<Path to mingw48_32 Qt install>
--DCMAKE_BUILD_TYPE=Release. Replace "<Path to mingw48_32 Qt install>"
+```-DCMAKE_PREFIX_PATH=<Path to mingw48_32 Qt install>```
+-DCMAKE_BUILD_TYPE=Release. Replace "```<Path to mingw48_32 Qt install>```"
 with the actual path to your Qt installation. The default path for version
 Qt 5.1.1 is C:\Qt\5.1.1\mingw48_32\.
 
@@ -118,7 +118,7 @@ distributable package.
 "install_dlls" checkboxes.
 
 * Under the "Build" menu in the main window, select "Run CMake" and
-add -DCMAKE_INSTALL_PREFIX=<DIR> option and replace <DIR> with the directory
+add ```-DCMAKE_INSTALL_PREFIX=<DIR>``` option and replace ```<DIR>``` with the directory
 that you want to install the application. The default for me is
 C:\Program Files (x86)\AntiMicro although I use a different directory
 when bundling the Window version for other users.
