@@ -2,6 +2,7 @@
 #include <QStringListIterator>
 #include <QFile>
 #include <QFileInfo>
+#include <QDir>
 #include <QListIterator>
 #include <QApplication>
 
@@ -43,6 +44,7 @@ void AutoProfileWatcher::runAppCheck()
 {
     //qDebug() << qApp->applicationFilePath();
     QString appLocation = findAppLocation();
+    QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
     if (!appLocation.isEmpty() && appLocation != currentApplication)
     {
         currentApplication = appLocation;
@@ -61,7 +63,7 @@ void AutoProfileWatcher::runAppCheck()
             }
         }
         else if ((!defaultProfileAssignments.isEmpty() || allDefaultInfo) &&
-                 qApp->applicationFilePath() != appLocation)
+                 antiProgramLocation != appLocation)
         {
             if (allDefaultInfo)
             {
