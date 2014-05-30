@@ -161,8 +161,8 @@ Notes about the WXS file and the building process :
 This section is where some of the ideas for future features
 for this program will be written.
 
-* Copy set assignments to a new set. This will make creating
-slightly altered sets easier.
+* ~~Copy set assignments to a new set. This will make creating
+slightly altered sets easier.~~
 * Write documentation for portions of the program.
 * ~~Convert code base to use CMake as opposed to qmake.~~
 
@@ -194,6 +194,7 @@ Jeff Backus <jeff.backus@gmail.com>
 
 ### Translators
 
+VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese  
 Belleguic Terence <hizo@free.fr> - French  
-Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
-VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese
+phob - German  
+Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian

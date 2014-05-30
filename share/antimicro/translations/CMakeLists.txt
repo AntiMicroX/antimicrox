@@ -1,11 +1,25 @@
 # This will ensure that the *.qm files will be stored
 # in the right place within the build directory.
 file(GLOB antimicro_TRANSLATIONS antimicro_*.ts)
+file(GLOB_RECURSE antimicro_BASE_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE antimicro_BASE_FORMS ${PROJECT_SOURCE_DIR}/src/*.ui)
 
 if(USE_QT5)
-    QT5_ADD_TRANSLATION(antimicro_QMFILES ${antimicro_TRANSLATIONS})
+    if(REFRESH_TRANSLATIONS)
+        QT5_CREATE_TRANSLATION(antimicro_QMFILES ${antimicro_BASE_SOURCES}
+            ${antimicro_BASE_FORMS} ${antimicro_TRANSLATIONS}
+            OPTIONS "-no-obsolete")
+    else()
+        QT5_ADD_TRANSLATION(antimicro_QMFILES ${antimicro_TRANSLATIONS})
+    endif(REFRESH_TRANSLATIONS)
 else()
-    QT4_ADD_TRANSLATION(antimicro_QMFILES ${antimicro_TRANSLATIONS})
+    if(REFRESH_TRANSLATIONS)
+        QT4_CREATE_TRANSLATION(antimicro_QMFILES ${antimicro_BASE_SOURCES}
+            ${antimicro_BASE_FORMS} ${antimicro_TRANSLATIONS}
+             OPTIONS "-no-obsolete")
+    else()
+        QT4_ADD_TRANSLATION(antimicro_QMFILES ${antimicro_TRANSLATIONS})
+    endif(REFRESH_TRANSLATIONS)
 endif(USE_QT5)
 
 add_custom_target(updateqm DEPENDS ${antimicro_QMFILES})
