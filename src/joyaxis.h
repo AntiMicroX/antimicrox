@@ -104,6 +104,7 @@ public:
     virtual bool isDefault();
 
     bool isRelativeSpring();
+    void copyAssignments(JoyAxis *destAxis);
 
     static const int AXISMIN;
     static const int AXISMAX;

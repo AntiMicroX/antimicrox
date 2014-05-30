@@ -97,6 +97,7 @@ protected:
     QAction *setAction6;
     QAction *setAction7;
     QAction *setAction8;
+    QMenu *copySetMenu;
 
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout_3;
@@ -184,6 +185,9 @@ private slots:
     void checkAxisButtonEmptyDisplay();
     void checkButtonEmptyDisplay();
     void editCurrentProfileItemText(QString text);
+    void refreshCopySetActions();
+    void performSetCopy();
+    void disableCopyCurrentSet();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();

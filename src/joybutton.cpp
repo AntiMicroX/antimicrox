@@ -3550,3 +3550,38 @@ bool JoyButton::isRelativeSpring()
 {
     return relativeSpring;
 }
+
+void JoyButton::copyAssignments(JoyButton *destButton)
+{
+    destButton->eventReset();
+    destButton->assignments.clear();
+    QListIterator<JoyButtonSlot*> iter(assignments);
+    while (iter.hasNext())
+    {
+        JoyButtonSlot *slot = iter.next();
+        JoyButtonSlot *newslot = new JoyButtonSlot(slot, destButton);
+        destButton->setAssignedSlot(newslot);
+        //destButton->assignments.append(slot);
+    }
+
+    destButton->toggle = toggle;
+    destButton->turboInterval = turboInterval;
+    destButton->useTurbo = useTurbo;
+    destButton->mouseSpeedX = mouseSpeedX;
+    destButton->mouseSpeedY = mouseSpeedY;
+    destButton->wheelSpeedX = wheelSpeedX;
+    destButton->wheelSpeedY = wheelSpeedY;
+    destButton->mouseMode = mouseMode;
+    destButton->mouseCurve = mouseCurve;
+    destButton->springWidth = springWidth;
+    destButton->springHeight = springHeight;
+    destButton->sensitivity = sensitivity;
+    destButton->smoothing = smoothing;
+    //destButton->setSelection = setSelection;
+    //destButton->setSelectionCondition = setSelectionCondition;
+    destButton->buttonName = buttonName;
+    destButton->actionName = actionName;
+    destButton->cycleResetActive = cycleResetActive;
+    destButton->cycleResetInterval = cycleResetInterval;
+    destButton->relativeSpring = relativeSpring;
+}

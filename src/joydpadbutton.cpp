@@ -134,3 +134,8 @@ JoyDPad* JoyDPadButton::getDPad()
 {
     return dpad;
 }
+
+int JoyDPadButton::getDirection()
+{
+    return direction;
+}

@@ -74,6 +74,7 @@ public:
     bool hasSlotsAssigned();
 
     bool isRelativeSpring();
+    void copyAssignments(JoyDPad *destDPad);
 
     static const QString xmlName;
 

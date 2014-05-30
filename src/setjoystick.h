@@ -51,6 +51,9 @@ public:
 
     void setName(QString name);
     QString getName();
+    QString getSetLabel();
+
+    void copyAssignments(SetJoystick *destSet);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

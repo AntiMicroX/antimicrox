@@ -12,6 +12,7 @@ public:
     JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent=0);
 
     QString getDirectionName();
+    int getDirection();
     virtual int getRealJoyNumber();
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();

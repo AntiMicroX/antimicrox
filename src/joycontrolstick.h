@@ -97,6 +97,7 @@ public:
     bool hasSlotsAssigned();
 
     bool isRelativeSpring();
+    void copyAssignments(JoyControlStick *destStick);
 
     static const double PI;
 

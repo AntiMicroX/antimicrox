@@ -127,6 +127,7 @@ public:
     bool isCycleResetActive();
 
     bool isRelativeSpring();
+    void copyAssignments(JoyButton *destButton);
 
     static const QString xmlName;
     static const int ENABLEDTURBODEFAULT;

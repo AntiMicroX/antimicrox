@@ -55,6 +55,16 @@ JoyButtonSlot::JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mo
     mouseInterval = new QTime();
 }
 
+JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
+    QObject(parent)
+{
+    deviceCode = slot->deviceCode;
+    qkeyaliasCode = slot->qkeyaliasCode;
+    mode = slot->mode;
+    distance = 0.0;
+    mouseInterval = new QTime();
+}
+
 JoyButtonSlot::~JoyButtonSlot()
 {
     delete mouseInterval;

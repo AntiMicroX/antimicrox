@@ -1742,3 +1742,28 @@ bool JoyControlStick::isRelativeSpring()
 
     return relative;
 }
+
+void JoyControlStick::copyAssignments(JoyControlStick *destStick)
+{
+    destStick->reset();
+    destStick->deadZone = deadZone;
+    destStick->maxZone = maxZone;
+    destStick->diagonalRange = diagonalRange;
+    destStick->currentDirection = currentDirection;
+    destStick->currentMode = currentMode;
+    destStick->stickName = stickName;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(destStick->buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *destButton = iter.next().value();
+        if (destButton)
+        {
+            JoyControlStickButton *sourceButton = buttons.value(destButton->getDirection());
+            if (sourceButton)
+            {
+                sourceButton->copyAssignments(destButton);
+            }
+        }
+    }
+}

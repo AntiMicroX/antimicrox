@@ -17,6 +17,7 @@ public:
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     QString getDirectionName();
+    JoyStickDirectionsType::JoyStickDirections getDirection();
     virtual double getDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyControlStick *getStick();

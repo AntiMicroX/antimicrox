@@ -942,3 +942,24 @@ bool JoyDPad::isRelativeSpring()
 
     return relative;
 }
+
+void JoyDPad::copyAssignments(JoyDPad *destDPad)
+{
+    destDPad->activeDiagonalButton = activeDiagonalButton;
+    destDPad->prevDirection = prevDirection;
+    destDPad->currentMode = currentMode;
+
+    QHashIterator<int, JoyDPadButton*> iter(destDPad->buttons);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *destButton = iter.next().value();
+        if (destButton)
+        {
+            JoyDPadButton *sourceButton = buttons.value(destButton->getDirection());
+            if (sourceButton)
+            {
+                sourceButton->copyAssignments(destButton);
+            }
+        }
+    }
+}

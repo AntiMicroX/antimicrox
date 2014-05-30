@@ -876,6 +876,80 @@ QString SetJoystick::getName()
     return name;
 }
 
+void SetJoystick::copyAssignments(SetJoystick *destSet)
+{
+    for (int i=0; i < device->getNumberAxes(); i++)
+    {
+        JoyAxis *sourceAxis = axes.value(i);
+        JoyAxis *destAxis = destSet->axes.value(i);
+        if (sourceAxis && destAxis)
+        {
+            sourceAxis->copyAssignments(destAxis);
+        }
+    }
+
+    QHashIterator<int, JoyControlStick*> stickIter(sticks);
+    while (stickIter.hasNext())
+    {
+        stickIter.next();
+        int index = stickIter.key();
+        JoyControlStick *sourceStick = stickIter.value();
+        JoyControlStick *destStick = destSet->sticks.value(index);
+        if (sourceStick && destStick)
+        {
+            sourceStick->copyAssignments(destStick);
+        }
+    }
+
+    for (int i=0; i < device->getNumberHats(); i++)
+    {
+        JoyDPad *sourceDPad = hats.value(i);
+        JoyDPad *destDPad = destSet->hats.value(i);
+        if (sourceDPad && destDPad)
+        {
+            sourceDPad->copyAssignments(destDPad);
+        }
+    }
+
+    QHashIterator<int, VDPad*> vdpadIter(vdpads);
+    while (vdpadIter.hasNext())
+    {
+        vdpadIter.next();
+        int index = vdpadIter.key();
+        VDPad *sourceVDpad = vdpadIter.value();
+        VDPad *destVDPad = destSet->vdpads.value(index);
+        if (sourceVDpad && destVDPad)
+        {
+            sourceVDpad->copyAssignments(destVDPad);
+        }
+    }
+
+    for (int i=0; i < device->getNumberButtons(); i++)
+    {
+        JoyButton *sourceButton = buttons.value(i);
+        JoyButton *destButton = destSet->buttons.value(i);
+        if (sourceButton && destButton)
+        {
+            sourceButton->copyAssignments(destButton);
+        }
+    }
+}
+
+QString SetJoystick::getSetLabel()
+{
+    QString temp;
+    if (!name.isEmpty())
+    {
+        temp = tr("Set %1: %2").arg(index+1).arg(name);
+    }
+    else
+    {
+        temp = tr("Set %1").arg(index+1);
+    }
+
+    return temp;
+}
+
 void SetJoystick::establishPropertyUpdatedConnection()
 {
     connect(this, SIGNAL(propertyUpdated()), getInputDevice(), SLOT(profileEdited()));

@@ -909,3 +909,13 @@ bool JoyAxis::isRelativeSpring()
 
     return relative;
 }
+
+void JoyAxis::copyAssignments(JoyAxis *destAxis)
+{
+    destAxis->reset();
+    destAxis->deadZone = deadZone;
+    destAxis->maxZoneValue = maxZoneValue;
+    destAxis->axisName = axisName;
+    paxisbutton->copyAssignments(destAxis->paxisbutton);
+    naxisbutton->copyAssignments(destAxis->naxisbutton);
+}

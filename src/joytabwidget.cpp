@@ -275,10 +275,14 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     setsMenuButton = new QPushButton(tr("Sets"), this);
     QMenu *setMenu = new QMenu(setsMenuButton);
+    copySetMenu = new QMenu("Copy from Set", setMenu);
     QAction *setSettingsAction = new QAction(tr("Settings"), setMenu);
     connect(setSettingsAction, SIGNAL(triggered()), this, SLOT(showSetNamesDialog()));
     setMenu->addAction(setSettingsAction);
+    setMenu->addMenu(copySetMenu);
     setMenu->addSeparator();
+
+    refreshCopySetActions();
 
     setAction1 = new QAction(tr("Set 1"), setMenu);
     connect(setAction1, SIGNAL(triggered()), this, SLOT(changeSetOne()));
@@ -459,6 +463,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
+    connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshCopySetActions()));
     connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
     reconnectCheckUnsavedEvent();
@@ -524,6 +529,8 @@ void JoyTabWidget::fillButtons()
         SetJoystick *currentSet = joystick->getSetJoystick(i);
         fillSetButtons(currentSet);
     }
+
+    refreshCopySetActions();
 }
 
 void JoyTabWidget::showButtonDialog()
@@ -666,6 +673,7 @@ void JoyTabWidget::resetJoystick()
 
         fillButtons();
         refreshSetButtons();
+        refreshCopySetActions();
 
         QString tempProfileName;
         if (!joystick->getProfileName().isEmpty())
@@ -702,6 +710,7 @@ void JoyTabWidget::resetJoystick()
         joystick->reset();
         fillButtons();
         refreshSetButtons();
+        refreshCopySetActions();
     }
 
     configBox->setItemIcon(currentIndex, QIcon());
@@ -828,6 +837,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
         fillButtons();
         refreshSetButtons();
+        refreshCopySetActions();
         configBox->setItemText(0, tr("<New>"));
 
         if (reader.hasError() && this->window()->isEnabled())
@@ -862,6 +872,7 @@ void JoyTabWidget::changeJoyConfig(int index)
         joystick->reset();
         fillButtons();
         refreshSetButtons();
+        refreshCopySetActions();
         configBox->setItemText(0, tr("<New>"));
         oldProfileName = "";
         emit joystickRefreshRequested(joystick);
@@ -1234,6 +1245,7 @@ void JoyTabWidget::showSetNamesDialog()
 {
     SetNamesDialog *dialog = new SetNamesDialog(joystick, this);
     connect(dialog, SIGNAL(accepted()), this, SLOT(refreshSetButtons()));
+    connect(dialog, SIGNAL(accepted()), this, SLOT(refreshCopySetActions()));
     dialog->show();
 }
 
@@ -1416,6 +1428,7 @@ void JoyTabWidget::languageChange()
     setAction8->setText(tr("Set 8"));
 
     refreshSetButtons();
+    refreshCopySetActions();
 
     stickAssignPushButton->setText(tr("Stick/Pad Assign"));
     quickSetPushButton->setText(tr("Quick Set"));
@@ -2553,6 +2566,87 @@ void JoyTabWidget::deviceKeyRepeatSettings()
     joystick->setKeyRepeatRate(keyRepeatRate);
 }
 #endif
+
+void JoyTabWidget::refreshCopySetActions()
+{
+    copySetMenu->clear();
+
+    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    {
+        SetJoystick *tempSet = joystick->getSetJoystick(i);
+        QAction *newaction = 0;
+        if (!tempSet->getName().isEmpty())
+        {
+            QString tempName = tempSet->getName();
+            QString tempNameEscaped = tempName;
+            tempNameEscaped.replace("&", "&&");
+            newaction = new QAction(tr("Set %1: %2").arg(i+1).arg(tempNameEscaped), copySetMenu);
+        }
+        else
+        {
+            newaction = new QAction(tr("Set %1").arg(i+1), copySetMenu);
+        }
+
+        newaction->setData(i);
+        connect(newaction, SIGNAL(triggered()), this, SLOT(performSetCopy()));
+        copySetMenu->addAction(newaction);
+    }
+
+    connect(copySetMenu, SIGNAL(aboutToShow()), this, SLOT(disableCopyCurrentSet()));
+}
+
+void JoyTabWidget::performSetCopy()
+{
+    QAction *action = static_cast<QAction*>(sender());
+    int sourceSetIndex = action->data().toInt();
+    SetJoystick *sourceSet = joystick->getSetJoystick(sourceSetIndex);
+    QString sourceName;
+    if (!sourceSet->getName().isEmpty())
+    {
+        QString tempNameEscaped = sourceSet->getName();
+        tempNameEscaped.replace("&", "&&");
+        sourceName = tr("Set %1: %2").arg(sourceSetIndex+1).arg(tempNameEscaped);
+    }
+    else
+    {
+        sourceName = tr("Set %1").arg(sourceSetIndex+1);
+    }
+
+    SetJoystick *destSet = joystick->getActiveSetJoystick();
+    if (sourceSet && destSet)
+    {
+        QMessageBox msgBox;
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setWindowTitle(tr("Copy Set Assignments"));
+        msgBox.setText(tr("Are you sure you want to copy the assignments and device properties from %1?").arg(sourceName));
+        int status = msgBox.exec();
+        if (status == QMessageBox::Yes)
+        {
+            sourceSet->copyAssignments(destSet);
+            fillSetButtons(destSet);
+        }
+    }
+}
+
+void JoyTabWidget::disableCopyCurrentSet()
+{
+    SetJoystick *activeSet = joystick->getActiveSetJoystick();
+    QMenu *menu = static_cast<QMenu*>(sender());
+    QList<QAction*> actions = menu->actions();
+    QListIterator<QAction*> iter(actions);
+    while (iter.hasNext())
+    {
+        QAction *action = iter.next();
+        if (action->data().toInt() == activeSet->getIndex())
+        {
+            action->setEnabled(false);
+        }
+        else
+        {
+            action->setEnabled(true);
+        }
+    }
+}
 
 #ifdef USE_SDL_2
 void JoyTabWidget::openGameControllerMappingWindow()

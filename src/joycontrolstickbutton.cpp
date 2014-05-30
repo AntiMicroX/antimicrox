@@ -137,3 +137,8 @@ JoyControlStick* JoyControlStickButton::getStick()
 {
     return stick;
 }
+
+JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
+{
+    return (JoyStickDirectionsType::JoyStickDirections)index;
+}
