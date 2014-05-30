@@ -1,3 +1,19 @@
+2014-05-30 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.4
+
+* Relative spring mode added.
+
+* Key repeating changes in Windows.
+
+* Updated Windows version to use Qt 5.3.0.
+
+* Set copying added.
+
+* Corrected application checks used for Auto Profile support
+in Windows.
+
+
 2014-05-23 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.3.3

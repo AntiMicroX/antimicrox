@@ -175,7 +175,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
    </property>
    <widget class="QMenu" name="menuQuit">
     <property name="title">
-     <string>&amp;File</string>
+     <string>&amp;App</string>
     </property>
     <addaction name="actionHide"/>
     <addaction name="actionQuit"/>

@@ -15,10 +15,11 @@ endif(WIN32)
 
 # The version number.
 set(ANTIMICRO_MAJOR_VERSION 2)
-set(ANTIMICRO_MINOR_VERSION 3)
-set(ANTIMICRO_PATCH_VERSION 3)
+set(ANTIMICRO_MINOR_VERSION 4)
+set(ANTIMICRO_PATCH_VERSION 0)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1" ON)
+option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source" OFF)
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
