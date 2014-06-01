@@ -5,9 +5,9 @@
   <description>antimicro</description>
   <dependency />
   <!-- Identify the application security requirements. -->
-  <trustInfo >
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
 	<security>
-	  <requestedPrivileges>
+          <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
 		<requestedExecutionLevel
 		  level="asInvoker"
 		  uiAccess="false"/>
