@@ -505,8 +505,8 @@ void SetJoystick::addControlStick(int index, JoyControlStick *stick)
         JoyControlStickButton *button = iter.next().value();
         if (button)
         {
-            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetStickButtonClick(int)));
-            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetStickButtonRelease(int)));
+            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetStickButtonClick(int)), Qt::QueuedConnection);
+            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetStickButtonRelease(int)), Qt::QueuedConnection);
             connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetStickButtonNameChange()));
         }
     }
@@ -534,8 +534,8 @@ void SetJoystick::addVDPad(int index, VDPad *vdpad)
         JoyDPadButton *button = iter.next().value();
         if (button)
         {
-            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
-            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
+            connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)), Qt::QueuedConnection);
+            connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)), Qt::QueuedConnection);
             connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetVDPadButtonNameChange()));
         }
     }
@@ -802,8 +802,8 @@ void SetJoystick::enableButtonConnections(JoyButton *button)
 {
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
     connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
-    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)));
-    connect(button, SIGNAL(clicked(int)), device, SLOT(buttonClickEvent(int)));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetButtonClick(int)), Qt::QueuedConnection);
+    connect(button, SIGNAL(clicked(int)), device, SLOT(buttonClickEvent(int)), Qt::QueuedConnection);
     connect(button, SIGNAL(released(int)), this, SLOT(propogateSetButtonRelease(int)));
     connect(button, SIGNAL(released(int)), device, SLOT(buttonReleaseEvent(int)));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
@@ -818,15 +818,15 @@ void SetJoystick::enableAxisConnections(JoyAxis *axis)
     JoyAxisButton *button = axis->getNAxisButton();
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
     connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
-    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
-    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)), Qt::QueuedConnection);
+    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)), Qt::QueuedConnection);
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
 
     button = axis->getPAxisButton();
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
     connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetAxisButtonAssociation(int,int,int,int)));
-    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)));
-    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetAxisButtonClick(int)), Qt::QueuedConnection);
+    connect(button, SIGNAL(released(int)), this, SLOT(propogateSetAxisButtonRelease(int)), Qt::QueuedConnection);
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
 }
 
@@ -842,10 +842,10 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
         connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
         connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetDPadButtonAssociation(int,int,int,int)));
 
-        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)));
-        connect(button, SIGNAL(clicked(int)), device, SLOT(dpadButtonClickEvent(int)));
-        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)));
-        connect(button, SIGNAL(released(int)), device, SLOT(dpadButtonReleaseEvent(int)));
+        connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)), Qt::QueuedConnection);
+        connect(button, SIGNAL(clicked(int)), device, SLOT(dpadButtonClickEvent(int)), Qt::QueuedConnection);
+        connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)), Qt::QueuedConnection);
+        connect(button, SIGNAL(released(int)), device, SLOT(dpadButtonReleaseEvent(int)), Qt::QueuedConnection);
         connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
     }
 }

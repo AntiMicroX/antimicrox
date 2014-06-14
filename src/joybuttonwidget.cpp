@@ -7,8 +7,8 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
 
     refreshLabel();
 
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(refreshLabel()));
@@ -28,8 +28,8 @@ void JoyButtonWidget::disableFlashes()
 
 void JoyButtonWidget::enableFlashes()
 {
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }
 
 QString JoyButtonWidget::generateLabel()

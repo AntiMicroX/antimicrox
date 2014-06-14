@@ -47,8 +47,8 @@ void JoyControlStickButtonPushButton::enableFlashes()
 {
     if (button)
     {
-        connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-        connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+        connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
+        connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
     }
 }
 

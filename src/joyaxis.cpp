@@ -33,6 +33,7 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *pare
 
 JoyAxis::~JoyAxis()
 {
+    reset();
     delete paxisbutton;
     delete naxisbutton;
 }
