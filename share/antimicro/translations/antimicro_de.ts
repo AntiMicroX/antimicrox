@@ -3473,13 +3473,13 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="229"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="293"/>
         <source>Left</source>
-        <translation>Links</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="228"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="304"/>
         <source>Up</source>
-        <translation>Hoch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="75"/>
@@ -3990,13 +3990,13 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="230"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="345"/>
         <source>Down</source>
-        <translation>Runter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="231"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="361"/>
         <source>Right</source>
-        <translation>Rechts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="480"/>
