@@ -7,8 +7,8 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
 
     refreshLabel();
 
-    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
-    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
     connect(stick, SIGNAL(stickNameChanged()), this, SLOT(refreshLabel()));
 }
 
@@ -41,6 +41,6 @@ void JoyControlStickPushButton::disableFlashes()
 
 void JoyControlStickPushButton::enableFlashes()
 {
-    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
-    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }

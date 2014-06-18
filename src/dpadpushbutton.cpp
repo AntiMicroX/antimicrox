@@ -39,6 +39,6 @@ void DPadPushButton::disableFlashes()
 
 void DPadPushButton::enableFlashes()
 {
-    connect(dpad, SIGNAL(active(int)), this, SLOT(flash()));
-    connect(dpad, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(dpad, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(dpad, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }

@@ -10,8 +10,8 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 
-    connect(axis, SIGNAL(active(int)), this, SLOT(flash()));
-    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(axis, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
     connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
@@ -38,8 +38,8 @@ void JoyAxisWidget::disableFlashes()
 
 void JoyAxisWidget::enableFlashes()
 {
-    connect(axis, SIGNAL(active(int)), this, SLOT(flash()));
-    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(axis, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
+    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }
 
 QString JoyAxisWidget::generateLabel()
