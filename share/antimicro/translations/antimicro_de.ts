@@ -54,7 +54,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/aboutdialog.ui" line="172"/>
         <source>License</source>
-        <translation>Lizens</translation>
+        <translation>Lizenz</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="187"/>
@@ -508,8 +508,8 @@ Dies kann man nutzen für die Verlangsamung der Maus als Scharfschütze.</transl
         <location filename="../../../src/advancebuttondialog.ui" line="176"/>
         <source>Specify the time that keys past this slot should be
 held down.</source>
-        <translation type="unfinished">Specify the time that keys past this slot should be
-held down.</translation>
+        <translation>Geben Sie die Zeit an mit der die Tasten hinter 
+diesem Slot gehalten werden sollte.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="180"/>
