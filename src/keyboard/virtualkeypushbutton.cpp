@@ -86,6 +86,8 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
     return temp.toUpper();
 }
 
+// Define display strings that will be used for various keys on the
+// virtual keyboard.
 void VirtualKeyPushButton::populateKnownAliases()
 {
     if (knownAliases.isEmpty())
@@ -140,9 +142,15 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("colon", tr(":"));
         knownAliases.insert("Super_L", tr("Super (L)"));
         knownAliases.insert("Menu", tr("Menu"));
+        knownAliases.insert("Up", tr("Up"));
+        knownAliases.insert("Down", tr("Down"));
+        knownAliases.insert("Left", tr("Left"));
+        knownAliases.insert("Right", tr("Right"));
     }
 }
 
+// Dynamically change font size of push button text according to the
+// size of the widget.
 void VirtualKeyPushButton::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
