@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -54,7 +54,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/aboutdialog.ui" line="172"/>
         <source>License</source>
-        <translation>Lizens</translation>
+        <translation>Lizenz</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="187"/>
@@ -227,40 +227,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="14"/>
         <source>Auto Profile Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto Profil Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="26"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="41"/>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="65"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Durchsuchen</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="50"/>
         <source>Application:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anwendung:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="72"/>
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie das Fenster. Klicken Sie auf das entsprechende
+Anwendungs-Fenster und der Anwendungs-Dateipfad
+wird in das Formular eingetragen.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="77"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="86"/>
         <source>Devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geräte:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="102"/>
@@ -273,53 +275,53 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="107"/>
         <source>Set as Default for Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Setze als Standardcontroller</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="70"/>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="214"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein anderes Profil ist bereits als Standard für dieses Gerät ausgewählt.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="99"/>
         <source>Current (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuell (%1)</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="139"/>
         <source>Open Config</source>
-        <translation type="unfinished">Konfiguration öffnen</translation>
+        <translation>Konfiguration öffnen</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="155"/>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle Anwendung</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="205"/>
         <source>Please use the main default profile selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte benutzen Sie die Standard-Profilauswahl.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="314"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil-Dateipfad ist ungültig.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="320"/>
         <source>No profile selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Profil gewählt.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="330"/>
         <source>Program path is invalid or not executable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmpfad ist ungültig oder nicht ausführbar.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="336"/>
         <source>No program selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Programm gewählt.</translation>
     </message>
 </context>
 <context>
@@ -506,12 +508,13 @@ Dies kann man nutzen für die Verlangsamung der Maus als Scharfschütze.</transl
         <location filename="../../../src/advancebuttondialog.ui" line="176"/>
         <source>Specify the time that keys past this slot should be
 held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie die Zeit an mit der die Tasten hinter 
+diesem Slot gehalten werden sollte.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="180"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Druckzeit</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="263"/>
@@ -524,13 +527,13 @@ has passed.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="269"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzögerung</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="435"/>
         <location filename="../../../src/advancebuttondialog.ui" line="459"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="515"/>
@@ -545,12 +548,12 @@ has passed.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="638"/>
         <source>Auto Reset Cycle After</source>
-        <translation type="unfinished"></translation>
+        <translation>Zyklus automatisch neustarten nach</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="667"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="708"/>
@@ -718,27 +721,27 @@ has passed.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="808"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="920"/>
         <source>Select Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="935"/>
         <source>One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Einweg</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="938"/>
         <source>Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweiwege</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="941"/>
         <source>While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Solang wie gehalten</translation>
     </message>
 </context>
 <context>
@@ -1053,7 +1056,7 @@ oder Loslassen einer Achse interpretiert wird.</translation>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="429"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -1137,7 +1140,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="275"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -1249,7 +1252,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="244"/>
         <source>Launch program as a daemon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starte Programm als Dienst.</translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1355,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadeditdialog.cpp" line="339"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -1360,27 +1363,27 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.ui" line="14"/>
         <source>Default Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardprofil</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.ui" line="23"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil:</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.ui" line="38"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Durchsuchen</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.cpp" line="37"/>
         <source>Open Config</source>
-        <translation type="unfinished">Konfiguration öffnen</translation>
+        <translation>Konfiguration öffnen</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.cpp" line="67"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil-Dateipfad ist ungültig.</translation>
     </message>
 </context>
 <context>
@@ -1388,29 +1391,29 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="20"/>
         <source>Extra Profile Settings</source>
-        <translation type="unfinished">Weitere Profileinstellungen</translation>
+        <translation>Weitere Profileinstellungen</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="45"/>
         <source>Key Press Time:</source>
-        <translation type="unfinished">Tastendruckzeit:</translation>
+        <translation>Tastendruckzeit:</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="70"/>
         <source>0.00 ms</source>
-        <translation type="unfinished">0.00 ms</translation>
+        <translation>0.00 ms</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="84"/>
         <source>Profile Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilname:</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="15"/>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="20"/>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="41"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>s</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1421,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="24"/>
         <source>Game Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Gamecontroller</translation>
     </message>
 </context>
 <context>
@@ -1726,12 +1729,12 @@ Joysticks aktuallisiert werden.</translation>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="469"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Druckzeit</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="488"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzögerung</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="503"/>
@@ -1930,7 +1933,7 @@ Joysticks aktuallisiert werden.</translation>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="410"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2109,7 +2112,7 @@ Joysticks aktuallisiert werden.</translation>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="387"/>
         <source>Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllerzuweisung</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="394"/>
@@ -2162,19 +2165,19 @@ Joysticks aktuallisiert werden.</translation>
         <location filename="../../../src/joytabwidget.cpp" line="1458"/>
         <location filename="../../../src/joytabwidget.cpp" line="1503"/>
         <source>Save Profile Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Profiländerungen speichern?</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="1461"/>
         <location filename="../../../src/joytabwidget.cpp" line="1507"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen am neuen Profil wurden nicht gespeichert. Möchten Sie das aktuelle Profil speichern oder verwerfen?</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="1465"/>
         <location filename="../../../src/joytabwidget.cpp" line="1511"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen am neuen Profil %1 wurden nicht gespeichert. Möchten Sie das aktuelle Profil speichern oder verwerfen?</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="1754"/>
@@ -2191,29 +2194,30 @@ Joysticks aktuallisiert werden.</translation>
         <location filename="../../../src/joytabwidget.cpp" line="2394"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurden keine Tasten zugewiesen. Bitte verwenden Sie den Schnellkonfiguration um Tasten zuzuweisen
+oder deaktivieren Sie das Ausblenden leerer Tasten.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2583"/>
         <location filename="../../../src/joytabwidget.cpp" line="2608"/>
         <source>Set %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2587"/>
         <location filename="../../../src/joytabwidget.cpp" line="2612"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2620"/>
         <source>Copy Set Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiere Set-Zuweisungen</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2621"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie die Aufgaben-und Geräteeigenschaften von%1 kopieren möchten?</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="573"/>
@@ -2340,12 +2344,12 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="72"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="77"/>
         <source>AutoProfile</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoprofil</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="103"/>
@@ -2376,7 +2380,7 @@ clicked instead of quitting the program.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="171"/>
         <source>Close To Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen im Tray</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="178"/>
@@ -2386,7 +2390,7 @@ clicked instead of quitting the program.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="181"/>
         <source>Launch At Windows Startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Windows-Start starten</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="188"/>
@@ -2398,7 +2402,7 @@ to using sub-menus.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="193"/>
         <source>Single Profile List in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Einzelprofil-Menü im Tray</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="200"/>
@@ -2410,7 +2414,7 @@ tray if available.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="205"/>
         <source>Minimize to Taskbar</source>
-        <translation type="unfinished"></translation>
+        <translation>In die Taskleiste minimieren</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="212"/>
@@ -2423,7 +2427,7 @@ to bring up the edit dialog for gamepad buttons.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="218"/>
         <source>Hide Empty Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Verstecke leere Buttons</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="225"/>
@@ -2435,7 +2439,7 @@ previous session.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="230"/>
         <source>Auto Load Last Opened Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt geöffnetes Profil automatisch öffnen</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="240"/>
@@ -2446,12 +2450,12 @@ first launches.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="244"/>
         <source>Launch in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Starten im Tray</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="267"/>
         <source>Key Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastenanschlag</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="273"/>
@@ -2462,27 +2466,27 @@ option is enabled.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="277"/>
         <source>Enable Key Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastenanschlag aktivieren</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="286"/>
         <source>Delay:</source>
-        <translation type="unfinished">Verzögerung:</translation>
+        <translation>Verzögerung:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="324"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="347"/>
         <source>Rate:</source>
-        <translation type="unfinished">Rate:</translation>
+        <translation>Rate:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="379"/>
         <source> times/s</source>
-        <translation type="unfinished"></translation>
+        <translation> mal/s</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="420"/>
@@ -2522,69 +2526,69 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="496"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="501"/>
         <source>Brazilian Portuguese</source>
-        <translation type="unfinished"></translation>
+        <translation>Brasilianisches Portugiesisch</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="506"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>Englisch</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="511"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="525"/>
         <location filename="../../../src/mainsettingsdialog.ui" line="617"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiv</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="550"/>
         <source>Devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geräte:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="558"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="750"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="622"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerät</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="627"/>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="632"/>
         <source>Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Anwendung</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="637"/>
         <source>Default?</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard?</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="667"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="682"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Editieren</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.cpp" line="440"/>
@@ -2594,7 +2598,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mainsettingsdialog.cpp" line="1101"/>
         <source>Are you sure you want to delete the profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie das Profil löschen möchten?</translation>
     </message>
 </context>
 <context>
@@ -2614,12 +2618,12 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mainwindow.ui" line="178"/>
         <source>&amp;App</source>
-        <translation type="unfinished"></translation>
+        <translation>Anwendung</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="300"/>
         <source>Stick/Pad Assign</source>
-        <translation type="unfinished">Stick/Pad Zuweisung</translation>
+        <translation>Stick/Pad Zuweisung</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="185"/>
@@ -2707,7 +2711,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mainwindow.ui" line="295"/>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="207"/>
@@ -2740,7 +2744,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="237"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2753,7 +2757,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="196"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2766,7 +2770,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="261"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2779,7 +2783,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="258"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2835,7 +2839,7 @@ Zone zurück kehrt.</translation>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="88"/>
         <source>Enhanced Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbesserte Präzision</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="93"/>
@@ -2930,7 +2934,7 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="550"/>
         <source>Relative</source>
-        <translation type="unfinished"></translation>
+        <translation>Relativ</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="323"/>
@@ -3059,27 +3063,27 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/main.cpp" line="193"/>
         <source>Daemon launched</source>
-        <translation type="unfinished"></translation>
+        <translation>Dienst gestartet</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="201"/>
         <source>Failed to launch daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Dienst konnte nicht gestartet werden</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="212"/>
         <source>Launching daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Starte Dienst</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="231"/>
         <source>Failed to set a signature id for the daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Signatur-ID konnte für den Dienst nicht gesetzt werden</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="245"/>
         <source>Failed to change working directory to /</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeitsverzeichnis konnte nicht gesetzt werden zu /</translation>
     </message>
 </context>
 <context>
@@ -3122,12 +3126,12 @@ Möchten Sie die Änderungen an alle Sets übertragen?</translation>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="943"/>
         <source>Set %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="947"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -3214,42 +3218,42 @@ Möchten Sie die Änderungen an alle Sets übertragen?</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="93"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>Leertaste</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="94"/>
         <source>Tab</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="95"/>
         <source>Shift (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>Umschalt (L)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="96"/>
         <source>Shift (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>Umschalt (R)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="97"/>
         <source>Ctrl (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>Strg (L)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="98"/>
         <source>Ctrl (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>Strg (R)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="99"/>
         <source>Alt (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt (L)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="100"/>
         <source>Alt (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt (R)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="101"/>
@@ -3290,7 +3294,7 @@ Möchten Sie die Änderungen an alle Sets übertragen?</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="108"/>
         <source>Caps</source>
-        <translation type="unfinished"></translation>
+        <translation>Feststelltaste</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="109"/>
@@ -3327,32 +3331,32 @@ Möchten Sie die Änderungen an alle Sets übertragen?</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="115"/>
         <source>PRTSC</source>
-        <translation type="unfinished"></translation>
+        <translation>Drucken</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="116"/>
         <source>SCLK</source>
-        <translation type="unfinished"></translation>
+        <translation>Rollen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="117"/>
         <source>INS</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfg</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="118"/>
         <source>PGUP</source>
-        <translation type="unfinished"></translation>
+        <translation>Bild rauf</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="119"/>
         <source>DEL</source>
-        <translation type="unfinished"></translation>
+        <translation>Entf</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="120"/>
         <source>PGDN</source>
-        <translation type="unfinished"></translation>
+        <translation>Bild runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="121"/>
@@ -3448,7 +3452,7 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="142"/>
         <source>Menu</source>
-        <translation type="unfinished">Menü</translation>
+        <translation>Menü</translation>
     </message>
 </context>
 <context>
@@ -3457,25 +3461,25 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="24"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="46"/>
         <source>Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatur</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="25"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="47"/>
         <source>Mouse</source>
-        <translation type="unfinished">Maus</translation>
+        <translation>Maus</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="229"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="293"/>
         <source>Left</source>
-        <translation type="unfinished">Links</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="228"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="304"/>
         <source>Up</source>
-        <translation type="unfinished">Hoch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="75"/>
@@ -3980,19 +3984,19 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="397"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Mauseinstellungen</translation>
+        <translation>Mauseinstellungen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="230"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="345"/>
         <source>Down</source>
-        <translation type="unfinished">Runter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="231"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="361"/>
         <source>Right</source>
-        <translation type="unfinished">Rechts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="480"/>
@@ -4042,7 +4046,7 @@ R</source>
     <message>
         <location filename="../../../src/wininfo.cpp" line="39"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[KEINE TASTE]</translation>
+        <translation>[KEINE TASTE]</translation>
     </message>
 </context>
 <context>
@@ -4055,17 +4059,17 @@ R</source>
     <message>
         <location filename="../../../src/x11info.cpp" line="67"/>
         <source>Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulator</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="68"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>Leertaste</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="69"/>
         <source>DEL</source>
-        <translation type="unfinished"></translation>
+        <translation>Entf</translation>
     </message>
     <message>
         <location filename="../../../src/x11info.cpp" line="70"/>
@@ -4080,7 +4084,7 @@ R</source>
     <message>
         <location filename="../../../src/x11info.cpp" line="72"/>
         <source>Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Rücktaste</translation>
     </message>
 </context>
 <context>
