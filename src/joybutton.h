@@ -261,6 +261,7 @@ protected:
     static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QTimer springDelayTimer;
     static QHash<unsigned int, int> activeKeys;
+    static QHash<unsigned int, int> activeMouseButtons;
     static JoyButtonSlot *lastActiveKey;
 
 signals:

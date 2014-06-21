@@ -17,6 +17,7 @@ const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
 const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
 QHash<unsigned int, int> JoyButton::activeKeys;
+QHash<unsigned int, int> JoyButton::activeMouseButtons;
 JoyButtonSlot* JoyButton::lastActiveKey = 0;
 
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
@@ -110,6 +111,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         {
             if (pressed)
             {
+                //qDebug() << "PRESS STARTED: " << QTime::currentTime().toString("hh:mm:ss.zzz");
                 emit clicked(index);
             }
             else
@@ -592,6 +594,7 @@ void JoyButton::activateSlots()
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
                 sendevent(slot, true);
+                //qDebug() << "PRESS FINISHED: " << QTime::currentTime().toString("hh:mm:ss.zzz");
                 activeSlots.append(slot);
                 int oldvalue = activeKeys.value(tempcode, 0) + 1;
                 activeKeys.insert(tempcode, oldvalue);
@@ -624,6 +627,8 @@ void JoyButton::activateSlots()
                 {
                     sendevent(slot, true);
                     activeSlots.append(slot);
+                    int oldvalue = activeMouseButtons.value(tempcode, 0) + 1;
+                    activeMouseButtons.insert(tempcode, oldvalue);
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
@@ -2734,7 +2739,16 @@ void JoyButton::releaseActiveSlots()
                     tempcode != JoyButtonSlot::MouseWheelLeft &&
                     tempcode != JoyButtonSlot::MouseWheelRight)
                 {
-                    sendevent(slot, false);
+                    int referenceount = activeMouseButtons.value(tempcode, 1) - 1;
+                    if (referenceount <= 0)
+                    {
+                        sendevent(slot, false);
+                        activeMouseButtons.remove(tempcode);
+                    }
+                    else
+                    {
+                        activeMouseButtons.insert(tempcode, referenceount);
+                    }
                 }
                 else if (tempcode == JoyButtonSlot::MouseWheelUp ||
                          tempcode == JoyButtonSlot::MouseWheelDown)

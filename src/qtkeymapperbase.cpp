@@ -24,19 +24,21 @@ unsigned int QtKeyMapperBase::returnVirtualKey(unsigned int qkey)
 bool QtKeyMapperBase::isModifier(unsigned int qkey)
 {
     bool modifier = false;
-    if ((qkey & 0x0FFFFFFF) == Qt::Key_Shift)
+    unsigned int qtKeyValue = qkey & 0x0FFFFFFF;
+
+    if (qtKeyValue == Qt::Key_Shift)
     {
         modifier = true;
     }
-    else if ((qkey & 0x0FFFFFFF) == Qt::Key_Control)
+    else if (qtKeyValue == Qt::Key_Control)
     {
         modifier = true;
     }
-    else if ((qkey & 0x0FFFFFFF) == Qt::Key_Alt)
+    else if (qtKeyValue == Qt::Key_Alt)
     {
         modifier = true;
     }
-    else if ((qkey & 0x0FFFFFFF) == Qt::Key_Meta)
+    else if (qtKeyValue == Qt::Key_Meta)
     {
         modifier = true;
     }
