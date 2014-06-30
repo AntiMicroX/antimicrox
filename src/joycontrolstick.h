@@ -101,6 +101,13 @@ public:
 
     static const double PI;
 
+    // Define default values for stick properties.
+    static const int DEFAULTDEADZONE;
+    static const int DEFAULTMAXZONE;
+    static const int DEFAULTDIAGONALRANGE;
+    static const JoyMode DEFAULTMODE;
+
+
 protected:
     virtual void populateButtons();
     void createDeskEvent(bool ignoresets = false);

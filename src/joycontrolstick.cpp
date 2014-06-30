@@ -6,7 +6,14 @@
 #include "joycontrolstick.h"
 #include "inputdevice.h"
 
+// Define Pi here.
 const double JoyControlStick::PI = acos(-1.0);
+
+// Set default values used for stick properties.
+const int JoyControlStick::DEFAULTDEADZONE = 8000;
+const int JoyControlStick::DEFAULTMAXZONE = JoyAxis::AXISMAXZONE;
+const int JoyControlStick::DEFAULTDIAGONALRANGE = 45;
+const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset, QObject *parent) :
     QObject(parent)
@@ -670,11 +677,23 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
     {
         xml->writeStartElement("stick");
         xml->writeAttribute("index", QString::number(index+1));
-        xml->writeTextElement("deadZone", QString::number(deadZone));
-        xml->writeTextElement("maxZone", QString::number(maxZone));
+
+        if (deadZone != DEFAULTDEADZONE)
+        {
+            xml->writeTextElement("deadZone", QString::number(deadZone));
+        }
+
+        if (maxZone != DEFAULTMAXZONE)
+        {
+            xml->writeTextElement("maxZone", QString::number(maxZone));
+        }
+
         if (currentMode == StandardMode || currentMode == EightWayMode)
         {
-            xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
+            if (diagonalRange != DEFAULTDIAGONALRANGE)
+            {
+                xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
+            }
         }
 
         if (currentMode == EightWayMode)
@@ -1019,10 +1038,10 @@ void JoyControlStick::releaseButtonEvents()
 bool JoyControlStick::isDefault()
 {
     bool value = true;
-    value = value && (deadZone == 8000);
-    value = value && (maxZone == JoyAxis::AXISMAXZONE);
-    value = value && (diagonalRange == 45);
-    value = value && (currentMode == StandardMode);
+    value = value && (deadZone == DEFAULTDEADZONE);
+    value = value && (maxZone == DEFAULTMAXZONE);
+    value = value && (diagonalRange == DEFAULTDIAGONALRANGE);
+    value = value && (currentMode == DEFAULTMODE);
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
     {

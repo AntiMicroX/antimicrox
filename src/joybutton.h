@@ -130,12 +130,31 @@ public:
     void copyAssignments(JoyButton *destButton);
 
     static const QString xmlName;
+
+    // Define default values for many properties.
     static const int ENABLEDTURBODEFAULT;
     static const double SMOOTHINGFACTOR;
     static const double DEFAULTMOUSESPEEDMOD;
     static const unsigned int DEFAULTKEYREPEATDELAY;
     static const unsigned int DEFAULTKEYREPEATRATE;
     static const JoyMouseCurve DEFAULTMOUSECURVE;
+    static const bool DEFAULTTOGGLE;
+    static const int DEFAULTTURBOINTERVAL;
+    static const bool DEFAULTUSETURBO;
+    static const int DEFAULTMOUSESPEEDX;
+    static const int DEFAULTMOUSESPEEDY;
+    static const int DEFAULTSETSELECTION;
+    static const SetChangeCondition DEFAULTSETCONDITION;
+    static const JoyMouseMovementMode DEFAULTMOUSEMODE;
+    static const int DEFAULTSPRINGWIDTH;
+    static const int DEFAULTSPRINGHEIGHT;
+    static const double DEFAULTSENSITIVITY;
+    static const bool DEFAULTSMOOTHING;
+    static const int DEFAULTWHEELX;
+    static const int DEFAULTWHEELY;
+    static const bool DEFAULTCYCLERESETACTIVE;
+    static const int DEFAULTCYCLERESET;
+    static const bool DEFAULTRELATIVESPRING;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);

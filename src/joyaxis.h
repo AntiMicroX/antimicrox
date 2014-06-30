@@ -106,6 +106,7 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyAxis *destAxis);
 
+    // Define default values for many properties.
     static const int AXISMIN;
     static const int AXISMAX;
     static const int AXISDEADZONE;

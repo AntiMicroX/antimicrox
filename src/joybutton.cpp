@@ -9,6 +9,8 @@
 #include "event.h"
 
 const QString JoyButton::xmlName = "button";
+
+// Set default values for many properties.
 const int JoyButton::ENABLEDTURBODEFAULT = 100;
 const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
@@ -16,15 +18,39 @@ double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
 const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
 const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
+const bool JoyButton::DEFAULTTOGGLE = false;
+const int JoyButton::DEFAULTTURBOINTERVAL = 0;
+const bool JoyButton::DEFAULTUSETURBO = false;
+const int JoyButton::DEFAULTMOUSESPEEDX = 50;
+const int JoyButton::DEFAULTMOUSESPEEDY = 50;
+const int JoyButton::DEFAULTSETSELECTION = -1;
+const JoyButton::SetChangeCondition JoyButton::DEFAULTSETCONDITION = JoyButton::SetChangeDisabled;
+const JoyButton::JoyMouseMovementMode JoyButton::DEFAULTMOUSEMODE = JoyButton::MouseCursor;
+const int JoyButton::DEFAULTSPRINGWIDTH = 0;
+const int JoyButton::DEFAULTSPRINGHEIGHT = 0;
+const double JoyButton::DEFAULTSENSITIVITY = 1.0;
+const bool JoyButton::DEFAULTSMOOTHING = false;
+const int JoyButton::DEFAULTWHEELX = 20;
+const int JoyButton::DEFAULTWHEELY = 20;
+const bool JoyButton::DEFAULTCYCLERESETACTIVE = false;
+const int JoyButton::DEFAULTCYCLERESET = 0;
+const bool JoyButton::DEFAULTRELATIVESPRING = false;
+
+
+// Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
 QHash<unsigned int, int> JoyButton::activeMouseButtons;
 JoyButtonSlot* JoyButton::lastActiveKey = 0;
 
+// Keep track of active Mouse Speed Mod slots.
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
+
+// Timer and lists used for cursor mode calculations.
 QTimer JoyButton::cursorDelayTimer;
 QList<JoyButton::mouseCursorInfo> JoyButton::cursorXSpeeds;
 QList<JoyButton::mouseCursorInfo> JoyButton::cursorYSpeeds;
 
+// Timer and lists used for spring mode calculations.
 QTimer JoyButton::springDelayTimer;
 QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
@@ -1192,52 +1218,89 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         xml->writeStartElement(getXmlName());
         xml->writeAttribute("index", QString::number(getRealJoyNumber()));
 
-        xml->writeTextElement("toggle", toggle ? "true" : "false");
-        xml->writeTextElement("turbointerval", QString::number(turboInterval));
-        xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
-        xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
-        xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
-
-        if (mouseMode == MouseCursor)
+        if (toggle != DEFAULTTOGGLE)
         {
-            xml->writeTextElement("mousemode", "cursor");
-        }
-        else if (mouseMode == MouseSpring)
-        {
-            xml->writeTextElement("mousemode", "spring");
-            xml->writeTextElement("mousespringwidth", QString::number(springWidth));
-            xml->writeTextElement("mousespringheight", QString::number(springHeight));
+            xml->writeTextElement("toggle", toggle ? "true" : "false");
         }
 
-        if (mouseCurve == LinearCurve)
+        if (turboInterval != DEFAULTTURBOINTERVAL)
         {
-            xml->writeTextElement("mouseacceleration", "linear");
-        }
-        else if (mouseCurve == QuadraticCurve)
-        {
-            xml->writeTextElement("mouseacceleration", "quadratic");
-        }
-        else if (mouseCurve == CubicCurve)
-        {
-            xml->writeTextElement("mouseacceleration", "cubic");
-        }
-        else if (mouseCurve == QuadraticExtremeCurve)
-        {
-            xml->writeTextElement("mouseacceleration", "quadratic-extreme");
-        }
-        else if (mouseCurve == PowerCurve)
-        {
-            xml->writeTextElement("mouseacceleration", "power");
-            xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
-        }
-        else if (mouseCurve == EnhancedPrecisionCurve)
-        {
-            xml->writeTextElement("mouseacceleration", "precision");
+            xml->writeTextElement("turbointerval", QString::number(turboInterval));
         }
 
-        xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
-        xml->writeTextElement("wheelspeedx", QString::number(wheelSpeedX));
-        xml->writeTextElement("wheelspeedy", QString::number(wheelSpeedY));
+        if (useTurbo != DEFAULTUSETURBO)
+        {
+            xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
+        }
+
+        if (mouseSpeedX != DEFAULTMOUSESPEEDX)
+        {
+            xml->writeTextElement("mousespeedx", QString::number(mouseSpeedX));
+        }
+
+        if (mouseSpeedY != DEFAULTMOUSESPEEDY)
+        {
+            xml->writeTextElement("mousespeedy", QString::number(mouseSpeedY));
+        }
+
+
+        if (mouseMode != DEFAULTMOUSEMODE)
+        {
+            if (mouseMode == MouseCursor)
+            {
+                xml->writeTextElement("mousemode", "cursor");
+            }
+            else if (mouseMode == MouseSpring)
+            {
+                xml->writeTextElement("mousemode", "spring");
+                xml->writeTextElement("mousespringwidth", QString::number(springWidth));
+                xml->writeTextElement("mousespringheight", QString::number(springHeight));
+            }
+        }
+
+        if (mouseCurve != DEFAULTMOUSECURVE)
+        {
+            if (mouseCurve == LinearCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "linear");
+            }
+            else if (mouseCurve == QuadraticCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "quadratic");
+            }
+            else if (mouseCurve == CubicCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "cubic");
+            }
+            else if (mouseCurve == QuadraticExtremeCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "quadratic-extreme");
+            }
+            else if (mouseCurve == PowerCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "power");
+                xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
+            }
+            else if (mouseCurve == EnhancedPrecisionCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "precision");
+            }
+        }
+
+        if (smoothing != DEFAULTSMOOTHING)
+        {
+            xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
+        }
+
+        if (wheelSpeedX != DEFAULTWHEELX)
+        {
+            xml->writeTextElement("wheelspeedx", QString::number(wheelSpeedX));
+        }
+
+        if (wheelSpeedY != DEFAULTWHEELY)
+        {
+            xml->writeTextElement("wheelspeedy", QString::number(wheelSpeedY));
+        }
 
         if (setSelectionCondition != SetChangeDisabled)
         {
@@ -1279,14 +1342,19 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("relativespring", "true");
         }
 
-        xml->writeStartElement("slots");
-        QListIterator<JoyButtonSlot*> iter(assignments);
-        while (iter.hasNext())
+        // Write information about assigned slots.
+        if (!assignments.isEmpty())
         {
-            JoyButtonSlot *buttonslot = iter.next();
-            buttonslot->writeConfig(xml);
+            xml->writeStartElement("slots");
+            QListIterator<JoyButtonSlot*> iter(assignments);
+            while (iter.hasNext())
+            {
+                JoyButtonSlot *buttonslot = iter.next();
+                buttonslot->writeConfig(xml);
+            }
+            xml->writeEndElement();
         }
-        xml->writeEndElement();
+
 
         xml->writeEndElement();
     }
@@ -3050,27 +3118,27 @@ void JoyButton::removeVDPad()
 bool JoyButton::isDefault()
 {
     bool value = true;
-    value = value && (toggle == false);
-    value = value && (turboInterval == 0);
-    value = value && (useTurbo == false);
-    value = value && (mouseSpeedX == 50);
-    value = value && (mouseSpeedY == 50);
-    value = value && (setSelection == -1);
-    value = value && (setSelectionCondition == SetChangeDisabled);
+    value = value && (toggle == DEFAULTTOGGLE);
+    value = value && (turboInterval == DEFAULTTURBOINTERVAL);
+    value = value && (useTurbo == DEFAULTUSETURBO);
+    value = value && (mouseSpeedX == DEFAULTMOUSESPEEDX);
+    value = value && (mouseSpeedY == DEFAULTMOUSESPEEDY);
+    value = value && (setSelection == DEFAULTSETSELECTION);
+    value = value && (setSelectionCondition == DEFAULTSETCONDITION);
     value = value && (assignments.isEmpty());
-    value = value && (mouseMode == MouseCursor);
+    value = value && (mouseMode == DEFAULTMOUSEMODE);
     value = value && (mouseCurve == DEFAULTMOUSECURVE);
-    value = value && (springWidth == 0);
-    value = value && (springHeight == 0);
-    value = value && (sensitivity == 1.0);
-    value = value && (smoothing == false);
+    value = value && (springWidth == DEFAULTSPRINGWIDTH);
+    value = value && (springHeight == DEFAULTSPRINGHEIGHT);
+    value = value && (sensitivity == DEFAULTSENSITIVITY);
+    value = value && (smoothing == DEFAULTSMOOTHING);
     value = value && (actionName.isEmpty());
     //value = value && (buttonName.isEmpty());
-    value = value && (wheelSpeedX == 20);
-    value = value && (wheelSpeedY == 20);
-    value = value && (cycleResetActive == false);
-    value = value && (cycleResetInterval == 0);
-    value = value && (relativeSpring == false);
+    value = value && (wheelSpeedX == DEFAULTWHEELX);
+    value = value && (wheelSpeedY == DEFAULTWHEELY);
+    value = value && (cycleResetActive == DEFAULTCYCLERESETACTIVE);
+    value = value && (cycleResetInterval == DEFAULTCYCLERESET);
+    value = value && (relativeSpring == DEFAULTRELATIVESPRING);
     return value;
 }
 

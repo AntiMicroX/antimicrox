@@ -6,6 +6,7 @@
 #include "inputdevice.h"
 #include "event.h"
 
+// Set default values for many properties.
 const int JoyAxis::AXISMIN = -32767;
 const int JoyAxis::AXISMAX = 32767;
 const int JoyAxis::AXISDEADZONE = 6000;
@@ -325,33 +326,43 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
         xml->writeStartElement(getXmlName());
         xml->writeAttribute("index", QString::number(index+1));
 
-        xml->writeTextElement("deadZone", QString::number(deadZone));
-        xml->writeTextElement("maxZone", QString::number(maxZoneValue));
-
-        xml->writeStartElement("throttle");
-
-        if (throttle == JoyAxis::NegativeHalfThrottle)
+        if (deadZone != AXISDEADZONE)
         {
-            xml->writeCharacters("negativehalf");
-        }
-        else if (throttle == JoyAxis::NegativeThrottle)
-        {
-            xml->writeCharacters("negative");
-        }
-        else if (throttle == JoyAxis::NormalThrottle)
-        {
-            xml->writeCharacters("normal");
-        }
-        else if (throttle == JoyAxis::PositiveThrottle)
-        {
-            xml->writeCharacters("positive");
-        }
-        else if (throttle == JoyAxis::PositiveHalfThrottle)
-        {
-            xml->writeCharacters("positivehalf");
+            xml->writeTextElement("deadZone", QString::number(deadZone));
         }
 
-        xml->writeEndElement();
+        if (maxZoneValue != AXISMAXZONE)
+        {
+            xml->writeTextElement("maxZone", QString::number(maxZoneValue));
+        }
+
+        if (throttle != DEFAULTTHROTTLE)
+        {
+            xml->writeStartElement("throttle");
+
+            if (throttle == JoyAxis::NegativeHalfThrottle)
+            {
+                xml->writeCharacters("negativehalf");
+            }
+            else if (throttle == JoyAxis::NegativeThrottle)
+            {
+                xml->writeCharacters("negative");
+            }
+            else if (throttle == JoyAxis::NormalThrottle)
+            {
+                xml->writeCharacters("normal");
+            }
+            else if (throttle == JoyAxis::PositiveThrottle)
+            {
+                xml->writeCharacters("positive");
+            }
+            else if (throttle == JoyAxis::PositiveHalfThrottle)
+            {
+                xml->writeCharacters("positivehalf");
+            }
+
+            xml->writeEndElement();
+        }
 
         naxisbutton->writeConfig(xml);
         paxisbutton->writeConfig(xml);
