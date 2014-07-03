@@ -47,11 +47,12 @@ private slots:
     void saveAutoProfileInformation();
     void checkForReservedGUIDs(int index);
     void checkForDefaultStatus(QString text);
-#if defined(Q_OS_UNIX)
-    void selectWindowWithCursor();
-#elif defined(Q_OS_WIN)
+
+#ifdef Q_OS_WIN
     void openWinAppProfileDialog();
     void captureWindowsApplicationPath();
+#else
+    void selectWindowWithCursor();
 #endif
 };
 
