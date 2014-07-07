@@ -2375,7 +2375,7 @@ oder deaktivieren Sie das Ausblenden leerer Tasten.</translation>
         <location filename="../../../src/mainsettingsdialog.ui" line="167"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
-        <translation type="Verstecke Hauptfenster anstatt es zu schließen, wenn die "Schließen"-Schaltfläche gedrückt wurde."></translation>
+        <translation>Verstecke Hauptfenster anstatt es zu schließen, wenn die "Schließen"-Schaltfläche gedrückt wurde.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="171"/>
