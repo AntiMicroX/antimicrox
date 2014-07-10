@@ -203,12 +203,39 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 encounteredError = true;
             }
         }
+
 #ifdef Q_OS_UNIX
         else if (daemonRegexp.exactMatch(temp))
         {
             daemonMode = true;
         }
 #endif
+        // Check if this is the last argument. If it is and no command line flag
+        // is active, the final argument is likely a profile that has
+        // been specified.
+        else if (!temp.isEmpty() && !iter.hasNext())
+        {
+            // If the file exists and it is an xml file, assume that it is a
+            // profile.
+            QFileInfo fileInfo(temp);
+            if (fileInfo.exists())
+            {
+                if (fileInfo.suffix() != "xml")
+                {
+                    errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
+                    encounteredError = true;
+                }
+                else
+                {
+                    profileLocation = fileInfo.absoluteFilePath();
+                }
+            }
+            else
+            {
+                errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
+                encounteredError = true;
+            }
+        }
     }
 }
 
@@ -221,7 +248,7 @@ void CommandLineUtility::printHelp()
 {
     QTextStream out(stdout);
     out << tr("AntiMicro version") << " " << PadderCommon::programVersion << endl;
-    out << tr("Usage: antimicro [options]") << endl;
+    out << tr("Usage: antimicro [options] [profile]") << endl;
     out << endl;
     out << tr("Options") << ":" << endl;
     out << "-h, --help                    " << " " << tr("Print help text.") << endl;

@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
 
     CommandLineUtility cmdutility;
     QStringList cmdarguments = PadderCommon::arguments(argc, argv);
+    cmdarguments.removeFirst();
     cmdutility.parseArguments(cmdarguments);
 
     if (cmdutility.hasError())
