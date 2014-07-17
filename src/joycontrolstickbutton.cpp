@@ -94,10 +94,23 @@ QString JoyControlStickButton::getXmlName()
     return this->xmlName;
 }
 
+/**
+ * @brief Get the distance that an element is away from its assigned
+ *     dead zone
+ * @return Normalized distance away from dead zone
+ */
 double JoyControlStickButton::getDistanceFromDeadZone()
 {
-    return stick->calculateDirectionalDistance(this);
-    //return stick->getNormalizedAbsoluteDistance();
+    return stick->calculateDirectionalDistance();
+}
+
+/**
+ * @brief Get the distance factor that should be used for mouse movement
+ * @return Distance factor that should be used for mouse movement
+ */
+double JoyControlStickButton::getMouseDistanceFromDeadZone()
+{
+    return stick->calculateMouseDirectionalDistance(this);
 }
 
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)

@@ -16,6 +16,7 @@ public:
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
+    virtual double getMouseDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyAxis* getAxis();
     virtual void setVDPad(VDPad *vdpad);

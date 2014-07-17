@@ -749,10 +749,15 @@ double JoyControlStick::calculateNormalizedAxis2Placement()
     return axisY->calculateNormalizedAxisPlacement();
 }
 
-double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *button, JoyButton::JoyMouseMovementMode mouseMode)
+/**
+ * @brief Used to calculate the distance value that should be used for mouse
+ *     movement
+ *
+ * @param button
+ * @return Distance factor that should be used for mouse movement
+ */
+double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton *button)
 {
-    Q_UNUSED(mouseMode);
-
     double finalDistance = 0.0;
 
     if (currentDirection == StickUp)
@@ -870,6 +875,52 @@ double JoyControlStick::calculateDirectionalDistance(JoyControlStickButton *butt
 
             finalDistance = radius * (diagonalAngle / 45.0);
         }
+    }
+
+    return finalDistance;
+}
+
+/**
+ * @brief Used to calculate the distance value that should be used for keyboard
+ *     events and distance slots
+ * @return Distance factor that should be used for keyboard events and
+ *     distance slots
+ */
+double JoyControlStick::calculateDirectionalDistance()
+{
+    double finalDistance = 0.0;
+
+    if (currentDirection == StickUp)
+    {
+        finalDistance = calculateYDistanceFromDeadZone();
+    }
+    else if (currentDirection == StickRightUp)
+    {
+        finalDistance = getDistanceFromDeadZone();
+    }
+    else if (currentDirection == StickRight)
+    {
+        finalDistance = calculateXDistanceFromDeadZone();
+    }
+    else if (currentDirection  == StickRightDown)
+    {
+        finalDistance = getDistanceFromDeadZone();
+    }
+    else if (currentDirection == StickDown)
+    {
+        finalDistance = calculateYDistanceFromDeadZone();
+    }
+    else if (currentDirection == StickLeftDown)
+    {
+        finalDistance = getDistanceFromDeadZone();
+    }
+    else if (currentDirection == StickLeft)
+    {
+        finalDistance = calculateXDistanceFromDeadZone();
+    }
+    else if (currentDirection == StickLeftUp)
+    {
+        finalDistance = getDistanceFromDeadZone();
     }
 
     return finalDistance;

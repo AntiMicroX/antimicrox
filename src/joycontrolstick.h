@@ -54,7 +54,8 @@ public:
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
     double calculateNormalizedAxis1Placement();
     double calculateNormalizedAxis2Placement();
-    double calculateDirectionalDistance(JoyControlStickButton *button, JoyButton::JoyMouseMovementMode=JoyButton::MouseCursor);
+    double calculateMouseDirectionalDistance(JoyControlStickButton *button);
+    double calculateDirectionalDistance();
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();

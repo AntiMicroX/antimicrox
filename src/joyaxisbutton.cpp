@@ -88,9 +88,23 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     }
 }
 
+/**
+ * @brief Get the distance that an element is away from its assigned
+ *     dead zone
+ * @return Normalized distance away from dead zone
+ */
 double JoyAxisButton::getDistanceFromDeadZone()
 {
     return axis->getDistanceFromDeadZone();
+}
+
+/**
+ * @brief Get the distance factor that should be used for mouse movement
+ * @return Distance factor that should be used for mouse movement
+ */
+double JoyAxisButton::getMouseDistanceFromDeadZone()
+{
+    return this->getDistanceFromDeadZone();
 }
 
 void JoyAxisButton::setVDPad(VDPad *vdpad)

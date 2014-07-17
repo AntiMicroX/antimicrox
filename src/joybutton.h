@@ -86,6 +86,7 @@ public:
     bool containsReleaseSlots();
 
     virtual double getDistanceFromDeadZone();
+    virtual double getMouseDistanceFromDeadZone();
 
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();

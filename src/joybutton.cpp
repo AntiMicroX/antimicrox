@@ -832,7 +832,7 @@ void JoyButton::mouseEvent()
                         mousespeed = mouseSpeedY;
                     }
 
-                    double difference = getDistanceFromDeadZone();
+                    double difference = getMouseDistanceFromDeadZone();
                     int mouse1 = 0;
                     int mouse2 = 0;
                     double sumDist = buttonslot->getMouseDistance();
@@ -2579,6 +2579,11 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     }
 }
 
+/**
+ * @brief Get the distance that an element is away from its assigned
+ *     dead zone
+ * @return Normalized distance away from dead zone
+ */
 double JoyButton::getDistanceFromDeadZone()
 {
     double distance = 0.0;
@@ -2588,6 +2593,15 @@ double JoyButton::getDistanceFromDeadZone()
     }
 
     return distance;
+}
+
+/**
+ * @brief Get the distance factor that should be used for mouse movement
+ * @return Distance factor that should be used for mouse movement
+ */
+double JoyButton::getMouseDistanceFromDeadZone()
+{
+    return this->getDistanceFromDeadZone();
 }
 
 double JoyButton::getTotalSlotDistance(JoyButtonSlot *slot)

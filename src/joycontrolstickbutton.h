@@ -19,6 +19,7 @@ public:
     QString getDirectionName();
     JoyStickDirectionsType::JoyStickDirections getDirection();
     virtual double getDistanceFromDeadZone();
+    virtual double getMouseDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyControlStick *getStick();
 
