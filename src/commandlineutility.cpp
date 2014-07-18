@@ -17,6 +17,7 @@ QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
+QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
 #endif
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
@@ -26,13 +27,14 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     helpRequest = false;
     versionRequest = false;
     hideTrayIcon = false;
-    profileLocation = QString();
+    profileLocation = "";
     controllerNumber = 0;
     encounteredError = false;
     hiddenRequest = false;
     unloadProfile = false;
     startSetNumber = 0;
     daemonMode = false;
+    displayString = "";
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -209,6 +211,18 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         {
             daemonMode = true;
         }
+        else if (displayRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+                displayString = iter.next();
+            }
+            else
+            {
+                errorsteam << tr("No display string was specified.") << endl;
+                encounteredError = true;
+            }
+        }
 #endif
         // Check if this is the last argument. If it is and no command line flag
         // is active, the final argument is likely a profile that has
@@ -269,6 +283,10 @@ void CommandLineUtility::printHelp()
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
            << tr("Launch program as a daemon.") << endl;
+    out << "--display <value>             " << " "
+           << tr("Generate events on a different display.\n                               Useful for ssh.")
+           << endl;
+
 #endif
 
 }
@@ -365,5 +383,10 @@ bool CommandLineUtility::isPossibleCommand(QString temp)
 bool CommandLineUtility::launchAsDaemon()
 {
     return daemonMode;
+}
+
+QString CommandLineUtility::getDisplayString()
+{
+    return displayString;
 }
 #endif

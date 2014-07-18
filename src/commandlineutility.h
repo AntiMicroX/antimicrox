@@ -31,6 +31,7 @@ public:
 
 #ifdef Q_OS_UNIX
     bool launchAsDaemon();
+    QString getDisplayString();
 #endif
 
     void printHelp();
@@ -53,6 +54,7 @@ protected:
     bool unloadProfile;
     unsigned int startSetNumber;
     bool daemonMode;
+    QString displayString;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -65,6 +67,7 @@ protected:
     static QRegExp startSetRegexp;
 #ifdef Q_OS_UNIX
     static QRegExp daemonRegexp;
+    static QRegExp displayRegexp;
 #endif
     
 signals:

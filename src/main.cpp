@@ -220,7 +220,28 @@ int main(int argc, char *argv[])
         }
 
         //X11Info::closeDisplay();
-        X11Info::syncDisplay();
+        if (cmdutility.getDisplayString().isEmpty())
+        {
+            X11Info::syncDisplay();
+        }
+        else
+        {
+            X11Info::syncDisplay(cmdutility.getDisplayString());
+            if (X11Info::display() == NULL)
+            {
+                QTextStream errorstream(stderr);
+                errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
+
+                deleteInputDevices(joysticks);
+                delete joysticks;
+                joysticks = 0;
+
+                delete localServer;
+                localServer = 0;
+
+                exit(EXIT_FAILURE);
+            }
+        }
 
         //Change File Mask
         umask(0);
@@ -266,6 +287,25 @@ int main(int argc, char *argv[])
         a = new QApplication(argc, argv);
         localServer = new LocalAntiMicroServer();
         localServer->startLocalServer();
+
+        if (!cmdutility.getDisplayString().isEmpty())
+        {
+            X11Info::syncDisplay(cmdutility.getDisplayString());
+            if (X11Info::display() == NULL)
+            {
+                QTextStream errorstream(stderr);
+                errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
+
+                deleteInputDevices(joysticks);
+                delete joysticks;
+                joysticks = 0;
+
+                delete localServer;
+                localServer = 0;
+
+                exit(EXIT_FAILURE);
+            }
+        }
     }
 #else
     a = new QApplication (argc, argv);

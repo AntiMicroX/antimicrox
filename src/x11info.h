@@ -20,6 +20,7 @@ public:
     static Window findClientInChildren(Window &window);
     static void closeDisplay();
     static void syncDisplay();
+    static void syncDisplay(QString displayString);
 
 protected:
     explicit X11Info(QObject *parent = 0);
