@@ -277,11 +277,13 @@ Window X11Info::findClientWindow(Window &window)
                 if (status == 0 && prop)
                 {
                     finalwindow = window;
+                    iter.toBack();
                 }
             }
             else
             {
                 finalwindow = window;
+                iter.toBack();
             }
         }
 
@@ -320,11 +322,13 @@ Window X11Info::findClientWindow(Window &window)
                             if (status == 0 && prop)
                             {
                                 finalwindow = children[i];
+                                iter.toBack();
                             }
                         }
                         else
                         {
                             finalwindow = children[i];
+                            iter.toBack();
                         }
                     }
 
