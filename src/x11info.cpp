@@ -220,7 +220,15 @@ QString X11Info::getApplicationLocation(int pid)
     return exepath;
 }
 
-Window X11Info::findClientInChildren(Window &window)
+/**
+ * @brief Find the proper client window within a hierarchy. This check is needed
+ *     in some environments where the window that has been selected is actually
+ *     a child to a transparent parent window which was the one that was
+ *     actually grabbed
+ * @param Top window to check
+ * @return Client window XID or 0 if no appropriate window was found
+ */
+Window X11Info::findClientWindow(Window &window)
 {
     Atom actual_type;
     int actual_format = 0;
@@ -231,53 +239,119 @@ Window X11Info::findClientInChildren(Window &window)
 
     Window parent = 1;
     Window root = 0;
-    Window *children;
-    unsigned int num_children;
+    Window *children = 0;
+    unsigned int num_children = 0;
     Window finalwindow = 0;
     Display *display = X11Info::display();
 
-    Atom atom = XInternAtom(display, "WM_STATE", True);
+    Atom wmStateAtom = XInternAtom(display, "WM_STATE", True);
     // WM_STATE is not available from an app when running a game
     // in the SteamOS BPM X Session. Make a special case for SteamOS.
     // TODO: Find a better Atom variable to discover.
-    Atom steamCheck = XInternAtom(display, "STEAM_GAME", True);
-    XQueryTree(display, window, &root, &parent, &children, &num_children);
-    if (children)
+    Atom steamCheckAtom = XInternAtom(display, "STEAM_GAME", True);
+    // Put in a check for WM_NAME. Attempt to ensure that a valid window has
+    // been obtained.
+    Atom wmNameAtom = XInternAtom(display, "WM_NAME", True);
+
+    QList<Atom> atomChecks;
+    atomChecks.append(wmStateAtom);
+    atomChecks.append(steamCheckAtom);
+    QListIterator<Atom> iter(atomChecks);
+    while (iter.hasNext())
     {
-        for (unsigned int i = 0; i < num_children && !finalwindow; i++)
+        Atom tmpAtom = iter.next();
+        status = XGetWindowProperty(display, window, tmpAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+        if (status == 0 && prop)
         {
-            status = XGetWindowProperty(display, children[i], atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-            if (status == 0 && prop)
+            if (tmpAtom == steamCheckAtom)
             {
-                finalwindow = children[i];
-            }
-            else
-            {
+                // A Steam game has been detected. Try to find the WM_NAME
+                // property to ensure that a root window has not been detected.
                 if (prop)
                 {
                     XFree(prop);
+                    prop = 0;
                 }
 
-                status = XGetWindowProperty(display, children[i], steamCheck, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                status = XGetWindowProperty(display, window, wmNameAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
                 if (status == 0 && prop)
                 {
-                    finalwindow = children[i];
+                    finalwindow = window;
                 }
             }
-
-            XFree(prop);
+            else
+            {
+                finalwindow = window;
+            }
         }
-    }
 
-    if (!finalwindow && children)
-    {
-        for (unsigned int i = 0; i < num_children && !finalwindow; i++)
+        if (prop)
         {
-            finalwindow = X11Info::findClientInChildren(children[i]);
+            XFree(prop);
+            prop = 0;
         }
     }
 
-    XFree(children);
+    if (!finalwindow)
+    {
+        XQueryTree(display, window, &root, &parent, &children, &num_children);
+        if (children)
+        {
+            for (unsigned int i = 0; i < num_children && !finalwindow; i++)
+            {
+                iter.toFront();
+                while (iter.hasNext())
+                {
+                    Atom tmpAtom = iter.next();
+                    status = XGetWindowProperty(display, children[i], tmpAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                    if (status == 0 && prop)
+                    {
+                        if (tmpAtom == steamCheckAtom)
+                        {
+                            // A Steam game has been detected. Try to find the WM_NAME
+                            // property to ensure that a root window has not been detected.
+                            if (prop)
+                            {
+                                XFree(prop);
+                                prop = 0;
+                            }
+
+                            status = XGetWindowProperty(display, children[i], wmNameAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                            if (status == 0 && prop)
+                            {
+                                finalwindow = children[i];
+                            }
+                        }
+                        else
+                        {
+                            finalwindow = children[i];
+                        }
+                    }
+
+                    if (prop)
+                    {
+                        XFree(prop);
+                        prop = 0;
+                    }
+                }
+            }
+        }
+
+        if (!finalwindow && children)
+        {
+            for (unsigned int i = 0; i < num_children && !finalwindow; i++)
+            {
+                finalwindow = X11Info::findClientWindow(children[i]);
+            }
+        }
+
+        if (children)
+        {
+            XFree(children);
+            children = 0;
+        }
+    }
+
 
     return finalwindow;
 }

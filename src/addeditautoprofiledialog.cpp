@@ -260,7 +260,8 @@ void AddEditAutoProfileDialog::selectWindowWithCursor()
 
                 // Attempt to find the appropriate window below the root window
                 // that was clicked.
-                target_window = X11Info::findClientInChildren(target_window);
+                //qDebug() << QString::number(target_window, 16);
+                target_window = X11Info::findClientWindow(target_window);
                 break;
 
             case (KeyPress):

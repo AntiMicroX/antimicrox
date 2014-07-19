@@ -17,7 +17,7 @@ public:
     static QString getDisplayString(QString xcodestring);
     static int getApplicationPid(Window &window);
     static QString getApplicationLocation(int pid);
-    static Window findClientInChildren(Window &window);
+    static Window findClientWindow(Window &window);
     static void closeDisplay();
     static void syncDisplay();
     static void syncDisplay(QString displayString);
