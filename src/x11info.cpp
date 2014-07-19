@@ -13,6 +13,9 @@ X11Info::X11Info(QObject *parent) :
     populateKnownAliases();
 }
 
+/**
+ * @brief Close display connection if one exists
+ */
 X11Info::~X11Info()
 {
     if (_display)
@@ -22,11 +25,18 @@ X11Info::~X11Info()
     }
 }
 
+/**
+ * @brief Get display instance
+ * @return Display struct
+ */
 Display* X11Info::display()
 {
     return _instance._display;
 }
 
+/**
+ * @brief CURRENTLY NOT USED
+ */
 void X11Info::closeDisplay()
 {
     if (_instance._display)
@@ -55,11 +65,22 @@ void X11Info::syncDisplay(QString displayString)
     _instance._display = XOpenDisplay(tempByteArray.constData());
 }
 
+/**
+ * @brief Return root window for a given X display
+ * @param Screen number. If no value is passed, uses screen 1.
+ * @return XID of the window
+ */
 unsigned long X11Info::appRootWindow(int screen)
 {
     return screen == -1 ? XDefaultRootWindow(display()) : XRootWindowOfScreen(XScreenOfDisplay(display(), screen));
 }
 
+/**
+ * @brief Get appropriate alias for a known KeySym string that might be blank
+ *     or contain invalid characters when returned from X.
+ * @param QString representation of a KeySym string
+ * @return Alias string or a blank QString if no alias was found
+ */
 QString X11Info::getDisplayString(QString xcodestring)
 {
     QString temp;
@@ -87,6 +108,11 @@ void X11Info::populateKnownAliases()
     }
 }
 
+/**
+ * @brief Check window and any children for the window property "_NET_WM_PID"
+ * @param Window structure for window of interest
+ * @return PID of the application instance corresponding to the window
+ */
 int X11Info::getApplicationPid(Window &window)
 {
     Atom atom, actual_type;
@@ -166,6 +192,11 @@ int X11Info::getApplicationPid(Window &window)
     return pid;
 }
 
+/**
+ * @brief Find the application file location for a given PID
+ * @param PID of window
+ * @return File location of application
+ */
 QString X11Info::getApplicationLocation(int pid)
 {
     QString exepath;
@@ -200,22 +231,40 @@ Window X11Info::findClientInChildren(Window &window)
 
     Window parent = 1;
     Window root = 0;
-    Window * children;
+    Window *children;
     unsigned int num_children;
     Window finalwindow = 0;
     Display *display = X11Info::display();
 
     Atom atom = XInternAtom(display, "WM_STATE", True);
+    // WM_STATE is not available from an app when running a game
+    // in the SteamOS BPM X Session. Make a special case for SteamOS.
+    // TODO: Find a better Atom variable to discover.
+    Atom steamCheck = XInternAtom(display, "STEAM_GAME", True);
     XQueryTree(display, window, &root, &parent, &children, &num_children);
     if (children)
     {
-        for (unsigned int i = 0; i < num_children; i++)
+        for (unsigned int i = 0; i < num_children && !finalwindow; i++)
         {
             status = XGetWindowProperty(display, children[i], atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
             if (status == 0 && prop)
             {
                 finalwindow = children[i];
             }
+            else
+            {
+                if (prop)
+                {
+                    XFree(prop);
+                }
+
+                status = XGetWindowProperty(display, children[i], steamCheck, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                if (status == 0 && prop)
+                {
+                    finalwindow = children[i];
+                }
+            }
+
             XFree(prop);
         }
     }

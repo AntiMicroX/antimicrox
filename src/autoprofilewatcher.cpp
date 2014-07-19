@@ -24,6 +24,7 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
 {
     this->settings = settings;
     allDefaultInfo = 0;
+    currentApplication = "";
 
     syncProfileAssignment();
 

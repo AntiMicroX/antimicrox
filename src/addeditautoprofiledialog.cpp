@@ -258,6 +258,8 @@ void AddEditAutoProfileDialog::selectWindowWithCursor()
                     target_window = event.xbutton.window;
                 }
 
+                // Attempt to find the appropriate window below the root window
+                // that was clicked.
                 target_window = X11Info::findClientInChildren(target_window);
                 break;
 
