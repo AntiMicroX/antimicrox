@@ -290,7 +290,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     VirtualMousePushButton *pushButton = 0;
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-    pushButton = new VirtualMousePushButton(tr("Left"), JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
+    pushButton = new VirtualMousePushButton(tr("Left", "Mouse"), JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Expanding));
@@ -301,7 +301,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 20, QSizePolicy::Fixed));
 
     tempVBoxLayout = new QVBoxLayout();
-    pushButton = new VirtualMousePushButton(tr("Up"), JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement, this);
+    pushButton = new VirtualMousePushButton(tr("Up", "Mouse"), JoyButtonSlot::MouseUp, JoyButtonSlot::JoyMouseMovement, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
     tempVBoxLayout->addWidget(pushButton);
@@ -309,32 +309,32 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     QHBoxLayout *tempInnerHBoxLayout = new QHBoxLayout();
-    pushButton = new VirtualMousePushButton("Left Button", 1, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Left Button", "Mouse"), 1, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     tempInnerHBoxLayout->addWidget(pushButton);
-    pushButton = new VirtualMousePushButton("Middle Button", 2, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Middle Button", "Mouse"), 2, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     tempInnerHBoxLayout->addWidget(pushButton);
-    pushButton = new VirtualMousePushButton("Right Button", 3, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Right Button", "Mouse"), 3, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     tempInnerHBoxLayout->addWidget(pushButton);
     tempVBoxLayout->addLayout(tempInnerHBoxLayout);
 
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
-    pushButton = new VirtualMousePushButton(tr("Wheel Up"), 4, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Wheel Up", "Mouse"), 4, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(30);
     tempGridLayout->addWidget(pushButton, 1, 2, 1, 1);
-    pushButton = new VirtualMousePushButton(tr("Wheel Left"), 6, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Wheel Left", "Mouse"), 6, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(30);
     tempGridLayout->addWidget(pushButton, 2, 1, 1, 1);
-    pushButton = new VirtualMousePushButton(tr("Wheel Right"), 7, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Wheel Right", "Mouse"), 7, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(30);
     tempGridLayout->addWidget(pushButton, 2, 3, 1, 1);
-    pushButton = new VirtualMousePushButton(tr("Wheel Down"), 5, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Wheel Down", "Mouse"), 5, JoyButtonSlot::JoyMouseButton, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(30);
     tempGridLayout->addWidget(pushButton, 3, 2, 1, 1);
@@ -342,7 +342,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
-    pushButton = new VirtualMousePushButton(tr("Down"), JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement, this);
+    pushButton = new VirtualMousePushButton(tr("Down", "Mouse"), JoyButtonSlot::MouseDown, JoyButtonSlot::JoyMouseMovement, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
     tempVBoxLayout->addWidget(pushButton);
@@ -358,7 +358,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
     tempVBoxLayout = new QVBoxLayout();
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Expanding));
-    pushButton = new VirtualMousePushButton(tr("Right"), JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
+    pushButton = new VirtualMousePushButton(tr("Right", "Mouse"), JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
     tempVBoxLayout->addWidget(pushButton);
@@ -370,17 +370,17 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout = new QVBoxLayout();
     tempVBoxLayout->setSpacing(20);
 #ifdef Q_OS_WIN
-    pushButton = new VirtualMousePushButton(tr("Button 4"), 8, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Button 4", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
 #else
-    pushButton = new VirtualMousePushButton(tr("Mouse 8"), 8, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Mouse 8", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
 #endif
 
     pushButton->setMinimumHeight(40);
     tempVBoxLayout->addWidget(pushButton);
 #ifdef Q_OS_WIN
-    pushButton = new VirtualMousePushButton(tr("Button 5"), 9, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Button 5", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
 #else
-    pushButton = new VirtualMousePushButton(tr("Mouse 9"), 9, JoyButtonSlot::JoyMouseButton, this);
+    pushButton = new VirtualMousePushButton(tr("Mouse 9", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
 #endif
 
     pushButton->setMinimumHeight(40);
