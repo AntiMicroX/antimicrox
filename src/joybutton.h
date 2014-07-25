@@ -63,6 +63,7 @@ public:
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getSlotsSummary();
     virtual QString getSlotsString();
+    virtual QString getActiveZoneSummary();
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
 
@@ -299,6 +300,7 @@ signals:
     void actionNameChanged();
     void buttonNameChanged();
     void propertyUpdated();
+    void activeZoneChanged();
 
 public slots:
     void setTurboInterval (int interval);

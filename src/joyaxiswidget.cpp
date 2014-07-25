@@ -6,18 +6,19 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     this->axis = axis;
 
     refreshLabel();
+    enableFlashes();
 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 
-    connect(axis, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
     connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
     connect(pAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(pAxisButton, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
+    connect(nAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
+    connect(pAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
 
     axis->establishPropertyUpdatedConnection();
     nAxisButton->establishPropertyUpdatedConnections();
@@ -42,6 +43,10 @@ void JoyAxisWidget::enableFlashes()
     connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }
 
+/**
+ * @brief Generate the string that will be displayed on the button
+ * @return Display string
+ */
 QString JoyAxisWidget::generateLabel()
 {
     QString temp;

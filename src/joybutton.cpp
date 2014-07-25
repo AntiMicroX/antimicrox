@@ -779,6 +779,8 @@ void JoyButton::activateSlots()
             }
         }
 #endif
+
+        emit activeZoneChanged();
     }
 }
 
@@ -1599,7 +1601,7 @@ QString JoyButton::getName(bool forceFullFormat, bool displayNames)
     }
     else
     {
-        newlabel.append(getSlotsSummary());
+        newlabel.append(getActiveZoneSummary());
     }
     return newlabel;
 }
@@ -1652,6 +1654,68 @@ QString JoyButton::getSlotsSummary()
             {
                 stringlist.append(" ...");
                 iter.toBack();
+            }
+        }
+
+        newlabel = stringlist.join(", ");
+    }
+    else
+    {
+        newlabel = newlabel.append(tr("[NO KEY]"));
+    }
+
+    return newlabel;
+}
+
+QString JoyButton::getActiveZoneSummary()
+{
+    QString newlabel;
+    QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
+    QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
+    QListIterator<JoyButtonSlot*> *iter = 0;
+    if (!activeSlots.isEmpty())
+    {
+        iter = &activeSlotsIter;
+    }
+    else
+    {
+        iter = &assignmentsIter;
+        if (previousCycle)
+        {
+            iter->findNext(previousCycle);
+        }
+    }
+
+    QStringList stringlist;
+    int i = 0;
+
+    if (iter->hasNext())
+    {
+        while (iter->hasNext())
+        {
+            JoyButtonSlot *slot = iter->next();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+            switch (mode)
+            {
+                case JoyButtonSlot::JoyKeyboard:
+                case JoyButtonSlot::JoyMouseButton:
+                case JoyButtonSlot::JoyMouseMovement:
+                {
+                    stringlist.append(slot->getSlotString());
+                    i++;
+                    break;
+                }
+                default:
+                {
+                    iter->toBack();
+                    break;
+                }
+            }
+
+            if (i > 4 && iter->hasNext())
+            {
+                stringlist.append(" ...");
+                iter->toBack();
             }
         }
 
@@ -2576,6 +2640,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         this->currentDistance = 0;
         this->currentKeyPress = 0;
         quitEvent = true;
+
+        emit activeZoneChanged();
     }
 }
 

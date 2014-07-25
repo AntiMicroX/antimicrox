@@ -9,6 +9,7 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     enableFlashes();
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
+    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
 }
 
 JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
@@ -23,6 +24,7 @@ void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
     {
         disconnect(this->button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
         disconnect(this->button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
+        disconnect(this->button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
     }
 
     this->button = button;
@@ -30,6 +32,7 @@ void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
     enableFlashes();
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
+    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
 }
 
 
@@ -52,6 +55,10 @@ void JoyControlStickButtonPushButton::enableFlashes()
     }
 }
 
+/**
+ * @brief Generate the string that will be displayed on the button
+ * @return Display string
+ */
 QString JoyControlStickButtonPushButton::generateLabel()
 {
     QString temp;
@@ -63,7 +70,7 @@ QString JoyControlStickButtonPushButton::generateLabel()
         }
         else
         {
-            temp = button->getSlotsSummary().replace("&", "&&");
+            temp = button->getActiveZoneSummary().replace("&", "&&");
         }
     }
 

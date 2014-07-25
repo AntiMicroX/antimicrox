@@ -4,10 +4,12 @@ JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, Q
     JoyButtonWidget(button, displayNames, parent)
 {
     refreshLabel();
-    //connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    //connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
 }
 
+/**
+ * @brief Generate the string that will be displayed on the button
+ * @return Display string
+ */
 QString JoyDPadButtonWidget::generateLabel()
 {
     QString temp;
@@ -17,7 +19,7 @@ QString JoyDPadButtonWidget::generateLabel()
     }
     else
     {
-        temp = button->getSlotsSummary();
+        temp = button->getActiveZoneSummary();
     }
     temp.replace("&", "&&");
     return temp;

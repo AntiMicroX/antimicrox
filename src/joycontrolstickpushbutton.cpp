@@ -17,6 +17,10 @@ JoyControlStick* JoyControlStickPushButton::getStick()
     return stick;
 }
 
+/**
+ * @brief Generate the string that will be displayed on the button
+ * @return Display string
+ */
 QString JoyControlStickPushButton::generateLabel()
 {
     QString temp;

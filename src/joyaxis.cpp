@@ -113,7 +113,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
         }
         else
         {
-            label.append(naxisbutton->getSlotsSummary());
+            label.append(naxisbutton->getActiveZoneSummary());
         }
 
         label.append(" | +");
@@ -123,7 +123,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
         }
         else
         {
-            label.append(paxisbutton->getSlotsSummary());
+            label.append(paxisbutton->getActiveZoneSummary());
         }
     }
     else if (throttle == PositiveThrottle || throttle == PositiveHalfThrottle)
@@ -147,7 +147,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
         }
         else
         {
-            label.append(naxisbutton->getSlotsSummary());
+            label.append(naxisbutton->getActiveZoneSummary());
         }
     }
 
