@@ -9,9 +9,11 @@ class UnixCaptureWindowUtility : public QObject
 public:
     explicit UnixCaptureWindowUtility(QObject *parent = 0);
     QString getTargetPath();
+    bool hasFailed();
 
 protected:
     QString targetPath;
+    bool failed;
 
 signals:
     void captureFinished();

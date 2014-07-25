@@ -10,10 +10,6 @@
 #include "ui_addeditautoprofiledialog.h"
 
 #if defined(Q_OS_UNIX)
-#include <X11/Xlib.h>
-#include <X11/cursorfont.h> // for XGrabPointer
-#include "x11info.h"
-#include "antkeymapper.h"
 #include "unixcapturewindowutility.h"
 
 #elif defined(Q_OS_WIN)
@@ -267,6 +263,14 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     if (!path.isEmpty())
     {
         ui->applicationLineEdit->setText(path);
+    }
+    else
+    {
+        QMessageBox box;
+        box.setText(tr("Could not obtain information for the selected window."));
+        box.setWindowTitle(tr("Application Capture Failed"));
+        box.setStandardButtons(QMessageBox::Close);
+        box.exec();
     }
 }
 

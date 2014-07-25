@@ -12,6 +12,7 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
     QObject(parent)
 {
     targetPath = "";
+    failed = false;
 }
 
 /**
@@ -20,6 +21,7 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
 void UnixCaptureWindowUtility::attemptWindowCapture()
 {
     targetPath = "";
+    failed = false;
 
     Cursor cursor;
     Window target_window = None;
@@ -72,7 +74,15 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
             {
                 targetPath = exepath;
             }
+            else
+            {
+                failed = true;
+            }
         }
+    }
+    else
+    {
+        failed = true;
     }
 
     emit captureFinished();
@@ -85,4 +95,13 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
 QString UnixCaptureWindowUtility::getTargetPath()
 {
     return targetPath;
+}
+
+/**
+ * @brief Check if attemptWindowCapture failed to obtain an application
+ * @return Error status
+ */
+bool UnixCaptureWindowUtility::hasFailed()
+{
+    return failed;
 }

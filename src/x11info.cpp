@@ -110,7 +110,7 @@ void X11Info::populateKnownAliases()
 
 /**
  * @brief Check window and any children for the window property "_NET_WM_PID"
- * @param Window structure for window of interest
+ * @param Window XID for window of interest
  * @return PID of the application instance corresponding to the window
  */
 int X11Info::getApplicationPid(Window &window)
