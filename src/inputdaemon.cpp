@@ -1,4 +1,5 @@
 #include <QtDebug>
+#include <QTime>
 #include <QTimer>
 #include <QEventLoop>
 #include <QHashIterator>
@@ -70,6 +71,7 @@ void InputDaemon::run ()
         {
             switch (event.type)
             {
+                //qDebug() << QTime::currentTime() << " :";
                 case SDL_JOYBUTTONDOWN:
                 {
 #ifdef USE_SDL_2
@@ -162,6 +164,8 @@ void InputDaemon::run ()
                         JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
                         if (axis)
                         {
+                            //qDebug() << QTime::currentTime() << ": " << "Axis " << event.caxis.axis+1
+                            //         << ": " << event.caxis.value;
                             axis->joyEvent(event.caxis.value);
                         }
                     }
@@ -217,6 +221,7 @@ void InputDaemon::run ()
         while (SDL_PollEvent(&event) > 0);
     }
 
+    //qDebug() << QTime::currentTime() << ": " << "END";
     if (stopped)
     {
         if (joysticks->count() > 0)
@@ -362,7 +367,10 @@ void InputDaemon::quit()
 
         eventWorker->stop();
         temptime.start(1000);
-        q.exec();
+        if (eventWorker->isSDLOpen())
+        {
+            q.exec();
+        }
         temptime.stop();
     }
     else
