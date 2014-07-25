@@ -22,6 +22,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
 {
     targetPath = "";
     failed = false;
+    bool escaped = false;
 
     Cursor cursor;
     Window target_window = None;
@@ -54,7 +55,10 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                 break;
 
             case (KeyPress):
+            {
+                escaped = true;
                 break;
+            }
         }
 
         XUngrabKey(X11Info::display(), XKeysymToKeycode(X11Info::display(), AntKeyMapper::returnVirtualKey(Qt::Key_Escape)),
@@ -79,8 +83,12 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                 failed = true;
             }
         }
+        else
+        {
+            failed = true;
+        }
     }
-    else
+    else if (!escaped)
     {
         failed = true;
     }

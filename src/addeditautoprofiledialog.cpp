@@ -245,7 +245,8 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
 
     connect(thread, SIGNAL(started()), util, SLOT(attemptWindowCapture()));
     connect(util, SIGNAL(captureFinished()), thread, SLOT(quit()));
-    connect(util, SIGNAL(captureFinished()), this, SLOT(checkCapturedPath()));
+    connect(util, SIGNAL(captureFinished()), box, SLOT(hide()));
+    connect(util, SIGNAL(captureFinished()), this, SLOT(checkCapturedPath()), Qt::QueuedConnection);
 
     connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
@@ -264,12 +265,13 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     {
         ui->applicationLineEdit->setText(path);
     }
-    else
+    else if (util->hasFailed())
     {
         QMessageBox box;
         box.setText(tr("Could not obtain information for the selected window."));
         box.setWindowTitle(tr("Application Capture Failed"));
         box.setStandardButtons(QMessageBox::Close);
+        box.raise();
         box.exec();
     }
 }
