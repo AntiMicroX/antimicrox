@@ -122,7 +122,7 @@ set(antimicro_SOURCES src/main.cpp
 # Platform dependent files.
 if(UNIX)
     LIST(APPEND antimicro_SOURCES src/x11info.cpp
-        src/qtx11keymapper.cpp)
+        src/qtx11keymapper.cpp src/unixcapturewindowutility.cpp)
 elseif(WIN32)
     LIST(APPEND antimicro_SOURCES src/wininfo.cpp
         src/qtwinkeymapper.cpp
@@ -211,7 +211,7 @@ set(antimicro_HEADERS src/mainwindow.h
 # Platform dependent files.
 if(UNIX)
     LIST(APPEND antimicro_HEADERS src/x11info.h
-    src/qtx11keymapper.h)
+    src/qtx11keymapper.h src/unixcapturewindowutility.h)
 elseif(WIN32)
     LIST(APPEND antimicro_HEADERS src/wininfo.h
         src/qtwinkeymapper.h

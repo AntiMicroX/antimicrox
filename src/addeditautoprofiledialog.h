@@ -41,6 +41,9 @@ protected:
 private:
     Ui::AddEditAutoProfileDialog *ui;
 
+signals:
+    void captureFinished();
+
 private slots:
     void openProfileBrowseDialog();
     void openApplicationBrowseDialog();
@@ -52,7 +55,8 @@ private slots:
     void openWinAppProfileDialog();
     void captureWindowsApplicationPath();
 #else
-    void selectWindowWithCursor();
+    void showCaptureHelpWindow();
+    void checkCapturedPath();
 #endif
 };
 

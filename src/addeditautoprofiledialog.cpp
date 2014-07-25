@@ -3,8 +3,8 @@
 #include <QFileInfo>
 #include <QList>
 #include <QListIterator>
-#include <QEventLoop>
 #include <QMessageBox>
+#include <QThread>
 
 #include "addeditautoprofiledialog.h"
 #include "ui_addeditautoprofiledialog.h"
@@ -14,6 +14,7 @@
 #include <X11/cursorfont.h> // for XGrabPointer
 #include "x11info.h"
 #include "antkeymapper.h"
+#include "unixcapturewindowutility.h"
 
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
@@ -118,13 +119,11 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus(QString)));
 
 #if defined(Q_OS_LINUX)
-    connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(selectWindowWithCursor()));
+    connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(showCaptureHelpWindow()));
 #elif defined(Q_OS_WIN)
     connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(openWinAppProfileDialog()));
 #endif
-    //connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT()
-    //connect(ui->asDefaultCheckBox, SIGNAL(clicked(bool)), this, SLOT());
-    //connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT());
+
     connect(this, SIGNAL(accepted()), this, SLOT(saveAutoProfileInformation()));
 }
 
@@ -232,62 +231,45 @@ QString AddEditAutoProfileDialog::getOriginalExe()
 }
 
 #ifdef Q_OS_UNIX
-void AddEditAutoProfileDialog::selectWindowWithCursor()
+/**
+ * @brief Display a simple message box and attempt to capture a window using the mouse
+ */
+void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
-    Cursor cursor;
-    Window target_window = None;
-    int status = 0;
-    cursor = XCreateFontCursor(X11Info::display(), XC_crosshair);
+    QMessageBox *box = new QMessageBox(this);
+    box->setText(tr("Please select a window by using the mouse. Press Escape if you want to cancel."));
+    box->setWindowTitle(tr("Capture Application Window"));
+    box->setStandardButtons(QMessageBox::NoButton);
+    box->setModal(true);
+    box->show();
 
-    status = XGrabPointer(X11Info::display(), X11Info::appRootWindow(), False, ButtonPressMask,
-                 GrabModeSync, GrabModeAsync, None,
-                 cursor, CurrentTime);
-    if (status == Success)
+    UnixCaptureWindowUtility *util = new UnixCaptureWindowUtility();
+    QThread *thread = new QThread(this);
+    util->moveToThread(thread);
+
+    connect(thread, SIGNAL(started()), util, SLOT(attemptWindowCapture()));
+    connect(util, SIGNAL(captureFinished()), thread, SLOT(quit()));
+    connect(util, SIGNAL(captureFinished()), this, SLOT(checkCapturedPath()));
+
+    connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
+    connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+    thread->start();
+}
+
+/**
+ * @brief Check if there is a program path saved in an UnixCaptureWindowUtility
+ *     object
+ */
+void AddEditAutoProfileDialog::checkCapturedPath()
+{
+    UnixCaptureWindowUtility *util = static_cast<UnixCaptureWindowUtility*>(sender());
+    QString path = util->getTargetPath();
+    if (!path.isEmpty())
     {
-        XGrabKey(X11Info::display(), XKeysymToKeycode(X11Info::display(), AntKeyMapper::returnVirtualKey(Qt::Key_Escape)), 0, X11Info::appRootWindow(),
-                 true, GrabModeAsync, GrabModeAsync);
-
-        XEvent event;
-        XAllowEvents(X11Info::display(), SyncPointer, CurrentTime);
-        XWindowEvent(X11Info::display(), X11Info::appRootWindow(), ButtonPressMask|KeyPressMask, &event);
-        switch (event.type)
-        {
-            case (ButtonPress):
-                target_window = event.xbutton.subwindow;
-                if (target_window == None) {
-                    target_window = event.xbutton.window;
-                }
-
-                // Attempt to find the appropriate window below the root window
-                // that was clicked.
-                //qDebug() << QString::number(target_window, 16);
-                target_window = X11Info::findClientWindow(target_window);
-                break;
-
-            case (KeyPress):
-                break;
-        }
-
-        XUngrabKey(X11Info::display(), XKeysymToKeycode(X11Info::display(), AntKeyMapper::returnVirtualKey(Qt::Key_Escape)),
-                   0, X11Info::appRootWindow());
-        XUngrabPointer(X11Info::display(), CurrentTime);
-        XFlush(X11Info::display());
-    }
-
-    if (target_window != None)
-    {
-        int pid = X11Info::getApplicationPid(target_window);
-        if (pid > 0)
-        {
-            QString exepath = X11Info::getApplicationLocation(pid);
-
-            if (!exepath.isEmpty())
-            {
-                ui->applicationLineEdit->setText(exepath);
-            }
-        }
+        ui->applicationLineEdit->setText(path);
     }
 }
+
 #endif
 
 void AddEditAutoProfileDialog::checkForDefaultStatus(QString text)
