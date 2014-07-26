@@ -262,7 +262,8 @@ void AddEditAutoProfileDialog::checkCapturedPath()
 {
     UnixCaptureWindowUtility *util = static_cast<UnixCaptureWindowUtility*>(sender());
     unsigned long targetWindow = util->getTargetWindow();
-    bool failed = util->hasFailed();
+    bool escaped = !util->hasFailed();
+    bool failed = false;
     QString path;
 
     if (targetWindow != None)
@@ -293,7 +294,7 @@ void AddEditAutoProfileDialog::checkCapturedPath()
             failed = true;
         }
     }
-    else if (!failed)
+    else if (!escaped)
     {
         failed = true;
     }
