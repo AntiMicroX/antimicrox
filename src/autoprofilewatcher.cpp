@@ -182,7 +182,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 
         // Check if all required elements exist. If not, assume that the end of the
         // list has been reached.
-        if (!exe.isEmpty() && !guid.isEmpty() && !profile.isEmpty())
+        if (!exe.isEmpty() && !guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
             if (profileActive)

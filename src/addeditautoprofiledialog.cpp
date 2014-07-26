@@ -265,6 +265,7 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     {
         ui->applicationLineEdit->setText(path);
     }
+    // Ensure that the operation was not cancelled (Escape wasn't pressed).
     else if (util->hasFailed())
     {
         QMessageBox box;
@@ -291,6 +292,9 @@ void AddEditAutoProfileDialog::checkForDefaultStatus(QString text)
     }
 }
 
+/**
+ * @brief Validate the form that is contained in this window
+ */
 void AddEditAutoProfileDialog::accept()
 {
     bool validForm = true;
@@ -305,11 +309,11 @@ void AddEditAutoProfileDialog::accept()
             errorString = tr("Profile file path is invalid.");
         }
     }
-    else
+    /*else
     {
         validForm = false;
         errorString = tr("No profile selected.");
-    }
+    }*/
 
     if (validForm && ui->applicationLineEdit->text().length() > 0)
     {
@@ -338,34 +342,6 @@ void AddEditAutoProfileDialog::accept()
         msgBox.setStandardButtons(QMessageBox::Close);
         msgBox.exec();
     }
-}
-
-bool AddEditAutoProfileDialog::validateForm()
-{
-    info->setProfileLocation(ui->profileLineEdit->text());
-    int deviceIndex = ui->devicesComboBox->currentIndex();
-    if (deviceIndex > 0)
-    {
-        QVariant temp = ui->devicesComboBox->itemData(deviceIndex, Qt::UserRole);
-        // Assume that if the following is not true, the GUID should
-        // not be changed.
-        if (!temp.isNull())
-        {
-            InputDevice *device = ui->devicesComboBox->itemData(deviceIndex, Qt::UserRole).value<InputDevice*>();
-            info->setGUID(device->getGUIDString());
-            info->setDeviceName(device->getSDLName());
-        }
-    }
-    else
-    {
-        info->setGUID("all");
-        info->setDeviceName("");
-    }
-
-    info->setExe(ui->applicationLineEdit->text());
-    info->setDefaultState(ui->asDefaultCheckBox->isChecked());
-
-    return true;
 }
 
 #ifdef Q_OS_WIN

@@ -1287,7 +1287,14 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
             }
             else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
             {
-                widget->loadConfigFile(info->getProfileLocation());
+                if (info->getProfileLocation().isEmpty())
+                {
+                    widget->setCurrentConfig(0);
+                }
+                else
+                {
+                    widget->loadConfigFile(info->getProfileLocation());
+                }
             }
         }
     }

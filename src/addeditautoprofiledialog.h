@@ -27,7 +27,6 @@ public:
 
 protected:
     virtual void accept();
-    bool validateForm();
 
     AutoProfileInfo *info;
     QList<InputDevice*> *devices;
