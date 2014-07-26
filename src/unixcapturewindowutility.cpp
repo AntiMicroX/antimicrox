@@ -27,19 +27,33 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     Cursor cursor;
     Window target_window = None;
     int status = 0;
-    cursor = XCreateFontCursor(X11Info::display(), XC_crosshair);
+    Display *display = 0;
 
-    status = XGrabPointer(X11Info::display(), X11Info::appRootWindow(), False, ButtonPressMask,
+    QString potentialXDisplayString = X11Info::getXDisplayString();
+    if (!potentialXDisplayString.isEmpty())
+    {
+        QByteArray tempByteArray = potentialXDisplayString.toLocal8Bit();
+        display = XOpenDisplay(tempByteArray.constData());
+    }
+    else
+    {
+        display = XOpenDisplay(NULL);
+    }
+
+    Window rootWin = XDefaultRootWindow(display);
+
+    cursor = XCreateFontCursor(display, XC_crosshair);
+    status = XGrabPointer(display, rootWin, False, ButtonPressMask,
                  GrabModeSync, GrabModeAsync, None,
                  cursor, CurrentTime);
     if (status == Success)
     {
-        XGrabKey(X11Info::display(), XKeysymToKeycode(X11Info::display(), AntKeyMapper::returnVirtualKey(Qt::Key_Escape)), 0, X11Info::appRootWindow(),
+        XGrabKey(display, XKeysymToKeycode(display, AntKeyMapper::returnVirtualKey(Qt::Key_Escape)), 0, rootWin,
                  true, GrabModeAsync, GrabModeAsync);
 
         XEvent event;
-        XAllowEvents(X11Info::display(), SyncPointer, CurrentTime);
-        XWindowEvent(X11Info::display(), X11Info::appRootWindow(), ButtonPressMask|KeyPressMask, &event);
+        XAllowEvents(display, SyncPointer, CurrentTime);
+        XWindowEvent(display, rootWin, ButtonPressMask|KeyPressMask, &event);
         switch (event.type)
         {
             case (ButtonPress):
@@ -48,10 +62,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                     target_window = event.xbutton.window;
                 }
 
-                // Attempt to find the appropriate window below the root window
-                // that was clicked.
                 //qDebug() << QString::number(target_window, 16);
-                target_window = X11Info::findClientWindow(target_window);
                 break;
 
             case (KeyPress):
@@ -61,38 +72,22 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
             }
         }
 
-        XUngrabKey(X11Info::display(), XKeysymToKeycode(X11Info::display(), AntKeyMapper::returnVirtualKey(Qt::Key_Escape)),
-                   0, X11Info::appRootWindow());
-        XUngrabPointer(X11Info::display(), CurrentTime);
-        XFlush(X11Info::display());
+        XUngrabKey(display, XKeysymToKeycode(display, AntKeyMapper::returnVirtualKey(Qt::Key_Escape)),
+                   0, rootWin);
+        XUngrabPointer(display, CurrentTime);
+        XFlush(display);
     }
 
     if (target_window != None)
     {
-        int pid = X11Info::getApplicationPid(target_window);
-        if (pid > 0)
-        {
-            QString exepath = X11Info::getApplicationLocation(pid);
-
-            if (!exepath.isEmpty())
-            {
-                targetPath = exepath;
-            }
-            else
-            {
-                failed = true;
-            }
-        }
-        else
-        {
-            failed = true;
-        }
+        targetWindow = target_window;
     }
     else if (!escaped)
     {
         failed = true;
     }
 
+    XCloseDisplay(display);
     emit captureFinished();
 }
 
@@ -112,4 +107,9 @@ QString UnixCaptureWindowUtility::getTargetPath()
 bool UnixCaptureWindowUtility::hasFailed()
 {
     return failed;
+}
+
+unsigned long UnixCaptureWindowUtility::getTargetWindow()
+{
+    return targetWindow;
 }

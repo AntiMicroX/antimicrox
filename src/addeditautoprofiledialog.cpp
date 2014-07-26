@@ -11,6 +11,7 @@
 
 #if defined(Q_OS_UNIX)
 #include "unixcapturewindowutility.h"
+#include "x11info.h"
 
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
@@ -114,7 +115,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForReservedGUIDs(int)));
     connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus(QString)));
 
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_UNIX)
     connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(showCaptureHelpWindow()));
 #elif defined(Q_OS_WIN)
     connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(openWinAppProfileDialog()));
@@ -249,7 +250,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     connect(util, SIGNAL(captureFinished()), this, SLOT(checkCapturedPath()), Qt::QueuedConnection);
 
     connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
-    connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+    connect(util, SIGNAL(destroyed()), thread, SLOT(deleteLater()));
     thread->start();
 }
 
@@ -260,13 +261,49 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
 void AddEditAutoProfileDialog::checkCapturedPath()
 {
     UnixCaptureWindowUtility *util = static_cast<UnixCaptureWindowUtility*>(sender());
-    QString path = util->getTargetPath();
+    unsigned long targetWindow = util->getTargetWindow();
+    bool failed = util->hasFailed();
+    QString path;
+
+    if (targetWindow != None)
+    {
+        // Attempt to find the appropriate window below the root window
+        // that was clicked.
+        targetWindow = X11Info::findClientWindow(targetWindow);
+    }
+
+    if (targetWindow != None)
+    {
+        int pid = X11Info::getApplicationPid(targetWindow);
+        if (pid > 0)
+        {
+            QString exepath = X11Info::getApplicationLocation(pid);
+
+            if (!exepath.isEmpty())
+            {
+                path = exepath;
+            }
+            else if (!failed)
+            {
+                failed = true;
+            }
+        }
+        else if (!failed)
+        {
+            failed = true;
+        }
+    }
+    else if (!failed)
+    {
+        failed = true;
+    }
+
     if (!path.isEmpty())
     {
         ui->applicationLineEdit->setText(path);
     }
     // Ensure that the operation was not cancelled (Escape wasn't pressed).
-    else if (util->hasFailed())
+    else if (failed)
     {
         QMessageBox box;
         box.setText(tr("Could not obtain information for the selected window."));
@@ -275,6 +312,8 @@ void AddEditAutoProfileDialog::checkCapturedPath()
         box.raise();
         box.exec();
     }
+
+    util->deleteLater();
 }
 
 #endif
@@ -309,11 +348,6 @@ void AddEditAutoProfileDialog::accept()
             errorString = tr("Profile file path is invalid.");
         }
     }
-    /*else
-    {
-        validForm = false;
-        errorString = tr("No profile selected.");
-    }*/
 
     if (validForm && ui->applicationLineEdit->text().length() > 0)
     {

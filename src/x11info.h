@@ -21,6 +21,7 @@ public:
     static void closeDisplay();
     static void syncDisplay();
     static void syncDisplay(QString displayString);
+    static QString getXDisplayString();
 
 protected:
     explicit X11Info(QObject *parent = 0);
@@ -29,6 +30,7 @@ protected:
     Display *_display;
     static X11Info _instance;
     QHash<QString, QString> knownAliases;
+    QString _customDisplayString;
 
 signals:
     

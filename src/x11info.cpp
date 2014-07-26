@@ -22,6 +22,7 @@ X11Info::~X11Info()
     {
         XCloseDisplay(display());
         _display = 0;
+        _instance._customDisplayString = "";
     }
 }
 
@@ -43,6 +44,7 @@ void X11Info::closeDisplay()
     {
         XCloseDisplay(display());
         _instance._display = 0;
+        _instance._customDisplayString = "";
     }
 }
 
@@ -52,6 +54,7 @@ void X11Info::closeDisplay()
 void X11Info::syncDisplay()
 {
     _instance._display = XOpenDisplay(NULL);
+    _instance._customDisplayString = "";
 }
 
 /**
@@ -63,6 +66,14 @@ void X11Info::syncDisplay(QString displayString)
 {
     QByteArray tempByteArray = displayString.toLocal8Bit();
     _instance._display = XOpenDisplay(tempByteArray.constData());
+    if (_instance._display)
+    {
+        _instance._customDisplayString = displayString;
+    }
+    else
+    {
+        _instance._customDisplayString = "";
+    }
 }
 
 /**
@@ -294,4 +305,9 @@ Window X11Info::findClientWindow(Window &window)
     }
 
     return finalwindow;
+}
+
+QString X11Info::getXDisplayString()
+{
+    return _instance._customDisplayString;
 }

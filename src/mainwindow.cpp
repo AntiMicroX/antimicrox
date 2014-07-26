@@ -943,6 +943,8 @@ void MainWindow::openMainSettingsDialog()
 #ifdef USE_SDL_2
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
+    appWatcher->stopTimer();
+
 #endif
 
     connect(dialog, SIGNAL(accepted()), this, SLOT(populateTrayIcon()));

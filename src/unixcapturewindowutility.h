@@ -10,10 +10,12 @@ public:
     explicit UnixCaptureWindowUtility(QObject *parent = 0);
     QString getTargetPath();
     bool hasFailed();
+    unsigned long getTargetWindow();
 
 protected:
     QString targetPath;
     bool failed;
+    unsigned long targetWindow;
 
 signals:
     void captureFinished();
