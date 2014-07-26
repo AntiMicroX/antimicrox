@@ -244,54 +244,17 @@ Window X11Info::findClientWindow(Window &window)
     Window finalwindow = 0;
     Display *display = X11Info::display();
 
-    Atom wmStateAtom = XInternAtom(display, "WM_STATE", True);
-    // WM_STATE is not available from an app when running a game
-    // in the SteamOS BPM X Session. Make a special case for SteamOS.
-    // TODO: Find a better Atom variable to discover.
-    Atom steamCheckAtom = XInternAtom(display, "STEAM_GAME", True);
-    // Put in a check for WM_NAME. Attempt to ensure that a valid window has
-    // been obtained.
-    Atom wmNameAtom = XInternAtom(display, "WM_NAME", True);
-
-    QList<Atom> atomChecks;
-    atomChecks.append(wmStateAtom);
-    atomChecks.append(steamCheckAtom);
-    QListIterator<Atom> iter(atomChecks);
-    while (iter.hasNext())
+    Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
+    status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+    if (status == 0 && prop)
     {
-        Atom tmpAtom = iter.next();
-        status = XGetWindowProperty(display, window, tmpAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-        if (status == 0 && prop)
-        {
-            if (tmpAtom == steamCheckAtom)
-            {
-                // A Steam game has been detected. Try to find the WM_NAME
-                // property to ensure that a root window has not been detected.
-                if (prop)
-                {
-                    XFree(prop);
-                    prop = 0;
-                }
+        finalwindow = window;
+    }
 
-                status = XGetWindowProperty(display, window, wmNameAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-                if (status == 0 && prop)
-                {
-                    finalwindow = window;
-                    iter.toBack();
-                }
-            }
-            else
-            {
-                finalwindow = window;
-                iter.toBack();
-            }
-        }
-
-        if (prop)
-        {
-            XFree(prop);
-            prop = 0;
-        }
+    if (prop)
+    {
+        XFree(prop);
+        prop = 0;
     }
 
     if (!finalwindow)
@@ -301,42 +264,16 @@ Window X11Info::findClientWindow(Window &window)
         {
             for (unsigned int i = 0; i < num_children && !finalwindow; i++)
             {
-                iter.toFront();
-                while (iter.hasNext())
+                status = XGetWindowProperty(display, children[i], pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                if (status == 0 && prop)
                 {
-                    Atom tmpAtom = iter.next();
-                    status = XGetWindowProperty(display, children[i], tmpAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-                    if (status == 0 && prop)
-                    {
-                        if (tmpAtom == steamCheckAtom)
-                        {
-                            // A Steam game has been detected. Try to find the WM_NAME
-                            // property to ensure that a root window has not been detected.
-                            if (prop)
-                            {
-                                XFree(prop);
-                                prop = 0;
-                            }
+                    finalwindow = children[i];
+                }
 
-                            status = XGetWindowProperty(display, children[i], wmNameAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-                            if (status == 0 && prop)
-                            {
-                                finalwindow = children[i];
-                                iter.toBack();
-                            }
-                        }
-                        else
-                        {
-                            finalwindow = children[i];
-                            iter.toBack();
-                        }
-                    }
-
-                    if (prop)
-                    {
-                        XFree(prop);
-                        prop = 0;
-                    }
+                if (prop)
+                {
+                    XFree(prop);
+                    prop = 0;
                 }
             }
         }
@@ -355,7 +292,6 @@ Window X11Info::findClientWindow(Window &window)
             children = 0;
         }
     }
-
 
     return finalwindow;
 }
