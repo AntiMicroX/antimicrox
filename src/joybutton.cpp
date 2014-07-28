@@ -1633,6 +1633,11 @@ QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
     return temp;
 }
 
+/**
+ * @brief Generate a string representing a summary of the slots currently
+ *     assigned to a button
+ * @return String of currently assigned slots
+ */
 QString JoyButton::getSlotsSummary()
 {
     QString newlabel;
@@ -1667,13 +1672,19 @@ QString JoyButton::getSlotsSummary()
     return newlabel;
 }
 
+/**
+ * @brief Generate a string that represents slots that will be activated or
+ *     slots that are currently active if a button is pressed
+ * @return String of currently applicable slots for a button
+ */
 QString JoyButton::getActiveZoneSummary()
 {
     QString newlabel;
     QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
     QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
     QListIterator<JoyButtonSlot*> *iter = 0;
-    if (!activeSlots.isEmpty())
+    bool slotsActive = activeSlots.isEmpty();
+    if (slotsActive)
     {
         iter = &activeSlotsIter;
     }
@@ -1691,6 +1702,7 @@ QString JoyButton::getActiveZoneSummary()
 
     if (iter->hasNext())
     {
+        bool behindHold = false;
         while (iter->hasNext())
         {
             JoyButtonSlot *slot = iter->next();
@@ -1701,13 +1713,36 @@ QString JoyButton::getActiveZoneSummary()
                 case JoyButtonSlot::JoyMouseButton:
                 case JoyButtonSlot::JoyMouseMovement:
                 {
-                    stringlist.append(slot->getSlotString());
+                    QString temp = slot->getSlotString();
+                    if (behindHold)
+                    {
+                        temp.prepend("[H] ");
+                        behindHold = false;
+                    }
+
+                    stringlist.append(temp);
                     i++;
                     break;
                 }
                 case JoyButtonSlot::JoyKeyPress:
                 {
                     // Skip slot if a press time slot was inserted.
+                    break;
+                }
+                case JoyButtonSlot::JoyHold:
+                {
+                    if (!slotsActive && i == 0)
+                    {
+                        // If button is not active and first slot is a hold,
+                        // keep processing slots but take note of the hold.
+                        behindHold = true;
+                    }
+                    else
+                    {
+                        // Move iter to back so loop will end.
+                        iter->toBack();
+                    }
+
                     break;
                 }
                 default:
@@ -1734,6 +1769,11 @@ QString JoyButton::getActiveZoneSummary()
     return newlabel;
 }
 
+/**
+ * @brief Generate a string representing all the currently assigned slots for
+ *     a button
+ * @return String representing all assigned slots for a button
+ */
 QString JoyButton::getSlotsString()
 {
     QString label;
@@ -2117,6 +2157,10 @@ int JoyButton::getOriginSet()
     return originset;
 }
 
+/**
+ * @brief DEPRECATED. CURRENTLY NOT USED. TODO: CHECK IF METHOD SHOULD
+ *     BE REMOVED
+ */
 void JoyButton::pauseEvent()
 {
     if (currentPause)
