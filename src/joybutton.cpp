@@ -1705,6 +1705,11 @@ QString JoyButton::getActiveZoneSummary()
                     i++;
                     break;
                 }
+                case JoyButtonSlot::JoyKeyPress:
+                {
+                    // Skip slot if a press time slot was inserted.
+                    break;
+                }
                 default:
                 {
                     iter->toBack();
