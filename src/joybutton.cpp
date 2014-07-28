@@ -407,6 +407,8 @@ void JoyButton::reset()
     cycleResetActive = false;
     cycleResetInterval = 0;
     relativeSpring = false;
+    lastDistance = 0.0;
+    tempTurboInterval = 0;
 }
 
 void JoyButton::reset(int index)

@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <cmath>
 
 #include "joycontrolstickbutton.h"
@@ -154,4 +155,83 @@ JoyControlStick* JoyControlStickButton::getStick()
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
 {
     return (JoyStickDirectionsType::JoyStickDirections)index;
+}
+
+void JoyControlStickButton::turboEvent()
+{
+    double diff = abs(getMouseDistanceFromDeadZone() - lastDistance);
+
+    bool changeState = false;
+    if (!turboTimer.isActive() && !isButtonPressed)
+    {
+        changeState = true;
+    }
+    else if (getMouseDistanceFromDeadZone() >= 1.0 && isKeyPressed)
+    {
+        changeState = false;
+        turboTimer.start(5);
+        turboHold.start();
+    }
+    else if (turboHold.isNull() || turboHold.elapsed() > tempTurboInterval)
+    {
+        changeState = true;
+    }
+    else if (diff >= 0.1)
+    {
+        if (isKeyPressed)
+        {
+            isKeyPressed = !isKeyPressed;
+        }
+        changeState = true;
+    }
+
+    if (changeState)
+    {
+        if (!isKeyPressed)
+        {
+            if (!isButtonPressedQueue.isEmpty())
+            {
+                ignoreSetQueue.clear();
+                isButtonPressedQueue.clear();
+
+                ignoreSetQueue.enqueue(false);
+                isButtonPressedQueue.enqueue(isButtonPressed);
+            }
+
+            createDeskEvent();
+
+            isKeyPressed = true;
+            if (turboTimer.isActive())
+            {
+                tempTurboInterval = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
+                int timerInterval = qMin(tempTurboInterval, 5);
+                //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
+                //qDebug() << "timer press: " << QString::number(timerInterval);
+                turboTimer.start(timerInterval);
+                turboHold.start();
+            }
+        }
+        else
+        {
+            if (!isButtonPressedQueue.isEmpty())
+            {
+                ignoreSetQueue.enqueue(false);
+                isButtonPressedQueue.enqueue(!isButtonPressed);
+            }
+
+            releaseDeskEvent();
+
+            isKeyPressed = false;
+            if (turboTimer.isActive())
+            {
+                tempTurboInterval = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
+                int timerInterval = qMin(tempTurboInterval, 5);
+                //qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
+                //qDebug() << "timer release: " << QString::number(timerInterval);
+                turboTimer.start(timerInterval);
+                turboHold.start();
+            }
+
+        }
+    }
 }

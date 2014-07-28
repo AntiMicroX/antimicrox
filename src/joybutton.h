@@ -240,6 +240,7 @@ protected:
     QTime buttonHeldRelease;
     QTime keyPressHold;
     QTime buttonDelay;
+    QTime turboHold;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
@@ -258,6 +259,8 @@ protected:
     double sensitivity;
     bool smoothing;
     bool whileHeldStatus;
+    double lastDistance;
+    int tempTurboInterval;
 
     QString actionName;
     QString buttonName; // User specified button name
@@ -333,11 +336,13 @@ public slots:
     void establishPropertyUpdatedConnections();
     void disconnectPropertyUpdatedConnections();
 
-private slots:
-    void turboEvent();
-    virtual void mouseEvent();
+protected slots:
+    virtual void turboEvent();
     void createDeskEvent();
     void releaseDeskEvent(bool skipsetchange=false);
+
+private slots:
+    virtual void mouseEvent();
     void releaseActiveSlots();
     void activateSlots();
     void waitForDeskEvent();
