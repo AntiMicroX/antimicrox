@@ -162,27 +162,80 @@ void JoyControlStickButton::turboEvent()
     double diff = abs(getMouseDistanceFromDeadZone() - lastDistance);
 
     bool changeState = false;
+    int checkmate = 0;
     if (!turboTimer.isActive() && !isButtonPressed)
     {
         changeState = true;
     }
     else if (getMouseDistanceFromDeadZone() >= 1.0 && isKeyPressed)
     {
-        changeState = false;
-        turboTimer.start(5);
-        turboHold.start();
+        if (isKeyPressed)
+        {
+            changeState = false;
+            turboTimer.start(5);
+            turboHold.start();
+            lastDistance = 1.0;
+        }
+        else
+        {
+            changeState = true;
+        }
     }
-    else if (turboHold.isNull() || turboHold.elapsed() > tempTurboInterval)
+    else if (turboHold.isNull() || lastDistance == 0.0 || turboHold.elapsed() > tempTurboInterval)
     {
         changeState = true;
     }
     else if (diff >= 0.1)
     {
+        int tempInterval2 = 0;
         if (isKeyPressed)
         {
-            isKeyPressed = !isKeyPressed;
+            tempInterval2 = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
         }
-        changeState = true;
+        //else
+        //{
+        //    tempInterval2 = (int)floor((lastDistance * turboInterval) + 0.5);
+            //tempInterval2 = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
+        //}
+
+        if (isKeyPressed && turboHold.elapsed() < tempInterval2)
+        {
+            // Still some valid time left. Continue current action with
+            // remaining time left.
+            tempTurboInterval = tempInterval2 - turboHold.elapsed();
+            int timerInterval = qMin(tempTurboInterval, 5);
+            turboTimer.start(timerInterval);
+            turboHold.start();
+            changeState = false;
+            lastDistance = getMouseDistanceFromDeadZone();
+        }
+        //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
+        //{
+        //    checkmate = turboHold.elapsed();
+        //    changeState = true;
+        //}
+        //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
+        //{
+        //    changeState = true;
+        //}
+        else
+        {
+            // Elapsed time is greater than new interval. Change state.
+            //if (isKeyPressed)
+            //{
+            //    isKeyPressed = !isKeyPressed;
+            //}
+            if (isKeyPressed)
+            {
+                checkmate = turboHold.elapsed();
+            }
+            changeState = true;
+        }
+        //if (isKeyPressed)
+        //{
+        //    isKeyPressed = !isKeyPressed;
+        //}
+        //changeState = true;
     }
 
     if (changeState)
@@ -204,6 +257,10 @@ void JoyControlStickButton::turboEvent()
             if (turboTimer.isActive())
             {
                 tempTurboInterval = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
+                //if (checkmate > 0 && tempTurboInterval > checkmate)
+                //{
+                //    tempTurboInterval = tempTurboInterval - checkmate;
+                //}
                 int timerInterval = qMin(tempTurboInterval, 5);
                 //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
                 //qDebug() << "timer press: " << QString::number(timerInterval);
@@ -233,5 +290,9 @@ void JoyControlStickButton::turboEvent()
             }
 
         }
+
+        lastDistance = getMouseDistanceFromDeadZone();
     }
+
+    checkmate = 0;
 }

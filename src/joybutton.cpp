@@ -215,6 +215,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                         turboEvent();
                         //QTimer::singleShot(0, this, SLOT(turboEvent()));
                     }
+                    else
+                    {
+                        lastDistance = getMouseDistanceFromDeadZone();
+                    }
                 }
             }
             // Toogle is enabled and a controller button change has occurred.
