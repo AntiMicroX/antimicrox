@@ -94,6 +94,7 @@ signals:
     void setAxisButtonClick(int setindex, int axis, int button);
     void setAxisButtonRelease(int setindex, int axis, int button);
     void setAxisActivated(int setindex, int axis, int value);
+    void setAxisReleased(int setindex, int axis, int value);
     void setStickButtonClick(int setindex, int stick, int button);
     void setStickButtonRelease(int setindex, int stick, int button);
     void setDPadButtonClick(int setindex, int dpad, int button);
@@ -132,6 +133,7 @@ protected slots:
     void propogateSetDPadButtonClick(int button);
     void propogateSetDPadButtonRelease(int button);
     void propogateSetAxisActivated(int value);
+    void propogateSetAxisReleased(int value);
 
     void propogateSetButtonNameChange();
     void propogateSetAxisButtonNameChange();

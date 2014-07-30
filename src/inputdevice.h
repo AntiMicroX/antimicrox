@@ -36,6 +36,7 @@ public:
     SetJoystick* getSetJoystick(int index);
     void removeControlStick(int index);
     bool isActive();
+    int getButtonDownCount();
 
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
@@ -117,6 +118,7 @@ signals:
     void rawDPadButtonClick(int dpad, int buttonindex);
     void rawDPadButtonRelease(int dpad, int buttonindex);
     void rawAxisActivated(int axis, int value);
+    void rawAxisReleased(int axis, int value);
     void profileUpdated();
     void propertyUpdated();
     void profileNameEdited(QString text);
@@ -142,6 +144,7 @@ protected slots:
     void buttonDownEvent(int setindex, int buttonindex);
     void buttonUpEvent(int setindex, int buttonindex);
     virtual void axisActivatedEvent(int setindex, int axisindex, int value);
+    virtual void axisReleasedEvent(int setindex, int axisindex, int value);
     virtual void buttonClickEvent(int buttonindex);
     virtual void buttonReleaseEvent(int buttonindex);
     virtual void axisButtonDownEvent(int setindex, int axisindex, int buttonindex);

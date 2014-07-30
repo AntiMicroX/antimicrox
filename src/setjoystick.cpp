@@ -798,6 +798,12 @@ void SetJoystick::propogateSetAxisActivated(int value)
     emit setAxisActivated(this->index, axis->getIndex(), value);
 }
 
+void SetJoystick::propogateSetAxisReleased(int value)
+{
+    JoyAxis *axis = static_cast<JoyAxis*>(sender());
+    emit setAxisReleased(this->index, axis->getIndex(), value);
+}
+
 void SetJoystick::enableButtonConnections(JoyButton *button)
 {
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
@@ -814,6 +820,7 @@ void SetJoystick::enableAxisConnections(JoyAxis *axis)
     connect(axis, SIGNAL(throttleChangePropogated(int)), this, SLOT(propogateSetAxisThrottleSetting(int)));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
     connect(axis, SIGNAL(active(int)), this, SLOT(propogateSetAxisActivated(int)));
+    connect(axis, SIGNAL(released(int)), this, SLOT(propogateSetAxisReleased(int)));
 
     JoyAxisButton *button = axis->getNAxisButton();
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));

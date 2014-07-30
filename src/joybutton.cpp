@@ -1683,7 +1683,7 @@ QString JoyButton::getActiveZoneSummary()
     QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
     QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
     QListIterator<JoyButtonSlot*> *iter = 0;
-    bool slotsActive = activeSlots.isEmpty();
+    bool slotsActive = !activeSlots.isEmpty();
     if (slotsActive)
     {
         iter = &activeSlotsIter;
