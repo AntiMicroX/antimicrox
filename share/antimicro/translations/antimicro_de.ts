@@ -199,27 +199,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="32"/>
         <source>Program Version %1</source>
-        <translation type="Programmversion %1"></translation>
+        <translation>Programmversion %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="33"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation type="Programm kompiliert am %1 um %2"></translation>
+        <translation>Programm kompiliert am %1 um %2</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="48"/>
         <source>Built Against SDL %1</source>
-        <translation type="Nutzt SDL %1"></translation>
+        <translation>Nutzt SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="51"/>
         <source>Running With SDL %1</source>
-        <translation type="Läuft mit SDL %1"></translation>
+        <translation>Läuft mit SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="53"/>
         <source>Using Qt %1</source>
-        <translation type="Benutzt Qt %1"></translation>
+        <translation>Benutzt Qt %1</translation>
     </message>
 </context>
 <context>
@@ -270,7 +270,7 @@ wird in das Formular eingetragen.</translation>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation type="Wählen Sie dieses Profil als Standard für das jeweilige Gerät. Diese Auswahl wird anstatt jeder anderen Standardeinstellung genutzt."></translation>
+        <translation>Wählen Sie dieses Profil als Standard für das jeweilige Gerät. Diese Auswahl wird anstatt jeder anderen Standardeinstellung genutzt.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="107"/>
@@ -3692,7 +3692,7 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="136"/>
         <source>Caps_Lock</source>
-        <translation type="Feststell"></translation>
+        <translation>Feststell</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="137"/>
@@ -3747,12 +3747,12 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="147"/>
         <source>apostrophe</source>
-        <translation type="Apostroph"></translation>
+        <translation>Apostroph</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="151"/>
         <source>asterisk</source>
-        <translation type="Sternchen"></translation>
+        <translation>Sternchen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="155"/>
@@ -4008,13 +4008,13 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="293"/>
         <source>Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Links</translation>
+        <translation>Links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="304"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="312"/>
