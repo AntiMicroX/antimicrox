@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHash>
+#include <QMap>
 #ifdef USE_SDL_2
 #include <SDL2/SDL.h>
 #else
@@ -16,7 +17,7 @@ class SDLEventReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit SDLEventReader(QHash<SDL_JoystickID, InputDevice*> *joysticks, QObject *parent = 0);
+    explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks, QObject *parent = 0);
     ~SDLEventReader();
     SDL_Event& getCurrentEvent();
     bool isSDLOpen();
@@ -26,7 +27,7 @@ protected:
     void closeSDL();
     void clearEvents();
 
-    QHash<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<SDL_JoystickID, InputDevice*> *joysticks;
     SDL_Event currentEvent;
     bool sdlIsOpen;
 

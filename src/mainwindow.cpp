@@ -4,6 +4,8 @@
 #include <QTextStream>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QHashIterator>
+#include <QMapIterator>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -26,7 +28,7 @@
 #include "autoprofileinfo.h"
 #endif
 
-MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -189,12 +191,12 @@ void MainWindow::fillButtons(InputDevice *joystick)
     tabwidget->fillButtons();
 }
 
-void MainWindow::fillButtons(QHash<SDL_JoystickID, InputDevice *> *joysticks)
+void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
-    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
     while (iter.hasNext())
     {
@@ -265,7 +267,7 @@ void MainWindow::populateTrayIcon()
 
     if (joystickCount > 0)
     {
-        QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
         bool useSingleList = settings->value("TrayProfileList", false).toBool();
         if (!useSingleList && joystickCount == 1)
         {

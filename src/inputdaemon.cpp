@@ -3,10 +3,11 @@
 #include <QTimer>
 #include <QEventLoop>
 #include <QHashIterator>
+#include <QMapIterator>
 
 #include "inputdaemon.h"
 
-InputDaemon::InputDaemon(QHash<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
@@ -253,7 +254,7 @@ void InputDaemon::run ()
 
 void InputDaemon::refreshJoysticks()
 {
-    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
     while (iter.hasNext())
     {
@@ -386,7 +387,7 @@ void InputDaemon::resetMouseTimers()
 {
     if (joysticks->size() > 0)
     {
-        QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
         while (iter.hasNext())
         {
