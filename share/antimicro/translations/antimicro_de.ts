@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -199,27 +199,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="32"/>
         <source>Program Version %1</source>
-        <translation></translation>
+        <translation>Programmversion %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="33"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation></translation>
+        <translation>Programm kompiliert am %1 um %2</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="48"/>
         <source>Built Against SDL %1</source>
-        <translation></translation>
+        <translation>Nutzt SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="51"/>
         <source>Running With SDL %1</source>
-        <translation></translation>
+        <translation>Läuft mit SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="53"/>
         <source>Using Qt %1</source>
-        <translation></translation>
+        <translation>Benutzt Qt %1</translation>
     </message>
 </context>
 <context>
@@ -270,7 +270,7 @@ wird in das Formular eingetragen.</translation>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation></translation>
+        <translation>Wählen Sie dieses Profil als Standard für das jeweilige Gerät. Diese Auswahl wird anstatt jeder anderen Standardeinstellung genutzt.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="107"/>
@@ -422,7 +422,7 @@ Interval noch gedrückt wurde. </translation>
 executed if the button is held past the interval specified.</source>
         <translation>Fügt eine Haltenaktion ein. Alles nach nach dieser Aktion
 wird nur ausgeführt, wenn der Button nach dem angegebenen
-Interval noch gedrückt wurde.</translation>
+Intervall noch gedrückt wurde.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="227"/>
@@ -431,14 +431,14 @@ on the next button press. Multiple cycles can be added
 in order to create partitions in a sequence.</source>
         <translation>Alles nach der Kreislaufaktion wird beim nächsten
 Buttondruck ausgeführt. Mehrere Kreisläufe können
-hinzugefügt werden, um Trennung der Sequenz zu erzeugen.</translation>
+hinzugefügt werden, um Trennungen in einer Sequenz zu erzeugen.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="239"/>
         <source>Distance action specifies that the slots afterwards
 will only be executed when an axis is moved
 a certain range past the designated dead zone.</source>
-        <translation>Die Distanzaktion gibt an das alles hier nach nur
+        <translation>Die Distanzaktion bewirkt, dass alles hiernach nur dann
 ausgeführt wird, wenn eine Achse die angegebene
 Distanz fern der Dead Zone überschritten hat.</translation>
     </message>
@@ -465,7 +465,7 @@ Distanz fern der Dead Zone überschritten hat.</translation>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="380"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation>Gibt die Dauer der hinzugefügten Pause oder Haltenaktion an.</translation>
+        <translation>Gibt die Dauer der hinzugefügten Pause- oder Haltenaktion an.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="411"/>
@@ -476,7 +476,7 @@ Distanz fern der Dead Zone überschritten hat.</translation>
         <location filename="../../../src/advancebuttondialog.ui" line="566"/>
         <location filename="../../../src/advancebuttondialog.ui" line="585"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
-        <translation>Gibt die Distanz der Achse zur Dead Zone an, in der die Sequenz an Aktionen ausgeführt wird.</translation>
+        <translation>Gibt die Distanz der Achse zur "Dead Zone" an, in der die Sequenz an Aktionen ausgeführt wird.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="569"/>
@@ -495,9 +495,9 @@ Distanz fern der Dead Zone überschritten hat.</translation>
 by a specified percentage while the action is being processed.
 This can be useful for slowing down the mouse while
 sniping.</source>
-        <translation>Bei der Maus Mod-Aktion werden alle Mausgeschwindigkeitseinstellungen um einen
+        <translation>Durch die "Maus Mod"-Aktion werden alle Mausgeschwindigkeitseinstellungen um einen
 bestimmten Prozentsatz geändert, während die Aktion ausgeführt wird.
-Dies kann man nutzen für die Verlangsamung der Maus als Scharfschütze.</translation>
+Dies kann man bspw. für die Verlangsamung der Maus während des Zielens (als Scharfschütze) nutzen.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="220"/>
@@ -508,8 +508,8 @@ Dies kann man nutzen für die Verlangsamung der Maus als Scharfschütze.</transl
         <location filename="../../../src/advancebuttondialog.ui" line="176"/>
         <source>Specify the time that keys past this slot should be
 held down.</source>
-        <translation>Geben Sie die Zeit an mit der die Tasten hinter 
-diesem Slot gehalten werden sollte.</translation>
+        <translation>Geben Sie die Zeit an, mit der Tasten hinter 
+diesem Slot gehalten werden sollen.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="180"/>
@@ -522,7 +522,9 @@ diesem Slot gehalten werden sollte.</translation>
 by the time specified. Slots activated before the
 delay will remain active after the delay time
 has passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzögert die Aktivierung
+		des nächsten Slots um die spezifizierte Zeit. Vorher aktivierte Slots
+		bleiben nach der Verzögerungszeit aktivert</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="269"/>
@@ -711,12 +713,12 @@ has passed.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="153"/>
         <source>sec.</source>
-        <translation>sek.</translation>
+        <translation>Sek.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="154"/>
         <source>/sec.</source>
-        <translation>/sek.</translation>
+        <translation>/Sek.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="808"/>
@@ -764,7 +766,7 @@ has passed.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before AntiMicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation></translation>
+        <translation>"Anmerkung: Dieses Fenster ist dazu gedacht, eine Rückwertskompatibilität zu Profilen von Versionen von AntiMicro vor Version 2.0 zu gewährleisten. Seit Version 2.0 wird die Benutzung des Spiele-Controller-Zuordnungsfensters bevorzugt."></translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="101"/>
@@ -2368,7 +2370,7 @@ oder deaktivieren Sie das Ausblenden leerer Tasten.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="77"/>
         <source>Auto Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoprofil</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="103"/>
@@ -2404,7 +2406,7 @@ clicked instead of quitting the program.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="178"/>
         <source>Have Windows start AntiMicro at system startup</source>
-        <translation></translation>
+        <translation>"Starte AntiMicro beim Systemstart"</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="181"/>
@@ -2416,7 +2418,7 @@ clicked instead of quitting the program.</source>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
-        <translation></translation>
+        <translation>"Zeige die zuletzt benutzten Profile aller Controller als eine Liste anstatt als Untermenüs."</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="193"/>
@@ -2428,7 +2430,7 @@ to using sub-menus.</source>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
-        <translation></translation>
+        <translation>"Minimiere das Programm in die Taskleiste. Standardmäßig wird AntiMicro, falls möglich, in das System-Tray minimiert."</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="205"/>
@@ -2441,7 +2443,8 @@ tray if available.</source>
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
 to bring up the edit dialog for gamepad buttons.</source>
-        <translation></translation>
+        <translation>"Diese Option versteckt alle Tasten denen keine Aktion zugeordnet wird.
+		Der Schnelleinstellungs-Dialog muss benutzt werden um die Editier-Einstellungen aufzurufen"</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="218"/>
@@ -2453,7 +2456,7 @@ to bring up the edit dialog for gamepad buttons.</source>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
-        <translation></translation>
+        <translation>"Wenn das Programm gestartet wurde, öffne das zuletzt benutzte Profil."</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="230"/>
@@ -2464,7 +2467,7 @@ previous session.</source>
         <location filename="../../../src/mainsettingsdialog.ui" line="240"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
-        <translation></translation>
+        <translation>"Zeige das System-Tray-Icon nur, wenn das Programm zum ersten Mal startet."</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="244"/>
@@ -2480,7 +2483,7 @@ first launches.</source>
         <location filename="../../../src/mainsettingsdialog.ui" line="273"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
-        <translation></translation>
+        <translation>"Dauerhaft gedrückte Tasten werden wiederholt gedrückt, wenn diese Option aktiviert ist."</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="277"/>
@@ -2948,7 +2951,9 @@ entsprechend der Anzahl der simulierten Raster pro Sekunde ein.</translation>
         <location filename="../../../src/mousesettingsdialog.ui" line="546"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn aktiviert, 
+		Besagt, dass das Ursprungs-arreal
+		durch ein nicht-relativen Ursprung relativ zur Mausposition sein wird.</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="550"/>
@@ -3482,22 +3487,22 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="145"/>
         <source>Up</source>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="146"/>
         <source>Down</source>
-        <translation type="unfinished">Runter</translation>
+        <translation>Runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="147"/>
         <source>Left</source>
-        <translation type="unfinished">Links</translation>
+        <translation>Links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
         <source>Right</source>
-        <translation type="unfinished">Rechts</translation>
+        <translation>Rechts</translation>
     </message>
 </context>
 <context>
@@ -3517,12 +3522,12 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="229"/>
         <source>Left</source>
-        <translation type="unfinished">Links</translation>
+        <translation>Links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="228"/>
         <source>Up</source>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="75"/>
@@ -3592,7 +3597,7 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="98"/>
         <source>grave</source>
-        <translation></translation>
+        <translation>Gravis</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="103"/>
@@ -3602,22 +3607,22 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="104"/>
         <source>minus</source>
-        <translation></translation>
+        <translation>Minus</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="105"/>
         <source>equal</source>
-        <translation></translation>
+        <translation>Gleich</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="106"/>
         <source>BackSpace</source>
-        <translation></translation>
+        <translation>Rücktaste</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="113"/>
         <source>Tab</source>
-        <translation></translation>
+        <translation>Tabulator</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="115"/>
@@ -3672,22 +3677,22 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="125"/>
         <source>bracketleft</source>
-        <translation></translation>
+        <translation>Klammer links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="126"/>
         <source>bracketright</source>
-        <translation></translation>
+        <translation>Klammer rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="130"/>
         <source>backslash</source>
-        <translation></translation>
+        <translation>Rückstrich</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="136"/>
         <source>Caps_Lock</source>
-        <translation></translation>
+        <translation>Feststell</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="137"/>
@@ -3697,7 +3702,7 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="138"/>
         <source>s</source>
-        <translation type="unfinished">s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="139"/>
@@ -3742,27 +3747,27 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="147"/>
         <source>apostrophe</source>
-        <translation></translation>
+        <translation>Apostroph</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="151"/>
         <source>asterisk</source>
-        <translation></translation>
+        <translation>Sternchen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="155"/>
         <source>Return</source>
-        <translation></translation>
+        <translation>Eingabe</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="160"/>
         <source>Shift_L</source>
-        <translation></translation>
+        <translation>Umschalt Links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="163"/>
         <source>less</source>
-        <translation></translation>
+        <translation>kleiner</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="165"/>
@@ -3802,67 +3807,67 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="172"/>
         <source>comma</source>
-        <translation></translation>
+        <translation>Komma</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="173"/>
         <source>period</source>
-        <translation></translation>
+        <translation>Periode</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="174"/>
         <source>slash</source>
-        <translation></translation>
+        <translation>Schrägstrich</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="175"/>
         <source>Shift_R</source>
-        <translation></translation>
+        <translation>Umschalt rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="180"/>
         <source>Control_L</source>
-        <translation></translation>
+        <translation>Steuerung links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="181"/>
         <source>Super_L</source>
-        <translation></translation>
+        <translation>Super Links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="182"/>
         <source>Alt_L</source>
-        <translation></translation>
+        <translation>Alt links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="183"/>
         <source>space</source>
-        <translation></translation>
+        <translation>Leer</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="184"/>
         <source>Alt_R</source>
-        <translation></translation>
+        <translation>Alt rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="185"/>
         <source>Menu</source>
-        <translation></translation>
+        <translation>Menü</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="186"/>
         <source>Control_R</source>
-        <translation></translation>
+        <translation>Steuerung_R</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="208"/>
         <source>Print</source>
-        <translation></translation>
+        <translation>Druck</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="209"/>
         <source>Scroll_Lock</source>
-        <translation></translation>
+        <translation>Rollen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="210"/>
@@ -3887,12 +3892,12 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="219"/>
         <source>Delete</source>
-        <translation></translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="220"/>
         <source>End</source>
-        <translation></translation>
+        <translation>Ende</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="221"/>
@@ -3902,7 +3907,7 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="248"/>
         <source>Num_Lock</source>
-        <translation></translation>
+        <translation>Num-Lock</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="249"/>
@@ -3992,24 +3997,24 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="230"/>
         <source>Down</source>
-        <translation type="unfinished">Runter</translation>
+        <translation>Runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="231"/>
         <source>Right</source>
-        <translation type="unfinished">Rechts</translation>
+        <translation>Rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="293"/>
         <source>Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Links</translation>
+        <translation>Links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="304"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="312"/>
@@ -4033,61 +4038,61 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="325"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rad auf</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="329"/>
         <source>Wheel Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rad links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="333"/>
         <source>Wheel Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rad rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="337"/>
         <source>Wheel Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Maus runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="345"/>
         <source>Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Runter</translation>
+        <translation>Runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="361"/>
         <source>Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Rechts</translation>
+        <translation>Rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="373"/>
         <source>Button 4</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Taste 4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="375"/>
         <source>Mouse 8</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Taste 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="381"/>
         <source>Button 5</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Taste 5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="383"/>
         <source>Mouse 9</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>Taste 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="480"/>
@@ -4119,17 +4124,17 @@ R</source>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="38"/>
         <source>Timer:</source>
-        <translation></translation>
+        <translation type="unifinished"></translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="55"/>
         <source>Seconds</source>
-        <translation></translation>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="86"/>
         <source>Cancel</source>
-        <translation></translation>
+        <translation>Abbrechen</translation>
     </message>
 </context>
 <context>
