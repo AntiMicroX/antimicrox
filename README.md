@@ -161,10 +161,7 @@ Notes about the WXS file and the building process :
 This section is where some of the ideas for future features
 for this program will be written.
 
-* ~~Copy set assignments to a new set. This will make creating
-slightly altered sets easier.~~
 * Write documentation for portions of the program.
-* ~~Convert code base to use CMake as opposed to qmake.~~
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this
@@ -196,5 +193,6 @@ Jeff Backus <jeff.backus@gmail.com>
 
 VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese  
 Belleguic Terence <hizo@free.fr> - French  
+Leonard Koenig <leonard.r.koenig@googlemail.com> - German  
 phob - German  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian
