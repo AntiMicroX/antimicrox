@@ -1,11 +1,12 @@
 #include <QDebug>
+#include <QHash>
+#include <QHashIterator>
+#include <QMapIterator>
 #include <QFile>
 #include <QLocalSocket>
 #include <QTextStream>
 #include <QDesktopServices>
 #include <QUrl>
-#include <QHashIterator>
-#include <QMapIterator>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"

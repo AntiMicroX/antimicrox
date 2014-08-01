@@ -1,7 +1,6 @@
 #include <typeinfo>
 
 #include <QDebug>
-#include <QHashIterator>
 
 #include "joystick.h"
 

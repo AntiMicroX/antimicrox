@@ -11,9 +11,7 @@
 
 #include <QApplication>
 #include <QMainWindow>
-#include <QHash>
 #include <QMap>
-#include <QHashIterator>
 #include <QMapIterator>
 #include <QDir>
 #include <QDebug>
@@ -373,7 +371,7 @@ int main(int argc, char *argv[])
 
 #endif
 
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), w, SLOT(fillButtons(InputDevice*)));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));

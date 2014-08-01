@@ -2,7 +2,6 @@
 #include <QTime>
 #include <QTimer>
 #include <QEventLoop>
-#include <QHashIterator>
 #include <QMapIterator>
 
 #include "inputdaemon.h"

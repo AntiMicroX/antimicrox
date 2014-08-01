@@ -1,8 +1,7 @@
-#include <QStringListIterator>
 #include <QDebug>
+#include <QStringListIterator>
 #include <QVariant>
 #include <QSettings>
-#include <QHashIterator>
 #include <QMapIterator>
 
 #include "sdleventreader.h"

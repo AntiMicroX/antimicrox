@@ -2,8 +2,8 @@
 #define SDLEVENTREADER_H
 
 #include <QObject>
-#include <QHash>
 #include <QMap>
+
 #ifdef USE_SDL_2
 #include <SDL2/SDL.h>
 #else
