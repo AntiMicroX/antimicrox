@@ -144,7 +144,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
-    connect(ui->actionHomePage, SIGNAL(triggered()), this, SLOT(openProjectHomePage()));
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
 
@@ -823,11 +822,6 @@ void MainWindow::openKeyCheckerDialog()
 {
     QKeyDisplayDialog *dialog = new QKeyDisplayDialog(this);
     dialog->show();
-}
-
-void MainWindow::openProjectHomePage()
-{
-    QDesktopServices::openUrl(QUrl(PadderCommon::projectHomePage));
 }
 
 void MainWindow::openGitHubPage()

@@ -107,7 +107,6 @@ private slots:
     void handleInstanceDisconnect();
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
-    void openProjectHomePage();
     void openGitHubPage();
     void propogateNameDisplayStatus(bool displayNames);
     void changeLanguage(QString language);
