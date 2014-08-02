@@ -417,8 +417,10 @@ endif (UNIX)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories("${PROJECT_SOURCE_DIR}/src")
 
-# Store executable in a bin subdir. Needed here so translations can be loaded.
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+if(UNIX)
+    # Store executable in a bin subdir. Needed here so translations can be loaded.
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+endif(UNIX)
 
 if(USE_QT5)
     if(UNIX)
