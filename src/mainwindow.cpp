@@ -1,4 +1,7 @@
 #include <QDebug>
+#include <QHash>
+#include <QHashIterator>
+#include <QMapIterator>
 #include <QFile>
 #include <QLocalSocket>
 #include <QTextStream>
@@ -26,7 +29,7 @@
 #include "autoprofileinfo.h"
 #endif
 
-MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -141,7 +144,6 @@ MainWindow::MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLi
     connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
-    connect(ui->actionHomePage, SIGNAL(triggered()), this, SLOT(openProjectHomePage()));
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
 
@@ -189,12 +191,12 @@ void MainWindow::fillButtons(InputDevice *joystick)
     tabwidget->fillButtons();
 }
 
-void MainWindow::fillButtons(QHash<SDL_JoystickID, InputDevice *> *joysticks)
+void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
-    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
     while (iter.hasNext())
     {
@@ -265,7 +267,7 @@ void MainWindow::populateTrayIcon()
 
     if (joystickCount > 0)
     {
-        QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
         bool useSingleList = settings->value("TrayProfileList", false).toBool();
         if (!useSingleList && joystickCount == 1)
         {
@@ -820,11 +822,6 @@ void MainWindow::openKeyCheckerDialog()
 {
     QKeyDisplayDialog *dialog = new QKeyDisplayDialog(this);
     dialog->show();
-}
-
-void MainWindow::openProjectHomePage()
-{
-    QDesktopServices::openUrl(QUrl(PadderCommon::projectHomePage));
 }
 
 void MainWindow::openGitHubPage()

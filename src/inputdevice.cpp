@@ -1314,6 +1314,7 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
     connect(setstick, SIGNAL(setAxisButtonClick(int,int,int)), this, SLOT(axisButtonDownEvent(int,int,int)));
     connect(setstick, SIGNAL(setAxisButtonRelease(int,int,int)), this, SLOT(axisButtonUpEvent(int,int,int)));
     connect(setstick, SIGNAL(setAxisActivated(int,int, int)), this, SLOT(axisActivatedEvent(int,int,int)));
+    connect(setstick, SIGNAL(setAxisReleased(int,int,int)), this, SLOT(axisReleasedEvent(int,int,int)));
 
     connect(setstick, SIGNAL(setDPadButtonClick(int,int,int)), this, SLOT(dpadButtonDownEvent(int,int,int)));
     connect(setstick, SIGNAL(setDPadButtonRelease(int,int,int)), this, SLOT(dpadButtonUpEvent(int,int,int)));
@@ -1338,6 +1339,13 @@ void InputDevice::axisActivatedEvent(int setindex, int axisindex, int value)
     Q_UNUSED(setindex);
 
     emit rawAxisActivated(axisindex, value);
+}
+
+void InputDevice::axisReleasedEvent(int setindex, int axisindex, int value)
+{
+    Q_UNUSED(setindex);
+
+    emit rawAxisReleased(axisindex, value);
 }
 
 void InputDevice::setIndex(int index)
@@ -1476,6 +1484,11 @@ void InputDevice::setProfileName(QString value)
 QString InputDevice::getProfileName()
 {
     return profileName;
+}
+
+int InputDevice::getButtonDownCount()
+{
+    return buttonDownCount;
 }
 
 #ifdef USE_SDL_2

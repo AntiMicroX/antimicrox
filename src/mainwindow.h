@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QHash>
+#include <QMap>
 #include <QIcon>
 #include <QSystemTrayIcon>
 #include <QAction>
@@ -28,7 +28,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    MainWindow(QHash<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings,
+    MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings,
                bool graphical=true, QWidget *parent = 0);
     ~MainWindow();
     
@@ -43,7 +43,7 @@ protected:
     void changeStartSetNumber(unsigned int startSetNumber, QString controllerID);
     void changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex=0);
 
-    QHash<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<SDL_JoystickID, InputDevice*> *joysticks;
 
     QSystemTrayIcon *trayIcon;
     QAction *hideAction;
@@ -76,7 +76,7 @@ signals:
 
 public slots:
     void fillButtons(InputDevice *joystick);
-    void fillButtons(QHash<SDL_JoystickID, InputDevice*> *joysticks);
+    void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();
     void hideWindow();
     void saveAppConfig();
@@ -107,7 +107,6 @@ private slots:
     void handleInstanceDisconnect();
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
-    void openProjectHomePage();
     void openGitHubPage();
     void propogateNameDisplayStatus(bool displayNames);
     void changeLanguage(QString language);

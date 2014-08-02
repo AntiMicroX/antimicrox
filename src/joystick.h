@@ -22,13 +22,13 @@ public:
     virtual SDL_JoystickID getSDLJoystickID();
 #endif
 
-    static const QString xmlName;
-
-protected:
     virtual int getNumberRawButtons();
     virtual int getNumberRawAxes();
     virtual int getNumberRawHats();
 
+    static const QString xmlName;
+
+protected:
     SDL_Joystick *joyhandle;
 
 signals:

@@ -264,7 +264,7 @@ in the form.</source>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="102"/>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="219"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="215"/>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
@@ -276,48 +276,63 @@ of the all default profile option.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="70"/>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="214"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="68"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="210"/>
         <source>A different profile is already selected as the default for this device.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="99"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="97"/>
         <source>Current (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="139"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="135"/>
         <source>Open Config</source>
         <translation type="unfinished">Abrir Configuração</translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="155"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="151"/>
         <source>Select Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="205"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="201"/>
         <source>Please use the main default profile selection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="317"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="237"/>
+        <source>Please select a window by using the mouse. Press Escape if you want to cancel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="238"/>
+        <source>Capture Application Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="310"/>
+        <source>Could not obtain information for the selected window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="311"/>
+        <source>Application Capture Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="349"/>
         <source>Profile file path is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="323"/>
-        <source>No profile selected.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="333"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="360"/>
         <source>Program path is invalid or not executable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/addeditautoprofiledialog.cpp" line="339"/>
+        <location filename="../../../src/addeditautoprofiledialog.cpp" line="366"/>
         <source>No program selected.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1561,17 +1576,17 @@ this button is being used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="98"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="100"/>
         <source>Game Controller Mapping (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="369"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="376"/>
         <source>Discard Controller Mapping?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="370"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="377"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
@@ -1626,15 +1641,16 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1614"/>
-        <location filename="../../../src/joybutton.cpp" line="1622"/>
-        <location filename="../../../src/joybutton.cpp" line="1628"/>
+        <location filename="../../../src/joybutton.cpp" line="1616"/>
+        <location filename="../../../src/joybutton.cpp" line="1624"/>
+        <location filename="../../../src/joybutton.cpp" line="1630"/>
         <source>Button</source>
         <translation>Botão</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1662"/>
-        <location filename="../../../src/joybutton.cpp" line="1687"/>
+        <location filename="../../../src/joybutton.cpp" line="1669"/>
+        <location filename="../../../src/joybutton.cpp" line="1766"/>
+        <location filename="../../../src/joybutton.cpp" line="1796"/>
         <source>[NO KEY]</source>
         <translation>[SEM TECLA]</translation>
     </message>
@@ -2237,7 +2253,7 @@ to buttons or disable hiding empty buttons.</source>
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../../../src/joystick.cpp" line="30"/>
+        <location filename="../../../src/joystick.cpp" line="29"/>
         <source>Joystick</source>
         <translation>Analógico</translation>
     </message>
@@ -2619,7 +2635,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="300"/>
+        <location filename="../../../src/mainwindow.ui" line="299"/>
         <source>Stick/Pad Assign</source>
         <translation type="unfinished">Atribuir Analógico/Dpad</translation>
     </message>
@@ -2634,100 +2650,100 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <translation>&amp;Ajuda</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="215"/>
-        <location filename="../../../src/mainwindow.cpp" line="374"/>
+        <location filename="../../../src/mainwindow.ui" line="214"/>
+        <location filename="../../../src/mainwindow.cpp" line="376"/>
         <source>&amp;Quit</source>
         <translation>&amp;Sair</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="218"/>
+        <location filename="../../../src/mainwindow.ui" line="217"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="231"/>
-        <location filename="../../../src/mainwindow.cpp" line="378"/>
+        <location filename="../../../src/mainwindow.ui" line="230"/>
+        <location filename="../../../src/mainwindow.cpp" line="380"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Atualizar joysticks</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="234"/>
+        <location filename="../../../src/mainwindow.ui" line="233"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="366"/>
+        <location filename="../../../src/mainwindow.ui" line="243"/>
+        <location filename="../../../src/mainwindow.cpp" line="368"/>
         <source>&amp;Hide</source>
         <translation>&amp;Esconder</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="247"/>
+        <location filename="../../../src/mainwindow.ui" line="246"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="257"/>
+        <location filename="../../../src/mainwindow.ui" line="256"/>
         <source>&amp;About</source>
         <translation>&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="260"/>
+        <location filename="../../../src/mainwindow.ui" line="259"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="265"/>
+        <location filename="../../../src/mainwindow.ui" line="264"/>
         <source>About Qt</source>
         <translation>Sobre Qt</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="270"/>
+        <location filename="../../../src/mainwindow.ui" line="269"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="275"/>
+        <location filename="../../../src/mainwindow.ui" line="274"/>
         <source>Key Checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="280"/>
+        <location filename="../../../src/mainwindow.ui" line="279"/>
         <source>Home Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="285"/>
+        <location filename="../../../src/mainwindow.ui" line="284"/>
         <source>GitHub Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="290"/>
+        <location filename="../../../src/mainwindow.ui" line="289"/>
         <source>Game Controller Mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.ui" line="295"/>
+        <location filename="../../../src/mainwindow.ui" line="294"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="207"/>
-        <location filename="../../../src/mainwindow.cpp" line="282"/>
-        <location filename="../../../src/mainwindow.cpp" line="1146"/>
-        <location filename="../../../src/mainwindow.cpp" line="1191"/>
-        <location filename="../../../src/mainwindow.cpp" line="1213"/>
-        <location filename="../../../src/mainwindow.cpp" line="1226"/>
+        <location filename="../../../src/mainwindow.cpp" line="209"/>
+        <location filename="../../../src/mainwindow.cpp" line="284"/>
+        <location filename="../../../src/mainwindow.cpp" line="1145"/>
+        <location filename="../../../src/mainwindow.cpp" line="1190"/>
+        <location filename="../../../src/mainwindow.cpp" line="1212"/>
+        <location filename="../../../src/mainwindow.cpp" line="1225"/>
         <source>(%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="325"/>
+        <location filename="../../../src/mainwindow.cpp" line="327"/>
         <source>Open File</source>
         <translation>Abrir Arquivo</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="370"/>
+        <location filename="../../../src/mainwindow.cpp" line="372"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurar</translation>
     </message>
@@ -3036,33 +3052,33 @@ of your screen.</source>
         <translation type="unfinished">Menu</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="194"/>
+        <location filename="../../../src/main.cpp" line="198"/>
         <source>Daemon launched</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="202"/>
+        <location filename="../../../src/main.cpp" line="206"/>
         <source>Failed to launch daemon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="213"/>
+        <location filename="../../../src/main.cpp" line="217"/>
         <source>Launching daemon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="233"/>
-        <location filename="../../../src/main.cpp" line="297"/>
+        <location filename="../../../src/main.cpp" line="237"/>
+        <location filename="../../../src/main.cpp" line="301"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="253"/>
+        <location filename="../../../src/main.cpp" line="257"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="267"/>
+        <location filename="../../../src/main.cpp" line="271"/>
         <source>Failed to change working directory to /</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3103,12 +3119,12 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>SetJoystick</name>
     <message>
-        <location filename="../../../src/setjoystick.cpp" line="943"/>
+        <location filename="../../../src/setjoystick.cpp" line="950"/>
         <source>Set %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/setjoystick.cpp" line="947"/>
+        <location filename="../../../src/setjoystick.cpp" line="954"/>
         <source>Set %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4097,37 +4113,37 @@ R</source>
 <context>
     <name>X11Info</name>
     <message>
-        <location filename="../../../src/x11info.cpp" line="101"/>
+        <location filename="../../../src/x11info.cpp" line="112"/>
         <source>ESC</source>
         <translation>ESC</translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="102"/>
+        <location filename="../../../src/x11info.cpp" line="113"/>
         <source>Tab</source>
         <translation>Aba</translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="103"/>
+        <location filename="../../../src/x11info.cpp" line="114"/>
         <source>Space</source>
         <translation>Espaço</translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="104"/>
+        <location filename="../../../src/x11info.cpp" line="115"/>
         <source>DEL</source>
         <translation>DEL</translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="105"/>
+        <location filename="../../../src/x11info.cpp" line="116"/>
         <source>Return</source>
         <translation>Retornar</translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="106"/>
+        <location filename="../../../src/x11info.cpp" line="117"/>
         <source>KP_Enter</source>
         <translation>KP_Enter</translation>
     </message>
     <message>
-        <location filename="../../../src/x11info.cpp" line="107"/>
+        <location filename="../../../src/x11info.cpp" line="118"/>
         <source>Backspace</source>
         <translation>Retrocesso</translation>
     </message>

@@ -1,3 +1,48 @@
+2014-08-01 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.5
+
+* Fixed packaging the Windows version so the program will work on
+Windows XP again.
+
+* Delay rendering of flashing buttons. This helps improve controller
+responsiveness when the main window is not hidden.
+
+* Reduced the size of written profiles. Only changed values are
+now stored in profiles.
+
+* Updated German translation provided by phob and Leonard Koenig.
+
+* Allow a profile to be listed as the final argument on the command line.
+Ex: antimicro ~/antimicro-profiles/profile.xml.
+
+* Added diagonal distance support for distance slots for Standard
+mode on Sticks and DPads. This was necessary for some modifier assignments
+to work properly. The best example is for assigning walking in Half-Life 1.
+
+* Allow generated events to be sent to a different X display than the
+application is running on. This change was mainly done to better work
+with SteamOS. AntiMicro can be run via ssh with X tunneling in order
+to configure profiles on one system but the program will send events to the
+X display that is running Steam and games.
+
+* Auto Profile support has improved for SteamOS. Application grabbing can
+now be done while in the SteamOS BPM Session. Steam BPM can be grabbed as
+well.
+
+* Only show active or soon to be active slots for buttons in the main
+window. The text displayed on the buttons will update when a
+new zone has been reached due to using slots such as distance or hold.
+
+* Allow no profile to be assigned to an application for an Auto Profile entry.
+This means that the program will chose an empty profile when the application
+for that Auto Profile entry has focus. This will help with disabling AntiMicro
+for applications that already have controller support.
+
+* Controller Mapping dialog now stops processing events until all elements
+have been released on a controller.
+
+
 2014-05-30 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.4

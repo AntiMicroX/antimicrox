@@ -11,8 +11,8 @@
 
 #include <QApplication>
 #include <QMainWindow>
-#include <QHash>
-#include <QHashIterator>
+#include <QMap>
+#include <QMapIterator>
 #include <QDir>
 #include <QDebug>
 #include <QTranslator>
@@ -67,9 +67,9 @@ static void termSignalIntHandler(int signal)
 
 #endif
 
-void deleteInputDevices(QHash<SDL_JoystickID, InputDevice*> *joysticks)
+void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 {
-    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
     while (iter.hasNext())
     {
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
         configDir.mkpath(PadderCommon::configPath);
     }
 
-    QHash<SDL_JoystickID, InputDevice*> *joysticks = new QHash<SDL_JoystickID, InputDevice*>();
+    QMap<SDL_JoystickID, InputDevice*> *joysticks = new QMap<SDL_JoystickID, InputDevice*>();
 
     // Cross-platform way of performing IPC. Currently,
     // only establish a connection and then disconnect.
@@ -371,7 +371,7 @@ int main(int argc, char *argv[])
 
 #endif
 
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QHash<SDL_JoystickID, InputDevice*>*)));
+    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), w, SLOT(fillButtons(InputDevice*)));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));

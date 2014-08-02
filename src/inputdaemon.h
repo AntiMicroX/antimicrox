@@ -2,6 +2,7 @@
 #define INPUTDAEMONTHREAD_H
 
 #include <QHash>
+#include <QMap>
 #include <QThread>
 
 #ifdef USE_SDL_2
@@ -23,7 +24,7 @@ class InputDaemon : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputDaemon (QHash<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical=true, QObject *parent=0);
+    explicit InputDaemon (QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical=true, QObject *parent=0);
     ~InputDaemon();
 
     void startWorker();
@@ -31,7 +32,7 @@ public:
 protected:
     void resetMouseTimers();
 
-    QHash<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<SDL_JoystickID, InputDevice*> *joysticks;
 
 #ifdef USE_SDL_2
     QHash<SDL_JoystickID, Joystick*> trackjoysticks;
@@ -48,7 +49,7 @@ protected:
 
 signals:
     void joystickRefreshed (InputDevice *joystick);
-    void joysticksRefreshed(QHash<SDL_JoystickID, InputDevice*> *joysticks);
+    void joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void complete(InputDevice* joystick);
     void complete();
 

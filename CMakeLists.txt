@@ -15,7 +15,7 @@ endif(WIN32)
 
 # The version number.
 set(ANTIMICRO_MAJOR_VERSION 2)
-set(ANTIMICRO_MINOR_VERSION 4)
+set(ANTIMICRO_MINOR_VERSION 5)
 set(ANTIMICRO_PATCH_VERSION 0)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1" ON)
@@ -417,6 +417,11 @@ endif (UNIX)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories("${PROJECT_SOURCE_DIR}/src")
 
+if(UNIX)
+    # Store executable in a bin subdir. Needed here so translations can be loaded.
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+endif(UNIX)
+
 if(USE_QT5)
     if(UNIX)
         add_executable(antimicro ${antimicro_SOURCES}
@@ -432,12 +437,14 @@ if(USE_QT5)
             src/antimicro.rc
         )
     endif(UNIX)
+
 else()
     add_executable(antimicro ${antimicro_SOURCES}
         ${antimicro_HEADERS_MOC}
         ${antimicro_FORMS_HEADERS}
         ${antimicro_RESOURCES_RCC}
     )
+
 endif(USE_QT5)
 
 # Add link libraries.

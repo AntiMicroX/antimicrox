@@ -195,7 +195,6 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionHomePage"/>
     <addaction name="actionGitHubPage"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>

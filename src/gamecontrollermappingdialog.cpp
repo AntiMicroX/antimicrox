@@ -82,6 +82,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+    buttonGrabs = 0;
+
     this->device = device;
     this->settings = settings;
 
@@ -116,7 +118,7 @@ GameControllerMappingDialog::~GameControllerMappingDialog()
 
 void GameControllerMappingDialog::buttonAssign(int buttonindex)
 {
-    if (ui->buttonMappingTableWidget->currentRow() > -1)
+    if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {
         QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
         int column = ui->buttonMappingTableWidget->currentColumn();
@@ -159,13 +161,15 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
             ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
         }
     }
+
+    buttonGrabs++;
 }
 
 void GameControllerMappingDialog::axisAssign(int axis, int value)
 {
     Q_UNUSED(value);
 
-    if (ui->buttonMappingTableWidget->currentRow() > -1)
+    if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {
         QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
         int column = ui->buttonMappingTableWidget->currentColumn();
@@ -208,11 +212,13 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
             ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
         }
     }
+
+    buttonGrabs++;
 }
 
 void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 {
-    if (ui->buttonMappingTableWidget->currentRow() > -1)
+    if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {
         if (buttonindex == JoyDPadButton::DpadUp ||
             buttonindex == JoyDPadButton::DpadDown ||
@@ -261,11 +267,12 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
             ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
         }
     }
+
+    buttonGrabs++;
 }
 
 void GameControllerMappingDialog::saveChanges()
 {
-
     QString mappingString = generateSDLMappingString();
 
     settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
@@ -399,6 +406,10 @@ void GameControllerMappingDialog::enableDeviceConnections()
     connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
     connect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
+
+    connect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
+    connect(device, SIGNAL(rawAxisReleased(int,int)), this, SLOT(axisRelease(int,int)));
+    connect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, SLOT(dpadRelease(int,int)));
 }
 
 void GameControllerMappingDialog::disableDeviceConnections()
@@ -406,6 +417,10 @@ void GameControllerMappingDialog::disableDeviceConnections()
     disconnect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
     disconnect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
+
+    disconnect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
+    disconnect(device, SIGNAL(rawAxisReleased(int,int)), this, SLOT(axisRelease(int,int)));
+    disconnect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, SLOT(dpadRelease(int,int)));
 }
 
 void GameControllerMappingDialog::enableButtonEvents(int code)
@@ -467,4 +482,28 @@ void GameControllerMappingDialog::changeButtonDisplay()
 {
 
     ui->gameControllerDisplayWidget->setActiveButton(ui->buttonMappingTableWidget->currentRow());
+}
+
+void GameControllerMappingDialog::axisRelease(int axis, int value)
+{
+    if (buttonGrabs > 0)
+    {
+        buttonGrabs--;
+    }
+}
+
+void GameControllerMappingDialog::buttonRelease(int buttonindex)
+{
+    if (buttonGrabs > 0)
+    {
+        buttonGrabs--;
+    }
+}
+
+void GameControllerMappingDialog::dpadRelease(int dpad, int buttonindex)
+{
+    if (buttonGrabs > 0)
+    {
+        buttonGrabs--;
+    }
 }

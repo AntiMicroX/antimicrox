@@ -25,9 +25,9 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     ui->joystickNameLabel->setText(joystick->getSDLName());
     ui->joystickNumberLabel->setText(QString::number(joystick->getRealJoyNumber()));
-    ui->joystickAxesLabel->setText(QString::number(joystick->getNumberAxes()));
-    ui->joystickButtonsLabel->setText(QString::number(joystick->getNumberButtons()));
-    ui->joystickHatsLabel->setText(QString::number(joystick->getNumberHats()));
+    ui->joystickAxesLabel->setText(QString::number(joystick->getNumberRawAxes()));
+    ui->joystickButtonsLabel->setText(QString::number(joystick->getNumberRawButtons()));
+    ui->joystickHatsLabel->setText(QString::number(joystick->getNumberRawHats()));
 
     joystick->getActiveSetJoystick()->setIgnoreEventState(true);
     joystick->getActiveSetJoystick()->release();

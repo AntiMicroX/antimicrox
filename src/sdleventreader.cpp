@@ -1,11 +1,12 @@
-#include <QStringListIterator>
 #include <QDebug>
+#include <QStringListIterator>
 #include <QVariant>
 #include <QSettings>
+#include <QMapIterator>
 
 #include "sdleventreader.h"
 
-SDLEventReader::SDLEventReader(QHash<SDL_JoystickID, InputDevice *> *joysticks, QObject *parent) :
+SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
@@ -56,7 +57,7 @@ void SDLEventReader::closeSDL()
 {
     SDL_Event event;
 
-    QHashIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
     while (iter.hasNext())
     {
         iter.next();
