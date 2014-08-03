@@ -90,10 +90,10 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
 
 JoyButton::~JoyButton()
 {
-    if (!isButtonPressedQueue.isEmpty() && isButtonPressedQueue.last())
-    {
-        emit released(index);
-    }
+    //if (!isButtonPressedQueue.isEmpty() && isButtonPressedQueue.last())
+    //{
+    //    emit released(index);
+    //}
 
     reset();
 }
