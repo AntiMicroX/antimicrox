@@ -1,6 +1,8 @@
 #ifndef JOYCONTROLSTICKBUTTON_H
 #define JOYCONTROLSTICKBUTTON_H\
 
+#include <QString>
+
 #include "joybutton.h"
 #include "joycontrolstickdirectionstype.h"
 
@@ -22,6 +24,7 @@ public:
     virtual double getMouseDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyControlStick *getStick();
+    virtual bool isPartRealAxis();
 
     static const QString xmlName;
 

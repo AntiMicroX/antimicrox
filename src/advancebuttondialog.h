@@ -35,6 +35,7 @@ protected:
     void connectTimeBoxesEvents();
     void resetTimeBoxes();
     void populateSetSelectionComboBox();
+    void findTurboModeComboIndex();
 
     int oldRow;
     JoyButton *button;
@@ -82,6 +83,7 @@ private slots:
     void checkCycleResetWidgetStatus(bool enabled);
     void setButtonCycleResetInterval(double value);
     void setButtonCycleReset(bool enabled);
+    void setButtonTurboMode(int value);
 };
 
 #endif // ADVANCEBUTTONDIALOG_H

@@ -294,3 +294,8 @@ void JoyAxisButton::turboEvent()
         checkmate = 0;
     }
 }
+
+bool JoyAxisButton::isPartRealAxis()
+{
+    return true;
+}

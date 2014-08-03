@@ -35,6 +35,7 @@ const int JoyButton::DEFAULTWHEELY = 20;
 const bool JoyButton::DEFAULTCYCLERESETACTIVE = false;
 const int JoyButton::DEFAULTCYCLERESET = 0;
 const bool JoyButton::DEFAULTRELATIVESPRING = false;
+const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 
 
 // Keep references to active keys and mouse buttons.
@@ -414,6 +415,7 @@ void JoyButton::reset()
     lastDistance = 0.0;
     tempTurboInterval = 0;
     currentTurboMode = GradientTurbo;
+    //currentTurboMode = NormalTurbo;
 }
 
 void JoyButton::reset(int index)
@@ -1237,6 +1239,18 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("turbointerval", QString::number(turboInterval));
         }
 
+        if (currentTurboMode != DEFAULTTURBOMODE)
+        {
+            if (currentTurboMode == GradientTurbo)
+            {
+                xml->writeTextElement("turbomode", "gradient");
+            }
+            else if (currentTurboMode == PulseTurbo)
+            {
+                xml->writeTextElement("turbomode", "pulse");
+            }
+        }
+
         if (useTurbo != DEFAULTUSETURBO)
         {
             xml->writeTextElement("useturbo", useTurbo ? "true" : "false");
@@ -1388,6 +1402,23 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         this->setTurboInterval(tempchoice);
+    }
+    else if (xml->name() == "turbomode" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "normal")
+        {
+            this->setTurboMode(NormalTurbo);
+        }
+        else if (temptext == "gradient")
+        {
+            this->setTurboMode(GradientTurbo);
+        }
+        else if (temptext == "pulse")
+        {
+            this->setTurboMode(PulseTurbo);
+        }
     }
     else if (xml->name() == "useturbo" && xml->isStartElement())
     {
@@ -3802,4 +3833,22 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->cycleResetActive = cycleResetActive;
     destButton->cycleResetInterval = cycleResetInterval;
     destButton->relativeSpring = relativeSpring;
+}
+
+void JoyButton::setTurboMode(TurboMode mode)
+{
+    if (isPartRealAxis())
+    {
+        currentTurboMode = mode;
+    }
+}
+
+JoyButton::TurboMode JoyButton::getTurboMode()
+{
+    return currentTurboMode;
+}
+
+bool JoyButton::isPartRealAxis()
+{
+    return false;
 }

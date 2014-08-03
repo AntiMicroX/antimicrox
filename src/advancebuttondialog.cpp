@@ -96,6 +96,13 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     updateWindowTitleButtonName();
 
+    if (this->button->isPartRealAxis() && this->button->isUsingTurbo())
+    {
+        ui->turboModeComboBox->setEnabled(true);
+    }
+
+    findTurboModeComboIndex();
+
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
     connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(checkTurboIntervalValue(int)));
 
@@ -137,6 +144,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckbox, SLOT(setChecked(bool)));
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
+    connect(ui->turboModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setButtonTurboMode(int)));
 }
 
 AdvanceButtonDialog::~AdvanceButtonDialog()
@@ -512,6 +520,12 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
 {
     ui->turboCheckbox->setChecked(state);
     ui->turboSlider->setEnabled(state);
+
+    if (this->button->isPartRealAxis())
+    {
+        ui->turboModeComboBox->setEnabled(state);
+    }
+
     changeTurboForSequences();
     button->setUseTurbo(state);
     if (button->getTurboInterval() / 10 >= MINIMUMTURBO)
@@ -948,5 +962,38 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
             ui->setSelectionComboBox->insertItems(currentIndex, setChoices);
             currentIndex += 3;
         }
+    }
+}
+
+void AdvanceButtonDialog::findTurboModeComboIndex()
+{
+    JoyButton::TurboMode currentTurboMode = this->button->getTurboMode();
+    if (currentTurboMode == JoyButton::NormalTurbo)
+    {
+        ui->turboModeComboBox->setCurrentIndex(0);
+    }
+    else if (currentTurboMode == JoyButton::GradientTurbo)
+    {
+        ui->turboModeComboBox->setCurrentIndex(1);
+    }
+    else if (currentTurboMode == JoyButton::PulseTurbo)
+    {
+        ui->turboModeComboBox->setCurrentIndex(2);
+    }
+}
+
+void AdvanceButtonDialog::setButtonTurboMode(int value)
+{
+    if (value == 0)
+    {
+        this->button->setTurboMode(JoyButton::NormalTurbo);
+    }
+    else if (value == 1)
+    {
+        this->button->setTurboMode(JoyButton::GradientTurbo);
+    }
+    else if (value == 2)
+    {
+        this->button->setTurboMode(JoyButton::PulseTurbo);
     }
 }

@@ -734,34 +734,71 @@ has passed.</string>
         </layout>
        </widget>
        <widget class="QWidget" name="page_3">
-        <layout class="QVBoxLayout" name="verticalLayout_4">
+        <layout class="QVBoxLayout" name="verticalLayout_10">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0">
-           <property name="spacing">
-            <number>20</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
-            <widget class="QLabel" name="label">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Enabled</string>
-             </property>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Enabled</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="turboCheckbox">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <widget class="QCheckBox" name="turboCheckbox">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QLabel" name="turboModeLabel">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Mode:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="turboModeComboBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Normal</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gradient</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Pulse</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
@@ -924,6 +961,8 @@ has passed.</string>
         <zorder>verticalSpacer</zorder>
         <zorder></zorder>
         <zorder>verticalSpacer_4</zorder>
+        <zorder>turboModeComboBox</zorder>
+        <zorder>turboModeLabel</zorder>
        </widget>
        <widget class="QWidget" name="page_4">
         <layout class="QVBoxLayout" name="verticalLayout_8">

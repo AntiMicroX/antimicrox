@@ -328,3 +328,8 @@ void JoyControlStickButton::turboEvent()
         checkmate = 0;
     }
 }
+
+bool JoyControlStickButton::isPartRealAxis()
+{
+    return true;
+}

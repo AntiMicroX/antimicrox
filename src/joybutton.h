@@ -132,6 +132,10 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyButton *destButton);
 
+    void setTurboMode(TurboMode mode);
+    TurboMode getTurboMode();
+    virtual bool isPartRealAxis();
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -158,6 +162,7 @@ public:
     static const bool DEFAULTCYCLERESETACTIVE;
     static const int DEFAULTCYCLERESET;
     static const bool DEFAULTRELATIVESPRING;
+    static const TurboMode DEFAULTTURBOMODE;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
