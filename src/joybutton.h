@@ -30,6 +30,7 @@ public:
     enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
     enum JoyMouseCurve {EnhancedPrecisionCurve=0, LinearCurve, QuadraticCurve,
                         CubicCurve, QuadraticExtremeCurve, PowerCurve};
+    enum TurboMode {NormalTurbo, GradientTurbo, PulseTurbo};
 
     void joyEvent (bool pressed, bool ignoresets=false);
     int getJoyNumber ();
@@ -273,6 +274,7 @@ protected:
     QTime cycleResetHold;
 
     bool relativeSpring;
+    TurboMode currentTurboMode;
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;

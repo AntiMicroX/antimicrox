@@ -159,140 +159,172 @@ JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
 
 void JoyControlStickButton::turboEvent()
 {
-    double diff = abs(getMouseDistanceFromDeadZone() - lastDistance);
-
-    bool changeState = false;
-    int checkmate = 0;
-    if (!turboTimer.isActive() && !isButtonPressed)
+    if (currentTurboMode == NormalTurbo)
     {
-        changeState = true;
+        JoyButton::turboEvent();
     }
-    else if (getMouseDistanceFromDeadZone() >= 1.0 && isKeyPressed)
+    else if (currentTurboMode == GradientTurbo || currentTurboMode == PulseTurbo)
     {
-        if (isKeyPressed)
-        {
-            changeState = false;
-            turboTimer.start(5);
-            turboHold.start();
-            lastDistance = 1.0;
-        }
-        else
+        double diff = fabs(getMouseDistanceFromDeadZone() - lastDistance);
+        //qDebug() << "DIFF: " << QString::number(diff);
+
+        bool changeState = false;
+        int checkmate = 0;
+        if (!turboTimer.isActive() && !isButtonPressed)
         {
             changeState = true;
         }
-    }
-    else if (turboHold.isNull() || lastDistance == 0.0 || turboHold.elapsed() > tempTurboInterval)
-    {
-        changeState = true;
-    }
-    else if (diff >= 0.1)
-    {
-        int tempInterval2 = 0;
-        if (isKeyPressed)
+        else if (currentTurboMode == GradientTurbo && diff > 0 &&
+                 getMouseDistanceFromDeadZone() >= 1.0 && isKeyPressed)
         {
-            tempInterval2 = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
-        }
-        //else
-        //{
-        //    tempInterval2 = (int)floor((lastDistance * turboInterval) + 0.5);
-            //tempInterval2 = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
-        //}
-
-        if (isKeyPressed && turboHold.elapsed() < tempInterval2)
-        {
-            // Still some valid time left. Continue current action with
-            // remaining time left.
-            tempTurboInterval = tempInterval2 - turboHold.elapsed();
-            int timerInterval = qMin(tempTurboInterval, 5);
-            turboTimer.start(timerInterval);
-            turboHold.start();
-            changeState = false;
-            lastDistance = getMouseDistanceFromDeadZone();
-        }
-        //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
-        //{
-        //    checkmate = turboHold.elapsed();
-        //    changeState = true;
-        //}
-        //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
-        //{
-        //    changeState = true;
-        //}
-        else
-        {
-            // Elapsed time is greater than new interval. Change state.
-            //if (isKeyPressed)
-            //{
-            //    isKeyPressed = !isKeyPressed;
-            //}
             if (isKeyPressed)
             {
-                checkmate = turboHold.elapsed();
+                changeState = false;
+                turboTimer.start(5);
+                turboHold.start();
+                lastDistance = 1.0;
             }
+            else
+            {
+                changeState = true;
+            }
+        }
+        else if (turboHold.isNull() || lastDistance == 0.0 || turboHold.elapsed() > tempTurboInterval)
+        {
             changeState = true;
         }
-        //if (isKeyPressed)
-        //{
-        //    isKeyPressed = !isKeyPressed;
-        //}
-        //changeState = true;
-    }
-
-    if (changeState)
-    {
-        if (!isKeyPressed)
+        else if (diff >= 0.1)
         {
-            if (!isButtonPressedQueue.isEmpty())
-            {
-                ignoreSetQueue.clear();
-                isButtonPressedQueue.clear();
+            int tempInterval2 = 0;
 
-                ignoreSetQueue.enqueue(false);
-                isButtonPressedQueue.enqueue(isButtonPressed);
+            if (isKeyPressed)
+            {
+                //tempInterval2 = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
+                if (currentTurboMode == GradientTurbo)
+                {
+                    tempInterval2 = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
+                }
+                else
+                {
+                    tempInterval2 = (int)floor((turboInterval * 0.5) + 0.5);
+                }
             }
+            //else
+            //{
+            //    tempInterval2 = (int)floor((lastDistance * turboInterval) + 0.5);
+                //tempInterval2 = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
+            //}
 
-            createDeskEvent();
-
-            isKeyPressed = true;
-            if (turboTimer.isActive())
+            if (isKeyPressed && turboHold.elapsed() < tempInterval2)
             {
-                tempTurboInterval = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
-                //if (checkmate > 0 && tempTurboInterval > checkmate)
+                // Still some valid time left. Continue current action with
+                // remaining time left.
+                tempTurboInterval = tempInterval2 - turboHold.elapsed();
+                int timerInterval = qMin(tempTurboInterval, 5);
+                turboTimer.start(timerInterval);
+                turboHold.start();
+                changeState = false;
+                lastDistance = getMouseDistanceFromDeadZone();
+                qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
+                qDebug() << "diff timer press: " << QString::number(timerInterval);
+            }
+            //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
+            //{
+            //    checkmate = turboHold.elapsed();
+            //    changeState = true;
+            //}
+            //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
+            //{
+            //    changeState = true;
+            //}
+            else
+            {
+                // Elapsed time is greater than new interval. Change state.
+                //if (isKeyPressed)
                 //{
-                //    tempTurboInterval = tempTurboInterval - checkmate;
+                //    isKeyPressed = !isKeyPressed;
                 //}
-                int timerInterval = qMin(tempTurboInterval, 5);
-                //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
-                //qDebug() << "timer press: " << QString::number(timerInterval);
-                turboTimer.start(timerInterval);
-                turboHold.start();
+                //qDebug() << "AND THAT'S THE BOTTOM LINE";
+                if (isKeyPressed)
+                {
+                    checkmate = turboHold.elapsed();
+                }
+                changeState = true;
             }
         }
-        else
+
+        if (changeState)
         {
-            if (!isButtonPressedQueue.isEmpty())
+            if (!isKeyPressed)
             {
-                ignoreSetQueue.enqueue(false);
-                isButtonPressedQueue.enqueue(!isButtonPressed);
+                if (!isButtonPressedQueue.isEmpty())
+                {
+                    ignoreSetQueue.clear();
+                    isButtonPressedQueue.clear();
+
+                    ignoreSetQueue.enqueue(false);
+                    isButtonPressedQueue.enqueue(isButtonPressed);
+                }
+
+                createDeskEvent();
+
+                isKeyPressed = true;
+                if (turboTimer.isActive())
+                {
+                    if (currentTurboMode == GradientTurbo)
+                    {
+                        tempTurboInterval = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
+                    }
+                    else
+                    {
+                        tempTurboInterval = (int)floor((turboInterval * 0.5) + 0.5);
+                    }
+
+                    //if (checkmate > 0 && tempTurboInterval > checkmate)
+                    //{
+                    //    tempTurboInterval = tempTurboInterval - checkmate;
+                    //}
+                    int timerInterval = qMin(tempTurboInterval, 5);
+                    //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
+                    //qDebug() << "timer press: " << QString::number(timerInterval);
+                    turboTimer.start(timerInterval);
+                    turboHold.start();
+                }
+            }
+            else
+            {
+                if (!isButtonPressedQueue.isEmpty())
+                {
+                    ignoreSetQueue.enqueue(false);
+                    isButtonPressedQueue.enqueue(!isButtonPressed);
+                }
+
+                releaseDeskEvent();
+
+                isKeyPressed = false;
+                if (turboTimer.isActive())
+                {
+                    if (currentTurboMode == GradientTurbo)
+                    {
+                        tempTurboInterval = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
+                    }
+                    else
+                    {
+                        tempTurboInterval = (int)floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
+                    }
+
+                    int timerInterval = qMin(tempTurboInterval, 5);
+                    //qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
+                    //qDebug() << "timer release: " << QString::number(timerInterval);
+                    turboTimer.start(timerInterval);
+                    turboHold.start();
+                }
+
             }
 
-            releaseDeskEvent();
-
-            isKeyPressed = false;
-            if (turboTimer.isActive())
-            {
-                tempTurboInterval = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
-                int timerInterval = qMin(tempTurboInterval, 5);
-                //qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
-                //qDebug() << "timer release: " << QString::number(timerInterval);
-                turboTimer.start(timerInterval);
-                turboHold.start();
-            }
-
+            lastDistance = getMouseDistanceFromDeadZone();
         }
 
-        lastDistance = getMouseDistanceFromDeadZone();
+        checkmate = 0;
     }
-
-    checkmate = 0;
 }
