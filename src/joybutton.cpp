@@ -3282,11 +3282,16 @@ void JoyButton::removeVDPad()
     emit propertyUpdated();
 }
 
+/**
+ * @brief Check if button properties are at their default values
+ * @return Status of possible property edits
+ */
 bool JoyButton::isDefault()
 {
     bool value = true;
     value = value && (toggle == DEFAULTTOGGLE);
     value = value && (turboInterval == DEFAULTTURBOINTERVAL);
+    value = value && (currentTurboMode == NormalTurbo);
     value = value && (useTurbo == DEFAULTUSETURBO);
     value = value && (mouseSpeedX == DEFAULTMOUSESPEEDX);
     value = value && (mouseSpeedY == DEFAULTMOUSESPEEDY);
@@ -3835,6 +3840,10 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->relativeSpring = relativeSpring;
 }
 
+/**
+ * @brief Set the turbo mode that the button should use
+ * @param Mode that should be used
+ */
 void JoyButton::setTurboMode(TurboMode mode)
 {
     if (isPartRealAxis())
@@ -3843,11 +3852,21 @@ void JoyButton::setTurboMode(TurboMode mode)
     }
 }
 
+/**
+ * @brief Get currently assigned turbo mode
+ * @return Currently assigned turbo mode
+ */
 JoyButton::TurboMode JoyButton::getTurboMode()
 {
     return currentTurboMode;
 }
 
+/**
+ * @brief Check if button should be considered a part of a real controller
+ *     axis. Needed for some dialogs so the program won't have to resort to
+ *     type checking.
+ * @return Status of being part of a real controller axis
+ */
 bool JoyButton::isPartRealAxis()
 {
     return false;

@@ -295,6 +295,12 @@ void JoyAxisButton::turboEvent()
     }
 }
 
+/**
+ * @brief Check if button should be considered a part of a real controller
+ *     axis. Needed for some dialogs so the program won't have to resort to
+ *     type checking.
+ * @return Status of being part of a real controller axis
+ */
 bool JoyAxisButton::isPartRealAxis()
 {
     return true;
