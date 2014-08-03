@@ -413,7 +413,7 @@ void JoyButton::reset()
     relativeSpring = false;
     lastDistance = 0.0;
     tempTurboInterval = 0;
-    currentTurboMode = NormalTurbo;
+    currentTurboMode = GradientTurbo;
 }
 
 void JoyButton::reset(int index)
