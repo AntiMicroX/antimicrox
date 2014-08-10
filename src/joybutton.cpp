@@ -1738,7 +1738,11 @@ QString JoyButton::getActiveZoneSummary()
     QStringList stringlist;
     int i = 0;
 
-    if (iter->hasNext())
+    if (setSelectionCondition == SetChangeWhileHeld)
+    {
+        newlabel = newlabel.append(QString("[Set %1 WH]").arg(setSelection+1));
+    }
+    else if (iter->hasNext())
     {
         bool behindHold = false;
         while (iter->hasNext())
