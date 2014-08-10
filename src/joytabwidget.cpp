@@ -275,7 +275,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     setsMenuButton = new QPushButton(tr("Sets"), this);
     QMenu *setMenu = new QMenu(setsMenuButton);
-    copySetMenu = new QMenu("Copy from Set", setMenu);
+    copySetMenu = new QMenu(tr("Copy from Set"), setMenu);
     QAction *setSettingsAction = new QAction(tr("Settings"), setMenu);
     connect(setSettingsAction, SIGNAL(triggered()), this, SLOT(showSetNamesDialog()));
     setMenu->addAction(setSettingsAction);
@@ -666,6 +666,7 @@ void JoyTabWidget::resetJoystick()
 
         removeCurrentButtons();
         joystick->reset();
+        joystick->revertProfileEdited();
 
         XMLConfigReader reader;
         reader.setFileName(filename);
@@ -708,6 +709,7 @@ void JoyTabWidget::resetJoystick()
         configBox->setItemText(0, tr("<New>"));
         removeCurrentButtons();
         joystick->reset();
+        joystick->revertProfileEdited();
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
