@@ -19,6 +19,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../../src/aboutdialog.ui" line="164"/>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="118"/>
+        <source>Credits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../../src/aboutdialog.ui" line="133"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -36,28 +46,20 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - German&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;phob - German&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dima Koshel - Russian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="162"/>
-        <source>Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="118"/>
-        <source>Credits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="172"/>
+        <location filename="../../../src/aboutdialog.ui" line="174"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="187"/>
+        <location filename="../../../src/aboutdialog.ui" line="189"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -192,7 +194,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="337"/>
+        <location filename="../../../src/aboutdialog.ui" line="339"/>
         <source>Copyright: 2013-2014</source>
         <translation type="unfinished"></translation>
     </message>
@@ -341,7 +343,7 @@ of the all default profile option.</source>
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="803"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="817"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
@@ -559,189 +561,214 @@ has passed.</source>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="708"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="755"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="938"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="751"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="978"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="813"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="775"/>
+        <source>Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="785"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="789"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="794"/>
+        <source>Gradient</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="799"/>
+        <source>Pulse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="853"/>
         <source>Delay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="838"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="878"/>
         <source>0.10s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="908"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="948"/>
         <source>Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="915"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="955"/>
         <source>10.0/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="952"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="912"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="992"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="926"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="957"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="997"/>
         <source>Select Set 1 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="962"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1002"/>
         <source>Select Set 1 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="967"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1007"/>
         <source>Select Set 1 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="972"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1012"/>
         <source>Select Set 2 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="977"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1017"/>
         <source>Select Set 2 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="982"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1022"/>
         <source>Select Set 2 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="987"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1027"/>
         <source>Select Set 3 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="992"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1032"/>
         <source>Select Set 3 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="997"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1037"/>
         <source>Select Set 3 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1002"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1042"/>
         <source>Select Set 4 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1007"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1047"/>
         <source>Select Set 4 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1012"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1052"/>
         <source>Select Set 4 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1017"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1057"/>
         <source>Select Set 5 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1022"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1062"/>
         <source>Select Set 5 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1027"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1067"/>
         <source>Select Set 5 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1032"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1072"/>
         <source>Select Set 6 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1037"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1077"/>
         <source>Select Set 6 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1042"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1082"/>
         <source>Select Set 6 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1047"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1087"/>
         <source>Select Set 7 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1052"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1092"/>
         <source>Select Set 7 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1057"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1097"/>
         <source>Select Set 7 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1062"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1102"/>
         <source>Select Set 8 One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1067"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1107"/>
         <source>Select Set 8 Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1072"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1112"/>
         <source>Select Set 8 While Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="153"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="161"/>
         <source>sec.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="154"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="162"/>
         <source>/sec.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="808"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="822"/>
         <source>Set %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="920"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="934"/>
         <source>Select Set %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="935"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="949"/>
         <source>One Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="938"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="952"/>
         <source>Two Way</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="941"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="955"/>
         <source>While Held</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1585,6 +1612,54 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     </message>
 </context>
 <context>
+    <name>GameControllerSet</name>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="49"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="50"/>
+        <source>Guide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="51"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="52"/>
+        <source>LS Click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="53"/>
+        <source>RS Click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="54"/>
+        <source>L Shoulder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="55"/>
+        <source>R Shoulder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="58"/>
+        <source>L Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="59"/>
+        <source>R Trigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GameControllerTrigger</name>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="34"/>
@@ -1607,24 +1682,24 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxisButton</name>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="41"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="42"/>
         <source>Negative</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="45"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="46"/>
         <source>Positive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="49"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="50"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxisbutton.cpp" line="24"/>
-        <location filename="../../../src/joyaxisbutton.cpp" line="32"/>
-        <location filename="../../../src/joyaxisbutton.cpp" line="52"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="25"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="33"/>
+        <location filename="../../../src/joyaxisbutton.cpp" line="53"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1632,16 +1707,16 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1616"/>
-        <location filename="../../../src/joybutton.cpp" line="1624"/>
-        <location filename="../../../src/joybutton.cpp" line="1630"/>
+        <location filename="../../../src/joybutton.cpp" line="1654"/>
+        <location filename="../../../src/joybutton.cpp" line="1662"/>
+        <location filename="../../../src/joybutton.cpp" line="1668"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1669"/>
-        <location filename="../../../src/joybutton.cpp" line="1766"/>
-        <location filename="../../../src/joybutton.cpp" line="1796"/>
+        <location filename="../../../src/joybutton.cpp" line="1707"/>
+        <location filename="../../../src/joybutton.cpp" line="1808"/>
+        <location filename="../../../src/joybutton.cpp" line="1838"/>
         <source>[NO KEY]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1758,37 +1833,37 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyControlStickButton</name>
     <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="26"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="42"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="50"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="27"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="43"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="51"/>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="30"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="46"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="54"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="31"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="47"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="55"/>
         <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="34"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="42"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="46"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="35"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="43"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="47"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="38"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="50"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="54"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="39"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="51"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="55"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="70"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="79"/>
-        <location filename="../../../src/joycontrolstickbutton.cpp" line="86"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="71"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="80"/>
+        <location filename="../../../src/joycontrolstickbutton.cpp" line="87"/>
         <source>Button</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1997,66 +2072,71 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <name>JoyTabWidget</name>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="46"/>
-        <location filename="../../../src/joytabwidget.cpp" line="708"/>
-        <location filename="../../../src/joytabwidget.cpp" line="841"/>
-        <location filename="../../../src/joytabwidget.cpp" line="876"/>
-        <location filename="../../../src/joytabwidget.cpp" line="969"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2547"/>
+        <location filename="../../../src/joytabwidget.cpp" line="709"/>
+        <location filename="../../../src/joytabwidget.cpp" line="843"/>
+        <location filename="../../../src/joytabwidget.cpp" line="878"/>
+        <location filename="../../../src/joytabwidget.cpp" line="971"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2549"/>
         <source>&lt;New&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="54"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1408"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1410"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="56"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1409"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1411"/>
         <source>Remove configuration from recent list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="62"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1411"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1413"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="64"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1412"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1414"/>
         <source>Load configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="70"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1414"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1416"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="72"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1415"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1417"/>
         <source>Save changes to configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="79"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1417"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1419"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="81"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1418"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1420"/>
         <source>Save changes to a new configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="276"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1420"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1422"/>
         <source>Sets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joytabwidget.cpp" line="278"/>
+        <source>Copy from Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2066,55 +2146,55 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="287"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1421"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1423"/>
         <source>Set 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="291"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1422"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1424"/>
         <source>Set 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="295"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1423"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1425"/>
         <source>Set 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="299"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1424"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1426"/>
         <source>Set 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="303"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1425"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1427"/>
         <source>Set 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="307"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1426"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1428"/>
         <source>Set 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="311"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1427"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1429"/>
         <source>Set 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="315"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1428"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1430"/>
         <source>Set 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="381"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1433"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1435"/>
         <source>Stick/Pad Assign</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2125,43 +2205,43 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="394"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1434"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1436"/>
         <source>Quick Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="402"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1436"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1438"/>
         <source>Names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="404"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1437"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1439"/>
         <source>Toggle button name displaying.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="409"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1439"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1441"/>
         <source>Pref</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="411"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1440"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1442"/>
         <source>Change global profile settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="415"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1442"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1444"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="417"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1443"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1445"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2171,72 +2251,72 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1458"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1503"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1460"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1505"/>
         <source>Save Profile Changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1461"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1507"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1463"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1509"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1465"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1511"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1467"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1513"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1754"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1756"/>
         <source>Sticks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1949"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2127"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1951"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2129"/>
         <source>DPads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2394"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2396"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2583"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2608"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2585"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2610"/>
         <source>Set %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2587"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2612"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2589"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2614"/>
         <source>Set %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2620"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2622"/>
         <source>Copy Set Assignments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2621"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2623"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="573"/>
-        <location filename="../../../src/joytabwidget.cpp" line="728"/>
-        <location filename="../../../src/joytabwidget.cpp" line="738"/>
+        <location filename="../../../src/joytabwidget.cpp" line="730"/>
+        <location filename="../../../src/joytabwidget.cpp" line="740"/>
         <source>Save Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1377"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1384"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1379"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1386"/>
         <source>Set</source>
         <translation type="unfinished"></translation>
     </message>

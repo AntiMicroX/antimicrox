@@ -195,4 +195,5 @@ VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese
 Belleguic Terence <hizo@free.fr> - French  
 Leonard Koenig <leonard.r.koenig@googlemail.com> - German  
 phob - German  
+Dima Koshel - Russian
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian
