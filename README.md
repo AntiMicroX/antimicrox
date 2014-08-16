@@ -23,6 +23,30 @@ included with the source code if you would like to read the terms of the license
 The license can also be found online at
 [http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
 
+## Download
+Download links are currently available from the AntiMicro Releases section on
+GitHub. Currently, the Windows archive, Debian Jessie deb files, and source code
+archives can be found in the Releases section.
+
+[https://github.com/Ryochan7/antimicro/releases](https://github.com/Ryochan7/antimicro/releases)
+
+For Ubuntu users, there is now a PPA available that you can use to have your
+package manager grab the latest AntiMicro updates automatically. For more details,
+check out the AntiMicro page on Launchpad.
+
+[https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro](https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro)
+
+## Pre-made Profiles
+
+There is a repository for pre-made AntiMicro profiles. Using a pre-made
+profile, you can have a controller layout that is suitable for playing a
+game without having to map everything yourself. It makes using AntiMicro
+really convenient. In order to use those pre-made profiles, you have to be
+running at least AntiMicro version 2.0 and AntiMicro must have been compiled
+with SDL 2 support.
+
+[https://github.com/Ryochan7/antimicro-profiles](https://github.com/Ryochan7/antimicro-profiles)
+
 ## Build Dependencies
 
 This program is written in C++ using the [Qt](http://qt-project.org/)
