@@ -144,7 +144,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     ui->sdlGameControllerLabel->setText(usingGameController);
 #else
-    ui->sdlGameControllerLabel->hide();
+    ui->sdlcontrollerVerticalLayout->hide();
 #endif
 
     connect(joystick, SIGNAL(destroyed()), this, SLOT(obliterate()));

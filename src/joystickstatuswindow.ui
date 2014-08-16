@@ -222,9 +222,9 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="guidVerticalLayout_2">
+         <layout class="QVBoxLayout" name="sdlcontrollerVerticalLayout">
           <item>
-           <widget class="QLabel" name="guidHeaderLabel_2">
+           <widget class="QLabel" name="sdlcontrollerHeaderLabel">
             <property name="enabled">
              <bool>true</bool>
             </property>
