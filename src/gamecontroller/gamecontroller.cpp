@@ -823,3 +823,12 @@ SDL_JoystickID GameController::getSDLJoystickID()
 {
     return joystickID;
 }
+
+/**
+ * @brief Check if device is using the SDL Game Controller API
+ * @return Status showing if device is using the Game Controller API
+ */
+bool GameController::isGameController()
+{
+    return true;
+}

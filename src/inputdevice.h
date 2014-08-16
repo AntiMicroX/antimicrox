@@ -40,7 +40,8 @@ public:
 
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
-    virtual QString getGUIDString() = 0; // GUID available on SDL 2.
+    // GUID only available on SDL 2.
+    virtual QString getGUIDString() = 0;
     virtual QString getStringIdentifier();
     virtual QString getXmlName() = 0;
     virtual void closeSDLDevice() = 0;
@@ -48,6 +49,7 @@ public:
     virtual SDL_JoystickID getSDLJoystickID() = 0;
     QString getSDLPlatform();
 #endif
+    virtual bool isGameController();
 
     void setButtonName(int index, QString tempName);
     void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);

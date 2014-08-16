@@ -135,6 +135,12 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
         ui->guidLabel->hide();
     }
 
+#ifdef USE_SDL_2
+    ui->sdlGameControllerLabel->setText("Yes");
+#else
+    ui->sdlGameControllerLabel->hide();
+#endif
+
     connect(joystick, SIGNAL(destroyed()), this, SLOT(obliterate()));
     connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates(int)));
 }

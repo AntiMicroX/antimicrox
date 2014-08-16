@@ -49,7 +49,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
        <property name="title">
         <string>Details</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_13">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -205,6 +205,42 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
           </item>
           <item>
            <widget class="QLabel" name="guidLabel">
+            <property name="text">
+             <string>%1</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="margin">
+             <number>10</number>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="guidVerticalLayout_2">
+          <item>
+           <widget class="QLabel" name="guidHeaderLabel_2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Game Controller:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="sdlGameControllerLabel">
             <property name="text">
              <string>%1</string>
             </property>

@@ -18,8 +18,10 @@ public:
 
     virtual QString getName();
     virtual QString getSDLName();
-    virtual QString getGUIDString(); // GUID available on SDL 2.
+    // GUID available on SDL 2.
+    virtual QString getGUIDString();
     virtual QString getXmlName();
+    virtual bool isGameController();
     virtual void closeSDLDevice();
     virtual SDL_JoystickID getSDLJoystickID();
 

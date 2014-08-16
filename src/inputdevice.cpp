@@ -1499,3 +1499,12 @@ QString InputDevice::getSDLPlatform()
 }
 
 #endif
+
+/**
+ * @brief Check if device is using the SDL Game Controller API
+ * @return Status showing if device is using the Game Controller API
+ */
+bool InputDevice::isGameController()
+{
+    return false;
+}
