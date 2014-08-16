@@ -136,7 +136,13 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     }
 
 #ifdef USE_SDL_2
-    ui->sdlGameControllerLabel->setText("Yes");
+    QString usingGameController = tr("No");
+    if (joystick->isGameController())
+    {
+        usingGameController = tr("Yes");
+    }
+
+    ui->sdlGameControllerLabel->setText(usingGameController);
 #else
     ui->sdlGameControllerLabel->hide();
 #endif
