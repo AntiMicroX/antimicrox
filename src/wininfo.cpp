@@ -270,3 +270,18 @@ void WinInfo::writeFileAssocationToRegistry()
     associationReg.setValue("(Default)", QString("\"%1\" \"%2\"").arg(qApp->applicationFilePath()).arg("%1"));
     associationReg.sync();
 }
+
+void WinInfo::removeFileAssociationFromRegistry()
+{
+    QSettings associationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
+    QString currentValue = associationReg.value("(Default)", "").toString();
+    if (currentValue == "AntiMicro.amgp")
+    {
+        associationReg.remove("(Default)");
+        associationReg.sync();
+    }
+
+    associationReg(PROGRAMSSOCIATIONKEY, QSettings::NativeFormat);
+    associationReg.remove("(Default)");
+    associationReg.sync();
+}

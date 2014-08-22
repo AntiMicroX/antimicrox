@@ -19,6 +19,7 @@ public:
     static QString getForegroundWindowExePath();
     static bool containsFileAssociationinRegistry();
     static void writeFileAssocationToRegistry();
+    static void removeFileAssociationFromRegistry();
 
 protected:
     explicit WinInfo(QObject *parent = 0);

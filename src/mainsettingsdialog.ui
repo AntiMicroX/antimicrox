@@ -246,6 +246,16 @@ first launches.</string>
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="associateProfilesCheckBox">
+           <property name="text">
+            <string>Associate Profiles</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_4">
            <property name="orientation">
             <enum>Qt::Vertical</enum>

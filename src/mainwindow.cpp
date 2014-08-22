@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QMessageBox>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -165,6 +166,29 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 
     aboutDialog = new AboutDialog(this);
 
+#ifdef Q_OS_WIN
+    bool shouldAssociateProfiles = settings->value("AssociateProfiles", true).toBool();
+
+    if (!WinInfo::containsFileAssociationinRegistry() && shouldAssociateProfiles)
+    {
+        QMessageBox msg;
+        msg.setWindowTitle(tr("File Association"));
+        msg.setText(tr("No file association was found for .amgp files. Would you like to associate AntiMicro with .amgp files?"));
+        msg.setModal(true);
+        msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        int result = msg.exec();
+        if (result == QMessageBox::Yes)
+        {
+            WinInfo::writeFileAssocationToRegistry();
+            settings->setValue("AssociateProfiles", 1);
+        }
+        else
+        {
+            settings->setValue("AssociateProfiles", 0);
+        }
+    }
+#endif
+
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -202,13 +226,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
             hideWindow();
         }
     }
-
-/*#ifdef Q_OS_WIN
-    if (!WinInfo::containsFileAssociationinRegistry())
-    {
-        WinInfo::writeFileAssocationToRegistry();
-    }
-#endif*/
 }
 
 MainWindow::~MainWindow()

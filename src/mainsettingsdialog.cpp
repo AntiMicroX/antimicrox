@@ -146,6 +146,20 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->launchInTrayCheckBox->setChecked(true);
     }
 
+#ifdef Q_OS_WIN
+    bool associateProfiles = settings->value("AssociateProfiles", true).toBool();
+    if (associateProfiles)
+    {
+        ui->associateProfilesCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui->associateProfilesCheckBox->setChecked(false);
+    }
+#else
+    ui->associateProfilesCheckBox->setVisible(false);
+#endif
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -430,6 +444,21 @@ void MainSettingsDialog::saveNewSettings()
 
     bool launchInTray = ui->launchInTrayCheckBox->isChecked();
     settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
+
+#ifdef Q_OS_WIN
+    bool associateProfiles = ui->associateProfilesCheckBox->isChecked();
+    settings->setValue("AssociateProfiles", associateProfiles ? "1" : "0");
+
+    bool associationExists = WinInfo::containsFileAssociationinRegistry();
+    if (associateProfiles && !associationExists)
+    {
+        WinInfo::writeFileAssocationToRegistry();
+    }
+    else if (!associateProfiles && associationExists)
+    {
+        WinInfo::removeFileAssociationFromRegistry();
+    }
+#endif
 
     settings->sync();
 }
