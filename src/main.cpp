@@ -375,17 +375,26 @@ int main(int argc, char *argv[])
     if (cmdutility.shouldListControllers())
     {
         QTextStream out(stdout);
-        out << QObject::tr("List Controllers:") << endl;
-        out << QObject::tr("-----------------") << endl;
+        out << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
+        out << endl;
+        out << QObject::tr("List Joysticks:") << endl;
+        out << QObject::tr("---------------") << endl;
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
         unsigned int indexNumber = 1;
         while (iter.hasNext())
         {
             InputDevice *tempdevice = iter.next().value();
-            out << QObject::tr("Device %1:").arg(indexNumber) << endl;
-            out << "  " << QObject::tr("Index: %1").arg(tempdevice->getRealJoyNumber()) << endl;
-            out << "  " << QObject::tr("GUID:  %1").arg(tempdevice->getGUIDString()) << endl;
-            out << "  " << QObject::tr("Name:  %1").arg(tempdevice->getSDLName()) << endl;
+            out << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
+            out << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
+            out << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
+            out << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
+            QString gameControllerStatus = tempdevice->isGameController() ?
+                                           QObject::tr("Yes") : QObject::tr("No");
+            out << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
+            out << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
+            out << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
+            out << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
+
             if (iter.hasNext())
             {
                 out << endl;
