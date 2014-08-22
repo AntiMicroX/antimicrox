@@ -76,7 +76,7 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 QFileInfo fileInfo(temp);
                 if (fileInfo.exists())
                 {
-                    if (fileInfo.suffix() != "xml")
+                    if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
                     {
                         errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
                         encounteredError = true;
@@ -274,7 +274,7 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             QFileInfo fileInfo(temp);
             if (fileInfo.exists())
             {
-                if (fileInfo.suffix() != "xml")
+                if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
                 {
                     errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
                     encounteredError = true;

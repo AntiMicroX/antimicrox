@@ -17,6 +17,8 @@ public:
 
     static const unsigned int EXTENDED_FLAG;
     static QString getForegroundWindowExePath();
+    static bool containsFileAssociationinRegistry();
+    static void writeFileAssocationToRegistry();
 
 protected:
     explicit WinInfo(QObject *parent = 0);

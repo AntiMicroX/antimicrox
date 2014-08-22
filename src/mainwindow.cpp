@@ -29,6 +29,10 @@
 #include "autoprofileinfo.h"
 #endif
 
+#ifdef Q_OS_WIN
+#include "wininfo.h"
+#endif
+
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -198,6 +202,13 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
             hideWindow();
         }
     }
+
+/*#ifdef Q_OS_WIN
+    if (!WinInfo::containsFileAssociationinRegistry())
+    {
+        WinInfo::writeFileAssocationToRegistry();
+    }
+#endif*/
 }
 
 MainWindow::~MainWindow()

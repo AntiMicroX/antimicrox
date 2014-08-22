@@ -3,10 +3,12 @@
 #include <qt_windows.h>
 #include <psapi.h>
 #include <QHashIterator>
+#include <QSettings>
+#include <QCoreApplication>
 
 #include "wininfo.h"
 
-typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD,LPTSTR,PDWORD);
+typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPTSTR, PDWORD);
 // Check if QueryFullProcessImageNameW function exists in kernel32.dll.
 // Function does not exist in Windows XP.
 static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
@@ -23,6 +25,9 @@ static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
 */
 
 const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
+static const QString ROOTASSOCIATIONKEY("HKEY_CLASSES_ROOT");
+static const QString FILEASSOCIATIONKEY = QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg(".amgp");
+static const QString PROGRAMSSOCIATIONKEY = QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg("AntiMicro.amgp");
 WinInfo WinInfo::_instance;
 
 WinInfo::WinInfo(QObject *parent) :
@@ -239,4 +244,29 @@ QString WinInfo::getForegroundWindowExePath()
     }
 
     return exePath;
+}
+
+bool WinInfo::containsFileAssociationinRegistry()
+{
+    bool result = false;
+
+    QSettings associationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
+    QString temp = associationReg.value("(Default)", "").toString();
+    if (!temp.isEmpty())
+    {
+        result = true;
+    }
+
+    return result;
+}
+
+void WinInfo::writeFileAssocationToRegistry()
+{
+    QSettings associationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
+    associationReg.setValue("(Default)", "AntiMicro.amgp");
+    associationReg.sync();
+
+    associationReg(PROGRAMSSOCIATIONKEY, QSettings::NativeFormat);
+    associationReg.setValue("(Default)", QString("\"%1\" \"%2\"").arg(qApp->applicationFilePath()).arg("%1"));
+    associationReg.sync();
 }

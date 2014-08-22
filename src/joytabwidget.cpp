@@ -475,7 +475,7 @@ void JoyTabWidget::openConfigFileDialog()
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
 
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*amgp *.xml)"));
 
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -570,15 +570,15 @@ void JoyTabWidget::saveConfigFile()
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
 
             QFileInfo fileinfo(filename);
             QString deviceTypeName = joystick->getXmlName();
-            QString fileSuffix = deviceTypeName.append(".xml");
-            if (fileinfo.suffix() != "xml")
+            QString fileSuffix = deviceTypeName.append(".amgp");
+            if (fileinfo.suffix() != "xml" && fileinfo.suffix() != "amgp")
             {
                 filename = filename.append(".").append(fileSuffix);
             }
@@ -727,7 +727,7 @@ void JoyTabWidget::saveAsConfig()
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -737,7 +737,7 @@ void JoyTabWidget::saveAsConfig()
     {
         QString configPath = configBox->itemData(index).toString();
         QFileInfo temp(configPath);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), QString("Config File (*.%1.xml)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), QString("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -748,8 +748,8 @@ void JoyTabWidget::saveAsConfig()
     {
         QFileInfo fileinfo(filename);
         QString deviceTypeName = joystick->getXmlName();
-        QString fileSuffix = deviceTypeName.append(".xml");
-        if (fileinfo.suffix() != "xml")
+        QString fileSuffix = deviceTypeName.append(".amgp");
+        if (fileinfo.suffix() != "xml" && fileinfo.suffix() != "ampg")
         {
             filename = filename.append(".").append(fileSuffix);
         }
@@ -1192,7 +1192,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
 {
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QFileInfo fileinfo(fileLocation);
-    if (fileinfo.exists() && fileinfo.suffix() == "xml")
+    if (fileinfo.exists() && (fileinfo.suffix() == "xml" || fileinfo.suffix() == "amgp"))
     {
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         if (searchIndex == -1)

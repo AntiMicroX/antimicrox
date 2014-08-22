@@ -461,6 +461,7 @@ endif(UNIX)
 if(UNIX)
     install(FILES src/images/antimicro.png DESTINATION "share/pixmaps")
     install(FILES other/antimicro.desktop DESTINATION "share/applications")
+    install(FILES other/antimicro.xml DESTINATION "share/mime/packages")
 endif(UNIX)
 
 # Add man pages for *nix platforms

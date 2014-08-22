@@ -132,7 +132,7 @@ AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
 void AddEditAutoProfileDialog::openProfileBrowseDialog()
 {
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
     if (!filename.isNull() && !filename.isEmpty())
     {
         ui->profileLineEdit->setText(QDir::toNativeSeparators(filename));

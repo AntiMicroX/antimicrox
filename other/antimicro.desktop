@@ -13,3 +13,4 @@ StartupNotify=true
 Terminal=false
 Type=Application
 Categories=Qt;Utility;
+MimeType=application/x-amgp;
