@@ -15,7 +15,7 @@ QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-
 QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
 QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
-QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("--list");
+QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
@@ -322,11 +322,19 @@ void CommandLineUtility::printHelp()
         << endl;
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
-           << tr("Launch program as a daemon.") << endl;
+        << tr("Launch program as a daemon.") << endl;
     out << "--display <value>             " << " "
-           << tr("Generate events on a different display.\n                               Useful for ssh.")
-           << endl;
+        << tr("Generate events on a different display.\n                               Useful for ssh.")
+        << endl;
 
+#endif
+
+#ifdef USE_SDL_2
+    out << "-l, --list                    " << " "
+        << tr("Print information about joysticks detected by SDL.") << endl;
+    out << "--map <value>                 " << " "
+        << tr("Open game controller mapping window of selected\n                               controller. Value can be a controller index or\n                               GUID.")
+        << endl;
 #endif
 
 }
