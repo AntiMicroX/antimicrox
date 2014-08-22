@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 
     Q_INIT_RESOURCE(resources);
 
-    QDir configDir (PadderCommon::configPath);
+    QDir configDir(PadderCommon::configPath);
     if (!configDir.exists())
     {
         configDir.mkpath(PadderCommon::configPath);
@@ -369,6 +369,75 @@ int main(int argc, char *argv[])
 
     sigaction(SIGINT, &termint, 0);
 
+#endif
+
+#ifdef USE_SDL_2
+    if (cmdutility.shouldListControllers())
+    {
+        QTextStream out(stdout);
+        out << QObject::tr("List Controllers:") << endl;
+        out << QObject::tr("-----------------") << endl;
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        unsigned int indexNumber = 1;
+        while (iter.hasNext())
+        {
+            InputDevice *tempdevice = iter.next().value();
+            out << QObject::tr("Device %1:").arg(indexNumber) << endl;
+            out << "  " << QObject::tr("Index: %1").arg(tempdevice->getRealJoyNumber()) << endl;
+            out << "  " << QObject::tr("GUID:  %1").arg(tempdevice->getGUIDString()) << endl;
+            out << "  " << QObject::tr("Name:  %1").arg(tempdevice->getSDLName()) << endl;
+            if (iter.hasNext())
+            {
+                out << endl;
+                indexNumber++;
+            }
+        }
+
+        joypad_worker->quit();
+
+        deleteInputDevices(joysticks);
+        delete joysticks;
+        joysticks = 0;
+
+        delete joypad_worker;
+        joypad_worker = 0;
+
+        delete localServer;
+        localServer = 0;
+
+        delete w;
+        w = 0;
+
+        delete a;
+        a = 0;
+
+        return 0;
+    }
+    else if (cmdutility.shouldMapController())
+    {
+        QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
+        QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+
+        int app_result = a->exec();
+
+        deleteInputDevices(joysticks);
+        delete joysticks;
+        joysticks = 0;
+
+        delete joypad_worker;
+        joypad_worker = 0;
+
+        delete localServer;
+        localServer = 0;
+
+        delete w;
+        w = 0;
+
+        delete a;
+        a = 0;
+
+        return app_result;
+    }
 #endif
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));

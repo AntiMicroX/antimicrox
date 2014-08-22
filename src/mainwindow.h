@@ -88,6 +88,8 @@ public slots:
     void testMappingUpdateNow(int index, InputDevice *device);
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
+    void selectControllerJoyTab(QString GUID);
+    void selectControllerJoyTab(unsigned int index);
 #endif
 
 private slots:
@@ -119,7 +121,7 @@ private slots:
 #endif
 
 #ifdef USE_SDL_2
-    void openGameControllerMappingWindow();
+    void openGameControllerMappingWindow(bool openAsMain=false);
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(AutoProfileInfo *info);
     void checkAutoProfileWatcherTimer();

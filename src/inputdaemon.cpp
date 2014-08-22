@@ -366,7 +366,7 @@ void InputDaemon::quit()
         connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
 
         eventWorker->stop();
-        temptime.start(1000);
+        temptime.start(500);
         if (eventWorker->isSDLOpen())
         {
             q.exec();

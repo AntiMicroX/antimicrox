@@ -6,6 +6,7 @@
 #include <QVariant>
 #include <QStringList>
 #include <QMessageBox>
+#include <QTextStream>
 
 #include "gamecontrollermappingdialog.h"
 #include "ui_gamecontrollermappingdialog.h"
@@ -97,7 +98,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
         ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
     }
 
-    QString tempWindowTitle = QString(tr("Game Controller Mapping (%1)")).arg(device->getSDLName());
+    QString tempWindowTitle = QString(tr("Game Controller Mapping (%1) (#%2)")).arg(device->getSDLName())
+                                     .arg(device->getRealJoyNumber());
     setWindowTitle(tempWindowTitle);
 
     enableDeviceConnections();
@@ -277,6 +279,13 @@ void GameControllerMappingDialog::saveChanges()
 
     settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
     settings->sync();
+    bool displayMapping = settings->runtimeValue("DisplaySDLMapping", false).toBool();
+    if (displayMapping)
+    {
+        QTextStream out(stdout);
+        out << generateSDLMappingString();
+    }
+
     emit mappingUpdate(mappingString, device);
 }
 

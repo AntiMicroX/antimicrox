@@ -15,6 +15,8 @@ QRegExp CommandLineUtility::loadProfileForControllerRegexp = QRegExp("--profile-
 QRegExp CommandLineUtility::hiddenRegexp = QRegExp("--hidden");
 QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
+QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("--list");
+QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
@@ -35,12 +37,14 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     startSetNumber = 0;
     daemonMode = false;
     displayString = "";
+    listControllers = false;
+    mappingController = false;
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
 {
     QStringListIterator iter(arguments);
-    QTextStream out(stdout);
+    //QTextStream out(stdout);
     QTextStream errorsteam(stderr);
 
     while (iter.hasNext())
@@ -205,6 +209,42 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 encounteredError = true;
             }
         }
+#ifdef USE_SDL_2
+        else if (gamepadListRegexp.exactMatch(temp))
+        {
+            listControllers = true;
+        }
+        else if (mappingRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+                temp = iter.next();
+
+                bool validNumber = false;
+                int tempNumber = temp.toInt(&validNumber);
+                if (validNumber)
+                {
+                    controllerNumber = tempNumber;
+                    mappingController = true;
+                }
+                else if (!temp.isEmpty())
+                {
+                    controllerIDString = temp;
+                    mappingController = true;
+                }
+                else
+                {
+                    errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                    encounteredError = true;
+                }
+            }
+            else
+            {
+                errorsteam << tr("No controller was specified.") << endl;
+                encounteredError = true;
+            }
+        }
+#endif
 
 #ifdef Q_OS_UNIX
         else if (daemonRegexp.exactMatch(temp))
@@ -377,6 +417,16 @@ bool CommandLineUtility::isPossibleCommand(QString temp)
     }
 
     return result;
+}
+
+bool CommandLineUtility::shouldListControllers()
+{
+    return listControllers;
+}
+
+bool CommandLineUtility::shouldMapController()
+{
+    return mappingController;
 }
 
 #ifdef Q_OS_UNIX

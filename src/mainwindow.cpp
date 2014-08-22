@@ -60,7 +60,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 #endif
 
     signalDisconnect = false;
-    showTrayIcon = !cmdutility->isTrayHidden() && graphical;
+    showTrayIcon = !cmdutility->isTrayHidden() && graphical &&
+                   !cmdutility->shouldListControllers() && !cmdutility->shouldMapController();
 
     this->joysticks = joysticks;
 
@@ -132,6 +133,26 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         else
         {
             changeStartSetNumber(cmdutility->getJoyStartSetNumber());
+        }
+    }
+    else if (cmdutility->shouldListControllers())
+    {
+        graphical = false;
+    }
+    else if (cmdutility->shouldMapController())
+    {
+        graphical = false;
+        if (cmdutility->hasControllerNumber())
+        {
+            unsigned int joypadIndex = cmdutility->getControllerNumber();
+            selectControllerJoyTab(joypadIndex);
+            openGameControllerMappingWindow(true);
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            QString joypadGUID = cmdutility->getControllerID();
+            selectControllerJoyTab(joypadGUID);
+            openGameControllerMappingWindow(true);
         }
     }
 
@@ -767,10 +788,10 @@ void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
 {
     if (!controllerID.isEmpty())
     {
-        QListIterator<QObject*> iter(ui->tabWidget->children());
+        QListIterator<JoyTabWidget*> iter(ui->tabWidget->findChildren<JoyTabWidget*>());
         while (iter.hasNext())
         {
-            JoyTabWidget *tab = static_cast<JoyTabWidget*>(iter.next());
+            JoyTabWidget *tab = iter.next();
             if (tab)
             {
                 InputDevice *tempdevice = tab->getJoystick();
@@ -856,10 +877,10 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
 {
     if (!controllerID.isEmpty())
     {
-        QListIterator<QObject*> iter(ui->tabWidget->children());
+        QListIterator<JoyTabWidget*> iter(ui->tabWidget->findChildren<JoyTabWidget*>());
         while (iter.hasNext())
         {
-            JoyTabWidget *tab = static_cast<JoyTabWidget*>(iter.next());
+            JoyTabWidget *tab = iter.next();
             if (tab)
             {
                 InputDevice *tempdevice = tab->getJoystick();
@@ -892,10 +913,10 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, QString contr
 {
     if (!controllerID.isEmpty())
     {
-        QListIterator<QObject*> iter(ui->tabWidget->children());
+        QListIterator<JoyTabWidget*> iter(ui->tabWidget->findChildren<JoyTabWidget*>());
         while (iter.hasNext())
         {
-            JoyTabWidget *tab = static_cast<JoyTabWidget*>(iter.next());
+            JoyTabWidget *tab = iter.next();
             if (tab)
             {
                 InputDevice *tempdevice = tab->getJoystick();
@@ -1109,7 +1130,7 @@ void MainWindow::checkKeyRepeatOptions()
 #endif
 
 #ifdef USE_SDL_2
-void MainWindow::openGameControllerMappingWindow()
+void MainWindow::openGameControllerMappingWindow(bool openAsMain)
 {
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
@@ -1120,7 +1141,16 @@ void MainWindow::openGameControllerMappingWindow()
         {
             GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
             dialog->show();
-            connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+
+            if (openAsMain)
+            {
+                //connect(dialog, SIGNAL(finished(int)), this, SLOT(removeJoyTabs()));
+                connect(dialog, SIGNAL(finished(int)), qApp, SLOT(quit()));
+            }
+            else
+            {
+                connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+            }
         }
     }
 }
@@ -1327,6 +1357,50 @@ void MainWindow::updateMenuOptions()
         else
         {
             ui->actionStick_Pad_Assign->setEnabled(true);
+        }
+    }
+}
+
+/**
+ * @brief Select appropriate tab with the specified index.
+ * @param Index of appropriate tab.
+ */
+void MainWindow::selectControllerJoyTab(unsigned int index)
+{
+    if (index > 0 && joysticks->contains(index-1))
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(index-1));
+        if (widget)
+        {
+            ui->tabWidget->setCurrentIndex(index-1);
+        }
+    }
+}
+
+/**
+ * @brief Select appropriate tab that has a device with the specified GUID.
+ * @param GUID of joystick device.
+ */
+void MainWindow::selectControllerJoyTab(QString GUID)
+{
+    if (!GUID.isEmpty())
+    {
+        InputDevice *device = 0;
+        QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*joysticks);
+        while (deviceIter.hasNext())
+        {
+            deviceIter.next();
+            InputDevice *tempDevice = deviceIter.value();
+            if (tempDevice && GUID == tempDevice->getStringIdentifier())
+            {
+                device = tempDevice;
+                deviceIter.toBack();
+            }
+        }
+
+        if (device)
+        {
+            ui->tabWidget->setCurrentIndex(device->getJoyNumber());
         }
     }
 }

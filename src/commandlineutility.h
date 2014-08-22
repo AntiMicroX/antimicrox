@@ -25,6 +25,8 @@ public:
     QString getControllerID();
     bool isHiddenRequested();
     bool isUnloadRequested();
+    bool shouldListControllers();
+    bool shouldMapController();
 
     unsigned int getStartSetNumber();
     unsigned int getJoyStartSetNumber();
@@ -55,6 +57,8 @@ protected:
     unsigned int startSetNumber;
     bool daemonMode;
     QString displayString;
+    bool listControllers;
+    bool mappingController;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -65,6 +69,8 @@ protected:
     static QRegExp hiddenRegexp;
     static QRegExp unloadRegexp;
     static QRegExp startSetRegexp;
+    static QRegExp gamepadListRegexp;
+    static QRegExp mappingRegexp;
 #ifdef Q_OS_UNIX
     static QRegExp daemonRegexp;
     static QRegExp displayRegexp;

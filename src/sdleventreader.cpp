@@ -23,7 +23,7 @@ void SDLEventReader::initSDL()
 #ifdef USE_SDL_2
     SDL_Init(SDL_INIT_GAMECONTROLLER);
 #else
-    // Video support is required to use event system in SDL 1.2.s
+    // Video support is required to use event system in SDL 1.2.
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 #endif
 

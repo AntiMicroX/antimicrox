@@ -22,6 +22,13 @@ QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &def
     return settingValue;
 }
 
+/**
+ * @brief Import relevant options given on the command line into a QSettings
+ *     instance. Used to override any options that might be present in the
+ *     main settings file. Keys will have to be changed to the appropriate
+ *     config key.
+ * @param Interpreted options set on the command line.
+ */
 void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
 {
     cmdSettings.clear();
@@ -29,5 +36,9 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
     if (cmdutility.isLaunchInTrayEnabled())
     {
         cmdSettings.setValue("LaunchInTray", 1);
+    }
+    if (cmdutility.shouldMapController())
+    {
+        cmdSettings.setValue("DisplaySDLMapping", 1);
     }
 }
