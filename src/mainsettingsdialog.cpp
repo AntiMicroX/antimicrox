@@ -17,6 +17,9 @@
 #include "editalldefaultautoprofiledialog.h"
 #include "common.h"
 
+#ifdef Q_OS_WIN
+#include "wininfo.h"
+#endif
 
 static const QString RUNATSTARTUPKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 

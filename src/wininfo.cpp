@@ -5,8 +5,10 @@
 #include <QHashIterator>
 #include <QSettings>
 #include <QCoreApplication>
+#include <QDir>
 
 #include "wininfo.h"
+#include <shlobj.h>
 
 typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPTSTR, PDWORD);
 // Check if QueryFullProcessImageNameW function exists in kernel32.dll.
@@ -25,9 +27,9 @@ static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
 */
 
 const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
-static const QString ROOTASSOCIATIONKEY("HKEY_CLASSES_ROOT");
-static const QString FILEASSOCIATIONKEY = QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg(".amgp");
-static const QString PROGRAMSSOCIATIONKEY = QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg("AntiMicro.amgp");
+static const QString ROOTASSOCIATIONKEY("HKEY_CURRENT_USER\\Software\\Classes");
+static const QString FILEASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg(".amgp"));
+static const QString PROGRAMASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg("AntiMicro.amgp"));
 WinInfo WinInfo::_instance;
 
 WinInfo::WinInfo(QObject *parent) :
@@ -251,7 +253,7 @@ bool WinInfo::containsFileAssociationinRegistry()
     bool result = false;
 
     QSettings associationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
-    QString temp = associationReg.value("(Default)", "").toString();
+    QString temp = associationReg.value("Default", "").toString();
     if (!temp.isEmpty())
     {
         result = true;
@@ -262,26 +264,34 @@ bool WinInfo::containsFileAssociationinRegistry()
 
 void WinInfo::writeFileAssocationToRegistry()
 {
-    QSettings associationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
-    associationReg.setValue("(Default)", "AntiMicro.amgp");
-    associationReg.sync();
+    QSettings fileAssociationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
+    fileAssociationReg.setValue("Default", "AntiMicro.amgp");
+    fileAssociationReg.sync();
 
-    associationReg(PROGRAMSSOCIATIONKEY, QSettings::NativeFormat);
-    associationReg.setValue("(Default)", QString("\"%1\" \"%2\"").arg(qApp->applicationFilePath()).arg("%1"));
-    associationReg.sync();
+    QSettings programAssociationReg(PROGRAMASSOCIATIONKEY, QSettings::NativeFormat);
+    programAssociationReg.setValue("Default", tr("AntiMicro Profile"));
+    programAssociationReg.setValue("shell/open/command/Default", QString("\"%1\" \"%2\"").arg(QDir::toNativeSeparators(qApp->applicationFilePath())).arg("%1"));
+    programAssociationReg.setValue("DefaultIcon/Default", QString("%1,%2").arg(QDir::toNativeSeparators(qApp->applicationFilePath())).arg("0"));
+    programAssociationReg.sync();
+
+    // Required to refresh settings used in Windows Explorer
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
 
 void WinInfo::removeFileAssociationFromRegistry()
 {
-    QSettings associationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
-    QString currentValue = associationReg.value("(Default)", "").toString();
+    QSettings fileAssociationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
+    QString currentValue = fileAssociationReg.value("Default", "").toString();
     if (currentValue == "AntiMicro.amgp")
     {
-        associationReg.remove("(Default)");
-        associationReg.sync();
+        fileAssociationReg.remove("Default");
+        fileAssociationReg.sync();
     }
 
-    associationReg(PROGRAMSSOCIATIONKEY, QSettings::NativeFormat);
-    associationReg.remove("(Default)");
-    associationReg.sync();
+    QSettings programAssociationReg(PROGRAMASSOCIATIONKEY, QSettings::NativeFormat);
+    programAssociationReg.remove("");
+    programAssociationReg.sync();
+
+    // Required to refresh settings used in Windows Explorer
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
