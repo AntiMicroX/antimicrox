@@ -749,7 +749,7 @@ void JoyTabWidget::saveAsConfig()
         QFileInfo fileinfo(filename);
         QString deviceTypeName = joystick->getXmlName();
         QString fileSuffix = deviceTypeName.append(".amgp");
-        if (fileinfo.suffix() != "xml" && fileinfo.suffix() != "ampg")
+        if (fileinfo.suffix() != "xml" && fileinfo.suffix() != "amgp")
         {
             filename = filename.append(".").append(fileSuffix);
         }
