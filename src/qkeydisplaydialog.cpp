@@ -15,7 +15,7 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
 
-#if !defined(Q_OS_UNIX) || !defined(WITH_XTEST)
+#if defined(WITH_X11) && defined(WITH_UINPUT)
     ui->nativeTitleLabel->setVisible(false);
     ui->nativeKeyLabel->setVisible(false);
 #endif
@@ -50,6 +50,8 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 
 #if defined(WITH_XTEST)
     unsigned int finalvirtual = virtualkey;
+#elif defined(WITH_UINPUT) && !defined(WITH_X11)
+    unsigned int finalvirtual = scancode;
 #elif defined(WITH_UINPUT)
     unsigned int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
 #endif
