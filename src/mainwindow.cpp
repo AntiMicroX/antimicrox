@@ -994,7 +994,7 @@ void MainWindow::openMainSettingsDialog()
 
     if (appWatcher)
     {
-#ifdef USE_SDL_2
+#if defined(USE_SDL_2) and defined(WITH_X11)
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
     appWatcher->stopTimer();
@@ -1309,6 +1309,7 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
+#if defined(USE_SDL_2) && defined(WITH_X11)
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
@@ -1364,10 +1365,12 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
             }
         }
     }
+#endif
 }
 
 void MainWindow::checkAutoProfileWatcherTimer()
 {
+#if defined(USE_SDL_2) && defined(WITH_X11)
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
     if (autoProfileActive == "1")
     {
@@ -1377,6 +1380,7 @@ void MainWindow::checkAutoProfileWatcherTimer()
     {
         appWatcher->stopTimer();
     }
+#endif
 }
 
 void MainWindow::updateMenuOptions()
