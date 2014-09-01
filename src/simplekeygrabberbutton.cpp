@@ -81,7 +81,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     #elif defined(WITH_UINPUT) && !defined(WITH_X11)
         //int finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
         int finalvirtual = tempcode;
-        int checkalias = AntKeyMapper::returnQtKey(tempcode);
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
     #elif defined(WITH_UINPUT)
         int finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
         int checkalias = AntKeyMapper::returnQtKey(finalvirtual);

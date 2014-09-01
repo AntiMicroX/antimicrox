@@ -67,6 +67,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
+#elif defined(USE_SDL_2) && !defined(WITH_X11)
+    delete ui->categoriesListWidget->item(2);
+    ui->stackedWidget->removeWidget(ui->page_2);
+
 #elif !defined(USE_SDL_2)
     delete ui->categoriesListWidget->item(2);
     delete ui->categoriesListWidget->item(1);

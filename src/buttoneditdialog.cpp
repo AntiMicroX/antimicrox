@@ -129,8 +129,8 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
     #elif defined(WITH_UINPUT) && !defined(WITH_X11)
         //int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
-        int finalvirtual = tempcode;
-        int checkalias = AntKeyMapper::returnQtKey(tempcode);
+        int finalvirtual = controlcode;
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
     #elif defined(WITH_UINPUT)
         int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
         int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
