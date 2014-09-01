@@ -3,7 +3,7 @@
 
 #include "x11info.h"
 
-X11Info X11Info::_instance;
+X11Info* X11Info::_instance = 0;
 
 X11Info::X11Info(QObject *parent) :
     QObject(parent)
@@ -22,7 +22,26 @@ X11Info::~X11Info()
     {
         XCloseDisplay(display());
         _display = 0;
-        _instance._customDisplayString = "";
+        _customDisplayString = "";
+    }
+}
+
+X11Info *X11Info::getInstance()
+{
+    if (!_instance)
+    {
+        _instance = new X11Info();
+    }
+
+    return _instance;
+}
+
+void X11Info::deleteInstance()
+{
+    if (_instance)
+    {
+        delete _instance;
+        _instance = 0;
     }
 }
 
@@ -32,7 +51,13 @@ X11Info::~X11Info()
  */
 Display* X11Info::display()
 {
-    return _instance._display;
+    return _display;
+}
+
+bool X11Info::hasValidDisplay()
+{
+    bool result = _display != NULL;
+    return result;
 }
 
 /**
@@ -40,11 +65,11 @@ Display* X11Info::display()
  */
 void X11Info::closeDisplay()
 {
-    if (_instance._display)
+    if (_display)
     {
         XCloseDisplay(display());
-        _instance._display = 0;
-        _instance._customDisplayString = "";
+        _display = 0;
+        _customDisplayString = "";
     }
 }
 
@@ -53,8 +78,8 @@ void X11Info::closeDisplay()
  */
 void X11Info::syncDisplay()
 {
-    _instance._display = XOpenDisplay(NULL);
-    _instance._customDisplayString = "";
+    _display = XOpenDisplay(NULL);
+    _customDisplayString = "";
 }
 
 /**
@@ -65,14 +90,14 @@ void X11Info::syncDisplay()
 void X11Info::syncDisplay(QString displayString)
 {
     QByteArray tempByteArray = displayString.toLocal8Bit();
-    _instance._display = XOpenDisplay(tempByteArray.constData());
-    if (_instance._display)
+    _display = XOpenDisplay(tempByteArray.constData());
+    if (_display)
     {
-        _instance._customDisplayString = displayString;
+        _customDisplayString = displayString;
     }
     else
     {
-        _instance._customDisplayString = "";
+        _customDisplayString = "";
     }
 }
 
@@ -95,9 +120,9 @@ unsigned long X11Info::appRootWindow(int screen)
 QString X11Info::getDisplayString(QString xcodestring)
 {
     QString temp;
-    if (_instance.knownAliases.contains(xcodestring))
+    if (knownAliases.contains(xcodestring))
     {
-        temp = _instance.knownAliases.value(xcodestring);
+        temp = knownAliases.value(xcodestring);
     }
 
     return temp;
@@ -134,7 +159,7 @@ int X11Info::getApplicationPid(Window &window)
     int status = 0;
     int pid = 0;
 
-    Display *display = X11Info::display();
+    Display *display = this->display();
     atom = XInternAtom(display, "_NET_WM_PID", True);
     status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
     if (status == 0 && prop)
@@ -253,7 +278,7 @@ Window X11Info::findClientWindow(Window &window)
     Window *children = 0;
     unsigned int num_children = 0;
     Window finalwindow = 0;
-    Display *display = X11Info::display();
+    Display *display = this->display();
 
     Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
     status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
@@ -293,7 +318,7 @@ Window X11Info::findClientWindow(Window &window)
         {
             for (unsigned int i = 0; i < num_children && !finalwindow; i++)
             {
-                finalwindow = X11Info::findClientWindow(children[i]);
+                finalwindow = findClientWindow(children[i]);
             }
         }
 
@@ -309,5 +334,5 @@ Window X11Info::findClientWindow(Window &window)
 
 QString X11Info::getXDisplayString()
 {
-    return _instance._customDisplayString;
+    return _customDisplayString;
 }

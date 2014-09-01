@@ -21,6 +21,7 @@
 #include <QTextStream>
 #include <QLocalSocket>
 #include <QSettings>
+#include <QMessageBox>
 
 #ifdef Q_OS_WIN
 #include <QStyle>
@@ -46,6 +47,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "eventhandlerfactory.h"
 #include "x11info.h"
 
 #endif
@@ -86,10 +88,6 @@ void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 
 int main(int argc, char *argv[])
 {
-//#ifndef Q_OS_WIN
-//    XInitThreads();
-//#endif
-
     qRegisterMetaType<JoyButtonSlot*>();
     qRegisterMetaType<InputDevice*>();
     qRegisterMetaType<AutoProfileInfo*>();
@@ -174,15 +172,11 @@ int main(int argc, char *argv[])
         delete joypad_worker;
         joypad_worker = 0;
 
-        //delete a;
-        //a = 0;
-
         return 0;
     }
 
     LocalAntiMicroServer *localServer = 0;
     QApplication *a = 0;
-    //localServer->startLocalServer();
 
 #ifndef Q_OS_WIN
     if (cmdutility.launchAsDaemon())
@@ -223,15 +217,15 @@ int main(int argc, char *argv[])
             exit(EXIT_SUCCESS);
         }
 
-        //X11Info::closeDisplay();
+    #ifdef WITH_X11
         if (cmdutility.getDisplayString().isEmpty())
         {
-            X11Info::syncDisplay();
+            X11Info::getInstance()->syncDisplay();
         }
         else
         {
-            X11Info::syncDisplay(cmdutility.getDisplayString());
-            if (X11Info::display() == NULL)
+            X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
+            if (X11Info::getInstance()->display() == NULL)
             {
                 QTextStream errorstream(stderr);
                 errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
@@ -243,9 +237,12 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
+                X11Info::deleteInstance();
+
                 exit(EXIT_FAILURE);
             }
         }
+    #endif
 
         //Change File Mask
         umask(0);
@@ -263,6 +260,10 @@ int main(int argc, char *argv[])
             delete localServer;
             localServer = 0;
 
+    #ifdef WITH_X11
+            X11Info::deleteInstance();
+    #endif
+
             exit(EXIT_FAILURE);
         }
 
@@ -278,6 +279,10 @@ int main(int argc, char *argv[])
             delete localServer;
             localServer = 0;
 
+    #ifdef WITH_X11
+            X11Info::deleteInstance();
+    #endif
+
             exit(EXIT_FAILURE);
         }
 
@@ -292,10 +297,11 @@ int main(int argc, char *argv[])
         localServer = new LocalAntiMicroServer();
         localServer->startLocalServer();
 
+    #ifdef WITH_X11
         if (!cmdutility.getDisplayString().isEmpty())
         {
-            X11Info::syncDisplay(cmdutility.getDisplayString());
-            if (X11Info::display() == NULL)
+            X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
+            if (X11Info::getInstance()->display() == NULL)
             {
                 QTextStream errorstream(stderr);
                 errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
@@ -307,17 +313,20 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
+                X11Info::deleteInstance();
+
                 exit(EXIT_FAILURE);
             }
         }
+    #endif
     }
+
 #else
     a = new QApplication (argc, argv);
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
 #endif
 
-    //QApplication a(argc, argv);
     a->setQuitOnLastWindowClosed(false);
 
     //QString defaultStyleName = qApp->style()->objectName();
@@ -350,7 +359,6 @@ int main(int argc, char *argv[])
     AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings.importFromCommandLine(cmdutility);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
-    MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
 #ifndef Q_OS_WIN
     // Have program handle SIGTERM
@@ -414,8 +422,9 @@ int main(int argc, char *argv[])
         delete localServer;
         localServer = 0;
 
-        delete w;
-        w = 0;
+    #ifdef WITH_X11
+        X11Info::deleteInstance();
+    #endif
 
         delete a;
         a = 0;
@@ -424,6 +433,8 @@ int main(int argc, char *argv[])
     }
     else if (cmdutility.shouldMapController())
     {
+        MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
+
         QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
 
@@ -439,6 +450,10 @@ int main(int argc, char *argv[])
         delete localServer;
         localServer = 0;
 
+#ifdef WITH_X11
+        X11Info::deleteInstance();
+#endif
+
         delete w;
         w = 0;
 
@@ -448,6 +463,36 @@ int main(int argc, char *argv[])
         return app_result;
     }
 #endif
+
+    bool status = EventHandlerFactory::getInstance()->handler()->init();
+    if (!status)
+    {
+        QString lastError = EventHandlerFactory::getInstance()->handler()->getErrorString();
+        QTextStream err(stderr);
+        err << QObject::tr("Failed to initialize uinput") << endl << endl;
+        err << lastError << endl;
+
+        deleteInputDevices(joysticks);
+        delete joysticks;
+        joysticks = 0;
+
+        delete joypad_worker;
+        joypad_worker = 0;
+
+        delete localServer;
+        localServer = 0;
+
+    #ifdef WITH_X11
+        X11Info::deleteInstance();
+    #endif
+
+        delete a;
+        a = 0;
+
+        return EXIT_FAILURE;
+    }
+
+    MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
@@ -475,6 +520,12 @@ int main(int argc, char *argv[])
 
     delete localServer;
     localServer = 0;
+
+#ifdef WITH_X11
+    X11Info::deleteInstance();
+#endif
+
+    EventHandlerFactory::getInstance()->handler()->cleanup();
 
     delete w;
     w = 0;

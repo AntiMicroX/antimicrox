@@ -48,7 +48,8 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
             this->qkeyalias = Qt::Key_Enter;
         }
 #else
-        this->keycode = X11KeyCodeToX11KeySym(temp);
+        this->keycode = temp;
+        //this->keycode = X11KeyCodeToX11KeySym(temp);
         this->qkeyalias = AntKeyMapper::returnQtKey(this->keycode);
         //this->keycode = temp;
 #endif
@@ -75,7 +76,8 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
     }
     else
     {
-        temp = keycodeToKey(X11KeySymToKeycode(xcodestring));
+        temp = keycodeToKeyString(X11KeySymToKeycode(xcodestring));
+        //temp = keycodeToKeyString(X11KeySymToKeycode(xcodestring));
     }
 
     if (temp.isEmpty() && !xcodestring.isEmpty())

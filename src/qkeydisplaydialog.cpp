@@ -14,6 +14,11 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
+
+#if !defined(Q_OS_UNIX) || !defined(WITH_XTEST)
+    ui->nativeTitleLabel->setVisible(false);
+    ui->nativeKeyLabel->setVisible(false);
+#endif
 }
 
 QKeyDisplayDialog::~QKeyDisplayDialog()
@@ -42,7 +47,13 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     unsigned int scancode = event->nativeScanCode();
     unsigned int finalvirtual = WinInfo::correctVirtualKey(scancode, virtualkey);
 #else
+
+#if defined(WITH_XTEST)
     unsigned int finalvirtual = virtualkey;
+#elif defined(WITH_UINPUT)
+    unsigned int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+#endif
+
 #endif
     ui->nativeKeyLabel->setText(QString("0x%1").arg(finalvirtual, 0, 16));
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));

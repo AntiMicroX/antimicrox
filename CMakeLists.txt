@@ -18,8 +18,11 @@ set(ANTIMICRO_MAJOR_VERSION 2)
 set(ANTIMICRO_MINOR_VERSION 5)
 set(ANTIMICRO_PATCH_VERSION 0)
 
-option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1" ON)
-option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source" OFF)
+option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
+option(WITH_X11 "Compile with support for X11." ON)
+option(WITH_UINPUT "Compile with support for uinput. uinput will be used to simulate events." ON)
+option(WITH_XTEST "Compile with support for XTest.  XTest will be used to simulate events." OFF)
+option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
@@ -47,6 +50,29 @@ if(UNIX)
     elseif(NOT USE_SDL_2)
         pkg_check_modules(SDL REQUIRED sdl)
     endif(USE_SDL_2)
+
+
+    if(WITH_X11)
+        find_package(X11 REQUIRED)
+    endif(WITH_X11)
+
+    if(WITH_UINPUT AND WITH_XTEST)
+        set(WITH_XTEST OFF)
+        message("Cannot use uinput and XTest together. Disabling XTest support.")
+    endif(WITH_UINPUT AND WITH_XTEST)
+
+    if(WITH_XTEST AND NOT WITH_X11)
+        set(WITH_XTEST OFF)
+        message("Cannot use XTest without X11. Disabling XTest support.")
+    endif(WITH_XTEST AND NOT WITH_X11)
+
+    if(WITH_UINPUT)
+        message("Using uinput for simulating events.")
+    elseif(WITH_XTEST)
+        message("Using XTest for simulating events.")
+    else()
+        message(FATAL_ERROR "No system is defined for simulating events.")
+    endif(WITH_UINPUT)
 endif(UNIX)
 
 set(antimicro_SOURCES src/main.cpp
@@ -109,7 +135,6 @@ set(antimicro_SOURCES src/main.cpp
     src/mainsettingsdialog.cpp
     src/gamecontroller/gamecontrollertriggerbutton.cpp
     src/setnamesdialog.cpp
-    src/autoprofilewatcher.cpp
     src/autoprofileinfo.cpp
     src/addeditautoprofiledialog.cpp
     src/editalldefaultautoprofiledialog.cpp
@@ -117,26 +142,45 @@ set(antimicro_SOURCES src/main.cpp
     src/localantimicroserver.cpp
     src/extraprofilesettingsdialog.cpp
     src/antimicrosettings.cpp
+    src/eventhandlers/baseeventhandler.cpp
+    src/eventhandlerfactory.cpp
 )
 
 # Platform dependent files.
 if(UNIX)
-    LIST(APPEND antimicro_SOURCES src/x11info.cpp
-        src/qtx11keymapper.cpp src/unixcapturewindowutility.cpp)
+    if(WITH_X11)
+        LIST(APPEND antimicro_SOURCES src/x11info.cpp
+             src/qtx11keymapper.cpp
+             src/unixcapturewindowutility.cpp
+             src/autoprofilewatcher.cpp
+        )
+
+        if(WITH_XTEST)
+            LIST(APPEND antimicro_SOURCES src/eventhandlers/xtesteventhandler.cpp)
+        endif(WITH_XTEST)
+    endif(WITH_X11)
+
+    if(WITH_UINPUT)
+        LIST(APPEND antimicro_SOURCES src/qtuinputkeymapper.cpp
+             src/uinputhelper.cpp
+             src/eventhandlers/uinputeventhandler.cpp
+        )
+    endif(WITH_UINPUT)
+
 elseif(WIN32)
     LIST(APPEND antimicro_SOURCES src/wininfo.cpp
-        src/qtwinkeymapper.cpp
-        src/winappprofiletimerdialog.cpp)
+         src/qtwinkeymapper.cpp
+         src/winappprofiletimerdialog.cpp)
 endif(UNIX)
 
 # Files that require SDL 2 support.
 if(USE_SDL_2)
     LIST(APPEND antimicro_SOURCES src/gamecontroller/gamecontroller.cpp
-            src/gamecontroller/gamecontrollerdpad.cpp
-            src/gamecontroller/gamecontrollerset.cpp
-            src/gamecontroller/gamecontrollertrigger.cpp
-            src/gamecontrollermappingdialog.cpp
-            src/gamecontrollerexample.cpp
+         src/gamecontroller/gamecontrollerdpad.cpp
+         src/gamecontroller/gamecontrollerset.cpp
+         src/gamecontroller/gamecontrollertrigger.cpp
+         src/gamecontrollermappingdialog.cpp
+         src/gamecontrollerexample.cpp
     )
 endif(USE_SDL_2)
 
@@ -199,19 +243,38 @@ set(antimicro_HEADERS src/mainwindow.h
     src/mainsettingsdialog.h
     src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h
-    src/autoprofilewatcher.h
+
     src/autoprofileinfo.h
     src/addeditautoprofiledialog.h
     src/editalldefaultautoprofiledialog.h
     src/localantimicroserver.h
     src/extraprofilesettingsdialog.h
     src/antimicrosettings.h
+    src/eventhandlers/baseeventhandler.h
+    src/eventhandlerfactory.h
 )
 
 # Platform dependent files.
 if(UNIX)
-    LIST(APPEND antimicro_HEADERS src/x11info.h
-    src/qtx11keymapper.h src/unixcapturewindowutility.h)
+    if(WITH_X11)
+        LIST(APPEND antimicro_HEADERS src/x11info.h
+             src/qtx11keymapper.h
+             src/unixcapturewindowutility.h
+             src/autoprofilewatcher.h
+        )
+
+        if(WITH_XTEST)
+            LIST(APPEND antimicro_HEADERS src/eventhandlers/xtesteventhandler.h)
+        endif(WITH_XTEST)
+    endif(WITH_X11)
+
+    if(WITH_UINPUT)
+        LIST(APPEND antimicro_HEADERS src/qtuinputkeymapper.h
+             src/uinputhelper.h
+             src/eventhandlers/uinputeventhandler.h
+        )
+    endif(WITH_UINPUT)
+
 elseif(WIN32)
     LIST(APPEND antimicro_HEADERS src/wininfo.h
         src/qtwinkeymapper.h
@@ -304,6 +367,20 @@ if(USE_SDL_2)
     add_definitions(-DUSE_SDL_2)
 endif(USE_SDL_2)
 
+if(UNIX)
+    if(WITH_X11)
+        add_definitions(-DWITH_X11)
+    endif(WITH_X11)
+
+    if(WITH_XTEST)
+        add_definitions(-DWITH_XTEST)
+    endif(WITH_XTEST)
+
+    if(WITH_UINPUT)
+        add_definitions(-DWITH_UINPUT)
+    endif(WITH_UINPUT)
+endif(UNIX)
+
 if (UNIX)
     if (USE_QT5)
         # Find includes in corresponding build directories
@@ -395,7 +472,14 @@ elseif(WIN32)
 endif(UNIX)
 
 if(UNIX)
-    LIST(APPEND LIBS X11 Xtst)
+    if(WITH_X11)
+        LIST(APPEND LIBS X11)
+    endif(WITH_X11)
+
+    if(WITH_XTEST)
+        LIST(APPEND LIBS Xtst)
+    endif(WITH_XTEST)
+
     if(USE_SDL_2)
         list(APPEND LIBS ${SDL2_LIBRARIES})
     else()

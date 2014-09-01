@@ -10,8 +10,11 @@
 #include "ui_addeditautoprofiledialog.h"
 
 #if defined(Q_OS_UNIX)
+
+#ifdef WITH_X11
 #include "unixcapturewindowutility.h"
 #include "x11info.h"
+#endif
 
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
@@ -233,6 +236,7 @@ QString AddEditAutoProfileDialog::getOriginalExe()
  */
 void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
+#ifdef WITH_X11
     QMessageBox *box = new QMessageBox(this);
     box->setText(tr("Please select a window by using the mouse. Press Escape if you want to cancel."));
     box->setWindowTitle(tr("Capture Application Window"));
@@ -252,6 +256,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
     connect(util, SIGNAL(destroyed()), thread, SLOT(deleteLater()));
     thread->start();
+#endif
 }
 
 /**
@@ -260,6 +265,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
  */
 void AddEditAutoProfileDialog::checkCapturedPath()
 {
+#ifdef WITH_X11
     UnixCaptureWindowUtility *util = static_cast<UnixCaptureWindowUtility*>(sender());
     unsigned long targetWindow = util->getTargetWindow();
     bool escaped = !util->hasFailed();
@@ -270,15 +276,15 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     {
         // Attempt to find the appropriate window below the root window
         // that was clicked.
-        targetWindow = X11Info::findClientWindow(targetWindow);
+        targetWindow = X11Info::getInstance()->findClientWindow(targetWindow);
     }
 
     if (targetWindow != None)
     {
-        int pid = X11Info::getApplicationPid(targetWindow);
+        int pid = X11Info::getInstance()->getApplicationPid(targetWindow);
         if (pid > 0)
         {
-            QString exepath = X11Info::getApplicationLocation(pid);
+            QString exepath = X11Info::getInstance()->getApplicationLocation(pid);
 
             if (!exepath.isEmpty())
             {
@@ -315,6 +321,7 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     }
 
     util->deleteLater();
+#endif
 }
 
 #endif

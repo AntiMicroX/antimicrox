@@ -121,10 +121,16 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 #else
 
+    #if defined(WITH_XTEST)
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         int finalvirtual = X11KeyCodeToX11KeySym(controlcode);
         // Check for alias against group 1 keysym.
         int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+
+    #elif defined(WITH_UINPUT)
+        int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+    #endif
 
 #endif
 

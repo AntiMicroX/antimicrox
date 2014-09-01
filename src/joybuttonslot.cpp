@@ -361,7 +361,7 @@ QString JoyButtonSlot::getSlotString()
     {
         if (mode == JoyButtonSlot::JoyKeyboard)
         {
-            newlabel = newlabel.append(keysymToKey(deviceCode, qkeyaliasCode).toUpper());
+            newlabel = newlabel.append(keysymToKeyString(deviceCode, qkeyaliasCode).toUpper());
         }
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {

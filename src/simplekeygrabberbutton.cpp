@@ -60,7 +60,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     }
     else if (grabNextAction && event->type() == QEvent::KeyRelease)
     {
-        QKeyEvent *keyEve = (QKeyEvent*) event;
+        QKeyEvent *keyEve = static_cast<QKeyEvent*>(event);
         int tempcode = keyEve->nativeScanCode();
         int virtualactual = keyEve->nativeVirtualKey();
 
@@ -72,10 +72,16 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
 #else
 
+    #if defined(WITH_XTEST)
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         int finalvirtual = X11KeyCodeToX11KeySym(tempcode);
         // Check for alias against group 1 keysym.
         int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+
+    #elif defined(WITH_UINPUT)
+        int finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+    #endif
 
 #endif
 
@@ -86,7 +92,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             controlcode = 0;
             refreshButtonLabel();
-            //setText("");
         }
         else if (controlcode <= 0)
         {
@@ -101,13 +106,13 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             {
                 buttonslot.setSlotCode(finalvirtual, checkalias);
                 buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
-                setText(keysymToKey(finalvirtual, checkalias).toUpper());
+                setText(keysymToKeyString(finalvirtual, checkalias).toUpper());
             }
             else
             {
                 buttonslot.setSlotCode(virtualactual);
                 buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
-                setText(keysymToKey(finalvirtual).toUpper());
+                setText(keysymToKeyString(finalvirtual).toUpper());
             }
 
             edited = true;

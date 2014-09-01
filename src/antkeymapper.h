@@ -6,7 +6,13 @@
 #ifdef Q_OS_WIN
 #include "qtwinkeymapper.h"
 #else
+
+#if defined(WITH_XTEST)
 #include "qtx11keymapper.h"
+#elif defined(WITH_UINPUT)
+#include "qtuinputkeymapper.h"
+#endif
+
 #endif
 
 class AntKeyMapper : public QObject
@@ -25,7 +31,13 @@ protected:
 #ifdef Q_OS_WIN
     QtWinKeyMapper internalMapper;
 #else
+
+#if defined(WITH_XTEST)
     QtX11KeyMapper internalMapper;
+#elif defined(WITH_UINPUT)
+    QtUInputKeyMapper internalMapper;
+#endif
+
 #endif
 
 signals:

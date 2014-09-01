@@ -27,7 +27,11 @@
 
 #ifdef USE_SDL_2
 #include "gamecontrollermappingdialog.h"
+
+#ifdef WITH_X11
 #include "autoprofileinfo.h"
+#endif
+
 #endif
 
 #ifdef Q_OS_WIN
@@ -57,7 +61,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     ui->actionStick_Pad_Assign->setVisible(false);
 #endif
 
-#ifdef USE_SDL_2
+#if defined(USE_SDL_2) && defined(WITH_X11)
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
 #else
@@ -198,8 +202,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
-    connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
+    #ifdef WITH_X11
+    connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
+    #endif
 #endif
 
     // Check flags to see if user requested for the main window and the tray icon
@@ -986,12 +992,15 @@ void MainWindow::openMainSettingsDialog()
     MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
     //connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
 
+    if (appWatcher)
+    {
 #ifdef USE_SDL_2
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
     appWatcher->stopTimer();
 
 #endif
+    }
 
     connect(dialog, SIGNAL(accepted()), this, SLOT(populateTrayIcon()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkHideEmptyOption()));

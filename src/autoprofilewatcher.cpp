@@ -8,10 +8,7 @@
 
 #include "autoprofilewatcher.h"
 
-#if defined(Q_OS_UNIX)
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
 #include "x11info.h"
 
 #elif defined(Q_OS_WIN)
@@ -223,21 +220,23 @@ QString AutoProfileWatcher::findAppLocation()
     QString exepath;
 
 #if defined(Q_OS_UNIX)
+#ifdef WITH_X11
     Window currentWindow = 0;
     int focusState = 0;
     int pid = 0;
 
-    Display *display = X11Info::display();
+    Display *display = X11Info::getInstance()->display();
     XGetInputFocus(display, &currentWindow, &focusState);
     if (currentWindow)
     {
-        pid = X11Info::getApplicationPid(currentWindow);
+        pid = X11Info::getInstance()->getApplicationPid(currentWindow);
     }
 
     if (pid > 0)
     {
-        exepath = X11Info::getApplicationLocation(pid);
+        exepath = X11Info::getInstance()->getApplicationLocation(pid);
     }
+#endif
 
 #elif defined(Q_OS_WIN)
     exepath = WinInfo::getForegroundWindowExePath();

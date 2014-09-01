@@ -12,23 +12,27 @@ class X11Info : public QObject
 public:
     ~X11Info();
 
-    static unsigned long appRootWindow(int screen = -1);
-    static Display* display();
-    static QString getDisplayString(QString xcodestring);
-    static int getApplicationPid(Window &window);
-    static QString getApplicationLocation(int pid);
-    static Window findClientWindow(Window &window);
-    static void closeDisplay();
-    static void syncDisplay();
-    static void syncDisplay(QString displayString);
-    static QString getXDisplayString();
+    unsigned long appRootWindow(int screen = -1);
+    Display* display();
+    bool hasValidDisplay();
+    QString getDisplayString(QString xcodestring);
+    int getApplicationPid(Window &window);
+    QString getApplicationLocation(int pid);
+    Window findClientWindow(Window &window);
+    void closeDisplay();
+    void syncDisplay();
+    void syncDisplay(QString displayString);
+    QString getXDisplayString();
+
+    static X11Info* getInstance();
+    static void deleteInstance();
 
 protected:
     explicit X11Info(QObject *parent = 0);
     void populateKnownAliases();
 
     Display *_display;
-    static X11Info _instance;
+    static X11Info *_instance;
     QHash<QString, QString> knownAliases;
     QString _customDisplayString;
 

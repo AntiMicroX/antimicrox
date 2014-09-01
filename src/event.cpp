@@ -3,15 +3,28 @@
 #include <QApplication>
 #include <QTime>
 #include <cmath>
+#include <QFileInfo>
+#include <QStringList>
+#include <QCursor>
+#include <QDesktopWidget>
 
 #include "event.h"
 
 #if defined(Q_OS_UNIX)
+#include "eventhandlerfactory.h"
+
+    #if defined(WITH_XTEST)
+
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include <X11/extensions/XTest.h>
 #include "x11info.h"
+
+    #elif defined(WITH_UINPUT)
+#include "uinputhelper.h"
+
+    #endif
 
 #elif defined (Q_OS_WIN)
 #include <qt_windows.h>
@@ -22,10 +35,12 @@
 static MouseHelper *mouseHelperObj = 0;
 
 #ifdef Q_OS_UNIX
+    #ifdef WITH_XTEST
     static void finalSpringEvent(Display *display, unsigned int xmovecoor, unsigned int ymovecoor)
     {
-        XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+        //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
     }
+    #endif
 
 #elif defined(Q_OS_WIN)
     static void finalSpringEvent(INPUT *event, unsigned int xmovecoor, unsigned int ymovecoor, unsigned int width, unsigned int height)
@@ -41,26 +56,30 @@ static MouseHelper *mouseHelperObj = 0;
 // Create the event used by the operating system.
 void sendevent(JoyButtonSlot *slot, bool pressed)
 {
-    int code = slot->getSlotCode();
+    //int code = slot->getSlotCode();
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
 #if defined (Q_OS_UNIX)
-    Display* display = X11Info::display();
+    //Display* display = X11Info::getInstance()->display();
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
-        unsigned int tempcode = XKeysymToKeycode(display, code);
-        if (tempcode > 0)
-        {
-            XTestFakeKeyEvent(display, tempcode, pressed, 0);
-        }
+        EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
+        //write_uinput_event(fd, EV_KEY, code, pressed ? 1 : 0);
+        //write_uinput_event(fd, EV_KEY, KEY_D, pressed ? 1 : 0);
+        //unsigned int tempcode = XKeysymToKeycode(display, code);
+        //if (tempcode > 0)
+        //{
+        //    XTestFakeKeyEvent(display, tempcode, pressed, 0);
+        //}
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
-        XTestFakeButtonEvent(display, code, pressed, 0);
+        EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
+        //XTestFakeButtonEvent(display, code, pressed, 0);
     }
 
-    XFlush(display);
+    //XFlush(display);
 
 #elif defined (Q_OS_WIN)
     INPUT temp[1] = {};
@@ -135,10 +154,12 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 void sendevent(int code1, int code2)
 {
 #if defined (Q_OS_UNIX)
-    Display* display = X11Info::display();
+    //Display* display = X11Info::getInstance()->display();
 
-    XTestFakeRelativeMotionEvent(display, code1, code2, 0);
-    XFlush(display);
+    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
+
+    //XTestFakeRelativeMotionEvent(display, code1, code2, 0);
+    //XFlush(display);
 
 #elif defined (Q_OS_WIN)
     INPUT temp[1] = {};
@@ -154,10 +175,6 @@ void sendevent(int code1, int code2)
 
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring)
 {
-#ifdef Q_OS_UNIX
-    Display* display = X11Info::display();
-#endif
-
     if (!mouseHelperObj)
     {
         mouseHelperObj = new MouseHelper();
@@ -185,21 +202,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         int currentMouseY = 0;
 
 #if defined (Q_OS_UNIX)
-        XEvent mouseEvent;
-        Window wid = DefaultRootWindow(display);
-        XWindowAttributes xwAttr;
+        QDesktopWidget deskWid;
+        QRect deskRect = deskWid.screenGeometry();
+        width = deskRect.width();
+        height = deskRect.height();
+        QPoint currentPoint = QCursor::pos();
+        currentMouseX = currentPoint.x();
+        currentMouseY = currentPoint.y();
 
-        XQueryPointer(display, wid,
-            &mouseEvent.xbutton.root, &mouseEvent.xbutton.window,
-            &mouseEvent.xbutton.x_root, &mouseEvent.xbutton.y_root,
-            &mouseEvent.xbutton.x, &mouseEvent.xbutton.y,
-            &mouseEvent.xbutton.state);
-
-        XGetWindowAttributes(display, wid, &xwAttr);
-        width = xwAttr.width;
-        height = xwAttr.height;
-        currentMouseX = mouseEvent.xbutton.x_root;
-        currentMouseY = mouseEvent.xbutton.y_root;
+        //qDebug() << "Current Mouse X: " << currentMouseX;
+        //qDebug() << "Current Mouse Y: " << currentMouseY;
+        //qDebug() << "WIDTH: " << width;
+        //qDebug() << "HEIGHT: " << height;
 
 #elif defined (Q_OS_WIN)
         POINT cursorPoint;
@@ -283,8 +297,17 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
         if (xmovecoor != currentMouseX || ymovecoor != currentMouseY)
         {
+            //qDebug() << "XMOVECOOR: " << xmovecoor;
+            //qDebug() << "YMOVECOOR: " << ymovecoor;
+
             double diffx = abs(currentMouseX - xmovecoor);
             double diffy = abs(currentMouseY - ymovecoor);
+
+            //qDebug() << "DIFFX: " << diffx;
+            //qDebug() << "DIFFY: " << diffy;
+
+            //qDebug() << "SHITX: " << xmovecoor - currentMouseX;
+            //qDebug() << "SHITY: " << ymovecoor - currentMouseY;
             //double finaldiff = sqrt((diffx*diffx)+(diffy*diffy));
 
 #ifdef Q_OS_WIN
@@ -295,11 +318,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
 #endif
 
+            //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX, false);
+            //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
+
             // If either position is set to center, force update.
             if (xmovecoor == midwidth || ymovecoor == midheight)
             {
 #if defined(Q_OS_UNIX)
-                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                              ymovecoor - currentMouseY);
+                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
+                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
+                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -311,7 +341,11 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             {
                 mouseHelperObj->springMouseMoving = true;
 #if defined(Q_OS_UNIX)
-                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                              ymovecoor - currentMouseY);
+                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
+                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
+                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -322,7 +356,11 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             {
                 mouseHelperObj->springMouseMoving = true;
 #if defined(Q_OS_UNIX)
-                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                              ymovecoor - currentMouseY);
+                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
+                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
+                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -332,7 +370,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 //qDebug() << "X: " << xmovecoor;
                 //qDebug() << "Y: " << ymovecoor;
 
-                mouseHelperObj->mouseTimer.start(8);
+                //mouseHelperObj->mouseTimer.start(8);
             }
 
             else if (mouseHelperObj->springMouseMoving && (diffx < 2 && diffy < 2))
@@ -342,7 +380,11 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             else if (mouseHelperObj->springMouseMoving)
             {
 #if defined(Q_OS_UNIX)
-                XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                              ymovecoor - currentMouseY);
+                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
+                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
+                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -378,21 +420,21 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         mouseHelperObj->pivotPoint[0] = -1;
         mouseHelperObj->pivotPoint[1] = -1;
     }
-
-#ifdef Q_OS_UNIX
-    XFlush(display);
-#endif
 }
 
 int X11KeySymToKeycode(QString key)
 {
     int tempcode = 0;
 #if defined (Q_OS_UNIX)
-    Display* display = X11Info::display();
 
     if (key.length() > 0)
     {
+    #if defined(WITH_XTEST)
+        Display* display = X11Info::getInstance()->display();
         tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
+    #elif defined(WITH_UINPUT)
+        tempcode = UInputHelper::getInstance()->getVirtualKey(key);
+    #endif
     }
 
 #elif defined (Q_OS_WIN)
@@ -421,22 +463,24 @@ int X11KeySymToKeycode(QString key)
     return tempcode;
 }
 
-QString keycodeToKey(int keycode, unsigned int alias)
+QString keycodeToKeyString(int keycode, unsigned int alias)
 {
     QString newkey;
 
 #if defined (Q_OS_UNIX)
     Q_UNUSED(alias);
 
-    Display* display = X11Info::display();
     if (keycode <= 0)
     {
         newkey = "[NO KEY]";
     }
     else
     {
+    #if defined(WITH_XTEST)
+        Display* display = X11Info::getInstance()->display();
+        newkey = QString("0x%1").arg(keycode, 0, 16);
         QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
-        QString tempalias = X11Info::getDisplayString(tempkey);
+        QString tempalias = X11Info::getInstance()->getDisplayString(tempkey);
         if (!tempalias.isEmpty())
         {
             newkey = tempalias;
@@ -465,6 +509,19 @@ QString keycodeToKey(int keycode, unsigned int alias)
                 newkey = tempkey;
             }
         }
+
+    #elif defined(WITH_UINPUT)
+        QString tempalias = UInputHelper::getInstance()->getDisplayString(keycode);
+        if (!tempalias.isEmpty())
+        {
+            newkey = tempalias;
+        }
+        else
+        {
+            newkey = QString("0x%1").arg(keycode, 0, 16);
+        }
+
+    #endif
     }
 
 #elif defined (Q_OS_WIN)
@@ -508,26 +565,38 @@ unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
     Q_UNUSED(keycode);
     return 0;
 #else
-    Display* display = X11Info::display();
+    #ifdef WITH_XTEST
+    Display* display = X11Info::getInstance()->display();
     unsigned int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
     return tempcode;
+    #else
+
+    Q_UNUSED(keycode);
+    return 0;
+    #endif
 #endif
 }
 
-QString keysymToKey(int keysym, unsigned int alias)
+QString keysymToKeyString(int keysym, unsigned int alias)
 {
     QString newkey;
 #if defined (Q_OS_UNIX)
     Q_UNUSED(alias);
 
-    Display* display = X11Info::display();
+    #if defined(WITH_XTEST)
+    Display* display = X11Info::getInstance()->display();
     unsigned int keycode = 0;
     if (keysym > 0)
     {
         keycode = XKeysymToKeycode(display, keysym);
     }
+    newkey = keycodeToKeyString(keycode);
 
-    newkey = keycodeToKey(keycode);
+    #elif defined(WITH_UINPUT)
+    newkey = keycodeToKeyString(keysym);
+
+    #endif
+
 #else
     newkey = keycodeToKey(keysym, alias);
 #endif

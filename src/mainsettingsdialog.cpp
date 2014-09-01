@@ -63,11 +63,11 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page);
 
-#ifdef USE_SDL_2
+#if defined(USE_SDL_2) && defined(WITH_X11)
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
-#else
+#elif !defined(USE_SDL_2)
     delete ui->categoriesListWidget->item(2);
     delete ui->categoriesListWidget->item(1);
     ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
@@ -371,7 +371,7 @@ void MainSettingsDialog::syncMappingSettings()
 
 void MainSettingsDialog::saveNewSettings()
 {
-#ifdef USE_SDL_2
+#if defined(USE_SDL_2)
     syncMappingSettings();
 #endif
 
@@ -403,7 +403,7 @@ void MainSettingsDialog::saveNewSettings()
         settings->remove("CloseToTray");
     }
     //checkLocaleChange();
-#ifdef USE_SDL_2
+#if defined(USE_SDL_2) && defined(WITH_X11)
     saveAutoProfileSettings();
 #endif
 

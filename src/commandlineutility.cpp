@@ -19,7 +19,9 @@ QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
-QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
+    #ifdef WITH_X11
+        QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
+    #endif
 #endif
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
@@ -251,6 +253,7 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         {
             daemonMode = true;
         }
+    #ifdef WITH_X11
         else if (displayRegexp.exactMatch(temp))
         {
             if (iter.hasNext())
@@ -263,6 +266,7 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 encounteredError = true;
             }
         }
+    #endif
 #endif
         // Check if this is the last argument. If it is and no command line flag
         // is active, the final argument is likely a profile that has
@@ -323,9 +327,12 @@ void CommandLineUtility::printHelp()
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
         << tr("Launch program as a daemon.") << endl;
+    #ifdef WITH_X11
     out << "--display <value>             " << " "
-        << tr("Generate events on a different display.\n                               Useful for ssh.")
+        << tr("Use specified display for X11 calls.\n"
+              "                               Useful for ssh.")
         << endl;
+    #endif
 
 #endif
 
@@ -333,7 +340,9 @@ void CommandLineUtility::printHelp()
     out << "-l, --list                    " << " "
         << tr("Print information about joysticks detected by SDL.") << endl;
     out << "--map <value>                 " << " "
-        << tr("Open game controller mapping window of selected\n                               controller. Value can be a controller index or\n                               GUID.")
+        << tr("Open game controller mapping window of selected\n"
+              "                               controller. Value can be a controller index or\n"
+              "                               GUID.")
         << endl;
 #endif
 

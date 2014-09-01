@@ -29,7 +29,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     int status = 0;
     Display *display = 0;
 
-    QString potentialXDisplayString = X11Info::getXDisplayString();
+    QString potentialXDisplayString = X11Info::getInstance()->getXDisplayString();
     if (!potentialXDisplayString.isEmpty())
     {
         QByteArray tempByteArray = potentialXDisplayString.toLocal8Bit();
