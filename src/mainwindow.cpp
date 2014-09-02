@@ -62,8 +62,19 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 #endif
 
 #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    else
+    {
+        this->appWatcher = 0;
+    }
+    #endif
 #else
     this->appWatcher = 0;
 #endif
@@ -204,7 +215,14 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+        #endif
     connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+        #endif
     #endif
 #endif
 
@@ -995,9 +1013,16 @@ void MainWindow::openMainSettingsDialog()
     if (appWatcher)
     {
 #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
     appWatcher->stopTimer();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 
 #endif
     }
@@ -1310,6 +1335,10 @@ void MainWindow::addJoyTab(InputDevice *device)
 void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
 #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
@@ -1365,12 +1394,19 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
             }
         }
     }
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 }
 
 void MainWindow::checkAutoProfileWatcherTimer()
 {
 #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
     if (autoProfileActive == "1")
     {
@@ -1380,6 +1416,9 @@ void MainWindow::checkAutoProfileWatcherTimer()
     {
         appWatcher->stopTimer();
     }
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 }
 

@@ -64,9 +64,21 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     ui->stackedWidget->removeWidget(ui->page);
 
 #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    else
+    {
+        delete ui->categoriesListWidget->item(2);
+        ui->stackedWidget->removeWidget(ui->page_2);
+    }
+    #endif
 #elif defined(USE_SDL_2) && !defined(WITH_X11)
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page_2);
@@ -408,7 +420,14 @@ void MainSettingsDialog::saveNewSettings()
     }
     //checkLocaleChange();
 #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     saveAutoProfileSettings();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 
 #ifdef Q_OS_WIN

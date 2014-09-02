@@ -15,9 +15,16 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
 
-#if defined(WITH_X11) && defined(WITH_UINPUT)
+#if defined(WITH_UINPUT)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     ui->nativeTitleLabel->setVisible(false);
     ui->nativeKeyLabel->setVisible(false);
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 }
 
@@ -48,15 +55,25 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     unsigned int finalvirtual = WinInfo::correctVirtualKey(scancode, virtualkey);
 #else
 
-#if defined(WITH_XTEST)
+    #if defined(WITH_XTEST)
     unsigned int finalvirtual = virtualkey;
-#elif defined(WITH_UINPUT) && !defined(WITH_X11)
-    unsigned int finalvirtual = scancode;
-#elif defined(WITH_UINPUT)
-    unsigned int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+    #elif defined(WITH_UINPUT)
+    unsigned int finalvirtual = 0;
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+        finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+    }
+    else
+    {
+        finalvirtual = scancode;
+    }
+        #else
+    finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        #endif
+    #endif
 #endif
 
-#endif
     ui->nativeKeyLabel->setText(QString("0x%1").arg(finalvirtual, 0, 16));
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));
 

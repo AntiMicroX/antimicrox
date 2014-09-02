@@ -48,7 +48,10 @@
 #include <sys/stat.h>
 
 #include "eventhandlerfactory.h"
+
+    #ifdef WITH_X11
 #include "x11info.h"
+    #endif
 
 #endif
 
@@ -217,7 +220,14 @@ int main(int argc, char *argv[])
             exit(EXIT_SUCCESS);
         }
 
+
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
+
         if (cmdutility.getDisplayString().isEmpty())
         {
             X11Info::getInstance()->syncDisplay();
@@ -242,6 +252,11 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
             }
         }
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        #endif
+
     #endif
 
         //Change File Mask
@@ -261,7 +276,15 @@ int main(int argc, char *argv[])
             localServer = 0;
 
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+            if (QApplication::platformName() == QStringLiteral("xcb"))
+            {
+        #endif
             X11Info::deleteInstance();
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+            }
+        #endif
     #endif
 
             exit(EXIT_FAILURE);
@@ -280,7 +303,15 @@ int main(int argc, char *argv[])
             localServer = 0;
 
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+            if (QApplication::platformName() == QStringLiteral("xcb"))
+            {
+        #endif
             X11Info::deleteInstance();
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+            }
+        #endif
     #endif
 
             exit(EXIT_FAILURE);
@@ -298,6 +329,11 @@ int main(int argc, char *argv[])
         localServer->startLocalServer();
 
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
         if (!cmdutility.getDisplayString().isEmpty())
         {
             X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
@@ -318,6 +354,10 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
             }
         }
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        #endif
     #endif
     }
 
@@ -423,7 +463,14 @@ int main(int argc, char *argv[])
         localServer = 0;
 
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
         X11Info::deleteInstance();
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        #endif
     #endif
 
         delete a;
@@ -451,7 +498,14 @@ int main(int argc, char *argv[])
         localServer = 0;
 
 #ifdef WITH_X11
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+    #endif
         X11Info::deleteInstance();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+    #endif
 #endif
 
         delete w;
@@ -483,7 +537,15 @@ int main(int argc, char *argv[])
         localServer = 0;
 
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
         X11Info::deleteInstance();
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        #endif
     #endif
 
         delete a;
@@ -522,10 +584,19 @@ int main(int argc, char *argv[])
     localServer = 0;
 
 #ifdef WITH_X11
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     X11Info::deleteInstance();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 
     EventHandlerFactory::getInstance()->handler()->cleanup();
+    EventHandlerFactory::getInstance()->deleteInstance();
 
     delete w;
     w = 0;

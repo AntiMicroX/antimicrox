@@ -328,10 +328,17 @@ void CommandLineUtility::printHelp()
     out << "-d, --daemon                  " << " "
         << tr("Launch program as a daemon.") << endl;
     #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+        #endif
     out << "--display <value>             " << " "
         << tr("Use specified display for X11 calls.\n"
               "                               Useful for ssh.")
         << endl;
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+        #endif
     #endif
 
 #endif

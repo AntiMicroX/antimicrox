@@ -127,13 +127,25 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         // Check for alias against group 1 keysym.
         int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
 
-    #elif defined(WITH_UINPUT) && !defined(WITH_X11)
-        //int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
-        int finalvirtual = controlcode;
-        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
     #elif defined(WITH_UINPUT)
-        int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
-        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        //int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        int finalvirtual = 0;
+        int checkalias = 0;
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
+        finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        else
+        {
+            finalvirtual = controlcode;
+            checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        }
+        #endif
+
     #endif
 
 #endif

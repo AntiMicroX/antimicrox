@@ -237,6 +237,10 @@ QString AddEditAutoProfileDialog::getOriginalExe()
 void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
 #ifdef WITH_X11
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     QMessageBox *box = new QMessageBox(this);
     box->setText(tr("Please select a window by using the mouse. Press Escape if you want to cancel."));
     box->setWindowTitle(tr("Capture Application Window"));
@@ -256,6 +260,9 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
     connect(util, SIGNAL(destroyed()), thread, SLOT(deleteLater()));
     thread->start();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 }
 
@@ -266,6 +273,10 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
 void AddEditAutoProfileDialog::checkCapturedPath()
 {
 #ifdef WITH_X11
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
     UnixCaptureWindowUtility *util = static_cast<UnixCaptureWindowUtility*>(sender());
     unsigned long targetWindow = util->getTargetWindow();
     bool escaped = !util->hasFailed();
@@ -321,6 +332,9 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     }
 
     util->deleteLater();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
 #endif
 }
 
