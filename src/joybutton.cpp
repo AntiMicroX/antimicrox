@@ -971,7 +971,7 @@ void JoyButton::mouseEvent()
                 {
                     double mouse1 = -2.0;
                     double mouse2 = -2.0;
-                    double difference = getDistanceFromDeadZone();
+                    double difference = getMouseDistanceFromDeadZone();
                     double sumDist = buttonslot->getMouseDistance();
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
