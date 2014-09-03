@@ -5,6 +5,12 @@
 #include "wininfo.h"
 #endif
 
+#ifdef Q_OS_UNIX
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QApplication>
+    #endif
+#endif
+
 #include "antkeymapper.h"
 
 QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :

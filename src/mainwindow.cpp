@@ -38,6 +38,12 @@
 #include "wininfo.h"
 #endif
 
+#ifdef Q_OS_UNIX
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QApplication>
+    #endif
+#endif
+
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)

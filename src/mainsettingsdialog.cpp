@@ -10,6 +10,12 @@
 #include <QVariant>
 #include <QMessageBox>
 
+#ifdef Q_OS_UNIX
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QApplication>
+    #endif
+#endif
+
 #include "mainsettingsdialog.h"
 #include "ui_mainsettingsdialog.h"
 

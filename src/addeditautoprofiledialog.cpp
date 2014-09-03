@@ -11,10 +11,15 @@
 
 #if defined(Q_OS_UNIX)
 
-#ifdef WITH_X11
+    #ifdef WITH_X11
 #include "unixcapturewindowutility.h"
 #include "x11info.h"
-#endif
+
+    #endif
+
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QApplication>
+    #endif
 
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
