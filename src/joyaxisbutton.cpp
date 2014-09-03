@@ -296,6 +296,18 @@ void JoyAxisButton::turboEvent()
 }
 
 /**
+ * @brief Set the turbo mode that the button should use
+ * @param Mode that should be used
+ */
+void JoyAxisButton::setTurboMode(TurboMode mode)
+{
+    if (isPartRealAxis())
+    {
+        currentTurboMode = mode;
+    }
+}
+
+/**
  * @brief Check if button should be considered a part of a real controller
  *     axis. Needed for some dialogs so the program won't have to resort to
  *     type checking.

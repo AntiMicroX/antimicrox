@@ -20,6 +20,7 @@ public:
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyAxis* getAxis();
     virtual void setVDPad(VDPad *vdpad);
+    virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
 
     static const QString xmlName;

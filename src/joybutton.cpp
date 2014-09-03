@@ -3850,10 +3850,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
  */
 void JoyButton::setTurboMode(TurboMode mode)
 {
-    if (isPartRealAxis())
-    {
-        currentTurboMode = mode;
-    }
+    currentTurboMode = mode;
 }
 
 /**

@@ -24,6 +24,7 @@ public:
     virtual double getMouseDistanceFromDeadZone();
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyControlStick *getStick();
+    virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
 
     static const QString xmlName;

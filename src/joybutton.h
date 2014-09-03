@@ -132,7 +132,7 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyButton *destButton);
 
-    void setTurboMode(TurboMode mode);
+    virtual void setTurboMode(TurboMode mode);
     TurboMode getTurboMode();
     virtual bool isPartRealAxis();
 
