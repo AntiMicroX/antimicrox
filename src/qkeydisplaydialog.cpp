@@ -9,6 +9,15 @@
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QApplication>
     #endif
+
+    #if defined(WITH_UINPUT) && defined(WITH_X11)
+#include "qtx11keymapper.h"
+
+static QtX11KeyMapper x11KeyMapper;
+    #endif
+
+#include "event.h"
+
 #endif
 
 #include "antkeymapper.h"
@@ -61,21 +70,39 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     unsigned int finalvirtual = WinInfo::correctVirtualKey(scancode, virtualkey);
 #else
 
-    #if defined(WITH_XTEST)
-    unsigned int finalvirtual = virtualkey;
-    #elif defined(WITH_UINPUT)
     unsigned int finalvirtual = 0;
+
+    #ifdef WITH_X11
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        #endif
+        // Obtain group 1 X11 keysym. Removes effects from modifiers.
+        //finalvirtual = X11KeyCodeToX11KeySym(scancode);
+        #ifdef WITH_UINPUT
+        unsigned int tempalias = x11KeyMapper.returnQtKey(virtualkey);
+        finalvirtual = AntKeyMapper::returnVirtualKey(tempalias);
+        #endif
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
         finalvirtual = scancode;
     }
-        #else
+        #endif
+
+    #else
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+        #endif
     finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    else
+    {
+        finalvirtual = scancode;
+    }
         #endif
     #endif
 #endif

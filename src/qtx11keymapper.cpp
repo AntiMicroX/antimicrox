@@ -27,7 +27,6 @@ void QtX11KeyMapper::populateMappingHashes()
     if (qtKeyToVirtualKey.isEmpty())
     {
         // misc keys
-
         qtKeyToVirtualKey[Qt::Key_Escape] = XK_Escape;
         qtKeyToVirtualKey[Qt::Key_Tab] = XK_Tab;
         qtKeyToVirtualKey[Qt::Key_Backtab] = XK_ISO_Left_Tab;
@@ -41,7 +40,6 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Print] = XK_Print;
 
         // cursor movement
-
         qtKeyToVirtualKey[Qt::Key_Home] = XK_Home;
         qtKeyToVirtualKey[Qt::Key_End] = XK_End;
         qtKeyToVirtualKey[Qt::Key_Left] = XK_Left;
@@ -52,7 +50,6 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_PageDown] = XK_Next;
 
         // modifiers
-
         qtKeyToVirtualKey[Qt::Key_Shift] = XK_Shift_L;
         //qtKeyToX11KeySym[Qt::Key_Shift] = XK_Shift_R;
         //qtKeyToX11KeySym[Qt::Key_Shift] = XK_Shift_Lock;
@@ -76,8 +73,7 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Help] = XK_Help;
 
         // numeric and function keypad keys
-
-        qtKeyToVirtualKey[Qt::Key_Space] = XK_KP_Space;
+        //qtKeyToVirtualKey[Qt::Key_Space] = XK_KP_Space;
         //qtKeyToX11KeySym[Qt::Key_Tab] = XK_KP_Tab;
         qtKeyToVirtualKey[Qt::Key_Enter] = XK_KP_Enter;
         qtKeyToVirtualKey[AntKey_KP_Home] = XK_KP_Home;
@@ -91,7 +87,6 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_KP_End] = XK_KP_End;
         qtKeyToVirtualKey[AntKey_KP_Begin] = XK_KP_Begin;
         qtKeyToVirtualKey[AntKey_KP_Insert] = XK_KP_Insert;
-        qtKeyToVirtualKey[AntKey_KP_Delete] = XK_KP_Delete;
         qtKeyToVirtualKey[AntKey_KP_Delete] = XK_KP_Delete;
         //qtKeyToX11KeySym[AntKey_KP_Equal] = XK_KP_Equal;
         qtKeyToVirtualKey[AntKey_KP_Add] = XK_KP_Add;
@@ -253,12 +248,15 @@ void QtX11KeyMapper::populateMappingHashes()
             qtKeyToVirtualKey[Qt::Key_F1 + i] = XK_F1 + i;
         }
 
+        // Misc
+        //qtKeyToVirtualKey[Qt::KeyBri]
+
         // Map custom defined keys
         qtKeyToVirtualKey[AntKey_Shift_R] = XK_Shift_R;
         qtKeyToVirtualKey[AntKey_Control_R] = XK_Control_R;
         //qtKeyToX11KeySym[AntKey_Shift_Lock] = XK_Shift_Lock;
         //qtKeyToVirtualKey[AntKey_Meta_R] = XK_Meta_R;
-        qtKeyToVirtualKey[AntKey_Alt_R] = XK_Alt_R;
+        qtKeyToVirtualKey[AntKey_Alt_R] = XK_Multi_key;
         qtKeyToVirtualKey[AntKey_KP_Multiply] = XK_KP_Multiply;
 
         for (int i=0; i <= (XK_KP_9 - XK_KP_0); i++)

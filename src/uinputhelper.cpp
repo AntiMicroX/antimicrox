@@ -244,6 +244,15 @@ void UInputHelper::populateKnownAliases()
         knownAliasesVKStrings.insert(KEY_SCROLLLOCK, QObject::tr("SCLK"));
         knownAliasesVKStrings.insert(KEY_PAUSE, QObject::tr("Pause"));
         knownAliasesVKStrings.insert(KEY_KPDOT, QObject::tr("."));
+        knownAliasesVKStrings.insert(KEY_LEFTMETA, QObject::tr("Super_L"));
+        knownAliasesVKStrings.insert(KEY_RIGHTMETA, tr("Super_R"));
+        knownAliasesVKStrings.insert(KEY_MUTE, tr("Mute"));
+        knownAliasesVKStrings.insert(KEY_VOLUMEDOWN, tr("VolDn"));
+        knownAliasesVKStrings.insert(KEY_VOLUMEUP, tr("VolUp"));
+        knownAliasesVKStrings.insert(KEY_PLAYPAUSE, tr("Play"));
+        knownAliasesVKStrings.insert(KEY_STOPCD, tr("Stop"));
+        knownAliasesVKStrings.insert(KEY_PREVIOUSSONG, tr("Prev"));
+        knownAliasesVKStrings.insert(KEY_NEXTSONG, tr("Next"));
     }
 }
 

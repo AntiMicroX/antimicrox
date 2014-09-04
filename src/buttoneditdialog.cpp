@@ -16,6 +16,15 @@
 
 #include "event.h"
 #include "antkeymapper.h"
+
+#ifdef Q_OS_UNIX
+    #if defined(WITH_UINPUT) && defined(WITH_X11)
+        #include "qtx11keymapper.h"
+
+        static QtX11KeyMapper x11KeyMapper;
+    #endif
+#endif
+
 #include "setjoystick.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
@@ -126,14 +135,37 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 #else
 
-    #if defined(WITH_XTEST)
-        // Obtain group 1 X11 keysym. Removes effects from modifiers.
-        int finalvirtual = X11KeyCodeToX11KeySym(controlcode);
-        // Check for alias against group 1 keysym.
-        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+    #if defined(WITH_X11)
+        int finalvirtual = 0;
+        int checkalias = 0;
 
-    #elif defined(WITH_UINPUT)
-        //int finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
+        // Obtain group 1 X11 keysym. Removes effects from modifiers.
+        finalvirtual = X11KeyCodeToX11KeySym(controlcode);
+        #ifdef WITH_UINPUT
+        // Find Qt Key corresponding to X11 KeySym.
+        checkalias = x11KeyMapper.returnQtKey(finalvirtual);
+        // Find corresponding Linux input key for the Qt key.
+        finalvirtual = AntKeyMapper::returnVirtualKey(checkalias);
+        #else
+        // Check for alias against group 1 keysym.
+        checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        #endif
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        else
+        {
+            // Not running on xcb platform.
+            finalvirtual = controlcode;
+            checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        }
+        #endif
+
+    #else
         int finalvirtual = 0;
         int checkalias = 0;
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -146,6 +178,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         }
         else
         {
+            // Not running on xcb platform.
             finalvirtual = controlcode;
             checkalias = AntKeyMapper::returnQtKey(finalvirtual);
         }

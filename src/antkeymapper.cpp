@@ -1,3 +1,5 @@
+//#include <QDebug>
+
 #include "antkeymapper.h"
 
 AntKeyMapper AntKeyMapper::_instance;

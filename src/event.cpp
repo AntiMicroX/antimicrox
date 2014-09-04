@@ -13,17 +13,20 @@
 #if defined(Q_OS_UNIX)
 #include "eventhandlerfactory.h"
 
-    #if defined(WITH_XTEST)
+    #if defined(WITH_X11)
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
-#include <X11/extensions/XTest.h>
 #include "x11info.h"
 
-    #elif defined(WITH_UINPUT)
-#include "uinputhelper.h"
+        #ifdef WITH_XTEST
+#include <X11/extensions/XTest.h>
+        #endif
+    #endif
 
+    #if defined(WITH_UINPUT)
+#include "uinputhelper.h"
     #endif
 
 #elif defined (Q_OS_WIN)
@@ -565,7 +568,7 @@ unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
     Q_UNUSED(keycode);
     return 0;
 #else
-    #ifdef WITH_XTEST
+    #ifdef WITH_X11
     Display* display = X11Info::getInstance()->display();
     unsigned int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
     return tempcode;

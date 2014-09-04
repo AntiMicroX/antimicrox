@@ -12,6 +12,14 @@
     #endif
 #endif
 
+#ifdef Q_OS_UNIX
+    #if defined(WITH_UINPUT) && defined(WITH_X11)
+        #include "qtx11keymapper.h"
+
+        static QtX11KeyMapper x11KeyMapper;
+    #endif
+#endif
+
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
     QPushButton(parent)
 {
@@ -78,33 +86,53 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
 #else
 
-    #if defined(WITH_XTEST)
-        // Obtain group 1 X11 keysym. Removes effects from modifiers.
-        int finalvirtual = X11KeyCodeToX11KeySym(tempcode);
-        // Check for alias against group 1 keysym.
-        int checkalias = AntKeyMapper::returnQtKey(finalvirtual);
-
-    #elif defined(WITH_UINPUT)
-        //int finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
+    #if defined(WITH_X11)
         int finalvirtual = 0;
         int checkalias = 0;
 
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-            finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
-            checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        #endif
+        // Obtain group 1 X11 keysym. Removes effects from modifiers.
+        finalvirtual = X11KeyCodeToX11KeySym(controlcode);
+        #ifdef WITH_UINPUT
+        // Find Qt Key corresponding to X11 KeySym.
+        checkalias = x11KeyMapper.returnQtKey(finalvirtual);
+        // Find corresponding Linux input key for the Qt key.
+        finalvirtual = AntKeyMapper::returnVirtualKey(checkalias);
+        #else
+        // Check for alias against group 1 keysym.
+        checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        #endif
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
         else
         {
-            finalvirtual = tempcode;
+            // Not running on xcb platform.
+            finalvirtual = controlcode;
             checkalias = AntKeyMapper::returnQtKey(finalvirtual);
         }
-        #else
+        #endif
 
-        finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
+    #else
+        int finalvirtual = 0;
+        int checkalias = 0;
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
+        finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
         checkalias = AntKeyMapper::returnQtKey(finalvirtual);
-
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        else
+        {
+            // Not running on xcb platform.
+            finalvirtual = controlcode;
+            checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        }
         #endif
 
     #endif
