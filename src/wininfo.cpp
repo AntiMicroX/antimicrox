@@ -143,6 +143,18 @@ void WinInfo::populateKnownAliases()
     {
         knownAliasesVKStrings.insert(VK_LWIN, QObject::tr("Super"));
         knownAliasesVKStrings.insert(VK_APPS, QObject::tr("Menu"));
+        knownAliasesVKStrings.insert(VK_VOLUME_MUTE, QObject::tr("Mute"));
+        knownAliasesVKStrings.insert(VK_VOLUME_UP, QObject::tr("Vol+"));
+        knownAliasesVKStrings.insert(VK_VOLUME_DOWN, QObject::tr("Vol-"));
+        knownAliasesVKStrings.insert(VK_MEDIA_PLAY_PAUSE, QObject::tr("Play/Pause"));
+        knownAliasesVKStrings.insert(VK_PLAY, QObject::tr("Play"));
+        knownAliasesVKStrings.insert(VK_PAUSE, QObject::tr("Pause"));
+        knownAliasesVKStrings.insert(VK_MEDIA_PREV_TRACK, QObject::tr("Prev"));
+        knownAliasesVKStrings.insert(VK_MEDIA_NEXT_TRACK, QObject::tr("Next"));
+        knownAliasesVKStrings.insert(VK_LAUNCH_MAIL, QObject::tr("Mail"));
+        knownAliasesVKStrings.insert(VK_HOME, QObject::tr("Home"));
+        knownAliasesVKStrings.insert(VK_LAUNCH_MEDIA_SELECT, QObject::tr("Media"));
+        knownAliasesVKStrings.insert(VK_BROWSER_SEARCH, QObject::tr("Search"));
     }
 }
 
