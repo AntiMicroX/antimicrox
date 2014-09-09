@@ -165,6 +165,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     {
         graphical = false;
     }
+#ifdef USE_SDL_2
     else if (cmdutility->shouldMapController())
     {
         graphical = false;
@@ -181,6 +182,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
             openGameControllerMappingWindow(true);
         }
     }
+#endif
 
     resize(settings->value("WindowSize", size()).toSize());
     move(settings->value("WindowPosition", pos()).toPoint());
