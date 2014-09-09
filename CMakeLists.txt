@@ -20,8 +20,8 @@ set(ANTIMICRO_PATCH_VERSION 0)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
 option(WITH_X11 "Compile with support for X11." ON)
-option(WITH_UINPUT "Compile with support for uinput. uinput will be used to simulate events." OFF)
-option(WITH_XTEST "Compile with support for XTest.  XTest will be used to simulate events." ON)
+option(WITH_UINPUT "Compile with support for uinput. uinput will be used to simulate events." ON)
+option(WITH_XTEST "Compile with support for XTest.  XTest will be used to simulate events." OFF)
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 
 if(WIN32)
@@ -142,12 +142,15 @@ set(antimicro_SOURCES src/main.cpp
     src/localantimicroserver.cpp
     src/extraprofilesettingsdialog.cpp
     src/antimicrosettings.cpp
-    src/eventhandlers/baseeventhandler.cpp
-    src/eventhandlerfactory.cpp
 )
 
 # Platform dependent files.
 if(UNIX)
+    LIST(APPEND antimicro_SOURCES
+         src/eventhandlers/baseeventhandler.cpp
+         src/eventhandlerfactory.cpp
+    )
+
     if(WITH_X11)
         LIST(APPEND antimicro_SOURCES src/x11info.cpp
              src/qtx11keymapper.cpp
@@ -243,19 +246,21 @@ set(antimicro_HEADERS src/mainwindow.h
     src/mainsettingsdialog.h
     src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h
-
     src/autoprofileinfo.h
     src/addeditautoprofiledialog.h
     src/editalldefaultautoprofiledialog.h
     src/localantimicroserver.h
     src/extraprofilesettingsdialog.h
     src/antimicrosettings.h
-    src/eventhandlers/baseeventhandler.h
-    src/eventhandlerfactory.h
 )
 
 # Platform dependent files.
 if(UNIX)
+    LIST(APPEND antimicro_HEADERS
+         src/eventhandlers/baseeventhandler.h
+         src/eventhandlerfactory.h
+    )
+
     if(WITH_X11)
         LIST(APPEND antimicro_HEADERS src/x11info.h
              src/qtx11keymapper.h

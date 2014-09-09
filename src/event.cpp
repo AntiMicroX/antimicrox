@@ -601,7 +601,7 @@ QString keysymToKeyString(int keysym, unsigned int alias)
     #endif
 
 #else
-    newkey = keycodeToKey(keysym, alias);
+    newkey = keycodeToKeyString(keysym, alias);
 #endif
     return newkey;
 }

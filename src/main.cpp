@@ -518,6 +518,7 @@ int main(int argc, char *argv[])
     }
 #endif
 
+#ifdef Q_OS_UNIX
     bool status = EventHandlerFactory::getInstance()->handler()->init();
     if (!status)
     {
@@ -553,6 +554,7 @@ int main(int argc, char *argv[])
 
         return EXIT_FAILURE;
     }
+#endif
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
@@ -583,20 +585,22 @@ int main(int argc, char *argv[])
     delete localServer;
     localServer = 0;
 
-#ifdef WITH_X11
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef Q_OS_UNIX
+    #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
     X11Info::deleteInstance();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
+        #endif
     #endif
-#endif
 
     EventHandlerFactory::getInstance()->handler()->cleanup();
     EventHandlerFactory::getInstance()->deleteInstance();
+#endif
 
     delete w;
     w = 0;
