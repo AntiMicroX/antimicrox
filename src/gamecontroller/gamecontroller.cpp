@@ -398,6 +398,11 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                     this->setDeviceKeyPressTime(tempchoice);
                 }
             }
+            else if (xml->name() == "profilename" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                this->setProfileName(temptext);
+            }
             else
             {
                 // If none of the above, skip the element
