@@ -1,3 +1,26 @@
+2014-09-10 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.6
+
+* Added two new Turbo modes. Gradient mode is used to change the key press
+time depending on the position of an axis (useful for racing games).
+Pulse mode is used to change how many times a key press is invoked depending
+on the position of an axis (scrolling in a web browser using arrow keys).
+
+* A Russian translation has been provided by Dima Koshel.
+
+* Added option to invoke Game Controller mapping window from command line.
+The final mapping string will be printed to stdout.
+
+* Profiles now use a unique .amgp file extension. Older xml profiles will
+continue to be supported.
+
+* EXPERIMENTAL: uinput support has been added to the source code. Binary
+Linux packages will continue to utilize XTest for event generation for the
+time being. If you would like to test uinput integration then you will have
+to compile the program using -DWITH_UINPUT=ON when running cmake.
+
+
 2014-08-01 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.5
