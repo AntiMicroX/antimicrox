@@ -4,7 +4,9 @@
 <node CREATED="1379713112228" HGAP="18" ID="ID_2402610" MODIFIED="1399513217204" POSITION="left" TEXT="Disable Buttons from Display?" VSHIFT="1">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1398676885501" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="-7"/>
+<node CREATED="1379742754449" HGAP="21" ID="ID_146831130" MODIFIED="1410323646524" POSITION="right" TEXT="Copy Set Assignments to New Set" VSHIFT="-7">
+<icon BUILTIN="button_ok"/>
+</node>
 <node CREATED="1398676376577" FOLDED="true" HGAP="19" ID="ID_1223827762" MODIFIED="1399599674842" POSITION="left" TEXT="Split Actions into a Seperate Entity?" VSHIFT="-5">
 <icon BUILTIN="help"/>
 <node CREATED="1398676422304" ID="ID_744925725" MODIFIED="1398676855592" TEXT="Unlike the current system where assignment slots are assigned to controller buttons, actions would hold all applicable slots and a button would then be assigned an action. The major benefit behind doing that would be that complex macro assignments can be assigned to multiple buttons without completely mapping the sequence out again. Also, it would be much easier to assign the sequence to a different button.&#xa;&#xa;This type of change would probably require a complete program refactor. I honestly don&apos;t see this feature ever being incorporated into AntiMicro."/>
