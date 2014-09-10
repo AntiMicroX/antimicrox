@@ -74,6 +74,9 @@
                                 <Component Id="ANTIMICRO_FR.QM" Guid="A0A9F9F1-E999-4398-9483-CA98DD90191D">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_fr.qm" />
                                 </Component>
+                                <Component Id="ANTIMICRO_RU.QM" Guid="BCD2572E-7B08-49D7-8BA6-732F2990C1EE">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_ru.qm" />
+                                </Component>
                                 <Component Id="ANTIMICRO_SR.QM" Guid="E4EA2E15-4C20-4C00-AF5E-2048EE5717CC">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_sr.qm" />
                                 </Component>
@@ -114,6 +117,7 @@
             <ComponentRef Id="ANTIMICRO_DE.QM" />
             <ComponentRef Id="ANTIMICRO_EN.QM" />
             <ComponentRef Id="ANTIMICRO_FR.QM" />
+            <ComponentRef Id="ANTIMICRO_RU.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
             <ComponentRef Id="StartMenuShortcuts" />
         </Feature>
