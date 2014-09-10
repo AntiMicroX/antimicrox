@@ -575,6 +575,10 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeComment("The SDL name for a joystick is included for informational purposes only.");
     xml->writeTextElement("sdlname", getSDLName());
+#ifdef USE_SDL_2
+    xml->writeComment("The GUID for a joystick is included for informational purposes only.");
+    xml->writeTextElement("guid", getGUIDString());
+#endif
 
     if (!profileName.isEmpty())
     {

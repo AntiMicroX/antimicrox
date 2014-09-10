@@ -15,10 +15,14 @@ The final mapping string will be printed to stdout.
 * Profiles now use a unique .amgp file extension. Older xml profiles will
 continue to be supported.
 
-* EXPERIMENTAL: uinput support has been added to the source code. Binary
+* Fixed spring mouse mode so that it uses proper axis distance values.
+
+* EXPERIMENTAL. uinput support has been added to the source code. Binary
 Linux packages will continue to utilize XTest for event generation for the
 time being. If you would like to test uinput integration then you will have
-to compile the program using -DWITH_UINPUT=ON when running cmake.
+to compile the program using -DWITH_UINPUT=ON and -DWITH_XTEST=OFF
+when running cmake. Playing Warsow 1.5.1 in Linux using antimicro requires
+using uinput integration. Also, keys can now be pressed in a tty.
 
 
 2014-08-01 Travis Nickles <nickles.travis@gmail.com>
