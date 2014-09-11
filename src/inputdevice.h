@@ -133,6 +133,7 @@ public slots:
     void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
+    void changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
     void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
     void setProfileName(QString value);

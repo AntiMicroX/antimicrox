@@ -247,6 +247,14 @@ void SetJoystick::propogateSetDPadButtonAssociation(int button, int dpad, int ne
     }
 }
 
+void SetJoystick::propogateSetVDPadButtonAssociation(int button, int dpad, int newset, int mode)
+{
+    if (newset != index)
+    {
+        emit setAssignmentVDPadChanged(button, dpad, index, newset, mode);
+    }
+}
+
 void SetJoystick::release()
 {
     QHashIterator<int, JoyButton*> iter(buttons);
@@ -505,6 +513,8 @@ void SetJoystick::addControlStick(int index, JoyControlStick *stick)
         JoyControlStickButton *button = iter.next().value();
         if (button)
         {
+            connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+            connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetStickButtonAssociation(int,int,int,int)));
             connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetStickButtonClick(int)), Qt::QueuedConnection);
             connect(button, SIGNAL(released(int)), this, SLOT(propogateSetStickButtonRelease(int)), Qt::QueuedConnection);
             connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetStickButtonNameChange()));
@@ -534,6 +544,8 @@ void SetJoystick::addVDPad(int index, VDPad *vdpad)
         JoyDPadButton *button = iter.next().value();
         if (button)
         {
+            connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
+            connect(button, SIGNAL(setAssignmentChanged(int,int,int,int)), this, SLOT(propogateSetVDPadButtonAssociation(int,int,int,int)));
             connect(button, SIGNAL(clicked(int)), this, SLOT(propogateSetDPadButtonClick(int)), Qt::QueuedConnection);
             connect(button, SIGNAL(released(int)), this, SLOT(propogateSetDPadButtonRelease(int)), Qt::QueuedConnection);
             connect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetVDPadButtonNameChange()));

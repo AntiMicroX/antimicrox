@@ -522,7 +522,7 @@ void JoyTabWidget::fillButtons()
     */
 
     joystick->establishPropertyUpdatedConnection();
-    connect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)));
+    connect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)), Qt::QueuedConnection);
 
     for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
     {

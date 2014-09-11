@@ -73,6 +73,8 @@ void InputDevice::setActiveSetNumber(int index)
         QList<bool> buttonstates;
         QList<int> axesstates;
         QList<int> dpadstates;
+        QList<JoyControlStick::JoyStickDirections> stickstates;
+        QList<int> vdpadstates;
 
         // Grab current states for all elements in old set
         SetJoystick *current_set = joystick_sets.value(active_set);
@@ -93,6 +95,18 @@ void InputDevice::setActiveSetNumber(int index)
         {
             JoyDPad *dpad = current_set->getJoyDPad(i);
             dpadstates.append(dpad->getCurrentDirection());
+        }
+
+        for (int i=0; i < current_set->getNumberSticks(); i++)
+        {
+            JoyControlStick *stick = current_set->getJoyStick(i);
+            stickstates.append(stick->getCurrentDirection());
+        }
+
+        for (int i = 0; i < current_set->getNumberVDPads(); i++)
+        {
+            JoyDPad *dpad = current_set->getVDPad(i);
+            vdpadstates.append(dpad->getCurrentDirection());
         }
 
         // Release all current pressed elements and change set number
@@ -135,6 +149,49 @@ void InputDevice::setActiveSetNumber(int index)
             button->joyEvent(value, tempignore);
         }
 
+        for (int i=0; i < current_set->getNumberSticks(); i++)
+        {
+            JoyControlStick::JoyStickDirections value = stickstates.at(i);
+            bool tempignore = true;
+            JoyControlStick *stick = current_set->getJoyStick(i);
+            JoyControlStick *oldStick = old_set->getJoyStick(i);
+            JoyControlStickButton *oldButton = oldStick->getDirectionButton(value);
+            JoyControlStickButton *button = stick->getDirectionButton(value);
+
+            if (button && oldButton)
+            {
+                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
+                {
+                    if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                    {
+                        // Button from old set involved in a while held set
+                        // change. Carry over to new set button to ensure
+                        // set changes are done in the proper order.
+                        button->setWhileHeldStatus(true);
+                    }
+                    else if (!button->getWhileHeldStatus())
+                    {
+                        // Ensure that set change events are performed if needed.
+                        tempignore = false;
+                    }
+                    else if (!button->getWhileHeldStatus())
+                    {
+                        // Ensure that set change events are performed if needed.
+                        tempignore = false;
+                    }
+                }
+            }
+            else if (!button)
+            {
+                QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+                while (iter.hasNext())
+                {
+                    JoyControlStickButton *tempButton = iter.next().value();
+                    tempButton->setWhileHeldStatus(false);
+                }
+            }
+        }
+
         // Activate all axis buttons in the switched set
         for (int i = 0; i < current_set->getNumberAxes(); i++)
         {
@@ -170,6 +227,50 @@ void InputDevice::setActiveSetNumber(int index)
             }
 
             axis->joyEvent(value, tempignore);
+        }
+
+        // Activate all dpad buttons in the switched set
+        for (int i = 0; i < current_set->getNumberVDPads(); i++)
+        {
+            int value = vdpadstates.at(i);
+            bool tempignore = true;
+            JoyDPad *dpad = current_set->getVDPad(i);
+            JoyDPadButton *button = dpad->getJoyButton(value);
+            JoyDPadButton *oldButton = old_set->getVDPad(i)->getJoyButton(value);
+
+            if (button && oldButton)
+            {
+                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
+                {
+                    if (value)
+                    {
+                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                        {
+                            // Button from old set involved in a while held set
+                            // change. Carry over to new set button to ensure
+                            // set changes are done in the proper order.
+                            button->setWhileHeldStatus(true);
+                        }
+                        else if (!button->getWhileHeldStatus())
+                        {
+                            // Ensure that set change events are performed if needed.
+                            tempignore = false;
+                        }
+                    }
+                }
+            }
+            else if (!button)
+            {
+                QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
+                while (iter.hasNext())
+                {
+                    // Ensure that set change events are performed if needed.
+                    JoyDPadButton *button = iter.next().value();
+                    button->setWhileHeldStatus(false);
+                }
+            }
+
+            //dpad->joyEvent(value, tempignore);
         }
 
         // Activate all dpad buttons in the switched set
@@ -878,6 +979,15 @@ void InputDevice::changeSetDPadButtonAssociation(int button_index, int dpad_inde
     button->setChangeSetCondition(tempmode, true);
 }
 
+void InputDevice::changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode)
+{
+    JoyDPadButton *button = joystick_sets.value(newset)->getVDPad(dpad_index)->getJoyButton(button_index);
+
+    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
+}
+
 void InputDevice::propogateSetAxisThrottleChange(int index, int originset)
 {
     SetJoystick *currentSet = joystick_sets.value(originset);
@@ -1308,6 +1418,7 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
 
     connect(setstick, SIGNAL(setAssignmentAxisChanged(int,int,int,int,int)), this, SLOT(changeSetAxisButtonAssociation(int,int,int,int,int)));
     connect(setstick, SIGNAL(setAssignmentDPadChanged(int,int,int,int,int)), this, SLOT(changeSetDPadButtonAssociation(int,int,int,int,int)));
+    connect(setstick, SIGNAL(setAssignmentVDPadChanged(int,int,int,int,int)), this, SLOT(changeSetVDPadButtonAssociation(int,int,int,int,int)));
     connect(setstick, SIGNAL(setAssignmentStickChanged(int,int,int,int,int)), this, SLOT(changeSetStickButtonAssociation(int,int,int,int,int)));
     connect(setstick, SIGNAL(setAssignmentAxisThrottleChanged(int,int)), this, SLOT(propogateSetAxisThrottleChange(int, int)));
 

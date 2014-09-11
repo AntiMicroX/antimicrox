@@ -88,6 +88,7 @@ signals:
     void setAssignmentAxisChanged(int button, int axis, int originset, int newset, int mode);
     void setAssignmentStickChanged(int button, int stick, int originset, int newset, int mode);
     void setAssignmentDPadChanged(int button, int dpad, int originset, int newset, int mode);
+    void setAssignmentVDPadChanged(int button, int dpad, int originset, int newset, int mode);
     void setAssignmentAxisThrottleChanged(int axis, int originset);
     void setButtonClick(int index, int button);
     void setButtonRelease(int index, int button);
@@ -119,6 +120,7 @@ public slots:
     void propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode);
     void propogateSetStickButtonAssociation(int button, int stick, int newset, int mode);
     void propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode);
+    void propogateSetVDPadButtonAssociation(int button, int dpad, int newset, int mode);
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
