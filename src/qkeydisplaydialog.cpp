@@ -10,6 +10,8 @@
 #include <QApplication>
     #endif
 
+#include "eventhandlerfactory.h"
+
     #if defined(WITH_UINPUT) && defined(WITH_X11)
 #include "qtx11keymapper.h"
 
@@ -30,17 +32,31 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
 
-#if defined(WITH_UINPUT)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef Q_OS_UNIX
+    #if defined(WITH_UINPUT)
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
+    ui->formLayout->removeWidget(ui->nativeTitleLabel);
+    ui->formLayout->removeWidget(ui->nativeKeyLabel);
     ui->nativeTitleLabel->setVisible(false);
     ui->nativeKeyLabel->setVisible(false);
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
+        #endif
     #endif
+
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+    ui->eventHandlerLabel->setText(handler->getName());
+
+#else
+    ui->formLayout->removeWidget(ui->eventHandlerTitleLabel);
+    ui->formLayout->removeWidget(ui->eventHandlerLabel);
+    ui->eventHandlerTitleLabel->setVisible(false);
+    ui->eventHandlerLabel->setVisible(false);
 #endif
+
 }
 
 QKeyDisplayDialog::~QKeyDisplayDialog()

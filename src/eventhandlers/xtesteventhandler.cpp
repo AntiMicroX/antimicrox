@@ -57,3 +57,8 @@ void XTestEventHandler::sendMouseEvent(int xDis, int yDis)
     XTestFakeRelativeMotionEvent(display, xDis, yDis, 0);
     XFlush(display);
 }
+
+QString XTestEventHandler::getName()
+{
+    return QString("XTest");
+}

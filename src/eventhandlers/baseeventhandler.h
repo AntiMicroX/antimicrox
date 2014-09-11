@@ -18,7 +18,7 @@ public:
     virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed) = 0;
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed) = 0;
     virtual void sendMouseEvent(int xDis, int yDis) = 0;
-
+    virtual QString getName() = 0;
     QString getErrorString();
 
 protected:

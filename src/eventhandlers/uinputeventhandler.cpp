@@ -285,3 +285,8 @@ void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type, u
         write(filehandle, &ev2, sizeof(struct input_event));
     }
 }
+
+QString UInputEventHandler::getName()
+{
+    return QString("uinput");
+}

@@ -72,6 +72,9 @@
    </item>
    <item>
     <layout class="QFormLayout" name="formLayout">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
      <property name="horizontalSpacing">
       <number>20</number>
      </property>
@@ -85,6 +88,19 @@
       <number>10</number>
      </property>
      <item row="0" column="0">
+      <widget class="QLabel" name="eventHandlerTitleLabel">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Event Handler:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QLabel" name="nativeTitleLabel">
        <property name="font">
         <font>
@@ -97,7 +113,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="1" column="1">
       <widget class="QLabel" name="nativeKeyLabel">
        <property name="text">
         <string>0x00000000</string>
@@ -107,7 +123,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="qtKeyTitleLabel">
        <property name="font">
         <font>
@@ -120,7 +136,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <widget class="QLabel" name="qtKeyLabel">
        <property name="text">
         <string>0x00000000</string>
@@ -130,7 +146,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="antiTitleLabel">
        <property name="font">
         <font>
@@ -143,13 +159,20 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QLabel" name="antimicroKeyLabel">
        <property name="text">
         <string>0x00000000</string>
        </property>
        <property name="textInteractionFlags">
         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="eventHandlerLabel">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>

@@ -1,4 +1,4 @@
-2014-09-10 Travis Nickles <nickles.travis@gmail.com>
+2014-09-11 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.6
 
@@ -7,15 +7,22 @@ time depending on the position of an axis (useful for racing games).
 Pulse mode is used to change how many times a key press is invoked depending
 on the position of an axis (scrolling in a web browser using arrow keys).
 
+* Fixed profile resetting in a couple of places.
+
 * A Russian translation has been provided by Dima Koshel.
 
 * Added option to invoke Game Controller mapping window from command line.
-The final mapping string will be printed to stdout.
+The final mapping string will be printed to stdout. This is useful
+for saving a SDL_GAMECONTROLLERCONFIG for your controller that
+can be used system wide. Any SDL 2 game can then be set up to use
+that mapping and it can be changed if needed.
 
 * Profiles now use a unique .amgp file extension. Older xml profiles will
 continue to be supported.
 
 * Fixed spring mouse mode so that it uses proper axis distance values.
+
+* Set changing has been fixed for analog sticks and virtual dpads.
 
 * EXPERIMENTAL. uinput support has been added to the source code. Binary
 Linux packages will continue to utilize XTest for event generation for the
