@@ -220,7 +220,7 @@ QString AutoProfileWatcher::findAppLocation()
     QString exepath;
 
 #if defined(Q_OS_UNIX)
-#ifdef WITH_X11
+    #ifdef WITH_X11
     Window currentWindow = 0;
     int focusState = 0;
     int pid = 0;
@@ -236,7 +236,7 @@ QString AutoProfileWatcher::findAppLocation()
     {
         exepath = X11Info::getInstance()->getApplicationLocation(pid);
     }
-#endif
+    #endif
 
 #elif defined(Q_OS_WIN)
     exepath = WinInfo::getForegroundWindowExePath();

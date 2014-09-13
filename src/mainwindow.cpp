@@ -28,7 +28,7 @@
 #ifdef USE_SDL_2
 #include "gamecontrollermappingdialog.h"
 
-#ifdef WITH_X11
+#if defined(WITH_X11) || defined(Q_OS_WIN)
 #include "autoprofileinfo.h"
 #endif
 
@@ -67,20 +67,25 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     ui->actionStick_Pad_Assign->setVisible(false);
 #endif
 
-#if defined(USE_SDL_2) && defined(WITH_X11)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef Q_OS_UNIX
+    #if defined(USE_SDL_2) && defined(WITH_X11)
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
         this->appWatcher = 0;
     }
+        #endif
     #endif
+#elif defined(Q_OS_WIN)
+    this->appWatcher = new AutoProfileWatcher(settings, this);
+    checkAutoProfileWatcherTimer();
 #else
     this->appWatcher = 0;
 #endif
@@ -222,7 +227,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
-    #ifdef WITH_X11
+    #if defined(Q_OS_UNIX) && defined(WITH_X11)
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -231,7 +236,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
         #endif
+    #elif defined(Q_OS_WIN)
+        connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
     #endif
+
 #endif
 
     // Check flags to see if user requested for the main window and the tray icon
@@ -1020,7 +1028,7 @@ void MainWindow::openMainSettingsDialog()
 
     if (appWatcher)
     {
-#if defined(USE_SDL_2) && defined(WITH_X11)
+#if defined(USE_SDL_2) && defined(Q_OS_UNIX) && defined(WITH_X11)
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -1032,6 +1040,10 @@ void MainWindow::openMainSettingsDialog()
     }
     #endif
 
+#elif defined(USE_SDL_2) && defined(Q_OS_WIN)
+    connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
+    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
+    appWatcher->stopTimer();
 #endif
     }
 
@@ -1342,8 +1354,8 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
-#if defined(USE_SDL_2) && defined(WITH_X11)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
+    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
@@ -1402,7 +1414,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
             }
         }
     }
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     #endif
 #endif
@@ -1410,8 +1422,8 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
 void MainWindow::checkAutoProfileWatcherTimer()
 {
-#if defined(USE_SDL_2) && defined(WITH_X11)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
+    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
@@ -1424,7 +1436,7 @@ void MainWindow::checkAutoProfileWatcherTimer()
     {
         appWatcher->stopTimer();
     }
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     #endif
 #endif

@@ -69,31 +69,37 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page);
 
-#if defined(USE_SDL_2) && defined(WITH_X11)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef Q_OS_UNIX
+    #if defined(USE_SDL_2) && defined(WITH_X11)
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
         delete ui->categoriesListWidget->item(2);
         ui->stackedWidget->removeWidget(ui->page_2);
     }
-    #endif
-#elif defined(USE_SDL_2) && !defined(WITH_X11)
+        #endif
+    #elif defined(USE_SDL_2) && !defined(WITH_X11)
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page_2);
 
-#elif !defined(USE_SDL_2)
+    #elif !defined(USE_SDL_2)
     delete ui->categoriesListWidget->item(2);
     delete ui->categoriesListWidget->item(1);
     ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
     ui->stackedWidget->removeWidget(ui->page_2);
+    #endif
+#else
+    populateAutoProfiles();
+    fillAllAutoProfilesTable();
+    fillGUIDComboBox();
 #endif
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
@@ -425,15 +431,19 @@ void MainSettingsDialog::saveNewSettings()
         settings->remove("CloseToTray");
     }
     //checkLocaleChange();
-#if defined(USE_SDL_2) && defined(WITH_X11)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef Q_OS_UNIX
+    #if defined(USE_SDL_2) && defined(WITH_X11)
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
     saveAutoProfileSettings();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
+        #endif
     #endif
+#else
+    saveAutoProfileSettings();
 #endif
 
 #ifdef Q_OS_WIN

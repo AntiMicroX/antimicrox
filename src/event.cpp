@@ -41,7 +41,9 @@ static MouseHelper *mouseHelperObj = 0;
     #ifdef WITH_XTEST
     static void finalSpringEvent(Display *display, unsigned int xmovecoor, unsigned int ymovecoor)
     {
-        //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
+        Q_UNUSED(display);
+        Q_UNUSED(xmovecoor);
+        Q_UNUSED(ymovecoor);
     }
     #endif
 
@@ -63,29 +65,20 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
 #if defined (Q_OS_UNIX)
-    //Display* display = X11Info::getInstance()->display();
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
         EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
-        //write_uinput_event(fd, EV_KEY, code, pressed ? 1 : 0);
-        //write_uinput_event(fd, EV_KEY, KEY_D, pressed ? 1 : 0);
-        //unsigned int tempcode = XKeysymToKeycode(display, code);
-        //if (tempcode > 0)
-        //{
-        //    XTestFakeKeyEvent(display, tempcode, pressed, 0);
-        //}
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
         EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
-        //XTestFakeButtonEvent(display, code, pressed, 0);
     }
 
-    //XFlush(display);
-
 #elif defined (Q_OS_WIN)
+    int code = slot->getSlotCode();
     INPUT temp[1] = {};
+
     if (device == JoyButtonSlot::JoyKeyboard)
     {
         unsigned int scancode = WinInfo::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
@@ -157,12 +150,8 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 void sendevent(int code1, int code2)
 {
 #if defined (Q_OS_UNIX)
-    //Display* display = X11Info::getInstance()->display();
 
     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
-
-    //XTestFakeRelativeMotionEvent(display, code1, code2, 0);
-    //XFlush(display);
 
 #elif defined (Q_OS_WIN)
     INPUT temp[1] = {};
@@ -306,13 +295,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             double diffx = abs(currentMouseX - xmovecoor);
             double diffy = abs(currentMouseY - ymovecoor);
 
-            //qDebug() << "DIFFX: " << diffx;
-            //qDebug() << "DIFFY: " << diffy;
-
-            //qDebug() << "SHITX: " << xmovecoor - currentMouseX;
-            //qDebug() << "SHITY: " << ymovecoor - currentMouseY;
-            //double finaldiff = sqrt((diffx*diffx)+(diffy*diffy));
-
 #ifdef Q_OS_WIN
             INPUT temp[1] = {};
             temp[0].type = INPUT_MOUSE;
@@ -321,18 +303,12 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
 #endif
 
-            //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX, false);
-            //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
-
             // If either position is set to center, force update.
             if (xmovecoor == midwidth || ymovecoor == midheight)
             {
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
-                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
-                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
-                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -346,9 +322,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
-                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
-                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
-                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -361,9 +334,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
-                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
-                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
-                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
@@ -373,7 +343,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 //qDebug() << "X: " << xmovecoor;
                 //qDebug() << "Y: " << ymovecoor;
 
-                //mouseHelperObj->mouseTimer.start(8);
+                mouseHelperObj->mouseTimer.start(8);
             }
 
             else if (mouseHelperObj->springMouseMoving && (diffx < 2 && diffy < 2))
@@ -385,9 +355,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
-                //write_uinput_event(fd, EV_REL, REL_X, xmovecoor - currentMouseX);
-                //write_uinput_event(fd, EV_REL, REL_Y, ymovecoor - currentMouseY);
-                //XTestFakeMotionEvent(display, -1, xmovecoor, ymovecoor, 0);
 
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);

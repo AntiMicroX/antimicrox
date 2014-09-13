@@ -19,9 +19,13 @@ set(ANTIMICRO_MINOR_VERSION 5)
 set(ANTIMICRO_PATCH_VERSION 0)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
-option(WITH_X11 "Compile with support for X11." ON)
-option(WITH_UINPUT "Compile with support for uinput. uinput will be used to simulate events." OFF)
-option(WITH_XTEST "Compile with support for XTest.  XTest will be used to simulate events." ON)
+
+if(UNIX)
+    option(WITH_X11 "Compile with support for X11." ON)
+    option(WITH_UINPUT "Compile with support for uinput. uinput will be used to simulate events." OFF)
+    option(WITH_XTEST "Compile with support for XTest.  XTest will be used to simulate events." ON)
+endif(UNIX)
+
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 
 if(WIN32)
