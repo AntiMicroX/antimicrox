@@ -177,7 +177,9 @@ if(UNIX)
 elseif(WIN32)
     LIST(APPEND antimicro_SOURCES src/wininfo.cpp
          src/qtwinkeymapper.cpp
-         src/winappprofiletimerdialog.cpp)
+         src/winappprofiletimerdialog.cpp
+         src/autoprofilewatcher.cpp
+    )
 endif(UNIX)
 
 # Files that require SDL 2 support.
@@ -287,7 +289,9 @@ if(UNIX)
 elseif(WIN32)
     LIST(APPEND antimicro_HEADERS src/wininfo.h
         src/qtwinkeymapper.h
-        src/winappprofiletimerdialog.h)
+        src/winappprofiletimerdialog.h
+        src/autoprofilewatcher.h
+    )
 endif(UNIX)
 
 # Files that require SDL 2 support.
