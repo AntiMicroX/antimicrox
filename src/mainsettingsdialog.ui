@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>706</width>
-    <height>476</height>
+    <height>497</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -175,7 +175,7 @@ clicked instead of quitting the program.</string>
          <item>
           <widget class="QCheckBox" name="launchAtWinStartupCheckBox">
            <property name="toolTip">
-            <string>Have Windows start AntiMicro at system startup</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Have Windows start AntiMicro at system startup.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Launch At Windows Startup</string>
@@ -247,6 +247,9 @@ first launches.</string>
          </item>
          <item>
           <widget class="QCheckBox" name="associateProfilesCheckBox">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associate .amgp files with AntiMicro in Windows Explorer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="text">
             <string>Associate Profiles</string>
            </property>
