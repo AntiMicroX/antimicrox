@@ -37,6 +37,10 @@ signals:
 
 public slots:
 
+private slots:
+#ifdef WITH_X11
+    void x11ResetMouseAccelerationChange();
+#endif
 };
 
 #endif // UINPUTEVENTHANDLER_H

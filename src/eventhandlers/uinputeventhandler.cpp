@@ -8,8 +8,20 @@
 #include <QStringList>
 #include <QStringListIterator>
 #include <QFileInfo>
+#include <QTimer>
+
+#ifdef WITH_X11
+#include <X11/Xlib.h>
+#include <X11/extensions/XInput.h>
+#include <X11/extensions/XInput2.h>
+
+#include <x11info.h>
+
+#endif
 
 #include "uinputeventhandler.h"
+
+static const QString mouseDeviceName("AntiMicro Mouse Emulation");
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -48,8 +60,120 @@ bool UInputEventHandler::init()
         }
     }
 
+#ifdef WITH_X11
+    if (result)
+    {
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
+    // Some time needs to elapse after device creation before changing
+    // pointer settings. Otherwise, settings will not take effect.
+    QTimer::singleShot(1000, this, SLOT(x11ResetMouseAccelerationChange()));
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
+    }
+#endif
+
     return result;
 }
+
+#ifdef WITH_X11
+void UInputEventHandler::x11ResetMouseAccelerationChange()
+{
+    QTextStream out(stdout);
+
+    int xi_opcode, event, error;
+    xi_opcode = event = error = 0;
+    Display *display = X11Info::getInstance()->display();
+
+    bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
+    if (!result)
+    {
+        out << tr("xinput extension was not found. No mouse acceleration changes will occur.") << endl;
+    }
+    else
+    {
+        int ximajor = 2, ximinor = 0;
+        if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
+        {
+            out << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.") << endl;
+        }
+    }
+
+    if (result)
+    {
+        XIDeviceInfo *all_devices = 0;
+        XIDeviceInfo *current_devices = 0;
+        XIDeviceInfo *mouse_devices = 0;
+
+        int num_slaves = 0;
+        all_devices = XIQueryDevice(display, XIAllDevices, &num_slaves);
+        for (int i=0; i < num_slaves; i++)
+        {
+            current_devices = &all_devices[i];
+            if (current_devices->use == XISlavePointer && QString::fromUtf8(current_devices->name) == mouseDeviceName)
+            {
+                out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
+                    << endl;
+                mouse_devices = current_devices;
+            }
+        }
+
+        if (mouse_devices)
+        {
+            XDevice *device = XOpenDevice(display, mouse_devices->deviceid);
+
+            int num_feedbacks = 0;
+            int feedback_id = -1;
+            XFeedbackState *temp = XGetFeedbackControl(display, device, &num_feedbacks);
+            for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
+            {
+                if (temp->c_class == PtrFeedbackClass)
+                {
+                    feedback_id = temp->id;
+                }
+
+                if (i+1 < num_feedbacks)
+                {
+                    temp = (XFeedbackState*) ((char*) temp + temp->length);
+                }
+            }
+
+            if (feedback_id <= -1)
+            {
+                out << tr("PtrFeedbackClass was not found for virtual pointer."
+                          "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id)
+                    << endl;
+                result = false;
+            }
+            else
+            {
+                out << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id)
+                    << endl;
+
+                XPtrFeedbackControl	feedback;
+                feedback.c_class     = PtrFeedbackClass;
+                feedback.length      = sizeof(XPtrFeedbackControl);
+                feedback.id	         = feedback_id;
+                feedback.threshold	 = 0;
+                feedback.accelNum	 = 1;
+                feedback.accelDenom  = 1;
+
+                XChangeFeedbackControl(display, device, DvAccelNum|DvAccelDenom|DvThreshold,
+                           (XFeedbackControl*) &feedback);
+
+                XSync(display, false);
+            }
+
+            XCloseDevice(display, device);
+            XIFreeDeviceInfo(all_devices);
+        }
+    }
+}
+#endif
 
 bool UInputEventHandler::cleanup()
 {
@@ -175,7 +299,6 @@ int UInputEventHandler::openUInputHandle()
     }
     else
     {
-        //qDebug() << "LOCATION: " << possibleLocation;
         QByteArray tempArray = possibleLocation.toUtf8();
         filehandle = open(tempArray.constData(), O_WRONLY | O_NONBLOCK);
         if (filehandle < 0)
@@ -184,7 +307,6 @@ int UInputEventHandler::openUInputHandle()
                                  "Please check that you have permission to write to the device");
             lastErrorString.append("\n").append(possibleLocation);
             err << lastErrorString << endl << endl;
-            //err << possibleLocation << endl << endl;
         }
     }
 
@@ -205,10 +327,12 @@ void UInputEventHandler::setMouseEvents(int filehandle)
     result = ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
     result = ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
     result = ioctl(filehandle, UI_SET_EVBIT, EV_REL);
+
     result = ioctl(filehandle, UI_SET_RELBIT, REL_X);
     result = ioctl(filehandle, UI_SET_RELBIT, REL_Y);
     result = ioctl(filehandle, UI_SET_RELBIT, REL_WHEEL);
     result = ioctl(filehandle, UI_SET_RELBIT, REL_HWHEEL);
+
     result = ioctl(filehandle, UI_SET_KEYBIT, BTN_LEFT);
     result = ioctl(filehandle, UI_SET_KEYBIT, BTN_RIGHT);
     result = ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
