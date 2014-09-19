@@ -489,7 +489,7 @@ endif(UNIX)
 
 if(UNIX)
     if(WITH_X11)
-        LIST(APPEND LIBS X11 Xi)
+        LIST(APPEND LIBS X11)
         if(WITH_UINPUT)
             LIST(APPEND LIBS Xi)
         endif(WITH_UINPUT)

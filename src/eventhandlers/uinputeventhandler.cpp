@@ -22,6 +22,7 @@
 #include "uinputeventhandler.h"
 
 static const QString mouseDeviceName("AntiMicro Mouse Emulation");
+static const QString keyboardDeviceName("AntiMicro Keyboard Emulation");
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -107,24 +108,24 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
     {
         XIDeviceInfo *all_devices = 0;
         XIDeviceInfo *current_devices = 0;
-        XIDeviceInfo *mouse_devices = 0;
+        XIDeviceInfo *mouse_device = 0;
 
-        int num_slaves = 0;
-        all_devices = XIQueryDevice(display, XIAllDevices, &num_slaves);
-        for (int i=0; i < num_slaves; i++)
+        int num_devices = 0;
+        all_devices = XIQueryDevice(display, XIAllDevices, &num_devices);
+        for (int i=0; i < num_devices; i++)
         {
             current_devices = &all_devices[i];
             if (current_devices->use == XISlavePointer && QString::fromUtf8(current_devices->name) == mouseDeviceName)
             {
                 out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
                     << endl;
-                mouse_devices = current_devices;
+                mouse_device = current_devices;
             }
         }
 
-        if (mouse_devices)
+        if (mouse_device)
         {
-            XDevice *device = XOpenDevice(display, mouse_devices->deviceid);
+            XDevice *device = XOpenDevice(display, mouse_device->deviceid);
 
             int num_feedbacks = 0;
             int feedback_id = -1;
@@ -155,12 +156,12 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
                     << endl;
 
                 XPtrFeedbackControl	feedback;
-                feedback.c_class     = PtrFeedbackClass;
-                feedback.length      = sizeof(XPtrFeedbackControl);
-                feedback.id	         = feedback_id;
-                feedback.threshold	 = 0;
-                feedback.accelNum	 = 1;
-                feedback.accelDenom  = 1;
+                feedback.c_class = PtrFeedbackClass;
+                feedback.length = sizeof(XPtrFeedbackControl);
+                feedback.id = feedback_id;
+                feedback.threshold = 0;
+                feedback.accelNum = 1;
+                feedback.accelDenom = 1;
 
                 XChangeFeedbackControl(display, device, DvAccelNum|DvAccelDenom|DvThreshold,
                            (XFeedbackControl*) &feedback);
@@ -169,6 +170,10 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
             }
 
             XCloseDevice(display, device);
+        }
+
+        if (all_devices)
+        {
             XIFreeDeviceInfo(all_devices);
         }
     }
@@ -353,7 +358,8 @@ void UInputEventHandler::createUInputDevice(int filehandle)
     struct uinput_user_dev uidev;
 
     memset(&uidev, 0, sizeof(uidev));
-    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "AntiMicro Keyboard Emulation");
+    QByteArray temp = keyboardDeviceName.toUtf8();
+    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, temp.constData());
     uidev.id.bustype = BUS_USB;
     uidev.id.vendor  = 0x0;
     uidev.id.product = 0x0;
@@ -368,7 +374,8 @@ void UInputEventHandler::createUInputMouseDevice(int filehandle)
     struct uinput_user_dev uidev;
 
     memset(&uidev, 0, sizeof(uidev));
-    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, "AntiMicro Mouse Emulation");
+    QByteArray temp = mouseDeviceName.toUtf8();
+    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, temp.constData());
     uidev.id.bustype = BUS_USB;
     uidev.id.vendor  = 0x0;
     uidev.id.product = 0x0;

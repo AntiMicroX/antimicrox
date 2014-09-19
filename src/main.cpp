@@ -522,11 +522,6 @@ int main(int argc, char *argv[])
     bool status = EventHandlerFactory::getInstance()->handler()->init();
     if (!status)
     {
-        /*QString lastError = EventHandlerFactory::getInstance()->handler()->getErrorString();
-        QTextStream err(stderr);
-        err << QObject::tr("Failed to initialize uinput") << endl << endl;
-        err << lastError << endl;*/
-
         deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
