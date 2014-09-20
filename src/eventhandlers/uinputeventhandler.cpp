@@ -10,7 +10,12 @@
 #include <QFileInfo>
 #include <QTimer>
 
+
 #ifdef WITH_X11
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QApplication>
+    #endif
+
 #include <X11/Xlib.h>
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
@@ -347,9 +352,10 @@ void UInputEventHandler::setMouseEvents(int filehandle)
 
 void UInputEventHandler::populateKeyCodes(int filehandle)
 {
+    int result = 0;
     for (unsigned int i=KEY_ESC; i < KEY_UNKNOWN; i++)
     {
-        ioctl(filehandle, UI_SET_KEYBIT, i);
+        result = ioctl(filehandle, UI_SET_KEYBIT, i);
     }
 }
 
@@ -365,8 +371,9 @@ void UInputEventHandler::createUInputDevice(int filehandle)
     uidev.id.product = 0x0;
     uidev.id.version = 1;
 
-    write(filehandle, &uidev, sizeof(uidev));
-    ioctl(filehandle, UI_DEV_CREATE);
+    int result = 0;
+    result = write(filehandle, &uidev, sizeof(uidev));
+    result = ioctl(filehandle, UI_DEV_CREATE);
 }
 
 void UInputEventHandler::createUInputMouseDevice(int filehandle)
@@ -381,14 +388,16 @@ void UInputEventHandler::createUInputMouseDevice(int filehandle)
     uidev.id.product = 0x0;
     uidev.id.version = 1;
 
-    write(filehandle, &uidev, sizeof(uidev));
-    ioctl(filehandle, UI_DEV_CREATE);
+    int result = 0;
+    result = write(filehandle, &uidev, sizeof(uidev));
+    result = ioctl(filehandle, UI_DEV_CREATE);
 }
 
 void UInputEventHandler::closeUInputDevice(int filehandle)
 {
-    ioctl(filehandle, UI_DEV_DESTROY);
-    close(filehandle);
+    int result = 0;
+    result = ioctl(filehandle, UI_DEV_DESTROY);
+    result = close(filehandle);
 }
 
 
@@ -403,7 +412,8 @@ void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type, u
     ev.code = code;
     ev.value = value;
 
-    write(filehandle, &ev, sizeof(struct input_event));
+    int result = 0;
+    result = write(filehandle, &ev, sizeof(struct input_event));
 
     if (syn)
     {
@@ -413,7 +423,7 @@ void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type, u
         ev2.code = SYN_REPORT;
         ev2.value = 0;
 
-        write(filehandle, &ev2, sizeof(struct input_event));
+        result = write(filehandle, &ev2, sizeof(struct input_event));
     }
 }
 
