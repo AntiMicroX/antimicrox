@@ -131,7 +131,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
         // by checking for extended bit in scan code.
         int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
-        int checkalias = AntKeyMapper::returnQtKey(virtualactual, controlcode);
+        int checkalias = AntKeyMapper::returnQtKey(finalvirtual, controlcode);
 
 #else
 
