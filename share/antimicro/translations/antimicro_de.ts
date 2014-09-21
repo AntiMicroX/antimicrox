@@ -4904,7 +4904,7 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="337"/>
         <source>Wheel Down</source>
         <comment>Mouse</comment>
-        <translation>Maus runter</translation>
+        <translation>Rad runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="345"/>
