@@ -123,7 +123,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
         #endif
-        finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+        finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
         checkalias = AntKeyMapper::returnQtKey(finalvirtual);
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
