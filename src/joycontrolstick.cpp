@@ -392,7 +392,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
     return distance;
 }
 
-double JoyControlStick::getAbsoluteDistance()
+double JoyControlStick::getAbsoluteRawDistance()
 {
     double distance = 0.0;
 
@@ -402,14 +402,14 @@ double JoyControlStick::getAbsoluteDistance()
     unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
     distance = sqrt(square_dist);
-    if (distance > JoyAxis::AXISMAX)
+    /*if (distance > JoyAxis::AXISMAX)
     {
         distance = JoyAxis::AXISMAX;
     }
     else if (distance < 0.0)
     {
         distance = 0.0;
-    }
+    }*/
 
     return distance;
 }
@@ -1002,6 +1002,76 @@ int JoyControlStick::getXCoordinate()
 int JoyControlStick::getYCoordinate()
 {
     return axisY->getCurrentRawValue();
+}
+
+int JoyControlStick::getCircleXCoordinate()
+{
+    int value = axisX->getCurrentRawValue();
+    if (this->circle > 0.0)
+    {
+        value = calculateCircleXValue(value);
+    }
+
+    return value;
+}
+
+int JoyControlStick::getCircleYCoordinate()
+{
+    int value = axisY->getCurrentRawValue();
+    if (this->circle > 0.0)
+    {
+        value = calculateCircleYValue(value);
+    }
+
+    return value;
+}
+
+int JoyControlStick::calculateCircleXValue(int rawXValue)
+{
+    int value = rawXValue;
+    if (this->circle > 0.0)
+    {
+        int axis1Value = axisX->getCurrentRawValue();
+        int axis2Value = axisY->getCurrentRawValue();
+
+        double angle2 = atan2(axis1Value, -axis2Value);
+        double ang_sin = sin(angle2);
+        double ang_cos = cos(angle2);
+
+        int axisXValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
+        double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+        double circle = this->circle;
+        double circleStickFull = (squareStickFull - 1) * circle + 1;
+        double alternateStickFullValue = circleStickFull * abs(axisXValueCircleFull);
+
+        value = circleStickFull > 1.0 ? (int)floor((rawXValue / alternateStickFullValue) * abs(axisXValueCircleFull) + 0.5) : value;
+    }
+
+    return value;
+}
+
+int JoyControlStick::calculateCircleYValue(int rawYValue)
+{
+    int value = rawYValue;
+    if (this->circle > 0.0)
+    {
+        int axis1Value = axisX->getCurrentRawValue();
+        int axis2Value = axisY->getCurrentRawValue();
+
+        double angle2 = atan2(axis1Value, -axis2Value);
+        double ang_sin = sin(angle2);
+        double ang_cos = cos(angle2);
+
+        int axisYValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5);
+        double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+        double circle = this->circle;
+        double circleStickFull = (squareStickFull - 1) * circle + 1;
+        double alternateStickFullValue = circleStickFull * abs(axisYValueCircleFull);
+
+        value = circleStickFull > 1.0 ? (int)floor((rawYValue / alternateStickFullValue) * abs(axisYValueCircleFull) + 0.5) : value;
+    }
+
+    return value;
 }
 
 QList<int> JoyControlStick::getDiagonalZoneAngles()

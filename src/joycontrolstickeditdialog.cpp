@@ -28,9 +28,21 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->diagonalRangeSlider->setValue(stick->getDiagonalRange());
     ui->diagonalRangeSpinBox->setValue(stick->getDiagonalRange());
 
-    ui->xCoordinateLabel->setText(QString::number(stick->getXCoordinate()));
-    ui->yCoordinateLabel->setText(QString::number(stick->getYCoordinate()));
-    ui->distanceLabel->setText(QString::number(stick->getAbsoluteDistance()));
+    QString xCoorString = QString::number(stick->getXCoordinate());
+    if (stick->getCircleAdjust() > 0.0)
+    {
+        xCoorString.append(QString(" (%1)").arg(stick->getCircleXCoordinate()));
+    }
+    ui->xCoordinateLabel->setText(xCoorString);
+
+    QString yCoorString = QString::number(stick->getYCoordinate());
+    if (stick->getCircleAdjust() > 0.0)
+    {
+        yCoorString.append(QString(" (%1)").arg(stick->getCircleYCoordinate()));
+    }
+    ui->yCoordinateLabel->setText(yCoorString);
+
+    ui->distanceLabel->setText(QString::number(stick->getAbsoluteRawDistance()));
     ui->diagonalLabel->setText(QString::number(stick->calculateBearing()));
 
     if (stick->getJoyMode() == JoyControlStick::StandardMode)
@@ -255,9 +267,24 @@ void JoyControlStickEditDialog::implementPresets(int index)
 
 void JoyControlStickEditDialog::refreshStickStats(int x, int y)
 {
-    ui->xCoordinateLabel->setText(QString::number(x));
-    ui->yCoordinateLabel->setText(QString::number(y));
-    ui->distanceLabel->setText(QString::number(stick->getAbsoluteDistance()));
+    Q_UNUSED(x);
+    Q_UNUSED(y);
+
+    QString xCoorString = QString::number(stick->getXCoordinate());
+    if (stick->getCircleAdjust() > 0.0)
+    {
+        xCoorString.append(QString(" (%1)").arg(stick->getCircleXCoordinate()));
+    }
+    ui->xCoordinateLabel->setText(xCoorString);
+
+    QString yCoorString = QString::number(stick->getYCoordinate());
+    if (stick->getCircleAdjust() > 0.0)
+    {
+        yCoorString.append(QString(" (%1)").arg(stick->getCircleYCoordinate()));
+    }
+    ui->yCoordinateLabel->setText(yCoorString);
+
+    ui->distanceLabel->setText(QString::number(stick->getAbsoluteRawDistance()));
     ui->diagonalLabel->setText(QString::number(stick->calculateBearing()));
 
     double validDistance = stick->getDistanceFromDeadZone() * 100.0;

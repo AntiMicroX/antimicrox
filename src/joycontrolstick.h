@@ -26,7 +26,7 @@ public:
     int getDeadZone();
     int getDiagonalRange();
     double getDistanceFromDeadZone();
-    double getAbsoluteDistance();
+    double getAbsoluteRawDistance();
     double getNormalizedAbsoluteDistance();
 
     int getIndex();
@@ -39,6 +39,8 @@ public:
     JoyStickDirections getCurrentDirection();
     int getXCoordinate();
     int getYCoordinate();
+    int getCircleXCoordinate();
+    int getCircleYCoordinate();
     double calculateBearing();
     QList<int> getDiagonalZoneAngles();
     QList<int> getFourWayCardinalZoneAngles();
@@ -129,6 +131,8 @@ protected:
     void resetButtons();
     double calculateXDistanceFromDeadZone();
     double calculateYDistanceFromDeadZone();
+    int calculateCircleXValue(int rawXValue);
+    int calculateCircleYValue(int rawYValue);
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
 
     JoyAxis *axisX;
