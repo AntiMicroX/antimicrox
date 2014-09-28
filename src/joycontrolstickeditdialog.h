@@ -36,6 +36,7 @@ private slots:
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
     void updateWindowTitleStickName();
+    void changeCircleAdjust(int value);
 };
 
 #endif // JOYCONTROLSTICKEDITDIALOG_H

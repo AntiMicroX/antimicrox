@@ -100,6 +100,8 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyControlStick *destStick);
 
+    double getCircleAdjust();
+
     static const double PI;
 
     // Define default values for stick properties.
@@ -107,6 +109,7 @@ public:
     static const int DEFAULTMAXZONE;
     static const int DEFAULTDIAGONALRANGE;
     static const JoyMode DEFAULTMODE;
+    static const double DEFAULTCIRCLE;
 
 
 protected:
@@ -144,6 +147,7 @@ protected:
     JoyMode currentMode;
     QString stickName;
     QString defaultStickName;
+    double circle;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 
@@ -154,6 +158,7 @@ signals:
     void deadZoneChanged(int value);
     void diagonalRangeChanged(int value);
     void maxZoneChanged(int value);
+    void circleAdjustChange(double circle);
     void stickNameChanged();
     void joyModeChanged();
     void propertyUpdated();
@@ -165,6 +170,7 @@ public slots:
     void setDiagonalRange(int value);
     void setStickName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
+    void setCircleAdjust(double circle);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

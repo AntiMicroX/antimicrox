@@ -62,20 +62,27 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     double validDistance = stick->getDistanceFromDeadZone() * 100.0;
     ui->fromSafeZoneValueLabel->setText(QString::number(validDistance));
 
+    double circleValue = stick->getCircleAdjust();
+    ui->squareStickSlider->setValue(circleValue * 100);
+    ui->squareStickSpinBox->setValue(circleValue * 100);
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
 
     connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
     connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
+    connect(ui->squareStickSlider, SIGNAL(valueChanged(int)), ui->squareStickSpinBox, SLOT(setValue(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), ui->maxZoneSlider, SLOT(setValue(int)));
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
+    connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), ui->squareStickSlider, SLOT(setValue(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
+    connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeCircleAdjust(int)));
 
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
@@ -424,4 +431,9 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
     }
 
     setWindowTitle(temp);
+}
+
+void JoyControlStickEditDialog::changeCircleAdjust(int value)
+{
+    stick->setCircleAdjust(value / 100.0);
 }

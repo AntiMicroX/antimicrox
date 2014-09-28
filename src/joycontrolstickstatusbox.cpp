@@ -23,6 +23,7 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidg
     connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
     connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
     connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
+    connect(stick, SIGNAL(circleAdjustChange(double)), this, SLOT(update()));
 }
 
 void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
@@ -217,6 +218,16 @@ void JoyControlStickStatusBox::drawEightWayBox()
 
     // Draw diagonal zones
     QList<int> anglesList = stick->getDiagonalZoneAngles();
+    QListIterator<int> iter(anglesList);
+    //qDebug() << "LIST START";
+    //qDebug() << "DIAGONAL RANGE: " << stick->getDiagonalRange();
+    //while (iter.hasNext())
+    //{
+    //    qDebug() << "ANGLE: " << iter.next();
+    //}
+    //qDebug() << "LIST END";
+    //qDebug();
+
     penny.setWidth(0);
     penny.setColor(Qt::black);
     painter.setPen(penny);

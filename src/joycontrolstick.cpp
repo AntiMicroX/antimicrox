@@ -14,6 +14,7 @@ const int JoyControlStick::DEFAULTDEADZONE = 8000;
 const int JoyControlStick::DEFAULTMAXZONE = JoyAxis::AXISMAXZONE;
 const int JoyControlStick::DEFAULTDIAGONALRANGE = 45;
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
+const double JoyControlStick::DEFAULTCIRCLE = 0.0;
 
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset, QObject *parent) :
     QObject(parent)
@@ -111,6 +112,13 @@ int JoyControlStick::getDiagonalRange()
     return diagonalRange;
 }
 
+/**
+ * @brief Find the position of the two stick axes, deactivate no longer used
+ *     stick direction button and then activate direction buttons for new
+ *     direction.
+ * @param Should set changing operations be ignored. Necessary in the middle
+ *     of a set change.
+ */
 void JoyControlStick::createDeskEvent(bool ignoresets)
 {
     JoyControlStickButton *eventbutton1 = 0;
@@ -216,6 +224,11 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     }
 }
 
+/**
+ * @brief Calculate the bearing (in degrees) corresponding to the current
+ *    position of the X and Y axes of a stick.
+ * @return Bearing (in degrees)
+ */
 double JoyControlStick::calculateBearing()
 {
     double finalAngle = 0.0;
@@ -293,7 +306,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
     int deadX = (int)floor(deadZone * ang_sin + 0.5);
     int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
     double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
-    double circle = 0.0;
+    double circle = this->circle;
     double circleStickFull = (squareStickFull - 1) * circle + 1;
     double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
 
@@ -309,6 +322,12 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
     {
         distance = 0.0;
     }
+
+    //qDebug() << "CIRCLE: " << circle;
+    //qDebug() << "OLD X: " << axis1Value;
+    //qDebug() << "ADJUSTED X: " << adjustedAxis1Value;
+    //qDebug() << "FULL CIRCLE X: " << axis1ValueCircleFull;
+    //qDebug();
 
     return distance;
 }
@@ -328,7 +347,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
     int deadY = abs(floor(deadZone * ang_cos) + 0.5);
     int axis2ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5);
     double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
-    double circle = 0.0;
+    double circle = this->circle;
     double circleStickFull = (squareStickFull - 1) * circle + 1;
     double alternateStickFullValue = circleStickFull * abs(axis2ValueCircleFull);
 
@@ -548,6 +567,7 @@ void JoyControlStick::reset()
     currentDirection = StickCentered;
     currentMode = StandardMode;
     stickName.clear();
+    circle = DEFAULTCIRCLE;
     resetButtons();
 }
 
@@ -1831,6 +1851,11 @@ bool JoyControlStick::isRelativeSpring()
     return relative;
 }
 
+/**
+ * @brief Copy slots from all stick buttons and properties from a stick
+ *     onto another.
+ * @param JoyControlStick object to be modified.
+ */
 void JoyControlStick::copyAssignments(JoyControlStick *destStick)
 {
     destStick->reset();
@@ -1840,6 +1865,7 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
     destStick->currentDirection = currentDirection;
     destStick->currentMode = currentMode;
     destStick->stickName = stickName;
+    destStick->circle = circle;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(destStick->buttons);
     while (iter.hasNext())
@@ -1854,4 +1880,24 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
             }
         }
     }
+}
+
+/**
+ * @brief Set the percentage of the outer square that should be ignored
+ *     when performing the final axis calculations.
+ * @param Percentage in the range of 0.0 - 1.0.
+ */
+void JoyControlStick::setCircleAdjust(double circle)
+{
+    if (circle >= 0.0 && circle <= 1.0)
+    {
+        this->circle = circle;
+        emit circleAdjustChange(circle);
+        emit propertyUpdated();
+    }
+}
+
+double JoyControlStick::getCircleAdjust()
+{
+    return circle;
 }
