@@ -4886,25 +4886,25 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="325"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation>Rad auf</translation>
+        <translation>Mausrad hoch</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="329"/>
         <source>Wheel Left</source>
         <comment>Mouse</comment>
-        <translation>Rad links</translation>
+        <translation>Mausrad links</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="333"/>
         <source>Wheel Right</source>
         <comment>Mouse</comment>
-        <translation>Rad rechts</translation>
+        <translation>Mausrad rechts</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="337"/>
         <source>Wheel Down</source>
         <comment>Mouse</comment>
-        <translation>Maus runter</translation>
+        <translation>Mausrad runter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="345"/>
