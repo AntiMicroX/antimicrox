@@ -269,6 +269,10 @@ double JoyControlStick::calculateBearing()
     return finalAngle;
 }
 
+/**
+ * @brief Get radial distance of the stick position past the assigned dead zone.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
 double JoyControlStick::getDistanceFromDeadZone()
 {
     double distance = 0.0;
@@ -276,9 +280,22 @@ double JoyControlStick::getDistanceFromDeadZone()
     int axis1Value = axisX->getCurrentRawValue();
     int axis2Value = axisY->getCurrentRawValue();
 
-    unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
+    double angle2 = atan2(axis1Value, -axis2Value);
+    double ang_sin = sin(angle2);
+    double ang_cos = cos(angle2);
 
-    distance = (sqrt(square_dist) - deadZone)/(double)(maxZone - deadZone);
+    unsigned int squared_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
+    unsigned int dist = sqrt(squared_dist);
+
+    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double circle = this->circle;
+    double circleStickFull = (squareStickFull - 1) * circle + 1;
+    double alternateStickFullValue = circleStickFull * JoyAxis::AXISMAX;
+
+    int adjustedDist = circleStickFull > 1.0 ? (dist / alternateStickFullValue) * JoyAxis::AXISMAX : dist;
+    int adjustedDeadZone = circleStickFull > 1.0 ? (deadZone / alternateStickFullValue) * JoyAxis::AXISMAX : deadZone;
+
+    distance = (adjustedDist - adjustedDeadZone)/(double)(maxZone - adjustedDeadZone);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -291,6 +308,10 @@ double JoyControlStick::getDistanceFromDeadZone()
     return distance;
 }
 
+/**
+ * @brief Get square distance of the X axis past the assigned dead zone.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
 double JoyControlStick::calculateXDistanceFromDeadZone()
 {
     double distance = 0.0;
@@ -332,6 +353,10 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
     return distance;
 }
 
+/**
+ * @brief Get square distance of the Y axis past the assigned dead zone.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
 double JoyControlStick::calculateYDistanceFromDeadZone()
 {
     double distance = 0.0;
