@@ -365,7 +365,7 @@ void UInputEventHandler::createUInputDevice(int filehandle)
 
     memset(&uidev, 0, sizeof(uidev));
     QByteArray temp = keyboardDeviceName.toUtf8();
-    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, temp.constData());
+    strncpy(uidev.name, temp.constData(), UINPUT_MAX_NAME_SIZE);
     uidev.id.bustype = BUS_USB;
     uidev.id.vendor  = 0x0;
     uidev.id.product = 0x0;
@@ -382,7 +382,7 @@ void UInputEventHandler::createUInputMouseDevice(int filehandle)
 
     memset(&uidev, 0, sizeof(uidev));
     QByteArray temp = mouseDeviceName.toUtf8();
-    snprintf(uidev.name, UINPUT_MAX_NAME_SIZE, temp.constData());
+    strncpy(uidev.name, temp.constData(), UINPUT_MAX_NAME_SIZE);
     uidev.id.bustype = BUS_USB;
     uidev.id.vendor  = 0x0;
     uidev.id.product = 0x0;
