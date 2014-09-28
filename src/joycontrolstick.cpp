@@ -283,15 +283,24 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
     double distance = 0.0;
 
     int axis1Value = axisX->getCurrentRawValue();
+    int axis2Value = axisY->getCurrentRawValue();
+    //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
-    double relativeAngle = calculateBearing();
-    if (relativeAngle > 180)
-    {
-        relativeAngle = relativeAngle - 180;
-    }
+    double angle2 = atan2(axis1Value, -axis2Value);
+    double ang_sin = sin(angle2);
+    double ang_cos = cos(angle2);
 
-    int deadX = (int)floor(deadZone * sin(relativeAngle * PI / 180.0) + 0.5);
-    distance = (abs(axis1Value) - deadX)/(double)(maxZone - deadX);
+    int deadX = (int)floor(deadZone * ang_sin + 0.5);
+    int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
+    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double circle = 0.0;
+    double circleStickFull = (squareStickFull - 1) * circle + 1;
+    double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
+
+    int adjustedAxis1Value = circleStickFull > 1.0 ? (int)floor((axis1Value / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : axis1Value;
+    int adjustedDeadXZone = circleStickFull > 1.0 ? (int)floor((deadX / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : deadX;
+
+    distance = (abs(adjustedAxis1Value) - adjustedDeadXZone)/(double)(maxZone - adjustedDeadXZone);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -308,16 +317,25 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
 {
     double distance = 0.0;
 
+    int axis1Value = axisX->getCurrentRawValue();
     int axis2Value = axisY->getCurrentRawValue();
+    //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
-    double relativeAngle = calculateBearing();
-    if (relativeAngle > 180)
-    {
-        relativeAngle = relativeAngle - 180;
-    }
+    double angle2 = atan2(axis1Value, -axis2Value);
+    double ang_sin = sin(angle2);
+    double ang_cos = cos(angle2);
 
-    int deadY = abs(floor(deadZone * cos(relativeAngle * PI / 180.0)) + 0.5);
-    distance = (abs(axis2Value) - deadY)/(double)(maxZone - deadY);
+    int deadY = abs(floor(deadZone * ang_cos) + 0.5);
+    int axis2ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5);
+    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double circle = 0.0;
+    double circleStickFull = (squareStickFull - 1) * circle + 1;
+    double alternateStickFullValue = circleStickFull * abs(axis2ValueCircleFull);
+
+    int adjustedAxis2Value = circleStickFull > 1.0 ? (int)floor((axis2Value / alternateStickFullValue) * abs(axis2ValueCircleFull) + 0.5) : axis2Value;
+    int adjustedDeadYZone = circleStickFull > 1.0 ? (int)floor((deadY / alternateStickFullValue) * abs(axis2ValueCircleFull) + 0.5) : deadY;
+
+    distance = (abs(adjustedAxis2Value) - adjustedDeadYZone)/(double)(maxZone - adjustedDeadYZone);
     if (distance > 1.0)
     {
         distance = 1.0;
