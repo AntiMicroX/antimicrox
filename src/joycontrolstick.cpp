@@ -711,6 +711,15 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                     this->setJoyMode(FourWayDiagonal);
                 }
             }
+            else if (xml->name() == "squareStick" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                if (tempchoice > 0 && tempchoice <= 100)
+                {
+                    this->setCircleAdjust(tempchoice / 100.0);
+                }
+            }
             else if (xml->name() == JoyControlStickButton::xmlName && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
@@ -770,6 +779,11 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         else if (currentMode == FourWayDiagonal)
         {
             xml->writeTextElement("mode", "diagonal");
+        }
+
+        if (circle > DEFAULTCIRCLE)
+        {
+            xml->writeTextElement("squareStick", QString::number(circle * 100));
         }
 
         QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
@@ -1226,6 +1240,8 @@ bool JoyControlStick::isDefault()
     value = value && (maxZone == DEFAULTMAXZONE);
     value = value && (diagonalRange == DEFAULTDIAGONALRANGE);
     value = value && (currentMode == DEFAULTMODE);
+    value = value && (circle == DEFAULTCIRCLE);
+
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
     {
