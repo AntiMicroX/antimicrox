@@ -539,6 +539,9 @@
            </item>
            <item>
             <widget class="QSlider" name="squareStickSlider">
+             <property name="toolTip">
+              <string>Percentage to modify a square stick coordinates to confine values to a circle</string>
+             </property>
              <property name="minimum">
               <number>0</number>
              </property>
@@ -564,6 +567,9 @@
            </item>
            <item>
             <widget class="QSpinBox" name="squareStickSpinBox">
+             <property name="toolTip">
+              <string>Percentage to modify a square stick coordinates to confine values to a circle</string>
+             </property>
              <property name="suffix">
               <string>%</string>
              </property>
