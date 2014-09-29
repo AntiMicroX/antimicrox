@@ -401,32 +401,49 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
     penny.setWidth(0);
+    painter.setBrush(QBrush(Qt::black));
     penny.setColor(Qt::black);
     painter.setPen(penny);
 
-    // Draw crosshair
-    int linexstart = stick->getXCoordinate()-2000, linexend = stick->getXCoordinate()+2000;
-    int lineystart = stick->getYCoordinate()-2000, lineyend = stick->getYCoordinate()+2000;
+    // Draw raw crosshair
+    int linexstart = stick->getXCoordinate()-1000;
+    int lineystart = stick->getYCoordinate()-1000;
+
     if (linexstart < JoyAxis::AXISMIN)
     {
         linexstart = JoyAxis::AXISMIN;
     }
-    if (linexend > JoyAxis::AXISMAX)
-    {
-        linexend = JoyAxis::AXISMAX;
-    }
+
     if (lineystart < JoyAxis::AXISMIN)
     {
         lineystart = JoyAxis::AXISMIN;
     }
-    if (lineyend > JoyAxis::AXISMAX)
-    {
-        lineyend = JoyAxis::AXISMAX;
-    }
-    painter.drawLine(linexstart, stick->getYCoordinate(), linexend, stick->getYCoordinate());
-    painter.drawLine(stick->getXCoordinate(), lineystart, stick->getXCoordinate(), lineyend);
 
+    painter.drawRect(linexstart, lineystart, 2000, 2000);
+
+    painter.setBrush(QBrush(Qt::darkBlue));
+    penny.setColor(Qt::darkBlue);
+    painter.setPen(penny);
+
+    // Draw adjusted crosshair
+    linexstart = stick->getCircleXCoordinate()-1000;
+    lineystart = stick->getCircleYCoordinate()-1000;
+    if (linexstart < JoyAxis::AXISMIN)
+    {
+        linexstart = JoyAxis::AXISMIN;
+    }
+
+    if (lineystart < JoyAxis::AXISMIN)
+    {
+        lineystart = JoyAxis::AXISMIN;
+    }
+
+    painter.drawRect(linexstart, lineystart, 2000, 2000);
     painter.restore();
+
+    // Reset pen
+    penny.setColor(Qt::black);
+    painter.setPen(penny);
 
     // Draw primary pixmap
     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
@@ -521,32 +538,49 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
     penny.setWidth(0);
+    painter.setBrush(QBrush(Qt::black));
     penny.setColor(Qt::black);
     painter.setPen(penny);
 
-    // Draw crosshair
-    int linexstart = stick->getXCoordinate()-2000, linexend = stick->getXCoordinate()+2000;
-    int lineystart = stick->getYCoordinate()-2000, lineyend = stick->getYCoordinate()+2000;
+    // Draw raw crosshair
+    int linexstart = stick->getXCoordinate()-1000;
+    int lineystart = stick->getYCoordinate()-1000;
+
     if (linexstart < JoyAxis::AXISMIN)
     {
         linexstart = JoyAxis::AXISMIN;
     }
-    if (linexend > JoyAxis::AXISMAX)
-    {
-        linexend = JoyAxis::AXISMAX;
-    }
+
     if (lineystart < JoyAxis::AXISMIN)
     {
         lineystart = JoyAxis::AXISMIN;
     }
-    if (lineyend > JoyAxis::AXISMAX)
-    {
-        lineyend = JoyAxis::AXISMAX;
-    }
-    painter.drawLine(linexstart, stick->getYCoordinate(), linexend, stick->getYCoordinate());
-    painter.drawLine(stick->getXCoordinate(), lineystart, stick->getXCoordinate(), lineyend);
 
+    painter.drawRect(linexstart, lineystart, 2000, 2000);
+
+    painter.setBrush(QBrush(Qt::darkBlue));
+    penny.setColor(Qt::darkBlue);
+    painter.setPen(penny);
+
+    // Draw adjusted crosshair
+    linexstart = stick->getCircleXCoordinate()-1000;
+    lineystart = stick->getCircleYCoordinate()-1000;
+    if (linexstart < JoyAxis::AXISMIN)
+    {
+        linexstart = JoyAxis::AXISMIN;
+    }
+
+    if (lineystart < JoyAxis::AXISMIN)
+    {
+        lineystart = JoyAxis::AXISMIN;
+    }
+
+    painter.drawRect(linexstart, lineystart, 2000, 2000);
     painter.restore();
+
+    // Reset pen
+    penny.setColor(Qt::black);
+    painter.setPen(penny);
 
     // Draw primary pixmap
     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
