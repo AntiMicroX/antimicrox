@@ -1623,3 +1623,13 @@ bool InputDevice::isGameController()
 {
     return false;
 }
+
+void InputDevice::propogateMouseCursorMoved(int mouseX, int mouseY, int elapsedX, int elapsedY)
+{
+    emit mouseCursorMoved(mouseX, mouseY, elapsedX, elapsedY);
+}
+
+void InputDevice::propogateMouseSpringMoved(int coordX, int coordY)
+{
+    emit mouseSpringMoved(coordX, coordY);
+}

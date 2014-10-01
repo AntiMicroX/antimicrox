@@ -227,3 +227,33 @@ void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
         ui->sensitivityDoubleSpinBox->setEnabled(false);
     }
 }
+
+
+void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsedX, int elapsedY)
+{
+    if (lastMouseStatUpdate.elapsed() > 100 && elapsedX > 0 && elapsedY > 0)
+    {
+        QString tempX("%1 (%2 pps)");
+        QString tempY("%1 (%2 pps)");
+
+        mouseX = abs(mouseX);
+        mouseY = abs(mouseY);
+
+        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000/elapsedX)));
+        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000/elapsedY)));
+        lastMouseStatUpdate.start();
+    }
+}
+
+void MouseSettingsDialog::updateMouseSpringStatusLabels(int coordX, int coordY)
+{
+    if (lastMouseStatUpdate.elapsed() > 100)
+    {
+        QString tempX("%1");
+        QString tempY("%1");
+
+        ui->mouseStatusXLabel->setText(tempX.arg(coordX));
+        ui->mouseStatusYLabel->setText(tempY.arg(coordY));
+        lastMouseStatUpdate.start();
+    }
+}

@@ -1,6 +1,7 @@
 #include "mousebuttonsettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <inputdevice.h>
 #include <setjoystick.h>
 
 MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget *parent) :
@@ -63,6 +64,15 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedX(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedY(int)));
+
+    SetJoystick *set = button->getParentSet();
+    if (set && set->getInputDevice())
+    {
+        InputDevice *device = set->getInputDevice();
+        connect(device, SIGNAL(mouseCursorMoved(int,int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int,int)));
+        connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
+        lastMouseStatUpdate.start();
+    }
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)

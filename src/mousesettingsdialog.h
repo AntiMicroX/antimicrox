@@ -2,6 +2,7 @@
 #define MOUSESETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QTime>
 
 #include "joybutton.h"
 
@@ -21,6 +22,7 @@ protected:
     void updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve);
     JoyButton::JoyMouseCurve getMouseCurveForIndex(int index);
 
+    QTime lastMouseStatUpdate;
     Ui::MouseSettingsDialog *ui;
 
 public slots:
@@ -38,6 +40,10 @@ public slots:
 
     virtual void changeMouseMode(int index) = 0;
     virtual void changeMouseCurve(int index) = 0;
+
+protected slots:
+    void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsedX, int elapsedY);
+    void updateMouseSpringStatusLabels(int coordX, int coordY);
 };
 
 #endif // MOUSESETTINGSDIALOG_H

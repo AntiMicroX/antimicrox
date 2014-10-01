@@ -183,7 +183,7 @@ protected:
     typedef struct mouseCursorInfo
     {
         JoyButtonSlot *slot;
-        unsigned int code;
+        int code;
     } mouseCursorInfo;
 
     // Used to denote whether the actual joypad button is pressed
@@ -247,6 +247,7 @@ protected:
     QTime keyPressHold;
     QTime buttonDelay;
     QTime turboHold;
+    QTime lastMouseTime;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
@@ -311,6 +312,8 @@ signals:
     void buttonNameChanged();
     void propertyUpdated();
     void activeZoneChanged();
+    void mouseCursorMoved(int mouseX, int mouseY, int elapsedX, int elapsedY);
+    void mouseSpringMoved(int mouseX, int mouseY);
 
 public slots:
     void setTurboInterval (int interval);

@@ -165,7 +165,7 @@ void sendevent(int code1, int code2)
 #endif
 }
 
-void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring)
+void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring, int* const mousePosX, int* const mousePosY)
 {
     if (!mouseHelperObj)
     {
@@ -177,8 +177,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
     if ((fullSpring->displacementX >= -2.0 && fullSpring->displacementX <= 1.0 &&
         fullSpring->displacementY >= -2.0 && fullSpring->displacementY <= 1.0) ||
-        (relativeSpring->displacementX >= -2.0 && relativeSpring->displacementX <= 1.0 &&
-        relativeSpring->displacementY >= -2.0 && relativeSpring->displacementY <= 1.0))
+        (relativeSpring && (relativeSpring->displacementX >= -2.0 && relativeSpring->displacementX <= 1.0 &&
+        relativeSpring->displacementY >= -2.0 && relativeSpring->displacementY <= 1.0)))
     {
         int xmovecoor = 0;
         int ymovecoor = 0;
@@ -287,11 +287,21 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             ymovecoor += yRelativeMoovCoor;
         }
 
+        //qDebug() << "XMOVECOOR: " << xmovecoor;
+        //qDebug() << "YMOVECOOR: " << ymovecoor;
+
+        if (mousePosX)
+        {
+            *mousePosX = xmovecoor;
+        }
+
+        if (mousePosY)
+        {
+            *mousePosY = ymovecoor;
+        }
+
         if (xmovecoor != currentMouseX || ymovecoor != currentMouseY)
         {
-            //qDebug() << "XMOVECOOR: " << xmovecoor;
-            //qDebug() << "YMOVECOOR: " << ymovecoor;
-
             double diffx = abs(currentMouseX - xmovecoor);
             double diffy = abs(currentMouseY - ymovecoor);
 
@@ -309,10 +319,10 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
-
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
 #endif
+
             }
             else if (!mouseHelperObj->springMouseMoving && relativeSpring &&
                 (relativeSpring->displacementX >= -1.0 || relativeSpring->displacementY >= -1.0) &&
@@ -359,7 +369,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #elif defined(Q_OS_WIN)
                 finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
 #endif
-
 
                 mouseHelperObj->mouseTimer.start(8);
             }

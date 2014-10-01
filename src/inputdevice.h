@@ -124,6 +124,8 @@ signals:
     void profileUpdated();
     void propertyUpdated();
     void profileNameEdited(QString text);
+    void mouseCursorMoved(int mouseX, int mouseY, int elapsedX, int elapsedY);
+    void mouseSpringMoved(int coordX, int coordY);
 
 public slots:
     void reset();
@@ -137,6 +139,8 @@ public slots:
     void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
     void setProfileName(QString value);
+    void propogateMouseCursorMoved(int mouseX, int mouseY, int elapsedX, int elapsedY);
+    void propogateMouseSpringMoved(int coordX, int coordY);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

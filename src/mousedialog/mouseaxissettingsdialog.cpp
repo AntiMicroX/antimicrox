@@ -1,6 +1,7 @@
 #include "mouseaxissettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <inputdevice.h>
 #include <setjoystick.h>
 
 MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent) :
@@ -61,6 +62,15 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
+
+    SetJoystick *set = axis->getParentSet();
+    if (set && set->getInputDevice())
+    {
+        InputDevice *device = set->getInputDevice();
+        connect(device, SIGNAL(mouseCursorMoved(int,int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int,int)));
+        connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
+        lastMouseStatUpdate.start();
+    }
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
