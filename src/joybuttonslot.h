@@ -38,6 +38,8 @@ public:
     QString getSlotString();
     void setSlotCode(int code, unsigned int alias);
     unsigned int getSlotCodeAlias();
+    void setPreviousDistance(double distance);
+    double getPreviousDistance();
     bool isModifierKey();
 
     virtual void readConfig(QXmlStreamReader *xml);
@@ -51,6 +53,7 @@ protected:
     unsigned int qkeyaliasCode;
     JoySlotInputAction mode;
     double distance;
+    double previousDistance;
     QTime *mouseInterval;
 
 signals:

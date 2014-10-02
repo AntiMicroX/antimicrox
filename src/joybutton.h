@@ -247,7 +247,7 @@ protected:
     QTime keyPressHold;
     QTime buttonDelay;
     QTime turboHold;
-    QTime lastMouseTime;
+    static QTime lastMouseTime;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;

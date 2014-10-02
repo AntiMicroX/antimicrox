@@ -14,6 +14,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     deviceCode = 0;
     mode = JoyKeyboard;
     distance = 0.0;
+    previousDistance = 0.0;
     qkeyaliasCode = 0;
     mouseInterval = new QTime();
 }
@@ -504,6 +505,16 @@ QString JoyButtonSlot::getSlotString()
     }
 
     return newlabel;
+}
+
+void JoyButtonSlot::setPreviousDistance(double distance)
+{
+    previousDistance = distance;
+}
+
+double JoyButtonSlot::getPreviousDistance()
+{
+    return previousDistance;
 }
 
 bool JoyButtonSlot::isModifierKey()

@@ -56,6 +56,8 @@ QTimer JoyButton::springDelayTimer;
 QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
+QTime JoyButton::lastMouseTime;
+
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -64,6 +66,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
     this->parentSet = parentSet;
+    lastMouseTime.start();
 
     connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
@@ -673,11 +676,21 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
+                if (mouseEventQueue.length() == 0)
+                {
+                    lastMouseTime.restart();
+                }
+
                 slot->getMouseInterval()->restart();
-                currentMouseEvent = slot;
+                //currentMouseEvent = slot;
                 activeSlots.append(slot);
-                mouseEvent();
-                currentMouseEvent = 0;
+                mouseEventQueue.enqueue(slot);
+                //mouseEvent();
+                //currentMouseEvent = 0;
+                if (!mouseEventTimer.isActive())
+                {
+                    mouseEventTimer.start(0);
+                }
             }
             else if (mode == JoyButtonSlot::JoyPause)
             {
@@ -917,29 +930,33 @@ void JoyButton::mouseEvent()
 
                     int distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                    distance = (int)floor(sumDist + 0.5);
+                    //distance = sumDist;
+                    //qDebug() << "DISTANCE: " << distance;
+
+                    //double prevDistance = buttonslot->getPreviousDistance();
+                    //qDebug() << "PREV: " << prevDistance;
+                    //if (smoothing)
+                    //{
+                        //distance = (int)floor((distance - prevDistance) * 0.1 + prevDistance);
+                        //qDebug() << "NOW: " << distance;
+                    //}
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {
-                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                        distance = (int)floor(sumDist + 0.5);
                         mouse1 = distance;
                     }
                     else if (mousedirection == JoyButtonSlot::MouseLeft)
                     {
-                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                        distance = (int)floor(sumDist + 0.5);
                         mouse1 = -distance;
                     }
                     else if (mousedirection == JoyButtonSlot::MouseDown)
                     {
-                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                        distance = (int)floor(sumDist + 0.5);
                         mouse2 = distance;
                     }
                     else if (mousedirection == JoyButtonSlot::MouseUp)
                     {
-                        sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                        distance = (int)floor(sumDist + 0.5);
                         mouse2 = -distance;
                     }
 
@@ -962,6 +979,8 @@ void JoyButton::mouseEvent()
 
                         //sendevent(mouse1, mouse2);
                         sumDist -= distance;
+                        //buttonslot->setPreviousDistance(distance);
+
                         if (smoothing)
                         {
                             sumDist *= SMOOTHINGFACTOR;
@@ -969,6 +988,11 @@ void JoyButton::mouseEvent()
 
                         mouseEventTimer.stop();
                     }
+                    /*else
+                    {
+                        buttonslot->setPreviousDistance(0.0);
+                    }
+                    */
 
                     buttonslot->setDistance(sumDist);
                 }
@@ -1051,15 +1075,22 @@ void JoyButton::mouseEvent()
             {
                 mouseEventTimer.start(5);
             }
+
+            if (!cursorDelayTimer.isActive())
+            {
+                lastMouseTime.restart();
+            }
         }
         else
         {
             mouseEventTimer.stop();
+            lastMouseTime.restart();
         }
     }
     else
     {
         mouseEventTimer.stop();
+        lastMouseTime.restart();
     }
 }
 
@@ -3490,8 +3521,8 @@ void JoyButton::moveMouseCursor()
 {
     int finalx = 0;
     int finaly = 0;
-    int xTime = 0;
-    int yTime = 0;
+    int xTime = lastMouseTime.elapsed();
+    int yTime = lastMouseTime.elapsed();
 
     if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
         cursorXSpeeds.length() > 0)
@@ -3503,16 +3534,15 @@ void JoyButton::moveMouseCursor()
             mouseCursorInfo infoY = cursorYSpeeds.takeFirst();
             finalx += infoX.code;
             finaly += infoY.code;
-            xTime = qMax(xTime, infoX.slot->getMouseInterval()->elapsed());
-            yTime = qMax(yTime, infoY.slot->getMouseInterval()->elapsed());
+
             infoX.slot->getMouseInterval()->restart();
             infoY.slot->getMouseInterval()->restart();
         }
 
         sendevent(finalx, finaly);
         mouseCursorMoved(finalx, finaly, xTime, yTime);
-        cursorDelayTimer.start(5);
-        lastMouseTime.start();
+        //cursorDelayTimer.start(5);
+        cursorDelayTimer.stop();
     }
     else
     {
@@ -3521,6 +3551,7 @@ void JoyButton::moveMouseCursor()
 
     cursorXSpeeds.clear();
     cursorYSpeeds.clear();
+    lastMouseTime.restart();
 }
 
 void JoyButton::moveSpringMouse()
@@ -3616,7 +3647,8 @@ void JoyButton::moveSpringMouse()
         }
 
         mouseSpringMoved(realMouseX, realMouseY);
-        springDelayTimer.start(5);
+        //springDelayTimer.start(5);
+        springDelayTimer.stop();
     }
     else
     {

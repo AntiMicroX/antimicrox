@@ -233,14 +233,11 @@ void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, 
 {
     if (lastMouseStatUpdate.elapsed() > 100 && elapsedX > 0 && elapsedY > 0)
     {
-        QString tempX("%1 (%2 pps)");
-        QString tempY("%1 (%2 pps)");
+        QString tempX("%1 (%2 pps) (%3 ms)");
+        QString tempY("%1 (%2 pps) (%3 ms)");
 
-        mouseX = abs(mouseX);
-        mouseY = abs(mouseY);
-
-        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000/elapsedX)));
-        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000/elapsedY)));
+        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000/elapsedX)).arg(elapsedX));
+        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000/elapsedY)).arg(elapsedY));
         lastMouseStatUpdate.start();
     }
 }
