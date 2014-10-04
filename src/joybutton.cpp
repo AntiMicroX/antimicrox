@@ -37,7 +37,6 @@ const int JoyButton::DEFAULTCYCLERESET = 0;
 const bool JoyButton::DEFAULTRELATIVESPRING = false;
 const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 
-
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
 QHash<unsigned int, int> JoyButton::activeMouseButtons;
@@ -56,6 +55,7 @@ QTimer JoyButton::springDelayTimer;
 QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
+// Keeps timestamp of last mouse event.
 QTime JoyButton::lastMouseTime;
 
 
@@ -68,7 +68,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     this->parentSet = parentSet;
     lastMouseTime.start();
 
-    connect(&pauseTimer, SIGNAL(timeout()), this, SLOT(pauseEvent()));
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
     connect(&keyPressTimer, SIGNAL(timeout()), this, SLOT(keyPressEvent()));
     connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
@@ -81,9 +80,10 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
     connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
+
     if (parentSet && parentSet->getInputDevice())
     {
-        connect(this, SIGNAL(mouseCursorMoved(int,int,int,int)), parentSet->getInputDevice(), SLOT(propogateMouseCursorMoved(int,int,int,int)));
+        connect(this, SIGNAL(mouseCursorMoved(int,int,int)), parentSet->getInputDevice(), SLOT(propogateMouseCursorMoved(int,int,int)));
         connect(this, SIGNAL(mouseSpringMoved(int,int)), parentSet->getInputDevice(), SLOT(propogateMouseSpringMoved(int,int)));
     }
 
@@ -303,11 +303,19 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
     }
 }
 
+/**
+ * @brief Get 0 indexed number of button
+ * @return 0 indexed button index number
+ */
 int JoyButton::getJoyNumber()
 {
     return index;
 }
 
+/**
+ * @brief Get a 1 indexed number of button
+ * @return 1 indexed button index number
+ */
 int JoyButton::getRealJoyNumber()
 {
     return index + 1;
@@ -351,7 +359,6 @@ void JoyButton::reset()
     disconnectPropertyUpdatedConnections();
 
     turboTimer.stop();
-    pauseTimer.stop();
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
@@ -534,7 +541,6 @@ bool JoyButton::distanceEvent()
                     // Distance slot is currently active.
                     // Release slots, return iterator to
                     // the front, and nullify currentDistance
-                    pauseTimer.stop();
                     pauseWaitTimer.stop();
                     holdTimer.stop();
 
@@ -562,7 +568,6 @@ bool JoyButton::distanceEvent()
                     // Deactive slots in previous distance range and
                     // activate new slots. Set currentDistance to
                     // new slot.
-                    pauseTimer.stop();
                     pauseWaitTimer.stop();
                     holdTimer.stop();
 
@@ -708,7 +713,6 @@ void JoyButton::activateSlots()
                 {
                     currentPause = slot;
                     pauseHold.restart();
-                    //pauseTimer.start(0);
                     inpauseHold.restart();
                     pauseWaitTimer.start(0);
                     exit = true;
@@ -2235,33 +2239,6 @@ int JoyButton::getOriginSet()
     return originset;
 }
 
-/**
- * @brief DEPRECATED. CURRENTLY NOT USED. TODO: CHECK IF METHOD SHOULD
- *     BE REMOVED
- */
-void JoyButton::pauseEvent()
-{
-    if (currentPause)
-    {
-        if (pauseHold.elapsed() > 100)
-        {
-            releaseActiveSlots();
-            inpauseHold.restart();
-            pauseTimer.stop();
-            pauseWaitTimer.start(0);
-        }
-        else
-        {
-            pauseTimer.start(10);
-        }
-    }
-    else
-    {
-        pauseTimer.stop();
-        pauseWaitTimer.stop();
-    }
-}
-
 void JoyButton::pauseWaitEvent()
 {
     if (currentPause)
@@ -2628,7 +2605,6 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 {
     quitEvent = false;
 
-    pauseTimer.stop();
     pauseWaitTimer.stop();
     holdTimer.stop();
     createDeskTimer.stop();
@@ -2882,7 +2858,6 @@ void JoyButton::removeAssignedSlot(int index)
 void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 {
     turboTimer.stop();
-    pauseTimer.stop();
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
@@ -2931,7 +2906,6 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 void JoyButton::eventReset()
 {
     turboTimer.stop();
-    pauseTimer.stop();
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
@@ -3517,12 +3491,15 @@ QString JoyButton::getDefaultButtonName()
     return defaultButtonName;
 }
 
+/**
+ * @brief Take cursor mouse information provided by all buttons and
+ *     send a cursor mode mouse event to the display server.
+ */
 void JoyButton::moveMouseCursor()
 {
     int finalx = 0;
     int finaly = 0;
-    int xTime = lastMouseTime.elapsed();
-    int yTime = lastMouseTime.elapsed();
+    int elapsedTime = lastMouseTime.elapsed();
 
     if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
         cursorXSpeeds.length() > 0)
@@ -3540,7 +3517,7 @@ void JoyButton::moveMouseCursor()
         }
 
         sendevent(finalx, finaly);
-        mouseCursorMoved(finalx, finaly, xTime, yTime);
+        mouseCursorMoved(finalx, finaly, elapsedTime);
         //cursorDelayTimer.start(5);
         cursorDelayTimer.stop();
     }
@@ -3554,6 +3531,10 @@ void JoyButton::moveMouseCursor()
     lastMouseTime.restart();
 }
 
+/**
+ * @brief Take spring mouse information provided by all buttons and
+ *     send a spring mode mouse event to the display server.
+ */
 void JoyButton::moveSpringMouse()
 {
     PadderCommon::springModeInfo fullSpring = {
@@ -3704,6 +3685,10 @@ void JoyButton::keyPressEvent()
     }
 }
 
+/**
+ * @brief TODO: CHECK IF METHOD WOULD BE USEFUL. CURRENTLY NOT USED.
+ * @return Result
+ */
 bool JoyButton::checkForDelaySequence()
 {
     bool result = false;
@@ -3759,6 +3744,12 @@ void JoyButton::checkForPressedSetChange()
     }
 }
 
+/**
+ * @brief Obtain the appropriate key press time for the current event.
+ *     Order of preference: active key press time slot value ->
+ *     profile value -> program default value.
+ * @return Appropriate key press time for current event.
+ */
 unsigned int JoyButton::getPreferredKeyPressTime()
 {
     unsigned int tempPressTime = InputDevice::DEFAULTKEYPRESSTIME;
@@ -3807,6 +3798,11 @@ bool JoyButton::isCycleResetActive()
     return cycleResetActive;
 }
 
+/**
+ * @brief Send key event needed to fake key repeating in Windows.
+ *     Method is not used in Linux as key repeating is taken care of
+ *     by X instead.
+ */
 void JoyButton::repeatKeysEvent()
 {
     if (!activeSlots.isEmpty() && lastActiveKey && activeSlots.contains(lastActiveKey))
@@ -3858,6 +3854,11 @@ bool JoyButton::isRelativeSpring()
     return relativeSpring;
 }
 
+/**
+ * @brief Copy assignments and properties from one button to another.
+ *     Used for set copying.
+ * @param Button instance that should be modified.
+ */
 void JoyButton::copyAssignments(JoyButton *destButton)
 {
     destButton->eventReset();

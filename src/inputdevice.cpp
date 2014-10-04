@@ -1624,11 +1624,22 @@ bool InputDevice::isGameController()
     return false;
 }
 
-void InputDevice::propogateMouseCursorMoved(int mouseX, int mouseY, int elapsedX, int elapsedY)
+/**
+ * @brief Propogate information about cursor movement for an event.
+ * @param X distance in pixels
+ * @param Y distance in pixels
+ * @param Time elapsed for generated event
+ */
+void InputDevice::propogateMouseCursorMoved(int mouseX, int mouseY, int elapsed)
 {
-    emit mouseCursorMoved(mouseX, mouseY, elapsedX, elapsedY);
+    emit mouseCursorMoved(mouseX, mouseY, elapsed);
 }
 
+/**
+ * @brief Propogate information about spring mouse placement on screen.
+ * @param X coordinate of cursor
+ * @param Y coordinate of cursor
+ */
 void InputDevice::propogateMouseSpringMoved(int coordX, int coordY)
 {
     emit mouseSpringMoved(coordX, coordY);

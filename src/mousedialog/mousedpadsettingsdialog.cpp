@@ -67,7 +67,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     if (set && set->getInputDevice())
     {
         InputDevice *device = set->getInputDevice();
-        connect(device, SIGNAL(mouseCursorMoved(int,int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int,int)));
+        connect(device, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
         connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
         lastMouseStatUpdate.start();
     }

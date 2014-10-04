@@ -42,7 +42,7 @@ public slots:
     virtual void changeMouseCurve(int index) = 0;
 
 protected slots:
-    void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsedX, int elapsedY);
+    void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed);
     void updateMouseSpringStatusLabels(int coordX, int coordY);
 };
 

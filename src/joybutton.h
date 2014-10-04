@@ -312,7 +312,7 @@ signals:
     void buttonNameChanged();
     void propertyUpdated();
     void activeZoneChanged();
-    void mouseCursorMoved(int mouseX, int mouseY, int elapsedX, int elapsedY);
+    void mouseCursorMoved(int mouseX, int mouseY, int elapsed);
     void mouseSpringMoved(int mouseX, int mouseY);
 
 public slots:
@@ -357,7 +357,6 @@ private slots:
     void activateSlots();
     void waitForDeskEvent();
     void waitForReleaseDeskEvent();
-    void pauseEvent();
     void holdEvent();
     void delayEvent();
     void repeatKeysEvent();

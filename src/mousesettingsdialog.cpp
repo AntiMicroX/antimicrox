@@ -228,23 +228,35 @@ void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
     }
 }
 
-
-void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsedX, int elapsedY)
+/**
+ * @brief Update mouse status labels with cursor mouse information provided by
+ *      an InputDevice.
+ * @param X distance in pixels
+ * @param Y distance in pixels
+ * @param Time elapsed for generated event
+ */
+void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed)
 {
-    if (lastMouseStatUpdate.elapsed() > 100 && elapsedX > 0 && elapsedY > 0)
+    if (lastMouseStatUpdate.elapsed() >= 100 && elapsed > 0)
     {
         QString tempX("%1 (%2 pps) (%3 ms)");
         QString tempY("%1 (%2 pps) (%3 ms)");
 
-        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000/elapsedX)).arg(elapsedX));
-        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000/elapsedY)).arg(elapsedY));
+        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000/elapsed)).arg(elapsed));
+        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000/elapsed)).arg(elapsed));
         lastMouseStatUpdate.start();
     }
 }
 
+/**
+ * @brief Update mouse status labels with spring mouse information
+ *     provided by an InputDevice.
+ * @param X coordinate of cursor
+ * @param Y coordinate of cursor
+ */
 void MouseSettingsDialog::updateMouseSpringStatusLabels(int coordX, int coordY)
 {
-    if (lastMouseStatUpdate.elapsed() > 100)
+    if (lastMouseStatUpdate.elapsed() >= 100)
     {
         QString tempX("%1");
         QString tempY("%1");
