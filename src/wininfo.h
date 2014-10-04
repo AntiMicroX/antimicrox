@@ -20,6 +20,8 @@ public:
     static bool containsFileAssociationinRegistry();
     static void writeFileAssocationToRegistry();
     static void removeFileAssociationFromRegistry();
+    static bool IsRunningAsAdmin();
+    static bool elevateAntiMicro();
 
 protected:
     explicit WinInfo(QObject *parent = 0);

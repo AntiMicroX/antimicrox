@@ -118,6 +118,7 @@ private slots:
 
 #ifdef Q_OS_WIN
     void checkKeyRepeatOptions();
+    void restartAsElevated();
 #endif
 
 #ifdef USE_SDL_2
