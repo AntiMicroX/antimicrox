@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <unistd.h>
 
 #include "x11info.h"
@@ -332,6 +331,10 @@ Window X11Info::findClientWindow(Window &window)
     return finalwindow;
 }
 
+/**
+ * @brief Get QString representation of currently utilized X display.
+ * @return
+ */
 QString X11Info::getXDisplayString()
 {
     return _customDisplayString;

@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QLayoutItem>
 #include <QGroupBox>
 #include <QMessageBox>
@@ -475,7 +475,7 @@ void JoyTabWidget::openConfigFileDialog()
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
 
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*amgp *.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
 
     if (!filename.isNull() && !filename.isEmpty())
     {

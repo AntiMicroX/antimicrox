@@ -158,6 +158,12 @@ void WinInfo::populateKnownAliases()
     }
 }
 
+/**
+ * @brief Obtain a more specific virtual key (unsigned int) for a key grab event.
+ * @param Scan code obtained from a key grab event
+ * @param Virtual key obtained from a key grab event
+ * @return Corrected virtual key as an unsigned int
+ */
 unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virtualkey)
 {
     int mapvirtual = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
@@ -182,11 +188,18 @@ unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virt
     return finalvirtual;
 }
 
+/**
+ * @brief Convert a virtual key into the corresponding keyboard scan code.
+ * @param Windows virtual key
+ * @param Qt key alias
+ * @return Keyboard scan code as an unsigned int
+ */
 unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias)
 {
     int scancode = 0;
     if (virtualkey == VK_PAUSE)
     {
+        // MapVirtualKey does not work with VK_PAUSE
         scancode = 0x45;
     }
     else
@@ -210,6 +223,8 @@ unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned i
          }
          case VK_RETURN:
          {
+             // Remove ambiguity between Enter and Numpad Enter.
+             // In Windows, VK_RETURN is used for both.
              if (alias == Qt::Key_Enter)
              {
                  scancode |= EXTENDED_FLAG; // set extended bit
@@ -221,6 +236,11 @@ unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned i
     return scancode;
 }
 
+/**
+ * @brief Check foreground window (window in focus) and obtain the
+ *     corresponding exe file path.
+ * @return File path of executable
+ */
 QString WinInfo::getForegroundWindowExePath()
 {
     QString exePath;
@@ -308,6 +328,10 @@ void WinInfo::removeFileAssociationFromRegistry()
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
 
+/**
+ * @brief Attempt to elevate process using runas
+ * @return Execution status
+ */
 bool WinInfo::elevateAntiMicro()
 {
     QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
@@ -327,6 +351,10 @@ bool WinInfo::elevateAntiMicro()
     return result;
 }
 
+/**
+ * @brief Check if the application is running with administrative priviledges.
+ * @return Status indicating administrative priviledges
+ */
 bool WinInfo::IsRunningAsAdmin()
 {
     BOOL isAdmin = FALSE;

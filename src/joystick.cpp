@@ -1,6 +1,4 @@
-#include <typeinfo>
-
-#include <QDebug>
+//#include <QDebug>
 
 #include "joystick.h"
 
