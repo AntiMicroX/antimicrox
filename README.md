@@ -47,6 +47,14 @@ with SDL 2 support.
 
 [https://github.com/Ryochan7/antimicro-profiles](https://github.com/Ryochan7/antimicro-profiles)
 
+## Wiki
+
+An effort is now being done to utilize the Wiki section on GitHub more.
+Please check out the Wiki at [https://github.com/Ryochan7/antimicro/wiki](https://github.com/Ryochan7/antimicro/wiki)
+to read various help pages that have been created. The Wiki is currently
+open to all GitHub users so feel free to add a new page or modify an
+existing page.
+
 ## Build Dependencies
 
 This program is written in C++ using the [Qt](http://qt-project.org/)
