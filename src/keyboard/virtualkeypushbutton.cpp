@@ -35,6 +35,9 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
             temp = AntKeyMapper::returnVirtualKey(qkey);
         }*/
         temp = X11KeySymToKeycode(xcodestring);
+#ifdef WITH_XTEST
+        temp = X11KeyCodeToX11KeySym(temp);
+#endif
     }
 
     if (temp > 0)
@@ -102,6 +105,7 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("Control_R", tr("Ctrl (R)"));
         knownAliases.insert("Alt_L", tr("Alt (L)"));
         knownAliases.insert("Alt_R", tr("Alt (R)"));
+        knownAliases.insert("Multi_key", tr("Alt (R)"));
         knownAliases.insert("grave", tr("`"));
         knownAliases.insert("asciitilde", tr("~"));
         knownAliases.insert("minus", tr("-"));

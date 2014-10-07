@@ -181,7 +181,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey(tr("Super_L")));
     tempHBoxLayout->addWidget(createNewKey(tr("Alt_L")));
     tempHBoxLayout->addWidget(createNewKey(tr("space")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Alt_R")));
+    tempHBoxLayout->addWidget(createNewKey(tr("Multi_key")));
     tempHBoxLayout->addWidget(createNewKey(tr("Menu")));
     tempHBoxLayout->addWidget(createNewKey(tr("Control_R")));
     tempVBoxLayout->addLayout(tempHBoxLayout);
