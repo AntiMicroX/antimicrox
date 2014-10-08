@@ -54,6 +54,7 @@ public:
     QString getSetLabel();
 
     void copyAssignments(SetJoystick *destSet);
+    void raiseDeadZones();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
