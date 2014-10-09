@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <cmath>
 
 #include "joyaxisbutton.h"
@@ -191,8 +191,8 @@ void JoyAxisButton::turboEvent()
                 turboHold.start();
                 changeState = false;
                 lastDistance = getMouseDistanceFromDeadZone();
-                qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
-                qDebug() << "diff timer press: " << QString::number(timerInterval);
+                //qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
+                //qDebug() << "diff timer press: " << QString::number(timerInterval);
             }
             //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
             //{

@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 
 #include "setaxisthrottledialog.h"
 #include "ui_setaxisthrottledialog.h"

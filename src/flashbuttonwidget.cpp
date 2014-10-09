@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QStyle>
 #include <QFontMetrics>
 #include <QPainter>

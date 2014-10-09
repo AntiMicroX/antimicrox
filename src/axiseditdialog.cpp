@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QList>
 
 #include "axiseditdialog.h"

@@ -24,6 +24,7 @@ public:
 
 protected:
     explicit EventHandlerFactory(QObject *parent = 0);
+    ~EventHandlerFactory();
 
     BaseEventHandler *eventHandler;
     static EventHandlerFactory *instance;

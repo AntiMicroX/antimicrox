@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 
 #include "gamecontrollerset.h"
 #include <inputdevice.h>

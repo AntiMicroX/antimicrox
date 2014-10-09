@@ -17,6 +17,15 @@ EventHandlerFactory::EventHandlerFactory(QObject *parent) :
 #endif
 }
 
+EventHandlerFactory::~EventHandlerFactory()
+{
+    if (eventHandler)
+    {
+        delete eventHandler;
+        eventHandler = 0;
+    }
+}
+
 EventHandlerFactory* EventHandlerFactory::getInstance()
 {
     if (!instance)

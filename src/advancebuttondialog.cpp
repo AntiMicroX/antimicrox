@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <cmath>

@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QFont>
 #include <QSizePolicy>
 #include <QSpacerItem>

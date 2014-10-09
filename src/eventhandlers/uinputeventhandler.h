@@ -11,6 +11,7 @@ class UInputEventHandler : public BaseEventHandler
     Q_OBJECT
 public:
     explicit UInputEventHandler(QObject *parent = 0);
+    ~UInputEventHandler();
 
     virtual bool init();
     virtual bool cleanup();

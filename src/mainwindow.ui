@@ -209,6 +209,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <string>&amp;Help</string>
     </property>
     <addaction name="actionGitHubPage"/>
+    <addaction name="actionWiki"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
@@ -310,6 +311,11 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionStick_Pad_Assign">
    <property name="text">
     <string>Stick/Pad Assign</string>
+   </property>
+  </action>
+  <action name="actionWiki">
+   <property name="text">
+    <string>Wiki</string>
    </property>
   </action>
  </widget>

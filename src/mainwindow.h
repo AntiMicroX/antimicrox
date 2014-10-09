@@ -110,6 +110,7 @@ private slots:
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
     void openGitHubPage();
+    void openWikiPage();
     void propogateNameDisplayStatus(bool displayNames);
     void changeLanguage(QString language);
     void openMainSettingsDialog();

@@ -91,6 +91,7 @@ namespace PadderCommon
     const int LATESTCONFIGMIGRATIONVERSION = 5;
     const QString localSocketKey = "antimicroSignalListener";
     const QString githubProjectPage = "https://github.com/Ryochan7/antimicro";
+    const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);
     const int ANTIMICRO_MAJOR_VERSION = PROJECT_MAJOR_VERSION;
     const int ANTIMICRO_MINOR_VERSION = PROJECT_MINOR_VERSION;
     const int ANTIMICRO_PATCH_VERSION = PROJECT_PATCH_VERSION;

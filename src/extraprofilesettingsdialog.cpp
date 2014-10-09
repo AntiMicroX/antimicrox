@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 
 #include "extraprofilesettingsdialog.h"
 #include "ui_extraprofilesettingsdialog.h"

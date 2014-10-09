@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QHash>
 #include <QHashIterator>
 #include <QMapIterator>
@@ -227,6 +227,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
+    connect(ui->actionWiki, SIGNAL(triggered()), this, SLOT(openWikiPage()));
 
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
@@ -940,6 +941,11 @@ void MainWindow::openKeyCheckerDialog()
 void MainWindow::openGitHubPage()
 {
     QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage));
+}
+
+void MainWindow::openWikiPage()
+{
+    QDesktopServices::openUrl(QUrl(PadderCommon::wikiPage));
 }
 
 void MainWindow::unloadCurrentConfig(int joystickIndex)

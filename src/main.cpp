@@ -14,28 +14,24 @@
 #include <QMap>
 #include <QMapIterator>
 #include <QDir>
-#include <QDebug>
+//#include <QDebug>
 #include <QTranslator>
 #include <QLibraryInfo>
-#include <QSystemTrayIcon>
 #include <QTextStream>
 #include <QLocalSocket>
 #include <QSettings>
-#include <QMessageBox>
 
 #ifdef Q_OS_WIN
 #include <QStyle>
 #include <QStyleFactory>
 #endif
 
-#include "joystick.h"
+#include "inputdevice.h"
 #include "joybuttonslot.h"
 #include "inputdaemon.h"
 #include "common.h"
-#include "advancebuttondialog.h"
 #include "commandlineutility.h"
 #include "mainwindow.h"
-#include "inputdevice.h"
 #include "autoprofileinfo.h"
 #include "localantimicroserver.h"
 #include "antimicrosettings.h"
@@ -522,6 +518,8 @@ int main(int argc, char *argv[])
     bool status = EventHandlerFactory::getInstance()->handler()->init();
     if (!status)
     {
+        joypad_worker->quit();
+
         deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;

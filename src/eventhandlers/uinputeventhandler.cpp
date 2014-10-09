@@ -36,6 +36,11 @@ UInputEventHandler::UInputEventHandler(QObject *parent) :
     mouseFileHandler = 0;
 }
 
+UInputEventHandler::~UInputEventHandler()
+{
+    cleanup();
+}
+
 bool UInputEventHandler::init()
 {
     bool result = true;
@@ -190,11 +195,13 @@ bool UInputEventHandler::cleanup()
     if (keyboardFileHandler > 0)
     {
         closeUInputDevice(keyboardFileHandler);
+        keyboardFileHandler = 0;
     }
 
     if (mouseFileHandler > 0)
     {
         closeUInputDevice(mouseFileHandler);
+        mouseFileHandler = 0;
     }
 
     return true;

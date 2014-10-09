@@ -1,10 +1,10 @@
+//#include <QDebug>
 #include <QProgressBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QLabel>
 #include <QSpacerItem>
-#include <QDebug>
 
 #include "joystickstatuswindow.h"
 #include "ui_joystickstatuswindow.h"

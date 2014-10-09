@@ -1,5 +1,5 @@
-#include <QDataStream>
 //#include <QDebug>
+#include <QDataStream>
 
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h> // for XGrabPointer
