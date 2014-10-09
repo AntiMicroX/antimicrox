@@ -353,7 +353,7 @@ void UInputEventHandler::setMouseEvents(int filehandle)
 void UInputEventHandler::populateKeyCodes(int filehandle)
 {
     int result = 0;
-    for (unsigned int i=KEY_ESC; i < KEY_UNKNOWN; i++)
+    for (unsigned int i=KEY_ESC; i <= KEY_MICMUTE; i++)
     {
         result = ioctl(filehandle, UI_SET_KEYBIT, i);
     }

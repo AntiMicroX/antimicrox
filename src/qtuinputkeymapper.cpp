@@ -99,6 +99,7 @@ void QtUInputKeyMapper::populateSpecialCharHashes()
     qtKeyToVirtualKey[Qt::Key_Comma] = KEY_COMMA;
     qtKeyToVirtualKey[Qt::Key_Period] = KEY_DOT;
     qtKeyToVirtualKey[Qt::Key_Slash] = KEY_SLASH;
+    qtKeyToVirtualKey[Qt::Key_Backslash] = KEY_BACKSLASH;
 }
 
 void QtUInputKeyMapper::populateMappingHashes()
@@ -115,6 +116,10 @@ void QtUInputKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Pause] = KEY_PAUSE;
         qtKeyToVirtualKey[Qt::Key_Print] = KEY_PRINT;
         qtKeyToVirtualKey[Qt::Key_Space] = KEY_SPACE;
+        qtKeyToVirtualKey[Qt::Key_SysReq] = KEY_SYSRQ;
+        qtKeyToVirtualKey[Qt::Key_PowerOff] = KEY_POWER;
+        qtKeyToVirtualKey[Qt::Key_PowerDown] = KEY_POWER2;
+        qtKeyToVirtualKey[Qt::Key_ScrollLock] = KEY_SCREENLOCK;
 
         // cursor movement
         qtKeyToVirtualKey[Qt::Key_Home] = KEY_HOME;
@@ -356,6 +361,19 @@ void QtUInputKeyMapper::populateMappingHashes()
             iter.next();
             virtualKeyToQtKey[iter.value()] = iter.key();
         }
+
+        /*int j = 0;
+        for (int i=KEY_ESC; i < KEY_UNKNOWN; i++)
+        {
+            if (!virtualKeyToQtKey.contains(i) && i != 84)
+            {
+                qDebug() << "KEY MISSING: " << QString::number(i);
+                j++;
+            }
+        }
+
+        qDebug() << "TOTAL MISSING: " << j;
+        */
 
         // Override some entries.
         virtualKeyToQtKey[KEY_KP0] = AntKey_KP_0;
