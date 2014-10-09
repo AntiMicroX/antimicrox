@@ -116,10 +116,46 @@ void QtUInputKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Pause] = KEY_PAUSE;
         qtKeyToVirtualKey[Qt::Key_Print] = KEY_PRINT;
         qtKeyToVirtualKey[Qt::Key_Space] = KEY_SPACE;
+
         qtKeyToVirtualKey[Qt::Key_SysReq] = KEY_SYSRQ;
         qtKeyToVirtualKey[Qt::Key_PowerOff] = KEY_POWER;
-        qtKeyToVirtualKey[Qt::Key_PowerDown] = KEY_POWER2;
-        qtKeyToVirtualKey[Qt::Key_ScrollLock] = KEY_SCREENLOCK;
+        qtKeyToVirtualKey[Qt::Key_Stop] = KEY_STOP;
+        qtKeyToVirtualKey[Qt::Key_Refresh] = KEY_REFRESH;
+        qtKeyToVirtualKey[Qt::Key_Copy] = KEY_COPY;
+        qtKeyToVirtualKey[Qt::Key_Paste] = KEY_PASTE;
+        //qtKeyToVirtualKey[Qt::Key_Search] = KEY_FIND;
+        qtKeyToVirtualKey[Qt::Key_Cut] = KEY_CUT;
+        qtKeyToVirtualKey[Qt::Key_Sleep] = KEY_SLEEP;
+        //qtKeyToVirtualKey[Qt::Key_Calculator] = KEY_CALC;
+        qtKeyToVirtualKey[Qt::Key_Launch0] = KEY_COMPUTER;
+        qtKeyToVirtualKey[Qt::Key_Launch1] = KEY_CALC;
+        qtKeyToVirtualKey[Qt::Key_Launch2] = KEY_PROG1;
+        qtKeyToVirtualKey[Qt::Key_Launch3] = KEY_PROG2;
+        qtKeyToVirtualKey[Qt::Key_Launch4] = KEY_PROG3;
+        qtKeyToVirtualKey[Qt::Key_Launch5] = KEY_PROG4;
+        qtKeyToVirtualKey[Qt::Key_HomePage] = KEY_HOMEPAGE;
+        qtKeyToVirtualKey[Qt::Key_LaunchMail] = KEY_MAIL;
+        qtKeyToVirtualKey[Qt::Key_Back] = KEY_BACK;
+        qtKeyToVirtualKey[Qt::Key_Forward] = KEY_FORWARD;
+        qtKeyToVirtualKey[Qt::Key_Suspend] = KEY_SUSPEND;
+        qtKeyToVirtualKey[Qt::Key_Close] = KEY_CLOSE;
+        //qtKeyToVirtualKey[Qt::Key_Search] = KEY_SEARCH;
+        qtKeyToVirtualKey[Qt::Key_Camera] = KEY_CAMERA;
+        qtKeyToVirtualKey[Qt::Key_MonBrightnessUp] = KEY_BRIGHTNESSUP;
+        qtKeyToVirtualKey[Qt::Key_MonBrightnessDown] = KEY_BRIGHTNESSDOWN;
+        qtKeyToVirtualKey[Qt::Key_Send] = KEY_SEND;
+        qtKeyToVirtualKey[Qt::Key_Reply] = KEY_REPLY;
+        qtKeyToVirtualKey[Qt::Key_Forward] = KEY_FORWARDMAIL;
+        qtKeyToVirtualKey[Qt::Key_Save] = KEY_SAVE;
+        qtKeyToVirtualKey[Qt::Key_Documents] = KEY_DOCUMENTS;
+        qtKeyToVirtualKey[Qt::Key_Battery] = KEY_BATTERY;
+        qtKeyToVirtualKey[Qt::Key_Bluetooth] = KEY_BLUETOOTH;
+        qtKeyToVirtualKey[Qt::Key_WLAN] = KEY_WLAN;
+        qtKeyToVirtualKey[Qt::Key_Cancel] = KEY_CANCEL;
+        qtKeyToVirtualKey[Qt::Key_Shop] = KEY_SHOP;
+        qtKeyToVirtualKey[Qt::Key_Finance]  = KEY_FINANCE;
+        qtKeyToVirtualKey[Qt::Key_Question] = KEY_QUESTION;
+        qtKeyToVirtualKey[Qt::Key_BassBoost] = KEY_BASSBOOST;
 
         // cursor movement
         qtKeyToVirtualKey[Qt::Key_Home] = KEY_HOME;
@@ -160,27 +196,6 @@ void QtUInputKeyMapper::populateMappingHashes()
             qtKeyToVirtualKey[Qt::Key_1 + i] = KEY_1 + i;
         }
         qtKeyToVirtualKey[Qt::Key_0] = KEY_0;
-
-        // launch keys
-        qtKeyToVirtualKey[Qt::Key_LaunchMail] = KEY_MAIL;
-        /*qtKeyToVirtualKey[Qt::Key_Launch0] = XF86XK_MyComputer;
-        qtKeyToVirtualKey[Qt::Key_Launch1] = XF86XK_Calculator;
-        qtKeyToVirtualKey[Qt::Key_Standby] = XF86XK_Standby;
-
-        qtKeyToVirtualKey[Qt::Key_Launch2] = XF86XK_Launch0;
-        qtKeyToVirtualKey[Qt::Key_Launch3] = XF86XK_Launch1;
-        qtKeyToVirtualKey[Qt::Key_Launch4] = XF86XK_Launch2;
-        qtKeyToVirtualKey[Qt::Key_Launch5] = XF86XK_Launch3;
-        qtKeyToVirtualKey[Qt::Key_Launch6] = XF86XK_Launch4;
-        qtKeyToVirtualKey[Qt::Key_Launch7] = XF86XK_Launch5;
-        qtKeyToVirtualKey[Qt::Key_Launch8] = XF86XK_Launch6;
-        qtKeyToVirtualKey[Qt::Key_Launch9] = XF86XK_Launch7;
-        qtKeyToVirtualKey[Qt::Key_LaunchA] = XF86XK_Launch8;
-        qtKeyToVirtualKey[Qt::Key_LaunchB] = XF86XK_Launch9;
-        qtKeyToVirtualKey[Qt::Key_LaunchC] = XF86XK_LaunchA;
-        qtKeyToVirtualKey[Qt::Key_LaunchD] = XF86XK_LaunchB;
-        qtKeyToVirtualKey[Qt::Key_LaunchE] = XF86XK_LaunchC;
-        qtKeyToVirtualKey[Qt::Key_LaunchF] = XF86XK_LaunchD;*/
 
         populateSpecialCharHashes();
         populateAlphaHashes();
@@ -268,27 +283,6 @@ void QtUInputKeyMapper::populateMappingHashes()
 
 #endif // XK_KOREAN
 
-        // dead keys
-        qtKeyToVirtualKey[Qt::Key_Dead_Grave] = XK_dead_grave;
-        qtKeyToVirtualKey[Qt::Key_Dead_Acute] = XK_dead_acute;
-        qtKeyToVirtualKey[Qt::Key_Dead_Circumflex] = XK_dead_circumflex;
-        qtKeyToVirtualKey[Qt::Key_Dead_Tilde] = XK_dead_tilde;
-        qtKeyToVirtualKey[Qt::Key_Dead_Macron] = XK_dead_macron;
-        qtKeyToVirtualKey[Qt::Key_Dead_Breve] = XK_dead_breve;
-        qtKeyToVirtualKey[Qt::Key_Dead_Abovedot] = XK_dead_abovedot;
-        qtKeyToVirtualKey[Qt::Key_Dead_Diaeresis] = XK_dead_diaeresis;
-        qtKeyToVirtualKey[Qt::Key_Dead_Abovering] = XK_dead_abovering;
-        qtKeyToVirtualKey[Qt::Key_Dead_Doubleacute] = XK_dead_doubleacute;
-        qtKeyToVirtualKey[Qt::Key_Dead_Caron] = XK_dead_caron;
-        qtKeyToVirtualKey[Qt::Key_Dead_Cedilla] = XK_dead_cedilla;
-        qtKeyToVirtualKey[Qt::Key_Dead_Ogonek] = XK_dead_ogonek;
-        qtKeyToVirtualKey[Qt::Key_Dead_Iota] = XK_dead_iota;
-        qtKeyToVirtualKey[Qt::Key_Dead_Voiced_Sound] = XK_dead_voiced_sound;
-        qtKeyToVirtualKey[Qt::Key_Dead_Semivoiced_Sound] = XK_dead_semivoiced_sound;
-        qtKeyToVirtualKey[Qt::Key_Dead_Belowdot] = XK_dead_belowdot;
-        qtKeyToVirtualKey[Qt::Key_Dead_Hook] = XK_dead_hook;
-        qtKeyToVirtualKey[Qt::Key_Dead_Horn] = XK_dead_horn;
-
         // Special multimedia keys
         // currently only tested with MS internet keyboard
 
@@ -302,55 +296,6 @@ void QtUInputKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_OpenUrl] = XF86XK_OpenURL;
         qtKeyToVirtualKey[Qt::Key_HomePage] = XF86XK_HomePage;
         qtKeyToVirtualKey[Qt::Key_Search] = XF86XK_Search;
-
-        // media keys
-        qtKeyToVirtualKey[Qt::Key_VolumeDown] = XF86XK_AudioLowerVolume;
-        qtKeyToVirtualKey[Qt::Key_VolumeMute] = XF86XK_AudioMute;
-        qtKeyToVirtualKey[Qt::Key_VolumeUp] = XF86XK_AudioRaiseVolume;
-        qtKeyToVirtualKey[Qt::Key_MediaPlay] = XF86XK_AudioPlay;
-        qtKeyToVirtualKey[Qt::Key_MediaStop] = XF86XK_AudioStop;
-        qtKeyToVirtualKey[Qt::Key_MediaPrevious] = XF86XK_AudioPrev;
-        qtKeyToVirtualKey[Qt::Key_MediaNext] = XF86XK_AudioNext;
-        qtKeyToVirtualKey[Qt::Key_MediaRecord] = XF86XK_AudioRecord;
-
-        // launch keys
-        qtKeyToVirtualKey[Qt::Key_LaunchMail] = XF86XK_Mail;
-        qtKeyToVirtualKey[Qt::Key_Launch0] = XF86XK_MyComputer;
-        qtKeyToVirtualKey[Qt::Key_Launch1] = XF86XK_Calculator;
-        qtKeyToVirtualKey[Qt::Key_Standby] = XF86XK_Standby;
-
-        qtKeyToVirtualKey[Qt::Key_Launch2] = XF86XK_Launch0;
-        qtKeyToVirtualKey[Qt::Key_Launch3] = XF86XK_Launch1;
-        qtKeyToVirtualKey[Qt::Key_Launch4] = XF86XK_Launch2;
-        qtKeyToVirtualKey[Qt::Key_Launch5] = XF86XK_Launch3;
-        qtKeyToVirtualKey[Qt::Key_Launch6] = XF86XK_Launch4;
-        qtKeyToVirtualKey[Qt::Key_Launch7] = XF86XK_Launch5;
-        qtKeyToVirtualKey[Qt::Key_Launch8] = XF86XK_Launch6;
-        qtKeyToVirtualKey[Qt::Key_Launch9] = XF86XK_Launch7;
-        qtKeyToVirtualKey[Qt::Key_LaunchA] = XF86XK_Launch8;
-        qtKeyToVirtualKey[Qt::Key_LaunchB] = XF86XK_Launch9;
-        qtKeyToVirtualKey[Qt::Key_LaunchC] = XF86XK_LaunchA;
-        qtKeyToVirtualKey[Qt::Key_LaunchD] = XF86XK_LaunchB;
-        qtKeyToVirtualKey[Qt::Key_LaunchE] = XF86XK_LaunchC;
-        qtKeyToVirtualKey[Qt::Key_LaunchF] = XF86XK_LaunchD;
-
-        // Map initial ASCII keys
-        for (int i=0; i <= (XK_at - XK_space); i++)
-        {
-            qtKeyToVirtualKey[Qt::Key_Space + i] = XK_space + i;
-        }
-
-        // Map [ to ` ASCII keys
-        for (int i=0; i <= (XK_grave - XK_bracketleft); i++)
-        {
-            qtKeyToVirtualKey[Qt::Key_BracketLeft + i] = XK_bracketleft + i;
-        }
-
-        // Map { to ~ ASCII keys
-        for (int i=0; i <= (XK_asciitilde - XK_braceleft); i++)
-        {
-            qtKeyToVirtualKey[Qt::Key_BraceLeft + i] = XK_braceleft + i;
-        }
         */
 
         // Populate other hash. Flip key and value so mapping
@@ -386,5 +331,6 @@ void QtUInputKeyMapper::populateMappingHashes()
         virtualKeyToQtKey[KEY_KP7] = AntKey_KP_7;
         virtualKeyToQtKey[KEY_KP8] = AntKey_KP_8;
         virtualKeyToQtKey[KEY_KP9] = AntKey_KP_9;
+        virtualKeyToQtKey[KEY_CALC] = Qt::Key_Launch1;
     }
 }
