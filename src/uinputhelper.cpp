@@ -131,6 +131,7 @@ void UInputHelper::populateKnownAliases()
 
         knownAliasesX11SymVK.insert("Scroll_Lock", KEY_SCROLLLOCK);
         knownAliasesX11SymVK.insert("Pause", KEY_PAUSE);
+        knownAliasesX11SymVK.insert("Multi_key", KEY_RIGHTALT);
     }
 
     if (knownAliasesVKStrings.isEmpty())

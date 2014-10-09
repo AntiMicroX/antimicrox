@@ -84,6 +84,11 @@ public:
     int getKeyRepeatRate();
 
     QString getProfileName();
+    bool hasCalibrationThrottle(int axisNum);
+    JoyAxis::ThrottleTypes getCalibrationThrottle(int axisNum);
+    void setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
+
+    void transferReset();
 
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
@@ -95,6 +100,7 @@ protected:
 
     SDL_Joystick* joyhandle;
     QHash<int, SetJoystick*> joystick_sets;
+    QHash<int, JoyAxis::ThrottleTypes> cali;
     int active_set;
     int joyNumber;
     int buttonDownCount;

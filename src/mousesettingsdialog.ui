@@ -548,7 +548,7 @@ mouse position set by a non-relative spring.</string>
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_5">
+           <spacer name="verticalSpacer_3">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>

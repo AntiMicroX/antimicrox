@@ -665,8 +665,9 @@ void JoyTabWidget::resetJoystick()
         QString filename = configBox->itemData(currentIndex).toString();
 
         removeCurrentButtons();
-        joystick->reset();
+        //joystick->reset();
         joystick->revertProfileEdited();
+        joystick->transferReset();
 
         XMLConfigReader reader;
         reader.setFileName(filename);
@@ -708,8 +709,9 @@ void JoyTabWidget::resetJoystick()
     {
         configBox->setItemText(0, tr("<New>"));
         removeCurrentButtons();
-        joystick->reset();
         joystick->revertProfileEdited();
+        //joystick->reset();
+        joystick->transferReset();
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
@@ -871,7 +873,8 @@ void JoyTabWidget::changeJoyConfig(int index)
     else if (index == 0)
     {
         removeCurrentButtons();
-        joystick->reset();
+        //joystick->reset();
+        joystick->transferReset();
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
@@ -1022,7 +1025,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         }
     }
 
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
 
     QString lastfile;
 
@@ -1551,8 +1554,8 @@ void JoyTabWidget::disconnectMainComboBoxEvents()
 
 void JoyTabWidget::reconnectMainComboBoxEvents()
 {
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()), Qt::QueuedConnection);
     connect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
 }
 

@@ -1,3 +1,4 @@
+//#include <QDebug>
 #include <QList>
 #include <QListIterator>
 #include <QTableWidgetItem>
@@ -170,6 +171,8 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
 void GameControllerMappingDialog::axisAssign(int axis, int value)
 {
     Q_UNUSED(value);
+
+    //qDebug() << value;
 
     if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {

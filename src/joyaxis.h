@@ -45,6 +45,7 @@ public:
 
     int getMaxZoneValue();
     void setThrottle(int value);
+    void setInitialThrottle(int value);
     int getThrottle();
     int getCurrentThrottledValue();
     int getCurrentRawValue();
@@ -122,6 +123,7 @@ protected:
     void adjustRange();
     int calculateThrottledValue(int value);
     void setCurrentRawValue(int value);
+    void performCalibration(int value);
 
     virtual bool readMainConfig(QXmlStreamReader *xml);
     virtual bool readButtonConfig(QXmlStreamReader *xml);

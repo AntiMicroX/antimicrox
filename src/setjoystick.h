@@ -55,6 +55,7 @@ public:
 
     void copyAssignments(SetJoystick *destSet);
     void raiseDeadZones();
+    void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

@@ -75,10 +75,18 @@ void SetJoystick::refreshAxes()
 {
     deleteAxes();
 
+    InputDevice *device = getInputDevice();
     for (int i=0; i < device->getNumberRawAxes(); i++)
     {
         JoyAxis *axis = new JoyAxis(i, index, this, this);
         axes.insert(i, axis);
+
+        if (device->hasCalibrationThrottle(i))
+        {
+            JoyAxis::ThrottleTypes throttle = device->getCalibrationThrottle(i);
+            axis->setInitialThrottle(throttle);
+        }
+
         enableAxisConnections(axis);
     }
 }
@@ -997,5 +1005,14 @@ void SetJoystick::raiseDeadZones()
     {
         JoyControlStick *temp = stickIter.next().value();
         temp->setDeadZone(20000);
+    }
+}
+
+void SetJoystick::setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle)
+{
+    if (axes.contains(axisNum))
+    {
+        JoyAxis *temp = axes.value(axisNum);
+        temp->setInitialThrottle(throttle);
     }
 }

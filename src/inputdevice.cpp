@@ -55,15 +55,99 @@ int InputDevice::getRealJoyNumber()
 
 void InputDevice::reset()
 {
+    resetButtonDownCount();
+    deviceEdited = false;
+    profileName = "";
+
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
         SetJoystick* set = joystick_sets.value(i);
         set->reset();
     }
+}
 
-    buttonDownCount = 0;
-    deviceEdited = false;
-    profileName = "";
+/**
+ * @brief Obtain current joystick element values, create new SetJoystick objects,
+ *     and then transfer most recent joystick element values to new
+ *     current set.
+ */
+void InputDevice::transferReset()
+{
+    QList<bool> buttonstates;
+    QList<int> axesstates;
+    QList<int> dpadstates;
+    QList<JoyControlStick::JoyStickDirections> stickstates;
+    QList<int> vdpadstates;
+
+    // Grab current states for all elements in old set
+    SetJoystick *current_set = joystick_sets.value(active_set);
+    for (int i = 0; i < current_set->getNumberButtons(); i++)
+    {
+        JoyButton *button = current_set->getJoyButton(i);
+        buttonstates.append(button->getButtonState());
+    }
+
+    for (int i = 0; i < current_set->getNumberAxes(); i++)
+    {
+        JoyAxis *axis = current_set->getJoyAxis(i);
+        axesstates.append(axis->getCurrentRawValue());
+    }
+
+    for (int i = 0; i < current_set->getNumberHats(); i++)
+    {
+        JoyDPad *dpad = current_set->getJoyDPad(i);
+        dpadstates.append(dpad->getCurrentDirection());
+    }
+
+    for (int i=0; i < current_set->getNumberSticks(); i++)
+    {
+        JoyControlStick *stick = current_set->getJoyStick(i);
+        stickstates.append(stick->getCurrentDirection());
+    }
+
+    for (int i = 0; i < current_set->getNumberVDPads(); i++)
+    {
+        JoyDPad *dpad = current_set->getVDPad(i);
+        vdpadstates.append(dpad->getCurrentDirection());
+    }
+
+    reset();
+
+    current_set = joystick_sets.value(active_set);
+    for (int i = 0; i < current_set->getNumberButtons(); i++)
+    {
+        bool value = buttonstates.at(i);
+        JoyButton *button = current_set->getJoyButton(i);
+        button->joyEvent(value);
+    }
+
+    /*for (int i=0; i < current_set->getNumberSticks(); i++)
+    {
+        JoyControlStick::JoyStickDirections value = stickstates.at(i);
+        JoyControlStick *stick = current_set->getJoyStick(i);
+    }
+    */
+
+    for (int i = 0; i < current_set->getNumberAxes(); i++)
+    {
+        int value = axesstates.at(i);
+        JoyAxis *axis = current_set->getJoyAxis(i);
+        axis->joyEvent(value);
+    }
+
+    /*for (int i = 0; i < current_set->getNumberVDPads(); i++)
+    {
+        int value = vdpadstates.at(i);
+        JoyDPad *dpad = current_set->getVDPad(i);
+    }
+    */
+
+    for (int i = 0; i < current_set->getNumberHats(); i++)
+    {
+        int value = dpadstates.at(i);
+        JoyDPad *dpad = current_set->getJoyDPad(i);
+        dpad->joyEvent(value);
+    }
 }
 
 void InputDevice::setActiveSetNumber(int index)
@@ -376,7 +460,8 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
-        reset();
+        //reset();
+        transferReset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
@@ -1406,7 +1491,7 @@ void InputDevice::updateSetVDPadNames(int vdpadIndex)
 void InputDevice::resetButtonDownCount()
 {
     buttonDownCount = 0;
-    released(0);
+    emit released(joyNumber);
 }
 
 void InputDevice::enableSetConnections(SetJoystick *setstick)
@@ -1643,4 +1728,33 @@ void InputDevice::propogateMouseCursorMoved(int mouseX, int mouseY, int elapsed)
 void InputDevice::propogateMouseSpringMoved(int coordX, int coordY)
 {
     emit mouseSpringMoved(coordX, coordY);
+}
+
+bool InputDevice::hasCalibrationThrottle(int axisNum)
+{
+    bool result = false;
+    if (cali.contains(axisNum))
+    {
+        result = true;
+    }
+
+    return result;
+}
+
+JoyAxis::ThrottleTypes InputDevice::getCalibrationThrottle(int axisNum)
+{
+    return cali.value(axisNum);
+}
+
+void InputDevice::setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes throttle)
+{
+    if (!cali.contains(axisNum))
+    {
+        for (int i=0; i < NUMBER_JOYSETS; i++)
+        {
+            joystick_sets.value(i)->setAxisThrottle(axisNum, throttle);
+        }
+
+        cali.insert(axisNum, throttle);
+    }
 }

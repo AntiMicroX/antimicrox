@@ -63,6 +63,14 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
     }
     else
     {
+        InputDevice *device = parentSet->getInputDevice();
+        if (!device->isGameController() && !device->hasCalibrationThrottle(index))
+        {
+            performCalibration(currentRawValue);
+            safezone = !inDeadZone(currentRawValue);
+            currentThrottledValue = calculateThrottledValue(value);
+        }
+
         if (safezone && !isActive)
         {
             isActive = eventActive = true;
@@ -273,6 +281,10 @@ int JoyAxis::getMaxZoneValue()
     return maxZoneValue;
 }
 
+/**
+ * @brief Set throttle value for axis.
+ * @param Current value for axis.
+ */
 void JoyAxis::setThrottle(int value)
 {
     if (value >= JoyAxis::NegativeHalfThrottle && value <= JoyAxis::PositiveHalfThrottle)
@@ -283,6 +295,24 @@ void JoyAxis::setThrottle(int value)
             adjustRange();
             emit throttleChanged();
             emit propertyUpdated();
+        }
+    }
+}
+
+/**
+ * @brief Set the initial calibrated throttle based on the first event
+ *     passed by SDL.
+ * @param Current value for axis.
+ */
+void JoyAxis::setInitialThrottle(int value)
+{
+    if (value >= JoyAxis::NegativeHalfThrottle && value <= JoyAxis::PositiveHalfThrottle)
+    {
+        if (value != throttle)
+        {
+            throttle = value;
+            adjustRange();
+            emit throttleChanged();
         }
     }
 }
@@ -640,7 +670,7 @@ bool JoyAxis::isDefault()
 /* Use this method to keep currentRawValue in the expected range.
  * SDL has a minimum axis value of -32768 which should be ignored to
  * ensure that JoyControlStick will not encounter overflow problems
- * on a 32bit machine.
+ * on a 32 bit machine.
  */
 void JoyAxis::setCurrentRawValue(int value)
 {
@@ -886,7 +916,7 @@ int JoyAxis::getDefaultMaxZone()
 
 JoyAxis::ThrottleTypes JoyAxis::getDefaultThrottle()
 {
-    return (ThrottleTypes)this->DEFAULTTHROTTLE;
+    return this->DEFAULTTHROTTLE;
 }
 
 SetJoystick* JoyAxis::getParentSet()
@@ -920,6 +950,25 @@ bool JoyAxis::isRelativeSpring()
     }
 
     return relative;
+}
+
+void JoyAxis::performCalibration(int value)
+{
+    InputDevice *device = parentSet->getInputDevice();
+    if (value <= -30000)
+    {
+        // Assume axis is a trigger. Set default throttle to Positive.
+        device->setCalibrationThrottle(index, PositiveThrottle);
+    }
+    else
+    {
+        // Ensure that default throttle is used when a device is reset.
+        device->setCalibrationThrottle(index, (JoyAxis::ThrottleTypes)throttle);
+    }
+    //else if (value >= -15000 && value <= 15000)
+    //{
+    //    device->setCalibrationThrottle(index, NormalThrottle);
+    //}
 }
 
 void JoyAxis::copyAssignments(JoyAxis *destAxis)
