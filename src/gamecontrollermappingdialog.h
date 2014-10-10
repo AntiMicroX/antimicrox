@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QHash>
+#include <QList>
 #include <QAbstractButton>
 
 #include "inputdevice.h"
@@ -38,6 +39,7 @@ protected:
     InputDevice *device;
     AntiMicroSettings *settings;
     unsigned int buttonGrabs;
+    QList<int> originalAxesDeadZones;
 
 private:
     Ui::GameControllerMappingDialog *ui;

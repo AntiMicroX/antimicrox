@@ -988,23 +988,57 @@ void SetJoystick::disconnectPropertyUpdatedConnection()
 }
 
 /**
- * @brief Raise the dead zones for axes and sticks. Used when launching
- *     directly into the controller mapping window.
+ * @brief Raise the dead zones for axes. Used when launching
+ *     the controller mapping window.
  */
-void SetJoystick::raiseDeadZones()
+void SetJoystick::raiseAxesDeadZones()
 {
     QHashIterator<int, JoyAxis*> axisIter(axes);
     while (axisIter.hasNext())
     {
         JoyAxis *temp = axisIter.next().value();
+        temp->disconnectPropertyUpdatedConnection();
         temp->setDeadZone(20000);
+        temp->establishPropertyUpdatedConnection();
     }
 
-    QHashIterator<int, JoyControlStick*> stickIter(sticks);
+    /*QHashIterator<int, JoyControlStick*> stickIter(sticks);
     while (stickIter.hasNext())
     {
         JoyControlStick *temp = stickIter.next().value();
+        temp->disconnectPropertyUpdatedConnection();
         temp->setDeadZone(20000);
+        temp->establishPropertyUpdatedConnection();
+    }
+    */
+}
+
+void SetJoystick::currentAxesDeadZones(QList<int> *axesDeadZones)
+{
+    QHashIterator<int, JoyAxis*> axisIter(axes);
+    while (axisIter.hasNext())
+    {
+        JoyAxis *temp = axisIter.next().value();
+        axesDeadZones->append(temp->getDeadZone());
+    }
+}
+
+void SetJoystick::setAxesDeadZones(QList<int> *axesDeadZones)
+{
+    QListIterator<int> iter(*axesDeadZones);
+    int axisNum = 0;
+    while (iter.hasNext())
+    {
+        int deadZoneValue = iter.next();
+        if (axes.contains(axisNum))
+        {
+            JoyAxis *temp = getJoyAxis(axisNum);
+            temp->disconnectPropertyUpdatedConnection();
+            temp->setDeadZone(deadZoneValue);
+            temp->establishPropertyUpdatedConnection();
+        }
+
+        axisNum++;
     }
 }
 

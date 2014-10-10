@@ -1294,7 +1294,6 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
 
             if (openAsMain)
             {
-                joystick->getActiveSetJoystick()->raiseDeadZones();
                 connect(dialog, SIGNAL(finished(int)), qApp, SLOT(quit()));
             }
             else

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHash>
+#include <QList>
 #include <QTimer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -54,7 +55,9 @@ public:
     QString getSetLabel();
 
     void copyAssignments(SetJoystick *destSet);
-    void raiseDeadZones();
+    void raiseAxesDeadZones();
+    void currentAxesDeadZones(QList<int> *axesDeadZones);
+    void setAxesDeadZones(QList<int> *axesDeadZones);
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
 
     virtual void readConfig(QXmlStreamReader *xml);

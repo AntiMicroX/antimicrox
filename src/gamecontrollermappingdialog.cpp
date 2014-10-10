@@ -92,6 +92,9 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
     device->getActiveSetJoystick()->setIgnoreEventState(true);
     device->getActiveSetJoystick()->release();
 
+    device->getActiveSetJoystick()->currentAxesDeadZones(&originalAxesDeadZones);
+    device->getActiveSetJoystick()->raiseAxesDeadZones();
+
     GameController *controller = qobject_cast<GameController*>(device);
     if (controller)
     {
@@ -441,6 +444,7 @@ void GameControllerMappingDialog::enableButtonEvents(int code)
     {
         device->getActiveSetJoystick()->setIgnoreEventState(false);
         device->getActiveSetJoystick()->release();
+        device->getActiveSetJoystick()->setAxesDeadZones(&originalAxesDeadZones);
     }
 }
 
