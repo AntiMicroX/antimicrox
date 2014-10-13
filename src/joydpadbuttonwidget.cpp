@@ -3,6 +3,7 @@
 JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     JoyButtonWidget(button, displayNames, parent)
 {
+    // Ensure that JoyDPadButtonWidget::generateLabel is called.
     refreshLabel();
 }
 

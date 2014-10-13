@@ -10,8 +10,9 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(buttonNameChanged()), this, SLOT(refreshLabel()));
+    //connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
+    //connect(button, SIGNAL(buttonNameChanged()), this, SLOT(refreshLabel()));
+    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
 }
 

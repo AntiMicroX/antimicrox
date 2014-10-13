@@ -1778,9 +1778,26 @@ QString JoyButton::getActiveZoneSummary()
     QStringList stringlist;
     int i = 0;
 
+    if (setSelectionCondition == SetChangeOneWay)
+    {
+        newlabel.append(tr("[Set %1 1W]").arg(setSelection+1));
+        if (iter->hasNext())
+        {
+            newlabel.append(" ");
+        }
+    }
+    else if (setSelectionCondition == SetChangeTwoWay)
+    {
+        newlabel = newlabel.append(tr("[Set %1 2W]").arg(setSelection+1));
+        if (iter->hasNext())
+        {
+           newlabel.append(" ");
+        }
+    }
+
     if (setSelectionCondition == SetChangeWhileHeld)
     {
-        newlabel = newlabel.append(QString("[Set %1 WH]").arg(setSelection+1));
+        newlabel.append(tr("[Set %1 WH]").arg(setSelection+1));
     }
     else if (iter->hasNext())
     {
@@ -1841,11 +1858,11 @@ QString JoyButton::getActiveZoneSummary()
             }
         }
 
-        newlabel = stringlist.join(", ");
+        newlabel.append(stringlist.join(", "));
     }
-    else
+    else if (setSelectionCondition == SetChangeDisabled)
     {
-        newlabel = newlabel.append(tr("[NO KEY]"));
+        newlabel.append(tr("[NO KEY]"));
     }
 
     return newlabel;
@@ -2196,19 +2213,19 @@ int JoyButton::getSetSelection()
 
 void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
+    SetChangeCondition oldCondition = setSelectionCondition;
+
     if (condition != setSelectionCondition && !passive)
     {
         if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
         {
             // Set new condition
             emit setAssignmentChanged(index, setSelection, condition);
-            emit propertyUpdated();
         }
         else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
         {
             // Remove old condition
             emit setAssignmentChanged(index, setSelection, SetChangeDisabled);
-            emit propertyUpdated();
         }
 
         setSelectionCondition = condition;
@@ -2221,6 +2238,11 @@ void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive
     if (setSelectionCondition == SetChangeDisabled)
     {
         setChangeSetSelection(-1);
+    }
+
+    if (setSelectionCondition != oldCondition)
+    {
+        emit propertyUpdated();
     }
 }
 
