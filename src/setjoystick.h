@@ -64,6 +64,7 @@ public:
     virtual void writeConfig(QXmlStreamWriter *xml);
 
     static const int MAXNAMELENGTH;
+    static const int RAISEDDEADZONE;
 
 protected:
     bool isSetEmpty();

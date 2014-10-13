@@ -5,6 +5,7 @@
 #include "inputdevice.h"
 
 const int SetJoystick::MAXNAMELENGTH = 30;
+const int SetJoystick::RAISEDDEADZONE = 20000;
 
 SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     QObject(parent)
@@ -998,7 +999,7 @@ void SetJoystick::raiseAxesDeadZones()
     {
         JoyAxis *temp = axisIter.next().value();
         temp->disconnectPropertyUpdatedConnection();
-        temp->setDeadZone(20000);
+        temp->setDeadZone(RAISEDDEADZONE);
         temp->establishPropertyUpdatedConnection();
     }
 
