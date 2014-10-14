@@ -1,3 +1,36 @@
+2014-10-14 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.7
+
+* Added more key aliases for uinput support.
+
+* Force higher dead zones for axes in Game Controller Mapping window.
+
+* Fixed virtual keyboard in Button Edit Dialog window for Linux users
+utilizing XTest support.
+
+* Display some minor mouse stats in Mouse Settings dialog.
+
+* Alter Analog Stick dialog window to show some new stats. Also,
+show square stick coordinates as well as adjusted circle
+stick coordinates.
+
+* Added square stick to circle stick conversion.
+
+* Fixed issue with VK_LSHIFT and VK_RSHIFT aliases not being saved properly
+on Windows.
+
+* xinput is used for the uinput virtual pointer in order to
+disable mouse acceleration for the pointer. This allows spring mode to work
+as intended.
+
+* Added some code to guess which axes of a gamepad should be considered
+triggers by default while in old Joystick mode. The initial values of
+axes are taken from SDL and those are used as the point of the axes
+while centered. If the initial value of an axis is below -30,000 then
+an axis is considered to be a trigger.
+
+
 2014-09-16 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.6

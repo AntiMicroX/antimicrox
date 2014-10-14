@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QStringListIterator>
 #include <QFileInfo>
 #include <QTextStream>
