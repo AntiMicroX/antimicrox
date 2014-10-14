@@ -137,6 +137,7 @@ void WinInfo::populateKnownAliases()
         knownAliasesX11SymVK.insert("KP_Decimal", VK_DECIMAL);
         knownAliasesX11SymVK.insert("Scroll_Lock", VK_SCROLL);
         knownAliasesX11SymVK.insert("Print", VK_SNAPSHOT);
+        knownAliasesX11SymVK.insert("Multi_key", VK_RMENU);
     }
 
     if (knownAliasesVKStrings.isEmpty())
