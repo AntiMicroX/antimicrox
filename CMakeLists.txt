@@ -147,6 +147,8 @@ set(antimicro_SOURCES src/main.cpp
     src/extraprofilesettingsdialog.cpp
     src/antimicrosettings.cpp
     src/joybuttoncontextmenu.cpp
+    src/joycontrolstickcontextmenu.cpp
+    src/dpadcontextmenu.cpp
 )
 
 # Platform dependent files.
@@ -260,6 +262,8 @@ set(antimicro_HEADERS src/mainwindow.h
     src/extraprofilesettingsdialog.h
     src/antimicrosettings.h
     src/joybuttoncontextmenu.h
+    src/joycontrolstickcontextmenu.h
+    src/dpadcontextmenu.h
 )
 
 # Platform dependent files.

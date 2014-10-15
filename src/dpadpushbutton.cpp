@@ -1,4 +1,5 @@
 #include "dpadpushbutton.h"
+#include "dpadcontextmenu.h"
 
 DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
@@ -7,6 +8,10 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
 
     refreshLabel();
     enableFlashes();
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+
     connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(refreshLabel()));
 }
 
@@ -41,4 +46,12 @@ void DPadPushButton::enableFlashes()
 {
     connect(dpad, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(dpad, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+}
+
+void DPadPushButton::showContextMenu(const QPoint &point)
+{
+    QPoint globalPos = this->mapToGlobal(point);
+    DPadContextMenu *contextMenu = new DPadContextMenu(dpad, this);
+    contextMenu->buildMenu();
+    contextMenu->popup(globalPos);
 }

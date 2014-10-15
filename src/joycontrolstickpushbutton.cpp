@@ -1,4 +1,5 @@
 #include "joycontrolstickpushbutton.h"
+#include "joycontrolstickcontextmenu.h"
 
 JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
@@ -6,6 +7,9 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
     this->stick = stick;
 
     refreshLabel();
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
     connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
@@ -47,4 +51,12 @@ void JoyControlStickPushButton::enableFlashes()
 {
     connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
+}
+
+void JoyControlStickPushButton::showContextMenu(const QPoint &point)
+{
+    QPoint globalPos = this->mapToGlobal(point);
+    JoyControlStickContextMenu *contextMenu = new JoyControlStickContextMenu(stick, this);
+    contextMenu->buildMenu();
+    contextMenu->popup(globalPos);
 }

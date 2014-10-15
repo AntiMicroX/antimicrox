@@ -113,7 +113,8 @@ void DPadEditDialog::implementPresets(int index)
     }
     else if (index == 7)
     {
-        if (ui->joyModeComboBox->currentIndex() == 0)
+        if (ui->joyModeComboBox->currentIndex() == 0 ||
+            ui->joyModeComboBox->currentIndex() == 2)
         {
             upButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_8), QtKeyMapperBase::AntKey_KP_8, JoyButtonSlot::JoyKeyboard, this);
             downButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_2), QtKeyMapperBase::AntKey_KP_2, JoyButtonSlot::JoyKeyboard, this);
@@ -127,6 +128,13 @@ void DPadEditDialog::implementPresets(int index)
             leftButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_4), QtKeyMapperBase::AntKey_KP_4, JoyButtonSlot::JoyKeyboard, this);
             rightButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_6), QtKeyMapperBase::AntKey_KP_6, JoyButtonSlot::JoyKeyboard, this);
 
+            upLeftButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_7), QtKeyMapperBase::AntKey_KP_7, JoyButtonSlot::JoyKeyboard, this);
+            upRightButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_9), QtKeyMapperBase::AntKey_KP_9, JoyButtonSlot::JoyKeyboard, this);
+            downLeftButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_1), QtKeyMapperBase::AntKey_KP_1, JoyButtonSlot::JoyKeyboard, this);
+            downRightButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_3), QtKeyMapperBase::AntKey_KP_3, JoyButtonSlot::JoyKeyboard, this);
+        }
+        else if (ui->joyModeComboBox->currentIndex() == 3)
+        {
             upLeftButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_7), QtKeyMapperBase::AntKey_KP_7, JoyButtonSlot::JoyKeyboard, this);
             upRightButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_9), QtKeyMapperBase::AntKey_KP_9, JoyButtonSlot::JoyKeyboard, this);
             downLeftButtonSlot = new JoyButtonSlot(AntKeyMapper::returnVirtualKey(QtKeyMapperBase::AntKey_KP_1), QtKeyMapperBase::AntKey_KP_1, JoyButtonSlot::JoyKeyboard, this);

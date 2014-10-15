@@ -27,6 +27,12 @@ void JoyButtonContextMenu::buildMenu()
 
     this->addSeparator();
 
+    action = this->addAction(tr("Clear"));
+    action->setCheckable(false);
+    connect(action, SIGNAL(triggered()), this, SLOT(clearButton()));
+
+    this->addSeparator();
+
     QMenu *setSectionMenu = this->addMenu(tr("Set Select"));
 
     action = setSectionMenu->addAction(tr("Disabled"));
@@ -132,4 +138,9 @@ void JoyButtonContextMenu::switchSetMode()
 void JoyButtonContextMenu::disableSetMode()
 {
     button->setChangeSetCondition(JoyButton::SetChangeDisabled);
+}
+
+void JoyButtonContextMenu::clearButton()
+{
+    button->clearSlotsEventReset();
 }

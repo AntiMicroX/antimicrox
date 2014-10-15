@@ -21,6 +21,7 @@ private slots:
     void switchTurbo();
     void switchSetMode();
     void disableSetMode();
+    void clearButton();
 };
 
 #endif // JOYBUTTONCONTEXTMENU_H

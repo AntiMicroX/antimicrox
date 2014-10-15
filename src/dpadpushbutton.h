@@ -1,6 +1,8 @@
 #ifndef DPADPUSHBUTTON_H
 #define DPADPUSHBUTTON_H
 
+#include <QPoint>
+
 #include "flashbuttonwidget.h"
 #include "joydpad.h"
 
@@ -22,6 +24,9 @@ signals:
 public slots:
     void disableFlashes();
     void enableFlashes();
+
+private slots:
+    void showContextMenu(const QPoint &point);
 };
 
 #endif // DPADPUSHBUTTON_H

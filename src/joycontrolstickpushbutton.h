@@ -1,6 +1,8 @@
 #ifndef JOYCONTROLSTICKPUSHBUTTON_H
 #define JOYCONTROLSTICKPUSHBUTTON_H
 
+#include <QPoint>
+
 #include "flashbuttonwidget.h"
 #include "joycontrolstick.h"
 
@@ -22,6 +24,9 @@ signals:
 public slots:
     void disableFlashes();
     void enableFlashes();
+
+private slots:
+    void showContextMenu(const QPoint &point);
 };
 
 #endif // JOYCONTROLSTICKPUSHBUTTON_H
