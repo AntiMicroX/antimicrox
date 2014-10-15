@@ -399,6 +399,7 @@ int JoyDPad::getCurrentDirection()
 void JoyDPad::setJoyMode(JoyMode mode)
 {
     currentMode = mode;
+    emit joyModeChanged();
     emit propertyUpdated();
 }
 

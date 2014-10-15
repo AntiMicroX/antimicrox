@@ -98,6 +98,7 @@ signals:
     void released(int value);
     void dpadNameChanged();
     void propertyUpdated();
+    void joyModeChanged();
 
 public slots:
     void setDPadName(QString tempName);

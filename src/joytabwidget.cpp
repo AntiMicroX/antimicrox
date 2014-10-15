@@ -23,6 +23,7 @@
 #include "extraprofilesettingsdialog.h"
 #include "setnamesdialog.h"
 #include "stickpushbuttongroup.h"
+#include "dpadpushbuttongroup.h"
 #include "common.h"
 
 #ifdef USE_SDL_2
@@ -552,7 +553,7 @@ void JoyTabWidget::showAxisDialog()
     axisDialog->show();
 }
 
-void JoyTabWidget::showStickDialog()
+/*void JoyTabWidget::showStickDialog()
 {
     JoyControlStickPushButton *stickWidget = static_cast<JoyControlStickPushButton*>(sender());
     JoyControlStick *stick = stickWidget->getStick();
@@ -561,6 +562,7 @@ void JoyTabWidget::showStickDialog()
     dialog->show();
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
 }
+*/
 
 void JoyTabWidget::saveConfigFile()
 {
@@ -1226,7 +1228,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
 }
 */
 
-void JoyTabWidget::showDPadDialog()
+/*void JoyTabWidget::showDPadDialog()
 {
     DPadPushButton *pushbutton = static_cast<DPadPushButton*> (sender());
     DPadEditDialog *dialog = new DPadEditDialog(pushbutton->getDPad(), this);
@@ -1234,6 +1236,7 @@ void JoyTabWidget::showDPadDialog()
 
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
 }
+*/
 
 void JoyTabWidget::showQuickSetDialog()
 {
@@ -1639,8 +1642,10 @@ void JoyTabWidget::checkStickEmptyDisplay()
 
 void JoyTabWidget::checkDPadButtonEmptyDisplay()
 {
-    JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
-    JoyDPad *dpad = button->getDPad();
+    DPadPushButtonGroup *group = static_cast<DPadPushButtonGroup*>(sender());
+    JoyDPad *dpad = group->getDPad();
+    //JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
+    //JoyDPad *dpad = button->getDPad();
     if (dpad && !dpad->hasSlotsAssigned())
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
@@ -1772,7 +1777,11 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
             QWidget *attemp = new QWidget(stickGroup);
             StickPushButtonGroup *tempalayout = new StickPushButtonGroup(stick, displayingNames, attemp);
-            connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkStickEmptyDisplay()));
+            if (hideEmptyButtons)
+            {
+                connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkStickEmptyDisplay()));
+            }
+
             connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
 
             /*JoyControlStickButton *button = 0;
@@ -1968,10 +1977,17 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 hatGridRow = 0;
             }
 
-            QGridLayout *tempalayout = new QGridLayout();
+            //QGridLayout *tempalayout = new QGridLayout();
             QWidget *attemp = new QWidget(hatGroup);
+            DPadPushButtonGroup *tempalayout = new DPadPushButtonGroup(dpad, displayingNames, attemp);
+            if (hideEmptyButtons)
+            {
+                connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+            }
 
-            JoyDPadButton *button = 0;
+            connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
+
+            /*JoyDPadButton *button = 0;
             JoyDPadButtonWidget *pushbutton = 0;
 
             if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
@@ -2103,6 +2119,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
                 tempalayout->addWidget(pushbutton, 2, 2);
             }
+            */
 
             if (hatGridColumn > 1)
             {
@@ -2146,11 +2163,17 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 hatGridRow = 0;
             }
 
-
-            QGridLayout *tempalayout = new QGridLayout();
+            //QGridLayout *tempalayout = new QGridLayout();
             QWidget *attemp = new QWidget(hatGroup);
+            DPadPushButtonGroup *tempalayout = new DPadPushButtonGroup(vdpad, displayingNames, attemp);
+            if (hideEmptyButtons)
+            {
+                connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+            }
 
-            JoyDPadButton *button = 0;
+            connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
+
+            /*JoyDPadButton *button = 0;
             JoyDPadButtonWidget *pushbutton = 0;
             if (vdpad->getJoyMode() == VDPad::EightWayMode ||
                 vdpad->getJoyMode() == VDPad::FourWayDiagonal)
@@ -2281,6 +2304,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
                 tempalayout->addWidget(pushbutton, 2, 2);
             }
+            */
 
             if (hatGridColumn > 1)
             {

@@ -153,9 +153,9 @@ private slots:
     void changeJoyConfig(int index);
     void showAxisDialog();
     void showButtonDialog();
-    void showStickDialog();
+    //void showStickDialog();
     void showStickAssignmentDialog();
-    void showDPadDialog();
+    //void showDPadDialog();
     void showQuickSetDialog();
     void showKeyDelayDialog();
     void showSetNamesDialog();
