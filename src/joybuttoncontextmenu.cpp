@@ -50,6 +50,13 @@ void JoyButtonContextMenu::buildMenu()
         QMenu *tempSetMenu = setSectionMenu->addMenu(tr("Set %1").arg(i+1));
         int setSelection = i*3;
 
+        if (i == button->getSetSelection())
+        {
+            QFont tempFont = tempSetMenu->menuAction()->font();
+            tempFont.setBold(true);
+            tempSetMenu->menuAction()->setFont(tempFont);
+        }
+
         QActionGroup *tempGroup = new QActionGroup(tempSetMenu);
 
         action = tempSetMenu->addAction(tr("Set %1 1W").arg(i+1));
@@ -88,11 +95,6 @@ void JoyButtonContextMenu::buildMenu()
         if (i == button->getParentSet()->getIndex())
         {
             tempSetMenu->setEnabled(false);
-        }
-
-        if (i == button->getSetSelection())
-        {
-            tempSetMenu->setTitle(QString("* ").append(tempSetMenu->title()));
         }
     }
 }

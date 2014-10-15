@@ -1,5 +1,7 @@
 #include "joyaxiswidget.h"
 
+#include "joyaxiscontextmenu.h"
+
 JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
@@ -7,6 +9,9 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
 
     refreshLabel();
     enableFlashes();
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
@@ -55,4 +60,12 @@ QString JoyAxisWidget::generateLabel()
     QString temp;
     temp = axis->getName(false, displayNames).replace("&", "&&");
     return temp;
+}
+
+void JoyAxisWidget::showContextMenu(const QPoint &point)
+{
+    QPoint globalPos = this->mapToGlobal(point);
+    JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(axis, this);
+    contextMenu->buildMenu();
+    contextMenu->popup(globalPos);
 }

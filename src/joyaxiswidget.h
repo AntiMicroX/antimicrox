@@ -1,6 +1,8 @@
 #ifndef JOYAXISWIDGET_H
 #define JOYAXISWIDGET_H
 
+#include <QPoint>
+
 #include "flashbuttonwidget.h"
 #include "joyaxis.h"
 
@@ -22,6 +24,9 @@ signals:
 public slots:
     void disableFlashes();
     void enableFlashes();
+
+private slots:
+    void showContextMenu(const QPoint &point);
 };
 
 #endif // JOYAXISWIDGET_H
