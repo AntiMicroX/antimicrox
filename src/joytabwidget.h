@@ -153,9 +153,7 @@ private slots:
     void changeJoyConfig(int index);
     void showAxisDialog();
     void showButtonDialog();
-    //void showStickDialog();
     void showStickAssignmentDialog();
-    //void showDPadDialog();
     void showQuickSetDialog();
     void showKeyDelayDialog();
     void showSetNamesDialog();
@@ -169,7 +167,6 @@ private slots:
     void changeSetSix();
     void changeSetSeven();
     void changeSetEight();
-    //void openStickButtonDialog();
     void displayProfileEditNotification();
     void removeProfileEditNotification();
     void checkForUnsavedProfile(int newindex);

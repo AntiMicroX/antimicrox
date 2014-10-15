@@ -86,7 +86,8 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == "joystick")
     {
-        reset();
+        //reset();
+        transferReset();
 
         QHash<unsigned int, SDL_GameControllerButton> buttons;
         QHash<unsigned int, SDL_GameControllerAxis> axes;
@@ -419,7 +420,8 @@ void GameController::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == getXmlName())
     {
-        reset();
+        //reset();
+        transferReset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))

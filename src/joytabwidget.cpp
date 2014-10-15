@@ -12,13 +12,7 @@
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
 #include "buttoneditdialog.h"
-#include "joycontrolstickeditdialog.h"
-#include "joycontrolstickpushbutton.h"
 #include "advancestickassignmentdialog.h"
-#include "joycontrolstickbuttonpushbutton.h"
-#include "dpadpushbutton.h"
-#include "dpadeditdialog.h"
-#include "joydpadbuttonwidget.h"
 #include "quicksetdialog.h"
 #include "extraprofilesettingsdialog.h"
 #include "setnamesdialog.h"
@@ -552,17 +546,6 @@ void JoyTabWidget::showAxisDialog()
     axisDialog = new AxisEditDialog (axis, this);
     axisDialog->show();
 }
-
-/*void JoyTabWidget::showStickDialog()
-{
-    JoyControlStickPushButton *stickWidget = static_cast<JoyControlStickPushButton*>(sender());
-    JoyControlStick *stick = stickWidget->getStick();
-
-    JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog (stick, this);
-    dialog->show();
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
-}
-*/
 
 void JoyTabWidget::saveConfigFile()
 {
@@ -1220,24 +1203,6 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
     }
 }
 
-/*void JoyTabWidget::openStickButtonDialog()
-{
-    JoyControlStickButtonPushButton *pushbutton = static_cast<JoyControlStickButtonPushButton*> (sender());
-    ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), this);
-    dialog->show();
-}
-*/
-
-/*void JoyTabWidget::showDPadDialog()
-{
-    DPadPushButton *pushbutton = static_cast<DPadPushButton*> (sender());
-    DPadEditDialog *dialog = new DPadEditDialog(pushbutton->getDPad(), this);
-    dialog->show();
-
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
-}
-*/
-
 void JoyTabWidget::showQuickSetDialog()
 {
     QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
@@ -1775,148 +1740,14 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 stickGridRow = 0;
             }
 
-            QWidget *attemp = new QWidget(stickGroup);
-            StickPushButtonGroup *tempalayout = new StickPushButtonGroup(stick, displayingNames, attemp);
+            QWidget *groupContainer = new QWidget(stickGroup);
+            StickPushButtonGroup *stickButtonGroup = new StickPushButtonGroup(stick, displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
-                connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkStickEmptyDisplay()));
+                connect(stickButtonGroup, SIGNAL(buttonSlotChanged()), this, SLOT(checkStickEmptyDisplay()));
             }
 
-            connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
-
-            /*JoyControlStickButton *button = 0;
-            JoyControlStickButtonPushButton *pushbutton = 0;
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickLeftUp);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 0);
-            }
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickUp);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 1);
-            }
-
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickRightUp);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 2);
-            }
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickLeft);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 1, 0);
-            }
-
-            JoyControlStickPushButton *stickWidget = new JoyControlStickPushButton(stick, displayingNames, attemp);
-            stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-            connect(stickWidget, SIGNAL(clicked()), this, SLOT(showStickDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), stickWidget, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(stickWidget, 1, 1);
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickRight);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 1, 2);
-            }
-
-
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickLeftDown);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 0);
-            }
-
-            if (stick->getJoyMode() != JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickDown);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 1);
-            }
-
-            if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-                stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
-            {
-                button = stickButtons->value(JoyControlStick::StickRightDown);
-                pushbutton = new JoyControlStickButtonPushButton(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 2);
-            }
-            */
+            connect(namesPushButton, SIGNAL(clicked()), stickButtonGroup, SLOT(toggleNameDisplay()));
 
             if (stickGridColumn > 1)
             {
@@ -1924,8 +1755,8 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 stickGridRow++;
             }
 
-            attemp->setLayout(tempalayout);
-            stickGrid->addWidget(attemp, stickGridRow, stickGridColumn);
+            groupContainer->setLayout(stickButtonGroup);
+            stickGrid->addWidget(groupContainer, stickGridRow, stickGridColumn);
             stickGridColumn++;
         }
         else
@@ -1977,149 +1808,14 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 hatGridRow = 0;
             }
 
-            //QGridLayout *tempalayout = new QGridLayout();
-            QWidget *attemp = new QWidget(hatGroup);
-            DPadPushButtonGroup *tempalayout = new DPadPushButtonGroup(dpad, displayingNames, attemp);
+            QWidget *groupContainer = new QWidget(hatGroup);
+            DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(dpad, displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
-                connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                connect(dpadButtonGroup, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
             }
 
-            connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
-
-            /*JoyDPadButton *button = 0;
-            JoyDPadButtonWidget *pushbutton = 0;
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 0);
-            }
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 1);
-            }
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 2);
-            }
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeft);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 1, 0);
-            }
-
-            DPadPushButton *dpadpushbutton = new DPadPushButton(dpad, displayingNames, attemp);
-            dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-            connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(dpadpushbutton, 1, 1);
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRight);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 1, 2);
-            }
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 0);
-            }
-
-            if (dpad->getJoyMode() != JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 1);
-            }
-
-            if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-                dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 2);
-            }
-            */
+            connect(namesPushButton, SIGNAL(clicked()), dpadButtonGroup, SLOT(toggleNameDisplay()));
 
             if (hatGridColumn > 1)
             {
@@ -2127,8 +1823,8 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 hatGridRow++;
             }
 
-            attemp->setLayout(tempalayout);
-            hatGrid->addWidget(attemp, hatGridRow, hatGridColumn);
+            groupContainer->setLayout(dpadButtonGroup);
+            hatGrid->addWidget(groupContainer, hatGridRow, hatGridColumn);
             hatGridColumn++;
         }
         else
@@ -2163,148 +1859,14 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 hatGridRow = 0;
             }
 
-            //QGridLayout *tempalayout = new QGridLayout();
-            QWidget *attemp = new QWidget(hatGroup);
-            DPadPushButtonGroup *tempalayout = new DPadPushButtonGroup(vdpad, displayingNames, attemp);
+            QWidget *groupContainer = new QWidget(hatGroup);
+            DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(vdpad, displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
-                connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                connect(dpadButtonGroup, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
             }
 
-            connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
-
-            /*JoyDPadButton *button = 0;
-            JoyDPadButtonWidget *pushbutton = 0;
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 0);
-            }
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 1);
-            }
-
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightUp);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 0, 2);
-            }
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeft);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 1, 0);
-            }
-
-            DPadPushButton *dpadpushbutton = new DPadPushButton(vdpad, displayingNames, attemp);
-            dpadpushbutton->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-            connect(dpadpushbutton, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
-            connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
-            tempalayout->addWidget(dpadpushbutton, 1, 1);
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRight);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 1, 2);
-            }
-
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadLeftDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 0);
-            }
-
-            if (vdpad->getJoyMode() != VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 1);
-            }
-
-            if (vdpad->getJoyMode() == VDPad::EightWayMode ||
-                vdpad->getJoyMode() == VDPad::FourWayDiagonal)
-            {
-                button = buttons->value(JoyDPadButton::DpadRightDown);
-                pushbutton = new JoyDPadButtonWidget(button, displayingNames, attemp);
-                connect(pushbutton, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-                button->establishPropertyUpdatedConnections();
-                if (hideEmptyButtons)
-                {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
-                }
-
-                tempalayout->addWidget(pushbutton, 2, 2);
-            }
-            */
+            connect(namesPushButton, SIGNAL(clicked()), dpadButtonGroup, SLOT(toggleNameDisplay()));
 
             if (hatGridColumn > 1)
             {
@@ -2312,8 +1874,8 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 hatGridRow++;
             }
 
-            attemp->setLayout(tempalayout);
-            hatGrid->addWidget(attemp, hatGridRow, hatGridColumn);
+            groupContainer->setLayout(dpadButtonGroup);
+            hatGrid->addWidget(groupContainer, hatGridRow, hatGridColumn);
             hatGridColumn++;
 
         }
