@@ -1,6 +1,8 @@
 #ifndef JOYBUTTONWIDGET_H
 #define JOYBUTTONWIDGET_H
 
+#include <QPoint>
+
 #include "flashbuttonwidget.h"
 #include "joybutton.h"
 
@@ -22,6 +24,9 @@ signals:
 public slots:
     void disableFlashes();
     void enableFlashes();
+
+private slots:
+    void showContextMenu(const QPoint &point);
 };
 
 #endif // JOYBUTTONWIDGET_H

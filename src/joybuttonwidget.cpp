@@ -1,4 +1,7 @@
+#include <QMenu>
+
 #include "joybuttonwidget.h"
+#include "joybuttoncontextmenu.h"
 
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
@@ -6,6 +9,9 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     this->button = button;
 
     refreshLabel();
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
     connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
@@ -39,4 +45,12 @@ QString JoyButtonWidget::generateLabel()
     QString temp;
     temp = button->getName(false, displayNames).replace("&", "&&");
     return temp;
+}
+
+void JoyButtonWidget::showContextMenu(const QPoint &point)
+{
+    QPoint globalPos = this->mapToGlobal(point);
+    JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
+    contextMenu->buildMenu();
+    contextMenu->popup(globalPos);
 }

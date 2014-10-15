@@ -353,8 +353,8 @@ bool WinInfo::elevateAntiMicro()
 }
 
 /**
- * @brief Check if the application is running with administrative priviledges.
- * @return Status indicating administrative priviledges
+ * @brief Check if the application is running with administrative privileges.
+ * @return Status indicating administrative privileges
  */
 bool WinInfo::IsRunningAsAdmin()
 {

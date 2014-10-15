@@ -146,6 +146,7 @@ set(antimicro_SOURCES src/main.cpp
     src/localantimicroserver.cpp
     src/extraprofilesettingsdialog.cpp
     src/antimicrosettings.cpp
+    src/joybuttoncontextmenu.cpp
 )
 
 # Platform dependent files.
@@ -258,6 +259,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/localantimicroserver.h
     src/extraprofilesettingsdialog.h
     src/antimicrosettings.h
+    src/joybuttoncontextmenu.h
 )
 
 # Platform dependent files.
