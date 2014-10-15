@@ -150,6 +150,7 @@ set(antimicro_SOURCES src/main.cpp
     src/joycontrolstickcontextmenu.cpp
     src/dpadcontextmenu.cpp
     src/joyaxiscontextmenu.cpp
+    src/stickpushbuttongroup.cpp
 )
 
 # Platform dependent files.
@@ -266,6 +267,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/joycontrolstickcontextmenu.h
     src/dpadcontextmenu.h
     src/joyaxiscontextmenu.h
+    src/stickpushbuttongroup.h
 )
 
 # Platform dependent files.

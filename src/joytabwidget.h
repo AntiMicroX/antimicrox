@@ -169,7 +169,7 @@ private slots:
     void changeSetSix();
     void changeSetSeven();
     void changeSetEight();
-    void openStickButtonDialog();
+    //void openStickButtonDialog();
     void displayProfileEditNotification();
     void removeProfileEditNotification();
     void checkForUnsavedProfile(int newindex);

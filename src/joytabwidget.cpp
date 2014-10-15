@@ -22,6 +22,7 @@
 #include "quicksetdialog.h"
 #include "extraprofilesettingsdialog.h"
 #include "setnamesdialog.h"
+#include "stickpushbuttongroup.h"
 #include "common.h"
 
 #ifdef USE_SDL_2
@@ -1217,12 +1218,13 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
     }
 }
 
-void JoyTabWidget::openStickButtonDialog()
+/*void JoyTabWidget::openStickButtonDialog()
 {
     JoyControlStickButtonPushButton *pushbutton = static_cast<JoyControlStickButtonPushButton*> (sender());
     ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), this);
     dialog->show();
 }
+*/
 
 void JoyTabWidget::showDPadDialog()
 {
@@ -1623,8 +1625,10 @@ void JoyTabWidget::checkButtonDisplay()
 
 void JoyTabWidget::checkStickEmptyDisplay()
 {
-    JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
-    JoyControlStick *stick = button->getStick();
+    StickPushButtonGroup *group = static_cast<StickPushButtonGroup*>(sender());
+    JoyControlStick *stick = group->getStick();
+    //JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
+    //JoyControlStick *stick = button->getStick();
     if (stick && !stick->hasSlotsAssigned())
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
@@ -1766,10 +1770,12 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 stickGridRow = 0;
             }
 
-            QGridLayout *tempalayout = new QGridLayout();
             QWidget *attemp = new QWidget(stickGroup);
+            StickPushButtonGroup *tempalayout = new StickPushButtonGroup(stick, displayingNames, attemp);
+            connect(tempalayout, SIGNAL(buttonSlotChanged()), this, SLOT(checkStickEmptyDisplay()));
+            connect(namesPushButton, SIGNAL(clicked()), tempalayout, SLOT(toggleNameDisplay()));
 
-            JoyControlStickButton *button = 0;
+            /*JoyControlStickButton *button = 0;
             JoyControlStickButtonPushButton *pushbutton = 0;
             if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
                 stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
@@ -1901,6 +1907,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
                 tempalayout->addWidget(pushbutton, 2, 2);
             }
+            */
 
             if (stickGridColumn > 1)
             {
