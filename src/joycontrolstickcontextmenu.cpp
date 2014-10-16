@@ -9,6 +9,8 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
     QMenu(parent)
 {
     this->stick = stick;
+
+    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
 
 void JoyControlStickContextMenu::buildMenu()

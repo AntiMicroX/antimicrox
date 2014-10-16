@@ -9,6 +9,8 @@ JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
     QMenu(parent)
 {
     this->button = button;
+
+    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
 
 void JoyButtonContextMenu::buildMenu()

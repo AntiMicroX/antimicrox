@@ -6,6 +6,8 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
     QMenu(parent)
 {
     this->axis = axis;
+
+    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
 
 void JoyAxisContextMenu::buildMenu()

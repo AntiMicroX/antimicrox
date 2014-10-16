@@ -6,6 +6,8 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
     QMenu(parent)
 {
     this->dpad = dpad;
+
+    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
 
 void DPadContextMenu::buildMenu()

@@ -698,7 +698,7 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
     }
     xml->writeEndElement(); // </names>
 
-    if (keyPressTime > 0)
+    if (keyPressTime > 0 && keyPressTime != DEFAULTKEYPRESSTIME)
     {
         xml->writeTextElement("keyPressTime", QString::number(keyPressTime));
     }
