@@ -113,6 +113,7 @@ public:
     static const int DEFAULTDIAGONALRANGE;
     static const JoyMode DEFAULTMODE;
     static const double DEFAULTCIRCLE;
+    static const unsigned int DEFAULTSTICKDELAY;
 
 
 protected:
@@ -161,6 +162,7 @@ protected:
     QString defaultStickName;
     double circle;
     QTimer directionDelayTimer;
+    unsigned int stickDelay;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 
@@ -172,6 +174,7 @@ signals:
     void diagonalRangeChanged(int value);
     void maxZoneChanged(int value);
     void circleAdjustChange(double circle);
+    void stickDelayChanged(int value);
     void stickNameChanged();
     void joyModeChanged();
     void propertyUpdated();
@@ -184,6 +187,7 @@ public slots:
     void setStickName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
     void setCircleAdjust(double circle);
+    void setStickDelay(int value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

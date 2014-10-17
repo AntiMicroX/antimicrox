@@ -15,6 +15,7 @@ const int JoyControlStick::DEFAULTMAXZONE = JoyAxis::AXISMAXZONE;
 const int JoyControlStick::DEFAULTDIAGONALRANGE = 45;
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 const double JoyControlStick::DEFAULTCIRCLE = 0.0;
+const unsigned int JoyControlStick::DEFAULTSTICKDELAY = 0;
 
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset, QObject *parent) :
     QObject(parent)
@@ -50,42 +51,57 @@ void JoyControlStick::joyEvent(bool ignoresets)
     {
         isActive = true;
         emit active(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        //createDeskEvent(ignoresets);
-        //testtime.start(20);
+        /*if (ignoresets || stickDelay == 0)
+        {
+            createDeskEvent(ignoresets);
+        }
+        else
+        {
+            //createDeskEvent(ignoresets);
+            directionDelayTimer.start(20);
+        }
+        */
+        createDeskEvent(ignoresets);
     }
     else if (!safezone && isActive)
     {
         isActive = false;
         currentDirection = StickCentered;
         emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        //testtime.stop();
+        //directionDelayTimer.stop();
         createDeskEvent(ignoresets);
     }
     else if (isActive)
     {
-        /*JoyStickDirections pendingDirection = calculateStickDirection();
-        if (currentDirection != pendingDirection)
+        /*if (ignoresets || stickDelay == 0)
         {
-            if (!testtime.isActive())
+            if (directionDelayTimer.isActive())
             {
-                testtime.start(20);
-            }
-        }
-        //else if (!testtime.isActive())
-        else
-        {
-            if (testtime.isActive())
-            {
-                testtime.stop();
+                directionDelayTimer.stop();
             }
 
             createDeskEvent(ignoresets);
         }
-        //if (!testtime.isActive())
-        //{
-        //    testtime.start(20);
-        //}
-        //createDeskEvent(ignoresets);
+        else
+        {
+            JoyStickDirections pendingDirection = calculateStickDirection();
+            if (currentDirection != pendingDirection)
+            {
+                if (!directionDelayTimer.isActive())
+                {
+                    directionDelayTimer.start(20);
+                }
+            }
+            else
+            {
+                if (directionDelayTimer.isActive())
+                {
+                    directionDelayTimer.stop();
+                }
+
+                createDeskEvent(ignoresets);
+            }
+        }
         */
         createDeskEvent(ignoresets);
     }
@@ -621,6 +637,7 @@ void JoyControlStick::reset()
     currentMode = StandardMode;
     stickName.clear();
     circle = DEFAULTCIRCLE;
+    stickDelay = DEFAULTSTICKDELAY;
     resetButtons();
 }
 
@@ -2221,4 +2238,14 @@ double JoyControlStick::getCircleAdjust()
 void JoyControlStick::stickDirectionChangeEvent()
 {
     createDeskEvent();
+}
+
+void JoyControlStick::setStickDelay(int value)
+{
+    if ((value >= 10 && value <= 1000) || (value == 0))
+    {
+        this->stickDelay = value;
+        emit stickDelayChanged(value);
+        emit propertyUpdated();
+    }
 }
