@@ -29,6 +29,9 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
     reset();
 
     populateButtons();
+
+    directionDelayTimer.setSingleShot(true);
+    //connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
 }
 
 JoyControlStick::~JoyControlStick()
@@ -47,18 +50,43 @@ void JoyControlStick::joyEvent(bool ignoresets)
     {
         isActive = true;
         emit active(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        createDeskEvent(ignoresets);
+        //createDeskEvent(ignoresets);
+        //testtime.start(20);
     }
     else if (!safezone && isActive)
     {
         isActive = false;
         currentDirection = StickCentered;
         emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-
+        //testtime.stop();
         createDeskEvent(ignoresets);
     }
     else if (isActive)
     {
+        /*JoyStickDirections pendingDirection = calculateStickDirection();
+        if (currentDirection != pendingDirection)
+        {
+            if (!testtime.isActive())
+            {
+                testtime.start(20);
+            }
+        }
+        //else if (!testtime.isActive())
+        else
+        {
+            if (testtime.isActive())
+            {
+                testtime.stop();
+            }
+
+            createDeskEvent(ignoresets);
+        }
+        //if (!testtime.isActive())
+        //{
+        //    testtime.start(20);
+        //}
+        //createDeskEvent(ignoresets);
+        */
         createDeskEvent(ignoresets);
     }
 
@@ -1894,6 +1922,178 @@ void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&even
     }
 }
 
+/**
+ * @brief Find the current stick direction based on a Standard mode stick.
+ * @return Current direction the stick is positioned.
+ */
+JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirection()
+{
+    JoyStickDirections result = StickCentered;
+
+    double bearing = calculateBearing();
+    bearing = floor(bearing + 0.5);
+
+    QList<int> anglesList = getDiagonalZoneAngles();
+    int initialLeft = anglesList.value(0);
+    int initialRight = anglesList.value(1);
+    int upRightInitial = anglesList.value(2);
+    int rightInitial = anglesList.value(3);
+    int downRightInitial = anglesList.value(4);
+    int downInitial = anglesList.value(5);
+    int downLeftInitial = anglesList.value(6);
+    int leftInitial = anglesList.value(7);
+    int upLeftInitial = anglesList.value(8);
+
+    if (bearing <= initialRight || bearing >= initialLeft)
+    {
+        result = StickUp;
+    }
+    else if (bearing >= upRightInitial && bearing < rightInitial)
+    {
+        result = StickRightUp;
+    }
+    else if (bearing >= rightInitial && bearing < downRightInitial)
+    {
+        result = StickRight;
+    }
+    else if (bearing >= downRightInitial && bearing < downInitial)
+    {
+        result = StickRightDown;
+    }
+    else if (bearing >= downInitial && bearing < downLeftInitial)
+    {
+        result = StickDown;
+    }
+    else if (bearing >= downLeftInitial && bearing < leftInitial)
+    {
+        result = StickLeftDown;
+    }
+    else if (bearing >= leftInitial && bearing < upLeftInitial)
+    {
+        result = StickLeft;
+    }
+    else if (bearing >= upLeftInitial && bearing < initialLeft)
+    {
+        result = StickLeftUp;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Find the current stick direction based on a Eight Way mode stick.
+ * @return Current direction the stick is positioned.
+ */
+JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirection()
+{
+    return determineStandardModeDirection();
+}
+
+/**
+ * @brief Find the current stick direction based on a Four Way Cardinal mode
+ *     stick.
+ * @return Current direction the stick is positioned.
+ */
+JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDirection()
+{
+    JoyStickDirections result = StickCentered;
+
+    double bearing = calculateBearing();
+    bearing = floor(bearing + 0.5);
+
+    QList<int> anglesList = getFourWayCardinalZoneAngles();
+    int rightInitial = anglesList.value(0);
+    int downInitial = anglesList.value(1);
+    int leftInitial = anglesList.value(2);
+    int upInitial = anglesList.value(3);
+
+    if (bearing < rightInitial || bearing >= upInitial)
+    {
+        result = StickUp;
+    }
+    else if (bearing >= rightInitial && bearing < downInitial)
+    {
+        result = StickRight;
+    }
+    else if (bearing >= downInitial && bearing < leftInitial)
+    {
+        result = StickDown;
+    }
+    else if (bearing >= leftInitial && bearing < upInitial)
+    {
+        result = StickLeft;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Find the current stick direction based on a Four Way Diagonal mode
+ *     stick.
+ * @return Current direction the stick is positioned.
+ */
+JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDirection()
+{
+    JoyStickDirections result = StickCentered;
+
+    double bearing = calculateBearing();
+    bearing = floor(bearing + 0.5);
+
+    QList<int> anglesList = getFourWayDiagonalZoneAngles();
+    int upRightInitial = anglesList.value(0);
+    int downRightInitial = anglesList.value(1);
+    int downLeftInitial = anglesList.value(2);
+    int upLeftInitial = anglesList.value(3);
+
+    if (bearing >= upRightInitial && bearing < downRightInitial)
+    {
+        result = StickRightUp;
+    }
+    else if (bearing >= downRightInitial && bearing < downLeftInitial)
+    {
+        result = StickRightDown;
+    }
+    else if (bearing >= downLeftInitial && bearing < upLeftInitial)
+    {
+        result = StickLeftDown;
+    }
+    else if (bearing >= upLeftInitial)
+    {
+        result = StickLeftUp;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Calculate the current direction of the stick based on the values
+ *     of the X and Y axes and the current mode of the stick.
+ * @return Current direction the stick is positioned.
+ */
+JoyControlStick::JoyStickDirections JoyControlStick::calculateStickDirection()
+{
+    JoyStickDirections result = StickCentered;
+
+    if (currentMode == StandardMode)
+    {
+        result = determineStandardModeDirection();
+    }
+    else if (currentMode == EightWayMode)
+    {
+        result = determineEightWayModeDirection();
+    }
+    else if (currentMode == FourWayCardinal)
+    {
+        result = determineFourWayCardinalDirection();
+    }
+    else if (currentMode == FourWayDiagonal)
+    {
+        result = determineFourWayDiagonalDirection();
+    }
+
+    return result;
+}
+
 void JoyControlStick::establishPropertyUpdatedConnection()
 {
     connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
@@ -1904,6 +2104,10 @@ void JoyControlStick::disconnectPropertyUpdatedConnection()
     disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }
 
+/**
+ * @brief Check all stick buttons and see if any have slots assigned.
+ * @return Status of whether any stick button has a slot assigned.
+ */
 bool JoyControlStick::hasSlotsAssigned()
 {
     bool hasSlots = false;
@@ -1996,7 +2200,7 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
 /**
  * @brief Set the percentage of the outer square that should be ignored
  *     when performing the final axis calculations.
- * @param Percentage in the range of 0.0 - 1.0.
+ * @param Percentage represented by the range of 0.0 - 1.0.
  */
 void JoyControlStick::setCircleAdjust(double circle)
 {
@@ -2008,7 +2212,21 @@ void JoyControlStick::setCircleAdjust(double circle)
     }
 }
 
+/**
+ * @brief Get the current percentage of the outer square that should be ignored
+ *     when performing the final axis calculations.
+ * @return Percentage represented by the range of 0.0 - 1.0.
+ */
 double JoyControlStick::getCircleAdjust()
 {
     return circle;
+}
+
+/**
+ * @brief Slot called when directionDelayTimer has timed out. The method will
+ *     call createDeskEvent.
+ */
+void JoyControlStick::stickDirectionChangeEvent()
+{
+    createDeskEvent();
 }

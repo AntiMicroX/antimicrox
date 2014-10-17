@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QHash>
 #include <QList>
+#include <QTimer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
@@ -123,6 +124,13 @@ protected:
     void determineFourWayCardinalEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2);
     void determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3);
 
+    JoyControlStick::JoyStickDirections determineStandardModeDirection();
+    JoyControlStick::JoyStickDirections determineEightWayModeDirection();
+    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection();
+    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection();
+
+    JoyControlStick::JoyStickDirections calculateStickDirection();
+
     void performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets);
 
@@ -152,6 +160,7 @@ protected:
     QString stickName;
     QString defaultStickName;
     double circle;
+    QTimer directionDelayTimer;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
 
@@ -178,6 +187,9 @@ public slots:
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
+
+private slots:
+    void stickDirectionChangeEvent();
 };
 
 #endif // JOYCONTROLSTICK_H
