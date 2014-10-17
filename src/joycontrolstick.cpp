@@ -1896,29 +1896,21 @@ void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&even
     {
         currentDirection = StickRightUp;
         eventbutton3 = buttons.value(StickRightUp);
-        //eventbutton1 = buttons.value(StickRight);
-        //eventbutton2 = buttons.value(StickUp);
     }
     else if (bearing >= downRightInitial && bearing < downLeftInitial)
     {
         currentDirection = StickRightDown;
         eventbutton3 = buttons.value(StickRightDown);
-        //eventbutton1 = buttons.value(StickRight);
-        //eventbutton2 = buttons.value(StickDown);
     }
     else if (bearing >= downLeftInitial && bearing < upLeftInitial)
     {
         currentDirection = StickLeftDown;
         eventbutton3 = buttons.value(StickLeftDown);
-        //eventbutton1 = buttons.value(StickLeft);
-        //eventbutton2 = buttons.value(StickDown);
     }
     else if (bearing >= upLeftInitial)
     {
         currentDirection = StickLeftUp;
         eventbutton3 = buttons.value(StickLeftUp);
-        //eventbutton1 = buttons.value(StickLeft);
-        //eventbutton2 = buttons.value(StickUp);
     }
 }
 

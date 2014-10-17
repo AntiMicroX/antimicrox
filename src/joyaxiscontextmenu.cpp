@@ -269,6 +269,6 @@ void JoyAxisContextMenu::setAxisPreset()
 
 void JoyAxisContextMenu::openMouseSettingsDialog()
 {
-    MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, this);
+    MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, parentWidget());
     dialog->show();
 }

@@ -379,6 +379,6 @@ int DPadContextMenu::getPresetIndex()
 
 void DPadContextMenu::openMouseSettingsDialog()
 {
-    MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, this);
+    MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, parentWidget());
     dialog->show();
 }

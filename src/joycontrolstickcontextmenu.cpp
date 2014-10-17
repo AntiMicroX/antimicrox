@@ -382,6 +382,6 @@ int JoyControlStickContextMenu::getPresetIndex()
 
 void JoyControlStickContextMenu::openMouseSettingsDialog()
 {
-    MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, this);
+    MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, parentWidget());
     dialog->show();
 }
