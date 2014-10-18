@@ -2249,3 +2249,8 @@ void JoyControlStick::setStickDelay(int value)
         emit propertyUpdated();
     }
 }
+
+unsigned int JoyControlStick::getStickDelay()
+{
+    return stickDelay;
+}

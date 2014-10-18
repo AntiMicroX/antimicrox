@@ -37,6 +37,9 @@ private slots:
     void enableMouseSettingButton();
     void updateWindowTitleStickName();
     void changeCircleAdjust(int value);
+    void updateStickDelaySpinBox(int value);
+    void updateStickDelaySlider(double value);
+    void updateControlStickDelay(int value);
 };
 
 #endif // JOYCONTROLSTICKEDITDIALOG_H

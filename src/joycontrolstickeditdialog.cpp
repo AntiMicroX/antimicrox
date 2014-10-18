@@ -78,6 +78,10 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->squareStickSlider->setValue(circleValue * 100);
     ui->squareStickSpinBox->setValue(circleValue * 100);
 
+    unsigned int stickDelay = stick->getStickDelay();
+    ui->stickDelaySlider->setValue(stickDelay * .1);
+    ui->stickDelayDoubleSpinBox->setValue(stickDelay * .001);
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
 
@@ -85,16 +89,19 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
     connect(ui->squareStickSlider, SIGNAL(valueChanged(int)), ui->squareStickSpinBox, SLOT(setValue(int)));
+    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateStickDelaySpinBox(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), ui->maxZoneSlider, SLOT(setValue(int)));
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
     connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), ui->squareStickSlider, SLOT(setValue(int)));
+    connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
     connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeCircleAdjust(int)));
+    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateControlStickDelay(int)));
 
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
@@ -470,5 +477,20 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
 
 void JoyControlStickEditDialog::changeCircleAdjust(int value)
 {
-    stick->setCircleAdjust(value / 100.0);
+    stick->setCircleAdjust(value * .01);
+}
+
+void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
+{
+    ui->stickDelayDoubleSpinBox->setValue(value * .01);
+}
+
+void JoyControlStickEditDialog::updateStickDelaySlider(double value)
+{
+    ui->stickDelaySlider->setValue(value * 100);
+}
+
+void JoyControlStickEditDialog::updateControlStickDelay(int value)
+{
+    stick->setStickDelay(value * 10);
 }

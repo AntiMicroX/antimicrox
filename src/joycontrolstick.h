@@ -104,6 +104,7 @@ public:
     void copyAssignments(JoyControlStick *destStick);
 
     double getCircleAdjust();
+    unsigned int getStickDelay();
 
     static const double PI;
 
