@@ -18,6 +18,7 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
     this->originset = originset;
     currentMode = StandardMode;
     this->parentSet = parentSet;
+    this->dpadDelay = DEFAULTDPADDELAY;
 
     populateButtons();
 
@@ -175,6 +176,7 @@ bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
     }
     else if (xml->name() == "dpadDelay" && xml->isStartElement())
     {
+        found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         this->setDPadDelay(tempchoice);
