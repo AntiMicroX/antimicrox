@@ -32,7 +32,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
     populateButtons();
 
     directionDelayTimer.setSingleShot(true);
-    //connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
+    connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
 }
 
 JoyControlStick::~JoyControlStick()
@@ -51,29 +51,29 @@ void JoyControlStick::joyEvent(bool ignoresets)
     {
         isActive = true;
         emit active(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        /*if (ignoresets || stickDelay == 0)
+        if (ignoresets || stickDelay == 0)
         {
             createDeskEvent(ignoresets);
         }
         else
         {
             //createDeskEvent(ignoresets);
-            directionDelayTimer.start(20);
+            directionDelayTimer.start(stickDelay);
         }
-        */
-        createDeskEvent(ignoresets);
+
+        //createDeskEvent(ignoresets);
     }
     else if (!safezone && isActive)
     {
         isActive = false;
         currentDirection = StickCentered;
         emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        //directionDelayTimer.stop();
+        directionDelayTimer.stop();
         createDeskEvent(ignoresets);
     }
     else if (isActive)
     {
-        /*if (ignoresets || stickDelay == 0)
+        if (ignoresets || stickDelay == 0)
         {
             if (directionDelayTimer.isActive())
             {
@@ -89,7 +89,7 @@ void JoyControlStick::joyEvent(bool ignoresets)
             {
                 if (!directionDelayTimer.isActive())
                 {
-                    directionDelayTimer.start(20);
+                    directionDelayTimer.start(stickDelay);
                 }
             }
             else
@@ -102,8 +102,8 @@ void JoyControlStick::joyEvent(bool ignoresets)
                 createDeskEvent(ignoresets);
             }
         }
-        */
-        createDeskEvent(ignoresets);
+
+        //createDeskEvent(ignoresets);
     }
 
     emit moved(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());

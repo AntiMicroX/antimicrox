@@ -21,6 +21,7 @@ void GameControllerSet::populateSticksDPad()
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
     JoyControlStick *stick1 = new JoyControlStick(axisX, axisY, 0, index, this);
+    stick1->setStickDelay(10);
     stick1->setDefaultStickName("L Stick");
     addControlStick(0, stick1);
 
