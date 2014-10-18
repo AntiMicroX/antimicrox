@@ -21,7 +21,7 @@ void GameControllerSet::populateSticksDPad()
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
     JoyControlStick *stick1 = new JoyControlStick(axisX, axisY, 0, index, this);
-    stick1->setStickDelay(10);
+    //stick1->setStickDelay(10);
     stick1->setDefaultStickName("L Stick");
     addControlStick(0, stick1);
 
@@ -40,7 +40,7 @@ void GameControllerSet::populateSticksDPad()
     JoyButton *buttonRight = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
     GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, index, this);
     controllerDPad->setDefaultDPadName("DPad");
-    controllerDPad->setDPadDelay(10);
+    //controllerDPad->setDPadDelay(10);
     addVDPad(0, controllerDPad);
 
     // Give default names to buttons
