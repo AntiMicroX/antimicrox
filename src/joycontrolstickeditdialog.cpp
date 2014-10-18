@@ -1,3 +1,4 @@
+//#include <QDebug>
 #include <QHashIterator>
 #include <QList>
 
@@ -96,7 +97,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
     connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), ui->squareStickSlider, SLOT(setValue(int)));
-    connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
+    //connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));

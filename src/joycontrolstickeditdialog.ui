@@ -639,6 +639,9 @@
            <property name="toolTip">
             <string>Time lapsed before a direction change is taken into effect.</string>
            </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
            <property name="suffix">
             <string> s</string>
            </property>
