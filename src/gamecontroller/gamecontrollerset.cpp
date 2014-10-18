@@ -40,6 +40,7 @@ void GameControllerSet::populateSticksDPad()
     JoyButton *buttonRight = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
     GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, index, this);
     controllerDPad->setDefaultDPadName("DPad");
+    controllerDPad->setDPadDelay(10);
     addVDPad(0, controllerDPad);
 
     // Give default names to buttons

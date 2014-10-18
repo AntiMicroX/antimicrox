@@ -778,6 +778,12 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
+            else if (xml->name() == "stickDelay" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                this->setStickDelay(tempchoice);
+            }
             else
             {
                 xml->skipCurrentElement();
@@ -829,6 +835,11 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         if (circle > DEFAULTCIRCLE)
         {
             xml->writeTextElement("squareStick", QString::number(circle * 100));
+        }
+
+        if (stickDelay > DEFAULTSTICKDELAY)
+        {
+            xml->writeTextElement("stickDelay", QString::number(stickDelay));
         }
 
         QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);

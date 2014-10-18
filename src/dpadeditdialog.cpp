@@ -1,3 +1,4 @@
+//#include <QDebug>
 #include <QHashIterator>
 #include <QList>
 
@@ -40,10 +41,18 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     ui->dpadNameLineEdit->setText(dpad->getDpadName());
 
+    unsigned int dpadDelay = dpad->getDPadDelay();
+    ui->dpadDelaySlider->setValue(dpadDelay * .1);
+    ui->dpadDelayDoubleSpinBox->setValue(dpadDelay * .001);
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
     connect(ui->dpadNameLineEdit, SIGNAL(textEdited(QString)), dpad, SLOT(setDPadName(QString)));
+
+    connect(ui->dpadDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateDPadDelaySpinBox(int)));
+    connect(ui->dpadDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateJoyDPadDelay(int)));
+
     connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(updateWindowTitleDPadName()));
 }
 
@@ -327,6 +336,17 @@ void DPadEditDialog::enableMouseSettingButton()
 {
     ui->mouseSettingsPushButton->setEnabled(true);
 }
+
+void DPadEditDialog::updateDPadDelaySpinBox(int value)
+{
+    ui->dpadDelayDoubleSpinBox->setValue(value * .01);
+}
+
+void DPadEditDialog::updateJoyDPadDelay(int value)
+{
+    dpad->setDPadDelay(value * 10);
+}
+
 
 void DPadEditDialog::updateWindowTitleDPadName()
 {

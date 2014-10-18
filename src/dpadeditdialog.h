@@ -31,6 +31,8 @@ private slots:
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
     void updateWindowTitleDPadName();
+    void updateDPadDelaySpinBox(int value);
+    void updateJoyDPadDelay(int value);
 };
 
 #endif // DPADEDITDIALOG_H

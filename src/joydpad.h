@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QHash>
 #include <QString>
+#include <QTimer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
@@ -76,36 +77,48 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyDPad *destDPad);
 
+    unsigned int getDPadDelay();
+
     static const QString xmlName;
+    static const unsigned int DEFAULTDPADDELAY;
 
 protected:
     void populateButtons();
+    void createDeskEvent(bool ignoresets = false);
     QHash<int, JoyDPadButton*> getApplicableButtons();
     bool readMainConfig(QXmlStreamReader *xml);
 
     QHash<int, JoyDPadButton*> buttons;
     int index;
     JoyDPadButton::JoyDPadDirections prevDirection;
+    JoyDPadButton::JoyDPadDirections pendingDirection;
     JoyDPadButton *activeDiagonalButton;
     int originset;
     JoyMode currentMode;
     QString dpadName;
     QString defaultDPadName;
     SetJoystick *parentSet;
+    QTimer directionDelayTimer;
+    unsigned int dpadDelay;
 
 signals:
     void active(int value);
     void released(int value);
     void dpadNameChanged();
-    void propertyUpdated();
+    void dpadDelayChanged(int value);
     void joyModeChanged();
+    void propertyUpdated();
 
 public slots:
     void setDPadName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
+    void setDPadDelay(int value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
+
+private slots:
+    void dpadDirectionChangeEvent();
 };
 
 #endif // JOYDPAD_H
