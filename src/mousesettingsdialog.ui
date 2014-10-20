@@ -113,6 +113,11 @@ axis is moved back to the dead zone.</string>
            <string>Power Function</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>Test</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

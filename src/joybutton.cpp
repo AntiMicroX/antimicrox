@@ -911,6 +911,32 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Quadratic acceleration.
                                 difference = difference * difference;
+                            }
+                            else if (temp <= 0.8)
+                            {
+                                // Perform Linear accleration with an appropriate
+                                // offset.
+                                difference = difference - 0.24;
+                            }
+                            else if (temp > 0.8)
+                            {
+                                // Perform mouse acceleration. Make up the difference
+                                // due to the previous two segments. Maxes out at 1.0.
+                                difference = (difference * 2.2) - 1.2;
+                            }
+
+                            break;
+                        }
+                        case TestCurve:
+                        {
+                            // Perform different forms of acceleration depending on
+                            // the range of the element from its assigned dead zone.
+                            // Useful for more precise controls with an axis.
+                            double temp = difference;
+                            if (temp <= 0.4)
+                            {
+                                // Perform Quadratic acceleration.
+                                difference = difference * difference;
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -934,10 +960,6 @@ void JoyButton::mouseEvent()
                             }
                             else if (temp > 0.8)
                             {
-                                // Perform mouse acceleration. Make up the difference
-                                // due to the previous two segments. Maxes out at 1.0.
-                                //difference = (difference * 2.2) - 1.2;
-
                                 unsigned int easingDuration = buttonslot->getEasingTime()->elapsed();
                                 //qDebug() << "TEMP: " << temp;
                                 if (!buttonslot->isEasingActive())

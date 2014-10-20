@@ -29,7 +29,7 @@ public:
 
     enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
     enum JoyMouseCurve {EnhancedPrecisionCurve=0, LinearCurve, QuadraticCurve,
-                        CubicCurve, QuadraticExtremeCurve, PowerCurve};
+                        CubicCurve, QuadraticExtremeCurve, PowerCurve, TestCurve};
     enum TurboMode {NormalTurbo=0, GradientTurbo, PulseTurbo};
 
     void joyEvent (bool pressed, bool ignoresets=false);
