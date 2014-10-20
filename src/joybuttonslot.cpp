@@ -17,6 +17,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     previousDistance = 0.0;
     qkeyaliasCode = 0;
     mouseInterval = new QTime();
+    easingActive = false;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent) :
@@ -33,6 +34,7 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     this->mode = mode;
     distance = 0.0;
     mouseInterval = new QTime();
+    easingActive = false;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mode, QObject *parent) :
@@ -54,6 +56,7 @@ JoyButtonSlot::JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mo
     this->mode = mode;
     distance = 0.0;
     mouseInterval = new QTime();
+    easingActive = false;
 }
 
 JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
@@ -64,6 +67,7 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     mode = slot->mode;
     distance = 0.0;
     mouseInterval = new QTime();
+    easingActive = false;
 }
 
 JoyButtonSlot::~JoyButtonSlot()
@@ -526,4 +530,19 @@ bool JoyButtonSlot::isModifierKey()
     }
 
     return modifier;
+}
+
+bool JoyButtonSlot::isEasingActive()
+{
+    return easingActive;
+}
+
+void JoyButtonSlot::setEasingStatus(bool isActive)
+{
+    easingActive = isActive;
+}
+
+QTime* JoyButtonSlot::getEasingTime()
+{
+    return &easingTime;
 }

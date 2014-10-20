@@ -911,18 +911,54 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Quadratic acceleration.
                                 difference = difference * difference;
+
+                                if (buttonslot->isEasingActive())
+                                {
+                                    buttonslot->setEasingStatus(false);
+                                    buttonslot->getEasingTime()->restart();
+                                    //qDebug() << "QUITTING";
+                                }
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
                                 difference = difference - 0.24;
+
+                                if (buttonslot->isEasingActive())
+                                {
+                                    buttonslot->setEasingStatus(false);
+                                    buttonslot->getEasingTime()->restart();
+                                    //qDebug() << "QUITTING";
+                                }
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 2.2) - 1.2;
+                                //difference = (difference * 2.2) - 1.2;
+
+                                unsigned int easingDuration = buttonslot->getEasingTime()->elapsed();
+                                //qDebug() << "TEMP: " << temp;
+                                if (!buttonslot->isEasingActive())
+                                {
+                                    buttonslot->setEasingStatus(true);
+                                    buttonslot->getEasingTime()->restart();
+                                    easingDuration = timeElapsed;
+                                }
+
+                                if ((easingDuration * .001) < 1.0)
+                                {
+                                    difference = ((easingDuration * .001) / 1.0);
+                                    difference = (1.0 - 0.8) * difference * difference + 0.8;
+                                    //qDebug() << "TIME: " << easingDuration;
+                                }
+                                else
+                                {
+                                    difference = 1.0;
+                                }
+
+                                difference = difference * 4.7 - 3.2;
                             }
                             break;
                         }
@@ -3063,6 +3099,9 @@ void JoyButton::releaseActiveSlots()
                             iterY.toBack();
                         }
                     }
+
+                    slot->getEasingTime()->restart();
+                    slot->setEasingStatus(false);
                 }
                 else if (mousemode == JoyButton::MouseSpring)
                 {
