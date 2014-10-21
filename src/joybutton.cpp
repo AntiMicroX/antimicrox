@@ -4006,3 +4006,18 @@ bool JoyButton::isPartRealAxis()
 {
     return false;
 }
+
+int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
+{
+    int result = JoyAxis::JOYSPEED * value;
+    if (curve == QuadraticExtremeCurve)
+    {
+        result *= 1.5;
+    }
+    else if (curve == TestCurve)
+    {
+        result *= 1.5;
+    }
+
+    return result;
+}

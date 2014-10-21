@@ -3,6 +3,7 @@
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 #include "joyaxis.h"
+#include "joybutton.h"
 
 MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -14,6 +15,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     //ui->relativeSpringCheckBox->setVisible(false);
 
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatus(int)));
+    connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(refreshMouseCursorSpeedValues(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSectionStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
@@ -81,14 +83,24 @@ void MouseSettingsDialog::changeSmoothingStatus(int index)
 void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 {
     QString label = QString (QString::number(value));
-    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
+
+    int currentCurveIndex = ui->accelerationComboBox->currentIndex();
+    JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
+    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value);
+
+    label = label.append(" = ").append(QString::number(finalSpeed)).append(" pps");
     ui->horizontalSpeedLabel->setText(label);
 }
 
 void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 {
     QString label = QString (QString::number(value));
-    label = label.append(" = ").append(QString::number(JoyAxis::JOYSPEED * value)).append(" pps");
+
+    int currentCurveIndex = ui->accelerationComboBox->currentIndex();
+    JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
+    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value);
+
+    label = label.append(" = ").append(QString::number(finalSpeed)).append(" pps");
     ui->verticalSpeedLabel->setText(label);
 }
 
@@ -275,4 +287,13 @@ void MouseSettingsDialog::updateMouseSpringStatusLabels(int coordX, int coordY)
         ui->mouseStatusYLabel->setText(tempY.arg(coordY));
         lastMouseStatUpdate.start();
     }
+}
+
+
+void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
+{
+    Q_UNUSED(index);
+
+    updateHorizontalSpeedConvertLabel(ui->horizontalSpinBox->value());
+    updateVerticalSpeedConvertLabel(ui->verticalSpinBox->value());
 }

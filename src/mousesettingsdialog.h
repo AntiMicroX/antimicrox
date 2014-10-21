@@ -41,9 +41,10 @@ public slots:
     virtual void changeMouseMode(int index) = 0;
     virtual void changeMouseCurve(int index) = 0;
 
-protected slots:
+private slots:
     void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed);
     void updateMouseSpringStatusLabels(int coordX, int coordY);
+    void refreshMouseCursorSpeedValues(int index);
 };
 
 #endif // MOUSESETTINGSDIALOG_H
