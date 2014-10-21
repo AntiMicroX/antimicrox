@@ -124,6 +124,7 @@ GameControllerMappingDialog::~GameControllerMappingDialog()
 
 void GameControllerMappingDialog::buttonAssign(int buttonindex)
 {
+    // Only perform assignment if no other control is currently active.
     if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {
         QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
@@ -168,6 +169,7 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
         }
     }
 
+    // Increment reference count.
     buttonGrabs++;
 }
 
@@ -177,6 +179,7 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
     //qDebug() << value;
 
+    // Only perform assignment if no other control is currently active.
     if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {
         QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
@@ -221,11 +224,13 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
         }
     }
 
+    // Increment reference count.
     buttonGrabs++;
 }
 
 void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 {
+    // Only perform assignment if no other control is currently active.
     if (ui->buttonMappingTableWidget->currentRow() > -1 && buttonGrabs == 0)
     {
         if (buttonindex == JoyDPadButton::DpadUp ||
@@ -276,6 +281,7 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
         }
     }
 
+    // Increment reference count.
     buttonGrabs++;
 }
 
@@ -502,24 +508,44 @@ void GameControllerMappingDialog::changeButtonDisplay()
 
 void GameControllerMappingDialog::axisRelease(int axis, int value)
 {
+    Q_UNUSED(axis);
+    Q_UNUSED(value);
+
     if (buttonGrabs > 0)
     {
         buttonGrabs--;
+    }
+    else
+    {
+        buttonGrabs = 0;
     }
 }
 
 void GameControllerMappingDialog::buttonRelease(int buttonindex)
 {
+    Q_UNUSED(buttonindex);
+
     if (buttonGrabs > 0)
     {
         buttonGrabs--;
+    }
+    else
+    {
+        buttonGrabs = 0;
     }
 }
 
 void GameControllerMappingDialog::dpadRelease(int dpad, int buttonindex)
 {
+    Q_UNUSED(dpad);
+    Q_UNUSED(buttonindex);
+
     if (buttonGrabs > 0)
     {
         buttonGrabs--;
+    }
+    else
+    {
+        buttonGrabs = 0;
     }
 }
