@@ -980,7 +980,8 @@ void JoyButton::mouseEvent()
                                     difference = 1.0;
                                 }
 
-                                difference = difference * 4.7 - 3.2;
+                                //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0
+                                difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5
                             }
                             break;
                         }
