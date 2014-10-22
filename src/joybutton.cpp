@@ -924,6 +924,77 @@ void JoyButton::mouseEvent()
                                 // due to the previous two segments. Maxes out at 1.0.
                                 difference = (difference * 2.2) - 1.2;
                             }
+
+                            break;
+                        }
+                        case EasingQuadraticCurve:
+                        case EasingCubicCurve:
+                        {
+                            // Perform different forms of acceleration depending on
+                            // the range of the element from its assigned dead zone.
+                            // Useful for more precise controls with an axis.
+                            double temp = difference;
+                            if (temp <= 0.4)
+                            {
+                                // Perform Quadratic acceleration.
+                                difference = difference * difference;
+
+                                if (buttonslot->isEasingActive())
+                                {
+                                    buttonslot->setEasingStatus(false);
+                                    buttonslot->getEasingTime()->restart();
+                                    //qDebug() << "QUITTING";
+                                }
+                            }
+                            else if (temp <= 0.8)
+                            {
+                                // Perform Linear accleration with an appropriate
+                                // offset.
+                                difference = difference - 0.24;
+
+                                if (buttonslot->isEasingActive())
+                                {
+                                    buttonslot->setEasingStatus(false);
+                                    buttonslot->getEasingTime()->restart();
+                                    //qDebug() << "QUITTING";
+                                }
+                            }
+                            else if (temp > 0.8)
+                            {
+                                unsigned int easingDuration = buttonslot->getEasingTime()->elapsed();
+                                //qDebug() << "TEMP: " << temp;
+                                if (!buttonslot->isEasingActive())
+                                {
+                                    buttonslot->setEasingStatus(true);
+                                    buttonslot->getEasingTime()->restart();
+                                    easingDuration = timeElapsed;
+                                }
+
+                                if ((easingDuration * .001) < 1.0)
+                                {
+                                    difference = ((easingDuration * .001) / 1.0);
+                                    if (currentCurve == EasingQuadraticCurve)
+                                    {
+                                        // Range 0.8 - 1.0
+                                        difference = (1.0 - 0.8) * difference * difference + 0.8;
+                                    }
+                                    else
+                                    {
+                                        // Range 0.8 - 1.0
+                                        difference = (1.0 - 0.8) * (difference * difference
+                                                     * difference) + 0.8;
+                                    }
+
+                                    //qDebug() << "TIME: " << easingDuration;
+                                }
+                                else
+                                {
+                                    difference = 1.0;
+                                }
+
+                                //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0
+                                difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5
+                            }
                             break;
                         }
                         default:
@@ -1348,6 +1419,14 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             {
                 xml->writeTextElement("mouseacceleration", "precision");
             }
+            else if (mouseCurve == EasingQuadraticCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "easing-quadratic");
+            }
+            else if (mouseCurve == EasingCubicCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "easing-cubic");
+            }
         }
 
         if (smoothing != DEFAULTSMOOTHING)
@@ -1601,6 +1680,14 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         else if (temptext == "precision")
         {
             setMouseCurve(EnhancedPrecisionCurve);
+        }
+        else if (temptext == "easing-quadratic")
+        {
+            setMouseCurve(EasingQuadraticCurve);
+        }
+        else if (temptext == "easing-cubic")
+        {
+            setMouseCurve(EasingCubicCurve);
         }
     }
     else if (xml->name() == "mousespringwidth" && xml->isStartElement())
@@ -3063,6 +3150,9 @@ void JoyButton::releaseActiveSlots()
                             iterY.toBack();
                         }
                     }
+
+                    slot->getEasingTime()->restart();
+                    slot->setEasingStatus(false);
                 }
                 else if (mousemode == JoyButton::MouseSpring)
                 {
@@ -3943,4 +4033,21 @@ JoyButton::TurboMode JoyButton::getTurboMode()
 bool JoyButton::isPartRealAxis()
 {
     return false;
+}
+
+int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
+{
+    int result = JoyAxis::JOYSPEED * value;
+    switch (curve)
+    {
+        case QuadraticExtremeCurve:
+        case EasingQuadraticCurve:
+        case EasingCubicCurve:
+        {
+            result *= 1.5;
+            break;
+        }
+    }
+
+    return result;
 }

@@ -42,6 +42,10 @@ public:
     double getPreviousDistance();
     bool isModifierKey();
 
+    bool isEasingActive();
+    void setEasingStatus(bool isActive);
+    QTime* getEasingTime();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
@@ -55,6 +59,8 @@ protected:
     double distance;
     double previousDistance;
     QTime *mouseInterval;
+    QTime easingTime;
+    bool easingActive;
 
 signals:
     

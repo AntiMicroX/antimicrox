@@ -29,7 +29,8 @@ public:
 
     enum JoyMouseMovementMode {MouseCursor=0, MouseSpring};
     enum JoyMouseCurve {EnhancedPrecisionCurve=0, LinearCurve, QuadraticCurve,
-                        CubicCurve, QuadraticExtremeCurve, PowerCurve};
+                        CubicCurve, QuadraticExtremeCurve, PowerCurve,
+                        EasingQuadraticCurve, EasingCubicCurve};
     enum TurboMode {NormalTurbo=0, GradientTurbo, PulseTurbo};
 
     void joyEvent (bool pressed, bool ignoresets=false);
@@ -136,6 +137,8 @@ public:
     TurboMode getTurboMode();
     virtual bool isPartRealAxis();
 
+    static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value);
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -177,8 +180,6 @@ protected:
     unsigned int getPreferredKeyPressTime();
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
-
-
 
     typedef struct mouseCursorInfo
     {
