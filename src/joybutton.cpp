@@ -927,7 +927,8 @@ void JoyButton::mouseEvent()
 
                             break;
                         }
-                        case TestCurve:
+                        case EasingQuadraticCurve:
+                        case EasingCubicCurve:
                         {
                             // Perform different forms of acceleration depending on
                             // the range of the element from its assigned dead zone.
@@ -972,7 +973,18 @@ void JoyButton::mouseEvent()
                                 if ((easingDuration * .001) < 1.0)
                                 {
                                     difference = ((easingDuration * .001) / 1.0);
-                                    difference = (1.0 - 0.8) * difference * difference + 0.8;
+                                    if (currentCurve == EasingQuadraticCurve)
+                                    {
+                                        // Range 0.8 - 1.0
+                                        difference = (1.0 - 0.8) * difference * difference + 0.8;
+                                    }
+                                    else
+                                    {
+                                        // Range 0.8 - 1.0
+                                        difference = (1.0 - 0.8) * (difference * difference
+                                                     * difference) + 0.8;
+                                    }
+
                                     //qDebug() << "TIME: " << easingDuration;
                                 }
                                 else
@@ -1407,6 +1419,14 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             {
                 xml->writeTextElement("mouseacceleration", "precision");
             }
+            else if (mouseCurve == EasingQuadraticCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "easing-quadratic");
+            }
+            else if (mouseCurve == EasingCubicCurve)
+            {
+                xml->writeTextElement("mouseacceleration", "easing-cubic");
+            }
         }
 
         if (smoothing != DEFAULTSMOOTHING)
@@ -1660,6 +1680,14 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         else if (temptext == "precision")
         {
             setMouseCurve(EnhancedPrecisionCurve);
+        }
+        else if (temptext == "easing-quadratic")
+        {
+            setMouseCurve(EasingQuadraticCurve);
+        }
+        else if (temptext == "easing-cubic")
+        {
+            setMouseCurve(EasingCubicCurve);
         }
     }
     else if (xml->name() == "mousespringwidth" && xml->isStartElement())
@@ -4010,13 +4038,15 @@ bool JoyButton::isPartRealAxis()
 int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 {
     int result = JoyAxis::JOYSPEED * value;
-    if (curve == QuadraticExtremeCurve)
+    switch (curve)
     {
-        result *= 1.5;
-    }
-    else if (curve == TestCurve)
-    {
-        result *= 1.5;
+        case QuadraticExtremeCurve:
+        case EasingQuadraticCurve:
+        case EasingCubicCurve:
+        {
+            result *= 1.5;
+            break;
+        }
     }
 
     return result;

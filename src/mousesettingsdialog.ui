@@ -115,7 +115,12 @@ axis is moved back to the dead zone.</string>
          </item>
          <item>
           <property name="text">
-           <string>Test</string>
+           <string>Easing Quadratic</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Easing Cubic</string>
           </property>
          </item>
         </widget>

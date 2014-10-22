@@ -185,9 +185,13 @@ void MouseSettingsDialog::updateAccelerationCurvePresetComboBox(JoyButton::JoyMo
     {
         ui->accelerationComboBox->setCurrentIndex(6);
     }
-    else if (mouseCurve == JoyButton::TestCurve)
+    else if (mouseCurve == JoyButton::EasingQuadraticCurve)
     {
         ui->accelerationComboBox->setCurrentIndex(7);
+    }
+    else if (mouseCurve == JoyButton::EasingCubicCurve)
+    {
+        ui->accelerationComboBox->setCurrentIndex(8);
     }
 }
 
@@ -221,7 +225,11 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
     }
     else if (index == 7)
     {
-        temp = JoyButton::TestCurve;
+        temp = JoyButton::EasingQuadraticCurve;
+    }
+    else if (index == 8)
+    {
+        temp = JoyButton::EasingCubicCurve;
     }
 
     return temp;
