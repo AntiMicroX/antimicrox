@@ -854,6 +854,12 @@ void JoyTabWidget::changeJoyConfig(int index)
         {
             QFileInfo profile(filename);
             oldProfileName = profile.baseName();
+            profileName = oldProfileName;
+        }
+
+        if (configBox->itemText(index) != profileName)
+        {
+            configBox->setItemText(index, profileName);
         }
     }
     else if (index == 0)
