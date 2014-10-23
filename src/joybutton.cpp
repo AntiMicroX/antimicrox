@@ -961,18 +961,19 @@ void JoyButton::mouseEvent()
                             }
                             else if (temp > 0.8)
                             {
-                                unsigned int easingDuration = buttonslot->getEasingTime()->elapsed();
+                                unsigned int easingElapsed = buttonslot->getEasingTime()->elapsed();
+                                double easingDuration = 0.75; // Time in seconds
                                 //qDebug() << "TEMP: " << temp;
                                 if (!buttonslot->isEasingActive())
                                 {
                                     buttonslot->setEasingStatus(true);
                                     buttonslot->getEasingTime()->restart();
-                                    easingDuration = timeElapsed;
+                                    easingElapsed = timeElapsed;
                                 }
 
-                                if ((easingDuration * .001) < 1.0)
+                                if ((easingElapsed * .001) < easingDuration)
                                 {
-                                    difference = ((easingDuration * .001) / 1.0);
+                                    difference = ((easingElapsed * .001) / easingDuration);
                                     if (currentCurve == EasingQuadraticCurve)
                                     {
                                         // Range 0.8 - 1.0
@@ -4035,6 +4036,12 @@ bool JoyButton::isPartRealAxis()
     return false;
 }
 
+/**
+ * @brief Calculate maximum mouse speed when using a given mouse curve.
+ * @param Mouse curve
+ * @param Mouse speed value
+ * @return
+ */
 int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 {
     int result = JoyAxis::JOYSPEED * value;
