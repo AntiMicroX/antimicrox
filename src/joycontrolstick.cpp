@@ -75,7 +75,7 @@ void JoyControlStick::joyEvent(bool ignoresets)
     else if (!safezone && isActive)
     {
         isActive = false;
-        currentDirection = StickCentered;
+        //currentDirection = StickCentered;
         emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
         //directionDelayTimer.stop();
         //createDeskEvent(ignoresets);
