@@ -51,7 +51,8 @@ void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
         ui->sensitivityDoubleSpinBox->setEnabled(false);
     }
 
-    if (temp == JoyButton::EasingQuadraticCurve || temp == JoyButton::EasingCubicCurve)
+    if (currentMouseMode == 1 && (temp == JoyButton::EasingQuadraticCurve ||
+                                  temp == JoyButton::EasingCubicCurve))
     {
         ui->easingDoubleSpinBox->setEnabled(true);
     }
