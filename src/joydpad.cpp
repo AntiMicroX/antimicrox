@@ -261,8 +261,25 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
         {
             emit released(value);
             pendingDirection = JoyDPadButton::DpadCentered;
-            directionDelayTimer.stop();
-            createDeskEvent(ignoresets);
+            if (ignoresets || dpadDelay == 0)
+            {
+                if (directionDelayTimer.isActive())
+                {
+                    directionDelayTimer.stop();
+                }
+
+                createDeskEvent(ignoresets);
+            }
+            else
+            {
+                if (!directionDelayTimer.isActive())
+                {
+                    directionDelayTimer.start(dpadDelay);
+                }
+            }
+
+            //directionDelayTimer.stop();
+            //createDeskEvent(ignoresets);
         }
     }
 }
