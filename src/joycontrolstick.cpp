@@ -53,12 +53,21 @@ void JoyControlStick::joyEvent(bool ignoresets)
         emit active(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
         if (ignoresets || stickDelay == 0)
         {
+            if (directionDelayTimer.isActive())
+            {
+                directionDelayTimer.stop();
+            }
+
             createDeskEvent(ignoresets);
         }
         else
         {
             //createDeskEvent(ignoresets);
-            directionDelayTimer.start(stickDelay);
+            //directionDelayTimer.start(stickDelay);
+            if (!directionDelayTimer.isActive())
+            {
+                directionDelayTimer.start(stickDelay);
+            }
         }
 
         //createDeskEvent(ignoresets);
@@ -68,8 +77,26 @@ void JoyControlStick::joyEvent(bool ignoresets)
         isActive = false;
         currentDirection = StickCentered;
         emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        directionDelayTimer.stop();
-        createDeskEvent(ignoresets);
+        //directionDelayTimer.stop();
+        //createDeskEvent(ignoresets);
+        if (ignoresets || stickDelay == 0)
+        {
+            if (directionDelayTimer.isActive())
+            {
+                directionDelayTimer.stop();
+            }
+
+            createDeskEvent(ignoresets);
+        }
+        else
+        {
+            //createDeskEvent(ignoresets);
+            //directionDelayTimer.start(stickDelay);
+            if (!directionDelayTimer.isActive())
+            {
+                directionDelayTimer.start(stickDelay);
+            }
+        }
     }
     else if (isActive)
     {
