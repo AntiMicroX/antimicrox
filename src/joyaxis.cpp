@@ -980,3 +980,20 @@ void JoyAxis::copyAssignments(JoyAxis *destAxis)
     paxisbutton->copyAssignments(destAxis->paxisbutton);
     naxisbutton->copyAssignments(destAxis->naxisbutton);
 }
+
+void JoyAxis::setButtonsEasingDuration(double value)
+{
+    paxisbutton->setEasingDuration(value);
+    naxisbutton->setEasingDuration(value);
+}
+
+double JoyAxis::getButtonsEasingDuration()
+{
+    double result = JoyButton::DEFAULTEASINGDURATION;
+    if (paxisbutton->getEasingDuration() == naxisbutton->getEasingDuration())
+    {
+        result = paxisbutton->getEasingDuration();
+    }
+
+    return result;
+}

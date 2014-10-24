@@ -36,6 +36,7 @@ const bool JoyButton::DEFAULTCYCLERESETACTIVE = false;
 const int JoyButton::DEFAULTCYCLERESET = 0;
 const bool JoyButton::DEFAULTRELATIVESPRING = false;
 const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
+const double JoyButton::DEFAULTEASINGDURATION = 0.5;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -431,6 +432,7 @@ void JoyButton::reset()
     tempTurboInterval = 0;
     //currentTurboMode = GradientTurbo;
     currentTurboMode = DEFAULTTURBOMODE;
+    easingDuration = DEFAULTEASINGDURATION;
 }
 
 void JoyButton::reset(int index)
@@ -962,7 +964,7 @@ void JoyButton::mouseEvent()
                             else if (temp > 0.8)
                             {
                                 unsigned int easingElapsed = buttonslot->getEasingTime()->elapsed();
-                                double easingDuration = 0.5; // Time in seconds
+                                double easingDuration = this->easingDuration; // Time in seconds
                                 //qDebug() << "TEMP: " << temp;
                                 if (!buttonslot->isEasingActive())
                                 {
@@ -1485,6 +1487,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("relativespring", "true");
         }
 
+        if (easingDuration > DEFAULTEASINGDURATION)
+        {
+            xml->writeTextElement("easingduration", QString::number(easingDuration));
+        }
+
         // Write information about assigned slots.
         if (!assignments.isEmpty())
         {
@@ -1752,6 +1759,13 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         {
             this->setSpringRelativeStatus(true);
         }
+    }
+    else if (xml->name() == "easingduration" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setEasingDuration(tempchoice);
     }
 
     return found;
@@ -3438,6 +3452,7 @@ bool JoyButton::isDefault()
     value = value && (cycleResetActive == DEFAULTCYCLERESETACTIVE);
     value = value && (cycleResetInterval == DEFAULTCYCLERESET);
     value = value && (relativeSpring == DEFAULTRELATIVESPRING);
+    value = value && (easingDuration == DEFAULTEASINGDURATION);
     return value;
 }
 
@@ -4005,6 +4020,8 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->cycleResetActive = cycleResetActive;
     destButton->cycleResetInterval = cycleResetInterval;
     destButton->relativeSpring = relativeSpring;
+    destButton->currentTurboMode = currentTurboMode;
+    destButton->easingDuration = easingDuration;
 }
 
 /**
@@ -4057,4 +4074,18 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
     }
 
     return result;
+}
+
+void JoyButton::setEasingDuration(double value)
+{
+    if (value >= DEFAULTEASINGDURATION && value <= 2.0)
+    {
+        easingDuration = value;
+        emit propertyUpdated();
+    }
+}
+
+double JoyButton::getEasingDuration()
+{
+    return easingDuration;
 }

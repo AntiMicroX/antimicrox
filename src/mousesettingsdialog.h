@@ -26,7 +26,7 @@ protected:
     Ui::MouseSettingsDialog *ui;
 
 public slots:
-    void changeSensitivityStatus(int index);
+    void changeSettingsWidgetStatus(int index);
     void changeSpringSectionStatus(int index);
     void changeMouseSpeedBoxStatus(int index);
     void changeWheelSpeedBoxStatus(int index);

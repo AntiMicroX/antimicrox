@@ -1324,6 +1324,7 @@ bool JoyControlStick::isDefault()
     value = value && (diagonalRange == DEFAULTDIAGONALRANGE);
     value = value && (currentMode == DEFAULTMODE);
     value = value && (circle == DEFAULTCIRCLE);
+    value = value && (stickDelay == DEFAULTSTICKDELAY);
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
@@ -1349,19 +1350,8 @@ bool JoyControlStick::hasSameButtonsMouseMode()
     bool result = true;
 
     JoyButton::JoyMouseMovementMode initialMode = JoyButton::MouseCursor;
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
 
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1389,19 +1379,7 @@ JoyButton::JoyMouseMovementMode JoyControlStick::getButtonsPresetMouseMode()
 {
     JoyButton::JoyMouseMovementMode resultMode = JoyButton::MouseCursor;
 
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
-
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1440,19 +1418,8 @@ bool JoyControlStick::hasSameButtonsMouseCurve()
     bool result = true;
 
     JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
 
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1480,19 +1447,7 @@ JoyButton::JoyMouseCurve JoyControlStick::getButtonsPresetMouseCurve()
 {
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
 
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
-
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1540,19 +1495,7 @@ int JoyControlStick::getButtonsPresetSpringWidth()
 {
     int presetSpringWidth = 0;
 
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
-
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1580,19 +1523,7 @@ int JoyControlStick::getButtonsPresetSpringHeight()
 {
     int presetSpringHeight = 0;
 
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
-
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1630,19 +1561,7 @@ double JoyControlStick::getButtonsPresetSensitivity()
 {
     double presetSensitivity = 1.0;
 
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
-    {
-        temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
-        temphash.insert(StickRightUp, buttons.value(StickRightUp));
-        temphash.insert(StickRightDown, buttons.value(StickRightDown));
-        temphash.insert(StickLeftDown, buttons.value(StickLeftDown));
-    }
-
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
@@ -1669,11 +1588,17 @@ double JoyControlStick::getButtonsPresetSensitivity()
 QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> JoyControlStick::getApplicableButtons()
 {
     QHash<JoyStickDirections, JoyControlStickButton*> temphash;
-    temphash.insert(StickUp, buttons.value(StickUp));
-    temphash.insert(StickDown, buttons.value(StickDown));
-    temphash.insert(StickLeft, buttons.value(StickLeft));
-    temphash.insert(StickRight, buttons.value(StickRight));
-    if (currentMode == EightWayMode)
+
+    if (currentMode == StandardMode || currentMode == EightWayMode ||
+        currentMode == FourWayCardinal)
+    {
+        temphash.insert(StickUp, buttons.value(StickUp));
+        temphash.insert(StickDown, buttons.value(StickDown));
+        temphash.insert(StickLeft, buttons.value(StickLeft));
+        temphash.insert(StickRight, buttons.value(StickRight));
+    }
+
+    if (currentMode == EightWayMode || currentMode == FourWayDiagonal)
     {
         temphash.insert(StickLeftUp, buttons.value(StickLeftUp));
         temphash.insert(StickRightUp, buttons.value(StickRightUp));
@@ -2190,7 +2115,8 @@ bool JoyControlStick::isRelativeSpring()
 {
     bool relative = false;
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
     while (iter.hasNext())
     {
         if (!iter.hasPrevious())
@@ -2228,6 +2154,7 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
     destStick->currentMode = currentMode;
     destStick->stickName = stickName;
     destStick->circle = circle;
+    destStick->stickDelay = stickDelay;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(destStick->buttons);
     while (iter.hasNext())
@@ -2291,4 +2218,42 @@ void JoyControlStick::setStickDelay(int value)
 unsigned int JoyControlStick::getStickDelay()
 {
     return stickDelay;
+}
+
+void JoyControlStick::setButtonsEasingDuration(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setEasingDuration(value);
+    }
+}
+
+double JoyControlStick::getButtonsEasingDuration()
+{
+    double result = JoyButton::DEFAULTEASINGDURATION;
+
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            result = button->getEasingDuration();
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            double temp = button->getEasingDuration();
+            if (temp != result)
+            {
+                result = JoyButton::DEFAULTEASINGDURATION;
+                iter.toBack();
+            }
+        }
+    }
+
+    return result;
 }

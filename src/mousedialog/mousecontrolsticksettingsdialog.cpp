@@ -17,7 +17,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     selectCurrentMouseModePreset();
     calculateSpringPreset();
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
     if (stick->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(stick->getButtonsPresetSensitivity());
@@ -43,6 +43,9 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
         ui->relativeSpringCheckBox->setChecked(true);
     }
 
+    double easingDuration = stick->getButtonsEasingDuration();
+    ui->easingDoubleSpinBox->setValue(easingDuration);
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -64,6 +67,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
+
+    connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), stick, SLOT(setButtonsEasingDuration(double)));
 
     SetJoystick *set = stick->getParentSet();
     if (set && set->getInputDevice())

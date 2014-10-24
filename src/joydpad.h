@@ -78,6 +78,7 @@ public:
     void copyAssignments(JoyDPad *destDPad);
 
     unsigned int getDPadDelay();
+    double getButtonsEasingDuration();
 
     static const QString xmlName;
     static const unsigned int DEFAULTDPADDELAY;
@@ -113,6 +114,7 @@ public slots:
     void setDPadName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
     void setDPadDelay(int value);
+    void setButtonsEasingDuration(double value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

@@ -138,6 +138,7 @@ public:
     virtual bool isPartRealAxis();
 
     static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value);
+    double getEasingDuration();
 
     static const QString xmlName;
 
@@ -166,6 +167,7 @@ public:
     static const int DEFAULTCYCLERESET;
     static const bool DEFAULTRELATIVESPRING;
     static const TurboMode DEFAULTTURBOMODE;
+    static const double DEFAULTEASINGDURATION;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
@@ -283,6 +285,8 @@ protected:
     bool relativeSpring;
     TurboMode currentTurboMode;
 
+    double easingDuration;
+
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -334,6 +338,8 @@ public slots:
 
     void setActionName(QString tempName);
     void setButtonName(QString tempName);
+
+    void setEasingDuration(double value);
 
     virtual void reset();
     virtual void reset(int index);

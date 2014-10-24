@@ -106,6 +106,8 @@ public:
     double getCircleAdjust();
     unsigned int getStickDelay();
 
+    double getButtonsEasingDuration();
+
     static const double PI;
 
     // Define default values for stick properties.
@@ -189,6 +191,7 @@ public slots:
     void setButtonsSpringRelativeStatus(bool value);
     void setCircleAdjust(double circle);
     void setStickDelay(int value);
+    void setButtonsEasingDuration(double value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

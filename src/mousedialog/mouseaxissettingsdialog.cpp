@@ -15,7 +15,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     selectCurrentMouseModePreset();
     calculateSpringPreset();
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
     if (axis->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(axis->getButtonsPresetSensitivity());
@@ -41,6 +41,9 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
         ui->relativeSpringCheckBox->setChecked(true);
     }
 
+    double easingDuration = axis->getButtonsEasingDuration();
+    ui->easingDoubleSpinBox->setValue(easingDuration);
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -62,6 +65,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
+
+    connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), axis, SLOT(setButtonsEasingDuration(double)));
 
     SetJoystick *set = axis->getParentSet();
     if (set && set->getInputDevice())

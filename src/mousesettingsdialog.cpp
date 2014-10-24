@@ -14,7 +14,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
     //ui->relativeSpringCheckBox->setVisible(false);
 
-    connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatus(int)));
+    connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSettingsWidgetStatus(int)));
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(refreshMouseCursorSpeedValues(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSectionStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
@@ -37,7 +37,7 @@ MouseSettingsDialog::~MouseSettingsDialog()
     delete ui;
 }
 
-void MouseSettingsDialog::changeSensitivityStatus(int index)
+void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
 {
     JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(index);
     int currentMouseMode = ui->mouseModeComboBox->currentIndex();
@@ -49,6 +49,15 @@ void MouseSettingsDialog::changeSensitivityStatus(int index)
     else
     {
         ui->sensitivityDoubleSpinBox->setEnabled(false);
+    }
+
+    if (temp == JoyButton::EasingQuadraticCurve || temp == JoyButton::EasingCubicCurve)
+    {
+        ui->easingDoubleSpinBox->setEnabled(true);
+    }
+    else
+    {
+        ui->easingDoubleSpinBox->setEnabled(false);
     }
 }
 

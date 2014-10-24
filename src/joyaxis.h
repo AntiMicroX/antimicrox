@@ -92,6 +92,8 @@ public:
     void setButtonsWheelSpeedX(int value);
     void setButtonsWheelSpeedY(int value);
 
+    double getButtonsEasingDuration();
+
     virtual QString getAxisName();
     virtual int getDefaultDeadZone();
     virtual int getDefaultMaxZone();
@@ -167,6 +169,7 @@ public slots:
     void setMaxZoneValue(int value);
     void setAxisName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
+    void setButtonsEasingDuration(double value);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

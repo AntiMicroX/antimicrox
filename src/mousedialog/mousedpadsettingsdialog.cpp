@@ -15,7 +15,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     selectCurrentMouseModePreset();
     calculateSpringPreset();
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSensitivityStatus(ui->accelerationComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
     if (dpad->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(dpad->getButtonsPresetSensitivity());
@@ -41,6 +41,9 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
         ui->relativeSpringCheckBox->setChecked(true);
     }
 
+    double easingDuration = dpad->getButtonsEasingDuration();
+    ui->easingDoubleSpinBox->setValue(easingDuration);
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -62,6 +65,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
+
+    connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), dpad, SLOT(setButtonsEasingDuration(double)));
 
     SetJoystick *set = dpad->getParentSet();
     if (set && set->getInputDevice())
