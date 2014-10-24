@@ -962,7 +962,7 @@ void JoyButton::mouseEvent()
                             else if (temp > 0.8)
                             {
                                 unsigned int easingElapsed = buttonslot->getEasingTime()->elapsed();
-                                double easingDuration = 0.75; // Time in seconds
+                                double easingDuration = 0.5; // Time in seconds
                                 //qDebug() << "TEMP: " << temp;
                                 if (!buttonslot->isEasingActive())
                                 {
