@@ -412,6 +412,8 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
+
+        reInitButtons();
     }
 }
 
@@ -562,6 +564,8 @@ void GameController::readConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
+
+        reInitButtons();
     }
     else if (xml->isStartElement() && xml->name() == "joystick")
     {

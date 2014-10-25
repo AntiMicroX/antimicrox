@@ -10,14 +10,17 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
 
     refreshLabel();
 
+    if (button->getButtonState())
+    {
+        flash();
+    }
+
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    enableFlashes();
+
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    //connect(button, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
-    //connect(button, SIGNAL(buttonNameChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
 }

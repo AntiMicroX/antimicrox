@@ -63,7 +63,7 @@ public:
     virtual void writeConfig(QXmlStreamWriter *xml);
 
     void setControlStick(JoyControlStick *stick);
-    void removeControlStick();
+    void removeControlStick(bool performRelease = true);
     bool isPartControlStick();
     JoyControlStick* getControlStick();
     bool hasControlOfButtons();

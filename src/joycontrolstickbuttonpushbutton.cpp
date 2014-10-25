@@ -11,6 +11,11 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     refreshLabel();
     enableFlashes();
 
+    if (button->getButtonState())
+    {
+        flash();
+    }
+
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 

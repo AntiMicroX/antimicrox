@@ -2,6 +2,7 @@
 #define INPUTDEVICE_H
 
 #include <QObject>
+#include <QList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
@@ -89,6 +90,7 @@ public:
     void setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
 
     void transferReset();
+    void reInitButtons();
 
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
@@ -112,6 +114,10 @@ protected:
     int keyRepeatDelay;
     int keyRepeatRate;
     QString profileName;
+
+    QList<bool> buttonstates;
+    QList<int> axesstates;
+    QList<int> dpadstates;
 
 signals:
     void setChangeActivated(int index);

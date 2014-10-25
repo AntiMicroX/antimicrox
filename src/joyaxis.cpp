@@ -620,15 +620,21 @@ JoyControlStick* JoyAxis::getControlStick()
     return this->stick;
 }
 
-void JoyAxis::removeControlStick()
+void JoyAxis::removeControlStick(bool performRelease)
 {
     if (stick)
     {
-        stick->releaseButtonEvents();
+        if (performRelease)
+        {
+            stick->releaseButtonEvents();
+        }
+
         this->stick = 0;
         emit propertyUpdated();
     }
 }
+
+
 
 bool JoyAxis::hasControlOfButtons()
 {

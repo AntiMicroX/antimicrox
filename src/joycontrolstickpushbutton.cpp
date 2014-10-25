@@ -8,6 +8,11 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
 
     refreshLabel();
 
+    if (stick->getCurrentDirection() != JoyControlStick::StickCentered)
+    {
+        flash();
+    }
+
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 

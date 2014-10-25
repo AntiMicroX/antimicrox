@@ -37,8 +37,8 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
 
 JoyControlStick::~JoyControlStick()
 {
-    axisX->removeControlStick();
-    axisY->removeControlStick();
+    axisX->removeControlStick(false);
+    axisY->removeControlStick(false);
 
     deleteButtons();
 }

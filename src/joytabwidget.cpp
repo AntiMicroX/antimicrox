@@ -654,6 +654,7 @@ void JoyTabWidget::resetJoystick()
         //joystick->reset();
         joystick->revertProfileEdited();
         joystick->transferReset();
+        joystick->reInitButtons();
 
         XMLConfigReader reader;
         reader.setFileName(filename);
@@ -698,6 +699,7 @@ void JoyTabWidget::resetJoystick()
         joystick->revertProfileEdited();
         //joystick->reset();
         joystick->transferReset();
+        joystick->reInitButtons();
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
@@ -867,6 +869,8 @@ void JoyTabWidget::changeJoyConfig(int index)
         removeCurrentButtons();
         //joystick->reset();
         joystick->transferReset();
+        joystick->reInitButtons();
+
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();

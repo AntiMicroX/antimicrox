@@ -16,6 +16,11 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 
+    if (nAxisButton->getButtonState() || pAxisButton->getButtonState())
+    {
+        flash();
+    }
+
     connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
 
