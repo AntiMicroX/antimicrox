@@ -62,3 +62,8 @@ QString XTestEventHandler::getName()
 {
     return QString("XTest");
 }
+
+QString XTestEventHandler::getIdentifier()
+{
+    return QString("xtest");
+}

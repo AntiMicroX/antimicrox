@@ -18,12 +18,12 @@ class EventHandlerFactory : public QObject
 {
     Q_OBJECT
 public:
-    static EventHandlerFactory* getInstance();
+    static EventHandlerFactory* getInstance(QString handler = "");
     void deleteInstance();
     BaseEventHandler* handler();
 
 protected:
-    explicit EventHandlerFactory(QObject *parent = 0);
+    explicit EventHandlerFactory(QString handler, QObject *parent = 0);
     ~EventHandlerFactory();
 
     BaseEventHandler *eventHandler;

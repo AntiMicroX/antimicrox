@@ -13,6 +13,8 @@
 #endif
 
 #ifdef Q_OS_UNIX
+    #include "eventhandlerfactory.h"
+
     #if defined(WITH_UINPUT) && defined(WITH_X11)
         #include "qtx11keymapper.h"
 
@@ -82,9 +84,11 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
         // by checking for extended bit in scan code.
         int finalvirtual = WinInfo::correctVirtualKey(tempcode, virtualactual);
-        int checkalias = AntKeyMapper::returnQtKey(finalvirtual, tempcode);
+        int checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, tempcode);
 
 #else
+
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
     #if defined(WITH_X11)
         int finalvirtual = 0;
@@ -96,14 +100,23 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         #endif
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         finalvirtual = X11KeyCodeToX11KeySym(controlcode);
+
         #ifdef WITH_UINPUT
-        // Find Qt Key corresponding to X11 KeySym.
-        checkalias = x11KeyMapper.returnQtKey(finalvirtual);
-        // Find corresponding Linux input key for the Qt key.
-        finalvirtual = AntKeyMapper::returnVirtualKey(checkalias);
-        #else
-        // Check for alias against group 1 keysym.
-        checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        if (handler->getIdentifier() == "uinput")
+        {
+            // Find Qt Key corresponding to X11 KeySym.
+            checkalias = x11KeyMapper.returnQtKey(finalvirtual);
+            // Find corresponding Linux input key for the Qt key.
+            finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(checkalias);
+        }
+        #endif
+
+        #ifdef WITH_XTEST
+        if (handler->getIdentifier() == "xtest")
+        {
+            // Check for alias against group 1 keysym.
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
+        }
         #endif
 
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -112,7 +125,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             // Not running on xcb platform.
             finalvirtual = controlcode;
-            checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
         #endif
 
@@ -123,15 +136,15 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
         #endif
-        finalvirtual = AntKeyMapper::returnVirtualKey(keyEve->key());
-        checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+        finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(keyEve->key());
+        checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
         else
         {
             // Not running on xcb platform.
             finalvirtual = controlcode;
-            checkalias = AntKeyMapper::returnQtKey(finalvirtual);
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
         #endif
 

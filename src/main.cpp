@@ -51,6 +51,8 @@
 
 #endif
 
+#include "antkeymapper.h"
+
 #ifndef Q_OS_WIN
 static void termSignalTermHandler(int signal)
 {
@@ -515,7 +517,17 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef Q_OS_UNIX
-    bool status = EventHandlerFactory::getInstance()->handler()->init();
+    bool status = true;
+    EventHandlerFactory *factory = EventHandlerFactory::getInstance(cmdutility.getEventGenerator());
+    if (!factory)
+    {
+        status = false;
+    }
+    else
+    {
+        status = factory->handler()->init();
+    }
+
     if (!status)
     {
         joypad_worker->quit();
@@ -549,6 +561,8 @@ int main(int argc, char *argv[])
     }
 #endif
 
+    AntKeyMapper::getInstance(cmdutility.getEventGenerator());
+
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
@@ -577,6 +591,8 @@ int main(int argc, char *argv[])
 
     delete localServer;
     localServer = 0;
+
+    AntKeyMapper::getInstance()->deleteInstance();
 
 #ifdef Q_OS_UNIX
     #ifdef WITH_X11

@@ -38,14 +38,12 @@
 static MouseHelper *mouseHelperObj = 0;
 
 #ifdef Q_OS_UNIX
-    #ifdef WITH_XTEST
     static void finalSpringEvent(Display *display, unsigned int xmovecoor, unsigned int ymovecoor)
     {
         Q_UNUSED(display);
         Q_UNUSED(xmovecoor);
         Q_UNUSED(ymovecoor);
     }
-    #endif
 
 #elif defined(Q_OS_WIN)
     static void finalSpringEvent(INPUT *event, unsigned int xmovecoor, unsigned int ymovecoor, unsigned int width, unsigned int height)
@@ -406,14 +404,20 @@ int X11KeySymToKeycode(QString key)
     int tempcode = 0;
 #if defined (Q_OS_UNIX)
 
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
     if (key.length() > 0)
     {
-    #if defined(WITH_XTEST)
-        Display* display = X11Info::getInstance()->display();
-        tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
-    #elif defined(WITH_UINPUT)
-        tempcode = UInputHelper::getInstance()->getVirtualKey(key);
-    #endif
+        if (handler->getIdentifier() == "xtest")
+        {
+            Display* display = X11Info::getInstance()->display();
+            tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
+        }
+
+        else if (handler->getIdentifier() == "uinput")
+        {
+            tempcode = UInputHelper::getInstance()->getVirtualKey(key);
+        }
     }
 
 #elif defined (Q_OS_WIN)
@@ -455,52 +459,55 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
     }
     else
     {
-    #if defined(WITH_XTEST)
-        Display* display = X11Info::getInstance()->display();
-        newkey = QString("0x%1").arg(keycode, 0, 16);
-        QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
-        QString tempalias = X11Info::getInstance()->getDisplayString(tempkey);
-        if (!tempalias.isEmpty())
-        {
-            newkey = tempalias;
-        }
-        else
-        {
-            XKeyPressedEvent tempevent;
-            tempevent.keycode = keycode;
-            tempevent.type = KeyPress;
-            tempevent.display = display;
-            tempevent.state = 0;
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-            char tempstring[256];
-            memset(tempstring, 0, sizeof(tempstring));
-            int bitestoreturn = sizeof(tempstring) - 1;
-            int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, NULL, NULL);
-            if (numchars > 0)
+        if (handler->getIdentifier() == "xtest")
+        {
+            Display* display = X11Info::getInstance()->display();
+            newkey = QString("0x%1").arg(keycode, 0, 16);
+            QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
+            QString tempalias = X11Info::getInstance()->getDisplayString(tempkey);
+            if (!tempalias.isEmpty())
             {
-                tempstring[numchars] = '\0';
-                newkey = QString::fromUtf8(tempstring);
-                //qDebug() << "NEWKEY:" << newkey << endl;
-                //qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+                newkey = tempalias;
             }
             else
             {
-                newkey = tempkey;
+                XKeyPressedEvent tempevent;
+                tempevent.keycode = keycode;
+                tempevent.type = KeyPress;
+                tempevent.display = display;
+                tempevent.state = 0;
+
+                char tempstring[256];
+                memset(tempstring, 0, sizeof(tempstring));
+                int bitestoreturn = sizeof(tempstring) - 1;
+                int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, NULL, NULL);
+                if (numchars > 0)
+                {
+                    tempstring[numchars] = '\0';
+                    newkey = QString::fromUtf8(tempstring);
+                    //qDebug() << "NEWKEY:" << newkey << endl;
+                    //qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+                }
+                else
+                {
+                    newkey = tempkey;
+                }
             }
         }
-
-    #elif defined(WITH_UINPUT)
-        QString tempalias = UInputHelper::getInstance()->getDisplayString(keycode);
-        if (!tempalias.isEmpty())
+        else if (handler->getIdentifier() == "uinput")
         {
-            newkey = tempalias;
+            QString tempalias = UInputHelper::getInstance()->getDisplayString(keycode);
+            if (!tempalias.isEmpty())
+            {
+                newkey = tempalias;
+            }
+            else
+            {
+                newkey = QString("0x%1").arg(keycode, 0, 16);
+            }
         }
-        else
-        {
-            newkey = QString("0x%1").arg(keycode, 0, 16);
-        }
-
-    #endif
     }
 
 #elif defined (Q_OS_WIN)
@@ -559,22 +566,26 @@ unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
 QString keysymToKeyString(int keysym, unsigned int alias)
 {
     QString newkey;
+
 #if defined (Q_OS_UNIX)
     Q_UNUSED(alias);
 
-    #if defined(WITH_XTEST)
-    Display* display = X11Info::getInstance()->display();
-    unsigned int keycode = 0;
-    if (keysym > 0)
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
+    if (handler->getIdentifier() == "xtest")
     {
-        keycode = XKeysymToKeycode(display, keysym);
+        Display* display = X11Info::getInstance()->display();
+        unsigned int keycode = 0;
+        if (keysym > 0)
+        {
+            keycode = XKeysymToKeycode(display, keysym);
+        }
+        newkey = keycodeToKeyString(keycode);
     }
-    newkey = keycodeToKeyString(keycode);
-
-    #elif defined(WITH_UINPUT)
-    newkey = keycodeToKeyString(keysym);
-
-    #endif
+    else if (handler->getIdentifier() == "uinput")
+    {
+        newkey = keycodeToKeyString(keysym);
+    }
 
 #else
     newkey = keycodeToKeyString(keysym, alias);

@@ -31,6 +31,8 @@ public:
     unsigned int getStartSetNumber();
     unsigned int getJoyStartSetNumber();
 
+    QString getEventGenerator();
+
 #ifdef Q_OS_UNIX
     bool launchAsDaemon();
     QString getDisplayString();
@@ -59,6 +61,7 @@ protected:
     QString displayString;
     bool listControllers;
     bool mappingController;
+    QString eventGenerator;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -74,6 +77,9 @@ protected:
 #ifdef Q_OS_UNIX
     static QRegExp daemonRegexp;
     static QRegExp displayRegexp;
+    static QRegExp eventgenRegexp;
+
+    static QStringList eventGeneratorsList;
 #endif
     
 signals:

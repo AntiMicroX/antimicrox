@@ -7,11 +7,13 @@
 #include "qtwinkeymapper.h"
 #else
 
-#if defined(WITH_XTEST)
+    #if defined(WITH_XTEST)
 #include "qtx11keymapper.h"
-#elif defined(WITH_UINPUT)
+    #endif
+
+    #if defined(WITH_UINPUT)
 #include "qtuinputkeymapper.h"
-#endif
+    #endif
 
 #endif
 
@@ -19,24 +21,30 @@ class AntKeyMapper : public QObject
 {
     Q_OBJECT
 public:
-    static unsigned int returnVirtualKey(unsigned int qkey);
-    static unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
-    static bool isModifierKey(unsigned int qkey);
+    static AntKeyMapper* getInstance(QString handler = "");
+    void deleteInstance();
+
+    unsigned int returnVirtualKey(unsigned int qkey);
+    unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
+    bool isModifierKey(unsigned int qkey);
 
 protected:
-    explicit AntKeyMapper(QObject *parent = 0);
+    explicit AntKeyMapper(QString handler = "", QObject *parent = 0);
 
-    static AntKeyMapper _instance;
+    static AntKeyMapper *_instance;
+    QtKeyMapperBase *internalMapper;
 
 #ifdef Q_OS_WIN
-    QtWinKeyMapper internalMapper;
+    QtWinKeyMapper winMapper;
 #else
 
-#if defined(WITH_XTEST)
-    QtX11KeyMapper internalMapper;
-#elif defined(WITH_UINPUT)
-    QtUInputKeyMapper internalMapper;
-#endif
+    #if defined(WITH_XTEST)
+        QtX11KeyMapper x11Mapper;
+    #endif
+
+    #if defined(WITH_UINPUT)
+        QtUInputKeyMapper uinputMapper;
+    #endif
 
 #endif
 

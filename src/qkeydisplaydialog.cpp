@@ -97,7 +97,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
         //finalvirtual = X11KeyCodeToX11KeySym(scancode);
         #ifdef WITH_UINPUT
         unsigned int tempalias = x11KeyMapper.returnQtKey(virtualkey);
-        finalvirtual = AntKeyMapper::returnVirtualKey(tempalias);
+        finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         #endif
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
@@ -112,7 +112,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         #endif
-    finalvirtual = AntKeyMapper::returnVirtualKey(event->key());
+    finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
@@ -127,9 +127,9 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));
 
 #ifdef Q_OS_WIN
-    QString tempValue = QString("0x%1").arg(AntKeyMapper::returnQtKey(finalvirtual, scancode), 0, 16);
+    QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(finalvirtual, scancode), 0, 16);
 #else
-    QString tempValue = QString("0x%1").arg(AntKeyMapper::returnQtKey(finalvirtual), 0, 16);
+    QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(finalvirtual), 0, 16);
 #endif
 
     ui->antimicroKeyLabel->setText(tempValue);

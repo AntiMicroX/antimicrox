@@ -115,10 +115,10 @@ QString XMLConfigMigration::version0006Migration()
                 {
                     unsigned int tempcode = slotcode;
 #ifdef Q_OS_WIN
-                    slotcode = AntKeyMapper::returnQtKey(slotcode);
+                    slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
 #else
     #if defined(WITH_XTEST)
-                    slotcode = AntKeyMapper::returnQtKey(X11KeyCodeToX11KeySym(slotcode));
+                    slotcode = AntKeyMapper::getInstance()->returnQtKey(X11KeyCodeToX11KeySym(slotcode));
     #elif defined(WITH_UINPUT)
                     slotcode = 0;
                     tempcode = 0;

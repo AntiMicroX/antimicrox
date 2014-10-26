@@ -438,3 +438,8 @@ QString UInputEventHandler::getName()
 {
     return QString("uinput");
 }
+
+QString UInputEventHandler::getIdentifier()
+{
+    return getName();
+}

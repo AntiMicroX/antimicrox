@@ -19,6 +19,7 @@ public:
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual QString getName();
+    virtual QString getIdentifier();
 
 protected:
     int openUInputHandle();

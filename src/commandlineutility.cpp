@@ -12,6 +12,15 @@
 #include "commandlineutility.h"
 #include "common.h"
 
+static QStringList buildEventGeneratorList()
+{
+    QStringList temp;
+
+    temp.append("xtest");
+    temp.append("uinput");
+    return temp;
+}
+
 QRegExp CommandLineUtility::trayRegexp = QRegExp("--tray");
 QRegExp CommandLineUtility::helpRegexp = QRegExp("(-h|--help)");
 QRegExp CommandLineUtility::versionRegexp = QRegExp("(-v|--version)");
@@ -25,9 +34,15 @@ QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
+
     #ifdef WITH_X11
         QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
     #endif
+
+    QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
+
+    QStringList CommandLineUtility::eventGeneratorsList = buildEventGeneratorList();
+
 #endif
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
@@ -47,6 +62,17 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     displayString = "";
     listControllers = false;
     mappingController = false;
+
+#ifdef Q_OS_WIN
+    eventGenerator = "";
+#else
+    #ifdef WITH_XTEST
+    eventGenerator = "xtest";
+    #elif defined(WITH_UINPUT)
+    eventGenerator = "uinput";
+    #endif
+#endif
+
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -273,6 +299,32 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             }
         }
     #endif
+
+    #if defined(WITH_UINPUT) && defined(WITH_XTEST)
+        else if (eventgenRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+                QString temp = iter.next();
+
+                if (!eventGeneratorsList.contains(temp))
+                {
+                    eventGenerator = "";
+                    errorsteam << tr("An invalid event generator was specified.") << endl;
+                    encounteredError = true;
+                }
+                else
+                {
+                    eventGenerator = temp;
+                }
+            }
+            else
+            {
+                errorsteam << tr("No event generator string was specified.") << endl;
+                encounteredError = true;
+            }
+        }
+    #endif
 #endif
         // Check if this is the last argument. If it is and no command line flag
         // is active, the final argument is likely a profile that has
@@ -345,6 +397,13 @@ void CommandLineUtility::printHelp()
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
         #endif
+    #endif
+
+    #if defined(WITH_UINPUT) && defined(WITH_XTEST)
+    out << "--eventgen {xtest | uinput}   " << " "
+        << tr("Choose between using XTest support and uinput\n"
+              "                               support for event generation. Default: xtest.")
+        << endl;
     #endif
 
 #endif
@@ -459,6 +518,11 @@ bool CommandLineUtility::shouldMapController()
     return mappingController;
 }
 
+QString CommandLineUtility::getEventGenerator()
+{
+    return eventGenerator;
+}
+
 #ifdef Q_OS_UNIX
 bool CommandLineUtility::launchAsDaemon()
 {
@@ -469,4 +533,5 @@ QString CommandLineUtility::getDisplayString()
 {
     return displayString;
 }
+
 #endif

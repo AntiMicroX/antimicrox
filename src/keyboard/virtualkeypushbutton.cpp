@@ -23,17 +23,8 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     this->button = button;
 
     int temp = 0;
-    if (!xcodestring.isEmpty())// && xcodestring.toInt(0, 16) > 0)
+    if (!xcodestring.isEmpty())
     {
-        /*int qkey = xcodestring.toInt(0, 16);
-        if (qkey > QtKeyMapperBase::nativeKeyPrefix)
-        {
-            temp = qkey - QtKeyMapperBase::nativeKeyPrefix;
-        }
-        else
-        {
-            temp = AntKeyMapper::returnVirtualKey(qkey);
-        }*/
         temp = X11KeySymToKeycode(xcodestring);
 #ifdef WITH_XTEST
         temp = X11KeyCodeToX11KeySym(temp);
@@ -44,7 +35,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     {
 #ifdef Q_OS_WIN
         this->keycode = temp;
-        this->qkeyalias = AntKeyMapper::returnQtKey(this->keycode);
+        this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
         // Special exception for Numpad Enter on Windows.
         if (xcodestring == "KP_Enter")
         {
@@ -53,7 +44,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 #else
         this->keycode = temp;
         //this->keycode = X11KeyCodeToX11KeySym(temp);
-        this->qkeyalias = AntKeyMapper::returnQtKey(this->keycode);
+        this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
         //this->keycode = temp;
 #endif
         this->xcodestring = xcodestring;

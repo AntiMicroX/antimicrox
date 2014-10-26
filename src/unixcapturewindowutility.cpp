@@ -4,9 +4,10 @@
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h> // for XGrabPointer
 #include "x11info.h"
-#include "antkeymapper.h"
-
+#include "qtx11keymapper.h"
 #include "unixcapturewindowutility.h"
+
+static QtX11KeyMapper x11KeyMapper;
 
 UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
     QObject(parent)
@@ -48,7 +49,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                  cursor, CurrentTime);
     if (status == Success)
     {
-        XGrabKey(display, XKeysymToKeycode(display, AntKeyMapper::returnVirtualKey(Qt::Key_Escape)), 0, rootWin,
+        XGrabKey(display, XKeysymToKeycode(display, x11KeyMapper.returnVirtualKey(Qt::Key_Escape)), 0, rootWin,
                  true, GrabModeAsync, GrabModeAsync);
 
         XEvent event;
@@ -72,7 +73,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
             }
         }
 
-        XUngrabKey(display, XKeysymToKeycode(display, AntKeyMapper::returnVirtualKey(Qt::Key_Escape)),
+        XUngrabKey(display, XKeysymToKeycode(display, x11KeyMapper.returnVirtualKey(Qt::Key_Escape)),
                    0, rootWin);
         XUngrabPointer(display, CurrentTime);
         XFlush(display);

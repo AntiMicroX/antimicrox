@@ -1,17 +1,34 @@
+#include <QStringList>
+
 #include "eventhandlerfactory.h"
+
+static QStringList buildEventGeneratorList()
+{
+    QStringList temp;
+
+    temp.append("xtest");
+    temp.append("uinput");
+    return temp;
+}
 
 EventHandlerFactory* EventHandlerFactory::instance = 0;
 
-EventHandlerFactory::EventHandlerFactory(QObject *parent) :
+EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
     QObject(parent)
 {
 #ifdef Q_OS_UNIX
     #ifdef WITH_UINPUT
-    eventHandler = new UInputEventHandler(this);
+    if (handler == "uinput")
+    {
+        eventHandler = new UInputEventHandler(this);
+    }
     #endif
 
     #ifdef WITH_XTEST
-    eventHandler = new XTestEventHandler(this);
+    if (handler == "xtest")
+    {
+        eventHandler = new XTestEventHandler(this);
+    }
     #endif
 
 #endif
@@ -26,11 +43,15 @@ EventHandlerFactory::~EventHandlerFactory()
     }
 }
 
-EventHandlerFactory* EventHandlerFactory::getInstance()
+EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
 {
     if (!instance)
     {
-        instance = new EventHandlerFactory();
+        QStringList temp = buildEventGeneratorList();
+        if (temp.contains(handler))
+        {
+            instance = new EventHandlerFactory(handler);
+        }
     }
 
     return instance;

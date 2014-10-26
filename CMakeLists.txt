@@ -60,23 +60,27 @@ if(UNIX)
         find_package(X11 REQUIRED)
     endif(WITH_X11)
 
-    if(WITH_UINPUT AND WITH_XTEST)
-        set(WITH_XTEST OFF)
-        message("Cannot use uinput and XTest together. Disabling XTest support.")
-    endif(WITH_UINPUT AND WITH_XTEST)
+    #if(WITH_UINPUT AND WITH_XTEST)
+    #    set(WITH_XTEST OFF)
+    #    message("Cannot use uinput and XTest together. Disabling XTest support.")
+    #endif(WITH_UINPUT AND WITH_XTEST)
 
     if(WITH_XTEST AND NOT WITH_X11)
         set(WITH_XTEST OFF)
         message("Cannot use XTest without X11. Disabling XTest support.")
     endif(WITH_XTEST AND NOT WITH_X11)
 
+    if(WITH_XTEST)
+        message("XTest support allowed for simulating events.")
+    endif(WITH_XTEST)
+
     if(WITH_UINPUT)
-        message("Using uinput for simulating events.")
-    elseif(WITH_XTEST)
-        message("Using XTest for simulating events.")
-    else()
-        message(FATAL_ERROR "No system is defined for simulating events.")
+        message("uinput support allowed for simulating events.")
     endif(WITH_UINPUT)
+
+    if(NOT WITH_XTEST AND NOT WITH_UINPUT)
+        message(FATAL_ERROR "No system is defined for simulating events.")
+    endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
 endif(UNIX)
 
 set(antimicro_SOURCES src/main.cpp

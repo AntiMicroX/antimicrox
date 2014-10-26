@@ -241,13 +241,7 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
         }
         if (this->getSlotMode() == JoyButtonSlot::JoyKeyboard)
         {
-/*#ifdef Q_OS_WIN
-            unsigned int virtualkey = QtWinKeyMapper::returnVirtualKey(this->getSlotCode());
-#else
-            //unsigned int virtualkey = X11KeyCodeToX11KeySym(this->getSlotCode());
-            unsigned int virtualkey = QtX11KeyMapper::returnVirtualKey(this->getSlotCode());
-#endif*/
-            unsigned int virtualkey = AntKeyMapper::returnVirtualKey(this->getSlotCode());
+            unsigned int virtualkey = AntKeyMapper::getInstance()->returnVirtualKey(this->getSlotCode());
             unsigned int tempkey = this->getSlotCode();
 
             if (virtualkey)
@@ -273,7 +267,7 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 
     if (mode == JoyKeyboard)
     {
-        unsigned int basekey = AntKeyMapper::returnQtKey(deviceCode);
+        unsigned int basekey = AntKeyMapper::getInstance()->returnQtKey(deviceCode);
         unsigned int qtkey = this->getSlotCodeAlias();
         if (qtkey > 0 || basekey > 0)
         {
@@ -524,7 +518,7 @@ double JoyButtonSlot::getPreviousDistance()
 bool JoyButtonSlot::isModifierKey()
 {
     bool modifier = false;
-    if (mode == JoyKeyboard && AntKeyMapper::isModifierKey(qkeyaliasCode))
+    if (mode == JoyKeyboard && AntKeyMapper::getInstance()->isModifierKey(qkeyaliasCode))
     {
         modifier = true;
     }

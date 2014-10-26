@@ -10,7 +10,6 @@ class X11Info : public QObject
 {
     Q_OBJECT
 public:
-    ~X11Info();
 
     unsigned long appRootWindow(int screen = -1);
     Display* display();
@@ -29,6 +28,8 @@ public:
 
 protected:
     explicit X11Info(QObject *parent = 0);
+    ~X11Info();
+
     void populateKnownAliases();
 
     Display *_display;
