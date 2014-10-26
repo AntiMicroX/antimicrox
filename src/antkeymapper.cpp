@@ -55,8 +55,8 @@ AntKeyMapper* AntKeyMapper::getInstance(QString handler)
         {
             _instance = new AntKeyMapper(handler);
         }
-    }
 #endif
+    }
 
     return _instance;
 }

@@ -408,16 +408,20 @@ int X11KeySymToKeycode(QString key)
 
     if (key.length() > 0)
     {
+#ifdef WITH_XTEST
         if (handler->getIdentifier() == "xtest")
         {
             Display* display = X11Info::getInstance()->display();
             tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
         }
+#endif
 
-        else if (handler->getIdentifier() == "uinput")
+#ifdef WITH_UINPUT
+        if (handler->getIdentifier() == "uinput")
         {
             tempcode = UInputHelper::getInstance()->getVirtualKey(key);
         }
+#endif
     }
 
 #elif defined (Q_OS_WIN)
@@ -461,6 +465,7 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
     {
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
+#ifdef WITH_XTEST
         if (handler->getIdentifier() == "xtest")
         {
             Display* display = X11Info::getInstance()->display();
@@ -496,7 +501,10 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
                 }
             }
         }
-        else if (handler->getIdentifier() == "uinput")
+#endif
+
+#ifdef WITH_UINPUT
+        if (handler->getIdentifier() == "uinput")
         {
             QString tempalias = UInputHelper::getInstance()->getDisplayString(keycode);
             if (!tempalias.isEmpty())
@@ -508,6 +516,7 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
                 newkey = QString("0x%1").arg(keycode, 0, 16);
             }
         }
+#endif
     }
 
 #elif defined (Q_OS_WIN)
