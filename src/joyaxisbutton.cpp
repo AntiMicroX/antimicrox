@@ -63,6 +63,8 @@ QString JoyAxisButton::getXmlName()
 
 void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
+    SetChangeCondition oldCondition = setSelectionCondition;
+
     if (condition != setSelectionCondition && !passive)
     {
         if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
@@ -86,6 +88,11 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     if (setSelectionCondition == SetChangeDisabled)
     {
         setChangeSetSelection(-1);
+    }
+
+    if (setSelectionCondition != oldCondition)
+    {
+        emit propertyUpdated();
     }
 }
 

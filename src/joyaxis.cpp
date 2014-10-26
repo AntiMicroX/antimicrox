@@ -143,7 +143,7 @@ QString JoyAxis::getName(bool forceFullFormat, bool displayNames)
         }
         else
         {
-            label.append(paxisbutton->getSlotsSummary());
+            label.append(paxisbutton->getActiveZoneSummary());
         }
     }
     else if (throttle == NegativeThrottle || throttle == NegativeHalfThrottle)

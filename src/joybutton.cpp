@@ -4057,7 +4057,7 @@ bool JoyButton::isPartRealAxis()
  * @brief Calculate maximum mouse speed when using a given mouse curve.
  * @param Mouse curve
  * @param Mouse speed value
- * @return
+ * @return Final mouse speed
  */
 int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 {
