@@ -69,7 +69,8 @@ installed on your system in order to build this program:
 * cmake
 * libqt4-dev
 * libsdl1.2-dev (or libsdl2-dev)
-* libxtst-dev
+* libxi (optional when using uinput)
+* libxtst-dev (for XTest support)
 * libX11-dev
 
 ## Building under Linux

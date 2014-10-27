@@ -400,7 +400,7 @@ void CommandLineUtility::printHelp()
     #endif
 
     #if defined(WITH_UINPUT) && defined(WITH_XTEST)
-    out << "--eventgen {xtest | uinput}   " << " "
+    out << "--eventgen (xtest|uinput)     " << " "
         << tr("Choose between using XTest support and uinput\n"
               "                               support for event generation. Default: xtest.")
         << endl;
