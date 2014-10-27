@@ -443,12 +443,14 @@ void GameControllerMappingDialog::disableDeviceConnections()
 
 void GameControllerMappingDialog::enableButtonEvents(int code)
 {
-    if (code == QDialogButtonBox::AcceptRole)
-    {
+    Q_UNUSED(code);
+
+    //if (code == QDialogButtonBox::AcceptRole)
+    //{
         device->getActiveSetJoystick()->setIgnoreEventState(false);
         device->getActiveSetJoystick()->release();
         device->getActiveSetJoystick()->setAxesDeadZones(&originalAxesDeadZones);
-    }
+    //}
 }
 
 QString GameControllerMappingDialog::generateSDLMappingString()
