@@ -59,6 +59,9 @@ QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 // Keeps timestamp of last mouse event.
 QTime JoyButton::lastMouseTime;
 
+// Helper object to have a single mouse event for all JoyButton
+// instances.
+JoyButtonMouseHelper JoyButton::mouseHelper;
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -67,7 +70,9 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
     this->parentSet = parentSet;
-    lastMouseTime.start();
+    //lastMouseTime.start();
+    cursorDelayTimer.setInterval(0);
+    cursorDelayTimer.setSingleShot(true);
 
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
     connect(&keyPressTimer, SIGNAL(timeout()), this, SLOT(keyPressEvent()));
@@ -81,12 +86,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
     connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
-
-    if (parentSet && parentSet->getInputDevice())
-    {
-        connect(this, SIGNAL(mouseCursorMoved(int,int,int)), parentSet->getInputDevice(), SLOT(propogateMouseCursorMoved(int,int,int)));
-        connect(this, SIGNAL(mouseSpringMoved(int,int)), parentSet->getInputDevice(), SLOT(propogateMouseSpringMoved(int,int)));
-    }
 
     establishMouseTimerConnections();
 
@@ -683,7 +682,7 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
-                if (mouseEventQueue.length() == 0)
+                if (!cursorDelayTimer.isActive() && !springDelayTimer.isActive())
                 {
                     lastMouseTime.restart();
                 }
@@ -1052,7 +1051,7 @@ void JoyButton::mouseEvent()
 
                         if (!cursorDelayTimer.isActive())
                         {
-                            cursorDelayTimer.start(0);
+                            cursorDelayTimer.start();
                         }
 
                         //sendevent(mouse1, mouse2);
@@ -1154,21 +1153,21 @@ void JoyButton::mouseEvent()
                 mouseEventTimer.start(5);
             }
 
-            if (!cursorDelayTimer.isActive())
-            {
-                lastMouseTime.restart();
-            }
+            //if (!cursorDelayTimer.isActive())
+            //{
+            //    lastMouseTime.restart();
+            //}
         }
         else
         {
             mouseEventTimer.stop();
-            lastMouseTime.restart();
+            //lastMouseTime.restart();
         }
     }
     else
     {
         mouseEventTimer.stop();
-        lastMouseTime.restart();
+        //lastMouseTime.restart();
     }
 }
 
@@ -3623,11 +3622,12 @@ QString JoyButton::getDefaultButtonName()
  * @brief Take cursor mouse information provided by all buttons and
  *     send a cursor mode mouse event to the display server.
  */
-void JoyButton::moveMouseCursor()
+void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 {
-    int finalx = 0;
-    int finaly = 0;
+    int finalx = movedX = 0;
+    int finaly = movedY = 0;
     int elapsedTime = lastMouseTime.elapsed();
+    movedElapsed = lastMouseTime.elapsed();
 
     if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
         cursorXSpeeds.length() > 0)
@@ -3645,14 +3645,18 @@ void JoyButton::moveMouseCursor()
         }
 
         sendevent(finalx, finaly);
-        mouseCursorMoved(finalx, finaly, elapsedTime);
+        //qDebug() << "FINAL X: " << finalx;
+        //qDebug() << "FINAL Y: " << finaly;
+        //qDebug() << "ELAPSED: " << elapsedTime;
+        //qDebug();
+
+        movedX = finalx;
+        movedY = finaly;
+        movedElapsed = elapsedTime;
         //cursorDelayTimer.start(5);
-        cursorDelayTimer.stop();
     }
-    else
-    {
-        cursorDelayTimer.stop();
-    }
+
+    cursorDelayTimer.stop();
 
     cursorXSpeeds.clear();
     cursorYSpeeds.clear();
@@ -3663,7 +3667,7 @@ void JoyButton::moveMouseCursor()
  * @brief Take spring mouse information provided by all buttons and
  *     send a spring mode mouse event to the display server.
  */
-void JoyButton::moveSpringMouse()
+void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 {
     PadderCommon::springModeInfo fullSpring = {
         -2.0, -2.0, 0, 0, false
@@ -3672,8 +3676,9 @@ void JoyButton::moveSpringMouse()
         -2.0, -2.0, 0, 0, false
     };
 
-    int realMouseX = 0;
-    int realMouseY = 0;
+    int realMouseX = movedX = 0;
+    int realMouseY = movedY = 0;
+    hasMoved = false;
 
     if (springXSpeeds.length() == springYSpeeds.length() &&
         springXSpeeds.length() > 0)
@@ -3755,7 +3760,10 @@ void JoyButton::moveSpringMouse()
             sendSpringEvent(&fullSpring, 0, &realMouseX, &realMouseY);
         }
 
-        mouseSpringMoved(realMouseX, realMouseY);
+        //emit mouseSpringMoved(realMouseX, realMouseY);
+        movedX = realMouseX;
+        movedY = realMouseY;
+        hasMoved = true;
         //springDelayTimer.start(5);
         springDelayTimer.stop();
     }
@@ -3766,6 +3774,7 @@ void JoyButton::moveSpringMouse()
 
     springXSpeeds.clear();
     springYSpeeds.clear();
+    lastMouseTime.restart();
 }
 
 void JoyButton::keyPressEvent()
@@ -3963,13 +3972,9 @@ void JoyButton::disconnectPropertyUpdatedConnections()
 
 void JoyButton::establishMouseTimerConnections()
 {
-    // Workaround to have a static QTimer
-    disconnect(&cursorDelayTimer, 0, 0, 0);
-    connect(&cursorDelayTimer, SIGNAL(timeout()), this, SLOT(moveMouseCursor()));
-
-    // Workaround to have a static QTimer
-    disconnect(&springDelayTimer, 0, 0, 0);
-    connect(&springDelayTimer, SIGNAL(timeout()), this, SLOT(moveSpringMouse()));
+    // Only one connection will be made for each.
+    connect(&cursorDelayTimer, SIGNAL(timeout()), &mouseHelper, SLOT(moveMouseCursor()), Qt::UniqueConnection);
+    connect(&springDelayTimer, SIGNAL(timeout()), &mouseHelper, SLOT(moveSpringMouse()), Qt::UniqueConnection);
 }
 
 void JoyButton::setSpringRelativeStatus(bool value)
@@ -4088,4 +4093,9 @@ void JoyButton::setEasingDuration(double value)
 double JoyButton::getEasingDuration()
 {
     return easingDuration;
+}
+
+JoyButtonMouseHelper* JoyButton::getMouseHelper()
+{
+    return &mouseHelper;
 }

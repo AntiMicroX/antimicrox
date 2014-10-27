@@ -69,15 +69,6 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedY(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), button, SLOT(setEasingDuration(double)));
-
-    SetJoystick *set = button->getParentSet();
-    if (set && set->getInputDevice())
-    {
-        InputDevice *device = set->getInputDevice();
-        connect(device, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
-        connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
-        lastMouseStatUpdate.start();
-    }
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)

@@ -68,7 +68,12 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), dpad, SLOT(setButtonsEasingDuration(double)));
 
-    SetJoystick *set = dpad->getParentSet();
+    JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
+    connect(mouseHelper, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
+    connect(mouseHelper, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
+    lastMouseStatUpdate.start();
+
+    /*SetJoystick *set = dpad->getParentSet();
     if (set && set->getInputDevice())
     {
         InputDevice *device = set->getInputDevice();
@@ -76,6 +81,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
         connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
         lastMouseStatUpdate.start();
     }
+    */
 }
 
 void MouseDPadSettingsDialog::changeMouseMode(int index)

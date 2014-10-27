@@ -382,31 +382,6 @@ void InputDaemon::quit()
     eventWorker = 0;
 }
 
-void InputDaemon::resetMouseTimers()
-{
-    if (joysticks->size() > 0)
-    {
-        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-
-        while (iter.hasNext())
-        {
-            InputDevice *joystick = iter.next().value();
-            if (joystick && joystick->getNumberButtons() > 0)
-            {
-                // Find first button of first joystick and use it for the
-                // psuedo-static QTimer calls.
-                SetJoystick *set = joystick->getActiveSetJoystick();
-                JoyButton *button = set->getJoyButton(0);
-                if (button)
-                {
-                    set->getJoyButton(0)->establishMouseTimerConnections();
-                    iter.toBack();
-                }
-            }
-        }
-    }
-}
-
 #ifdef USE_SDL_2
 void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 {
@@ -463,7 +438,6 @@ void InputDaemon::removeDevice(InputDevice *device)
         trackjoysticks.remove(deviceID);
         trackcontrollers.remove(deviceID);
 
-        resetMouseTimers();
         refreshIndexes();
 
         emit deviceRemoved(deviceID);

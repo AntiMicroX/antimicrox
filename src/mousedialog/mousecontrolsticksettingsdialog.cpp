@@ -69,15 +69,6 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), stick, SLOT(setButtonsEasingDuration(double)));
-
-    SetJoystick *set = stick->getParentSet();
-    if (set && set->getInputDevice())
-    {
-        InputDevice *device = set->getInputDevice();
-        connect(device, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
-        connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
-        lastMouseStatUpdate.start();
-    }
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)

@@ -13,6 +13,7 @@
 
 #include "joybuttonslot.h"
 #include "springmousemoveinfo.h"
+#include "joybuttonmousehelper.h"
 
 class VDPad;
 class SetJoystick;
@@ -140,6 +141,11 @@ public:
     static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value);
     double getEasingDuration();
 
+    static void moveMouseCursor(int &movedX, int &movedY, int &movedElapsed);
+    static void moveSpringMouse(int &movedX, int &movedY, bool &hasMoved);
+
+    static JoyButtonMouseHelper* getMouseHelper();
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -254,6 +260,7 @@ protected:
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;
+
     QQueue<JoyButtonSlot*> mouseEventQueue;
     QQueue<JoyButtonSlot*> mouseWheelVerticalEventQueue;
     QQueue<JoyButtonSlot*> mouseWheelHorizontalEventQueue;
@@ -297,9 +304,11 @@ protected:
     static QList<PadderCommon::springModeInfo> springXSpeeds;
     static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QTimer springDelayTimer;
+
     static QHash<unsigned int, int> activeKeys;
     static QHash<unsigned int, int> activeMouseButtons;
     static JoyButtonSlot *lastActiveKey;
+    static JoyButtonMouseHelper mouseHelper;
 
 signals:
     void clicked (int index);
@@ -317,8 +326,6 @@ signals:
     void buttonNameChanged();
     void propertyUpdated();
     void activeZoneChanged();
-    void mouseCursorMoved(int mouseX, int mouseY, int elapsed);
-    void mouseSpringMoved(int mouseX, int mouseY);
 
 public slots:
     void setTurboInterval (int interval);
@@ -347,8 +354,6 @@ public slots:
     virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
 
-    void moveMouseCursor();
-    void moveSpringMouse();
     void establishMouseTimerConnections();
     void establishPropertyUpdatedConnections();
     void disconnectPropertyUpdatedConnections();

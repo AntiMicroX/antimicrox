@@ -22,8 +22,8 @@ protected:
     void updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve);
     JoyButton::JoyMouseCurve getMouseCurveForIndex(int index);
 
-    QTime lastMouseStatUpdate;
     Ui::MouseSettingsDialog *ui;
+    QTime lastMouseStatUpdate;
 
 public slots:
     void changeSettingsWidgetStatus(int index);

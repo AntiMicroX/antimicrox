@@ -30,8 +30,6 @@ public:
     void startWorker();
 
 protected:
-    void resetMouseTimers();
-
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
 
 #ifdef USE_SDL_2

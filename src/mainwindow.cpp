@@ -66,9 +66,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     this->graphical = graphical;
     this->settings = settings;
 
+    ui->actionStick_Pad_Assign->setVisible(false);
+
 #ifndef USE_SDL_2
     ui->actionGameController_Mapping->setVisible(false);
-    ui->actionStick_Pad_Assign->setVisible(false);
 #endif
 
 #ifdef Q_OS_UNIX
@@ -231,7 +232,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
-    connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
+    //connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -1050,6 +1051,10 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int 
     }
 }
 
+/**
+ * @brief Build list of current input devices and pass it to settings dialog
+ *     instance. Open Settings dialog.
+ */
 void MainWindow::openMainSettingsDialog()
 {
     QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
@@ -1105,6 +1110,11 @@ void MainWindow::changeLanguage(QString language)
     }
 }
 
+/**
+ * @brief Check if the program should really quit or if it should
+ *     be minimized.
+ * @param QCloseEvent
+ */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     bool closeToTray = settings->value("CloseToTray", false).toBool();
@@ -1120,7 +1130,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event);
 }
 
-
+/**
+ * @brief Show abstracted controller dialog for use in SDL 1.2. No longer
+ *     used for versions of the program running SDL 2. In SDL 2,
+ *     the Game Controller API is being used instead.
+ */
 void MainWindow::showStickAssignmentDialog()
 {
     int index = ui->tabWidget->currentIndex();
@@ -1135,6 +1149,10 @@ void MainWindow::showStickAssignmentDialog()
     }
 }
 
+/**
+ * @brief Display a version of the tray menu that shows all recent profiles for
+ *    all controllers in one list.
+ */
 void MainWindow::singleTrayProfileMenuShow()
 {
     if (!profileActions.isEmpty())
@@ -1240,6 +1258,10 @@ void MainWindow::checkKeyRepeatOptions()
     }
 }
 
+/**
+ * @brief Check if user really wants to restart the program with elevated
+ *     privileges. If yes, attempt to restart the program.
+ */
 void MainWindow::restartAsElevated()
 {
     QMessageBox msg;
@@ -1509,6 +1531,9 @@ void MainWindow::checkAutoProfileWatcherTimer()
 #endif
 }
 
+/**
+ * @brief TODO: Check if method is save to remove.
+ */
 void MainWindow::updateMenuOptions()
 {
     int index = ui->tabWidget->currentIndex();

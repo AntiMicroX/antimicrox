@@ -2,8 +2,6 @@
 
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
-#include "joyaxis.h"
-#include "joybutton.h"
 
 MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -13,6 +11,11 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 
     //ui->relativeSpringCheckBox->setVisible(false);
+
+    JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
+    connect(mouseHelper, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
+    connect(mouseHelper, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
+    lastMouseStatUpdate.start();
 
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSettingsWidgetStatus(int)));
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(refreshMouseCursorSpeedValues(int)));
