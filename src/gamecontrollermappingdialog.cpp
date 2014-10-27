@@ -131,42 +131,39 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
         int column = ui->buttonMappingTableWidget->currentColumn();
         int row = ui->buttonMappingTableWidget->currentRow();
 
-        if (row < 17)
+        if (!item)
         {
-            if (!item)
-            {
-                item = new QTableWidgetItem(QString("Button %1").arg(buttonindex+1));
-                ui->buttonMappingTableWidget->setItem(row, column, item);
-            }
-
-            QList<QVariant> templist;
-            templist.append(QVariant(0));
-            templist.append(QVariant(buttonindex));
-            QAbstractItemModel *model = ui->buttonMappingTableWidget->model();
-            QModelIndexList matchlist = model->match(model->index(0,0), Qt::UserRole, templist, 1, Qt::MatchExactly);
-            foreach (const QModelIndex &index, matchlist) {
-                QTableWidgetItem *existingItem = ui->buttonMappingTableWidget->item(index.row(), index.column());
-                if (existingItem)
-                {
-                    existingItem->setText("");
-                    existingItem->setData(Qt::UserRole, QVariant());
-                }
-            }
-
-            QList<QVariant> tempvalue;
-            tempvalue.append(QVariant(0));
-            tempvalue.append(QVariant(buttonindex));
-
-            item->setData(Qt::UserRole, tempvalue);
-            item->setText(QString("Button %1").arg(buttonindex+1));
-
-            if (row < ui->buttonMappingTableWidget->rowCount()-1)
-            {
-                ui->buttonMappingTableWidget->setCurrentCell(row+1, column);
-            }
-
-            ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
+            item = new QTableWidgetItem(QString("Button %1").arg(buttonindex+1));
+            ui->buttonMappingTableWidget->setItem(row, column, item);
         }
+
+        QList<QVariant> templist;
+        templist.append(QVariant(0));
+        templist.append(QVariant(buttonindex));
+        QAbstractItemModel *model = ui->buttonMappingTableWidget->model();
+        QModelIndexList matchlist = model->match(model->index(0,0), Qt::UserRole, templist, 1, Qt::MatchExactly);
+        foreach (const QModelIndex &index, matchlist) {
+            QTableWidgetItem *existingItem = ui->buttonMappingTableWidget->item(index.row(), index.column());
+            if (existingItem)
+            {
+                existingItem->setText("");
+                existingItem->setData(Qt::UserRole, QVariant());
+            }
+        }
+
+        QList<QVariant> tempvalue;
+        tempvalue.append(QVariant(0));
+        tempvalue.append(QVariant(buttonindex));
+
+        item->setData(Qt::UserRole, tempvalue);
+        item->setText(QString("Button %1").arg(buttonindex+1));
+
+        if (row < ui->buttonMappingTableWidget->rowCount()-1)
+        {
+            ui->buttonMappingTableWidget->setCurrentCell(row+1, column);
+        }
+
+        ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
     }
 
     // Increment reference count.
