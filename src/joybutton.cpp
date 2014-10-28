@@ -46,13 +46,11 @@ JoyButtonSlot* JoyButton::lastActiveKey = 0;
 // Keep track of active Mouse Speed Mod slots.
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
 
-// Timer and lists used for cursor mode calculations.
-QTimer JoyButton::cursorDelayTimer;
+// Lists used for cursor mode calculations.
 QList<JoyButton::mouseCursorInfo> JoyButton::cursorXSpeeds;
 QList<JoyButton::mouseCursorInfo> JoyButton::cursorYSpeeds;
 
-// Timer and lists used for spring mode calculations.
-QTimer JoyButton::springDelayTimer;
+// Lists used for spring mode calculations.
 QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
@@ -73,8 +71,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
     this->parentSet = parentSet;
-    //cursorDelayTimer.setInterval(0);
-    //springDelayTimer.setInterval(0);
 
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
     connect(&keyPressTimer, SIGNAL(timeout()), this, SLOT(keyPressEvent()));
@@ -82,7 +78,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&delayTimer, SIGNAL(timeout()), this, SLOT(delayEvent()));
     connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
     connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
-    //connect(&mouseEventTimer, SIGNAL(timeout()), this, SLOT(mouseEvent()));
     connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
     connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
@@ -359,7 +354,6 @@ void JoyButton::reset()
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
-    //mouseEventTimer.stop();
     holdTimer.stop();
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
@@ -687,7 +681,7 @@ void JoyButton::activateSlots()
                 slot->getMouseInterval()->restart();
                 currentMouseEvent = slot;
                 activeSlots.append(slot);
-                mouseEventQueue.enqueue(slot);
+                //mouseEventQueue.enqueue(slot);
                 mouseEvent();
                 pendingMouseButtons.append(this);
                 currentMouseEvent = 0;
@@ -696,14 +690,6 @@ void JoyButton::activateSlots()
                 {
                     staticMouseEventTimer.start(0);
                 }
-
-                //mouseEvent();
-                //currentMouseEvent = 0;
-                /*if (!mouseEventTimer.isActive())
-                {
-                    mouseEventTimer.start(0);
-                }
-                */
             }
             else if (mode == JoyButtonSlot::JoyPause)
             {
@@ -1061,12 +1047,6 @@ void JoyButton::mouseEvent()
                         infoY.slot = buttonslot;
                         cursorYSpeeds.append(infoY);
 
-                        /*if (!cursorDelayTimer.isActive())
-                        {
-                            cursorDelayTimer.start();
-                        }
-                        */
-
                         //sendevent(mouse1, mouse2);
                         sumDist -= distance;
                         //buttonslot->setPreviousDistance(distance);
@@ -1076,7 +1056,6 @@ void JoyButton::mouseEvent()
                             sumDist *= SMOOTHINGFACTOR;
                         }
 
-                        //mouseEventTimer.stop();
                     }
                     /*else
                     {
@@ -1131,13 +1110,8 @@ void JoyButton::mouseEvent()
                     infoY.relative = relativeSpring;
                     springYSpeeds.append(infoY);
 
-                    //if (!springDelayTimer.isActive())
-                    //{
-                    //    springDelayTimer.start(0);
-                    //}
                     //sendSpringEvent(mouse1, mouse2, springWidth, springHeight);
                     mouseInterval->restart();
-                    //mouseEventTimer.stop();
                 }
 
                 tempQueue.enqueue(buttonslot);
@@ -1160,22 +1134,8 @@ void JoyButton::mouseEvent()
                 JoyButtonSlot *tempslot = tempQueue.dequeue();
                 mouseEventQueue.enqueue(tempslot);
             }
-
-            //if (!mouseEventTimer.isActive())
-            //{
-                // Place restart here so events are in the desired order.
-                //mouseEventTimer.start(5);
-            //}
         }
-        //else
-        //{
-        //    mouseEventTimer.stop();
-        //}
     }
-    //else
-    //{
-    //    mouseEventTimer.stop();
-    //}
 }
 
 void JoyButton::wheelEventVertical()
@@ -2991,7 +2951,6 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
-    //mouseEventTimer.stop();
     holdTimer.stop();
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
@@ -3039,7 +2998,6 @@ void JoyButton::eventReset()
     pauseWaitTimer.stop();
     createDeskTimer.stop();
     releaseDeskTimer.stop();
-    //mouseEventTimer.stop();
     holdTimer.stop();
     mouseWheelVerticalEventTimer.stop();
     mouseWheelHorizontalEventTimer.stop();
@@ -3221,7 +3179,6 @@ void JoyButton::releaseActiveSlots()
 
         activeSlots.clear();
 
-        //mouseEventTimer.stop();
         currentMouseEvent = 0;
         if (!mouseEventQueue.isEmpty())
         {
@@ -3233,15 +3190,6 @@ void JoyButton::releaseActiveSlots()
         currentWheelHorizontalEvent = 0;
         mouseWheelVerticalEventTimer.stop();
         mouseWheelHorizontalEventTimer.stop();
-        /*if (mouseWheelVerticalEventQueue.isEmpty())
-        {
-            mouseWheelVerticalEventTimer.stop();
-        }
-
-        if (mouseWheelHorizontalEventQueue.isEmpty())
-        {
-            mouseWheelHorizontalEventTimer.stop();
-        }*/
 
         if (!mouseWheelVerticalEventQueue.isEmpty())
         {
@@ -3261,21 +3209,6 @@ void JoyButton::releaseActiveSlots()
         {
             staticMouseEventTimer.stop();
         }
-        // Only need to check one list since both cursorXSpeeds
-        // and cursorYSpeeds will be the same size.
-        /*if (cursorXSpeeds.size() == 0)
-        {
-            cursorDelayTimer.stop();
-        }
-        */
-
-        // Only need to check one list since both springXSpeeds
-        // and springYSpeeds will be the same size.
-        /*if (springXSpeeds.size() == 0)
-        {
-            springDelayTimer.stop();
-        }
-        */
     }
 }
 
@@ -4005,8 +3938,6 @@ void JoyButton::establishMouseTimerConnections()
 {
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
-    //connect(&cursorDelayTimer, SIGNAL(timeout()), &mouseHelper, SLOT(moveMouseCursor()), Qt::UniqueConnection);
-    //connect(&springDelayTimer, SIGNAL(timeout()), &mouseHelper, SLOT(moveSpringMouse()), Qt::UniqueConnection);
 }
 
 void JoyButton::setSpringRelativeStatus(bool value)

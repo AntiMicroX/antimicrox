@@ -19,7 +19,7 @@ class SDLEventReader : public QObject
 public:
     explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks, QObject *parent = 0);
     ~SDLEventReader();
-    SDL_Event& getCurrentEvent();
+
     bool isSDLOpen();
 
 protected:
@@ -28,13 +28,13 @@ protected:
     void clearEvents();
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
-    SDL_Event currentEvent;
     bool sdlIsOpen;
 
 signals:
     void eventRaised();
     void finished();
     void sdlStarted();
+    void sdlClosed();
 
 public slots:
     void performWork();

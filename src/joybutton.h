@@ -214,7 +214,6 @@ protected:
     QTimer pauseWaitTimer;
     QTimer createDeskTimer;
     QTimer releaseDeskTimer;
-    QTimer mouseEventTimer;
     QTimer mouseWheelVerticalEventTimer;
     QTimer mouseWheelHorizontalEventTimer;
     QTimer setChangeTimer;
@@ -303,11 +302,9 @@ protected:
 
     static QList<mouseCursorInfo> cursorXSpeeds;
     static QList<mouseCursorInfo> cursorYSpeeds;
-    static QTimer cursorDelayTimer;
 
     static QList<PadderCommon::springModeInfo> springXSpeeds;
     static QList<PadderCommon::springModeInfo> springYSpeeds;
-    static QTimer springDelayTimer;
 
     static QList<JoyButton*> pendingMouseButtons;
 

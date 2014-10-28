@@ -15,7 +15,10 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, Q
 
 SDLEventReader::~SDLEventReader()
 {
-    closeSDL();
+    if (sdlIsOpen)
+    {
+        closeSDL();
+    }
 }
 
 void SDLEventReader::initSDL()
@@ -72,23 +75,25 @@ void SDLEventReader::closeSDL()
     SDL_Quit();
 
     sdlIsOpen = false;
+
+    emit sdlClosed();
 }
 
 void SDLEventReader::performWork()
 {
     if (sdlIsOpen)
     {
-        SDL_Event event;
+        //SDL_Event event;
 
-        int status = SDL_WaitEvent(&event);
+        //int status = SDL_WaitEvent(&event);
+        int status = SDL_WaitEvent(NULL);
         if (status)
         {
-            currentEvent = event;
+            //currentEvent = event;
             emit eventRaised();
-            if (event.type == SDL_QUIT)
-            {
-                emit finished();
-            }
+            //if (event.type == SDL_QUIT)
+            //{
+            //    emit finished();           //}
         }
     }
 }
@@ -103,23 +108,20 @@ void SDLEventReader::stop()
     }
 }
 
-SDL_Event& SDLEventReader::getCurrentEvent()
-{
-    return currentEvent;
-}
-
 void SDLEventReader::refresh()
 {
     if (sdlIsOpen)
     {
         stop();
-        connect(this, SIGNAL(finished()), this, SLOT(secondaryRefresh()));
+        //connect(this, SIGNAL(finished()), this, SLOT(secondaryRefresh()));
+        connect(this, SIGNAL(eventRaised()), this, SLOT(secondaryRefresh()));
     }
 }
 
 void SDLEventReader::secondaryRefresh()
 {
-    disconnect(this, SIGNAL(finished()), 0, 0);
+    //disconnect(this, SIGNAL(finished()), 0, 0);
+    disconnect(this, SIGNAL(eventRaised()), 0, 0);
 
     if (sdlIsOpen)
     {

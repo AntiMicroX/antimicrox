@@ -56,18 +56,20 @@ void InputDaemon::startWorker()
 void InputDaemon::run ()
 {
     SDL_Event event;
-#ifdef USE_SDL_2
+/*#ifdef USE_SDL_2
     event.type = SDL_FIRSTEVENT;
 
 #else
     event.type = SDL_NOEVENT;
 #endif
+*/
 
     if (!stopped)
     {
-        event = eventWorker->getCurrentEvent();
+        //event = eventWorker->getCurrentEvent();
 
-        do
+        //do
+        while (SDL_PollEvent(&event) > 0)
         {
             switch (event.type)
             {
@@ -218,7 +220,7 @@ void InputDaemon::run ()
                     break;
             }
         }
-        while (SDL_PollEvent(&event) > 0);
+        //while (SDL_PollEvent(&event) > 0);
     }
 
     //qDebug() << QTime::currentTime() << ": " << "END";
@@ -234,7 +236,7 @@ void InputDaemon::run ()
         // Check for a grabbed instance of an SDL_QUIT event. If the last event was
         // not an SDL_QUIT event, push an event onto the queue so SdlEventReader
         // will finish properly.
-#ifdef USE_SDL_2
+/*#ifdef USE_SDL_2
         if (event.type != SDL_FIRSTEVENT && event.type != SDL_QUIT)
 #else
         if (event.type != SDL_NOEVENT && event.type != SDL_QUIT)
@@ -244,6 +246,7 @@ void InputDaemon::run ()
             SDL_PushEvent(&event);
             QTimer::singleShot(0, eventWorker, SLOT(performWork()));
         }
+*/
     }
     else
     {
@@ -355,6 +358,7 @@ void InputDaemon::refreshJoystick(InputDevice *joystick)
 void InputDaemon::quit()
 {
     stopped = true;
+    disconnect(eventWorker, SIGNAL(eventRaised()), this, 0);
 
     // Wait for SDL to finish. Let worker destructor close SDL.
     // Let InputDaemon destructor close thread instance.
@@ -362,7 +366,8 @@ void InputDaemon::quit()
     {
         QEventLoop q;
         QTimer temptime;
-        connect(eventWorker, SIGNAL(finished()), &q, SLOT(quit()));
+
+        connect(eventWorker, SIGNAL(eventRaised()), &q, SLOT(quit()));
         connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
 
         eventWorker->stop();
