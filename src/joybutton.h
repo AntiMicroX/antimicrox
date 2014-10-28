@@ -364,7 +364,7 @@ public slots:
     void establishPropertyUpdatedConnections();
     void disconnectPropertyUpdatedConnections();
 
-    virtual void testMouseEvent();
+    virtual void mouseEvent();
 
 protected slots:
     virtual void turboEvent();

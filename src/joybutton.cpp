@@ -679,7 +679,6 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
-                //if (!cursorDelayTimer.isActive() && !springDelayTimer.isActive())
                 if (!staticMouseEventTimer.isActive())
                 {
                     lastMouseTime.restart();
@@ -689,7 +688,7 @@ void JoyButton::activateSlots()
                 currentMouseEvent = slot;
                 activeSlots.append(slot);
                 mouseEventQueue.enqueue(slot);
-                testMouseEvent();
+                mouseEvent();
                 pendingMouseButtons.append(this);
 
                 if (!staticMouseEventTimer.isActive())
@@ -823,7 +822,11 @@ void JoyButton::activateSlots()
     }
 }
 
-void JoyButton::testMouseEvent()
+/**
+ * @brief Calculate mouse movement coordinates for mouse movement slots
+ *     currently active for this button.
+ */
+void JoyButton::mouseEvent()
 {
     JoyButtonSlot *buttonslot = 0;
     bool singleShot = false;
@@ -835,7 +838,7 @@ void JoyButton::testMouseEvent()
 
     if (buttonslot || !mouseEventQueue.isEmpty())
     {
-        QQueue<JoyButtonSlot*> tempQueue;
+        //QQueue<JoyButtonSlot*> tempQueue;
 
         if (!buttonslot)
         {
@@ -874,6 +877,7 @@ void JoyButton::testMouseEvent()
                     }
 
                     double difference = getMouseDistanceFromDeadZone();
+                    //qDebug() << "RIGHT DIFF: " << difference;
                     int mouse1 = 0;
                     int mouse2 = 0;
                     double sumDist = buttonslot->getMouseDistance();
@@ -1135,7 +1139,7 @@ void JoyButton::testMouseEvent()
                     //mouseEventTimer.stop();
                 }
 
-                tempQueue.enqueue(buttonslot);
+                //tempQueue.enqueue(buttonslot);
             }
 
             if (!mouseEventQueue.isEmpty() && !singleShot)
@@ -1148,20 +1152,20 @@ void JoyButton::testMouseEvent()
             }
         }
 
-        if (!tempQueue.isEmpty())
-        {
-            while (!tempQueue.isEmpty())
-            {
-                JoyButtonSlot *tempslot = tempQueue.dequeue();
-                mouseEventQueue.enqueue(tempslot);
-            }
+        //if (!tempQueue.isEmpty())
+        //{
+        //    while (!tempQueue.isEmpty())
+        //    {
+        //        JoyButtonSlot *tempslot = tempQueue.dequeue();
+        //        mouseEventQueue.enqueue(tempslot);
+        //    }
 
             //if (!mouseEventTimer.isActive())
             //{
                 // Place restart here so events are in the desired order.
                 //mouseEventTimer.start(5);
             //}
-        }
+        //}
         //else
         //{
         //    mouseEventTimer.stop();
@@ -3249,7 +3253,10 @@ void JoyButton::releaseActiveSlots()
         }
 
         // Check if mouse event timer should be stopped.
-        if (pendingMouseButtons.length() == 0)
+        // Only need to check one list from cursor speeds and spring speeds
+        // since the correspond Y lists will be the same size.
+        if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
+            springXSpeeds.length() == 0)
         {
             staticMouseEventTimer.stop();
         }
@@ -3665,8 +3672,16 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         movedElapsed = elapsedTime;
     }
 
-    // Restart QTimer to improve timer accuracy.
-    staticMouseEventTimer.start(5);
+    // Check if mouse event timer should be stopped.
+    if (pendingMouseButtons.length() == 0)
+    {
+        staticMouseEventTimer.stop();
+    }
+    else
+    {
+        // Restart QTimer to improve timer accuracy.
+        staticMouseEventTimer.start(5);
+    }
 
     cursorXSpeeds.clear();
     cursorYSpeeds.clear();
@@ -3776,8 +3791,16 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 
     }
 
-    // Restart QTimer to improve timer accuracy.
-    staticMouseEventTimer.start(5);
+    // Check if mouse event timer should be stopped.
+    if (pendingMouseButtons.length() == 0)
+    {
+        staticMouseEventTimer.stop();
+    }
+    else
+    {
+        // Restart QTimer to improve timer accuracy.
+        staticMouseEventTimer.start(5);
+    }
 
     springXSpeeds.clear();
     springYSpeeds.clear();

@@ -9,6 +9,9 @@ JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent) :
 {
 }
 
+/**
+ * @brief Perform mouse movement in cursor mode.
+ */
 void JoyButtonMouseHelper::moveMouseCursor()
 {
     //qDebug() << QTime::currentTime();
@@ -23,6 +26,9 @@ void JoyButtonMouseHelper::moveMouseCursor()
     }
 }
 
+/**
+ * @brief Perform mouse movement in spring mode.
+ */
 void JoyButtonMouseHelper::moveSpringMouse()
 {
     int finalx = 0;
@@ -35,6 +41,9 @@ void JoyButtonMouseHelper::moveSpringMouse()
     }
 }
 
+/**
+ * @brief Perform mouse events for all buttons and slots.
+ */
 void JoyButtonMouseHelper::mouseEvent()
 {
     //qDebug() << "ENTER";
@@ -48,7 +57,7 @@ void JoyButtonMouseHelper::mouseEvent()
         while (iter.hasNext())
         {
             JoyButton *temp = iter.next();
-            temp->testMouseEvent();
+            temp->mouseEvent();
         }
     }
 

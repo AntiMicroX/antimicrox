@@ -1093,6 +1093,10 @@ void MainWindow::openMainSettingsDialog()
     dialog->show();
 }
 
+/**
+ * @brief TODO: Implement language switching within the program again?
+ * @param Language code.
+ */
 void MainWindow::changeLanguage(QString language)
 {
     if (translator)

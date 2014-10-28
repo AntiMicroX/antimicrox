@@ -395,7 +395,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
-    int deadX = (int)floor(deadZone * ang_sin + 0.5);
+    int deadX = abs((int)floor(deadZone * ang_sin + 0.5));
     int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
     double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
@@ -415,11 +415,15 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
         distance = 0.0;
     }
 
-    //qDebug() << "CIRCLE: " << circle;
-    //qDebug() << "OLD X: " << axis1Value;
-    //qDebug() << "ADJUSTED X: " << adjustedAxis1Value;
-    //qDebug() << "FULL CIRCLE X: " << axis1ValueCircleFull;
-    //qDebug();
+    /*qDebug() << "CIRCLE: " << circle;
+    qDebug() << "CIRCLE FULL: " << circleStickFull;
+    qDebug() << "OLD X: " << axis1Value;
+    qDebug() << "ADJUSTED X: " << adjustedAxis1Value;
+    qDebug() << "FULL CIRCLE X: " << axis1ValueCircleFull;
+    qDebug() << "LIVING DEAD GIRL: " << adjustedDeadXZone;
+    qDebug() << "GOING THE DISTANCE: " << distance;
+    qDebug();
+    */
 
     return distance;
 }
