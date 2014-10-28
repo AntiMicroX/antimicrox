@@ -16,6 +16,7 @@ signals:
 public slots:
     void moveMouseCursor();
     void moveSpringMouse();
+    void mouseEvent();
 };
 
 #endif // JOYBUTTONMOUSEHELPER_H

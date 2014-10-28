@@ -145,6 +145,9 @@ public:
     static void moveSpringMouse(int &movedX, int &movedY, bool &hasMoved);
 
     static JoyButtonMouseHelper* getMouseHelper();
+    static QList<JoyButton*>* getPendingMouseButtons();
+    static bool hasCursorEvents();
+    static bool hasSpringEvents();
 
     static const QString xmlName;
 
@@ -218,6 +221,7 @@ protected:
     QTimer keyPressTimer;
     QTimer delayTimer;
     QTimer keyRepeatTimer;
+    static QTimer staticMouseEventTimer;
 
     bool isDown;
     bool toggleActiveState;
@@ -305,6 +309,8 @@ protected:
     static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QTimer springDelayTimer;
 
+    static QList<JoyButton*> pendingMouseButtons;
+
     static QHash<unsigned int, int> activeKeys;
     static QHash<unsigned int, int> activeMouseButtons;
     static JoyButtonSlot *lastActiveKey;
@@ -358,13 +364,14 @@ public slots:
     void establishPropertyUpdatedConnections();
     void disconnectPropertyUpdatedConnections();
 
+    virtual void testMouseEvent();
+
 protected slots:
     virtual void turboEvent();
     void createDeskEvent();
     void releaseDeskEvent(bool skipsetchange=false);
 
 private slots:
-    virtual void mouseEvent();
     void releaseActiveSlots();
     void activateSlots();
     void waitForDeskEvent();
