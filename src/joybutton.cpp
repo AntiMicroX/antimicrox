@@ -690,6 +690,7 @@ void JoyButton::activateSlots()
                 mouseEventQueue.enqueue(slot);
                 mouseEvent();
                 pendingMouseButtons.append(this);
+                currentMouseEvent = 0;
 
                 if (!staticMouseEventTimer.isActive())
                 {
@@ -838,7 +839,7 @@ void JoyButton::mouseEvent()
 
     if (buttonslot || !mouseEventQueue.isEmpty())
     {
-        //QQueue<JoyButtonSlot*> tempQueue;
+        QQueue<JoyButtonSlot*> tempQueue;
 
         if (!buttonslot)
         {
@@ -1139,7 +1140,7 @@ void JoyButton::mouseEvent()
                     //mouseEventTimer.stop();
                 }
 
-                //tempQueue.enqueue(buttonslot);
+                tempQueue.enqueue(buttonslot);
             }
 
             if (!mouseEventQueue.isEmpty() && !singleShot)
@@ -1152,20 +1153,20 @@ void JoyButton::mouseEvent()
             }
         }
 
-        //if (!tempQueue.isEmpty())
-        //{
-        //    while (!tempQueue.isEmpty())
-        //    {
-        //        JoyButtonSlot *tempslot = tempQueue.dequeue();
-        //        mouseEventQueue.enqueue(tempslot);
-        //    }
+        if (!tempQueue.isEmpty())
+        {
+            while (!tempQueue.isEmpty())
+            {
+                JoyButtonSlot *tempslot = tempQueue.dequeue();
+                mouseEventQueue.enqueue(tempslot);
+            }
 
             //if (!mouseEventTimer.isActive())
             //{
                 // Place restart here so events are in the desired order.
                 //mouseEventTimer.start(5);
             //}
-        //}
+        }
         //else
         //{
         //    mouseEventTimer.stop();
