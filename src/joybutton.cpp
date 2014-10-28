@@ -3980,7 +3980,7 @@ void JoyButton::disconnectPropertyUpdatedConnections()
 void JoyButton::establishMouseTimerConnections()
 {
     // Only one connection will be made for each.
-    connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(testMouseEvent()), Qt::UniqueConnection);
+    connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
     //connect(&cursorDelayTimer, SIGNAL(timeout()), &mouseHelper, SLOT(moveMouseCursor()), Qt::UniqueConnection);
     //connect(&springDelayTimer, SIGNAL(timeout()), &mouseHelper, SLOT(moveSpringMouse()), Qt::UniqueConnection);
 }
