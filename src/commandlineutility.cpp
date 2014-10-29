@@ -410,7 +410,8 @@ void CommandLineUtility::printHelp()
 
 #ifdef USE_SDL_2
     out << "-l, --list                    " << " "
-        << tr("Print information about joysticks detected by SDL.") << endl;
+        << tr("Print information about joysticks detected by \n"
+              "                               SDL.") << endl;
     out << "--map <value>                 " << " "
         << tr("Open game controller mapping window of selected\n"
               "                               controller. Value can be a controller index or\n"

@@ -1,3 +1,52 @@
+2014-10-28 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.8
+
+* Added delay settings for analog sticks and dpads. This is meant to
+keep some games from overreacting when switching directions quickly.
+A delay is especially useful for games that utilize a dash on a key double tap.
+This will also be very useful while playing rougelike games. The new
+delay setting allows for more responsive controls than the old alternative of
+using hold zones on individual direction buttons.
+
+* Added two new mouse acceleration curves: Easing Quadratic and
+Easing Cubic. These new mouse acceleration curves are meant to mimic the
+camera control that is used for gamepad support in some recent first person
+shooters such as Borderlands 2. Once a stick direction has reached a threshold
+(80%) then the mouse speed will gradually accelerate over a period of time
+before the mouse speed reaches its peak. The duration of the easing method is
+set at 0.50 seconds by default but the setting is configurable per
+button.
+
+* Major refactor to mouse event generation. The new routine requires
+fewer system resources and it is more accurate.
+
+* Made uinput support a runtime option for Linux users. The program can
+now be compiled with both XTest and uinput support and the event
+generator can be specified using the --eventgen flag. It defaults
+to XTest if available. The option is only available when the program
+is compiled with both XTest and uinput support.
+
+* Added right click context menus for buttons in main interface.
+
+* Fixed issue with Game Controller Mapping dialog. Controller DPads that
+are exposed as 4 buttons can now be bound to the DPad of an SDL Game
+Controller.
+
+* Fixed an issue with incorrect profile names being displayed in the
+profile combobox.
+
+* Fixed issue introduced in version 2.7 regarding mouse movement calculations
+for the left direction of analog sticks. A major portion of the
+safe zone for that direction was being skipped.
+
+* Changed button groups in the main interface to update immediately
+when an axis or dpad mode has been changed.
+
+* Initial removal of old joystick abstraction support in interface when using
+SDL 2.
+
+
 2014-10-14 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.7
