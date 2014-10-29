@@ -41,7 +41,7 @@ for the left direction of analog sticks. A major portion of the
 safe zone for that direction was being skipped.
 
 * Changed button groups in the main interface to update immediately
-when an axis or dpad mode has been changed.
+when a stick or dpad mode has been changed.
 
 * Initial removal of old joystick abstraction support in interface when using
 SDL 2.
