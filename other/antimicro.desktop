@@ -7,6 +7,7 @@ Name[fr]=AntiMicro
 Comment[fr]=Utilisez une manette de jeu pour commander un logiciel
 Name[de]=AntiMicro
 Comment[de]=Nutze das Gamepad um Programme/Spiele zu steuern
+Comment[uk]=Використовуйте ігровий маніпулятор для керування програмами
 Exec=antimicro
 Icon=antimicro
 StartupNotify=true
