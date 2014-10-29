@@ -16,6 +16,6 @@ windows/*.msi
 windows/*.wix*
 build/
 Build/
-CMakeLists.txt.user
+CMakeLists.txt.user*
 other/antimicro.1.gz
 doc/
