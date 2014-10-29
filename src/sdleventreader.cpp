@@ -83,17 +83,10 @@ void SDLEventReader::performWork()
 {
     if (sdlIsOpen)
     {
-        //SDL_Event event;
-
-        //int status = SDL_WaitEvent(&event);
         int status = SDL_WaitEvent(NULL);
         if (status)
         {
-            //currentEvent = event;
             emit eventRaised();
-            //if (event.type == SDL_QUIT)
-            //{
-            //    emit finished();           //}
         }
     }
 }
@@ -113,15 +106,13 @@ void SDLEventReader::refresh()
     if (sdlIsOpen)
     {
         stop();
-        //connect(this, SIGNAL(finished()), this, SLOT(secondaryRefresh()));
         connect(this, SIGNAL(eventRaised()), this, SLOT(secondaryRefresh()));
     }
 }
 
 void SDLEventReader::secondaryRefresh()
 {
-    //disconnect(this, SIGNAL(finished()), 0, 0);
-    disconnect(this, SIGNAL(eventRaised()), 0, 0);
+    disconnect(this, SIGNAL(eventRaised()), this, 0);
 
     if (sdlIsOpen)
     {
