@@ -717,42 +717,45 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
     xml->writeEndElement();
 }
 
-QString GameController::getBindStringForAxis(int index)
+QString GameController::getBindStringForAxis(int index, bool trueIndex)
 {
     QString temp;
     SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForAxis(controller, (SDL_GameControllerAxis)index);
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
+        int offset = trueIndex ? 0 : 1;
         if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
         {
-            temp.append("Button %1").arg(QString::number(bind.value.button));
+            temp.append(QString("Button %1").arg(bind.value.button + offset));
         }
         else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
         {
-            temp.append("Axis %1").arg(QString::number(bind.value.axis));
+            temp.append(QString("Axis %1").arg(bind.value.axis + offset));
         }
     }
     return temp;
 }
 
-QString GameController::getBindStringForButton(int index)
+QString GameController::getBindStringForButton(int index, bool trueIndex)
 {
     QString temp;
     SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForButton(controller, (SDL_GameControllerButton)index);
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
+        int offset = trueIndex ? 0 : 1;
+
         if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
         {
-            temp.append("Button %1").arg(QString::number(bind.value.button));
+            temp.append(QString("Button %1").arg(bind.value.button + offset));
         }
         else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
         {
-            temp.append("Axis %1").arg(QString::number(bind.value.axis));
+            temp.append(QString("Axis %1").arg(bind.value.axis + offset));
         }
         else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
         {
-            temp.append("Hat %1.%2").arg(QString::number(bind.value.hat.hat))
-                    .arg(QString::number(bind.value.hat.hat_mask));
+            temp.append(QString("Hat %1.%2").arg(bind.value.hat.hat + offset)
+                    .arg(bind.value.hat.hat_mask));
         }
     }
     return temp;

@@ -110,10 +110,20 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
 
     ui->buttonMappingTableWidget->setCurrentCell(0, 0);
 
+    ui->axisDeadZoneComboBox->clear();
+    populateAxisDeadZoneComboBox();
+
+    int index = ui->axisDeadZoneComboBox->findData(20000);
+    if (index != -1)
+    {
+        ui->axisDeadZoneComboBox->setCurrentIndex(index);
+    }
+
     connect(device, SIGNAL(destroyed()), this, SLOT(obliterate()));
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveChanges()));
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(discardMapping(QAbstractButton*)));
     connect(ui->buttonMappingTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeButtonDisplay()));
+    connect(ui->axisDeadZoneComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeAxisDeadZone(int)));
     connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents(int)));
 }
 
@@ -423,6 +433,15 @@ void GameControllerMappingDialog::enableDeviceConnections()
 {
     connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
+    for (int i=0; i < device->getActiveSetJoystick()->getNumberAxes(); i++)
+    {
+        JoyAxis *temp = device->getActiveSetJoystick()->getJoyAxis(i);
+        if (temp)
+        {
+            connect(temp, SIGNAL(moved(int)), this, SLOT(updateLastAxisLineEdit(int)));
+        }
+    }
+    //connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(updateLastAxisLineEdit(int, int)));
     connect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
 
     connect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
@@ -434,6 +453,15 @@ void GameControllerMappingDialog::disableDeviceConnections()
 {
     disconnect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
+    for (int i=0; i < device->getActiveSetJoystick()->getNumberAxes(); i++)
+    {
+        JoyAxis *temp = device->getActiveSetJoystick()->getJoyAxis(i);
+        if (temp)
+        {
+            disconnect(temp, SIGNAL(moved(int)), this, SLOT(updateLastAxisLineEdit(int)));
+        }
+    }
+
     disconnect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
 
     disconnect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
@@ -546,5 +574,45 @@ void GameControllerMappingDialog::dpadRelease(int dpad, int buttonindex)
     else
     {
         buttonGrabs = 0;
+    }
+}
+
+void GameControllerMappingDialog::populateAxisDeadZoneComboBox()
+{
+    for (int i=0; i < 28; i++)
+    {
+        unsigned int temp = (i * 1000) + 5000;
+        ui->axisDeadZoneComboBox->addItem(QString::number(temp), temp);
+    }
+}
+
+void GameControllerMappingDialog::changeAxisDeadZone(int index)
+{
+    unsigned int value = ui->axisDeadZoneComboBox->itemData(index).toInt();
+    if (value >= 5000 && value <= 32000)
+    {
+        device->getActiveSetJoystick()->raiseAxesDeadZones(value);
+    }
+}
+
+void GameControllerMappingDialog::updateLastAxisLineEdit(int value)
+{
+    if (abs(value) >= 5000)
+    {
+        JoyAxis *tempAxis = static_cast<JoyAxis*>(sender());
+        QString temp;
+        if (device->isGameController())
+        {
+            GameController *controller = static_cast<GameController*>(device);
+            temp = QString("%1: %2").arg(controller->getBindStringForAxis(tempAxis->getIndex(), false))
+                                    .arg(value);
+        }
+        else
+        {
+            temp = QString("Axis %1: %2").arg(tempAxis->getRealJoyIndex())
+                                         .arg(value);
+        }
+
+        ui->lastAxisEventLineEdit->setText(temp);
     }
 }

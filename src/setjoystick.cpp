@@ -992,14 +992,20 @@ void SetJoystick::disconnectPropertyUpdatedConnection()
  * @brief Raise the dead zones for axes. Used when launching
  *     the controller mapping window.
  */
-void SetJoystick::raiseAxesDeadZones()
+void SetJoystick::raiseAxesDeadZones(int deadZone)
 {
+    unsigned int tempDeadZone = deadZone;
+    if (deadZone <= 0 || deadZone > 32767)
+    {
+        tempDeadZone = RAISEDDEADZONE;
+    }
+
     QHashIterator<int, JoyAxis*> axisIter(axes);
     while (axisIter.hasNext())
     {
         JoyAxis *temp = axisIter.next().value();
         temp->disconnectPropertyUpdatedConnection();
-        temp->setDeadZone(RAISEDDEADZONE);
+        temp->setDeadZone(tempDeadZone);
         temp->establishPropertyUpdatedConnection();
     }
 

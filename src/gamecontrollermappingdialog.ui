@@ -19,14 +19,14 @@
   <property name="windowTitle">
    <string>Game Controller Mapping</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
-      <number>20</number>
+      <number>40</number>
      </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
@@ -282,16 +282,107 @@
       </layout>
      </item>
      <item>
-      <widget class="GameControllerExample" name="gameControllerDisplayWidget" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>200</height>
-        </size>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>20</number>
        </property>
-      </widget>
+       <item>
+        <widget class="GameControllerExample" name="gameControllerDisplayWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Last Axis Event:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lastAxisEventLineEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Current Axis Detection Dead Zone:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="axisDeadZoneComboBox">
+           <item>
+            <property name="text">
+             <string>5000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>10000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>15000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>20000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>25000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>30000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>32000</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

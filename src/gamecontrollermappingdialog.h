@@ -32,6 +32,7 @@ protected:
     void enableDeviceConnections();
     void disableDeviceConnections();
     QString generateSDLMappingString();
+    void populateAxisDeadZoneComboBox();
 
     QString bindingString(SDL_GameControllerButtonBind bind);
     QList<QVariant> bindingValues(SDL_GameControllerButtonBind bind);
@@ -59,6 +60,8 @@ private slots:
     void enableButtonEvents(int code);
     void obliterate();
     void changeButtonDisplay();
+    void changeAxisDeadZone(int index);
+    void updateLastAxisLineEdit(int value);
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOG_H

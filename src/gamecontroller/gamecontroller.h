@@ -29,8 +29,8 @@ public:
     virtual int getNumberRawAxes();
     virtual int getNumberRawHats();
 
-    QString getBindStringForAxis(int index);
-    QString getBindStringForButton(int index);
+    QString getBindStringForAxis(int index, bool trueIndex=true);
+    QString getBindStringForButton(int index, bool trueIndex=true);
 
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);

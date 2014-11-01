@@ -55,7 +55,7 @@ public:
     QString getSetLabel();
 
     void copyAssignments(SetJoystick *destSet);
-    void raiseAxesDeadZones();
+    void raiseAxesDeadZones(int deadZone=0);
     void currentAxesDeadZones(QList<int> *axesDeadZones);
     void setAxesDeadZones(QList<int> *axesDeadZones);
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
