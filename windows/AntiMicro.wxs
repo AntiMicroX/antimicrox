@@ -80,6 +80,9 @@
                                 <Component Id="ANTIMICRO_SR.QM" Guid="E4EA2E15-4C20-4C00-AF5E-2048EE5717CC">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_sr.qm" />
                                 </Component>
+                                <Component Id="ANTIMICRO_UK.QM" Guid="3C9F0917-7DDB-4F22-9164-624B2647B075">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_uk.qm" />
+                                </Component>
                             </Directory>
                         </Directory>
                     </Directory>
@@ -119,6 +122,7 @@
             <ComponentRef Id="ANTIMICRO_FR.QM" />
             <ComponentRef Id="ANTIMICRO_RU.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
+            <ComponentRef Id="ANTIMICRO_UK.QM" />
             <ComponentRef Id="StartMenuShortcuts" />
         </Feature>
         <UI />
