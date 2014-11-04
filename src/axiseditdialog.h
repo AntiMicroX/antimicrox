@@ -20,7 +20,11 @@ public:
     ~AxisEditDialog();
 
 protected:
-    void selectCurrentPreset();
+    void selectAxisCurrentPreset();
+    void selectTriggerPreset();
+
+    void buildTriggerPresetsMenu();
+    void buildAxisPresetsMenu();
 
     JoyAxis *axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
@@ -30,7 +34,11 @@ private:
     Ui::AxisEditDialog *ui;
 
 private slots:
+    void implementAxisPresets(int index);
+    void implementTriggerPresets(int index);
     void implementPresets(int index);
+    void presetForThrottleChange(int index);
+
     void updateDeadZoneBox(int value);
     void updateMaxZoneBox(int value);
     void updateThrottleUi(int index);

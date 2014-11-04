@@ -23,6 +23,17 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     updateWindowTitleAxisName();
 
     initialThrottleState = axis->getThrottle();
+    bool actAsTrigger = false;
+    if (initialThrottleState == JoyAxis::PositiveThrottle ||
+        initialThrottleState == JoyAxis::PositiveHalfThrottle)
+    {
+        actAsTrigger = true;
+    }
+
+    if (actAsTrigger)
+    {
+        buildTriggerPresetsMenu();
+    }
 
     ui->horizontalSlider->setValue(axis->getDeadZone());
     ui->lineEdit->setText(QString::number(axis->getDeadZone()));
@@ -76,7 +87,14 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     ui->joyValueLabel->setText(QString::number(axis->getCurrentRawValue()));
     ui->axisstatusBox->setValue(axis->getCurrentRawValue());
 
-    selectCurrentPreset();
+    if (!actAsTrigger)
+    {
+        selectAxisCurrentPreset();
+    }
+    else
+    {
+        selectTriggerPreset();
+    }
 
     ui->axisNameLineEdit->setText(axis->getAxisName());
 
@@ -91,6 +109,8 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), axis, SLOT(setMaxZoneValue(int)));
 
     connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(updateThrottleUi(int)));
+    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(presetForThrottleChange(int)));
+
     connect(axis, SIGNAL(moved(int)), ui->axisstatusBox, SLOT(setValue(int)));
     connect(axis, SIGNAL(moved(int)), this, SLOT(updateJoyValue(int)));
 
@@ -113,6 +133,26 @@ AxisEditDialog::~AxisEditDialog()
 }
 
 void AxisEditDialog::implementPresets(int index)
+{
+    bool actAsTrigger = false;
+    int currentThrottle = axis->getThrottle();
+    if (currentThrottle == JoyAxis::PositiveThrottle ||
+        currentThrottle == JoyAxis::PositiveHalfThrottle)
+    {
+        actAsTrigger = true;
+    }
+
+    if (actAsTrigger)
+    {
+        implementTriggerPresets(index);
+    }
+    else
+    {
+        implementAxisPresets(index);
+    }
+}
+
+void AxisEditDialog::implementAxisPresets(int index)
 {
     JoyButtonSlot *nbuttonslot = 0;
     JoyButtonSlot *pbuttonslot = 0;
@@ -309,7 +349,7 @@ void AxisEditDialog::checkFinalSettings()
     }
 }
 
-void AxisEditDialog::selectCurrentPreset()
+void AxisEditDialog::selectAxisCurrentPreset()
 {
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
     QList<JoyButtonSlot*> *naxisslots = naxisbutton->getAssignedSlots();
@@ -385,14 +425,86 @@ void AxisEditDialog::selectCurrentPreset()
     }
 }
 
+void AxisEditDialog::selectTriggerPreset()
+{
+    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+    QList<JoyButtonSlot*> *paxisslots = paxisbutton->getAssignedSlots();
+
+    if (paxisslots->length() == 1)
+    {
+        JoyButtonSlot *pslot = paxisslots->at(0);
+        if (pslot->getSlotMode() == JoyButtonSlot::JoyMouseButton && pslot->getSlotCode() == JoyButtonSlot::MouseLB)
+        {
+            ui->presetsComboBox->setCurrentIndex(1);
+        }
+        else if (pslot->getSlotMode() == JoyButtonSlot::JoyMouseButton && pslot->getSlotCode() == JoyButtonSlot::MouseRB)
+        {
+            ui->presetsComboBox->setCurrentIndex(2);
+        }
+        else
+        {
+            ui->presetsComboBox->setCurrentIndex(0);
+        }
+    }
+    else if (paxisslots->length() == 0)
+    {
+        ui->presetsComboBox->setCurrentIndex(3);
+    }
+    else
+    {
+        ui->presetsComboBox->setCurrentIndex(0);
+    }
+}
+
+void AxisEditDialog::implementTriggerPresets(int index)
+{
+    JoyButtonSlot *pbuttonslot = 0;
+
+    if (index == 1)
+    {
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseLB, JoyButtonSlot::JoyMouseButton, this);
+    }
+    else if (index == 2)
+    {
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseRB, JoyButtonSlot::JoyMouseButton, this);
+    }
+    else if (index == 3)
+    {
+        JoyAxisButton *nbutton = axis->getNAxisButton();
+        JoyAxisButton *pbutton = axis->getPAxisButton();
+        nbutton->clearSlotsEventReset();
+        refreshNButtonLabel();
+
+        pbutton->clearSlotsEventReset();
+        refreshPButtonLabel();
+    }
+
+    if (pbuttonslot)
+    {
+
+        JoyAxisButton *nbutton = axis->getNAxisButton();
+        JoyAxisButton *pbutton = axis->getPAxisButton();
+        if (nbutton->getAssignedSlots()->length() > 0)
+        {
+            nbutton->clearSlotsEventReset();
+            refreshNButtonLabel();
+        }
+
+        pbutton->clearSlotsEventReset(false);
+        pbutton->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+        refreshPButtonLabel();
+        pbuttonslot->deleteLater();
+    }
+}
+
 void AxisEditDialog::refreshPreset()
 {
     // Disconnect event associated with presetsComboBox so a change in the index does not
     // alter the axis buttons
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
-    selectCurrentPreset();
+    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementAxisPresets(int)));
+    selectAxisCurrentPreset();
     // Reconnect the event
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementAxisPresets(int)));
 }
 
 void AxisEditDialog::openMouseSettingsDialog()
@@ -438,4 +550,59 @@ void AxisEditDialog::updateWindowTitleAxisName()
     }
 
     setWindowTitle(temp);
+}
+
+void AxisEditDialog::buildAxisPresetsMenu()
+{
+    ui->presetsComboBox->clear();
+
+    ui->presetsComboBox->addItem(tr(""));
+    ui->presetsComboBox->addItem(tr("Mouse (Horizontal)"));
+    ui->presetsComboBox->addItem(tr("Mouse (Inverted Horizontal)"));
+    ui->presetsComboBox->addItem(tr("Mouse (Vertical)"));
+    ui->presetsComboBox->addItem(tr("Mouse (Inverted Vertical)"));
+    ui->presetsComboBox->addItem(tr("Arrows: Up | Down"));
+    ui->presetsComboBox->addItem(tr("Arrows: Left | Right"));
+    ui->presetsComboBox->addItem(tr("Keys: W | S"));
+    ui->presetsComboBox->addItem(tr("Keys: A | D"));
+    ui->presetsComboBox->addItem(tr("NumPad: KP_8 | KP_2"));
+    ui->presetsComboBox->addItem(tr("NumPad: KP_4 | KP_6"));
+    ui->presetsComboBox->addItem(tr("None"));
+}
+
+void AxisEditDialog::buildTriggerPresetsMenu()
+{
+    ui->presetsComboBox->clear();
+
+    ui->presetsComboBox->addItem(tr(""));
+    ui->presetsComboBox->addItem(tr("Left Mouse Button"));
+    ui->presetsComboBox->addItem(tr("Right Mouse Button"));
+    ui->presetsComboBox->addItem(tr("None"));
+}
+
+void AxisEditDialog::presetForThrottleChange(int index)
+{
+    Q_UNUSED(index);
+
+    bool actAsTrigger = false;
+    int currentThrottle = axis->getThrottle();
+    if (currentThrottle == JoyAxis::PositiveThrottle ||
+        currentThrottle == JoyAxis::PositiveHalfThrottle)
+    {
+        actAsTrigger = true;
+    }
+
+    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    if (actAsTrigger)
+    {
+        buildTriggerPresetsMenu();
+        selectTriggerPreset();
+    }
+    else
+    {
+        buildAxisPresetsMenu();
+        selectAxisCurrentPreset();
+    }
+
+    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 }

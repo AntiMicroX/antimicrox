@@ -12,6 +12,25 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
 
 void JoyAxisContextMenu::buildMenu()
 {
+    bool actAsTrigger = false;
+    if (axis->getThrottle() == JoyAxis::PositiveThrottle ||
+        axis->getThrottle() == JoyAxis::PositiveHalfThrottle)
+    {
+        actAsTrigger = true;
+    }
+
+    if (actAsTrigger)
+    {
+        buildTriggerMenu();
+    }
+    else
+    {
+        buildAxisMenu();
+    }
+}
+
+void JoyAxisContextMenu::buildAxisMenu()
+{
     QAction *action = 0;
 
     QActionGroup *presetGroup = new QActionGroup(this);
@@ -271,4 +290,99 @@ void JoyAxisContextMenu::openMouseSettingsDialog()
 {
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, parentWidget());
     dialog->show();
+}
+
+void JoyAxisContextMenu::buildTriggerMenu()
+{
+    QAction *action = 0;
+
+    QActionGroup *presetGroup = new QActionGroup(this);
+    int presetMode = 0;
+    int currentPreset = getTriggerPresetIndex();
+
+    action = this->addAction(tr("Left Mouse Button"));
+    action->setCheckable(true);
+    action->setChecked(currentPreset == presetMode+1);
+    action->setData(QVariant(presetMode));
+    connect(action, SIGNAL(triggered()), this, SLOT(setTriggerPreset()));
+    presetGroup->addAction(action);
+
+    presetMode++;
+    action = this->addAction(tr("Right Mouse Button"));
+    action->setCheckable(true);
+    action->setChecked(currentPreset == presetMode+1);
+    action->setData(QVariant(presetMode));
+    connect(action, SIGNAL(triggered()), this, SLOT(setTriggerPreset()));
+    presetGroup->addAction(action);
+
+    presetMode++;
+    action = this->addAction(tr("None"));
+    action->setCheckable(true);
+    action->setChecked(currentPreset == presetMode+1);
+    action->setData(QVariant(presetMode));
+    connect(action, SIGNAL(triggered()), this, SLOT(setTriggerPreset()));
+    presetGroup->addAction(action);
+
+    this->addSeparator();
+
+    action = this->addAction(tr("Mouse Settings"));
+    action->setCheckable(false);
+    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+}
+
+int JoyAxisContextMenu::getTriggerPresetIndex()
+{
+    int result = 0;
+
+    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+    QList<JoyButtonSlot*> *paxisslots = paxisbutton->getAssignedSlots();
+
+    if (paxisslots->length() == 1)
+    {
+        JoyButtonSlot *pslot = paxisslots->at(0);
+        if (pslot->getSlotMode() == JoyButtonSlot::JoyMouseButton && pslot->getSlotCode() == JoyButtonSlot::MouseLB)
+        {
+            result = 1;
+        }
+        else if (pslot->getSlotMode() == JoyButtonSlot::JoyMouseButton && pslot->getSlotCode() == JoyButtonSlot::MouseRB)
+        {
+            result = 2;
+        }
+    }
+    else if (paxisslots->length() == 0)
+    {
+        result = 3;
+    }
+
+    return result;
+}
+
+void JoyAxisContextMenu::setTriggerPreset()
+{
+    QAction *action = static_cast<QAction*>(sender());
+    int item = action->data().toInt();
+
+    JoyButtonSlot *pbuttonslot = 0;
+
+    if (item == 0)
+    {
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseLB, JoyButtonSlot::JoyMouseButton, this);
+    }
+    else if (item == 1)
+    {
+        pbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseRB, JoyButtonSlot::JoyMouseButton, this);
+    }
+    else if (item == 2)
+    {
+        JoyAxisButton *pbutton = axis->getPAxisButton();
+        pbutton->clearSlotsEventReset();
+    }
+
+    if (pbuttonslot)
+    {
+        JoyAxisButton *button = axis->getPAxisButton();
+        button->clearSlotsEventReset(false);
+        button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+        pbuttonslot->deleteLater();
+    }
 }

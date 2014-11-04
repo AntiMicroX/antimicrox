@@ -17,6 +17,7 @@ public:
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
                                   MouseWheelLeft=6, MouseWheelRight=7};
+    enum JoySlotMouseButton {MouseLB=1, MouseMB, MouseRB};
 
     explicit JoyButtonSlot(QObject *parent = 0);
     explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=0);
