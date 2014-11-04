@@ -38,6 +38,8 @@ const bool JoyButton::DEFAULTRELATIVESPRING = false;
 const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 const double JoyButton::DEFAULTEASINGDURATION = 0.5;
 
+const double JoyButton::MINIMUMEASINGDURATION = 0.2;
+
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
 QHash<unsigned int, int> JoyButton::activeMouseButtons;
@@ -4046,7 +4048,8 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 
 void JoyButton::setEasingDuration(double value)
 {
-    if (value >= DEFAULTEASINGDURATION && value <= 2.0)
+    if (value >= MINIMUMEASINGDURATION && value <= 2.0
+        && value != easingDuration)
     {
         easingDuration = value;
         emit propertyUpdated();

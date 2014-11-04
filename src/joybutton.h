@@ -177,6 +177,7 @@ public:
     static const bool DEFAULTRELATIVESPRING;
     static const TurboMode DEFAULTTURBOMODE;
     static const double DEFAULTEASINGDURATION;
+    static const double MINIMUMEASINGDURATION;
 
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);

@@ -432,7 +432,7 @@ according to number of simulated notches per second.</string>
              <number>2</number>
             </property>
             <property name="minimum">
-             <double>0.500000000000000</double>
+             <double>0.200000000000000</double>
             </property>
             <property name="maximum">
              <double>2.000000000000000</double>
