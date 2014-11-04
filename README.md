@@ -230,4 +230,5 @@ Belleguic Terence <hizo@free.fr> - French
 Leonard Koenig <leonard.r.koenig@googlemail.com> - German  
 phob - German  
 Dmitriy Koshel <form.eater@gmail.com> - Russian  
-Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian
+Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
+burunduk - Ukrainian
