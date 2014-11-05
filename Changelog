@@ -1,3 +1,12 @@
+2014-11-05 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.8.1
+
+* Fixed some buttons in virtual keyboard when program is using uinput support.
+
+* Fixed Update Joysticks option for SDL 1.2 users.
+
+
 2014-10-28 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.8
