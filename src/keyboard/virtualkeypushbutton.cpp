@@ -5,6 +5,10 @@
 #include <event.h>
 #include <antkeymapper.h>
 
+#ifdef Q_OS_UNIX
+#include <eventhandlerfactory.h>
+#endif
+
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
 
 VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestring, QWidget *parent) :
@@ -26,8 +30,12 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     if (!xcodestring.isEmpty())
     {
         temp = X11KeySymToKeycode(xcodestring);
-#ifdef WITH_XTEST
-        temp = X11KeyCodeToX11KeySym(temp);
+#ifdef Q_OS_UNIX
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+        if (handler->getIdentifier() == "xtest")
+        {
+            temp = X11KeyCodeToX11KeySym(temp);
+        }
 #endif
     }
 
