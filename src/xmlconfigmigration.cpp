@@ -1,7 +1,13 @@
 #include "event.h"
 #include "antkeymapper.h"
 
+#ifdef Q_OS_UNIX
+#include "eventhandlerfactory.h"
+#endif
+
+
 #include "xmlconfigmigration.h"
+
 
 XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent) :
     QObject(parent)
@@ -117,12 +123,17 @@ QString XMLConfigMigration::version0006Migration()
 #ifdef Q_OS_WIN
                     slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
 #else
-    #if defined(WITH_XTEST)
-                    slotcode = AntKeyMapper::getInstance()->returnQtKey(X11KeyCodeToX11KeySym(slotcode));
-    #elif defined(WITH_UINPUT)
-                    slotcode = 0;
-                    tempcode = 0;
-    #endif
+                    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+                    if (handler->getIdentifier() == "xtest")
+                    {
+                        slotcode = AntKeyMapper::getInstance()->returnQtKey(X11KeyCodeToX11KeySym(slotcode));
+                    }
+                    else
+                    {
+                        slotcode = 0;
+                        tempcode = 0;
+                    }
+
 #endif
                     if (slotcode > 0)
                     {
