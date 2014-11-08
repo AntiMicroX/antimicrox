@@ -157,21 +157,89 @@ int X11Info::getApplicationPid(Window window)
     unsigned char *prop = 0;
     int status = 0;
     int pid = 0;
+    Window finalwindow = 0;
 
     Display *display = this->display();
     atom = XInternAtom(display, "_NET_WM_PID", True);
-    status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-    if (status == 0 && prop)
+    if (windowHasProperty(display, window, atom))
+    {
+        finalwindow = window;
+    }
+    else
+    {
+        Window parent = 0;
+        Window root = 0;
+        Window *children;
+        unsigned int num_children;
+        bool quitTraversal = false;
+
+        while (!quitTraversal)
+        {
+            children = 0;
+
+            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
+            {
+                if (children)
+                {
+                    // must test for NULL
+                    XFree(children);
+                }
+
+                if (parent)
+                {
+                    if (windowHasProperty(display, parent, atom))
+                    {
+                        quitTraversal = true;
+                        finalwindow = parent;
+                    }
+                    else if (parent == 0)
+                    {
+                        quitTraversal = true;
+                    }
+                    else if (parent == root)
+                    {
+                        quitTraversal = true;
+                    }
+                    else
+                    {
+                        window = parent;
+                    }
+                }
+                else
+                {
+                    quitTraversal = true;
+                }
+            }
+            else
+            {
+                quitTraversal = true;
+            }
+        }
+    }
+
+    if (finalwindow)
+    {
+        status = XGetWindowProperty(display, finalwindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+        if (status == 0 && prop)
+        {
+            pid = prop[1] << 8;
+            pid += prop[0];
+            XFree(prop);
+        }
+    }
+    //status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+    /*if (status == 0 && prop)
     {
         pid = prop[1] << 8;
         pid += prop[0];
         XFree(prop);
     }
-    else if (status == 0)
-    {
-        XFree(prop);
+    */
+    //else if (status == 0)
+    //{
+        //XFree(prop);
 
-        Window parent = 0;
+        /*Window parent = 0;
         Window root = 0;
         Window *children;
         unsigned int num_children;
@@ -222,7 +290,8 @@ int X11Info::getApplicationPid(Window window)
                 quitTraversal = true;
             }
         }
-    }
+        */
+    //}
 
     return pid;
 }
@@ -305,7 +374,7 @@ Window X11Info::findClientWindow(Window window)
     }
     */
 
-    if (!finalwindow)
+    else
     {
         XQueryTree(display, window, &root, &parent, &children, &num_children);
         if (children)
