@@ -15,9 +15,9 @@ public:
     Display* display();
     bool hasValidDisplay();
     QString getDisplayString(QString xcodestring);
-    int getApplicationPid(Window &window);
+    int getApplicationPid(Window window);
     QString getApplicationLocation(int pid);
-    Window findClientWindow(Window &window);
+    Window findClientWindow(Window window);
     void closeDisplay();
     void syncDisplay();
     void syncDisplay(QString displayString);
@@ -31,6 +31,8 @@ protected:
     ~X11Info();
 
     void populateKnownAliases();
+    bool windowHasProperty(Display *display, Window window, Atom atom);
+    bool windowIsViewable(Display *display, Window window);
 
     Display *_display;
     static X11Info *_instance;

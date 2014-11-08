@@ -293,6 +293,7 @@ void AddEditAutoProfileDialog::checkCapturedPath()
         // Attempt to find the appropriate window below the root window
         // that was clicked.
         targetWindow = X11Info::getInstance()->findClientWindow(targetWindow);
+        //qDebug() << "ADJUSTED: " << QString::number(targetWindow, 16);
     }
 
     if (targetWindow != None)
@@ -300,6 +301,7 @@ void AddEditAutoProfileDialog::checkCapturedPath()
         int pid = X11Info::getInstance()->getApplicationPid(targetWindow);
         if (pid > 0)
         {
+            //qDebug() << "THIS ID: " << pid;
             QString exepath = X11Info::getInstance()->getApplicationLocation(pid);
 
             if (!exepath.isEmpty())

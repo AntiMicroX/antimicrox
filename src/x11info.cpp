@@ -144,11 +144,11 @@ void X11Info::populateKnownAliases()
 }
 
 /**
- * @brief Check window and any children for the window property "_NET_WM_PID"
+ * @brief Check window and any parents for the window property "_NET_WM_PID"
  * @param Window XID for window of interest
  * @return PID of the application instance corresponding to the window
  */
-int X11Info::getApplicationPid(Window &window)
+int X11Info::getApplicationPid(Window window)
 {
     Atom atom, actual_type;
     int actual_format = 0;
@@ -263,14 +263,15 @@ QString X11Info::getApplicationLocation(int pid)
  * @param Top window to check
  * @return Client window XID or 0 if no appropriate window was found
  */
-Window X11Info::findClientWindow(Window &window)
+Window X11Info::findClientWindow(Window window)
 {
-    Atom actual_type;
+    /*Atom actual_type;
     int actual_format = 0;
     unsigned long nitems = 0;
     unsigned long bytes_after = 0;
     unsigned char *prop = 0;
     int status = 0;
+    */
 
     Window parent = 1;
     Window root = 0;
@@ -279,18 +280,30 @@ Window X11Info::findClientWindow(Window &window)
     Window finalwindow = 0;
     Display *display = this->display();
 
+    Atom wm_state_atom = XInternAtom(display, "WM_STATE", True);
     Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
-    status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-    if (status == 0 && prop)
+
+    if (windowIsViewable(display, window) &&
+        windowHasProperty(display, window, wm_state_atom))
     {
         finalwindow = window;
     }
 
-    if (prop)
+    //status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+
+    //Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
+    //status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+    //if (status == 0 && prop)
+    //{
+    //    finalwindow = window;
+    //}
+
+    /*if (prop)
     {
         XFree(prop);
         prop = 0;
     }
+    */
 
     if (!finalwindow)
     {
@@ -299,17 +312,25 @@ Window X11Info::findClientWindow(Window &window)
         {
             for (unsigned int i = 0; i < num_children && !finalwindow; i++)
             {
-                status = XGetWindowProperty(display, children[i], pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-                if (status == 0 && prop)
+                if (windowIsViewable(display, children[i]) &&
+                    windowHasProperty(display, children[i], wm_state_atom))
                 {
                     finalwindow = children[i];
                 }
 
-                if (prop)
+                //status = XGetWindowProperty(display, children[i], wm_state_atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+                /*if (status == 0 && prop)
+                {
+                    finalwindow = children[i];
+                }
+                */
+
+                /*if (prop)
                 {
                     XFree(prop);
                     prop = 0;
                 }
+                */
             }
         }
 
@@ -328,7 +349,56 @@ Window X11Info::findClientWindow(Window &window)
         }
     }
 
+    if (finalwindow)
+    {
+        if (!windowHasProperty(display, finalwindow, pidAtom))
+        {
+            finalwindow = 0;
+        }
+    }
+
     return finalwindow;
+}
+
+bool X11Info::windowHasProperty(Display *display, Window window, Atom atom)
+{
+    bool result = false;
+
+    Atom actual_type;
+    int actual_format = 0;
+    unsigned long nitems = 0;
+    unsigned long bytes_after = 0;
+    unsigned char *prop = 0;
+    int status = 0;
+    status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType,
+                                &actual_type, &actual_format, &nitems, &bytes_after,
+                                &prop);
+
+    if (status == Success && prop)
+    {
+        result = true;
+    }
+
+    if (prop)
+    {
+        XFree(prop);
+        prop = 0;
+    }
+
+    return result;
+}
+
+bool X11Info::windowIsViewable(Display *display, Window window)
+{
+    bool result = false;
+    XWindowAttributes xwa;
+    XGetWindowAttributes(display, window, &xwa);
+    if (xwa.c_class == InputOutput && xwa.map_state == IsViewable)
+    {
+        result = true;
+    }
+
+    return result;
 }
 
 /**

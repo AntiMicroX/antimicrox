@@ -59,7 +59,8 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
         {
             case (ButtonPress):
                 target_window = event.xbutton.subwindow;
-                if (target_window == None) {
+                if (target_window == None)
+                {
                     target_window = event.xbutton.window;
                 }
 
