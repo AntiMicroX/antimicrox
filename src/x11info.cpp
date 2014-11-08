@@ -350,10 +350,12 @@ Window X11Info::findClientWindow(Window window)
     Display *display = this->display();
 
     Atom wm_state_atom = XInternAtom(display, "WM_STATE", True);
+    Atom net_wm_state_atom = XInternAtom(display, "_NET_WM_STATE", True);
     Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
 
     if (windowIsViewable(display, window) &&
-        windowHasProperty(display, window, wm_state_atom))
+        (windowHasProperty(display, window, wm_state_atom) ||
+         windowHasProperty(display, window, net_wm_state_atom)))
     {
         finalwindow = window;
     }
@@ -382,7 +384,8 @@ Window X11Info::findClientWindow(Window window)
             for (unsigned int i = 0; i < num_children && !finalwindow; i++)
             {
                 if (windowIsViewable(display, children[i]) &&
-                    windowHasProperty(display, children[i], wm_state_atom))
+                    (windowHasProperty(display, children[i], wm_state_atom) ||
+                     windowHasProperty(display, window, net_wm_state_atom)))
                 {
                     finalwindow = children[i];
                 }
