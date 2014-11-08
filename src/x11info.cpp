@@ -352,8 +352,10 @@ Window X11Info::findClientWindow(Window window)
     //Atom wm_state_atom = XInternAtom(display, "WM_STATE", True);
     //Atom net_wm_state_atom = XInternAtom(display, "_NET_WM_STATE", True);
     Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
+    //Atom wm_class = XInternAtom(display, "WM_CLASS", True);
 
-    if (windowIsViewable(display, window))
+    if (windowIsViewable(display, window) &&
+        isWindowRelevant(display, window))
     {
         finalwindow = window;
     }
@@ -381,7 +383,8 @@ Window X11Info::findClientWindow(Window window)
         {
             for (unsigned int i = 0; i < num_children && !finalwindow; i++)
             {
-                if (windowIsViewable(display, children[i]))
+                if (windowIsViewable(display, children[i]) &&
+                    isWindowRelevant(display, window))
                 {
                     finalwindow = children[i];
                 }
@@ -464,6 +467,37 @@ bool X11Info::windowIsViewable(Display *display, Window window)
     if (xwa.c_class == InputOutput && xwa.map_state == IsViewable)
     {
         result = true;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Go through a window's properties and search for an Atom
+ *     from a defined list. If an Atom is found in a window's properties,
+ *     that window should be considered relevant and one that should be grabbed.
+ * @param Display*
+ * @param Window
+ * @return If a window has a relevant Atom in its properties.
+ */
+bool X11Info::isWindowRelevant(Display *display, Window window)
+{
+    bool result = false;
+
+    QList<Atom> temp;
+    temp.append(XInternAtom(display, "WM_STATE", True));
+    temp.append(XInternAtom(display, "_NW_WM_STATE", True));
+    temp.append(XInternAtom(display, "_NW_WM_NAME", True));
+
+    QListIterator<Atom> iter(temp);
+    while (iter.hasNext())
+    {
+        Atom current_atom = iter.next();
+        if (windowHasProperty(display, window, current_atom))
+        {
+            iter.toBack();
+            result = true;
+        }
     }
 
     return result;

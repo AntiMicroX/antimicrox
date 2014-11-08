@@ -33,6 +33,7 @@ protected:
     void populateKnownAliases();
     bool windowHasProperty(Display *display, Window window, Atom atom);
     bool windowIsViewable(Display *display, Window window);
+    bool isWindowRelevant(Display *display, Window window);
 
     Display *_display;
     static X11Info *_instance;
