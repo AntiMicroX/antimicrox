@@ -35,23 +35,22 @@ protected:
     void clearAutoProfileData();
 
     AntiMicroSettings *settings;
+
+    // GUID, AutoProfileInfo*
+    // Default profiles assigned to a specific device
     QMap<QString, AutoProfileInfo*> defaultAutoProfiles;
+    // GUID, QList<AutoProfileInfo*>
+    // Profiles assigned with an association with an application
     QMap<QString, QList<AutoProfileInfo*> > deviceAutoProfiles;
+    // Path, QList<AutoProfileInfo*>
+    // TODO: CHECK IF NEEDED ANYMORE
     QMap<QString, QList<AutoProfileInfo*> > exeAutoProfiles;
-    //QMap<QString, QList<AutoProfileInfo*> > totalAutoProfiles;
+
     QList<AutoProfileInfo*> defaultList;
     QList<AutoProfileInfo*> profileList;
 
     AutoProfileInfo* allDefaultProfile;
     QList<InputDevice*> *connectedDevices;
-    //QList<QString> discoveredGuids;
-
-    //QHash<QString, QHash<QString, QString> > deviceAutoProfiles;
-    //QHash<QString, QList<QHash<QString, QString> > > defaultAutoProfiles;
-    //QHash<QString,
-
-    //QHash<QString, QList<QHash<QString, QString> > > appProfileAssignments;
-    //QHash<QString, QHash<QString, QString> > defaultProfileAssignments;
 
 private:
     Ui::MainSettingsDialog *ui;

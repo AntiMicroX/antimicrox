@@ -22,6 +22,9 @@ public:
     void syncDisplay();
     void syncDisplay(QString displayString);
     QString getXDisplayString();
+    QString getWindowTitle(Window window);
+    QString getWindowClass(Window window);
+    unsigned long getWindowInFocus();
 
     static X11Info* getInstance();
     static void deleteInstance();

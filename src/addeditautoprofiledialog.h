@@ -24,6 +24,8 @@ public:
     AutoProfileInfo* getAutoProfile();
     QString getOriginalGUID();
     QString getOriginalExe();
+    QString getOriginalWindowClass();
+    QString getOriginalWindowName();
 
 protected:
     virtual void accept();
@@ -36,6 +38,8 @@ protected:
     QList<QString> reservedGUIDs;
     QString originalGUID;
     QString originalExe;
+    QString originalWindowClass;
+    QString originalWindowName;
 
 private:
     Ui::AddEditAutoProfileDialog *ui;
@@ -48,14 +52,15 @@ private slots:
     void openApplicationBrowseDialog();
     void saveAutoProfileInformation();
     void checkForReservedGUIDs(int index);
-    void checkForDefaultStatus(QString text);
+    void checkForDefaultStatus();
 
 #ifdef Q_OS_WIN
     void openWinAppProfileDialog();
     void captureWindowsApplicationPath();
 #else
     void showCaptureHelpWindow();
-    void checkCapturedPath();
+    void checkForGrabbedWindow();
+    void windowPropAssignment();
 #endif
 };
 

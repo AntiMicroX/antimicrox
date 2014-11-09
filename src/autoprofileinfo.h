@@ -24,6 +24,12 @@ public:
     void setExe(QString exe);
     QString getExe();
 
+    void setWindowClass(QString windowClass);
+    QString getWindowClass();
+
+    void setWindowName(QString winName);
+    QString getWindowName();
+
     void setActive(bool active);
     bool isActive();
 
@@ -38,6 +44,8 @@ protected:
     QString profileLocation;
     QString exe;
     QString deviceName;
+    QString windowClass;
+    QString windowName;
     bool active;
     bool defaultState;
 

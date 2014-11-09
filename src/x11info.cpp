@@ -1,6 +1,9 @@
 #include <unistd.h>
 
+#include <QDebug>
 #include "x11info.h"
+
+#include <X11/Xatom.h>
 
 X11Info* X11Info::_instance = 0;
 
@@ -498,6 +501,113 @@ bool X11Info::isWindowRelevant(Display *display, Window window)
             iter.toBack();
             result = true;
         }
+    }
+
+    return result;
+}
+
+QString X11Info::getWindowTitle(Window window)
+{
+    QString temp;
+
+    Atom atom, actual_type;
+    int actual_format = 0;
+    unsigned long nitems = 0;
+    unsigned long bytes_after = 0;
+    unsigned char *prop = 0;
+    int status = 0;
+
+    Display *display = this->display();
+    Atom wm_name = XInternAtom(display, "WM_NAME", True);
+    Atom net_wm_name = XInternAtom(display, "_NET_WM_NAME", True);
+    atom = wm_name;
+
+    QList<Atom> tempList;
+    tempList.append(wm_name);
+    tempList.append(net_wm_name);
+    QListIterator<Atom> iter(tempList);
+    while (iter.hasNext())
+    {
+        Atom temp_atom = iter.next();
+        if (windowHasProperty(display, window, temp_atom))
+        {
+            iter.toBack();
+            atom = temp_atom;
+        }
+    }
+
+    status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType,
+                                &actual_type, &actual_format, &nitems, &bytes_after,
+                                &prop);
+
+    if (status == Success && prop)
+    {
+        temp.append((char*)prop);
+        //qDebug() << temp;
+    }
+
+    if (prop)
+    {
+        XFree(prop);
+        prop = 0;
+    }
+
+    return temp;
+}
+
+QString X11Info::getWindowClass(Window window)
+{
+    QString temp;
+
+    Atom atom, actual_type;
+    int actual_format = 0;
+    unsigned long nitems = 0;
+    unsigned long bytes_after = 0;
+    unsigned char *prop = 0;
+    int status = 0;
+
+    Display *display = this->display();
+    atom = XInternAtom(display, "WM_CLASS", True);
+    status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType,
+                                &actual_type, &actual_format, &nitems, &bytes_after,
+                                &prop);
+
+    if (status == Success && prop)
+    {
+        //qDebug() << nitems;
+        char *null_char = strchr((char*)prop, '\0');
+        if ((char*)prop + nitems - 1 > null_char)
+        {
+            *(null_char) = ' ';
+        }
+
+        temp.append((char*)prop);
+        //qDebug() << temp;
+        //qDebug() << (char*)prop;
+    }
+
+    if (prop)
+    {
+        XFree(prop);
+        prop = 0;
+    }
+
+    return temp;
+}
+
+unsigned long X11Info::getWindowInFocus()
+{
+    unsigned long result = 0;
+
+    Window currentWindow = 0;
+    int focusState = 0;
+
+    Display *display = X11Info::getInstance()->display();
+    XGetInputFocus(display, &currentWindow, &focusState);
+
+    if (currentWindow > 0)
+    {
+        result = (unsigned long)currentWindow;
     }
 
     return result;

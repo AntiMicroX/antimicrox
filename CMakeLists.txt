@@ -171,6 +171,7 @@ if(UNIX)
              src/qtx11keymapper.cpp
              src/unixcapturewindowutility.cpp
              src/autoprofilewatcher.cpp
+             src/unixwindowinfodialog.cpp
         )
 
         if(WITH_XTEST)
@@ -290,6 +291,7 @@ if(UNIX)
              src/qtx11keymapper.h
              src/unixcapturewindowutility.h
              src/autoprofilewatcher.h
+             src/unixwindowinfodialog.h
         )
 
         if(WITH_XTEST)
@@ -344,6 +346,7 @@ set(antimicro_FORMS src/mainwindow.ui
     src/editalldefaultautoprofiledialog.ui
     src/winappprofiletimerdialog.ui
     src/extraprofilesettingsdialog.ui
+    src/unixwindowinfodialog.ui
 )
 
 set(antimicro_RESOURCES src/resources.qrc)

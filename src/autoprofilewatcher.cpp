@@ -1,4 +1,4 @@
-//#include <QDebug>
+#include <QDebug>
 #include <QStringListIterator>
 #include <QFile>
 #include <QFileInfo>
@@ -41,13 +41,41 @@ void AutoProfileWatcher::stopTimer()
 void AutoProfileWatcher::runAppCheck()
 {
     //qDebug() << qApp->applicationFilePath();
-    QString appLocation = findAppLocation();
-    QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
-    if (!appLocation.isEmpty() && appLocation != currentApplication)
+    QString appLocation;
+    // Check whether program path needs to be parsed. Removes processing time
+    // and Linux specific code searching /proc.
+    if (!appProfileAssignments.isEmpty())
     {
-        currentApplication = appLocation;
+        appLocation = findAppLocation();
+    }
 
-        if (appProfileAssignments.contains(appLocation))
+    //QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
+    // More portable check for whether antimicro is the current application
+    // with focus.
+    QWidget *focusedWidget = qApp->activeWindow();
+    /*if (focusedWidget)
+    {
+        qDebug() << "APPLICATION IN FOCUS";
+    }
+    */
+
+    QString nowWindow;
+    QString nowWindowClass;
+    QString nowWindowName;
+    unsigned long currentWindow = X11Info::getInstance()->getWindowInFocus();
+    if (currentWindow > 0)
+    {
+        nowWindow = QString::number(currentWindow);
+        nowWindowClass = X11Info::getInstance()->getWindowClass(currentWindow);
+        nowWindowName = X11Info::getInstance()->getWindowTitle(currentWindow);
+    }
+
+    if (!focusedWidget && !nowWindow.isEmpty() && nowWindow != currentApplication)
+    {
+        currentApplication = nowWindow;
+        //currentApplication = appLocation;
+
+        if (!appLocation.isEmpty() && appProfileAssignments.contains(appLocation))
         {
             QList<AutoProfileInfo*> autoentries = appProfileAssignments.value(appLocation);
             QListIterator<AutoProfileInfo*> iter(autoentries);
@@ -60,8 +88,34 @@ void AutoProfileWatcher::runAppCheck()
                 }
             }
         }
-        else if ((!defaultProfileAssignments.isEmpty() || allDefaultInfo) &&
-                 antiProgramLocation != appLocation)
+        else if (!nowWindowClass.isEmpty() && windowClassProfileAssignments.contains(nowWindowClass))
+        {
+            QList<AutoProfileInfo*> autoentries = windowClassProfileAssignments.value(nowWindowClass);
+            QListIterator<AutoProfileInfo*> iter(autoentries);
+            while (iter.hasNext())
+            {
+                AutoProfileInfo *info = iter.next();
+                if (info->isActive())
+                {
+                    emit foundApplicableProfile(info);
+                }
+            }
+        }
+        else if (!nowWindowName.isEmpty() && windowNameProfileAssignments.contains(nowWindowName))
+        {
+            QList<AutoProfileInfo*> autoentries = windowNameProfileAssignments.value(nowWindowName);
+            QListIterator<AutoProfileInfo*> iter(autoentries);
+            while (iter.hasNext())
+            {
+                AutoProfileInfo *info = iter.next();
+                if (info->isActive())
+                {
+                    emit foundApplicableProfile(info);
+                }
+            }
+        }
+        else if ((!defaultProfileAssignments.isEmpty() || allDefaultInfo) && !focusedWidget)
+                 //antiProgramLocation != appLocation)
         {
             if (allDefaultInfo)
             {
@@ -89,36 +143,8 @@ void AutoProfileWatcher::runAppCheck()
 
 void AutoProfileWatcher::syncProfileAssignment()
 {
-    QListIterator<QList<AutoProfileInfo*> > iterDelete(appProfileAssignments.values());
-    while (iterDelete.hasNext())
-    {
-        QList<AutoProfileInfo*> templist = iterDelete.next();
-        QListIterator<AutoProfileInfo*> iterAuto(templist);
-        while (iterAuto.hasNext())
-        {
-            AutoProfileInfo *info = iterAuto.next();
-            if (info)
-            {
-                delete info;
-                info = 0;
-            }
-        }
-    }
-    appProfileAssignments.clear();
+    clearProfileAssignments();
 
-    QListIterator<AutoProfileInfo*> iterDefaultsDelete(defaultProfileAssignments.values());
-    while (iterDefaultsDelete.hasNext())
-    {
-        AutoProfileInfo *info = iterDefaultsDelete.next();
-        if (info)
-        {
-            delete info;
-            info = 0;
-        }
-    }
-    defaultProfileAssignments.clear();
-
-    allDefaultInfo = 0;
     currentApplication = "";
 
     //QStringList assignments = settings->allKeys();
@@ -129,6 +155,8 @@ void AutoProfileWatcher::syncProfileAssignment()
     QString guid;
     QString profile;
     QString active;
+    QString windowClass;
+    QString windowName;
 
     QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
     //QStringList defaultkeys = settings->allKeys();
@@ -137,6 +165,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
 
+    // Handle overall Default profile assignment
     bool defaultActive = allActive == "1" ? true : false;
     if (defaultActive)
     {
@@ -144,6 +173,7 @@ void AutoProfileWatcher::syncProfileAssignment()
         allDefaultInfo->setDefaultState(true);
     }
 
+    // Handle device specific Default profile assignments
     QStringListIterator iter(registeredGUIDs);
     while (iter.hasNext())
     {
@@ -168,7 +198,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     settings->beginGroup("AutoProfiles");
     bool quitSearch = false;
 
-    QHash<QString, QList<QString> > tempAssociation;
+    //QHash<QString, QList<QString> > tempAssociation;
     for (int i = 1; !quitSearch; i++)
     {
         exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
@@ -176,15 +206,52 @@ void AutoProfileWatcher::syncProfileAssignment()
         guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
         profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
+        windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
+        windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
 
         // Check if all required elements exist. If not, assume that the end of the
         // list has been reached.
-        if (!exe.isEmpty() && !guid.isEmpty())
+        if ((!exe.isEmpty() || !windowClass.isEmpty() || !windowName.isEmpty()) &&
+            !guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
             if (profileActive)
             {
-                QList<AutoProfileInfo*> templist;
+                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
+
+                if (!windowClass.isEmpty())
+                {
+                    QList<AutoProfileInfo*> templist;
+                    if (windowClassProfileAssignments.contains(windowClass))
+                    {
+                        templist = windowClassProfileAssignments.value(windowClass);
+                    }
+                    templist.append(info);
+                    windowClassProfileAssignments.insert(windowClass, templist);
+                }
+
+                if (!windowName.isEmpty())
+                {
+                    QList<AutoProfileInfo*> templist;
+                    if (windowNameProfileAssignments.contains(windowName))
+                    {
+                        templist = windowNameProfileAssignments.value(windowName);
+                    }
+                    templist.append(info);
+                    windowNameProfileAssignments.insert(windowClass, templist);
+                }
+
+                if (!exe.isEmpty())
+                {
+                    QList<AutoProfileInfo*> templist;
+                    if (appProfileAssignments.contains(exe))
+                    {
+                        templist = appProfileAssignments.value(exe);
+                    }
+                    templist.append(info);
+                    appProfileAssignments.insert(exe, templist);
+                }
+                /*QList<AutoProfileInfo*> templist;
                 if (appProfileAssignments.contains(exe))
                 {
                     templist = appProfileAssignments.value(exe);
@@ -204,6 +271,7 @@ void AutoProfileWatcher::syncProfileAssignment()
                     templist.append(info);
                     appProfileAssignments.insert(exe, templist);
                 }
+                */
             }
         }
         else
@@ -215,6 +283,74 @@ void AutoProfileWatcher::syncProfileAssignment()
     settings->endGroup();
 }
 
+void AutoProfileWatcher::clearProfileAssignments()
+{
+    QListIterator<QList<AutoProfileInfo*> > iterDelete(appProfileAssignments.values());
+    while (iterDelete.hasNext())
+    {
+        QList<AutoProfileInfo*> templist = iterDelete.next();
+        QListIterator<AutoProfileInfo*> iterAuto(templist);
+        while (iterAuto.hasNext())
+        {
+            AutoProfileInfo *info = iterAuto.next();
+            if (info)
+            {
+                delete info;
+                info = 0;
+            }
+        }
+    }
+    appProfileAssignments.clear();
+
+    QListIterator<QList<AutoProfileInfo*> > iterClassDelete(windowClassProfileAssignments.values());
+    while (iterClassDelete.hasNext())
+    {
+        QList<AutoProfileInfo*> templist = iterClassDelete.next();
+        QListIterator<AutoProfileInfo*> iterAuto(templist);
+        while (iterAuto.hasNext())
+        {
+            AutoProfileInfo *info = iterAuto.next();
+            if (info)
+            {
+                delete info;
+                info = 0;
+            }
+        }
+    }
+    windowClassProfileAssignments.clear();
+
+    QListIterator<QList<AutoProfileInfo*> > iterNameDelete(windowNameProfileAssignments.values());
+    while (iterNameDelete.hasNext())
+    {
+        QList<AutoProfileInfo*> templist = iterNameDelete.next();
+        QListIterator<AutoProfileInfo*> iterAuto(templist);
+        while (iterAuto.hasNext())
+        {
+            AutoProfileInfo *info = iterAuto.next();
+            if (info)
+            {
+                delete info;
+                info = 0;
+            }
+        }
+    }
+    windowNameProfileAssignments.clear();
+
+    QListIterator<AutoProfileInfo*> iterDefaultsDelete(defaultProfileAssignments.values());
+    while (iterDefaultsDelete.hasNext())
+    {
+        AutoProfileInfo *info = iterDefaultsDelete.next();
+        if (info)
+        {
+            delete info;
+            info = 0;
+        }
+    }
+    defaultProfileAssignments.clear();
+
+    allDefaultInfo = 0;
+}
+
 QString AutoProfileWatcher::findAppLocation()
 {
     QString exepath;
@@ -222,11 +358,14 @@ QString AutoProfileWatcher::findAppLocation()
 #if defined(Q_OS_UNIX)
     #ifdef WITH_X11
     Window currentWindow = 0;
-    int focusState = 0;
+    int pid = 0;
+    /*int focusState = 0;
     int pid = 0;
 
     Display *display = X11Info::getInstance()->display();
     XGetInputFocus(display, &currentWindow, &focusState);
+    */
+    currentWindow = X11Info::getInstance()->getWindowInFocus();
     if (currentWindow)
     {
         pid = X11Info::getInstance()->getApplicationPid(currentWindow);

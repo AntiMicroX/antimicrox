@@ -13,6 +13,7 @@
 
     #ifdef WITH_X11
 #include "unixcapturewindowutility.h"
+#include "unixwindowinfodialog.h"
 #include "x11info.h"
 
     #endif
@@ -44,6 +45,8 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     this->devices = devices;
     this->originalGUID = info->getGUID();
     this->originalExe = info->getExe();
+    this->originalWindowClass = info->getWindowClass();
+    this->originalWindowName = info->getWindowName();
 
     QListIterator<QString> iterGUIDs(reservedGUIDS);
     while (iterGUIDs.hasNext())
@@ -108,23 +111,24 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
         }
     //}
 
-    if (!info->getProfileLocation().isEmpty())
-    {
-        ui->profileLineEdit->setText(info->getProfileLocation());
-    }
+    ui->profileLineEdit->setText(info->getProfileLocation());
+    ui->applicationLineEdit->setText(info->getExe());
+    ui->winClassLineEdit->setText(info->getWindowClass());
+    ui->winNameLineEdit->setText(info->getWindowName());
 
-    if (!info->getExe().isEmpty())
-    {
-        ui->applicationLineEdit->setText(info->getExe());
-    }
+#ifdef Q_OS_UNIX
+    ui->selectWindowPushButton->setVisible(false);
+#endif
 
     connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));
     connect(ui->applicationPushButton, SIGNAL(clicked()), this, SLOT(openApplicationBrowseDialog()));
     connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForReservedGUIDs(int)));
-    connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus(QString)));
+    connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    connect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    connect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
 
 #if defined(Q_OS_UNIX)
-    connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(showCaptureHelpWindow()));
+    connect(ui->detectWinPropsSelectWindowPushButton, SIGNAL(clicked()), this, SLOT(showCaptureHelpWindow()));
 #elif defined(Q_OS_WIN)
     connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(openWinAppProfileDialog()));
 #endif
@@ -195,6 +199,8 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
     }
 
     info->setExe(ui->applicationLineEdit->text());
+    info->setWindowClass(ui->winClassLineEdit->text());
+    info->setWindowName(ui->winNameLineEdit->text());
     info->setDefaultState(ui->asDefaultCheckBox->isChecked());
     //info->setActive(true);
 }
@@ -235,17 +241,27 @@ QString AddEditAutoProfileDialog::getOriginalExe()
     return originalExe;
 }
 
+QString AddEditAutoProfileDialog::getOriginalWindowClass()
+{
+    return originalWindowClass;
+}
+
+QString AddEditAutoProfileDialog::getOriginalWindowName()
+{
+    return originalWindowName;
+}
+
 #ifdef Q_OS_UNIX
 /**
  * @brief Display a simple message box and attempt to capture a window using the mouse
  */
 void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
-#ifdef WITH_X11
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
     QMessageBox *box = new QMessageBox(this);
     box->setText(tr("Please select a window by using the mouse. Press Escape if you want to cancel."));
     box->setWindowTitle(tr("Capture Application Window"));
@@ -260,28 +276,28 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     connect(thread, SIGNAL(started()), util, SLOT(attemptWindowCapture()));
     connect(util, SIGNAL(captureFinished()), thread, SLOT(quit()));
     connect(util, SIGNAL(captureFinished()), box, SLOT(hide()));
-    connect(util, SIGNAL(captureFinished()), this, SLOT(checkCapturedPath()), Qt::QueuedConnection);
+    connect(util, SIGNAL(captureFinished()), this, SLOT(checkForGrabbedWindow()), Qt::QueuedConnection);
 
     connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
     connect(util, SIGNAL(destroyed()), thread, SLOT(deleteLater()));
     thread->start();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
+        #endif
     #endif
-#endif
 }
 
 /**
  * @brief Check if there is a program path saved in an UnixCaptureWindowUtility
  *     object
  */
-void AddEditAutoProfileDialog::checkCapturedPath()
+void AddEditAutoProfileDialog::checkForGrabbedWindow()
 {
-#ifdef WITH_X11
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+        #endif
     UnixCaptureWindowUtility *util = static_cast<UnixCaptureWindowUtility*>(sender());
     unsigned long targetWindow = util->getTargetWindow();
     bool escaped = !util->hasFailed();
@@ -299,6 +315,11 @@ void AddEditAutoProfileDialog::checkCapturedPath()
 
     if (targetWindow != None)
     {
+        UnixWindowInfoDialog *dialog = new UnixWindowInfoDialog(targetWindow, this);
+        connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
+        dialog->show();
+
+        /*QString ham = X11Info::getInstance()->getWindowTitle(targetWindow);
         int pid = X11Info::getInstance()->getApplicationPid(targetWindow);
         if (pid > 0)
         {
@@ -317,19 +338,19 @@ void AddEditAutoProfileDialog::checkCapturedPath()
         else if (!failed)
         {
             failed = true;
-        }
+        }*/
     }
     else if (!escaped)
     {
         failed = true;
     }
 
-    if (!path.isEmpty())
+    /*if (!path.isEmpty())
     {
         ui->applicationLineEdit->setText(path);
-    }
+    }*/
     // Ensure that the operation was not cancelled (Escape wasn't pressed).
-    else if (failed)
+    if (failed)
     {
         QMessageBox box;
         box.setText(tr("Could not obtain information for the selected window."));
@@ -340,17 +361,63 @@ void AddEditAutoProfileDialog::checkCapturedPath()
     }
 
     util->deleteLater();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
+        #endif
     #endif
-#endif
+}
+
+void AddEditAutoProfileDialog::windowPropAssignment()
+{
+    disconnect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    disconnect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    disconnect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+
+    UnixWindowInfoDialog *dialog = static_cast<UnixWindowInfoDialog*>(sender());
+    if (dialog->getSelectedOption() == UnixWindowInfoDialog::WindowPath)
+    {
+        ui->applicationLineEdit->setText(dialog->getPropertyValue());
+    }
+    else if (dialog->getSelectedOption() == UnixWindowInfoDialog::WindowClass)
+    {
+        ui->winClassLineEdit->setText(dialog->getPropertyValue());
+    }
+    else if (dialog->getSelectedOption() == UnixWindowInfoDialog::WindowName)
+    {
+        ui->winNameLineEdit->setText(dialog->getPropertyValue());
+    }
+
+    if (dialog->getSelectedOption() != UnixWindowInfoDialog::WindowPath)
+    {
+        ui->applicationLineEdit->clear();
+    }
+
+    if (dialog->getSelectedOption() != UnixWindowInfoDialog::WindowClass)
+    {
+        ui->winClassLineEdit->clear();
+    }
+
+    if (dialog->getSelectedOption() != UnixWindowInfoDialog::WindowPath)
+    {
+        ui->applicationLineEdit->clear();
+    }
+
+    checkForDefaultStatus();
+
+    connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    connect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    connect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
 }
 
 #endif
 
-void AddEditAutoProfileDialog::checkForDefaultStatus(QString text)
+void AddEditAutoProfileDialog::checkForDefaultStatus()
 {
-    if (text.length() > 0)
+    bool status = ui->applicationLineEdit->text().length() > 0;
+    status = status ? status : ui->winClassLineEdit->text().length() > 0;
+    status = status ? status : ui->winNameLineEdit->text().length() > 0;
+
+    if (status)
     {
         ui->asDefaultCheckBox->setChecked(false);
         ui->asDefaultCheckBox->setEnabled(false);
@@ -367,6 +434,8 @@ void AddEditAutoProfileDialog::checkForDefaultStatus(QString text)
 void AddEditAutoProfileDialog::accept()
 {
     bool validForm = true;
+    bool propertyFound = false;
+
     QString errorString;
     if (ui->profileLineEdit->text().length() > 0)
     {
@@ -379,7 +448,20 @@ void AddEditAutoProfileDialog::accept()
         }
     }
 
-    if (validForm && ui->applicationLineEdit->text().length() > 0)
+    if (validForm &&
+        (ui->applicationLineEdit->text().isEmpty() &&
+         ui->winClassLineEdit->text().isEmpty() &&
+         ui->winNameLineEdit->text().isEmpty()))
+    {
+        validForm = false;
+        errorString = tr("No window matching property was specified.");
+    }
+    else
+    {
+        propertyFound = true;
+    }
+
+    if (validForm && !ui->applicationLineEdit->text().isEmpty())
     {
         QString exeFileName = ui->applicationLineEdit->text();
         QFileInfo info(exeFileName);
@@ -389,10 +471,11 @@ void AddEditAutoProfileDialog::accept()
             errorString = tr("Program path is invalid or not executable.");
         }
     }
-    else if (validForm && !ui->asDefaultCheckBox->isChecked())
+
+    if (validForm && !propertyFound && !ui->asDefaultCheckBox->isChecked())
     {
         validForm = false;
-        errorString = tr("No program selected.");
+        errorString = tr("No window matching property was selected.");
     }
 
     if (validForm)

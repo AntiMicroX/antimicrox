@@ -82,7 +82,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -605,7 +605,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
             <enum>QAbstractItemView::SelectRows</enum>
            </property>
            <property name="columnCount">
-            <number>6</number>
+            <number>8</number>
            </property>
            <attribute name="horizontalHeaderVisible">
             <bool>false</bool>
@@ -642,7 +642,17 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            </column>
            <column>
             <property name="text">
-             <string>Application</string>
+             <string>Class</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Title</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Program</string>
             </property>
            </column>
            <column>
@@ -650,7 +660,11 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              <string>Default?</string>
             </property>
            </column>
-           <column/>
+           <column>
+            <property name="text">
+             <string/>
+            </property>
+           </column>
           </widget>
          </item>
          <item>

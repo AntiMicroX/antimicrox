@@ -24,13 +24,18 @@ public:
 
 protected:
     QString findAppLocation();
+    void clearProfileAssignments();
 
     QTimer appTimer;
     AntiMicroSettings *settings;
+    // Path, QList<AutoProfileInfo*>
     QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
+    // WM_CLASS, QList<AutoProfileInfo*>
+    QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;
+    // WM_NAME, QList<AutoProfileInfo*>
+    QHash<QString, QList<AutoProfileInfo*> > windowNameProfileAssignments;
+    // GUID, AutoProfileInfo*
     QHash<QString, AutoProfileInfo*> defaultProfileAssignments;
-    //QHash<QString, QList<QHash<QString, QString> > > appProfileAssignments;
-    //QHash<QString, QHash<QString, QString> > defaultProfileAssignments;
     //QList<AutoProfileInfo*> *customDefaults;
     AutoProfileInfo *allDefaultInfo;
     QString currentApplication;

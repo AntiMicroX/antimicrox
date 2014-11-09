@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
-    <height>234</height>
+    <width>478</width>
+    <height>345</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,95 +16,175 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>-1</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_7">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Profile:</string>
-     </property>
-     <property name="buddy">
-      <cstring>profileLineEdit</cstring>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
-      <widget class="QLineEdit" name="profileLineEdit"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="profileBrowsePushButton">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Browse</string>
+        <string>Profile:</string>
+       </property>
+       <property name="buddy">
+        <cstring>profileLineEdit</cstring>
        </property>
       </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLineEdit" name="profileLineEdit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="profileBrowsePushButton">
+         <property name="text">
+          <string>Browse</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Application:</string>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Window:</string>
      </property>
-     <property name="buddy">
-      <cstring>applicationLineEdit</cstring>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLineEdit" name="applicationLineEdit"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="applicationPushButton">
-       <property name="text">
-        <string>Browse</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="selectWindowPushButton">
-       <property name="toolTip">
-        <string>Select Window. Click on the appropriate application
-window and the application file path will be populated
-in the form.</string>
-       </property>
-       <property name="text">
-        <string>Select</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QLabel" name="devicesLabel">
-     <property name="text">
-      <string>Devices:</string>
-     </property>
-     <property name="buddy">
-      <cstring>devicesComboBox</cstring>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QComboBox" name="devicesComboBox"/>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="asDefaultCheckBox">
-     <property name="enabled">
+     <property name="flat">
       <bool>false</bool>
      </property>
-     <property name="toolTip">
-      <string>Select this profile to be the default loaded for
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="spacing">
+       <number>-1</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="detectWinPropsSelectWindowPushButton">
+        <property name="toolTip">
+         <string>Select Window. Click on the appropriate application
+window and the application file path will be populated
+in the form.</string>
+        </property>
+        <property name="text">
+         <string>Detect Window Properties</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Window Class:</string>
+          </property>
+          <property name="buddy">
+           <cstring>applicationLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="winClassLineEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Window Title:</string>
+          </property>
+          <property name="buddy">
+           <cstring>applicationLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="winNameLineEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Application:</string>
+          </property>
+          <property name="buddy">
+           <cstring>applicationLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLineEdit" name="applicationLineEdit"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="applicationPushButton">
+            <property name="text">
+             <string>Browse</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="selectWindowPushButton">
+            <property name="toolTip">
+             <string>Select Window. Click on the appropriate application
+window and the application file path will be populated
+in the form.</string>
+            </property>
+            <property name="text">
+             <string>Select</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="devicesLabel">
+       <property name="text">
+        <string>Devices:</string>
+       </property>
+       <property name="buddy">
+        <cstring>devicesComboBox</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="devicesComboBox"/>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="asDefaultCheckBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</string>
-     </property>
-     <property name="text">
-      <string>Set as Default for Controller</string>
+       </property>
+       <property name="text">
+        <string>Set as Default for Controller</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>

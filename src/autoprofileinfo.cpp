@@ -65,8 +65,15 @@ QString AutoProfileInfo::getProfileLocation()
 
 void AutoProfileInfo::setExe(QString exe)
 {
-    QFileInfo info(exe);
-    if (exe != this->exe && info.exists() && info.isExecutable())
+    if (!exe.isEmpty())
+    {
+        QFileInfo info(exe);
+        if (exe != this->exe && info.exists() && info.isExecutable())
+        {
+            this->exe = exe;
+        }
+    }
+    else
     {
         this->exe = exe;
     }
@@ -75,6 +82,26 @@ void AutoProfileInfo::setExe(QString exe)
 QString AutoProfileInfo::getExe()
 {
     return exe;
+}
+
+void AutoProfileInfo::setWindowClass(QString windowClass)
+{
+    this->windowClass = windowClass;
+}
+
+QString AutoProfileInfo::getWindowClass()
+{
+    return windowClass;
+}
+
+void AutoProfileInfo::setWindowName(QString winName)
+{
+    this->windowName = winName;
+}
+
+QString AutoProfileInfo::getWindowName()
+{
+    return windowName;
 }
 
 void AutoProfileInfo::setActive(bool active)
