@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-#include <QDebug>
+//#include <QDebug>
 #include "x11info.h"
 
 #include <X11/Xatom.h>
