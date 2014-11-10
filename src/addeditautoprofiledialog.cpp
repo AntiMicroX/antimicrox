@@ -374,32 +374,31 @@ void AddEditAutoProfileDialog::windowPropAssignment()
     disconnect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
 
     UnixWindowInfoDialog *dialog = static_cast<UnixWindowInfoDialog*>(sender());
-    if (dialog->getSelectedOption() == UnixWindowInfoDialog::WindowPath)
+    if (dialog->getSelectedOptions() & UnixWindowInfoDialog::WindowPath)
     {
-        ui->applicationLineEdit->setText(dialog->getPropertyValue());
+        ui->applicationLineEdit->setText(dialog->getWindowPath());
     }
-    else if (dialog->getSelectedOption() == UnixWindowInfoDialog::WindowClass)
-    {
-        ui->winClassLineEdit->setText(dialog->getPropertyValue());
-    }
-    else if (dialog->getSelectedOption() == UnixWindowInfoDialog::WindowName)
-    {
-        ui->winNameLineEdit->setText(dialog->getPropertyValue());
-    }
-
-    if (dialog->getSelectedOption() != UnixWindowInfoDialog::WindowPath)
+    else
     {
         ui->applicationLineEdit->clear();
     }
 
-    if (dialog->getSelectedOption() != UnixWindowInfoDialog::WindowClass)
+    if (dialog->getSelectedOptions() & UnixWindowInfoDialog::WindowClass)
+    {
+        ui->winClassLineEdit->setText(dialog->getWindowClass());
+    }
+    else
     {
         ui->winClassLineEdit->clear();
     }
 
-    if (dialog->getSelectedOption() != UnixWindowInfoDialog::WindowPath)
+    if (dialog->getSelectedOptions() & UnixWindowInfoDialog::WindowName)
     {
-        ui->applicationLineEdit->clear();
+        ui->winNameLineEdit->setText(dialog->getWindowName());
+    }
+    else
+    {
+        ui->winNameLineEdit->clear();
     }
 
     checkForDefaultStatus();

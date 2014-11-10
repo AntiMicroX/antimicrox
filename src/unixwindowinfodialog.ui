@@ -97,15 +97,13 @@
        </layout>
       </item>
      </layout>
-     <zorder>winClassLabel</zorder>
-     <zorder>label_2</zorder>
      <zorder></zorder>
     </widget>
    </item>
    <item>
     <widget class="QGroupBox" name="choiceGroupBox">
      <property name="title">
-      <string>Match Property</string>
+      <string>Match By Properties</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -118,21 +116,21 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QRadioButton" name="winClassRadioButton">
+       <widget class="QCheckBox" name="winClassCheckBox">
         <property name="text">
          <string>Class</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="winTitleRadioButton">
+       <widget class="QCheckBox" name="winTitleCheckBox">
         <property name="text">
          <string>Title</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="winPathRadioButton">
+       <widget class="QCheckBox" name="winPathCheckBox">
         <property name="text">
          <string>Path</string>
         </property>

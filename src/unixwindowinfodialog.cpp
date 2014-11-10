@@ -19,12 +19,12 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
     ui->winClassLabel->setText(winClass);
     if (winClass.isEmpty())
     {
-        ui->winClassRadioButton->setEnabled(false);
-        ui->winClassRadioButton->setChecked(false);
+        ui->winClassCheckBox->setEnabled(false);
+        ui->winClassCheckBox->setChecked(false);
     }
     else
     {
-        ui->winClassRadioButton->setChecked(true);
+        ui->winClassCheckBox->setChecked(true);
         setRadioDefault = true;
     }
 
@@ -32,12 +32,12 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
     ui->winTitleLabel->setText(winName);
     if (winName.isEmpty())
     {
-        ui->winTitleRadioButton->setEnabled(false);
-        ui->winTitleRadioButton->setChecked(false);
+        ui->winTitleCheckBox->setEnabled(false);
+        ui->winTitleCheckBox->setChecked(false);
     }
     else if (!setRadioDefault)
     {
-        ui->winTitleRadioButton->setChecked(true);
+        ui->winTitleCheckBox->setChecked(true);
         setRadioDefault = true;
     }
 
@@ -52,20 +52,20 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
             winPath = exepath;
             if (!setRadioDefault)
             {
-                ui->winTitleRadioButton->setChecked(true);
+                ui->winTitleCheckBox->setChecked(true);
                 setRadioDefault = true;
             }
         }
         else
         {
-            ui->winPathRadioButton->setEnabled(false);
-            ui->winPathRadioButton->setChecked(false);
+            ui->winPathCheckBox->setEnabled(false);
+            ui->winPathCheckBox->setChecked(false);
         }
     }
     else
     {
-        ui->winPathRadioButton->setEnabled(false);
-        ui->winPathRadioButton->setChecked(false);
+        ui->winPathCheckBox->setEnabled(false);
+        ui->winPathCheckBox->setChecked(false);
     }
 
     if (winClass.isEmpty() && winName.isEmpty() &&
@@ -80,31 +80,40 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
 
 void UnixWindowInfoDialog::populateOption()
 {
-    if (ui->winClassRadioButton->isChecked())
+    if (ui->winClassCheckBox->isChecked())
     {
-        selectedMatch = WindowClass;
-        selectedValue = winClass;
+        selectedMatch = selectedMatch | WindowClass;
     }
-    else if (ui->winTitleRadioButton->isChecked())
+
+    if (ui->winTitleCheckBox->isChecked())
     {
-        selectedMatch = WindowName;
-        selectedValue = winName;
+        selectedMatch = selectedMatch | WindowName;
     }
-    else if (ui->winPathRadioButton->isChecked())
+
+    if (ui->winPathCheckBox->isChecked())
     {
-        selectedMatch = WindowPath;
-        selectedValue = winPath;
+        selectedMatch = selectedMatch | WindowPath;
     }
 }
 
-QString UnixWindowInfoDialog::getPropertyValue()
-{
-    return selectedValue;
-}
-
-UnixWindowInfoDialog::DialogWindowOption UnixWindowInfoDialog::getSelectedOption()
+UnixWindowInfoDialog::DialogWindowOption UnixWindowInfoDialog::getSelectedOptions()
 {
     return selectedMatch;
+}
+
+QString UnixWindowInfoDialog::getWindowClass()
+{
+    return winClass;
+}
+
+QString UnixWindowInfoDialog::getWindowName()
+{
+    return winName;
+}
+
+QString UnixWindowInfoDialog::getWindowPath()
+{
+    return winPath;
 }
 
 UnixWindowInfoDialog::~UnixWindowInfoDialog()

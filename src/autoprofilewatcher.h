@@ -39,6 +39,7 @@ protected:
     //QList<AutoProfileInfo*> *customDefaults;
     AutoProfileInfo *allDefaultInfo;
     QString currentApplication;
+    QString currentAppWindowTitle;
 
 signals:
     void foundApplicableProfile(AutoProfileInfo *info);

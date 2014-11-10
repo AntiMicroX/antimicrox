@@ -16,21 +16,23 @@ public:
     explicit UnixWindowInfoDialog(unsigned long window, QWidget *parent = 0);
     ~UnixWindowInfoDialog();
 
-    enum DialogWindowOption {
-        WindowClass=0,
-        WindowName,
-        WindowPath
+    enum {
+        WindowClass = (1 << 0),
+        WindowName = (1 << 1),
+        WindowPath = (1 << 2)
     };
+    typedef unsigned int DialogWindowOption;
 
-    QString getPropertyValue();
-    DialogWindowOption getSelectedOption();
+    QString getWindowClass();
+    QString getWindowName();
+    QString getWindowPath();
+    DialogWindowOption getSelectedOptions();
 
 private:
     Ui::UnixWindowInfoDialog *ui;
 
 protected:
     DialogWindowOption selectedMatch;
-    QString selectedValue;
 
     QString winClass;
     QString winName;
