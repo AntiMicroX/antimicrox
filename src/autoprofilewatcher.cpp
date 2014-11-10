@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QStringListIterator>
 #include <QFile>
 #include <QFileInfo>
@@ -176,8 +176,6 @@ void AutoProfileWatcher::runAppCheck()
                     emit foundApplicableProfile(info);
                 }
             }
-
-            //currentApplication = "";
         }
     }
 }
@@ -339,17 +337,6 @@ void AutoProfileWatcher::clearProfileAssignments()
     {
         QList<AutoProfileInfo*> templist = iterDelete.next();
         terminateProfiles.unite(templist.toSet());
-        /*QListIterator<AutoProfileInfo*> iterAuto(templist);
-        while (iterAuto.hasNext())
-        {
-            AutoProfileInfo *info = iterAuto.next();
-            if (info)
-            {
-                delete info;
-                info = 0;
-            }
-        }
-        */
     }
     appProfileAssignments.clear();
 
@@ -358,17 +345,6 @@ void AutoProfileWatcher::clearProfileAssignments()
     {
         QList<AutoProfileInfo*> templist = iterClassDelete.next();
         terminateProfiles.unite(templist.toSet());
-        /*QListIterator<AutoProfileInfo*> iterAuto(templist);
-        while (iterAuto.hasNext())
-        {
-            AutoProfileInfo *info = iterAuto.next();
-            if (info)
-            {
-                delete info;
-                info = 0;
-            }
-        }
-        */
     }
     windowClassProfileAssignments.clear();
 
@@ -377,17 +353,6 @@ void AutoProfileWatcher::clearProfileAssignments()
     {
         QList<AutoProfileInfo*> templist = iterNameDelete.next();
         terminateProfiles.unite(templist.toSet());
-        /*QListIterator<AutoProfileInfo*> iterAuto(templist);
-        while (iterAuto.hasNext())
-        {
-            AutoProfileInfo *info = iterAuto.next();
-            if (info)
-            {
-                delete info;
-                info = 0;
-            }
-        }
-        */
     }
     windowNameProfileAssignments.clear();
 
@@ -425,12 +390,7 @@ QString AutoProfileWatcher::findAppLocation()
     #ifdef WITH_X11
     Window currentWindow = 0;
     int pid = 0;
-    /*int focusState = 0;
-    int pid = 0;
 
-    Display *display = X11Info::getInstance()->display();
-    XGetInputFocus(display, &currentWindow, &focusState);
-    */
     currentWindow = X11Info::getInstance()->getWindowInFocus();
     if (currentWindow)
     {
