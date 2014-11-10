@@ -1,3 +1,5 @@
+//#include <QDebug>
+
 #include "simplekeygrabberbutton.h"
 #include "event.h"
 #include "antkeymapper.h"
@@ -99,7 +101,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
         #endif
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
-        finalvirtual = X11KeyCodeToX11KeySym(controlcode);
+        finalvirtual = X11KeyCodeToX11KeySym(tempcode);
 
         #ifdef WITH_UINPUT
         if (handler->getIdentifier() == "uinput")
