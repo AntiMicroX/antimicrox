@@ -1069,7 +1069,7 @@ void MainWindow::openMainSettingsDialog()
     {
     #endif
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(checkAutoProfileWatcherTimer()));
     appWatcher->stopTimer();
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
@@ -1077,7 +1077,7 @@ void MainWindow::openMainSettingsDialog()
 
 #elif defined(USE_SDL_2) && defined(Q_OS_WIN)
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
+    connect(dialog, SIGNAL(finished(int)), this, SLOT(checkAutoProfileWatcherTimer()));
     appWatcher->stopTimer();
 #endif
     }
