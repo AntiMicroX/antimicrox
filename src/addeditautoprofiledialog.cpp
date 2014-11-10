@@ -118,6 +118,15 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 
 #ifdef Q_OS_UNIX
     ui->selectWindowPushButton->setVisible(false);
+
+#elif defined(Q_OS_WIN)
+    ui->detectWinPropsSelectWindowPushButton->setVisible(false);
+
+    ui->winClassLineEdit->setVisible(false);
+    ui->winClassLabel->setVisible(false);
+
+    ui->winNameLineEdit->setVisible(false);
+    ui->winNameLabel->setVisible(false);
 #endif
 
     connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));

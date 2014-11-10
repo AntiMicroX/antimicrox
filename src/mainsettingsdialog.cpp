@@ -69,6 +69,13 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page);
 
+#ifdef Q_OS_WIN
+    ui->autoProfileTableWidget->hideColumn(4);
+    ui->autoProfileTableWidget->hideColumn(5);
+#endif
+
+    ui->autoProfileTableWidget->hideColumn(7);
+
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -731,8 +738,6 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 #else
     ui->autoProfileTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 #endif
-
-    ui->autoProfileTableWidget->hideColumn(7);
 
     if (defaultAutoProfiles.contains(guid) ||
         deviceAutoProfiles.contains(guid))

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>478</width>
-    <height>345</height>
+    <height>327</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,12 @@
      <property name="checkable">
       <bool>false</bool>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="spacing">
-       <number>-1</number>
+       <number>6</number>
+      </property>
+      <property name="bottomMargin">
+       <number>4</number>
       </property>
       <item>
        <widget class="QPushButton" name="detectWinPropsSelectWindowPushButton">
@@ -75,7 +78,7 @@ in the form.</string>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="winClassLabel">
           <property name="text">
            <string>Window Class:</string>
           </property>
@@ -92,9 +95,9 @@ in the form.</string>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <widget class="QLabel" name="label_4">
+         <widget class="QLabel" name="winNameLabel">
           <property name="text">
-           <string>Window Title:</string>
+           <string>Window Title:  </string>
           </property>
           <property name="buddy">
            <cstring>applicationLineEdit</cstring>
@@ -107,11 +110,11 @@ in the form.</string>
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Application:</string>
+           <string>Application:    </string>
           </property>
           <property name="buddy">
            <cstring>applicationLineEdit</cstring>
@@ -119,30 +122,26 @@ in the form.</string>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLineEdit" name="applicationLineEdit"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="applicationPushButton">
-            <property name="text">
-             <string>Browse</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="selectWindowPushButton">
-            <property name="toolTip">
-             <string>Select Window. Click on the appropriate application
+         <widget class="QLineEdit" name="applicationLineEdit"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="applicationPushButton">
+          <property name="text">
+           <string>Browse</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="selectWindowPushButton">
+          <property name="toolTip">
+           <string>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</string>
-            </property>
-            <property name="text">
-             <string>Select</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          </property>
+          <property name="text">
+           <string>Select</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
