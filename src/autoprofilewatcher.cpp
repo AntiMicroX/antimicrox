@@ -1,9 +1,11 @@
 //#include <QDebug>
+#include <QListIterator>
 #include <QStringListIterator>
+#include <QSet>
+#include <QSetIterator>
 #include <QFile>
 #include <QFileInfo>
 #include <QDir>
-#include <QListIterator>
 #include <QApplication>
 
 #include "autoprofilewatcher.h"
