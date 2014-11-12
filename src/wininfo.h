@@ -22,6 +22,10 @@ public:
     static void removeFileAssociationFromRegistry();
     static bool IsRunningAsAdmin();
     static bool elevateAntiMicro();
+    static void disablePointerPrecision();
+    static void enablePointerPrecision();
+    static bool isUsingEnhancedPointerPrecision();
+    static void grabCurrentPointerPrecision();
 
 protected:
     explicit WinInfo(QObject *parent = 0);
@@ -30,6 +34,7 @@ protected:
     static WinInfo _instance;
     QHash<QString, unsigned int> knownAliasesX11SymVK;
     QHash<unsigned int, QString> knownAliasesVKStrings;
+    static int originalMouseAccel;
 
 signals:
 

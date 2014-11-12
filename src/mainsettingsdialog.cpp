@@ -198,6 +198,16 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     ui->associateProfilesCheckBox->setVisible(false);
 #endif
 
+#ifdef Q_OS_WIN
+    bool disableEnhancedMouse = settings->value("DisableWinEnhancedPointer", false).toBool();
+    if (disableEnhancedMouse)
+    {
+        ui->disableWindowsEnhancedPointCheckBox->setChecked(true);
+    }
+#else
+    ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
+#endif
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -507,6 +517,24 @@ void MainSettingsDialog::saveNewSettings()
     {
         WinInfo::removeFileAssociationFromRegistry();
     }
+
+    bool disableEnhancePoint = ui->disableWindowsEnhancedPointCheckBox->isChecked();
+    bool oldEnhancedValue = settings->value("DisableWinEnhancedPointer", false).toBool();
+    bool usingEnhancedPointer = WinInfo::isUsingEnhancedPointerPrecision();
+    settings->setValue("DisableWinEnhancedPointer", disableEnhancePoint ? "1" : "0");
+
+    if (disableEnhancePoint != oldEnhancedValue)
+    {
+        if (usingEnhancedPointer && disableEnhancePoint)
+        {
+            WinInfo::disablePointerPrecision();
+        }
+        else if (!usingEnhancedPointer && !disableEnhancePoint)
+        {
+            WinInfo::enablePointerPrecision();
+        }
+    }
+
 #endif
 
     settings->sync();

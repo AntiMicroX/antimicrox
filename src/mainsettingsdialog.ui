@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>706</width>
-    <height>497</height>
+    <height>578</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -255,6 +255,19 @@ first launches.</string>
            </property>
            <property name="checked">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="disableWindowsEnhancedPointCheckBox">
+           <property name="toolTip">
+            <string>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
+while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
+will allow mouse movement within antimicro to be more
+precise.</string>
+           </property>
+           <property name="text">
+            <string>Disable Enhanced Precision Mode</string>
            </property>
           </widget>
          </item>

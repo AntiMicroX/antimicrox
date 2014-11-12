@@ -288,6 +288,14 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     {
         ui->uacPushButton->setVisible(false);
     }
+
+    WinInfo::grabCurrentPointerPrecision();
+    bool disableEnhandedPoint = settings->value("DisableWinEnhancedPointer", false).toBool();
+    if (disableEnhandedPoint)
+    {
+        WinInfo::disablePointerPrecision();
+    }
+
 #else
     ui->uacPushButton->setVisible(false);
 #endif
@@ -518,6 +526,13 @@ void MainWindow::quitProgram()
     if (discard)
     {
         qApp->quit();
+#ifdef Q_OS_WIN
+        bool disableEnhancedPoint = settings->value("DisableWinEnhancedPointer", false).toBool();
+        if (disableEnhancedPoint && !WinInfo::isUsingEnhancedPointerPrecision())
+        {
+            WinInfo::enablePointerPrecision();
+        }
+#endif
     }
 }
 

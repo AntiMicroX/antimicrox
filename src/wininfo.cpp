@@ -27,9 +27,12 @@ static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
 */
 
 const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
+int WinInfo::originalMouseAccel = 0;
+
 static const QString ROOTASSOCIATIONKEY("HKEY_CURRENT_USER\\Software\\Classes");
 static const QString FILEASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg(".amgp"));
 static const QString PROGRAMASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg("AntiMicro.amgp"));
+
 WinInfo WinInfo::_instance;
 
 WinInfo::WinInfo(QObject *parent) :
@@ -374,4 +377,66 @@ bool WinInfo::IsRunningAsAdmin()
     }
 
     return isAdmin;
+}
+
+/**
+ * @brief Temporarily disable "Enhanced Pointer Precision".
+ */
+void WinInfo::disablePointerPrecision()
+{
+    int mouseInfo[3];
+    SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
+    if (mouseInfo[2] == 1 && mouseInfo[2] == originalMouseAccel)
+    {
+        mouseInfo[2] = 0;
+        SystemParametersInfo(SPI_SETMOUSE, 0, &mouseInfo, 0);
+    }
+}
+
+/**
+ * @brief If "Enhanced Pointer Precision" is currently disabled and
+ *     the setting has not been changed explicitly by the user while
+ *     the program has been running, re-enable "Enhanced Pointer Precision".
+ *     Return the mouse behavior to normal.
+ */
+void WinInfo::enablePointerPrecision()
+{
+    int mouseInfo[3];
+    SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
+    if (mouseInfo[2] == 0 && mouseInfo[2] != originalMouseAccel)
+    {
+        mouseInfo[2] = originalMouseAccel;
+        SystemParametersInfo(SPI_SETMOUSE, 0, &mouseInfo, 0);
+    }
+}
+
+/**
+ * @brief Used to check if the "Enhance Pointer Precision" Windows
+ *     option is currently enabled.
+ */
+bool WinInfo::isUsingEnhancedPointerPrecision()
+{
+    bool result = false;
+
+    int mouseInfo[3];
+    SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
+
+    if (mouseInfo[2] > 0)
+    {
+        result = true;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Get the value of "Enhanced Pointer Precision" when the program
+ *     first starts. Needed to not override setting if the option has
+ *     been disabled in Windows by the user.
+ */
+void WinInfo::grabCurrentPointerPrecision()
+{
+    int mouseInfo[3];
+    SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
+    originalMouseAccel = mouseInfo[2];
 }
