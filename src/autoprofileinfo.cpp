@@ -72,6 +72,12 @@ void AutoProfileInfo::setExe(QString exe)
         {
             this->exe = exe;
         }
+#ifdef Q_OS_WIN
+        else if (exe != this->exe && info.suffix() == "exe")
+        {
+            this->exe = exe;
+        }
+#endif
     }
     else
     {

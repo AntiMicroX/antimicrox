@@ -44,6 +44,7 @@ void AutoProfileWatcher::runAppCheck()
 {
     //qDebug() << qApp->applicationFilePath();
     QString appLocation;
+    QString baseAppFileName;
     // Check whether program path needs to be parsed. Removes processing time
     // and need to run Linux specific code searching /proc.
 #ifdef Q_OS_UNIX
@@ -54,6 +55,10 @@ void AutoProfileWatcher::runAppCheck()
 #else
     // In Windows, get program location no matter what.
     appLocation = findAppLocation();
+    if (!appLocation.isEmpty())
+    {
+        baseAppFileName = QFileInfo(appLocation).fileName();
+    }
 #endif
 
     // QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
@@ -88,9 +93,10 @@ void AutoProfileWatcher::runAppCheck()
     if (!focusedWidget && ((!nowWindow.isEmpty() && nowWindow != currentApplication) ||
         (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
 #else
-    if (!focusedWidget && ((!nowWindow.isEmpty() && appLocation != currentApplication)))
+    if (!focusedWidget && ((!appLocation.isEmpty() && appLocation != currentApplication)))
 #endif
     {
+
 #ifdef Q_OS_UNIX
         currentApplication = nowWindow;
 #else
@@ -106,6 +112,12 @@ void AutoProfileWatcher::runAppCheck()
         {
             QSet<AutoProfileInfo*> tempSet;
             tempSet = appProfileAssignments.value(appLocation).toSet();
+            fullSet.unite(tempSet);
+        }
+        else if (!baseAppFileName.isEmpty() && appProfileAssignments.contains(baseAppFileName))
+        {
+            QSet<AutoProfileInfo*> tempSet;
+            tempSet = appProfileAssignments.value(baseAppFileName).toSet();
             fullSet.unite(tempSet);
         }
 
@@ -321,6 +333,18 @@ void AutoProfileWatcher::syncProfileAssignment()
                     }
                     templist.append(info);
                     appProfileAssignments.insert(exe, templist);
+
+                    QString baseExe = QFileInfo(exe).fileName();
+                    if (!baseExe.isEmpty() && baseExe != exe)
+                    {
+                        QList<AutoProfileInfo*> templist;
+                        if (appProfileAssignments.contains(baseExe))
+                        {
+                            templist = appProfileAssignments.value(baseExe);
+                        }
+                        templist.append(info);
+                        appProfileAssignments.insert(baseExe, templist);
+                    }
                 }
                 /*QList<AutoProfileInfo*> templist;
                 if (appProfileAssignments.contains(exe))

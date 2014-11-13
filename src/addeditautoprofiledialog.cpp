@@ -473,11 +473,20 @@ void AddEditAutoProfileDialog::accept()
     {
         QString exeFileName = ui->applicationLineEdit->text();
         QFileInfo info(exeFileName);
-        if (!info.exists() || !info.isExecutable())
+        if (info.isAbsolute() && (!info.exists() || !info.isExecutable()))
         {
             validForm = false;
             errorString = tr("Program path is invalid or not executable.");
         }
+#ifdef Q_OS_WIN
+        else if (!info.isAbsolute() &&
+                 (info.fileName() != exeFileName ||
+                  info.suffix() != "exe"))
+        {
+            validForm = false;
+            errorString = tr("File is not an .exe file.");
+        }
+#endif
     }
 
     if (validForm && !propertyFound && !ui->asDefaultCheckBox->isChecked())

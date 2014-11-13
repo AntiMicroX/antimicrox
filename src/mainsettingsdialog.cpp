@@ -70,8 +70,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     ui->stackedWidget->removeWidget(ui->page);
 
 #ifdef Q_OS_WIN
+    ui->autoProfileTableWidget->hideColumn(3);
     ui->autoProfileTableWidget->hideColumn(4);
-    ui->autoProfileTableWidget->hideColumn(5);
 #endif
 
     ui->autoProfileTableWidget->hideColumn(7);
