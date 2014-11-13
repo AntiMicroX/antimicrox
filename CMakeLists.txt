@@ -171,7 +171,7 @@ if(UNIX)
              src/qtx11keymapper.cpp
              src/unixcapturewindowutility.cpp
              src/autoprofilewatcher.cpp
-             src/unixwindowinfodialog.cpp
+             src/capturedwindowinfodialog.cpp
         )
 
         if(WITH_XTEST)
@@ -191,6 +191,7 @@ elseif(WIN32)
          src/qtwinkeymapper.cpp
          src/winappprofiletimerdialog.cpp
          src/autoprofilewatcher.cpp
+         src/capturedwindowinfodialog.cpp
     )
 endif(UNIX)
 
@@ -291,7 +292,7 @@ if(UNIX)
              src/qtx11keymapper.h
              src/unixcapturewindowutility.h
              src/autoprofilewatcher.h
-             src/unixwindowinfodialog.h
+             src/capturedwindowinfodialog.h
         )
 
         if(WITH_XTEST)
@@ -311,6 +312,7 @@ elseif(WIN32)
         src/qtwinkeymapper.h
         src/winappprofiletimerdialog.h
         src/autoprofilewatcher.h
+        src/capturedwindowinfodialog.h
     )
 endif(UNIX)
 
@@ -344,10 +346,13 @@ set(antimicro_FORMS src/mainwindow.ui
     src/setnamesdialog.ui
     src/addeditautoprofiledialog.ui
     src/editalldefaultautoprofiledialog.ui
-    src/winappprofiletimerdialog.ui
     src/extraprofilesettingsdialog.ui
-    src/unixwindowinfodialog.ui
+    src/capturedwindowinfodialog.ui
 )
+
+if(WIN32)
+    LIST(APPEND antimicro_FORMS src/winappprofiletimerdialog.ui)
+endif(WIN32)
 
 set(antimicro_RESOURCES src/resources.qrc)
 if(WIN32)

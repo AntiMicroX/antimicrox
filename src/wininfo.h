@@ -26,6 +26,7 @@ public:
     static void enablePointerPrecision();
     static bool isUsingEnhancedPointerPrecision();
     static void grabCurrentPointerPrecision();
+    static QString getCurrentWindowText();
 
 protected:
     explicit WinInfo(QObject *parent = 0);

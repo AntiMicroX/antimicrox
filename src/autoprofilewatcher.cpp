@@ -75,7 +75,9 @@ void AutoProfileWatcher::runAppCheck()
     QString nowWindowClass;
     QString nowWindowName;
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_WIN
+    nowWindowName = WinInfo::getCurrentWindowText();
+#else
     unsigned long currentWindow = X11Info::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
     {
@@ -89,19 +91,23 @@ void AutoProfileWatcher::runAppCheck()
 
     bool checkForTitleChange = windowNameProfileAssignments.size() > 0;
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_WIN
+    if (!focusedWidget && ((!appLocation.isEmpty() && appLocation != currentApplication) ||
+        (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
+
+#else
     if (!focusedWidget && ((!nowWindow.isEmpty() && nowWindow != currentApplication) ||
         (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
-#else
-    if (!focusedWidget && ((!appLocation.isEmpty() && appLocation != currentApplication)))
+
 #endif
     {
 
-#ifdef Q_OS_UNIX
-        currentApplication = nowWindow;
-#else
+#ifdef Q_OS_WIN
         currentApplication = appLocation;
+#else
+        currentApplication = nowWindow;
 #endif
+
         currentAppWindowTitle = nowWindowName;
         //currentApplication = appLocation;
 
@@ -121,7 +127,6 @@ void AutoProfileWatcher::runAppCheck()
             fullSet.unite(tempSet);
         }
 
-#ifdef Q_OS_UNIX
         if (!nowWindowClass.isEmpty() && windowClassProfileAssignments.contains(nowWindowClass))
         {
             QSet<AutoProfileInfo*> tempSet;
@@ -135,8 +140,6 @@ void AutoProfileWatcher::runAppCheck()
             tempSet = windowNameProfileAssignments.value(nowWindowName).toSet();
             fullSet = fullSet.unite(tempSet);
         }
-
-#endif
 
         QSetIterator<AutoProfileInfo*> fullSetIter(fullSet);
         while (fullSetIter.hasNext())
@@ -278,12 +281,11 @@ void AutoProfileWatcher::syncProfileAssignment()
         guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
         profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
+        windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
 #ifdef Q_OS_UNIX
         windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
-        windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
 #else
         windowClass.clear();
-        windowName.clear();
 #endif
 
         // Check if all required elements exist. If not, assume that the end of the
@@ -319,7 +321,7 @@ void AutoProfileWatcher::syncProfileAssignment()
                         templist = windowNameProfileAssignments.value(windowName);
                     }
                     templist.append(info);
-                    windowNameProfileAssignments.insert(windowClass, templist);
+                    windowNameProfileAssignments.insert(windowName, templist);
                 }
 
                 if (!exe.isEmpty())

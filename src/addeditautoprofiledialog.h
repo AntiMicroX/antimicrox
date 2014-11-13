@@ -53,6 +53,7 @@ private slots:
     void saveAutoProfileInformation();
     void checkForReservedGUIDs(int index);
     void checkForDefaultStatus();
+    void windowPropAssignment();
 
 #ifdef Q_OS_WIN
     void openWinAppProfileDialog();
@@ -60,7 +61,6 @@ private slots:
 #else
     void showCaptureHelpWindow();
     void checkForGrabbedWindow();
-    void windowPropAssignment();
 #endif
 };
 

@@ -13,7 +13,7 @@
 
     #ifdef WITH_X11
 #include "unixcapturewindowutility.h"
-#include "unixwindowinfodialog.h"
+#include "capturedwindowinfodialog.h"
 #include "x11info.h"
 
     #endif
@@ -24,6 +24,7 @@
 
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
+#include "capturedwindowinfodialog.h"
 #include "wininfo.h"
 
 #endif
@@ -125,8 +126,8 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     ui->winClassLineEdit->setVisible(false);
     ui->winClassLabel->setVisible(false);
 
-    ui->winNameLineEdit->setVisible(false);
-    ui->winNameLabel->setVisible(false);
+    //ui->winNameLineEdit->setVisible(false);
+    //ui->winNameLabel->setVisible(false);
 #endif
 
     connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));
@@ -324,7 +325,7 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
 
     if (targetWindow != None)
     {
-        UnixWindowInfoDialog *dialog = new UnixWindowInfoDialog(targetWindow, this);
+        CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(targetWindow, this);
         connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
         dialog->show();
 
@@ -376,23 +377,34 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
     #endif
 }
 
+#endif
+
 void AddEditAutoProfileDialog::windowPropAssignment()
 {
     disconnect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
     disconnect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
     disconnect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
 
-    UnixWindowInfoDialog *dialog = static_cast<UnixWindowInfoDialog*>(sender());
-    if (dialog->getSelectedOptions() & UnixWindowInfoDialog::WindowPath)
+    CapturedWindowInfoDialog *dialog = static_cast<CapturedWindowInfoDialog*>(sender());
+    if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowPath)
     {
-        ui->applicationLineEdit->setText(dialog->getWindowPath());
+        if (dialog->useFullWindowPath())
+        {
+            ui->applicationLineEdit->setText(dialog->getWindowPath());
+        }
+        else
+        {
+            QString temp;
+            temp = QFileInfo(dialog->getWindowPath()).fileName();
+            ui->applicationLineEdit->setText(temp);
+        }
     }
     else
     {
         ui->applicationLineEdit->clear();
     }
 
-    if (dialog->getSelectedOptions() & UnixWindowInfoDialog::WindowClass)
+    if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowClass)
     {
         ui->winClassLineEdit->setText(dialog->getWindowClass());
     }
@@ -401,7 +413,7 @@ void AddEditAutoProfileDialog::windowPropAssignment()
         ui->winClassLineEdit->clear();
     }
 
-    if (dialog->getSelectedOptions() & UnixWindowInfoDialog::WindowName)
+    if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowName)
     {
         ui->winNameLineEdit->setText(dialog->getWindowName());
     }
@@ -417,7 +429,6 @@ void AddEditAutoProfileDialog::windowPropAssignment()
     connect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
 }
 
-#endif
 
 void AddEditAutoProfileDialog::checkForDefaultStatus()
 {
@@ -518,11 +529,16 @@ void AddEditAutoProfileDialog::openWinAppProfileDialog()
 
 void AddEditAutoProfileDialog::captureWindowsApplicationPath()
 {
-    QString temp = WinInfo::getForegroundWindowExePath();
+    CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(this);
+    connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
+    dialog->show();
+
+    /*QString temp = WinInfo::getForegroundWindowExePath();
     if (!temp.isEmpty())
     {
         ui->applicationLineEdit->setText(temp);
     }
+    */
 }
 
 #endif

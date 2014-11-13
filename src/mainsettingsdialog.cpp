@@ -71,7 +71,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 
 #ifdef Q_OS_WIN
     ui->autoProfileTableWidget->hideColumn(3);
-    ui->autoProfileTableWidget->hideColumn(4);
 #endif
 
     ui->autoProfileTableWidget->hideColumn(7);
@@ -663,13 +662,13 @@ void MainSettingsDialog::populateAutoProfiles()
     for (int i = 1; !quitSearch; i++)
     {
         QString exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
+        QString windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
 #ifdef Q_OS_UNIX
         QString windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
-        QString windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
 #else
         QString windowClass;
-        QString windowName;
 #endif
+
         QString guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
         QString profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         QString active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
@@ -687,9 +686,10 @@ void MainSettingsDialog::populateAutoProfiles()
                 info->setDeviceName(deviceName);
             }
 
+            info->setWindowName(windowName);
+
 #ifdef Q_OS_UNIX
             info->setWindowClass(windowClass);
-            info->setWindowName(windowName);
 #endif
 
             profileList.append(info);

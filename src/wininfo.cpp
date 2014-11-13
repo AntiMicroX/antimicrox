@@ -2,6 +2,7 @@
 
 #include <qt_windows.h>
 #include <psapi.h>
+//#include <QDebug>
 #include <QHashIterator>
 #include <QSettings>
 #include <QCoreApplication>
@@ -413,6 +414,7 @@ void WinInfo::enablePointerPrecision()
 /**
  * @brief Used to check if the "Enhance Pointer Precision" Windows
  *     option is currently enabled.
+ * @return Status of "Enhanced Pointer Precision"
  */
 bool WinInfo::isUsingEnhancedPointerPrecision()
 {
@@ -439,4 +441,36 @@ void WinInfo::grabCurrentPointerPrecision()
     int mouseInfo[3];
     SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
     originalMouseAccel = mouseInfo[2];
+}
+
+/**
+ * @brief Get the window text of the window currently in focus.
+ * @return Window title of application in focus.
+ */
+QString WinInfo::getCurrentWindowText()
+{
+    QString windowText;
+
+    HWND foreground = GetForegroundWindow();
+
+    if (foreground != NULL)
+    {
+        TCHAR foundWindowTitle[256];
+        memset(filename, 0, sizeof(filename));
+        GetWindowTextW(foreground, foundWindowTitle, 255);
+        QString temp = QString::fromWCharArray(foundWindowTitle);
+        if (temp.isEmpty())
+        {
+            memset(filename, 0, sizeof(filename));
+            SendMessageA(foreground, WM_GETTEXT, 255, (LPARAM)foundWindowTitle);
+            temp = QString::fromWCharArray(foundWindowTitle);
+        }
+
+        if (!temp.isEmpty())
+        {
+            windowText = temp;
+        }
+    }
+
+    return windowText;
 }
