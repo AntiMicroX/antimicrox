@@ -3112,30 +3112,48 @@ void JoyButton::releaseActiveSlots()
                 if (mousemode == MouseCursor)
                 {
                     QListIterator<mouseCursorInfo> iterX(cursorXSpeeds);
-                    unsigned int i = 0;
-                    iter.toBack();
-                    while (iterX.hasPrevious())
+                    unsigned int i = cursorXSpeeds.length();
+
+                    QList<int> indexesToRemove;
+                    while (iterX.hasNext())
                     {
-                        mouseCursorInfo info = iterX.previous();
+                        mouseCursorInfo info = iterX.next();
                         if (info.slot == slot)
                         {
-                            cursorXSpeeds.removeAt(i);
-                            //iterX.toBack();
+                            indexesToRemove.append(i);
                         }
+
+                        i++;
                     }
 
-                    i = 0;
-                    QListIterator<mouseCursorInfo> iterY(cursorYSpeeds);
-                    iterY.toBack();
-                    while (iterY.hasPrevious())
+                    QListIterator<int> removeXIter(indexesToRemove);
+                    while (removeXIter.hasPrevious())
                     {
-                        mouseCursorInfo info = iterY.previous();
+                        int index = removeXIter.previous();
+                        cursorXSpeeds.removeAt(index);
+                    }
+                    indexesToRemove.clear();
+
+                    i = cursorYSpeeds.length();
+
+                    QListIterator<mouseCursorInfo> iterY(cursorYSpeeds);
+                    while (iterY.hasNext())
+                    {
+                        mouseCursorInfo info = iterY.next();
                         if (info.slot == slot)
                         {
-                            cursorYSpeeds.removeAt(i);
-                            //iterY.toBack();
+                            indexesToRemove.append(i);
                         }
+                        i++;
                     }
+
+                    QListIterator<int> removeYIter(indexesToRemove);
+                    while (removeYIter.hasPrevious())
+                    {
+                        int index = removeYIter.previous();
+                        cursorYSpeeds.removeAt(index);
+                    }
+                    indexesToRemove.clear();
 
                     slot->getEasingTime()->restart();
                     slot->setEasingStatus(false);
@@ -3951,7 +3969,7 @@ void JoyButton::disconnectPropertyUpdatedConnections()
 void JoyButton::establishMouseTimerConnections()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    if (staticMouseEventTimer.timerType() == Qt::CoarseTimer)
+    if (staticMouseEventTimer.timerType() != Qt::PreciseTimer)
     {
         staticMouseEventTimer.setTimerType(Qt::PreciseTimer);
     }
