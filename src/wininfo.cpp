@@ -456,12 +456,12 @@ QString WinInfo::getCurrentWindowText()
     if (foreground != NULL)
     {
         TCHAR foundWindowTitle[256];
-        memset(filename, 0, sizeof(filename));
+        memset(foundWindowTitle, 0, sizeof(foundWindowTitle));
         GetWindowTextW(foreground, foundWindowTitle, 255);
         QString temp = QString::fromWCharArray(foundWindowTitle);
         if (temp.isEmpty())
         {
-            memset(filename, 0, sizeof(filename));
+            memset(foundWindowTitle, 0, sizeof(foundWindowTitle));
             SendMessageA(foreground, WM_GETTEXT, 255, (LPARAM)foundWindowTitle);
             temp = QString::fromWCharArray(foundWindowTitle);
         }
