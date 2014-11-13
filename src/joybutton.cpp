@@ -3620,8 +3620,12 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     }
     else
     {
-        // Restart QTimer to improve timer accuracy.
-        staticMouseEventTimer.start(5);
+        if (staticMouseEventTimer.interval() == 0)
+        {
+            // Restore intended QTimer interval.
+            staticMouseEventTimer.start(5);
+        }
+
     }
 
     cursorXSpeeds.clear();
@@ -3739,8 +3743,11 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
     }
     else
     {
-        // Restart QTimer to improve timer accuracy.
-        staticMouseEventTimer.start(5);
+        if (staticMouseEventTimer.interval() == 0)
+        {
+            // Restore intended QTimer interval.
+            staticMouseEventTimer.start(5);
+        }
     }
 
     springXSpeeds.clear();
@@ -3943,6 +3950,13 @@ void JoyButton::disconnectPropertyUpdatedConnections()
 
 void JoyButton::establishMouseTimerConnections()
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (staticMouseEventTimer.timerType() == Qt::CoarseTimer)
+    {
+        staticMouseEventTimer.setTimerType(Qt::PreciseTimer);
+    }
+#endif
+
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
 }
