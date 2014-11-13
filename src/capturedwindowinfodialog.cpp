@@ -24,6 +24,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
 
 #ifdef Q_OS_UNIX
     X11Info *info = X11Info::getInstance();
+    ui->winPathChoiceComboBox->setVisible(false);
 #endif
 
     bool setRadioDefault = false;

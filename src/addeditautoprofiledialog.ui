@@ -80,7 +80,7 @@ in the form.</string>
         <item>
          <widget class="QLabel" name="winClassLabel">
           <property name="text">
-           <string>Window Class:</string>
+           <string>Class:</string>
           </property>
           <property name="buddy">
            <cstring>applicationLineEdit</cstring>
@@ -97,7 +97,7 @@ in the form.</string>
         <item>
          <widget class="QLabel" name="winNameLabel">
           <property name="text">
-           <string>Window Title:  </string>
+           <string>Title:  </string>
           </property>
           <property name="buddy">
            <cstring>applicationLineEdit</cstring>

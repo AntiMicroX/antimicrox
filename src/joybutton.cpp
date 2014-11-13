@@ -1008,7 +1008,8 @@ void JoyButton::mouseEvent()
                     int distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    distance = (int)floor(sumDist + 0.5);
+                    //distance = (int)floor(sumDist + 0.5);
+                    distance = (int)floor(sumDist);
                     //distance = sumDist;
                     //qDebug() << "DISTANCE: " << distance;
 
@@ -1051,12 +1052,14 @@ void JoyButton::mouseEvent()
 
                         //sendevent(mouse1, mouse2);
                         sumDist -= distance;
+                        //sumDist = 0;
                         //buttonslot->setPreviousDistance(distance);
 
                         if (smoothing)
                         {
                             sumDist *= SMOOTHINGFACTOR;
                         }
+
 
                     }
                     /*else
@@ -3110,25 +3113,27 @@ void JoyButton::releaseActiveSlots()
                 {
                     QListIterator<mouseCursorInfo> iterX(cursorXSpeeds);
                     unsigned int i = 0;
-                    while (iterX.hasNext())
+                    iter.toBack();
+                    while (iterX.hasPrevious())
                     {
-                        mouseCursorInfo info = iterX.next();
+                        mouseCursorInfo info = iterX.previous();
                         if (info.slot == slot)
                         {
                             cursorXSpeeds.removeAt(i);
-                            iterX.toBack();
+                            //iterX.toBack();
                         }
                     }
 
                     i = 0;
                     QListIterator<mouseCursorInfo> iterY(cursorYSpeeds);
-                    while (iterY.hasNext())
+                    iterY.toBack();
+                    while (iterY.hasPrevious())
                     {
-                        mouseCursorInfo info = iterY.next();
+                        mouseCursorInfo info = iterY.previous();
                         if (info.slot == slot)
                         {
                             cursorYSpeeds.removeAt(i);
-                            iterY.toBack();
+                            //iterY.toBack();
                         }
                     }
 
