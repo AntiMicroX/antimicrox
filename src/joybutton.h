@@ -149,6 +149,12 @@ public:
     static bool hasCursorEvents();
     static bool hasSpringEvents();
 
+    static double getWeightModifier();
+    static void setWeightModifier(double modifier);
+
+    static int getMouseHistorySize();
+    static void setMouseHistorySize(int size);
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -178,6 +184,12 @@ public:
     static const TurboMode DEFAULTTURBOMODE;
     static const double DEFAULTEASINGDURATION;
     static const double MINIMUMEASINGDURATION;
+
+    static const int DEFAULTMOUSEHISTORYSIZE;
+    static const double DEFAULTWEIGHTMODIFIER;
+
+    static const int MAXIMUMMOUSEHISTORYSIZE;
+    static const double MAXIMUMWEIGHTMODIFIER;
 
     static QList<double> mouseHistoryX;
     static QList<double> mouseHistoryY;
@@ -319,6 +331,8 @@ protected:
     static QHash<unsigned int, int> activeMouseButtons;
     static JoyButtonSlot *lastActiveKey;
     static JoyButtonMouseHelper mouseHelper;
+    static double weightModifier;
+    static int mouseHistorySize;
 
 signals:
     void clicked (int index);

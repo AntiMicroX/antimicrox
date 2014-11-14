@@ -42,6 +42,7 @@ protected:
     void unloadCurrentConfig(QString controllerID);
     void changeStartSetNumber(unsigned int startSetNumber, QString controllerID);
     void changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex=0);
+    void enablePossibleMouseSmoothing();
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
 

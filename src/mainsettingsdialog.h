@@ -78,6 +78,7 @@ protected slots:
     void addNewAutoProfile();
     void autoProfileButtonsActiveState(bool enabled);
     void changeKeyRepeatWidgetsStatus(bool enabled);
+    void checkSmoothingWidgetStatus(bool enabled);
 };
 
 #endif // MAINSETTINGSDIALOG_H

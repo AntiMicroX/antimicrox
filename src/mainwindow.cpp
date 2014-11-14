@@ -300,6 +300,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     ui->uacPushButton->setVisible(false);
 #endif
 
+    enablePossibleMouseSmoothing();
 }
 
 MainWindow::~MainWindow()
@@ -1619,3 +1620,22 @@ void MainWindow::selectControllerJoyTab(QString GUID)
 }
 
 #endif
+
+void MainWindow::enablePossibleMouseSmoothing()
+{
+    bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
+    if (smoothingEnabled)
+    {
+        int historySize = settings->value("Mouse/HistorySize", 0).toInt();
+        if (historySize > 0)
+        {
+            JoyButton::setMouseHistorySize(historySize);
+        }
+
+        double weightModifier = settings->value("Mouse/WeightModifier", 0.0).toDouble();
+        if (weightModifier > 0.0)
+        {
+            JoyButton::setWeightModifier(weightModifier);
+        }
+    }
+}

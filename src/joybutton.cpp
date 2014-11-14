@@ -37,8 +37,12 @@ const int JoyButton::DEFAULTCYCLERESET = 0;
 const bool JoyButton::DEFAULTRELATIVESPRING = false;
 const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 const double JoyButton::DEFAULTEASINGDURATION = 0.5;
-
 const double JoyButton::MINIMUMEASINGDURATION = 0.2;
+
+const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
+const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.1;
+const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
+const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -71,6 +75,10 @@ QList<double> JoyButton::mouseHistoryY;
 
 double JoyButton::cursorRemainderX = 0.0;
 double JoyButton::cursorRemainderY = 0.0;
+
+double JoyButton::weightModifier = 0;
+int JoyButton::mouseHistorySize = 1;
+
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -3632,16 +3640,22 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     int elapsedTime = lastMouseTime.elapsed();
     movedElapsed = lastMouseTime.elapsed();
 
-    if (mouseHistoryX.size() > 10)
+    if (mouseHistoryX.size() > mouseHistorySize)
     {
         mouseHistoryX.removeLast();
     }
 
-    if (mouseHistoryY.size() > 10)
+    if (mouseHistoryY.size() > mouseHistorySize)
     {
         mouseHistoryY.removeLast();
     }
 
+    /*
+     * Combine all mouse events to find the distance to move the mouse
+     * along the X and Y axis. If necessary, perform mouse smoothing.
+     * The mouse smoothing technique used is an interpretation of the method
+     * outlined at http://flipcode.net/archives/Smooth_Mouse_Filtering.shtml.
+     */
     if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
         cursorXSpeeds.length() > 0)
     {
@@ -3670,7 +3684,7 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         QListIterator<double> iterX(mouseHistoryX);
         double currentWeight = 1.0;
-        double weightModifier = 0.0;
+        double weightModifier = JoyButton::weightModifier;
         double finalWeight = 0.0;
 
         //qDebug() << "OG: " << finalx;
@@ -4243,4 +4257,30 @@ bool JoyButton::hasCursorEvents()
 bool JoyButton::hasSpringEvents()
 {
     return (springXSpeeds.length() != 0) || (springYSpeeds.length() != 0);
+}
+
+double JoyButton::getWeightModifier()
+{
+    return weightModifier;
+}
+
+void JoyButton::setWeightModifier(double modifier)
+{
+    if (modifier >= 0.0 && modifier <= MAXIMUMWEIGHTMODIFIER)
+    {
+        weightModifier = modifier;
+    }
+}
+
+int JoyButton::getMouseHistorySize()
+{
+    return mouseHistorySize;
+}
+
+void JoyButton::setMouseHistorySize(int size)
+{
+    if (size >= 1 && size <= MAXIMUMMOUSEHISTORYSIZE)
+    {
+        mouseHistorySize = size;
+    }
 }

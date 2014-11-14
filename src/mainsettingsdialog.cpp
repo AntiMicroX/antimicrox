@@ -207,6 +207,26 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
 #endif
 
+    bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
+    if (smoothingEnabled)
+    {
+        ui->smoothingEnableCheckBox->setChecked(true);
+        ui->historySizeSpinBox->setEnabled(true);
+        ui->weightModifierDoubleSpinBox->setEnabled(true);
+    }
+
+    int historySize = settings->value("Mouse/HistorySize", 0).toInt();
+    if (historySize > 0 && historySize <= JoyButton::MAXIMUMMOUSEHISTORYSIZE)
+    {
+        ui->historySizeSpinBox->setValue(historySize);
+    }
+
+    double weightModifier = settings->value("Mouse/WeightModifier", 0).toDouble();
+    if (weightModifier > 0.0 && weightModifier <= JoyButton::MAXIMUMWEIGHTMODIFIER)
+    {
+        ui->weightModifierDoubleSpinBox->setValue(weightModifier);
+    }
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -229,6 +249,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     connect(ui->keyDelaySpinBox, SIGNAL(valueChanged(int)), ui->keyDelayHorizontalSlider, SLOT(setValue(int)));
     connect(ui->keyRateHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyRateSpinBox, SLOT(setValue(int)));
     connect(ui->keyRateSpinBox, SIGNAL(valueChanged(int)), ui->keyRateHorizontalSlider, SLOT(setValue(int)));
+
+    connect(ui->smoothingEnableCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkSmoothingWidgetStatus(bool)));
 }
 
 MainSettingsDialog::~MainSettingsDialog()
@@ -535,6 +557,39 @@ void MainSettingsDialog::saveNewSettings()
     }
 
 #endif
+
+    bool smoothingEnabled = ui->smoothingEnableCheckBox->isChecked();
+    int historySize = ui->historySizeSpinBox->value();
+    double weightModifier = ui->weightModifierDoubleSpinBox->value();
+
+    settings->setValue("Mouse/Smoothing", smoothingEnabled ? "1" : "0");
+    if (smoothingEnabled)
+    {
+        if (historySize > 0)
+        {
+            JoyButton::setMouseHistorySize(historySize);
+        }
+
+        if (weightModifier)
+        {
+            JoyButton::setWeightModifier(weightModifier);
+        }
+    }
+    else
+    {
+        JoyButton::setMouseHistorySize(1);
+        JoyButton::setWeightModifier(0.0);
+    }
+
+    if (historySize > 0)
+    {
+        settings->setValue("Mouse/HistorySize", historySize);
+    }
+
+    if (weightModifier > 0.0)
+    {
+        settings->setValue("Mouse/WeightModifier", weightModifier);
+    }
 
     settings->sync();
 }
@@ -1614,4 +1669,18 @@ void MainSettingsDialog::changeKeyRepeatWidgetsStatus(bool enabled)
     ui->keyDelaySpinBox->setEnabled(enabled);
     ui->keyRateHorizontalSlider->setEnabled(enabled);
     ui->keyRateSpinBox->setEnabled(enabled);
+}
+
+void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
+{
+    if (enabled)
+    {
+        ui->historySizeSpinBox->setEnabled(true);
+        ui->weightModifierDoubleSpinBox->setEnabled(true);
+    }
+    else
+    {
+        ui->historySizeSpinBox->setEnabled(false);
+        ui->weightModifierDoubleSpinBox->setEnabled(false);
+    }
 }
