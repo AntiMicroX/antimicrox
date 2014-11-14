@@ -61,11 +61,11 @@ void JoyButtonMouseHelper::mouseEvent()
         }
     }
 
-    if (JoyButton::hasCursorEvents())
-    {
+    //if (JoyButton::hasCursorEvents())
+    //{
         //qDebug() << "CURSOR EVENT: ";
         moveMouseCursor();
-    }
+    //}
 
     if (JoyButton::hasSpringEvents())
     {

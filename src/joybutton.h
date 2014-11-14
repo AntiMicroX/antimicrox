@@ -179,6 +179,12 @@ public:
     static const double DEFAULTEASINGDURATION;
     static const double MINIMUMEASINGDURATION;
 
+    static QList<double> mouseHistoryX;
+    static QList<double> mouseHistoryY;
+
+    static double cursorRemainderX;
+    static double cursorRemainderY;
+
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
     bool distanceEvent();
@@ -196,7 +202,7 @@ protected:
     typedef struct mouseCursorInfo
     {
         JoyButtonSlot *slot;
-        int code;
+        double code;
     } mouseCursorInfo;
 
     // Used to denote whether the actual joypad button is pressed
