@@ -130,6 +130,9 @@ JoyAxis* JoyAxisButton::getAxis()
     return this->axis;
 }
 
+/**
+ * @brief Activate a turbo event on a JoyAxisButton.
+ */
 void JoyAxisButton::turboEvent()
 {
     if (currentTurboMode == NormalTurbo)
@@ -172,7 +175,6 @@ void JoyAxisButton::turboEvent()
 
             if (isKeyPressed)
             {
-                //tempInterval2 = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
                 if (currentTurboMode == GradientTurbo)
                 {
                     tempInterval2 = (int)floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
@@ -182,18 +184,13 @@ void JoyAxisButton::turboEvent()
                     tempInterval2 = (int)floor((turboInterval * 0.5) + 0.5);
                 }
             }
-            //else
-            //{
-            //    tempInterval2 = (int)floor((lastDistance * turboInterval) + 0.5);
-                //tempInterval2 = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
-            //}
 
             if (isKeyPressed && turboHold.elapsed() < tempInterval2)
             {
                 // Still some valid time left. Continue current action with
                 // remaining time left.
                 tempTurboInterval = tempInterval2 - turboHold.elapsed();
-                int timerInterval = qMin(tempTurboInterval, 5);
+                int timerInterval = qMax(qMin(tempTurboInterval, 5), 0);
                 turboTimer.start(timerInterval);
                 turboHold.start();
                 changeState = false;
@@ -201,23 +198,9 @@ void JoyAxisButton::turboEvent()
                 //qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
                 //qDebug() << "diff timer press: " << QString::number(timerInterval);
             }
-            //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
-            //{
-            //    checkmate = turboHold.elapsed();
-            //    changeState = true;
-            //}
-            //else if (!isKeyPressed && turboHold.elapsed() < tempInterval2)
-            //{
-            //    changeState = true;
-            //}
             else
             {
                 // Elapsed time is greater than new interval. Change state.
-                //if (isKeyPressed)
-                //{
-                //    isKeyPressed = !isKeyPressed;
-                //}
-                //qDebug() << "AND THAT'S THE BOTTOM LINE";
                 if (isKeyPressed)
                 {
                     checkmate = turboHold.elapsed();
@@ -253,10 +236,6 @@ void JoyAxisButton::turboEvent()
                         tempTurboInterval = (int)floor((turboInterval * 0.5) + 0.5);
                     }
 
-                    //if (checkmate > 0 && tempTurboInterval > checkmate)
-                    //{
-                    //    tempTurboInterval = tempTurboInterval - checkmate;
-                    //}
                     int timerInterval = qMin(tempTurboInterval, 5);
                     //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
                     //qDebug() << "timer press: " << QString::number(timerInterval);
