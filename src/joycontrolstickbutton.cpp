@@ -183,7 +183,11 @@ void JoyControlStickButton::turboEvent()
             if (isKeyPressed)
             {
                 changeState = false;
-                turboTimer.start(5);
+                if (!turboTimer.isActive() || turboTimer.interval() != 5)
+                {
+                    turboTimer.start(5);
+                }
+
                 turboHold.start();
                 lastDistance = 1.0;
             }
@@ -217,8 +221,12 @@ void JoyControlStickButton::turboEvent()
                 // Still some valid time left. Continue current action with
                 // remaining time left.
                 tempTurboInterval = tempInterval2 - turboHold.elapsed();
-                int timerInterval = qMax(qMin(tempTurboInterval, 5), 0);
-                turboTimer.start(timerInterval);
+                int timerInterval = qMin(tempTurboInterval, 5);
+                if (!turboTimer.isActive() || turboTimer.interval() != timerInterval)
+                {
+                    turboTimer.start(timerInterval);
+                }
+
                 turboHold.start();
                 changeState = false;
                 lastDistance = getMouseDistanceFromDeadZone();
@@ -266,7 +274,11 @@ void JoyControlStickButton::turboEvent()
                     int timerInterval = qMin(tempTurboInterval, 5);
                     //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
                     //qDebug() << "timer press: " << QString::number(timerInterval);
-                    turboTimer.start(timerInterval);
+                    if (turboTimer.interval() != timerInterval)
+                    {
+                        turboTimer.start(timerInterval);
+                    }
+
                     turboHold.start();
                 }
             }
@@ -289,13 +301,25 @@ void JoyControlStickButton::turboEvent()
                     }
                     else
                     {
-                        tempTurboInterval = (int)floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
+                        double distance = getMouseDistanceFromDeadZone();
+                        if (distance > 0.0)
+                        {
+                            tempTurboInterval = (int)floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
+                        }
+                        else
+                        {
+                            tempTurboInterval = 0;
+                        }
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
                     //qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
                     //qDebug() << "timer release: " << QString::number(timerInterval);
-                    turboTimer.start(timerInterval);
+                    if (turboTimer.interval() != timerInterval)
+                    {
+                        turboTimer.start(timerInterval);
+                    }
+
                     turboHold.start();
                 }
 
