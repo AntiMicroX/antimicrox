@@ -37,8 +37,12 @@ const int JoyButton::DEFAULTCYCLERESET = 0;
 const bool JoyButton::DEFAULTRELATIVESPRING = false;
 const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 const double JoyButton::DEFAULTEASINGDURATION = 0.5;
-
 const double JoyButton::MINIMUMEASINGDURATION = 0.2;
+
+const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
+const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.1;
+const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
+const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -65,6 +69,16 @@ JoyButtonMouseHelper JoyButton::mouseHelper;
 
 QTimer JoyButton::staticMouseEventTimer;
 QList<JoyButton*> JoyButton::pendingMouseButtons;
+
+QList<double> JoyButton::mouseHistoryX;
+QList<double> JoyButton::mouseHistoryY;
+
+double JoyButton::cursorRemainderX = 0.0;
+double JoyButton::cursorRemainderY = 0.0;
+
+double JoyButton::weightModifier = 0;
+int JoyButton::mouseHistorySize = 1;
+
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -867,8 +881,8 @@ void JoyButton::mouseEvent()
 
                     double difference = getMouseDistanceFromDeadZone();
                     //qDebug() << "RIGHT DIFF: " << difference;
-                    int mouse1 = 0;
-                    int mouse2 = 0;
+                    double mouse1 = 0;
+                    double mouse2 = 0;
                     double sumDist = buttonslot->getMouseDistance();
                     JoyMouseCurve currentCurve = getMouseCurve();
 
@@ -1005,12 +1019,12 @@ void JoyButton::mouseEvent()
                         }
                     }
 
-                    int distance = 0;
+                    double distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     //distance = (int)floor(sumDist + 0.5);
-                    distance = (int)floor(sumDist);
-                    //distance = sumDist;
+                    //distance = (int)floor(sumDist);
+                    distance = sumDist;
                     //qDebug() << "DISTANCE: " << distance;
 
                     //double prevDistance = buttonslot->getPreviousDistance();
@@ -1038,8 +1052,14 @@ void JoyButton::mouseEvent()
                         mouse2 = -distance;
                     }
 
-                    if (distance >= 1)
+                    /*if (timeElapsed > 5)
                     {
+                        //qDebug() << "ENCOUNTERED:" << timeElapsed;
+                    }
+                    */
+
+                    //if (distance >= 1)
+                    //{
                         mouseCursorInfo infoX;
                         infoX.code = mouse1;
                         infoX.slot = buttonslot;
@@ -1051,17 +1071,15 @@ void JoyButton::mouseEvent()
                         cursorYSpeeds.append(infoY);
 
                         //sendevent(mouse1, mouse2);
-                        sumDist -= distance;
-                        //sumDist = 0;
+                        //sumDist -= distance;
+                        sumDist = 0;
                         //buttonslot->setPreviousDistance(distance);
 
-                        if (smoothing)
-                        {
-                            sumDist *= SMOOTHINGFACTOR;
-                        }
-
-
-                    }
+                        //if (smoothing)
+                        //{
+                        //    sumDist *= 0.5;
+                        //}
+                    //}
                     /*else
                     {
                         buttonslot->setPreviousDistance(0.0);
@@ -3232,8 +3250,23 @@ void JoyButton::releaseActiveSlots()
         if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
             springXSpeeds.length() == 0)
         {
-            staticMouseEventTimer.stop();
+            /*staticMouseEventTimer.stop();
+            mouseshitX.clear();
+            mouseshitY.clear();
+            for (int i=0; i < 10; i++)
+            {
+                mouseshitX.append(0);
+            }
+            for (int i=0; i < 10; i++)
+            {
+                mouseshitY.append(0);
+            }
+            */
+            cursorRemainderX = 0;
+            cursorRemainderY = 0;
         }
+
+
     }
 }
 
@@ -3600,11 +3633,29 @@ QString JoyButton::getDefaultButtonName()
  */
 void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 {
-    int finalx = movedX = 0;
-    int finaly = movedY = 0;
+    movedX = 0;
+    movedY = 0;
+    double finalx = 0.0;
+    double finaly = 0.0;
     int elapsedTime = lastMouseTime.elapsed();
     movedElapsed = lastMouseTime.elapsed();
 
+    if (mouseHistoryX.size() > mouseHistorySize)
+    {
+        mouseHistoryX.removeLast();
+    }
+
+    if (mouseHistoryY.size() > mouseHistorySize)
+    {
+        mouseHistoryY.removeLast();
+    }
+
+    /*
+     * Combine all mouse events to find the distance to move the mouse
+     * along the X and Y axis. If necessary, perform mouse smoothing.
+     * The mouse smoothing technique used is an interpretation of the method
+     * outlined at http://flipcode.net/archives/Smooth_Mouse_Filtering.shtml.
+     */
     if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
         cursorXSpeeds.length() > 0)
     {
@@ -3620,21 +3671,110 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             infoY.slot->getMouseInterval()->restart();
         }
 
-        sendevent(finalx, finaly);
+        finalx += cursorRemainderX;
+        mouseHistoryX.prepend(finalx);
+        finaly += cursorRemainderY;
+        mouseHistoryY.prepend(finaly);
+
+        cursorRemainderX = 0;
+        cursorRemainderY = 0;
+
+        double adjustedX = 0;
+        double adjustedY = 0;
+
+        QListIterator<double> iterX(mouseHistoryX);
+        double currentWeight = 1.0;
+        double weightModifier = JoyButton::weightModifier;
+        double finalWeight = 0.0;
+
+        //qDebug() << "OG: " << finalx;
+        while (iterX.hasNext())
+        {
+            double temp = iterX.next();
+            //qDebug() << "SAMPLE: " << temp;
+            adjustedX += temp * currentWeight;
+            finalWeight += currentWeight;
+            currentWeight *= weightModifier;
+        }
+
+        //qDebug();
+        //qDebug() << "X TO THE Z: " << adjustedX;
+        if (fabs(adjustedX) > 0)
+        {
+            adjustedX = adjustedX / (double)finalWeight;
+
+            if (adjustedX > 0)
+            {
+                //adjustedX = adjustedX + remainderX;
+                double oldX = adjustedX;
+                adjustedX = (int)floor(adjustedX);
+                cursorRemainderX = oldX - adjustedX;
+            }
+            else
+            {
+                //adjustedX = adjustedX + remainderX;
+                double oldX = adjustedX;
+                adjustedX = (int)ceil(adjustedX);
+                //adjustedX = (int)(adjustedX - 0.5);
+                cursorRemainderX = oldX - adjustedX;
+            }
+
+        }
+        //qDebug() << "FINAL X TO THE Z: " << adjustedX;
+
+        QListIterator<double> iterY(mouseHistoryY);
+        currentWeight = 1.0;
+        finalWeight = 0.0;
+
+        while (iterY.hasNext())
+        {
+            double temp = iterY.next();
+            adjustedY += temp * currentWeight;
+            finalWeight += currentWeight;
+            currentWeight *= weightModifier;
+        }
+
+        if (fabs(adjustedY) > 0)
+        {
+            adjustedY = adjustedY / (double)finalWeight;
+            if (adjustedY > 0)
+            {
+                //adjustedY = adjustedY + remainderY;
+                double oldY = adjustedY;
+                adjustedY = (int)floor(adjustedY);
+                cursorRemainderY = oldY - adjustedY;
+            }
+            else
+            {
+                //adjustedY = adjustedY + remainderY;
+                double oldY = adjustedY;
+                adjustedY = (int)ceil(adjustedY);
+                cursorRemainderY = oldY - adjustedY;
+            }
+        }
+
+        sendevent(adjustedX, adjustedY);
         //qDebug() << "FINAL X: " << finalx;
         //qDebug() << "FINAL Y: " << finaly;
         //qDebug() << "ELAPSED: " << elapsedTime;
-        //qDebug();
+        //qDebug() << "REMAINDER X: " << remainderX;
 
-        movedX = finalx;
-        movedY = finaly;
+        movedX = (int)adjustedX;
+        movedY = (int)adjustedY;
         movedElapsed = elapsedTime;
+    }
+    else
+    {
+        mouseHistoryX.prepend(0);
+        mouseHistoryY.prepend(0);
     }
 
     // Check if mouse event timer should be stopped.
     if (pendingMouseButtons.length() == 0)
     {
-        staticMouseEventTimer.stop();
+        //staticMouseEventTimer.stop();
+        cursorRemainderX = 0;
+        cursorRemainderY = 0;
     }
     else
     {
@@ -3757,7 +3897,7 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
     // Check if mouse event timer should be stopped.
     if (pendingMouseButtons.length() == 0)
     {
-        staticMouseEventTimer.stop();
+        //staticMouseEventTimer.stop();
     }
     else
     {
@@ -3977,6 +4117,7 @@ void JoyButton::establishMouseTimerConnections()
 
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
+    staticMouseEventTimer.start(5);
 }
 
 void JoyButton::setSpringRelativeStatus(bool value)
@@ -4116,4 +4257,30 @@ bool JoyButton::hasCursorEvents()
 bool JoyButton::hasSpringEvents()
 {
     return (springXSpeeds.length() != 0) || (springYSpeeds.length() != 0);
+}
+
+double JoyButton::getWeightModifier()
+{
+    return weightModifier;
+}
+
+void JoyButton::setWeightModifier(double modifier)
+{
+    if (modifier >= 0.0 && modifier <= MAXIMUMWEIGHTMODIFIER)
+    {
+        weightModifier = modifier;
+    }
+}
+
+int JoyButton::getMouseHistorySize()
+{
+    return mouseHistorySize;
+}
+
+void JoyButton::setMouseHistorySize(int size)
+{
+    if (size >= 1 && size <= MAXIMUMMOUSEHISTORYSIZE)
+    {
+        mouseHistorySize = size;
+    }
 }
