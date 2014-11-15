@@ -21,7 +21,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
         ui->sensitivityDoubleSpinBox->setValue(dpad->getButtonsPresetSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
-    selectSmoothingPreset();
+    //selectSmoothingPreset();
 
     updateWindowTitleDPadName();
 
@@ -61,7 +61,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
@@ -211,12 +211,13 @@ void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-void MouseDPadSettingsDialog::updateSmoothingSetting(bool clicked)
+/*void MouseDPadSettingsDialog::updateSmoothingSetting(bool clicked)
 {
     dpad->setButtonsSmoothing(clicked);
 }
+*/
 
-void MouseDPadSettingsDialog::selectSmoothingPreset()
+/*void MouseDPadSettingsDialog::selectSmoothingPreset()
 {
     bool smoothing = dpad->getButtonsPresetSmoothing();
     if (smoothing)
@@ -228,6 +229,7 @@ void MouseDPadSettingsDialog::selectSmoothingPreset()
         ui->smoothingCheckBox->setChecked(false);
     }
 }
+*/
 
 void MouseDPadSettingsDialog::calculateWheelSpeedPreset()
 {

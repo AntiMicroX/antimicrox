@@ -23,7 +23,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
         ui->sensitivityDoubleSpinBox->setValue(stick->getButtonsPresetSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
-    selectSmoothingPreset();
+    //selectSmoothingPreset();
 
     updateWindowTitleStickName();
 
@@ -63,7 +63,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
@@ -198,12 +198,13 @@ void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-void MouseControlStickSettingsDialog::updateSmoothingSetting(bool clicked)
+/*void MouseControlStickSettingsDialog::updateSmoothingSetting(bool clicked)
 {
     stick->setButtonsSmoothing(clicked);
 }
+*/
 
-void MouseControlStickSettingsDialog::selectSmoothingPreset()
+/*void MouseControlStickSettingsDialog::selectSmoothingPreset()
 {
     bool smoothing = stick->getButtonsPresetSmoothing();
     if (smoothing)
@@ -215,6 +216,7 @@ void MouseControlStickSettingsDialog::selectSmoothingPreset()
         ui->smoothingCheckBox->setChecked(false);
     }
 }
+*/
 
 void MouseControlStickSettingsDialog::calculateWheelSpeedPreset()
 {

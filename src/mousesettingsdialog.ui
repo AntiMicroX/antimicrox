@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>624</width>
-    <height>521</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -442,37 +442,6 @@ according to number of simulated notches per second.</string>
             </property>
             <property name="value">
              <double>0.500000000000000</double>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <property name="topMargin">
-           <number>10</number>
-          </property>
-          <item>
-           <widget class="QLabel" name="smoothingLabel">
-            <property name="text">
-             <string>Smoothing:</string>
-            </property>
-            <property name="buddy">
-             <cstring>smoothingCheckBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="smoothingCheckBox">
-            <property name="toolTip">
-             <string>Smoothing can be used to reduce the amount
-of jitter that the mouse cursor will exhibit. Using
-this option will result in the mouse movement being
-slightly less responsive due to changes in the mouse
-speed taking longer to occur.</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>

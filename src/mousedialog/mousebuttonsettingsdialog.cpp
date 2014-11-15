@@ -22,7 +22,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->sensitivityDoubleSpinBox->setValue(button->getSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
-    selectSmoothingPreset();
+    //selectSmoothingPreset();
 
     updateWindowTitleButtonName();
 
@@ -63,7 +63,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedX(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedY(int)));
@@ -167,12 +167,13 @@ void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-void MouseButtonSettingsDialog::updateSmoothingSetting(bool clicked)
+/*void MouseButtonSettingsDialog::updateSmoothingSetting(bool clicked)
 {
     button->setSmoothing(clicked);
 }
+*/
 
-void MouseButtonSettingsDialog::selectSmoothingPreset()
+/*void MouseButtonSettingsDialog::selectSmoothingPreset()
 {
     bool smoothing = button->isSmoothingEnabled();
     if (smoothing)
@@ -184,6 +185,7 @@ void MouseButtonSettingsDialog::selectSmoothingPreset()
         ui->smoothingCheckBox->setChecked(false);
     }
 }
+*/
 
 void MouseButtonSettingsDialog::updateSpringRelativeStatus(bool value)
 {

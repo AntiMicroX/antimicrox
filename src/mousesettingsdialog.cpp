@@ -21,7 +21,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(refreshMouseCursorSpeedValues(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSectionStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
-    connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
+    //connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeWheelSpeedBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatusForMouseMode(int)));
 
@@ -81,7 +81,7 @@ void MouseSettingsDialog::changeSpringSectionStatus(int index)
     }
 }
 
-void MouseSettingsDialog::changeSmoothingStatus(int index)
+/*void MouseSettingsDialog::changeSmoothingStatus(int index)
 {
     if (index == 1)
     {
@@ -92,6 +92,7 @@ void MouseSettingsDialog::changeSmoothingStatus(int index)
         ui->smoothingCheckBox->setEnabled(false);
     }
 }
+*/
 
 void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 {

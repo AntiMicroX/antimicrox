@@ -22,7 +22,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     }
     updateAccelerationCurvePresetComboBox();
 
-    selectSmoothingPreset();
+    //selectSmoothingPreset();
     updateWindowTitleAxisName();
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
@@ -61,7 +61,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
+    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
@@ -178,12 +178,13 @@ void MouseAxisSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-void MouseAxisSettingsDialog::updateSmoothingSetting(bool clicked)
+/*void MouseAxisSettingsDialog::updateSmoothingSetting(bool clicked)
 {
     axis->setButtonsSmoothing(clicked);
 }
+*/
 
-void MouseAxisSettingsDialog::selectSmoothingPreset()
+/*void MouseAxisSettingsDialog::selectSmoothingPreset()
 {
     bool smoothing = axis->getButtonsPresetSmoothing();
     if (smoothing)
@@ -195,6 +196,7 @@ void MouseAxisSettingsDialog::selectSmoothingPreset()
         ui->smoothingCheckBox->setChecked(false);
     }
 }
+*/
 
 void MouseAxisSettingsDialog::calculateWheelSpeedPreset()
 {

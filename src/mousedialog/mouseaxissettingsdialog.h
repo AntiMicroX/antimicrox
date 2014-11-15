@@ -17,7 +17,7 @@ protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
-    void selectSmoothingPreset();
+    //void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
     void updateWindowTitleAxisName();
 
@@ -35,7 +35,7 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    void updateSmoothingSetting(bool clicked);
+    //void updateSmoothingSetting(bool clicked);
 
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);

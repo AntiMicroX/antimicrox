@@ -16,7 +16,7 @@ protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
-    void selectSmoothingPreset();
+    //void selectSmoothingPreset();
     void updateWindowTitleButtonName();
 
     JoyButton *button;
@@ -33,7 +33,7 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    void updateSmoothingSetting(bool clicked);
+    //void updateSmoothingSetting(bool clicked);
     void updateSpringRelativeStatus(bool value);
 };
 

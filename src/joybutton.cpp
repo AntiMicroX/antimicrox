@@ -1430,10 +1430,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             }
         }
 
-        if (smoothing != DEFAULTSMOOTHING)
+        /*if (smoothing != DEFAULTSMOOTHING)
         {
             xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
         }
+        */
 
         if (wheelSpeedX != DEFAULTWHEELX)
         {
@@ -1717,7 +1718,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         double tempchoice = temptext.toDouble();
         setSensitivity(tempchoice);
     }
-    else if (xml->name() == "mousesmoothing" && xml->isStartElement())
+    /*else if (xml->name() == "mousesmoothing" && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -1726,6 +1727,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             setSmoothing(true);
         }
     }
+    */
     else if (xml->name() == "actionname" && xml->isStartElement())
     {
         found = true;
