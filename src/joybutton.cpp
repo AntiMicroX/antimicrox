@@ -711,7 +711,7 @@ void JoyButton::activateSlots()
                 pendingMouseButtons.append(this);
                 currentMouseEvent = 0;
 
-                if (!staticMouseEventTimer.isActive())
+                if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() != 0)
                 {
                     staticMouseEventTimer.start(0);
                 }
@@ -3262,15 +3262,15 @@ void JoyButton::releaseActiveSlots()
             springXSpeeds.length() == 0)
         {
             /*staticMouseEventTimer.stop();
-            mouseshitX.clear();
-            mouseshitY.clear();
+            mouseHistoryX.clear();
+            mouseHistoryY.clear();
             for (int i=0; i < 10; i++)
             {
-                mouseshitX.append(0);
+                mouseHistoryX.append(0);
             }
             for (int i=0; i < 10; i++)
             {
-                mouseshitY.append(0);
+                mouseHistoryY.append(0);
             }
             */
             cursorRemainderX = 0;
@@ -4292,6 +4292,9 @@ void JoyButton::setMouseHistorySize(int size)
 {
     if (size >= 1 && size <= MAXIMUMMOUSEHISTORYSIZE)
     {
+        mouseHistoryX.clear();
+        mouseHistoryY.clear();
+
         mouseHistorySize = size;
     }
 }
