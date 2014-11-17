@@ -290,7 +290,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     }
 
     WinInfo::grabCurrentPointerPrecision();
-    bool disableEnhandedPoint = settings->value("DisableWinEnhancedPointer", false).toBool();
+    bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
     if (disableEnhandedPoint)
     {
         WinInfo::disablePointerPrecision();
@@ -528,7 +528,7 @@ void MainWindow::quitProgram()
     {
         qApp->quit();
 #ifdef Q_OS_WIN
-        bool disableEnhancedPoint = settings->value("DisableWinEnhancedPointer", false).toBool();
+        bool disableEnhancedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
         if (disableEnhancedPoint && !WinInfo::isUsingEnhancedPointerPrecision())
         {
             WinInfo::enablePointerPrecision();

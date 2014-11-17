@@ -698,11 +698,6 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
-                if (!staticMouseEventTimer.isActive())
-                {
-                    lastMouseTime.restart();
-                }
-
                 slot->getMouseInterval()->restart();
                 currentMouseEvent = slot;
                 activeSlots.append(slot);
@@ -711,8 +706,11 @@ void JoyButton::activateSlots()
                 pendingMouseButtons.append(this);
                 currentMouseEvent = 0;
 
+                // Temporarily lower timer interval. Helps improve mouse control
+                // precision on the lower end of an axis.
                 if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() != 0)
                 {
+                    lastMouseTime.restart();
                     staticMouseEventTimer.start(0);
                 }
             }

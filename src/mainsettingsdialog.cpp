@@ -198,7 +198,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 #endif
 
 #ifdef Q_OS_WIN
-    bool disableEnhancedMouse = settings->value("DisableWinEnhancedPointer", false).toBool();
+    bool disableEnhancedMouse = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
     if (disableEnhancedMouse)
     {
         ui->disableWindowsEnhancedPointCheckBox->setChecked(true);
@@ -540,9 +540,9 @@ void MainSettingsDialog::saveNewSettings()
     }
 
     bool disableEnhancePoint = ui->disableWindowsEnhancedPointCheckBox->isChecked();
-    bool oldEnhancedValue = settings->value("DisableWinEnhancedPointer", false).toBool();
+    bool oldEnhancedValue = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
     bool usingEnhancedPointer = WinInfo::isUsingEnhancedPointerPrecision();
-    settings->setValue("DisableWinEnhancedPointer", disableEnhancePoint ? "1" : "0");
+    settings->setValue("Mouse/DisableWinEnhancedPointer", disableEnhancePoint ? "1" : "0");
 
     if (disableEnhancePoint != oldEnhancedValue)
     {

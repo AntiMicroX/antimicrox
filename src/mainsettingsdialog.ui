@@ -762,7 +762,7 @@ will allow mouse movement within antimicro to be more
 precise.</string>
            </property>
            <property name="text">
-            <string>Disable Enhanced Precision Mode</string>
+            <string>Disable Enhance Pointer Precision</string>
            </property>
           </widget>
          </item>
