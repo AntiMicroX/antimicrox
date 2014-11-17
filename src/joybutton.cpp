@@ -3649,12 +3649,12 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     int elapsedTime = lastMouseTime.elapsed();
     movedElapsed = lastMouseTime.elapsed();
 
-    if (mouseHistoryX.size() > mouseHistorySize)
+    if (mouseHistoryX.size() >= mouseHistorySize)
     {
         mouseHistoryX.removeLast();
     }
 
-    if (mouseHistoryY.size() > mouseHistorySize)
+    if (mouseHistoryY.size() >= mouseHistorySize)
     {
         mouseHistoryY.removeLast();
     }
