@@ -18,6 +18,7 @@ public:
     int getApplicationPid(Window window);
     QString getApplicationLocation(int pid);
     Window findClientWindow(Window window);
+    Window findParentClient(Window window);
     void closeDisplay();
     void syncDisplay();
     void syncDisplay(QString displayString);

@@ -146,6 +146,71 @@ void X11Info::populateKnownAliases()
     }
 }
 
+Window X11Info::findParentClient(Window window)
+{
+    Window parent = 0;
+    Window root = 0;
+    Window *children = 0;
+    unsigned int num_children = 0;
+    Window finalwindow = 0;
+    Display *display = this->display();
+
+    if (windowIsViewable(display, window) &&
+        isWindowRelevant(display, window))
+    {
+        finalwindow = window;
+    }
+    else
+    {
+        bool quitTraversal = false;
+        while (!quitTraversal)
+        {
+            children = 0;
+
+            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
+            {
+                if (children)
+                {
+                    // must test for NULL
+                    XFree(children);
+                }
+
+                if (parent)
+                {
+                    if (windowIsViewable(display, parent) &&
+                        isWindowRelevant(display, parent))
+                    {
+                        quitTraversal = true;
+                        finalwindow = parent;
+                    }
+                    else if (parent == 0)
+                    {
+                        quitTraversal = true;
+                    }
+                    else if (parent == root)
+                    {
+                        quitTraversal = true;
+                    }
+                    else
+                    {
+                        window = parent;
+                    }
+                }
+                else
+                {
+                    quitTraversal = true;
+                }
+            }
+            else
+            {
+                quitTraversal = true;
+            }
+        }
+    }
+
+    return finalwindow;
+}
+
 /**
  * @brief Check window and any parents for the window property "_NET_WM_PID"
  * @param Window XID for window of interest
@@ -317,10 +382,14 @@ QString X11Info::getApplicationLocation(int pid)
         {
             buf[len] = '\0';
         }
-        QString temp = QString::fromLocal8Bit(buf);
-        if (!temp.isEmpty())
+
+        if (len > 0)
         {
-            exepath = temp;
+            QString temp = QString::fromUtf8(buf);
+            if (!temp.isEmpty())
+            {
+                exepath = temp;
+            }
         }
     }
 
@@ -354,7 +423,7 @@ Window X11Info::findClientWindow(Window window)
 
     //Atom wm_state_atom = XInternAtom(display, "WM_STATE", True);
     //Atom net_wm_state_atom = XInternAtom(display, "_NET_WM_STATE", True);
-    Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
+    //Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
     //Atom wm_class = XInternAtom(display, "WM_CLASS", True);
 
     if (windowIsViewable(display, window) &&
@@ -423,13 +492,14 @@ Window X11Info::findClientWindow(Window window)
         }
     }
 
-    if (finalwindow)
+    /*if (finalwindow)
     {
         if (!windowHasProperty(display, finalwindow, pidAtom))
         {
             finalwindow = 0;
         }
     }
+    */
 
     return finalwindow;
 }
@@ -517,6 +587,8 @@ QString X11Info::getWindowTitle(Window window)
     unsigned char *prop = 0;
     int status = 0;
 
+    //qDebug() << "WIN: 0x" << QString::number(window, 16);
+
     Display *display = this->display();
     Atom wm_name = XInternAtom(display, "WM_NAME", True);
     Atom net_wm_name = XInternAtom(display, "_NET_WM_NAME", True);
@@ -542,7 +614,8 @@ QString X11Info::getWindowTitle(Window window)
 
     if (status == Success && prop)
     {
-        temp.append((char*)prop);
+        char *tempprop = (char*)prop;
+        temp.append(QString::fromUtf8(tempprop));
         //qDebug() << temp;
     }
 
@@ -581,7 +654,8 @@ QString X11Info::getWindowClass(Window window)
             *(null_char) = ' ';
         }
 
-        temp.append((char*)prop);
+        char *tempprop = (char*)prop;
+        temp.append(QString::fromUtf8(tempprop));
         //qDebug() << temp;
         //qDebug() << (char*)prop;
     }
@@ -602,7 +676,7 @@ unsigned long X11Info::getWindowInFocus()
     Window currentWindow = 0;
     int focusState = 0;
 
-    Display *display = X11Info::getInstance()->display();
+    Display *display = this->display();
     XGetInputFocus(display, &currentWindow, &focusState);
 
     if (currentWindow > 0)

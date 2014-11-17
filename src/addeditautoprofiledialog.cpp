@@ -323,7 +323,11 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
         // Attempt to find the appropriate window below the root window
         // that was clicked.
         //qDebug() << "ORIGINAL: " << QString::number(targetWindow, 16);
-        targetWindow = X11Info::getInstance()->findClientWindow(targetWindow);
+        unsigned long tempWindow = X11Info::getInstance()->findClientWindow(targetWindow);
+        if (tempWindow > 0)
+        {
+            targetWindow = tempWindow;
+        }
         //qDebug() << "ADJUSTED: " << QString::number(targetWindow, 16);
     }
 

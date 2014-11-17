@@ -81,6 +81,11 @@ void AutoProfileWatcher::runAppCheck()
     unsigned long currentWindow = X11Info::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
     {
+        unsigned long tempWindow = X11Info::getInstance()->findParentClient(currentWindow);
+        if (tempWindow > 0)
+        {
+            currentWindow = tempWindow;
+        }
         nowWindow = QString::number(currentWindow);
         nowWindowClass = X11Info::getInstance()->getWindowClass(currentWindow);
         nowWindowName = X11Info::getInstance()->getWindowTitle(currentWindow);
@@ -141,6 +146,9 @@ void AutoProfileWatcher::runAppCheck()
             fullSet = fullSet.unite(tempSet);
         }
 
+        QHash<QString, int> highestMatchCount;
+        QHash<QString, AutoProfileInfo*> highestMatches;
+
         QSetIterator<AutoProfileInfo*> fullSetIter(fullSet);
         while (fullSetIter.hasNext())
         {
@@ -148,47 +156,58 @@ void AutoProfileWatcher::runAppCheck()
             if (info->isActive())
             {
                 int numProps = 0;
-                numProps = !info->getExe().isEmpty() ? numProps + 1 : numProps;
-                numProps = !info->getWindowClass().isEmpty() ? numProps + 1 : numProps;
-                numProps = !info->getWindowName().isEmpty() ? numProps + 1 : numProps;
+                numProps += !info->getExe().isEmpty() ? 1 : 0;
+                numProps += !info->getWindowClass().isEmpty() ? 1 : 0;
+                numProps += !info->getWindowName().isEmpty() ? 1 : 0;
 
-                if (numProps == 3)
+                int numMatched = 0;
+                numMatched += info->getExe() == appLocation ? 1 : 0;
+                numMatched += info->getWindowClass() == nowWindowClass ? 1 : 0;
+                numMatched += info->getWindowName() == nowWindowName ? 1 : 0;
+
+                if (numProps == numMatched)
                 {
-                    if (info->getExe() == appLocation &&
-                        info->getWindowClass() == nowWindowClass &&
-                        info->getWindowName() == nowWindowName)
+                    if (highestMatchCount.contains(info->getGUID()))
                     {
-                        guidSet.insert(info->getGUID());
-                        emit foundApplicableProfile(info);
+                        int currentHigh = highestMatchCount.value(info->getGUID());
+                        if (numMatched > currentHigh)
+                        {
+                            highestMatchCount.insert(info->getGUID(), numMatched);
+                            highestMatches.insert(info->getGUID(), info);
+                        }
+                    }
+                    else
+                    {
+                        highestMatchCount.insert(info->getGUID(), numMatched);
+                        highestMatches.insert(info->getGUID(), info);
                     }
                 }
-                else if (numProps == 2)
+
+                /*if (numProps == 3 && numMatched == 3)
                 {
-                    if (info->getExe() == appLocation &&
-                        info->getWindowClass() == nowWindowClass)
-                    {
-                        guidSet.insert(info->getGUID());
-                        emit foundApplicableProfile(info);
-                    }
-                    else if (info->getWindowClass() == nowWindowClass &&
-                             info->getWindowName() == nowWindowName)
-                    {
-                        guidSet.insert(info->getGUID());
-                        emit foundApplicableProfile(info);
-                    }
-                    else if (info->getExe() == appLocation &&
-                             info->getWindowName() == nowWindowName)
-                    {
-                        guidSet.insert(info->getGUID());
-                        emit foundApplicableProfile(info);
-                    }
+                    guidSet.insert(info->getGUID());
+                    emit foundApplicableProfile(info);
+                }
+                else if (numProps == 2 && numMatched == 2)
+                {
+                    guidSet.insert(info->getGUID());
+                    emit foundApplicableProfile(info);
                 }
                 else
                 {
                     guidSet.insert(info->getGUID());
                     emit foundApplicableProfile(info);
                 }
+                */
             }
+        }
+
+        QHashIterator<QString, AutoProfileInfo*> highIter(highestMatches);
+        while (highIter.hasNext())
+        {
+            AutoProfileInfo *info = highIter.next().value();
+            guidSet.insert(info->getGUID());
+            emit foundApplicableProfile(info);
         }
 
         if ((!defaultProfileAssignments.isEmpty() || allDefaultInfo) && !focusedWidget)
