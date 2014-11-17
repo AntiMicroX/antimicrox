@@ -1,7 +1,6 @@
 //#include <QDebug>
 #include <QListIterator>
 #include <QStringListIterator>
-#include <QSet>
 #include <QSetIterator>
 #include <QFile>
 #include <QFileInfo>
@@ -45,6 +44,8 @@ void AutoProfileWatcher::runAppCheck()
     //qDebug() << qApp->applicationFilePath();
     QString appLocation;
     QString baseAppFileName;
+    guidSet.clear();
+
     // Check whether program path needs to be parsed. Removes processing time
     // and need to run Linux specific code searching /proc.
 #ifdef Q_OS_UNIX
@@ -117,7 +118,7 @@ void AutoProfileWatcher::runAppCheck()
         //currentApplication = appLocation;
 
         QSet<AutoProfileInfo*> fullSet;
-        QSet<QString> guidSet;
+        //QSet<QString> guidSet;
 
         if (!appLocation.isEmpty() && appProfileAssignments.contains(appLocation))
         {
@@ -451,6 +452,7 @@ void AutoProfileWatcher::clearProfileAssignments()
     defaultProfileAssignments.clear();
 
     allDefaultInfo = 0;
+    guidSet.clear();
 }
 
 QString AutoProfileWatcher::findAppLocation()
@@ -497,4 +499,9 @@ QList<AutoProfileInfo*>* AutoProfileWatcher::getCustomDefaults()
 AutoProfileInfo* AutoProfileWatcher::getDefaultAllProfile()
 {
     return allDefaultInfo;
+}
+
+bool AutoProfileWatcher::isGUIDLocked(QString guid)
+{
+    return guidSet.contains(guid);
 }

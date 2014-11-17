@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QHash>
 #include <QList>
+#include <QSet>
 
 #include "autoprofileinfo.h"
 #include "antimicrosettings.h"
@@ -19,6 +20,7 @@ public:
     void stopTimer();
     QList<AutoProfileInfo*>* getCustomDefaults();
     AutoProfileInfo* getDefaultAllProfile();
+    bool isGUIDLocked(QString guid);
 
     static const int CHECKTIME = 1000; // time in ms
 
@@ -40,6 +42,7 @@ protected:
     AutoProfileInfo *allDefaultInfo;
     QString currentApplication;
     QString currentAppWindowTitle;
+    QSet<QString> guidSet;
 
 signals:
     void foundApplicableProfile(AutoProfileInfo *info);

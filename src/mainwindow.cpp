@@ -1498,6 +1498,17 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 delete customs;
                 customs = 0;
 
+                // Check if profile has already been switched for a particular
+                // controller.
+                if (!found)
+                {
+                    QString tempguid = widget->getJoystick()->getGUIDString();
+                    if (appWatcher->isGUIDLocked(tempguid))
+                    {
+                        found = true;
+                    }
+                }
+
                 if (!found)
                 {
                     // If the profile location is empty, assume
