@@ -1225,15 +1225,19 @@ void InputDevice::axisButtonUpEvent(int setindex, int axisindex, int buttonindex
 void InputDevice::dpadButtonClickEvent(int buttonindex)
 {
     JoyDPadButton *dpadbutton = static_cast<JoyDPadButton*>(sender());
-
-    emit rawDPadButtonClick(dpadbutton->getDPad()->getIndex(), buttonindex);
+    if (dpadbutton)
+    {
+        emit rawDPadButtonClick(dpadbutton->getDPad()->getIndex(), buttonindex);
+    }
 }
 
 void InputDevice::dpadButtonReleaseEvent(int buttonindex)
 {
     JoyDPadButton *dpadbutton = static_cast<JoyDPadButton*>(sender());
-
-    emit rawDPadButtonRelease(dpadbutton->getDPad()->getIndex(), buttonindex);
+    if (dpadbutton)
+    {
+        emit rawDPadButtonRelease(dpadbutton->getDPad()->getIndex(), buttonindex);
+    }
 }
 
 void InputDevice::dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex)
