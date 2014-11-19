@@ -242,8 +242,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     QString tempTooltip = ui->mouseRefreshRateComboBox->toolTip();
     tempTooltip.append("\n\n");
     tempTooltip.append(tr("Also, Windows users who want to use a low value should also check the\n"
-                          "\"Disable Enhance Pointer Precision\" checkbox."));
-    ui->mouseRefreshRateComboBox->setToolTip(oldTooltip);
+                          "\"Disable Enhance Pointer Precision\" checkbox if you haven't disabled\n"
+                          "the option in Windows."));
+    ui->mouseRefreshRateComboBox->setToolTip(tempTooltip);
 #endif
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));

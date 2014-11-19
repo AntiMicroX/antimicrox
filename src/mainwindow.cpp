@@ -301,6 +301,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 #endif
 
     enablePossibleMouseSmoothing();
+    changeMouseRefreshRate();
 }
 
 MainWindow::~MainWindow()
@@ -1648,5 +1649,14 @@ void MainWindow::enablePossibleMouseSmoothing()
         {
             JoyButton::setWeightModifier(weightModifier);
         }
+    }
+}
+
+void MainWindow::changeMouseRefreshRate()
+{
+    int refreshRate = settings->value("Mouse/RefreshRate", 0).toInt();
+    if (refreshRate > 0)
+    {
+        JoyButton::setMouseRefreshRate(refreshRate);
     }
 }
