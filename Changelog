@@ -1,3 +1,40 @@
+2014-11-19 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.9
+
+* Added mouse refresh rate as an option. Please be mindful of how your
+system behaves if you set the refresh rate to a low value like 1 ms.
+In the worst case scenario, you could end up dedicating one CPU core on
+just the antimicro process. Also, on Windows, you will want to make sure
+to disable the "Enhance Pointer Precision" option if you use a low value
+otherwise Windows will severly slow down the mouse pointer.
+
+* Added an application level mouse smoothing option. The older button level
+smoothing option has been removed. The old option didn't do much since it only
+dealt with the partial distance remainder.
+
+* Button responsiveness has been improved. The old mouse movement code was
+creating a bottleneck for button processing which would result in a slight
+delay.
+
+* Changed mouse movement code. The overall mouse movement should be smoother
+now.
+
+* Allow the Windows setting "Enhance Pointer Precision" to be disabled while
+antimicro is running. This will make sure Windows does not directly manipulate
+the mouse events sent to the system. This will allow mouse control on an analog
+stick to be more accurate on Windows.
+
+* Changes to Auto Profile to allow more variables for matching. Multiple
+window properties can be specified which will cause antimicro to count an
+entry as a match only if all specified properties match.
+
+* Changed how windows are grabbed in X on Linux.
+
+* Minor fix for Gradient and Pulse turbo modes. There were times when the
+timer interval controlling those modes could be negative and cause problems.
+
+
 2014-11-05 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.8.1
