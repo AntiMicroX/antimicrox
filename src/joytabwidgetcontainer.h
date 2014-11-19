@@ -26,6 +26,7 @@ public slots:
 private slots:
     void flash();
     void unflash();
+    void unflashAll();
 };
 
 #endif // JOYTABWIDGETCONTAINER_H

@@ -155,6 +155,9 @@ public:
     static int getMouseHistorySize();
     static void setMouseHistorySize(int size);
 
+    static int getMouseRefreshRate();
+    static void setMouseRefreshRate(int refresh);
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -190,6 +193,9 @@ public:
 
     static const int MAXIMUMMOUSEHISTORYSIZE;
     static const double MAXIMUMWEIGHTMODIFIER;
+
+    static const int MAXIMUMMOUSEREFRESHRATE;
+    static const int IDLEMOUSEREFRESHRATE;
 
     static QList<double> mouseHistoryX;
     static QList<double> mouseHistoryY;
@@ -333,6 +339,7 @@ protected:
     static JoyButtonMouseHelper mouseHelper;
     static double weightModifier;
     static int mouseHistorySize;
+    static int mouseRefreshRate;
 
 signals:
     void clicked (int index);

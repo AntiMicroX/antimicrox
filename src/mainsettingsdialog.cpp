@@ -227,6 +227,25 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->weightModifierDoubleSpinBox->setValue(weightModifier);
     }
 
+    for (int i = 1; i <= JoyButton::MAXIMUMMOUSEREFRESHRATE; i++)
+    {
+        ui->mouseRefreshRateComboBox->addItem(QString("%1 ms").arg(i), i);
+    }
+
+    int refreshIndex = ui->mouseRefreshRateComboBox->findData(JoyButton::getMouseRefreshRate());
+    if (refreshIndex >= 0)
+    {
+        ui->mouseRefreshRateComboBox->setCurrentIndex(refreshIndex);
+    }
+
+#ifdef Q_OS_WIN
+    QString tempTooltip = ui->mouseRefreshRateComboBox->toolTip();
+    tempTooltip.append("\n\n");
+    tempTooltip.append(tr("Also, Windows users who want to use a low value should also check the\n"
+                          "\"Disable Enhance Pointer Precision\" checkbox."));
+    ui->mouseRefreshRateComboBox->setToolTip(oldTooltip);
+#endif
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -589,6 +608,14 @@ void MainSettingsDialog::saveNewSettings()
     if (weightModifier > 0.0)
     {
         settings->setValue("Mouse/WeightModifier", weightModifier);
+    }
+
+    int refreshIndex = ui->mouseRefreshRateComboBox->currentIndex();
+    int mouseRefreshRate = ui->mouseRefreshRateComboBox->itemData(refreshIndex).toInt();
+    if (mouseRefreshRate != JoyButton::getMouseRefreshRate())
+    {
+        settings->setValue("Mouse/RefreshRate", mouseRefreshRate);
+        JoyButton::setMouseRefreshRate(mouseRefreshRate);
     }
 
     settings->sync();

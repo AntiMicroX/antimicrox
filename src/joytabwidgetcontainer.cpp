@@ -54,9 +54,21 @@ void JoyTabWidgetContainer::unflash()
     }
 }
 
+void JoyTabWidgetContainer::unflashAll()
+{
+    for (int i = 0; i < tabBar()->count(); i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
+        if (tab)
+        {
+            tabBar()->setTabTextColor(i, Qt::black);
+        }
+    }
+}
+
 void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 {
-    unflash();
+    unflashAll();
 
     disconnect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
     disconnect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));

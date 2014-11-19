@@ -43,6 +43,8 @@ const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
 const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.1;
 const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
+const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
+const int JoyButton::IDLEMOUSEREFRESHRATE = JoyButton::MAXIMUMMOUSEREFRESHRATE;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -78,6 +80,8 @@ double JoyButton::cursorRemainderY = 0.0;
 
 double JoyButton::weightModifier = 0;
 int JoyButton::mouseHistorySize = 1;
+
+int JoyButton::mouseRefreshRate = 5;
 
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
@@ -3781,16 +3785,17 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     // Check if mouse event timer should be stopped.
     if (pendingMouseButtons.length() == 0)
     {
+        staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
         //staticMouseEventTimer.stop();
         cursorRemainderX = 0;
         cursorRemainderY = 0;
     }
     else
     {
-        if (staticMouseEventTimer.interval() == 0)
+        if (staticMouseEventTimer.interval() != mouseRefreshRate)
         {
             // Restore intended QTimer interval.
-            staticMouseEventTimer.start(5);
+            staticMouseEventTimer.start(mouseRefreshRate);
         }
 
     }
@@ -3906,14 +3911,15 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
     // Check if mouse event timer should be stopped.
     if (pendingMouseButtons.length() == 0)
     {
+        staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
         //staticMouseEventTimer.stop();
     }
     else
     {
-        if (staticMouseEventTimer.interval() == 0)
+        if (staticMouseEventTimer.interval() != mouseRefreshRate)
         {
             // Restore intended QTimer interval.
-            staticMouseEventTimer.start(5);
+            staticMouseEventTimer.start(mouseRefreshRate);
         }
     }
 
@@ -4126,7 +4132,7 @@ void JoyButton::establishMouseTimerConnections()
 
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
-    staticMouseEventTimer.start(5);
+    staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
 }
 
 void JoyButton::setSpringRelativeStatus(bool value)
@@ -4235,8 +4241,8 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 
 void JoyButton::setEasingDuration(double value)
 {
-    if (value >= MINIMUMEASINGDURATION && value <= 2.0
-        && value != easingDuration)
+    if (value >= MINIMUMEASINGDURATION && value <= 2.0 &&
+        value != easingDuration)
     {
         easingDuration = value;
         emit propertyUpdated();
@@ -4294,5 +4300,27 @@ void JoyButton::setMouseHistorySize(int size)
         mouseHistoryY.clear();
 
         mouseHistorySize = size;
+    }
+}
+
+
+int JoyButton::getMouseRefreshRate()
+{
+    return mouseRefreshRate;
+}
+
+void JoyButton::setMouseRefreshRate(int refresh)
+{
+    if (refresh >= 1 && refresh <= 16)
+    {
+        mouseRefreshRate = refresh;
+        if (staticMouseEventTimer.isActive())
+        {
+            staticMouseEventTimer.start(mouseRefreshRate);
+
+            // Clear current mouse history
+            mouseHistoryX.clear();
+            mouseHistoryY.clear();
+        }
     }
 }

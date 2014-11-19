@@ -87,7 +87,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -775,6 +775,9 @@ precise.</string>
             <string>Smoothing</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="bottomMargin">
+             <number>4</number>
+            </property>
             <item>
              <widget class="QCheckBox" name="smoothingEnableCheckBox">
               <property name="text">
@@ -840,6 +843,29 @@ precise.</string>
             </item>
            </layout>
           </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="mouseRefreshRateLabel">
+             <property name="text">
+              <string>Refresh Rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="mouseRefreshRateComboBox">
+             <property name="toolTip">
+              <string>The refresh rate is the amount of time that will elapse
+in between mouse events. Please be cautious when
+editing this setting as it will cause the program to use
+more CPU power. Setting this value too low can cause
+system instability. Please test the setting before using
+it unattended.</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
           <spacer name="verticalSpacer_5">
