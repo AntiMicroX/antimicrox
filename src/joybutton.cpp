@@ -40,7 +40,7 @@ const double JoyButton::DEFAULTEASINGDURATION = 0.5;
 const double JoyButton::MINIMUMEASINGDURATION = 0.2;
 
 const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
-const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.1;
+const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
 const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
