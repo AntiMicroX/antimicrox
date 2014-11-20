@@ -3263,6 +3263,7 @@ void JoyButton::releaseActiveSlots()
         if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
             springXSpeeds.length() == 0)
         {
+            staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
             /*staticMouseEventTimer.stop();
             mouseHistoryX.clear();
             mouseHistoryY.clear();
