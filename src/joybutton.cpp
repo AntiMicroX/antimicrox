@@ -703,12 +703,13 @@ void JoyButton::activateSlots()
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
                 slot->getMouseInterval()->restart();
-                currentMouseEvent = slot;
+                //currentMouseEvent = slot;
                 activeSlots.append(slot);
                 //mouseEventQueue.enqueue(slot);
-                mouseEvent();
+                //mouseEvent();
                 pendingMouseButtons.append(this);
-                currentMouseEvent = 0;
+                mouseEventQueue.enqueue(slot);
+                //currentMouseEvent = 0;
 
                 // Temporarily lower timer interval. Helps improve mouse control
                 // precision on the lower end of an axis.
@@ -861,12 +862,13 @@ void JoyButton::mouseEvent()
 
         while (buttonslot)
         {
-            QTime* mouseInterval = buttonslot->getMouseInterval();
+            QElapsedTimer* mouseInterval = buttonslot->getMouseInterval();
 
             int mousedirection = buttonslot->getSlotCode();
             JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
             int mousespeed = 0;
             int timeElapsed = mouseInterval->elapsed();
+            int nanoTimeElapsed = mouseInterval->nsecsElapsed();
 
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
@@ -1032,7 +1034,8 @@ void JoyButton::mouseEvent()
 
                     double distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
-                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                    //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                    sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
                     //distance = (int)floor(sumDist + 0.5);
                     //distance = (int)floor(sumDist);
                     distance = sumDist;
@@ -3263,6 +3266,7 @@ void JoyButton::releaseActiveSlots()
         if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
             springXSpeeds.length() == 0)
         {
+            lastMouseTime.restart();
             staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
             /*staticMouseEventTimer.stop();
             mouseHistoryX.clear();
@@ -3783,6 +3787,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         mouseHistoryY.prepend(0);
     }
 
+    lastMouseTime.restart();
+
     // Check if mouse event timer should be stopped.
     if (pendingMouseButtons.length() == 0)
     {
@@ -3803,7 +3809,6 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
     cursorXSpeeds.clear();
     cursorYSpeeds.clear();
-    lastMouseTime.restart();
 }
 
 /**
@@ -3909,6 +3914,8 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 
     }
 
+    lastMouseTime.restart();
+
     // Check if mouse event timer should be stopped.
     if (pendingMouseButtons.length() == 0)
     {
@@ -3926,7 +3933,6 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 
     springXSpeeds.clear();
     springYSpeeds.clear();
-    lastMouseTime.restart();
 }
 
 void JoyButton::keyPressEvent()
@@ -4133,6 +4139,7 @@ void JoyButton::establishMouseTimerConnections()
 
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
+    lastMouseTime.start();
     staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
 }
 
@@ -4317,6 +4324,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
         mouseRefreshRate = refresh;
         if (staticMouseEventTimer.isActive())
         {
+            lastMouseTime.restart();
             staticMouseEventTimer.start(mouseRefreshRate);
 
             // Clear current mouse history

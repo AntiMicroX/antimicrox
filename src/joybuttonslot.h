@@ -2,6 +2,7 @@
 #define JOYBUTTONSLOT_H
 
 #include <QObject>
+#include <QElapsedTimer>
 #include <QTime>
 #include <QMetaType>
 #include <QXmlStreamReader>
@@ -33,7 +34,7 @@ public:
     void setMouseSpeed(int value);
     void setDistance(double distance);
     double getMouseDistance();
-    QTime* getMouseInterval();
+    QElapsedTimer* getMouseInterval();
     void restartMouseInterval();
     QString getXmlName();
     QString getSlotString();
@@ -59,7 +60,7 @@ protected:
     JoySlotInputAction mode;
     double distance;
     double previousDistance;
-    QTime *mouseInterval;
+    QElapsedTimer *mouseInterval;
     QTime easingTime;
     bool easingActive;
 
