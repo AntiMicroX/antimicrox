@@ -580,6 +580,9 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)));
 #endif
 
+    // For now, raise thread priority.
+    // TODO: Look into changing process priority.
+    QThread::currentThread()->setPriority(QThread::HighestPriority);
     int app_result = a->exec();
 
     deleteInputDevices(joysticks);
