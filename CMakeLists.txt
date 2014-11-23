@@ -16,14 +16,14 @@ endif(WIN32)
 # The version number.
 set(ANTIMICRO_MAJOR_VERSION 2)
 set(ANTIMICRO_MINOR_VERSION 9)
-set(ANTIMICRO_PATCH_VERSION 0)
+set(ANTIMICRO_PATCH_VERSION 1)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
-    option(WITH_UINPUT "Compile with support for uinput. uinput will be used to simulate events." OFF)
-    option(WITH_XTEST "Compile with support for XTest.  XTest will be used to simulate events." ON)
+    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." OFF)
+    option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
 endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
