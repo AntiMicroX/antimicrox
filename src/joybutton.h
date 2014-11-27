@@ -285,6 +285,8 @@ protected:
     QTime keyPressHold;
     QTime buttonDelay;
     QTime turboHold;
+    QTime wheelVerticalTime;
+    QTime wheelHorizontalTime;
     static QTime lastMouseTime;
 
     QQueue<bool> ignoreSetQueue;
@@ -306,6 +308,8 @@ protected:
     bool smoothing;
     bool whileHeldStatus;
     double lastDistance;
+    double lastWheelVerticalDistance;
+    double lastWheelHorizontalDistance;
     int tempTurboInterval;
 
     QString actionName;
