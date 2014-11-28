@@ -93,6 +93,9 @@ int main(int argc, char *argv[])
     qRegisterMetaType<InputDevice*>();
     qRegisterMetaType<AutoProfileInfo*>();
 
+    QTextStream outstream(stdout);
+    QTextStream errorstream(stderr);
+
     // If running Win version, check if an explicit style
     // was defined on the command-line. If so, make a note
     // of it.
@@ -189,7 +192,7 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-            QTextStream outstream(stdout);
+
             outstream << QObject::tr("Daemon launched") << endl;
 
             a = new QApplication(argc, argv);
@@ -197,7 +200,7 @@ int main(int argc, char *argv[])
             localServer->startLocalServer();
         }
         else if (pid < 0) {
-            QTextStream errorstream(stderr);
+
             errorstream << QObject::tr("Failed to launch daemon") << endl;
 
             deleteInputDevices(joysticks);
@@ -208,7 +211,6 @@ int main(int argc, char *argv[])
         }
         //We got a good pid, Close the Parent Process
         else if (pid > 0) {
-            QTextStream outstream(stdout);
             outstream << QObject::tr("Launching daemon") << endl;
 
             deleteInputDevices(joysticks);
@@ -235,7 +237,6 @@ int main(int argc, char *argv[])
             X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
             if (X11Info::getInstance()->display() == NULL)
             {
-                QTextStream errorstream(stderr);
                 errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
                 deleteInputDevices(joysticks);
@@ -263,7 +264,6 @@ int main(int argc, char *argv[])
         //Create a new Signature Id for our child
         sid = setsid();
         if (sid < 0) {
-            QTextStream errorstream(stderr);
             errorstream << QObject::tr("Failed to set a signature id for the daemon") << endl;
 
             deleteInputDevices(joysticks);
@@ -289,7 +289,6 @@ int main(int argc, char *argv[])
         }
 
         if ((chdir("/")) < 0) {
-            QTextStream errorstream(stderr);
             errorstream << QObject::tr("Failed to change working directory to /")
                         << endl;
 
@@ -337,7 +336,6 @@ int main(int argc, char *argv[])
             X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
             if (X11Info::getInstance()->display() == NULL)
             {
-                QTextStream errorstream(stderr);
                 errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
                 deleteInputDevices(joysticks);
@@ -420,30 +418,29 @@ int main(int argc, char *argv[])
 #ifdef USE_SDL_2
     if (cmdutility.shouldListControllers())
     {
-        QTextStream out(stdout);
-        out << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
-        out << endl;
-        out << QObject::tr("List Joysticks:") << endl;
-        out << QObject::tr("---------------") << endl;
+        outstream << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
+        outstream << endl;
+        outstream << QObject::tr("List Joysticks:") << endl;
+        outstream << QObject::tr("---------------") << endl;
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
         unsigned int indexNumber = 1;
         while (iter.hasNext())
         {
             InputDevice *tempdevice = iter.next().value();
-            out << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
-            out << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
-            out << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
-            out << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
+            outstream << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
+            outstream << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
+            outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
+            outstream << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
             QString gameControllerStatus = tempdevice->isGameController() ?
                                            QObject::tr("Yes") : QObject::tr("No");
-            out << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
-            out << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
-            out << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
-            out << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
+            outstream << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
+            outstream << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
+            outstream << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
+            outstream << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
 
             if (iter.hasNext())
             {
-                out << endl;
+                outstream << endl;
                 indexNumber++;
             }
         }
@@ -528,8 +525,29 @@ int main(int argc, char *argv[])
         status = factory->handler()->init();
     }
 
+#if defined(WITH_UINPUT) && defined(WITH_XTEST)
+    // Use xtest as a fallback.
+    if (!status && cmdutility.getEventGenerator() == "uinput")
+    {
+        outstream << QObject::tr("Attempting to use XTest for event generation.") << endl;
+
+        factory->deleteInstance();
+        factory = EventHandlerFactory::getInstance("xtest");
+        if (!factory)
+        {
+            status = false;
+        }
+        else
+        {
+            status = factory->handler()->init();
+        }
+    }
+#endif
+
     if (!status)
     {
+        errorstream << QObject::tr("Failed to open event generator. Exiting.") << endl;
+
         joypad_worker->quit();
 
         deleteInputDevices(joysticks);
@@ -558,6 +576,11 @@ int main(int argc, char *argv[])
         a = 0;
 
         return EXIT_FAILURE;
+    }
+    else
+    {
+        outstream << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName())
+                  << endl;
     }
 #endif
 
