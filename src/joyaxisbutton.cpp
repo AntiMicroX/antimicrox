@@ -151,7 +151,7 @@ void JoyAxisButton::turboEvent()
             changeState = true;
         }
         else if (currentTurboMode == GradientTurbo && diff > 0 &&
-                 getMouseDistanceFromDeadZone() >= 1.0 && isKeyPressed)
+                 getMouseDistanceFromDeadZone() >= 1.0)
         {
             if (isKeyPressed)
             {
@@ -161,7 +161,7 @@ void JoyAxisButton::turboEvent()
                     turboTimer.start(5);
                 }
 
-                turboHold.start();
+                turboHold.restart();
                 lastDistance = 1.0;
             }
             else
@@ -188,8 +188,27 @@ void JoyAxisButton::turboEvent()
                     tempInterval2 = (int)floor((turboInterval * 0.5) + 0.5);
                 }
             }
+            else
+            {
+                if (currentTurboMode == GradientTurbo)
+                {
+                    tempInterval2 = (int)floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
+                }
+                else
+                {
+                    double distance = getMouseDistanceFromDeadZone();
+                    if (distance > 0.0)
+                    {
+                        tempInterval2 = (int)floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
+                    }
+                    else
+                    {
+                        tempInterval2 = 0;
+                    }
+                }
+            }
 
-            if (isKeyPressed && turboHold.elapsed() < tempInterval2)
+            if (turboHold.elapsed() < tempInterval2)
             {
                 // Still some valid time left. Continue current action with
                 // remaining time left.
@@ -200,7 +219,7 @@ void JoyAxisButton::turboEvent()
                     turboTimer.start(timerInterval);
                 }
 
-                turboHold.start();
+                turboHold.restart();
                 changeState = false;
                 lastDistance = getMouseDistanceFromDeadZone();
                 //qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
@@ -209,10 +228,10 @@ void JoyAxisButton::turboEvent()
             else
             {
                 // Elapsed time is greater than new interval. Change state.
-                if (isKeyPressed)
-                {
-                    checkmate = turboHold.elapsed();
-                }
+                //if (isKeyPressed)
+                //{
+                //    checkmate = turboHold.elapsed();
+                //}
                 changeState = true;
             }
         }
@@ -252,7 +271,7 @@ void JoyAxisButton::turboEvent()
                         turboTimer.start(timerInterval);
                     }
 
-                    turboHold.start();
+                    turboHold.restart();
                 }
             }
             else
@@ -293,7 +312,7 @@ void JoyAxisButton::turboEvent()
                         turboTimer.start(timerInterval);
                     }
 
-                    turboHold.start();
+                    turboHold.restart();
                 }
 
             }
