@@ -3,7 +3,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h> // for XGrabPointer
-#include "x11info.h"
+#include "x11extras.h"
 #include "qtx11keymapper.h"
 #include "unixcapturewindowutility.h"
 
@@ -30,7 +30,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     int status = 0;
     Display *display = 0;
 
-    QString potentialXDisplayString = X11Info::getInstance()->getXDisplayString();
+    QString potentialXDisplayString = X11Extras::getInstance()->getXDisplayString();
     if (!potentialXDisplayString.isEmpty())
     {
         QByteArray tempByteArray = potentialXDisplayString.toLocal8Bit();

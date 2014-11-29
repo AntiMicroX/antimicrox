@@ -18,7 +18,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
-#include "x11info.h"
+#include "x11extras.h"
 
         #ifdef WITH_XTEST
 #include <X11/extensions/XTest.h>
@@ -411,7 +411,7 @@ int X11KeySymToKeycode(QString key)
 #ifdef WITH_XTEST
         if (handler->getIdentifier() == "xtest")
         {
-            Display* display = X11Info::getInstance()->display();
+            Display* display = X11Extras::getInstance()->display();
             tempcode = XKeysymToKeycode(display, XStringToKeysym(key.toUtf8().data()));
         }
 #endif
@@ -468,10 +468,10 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
 #ifdef WITH_XTEST
         if (handler->getIdentifier() == "xtest")
         {
-            Display* display = X11Info::getInstance()->display();
+            Display* display = X11Extras::getInstance()->display();
             newkey = QString("0x%1").arg(keycode, 0, 16);
             QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
-            QString tempalias = X11Info::getInstance()->getDisplayString(tempkey);
+            QString tempalias = X11Extras::getInstance()->getDisplayString(tempkey);
             if (!tempalias.isEmpty())
             {
                 newkey = tempalias;
@@ -561,7 +561,7 @@ unsigned int X11KeyCodeToX11KeySym(unsigned int keycode)
     return 0;
 #else
     #ifdef WITH_X11
-    Display* display = X11Info::getInstance()->display();
+    Display* display = X11Extras::getInstance()->display();
     unsigned int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
     return tempcode;
     #else
@@ -583,7 +583,7 @@ QString keysymToKeyString(int keysym, unsigned int alias)
 
     if (handler->getIdentifier() == "xtest")
     {
-        Display* display = X11Info::getInstance()->display();
+        Display* display = X11Extras::getInstance()->display();
         unsigned int keycode = 0;
         if (keysym > 0)
         {

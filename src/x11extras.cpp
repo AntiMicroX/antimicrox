@@ -1,13 +1,13 @@
 #include <unistd.h>
 
 //#include <QDebug>
-#include "x11info.h"
+#include "x11extras.h"
 
 #include <X11/Xatom.h>
 
-X11Info* X11Info::_instance = 0;
+X11Extras* X11Extras::_instance = 0;
 
-X11Info::X11Info(QObject *parent) :
+X11Extras::X11Extras(QObject *parent) :
     QObject(parent)
 {
     knownAliases = QHash<QString, QString> ();
@@ -18,7 +18,7 @@ X11Info::X11Info(QObject *parent) :
 /**
  * @brief Close display connection if one exists
  */
-X11Info::~X11Info()
+X11Extras::~X11Extras()
 {
     if (_display)
     {
@@ -28,17 +28,17 @@ X11Info::~X11Info()
     }
 }
 
-X11Info *X11Info::getInstance()
+X11Extras *X11Extras::getInstance()
 {
     if (!_instance)
     {
-        _instance = new X11Info();
+        _instance = new X11Extras();
     }
 
     return _instance;
 }
 
-void X11Info::deleteInstance()
+void X11Extras::deleteInstance()
 {
     if (_instance)
     {
@@ -51,12 +51,12 @@ void X11Info::deleteInstance()
  * @brief Get display instance
  * @return Display struct
  */
-Display* X11Info::display()
+Display* X11Extras::display()
 {
     return _display;
 }
 
-bool X11Info::hasValidDisplay()
+bool X11Extras::hasValidDisplay()
 {
     bool result = _display != NULL;
     return result;
@@ -65,7 +65,7 @@ bool X11Info::hasValidDisplay()
 /**
  * @brief CURRENTLY NOT USED
  */
-void X11Info::closeDisplay()
+void X11Extras::closeDisplay()
 {
     if (_display)
     {
@@ -78,7 +78,7 @@ void X11Info::closeDisplay()
 /**
  * @brief Grab instance of active display.
  */
-void X11Info::syncDisplay()
+void X11Extras::syncDisplay()
 {
     _display = XOpenDisplay(NULL);
     _customDisplayString = "";
@@ -89,7 +89,7 @@ void X11Info::syncDisplay()
  *     on one display while generating events on another during ssh tunneling.
  * @param Valid display string that X can use
  */
-void X11Info::syncDisplay(QString displayString)
+void X11Extras::syncDisplay(QString displayString)
 {
     QByteArray tempByteArray = displayString.toLocal8Bit();
     _display = XOpenDisplay(tempByteArray.constData());
@@ -108,7 +108,7 @@ void X11Info::syncDisplay(QString displayString)
  * @param Screen number. If no value is passed, uses screen 1.
  * @return XID of the window
  */
-unsigned long X11Info::appRootWindow(int screen)
+unsigned long X11Extras::appRootWindow(int screen)
 {
     return screen == -1 ? XDefaultRootWindow(display()) : XRootWindowOfScreen(XScreenOfDisplay(display(), screen));
 }
@@ -119,7 +119,7 @@ unsigned long X11Info::appRootWindow(int screen)
  * @param QString representation of a KeySym string
  * @return Alias string or a blank QString if no alias was found
  */
-QString X11Info::getDisplayString(QString xcodestring)
+QString X11Extras::getDisplayString(QString xcodestring)
 {
     QString temp;
     if (knownAliases.contains(xcodestring))
@@ -130,7 +130,7 @@ QString X11Info::getDisplayString(QString xcodestring)
     return temp;
 }
 
-void X11Info::populateKnownAliases()
+void X11Extras::populateKnownAliases()
 {
     // These aliases are needed for xstrings that would
     // return empty space characters from XLookupString
@@ -146,7 +146,7 @@ void X11Info::populateKnownAliases()
     }
 }
 
-Window X11Info::findParentClient(Window window)
+Window X11Extras::findParentClient(Window window)
 {
     Window parent = 0;
     Window root = 0;
@@ -216,7 +216,7 @@ Window X11Info::findParentClient(Window window)
  * @param Window XID for window of interest
  * @return PID of the application instance corresponding to the window
  */
-int X11Info::getApplicationPid(Window window)
+int X11Extras::getApplicationPid(Window window)
 {
     Atom atom, actual_type;
     int actual_format = 0;
@@ -369,7 +369,7 @@ int X11Info::getApplicationPid(Window window)
  * @param PID of window
  * @return File location of application
  */
-QString X11Info::getApplicationLocation(int pid)
+QString X11Extras::getApplicationLocation(int pid)
 {
     QString exepath;
     if (pid > 0)
@@ -404,7 +404,7 @@ QString X11Info::getApplicationLocation(int pid)
  * @param Top window to check
  * @return Client window XID or 0 if no appropriate window was found
  */
-Window X11Info::findClientWindow(Window window)
+Window X11Extras::findClientWindow(Window window)
 {
     /*Atom actual_type;
     int actual_format = 0;
@@ -504,7 +504,7 @@ Window X11Info::findClientWindow(Window window)
     return finalwindow;
 }
 
-bool X11Info::windowHasProperty(Display *display, Window window, Atom atom)
+bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
 {
     bool result = false;
 
@@ -532,7 +532,7 @@ bool X11Info::windowHasProperty(Display *display, Window window, Atom atom)
     return result;
 }
 
-bool X11Info::windowIsViewable(Display *display, Window window)
+bool X11Extras::windowIsViewable(Display *display, Window window)
 {
     bool result = false;
     XWindowAttributes xwa;
@@ -553,7 +553,7 @@ bool X11Info::windowIsViewable(Display *display, Window window)
  * @param Window
  * @return If a window has a relevant Atom in its properties.
  */
-bool X11Info::isWindowRelevant(Display *display, Window window)
+bool X11Extras::isWindowRelevant(Display *display, Window window)
 {
     bool result = false;
 
@@ -576,7 +576,7 @@ bool X11Info::isWindowRelevant(Display *display, Window window)
     return result;
 }
 
-QString X11Info::getWindowTitle(Window window)
+QString X11Extras::getWindowTitle(Window window)
 {
     QString temp;
 
@@ -628,7 +628,7 @@ QString X11Info::getWindowTitle(Window window)
     return temp;
 }
 
-QString X11Info::getWindowClass(Window window)
+QString X11Extras::getWindowClass(Window window)
 {
     QString temp;
 
@@ -669,7 +669,7 @@ QString X11Info::getWindowClass(Window window)
     return temp;
 }
 
-unsigned long X11Info::getWindowInFocus()
+unsigned long X11Extras::getWindowInFocus()
 {
     unsigned long result = 0;
 
@@ -691,7 +691,7 @@ unsigned long X11Info::getWindowInFocus()
  * @brief Get QString representation of currently utilized X display.
  * @return
  */
-QString X11Info::getXDisplayString()
+QString X11Extras::getXDisplayString()
 {
     return _customDisplayString;
 }

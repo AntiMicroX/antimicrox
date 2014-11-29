@@ -47,7 +47,7 @@
 #include "eventhandlerfactory.h"
 
     #ifdef WITH_X11
-#include "x11info.h"
+#include "x11extras.h"
     #endif
 
 #endif
@@ -231,12 +231,12 @@ int main(int argc, char *argv[])
 
         if (cmdutility.getDisplayString().isEmpty())
         {
-            X11Info::getInstance()->syncDisplay();
+            X11Extras::getInstance()->syncDisplay();
         }
         else
         {
-            X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
-            if (X11Info::getInstance()->display() == NULL)
+            X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
+            if (X11Extras::getInstance()->display() == NULL)
             {
                 errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
-                X11Info::deleteInstance();
+                X11Extras::deleteInstance();
 
                 exit(EXIT_FAILURE);
             }
@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
             if (QApplication::platformName() == QStringLiteral("xcb"))
             {
         #endif
-            X11Info::deleteInstance();
+            X11Extras::deleteInstance();
 
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
             }
@@ -306,7 +306,7 @@ int main(int argc, char *argv[])
             if (QApplication::platformName() == QStringLiteral("xcb"))
             {
         #endif
-            X11Info::deleteInstance();
+            X11Extras::deleteInstance();
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
             }
         #endif
@@ -334,8 +334,8 @@ int main(int argc, char *argv[])
         #endif
         if (!cmdutility.getDisplayString().isEmpty())
         {
-            X11Info::getInstance()->syncDisplay(cmdutility.getDisplayString());
-            if (X11Info::getInstance()->display() == NULL)
+            X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
+            if (X11Extras::getInstance()->display() == NULL)
             {
                 errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
@@ -346,7 +346,7 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
-                X11Info::deleteInstance();
+                X11Extras::deleteInstance();
 
                 exit(EXIT_FAILURE);
             }
@@ -463,7 +463,7 @@ int main(int argc, char *argv[])
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
         #endif
-        X11Info::deleteInstance();
+        X11Extras::deleteInstance();
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
         #endif
@@ -498,7 +498,7 @@ int main(int argc, char *argv[])
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
     #endif
-        X11Info::deleteInstance();
+        X11Extras::deleteInstance();
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
     #endif
@@ -567,7 +567,7 @@ int main(int argc, char *argv[])
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
         #endif
-        X11Info::deleteInstance();
+        X11Extras::deleteInstance();
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
         #endif
@@ -636,7 +636,7 @@ int main(int argc, char *argv[])
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         #endif
-    X11Info::deleteInstance();
+    X11Extras::deleteInstance();
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
         #endif

@@ -167,7 +167,7 @@ if(UNIX)
     )
 
     if(WITH_X11)
-        LIST(APPEND antimicro_SOURCES src/x11info.cpp
+        LIST(APPEND antimicro_SOURCES src/x11extras.cpp
              src/qtx11keymapper.cpp
              src/unixcapturewindowutility.cpp
              src/autoprofilewatcher.cpp
@@ -288,7 +288,7 @@ if(UNIX)
     )
 
     if(WITH_X11)
-        LIST(APPEND antimicro_HEADERS src/x11info.h
+        LIST(APPEND antimicro_HEADERS src/x11extras.h
              src/qtx11keymapper.h
              src/unixcapturewindowutility.h
              src/autoprofilewatcher.h
@@ -675,7 +675,7 @@ if(WIN32)
     set(WIXMSI "${MSIFOLDER}/antimicro.msi")
 
     if(NOT WIXENV)
-        # Display message when WIX is not set up. # No extra target will be added.
+        # Display message when WIX is not set up. No extra target will be added.
         message("MSI package building not possible: WIX environment variable not defined.")
     else()
         # Target to build .msi installer file.

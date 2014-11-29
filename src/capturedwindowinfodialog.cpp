@@ -6,7 +6,7 @@
 #ifdef Q_OS_WIN
 #include "winextras.h"
 #else
-#include "x11info.h"
+#include "x11extras.h"
 #endif
 
 #ifdef Q_OS_WIN
@@ -23,7 +23,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
     selectedMatch = WindowNone;
 
 #ifdef Q_OS_UNIX
-    X11Info *info = X11Info::getInstance();
+    X11Extras *info = X11Extras::getInstance();
     ui->winPathChoiceComboBox->setVisible(false);
 #endif
 
@@ -91,7 +91,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
     int pid = info->getApplicationPid(window);
     if (pid > 0)
     {
-        QString exepath = X11Info::getInstance()->getApplicationLocation(pid);
+        QString exepath = X11Extras::getInstance()->getApplicationLocation(pid);
         if (!exepath.isEmpty())
         {
             ui->winPathLabel->setText(exepath);

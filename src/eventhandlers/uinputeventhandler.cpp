@@ -20,7 +20,7 @@
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
 
-#include <x11info.h>
+#include <x11extras.h>
 
 #endif
 
@@ -98,7 +98,7 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
 
     int xi_opcode, event, error;
     xi_opcode = event = error = 0;
-    Display *display = X11Info::getInstance()->display();
+    Display *display = X11Extras::getInstance()->display();
 
     bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
     if (!result)

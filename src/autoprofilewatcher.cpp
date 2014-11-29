@@ -10,7 +10,7 @@
 #include "autoprofilewatcher.h"
 
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
-#include "x11info.h"
+#include "x11extras.h"
 
 #elif defined(Q_OS_WIN)
 #include "winextras.h"
@@ -79,17 +79,17 @@ void AutoProfileWatcher::runAppCheck()
 #ifdef Q_OS_WIN
     nowWindowName = WinExtras::getCurrentWindowText();
 #else
-    unsigned long currentWindow = X11Info::getInstance()->getWindowInFocus();
+    unsigned long currentWindow = X11Extras::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
     {
-        unsigned long tempWindow = X11Info::getInstance()->findParentClient(currentWindow);
+        unsigned long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
         if (tempWindow > 0)
         {
             currentWindow = tempWindow;
         }
         nowWindow = QString::number(currentWindow);
-        nowWindowClass = X11Info::getInstance()->getWindowClass(currentWindow);
-        nowWindowName = X11Info::getInstance()->getWindowTitle(currentWindow);
+        nowWindowClass = X11Extras::getInstance()->getWindowClass(currentWindow);
+        nowWindowName = X11Extras::getInstance()->getWindowTitle(currentWindow);
         //qDebug() << nowWindowClass;
         //qDebug() << nowWindowName;
     }
@@ -464,15 +464,15 @@ QString AutoProfileWatcher::findAppLocation()
     Window currentWindow = 0;
     int pid = 0;
 
-    currentWindow = X11Info::getInstance()->getWindowInFocus();
+    currentWindow = X11Extras::getInstance()->getWindowInFocus();
     if (currentWindow)
     {
-        pid = X11Info::getInstance()->getApplicationPid(currentWindow);
+        pid = X11Extras::getInstance()->getApplicationPid(currentWindow);
     }
 
     if (pid > 0)
     {
-        exepath = X11Info::getInstance()->getApplicationLocation(pid);
+        exepath = X11Extras::getInstance()->getApplicationLocation(pid);
     }
     #endif
 

@@ -1,12 +1,12 @@
-#ifndef X11INFO_H
-#define X11INFO_H
+#ifndef X11EXTRAS_H
+#define X11EXTRAS_H
 
 #include <QObject>
 #include <QString>
 #include <QHash>
 #include <X11/Xlib.h>
 
-class X11Info : public QObject
+class X11Extras : public QObject
 {
     Q_OBJECT
 public:
@@ -27,12 +27,12 @@ public:
     QString getWindowClass(Window window);
     unsigned long getWindowInFocus();
 
-    static X11Info* getInstance();
+    static X11Extras* getInstance();
     static void deleteInstance();
 
 protected:
-    explicit X11Info(QObject *parent = 0);
-    ~X11Info();
+    explicit X11Extras(QObject *parent = 0);
+    ~X11Extras();
 
     void populateKnownAliases();
     bool windowHasProperty(Display *display, Window window, Atom atom);
@@ -40,7 +40,7 @@ protected:
     bool isWindowRelevant(Display *display, Window window);
 
     Display *_display;
-    static X11Info *_instance;
+    static X11Extras *_instance;
     QHash<QString, QString> knownAliases;
     QString _customDisplayString;
 
@@ -50,4 +50,4 @@ public slots:
     
 };
 
-#endif // X11INFO_H
+#endif // X11EXTRAS_H
