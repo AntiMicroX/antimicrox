@@ -39,7 +39,7 @@
 #endif
 
 #ifdef Q_OS_WIN
-#include "wininfo.h"
+#include "winextras.h"
 #endif
 
 #ifdef Q_OS_UNIX
@@ -202,7 +202,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 #ifdef Q_OS_WIN
     bool shouldAssociateProfiles = settings->value("AssociateProfiles", true).toBool();
 
-    if (!WinInfo::containsFileAssociationinRegistry() && shouldAssociateProfiles)
+    if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
     {
         QMessageBox msg;
         msg.setWindowTitle(tr("File Association"));
@@ -212,7 +212,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         int result = msg.exec();
         if (result == QMessageBox::Yes)
         {
-            WinInfo::writeFileAssocationToRegistry();
+            WinExtras::writeFileAssocationToRegistry();
             settings->setValue("AssociateProfiles", 1);
         }
         else
@@ -274,7 +274,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     }
 
 #ifdef Q_OS_WIN
-    if (!WinInfo::IsRunningAsAdmin())
+    if (!WinExtras::IsRunningAsAdmin())
     {
         if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
         {
@@ -289,11 +289,11 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         ui->uacPushButton->setVisible(false);
     }
 
-    WinInfo::grabCurrentPointerPrecision();
+    WinExtras::grabCurrentPointerPrecision();
     bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
     if (disableEnhandedPoint)
     {
-        WinInfo::disablePointerPrecision();
+        WinExtras::disablePointerPrecision();
     }
 
 #else
@@ -530,9 +530,9 @@ void MainWindow::quitProgram()
         qApp->quit();
 #ifdef Q_OS_WIN
         bool disableEnhancedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
-        if (disableEnhancedPoint && !WinInfo::isUsingEnhancedPointerPrecision())
+        if (disableEnhancedPoint && !WinExtras::isUsingEnhancedPointerPrecision())
         {
-            WinInfo::enablePointerPrecision();
+            WinExtras::enablePointerPrecision();
         }
 #endif
     }
@@ -1307,7 +1307,7 @@ void MainWindow::restartAsElevated()
     int result = msg.exec();
     if (result == QMessageBox::Yes)
     {
-        bool result = WinInfo::elevateAntiMicro();
+        bool result = WinExtras::elevateAntiMicro();
         if (result)
         {
             qApp->quit();

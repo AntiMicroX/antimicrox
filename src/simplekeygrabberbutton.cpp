@@ -5,7 +5,7 @@
 #include "antkeymapper.h"
 
 #ifdef Q_OS_WIN
-#include "wininfo.h"
+#include "winextras.h"
 #endif
 
 #ifdef Q_OS_UNIX
@@ -85,7 +85,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 #ifdef Q_OS_WIN
         // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
         // by checking for extended bit in scan code.
-        int finalvirtual = WinInfo::correctVirtualKey(tempcode, virtualactual);
+        int finalvirtual = WinExtras::correctVirtualKey(tempcode, virtualactual);
         int checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, tempcode);
 
 #else

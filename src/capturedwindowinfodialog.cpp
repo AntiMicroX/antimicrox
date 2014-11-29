@@ -4,7 +4,7 @@
 #include "ui_capturedwindowinfodialog.h"
 
 #ifdef Q_OS_WIN
-#include "wininfo.h"
+#include "winextras.h"
 #else
 #include "x11info.h"
 #endif
@@ -53,7 +53,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
 #endif
 
 #ifdef Q_OS_WIN
-    winName = WinInfo::getCurrentWindowText();
+    winName = WinExtras::getCurrentWindowText();
 #else
     winName = info->getWindowTitle(window);
 #endif
@@ -72,7 +72,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
 
     ui->winPathLabel->clear();
 #ifdef Q_OS_WIN
-    winPath = WinInfo::getForegroundWindowExePath();
+    winPath = WinExtras::getForegroundWindowExePath();
     ui->winPathLabel->setText(winPath);
 
     if (winPath.isEmpty())

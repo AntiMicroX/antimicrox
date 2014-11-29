@@ -31,7 +31,7 @@
 
 #elif defined (Q_OS_WIN)
 #include <qt_windows.h>
-#include "wininfo.h"
+#include "winextras.h"
 
 #endif
 
@@ -79,8 +79,8 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
-        unsigned int scancode = WinInfo::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
-        int extended = (scancode & WinInfo::EXTENDED_FLAG) != 0;
+        unsigned int scancode = WinExtras::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
+        int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
         int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
 
         temp[0].type = INPUT_KEYBOARD;
@@ -427,7 +427,7 @@ int X11KeySymToKeycode(QString key)
 #elif defined (Q_OS_WIN)
     if (key.length() > 0)
     {
-        tempcode = WinInfo::getVirtualKey(key);
+        tempcode = WinExtras::getVirtualKey(key);
         if (tempcode <= 0 && key.length() == 1)
         {
             //qDebug() << "KEY: " << key;
@@ -522,14 +522,14 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
 #elif defined (Q_OS_WIN)
     wchar_t buffer[50] = {0};
 
-    QString tempalias = WinInfo::getDisplayString(keycode);
+    QString tempalias = WinExtras::getDisplayString(keycode);
     if (!tempalias.isEmpty())
     {
         newkey = tempalias;
     }
     else
     {
-        int scancode = WinInfo::scancodeFromVirtualKey(keycode, alias);
+        int scancode = WinExtras::scancodeFromVirtualKey(keycode, alias);
 
         if (keycode >= VK_BROWSER_BACK && keycode <= VK_LAUNCH_APP2)
         {

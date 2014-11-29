@@ -3,7 +3,7 @@
 
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
-#include "wininfo.h"
+#include "winextras.h"
 
 #else
 
@@ -133,7 +133,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 #ifdef Q_OS_WIN
         // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
         // by checking for extended bit in scan code.
-        int finalvirtual = WinInfo::correctVirtualKey(controlcode, virtualactual);
+        int finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
         int checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
 
 #else

@@ -24,7 +24,7 @@
 #include "common.h"
 
 #ifdef Q_OS_WIN
-#include "wininfo.h"
+#include "winextras.h"
 #endif
 
 static const QString RUNATSTARTUPKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
@@ -549,30 +549,30 @@ void MainSettingsDialog::saveNewSettings()
     bool associateProfiles = ui->associateProfilesCheckBox->isChecked();
     settings->setValue("AssociateProfiles", associateProfiles ? "1" : "0");
 
-    bool associationExists = WinInfo::containsFileAssociationinRegistry();
+    bool associationExists = WinExtras::containsFileAssociationinRegistry();
     if (associateProfiles && !associationExists)
     {
-        WinInfo::writeFileAssocationToRegistry();
+        WinExtras::writeFileAssocationToRegistry();
     }
     else if (!associateProfiles && associationExists)
     {
-        WinInfo::removeFileAssociationFromRegistry();
+        WinExtras::removeFileAssociationFromRegistry();
     }
 
     bool disableEnhancePoint = ui->disableWindowsEnhancedPointCheckBox->isChecked();
     bool oldEnhancedValue = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
-    bool usingEnhancedPointer = WinInfo::isUsingEnhancedPointerPrecision();
+    bool usingEnhancedPointer = WinExtras::isUsingEnhancedPointerPrecision();
     settings->setValue("Mouse/DisableWinEnhancedPointer", disableEnhancePoint ? "1" : "0");
 
     if (disableEnhancePoint != oldEnhancedValue)
     {
         if (usingEnhancedPointer && disableEnhancePoint)
         {
-            WinInfo::disablePointerPrecision();
+            WinExtras::disablePointerPrecision();
         }
         else if (!usingEnhancedPointer && !disableEnhancePoint)
         {
-            WinInfo::enablePointerPrecision();
+            WinExtras::enablePointerPrecision();
         }
     }
 

@@ -1,11 +1,11 @@
-#ifndef WININFO_H
-#define WININFO_H
+#ifndef WINEXTRAS_H
+#define WINEXTRAS_H
 
 #include <QObject>
 #include <QString>
 #include <QHash>
 
-class WinInfo : public QObject
+class WinExtras : public QObject
 {
     Q_OBJECT
 public:
@@ -30,10 +30,10 @@ public:
     static bool raiseProcessPriority();
 
 protected:
-    explicit WinInfo(QObject *parent = 0);
+    explicit WinExtras(QObject *parent = 0);
     void populateKnownAliases();
 
-    static WinInfo _instance;
+    static WinExtras _instance;
     QHash<QString, unsigned int> knownAliasesX11SymVK;
     QHash<unsigned int, QString> knownAliasesVKStrings;
     static int originalMouseAccel;
@@ -44,4 +44,4 @@ public slots:
 
 };
 
-#endif // WININFO_H
+#endif // WINEXTRAS_H

@@ -13,7 +13,7 @@
 #include "x11info.h"
 
 #elif defined(Q_OS_WIN)
-#include "wininfo.h"
+#include "winextras.h"
 
 #endif
 
@@ -77,7 +77,7 @@ void AutoProfileWatcher::runAppCheck()
     QString nowWindowName;
 
 #ifdef Q_OS_WIN
-    nowWindowName = WinInfo::getCurrentWindowText();
+    nowWindowName = WinExtras::getCurrentWindowText();
 #else
     unsigned long currentWindow = X11Info::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
@@ -477,7 +477,7 @@ QString AutoProfileWatcher::findAppLocation()
     #endif
 
 #elif defined(Q_OS_WIN)
-    exepath = WinInfo::getForegroundWindowExePath();
+    exepath = WinExtras::getForegroundWindowExePath();
     //qDebug() << exepath;
 #endif
 

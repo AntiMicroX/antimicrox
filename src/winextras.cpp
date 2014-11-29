@@ -8,7 +8,7 @@
 #include <QCoreApplication>
 #include <QDir>
 
-#include "wininfo.h"
+#include "winextras.h"
 #include <shlobj.h>
 
 typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPTSTR, PDWORD);
@@ -27,22 +27,22 @@ static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
 }
 */
 
-const unsigned int WinInfo::EXTENDED_FLAG = 0x100;
-int WinInfo::originalMouseAccel = 0;
+const unsigned int WinExtras::EXTENDED_FLAG = 0x100;
+int WinExtras::originalMouseAccel = 0;
 
 static const QString ROOTASSOCIATIONKEY("HKEY_CURRENT_USER\\Software\\Classes");
 static const QString FILEASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg(".amgp"));
 static const QString PROGRAMASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATIONKEY).arg("AntiMicro.amgp"));
 
-WinInfo WinInfo::_instance;
+WinExtras WinExtras::_instance;
 
-WinInfo::WinInfo(QObject *parent) :
+WinExtras::WinExtras(QObject *parent) :
     QObject(parent)
 {
     populateKnownAliases();
 }
 
-QString WinInfo::getDisplayString(unsigned int virtualkey)
+QString WinExtras::getDisplayString(unsigned int virtualkey)
 {
     QString temp;
     if (virtualkey <= 0)
@@ -57,7 +57,7 @@ QString WinInfo::getDisplayString(unsigned int virtualkey)
     return temp;
 }
 
-unsigned int WinInfo::getVirtualKey(QString codestring)
+unsigned int WinExtras::getVirtualKey(QString codestring)
 {
     int temp = 0;
     if (_instance.knownAliasesX11SymVK.contains(codestring))
@@ -68,7 +68,7 @@ unsigned int WinInfo::getVirtualKey(QString codestring)
     return temp;
 }
 
-void WinInfo::populateKnownAliases()
+void WinExtras::populateKnownAliases()
 {
     // These aliases are needed for xstrings that would
     // return empty space characters from XLookupString
@@ -169,7 +169,7 @@ void WinInfo::populateKnownAliases()
  * @param Virtual key obtained from a key grab event
  * @return Corrected virtual key as an unsigned int
  */
-unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virtualkey)
+unsigned int WinExtras::correctVirtualKey(unsigned int scancode, unsigned int virtualkey)
 {
     int mapvirtual = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
     int extended = (scancode & EXTENDED_FLAG) != 0;
@@ -199,7 +199,7 @@ unsigned int WinInfo::correctVirtualKey(unsigned int scancode, unsigned int virt
  * @param Qt key alias
  * @return Keyboard scan code as an unsigned int
  */
-unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias)
+unsigned int WinExtras::scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias)
 {
     int scancode = 0;
     if (virtualkey == VK_PAUSE)
@@ -246,7 +246,7 @@ unsigned int WinInfo::scancodeFromVirtualKey(unsigned int virtualkey, unsigned i
  *     corresponding exe file path.
  * @return File path of executable
  */
-QString WinInfo::getForegroundWindowExePath()
+QString WinExtras::getForegroundWindowExePath()
 {
     QString exePath;
     HWND foreground = GetForegroundWindow();
@@ -285,7 +285,7 @@ QString WinInfo::getForegroundWindowExePath()
     return exePath;
 }
 
-bool WinInfo::containsFileAssociationinRegistry()
+bool WinExtras::containsFileAssociationinRegistry()
 {
     bool result = false;
 
@@ -299,7 +299,7 @@ bool WinInfo::containsFileAssociationinRegistry()
     return result;
 }
 
-void WinInfo::writeFileAssocationToRegistry()
+void WinExtras::writeFileAssocationToRegistry()
 {
     QSettings fileAssociationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
     fileAssociationReg.setValue("Default", "AntiMicro.amgp");
@@ -315,7 +315,7 @@ void WinInfo::writeFileAssocationToRegistry()
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
 
-void WinInfo::removeFileAssociationFromRegistry()
+void WinExtras::removeFileAssociationFromRegistry()
 {
     QSettings fileAssociationReg(FILEASSOCIATIONKEY, QSettings::NativeFormat);
     QString currentValue = fileAssociationReg.value("Default", "").toString();
@@ -337,7 +337,7 @@ void WinInfo::removeFileAssociationFromRegistry()
  * @brief Attempt to elevate process using runas
  * @return Execution status
  */
-bool WinInfo::elevateAntiMicro()
+bool WinExtras::elevateAntiMicro()
 {
     QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
     QByteArray temp = antiProgramLocation.toUtf8();
@@ -360,7 +360,7 @@ bool WinInfo::elevateAntiMicro()
  * @brief Check if the application is running with administrative privileges.
  * @return Status indicating administrative privileges
  */
-bool WinInfo::IsRunningAsAdmin()
+bool WinExtras::IsRunningAsAdmin()
 {
     BOOL isAdmin = FALSE;
     PSID administratorsGroup;
@@ -383,7 +383,7 @@ bool WinInfo::IsRunningAsAdmin()
 /**
  * @brief Temporarily disable "Enhanced Pointer Precision".
  */
-void WinInfo::disablePointerPrecision()
+void WinExtras::disablePointerPrecision()
 {
     int mouseInfo[3];
     SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
@@ -400,7 +400,7 @@ void WinInfo::disablePointerPrecision()
  *     the program has been running, re-enable "Enhanced Pointer Precision".
  *     Return the mouse behavior to normal.
  */
-void WinInfo::enablePointerPrecision()
+void WinExtras::enablePointerPrecision()
 {
     int mouseInfo[3];
     SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
@@ -416,7 +416,7 @@ void WinInfo::enablePointerPrecision()
  *     option is currently enabled.
  * @return Status of "Enhanced Pointer Precision"
  */
-bool WinInfo::isUsingEnhancedPointerPrecision()
+bool WinExtras::isUsingEnhancedPointerPrecision()
 {
     bool result = false;
 
@@ -436,7 +436,7 @@ bool WinInfo::isUsingEnhancedPointerPrecision()
  *     first starts. Needed to not override setting if the option has
  *     been disabled in Windows by the user.
  */
-void WinInfo::grabCurrentPointerPrecision()
+void WinExtras::grabCurrentPointerPrecision()
 {
     int mouseInfo[3];
     SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
@@ -447,7 +447,7 @@ void WinInfo::grabCurrentPointerPrecision()
  * @brief Get the window text of the window currently in focus.
  * @return Window title of application in focus.
  */
-QString WinInfo::getCurrentWindowText()
+QString WinExtras::getCurrentWindowText()
 {
     QString windowText;
 
@@ -475,7 +475,7 @@ QString WinInfo::getCurrentWindowText()
     return windowText;
 }
 
-bool WinInfo::raiseProcessPriority()
+bool WinExtras::raiseProcessPriority()
 {
     bool result = false;
     result = SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);

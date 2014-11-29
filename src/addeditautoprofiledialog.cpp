@@ -25,7 +25,7 @@
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
 #include "capturedwindowinfodialog.h"
-#include "wininfo.h"
+#include "winextras.h"
 
 #endif
 
@@ -541,7 +541,7 @@ void AddEditAutoProfileDialog::captureWindowsApplicationPath()
     connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
     dialog->show();
 
-    /*QString temp = WinInfo::getForegroundWindowExePath();
+    /*QString temp = WinExtras::getForegroundWindowExePath();
     if (!temp.isEmpty())
     {
         ui->applicationLineEdit->setText(temp);

@@ -2,7 +2,7 @@
 #include "ui_qkeydisplaydialog.h"
 
 #ifdef Q_OS_WIN
-#include "wininfo.h"
+#include "winextras.h"
 #endif
 
 #ifdef Q_OS_UNIX
@@ -83,7 +83,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     unsigned int scancode = event->nativeScanCode();
     unsigned int virtualkey = event->nativeVirtualKey();
 #ifdef Q_OS_WIN
-    unsigned int finalvirtual = WinInfo::correctVirtualKey(scancode, virtualkey);
+    unsigned int finalvirtual = WinExtras::correctVirtualKey(scancode, virtualkey);
 #else
 
     unsigned int finalvirtual = 0;

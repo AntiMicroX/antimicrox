@@ -24,7 +24,7 @@
 #ifdef Q_OS_WIN
 #include <QStyle>
 #include <QStyleFactory>
-#include "wininfo.h"
+#include "winextras.h"
 #endif
 
 #include "inputdevice.h"
@@ -607,7 +607,7 @@ int main(int argc, char *argv[])
     // For now, raise thread priority.
     // TODO: Look into changing process priority.
 #ifdef Q_OS_WIN
-    bool raisedPriority = WinInfo::raiseProcessPriority();
+    bool raisedPriority = WinExtras::raiseProcessPriority();
     if (!raisedPriority)
     {
         outstream << QObject::tr("Could not raise process priority.") << endl;

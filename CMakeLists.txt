@@ -187,7 +187,7 @@ if(UNIX)
     endif(WITH_UINPUT)
 
 elseif(WIN32)
-    LIST(APPEND antimicro_SOURCES src/wininfo.cpp
+    LIST(APPEND antimicro_SOURCES src/winextras.cpp
          src/qtwinkeymapper.cpp
          src/winappprofiletimerdialog.cpp
          src/autoprofilewatcher.cpp
@@ -308,7 +308,7 @@ if(UNIX)
     endif(WITH_UINPUT)
 
 elseif(WIN32)
-    LIST(APPEND antimicro_HEADERS src/wininfo.h
+    LIST(APPEND antimicro_HEADERS src/winextras.h
         src/qtwinkeymapper.h
         src/winappprofiletimerdialog.h
         src/autoprofilewatcher.h
