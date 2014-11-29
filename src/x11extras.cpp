@@ -681,7 +681,7 @@ unsigned long X11Extras::getWindowInFocus()
 
     if (currentWindow > 0)
     {
-        result = (unsigned long)currentWindow;
+        result = static_cast<unsigned long>(currentWindow);
     }
 
     return result;

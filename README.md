@@ -160,7 +160,7 @@ when bundling the Window version for other users.
 * Run "Build All" to have the application and required DLLs installed
 into the final location that will be ready for distribution.
 
-##Building the Windows Installer Package (MSI)
+## Building the Windows Installer Package (MSI)
 
 (these instructions have been tested with WiX 3.8)
 
