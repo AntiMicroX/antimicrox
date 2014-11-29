@@ -251,6 +251,209 @@ void InputDevice::setActiveSetNumber(int index)
 
         // Activate all buttons in the switched set
         current_set = joystick_sets.value(active_set);
+
+        for (int i=0; i < current_set->getNumberSticks(); i++)
+        {
+            JoyControlStick::JoyStickDirections value = stickstates.at(i);
+            bool tempignore = true;
+            QList<JoyControlStickButton*> buttonList;
+            QList<JoyControlStickButton*> oldButtonList;
+            JoyControlStick *stick = current_set->getJoyStick(i);
+            JoyControlStick *oldStick = old_set->getJoyStick(i);
+
+            if (stick->getJoyMode() == JoyControlStick::StandardMode && value)
+            {
+                switch (value)
+                {
+                    case JoyControlStick::StickRightUp:
+                    {
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickUp));
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickRight));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickUp));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickRight));
+                        break;
+                    }
+                    case JoyControlStick::StickRightDown:
+                    {
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickRight));
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickDown));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickRight));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickDown));
+                        break;
+                    }
+                    case JoyControlStick::StickLeftDown:
+                    {
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickDown));
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickLeft));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickDown));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickLeft));
+                        break;
+                    }
+                    case JoyControlStick::StickLeftUp:
+                    {
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickLeft));
+                        buttonList.append(stick->getDirectionButton(JoyControlStick::StickUp));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickLeft));
+                        oldButtonList.append(oldStick->getDirectionButton(JoyControlStick::StickUp));
+                        break;
+                    }
+                    default:
+                    {
+                        buttonList.append(stick->getDirectionButton(value));
+                        oldButtonList.append(oldStick->getDirectionButton(value));
+                    }
+                }
+            }
+            else if (value)
+            {
+                buttonList.append(stick->getDirectionButton(value));
+                oldButtonList.append(oldStick->getDirectionButton(value));
+            }
+
+            QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
+            while (iter.hasNext())
+            {
+                JoyControlStickButton *tempButton = iter.next().value();
+                if (!buttonList.contains(tempButton))
+                {
+                    tempButton->setWhileHeldStatus(false);
+                }
+            }
+
+            for (int j=0; j < buttonList.size(); j++)
+            {
+                JoyControlStickButton *button = buttonList.at(j);
+                JoyControlStickButton *oldButton = oldButtonList.at(j);
+
+                if (button && oldButton)
+                {
+                    if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
+                    {
+                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                        {
+                            // Button from old set involved in a while held set
+                            // change. Carry over to new set button to ensure
+                            // set changes are done in the proper order.
+                            button->setWhileHeldStatus(true);
+                        }
+                        else if (!button->getWhileHeldStatus())
+                        {
+                            // Ensure that set change events are performed if needed.
+                            tempignore = false;
+                        }
+                        else if (!button->getWhileHeldStatus())
+                        {
+                            // Ensure that set change events are performed if needed.
+                            tempignore = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Activate all dpad buttons in the switched set
+        for (int i = 0; i < current_set->getNumberVDPads(); i++)
+        {
+            int value = vdpadstates.at(i);
+            bool tempignore = true;
+            JoyDPad *dpad = current_set->getVDPad(i);
+            QList<JoyDPadButton*> buttonList;
+            QList<JoyDPadButton*> oldButtonList;
+
+            if (dpad->getJoyMode() == JoyDPad::StandardMode && value)
+            {
+                switch (value)
+                {
+                    case JoyDPadButton::DpadRightUp:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadUp));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadRight));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadUp));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadRight));
+                        break;
+                    }
+
+                    case JoyDPadButton::DpadRightDown:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadRight));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadDown));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadRight));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadDown));
+                        break;
+                    }
+                    case JoyDPadButton::DpadLeftDown:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadDown));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadLeft));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadDown));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadLeft));
+                        break;
+                    }
+                    case JoyDPadButton::DpadLeftUp:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadLeft));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadUp));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadLeft));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(JoyDPadButton::DpadUp));
+                        break;
+                    }
+                    default:
+                    {
+                        buttonList.append(dpad->getJoyButton(value));
+                        oldButtonList.append(old_set->getVDPad(i)->getJoyButton(value));
+                    }
+                }
+            }
+            else if (value)
+            {
+                buttonList.append(dpad->getJoyButton(value));
+                oldButtonList.append(old_set->getVDPad(i)->getJoyButton(value));
+            }
+
+            QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
+            while (iter.hasNext())
+            {
+                // Ensure that set change events are performed if needed.
+                JoyDPadButton *button = iter.next().value();
+                if (!buttonList.contains(button))
+                {
+                    button->setWhileHeldStatus(false);
+                }
+            }
+
+            for (int j=0; j < buttonList.size(); j++)
+            {
+                JoyDPadButton *button = buttonList.at(j);
+                JoyDPadButton *oldButton = oldButtonList.at(j);
+
+                if (button && oldButton)
+                {
+                    if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
+                    {
+                        if (value)
+                        {
+                            if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                            {
+                                // Button from old set involved in a while held set
+                                // change. Carry over to new set button to ensure
+                                // set changes are done in the proper order.
+                                button->setWhileHeldStatus(true);
+                            }
+                            else if (!button->getWhileHeldStatus())
+                            {
+                                // Ensure that set change events are performed if needed.
+                                tempignore = false;
+                            }
+                        }
+                        else
+                        {
+                            button->setWhileHeldStatus(false);
+                        }
+                    }
+                }
+            }
+        }
+
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
             bool value = buttonstates.at(i);
@@ -283,49 +486,6 @@ void InputDevice::setActiveSetNumber(int index)
             }
 
             button->joyEvent(value, tempignore);
-        }
-
-        for (int i=0; i < current_set->getNumberSticks(); i++)
-        {
-            JoyControlStick::JoyStickDirections value = stickstates.at(i);
-            bool tempignore = true;
-            JoyControlStick *stick = current_set->getJoyStick(i);
-            JoyControlStick *oldStick = old_set->getJoyStick(i);
-            JoyControlStickButton *oldButton = oldStick->getDirectionButton(value);
-            JoyControlStickButton *button = stick->getDirectionButton(value);
-
-            if (button && oldButton)
-            {
-                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
-                {
-                    if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
-                    {
-                        // Button from old set involved in a while held set
-                        // change. Carry over to new set button to ensure
-                        // set changes are done in the proper order.
-                        button->setWhileHeldStatus(true);
-                    }
-                    else if (!button->getWhileHeldStatus())
-                    {
-                        // Ensure that set change events are performed if needed.
-                        tempignore = false;
-                    }
-                    else if (!button->getWhileHeldStatus())
-                    {
-                        // Ensure that set change events are performed if needed.
-                        tempignore = false;
-                    }
-                }
-            }
-            else if (!button)
-            {
-                QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
-                while (iter.hasNext())
-                {
-                    JoyControlStickButton *tempButton = iter.next().value();
-                    tempButton->setWhileHeldStatus(false);
-                }
-            }
         }
 
         // Activate all axis buttons in the switched set
@@ -366,87 +526,105 @@ void InputDevice::setActiveSetNumber(int index)
         }
 
         // Activate all dpad buttons in the switched set
-        for (int i = 0; i < current_set->getNumberVDPads(); i++)
-        {
-            int value = vdpadstates.at(i);
-            bool tempignore = true;
-            JoyDPad *dpad = current_set->getVDPad(i);
-            JoyDPadButton *button = dpad->getJoyButton(value);
-            JoyDPadButton *oldButton = old_set->getVDPad(i)->getJoyButton(value);
-
-            if (button && oldButton)
-            {
-                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
-                {
-                    if (value)
-                    {
-                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
-                        {
-                            // Button from old set involved in a while held set
-                            // change. Carry over to new set button to ensure
-                            // set changes are done in the proper order.
-                            button->setWhileHeldStatus(true);
-                        }
-                        else if (!button->getWhileHeldStatus())
-                        {
-                            // Ensure that set change events are performed if needed.
-                            tempignore = false;
-                        }
-                    }
-                }
-            }
-            else if (!button)
-            {
-                QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
-                while (iter.hasNext())
-                {
-                    // Ensure that set change events are performed if needed.
-                    JoyDPadButton *button = iter.next().value();
-                    button->setWhileHeldStatus(false);
-                }
-            }
-
-            //dpad->joyEvent(value, tempignore);
-        }
-
-        // Activate all dpad buttons in the switched set
         for (int i = 0; i < current_set->getNumberHats(); i++)
         {
             int value = dpadstates.at(i);
             bool tempignore = true;
             JoyDPad *dpad = current_set->getJoyDPad(i);
-            JoyDPadButton *button = dpad->getJoyButton(value);
-            JoyDPadButton *oldButton = old_set->getJoyDPad(i)->getJoyButton(value);
+            QList<JoyDPadButton*> buttonList;
+            QList<JoyDPadButton*> oldButtonList;
 
-            if (button && oldButton)
+            if (dpad->getJoyMode() == JoyDPad::StandardMode && value)
             {
-                if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
+                switch (value)
                 {
-                    if (value)
+                    case JoyDPadButton::DpadRightUp:
                     {
-                        if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
-                        {
-                            // Button from old set involved in a while held set
-                            // change. Carry over to new set button to ensure
-                            // set changes are done in the proper order.
-                            button->setWhileHeldStatus(true);
-                        }
-                        else if (!button->getWhileHeldStatus())
-                        {
-                            // Ensure that set change events are performed if needed.
-                            tempignore = false;
-                        }
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadUp));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadRight));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadUp));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadRight));
+                        break;
+                    }
+
+                    case JoyDPadButton::DpadRightDown:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadRight));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadDown));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadRight));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadDown));
+                        break;
+                    }
+                    case JoyDPadButton::DpadLeftDown:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadDown));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadLeft));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadDown));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadLeft));
+                        break;
+                    }
+                    case JoyDPadButton::DpadLeftUp:
+                    {
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadLeft));
+                        buttonList.append(dpad->getJoyButton(JoyDPadButton::DpadUp));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadLeft));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(JoyDPadButton::DpadUp));
+                        break;
+                    }
+                    default:
+                    {
+                        buttonList.append(dpad->getJoyButton(value));
+                        oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(value));
                     }
                 }
             }
-            else if (!button)
+            else if (value)
             {
-                QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
-                while (iter.hasNext())
+                buttonList.append(dpad->getJoyButton(value));
+                oldButtonList.append(old_set->getJoyDPad(i)->getJoyButton(value));
+            }
+
+            QHashIterator<int, JoyDPadButton*> iter(*dpad->getJoyButtons());
+            while (iter.hasNext())
+            {
+                // Ensure that set change events are performed if needed.
+                JoyDPadButton *button = iter.next().value();
+                if (!buttonList.contains(button))
                 {
-                    // Ensure that set change events are performed if needed.
-                    JoyDPadButton *button = iter.next().value();
                     button->setWhileHeldStatus(false);
+                }
+            }
+
+            for (int j=0; j < buttonList.size(); j++)
+            {
+                JoyDPadButton *button = buttonList.at(j);
+                JoyDPadButton *oldButton = oldButtonList.at(j);
+
+                if (button && oldButton)
+                {
+                    if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
+                    {
+                        if (value)
+                        {
+                            if (oldButton->getChangeSetCondition() == JoyButton::SetChangeWhileHeld && oldButton->getWhileHeldStatus())
+                            {
+                                // Button from old set involved in a while held set
+                                // change. Carry over to new set button to ensure
+                                // set changes are done in the proper order.
+                                button->setWhileHeldStatus(true);
+                            }
+                            else if (!button->getWhileHeldStatus())
+                            {
+                                // Ensure that set change events are performed if needed.
+                                tempignore = false;
+                            }
+                        }
+                        else
+                        {
+                            button->setWhileHeldStatus(false);
+                        }
+
+                    }
                 }
             }
 
