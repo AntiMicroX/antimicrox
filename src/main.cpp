@@ -604,16 +604,19 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)));
 #endif
 
-    // For now, raise thread priority.
-    // TODO: Look into changing process priority.
+
 #ifdef Q_OS_WIN
+    // Raise process priority. Helps reduce timer delays caused by
+    // the running of other processes.
     bool raisedPriority = WinExtras::raiseProcessPriority();
     if (!raisedPriority)
     {
         outstream << QObject::tr("Could not raise process priority.") << endl;
     }
 #else
-    QThread::currentThread()->setPriority(QThread::HighestPriority);
+    // Raise main thread prority. Helps reduce timer delays caused by
+    // the running of other processes.
+    QThread::currentThread()->setPriority(QThread::HighPriority);
 #endif
     int app_result = a->exec();
 
