@@ -474,3 +474,16 @@ QString WinInfo::getCurrentWindowText()
 
     return windowText;
 }
+
+bool WinInfo::raiseProcessPriority()
+{
+    bool result = false;
+    result = SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
+    /*if (!result)
+    {
+        qDebug() << "COULD NOT RAISE PROCESS PRIORITY";
+    }
+    */
+
+    return result;
+}

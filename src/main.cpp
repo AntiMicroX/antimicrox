@@ -24,6 +24,7 @@
 #ifdef Q_OS_WIN
 #include <QStyle>
 #include <QStyleFactory>
+#include "wininfo.h"
 #endif
 
 #include "inputdevice.h"
@@ -605,7 +606,15 @@ int main(int argc, char *argv[])
 
     // For now, raise thread priority.
     // TODO: Look into changing process priority.
+#ifdef Q_OS_WIN
+    bool raisedPriority = WinInfo::raiseProcessPriority();
+    if (!raisedPriority)
+    {
+        outstream << QObject::tr("Could not raise process priority.") << endl;
+    }
+#else
     QThread::currentThread()->setPriority(QThread::HighestPriority);
+#endif
     int app_result = a->exec();
 
     deleteInputDevices(joysticks);

@@ -44,7 +44,7 @@ const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
 const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
-const int JoyButton::IDLEMOUSEREFRESHRATE = JoyButton::MAXIMUMMOUSEREFRESHRATE;
+const int JoyButton::IDLEMOUSEREFRESHRATE = 100;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -4287,8 +4287,11 @@ void JoyButton::establishMouseTimerConnections()
 
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
-    lastMouseTime.start();
-    staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
+    if (!staticMouseEventTimer.isActive())
+    {
+        lastMouseTime.start();
+        staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
+    }
 }
 
 void JoyButton::setSpringRelativeStatus(bool value)
