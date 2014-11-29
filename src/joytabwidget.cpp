@@ -1003,7 +1003,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         if (!tempfilepath.isEmpty())
         {
             QFileInfo fileInfo(tempfilepath);
-            if (configBox->findData(fileInfo.absoluteFilePath()) == -1)
+            if (fileInfo.exists() && configBox->findData(fileInfo.absoluteFilePath()) == -1)
             {
                 QString profileName = settings->value(controlEntryProfileName.arg(i), "").toString();
                 profileName = !profileName.isEmpty() ? profileName : fileInfo.baseName();
