@@ -56,45 +56,15 @@ void InputDaemon::startWorker()
 void InputDaemon::run ()
 {
     SDL_Event event;
-/*#ifdef USE_SDL_2
-    event.type = SDL_FIRSTEVENT;
-
-#else
-    event.type = SDL_NOEVENT;
-#endif
-*/
 
     if (!stopped)
     {
-        //event = eventWorker->getCurrentEvent();
-
-        //do
         while (SDL_PollEvent(&event) > 0)
         {
             switch (event.type)
             {
                 //qDebug() << QTime::currentTime() << " :";
                 case SDL_JOYBUTTONDOWN:
-                {
-#ifdef USE_SDL_2
-                    InputDevice *joy = trackjoysticks.value(event.jbutton.which);
-#else
-                    InputDevice *joy = joysticks->value(event.jbutton.which);
-#endif
-                    if (joy)
-                    {
-                        SetJoystick* set = joy->getActiveSetJoystick();
-                        JoyButton *button = set->getJoyButton(event.jbutton.button);
-
-                        if (button)
-                        {
-                            button->joyEvent(true);
-                        }
-                    }
-
-                    break;
-                }
-
                 case SDL_JOYBUTTONUP:
                 {
 #ifdef USE_SDL_2
@@ -109,7 +79,7 @@ void InputDaemon::run ()
 
                         if (button)
                         {
-                            button->joyEvent(false);
+                            button->joyEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
                         }
                     }
 
@@ -220,7 +190,6 @@ void InputDaemon::run ()
                     break;
             }
         }
-        //while (SDL_PollEvent(&event) > 0);
     }
 
     //qDebug() << QTime::currentTime() << ": " << "END";
@@ -232,21 +201,6 @@ void InputDaemon::run ()
         }
         emit complete();
         stopped = false;
-
-        // Check for a grabbed instance of an SDL_QUIT event. If the last event was
-        // not an SDL_QUIT event, push an event onto the queue so SdlEventReader
-        // will finish properly.
-/*#ifdef USE_SDL_2
-        if (event.type != SDL_FIRSTEVENT && event.type != SDL_QUIT)
-#else
-        if (event.type != SDL_NOEVENT && event.type != SDL_QUIT)
-#endif
-        {
-            event.type = SDL_QUIT;
-            SDL_PushEvent(&event);
-            QTimer::singleShot(0, eventWorker, SLOT(performWork()));
-        }
-*/
     }
     else
     {

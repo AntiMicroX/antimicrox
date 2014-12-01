@@ -1003,30 +1003,34 @@ void JoyButton::mouseEvent()
                                     easingElapsed = timeElapsed;
                                 }
 
+                                double elapsedDiff = 1.0;
                                 if ((easingElapsed * .001) < easingDuration)
                                 {
-                                    difference = ((easingElapsed * .001) / easingDuration);
+                                    elapsedDiff = ((easingElapsed * .001) / easingDuration);
                                     if (currentCurve == EasingQuadraticCurve)
                                     {
-                                        // Range 0.8 - 1.0
-                                        difference = (1.0 - 0.8) * difference * difference + 0.8;
+                                        // Range 1.0 - 1.5
+                                        elapsedDiff = (1.5 - 1.0) * elapsedDiff * elapsedDiff + 1.0;
                                     }
                                     else
                                     {
-                                        // Range 0.8 - 1.0
-                                        difference = (1.0 - 0.8) * (difference * difference
-                                                     * difference) + 0.8;
+                                        // Range 1.0 - 1.5
+                                        elapsedDiff = (1.5 - 1.0) * (elapsedDiff * elapsedDiff
+                                                     * elapsedDiff) + 1.0;
                                     }
 
                                     //qDebug() << "TIME: " << easingDuration;
                                 }
                                 else
                                 {
-                                    difference = 1.0;
+                                    elapsedDiff = 1.5;
                                 }
 
+                                difference = elapsedDiff * difference;
+
                                 //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0
-                                difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5
+                                //difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5
+                                difference = difference * 1.34286 - 0.51429; // Range 0.56 - 1.5
                             }
                             break;
                         }
