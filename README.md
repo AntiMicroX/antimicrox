@@ -190,6 +190,28 @@ Notes about the WXS file and the building process :
 
 * built MSI package will be placed in /windows
 
+## Testing under Linux
+
+If you are having problems with antimicro detecting a controller or
+detecting all axes and buttons, you should test the controller outside of
+antimicro to check if the problem is with antimicro or not. The two endorsed
+programs for testing gamepads outside of antimicro are **sdl-jstest**
+(**sdl2-jstest**) and **evtest**. SDL 2 utilizes evdev on Linux so performing
+testing with older programs that use joydev won't be as helpful since some
+devices behave a bit differently between the two systems.
+
+(https://github.com/Grumbel/sdl-jstest/)[https://github.com/Grumbel/sdl-jstest/]
+
+## Support
+
+In order to obtain support, you can post an issue on the antimicro GitHub page
+or you can email me at nickles.travis@gmail.com. Please include **antimicro**
+somewhere in the subject line of the email message or it might be skipped.
+One thing to note is that, at this point, I will no longer support any problems
+that might be encountered by RetroRig users.
+
+(https://github.com/Ryochan7/antimicro)[https://github.com/Ryochan7/antimicro]
+
 ## Ideas For Future Features
 
 This section is where some of the ideas for future features
