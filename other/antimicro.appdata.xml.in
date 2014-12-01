@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014 Jeff Backus <jeff.backus@gmail.com> -->
+<component type="desktop">
+ <id>antimicro.desktop</id>
+ <metadata_license>MIT</metadata_license>
+ <project_license>GPL-3.0+</project_license>
+ <name>AntiMicro</name>
+ <summary>Graphical program used to map keyboard buttons and mouse controls to a gamepad</summary>
+ <description>
+  <p>
+    AntiMicro is a graphical program used to map keyboard keys and mouse 
+    controls to a gamepad. This program is useful for playing PC games using a
+    gamepad that do not have any form of built-in gamepad support. AntiMicro 
+    was inspired by QJoyPad but has additional features.
+  </p>
+ </description>
+ <screenshots>
+  <screenshot type="default">
+   <image>https://raw.githubusercontent.com/jsbackus/antimicro/appdata/other/appdata_screenshots/controller_configure01.png</image>
+   <caption>Profile Configuration Dialog</caption>
+  </screenshot>
+  <screenshot>
+   <image>https://raw.githubusercontent.com/jsbackus/antimicro/appdata/other/appdata_screenshots/controller_configure02.png</image>
+   <caption>Key Assignment Dialog</caption>
+  </screenshot>
+  <screenshot>
+   <image>https://raw.githubusercontent.com/jsbackus/antimicro/appdata/other/appdata_screenshots/controller_mapping01.png</image>
+   <caption>Controller Mapping Dialog</caption>
+  </screenshot>
+ </screenshots>
+ <url type="homepage">https://github.com/Ryochan7/antimicro</url>
+ <updatecontact>jeff.backus_at_gmail.com</updatecontact>
+</component>
