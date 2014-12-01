@@ -200,7 +200,7 @@ programs for testing gamepads outside of antimicro are **sdl-jstest**
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems.
 
-(https://github.com/Grumbel/sdl-jstest/)[https://github.com/Grumbel/sdl-jstest/]
+[https://github.com/Grumbel/sdl-jstest/](https://github.com/Grumbel/sdl-jstest/)
 
 ## Support
 
@@ -210,7 +210,7 @@ somewhere in the subject line of the email message or it might be skipped.
 One thing to note is that, at this point, I will no longer support any problems
 that might be encountered by RetroRig users.
 
-(https://github.com/Ryochan7/antimicro)[https://github.com/Ryochan7/antimicro]
+[https://github.com/Ryochan7/antimicro](https://github.com/Ryochan7/antimicro)
 
 ## Ideas For Future Features
 
