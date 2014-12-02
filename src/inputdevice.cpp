@@ -342,11 +342,6 @@ void InputDevice::setActiveSetNumber(int index)
                             // Ensure that set change events are performed if needed.
                             tempignore = false;
                         }
-                        else if (!button->getWhileHeldStatus())
-                        {
-                            // Ensure that set change events are performed if needed.
-                            tempignore = false;
-                        }
                     }
                 }
             }
