@@ -84,6 +84,7 @@ private slots:
     void setButtonCycleResetInterval(double value);
     void setButtonCycleReset(bool enabled);
     void setButtonTurboMode(int value);
+    void showSelectProfileWindow();
 };
 
 #endif // ADVANCEBUTTONDIALOG_H

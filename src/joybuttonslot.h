@@ -14,7 +14,8 @@ class JoyButtonSlot : public QObject
 public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,
                              JoyPause, JoyHold, JoyCycle, JoyDistance,
-                             JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay};
+                             JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
+                             JoyLoadProfile};
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
                                   MouseWheelLeft=6, MouseWheelRight=7};
@@ -48,6 +49,11 @@ public:
     void setEasingStatus(bool isActive);
     QTime* getEasingTime();
 
+    void setTextData(QString textData);
+    QString getTextData();
+
+    bool isValidSlot();
+
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
@@ -63,6 +69,7 @@ protected:
     QElapsedTimer *mouseInterval;
     QTime easingTime;
     bool easingActive;
+    QString textData;
 
 signals:
     

@@ -1,5 +1,7 @@
 //#include <QDebug>
 
+#include <QFileInfo>
+
 #include "joybuttonslot.h"
 
 #include "antkeymapper.h"
@@ -65,9 +67,10 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     deviceCode = slot->deviceCode;
     qkeyaliasCode = slot->qkeyaliasCode;
     mode = slot->mode;
-    distance = 0.0;
+    distance = slot->distance;
     mouseInterval = new QElapsedTimer();
     easingActive = false;
+    textData = slot->getTextData();
 }
 
 JoyButtonSlot::~JoyButtonSlot()
@@ -170,6 +173,8 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == "slot")
     {
+        QString profile;
+
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "slot"))
         {
@@ -182,6 +187,12 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotCode(tempchoice);
                 }
+            }
+            else if (xml->name() == "profile" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                profile = temptext;
+                //this->setTextData(temptext);
             }
             else if (xml->name() == "mode" && xml->isStartElement())
             {
@@ -231,6 +242,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyDelay);
                 }
+                else if (temptext == "loadprofile")
+                {
+                    this->setSlotMode(JoyLoadProfile);
+                }
             }
             else
             {
@@ -239,6 +254,7 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
+
         if (this->getSlotMode() == JoyButtonSlot::JoyKeyboard)
         {
             unsigned int virtualkey = AntKeyMapper::getInstance()->returnVirtualKey(this->getSlotCode());
@@ -257,8 +273,19 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 this->setSlotCode(temp);
             }
         }
+        else if (this->getSlotMode() == JoyButtonSlot::JoyLoadProfile && !profile.isEmpty())
+        {
+            QFileInfo profileInfo(profile);
+            if (!profileInfo.exists() || !(profileInfo.suffix() == "amgp" || profileInfo.suffix() == "xml"))
+            {
+                this->setTextData("");
+            }
+            else
+            {
+                this->setTextData(profile);
+            }
+        }
     }
-
 }
 
 void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
@@ -289,7 +316,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
             //qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
             xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
         }
-
+    }
+    else if (mode == JoyLoadProfile && !textData.isEmpty())
+    {
+        xml->writeTextElement("profile", textData);
     }
     else
     {
@@ -340,6 +370,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyDelay)
     {
         xml->writeCharacters("delay");
+    }
+    else if (mode == JoyLoadProfile)
+    {
+        xml->writeCharacters("loadprofile");
     }
 
     xml->writeEndElement();
@@ -496,6 +530,16 @@ QString JoyButtonSlot::getSlotString()
 
             newlabel.append(temp);
         }
+        else if (mode == JoyLoadProfile)
+        {
+            if (!textData.isEmpty())
+            {
+                QFileInfo profileInfo(textData);
+                QString temp;
+                temp.append(tr("Load %1").arg(profileInfo.baseName()));
+                newlabel.append(temp);
+            }
+        }
     }
     else
     {
@@ -539,4 +583,31 @@ void JoyButtonSlot::setEasingStatus(bool isActive)
 QTime* JoyButtonSlot::getEasingTime()
 {
     return &easingTime;
+}
+
+void JoyButtonSlot::setTextData(QString textData)
+{
+    this->textData = textData;
+}
+
+QString JoyButtonSlot::getTextData()
+{
+    return textData;
+}
+
+bool JoyButtonSlot::isValidSlot()
+{
+    bool result = true;
+    switch (mode)
+    {
+        case JoyLoadProfile:
+        {
+            if (textData.isEmpty())
+            {
+                result = false;
+            }
+        }
+    }
+
+    return result;
 }

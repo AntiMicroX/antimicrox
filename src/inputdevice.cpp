@@ -8,7 +8,7 @@ const int InputDevice::DEFAULTKEYPRESSTIME = 100;
 const unsigned int InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
 const unsigned int InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 
-InputDevice::InputDevice(int deviceIndex, QObject *parent) :
+InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
     buttonDownCount = 0;
@@ -25,6 +25,7 @@ InputDevice::InputDevice(int deviceIndex, QObject *parent) :
 
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
+    this->settings = settings;
 }
 
 InputDevice::~InputDevice()
@@ -1970,4 +1971,17 @@ void InputDevice::setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes thr
 
         cali.insert(axisNum, throttle);
     }
+}
+
+void InputDevice::sendLoadProfileRequest(QString location)
+{
+    if (!location.isEmpty())
+    {
+        emit requestProfileLoad(location);
+    }
+}
+
+AntiMicroSettings* InputDevice::getSettings()
+{
+    return settings;
 }

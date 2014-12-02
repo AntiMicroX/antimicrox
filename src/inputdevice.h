@@ -16,12 +16,13 @@ typedef Sint32 SDL_JoystickID;
 
 #include "setjoystick.h"
 #include "common.h"
+#include "antimicrosettings.h"
 
 class InputDevice : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputDevice(int deviceIndex, QObject *parent = 0);
+    explicit InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent = 0);
     virtual ~InputDevice();
 
     virtual int getNumberButtons();
@@ -89,6 +90,9 @@ public:
     JoyAxis::ThrottleTypes getCalibrationThrottle(int axisNum);
     void setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
 
+    void sendLoadProfileRequest(QString location);
+    AntiMicroSettings *getSettings();
+
     void transferReset();
     void reInitButtons();
 
@@ -103,6 +107,7 @@ protected:
     SDL_Joystick* joyhandle;
     QHash<int, SetJoystick*> joystick_sets;
     QHash<int, JoyAxis::ThrottleTypes> cali;
+    AntiMicroSettings *settings;
     int active_set;
     int joyNumber;
     int buttonDownCount;
@@ -136,6 +141,7 @@ signals:
     void profileUpdated();
     void propertyUpdated();
     void profileNameEdited(QString text);
+    void requestProfileLoad(QString location);
 
 public slots:
     void reset();

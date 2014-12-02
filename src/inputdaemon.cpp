@@ -249,7 +249,7 @@ void InputDaemon::refreshJoysticks()
         if (SDL_IsGameController(i) && !disableGameController)
         {
             SDL_GameController *controller = SDL_GameControllerOpen(i);
-            GameController *damncontroller = new GameController(controller, i, this);
+            GameController *damncontroller = new GameController(controller, i, settings, this);
             SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
             SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
             joysticks->insert(joystickID, damncontroller);
@@ -257,14 +257,14 @@ void InputDaemon::refreshJoysticks()
         }
         else
         {
-            Joystick *curJoystick = new Joystick(joystick, i, this);
+            Joystick *curJoystick = new Joystick(joystick, i, settings, this);
             SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
             joysticks->insert(joystickID, curJoystick);
             trackjoysticks.insert(joystickID, curJoystick);
         }
 #else
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
-        Joystick *curJoystick = new Joystick(joystick, i, this);
+        Joystick *curJoystick = new Joystick(joystick, i, settings, this);
         joysticks->insert(i, curJoystick);
 #endif
     }
@@ -375,7 +375,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
                     joysticks->remove(joystickID);
 
                     SDL_GameController *controller = SDL_GameControllerOpen(i);
-                    GameController *damncontroller = new GameController(controller, i, this);
+                    GameController *damncontroller = new GameController(controller, i, settings, this);
                     SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
                     joystickID = SDL_JoystickInstanceID(sdlStick);
                     joysticks->insert(joystickID, damncontroller);
@@ -446,7 +446,7 @@ void InputDaemon::addInputDevice(int index)
                     SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(sdlStick);
                     if (!joysticks->contains(tempJoystickID))
                     {
-                        GameController *damncontroller = new GameController(controller, index, this);
+                        GameController *damncontroller = new GameController(controller, index, settings, this);
                         joysticks->insert(tempJoystickID, damncontroller);
                         trackcontrollers.insert(tempJoystickID, damncontroller);
 
@@ -458,7 +458,7 @@ void InputDaemon::addInputDevice(int index)
             }
             else
             {
-                Joystick *curJoystick = new Joystick(joystick, index, this);
+                Joystick *curJoystick = new Joystick(joystick, index, settings, this);
                 joysticks->insert(tempJoystickID, curJoystick);
                 trackjoysticks.insert(tempJoystickID, curJoystick);
 

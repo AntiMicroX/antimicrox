@@ -33,7 +33,6 @@ public:
     int getCurrentConfigIndex();
     QString getCurrentConfigName();
     QString getConfigName(int index);
-    void loadConfigFile(QString fileLocation);
     InputDevice *getJoystick();
     void unloadConfig();
     bool isDisplayingNames();
@@ -144,6 +143,7 @@ public slots:
     void changeNameDisplay(bool displayNames);
     void changeCurrentSet(int index);
     void refreshSetButtons();
+    void loadConfigFile(QString fileLocation);
 
 private slots:
     void saveConfigFile();
@@ -169,7 +169,7 @@ private slots:
     void changeSetEight();
     void displayProfileEditNotification();
     void removeProfileEditNotification();
-    void checkForUnsavedProfile(int newindex);
+    void checkForUnsavedProfile(int newindex=-1);
     void refreshButtons();
 
     void checkStickDisplay();

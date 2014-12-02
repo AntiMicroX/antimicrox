@@ -56,6 +56,7 @@ public:
 
     bool insertAssignedSlot(int code, unsigned int alias, int index,
                             JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
 
     void removeAssignedSlot(int index);
 
@@ -213,8 +214,9 @@ protected:
     void findHoldEventEnd();
     bool checkForDelaySequence();
     void checkForPressedSetChange();
-    bool setAssignedSlot(JoyButtonSlot *newslot);
+    bool insertAssignedSlot(JoyButtonSlot *newSlot);
     unsigned int getPreferredKeyPressTime();
+    void checkTurboCondition(JoyButtonSlot *slot);
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 

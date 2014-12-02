@@ -817,6 +817,18 @@ void JoyButton::activateSlots()
                     exit = true;
                 }
             }
+            else if (mode == JoyButtonSlot::JoyLoadProfile)
+            {
+                releaseActiveSlots();
+                slotiter->toBack();
+                exit = true;
+
+                QString location = slot->getTextData();
+                if (!location.isEmpty())
+                {
+                    parentSet->getInputDevice()->sendLoadProfileRequest(location);
+                }
+            }
         }
 
         if (delaySequence && !activeSlots.isEmpty())
@@ -1751,9 +1763,17 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             {
                 JoyButtonSlot *buttonslot = new JoyButtonSlot(this);
                 buttonslot->readConfig(xml);
-                //setAssignedSlot(buttonslot->getSlotCode(), buttonslot->getSlotMode());
-                bool inserted = setAssignedSlot(buttonslot);
-                if (!inserted)
+                bool validSlot = buttonslot->isValidSlot();
+                if (validSlot)
+                {
+                    bool inserted = insertAssignedSlot(buttonslot);
+                    if (!inserted)
+                    {
+                        delete buttonslot;
+                        buttonslot = 0;
+                    }
+                }
+                else
                 {
                     delete buttonslot;
                     buttonslot = 0;
@@ -2099,6 +2119,18 @@ QString JoyButton::getActiveZoneSummary()
 
                     break;
                 }
+                case JoyButtonSlot::JoyLoadProfile:
+                {
+                    QString temp = slot->getSlotString();
+                    if (behindHold)
+                    {
+                        temp.prepend("[H] ");
+                        behindHold = false;
+                    }
+                    stringlist.append(temp);
+                    i++;
+                    break;
+                }
                 default:
                 {
                     iter->toBack();
@@ -2187,15 +2219,7 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
 
     if (slotInserted)
     {
-        if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
-            slot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
-            slot->getSlotMode() == JoyButtonSlot::JoyRelease
-           )
-        {
-            setUseTurbo(false);
-        }
-
+        checkTurboCondition(slot);
         emit slotsChanged();
     }
     else
@@ -2234,15 +2258,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::Joy
 
     if (slotInserted)
     {
-        if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
-            slot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
-            slot->getSlotMode() == JoyButtonSlot::JoyRelease
-           )
-        {
-            setUseTurbo(false);
-        }
-
+        checkTurboCondition(slot);
         emit slotsChanged();
     }
     else
@@ -2287,6 +2303,13 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
         if (index >= 0 && index < assignments.count())
         {
             // Insert slot and move existing slots.
+            JoyButtonSlot *temp = assignments.at(index);
+            if (temp)
+            {
+                delete temp;
+                temp = 0;
+            }
+
             assignments.replace(index, slot);
         }
         else if (index >= assignments.count())
@@ -2295,15 +2318,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
             assignments.append(slot);
         }
 
-        if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
-            slot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
-            slot->getSlotMode() == JoyButtonSlot::JoyRelease
-           )
-        {
-            setUseTurbo(false);
-        }
-
+        checkTurboCondition(slot);
         emit slotsChanged();
     }
     else
@@ -2348,7 +2363,14 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyB
         if (index >= 0 && index < assignments.count())
         {
             // Slot already exists. Override code and place into desired slot
-            assignments.insert(index, slot);
+            JoyButtonSlot *temp = assignments.at(index);
+            if (temp)
+            {
+                delete temp;
+                temp = 0;
+            }
+
+            assignments.replace(index, slot);
         }
         else if (index >= assignments.count())
         {
@@ -2356,15 +2378,7 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyB
             assignments.append(slot);
         }
 
-        if (slot->getSlotMode() == JoyButtonSlot::JoyPause ||
-            slot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            slot->getSlotMode() == JoyButtonSlot::JoyDistance ||
-            slot->getSlotMode() == JoyButtonSlot::JoyRelease
-           )
-        {
-            setUseTurbo(false);
-        }
-
+        checkTurboCondition(slot);
         emit slotsChanged();
     }
     else
@@ -2379,9 +2393,45 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyB
     return permitSlot;
 }
 
-bool JoyButton::setAssignedSlot(JoyButtonSlot *newslot)
+bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
 {
-    bool slotInserted = false;
+    bool permitSlot = false;
+
+    if (newSlot->getSlotMode() == JoyButtonSlot::JoyDistance)
+    {
+        if (newSlot->getSlotCode() >= 1 && newSlot->getSlotCode() <= 100)
+        {
+            double tempDistance = getTotalSlotDistance(newSlot);
+            if (tempDistance <= 1.0)
+            {
+                permitSlot = true;
+            }
+        }
+    }
+    else if (newSlot->getSlotMode() == JoyButtonSlot::JoyLoadProfile)
+    {
+        permitSlot = true;
+    }
+    else if (newSlot->getSlotCode() >= 0)
+    {
+        permitSlot = true;
+    }
+
+    if (permitSlot)
+    {
+        checkTurboCondition(newSlot);
+        assignments.append(newSlot);
+
+        emit slotsChanged();
+    }
+
+    return permitSlot;
+}
+
+bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
+{
+    bool permitSlot = false;
+    JoyButtonSlot *newslot = new JoyButtonSlot(otherSlot, this);
 
     if (newslot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
@@ -2390,32 +2440,51 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *newslot)
             double tempDistance = getTotalSlotDistance(newslot);
             if (tempDistance <= 1.0)
             {
-                assignments.append(newslot);
-                slotInserted = true;
+                permitSlot = true;
             }
         }
     }
+    else if (newslot->getSlotMode() == JoyButtonSlot::JoyLoadProfile)
+    {
+        permitSlot = true;
+    }
     else if (newslot->getSlotCode() >= 0)
     {
-        assignments.append(newslot);
-        slotInserted = true;
+        permitSlot = true;
     }
 
-    if (slotInserted)
+    if (permitSlot)
     {
-        if (newslot->getSlotMode() == JoyButtonSlot::JoyPause ||
-            newslot->getSlotMode() == JoyButtonSlot::JoyHold ||
-            newslot->getSlotMode() == JoyButtonSlot::JoyDistance ||
-            newslot->getSlotMode() == JoyButtonSlot::JoyRelease
-           )
+        checkTurboCondition(newslot);
+
+        if (index >= 0 && index < assignments.count())
         {
-            setUseTurbo(false);
+            // Slot already exists. Override code and place into desired slot
+            JoyButtonSlot *temp = assignments.at(index);
+            if (temp)
+            {
+                delete temp;
+                temp = 0;
+                //assignments.insert(index, temp);
+            }
+
+            assignments.replace(index, newslot);
+        }
+        else if (index >= assignments.count())
+        {
+            // Append code into a new slot
+            assignments.append(newslot);
         }
 
         emit slotsChanged();
     }
+    else
+    {
+        delete newslot;
+        newslot = 0;
+    }
 
-    return slotInserted;
+    return permitSlot;
 }
 
 QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
@@ -4322,7 +4391,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     {
         JoyButtonSlot *slot = iter.next();
         JoyButtonSlot *newslot = new JoyButtonSlot(slot, destButton);
-        destButton->setAssignedSlot(newslot);
+        destButton->insertAssignedSlot(newslot);
         //destButton->assignments.append(slot);
     }
 
@@ -4422,6 +4491,10 @@ JoyButtonMouseHelper* JoyButton::getMouseHelper()
     return &mouseHelper;
 }
 
+/**
+ * @brief Get the list of buttons that have a pending mouse movement event.
+ * @return QList<JoyButton*>*
+ */
 QList<JoyButton*>* JoyButton::getPendingMouseButtons()
 {
     return &pendingMouseButtons;
@@ -4450,11 +4523,19 @@ void JoyButton::setWeightModifier(double modifier)
     }
 }
 
+/**
+ * @brief Get mouse history buffer size.
+ * @return Mouse history buffer size
+ */
 int JoyButton::getMouseHistorySize()
 {
     return mouseHistorySize;
 }
 
+/**
+ * @brief Set mouse history buffer size used for mouse smoothing.
+ * @param Mouse history buffer size
+ */
 void JoyButton::setMouseHistorySize(int size)
 {
     if (size >= 1 && size <= MAXIMUMMOUSEHISTORYSIZE)
@@ -4466,12 +4547,19 @@ void JoyButton::setMouseHistorySize(int size)
     }
 }
 
-
+/**
+ * @brief Get active mouse movement refresh rate.
+ * @return
+ */
 int JoyButton::getMouseRefreshRate()
 {
     return mouseRefreshRate;
 }
 
+/**
+ * @brief Set the mouse refresh rate when a mouse slot is active.
+ * @param Refresh rate in ms.
+ */
 void JoyButton::setMouseRefreshRate(int refresh)
 {
     if (refresh >= 1 && refresh <= 16)
@@ -4480,11 +4568,31 @@ void JoyButton::setMouseRefreshRate(int refresh)
         if (staticMouseEventTimer.isActive())
         {
             lastMouseTime.restart();
-            staticMouseEventTimer.start(mouseRefreshRate);
+            //staticMouseEventTimer.start(mouseRefreshRate);
 
             // Clear current mouse history
             mouseHistoryX.clear();
             mouseHistoryY.clear();
+        }
+    }
+}
+
+/**
+ * @brief Check if turbo should be disabled for a slot
+ * @param JoyButtonSlot to check
+ */
+void JoyButton::checkTurboCondition(JoyButtonSlot *slot)
+{
+    JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+    switch (mode)
+    {
+        case JoyButtonSlot::JoyPause:
+        case JoyButtonSlot::JoyHold:
+        case JoyButtonSlot::JoyDistance:
+        case JoyButtonSlot::JoyRelease:
+        case JoyButtonSlot::JoyLoadProfile:
+        {
+            setUseTurbo(false);
         }
     }
 }

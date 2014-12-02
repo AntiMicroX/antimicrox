@@ -1,4 +1,5 @@
 //#include <QDebug>
+#include <QFileDialog>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <cmath>
@@ -45,7 +46,18 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         JoyButtonSlot *buttonslot = iter.next();
         SimpleKeyGrabberButton *existingCode = new SimpleKeyGrabberButton(this);
         existingCode->setText(buttonslot->getSlotString());
-        existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotCodeAlias(), buttonslot->getSlotMode());
+        if (buttonslot->getSlotMode() == JoyButtonSlot::JoyLoadProfile)
+        {
+            if (!buttonslot->getTextData().isEmpty())
+            {
+                existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyLoadProfile);
+                existingCode->setToolTip(buttonslot->getTextData());
+            }
+        }
+        else
+        {
+            existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotCodeAlias(), buttonslot->getSlotMode());
+        }
 
         QListWidgetItem *item = new QListWidgetItem();
         item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(existingCode));
@@ -145,6 +157,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckbox, SLOT(setChecked(bool)));
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
     connect(ui->turboModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setButtonTurboMode(int)));
+    connect(ui->loadProfilePushButton, SIGNAL(clicked()), this, SLOT(showSelectProfileWindow()));
 }
 
 AdvanceButtonDialog::~AdvanceButtonDialog()
@@ -995,5 +1008,25 @@ void AdvanceButtonDialog::setButtonTurboMode(int value)
     else if (value == 2)
     {
         this->button->setTurboMode(JoyButton::PulseTurbo);
+    }
+}
+
+void AdvanceButtonDialog::showSelectProfileWindow()
+{
+    AntiMicroSettings *settings = this->button->getParentSet()->getInputDevice()->getSettings();
+
+    QString lookupDir = PadderCommon::preferredProfileDir(settings);
+    QString filename = QFileDialog::getOpenFileName(this, tr("Choose Profile"), lookupDir, tr("Config Files (*.amgp *.xml)"));
+    if (!filename.isEmpty())
+    {
+        int index = ui->slotListWidget->currentRow();
+        SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        tempbutton->setValue(filename, JoyButtonSlot::JoyLoadProfile);
+        // Stop all events on JoyButton
+        this->button->eventReset();
+
+        this->button->setAssignedSlot(tempbutton->getValue(), index);
+        tempbutton->setToolTip(filename);
+        updateSlotsScrollArea(0);
     }
 }

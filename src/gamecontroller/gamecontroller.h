@@ -14,7 +14,7 @@ class GameController : public InputDevice
 {
     Q_OBJECT
 public:
-    explicit GameController(SDL_GameController *controller, int deviceIndex, QObject *parent = 0);
+    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, QObject *parent = 0);
 
     virtual QString getName();
     virtual QString getSDLName();

@@ -462,6 +462,8 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshCopySetActions()));
     connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
+    connect(joystick, SIGNAL(requestProfileLoad(QString)), this, SLOT(loadConfigFile(QString)), Qt::QueuedConnection);
+
     reconnectCheckUnsavedEvent();
     reconnectMainComboBoxEvents();
 }
@@ -471,7 +473,7 @@ void JoyTabWidget::openConfigFileDialog()
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
 
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, tr("Config Files (*.amgp *.xml)"));
 
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -556,7 +558,7 @@ void JoyTabWidget::saveConfigFile()
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -717,7 +719,7 @@ void JoyTabWidget::saveAsConfig()
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, QString("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -727,7 +729,7 @@ void JoyTabWidget::saveAsConfig()
     {
         QString configPath = configBox->itemData(index).toString();
         QFileInfo temp(configPath);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), QString("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -823,6 +825,8 @@ void JoyTabWidget::changeJoyConfig(int index)
     {
         removeCurrentButtons();
 
+        joystick->resetButtonDownCount();
+
         XMLConfigReader reader;
         reader.setFileName(filename);
         reader.configJoystick(joystick);
@@ -867,8 +871,10 @@ void JoyTabWidget::changeJoyConfig(int index)
     else if (index == 0)
     {
         removeCurrentButtons();
+
         //joystick->reset();
         joystick->transferReset();
+        joystick->resetButtonDownCount();
         joystick->reInitButtons();
 
         fillButtons();
@@ -1189,26 +1195,38 @@ void JoyTabWidget::showStickAssignmentDialog()
 
 void JoyTabWidget::loadConfigFile(QString fileLocation)
 {
-    int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
-    QFileInfo fileinfo(fileLocation);
-    if (fileinfo.exists() && (fileinfo.suffix() == "xml" || fileinfo.suffix() == "amgp"))
+    checkForUnsavedProfile(-1);
+
+    if (!joystick->isDeviceEdited())
     {
-        int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
-        if (searchIndex == -1)
+        int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
+        QFileInfo fileinfo(fileLocation);
+        if (fileinfo.exists() && (fileinfo.suffix() == "xml" || fileinfo.suffix() == "amgp"))
         {
-            if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
+            int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
+            if (searchIndex == -1)
             {
-                configBox->removeItem(numberRecentProfiles-1);
-                //configBox->removeItem(5);
+                disconnectCheckUnsavedEvent();
+                disconnectMainComboBoxEvents();
+
+                if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
+                {
+                    configBox->removeItem(numberRecentProfiles-1);
+                    //configBox->removeItem(5);
+                }
+                configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+
+                reconnectCheckUnsavedEvent();
+                reconnectMainComboBoxEvents();
+
+                configBox->setCurrentIndex(1);
+                emit joystickConfigChanged(joystick->getJoyNumber());
             }
-            configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
-            configBox->setCurrentIndex(1);
-            emit joystickConfigChanged(joystick->getJoyNumber());
-        }
-        else if (searchIndex != configBox->currentIndex())
-        {
-            configBox->setCurrentIndex(searchIndex);
-            emit joystickConfigChanged(joystick->getJoyNumber());
+            else if (searchIndex != configBox->currentIndex())
+            {
+                configBox->setCurrentIndex(searchIndex);
+                emit joystickConfigChanged(joystick->getJoyNumber());
+            }
         }
     }
 }
@@ -1436,7 +1454,10 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
         disconnectCheckUnsavedEvent();
         disconnectMainComboBoxEvents();
 
-        configBox->setCurrentIndex(comboBoxIndex);
+        if (configBox->currentIndex() != comboBoxIndex)
+        {
+            configBox->setCurrentIndex(comboBoxIndex);
+        }
 
         QMessageBox msg;
         msg.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
@@ -1457,7 +1478,11 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
             saveConfigFile();
             reconnectCheckUnsavedEvent();
             reconnectMainComboBoxEvents();
-            configBox->setCurrentIndex(newindex);
+            if (newindex > -1)
+            {
+                configBox->setCurrentIndex(newindex);
+            }
+
         }
         else if (status == QMessageBox::Discard)
         {
@@ -1465,7 +1490,11 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
             configBox->setItemText(comboBoxIndex, oldProfileName);
             reconnectCheckUnsavedEvent();
             reconnectMainComboBoxEvents();
-            configBox->setCurrentIndex(newindex);
+            if (newindex > -1)
+            {
+                configBox->setCurrentIndex(newindex);
+            }
+
         }
         else if (status == QMessageBox::Cancel)
         {

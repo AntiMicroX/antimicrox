@@ -4,8 +4,9 @@
 
 const QString GameController::xmlName = "gamecontroller";
 
-GameController::GameController(SDL_GameController *controller, int deviceIndex, QObject *parent) :
-    InputDevice(deviceIndex, parent)
+GameController::GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings,
+                               QObject *parent) :
+    InputDevice(deviceIndex, settings, parent)
 {
     this->controller = controller;
     SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);

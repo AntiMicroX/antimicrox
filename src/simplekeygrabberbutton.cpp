@@ -274,6 +274,22 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
     setText(buttonslot.getSlotString());
 }
 
+void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInputAction mode)
+{
+    switch (mode)
+    {
+        case JoyButtonSlot::JoyLoadProfile:
+        {
+            buttonslot.setTextData(value);
+            buttonslot.setSlotMode(mode);
+            edited = true;
+            break;
+        }
+    }
+
+    setText(buttonslot.getSlotString());
+}
+
 JoyButtonSlot* SimpleKeyGrabberButton::getValue()
 {
     return &buttonslot;

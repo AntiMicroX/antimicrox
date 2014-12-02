@@ -270,6 +270,13 @@ has passed.</string>
                </property>
               </widget>
              </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="loadProfilePushButton">
+               <property name="text">
+                <string>Load</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>
