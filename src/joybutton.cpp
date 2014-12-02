@@ -4565,10 +4565,20 @@ void JoyButton::setMouseRefreshRate(int refresh)
     if (refresh >= 1 && refresh <= 16)
     {
         mouseRefreshRate = refresh;
+
         if (staticMouseEventTimer.isActive())
         {
             lastMouseTime.restart();
-            //staticMouseEventTimer.start(mouseRefreshRate);
+            if (staticMouseEventTimer.interval() != IDLEMOUSEREFRESHRATE &&
+                staticMouseEventTimer.interval() != 0)
+            {
+                staticMouseEventTimer.start(mouseRefreshRate);
+            }
+            else
+            {
+                // Restart QTimer to keep QTimer in line with QTime
+                staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
+            }
 
             // Clear current mouse history
             mouseHistoryX.clear();
