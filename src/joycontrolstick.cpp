@@ -215,6 +215,10 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
             determineFourWayDiagonalEvent(eventbutton3);
         }
     }
+    else
+    {
+        currentDirection = StickCentered;
+    }
 
     /*
      * Release any currently active stick buttons.
