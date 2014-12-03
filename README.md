@@ -207,8 +207,6 @@ devices behave a bit differently between the two systems.
 In order to obtain support, you can post an issue on the antimicro GitHub page
 or you can email me at nickles.travis@gmail.com. Please include **antimicro**
 somewhere in the subject line of the email message or it might be skipped.
-One thing to note is that, at this point, I will no longer provide support
-for any problems that might be encountered by RetroRig users.
 
 [https://github.com/Ryochan7/antimicro](https://github.com/Ryochan7/antimicro)
 
