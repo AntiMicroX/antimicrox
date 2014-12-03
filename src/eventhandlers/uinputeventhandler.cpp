@@ -139,7 +139,8 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
 
             int num_feedbacks = 0;
             int feedback_id = -1;
-            XFeedbackState *temp = XGetFeedbackControl(display, device, &num_feedbacks);
+            XFeedbackState *feedbacks = XGetFeedbackControl(display, device, &num_feedbacks);
+            XFeedbackState *temp = feedbacks;
             for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
             {
                 if (temp->c_class == PtrFeedbackClass)
@@ -152,6 +153,9 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
                     temp = (XFeedbackState*) ((char*) temp + temp->length);
                 }
             }
+
+            XFree(feedbacks);
+            feedbacks = temp = 0;
 
             if (feedback_id <= -1)
             {

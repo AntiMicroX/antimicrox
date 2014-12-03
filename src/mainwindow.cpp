@@ -313,7 +313,7 @@ void MainWindow::fillButtons(InputDevice *joystick)
 {
     int joyindex = joystick->getJoyNumber();
     JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
-    tabwidget->fillButtons();
+    tabwidget->refreshButtons();
 }
 
 void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
@@ -333,7 +333,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         QString joytabName = joystick->getSDLName();
         joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
-        tabwidget->fillButtons();
+        tabwidget->refreshButtons();
         connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
 #ifdef USE_SDL_2
         connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
@@ -414,14 +414,23 @@ void MainWindow::populateTrayIcon()
                 joysticksubMenu = trayIconMenu->addMenu(joytabName);
             }
 
-            JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(i);
+            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
             QHash<int, QString> *configs = widget->recentConfigs();
             QHashIterator<int, QString> configIter(*configs);
             QList<QAction*> tempProfileList;
             while (configIter.hasNext())
             {
                 configIter.next();
-                QAction *newaction = new QAction(configIter.value(), joysticksubMenu);
+                QAction *newaction = 0;
+                if (joysticksubMenu)
+                {
+                    newaction = new QAction(configIter.value(), joysticksubMenu);
+                }
+                else
+                {
+                    newaction = new QAction(configIter.value(), trayIconMenu);
+                }
+
                 newaction->setCheckable(true);
                 newaction->setChecked(false);
 
@@ -430,9 +439,9 @@ void MainWindow::populateTrayIcon()
                     newaction->setChecked(true);
                 }
 
-                QHash<QString, QVariant> *tempmap = new QHash<QString, QVariant> ();
-                tempmap->insert(QString::number(i), QVariant (configIter.key()));
-                QVariant tempvar (*tempmap);
+                QHash<QString, QVariant> tempmap;
+                tempmap.insert(QString::number(i), QVariant (configIter.key()));
+                QVariant tempvar (tempmap);
                 newaction->setData(tempvar);
                 connect(newaction, SIGNAL(triggered(bool)), this, SLOT(profileTrayActionTriggered(bool)));
 
@@ -449,7 +458,16 @@ void MainWindow::populateTrayIcon()
             delete configs;
             configs = 0;
 
-            QAction *newaction = new QAction(tr("Open File"), joysticksubMenu);
+            QAction *newaction = 0;
+            if (joysticksubMenu)
+            {
+                newaction = new QAction(tr("Open File"), joysticksubMenu);
+            }
+            else
+            {
+                newaction = new QAction(tr("Open File"), trayIconMenu);
+            }
+
             newaction->setIcon(QIcon::fromTheme("document-open"));
             connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
 
@@ -1368,7 +1386,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->insertTab(index, tabwidget, joytabName);
-    tabwidget->fillButtons();
+    tabwidget->refreshButtons();
     ui->tabWidget->setCurrentIndex(index);
 
     connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
@@ -1436,7 +1454,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->addTab(tabwidget, joytabName);
     tabwidget->loadDeviceSettings();
-    tabwidget->fillButtons();
+    tabwidget->refreshButtons();
 
     // Refresh tab text to reflect new index values.
     for (int i=0; i < ui->tabWidget->count(); i++)

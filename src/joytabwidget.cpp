@@ -1695,7 +1695,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
     int row = 0;
     int column = 0;
 
-    QWidget *child = 0;
+    //QWidget *child = 0;
     QGridLayout *current_layout = 0;
     switch (set->getIndex())
     {
@@ -1743,13 +1743,14 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             break;
     }
 
-    while (current_layout && current_layout->count() > 0)
+    /*while (current_layout && current_layout->count() > 0)
     {
         child = current_layout->takeAt(0)->widget();
         current_layout->removeWidget (child);
         delete child;
         child = 0;
     }
+    */
 
     SetJoystick *currentSet = set;
     currentSet->establishPropertyUpdatedConnection();
@@ -1813,7 +1814,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
     if (stickGroup)
     {
         QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
-        QVBoxLayout *tempvbox = new QVBoxLayout();
+        QVBoxLayout *tempvbox = new QVBoxLayout;
         tempvbox->addLayout(stickGrid);
         tempvbox->addItem(tempspacer);
         stickGroup->setLayout(tempvbox);
@@ -1933,7 +1934,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
     if (hatGroup)
     {
         QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
-        QVBoxLayout *tempvbox = new QVBoxLayout();
+        QVBoxLayout *tempvbox = new QVBoxLayout;
         tempvbox->addLayout(hatGrid);
         tempvbox->addItem(tempspacer);
         hatGroup->setLayout(tempvbox);

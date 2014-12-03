@@ -142,8 +142,8 @@ public slots:
     void loadDeviceSettings();
     void changeNameDisplay(bool displayNames);
     void changeCurrentSet(int index);
-    void refreshSetButtons();
     void loadConfigFile(QString fileLocation);
+    void refreshButtons();
 
 private slots:
     void saveConfigFile();
@@ -170,7 +170,6 @@ private slots:
     void displayProfileEditNotification();
     void removeProfileEditNotification();
     void checkForUnsavedProfile(int newindex=-1);
-    void refreshButtons();
 
     void checkStickDisplay();
     void checkDPadButtonDisplay();
@@ -185,6 +184,7 @@ private slots:
     void refreshCopySetActions();
     void performSetCopy();
     void disableCopyCurrentSet();
+    void refreshSetButtons();
 
 #ifdef USE_SDL_2
     void openGameControllerMappingWindow();

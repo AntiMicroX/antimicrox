@@ -106,7 +106,9 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
 
     establishMouseTimerConnections();
 
-    this->reset();
+    // Make sure to call before calling reset
+    this->resetProperties();
+
     this->index = index;
     this->originset = originset;
 
@@ -397,54 +399,7 @@ void JoyButton::reset()
     mouseWheelVerticalEventQueue.clear();
     mouseWheelHorizontalEventQueue.clear();
 
-    currentCycle = 0;
-    previousCycle = 0;
-    currentPause = 0;
-    currentHold = 0;
-    currentDistance = 0;
-    currentRawValue = 0;
-    currentMouseEvent = 0;
-    currentRelease = 0;
-    currentWheelVerticalEvent = 0;
-    currentWheelHorizontalEvent = 0;
-    currentKeyPress = 0;
-    currentDelay = 0;
-
-    isKeyPressed = isButtonPressed = false;
-    quitEvent = true;
-
-    toggle = false;
-    turboInterval = 0;
-    isDown = false;
-    toggleActiveState = false;
-    useTurbo = false;
-    mouseSpeedX = 50;
-    mouseSpeedY = 50;
-    wheelSpeedX = 20;
-    wheelSpeedY = 20;
-    mouseMode = MouseCursor;
-    mouseCurve = DEFAULTMOUSECURVE;
-    springWidth = 0;
-    springHeight = 0;
-    sensitivity = 1.0;
-    smoothing = false;
-    setSelection = -1;
-    setSelectionCondition = SetChangeDisabled;
-    ignoresets = false;
-    ignoreEvents = false;
-    whileHeldStatus = false;
-    buttonName.clear();
-    actionName.clear();
-    cycleResetActive = false;
-    cycleResetInterval = 0;
-    relativeSpring = false;
-    lastDistance = 0.0;
-    lastWheelVerticalDistance = 0.0;
-    lastWheelHorizontalDistance = 0.0;
-    tempTurboInterval = 0;
-    //currentTurboMode = GradientTurbo;
-    currentTurboMode = DEFAULTTURBOMODE;
-    easingDuration = DEFAULTEASINGDURATION;
+    resetProperties();
 }
 
 void JoyButton::reset(int index)
@@ -4607,4 +4562,56 @@ void JoyButton::checkTurboCondition(JoyButtonSlot *slot)
             setUseTurbo(false);
         }
     }
+}
+
+void JoyButton::resetProperties()
+{
+    currentCycle = 0;
+    previousCycle = 0;
+    currentPause = 0;
+    currentHold = 0;
+    currentDistance = 0;
+    currentRawValue = 0;
+    currentMouseEvent = 0;
+    currentRelease = 0;
+    currentWheelVerticalEvent = 0;
+    currentWheelHorizontalEvent = 0;
+    currentKeyPress = 0;
+    currentDelay = 0;
+
+    isKeyPressed = isButtonPressed = false;
+    quitEvent = true;
+
+    toggle = false;
+    turboInterval = 0;
+    isDown = false;
+    toggleActiveState = false;
+    useTurbo = false;
+    mouseSpeedX = 50;
+    mouseSpeedY = 50;
+    wheelSpeedX = 20;
+    wheelSpeedY = 20;
+    mouseMode = MouseCursor;
+    mouseCurve = DEFAULTMOUSECURVE;
+    springWidth = 0;
+    springHeight = 0;
+    sensitivity = 1.0;
+    smoothing = false;
+    setSelection = -1;
+    setSelectionCondition = SetChangeDisabled;
+    ignoresets = false;
+    ignoreEvents = false;
+    whileHeldStatus = false;
+    buttonName.clear();
+    actionName.clear();
+    cycleResetActive = false;
+    cycleResetInterval = 0;
+    relativeSpring = false;
+    lastDistance = 0.0;
+    lastWheelVerticalDistance = 0.0;
+    lastWheelHorizontalDistance = 0.0;
+    tempTurboInterval = 0;
+    //currentTurboMode = GradientTurbo;
+    currentTurboMode = DEFAULTTURBOMODE;
+    easingDuration = DEFAULTEASINGDURATION;
 }

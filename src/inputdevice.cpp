@@ -975,6 +975,8 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
 
             xml->readNextStartElement();
         }
+
+        reInitButtons();
     }
 }
 

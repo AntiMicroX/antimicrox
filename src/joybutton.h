@@ -388,6 +388,7 @@ public slots:
 
     virtual void reset();
     virtual void reset(int index);
+    virtual void resetProperties();
 
     virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
