@@ -2089,6 +2089,7 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
     {
         current_layout->removeWidget(child->widget());
         delete child->widget();
+        delete child;
         child = 0;
     }
 
