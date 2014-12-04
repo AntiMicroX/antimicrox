@@ -2213,6 +2213,12 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
             }
         }
     }
+
+    JoyControlStickModifierButton *destModifierButton = destStick->getModifierButton();
+    if (modifierButton && destModifierButton)
+    {
+        modifierButton->copyAssignments(destModifierButton);
+    }
 }
 
 /**
