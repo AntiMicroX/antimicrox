@@ -2317,8 +2317,8 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyB
     {
         if (index >= 0 && index < assignments.count())
         {
-            // Slot already exists. Override code and place into desired slot
-            JoyButtonSlot *temp = assignments.at(index);
+            assignments.insert(index, slot);
+            /*JoyButtonSlot *temp = assignments.at(index);
             if (temp)
             {
                 delete temp;
@@ -2326,6 +2326,7 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyB
             }
 
             assignments.replace(index, slot);
+            */
         }
         else if (index >= assignments.count())
         {
