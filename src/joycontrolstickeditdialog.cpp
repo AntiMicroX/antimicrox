@@ -8,6 +8,7 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "setjoystick.h"
+#include "buttoneditdialog.h"
 
 JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -83,6 +84,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->stickDelaySlider->setValue(stickDelay * .1);
     ui->stickDelayDoubleSpinBox->setValue(stickDelay * .001);
 
+    ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
+
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
 
@@ -109,6 +112,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     connect(ui->stickNameLineEdit, SIGNAL(textEdited(QString)), stick, SLOT(setStickName(QString)));
     connect(stick, SIGNAL(stickNameChanged()), this, SLOT(updateWindowTitleStickName()));
+    connect(ui->modifierPushButton, SIGNAL(clicked()), this, SLOT(openModifierEditDialog()));
+    connect(stick->getModifierButton(), SIGNAL(slotsChanged()), this, SLOT(changeModifierSummary()));
 }
 
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
@@ -494,4 +499,15 @@ void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 void JoyControlStickEditDialog::updateControlStickDelay(int value)
 {
     stick->setStickDelay(value * 10);
+}
+
+void JoyControlStickEditDialog::openModifierEditDialog()
+{
+    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getModifierButton(), this);
+    dialog->show();
+}
+
+void JoyControlStickEditDialog::changeModifierSummary()
+{
+    ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
 }

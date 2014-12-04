@@ -40,6 +40,8 @@ private slots:
     void updateStickDelaySpinBox(int value);
     void updateStickDelaySlider(double value);
     void updateControlStickDelay(int value);
+    void openModifierEditDialog();
+    void changeModifierSummary();
 };
 
 #endif // JOYCONTROLSTICKEDITDIALOG_H

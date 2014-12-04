@@ -115,6 +115,12 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     findTurboModeComboIndex();
 
+    // Don't show Set Selector page for modifier buttons
+    if (this->button->isModifierButton())
+    {
+        delete ui->listWidget->item(3);
+    }
+
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
     connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(checkTurboIntervalValue(int)));
 

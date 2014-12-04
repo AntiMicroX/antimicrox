@@ -139,6 +139,7 @@ public:
     virtual void setTurboMode(TurboMode mode);
     TurboMode getTurboMode();
     virtual bool isPartRealAxis();
+    virtual bool isModifierButton();
 
     static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value);
     double getEasingDuration();

@@ -114,6 +114,7 @@ set(antimicro_SOURCES src/main.cpp
     src/commandlineutility.cpp
     src/joycontrolstick.cpp
     src/joycontrolstickbutton.cpp
+    src/joycontrolstickmodifierbutton.cpp
     src/joycontrolstickeditdialog.cpp
     src/joycontrolstickpushbutton.cpp
     src/joycontrolstickbuttonpushbutton.cpp
@@ -236,6 +237,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/commandlineutility.h
     src/joycontrolstick.h
     src/joycontrolstickbutton.h
+    src/joycontrolstickmodifierbutton.h
     src/joycontrolstickeditdialog.h
     src/joycontrolstickpushbutton.h
     src/joycontrolstickbuttonpushbutton.h

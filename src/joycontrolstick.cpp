@@ -5,6 +5,7 @@
 
 #include "joycontrolstick.h"
 #include "inputdevice.h"
+//#include "antkeymapper.h"
 
 // Define Pi here.
 const double JoyControlStick::PI = acos(-1.0);
@@ -171,6 +172,10 @@ void JoyControlStick::populateButtons()
 
     button = new JoyControlStickButton(this, StickRightUp, originset, getParentSet(), this);
     buttons.insert(StickRightUp, button);
+
+    modifierButton = new JoyControlStickModifierButton(this, originset, getParentSet(), this);
+    //modifierButton->setAssignedSlot(60, JoyButtonSlot::JoyDistance);
+    //modifierButton->setAssignedSlot(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Shift), Qt::Key_Shift);
 }
 
 int JoyControlStick::getDeadZone()
@@ -257,6 +262,17 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         // Deadzone skipped. Button for new event is not the currently
         // active button. Disable the active button.
         performButtonRelease(activeButton3, ignoresets);
+    }
+
+    if (safezone)
+    {
+        // Activate modifier button before activating directional buttons.
+        modifierButton->joyEvent(true, ignoresets);
+    }
+    else
+    {
+        // Release modifier button after releasing directional buttons.
+        modifierButton->joyEvent(false, ignoresets);
     }
 
     /*
@@ -747,6 +763,12 @@ void JoyControlStick::deleteButtons()
     }
 
     buttons.clear();
+
+    if (modifierButton)
+    {
+        delete modifierButton;
+        modifierButton = 0;
+    }
 }
 
 void JoyControlStick::readConfig(QXmlStreamReader *xml)
@@ -812,6 +834,10 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 {
                     xml->skipCurrentElement();
                 }
+            }
+            else if (xml->name() == JoyControlStickModifierButton::xmlName && xml->isStartElement())
+            {
+                modifierButton->readConfig(xml);
             }
             else if (xml->name() == "stickDelay" && xml->isStartElement())
             {
@@ -884,6 +910,11 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
             button->writeConfig(xml);
         }
 
+        if (!modifierButton->isDefault())
+        {
+            modifierButton->writeConfig(xml);
+        }
+
         xml->writeEndElement();
     }
 }
@@ -898,6 +929,11 @@ void JoyControlStick::resetButtons()
         {
             button->reset();
         }
+    }
+
+    if (modifierButton)
+    {
+        modifierButton->reset();
     }
 }
 
@@ -2264,4 +2300,9 @@ double JoyControlStick::getButtonsEasingDuration()
     }
 
     return result;
+}
+
+JoyControlStickModifierButton *JoyControlStick::getModifierButton()
+{
+    return modifierButton;
 }

@@ -12,6 +12,7 @@
 #include "joybutton.h"
 #include "joycontrolstickdirectionstype.h"
 #include "joycontrolstickbutton.h"
+#include "joycontrolstickmodifierbutton.h"
 
 class JoyControlStick : public QObject, public JoyStickDirectionsType
 {
@@ -47,6 +48,7 @@ public:
     QList<int> getFourWayCardinalZoneAngles();
     QList<int> getFourWayDiagonalZoneAngles();
     QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();
+    JoyControlStickModifierButton *getModifierButton();
     JoyAxis* getAxisX();
     JoyAxis* getAxisY();
 
@@ -168,6 +170,7 @@ protected:
     unsigned int stickDelay;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
+    JoyControlStickModifierButton *modifierButton;
 
 signals:
     void moved(int xaxis, int yaxis);
