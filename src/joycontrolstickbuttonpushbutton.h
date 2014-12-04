@@ -4,7 +4,7 @@
 #include <QPoint>
 
 #include "flashbuttonwidget.h"
-#include "joycontrolstickbutton.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
 
 class JoyControlStickButtonPushButton : public FlashButtonWidget
 {

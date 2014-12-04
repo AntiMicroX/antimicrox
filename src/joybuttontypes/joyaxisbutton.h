@@ -3,16 +3,16 @@
 
 #include <QString>
 
-#include "joybutton.h"
+#include "joybuttontypes/joygradientbutton.h"
 
 class JoyAxis;
 
-class JoyAxisButton : public JoyButton
+class JoyAxisButton : public JoyGradientButton
 {
     Q_OBJECT
 public:
     explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent=0);
-    
+
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
@@ -30,9 +30,9 @@ protected:
 
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
-    
+
 protected slots:
-    virtual void turboEvent();
+    //virtual void turboEvent();
 };
 
 #endif // JOYAXISBUTTON_H

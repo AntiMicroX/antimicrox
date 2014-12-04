@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QXmlStreamReader>
 
-#include <joyaxisbutton.h>
+#include <joybuttontypes/joyaxisbutton.h>
 
 class GameControllerTriggerButton : public JoyAxisButton
 {

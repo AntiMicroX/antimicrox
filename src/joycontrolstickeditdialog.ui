@@ -37,7 +37,10 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <layout class="QHBoxLayout" name="horizontalLayout_10">
+     <property name="spacing">
+      <number>20</number>
+     </property>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
@@ -392,13 +395,16 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>30</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>6</number>
+         </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
@@ -589,97 +595,100 @@
            </item>
           </layout>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_15">
          <item>
-          <widget class="QLabel" name="stickDelayTitleLabel">
-           <property name="text">
-            <string>Stick Delay:</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QLabel" name="stickDelayTitleLabel">
+             <property name="text">
+              <string>Stick Delay:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="stickDelaySlider">
+             <property name="toolTip">
+              <string>Time lapsed before a direction change is taken into effect.</string>
+             </property>
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="singleStep">
+              <number>1</number>
+             </property>
+             <property name="pageStep">
+              <number>10</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBelow</enum>
+             </property>
+             <property name="tickInterval">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="stickDelayDoubleSpinBox">
+             <property name="toolTip">
+              <string>Time lapsed before a direction change is taken into effect.</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="suffix">
+              <string> s</string>
+             </property>
+             <property name="decimals">
+              <number>2</number>
+             </property>
+             <property name="maximum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QSlider" name="stickDelaySlider">
-           <property name="toolTip">
-            <string>Time lapsed before a direction change is taken into effect.</string>
-           </property>
-           <property name="minimum">
+          <layout class="QHBoxLayout" name="modifierHorizontalLayout">
+           <property name="topMargin">
             <number>0</number>
            </property>
-           <property name="maximum">
-            <number>100</number>
-           </property>
-           <property name="singleStep">
-            <number>1</number>
-           </property>
-           <property name="pageStep">
-            <number>10</number>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-           <property name="sliderPosition">
-            <number>0</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="tickPosition">
-            <enum>QSlider::TicksBelow</enum>
-           </property>
-           <property name="tickInterval">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QDoubleSpinBox" name="stickDelayDoubleSpinBox">
-           <property name="toolTip">
-            <string>Time lapsed before a direction change is taken into effect.</string>
-           </property>
-           <property name="readOnly">
-            <bool>true</bool>
-           </property>
-           <property name="suffix">
-            <string> s</string>
-           </property>
-           <property name="decimals">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <double>1.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.010000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="modifierHorizontalLayout">
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Modifier:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="modifierPushButton">
-           <property name="toolTip">
-            <string>Edit button that is active while the stick is active.
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Modifier:</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignVCenter">
+            <widget class="QPushButton" name="modifierPushButton">
+             <property name="toolTip">
+              <string>Edit button that is active while the stick is active.
 
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</string>
-           </property>
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
@@ -694,7 +703,7 @@ functionality to an analog stick.</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>28</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>

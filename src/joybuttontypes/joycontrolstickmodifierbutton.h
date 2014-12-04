@@ -1,11 +1,11 @@
 #ifndef JOYCONTROLSTICKMODIFIERBUTTON_H
 #define JOYCONTROLSTICKMODIFIERBUTTON_H
 
-#include "joybutton.h"
+#include "joybuttontypes/joygradientbutton.h"
 
 class JoyControlStick;
 
-class JoyControlStickModifierButton : public JoyButton
+class JoyControlStickModifierButton : public JoyGradientButton
 {
     Q_OBJECT
 public:
@@ -30,7 +30,7 @@ protected:
 signals:
 
 protected slots:
-    virtual void turboEvent();
+    //virtual void turboEvent();
 };
 
 #endif // JOYCONTROLSTICKMODIFIERBUTTON_H

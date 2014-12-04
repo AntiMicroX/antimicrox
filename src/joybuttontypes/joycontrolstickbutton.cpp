@@ -1,21 +1,67 @@
 //#include <QDebug>
 #include <cmath>
 
-#include "joyaxisbutton.h"
-#include "joyaxis.h"
+#include "joycontrolstickbutton.h"
+#include "joycontrolstick.h"
 #include "event.h"
 
-const QString JoyAxisButton::xmlName = "axisbutton";
+const QString JoyControlStickButton::xmlName = "stickbutton";
 
-JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
-    JoyButton(index, originset, parentSet, parent)
+JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyGradientButton(index, originset, parentSet, parent)
 {
-    this->axis = axis;
+    this->stick = stick;
 }
 
-QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
+JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent) :
+    JoyGradientButton((int)index, originset, parentSet, parent)
 {
-    QString temp = QString(axis->getPartialName(forceFullFormat, displayNames));
+    this->stick = stick;
+}
+
+QString JoyControlStickButton::getDirectionName()
+{
+    QString label = QString();
+    if (index == JoyControlStick::StickUp)
+    {
+        label.append(tr("Up"));
+    }
+    else if (index == JoyControlStick::StickDown)
+    {
+        label.append(tr("Down"));
+    }
+    else if (index == JoyControlStick::StickLeft)
+    {
+        label.append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickRight)
+    {
+        label.append(tr("Right"));
+    }
+    else if (index == JoyControlStick::StickLeftUp)
+    {
+        label.append(tr("Up")).append("+").append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickLeftDown)
+    {
+        label.append(tr("Down")).append("+").append(tr("Left"));
+    }
+    else if (index == JoyControlStick::StickRightUp)
+    {
+        label.append(tr("Up")).append("+").append(tr("Right"));
+    }
+    else if (index == JoyControlStick::StickRightDown)
+    {
+        label.append(tr("Down")).append("+").append(tr("Right"));
+    }
+
+    return label;
+}
+
+QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames)
+{
+    QString temp = stick->getPartialName(forceFullFormat, displayNames);
+
     temp.append(": ");
 
     if (!buttonName.isEmpty() && displayNames)
@@ -24,58 +70,63 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
         {
             temp.append(tr("Button")).append(" ");
         }
+
         temp.append(buttonName);
     }
-    else if (!defaultButtonName.isEmpty() && displayNames)
+    else if (!defaultButtonName.isEmpty())
     {
         if (forceFullFormat)
         {
             temp.append(tr("Button")).append(" ");
         }
+
         temp.append(defaultButtonName);
     }
     else
     {
-        QString buttontype;
-        if (index == 0)
-        {
-            buttontype = tr("Negative");
-        }
-        else if (index == 1)
-        {
-            buttontype = tr("Positive");
-        }
-        else
-        {
-            buttontype = tr("Unknown");
-        }
-
-        temp.append(tr("Button")).append(" ").append(buttontype);
+        temp.append(tr("Button")).append(" ");
+        temp.append(getDirectionName());
     }
-
     return temp;
 }
 
-QString JoyAxisButton::getXmlName()
+QString JoyControlStickButton::getXmlName()
 {
     return this->xmlName;
 }
 
-void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+/**
+ * @brief Get the distance that an element is away from its assigned
+ *     dead zone
+ * @return Normalized distance away from dead zone
+ */
+double JoyControlStickButton::getDistanceFromDeadZone()
 {
-    SetChangeCondition oldCondition = setSelectionCondition;
+    return stick->calculateDirectionalDistance();
+}
 
+/**
+ * @brief Get the distance factor that should be used for mouse movement
+ * @return Distance factor that should be used for mouse movement
+ */
+double JoyControlStickButton::getMouseDistanceFromDeadZone()
+{
+    return stick->calculateMouseDirectionalDistance(this);
+}
+
+void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+{
     if (condition != setSelectionCondition && !passive)
     {
         if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
         {
             // Set new condition
-            emit setAssignmentChanged(index, this->axis->getIndex(), setSelection, condition);
+            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, condition);
         }
         else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
         {
             // Remove old condition
-            emit setAssignmentChanged(index, this->axis->getIndex(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -89,51 +140,27 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     {
         setChangeSetSelection(-1);
     }
+}
 
-    if (setSelectionCondition != oldCondition)
-    {
-        emit propertyUpdated();
-    }
+int JoyControlStickButton::getRealJoyNumber()
+{
+    return index;
+}
+
+JoyControlStick* JoyControlStickButton::getStick()
+{
+    return stick;
+}
+
+JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
+{
+    return (JoyStickDirectionsType::JoyStickDirections)index;
 }
 
 /**
- * @brief Get the distance that an element is away from its assigned
- *     dead zone
- * @return Normalized distance away from dead zone
+ * @brief Activate a turbo event on a JoyControlStickButton.
  */
-double JoyAxisButton::getDistanceFromDeadZone()
-{
-    return axis->getDistanceFromDeadZone();
-}
-
-/**
- * @brief Get the distance factor that should be used for mouse movement
- * @return Distance factor that should be used for mouse movement
- */
-double JoyAxisButton::getMouseDistanceFromDeadZone()
-{
-    return this->getDistanceFromDeadZone();
-}
-
-void JoyAxisButton::setVDPad(VDPad *vdpad)
-{
-    if (axis->isPartControlStick())
-    {
-        axis->removeControlStick();
-    }
-
-    JoyButton::setVDPad(vdpad);
-}
-
-JoyAxis* JoyAxisButton::getAxis()
-{
-    return this->axis;
-}
-
-/**
- * @brief Activate a turbo event on a JoyAxisButton.
- */
-void JoyAxisButton::turboEvent()
+/*void JoyControlStickButton::turboEvent()
 {
     if (currentTurboMode == NormalTurbo)
     {
@@ -169,6 +196,7 @@ void JoyAxisButton::turboEvent()
                 changeState = true;
             }
         }
+
         else if (turboHold.isNull() || lastDistance == 0.0 || turboHold.elapsed() > tempTurboInterval)
         {
             changeState = true;
@@ -233,6 +261,7 @@ void JoyAxisButton::turboEvent()
                 //    checkmate = turboHold.elapsed();
                 //}
                 changeState = true;
+                //qDebug() << "YOU GOT CHANGE";
             }
         }
 
@@ -323,12 +352,13 @@ void JoyAxisButton::turboEvent()
         checkmate = 0;
     }
 }
+*/
 
 /**
  * @brief Set the turbo mode that the button should use
  * @param Mode that should be used
  */
-void JoyAxisButton::setTurboMode(TurboMode mode)
+void JoyControlStickButton::setTurboMode(TurboMode mode)
 {
     if (isPartRealAxis())
     {
@@ -342,7 +372,7 @@ void JoyAxisButton::setTurboMode(TurboMode mode)
  *     type checking.
  * @return Status of being part of a real controller axis
  */
-bool JoyAxisButton::isPartRealAxis()
+bool JoyControlStickButton::isPartRealAxis()
 {
     return true;
 }

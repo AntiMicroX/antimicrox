@@ -88,12 +88,13 @@ set(antimicro_SOURCES src/main.cpp
     src/joybuttonwidget.cpp
     src/joystick.cpp
     src/joybutton.cpp
+    src/joybuttontypes/joygradientbutton.cpp
     src/event.cpp
     src/inputdaemon.cpp
     src/joyaxis.cpp
     src/joyaxiswidget.cpp
     src/joydpad.cpp
-    src/joydpadbutton.cpp
+    src/joybuttontypes/joydpadbutton.cpp
     src/axiseditdialog.cpp
     src/xmlconfigreader.cpp
     src/xmlconfigwriter.cpp
@@ -102,7 +103,7 @@ set(antimicro_SOURCES src/main.cpp
     src/advancebuttondialog.cpp
     src/simplekeygrabberbutton.cpp
     src/joybuttonslot.cpp
-    src/joyaxisbutton.cpp
+    src/joybuttontypes/joyaxisbutton.cpp
     src/aboutdialog.cpp
     src/setjoystick.cpp
     src/sdleventreader.cpp
@@ -113,8 +114,8 @@ set(antimicro_SOURCES src/main.cpp
     src/buttoneditdialog.cpp
     src/commandlineutility.cpp
     src/joycontrolstick.cpp
-    src/joycontrolstickbutton.cpp
-    src/joycontrolstickmodifierbutton.cpp
+    src/joybuttontypes/joycontrolstickbutton.cpp
+    src/joybuttontypes/joycontrolstickmodifierbutton.cpp
     src/joycontrolstickeditdialog.cpp
     src/joycontrolstickpushbutton.cpp
     src/joycontrolstickbuttonpushbutton.cpp
@@ -212,11 +213,12 @@ set(antimicro_HEADERS src/mainwindow.h
     src/joybuttonwidget.h
     src/joystick.h
     src/joybutton.h
+    src/joybuttontypes/joygradientbutton.h
     src/inputdaemon.h
     src/joyaxis.h
     src/joyaxiswidget.h
     src/joydpad.h
-    src/joydpadbutton.h
+    src/joybuttontypes/joydpadbutton.h
     src/axiseditdialog.h
     src/xmlconfigreader.h
     src/xmlconfigwriter.h
@@ -225,7 +227,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/advancebuttondialog.h
     src/simplekeygrabberbutton.h
     src/joybuttonslot.h
-    src/joyaxisbutton.h
+    src/joybuttontypes/joyaxisbutton.h
     src/aboutdialog.h
     src/setjoystick.h
     src/sdleventreader.h
@@ -236,8 +238,8 @@ set(antimicro_HEADERS src/mainwindow.h
     src/buttoneditdialog.h
     src/commandlineutility.h
     src/joycontrolstick.h
-    src/joycontrolstickbutton.h
-    src/joycontrolstickmodifierbutton.h
+    src/joybuttontypes/joycontrolstickbutton.h
+    src/joybuttontypes/joycontrolstickmodifierbutton.h
     src/joycontrolstickeditdialog.h
     src/joycontrolstickpushbutton.h
     src/joycontrolstickbuttonpushbutton.h

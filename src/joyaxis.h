@@ -8,7 +8,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#include "joyaxisbutton.h"
+#include "joybuttontypes/joyaxisbutton.h"
 
 class JoyControlStick;
 

@@ -8,7 +8,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#include "joydpadbutton.h"
+#include "joybuttontypes/joydpadbutton.h"
 
 class JoyDPad : public QObject
 {

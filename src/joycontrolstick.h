@@ -11,8 +11,8 @@
 #include "joyaxis.h"
 #include "joybutton.h"
 #include "joycontrolstickdirectionstype.h"
-#include "joycontrolstickbutton.h"
-#include "joycontrolstickmodifierbutton.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
+#include "joybuttontypes/joycontrolstickmodifierbutton.h"
 
 class JoyControlStick : public QObject, public JoyStickDirectionsType
 {

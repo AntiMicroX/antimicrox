@@ -3,12 +3,12 @@
 
 #include <QString>
 
-#include "joybutton.h"
+#include "joybuttontypes/joygradientbutton.h"
 #include "joycontrolstickdirectionstype.h"
 
 class JoyControlStick;
 
-class JoyControlStickButton : public JoyButton
+class JoyControlStickButton : public JoyGradientButton
 {
     Q_OBJECT
 public:
@@ -34,9 +34,9 @@ protected:
 
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
-    
+
 protected slots:
-    virtual void turboEvent();
+    //virtual void turboEvent();
 };
 
 #endif // JOYCONTROLSTICKBUTTON_H
