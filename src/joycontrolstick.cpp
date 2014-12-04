@@ -28,6 +28,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
 
     this->index = index;
     this->originset = originset;
+    this->modifierButton = 0;
     reset();
 
     populateButtons();
