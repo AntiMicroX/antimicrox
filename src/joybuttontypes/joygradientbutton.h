@@ -13,7 +13,8 @@ signals:
 
 protected slots:
     virtual void turboEvent();
-
+    virtual void wheelEventVertical();
+    virtual void wheelEventHorizontal();
 };
 
 #endif // JOYGRADIENTBUTTON_H

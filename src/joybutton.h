@@ -402,6 +402,8 @@ public slots:
 
 protected slots:
     virtual void turboEvent();
+    virtual void wheelEventVertical();
+    virtual void wheelEventHorizontal();
     void createDeskEvent();
     void releaseDeskEvent(bool skipsetchange=false);
 
@@ -413,9 +415,6 @@ private slots:
     void holdEvent();
     void delayEvent();
     void repeatKeysEvent();
-
-    void wheelEventVertical();
-    void wheelEventHorizontal();
 
     void pauseWaitEvent();
     void checkForSetChange();

@@ -1153,78 +1153,22 @@ void JoyButton::mouseEvent()
 void JoyButton::wheelEventVertical()
 {
     JoyButtonSlot *buttonslot = 0;
-    bool activateEvent = false;
-
-    int tempInterval = 0;
-    double diff = fabs(getMouseDistanceFromDeadZone() - lastWheelVerticalDistance);
-    int oldInterval = 0;
-
-    if (wheelSpeedY != 0)
-    {
-        if (lastWheelVerticalDistance > 0)
-        {
-            oldInterval = 1000 / wheelSpeedY / lastWheelVerticalDistance;
-        }
-        else
-        {
-            oldInterval = 1000 / wheelSpeedY / 0.01;
-        }
-    }
-
     if (currentWheelVerticalEvent)
     {
         buttonslot = currentWheelVerticalEvent;
-        activateEvent = true;
-    }
-
-    if (!activateEvent)
-    {
-        if (!mouseWheelVerticalEventTimer.isActive())
-        {
-            activateEvent = true;
-        }
-        else if (wheelVerticalTime.elapsed() > oldInterval)
-        {
-            activateEvent = true;
-        }
-        else if (diff >= 0.1 && wheelSpeedY != 0)
-        {
-            tempInterval = static_cast<int>(1000 / wheelSpeedY / getMouseDistanceFromDeadZone());
-            if (wheelVerticalTime.elapsed() < tempInterval)
-            {
-                // Still some valid time left. Continue current action with
-                // remaining time left.
-                tempInterval = tempInterval - wheelVerticalTime.elapsed();
-                tempInterval = qMin(tempInterval, 5);
-                if (!mouseWheelVerticalEventTimer.isActive() || mouseWheelVerticalEventTimer.interval() != tempInterval)
-                {
-                    mouseWheelVerticalEventTimer.start(tempInterval);
-                }
-            }
-            else
-            {
-                // Elapsed time is greater than new interval. Change state.
-                activateEvent = true;
-            }
-        }
     }
 
     if (buttonslot && wheelSpeedY != 0)
     {
         bool isActive = activeSlots.contains(buttonslot);
-        if (isActive && activateEvent)
+        if (isActive)
         {
             sendevent(buttonslot, true);
             sendevent(buttonslot, false);
             mouseWheelVerticalEventQueue.enqueue(buttonslot);
-            tempInterval = static_cast<int>(1000 / wheelSpeedY / getMouseDistanceFromDeadZone());
-            tempInterval = qMin(tempInterval, 5);
-            if (!mouseWheelVerticalEventTimer.isActive() || mouseWheelVerticalEventTimer.interval() != tempInterval)
-            {
-                mouseWheelVerticalEventTimer.start(tempInterval);
-            }
+            mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
         }
-        else if (!isActive)
+        else
         {
             mouseWheelVerticalEventTimer.stop();
         }
@@ -1236,14 +1180,10 @@ void JoyButton::wheelEventVertical()
         {
             buttonslot = mouseWheelVerticalEventQueue.dequeue();
             bool isActive = activeSlots.contains(buttonslot);
-            if (isActive && activateEvent)
+            if (isActive)
             {
                 sendevent(buttonslot, true);
                 sendevent(buttonslot, false);
-                tempQueue.enqueue(buttonslot);
-            }
-            else if (isActive)
-            {
                 tempQueue.enqueue(buttonslot);
             }
         }
@@ -1251,12 +1191,7 @@ void JoyButton::wheelEventVertical()
         if (!tempQueue.isEmpty())
         {
             mouseWheelVerticalEventQueue = tempQueue;
-            tempInterval = static_cast<int>(1000 / wheelSpeedY / getMouseDistanceFromDeadZone());
-            tempInterval = qMin(tempInterval, 5);
-            if (!mouseWheelVerticalEventTimer.isActive() || mouseWheelVerticalEventTimer.interval() != tempInterval)
-            {
-                mouseWheelVerticalEventTimer.start(tempInterval);
-            }
+            mouseWheelVerticalEventTimer.start(1000 / wheelSpeedY);
         }
         else
         {
@@ -1267,90 +1202,27 @@ void JoyButton::wheelEventVertical()
     {
         mouseWheelVerticalEventTimer.stop();
     }
-
-    if (activateEvent)
-    {
-        wheelVerticalTime.restart();
-        lastWheelVerticalDistance = getMouseDistanceFromDeadZone();
-    }
 }
 
 void JoyButton::wheelEventHorizontal()
 {
     JoyButtonSlot *buttonslot = 0;
-    bool activateEvent = false;
-
-    int tempInterval = 0;
-    double diff = fabs(getMouseDistanceFromDeadZone() - lastWheelHorizontalDistance);
-    int oldInterval = 0;
-
-    if (wheelSpeedX != 0)
-    {
-        if (lastWheelHorizontalDistance > 0)
-        {
-            oldInterval = 1000 / wheelSpeedX / lastWheelHorizontalDistance;
-        }
-        else
-        {
-            oldInterval = 1000 / wheelSpeedX / 0.01;
-        }
-    }
-
     if (currentWheelHorizontalEvent)
     {
         buttonslot = currentWheelHorizontalEvent;
-        activateEvent = true;
-    }
-
-    if (!activateEvent)
-    {
-        if (!mouseWheelHorizontalEventTimer.isActive())
-        {
-            activateEvent = true;
-        }
-        else if (wheelHorizontalTime.elapsed() > oldInterval)
-        {
-            activateEvent = true;
-        }
-        else if (diff >= 0.1 && wheelSpeedX != 0)
-        {
-            tempInterval = static_cast<int>(1000 / wheelSpeedX / getMouseDistanceFromDeadZone());
-            if (wheelHorizontalTime.elapsed() < tempInterval)
-            {
-                // Still some valid time left. Continue current action with
-                // remaining time left.
-                tempInterval = tempInterval - wheelHorizontalTime.elapsed();
-                tempInterval = qMin(tempInterval, 5);
-                if (!mouseWheelHorizontalEventTimer.isActive() || mouseWheelHorizontalEventTimer.interval() != tempInterval)
-                {
-                    mouseWheelHorizontalEventTimer.start(tempInterval);
-                }
-            }
-            else
-            {
-                // Elapsed time is greater than new interval. Change state.
-                activateEvent = true;
-            }
-        }
     }
 
     if (buttonslot && wheelSpeedX != 0)
     {
         bool isActive = activeSlots.contains(buttonslot);
-        if (isActive && activateEvent)
+        if (isActive)
         {
             sendevent(buttonslot, true);
             sendevent(buttonslot, false);
             mouseWheelHorizontalEventQueue.enqueue(buttonslot);
-            tempInterval = static_cast<int>(1000 / wheelSpeedX / getMouseDistanceFromDeadZone());
-            tempInterval = qMin(tempInterval, 5);
-
-            if (!mouseWheelHorizontalEventTimer.isActive() || mouseWheelVerticalEventTimer.interval() != tempInterval)
-            {
-                mouseWheelHorizontalEventTimer.start(tempInterval);
-            }
+            mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
         }
-        else if (!isActive)
+        else
         {
             mouseWheelHorizontalEventTimer.stop();
         }
@@ -1373,13 +1245,7 @@ void JoyButton::wheelEventHorizontal()
         if (!tempQueue.isEmpty())
         {
             mouseWheelHorizontalEventQueue = tempQueue;
-            tempInterval = static_cast<int>(1000 / wheelSpeedX / getMouseDistanceFromDeadZone());
-            tempInterval = qMin(tempInterval, 5);
-
-            if (!mouseWheelHorizontalEventTimer.isActive() || mouseWheelVerticalEventTimer.interval() != tempInterval)
-            {
-                mouseWheelHorizontalEventTimer.start(tempInterval);
-            }
+            mouseWheelHorizontalEventTimer.start(1000 / wheelSpeedX);
         }
         else
         {
@@ -1389,12 +1255,6 @@ void JoyButton::wheelEventHorizontal()
     else
     {
         mouseWheelHorizontalEventTimer.stop();
-    }
-
-    if (activateEvent)
-    {
-        wheelHorizontalTime.restart();
-        lastWheelHorizontalDistance = getMouseDistanceFromDeadZone();
     }
 }
 

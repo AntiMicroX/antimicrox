@@ -35,8 +35,6 @@ protected:
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
 
-protected slots:
-    //virtual void turboEvent();
 };
 
 #endif // JOYCONTROLSTICKBUTTON_H

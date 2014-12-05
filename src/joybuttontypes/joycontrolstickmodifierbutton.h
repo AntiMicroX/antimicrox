@@ -27,10 +27,6 @@ public:
 protected:
     JoyControlStick *stick;
 
-signals:
-
-protected slots:
-    //virtual void turboEvent();
 };
 
 #endif // JOYCONTROLSTICKMODIFIERBUTTON_H
