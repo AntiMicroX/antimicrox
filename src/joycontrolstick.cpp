@@ -1377,6 +1377,12 @@ bool JoyControlStick::isDefault()
         JoyControlStickButton *button = iter.next().value();
         value = value && (button->isDefault());
     }
+
+    if (modifierButton)
+    {
+        value = value && modifierButton->isDefault();
+    }
+
     return value;
 }
 
