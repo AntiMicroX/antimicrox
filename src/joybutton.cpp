@@ -38,6 +38,7 @@ const bool JoyButton::DEFAULTRELATIVESPRING = false;
 const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 const double JoyButton::DEFAULTEASINGDURATION = 0.5;
 const double JoyButton::MINIMUMEASINGDURATION = 0.2;
+const double JoyButton::MAXIMUMEASINGDURATION = 5.0;
 
 const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
 const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
@@ -971,7 +972,7 @@ void JoyButton::mouseEvent()
                                 }
 
                                 double elapsedDiff = 1.0;
-                                if ((easingElapsed * .001) < easingDuration)
+                                if (easingDuration > 0.0 && (easingElapsed * .001) < easingDuration)
                                 {
                                     elapsedDiff = ((easingElapsed * .001) / easingDuration);
                                     if (currentCurve == EasingQuadraticCurve)
@@ -1469,7 +1470,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("relativespring", "true");
         }
 
-        if (easingDuration > DEFAULTEASINGDURATION)
+        if (easingDuration != DEFAULTEASINGDURATION)
         {
             xml->writeTextElement("easingduration", QString::number(easingDuration));
         }
@@ -4298,7 +4299,7 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 
 void JoyButton::setEasingDuration(double value)
 {
-    if (value >= MINIMUMEASINGDURATION && value <= 2.0 &&
+    if (value >= MINIMUMEASINGDURATION && value <= MAXIMUMEASINGDURATION &&
         value != easingDuration)
     {
         easingDuration = value;

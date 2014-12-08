@@ -190,6 +190,7 @@ public:
     static const TurboMode DEFAULTTURBOMODE;
     static const double DEFAULTEASINGDURATION;
     static const double MINIMUMEASINGDURATION;
+    static const double MAXIMUMEASINGDURATION;
 
     static const int DEFAULTMOUSEHISTORYSIZE;
     static const double DEFAULTWEIGHTMODIFIER;
