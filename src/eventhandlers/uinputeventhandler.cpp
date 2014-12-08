@@ -231,14 +231,24 @@ void UInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
     {
         if (code <= 3)
         {
-            unsigned int tempcode = (BTN_LEFT | code);
-            if (code == 3)
+            unsigned int tempcode = BTN_LEFT;
+            switch (code)
             {
-                tempcode -= 2;
-            }
-            else
-            {
-                tempcode -= 1;
+                case 3:
+                {
+                    tempcode = BTN_RIGHT;
+                    break;
+                }
+                case 2:
+                {
+                    tempcode = BTN_MIDDLE;
+                    break;
+                }
+                case 1:
+                default:
+                {
+                    tempcode = BTN_LEFT;
+                }
             }
 
             write_uinput_event(mouseFileHandler, EV_KEY, tempcode, pressed ? 1 : 0);
