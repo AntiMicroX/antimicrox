@@ -56,10 +56,11 @@ QString GameController::getGUIDString()
             // and the device has an empty GUID, assume that it is an XInput
             // compatible device. Send back xinput as the GUID since SDL uses it
             // internally anyway.
-            if (!temp.contains(nonEmptyGUID))
+            /*if (!temp.contains(nonEmptyGUID))
             {
                 temp = "xinput";
             }
+            */
 #endif
         }
     }
