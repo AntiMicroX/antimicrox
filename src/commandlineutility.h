@@ -74,6 +74,7 @@ protected:
     static QRegExp startSetRegexp;
     static QRegExp gamepadListRegexp;
     static QRegExp mappingRegexp;
+    static QRegExp qtStyleRegexp;
 #ifdef Q_OS_UNIX
     static QRegExp daemonRegexp;
     static QRegExp displayRegexp;

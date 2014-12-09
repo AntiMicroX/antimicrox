@@ -72,118 +72,118 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout();
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout();
 
-    tempHBoxLayout->addWidget(createNewKey(tr("Escape")));
+    tempHBoxLayout->addWidget(createNewKey("Escape"));
     tempHBoxLayout->addSpacerItem(new QSpacerItem(40, 10, QSizePolicy::Expanding));
-    tempHBoxLayout->addWidget(createNewKey(tr("F1")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F2")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F3")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F4")));
+    tempHBoxLayout->addWidget(createNewKey("F1"));
+    tempHBoxLayout->addWidget(createNewKey("F2"));
+    tempHBoxLayout->addWidget(createNewKey("F3"));
+    tempHBoxLayout->addWidget(createNewKey("F4"));
     tempHBoxLayout->addSpacerItem(new QSpacerItem(40, 10, QSizePolicy::Expanding));
-    tempHBoxLayout->addWidget(createNewKey(tr("F5")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F6")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F7")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F8")));\
+    tempHBoxLayout->addWidget(createNewKey("F5"));
+    tempHBoxLayout->addWidget(createNewKey("F6"));
+    tempHBoxLayout->addWidget(createNewKey("F7"));
+    tempHBoxLayout->addWidget(createNewKey("F8"));
     tempHBoxLayout->addSpacerItem(new QSpacerItem(40, 10, QSizePolicy::Expanding));
 
-    tempHBoxLayout->addWidget(createNewKey(tr("F9")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F10")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F11")));
-    tempHBoxLayout->addWidget(createNewKey(tr("F12")));
+    tempHBoxLayout->addWidget(createNewKey("F9"));
+    tempHBoxLayout->addWidget(createNewKey("F10"));
+    tempHBoxLayout->addWidget(createNewKey("F11"));
+    tempHBoxLayout->addWidget(createNewKey("F12"));
     finalVBoxLayout->addLayout(tempHBoxLayout);
 
     finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("grave")));
+    tempHBoxLayout->addWidget(createNewKey("grave"));
     for (int i=1; i <= 9; i++)
     {
         tempHBoxLayout->addWidget(createNewKey(QString::number(i)));
     }
-    tempHBoxLayout->addWidget(createNewKey(tr("0")));
-    tempHBoxLayout->addWidget(createNewKey(tr("minus")));
-    tempHBoxLayout->addWidget(createNewKey(tr("equal")));
-    tempHBoxLayout->addWidget(createNewKey(tr("BackSpace")));
+    tempHBoxLayout->addWidget(createNewKey("0"));
+    tempHBoxLayout->addWidget(createNewKey("minus"));
+    tempHBoxLayout->addWidget(createNewKey("equal"));
+    tempHBoxLayout->addWidget(createNewKey("BackSpace"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     QVBoxLayout *tempMiddleVLayout = new QVBoxLayout();
     QHBoxLayout *tempMiddleHLayout = new QHBoxLayout();
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("Tab")));
+    tempHBoxLayout->addWidget(createNewKey("Tab"));
     tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 30, QSizePolicy::Fixed));
-    tempHBoxLayout->addWidget(createNewKey(tr("q")));
-    tempHBoxLayout->addWidget(createNewKey(tr("w")));
-    tempHBoxLayout->addWidget(createNewKey(tr("e")));
-    tempHBoxLayout->addWidget(createNewKey(tr("r")));
-    tempHBoxLayout->addWidget(createNewKey(tr("t")));
-    tempHBoxLayout->addWidget(createNewKey(tr("y")));
-    tempHBoxLayout->addWidget(createNewKey(tr("u")));
-    tempHBoxLayout->addWidget(createNewKey(tr("i")));
-    tempHBoxLayout->addWidget(createNewKey(tr("o")));
-    tempHBoxLayout->addWidget(createNewKey(tr("p")));
-    tempHBoxLayout->addWidget(createNewKey(tr("bracketleft")));
-    tempHBoxLayout->addWidget(createNewKey(tr("bracketright")));
+    tempHBoxLayout->addWidget(createNewKey("q"));
+    tempHBoxLayout->addWidget(createNewKey("w"));
+    tempHBoxLayout->addWidget(createNewKey("e"));
+    tempHBoxLayout->addWidget(createNewKey("r"));
+    tempHBoxLayout->addWidget(createNewKey("t"));
+    tempHBoxLayout->addWidget(createNewKey("y"));
+    tempHBoxLayout->addWidget(createNewKey("u"));
+    tempHBoxLayout->addWidget(createNewKey("i"));
+    tempHBoxLayout->addWidget(createNewKey("o"));
+    tempHBoxLayout->addWidget(createNewKey("p"));
+    tempHBoxLayout->addWidget(createNewKey("bracketleft"));
+    tempHBoxLayout->addWidget(createNewKey("bracketright"));
     if (QLocale::system().language() != QLocale::French &&
         QLocale::system().language() != QLocale::German)
     {
-        tempHBoxLayout->addWidget(createNewKey(tr("backslash")));
+        tempHBoxLayout->addWidget(createNewKey("backslash"));
     }
     tempMiddleVLayout->addLayout(tempHBoxLayout);
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("Caps_Lock")));
-    tempHBoxLayout->addWidget(createNewKey(tr("a")));
-    tempHBoxLayout->addWidget(createNewKey(tr("s")));
-    tempHBoxLayout->addWidget(createNewKey(tr("d")));
-    tempHBoxLayout->addWidget(createNewKey(tr("f")));
-    tempHBoxLayout->addWidget(createNewKey(tr("g")));
-    tempHBoxLayout->addWidget(createNewKey(tr("h")));
-    tempHBoxLayout->addWidget(createNewKey(tr("j")));
-    tempHBoxLayout->addWidget(createNewKey(tr("k")));\
-    tempHBoxLayout->addWidget(createNewKey(tr("l")));
-    tempHBoxLayout->addWidget(createNewKey(tr("semicolon")));
-    tempHBoxLayout->addWidget(createNewKey(tr("apostrophe")));
+    tempHBoxLayout->addWidget(createNewKey("Caps_Lock"));
+    tempHBoxLayout->addWidget(createNewKey("a"));
+    tempHBoxLayout->addWidget(createNewKey("s"));
+    tempHBoxLayout->addWidget(createNewKey("d"));
+    tempHBoxLayout->addWidget(createNewKey("f"));
+    tempHBoxLayout->addWidget(createNewKey("g"));
+    tempHBoxLayout->addWidget(createNewKey("h"));
+    tempHBoxLayout->addWidget(createNewKey("j"));
+    tempHBoxLayout->addWidget(createNewKey("k"));
+    tempHBoxLayout->addWidget(createNewKey("l"));
+    tempHBoxLayout->addWidget(createNewKey("semicolon"));
+    tempHBoxLayout->addWidget(createNewKey("apostrophe"));
     if (QLocale::system().language() == QLocale::French ||
         QLocale::system().language() == QLocale::German)
     {
-        tempHBoxLayout->addWidget(createNewKey(tr("asterisk")));
+        tempHBoxLayout->addWidget(createNewKey("asterisk"));
     }
     tempMiddleVLayout->addLayout(tempHBoxLayout);
     tempMiddleHLayout->addLayout(tempMiddleVLayout);
-    tempMiddleHLayout->addWidget(createNewKey(tr("Return")));
+    tempMiddleHLayout->addWidget(createNewKey("Return"));
     tempVBoxLayout->addLayout(tempMiddleHLayout);
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("Shift_L")));
+    tempHBoxLayout->addWidget(createNewKey("Shift_L"));
     if (QLocale::system().language() == QLocale::French)
     {
-        tempHBoxLayout->addWidget(createNewKey(tr("less")));
+        tempHBoxLayout->addWidget(createNewKey("less"));
     }
-    tempHBoxLayout->addWidget(createNewKey(tr("z")));
-    tempHBoxLayout->addWidget(createNewKey(tr("x")));
-    tempHBoxLayout->addWidget(createNewKey(tr("c")));
-    tempHBoxLayout->addWidget(createNewKey(tr("v")));
-    tempHBoxLayout->addWidget(createNewKey(tr("b")));
-    tempHBoxLayout->addWidget(createNewKey(tr("n")));
-    tempHBoxLayout->addWidget(createNewKey(tr("m")));
-    tempHBoxLayout->addWidget(createNewKey(tr("comma")));
-    tempHBoxLayout->addWidget(createNewKey(tr("period")));
-    tempHBoxLayout->addWidget(createNewKey(tr("slash")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Shift_R")));
+    tempHBoxLayout->addWidget(createNewKey("z"));
+    tempHBoxLayout->addWidget(createNewKey("x"));
+    tempHBoxLayout->addWidget(createNewKey("c"));
+    tempHBoxLayout->addWidget(createNewKey("v"));
+    tempHBoxLayout->addWidget(createNewKey("b"));
+    tempHBoxLayout->addWidget(createNewKey("n"));
+    tempHBoxLayout->addWidget(createNewKey("m"));
+    tempHBoxLayout->addWidget(createNewKey("comma"));
+    tempHBoxLayout->addWidget(createNewKey("period"));
+    tempHBoxLayout->addWidget(createNewKey("slash"));
+    tempHBoxLayout->addWidget(createNewKey("Shift_R"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("Control_L")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Super_L")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Alt_L")));
-    tempHBoxLayout->addWidget(createNewKey(tr("space")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Multi_key")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Menu")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Control_R")));
+    tempHBoxLayout->addWidget(createNewKey("Control_L"));
+    tempHBoxLayout->addWidget(createNewKey("Super_L"));
+    tempHBoxLayout->addWidget(createNewKey("Alt_L"));
+    tempHBoxLayout->addWidget(createNewKey("space"));
+    tempHBoxLayout->addWidget(createNewKey("Multi_key"));
+    tempHBoxLayout->addWidget(createNewKey("Menu"));
+    tempHBoxLayout->addWidget(createNewKey("Control_R"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     tempVBoxLayout->setStretch(0, 1);
@@ -205,30 +205,30 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupAuxKeyboardLayout()
     QGridLayout *tempGridLayout = new QGridLayout();
 
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("Print")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Scroll_Lock")));
-    tempHBoxLayout->addWidget(createNewKey(tr("Pause")));
+    tempHBoxLayout->addWidget(createNewKey("Print"));
+    tempHBoxLayout->addWidget(createNewKey("Scroll_Lock"));
+    tempHBoxLayout->addWidget(createNewKey("Pause"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     tempGridLayout->setSpacing(0);
-    tempGridLayout->addWidget(createNewKey(tr("Insert")), 1, 1, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Home")), 1, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Prior")), 1, 3, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Delete")), 2, 1, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("End")), 2, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Next")), 2, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Insert"), 1, 1, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Home"), 1, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Prior"), 1, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Delete"), 2, 1, 1, 1);
+    tempGridLayout->addWidget(createNewKey("End"), 2, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Next"), 2, 3, 1, 1);
     tempVBoxLayout->addLayout(tempGridLayout);
 
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     tempGridLayout = new QGridLayout();
     tempGridLayout->setSpacing(0);
-    tempGridLayout->addWidget(createNewKey(tr("Up")), 1, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Left")), 2, 1, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Down")), 2, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("Right")), 2, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Up"), 1, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Left"), 2, 1, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Down"), 2, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("Right"), 2, 3, 1, 1);
     tempVBoxLayout->addLayout(tempGridLayout);
 
     return tempVBoxLayout;
@@ -245,35 +245,35 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
     finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     tempHBoxLayout->setSpacing(0);
-    tempHBoxLayout->addWidget(createNewKey(tr("Num_Lock")));
-    tempHBoxLayout->addWidget(createNewKey(tr("KP_Divide")));
-    tempHBoxLayout->addWidget(createNewKey(tr("KP_Multiply")));
-    tempHBoxLayout->addWidget(createNewKey(tr("KP_Subtract")));
+    tempHBoxLayout->addWidget(createNewKey("Num_Lock"));
+    tempHBoxLayout->addWidget(createNewKey("KP_Divide"));
+    tempHBoxLayout->addWidget(createNewKey("KP_Multiply"));
+    tempHBoxLayout->addWidget(createNewKey("KP_Subtract"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
-    tempGridLayout->addWidget(createNewKey(tr("KP_7")), 1, 1, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_8")), 1, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_9")), 1, 3, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_4")), 2, 1, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_5")), 2, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_6")), 2, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_7"), 1, 1, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_8"), 1, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_9"), 1, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_4"), 2, 1, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_5"), 2, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_6"), 2, 3, 1, 1);
     tempHBoxLayout->addLayout(tempGridLayout);
-    tempHBoxLayout->addWidget(createNewKey(tr("KP_Add")));
+    tempHBoxLayout->addWidget(createNewKey("KP_Add"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     tempGridLayout = new QGridLayout();
     tempGridLayout->setSpacing(0);
-    tempGridLayout->addWidget(createNewKey(tr("KP_1")), 1, 1, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_2")), 1, 2, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_3")), 1, 3, 1, 1);
-    tempGridLayout->addWidget(createNewKey(tr("KP_0")), 2, 1, 1, 2);
-    tempGridLayout->addWidget(createNewKey(tr("KP_Decimal")), 2, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_1"), 1, 1, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_2"), 1, 2, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_3"), 1, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_0"), 2, 1, 1, 2);
+    tempGridLayout->addWidget(createNewKey("KP_Decimal"), 2, 3, 1, 1);
     tempHBoxLayout->addLayout(tempGridLayout);
-    tempHBoxLayout->addWidget(createNewKey(tr("KP_Enter")));
+    tempHBoxLayout->addWidget(createNewKey("KP_Enter"));
 
     tempVBoxLayout->addLayout(tempHBoxLayout);
     finalVBoxLayout->addLayout(tempVBoxLayout);

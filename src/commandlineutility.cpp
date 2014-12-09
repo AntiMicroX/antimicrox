@@ -32,6 +32,7 @@ QRegExp CommandLineUtility::unloadRegexp = QRegExp("--unload");
 QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
 QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
+QRegExp CommandLineUtility::qtStyleRegexp = QRegExp("-style");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 
@@ -326,6 +327,19 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         }
     #endif
 #endif
+        else if (qtStyleRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+                // Skip over argument
+                iter.next();
+            }
+            else
+            {
+                errorsteam << tr("Qt style flag was detected but no style was specified.") << endl;
+                encounteredError = true;
+            }
+        }
         // Check if this is the last argument. If it is and no command line flag
         // is active, the final argument is likely a profile that has
         // been specified.
