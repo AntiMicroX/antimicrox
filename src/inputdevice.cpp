@@ -256,7 +256,8 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i=0; i < current_set->getNumberSticks(); i++)
         {
             JoyControlStick::JoyStickDirections value = stickstates.at(i);
-            bool tempignore = true;
+            //bool tempignore = true;
+            bool tempignore = false;
             QList<JoyControlStickButton*> buttonList;
             QList<JoyControlStickButton*> oldButtonList;
             JoyControlStick *stick = current_set->getJoyStick(i);
@@ -351,7 +352,8 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberVDPads(); i++)
         {
             int value = vdpadstates.at(i);
-            bool tempignore = true;
+            //bool tempignore = true;
+            bool tempignore = false;
             JoyDPad *dpad = current_set->getVDPad(i);
             QList<JoyDPadButton*> buttonList;
             QList<JoyDPadButton*> oldButtonList;
@@ -453,7 +455,8 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
             bool value = buttonstates.at(i);
-            bool tempignore = true;
+            //bool tempignore = true;
+            bool tempignore = false;
             JoyButton *button = current_set->getJoyButton(i);
             JoyButton *oldButton = old_set->getJoyButton(i);
             if (button->getChangeSetCondition() == JoyButton::SetChangeWhileHeld)
@@ -488,7 +491,8 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberAxes(); i++)
         {
             int value = axesstates.at(i);
-            bool tempignore = true;
+            //bool tempignore = true;
+            bool tempignore = false;
             JoyAxis *axis = current_set->getJoyAxis(i);
             JoyAxisButton *oldButton = old_set->getJoyAxis(i)->getAxisButtonByValue(value);
             JoyAxisButton *button = axis->getAxisButtonByValue(value);
@@ -525,7 +529,8 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberHats(); i++)
         {
             int value = dpadstates.at(i);
-            bool tempignore = true;
+            //bool tempignore = true;
+            bool tempignore = false;
             JoyDPad *dpad = current_set->getJoyDPad(i);
             QList<JoyDPadButton*> buttonList;
             QList<JoyDPadButton*> oldButtonList;

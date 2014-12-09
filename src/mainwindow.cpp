@@ -321,7 +321,21 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
+#ifdef USE_SDL_2
+    QMap<SDL_JoystickID, InputDevice*> temp;
+    QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
+    while (iterTemp.hasNext())
+    {
+        iterTemp.next();
+
+        InputDevice *joystick = iterTemp.value();
+        temp.insert(joystick->getJoyNumber(), joystick);
+    }
+
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(temp);
+#else
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+#endif
 
     while (iter.hasNext())
     {
