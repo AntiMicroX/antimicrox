@@ -85,6 +85,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->stickDelayDoubleSpinBox->setValue(stickDelay * .001);
 
     ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
+    stick->getModifierButton()->establishPropertyUpdatedConnections();
 
     connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
