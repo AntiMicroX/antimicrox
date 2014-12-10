@@ -312,7 +312,7 @@ MainWindow::~MainWindow()
 void MainWindow::fillButtons(InputDevice *joystick)
 {
     int joyindex = joystick->getJoyNumber();
-    JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+    JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
     tabwidget->refreshButtons();
 }
 
@@ -322,6 +322,8 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     removeJoyTabs();
 
 #ifdef USE_SDL_2
+    // Make temporary QMap with devices inserted using the device index as the
+    // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
     QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
     while (iterTemp.hasNext())
@@ -620,7 +622,7 @@ void MainWindow::saveAppConfig()
 {
     if (joysticks->count() > 0)
     {
-        JoyTabWidget *temptabwidget = (JoyTabWidget*)ui->tabWidget->widget(0);
+        JoyTabWidget *temptabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(0));
         settings->setValue("DisplayNames",
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
@@ -631,7 +633,7 @@ void MainWindow::saveAppConfig()
         {
             bool prepareSave = true;
 
-            JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(i);
+            JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
             InputDevice *device = tabwidget->getJoystick();
 
             // Do not allow multi-controller adapters to overwrite each
@@ -667,7 +669,7 @@ void MainWindow::loadAppConfig(bool forceRefresh)
 {
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tabwidget = (JoyTabWidget*)ui->tabWidget->widget(i);
+        JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         tabwidget->loadSettings(forceRefresh);
     }
 }
@@ -811,7 +813,7 @@ void MainWindow::joystickTrayShow()
             iter.next();
             int joyindex = iter.key().toInt();
             int configindex = iter.value().toInt();
-            JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
 
             if (configindex == widget->getCurrentConfigIndex())
             {
@@ -908,7 +910,7 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 {
     if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(joystickIndex-1));
+        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex-1));
         if (widget)
         {
             widget->loadConfigFile(fileLocation);
@@ -918,7 +920,7 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
     {
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
-            JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(i));
+            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
             if (widget)
             {
                 widget->loadConfigFile(fileLocation);
@@ -1230,7 +1232,7 @@ void MainWindow::singleTrayProfileMenuShow()
                     iter.next();
                     int joyindex = iter.key().toInt();
                     int configindex = iter.value().toInt();
-                    JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+                    JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
 
                     if (configindex == widget->getCurrentConfigIndex())
                     {
@@ -1274,7 +1276,7 @@ void MainWindow::profileTrayActionTriggered(bool checked)
         // Fetching indicies and tab associated with the current joypad
         int joyindex = iter.key().toInt();
         int configindex = iter.value().toInt();
-        JoyTabWidget *widget = (JoyTabWidget*)ui->tabWidget->widget(joyindex);
+        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
 
         // Checking if the selected config has been disabled by the change (action->isChecked() represents the state of the checkbox AFTER the click)
         if (!checked)
