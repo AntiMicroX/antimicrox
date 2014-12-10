@@ -35,10 +35,10 @@ public:
                         EasingQuadraticCurve, EasingCubicCurve};
     enum TurboMode {NormalTurbo=0, GradientTurbo, PulseTurbo};
 
-    void joyEvent (bool pressed, bool ignoresets=false);
-    int getJoyNumber ();
-    virtual int getRealJoyNumber ();
-    void setJoyNumber (int index);
+    void joyEvent(bool pressed, bool ignoresets=false);
+    int getJoyNumber();
+    virtual int getRealJoyNumber();
+    void setJoyNumber(int index);
 
     bool getToggleState();
     int getTurboInterval();

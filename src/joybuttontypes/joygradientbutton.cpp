@@ -10,7 +10,7 @@ JoyGradientButton::JoyGradientButton(int index, int originset, SetJoystick *pare
 }
 
 /**
- * @brief Activate a turbo event on a JoyControlStickButton.
+ * @brief Activate a turbo event on a button.
  */
 void JoyGradientButton::turboEvent()
 {

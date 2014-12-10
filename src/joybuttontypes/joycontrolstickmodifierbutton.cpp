@@ -74,10 +74,11 @@ void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition con
     Q_UNUSED(passive);
 }
 
-int JoyControlStickModifierButton::getRealJoyNumber()
+/*int JoyControlStickModifierButton::getRealJoyNumber()
 {
     return index;
 }
+*/
 
 JoyControlStick* JoyControlStickModifierButton::getStick()
 {
