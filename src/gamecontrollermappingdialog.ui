@@ -26,7 +26,10 @@
       <number>40</number>
      </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,2,0,1">
+       <property name="spacing">
+        <number>20</number>
+       </property>
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
