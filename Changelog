@@ -1,3 +1,55 @@
+2014-12-10 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.10
+
+* Changed allowed values for easing duration. The minimum value has been
+lowered to 0.0 and the maximum value has been increased to 5.0.
+
+* Added a stick modifier button. This button is primarily meant to be used
+to assign walk/run functionality to an analog stick. Instead of having to
+create distance zones and assign keyboard modifier keys to each stick button,
+you can now make the assignment on the stick modifier button and it
+will apply to the stick as a whole. It makes assigning walk/run functionality
+to an analog stick much less cumbersome. The DreadOut demo has already shown a
+use case where only the stick modifier button was needed due to the demo not
+handling running when using the left stick on an Xbox 360 controller.
+
+* Increased idle mouse timer interval to 100 ms.
+
+* Added a load profile slot. You can now tell the program to load a different
+profile upon pressing a button.
+
+* Added gradient functionality for the high end of the Easing Quadratic and
+Easing Cubic mouse acceleration curves.
+
+* Raise process priority on Windows. Now, the antimicro process will run
+with High priority. This allows internal timers to work better and be less
+susceptible to the activity of other running programs. On Linux, the priority of
+the main thread has been increased.
+
+* Take multiple direction buttons into account when assigning set switching
+to stick buttons.
+
+* If uinput is enabled but not usable at runtime then XTest will be used
+as a fallback option for the Linux version.
+
+* Tweaked Gradient and Pulse turbo modes to make them a bit tighter. A lower
+delay will be needed in profiles to achieve a similar control from previous
+versions. On the plus side, this has been tested to work with FlatOut 2 fairly
+well. It is good enough to use and actually win some races against AI opponents.
+
+* Added analog control for mouse wheel buttons that are mapped to an axis
+button.
+
+* Tweaked mouse movement code to improve mouse accuracy. This is mainly due
+to discovering the QElapsedTimer class that is included in Qt.
+
+* Fixed middle mouse button binding when using the uinput event handler
+on Linux.
+
+* Fixed memory leaks that were discovered by Valgrind.
+
+
 2014-11-19 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.9
