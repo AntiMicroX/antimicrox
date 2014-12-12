@@ -131,6 +131,7 @@ signals:
     void joystickConfigChanged(int index);
     void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);
+    void forceTabUnflash(JoyTabWidget *tabWidget);
 #ifdef USE_SDL_2
     void mappingUpdated(QString mapping, InputDevice *device);
 #endif

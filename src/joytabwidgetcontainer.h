@@ -27,6 +27,7 @@ private slots:
     void flash();
     void unflash();
     void unflashAll();
+    void unflashTab(JoyTabWidget *tabWidget);
 };
 
 #endif // JOYTABWIDGETCONTAINER_H

@@ -503,22 +503,12 @@ void JoyTabWidget::openConfigFileDialog()
     }
 }
 
+/**
+ * @brief Create and render all push buttons corresponding to joystick
+ *     controls for all sets.
+ */
 void JoyTabWidget::fillButtons()
 {
-    /*
-    QWidget *child;
-    //QList<QPushButton*> list = old_layout->findChildren<QPushButton*>();
-    //qDeleteAll(list);
-    while (gridLayout && gridLayout->count() > 0)
-    {
-        child = gridLayout->takeAt(0)->widget();
-        gridLayout->removeWidget (child);
-        //child->deleteLater();
-        delete child;
-        child = 0;
-    }
-    */
-
     joystick->establishPropertyUpdatedConnection();
     connect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)), Qt::QueuedConnection);
 
@@ -825,7 +815,14 @@ void JoyTabWidget::changeJoyConfig(int index)
     {
         removeCurrentButtons();
 
+        if (joystick->getActiveSetNumber() != 0)
+        {
+            joystick->setActiveSetNumber(0);
+            changeCurrentSet(0);
+        }
+
         joystick->resetButtonDownCount();
+        emit forceTabUnflash(this);
 
         XMLConfigReader reader;
         reader.setFileName(filename);
@@ -872,9 +869,16 @@ void JoyTabWidget::changeJoyConfig(int index)
     {
         removeCurrentButtons();
 
+        if (joystick->getActiveSetNumber() != 0)
+        {
+            joystick->setActiveSetNumber(0);
+            changeCurrentSet(0);
+        }
+
         //joystick->reset();
         joystick->transferReset();
         joystick->resetButtonDownCount();
+        emit forceTabUnflash(this);
         joystick->reInitButtons();
 
         fillButtons();

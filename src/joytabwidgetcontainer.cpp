@@ -17,6 +17,7 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
     if (joystick)
     {
         enableFlashes(joystick);
+        connect(widget, SIGNAL(forceTabUnflash(JoyTabWidget*)), this, SLOT(unflashTab(JoyTabWidget*)));
     }
 
     return QTabWidget::addTab(widget, string);
@@ -50,6 +51,20 @@ void JoyTabWidgetContainer::unflash()
         {
             tabBar()->setTabTextColor(i, Qt::black);
             found = true;
+        }
+    }
+}
+
+void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
+{
+    bool found = false;
+
+    for (int i=0; i < tabBar()->count() && !found; i++)
+    {
+        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
+        if (tab == tabWidget)
+        {
+            tabBar()->setTabTextColor(i, Qt::black);
         }
     }
 }
