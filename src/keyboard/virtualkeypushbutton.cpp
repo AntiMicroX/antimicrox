@@ -154,26 +154,17 @@ void VirtualKeyPushButton::populateKnownAliases()
     }
 }
 
-// Dynamically change font size of push button text according to the
-// size of the widget.
-void VirtualKeyPushButton::paintEvent(QPaintEvent *event)
+int VirtualKeyPushButton::calculateFontSize()
 {
-    Q_UNUSED(event);
+    QFont tempScaledFont(this->font());
+    tempScaledFont.setPointSize(10);
+    QFontMetrics fm(tempScaledFont);
 
-    QPainter painter(this);
-
-    QFontMetrics fm = this->fontMetrics();
-    QFont tempWidgetFont = this->font();
-    QFont tempScaledFont = painter.font();
-
-    while ((this->width() < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) && tempScaledFont.pointSize() >= 5)
+    while (((this->width()-4) < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) && tempScaledFont.pointSize() >= 6)
     {
-        tempScaledFont.setPointSize(painter.font().pointSize()-1);
-        painter.setFont(tempScaledFont);
-        fm = painter.fontMetrics();
+        tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
+        fm = QFontMetrics(tempScaledFont);
     }
 
-    this->setFont(tempScaledFont);
-    QPushButton::paintEvent(event);
-    this->setFont(tempWidgetFont);
+    return tempScaledFont.pointSize();
 }

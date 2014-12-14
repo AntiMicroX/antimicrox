@@ -12,6 +12,7 @@ class VirtualKeyPushButton : public QPushButton
     Q_OBJECT
 public:
     explicit VirtualKeyPushButton(JoyButton *button, QString xcodestring, QWidget *parent = 0);
+    int calculateFontSize();
     
 protected:
     int keycode;
@@ -25,7 +26,6 @@ protected:
 
     QString setDisplayString(QString xcodestring);
     void populateKnownAliases();
-    virtual void paintEvent(QPaintEvent *event);
 
 signals:
     void keycodeObtained(int code, unsigned int alias);

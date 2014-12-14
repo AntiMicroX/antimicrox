@@ -52,6 +52,8 @@ protected:
     QPushButton* createNoneKey();
     void populateTopRowKeys();
 
+    virtual void resizeEvent(QResizeEvent *event);
+
 signals:
     void selectionFinished();
     void selectionCleared();
@@ -73,6 +75,7 @@ private slots:
     void clearButtonSlotsFinish();
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
+    void setButtonFontSizes();
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

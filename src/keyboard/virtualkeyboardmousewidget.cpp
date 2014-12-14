@@ -26,10 +26,13 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
 
     this->setTabPosition(QTabWidget::South);
 
+
     setupVirtualKeyboardLayout();
     setupMouseControlLayout();
     establishVirtualKeyboardSingleSignalConnections();
     establishVirtualMouseSignalConnections();
+
+    QTimer::singleShot(0, this, SLOT(setButtonFontSizes()));
 
     connect(mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
 }
@@ -47,6 +50,8 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
     this->addTab(mouseTab, tr("Mouse"));
 
     this->setTabPosition(QTabWidget::South);
+
+    QTimer::singleShot(0, this, SLOT(setButtonFontSizes()));
 }
 
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
@@ -620,4 +625,39 @@ void VirtualKeyboardMouseWidget::openMouseSettingsDialog()
 void VirtualKeyboardMouseWidget::enableMouseSettingButton()
 {
     mouseSettingsPushButton->setEnabled(true);
+}
+
+void VirtualKeyboardMouseWidget::resizeEvent(QResizeEvent *event)
+{
+    QTabWidget::resizeEvent(event);
+    setButtonFontSizes();
+}
+
+// Dynamically change font size of list of push button according to the
+// size of the buttons.
+void VirtualKeyboardMouseWidget::setButtonFontSizes()
+{
+    //int tempWidgetFontSize = 20;
+    QList<VirtualKeyPushButton*> buttonList = this->findChildren<VirtualKeyPushButton*>();
+    QListIterator<VirtualKeyPushButton*> iter(buttonList);
+    while (iter.hasNext())
+    {
+        VirtualKeyPushButton *temp = iter.next();
+        //widgetSizeMan = qMin(temp->calculateFontSize(), tempWidgetFontSize);
+        QFont tempFont(temp->font());
+        tempFont.setPointSize(temp->calculateFontSize());
+        temp->setFont(tempFont);
+        //temp->update();
+    }
+
+    /*iter.toFront();
+
+    while (iter.hasNext())
+    {
+        VirtualKeyPushButton *temp = iter.next();
+        QFont tempFont(temp->font());
+        tempFont.setPointSize(widgetSizeMan);
+        temp->setFont(tempFont);
+    }
+    */
 }
