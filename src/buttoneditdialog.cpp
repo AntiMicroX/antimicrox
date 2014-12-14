@@ -67,6 +67,10 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
         ui->buttonNameLineEdit->setText(button->getButtonName());
     }
 
+    grabKeyboard();
+
+    connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(checkForKeyboardWidgetFocus(QWidget*,QWidget*)));
+
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionCleared()), this, SLOT(refreshSlotSummaryLabel()));
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionFinished()), this, SLOT(close()));
 
@@ -89,6 +93,22 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshSlotSummaryLabel()));
     connect(button, SIGNAL(buttonNameChanged()), this, SLOT(updateWindowTitleButtonName()));
+}
+
+void ButtonEditDialog::checkForKeyboardWidgetFocus(QWidget *old, QWidget *now)
+{
+    Q_UNUSED(old);
+    Q_UNUSED(now);
+
+    if (ui->virtualKeyMouseTabWidget->hasFocus() &&
+        ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
+    {
+        grabKeyboard();
+    }
+    else
+    {
+        releaseKeyboard();
+    }
 }
 
 ButtonEditDialog::~ButtonEditDialog()

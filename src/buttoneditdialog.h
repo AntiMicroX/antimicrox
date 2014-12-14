@@ -50,6 +50,7 @@ private slots:
     void clearButtonSlots();
     void sendSelectionFinished();
     void updateWindowTitleButtonName();
+    void checkForKeyboardWidgetFocus(QWidget *old, QWidget *now);
 };
 
 #endif // BUTTONEDITDIALOGTWO_H
