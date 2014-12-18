@@ -6,10 +6,11 @@
 
 #include "sdleventreader.h"
 
-SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, QObject *parent) :
+SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
+    this->settings = settings;
     initSDL();
 }
 
@@ -34,14 +35,14 @@ void SDLEventReader::initSDL()
     sdlIsOpen = true;
 
 #ifdef USE_SDL_2
-    QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    settings.beginGroup("Mappings");
-    QStringList mappings = settings.allKeys();
+    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings->beginGroup("Mappings");
+    QStringList mappings = settings->allKeys();
     QStringListIterator iter(mappings);
     while (iter.hasNext())
     {
         QString tempstring = iter.next();
-        QString mappingSetting = settings.value(tempstring, QString()).toString();
+        QString mappingSetting = settings->value(tempstring, QString()).toString();
         if (!mappingSetting.isEmpty())
         {
             QByteArray temparray = mappingSetting.toUtf8();
@@ -49,6 +50,8 @@ void SDLEventReader::initSDL()
             SDL_GameControllerAddMapping(mapping); // Let SDL take care of validation
         }
     }
+
+    settings->endGroup();
 
     //SDL_GameControllerAddMapping("03000000100800000100000010010000,Twin USB Joystick,a:b2,b:b1,x:b3,y:b0,back:b8,start:b9,leftshoulder:b6,rightshoulder:b7,leftstick:b10,rightstick:b11,leftx:a0,lefty:a1,rightx:a3,righty:a2,lefttrigger:b4,righttrigger:b5,dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2");
 #endif

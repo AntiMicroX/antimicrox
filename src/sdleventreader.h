@@ -12,12 +12,13 @@
 
 #include "joystick.h"
 #include "inputdevice.h"
+#include "antimicrosettings.h"
 
 class SDLEventReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks, QObject *parent = 0);
+    explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, QObject *parent = 0);
     ~SDLEventReader();
 
     bool isSDLOpen();
@@ -29,6 +30,7 @@ protected:
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
     bool sdlIsOpen;
+    AntiMicroSettings *settings;
 
 signals:
     void eventRaised();

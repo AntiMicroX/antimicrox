@@ -14,7 +14,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicr
     this->graphical = graphical;
     this->settings = settings;
 
-    eventWorker = new SDLEventReader(joysticks);
+    eventWorker = new SDLEventReader(joysticks, settings);
     thread = new QThread();
     eventWorker->moveToThread(thread);
 
