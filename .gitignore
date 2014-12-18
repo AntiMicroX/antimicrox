@@ -2,6 +2,7 @@
 .*.swp
 .directory
 *.qm
+*.diff
 Makefile
 antimicro
 !share/antimicro
