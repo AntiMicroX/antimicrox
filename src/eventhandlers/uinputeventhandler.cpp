@@ -41,16 +41,23 @@ UInputEventHandler::~UInputEventHandler()
     cleanup();
 }
 
+/**
+ * @brief Initialize keyboard and mouse virtual devices. Each device will
+ *     use its own file handle with various codes set to distinquish the two
+ *     devices.
+ * @return
+ */
 bool UInputEventHandler::init()
 {
     bool result = true;
 
+    // Open file handle for keyboard emulation.
     keyboardFileHandler = openUInputHandle();
     if (keyboardFileHandler > 0)
     {
         setKeyboardEvents(keyboardFileHandler);
         populateKeyCodes(keyboardFileHandler);
-        createUInputDevice(keyboardFileHandler);
+        createUInputKeyboardDevice(keyboardFileHandler);
     }
     else
     {
@@ -59,6 +66,7 @@ bool UInputEventHandler::init()
 
     if (result)
     {
+        // Open mouse file handle to use for mouse emulation.
         mouseFileHandler = openUInputHandle();
         if (mouseFileHandler > 0)
         {
@@ -303,6 +311,7 @@ int UInputEventHandler::openUInputHandle()
 {
     int filehandle = -1;
     QTextStream err(stderr);
+
     QStringList locations;
     locations.append("/dev/input/uinput");
     locations.append("/dev/uinput");
@@ -338,6 +347,10 @@ int UInputEventHandler::openUInputHandle()
                                  "Please check that you have permission to write to the device");
             lastErrorString.append("\n").append(possibleLocation);
             err << lastErrorString << endl << endl;
+        }
+        else
+        {
+            uinputDeviceLocation = possibleLocation;
         }
     }
 
@@ -380,7 +393,7 @@ void UInputEventHandler::populateKeyCodes(int filehandle)
     }
 }
 
-void UInputEventHandler::createUInputDevice(int filehandle)
+void UInputEventHandler::createUInputKeyboardDevice(int filehandle)
 {
     struct uinput_user_dev uidev;
 
@@ -456,4 +469,17 @@ QString UInputEventHandler::getName()
 QString UInputEventHandler::getIdentifier()
 {
     return getName();
+}
+
+/**
+ * @brief Print extra help messages to stdout.
+ */
+void UInputEventHandler::printPostMessages()
+{
+    QTextStream out(stdout);
+
+    if (!uinputDeviceLocation.isEmpty())
+    {
+        out << tr("Using uinput device file %1").arg(uinputDeviceLocation) << endl;
+    }
 }

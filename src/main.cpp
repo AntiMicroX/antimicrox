@@ -582,6 +582,7 @@ int main(int argc, char *argv[])
     {
         outstream << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName())
                   << endl;
+        factory->handler()->printPostMessages();
     }
 #endif
 

@@ -20,13 +20,14 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual QString getName();
     virtual QString getIdentifier();
+    virtual void printPostMessages();
 
 protected:
     int openUInputHandle();
     void setKeyboardEvents(int filehandle);
     void setMouseEvents(int filehandle);
     void populateKeyCodes(int filehandle);
-    void createUInputDevice(int filehandle);
+    void createUInputKeyboardDevice(int filehandle);
     void createUInputMouseDevice(int filehandle);
     void closeUInputDevice(int filehandle);
     void write_uinput_event(int filehandle, unsigned int type,
@@ -34,6 +35,7 @@ protected:
 
     int keyboardFileHandler;
     int mouseFileHandler;
+    QString uinputDeviceLocation;
 
 signals:
 

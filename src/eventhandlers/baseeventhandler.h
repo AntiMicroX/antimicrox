@@ -20,6 +20,7 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis) = 0;
     virtual QString getName() = 0;
     virtual QString getIdentifier() = 0;
+    virtual void printPostMessages();
     QString getErrorString();
 
 protected:
