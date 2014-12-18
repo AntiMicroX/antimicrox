@@ -22,6 +22,11 @@ public:
 private:
     Ui::AdvanceButtonDialog *ui;
 
+    enum SlotTypeComboIndex {
+        KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, HoldSlot,
+        LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot, ReleaseSlot
+    };
+
 protected:
     void connectButtonEvents(SimpleKeyGrabberButton *button);
     void appendBlankKeyGrabber();
@@ -85,6 +90,9 @@ private slots:
     void setButtonCycleReset(bool enabled);
     void setButtonTurboMode(int value);
     void showSelectProfileWindow();
+
+    void changeSlotTypeDisplay(int index);
+    void changeSlotHelpText(int index);
 };
 
 #endif // ADVANCEBUTTONDIALOG_H
