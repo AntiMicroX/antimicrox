@@ -252,3 +252,11 @@ phob - German
 Dmitriy Koshel <form.eater@gmail.com> - Russian  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
 burunduk - Ukrainian
+
+## Donate
+
+If you would like to help fund future development of this project,
+please send a donation via PayPal to ryoohki7@yahoo.com. Any financial help
+would be greatly appreciated. As a disclaimer, I should mention that any
+donations received might go towards buying games to test against. Some
+donations might just go towards groceries so that I can eat.
