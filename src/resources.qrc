@@ -5,5 +5,6 @@
         <file>images/controllermap.png</file>
         <file>images/axis.png</file>
         <file>images/button.png</file>
+        <file>images/profile.jpg</file>
     </qresource>
 </RCC>
