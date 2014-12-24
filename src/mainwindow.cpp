@@ -173,12 +173,12 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     }
     else if (cmdutility->shouldListControllers())
     {
-        graphical = false;
+        this->graphical = graphical = false;
     }
 #ifdef USE_SDL_2
     else if (cmdutility->shouldMapController())
     {
-        graphical = false;
+        this->graphical = graphical = false;
         if (cmdutility->hasControllerNumber())
         {
             unsigned int joypadIndex = cmdutility->getControllerNumber();
@@ -197,29 +197,40 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     resize(settings->value("WindowSize", size()).toSize());
     move(settings->value("WindowPosition", pos()).toPoint());
 
-    aboutDialog = new AboutDialog(this);
+    if (graphical)
+    {
+        aboutDialog = new AboutDialog(this);
+    }
+    else
+    {
+        aboutDialog = 0;
+    }
 
 #ifdef Q_OS_WIN
-    bool shouldAssociateProfiles = settings->value("AssociateProfiles", true).toBool();
-
-    if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
+    if (graphical)
     {
-        QMessageBox msg;
-        msg.setWindowTitle(tr("File Association"));
-        msg.setText(tr("No file association was found for .amgp files. Would you like to associate AntiMicro with .amgp files?"));
-        msg.setModal(true);
-        msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        int result = msg.exec();
-        if (result == QMessageBox::Yes)
+        bool shouldAssociateProfiles = settings->value("AssociateProfiles", true).toBool();
+
+        if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
         {
-            WinExtras::writeFileAssocationToRegistry();
-            settings->setValue("AssociateProfiles", 1);
-        }
-        else
-        {
-            settings->setValue("AssociateProfiles", 0);
+            QMessageBox msg;
+            msg.setWindowTitle(tr("File Association"));
+            msg.setText(tr("No file association was found for .amgp files. Would you like to associate AntiMicro with .amgp files?"));
+            msg.setModal(true);
+            msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            int result = msg.exec();
+            if (result == QMessageBox::Yes)
+            {
+                WinExtras::writeFileAssocationToRegistry();
+                settings->setValue("AssociateProfiles", 1);
+            }
+            else
+            {
+                settings->setValue("AssociateProfiles", 0);
+            }
         }
     }
+
 #endif
 
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
@@ -274,27 +285,31 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     }
 
 #ifdef Q_OS_WIN
-    if (!WinExtras::IsRunningAsAdmin())
+    if (graphical)
     {
-        if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+        if (!WinExtras::IsRunningAsAdmin())
         {
-            QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
-            ui->uacPushButton->setIcon(uacIcon);
+            if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+            {
+                QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
+                ui->uacPushButton->setIcon(uacIcon);
+            }
+            connect(ui->uacPushButton, SIGNAL(clicked()), this, SLOT(restartAsElevated()));
+            //QTimer::singleShot(5, this, SLOT(restartAsElevated()));
         }
-        connect(ui->uacPushButton, SIGNAL(clicked()), this, SLOT(restartAsElevated()));
-        //QTimer::singleShot(5, this, SLOT(restartAsElevated()));
-    }
-    else
-    {
-        ui->uacPushButton->setVisible(false);
+        else
+        {
+            ui->uacPushButton->setVisible(false);
+        }
+
+        WinExtras::grabCurrentPointerPrecision();
+        bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
+        if (disableEnhandedPoint)
+        {
+            WinExtras::disablePointerPrecision();
+        }
     }
 
-    WinExtras::grabCurrentPointerPrecision();
-    bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
-    if (disableEnhandedPoint)
-    {
-        WinExtras::disablePointerPrecision();
-    }
 
 #else
     ui->uacPushButton->setVisible(false);
