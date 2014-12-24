@@ -2,6 +2,7 @@
 #define EVENTHANDLERFACTORY_H
 
 #include <QObject>
+#include <QStringList>
 
 #ifdef Q_OS_UNIX
 #ifdef WITH_UINPUT
@@ -21,6 +22,9 @@ public:
     static EventHandlerFactory* getInstance(QString handler = "");
     void deleteInstance();
     BaseEventHandler* handler();
+    static QString fallBackIdentifier();
+    static QStringList buildEventGeneratorList();
+    static QString handlerDisplayName(QString handler);
 
 protected:
     explicit EventHandlerFactory(QString handler, QObject *parent = 0);

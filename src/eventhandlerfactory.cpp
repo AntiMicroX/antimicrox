@@ -1,15 +1,16 @@
-#include <QStringList>
+#include <QHash>
 
 #include "eventhandlerfactory.h"
 
-static QStringList buildEventGeneratorList()
+static QHash<QString, QString> buildDisplayNames()
 {
-    QStringList temp;
-
-    temp.append("xtest");
-    temp.append("uinput");
+    QHash<QString, QString> temp;
+    temp.insert("xtest", "Xtest");
+    temp.insert("uinput", "uinput");
     return temp;
 }
+
+QHash<QString, QString> handlerDisplayNames = buildDisplayNames();
 
 EventHandlerFactory* EventHandlerFactory::instance = 0;
 
@@ -52,6 +53,10 @@ EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
         {
             instance = new EventHandlerFactory(handler);
         }
+        else
+        {
+            instance = new EventHandlerFactory(fallBackIdentifier());
+        }
     }
 
     return instance;
@@ -69,4 +74,38 @@ void EventHandlerFactory::deleteInstance()
 BaseEventHandler* EventHandlerFactory::handler()
 {
     return eventHandler;
+}
+
+QString EventHandlerFactory::fallBackIdentifier()
+{
+    QString temp;
+#if defined(WITH_XTEST)
+    temp = "xtest";
+#elif defined(WITH_UINPUT)
+    temp = "uinput";
+#else
+    temp = "xtest";
+#endif
+
+    return temp;
+}
+
+QStringList EventHandlerFactory::buildEventGeneratorList()
+{
+    QStringList temp;
+
+    temp.append("xtest");
+    temp.append("uinput");
+    return temp;
+}
+
+QString EventHandlerFactory::handlerDisplayName(QString handler)
+{
+    QString temp;
+    if (handlerDisplayNames.contains(handler))
+    {
+        temp = handlerDisplayNames.value(handler);
+    }
+
+    return temp;
 }

@@ -528,12 +528,15 @@ int main(int argc, char *argv[])
 
 #if defined(WITH_UINPUT) && defined(WITH_XTEST)
     // Use xtest as a fallback.
-    if (!status && cmdutility.getEventGenerator() == "uinput")
+    if (!status && cmdutility.getEventGenerator() != EventHandlerFactory::fallBackIdentifier())
     {
-        outstream << QObject::tr("Attempting to use XTest for event generation.") << endl;
+        QString eventDisplayName = EventHandlerFactory::handlerDisplayName(
+                    EventHandlerFactory::fallBackIdentifier());
+        outstream << QObject::tr("Attempting to use fallback option %1 for event generation.")
+                     .arg(eventDisplayName) << endl;
 
         factory->deleteInstance();
-        factory = EventHandlerFactory::getInstance("xtest");
+        factory = EventHandlerFactory::getInstance(EventHandlerFactory::fallBackIdentifier());
         if (!factory)
         {
             status = false;

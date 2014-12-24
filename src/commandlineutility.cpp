@@ -12,14 +12,18 @@
 #include "commandlineutility.h"
 #include "common.h"
 
-static QStringList buildEventGeneratorList()
+#ifdef Q_OS_UNIX
+#include "eventhandlerfactory.h"
+#endif
+
+/*static QStringList buildEventGeneratorList()
 {
     QStringList temp;
 
     temp.append("xtest");
     temp.append("uinput");
     return temp;
-}
+}*/
 
 QRegExp CommandLineUtility::trayRegexp = QRegExp("--tray");
 QRegExp CommandLineUtility::helpRegexp = QRegExp("(-h|--help)");
@@ -42,7 +46,8 @@ QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 
     QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
 
-    QStringList CommandLineUtility::eventGeneratorsList = buildEventGeneratorList();
+    //QStringList CommandLineUtility::eventGeneratorsList = buildEventGeneratorList();
+    QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
 #endif
 
@@ -67,11 +72,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
 #ifdef Q_OS_WIN
     eventGenerator = "";
 #else
-    #ifdef WITH_XTEST
-    eventGenerator = "xtest";
-    #elif defined(WITH_UINPUT)
-    eventGenerator = "uinput";
-    #endif
+    eventGenerator = EventHandlerFactory::fallBackIdentifier();
 #endif
 
 }
@@ -338,6 +339,21 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             {
                 errorsteam << tr("Qt style flag was detected but no style was specified.") << endl;
                 encounteredError = true;
+            }
+        }
+        else if (isPossibleCommand(temp))
+        {
+            // Flag is unrecognized. Assume that it is a Qt option.
+            if (iter.hasNext())
+            {
+                // Check next argument
+                QString nextarg = iter.next();
+                if (isPossibleCommand(nextarg))
+                {
+                    // Flag likely didn't take an argument. Move iterator
+                    // back.
+                    iter.previous();
+                }
             }
         }
         // Check if this is the last argument. If it is and no command line flag
