@@ -455,6 +455,10 @@ void InputDaemon::addInputDevice(int index)
                         emit deviceAdded(damncontroller);
                     }
                 }
+                else
+                {
+                    settings->endGroup();
+                }
             }
             else
             {

@@ -55,12 +55,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
 
-    //delete ui->tab_2;
-    //ui->tab_2 = 0;
-
-    //delete ui->tab;
-    //ui->tab = 0;
-
     this->translator = 0;
     this->cmdutility = cmdutility;
     this->graphical = graphical;
@@ -309,7 +303,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
             WinExtras::disablePointerPrecision();
         }
     }
-
 
 #else
     ui->uacPushButton->setVisible(false);

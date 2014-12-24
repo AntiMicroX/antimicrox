@@ -52,6 +52,7 @@ public:
     QString getSDLPlatform();
 #endif
     virtual bool isGameController();
+    virtual bool isKnownController();
 
     void setButtonName(int index, QString tempName);
     void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);

@@ -193,7 +193,6 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-
             outstream << QObject::tr("Daemon launched") << endl;
 
             a = new QApplication(argc, argv);

@@ -1987,3 +1987,28 @@ AntiMicroSettings* InputDevice::getSettings()
 {
     return settings;
 }
+
+bool InputDevice::isKnownController()
+{
+    bool result = false;
+    if (isGameController())
+    {
+        result = true;
+    }
+    else
+    {
+        settings->beginGroup("Mappings");
+        if (settings->contains(getGUIDString()))
+        {
+            result = true;
+        }
+        else if (settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled")))
+        {
+            result = true;
+        }
+
+        settings->endGroup();
+    }
+
+    return result;
+}
