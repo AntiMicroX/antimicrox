@@ -159,6 +159,7 @@ set(antimicro_SOURCES src/main.cpp
     src/stickpushbuttongroup.cpp
     src/dpadpushbuttongroup.cpp
     src/joybuttonmousehelper.cpp
+    src/logger.cpp
 )
 
 # Platform dependent files.
@@ -282,6 +283,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/stickpushbuttongroup.h
     src/dpadpushbuttongroup.h
     src/joybuttonmousehelper.h
+    src/logger.h
 )
 
 # Platform dependent files.

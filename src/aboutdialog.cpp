@@ -57,8 +57,18 @@ void AboutDialog::fillInfoTextBrowser()
     finalInfoText.append(tr("Using Qt %1").arg(qVersion()));
 
 #ifdef Q_OS_UNIX
-    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-    finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
+    BaseEventHandler *handler = 0;
+    EventHandlerFactory *factory = EventHandlerFactory::getInstance();
+    if (factory)
+    {
+        handler = factory->handler();
+    }
+
+    if (handler)
+    {
+        finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
+    }
+
 #endif
 
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
