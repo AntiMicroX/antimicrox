@@ -12,7 +12,7 @@ class Logger : public QObject
     Q_OBJECT
 public:
     enum LogLevel {
-        LOG_INFO = 0, LOG_WARNING, LOG_ERROR, LOG_DEBUG,
+        LOG_NONE = 0, LOG_INFO, LOG_DEBUG, LOG_WARNING, LOG_ERROR,
     };
 
     explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = 0);
@@ -26,9 +26,6 @@ public:
     inline static void LogInfo(const QString &message) {
         Log(LOG_INFO, message);
     }
-    inline static void LogDebug(const QString &message) {
-        Log(LOG_DEBUG, message);
-    }
 
     inline static void LogWarning(const QString &message) {
         Log(LOG_WARNING, message);
@@ -36,6 +33,10 @@ public:
 
     inline static void LogError(const QString &message) {
         Log(LOG_ERROR, message);
+    }
+
+    inline static void LogDebug(const QString &message) {
+        Log(LOG_DEBUG, message);
     }
 
     inline static Logger* GetInstance() {
