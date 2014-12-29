@@ -289,7 +289,7 @@
        <property name="spacing">
         <number>20</number>
        </property>
-       <item>
+       <item alignment="Qt::AlignHCenter">
         <widget class="GameControllerExample" name="gameControllerDisplayWidget" native="true">
          <property name="minimumSize">
           <size>
