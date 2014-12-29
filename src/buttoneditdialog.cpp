@@ -36,9 +36,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_WIN
     setMinimumHeight(460);
-#endif
 
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -66,8 +64,6 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     {
         ui->buttonNameLineEdit->setText(button->getButtonName());
     }
-
-    grabKeyboard();
 
     connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(checkForKeyboardWidgetFocus(QWidget*,QWidget*)));
 
