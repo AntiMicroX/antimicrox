@@ -391,7 +391,8 @@ void JoyButton::reset()
         slotiter = 0;
     }
 
-    releaseDeskEvent(true);
+    releaseActiveSlots();
+    //releaseDeskEvent(true);
     clearAssignedSlots();
 
     isButtonPressedQueue.clear();
@@ -400,7 +401,7 @@ void JoyButton::reset()
     mouseWheelVerticalEventQueue.clear();
     mouseWheelHorizontalEventQueue.clear();
 
-    resetProperties();
+    resetProperties(); // quitEvent changed here
 }
 
 void JoyButton::reset(int index)
@@ -3047,7 +3048,8 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
         slotiter = 0;
     }
 
-    releaseDeskEvent(true);
+    releaseActiveSlots();
+    //releaseDeskEvent(true);
     clearAssignedSlots(clearSignalEmit);
 
     isButtonPressedQueue.clear();
