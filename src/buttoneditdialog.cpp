@@ -36,7 +36,9 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 {
     ui->setupUi(this);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     setMinimumHeight(460);
+#endif
 
     setAttribute(Qt::WA_DeleteOnClose);
 
