@@ -12,7 +12,7 @@ class Logger : public QObject
     Q_OBJECT
 public:
     enum LogLevel {
-        LOG_NONE = 0, LOG_INFO, LOG_DEBUG, LOG_WARNING, LOG_ERROR,
+        LOG_NONE = 0, LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR,
     };
 
     explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = 0);

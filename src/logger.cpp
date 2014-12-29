@@ -65,7 +65,7 @@ void Logger::Log(LogLevel level, const QString &message)
 {
     Q_ASSERT(instance != 0);
 
-    if (instance->outputLevel >= level)
+    if (instance->outputLevel != LOG_NONE && level >= instance->outputLevel)
     {
         QMutexLocker locker(&instance->logMutex);
         Q_UNUSED(locker);
