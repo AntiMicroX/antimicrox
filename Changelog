@@ -1,3 +1,21 @@
+2014-12-29 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.10.1
+
+* Changed event handler fallback method under Linux.
+
+* Changed interface of Assignments page in Advanced Button Dialog.
+
+* Reset set number upon changing profiles.
+
+* Added "About Development" tab to About Dialog.
+
+* Fixed dynamic text resizing in Button Edit Dialog under Linux.
+
+* Fixed launching a second instance in order to load a profile in the
+first instance.
+
+
 2014-12-10 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.10
@@ -59,7 +77,7 @@ system behaves if you set the refresh rate to a low value like 1 ms.
 In the worst case scenario, you could end up dedicating one CPU core on
 just the antimicro process. Also, on Windows, you will want to make sure
 to disable the "Enhance Pointer Precision" option if you use a low value
-otherwise Windows will severly slow down the mouse pointer.
+otherwise Windows will severely slow down the mouse pointer.
 
 * Added an application level mouse smoothing option. The older button level
 smoothing option has been removed. The old option didn't do much since it only
@@ -253,7 +271,7 @@ window. The text displayed on the buttons will update when a
 new zone has been reached due to using slots such as distance or hold.
 
 * Allow no profile to be assigned to an application for an Auto Profile entry.
-This means that the program will chose an empty profile when the application
+This means that the program will choose an empty profile when the application
 for that Auto Profile entry has focus. This will help with disabling AntiMicro
 for applications that already have controller support.
 
