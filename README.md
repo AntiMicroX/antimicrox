@@ -215,7 +215,11 @@ somewhere in the subject line of the email message or it might be skipped.
 This section is where some of the ideas for future features
 for this program will be written.
 
-* Write documentation for portions of the program.
+* Allow buttons to be bound to actions.
+* Use uinput by default and fallback to XTest if necessary. (MOSTLY DONE)
+* Move simulated event generation to a new thread.
+* Allow logging as long as it doesn't cause button lag.
+* Allow notes to be added to a profile in various places.
 
 Along with this, I will put the simple mind map that I am using to
 write ideas for future development into the repository for this
