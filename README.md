@@ -10,11 +10,16 @@ means that your system has to be running an X environment in order to run
 this program.
 
 This program is currently supported under various Linux
-distributions and Windows Vista and later. At the time of writing this,
-AntiMicro works in Windows XP but, since Windows XP is no longer supported,
-running the program in Windows XP will not be officially supported.
+distributions, Windows (Vista and later), and FreeBSD. At the time of writing
+this, AntiMicro works in Windows XP but, since Windows XP is no longer
+supported, running the program in Windows XP will not be officially supported.
 However, efforts will be made to not intentionally break compatibility
 with Windows XP.
+
+Also, FreeBSD support will be minimal for now. I don't use BSD on
+a daily basis so the main support for FreeBSD is being offered by Anton. He
+has graciously made a port of antimicro for FreeBSD that you can find
+at the following URL: [http://www.freshports.org/x11/antimicro/](http://www.freshports.org/x11/antimicro/).
 
 ## License
 
@@ -243,9 +248,11 @@ for this program mostly resembles QJoyPad.
 Travis Nickles <nickles.travis@gmail.com>
 
 ### Contributors
-aybe  
+
 Zerro Alvein  
-Jeff Backus <jeff.backus@gmail.com>
+aybe  
+Jeff Backus <jeff.backus@gmail.com>  
+Anton Tornqvist <antont@inbox.lv>
 
 ### Translators
 
