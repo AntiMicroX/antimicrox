@@ -24,7 +24,7 @@ private:
 
     enum SlotTypeComboIndex {
         KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, HoldSlot,
-        LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot, ReleaseSlot
+        LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot, ReleaseSlot, SetChangeSlot
     };
 
 protected:
@@ -40,6 +40,7 @@ protected:
     void connectTimeBoxesEvents();
     void resetTimeBoxes();
     void populateSetSelectionComboBox();
+    void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();
 
     int oldRow;
@@ -75,6 +76,7 @@ private slots:
     void insertMouseSpeedModSlot();
     void insertKeyPressSlot();
     void insertDelaySlot();
+    void insertSetChangeSlot();
 
     void updateActionTimeLabel();
     void updateSetSelection();
@@ -84,6 +86,7 @@ private slots:
     void checkSlotTimeUpdate();
     void checkSlotMouseModUpdate();
     void checkSlotDistanceUpdate();
+    void checkSlotSetChangeUpdate();
 
     void checkCycleResetWidgetStatus(bool enabled);
     void setButtonCycleResetInterval(double value);

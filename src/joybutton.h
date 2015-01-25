@@ -250,6 +250,7 @@ protected:
     QTimer keyPressTimer;
     QTimer delayTimer;
     QTimer keyRepeatTimer;
+    QTimer slotSetChangeTimer;
     static QTimer staticMouseEventTimer;
 
     bool isDown;
@@ -280,6 +281,7 @@ protected:
     JoyButtonSlot *currentWheelHorizontalEvent;
     JoyButtonSlot *currentKeyPress;
     JoyButtonSlot *currentDelay;
+    JoyButtonSlot *currentSetChangeSlot;
 
     bool ignoresets;
     QTime buttonHold;
@@ -420,6 +422,7 @@ private slots:
     void pauseWaitEvent();
     void checkForSetChange();
     void keyPressEvent();
+    void slotSetChange();
 };
 
 

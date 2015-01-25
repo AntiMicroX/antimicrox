@@ -75,6 +75,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     appendBlankKeyGrabber();
     populateSetSelectionComboBox();
+    populateSlotSetSelectionComboBox();
 
     if (this->button->getSetSelection() > -1 && this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled)
     {
@@ -130,11 +131,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->insertSlotButton, SIGNAL(clicked()), this, SLOT(insertSlot()));
     connect(ui->deleteSlotButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
     connect(ui->clearAllPushButton, SIGNAL(clicked()), this, SLOT(clearAllSlots()));
-    //connect(ui->pausePushButton, SIGNAL(clicked()), this, SLOT(insertPauseSlot()));
-    //connect(ui->holdPushButton, SIGNAL(clicked()), this, SLOT(insertHoldSlot()));
-    //connect(ui->cyclePushButton, SIGNAL(clicked()), this, SLOT(insertCycleSlot()));
-    //connect(ui->distancePushButton, SIGNAL(clicked()), this, SLOT(insertDistanceSlot()));
-    //connect(ui->releasePushButton, SIGNAL(clicked()), this, SLOT(insertReleaseSlot()));
 
     connect(ui->slotTypeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSlotTypeDisplay(int)));
     connect(ui->slotTypeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSlotHelpText(int)));
@@ -148,7 +144,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), this, SLOT(checkTurboSetting(bool)));
 
     connect(ui->setSelectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateSetSelection()));
-    //connect(ui->mouseModPushButton, SIGNAL(clicked()), this, SLOT(insertMouseSpeedModSlot()));
 
     connect(ui->slotListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(performStatsWidgetRefresh(QListWidgetItem*)));
 
@@ -156,11 +151,10 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
     connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
 
     connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
     connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
-    //connect(ui->pressTimePushButton, SIGNAL(clicked()), this, SLOT(insertKeyPressSlot()));
-    //connect(ui->delayPushButton, SIGNAL(clicked()), this, SLOT(insertDelaySlot()));
 
     connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(checkCycleResetWidgetStatus(bool)));
     connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(setButtonCycleReset(bool)));
@@ -367,6 +361,10 @@ void AdvanceButtonDialog::insertSlot()
     {
         insertReleaseSlot();
     }
+    else if (slotTypeIndex == SetChangeSlot)
+    {
+        insertSetChangeSlot();
+    }
 
     /*if (current != (count - 1))
     {
@@ -435,6 +433,24 @@ void AdvanceButtonDialog::insertHoldSlot()
 
         this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyHold);
         updateSlotsScrollArea(actionTime);
+    }
+}
+
+void AdvanceButtonDialog::insertSetChangeSlot()
+{
+    int index = ui->slotListWidget->currentRow();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+
+    int currentIndex = ui->slotSetChangeComboBox->currentIndex();
+    unsigned int setIndex = ui->slotSetChangeComboBox->itemData(currentIndex).toInt();
+    if (setIndex >= 0)
+    {
+        tempbutton->setValue(setIndex, JoyButtonSlot::JoySetChange);
+        // Stop all events on JoyButton
+        this->button->eventReset();
+
+        this->button->setAssignedSlot(setIndex, 0, index, JoyButtonSlot::JoySetChange);
+        updateSlotsScrollArea(setIndex);
     }
 }
 
@@ -800,7 +816,7 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     else if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
         ui->slotTypeComboBox->setCurrentIndex(DistanceSlot);
-        //changeSlotTypeDisplay(DistanceSlot);
+
         disconnect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
         ui->distanceSpinBox->setValue(slot->getSlotCode());
         connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
@@ -808,18 +824,15 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
     {
         ui->slotTypeComboBox->setCurrentIndex(HoldSlot);
-        //changeSlotTypeDisplay(HoldSlot);
         refreshTimeComboBoxes(slot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyLoadProfile)
     {
         ui->slotTypeComboBox->setCurrentIndex(LoadSlot);
-        //changeSlotTypeDisplay(LoadSlot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseSpeedMod)
     {
         ui->slotTypeComboBox->setCurrentIndex(MouseModSlot);
-        //changeSlotTypeDisplay(MouseModSlot);
         disconnect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
         ui->mouseSpeedModSpinBox->setValue(slot->getSlotCode());
         connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
@@ -827,26 +840,36 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     else if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
     {
         ui->slotTypeComboBox->setCurrentIndex(PauseSlot);
-        //changeSlotTypeDisplay(PauseSlot);
         refreshTimeComboBoxes(slot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyKeyPress)
     {
         ui->slotTypeComboBox->setCurrentIndex(PressTimeSlot);
-        //changeSlotTypeDisplay(PressTimeSlot);
         refreshTimeComboBoxes(slot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyRelease)
     {
         ui->slotTypeComboBox->setCurrentIndex(ReleaseSlot);
-        //changeSlotTypeDisplay(ReleaseSlot);
         refreshTimeComboBoxes(slot);
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoySetChange)
+    {
+        disconnect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
+
+        ui->slotTypeComboBox->setCurrentIndex(SetChangeSlot);
+        unsigned int chooseIndex = slot->getSlotCode();
+
+        int foundIndex = ui->slotSetChangeComboBox->findData(QVariant(chooseIndex));
+        if (foundIndex >= 0)
+        {
+            ui->slotSetChangeComboBox->setCurrentIndex(foundIndex);
+        }
+
+        connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
     }
     else
     {
         ui->slotTypeComboBox->setCurrentIndex(KBMouseSlot);
-        //changeSlotTypeDisplay(KBMouseSlot);
-        //refreshTimeComboBoxes(slot);
     }
 }
 
@@ -893,6 +916,28 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
 
         this->button->setAssignedSlot(tempMouseMod, 0, index, tempbuttonslot->getSlotMode());
         updateSlotsScrollArea(tempMouseMod);
+    }
+}
+
+void AdvanceButtonDialog::checkSlotSetChangeUpdate()
+{
+    int index = ui->slotListWidget->currentRow();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    JoyButtonSlot *buttonslot = tempbutton->getValue();
+    if (buttonslot->getSlotMode() == JoyButtonSlot::JoySetChange)
+    {
+        int comboIndex = ui->slotSetChangeComboBox->currentIndex();
+        int setIndex = ui->slotSetChangeComboBox->itemData(comboIndex).toInt();
+
+        if (setIndex >= 0)
+        {
+            tempbutton->setValue(setIndex, buttonslot->getSlotMode());
+            // Stop all events on JoyButton
+            this->button->eventReset();
+
+            this->button->setAssignedSlot(setIndex, 0, index, buttonslot->getSlotMode());
+            updateSlotsScrollArea(setIndex);
+        }
     }
 }
 
@@ -1040,13 +1085,6 @@ void AdvanceButtonDialog::connectTimeBoxesEvents()
 void AdvanceButtonDialog::populateSetSelectionComboBox()
 {
     ui->setSelectionComboBox->clear();
-
-    /*if (this->button->getSetSelection() > -1 && this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled)
-    {
-        int offset = (int)this->button->getChangeSetCondition();
-        ui->setSelectionComboBox->setCurrentIndex((this->button->getSetSelection() * 3) + offset);
-    }*/
-
     ui->setSelectionComboBox->insertItem(0, tr("Disabled"));
 
     int currentIndex = 1;
@@ -1085,6 +1123,36 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
 
             ui->setSelectionComboBox->insertItems(currentIndex, setChoices);
             currentIndex += 3;
+        }
+    }
+}
+
+void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
+{
+    ui->slotSetChangeComboBox->clear();
+
+    unsigned int currentIndex = 0;
+    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    {
+        if (this->button->getOriginSet() != i)
+        {
+            QString temp;
+            temp.append(tr("Select Set %1").arg(i+1));
+
+            InputDevice *tempdevice = button->getParentSet()->getInputDevice();
+            SetJoystick *tempset = tempdevice->getSetJoystick(i);
+            if (tempset)
+            {
+                QString setName = tempset->getName();
+                if (!setName.isEmpty())
+                {
+                    temp.append(" ").append("[");
+                    temp.append(setName).append("]").append(" ");
+                }
+            }
+
+            ui->slotSetChangeComboBox->insertItem(currentIndex, temp, QVariant(i));
+            currentIndex++;
         }
     }
 }
@@ -1184,6 +1252,10 @@ void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
     {
         ui->slotControlsStackedWidget->setCurrentIndex(0);
     }
+    else if (index == SetChangeSlot)
+    {
+        ui->slotControlsStackedWidget->setCurrentIndex(5);
+    }
 }
 
 void AdvanceButtonDialog::changeSlotHelpText(int index)
@@ -1241,5 +1313,9 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
         ui->slotTypeHelpLabel->setText(tr("Insert a release action. Slots after the action will only be "
                                           "executed after a button release if the button was held "
                                           "past the interval specified."));
+    }
+    else if (index == SetChangeSlot)
+    {
+        ui->slotTypeHelpLabel->setText(tr("Change to selected set once slot is activated."));
     }
 }

@@ -5,6 +5,13 @@ AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QOb
 {
 }
 
+/**
+ * @brief Get the currently used value such as an setting overridden
+ *     with a command line argument.
+ * @param Setting key
+ * @param Default value to use if key does not exist
+ * @return Stored value or the default value passed
+ */
 QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &defaultValue) const
 {
     QVariant settingValue;

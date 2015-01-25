@@ -6,6 +6,8 @@
 
 #include "antkeymapper.h"
 #include "event.h"
+#include "inputdevice.h"
+
 
 const int JoyButtonSlot::JOYSPEED = 20;
 const QString JoyButtonSlot::xmlName = "slot";
@@ -246,6 +248,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyLoadProfile);
                 }
+                else if (temptext == "setchange")
+                {
+                    this->setSlotMode(JoySetChange);
+                }
             }
             else
             {
@@ -283,6 +289,13 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             else
             {
                 this->setTextData(profile);
+            }
+        }
+        else if (this->getSlotMode() == JoySetChange)
+        {
+            if (!this->getSlotCode() >= 0 && !this->getSlotCode() < InputDevice::NUMBER_JOYSETS)
+            {
+                this->setSlotCode(-1);
             }
         }
     }
@@ -375,6 +388,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     {
         xml->writeCharacters("loadprofile");
     }
+    else if (mode == JoySetChange)
+    {
+        xml->writeCharacters("setchange");
+    }
 
     xml->writeEndElement();
 
@@ -423,11 +440,11 @@ QString JoyButtonSlot::getSlotString()
                     break;
             }
         }
-        else if (mode == JoyButtonSlot::JoyMouseMovement)
+        else if (mode == JoyMouseMovement)
         {
             newlabel.append(movementString());
         }
-        else if (mode == JoyButtonSlot::JoyPause)
+        else if (mode == JoyPause)
         {
             int minutes = deviceCode / 1000 / 60;
             int seconds = (deviceCode / 1000 % 60);
@@ -443,7 +460,7 @@ QString JoyButtonSlot::getSlotString()
                     .arg(seconds, 2, 10, QChar('0'))
                     .arg(hundredths, 2, 10, QChar('0')));
         }
-        else if (mode == JoyButtonSlot::JoyHold)
+        else if (mode == JoyHold)
         {
             int minutes = deviceCode / 1000 / 60;
             int seconds = (deviceCode / 1000 % 60);
@@ -463,13 +480,13 @@ QString JoyButtonSlot::getSlotString()
         {
             newlabel.append(tr("Cycle"));
         }
-        else if (mode == JoyButtonSlot::JoyDistance)
+        else if (mode == JoyDistance)
         {
             QString temp(tr("Distance"));
             temp.append(" ").append(QString::number(deviceCode).append("%"));
             newlabel.append(temp);
         }
-        else if (mode == JoyButtonSlot::JoyRelease)
+        else if (mode == JoyRelease)
         {
             int minutes = deviceCode / 1000 / 60;
             int seconds = (deviceCode / 1000 % 60);
@@ -485,14 +502,14 @@ QString JoyButtonSlot::getSlotString()
                     .arg(seconds, 2, 10, QChar('0'))
                     .arg(hundredths, 2, 10, QChar('0')));
         }
-        else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
+        else if (mode == JoyMouseSpeedMod)
         {
             QString temp;
             temp.append(tr("Mouse Mod")).append(" ");
             temp.append(QString::number(deviceCode).append("%"));
             newlabel.append(temp);
         }
-        else if (mode == JoyButtonSlot::JoyKeyPress)
+        else if (mode == JoyKeyPress)
         {
             int minutes = deviceCode / 1000 / 60;
             int seconds = (deviceCode / 1000 % 60);
@@ -539,6 +556,10 @@ QString JoyButtonSlot::getSlotString()
                 temp.append(tr("Load %1").arg(profileInfo.baseName()));
                 newlabel.append(temp);
             }
+        }
+        else if (mode == JoySetChange)
+        {
+            newlabel.append(tr("Set Change %1").arg(deviceCode+1));
         }
     }
     else
@@ -606,6 +627,17 @@ bool JoyButtonSlot::isValidSlot()
             {
                 result = false;
             }
+
+            break;
+        }
+        case JoySetChange:
+        {
+            if (deviceCode < 0)
+            {
+                result = false;
+            }
+
+            break;
         }
     }
 

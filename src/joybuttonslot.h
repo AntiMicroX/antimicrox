@@ -15,7 +15,7 @@ public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,
                              JoyPause, JoyHold, JoyCycle, JoyDistance,
                              JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
-                             JoyLoadProfile};
+                             JoyLoadProfile, JoySetChange};
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
                                   MouseWheelLeft=6, MouseWheelRight=7};

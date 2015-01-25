@@ -239,6 +239,11 @@
                <string>Release</string>
               </property>
              </item>
+             <item>
+              <property name="text">
+               <string>Set Change</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item>
@@ -645,13 +650,20 @@
             </layout>
            </widget>
            <widget class="QWidget" name="loadPage">
-            <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <layout class="QVBoxLayout" name="verticalLayout_16">
              <item>
               <widget class="QPushButton" name="loadProfilePushButton">
                <property name="text">
                 <string>Choose Profile</string>
                </property>
               </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="slotSetChangePage">
+            <layout class="QVBoxLayout" name="verticalLayout_15">
+             <item>
+              <widget class="QComboBox" name="slotSetChangeComboBox"/>
              </item>
             </layout>
            </widget>

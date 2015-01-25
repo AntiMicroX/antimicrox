@@ -91,6 +91,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     vdpad = 0;
     slotiter = 0;
     setChangeTimer.setSingleShot(true);
+    slotSetChangeTimer.setSingleShot(true);
     this->parentSet = parentSet;
 
     connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
@@ -104,6 +105,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
     connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
+    connect(&slotSetChangeTimer, SIGNAL(timeout()), this, SLOT(slotSetChange()));
 
     establishMouseTimerConnections();
 
@@ -384,6 +386,7 @@ void JoyButton::reset()
     keyPressTimer.stop();
     delayTimer.stop();
     keyRepeatTimer.stop();
+    slotSetChangeTimer.stop();
 
     if (slotiter)
     {
@@ -630,6 +633,12 @@ void JoyButton::activateSlots()
                 {
                     lastActiveKey = slot;
                 }
+
+                /*releaseActiveSlots();
+                //abortSetChanging();
+                exit = true;
+                QTimer::singleShot(0, this, SLOT(abortSetChanging()));
+                */
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
@@ -786,6 +795,14 @@ void JoyButton::activateSlots()
                     parentSet->getInputDevice()->sendLoadProfileRequest(location);
                 }
             }
+            else if (mode == JoyButtonSlot::JoySetChange)
+            {
+                releaseActiveSlots();
+                currentSetChangeSlot = slot;
+                slotSetChangeTimer.start();
+                //QTimer::singleShot(0, this, SLOT(slotSetChange()));
+                exit = true;
+            }
         }
 
         if (delaySequence && !activeSlots.isEmpty())
@@ -807,6 +824,23 @@ void JoyButton::activateSlots()
 #endif
 
         emit activeZoneChanged();
+    }
+}
+
+void JoyButton::slotSetChange()
+{
+    if (currentSetChangeSlot)
+    {
+        // Get set change slot and then remove reference.
+        unsigned int setChangeIndex = currentSetChangeSlot->getSlotCode();
+        currentSetChangeSlot = 0;
+
+        // Ensure that a change to the current set is not attempted.
+        if (setChangeIndex != originset)
+        {
+            emit released(index);
+            emit setChangeActivated(setChangeIndex);
+        }
     }
 }
 
@@ -1614,7 +1648,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             found = true;
             QString temptext = xml->readElementText();
             int tempchoice = temptext.toInt();
-            if (tempchoice >= 1 && tempchoice <= 8)
+            if (tempchoice >= 0 && tempchoice <= InputDevice::NUMBER_JOYSETS)
             {
                 this->setChangeSetSelection(tempchoice - 1);
             }
@@ -1946,6 +1980,18 @@ QString JoyButton::getActiveZoneSummary()
                     break;
                 }
                 case JoyButtonSlot::JoyLoadProfile:
+                {
+                    QString temp = slot->getSlotString();
+                    if (behindHold)
+                    {
+                        temp.prepend("[H] ");
+                        behindHold = false;
+                    }
+                    stringlist.append(temp);
+                    i++;
+                    break;
+                }
+                case JoyButtonSlot::JoySetChange:
                 {
                     QString temp = slot->getSlotString();
                     if (behindHold)
@@ -2784,6 +2830,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     keyPressTimer.stop();
     delayTimer.stop();
     keyRepeatTimer.stop();
+    setChangeTimer.stop();
 
     releaseActiveSlots();
     if (!isButtonPressedQueue.isEmpty() && !currentRelease)
@@ -4431,8 +4478,10 @@ void JoyButton::checkTurboCondition(JoyButtonSlot *slot)
         case JoyButtonSlot::JoyDistance:
         case JoyButtonSlot::JoyRelease:
         case JoyButtonSlot::JoyLoadProfile:
+        case JoyButtonSlot::JoySetChange:
         {
             setUseTurbo(false);
+            break;
         }
     }
 }
@@ -4451,6 +4500,7 @@ void JoyButton::resetProperties()
     currentWheelHorizontalEvent = 0;
     currentKeyPress = 0;
     currentDelay = 0;
+    currentSetChangeSlot = 0;
 
     isKeyPressed = isButtonPressed = false;
     quitEvent = true;
