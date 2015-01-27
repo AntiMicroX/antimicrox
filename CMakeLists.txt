@@ -30,6 +30,7 @@ option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
+    option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
 
     if(PORTABLE_PACKAGE)
         add_definitions(-DWIN_PORTABLE_PACKAGE)
@@ -42,6 +43,14 @@ if(WIN32)
         install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} createprofiledir WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
         install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/profiles" DESTINATION ${CMAKE_INSTALL_PREFIX})
     endif(PORTABLE_PACKAGE)
+
+    if(TARGET_ARCH)
+        set(ARCH_OPTIONS "x86" "x86_64")
+        list(FIND ARCH_OPTIONS ${TARGET_ARCH} ARCH_INDEX)
+        if(ARCH_INDEX EQUAL -1)
+            message(FATAL_ERROR "No valid architecture choice used. Exiting.")
+        endif(ARCH_INDEX EQUAL -1)
+    endif(TARGET_ARCH)
 endif(WIN32)
 
 # Use pkg-config to find SDL library.
@@ -55,15 +64,9 @@ if(UNIX)
         pkg_check_modules(SDL REQUIRED sdl)
     endif(USE_SDL_2)
 
-
     if(WITH_X11)
         find_package(X11 REQUIRED)
     endif(WITH_X11)
-
-    #if(WITH_UINPUT AND WITH_XTEST)
-    #    set(WITH_XTEST OFF)
-    #    message("Cannot use uinput and XTest together. Disabling XTest support.")
-    #endif(WITH_UINPUT AND WITH_XTEST)
 
     if(WITH_XTEST AND NOT WITH_X11)
         set(WITH_XTEST OFF)
@@ -540,9 +543,16 @@ elseif (WIN32)
     if(USE_SDL_2)
         # Perform extra voodoo to get proper library paths and include
         # proper headers.
-        find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/lib")
-        list(APPEND LIBS ${SDL2_LIBRARY})
-        include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/include")
+        if(TARGET_ARCH STREQUAL "x86")
+            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/lib")
+            list(APPEND LIBS ${SDL2_LIBRARY})
+            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/include")
+        else()
+            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/lib")
+            list(APPEND LIBS ${SDL2_LIBRARY})
+            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/include")
+        endif(TARGET_ARCH STREQUAL "x86")
+
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
 
@@ -628,10 +638,18 @@ configure_file(
 )
 
 if(WIN32)
-    # Copy SDL2.dll to find installation directory.
-    add_custom_target(copy_sdl_dll
-        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
-    )
+    if(TARGET_ARCH STREQUAL "x86")
+        # Copy SDL2.dll to find installation directory.
+        add_custom_target(copy_sdl_dll
+            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+        )
+    else()
+        # Copy SDL2.dll to find installation directory.
+        add_custom_target(copy_sdl_dll
+            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+        )
+    endif(TARGET_ARCH STREQUAL "x86")
+
 
     # Obtain location of Qt5 DLL files and assign them to a list.
     # This list will only be used for Release builds.
@@ -647,8 +665,14 @@ if(WIN32)
         "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
         "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
-        "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll"
+
     )
+
+    if(TARGET_ARCH STREQUAL "x86")
+        list(APPEND EXTRA_DLL_FILES  "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll")
+    else()
+        list(APPEND EXTRA_DLL_FILES  "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll")
+    endif(TARGET_ARCH STREQUAL "x86")
 
     # Target to copy Qt DLL files.
     add_custom_target(install_extra_dlls)
