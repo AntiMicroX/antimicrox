@@ -118,7 +118,8 @@ Modified by Travis Nickles.**
 
 * Download and install CMake: http://www.cmake.org/cmake/resources/software.html
 
-* You will need Qt with MinGW support: http://qt-project.org/downloads
+* You will need Qt with MinGW support: http://qt-project.org/downloads. The
+current version of Qt that is being used to create builds is 5.4.0.
 
 * download SDL development package : http://www.libsdl.org/release/SDL2-devel-2.0.3-mingw.tar.gz
 
@@ -131,8 +132,8 @@ the first time you open the project in Qt Creator.
 under the root antimicro folder and choose that for the build location.
 
 * In the Run CMake section, in the Arguments field, please input
-```-DCMAKE_PREFIX_PATH=<Path to mingw Qt install>```
--DCMAKE_BUILD_TYPE=Release. Replace "```<Path to mingw48_32 Qt install>```"
+```-DCMAKE_PREFIX_PATH=<Path to MinGW Qt install>```
+-DCMAKE_BUILD_TYPE=Release. Replace "```<Path to MinGW Qt install>```"
 with the actual path to your Qt installation. The default path for version
 Qt 5.4.0 is C:\Qt\Qt5.4.0\5.4\mingw491_32\.
 
@@ -164,6 +165,34 @@ when bundling the Window version for other users.
 
 * Run "Build All" to have the application and required DLLs installed
 into the final location that will be ready for distribution.
+
+### 64 bit build
+
+* Some additional steps are required in order to compile a 64 bit version of
+antimicro. The first step is to download a packaged version of Qt and MinGW
+compiled for 64 bit from the Qt-x64 project @
+http://sourceforge.net/projects/qtx64/.
+
+* You will have to manually create a new Kit in Qt Creator. In the main Qt
+Creator window, click the "Projects" button in the sidebar to bring up the
+"Build Settings" page for the project. Click on the "Manage Kits" button
+near the top of the page. Manually add the 64 bit compiled Qt version under
+"Qt Versions", add the 64 bit MinGW under "Compilers", and add the 64 bit
+gdb.exe under "Debuggers".
+
+* After creating a new kit in Qt Creator, bring up the "Build Settings" page
+for the project. Hover over the currently selected kit name and click the
+arrow that appears, hover over "Change Kit" and select the proper 64 bit kit
+that you created earlier.
+
+* Perform a clean on the project or delete the build directory that CMake is
+using. After that, choose the "Run CMake" option under the "Build" menu entry.
+The arguments that you pass to CMake will have to be changed. You will have
+to edit ```-DCMAKE_PREFIX_PATH=<Path to 64 bit MinGW Qt install>``` variable
+and have it point to the 64 bit compiled version Qt. Also, make sure to add
+```-DTARGET_ARCH=x86_64``` so that CMake will use the proper SDL libraries while
+building the program and copy the proper Qt and SDL DLLs if you perform an
+**install_dlls**.
 
 ## Building the Windows Installer Package (MSI)
 
