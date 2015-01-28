@@ -131,7 +131,7 @@ the first time you open the project in Qt Creator.
 under the root antimicro folder and choose that for the build location.
 
 * In the Run CMake section, in the Arguments field, please input
-```-DCMAKE_PREFIX_PATH=<Path to mingw48_32 Qt install>```
+```-DCMAKE_PREFIX_PATH=<Path to mingw Qt install>```
 -DCMAKE_BUILD_TYPE=Release. Replace "```<Path to mingw48_32 Qt install>```"
 with the actual path to your Qt installation. The default path for version
 Qt 5.4.0 is C:\Qt\Qt5.4.0\5.4\mingw491_32\.
