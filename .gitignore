@@ -3,6 +3,7 @@
 .directory
 *.qm
 *.diff
+*.mo
 Makefile
 antimicro
 !share/antimicro
