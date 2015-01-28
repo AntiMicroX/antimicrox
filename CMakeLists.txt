@@ -655,23 +655,29 @@ if(WIN32)
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
     string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt52.dll"
-        "${QTCORE_DLL_LOCATION}/icuin52.dll"
-        "${QTCORE_DLL_LOCATION}/icuuc52.dll"
-        "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
-        "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
+    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
         "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
-
     )
 
     if(TARGET_ARCH STREQUAL "x86")
-        list(APPEND EXTRA_DLL_FILES  "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll")
+        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt53.dll"
+            "${QTCORE_DLL_LOCATION}/icuin53.dll"
+            "${QTCORE_DLL_LOCATION}/icuuc53.dll"
+            "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
+            "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll"
+        )
     else()
-        list(APPEND EXTRA_DLL_FILES  "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll")
+        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
+            "${QTCORE_DLL_LOCATION}/icuin54.dll"
+            "${QTCORE_DLL_LOCATION}/icuuc54.dll"
+            "${QTCORE_DLL_LOCATION}/libgcc_s_sjlj-1.dll"
+            "${QTCORE_DLL_LOCATION}/libGLESv2.dll"
+            "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll"
+        )
     endif(TARGET_ARCH STREQUAL "x86")
 
     # Target to copy Qt DLL files.
