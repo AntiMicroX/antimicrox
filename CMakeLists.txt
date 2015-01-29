@@ -682,6 +682,12 @@ if(WIN32)
 
     # Target to copy Qt DLL files.
     add_custom_target(install_extra_dlls)
+
+    # Create destination directory if it does not exist.
+    add_custom_command(TARGET install_extra_dlls PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_INSTALL_PREFIX}/"
+    )
+
     foreach(CURRENT_DLL_FILE ${EXTRA_DLL_FILES})
         add_custom_command(TARGET install_extra_dlls PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy ${CURRENT_DLL_FILE} ${CMAKE_INSTALL_PREFIX}
