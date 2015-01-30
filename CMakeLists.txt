@@ -24,6 +24,7 @@ if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." OFF)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
+    option(APPDATA "Build project with AppData file support." OFF)
 endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
@@ -609,12 +610,17 @@ if(UNIX)
     install(FILES other/antimicro.xml DESTINATION "share/mime/packages")
 endif(UNIX)
 
-# Add man pages for *nix platforms
+# Add man page for *nix platforms.
 if(UNIX)
     add_subdirectory(other)
 
     # Only way to force install target to be dependent on manpage.
     install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} manpage WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
+
+    if(APPDATA)
+        # Only way to force install target to be dependent on appdata.
+        install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} appdata WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
+    endif(APPDATA)
 endif(UNIX)
 
 # uninstall target
@@ -663,6 +669,7 @@ if(WIN32)
         "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
     )
 
+    # Copy relevant DLL files depending on the chosen architecture.
     if(TARGET_ARCH STREQUAL "x86")
         list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt53.dll"
             "${QTCORE_DLL_LOCATION}/icuin53.dll"
