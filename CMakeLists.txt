@@ -690,7 +690,7 @@ if(WIN32)
 
     foreach(CURRENT_DLL_FILE ${EXTRA_DLL_FILES})
         add_custom_command(TARGET install_extra_dlls PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy ${CURRENT_DLL_FILE} ${CMAKE_INSTALL_PREFIX}
+            COMMAND ${CMAKE_COMMAND} -E copy ${CURRENT_DLL_FILE} "${CMAKE_INSTALL_PREFIX}/"
         )
     endforeach()
 

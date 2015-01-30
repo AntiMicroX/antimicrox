@@ -946,18 +946,21 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Quadratic acceleration.
                                 difference = difference * difference;
+                                //difference = difference * 0.25; // Experimental
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
                                 difference = difference - 0.24;
+                                //difference = difference - 0.3; // Experimental
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
                                 difference = (difference * 2.2) - 1.2;
+                                //difference = (difference * 2.5) - 1.5; // Experimental
                             }
 
                             break;
