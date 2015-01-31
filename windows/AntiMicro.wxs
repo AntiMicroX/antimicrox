@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="1.1.1" Manufacturer="AntiMicro" UpgradeCode="0E59162B-FBE8-4B82-8391-88CBFFC1C15F">
-        <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" Compressed="yes" />
+        <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" InstallScope="perMachine" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="ProgramFilesFolder" Name="PFiles">
@@ -12,14 +12,14 @@
                             <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="AntiMicro" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
                         </File>
                     </Component>
-                    <Component Id="ICUDT52.DLL" Guid="E1D9A8BF-6C31-470B-8333-ECFE5DECB701">
-                        <File Source="..\antimicro\icudt52.dll" />
+                    <Component Id="ICUDT53.DLL" Guid="E1D9A8BF-6C31-470B-8333-ECFE5DECB701">
+                        <File Source="..\antimicro\icudt53.dll" />
                     </Component>
-                    <Component Id="ICUIN52.DLL" Guid="B4E3E010-C40B-4250-A6DD-2144081633EE">
-                        <File Source="..\antimicro\icuin52.dll" />
+                    <Component Id="ICUIN53.DLL" Guid="B4E3E010-C40B-4250-A6DD-2144081633EE">
+                        <File Source="..\antimicro\icuin53.dll" />
                     </Component>
-                    <Component Id="ICUUC52.DLL" Guid="C68F7C85-14B0-4F54-8B70-7CE65101ACE6">
-                        <File Source="..\antimicro\icuuc52.dll" />
+                    <Component Id="ICUUC53.DLL" Guid="C68F7C85-14B0-4F54-8B70-7CE65101ACE6">
+                        <File Source="..\antimicro\icuuc53.dll" />
                     </Component>
                     <Component Id="LIBGCC_S_DW2_1.DLL" Guid="497DCE36-CFB9-4380-888A-E62BB6C064CA">
                         <File Id="LIBGCC_S_DW2_1.DLL" Source="..\antimicro\libgcc_s_dw2-1.dll" />
@@ -101,9 +101,9 @@
         </Directory>
         <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
             <ComponentRef Id="ANTIMICRO.EXE" />
-            <ComponentRef Id="ICUDT52.DLL" />
-            <ComponentRef Id="ICUIN52.DLL" />
-            <ComponentRef Id="ICUUC52.DLL" />
+            <ComponentRef Id="ICUDT53.DLL" />
+            <ComponentRef Id="ICUIN53.DLL" />
+            <ComponentRef Id="ICUUC53.DLL" />
             <ComponentRef Id="LIBGCC_S_DW2_1.DLL" />
             <ComponentRef Id="LIBSTDC___6.DLL" />
             <ComponentRef Id="LIBWINPTHREAD_1.DLL" />
