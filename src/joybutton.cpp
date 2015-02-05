@@ -976,12 +976,12 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Quadratic acceleration.
                                 difference = difference * difference;
+                                //difference = difference * 0.25; // Experimental
 
                                 if (buttonslot->isEasingActive())
                                 {
                                     buttonslot->setEasingStatus(false);
                                     buttonslot->getEasingTime()->restart();
-                                    //qDebug() << "QUITTING";
                                 }
                             }
                             else if (temp <= 0.8)
@@ -989,12 +989,12 @@ void JoyButton::mouseEvent()
                                 // Perform Linear accleration with an appropriate
                                 // offset.
                                 difference = difference - 0.24;
+                                //difference = difference - 0.3; // Experimental
 
                                 if (buttonslot->isEasingActive())
                                 {
                                     buttonslot->setEasingStatus(false);
                                     buttonslot->getEasingTime()->restart();
-                                    //qDebug() << "QUITTING";
                                 }
                             }
                             else if (temp > 0.8)
@@ -1024,8 +1024,6 @@ void JoyButton::mouseEvent()
                                         elapsedDiff = (1.5 - 1.0) * (elapsedDiff * elapsedDiff
                                                      * elapsedDiff) + 1.0;
                                     }
-
-                                    //qDebug() << "TIME: " << easingDuration;
                                 }
                                 else
                                 {
@@ -1037,6 +1035,7 @@ void JoyButton::mouseEvent()
                                 //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0
                                 //difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5
                                 difference = difference * 1.34286 - 0.51429; // Range 0.56 - 1.5
+                                //difference = difference * 1.42857 - 0.64286; // Experimental. Range 0.56 - 1.5
                             }
                             break;
                         }
