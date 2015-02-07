@@ -21,8 +21,8 @@
                     <Component Id="ICUUC54.DLL" Guid="C68F7C85-14B0-4F54-8B70-7CE65101ACE6">
                         <File Source="..\antimicro\icuuc54.dll" />
                     </Component>
-                    <Component Id="LIBGCC_S_DW2_1.DLL" Guid="497DCE36-CFB9-4380-888A-E62BB6C064CA">
-                        <File Id="LIBGCC_S_DW2_1.DLL" Source="..\antimicro\libgcc_s_dw2-1.dll" />
+                    <Component Id="LIBGCC_S_SJLJ_1.DLL" Guid="497DCE36-CFB9-4380-888A-E62BB6C064CA">
+                        <File Id="LIBGCC_S_SJLJ_1.DLL" Source="..\antimicro\libgcc_s_sjlj-1.dll" />
                     </Component>
                     <Component Id="LIBSTDC___6.DLL" Guid="56890D38-86FD-4476-A9EE-D555DA49203B">
                         <File Id="LIBSTDC___6.DLL" Source="..\antimicro\libstdc++-6.dll" />
@@ -107,7 +107,7 @@
             <ComponentRef Id="ICUDT54.DLL" />
             <ComponentRef Id="ICUIN54.DLL" />
             <ComponentRef Id="ICUUC54.DLL" />
-            <ComponentRef Id="LIBGCC_S_DW2_1.DLL" />
+            <ComponentRef Id="LIBGCC_S_SJLJ_1.DLL" />
             <ComponentRef Id="LIBSTDC___6.DLL" />
             <ComponentRef Id="LIBWINPTHREAD_1.DLL" />
             <ComponentRef Id="QT5CORE.DLL" />
