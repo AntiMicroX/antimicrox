@@ -20,6 +20,7 @@ public slots:
     void startLocalServer();
     void handleOutsideConnection();
     void handleSocketDisconnect();
+    void close();
 };
 
 #endif // LOCALANTIMICROSERVER_H

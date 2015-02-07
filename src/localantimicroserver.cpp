@@ -41,3 +41,8 @@ void LocalAntiMicroServer::handleSocketDisconnect()
 {
     emit clientdisconnect();
 }
+
+void LocalAntiMicroServer::close()
+{
+    localServer->close();
+}

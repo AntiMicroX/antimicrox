@@ -595,6 +595,7 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), w, SLOT(fillButtons(InputDevice*)));
+    QObject::connect(a, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
