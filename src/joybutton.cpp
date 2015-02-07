@@ -3802,17 +3802,16 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
             if (adjustedX > 0)
             {
-                //adjustedX = adjustedX + remainderX;
                 double oldX = adjustedX;
                 adjustedX = (int)floor(adjustedX);
+                //adjustedX = (int)floor(adjustedX + 0.5); // Old rounding behavior
                 cursorRemainderX = oldX - adjustedX;
             }
             else
             {
-                //adjustedX = adjustedX + remainderX;
                 double oldX = adjustedX;
                 adjustedX = (int)ceil(adjustedX);
-                //adjustedX = (int)(adjustedX - 0.5);
+                //adjustedX = (int)ceil(adjustedX - 0.5); // Old rounding behavior
                 cursorRemainderX = oldX - adjustedX;
             }
 
@@ -3836,16 +3835,16 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             adjustedY = adjustedY / (double)finalWeight;
             if (adjustedY > 0)
             {
-                //adjustedY = adjustedY + remainderY;
                 double oldY = adjustedY;
                 adjustedY = (int)floor(adjustedY);
+                //adjustedY = (int)floor(adjustedY + 0.5); // Old rounding behavior
                 cursorRemainderY = oldY - adjustedY;
             }
             else
             {
-                //adjustedY = adjustedY + remainderY;
                 double oldY = adjustedY;
                 adjustedY = (int)ceil(adjustedY);
+                //adjustedY = (int)ceil(adjustedY - 0.5); // Old rounding behavior
                 cursorRemainderY = oldY - adjustedY;
             }
         }
