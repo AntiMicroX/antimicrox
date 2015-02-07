@@ -945,22 +945,24 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Perform Quadratic acceleration.
-                                difference = difference * difference;
-                                //difference = difference * 0.25; // Experimental
+                                //difference = difference * difference;
+
+                                // Low slope value for really slow acceleration
+                                difference = difference * 0.25; // Experimental
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.24;
-                                //difference = difference - 0.3; // Experimental
+                                //difference = difference - 0.24;
+                                difference = difference - 0.3; // Experimental
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 2.2) - 1.2;
-                                //difference = (difference * 2.5) - 1.5; // Experimental
+                                //difference = (difference * 2.2) - 1.2;
+                                difference = (difference * 2.5) - 1.5; // Experimental
                             }
 
                             break;
@@ -975,8 +977,10 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Perform Quadratic acceleration.
-                                difference = difference * difference;
-                                //difference = difference * 0.25; // Experimental
+                                //difference = difference * difference;
+
+                                // Low slope value for really slow acceleration
+                                difference = difference * 0.25; // Experimental
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -988,8 +992,8 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.24;
-                                //difference = difference - 0.3; // Experimental
+                                //difference = difference - 0.24;
+                                difference = difference - 0.3; // Experimental
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -999,6 +1003,8 @@ void JoyButton::mouseEvent()
                             }
                             else if (temp > 0.8)
                             {
+                                // Gradually increase the mouse speed until the specified elapsed duration
+                                // time has passed.
                                 unsigned int easingElapsed = buttonslot->getEasingTime()->elapsed();
                                 double easingDuration = this->easingDuration; // Time in seconds
                                 //qDebug() << "TEMP: " << temp;
@@ -1009,6 +1015,8 @@ void JoyButton::mouseEvent()
                                     easingElapsed = timeElapsed;
                                 }
 
+                                // Determine the multiplier to use for the current maximum mouse speed
+                                // based on how much time has passed.
                                 double elapsedDiff = 1.0;
                                 if (easingDuration > 0.0 && (easingElapsed * .001) < easingDuration)
                                 {
@@ -1030,12 +1038,13 @@ void JoyButton::mouseEvent()
                                     elapsedDiff = 1.5;
                                 }
 
+                                // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
 
-                                //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0
-                                //difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5
-                                difference = difference * 1.34286 - 0.51429; // Range 0.56 - 1.5
-                                //difference = difference * 1.42857 - 0.64286; // Experimental. Range 0.56 - 1.5
+                                //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0. Non-gradient version.
+                                //difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5. Non-gradient version.
+                                //difference = difference * 1.34286 - 0.51429; // Range 0.56 - 1.5
+                                difference = difference * 1.42857 - 0.64286; // Experimental. Range 0.56 - 1.5
                             }
                             break;
                         }
@@ -1056,11 +1065,6 @@ void JoyButton::mouseEvent()
 
                     //double prevDistance = buttonslot->getPreviousDistance();
                     //qDebug() << "PREV: " << prevDistance;
-                    //if (smoothing)
-                    //{
-                        //distance = (int)floor((distance - prevDistance) * 0.1 + prevDistance);
-                        //qDebug() << "NOW: " << distance;
-                    //}
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {
@@ -1079,39 +1083,16 @@ void JoyButton::mouseEvent()
                         mouse2 = -distance;
                     }
 
-                    /*if (timeElapsed > 5)
-                    {
-                        //qDebug() << "ENCOUNTERED:" << timeElapsed;
-                    }
-                    */
+                    mouseCursorInfo infoX;
+                    infoX.code = mouse1;
+                    infoX.slot = buttonslot;
+                    cursorXSpeeds.append(infoX);
 
-                    //if (distance >= 1)
-                    //{
-                        mouseCursorInfo infoX;
-                        infoX.code = mouse1;
-                        infoX.slot = buttonslot;
-                        cursorXSpeeds.append(infoX);
-
-                        mouseCursorInfo infoY;
-                        infoY.code = mouse2;
-                        infoY.slot = buttonslot;
-                        cursorYSpeeds.append(infoY);
-
-                        //sendevent(mouse1, mouse2);
-                        //sumDist -= distance;
-                        sumDist = 0;
-                        //buttonslot->setPreviousDistance(distance);
-
-                        //if (smoothing)
-                        //{
-                        //    sumDist *= 0.5;
-                        //}
-                    //}
-                    /*else
-                    {
-                        buttonslot->setPreviousDistance(0.0);
-                    }
-                    */
+                    mouseCursorInfo infoY;
+                    infoY.code = mouse2;
+                    infoY.slot = buttonslot;
+                    cursorYSpeeds.append(infoY);
+                    sumDist = 0;
 
                     buttonslot->setDistance(sumDist);
                 }
