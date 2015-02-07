@@ -719,9 +719,23 @@ if(WIN32)
     # Set variables needed for MSI building.
     set(MSIFOLDER "${PROJECT_SOURCE_DIR}/windows")
     set(WIXENV $ENV{WIX})
-    set(WIXWXS "${MSIFOLDER}/AntiMicro.wxs")
+
+    # Use a different file for each architecture due
+    # to some DLL differences.
+    if(TARGET_ARCH STREQUAL "x86")
+        set(WIXWXS "${MSIFOLDER}/AntiMicro.wxs")
+    else()
+        set(WIXWXS "${MSIFOLDER}/AntiMicro_64.wxs")
+    endif(TARGET_ARCH STREQUAL "x86")
+
     set(WIXOBJ "${MSIFOLDER}/antimicro.wixobj")
-    set(WIXMSI "${MSIFOLDER}/antimicro.msi")
+
+    # Change output file depending on the target architecture.
+    if(TARGET_ARCH STREQUAL "x86")
+        set(WIXMSI "${MSIFOLDER}/antimicro.msi")
+    else()
+        set(WIXMSI "${MSIFOLDER}/antimicro_64.msi")
+    endif(TARGET_ARCH STREQUAL "x86")
 
     if(NOT WIXENV)
         # Display message when WIX is not set up. No extra target will be added.
