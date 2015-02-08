@@ -1,3 +1,26 @@
+2015-02-07 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.11
+
+* Adjusted the Enhanced Precision, Easing Quadratic, and Easing Cubic
+mouse acceleration curves. The low end of each curve has been loosened a bit
+and the rest of the curves have been adjusted accordingly. Comparing the two
+versions, the resulting mouse speed for a given axis point is slightly lower
+in the new versions for most of the curve. The extreme low end and the extreme
+high end of the curves will be slightly faster.
+
+* Updated Qt to version 5.4.0 for the Windows builds.
+
+* Compiled a 64 bit version for Windows thanks to the Qt-x64 project.
+
+* Added a set changing slot.
+
+* Added AppData for use when packaging on Linux thanks to Jeff Backus.
+
+* Fixed bug with mouse wheel event methods for axes which resulted in negative
+values being passed to the event timer.
+
+
 2014-12-29 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.10.1
