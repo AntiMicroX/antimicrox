@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="uk_UA" sourcelanguage="en_US">
+<TS version="2.1" language="uk_UA" sourcelanguage="en_US">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -32,10 +32,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Zerro Alvein&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;aybe&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Zerro Alvein&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -50,18 +49,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="165"/>
-        <source>Info</source>
-        <translation>Інформація</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="175"/>
-        <source>About Development</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="205"/>
-        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head again my keyboard, it has been a fun and enriching experience overall.
+        <location filename="../../../src/aboutdialog.ui" line="204"/>
+        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
 
 The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
 
@@ -71,12 +60,7 @@ Once the Steam controller is finally released to the public, the need for this p
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="221"/>
-        <source>License</source>
-        <translation>Ліцензія</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="236"/>
+        <location filename="../../../src/aboutdialog.ui" line="235"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -190,30 +174,28 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;16. Limitation of Liability.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;How to Apply These Terms to Your New Programs&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you develop a new program, and you want it to be of the greatest possible use to the public, the best way to achieve this is to make it free software which everyone can redistribute and change under these terms.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To do so, attach the following notices to the program. It is safest to attach them to the start of each source file to most effectively state the exclusion of warranty; and each file should have at least the &amp;quot;copyright&amp;quot; line and a pointer to where the full notice is found.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;one line to give the program&apos;s name and a brief idea of what it does.&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (C) &amp;lt;year&amp;gt; &amp;lt;name of author&amp;gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with this program. If not, see &amp;lt;http://www.gnu.org/licenses/&amp;gt;.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Also add information on how to contact you by electronic and paper mail.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;program&amp;gt; Copyright (C) &amp;lt;year&amp;gt; &amp;lt;name of author&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This program comes with ABSOLUTELY NO WARRANTY; for details type `show w&apos;. This is free software, and you are welcome to redistribute it under certain conditions; type `show c&apos; for details.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The hypothetical commands `show w&apos; and `show c&apos; should show the appropriate parts of the General Public License. Of course, your program&apos;s commands might be different; for a GUI interface, you would use an &amp;quot;about box&amp;quot;.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should also get your employer (if you work as a programmer) or school, if any, to sign a &amp;quot;copyright disclaimer&amp;quot; for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &amp;lt;http://www.gnu.org/licenses/&amp;gt;.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &amp;lt;http://www.gnu.org/philosophy/why-not-lgpl.html&amp;gt;.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="386"/>
-        <source>Copyright: 2013-2015</source>
-        <translation type="unfinished">© 2013-2015</translation>
+        <location filename="../../../src/aboutdialog.ui" line="368"/>
+        <source>Copyright: 2013 - 2015</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="164"/>
+        <source>Info</source>
+        <translation>Інформація</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="174"/>
+        <source>About Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="220"/>
+        <source>License</source>
+        <translation>Ліцензія</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="36"/>
@@ -406,7 +388,7 @@ of the all default profile option.</source>
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="941"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="986"/>
         <source>Advanced</source>
         <translation>Розширені параметри</translation>
     </message>
@@ -436,7 +418,7 @@ of the all default profile option.</source>
         <translation>Час натиску</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1232"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1304"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>Вставте паузу між натисканнями клавіш.</translation>
     </message>
@@ -486,370 +468,381 @@ of the all default profile option.</source>
         <translation type="unfinished">Завантажити</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="265"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1193"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="244"/>
+        <source>Set Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="270"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1265"/>
         <source>Insert a new blank slot.</source>
         <translation>Вставити новий пустий слот.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="268"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="273"/>
         <source>Insert</source>
         <translation>Вставити</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="280"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="285"/>
         <source>Delete a slot.</source>
         <translation>Вилучити слот.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="283"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="288"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="295"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="300"/>
         <source>Clear all currently assigned slots.</source>
         <translation>Очистити всі поточні слоти.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="298"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="303"/>
         <source>Clear All</source>
         <translation>Очистити все</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="330"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="335"/>
         <source>Placeholder</source>
         <translation type="unfinished">Заповнювач</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="382"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="387"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
         <translation>Встановити тривалість слотів Пауза чи Утримання.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="385"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="390"/>
         <source>Time:</source>
         <translation>Час:</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="398"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="403"/>
         <source>0.01s</source>
         <translation>0.01с</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="413"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="418"/>
         <source>0m</source>
         <translation>0хв</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="437"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="461"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="442"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="466"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="470"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="475"/>
         <source>0s</source>
         <translation>0с</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="497"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="502"/>
         <source>Mouse Speed Mod:</source>
         <translation>Зміна швидкості мишки:</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="513"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="518"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
         <translation>Встановіть зміну швидкості миші у відсотковому співвідношенні.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="516"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="574"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="521"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="579"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="552"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="571"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="557"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="576"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="555"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="560"/>
         <source>Distance: </source>
         <translation>Дистанція: </translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="610"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="615"/>
         <source>Auto Reset Cycle After</source>
         <translation>Автоматично скидати цикл опісля</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="639"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="644"/>
         <source>seconds</source>
         <translation>секунд</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="695"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="738"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="965"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="707"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="750"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="977"/>
         <source>Enabled</source>
         <translation>Включити</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="762"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="774"/>
         <source>Mode:</source>
         <translation>Режим:</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="772"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="784"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="776"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="788"/>
         <source>Normal</source>
         <translation>Звичайний</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="781"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="793"/>
         <source>Gradient</source>
         <translation>Наростаючий</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="786"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="798"/>
         <source>Pulse</source>
         <translation>Пульсуючий</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="840"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="852"/>
         <source>Delay:</source>
         <translation>Затримка:</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="865"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="877"/>
         <source>0.10s</source>
         <translation>0.10с</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="935"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="947"/>
         <source>Rate:</source>
         <translation>Частота:</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="942"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="954"/>
         <source>10.0/s</source>
         <translation>10.0/с</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="979"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1050"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="991"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1088"/>
         <source>Disabled</source>
         <translation>Вимкнено</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="984"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="996"/>
         <source>Select Set 1 One Way</source>
         <translation>Встановити набір 1 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="989"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1001"/>
         <source>Select Set 1 Two Way</source>
         <translation>Встановити набір 1 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="994"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1006"/>
         <source>Select Set 1 While Held</source>
         <translation>Встановити набір 1 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="999"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1011"/>
         <source>Select Set 2 One Way</source>
         <translation>Встановити набір 2 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1004"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1016"/>
         <source>Select Set 2 Two Way</source>
         <translation>Встановити набір 2 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1009"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1021"/>
         <source>Select Set 2 While Held</source>
         <translation>Встановити набір 2 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1014"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1026"/>
         <source>Select Set 3 One Way</source>
         <translation>Встановити набір 3 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1019"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1031"/>
         <source>Select Set 3 Two Way</source>
         <translation>Встановити набір 3 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1024"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1036"/>
         <source>Select Set 3 While Held</source>
         <translation>Встановити набір 3 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1029"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1041"/>
         <source>Select Set 4 One Way</source>
         <translation>Встановити набір 4 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1034"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1046"/>
         <source>Select Set 4 Two Way</source>
         <translation>Встановити набір 4 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1039"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1051"/>
         <source>Select Set 4 While Held</source>
         <translation>Встановити набір 4 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1044"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1056"/>
         <source>Select Set 5 One Way</source>
         <translation>Встановити набір 5 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1049"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1061"/>
         <source>Select Set 5 Two Way</source>
         <translation>Встановити набір 5 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1054"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1066"/>
         <source>Select Set 5 While Held</source>
         <translation>Встановити набір 5 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1059"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1071"/>
         <source>Select Set 6 One Way</source>
         <translation>Встановити набір 6 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1064"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1076"/>
         <source>Select Set 6 Two Way</source>
         <translation>Встановити набір 6 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1069"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1081"/>
         <source>Select Set 6 While Held</source>
         <translation>Встановити набір 6 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1074"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1086"/>
         <source>Select Set 7 One Way</source>
         <translation>Встановити набір 7 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1079"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1091"/>
         <source>Select Set 7 Two Way</source>
         <translation>Встановити набір 7 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1084"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1096"/>
         <source>Select Set 7 While Held</source>
         <translation>Встановити набір 7 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1089"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1101"/>
         <source>Select Set 8 One Way</source>
         <translation>Встановити набір 8 одностороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1094"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1106"/>
         <source>Select Set 8 Two Way</source>
         <translation>Встановити набір 8 двостороннім</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1099"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1111"/>
         <source>Select Set 8 While Held</source>
         <translation>Встановити набір 8 доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="186"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="180"/>
         <source>sec.</source>
         <translation>сек.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="187"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="181"/>
         <source>/sec.</source>
         <translation>/сек.</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="946"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="991"/>
         <source>Set %1</source>
         <translation>Набір %1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1058"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1096"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1140"/>
         <source>Select Set %1</source>
         <translation>Обрати набір %1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1073"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1111"/>
         <source>One Way</source>
         <translation>Односторонній</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1076"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1114"/>
         <source>Two Way</source>
         <translation>Двосторонній</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1079"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1117"/>
         <source>While Held</source>
         <translation>Доки натиснуто</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1197"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1269"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1203"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1275"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1210"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1282"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1216"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1288"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1221"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1293"/>
         <source>Chose a profile to load when this slot is activated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1225"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1297"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1236"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1308"/>
         <source>Specify the time that keys past this slot should be held down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1241"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1313"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="652"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1130"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1319"/>
+        <source>Change to selected set once slot is activated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="657"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1198"/>
         <source>Choose Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1130"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1198"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1266,12 +1259,12 @@ this button is being used.</source>
         <translation>Розширені параметри</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="365"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="363"/>
         <source>Set</source>
         <translation>Набір</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="370"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="368"/>
         <source>Set %1</source>
         <translation>Набір %1</translation>
     </message>
@@ -2122,31 +2115,31 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1795"/>
-        <location filename="../../../src/joybutton.cpp" line="1803"/>
-        <location filename="../../../src/joybutton.cpp" line="1809"/>
+        <location filename="../../../src/joybutton.cpp" line="1812"/>
+        <location filename="../../../src/joybutton.cpp" line="1820"/>
+        <location filename="../../../src/joybutton.cpp" line="1826"/>
         <source>Button</source>
         <translation>Кнопка</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1848"/>
-        <location filename="../../../src/joybutton.cpp" line="1978"/>
-        <location filename="../../../src/joybutton.cpp" line="2008"/>
+        <location filename="../../../src/joybutton.cpp" line="1865"/>
+        <location filename="../../../src/joybutton.cpp" line="2007"/>
+        <location filename="../../../src/joybutton.cpp" line="2037"/>
         <source>[NO KEY]</source>
         <translation>[НЕМАЄ КНОПКИ]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1884"/>
+        <location filename="../../../src/joybutton.cpp" line="1901"/>
         <source>[Set %1 1W]</source>
         <translation>[Набір %1 1W]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1892"/>
+        <location filename="../../../src/joybutton.cpp" line="1909"/>
         <source>[Set %1 2W]</source>
         <translation>[Набір %1 2W]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1901"/>
+        <location filename="../../../src/joybutton.cpp" line="1918"/>
         <source>[Set %1 WH]</source>
         <translation>[Набір %1 WH]</translation>
     </message>
@@ -2202,103 +2195,108 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="130"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="401"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="133"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="419"/>
         <source>Mouse</source>
         <translation>Мишка</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="133"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="136"/>
         <source>Up</source>
         <translation>Вверх</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="137"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="140"/>
         <source>Down</source>
         <translation>Вниз</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="141"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="144"/>
         <source>Left</source>
         <translation>Вліво</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="145"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="148"/>
         <source>Right</source>
         <translation>Вправо</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="405"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="423"/>
         <source>LB</source>
         <translation>ЛК</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="408"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="426"/>
         <source>MB</source>
         <translation>СК</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="411"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="429"/>
         <source>RB</source>
         <translation>ПК</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="415"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="433"/>
         <source>B4</source>
         <translation>К4</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="418"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="436"/>
         <source>B5</source>
         <translation>К5</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="436"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="454"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="452"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="470"/>
         <source>Hold</source>
         <translation>Утримання</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="464"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="482"/>
         <source>Cycle</source>
         <translation>Цикл</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="468"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="486"/>
         <source>Distance</source>
         <translation>Дистанція</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="478"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="496"/>
         <source>Release</source>
         <translation>Віджати</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="491"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="509"/>
         <source>Mouse Mod</source>
         <translation>Мод. мишки</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="502"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="520"/>
         <source>Press Time</source>
         <translation>Час натиску</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="521"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="539"/>
         <source>Delay</source>
         <translation>Затримка</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="539"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="557"/>
         <source>Load %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="546"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="563"/>
+        <source>Set Change %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttonslot.cpp" line="568"/>
         <source>[NO KEY]</source>
         <translation>[НЕМАЄ КНОПКИ]</translation>
     </message>
@@ -4033,7 +4031,7 @@ mouse position set by a non-relative spring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="617"/>
+        <location filename="../../../src/main.cpp" line="618"/>
         <source>Could not raise process priority.</source>
         <translation type="unfinished"></translation>
     </message>
