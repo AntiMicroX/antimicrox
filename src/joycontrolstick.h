@@ -24,6 +24,7 @@ public:
     enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
 
     void joyEvent(bool ignoresets=false);
+
     bool inDeadZone();
     int getDeadZone();
     int getDiagonalRange();
@@ -110,6 +111,9 @@ public:
 
     double getButtonsEasingDuration();
 
+    void setEventFromAxis(JoyAxis *axis, bool ignoresets);
+    bool hasPendingAxisEvents();
+
     static const double PI;
 
     // Define default values for stick properties.
@@ -148,6 +152,7 @@ protected:
     int calculateCircleXValue(int rawXValue);
     int calculateCircleYValue(int rawYValue);
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
+    void clearPendingAxisEvents();
 
     JoyAxis *axisX;
     JoyAxis *axisY;
@@ -167,7 +172,9 @@ protected:
     QString defaultStickName;
     double circle;
     QTimer directionDelayTimer;
+    QTimer axisEventChangeTimer;
     unsigned int stickDelay;
+    QHash<JoyAxis*, bool> pendingAxisEvents;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
     JoyControlStickModifierButton *modifierButton;
@@ -201,6 +208,7 @@ public slots:
 
 private slots:
     void stickDirectionChangeEvent();
+    void activateEventFromAxis();
 };
 
 #endif // JOYCONTROLSTICK_H

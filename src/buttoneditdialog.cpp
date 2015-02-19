@@ -276,7 +276,8 @@ void ButtonEditDialog::changeTurboSetting()
     button->setUseTurbo(ui->turboCheckBox->isChecked());
 }
 
-void ButtonEditDialog::openAdvancedDialog(){
+void ButtonEditDialog::openAdvancedDialog()
+{
     ui->advancedPushButton->setEnabled(false);
 
     AdvanceButtonDialog *dialog = new AdvanceButtonDialog(button, this);

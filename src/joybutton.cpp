@@ -139,7 +139,14 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 emit released(index);
             }
 
-            this->vdpad->joyEvent(pressed, ignoresets);
+            if (!ignoresets)
+            {
+                this->vdpad->queueJoyEvent(ignoresets);
+            }
+            else
+            {
+                this->vdpad->joyEvent(pressed, ignoresets);
+            }
         }
     }
     else if (ignoreEvents)

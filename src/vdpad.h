@@ -13,7 +13,7 @@ public:
                    int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
     ~VDPad();
 
-    void joyEvent (bool pressed, bool ignoresets=false);
+    void joyEvent(bool pressed, bool ignoresets=false);
     void addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button);
     void removeVButton(JoyDPadButton::JoyDPadDirections direction);
     void removeVButton(JoyButton *button);
@@ -21,6 +21,8 @@ public:
     bool isEmpty();
     virtual QString getName(bool forceFullFormat=false, bool displayName=false);
     virtual QString getXmlName();
+
+    void queueJoyEvent(bool ignoresets=false);
 
     static const QString xmlName;
 
@@ -30,10 +32,12 @@ protected:
     JoyButton *leftButton;
     JoyButton *rightButton;
 
+    QTimer vdpadPendingEventTimer;
+
 signals:
 
-public slots:
-    
+private slots:
+    void vdpadChangeEvent();
 };
 
 #endif // VDPAD_H

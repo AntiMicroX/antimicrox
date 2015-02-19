@@ -59,10 +59,20 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
             emit released(value);
         }
 
-        stick->joyEvent(ignoresets);
+        if (!ignoresets)
+        {
+            stick->setEventFromAxis(this, ignoresets);
+        }
+        else
+        {
+            stick->joyEvent(ignoresets);
+        }
     }
     else
     {
+        // If in joystick mode and this is the first detected event,
+        // use the current value as the axis center point. If the value
+        // is below -30,000 then consider it a trigger.
         InputDevice *device = parentSet->getInputDevice();
         if (!device->isGameController() && !device->hasCalibrationThrottle(index))
         {

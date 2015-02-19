@@ -10,6 +10,10 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
     connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
 
+/**
+ * @brief Generate the context menu that will be shown to a user when the person
+ *     right clicks on the DPad settings button.
+ */
 void DPadContextMenu::buildMenu()
 {
     QAction *action = 0;
@@ -124,6 +128,9 @@ void DPadContextMenu::buildMenu()
     connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
 }
 
+/**
+ * @brief Set the appropriate mode for a DPad based on the item chosen.
+ */
 void DPadContextMenu::setDPadMode()
 {
     QAction *action = static_cast<QAction*>(sender());
@@ -131,6 +138,10 @@ void DPadContextMenu::setDPadMode()
     dpad->setJoyMode((JoyDPad::JoyMode)item);
 }
 
+/**
+ * @brief Assign the appropriate slots to DPad buttons based on the preset item
+ *     that was chosen.
+ */
 void DPadContextMenu::setDPadPreset()
 {
     QAction *action = static_cast<QAction*>(sender());
@@ -299,16 +310,25 @@ void DPadContextMenu::setDPadPreset()
     }
 }
 
+/**
+ * @brief Find the appropriate menu item index for the currently assigned
+ *     slots that are assigned to a DPad.
+ * @return Menu index that corresponds to the currently assigned preset choice.
+ *    0 means that no matching preset was found.
+ */
 int DPadContextMenu::getPresetIndex()
 {
     int result = 0;
 
     JoyDPadButton *upButton = dpad->getJoyButton(JoyDPadButton::DpadUp);
     QList<JoyButtonSlot*> *upslots = upButton->getAssignedSlots();
+
     JoyDPadButton *downButton = dpad->getJoyButton(JoyDPadButton::DpadDown);
     QList<JoyButtonSlot*> *downslots = downButton->getAssignedSlots();
+
     JoyDPadButton *leftButton = dpad->getJoyButton(JoyDPadButton::DpadLeft);
     QList<JoyButtonSlot*> *leftslots = leftButton->getAssignedSlots();
+
     JoyDPadButton *rightButton = dpad->getJoyButton(JoyDPadButton::DpadRight);
     QList<JoyButtonSlot*> *rightslots = rightButton->getAssignedSlots();
 
@@ -377,6 +397,10 @@ int DPadContextMenu::getPresetIndex()
     return result;
 }
 
+/**
+ * @brief Open a mouse settings dialog for changing the mouse speed settings
+ *     for all DPad buttons.
+ */
 void DPadContextMenu::openMouseSettingsDialog()
 {
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, parentWidget());

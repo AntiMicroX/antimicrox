@@ -48,7 +48,7 @@ void AutoProfileWatcher::runAppCheck()
 
     // Check whether program path needs to be parsed. Removes processing time
     // and need to run Linux specific code searching /proc.
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_LINUX
     if (!appProfileAssignments.isEmpty())
     {
         appLocation = findAppLocation();
@@ -62,15 +62,9 @@ void AutoProfileWatcher::runAppCheck()
     }
 #endif
 
-    // QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
     // More portable check for whether antimicro is the current application
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
-    /*if (focusedWidget)
-    {
-        qDebug() << "APPLICATION IN FOCUS";
-    }
-    */
 
     QString nowWindow;
     QString nowWindowClass;
@@ -118,7 +112,6 @@ void AutoProfileWatcher::runAppCheck()
         //currentApplication = appLocation;
 
         QSet<AutoProfileInfo*> fullSet;
-        //QSet<QString> guidSet;
 
         if (!appLocation.isEmpty() && appProfileAssignments.contains(appLocation))
         {
@@ -183,23 +176,6 @@ void AutoProfileWatcher::runAppCheck()
                         highestMatches.insert(info->getGUID(), info);
                     }
                 }
-
-                /*if (numProps == 3 && numMatched == 3)
-                {
-                    guidSet.insert(info->getGUID());
-                    emit foundApplicableProfile(info);
-                }
-                else if (numProps == 2 && numMatched == 2)
-                {
-                    guidSet.insert(info->getGUID());
-                    emit foundApplicableProfile(info);
-                }
-                else
-                {
-                    guidSet.insert(info->getGUID());
-                    emit foundApplicableProfile(info);
-                }
-                */
             }
         }
 
@@ -368,27 +344,6 @@ void AutoProfileWatcher::syncProfileAssignment()
                         appProfileAssignments.insert(baseExe, templist);
                     }
                 }
-                /*QList<AutoProfileInfo*> templist;
-                if (appProfileAssignments.contains(exe))
-                {
-                    templist = appProfileAssignments.value(exe);
-                }
-
-                QList<QString> tempguids;
-                if (tempAssociation.contains(exe))
-                {
-                    tempguids = tempAssociation.value(exe);
-                }
-
-                if (!tempguids.contains(guid))
-                {
-                    AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
-                    tempguids.append(guid);
-                    tempAssociation.insert(exe, tempguids);
-                    templist.append(info);
-                    appProfileAssignments.insert(exe, templist);
-                }
-                */
             }
         }
         else
@@ -459,7 +414,7 @@ QString AutoProfileWatcher::findAppLocation()
 {
     QString exepath;
 
-#if defined(Q_OS_UNIX)
+#if defined(Q_OS_LINUX)
     #ifdef WITH_X11
     Window currentWindow = 0;
     int pid = 0;

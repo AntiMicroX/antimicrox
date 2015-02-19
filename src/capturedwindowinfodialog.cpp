@@ -125,6 +125,11 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
     connect(this, SIGNAL(accepted()), this, SLOT(populateOption()));
 }
 
+CapturedWindowInfoDialog::~CapturedWindowInfoDialog()
+{
+    delete ui;
+}
+
 void CapturedWindowInfoDialog::populateOption()
 {
     if (ui->winClassCheckBox->isChecked())
@@ -170,11 +175,6 @@ QString CapturedWindowInfoDialog::getWindowName()
 QString CapturedWindowInfoDialog::getWindowPath()
 {
     return winPath;
-}
-
-CapturedWindowInfoDialog::~CapturedWindowInfoDialog()
-{
-    delete ui;
 }
 
 bool CapturedWindowInfoDialog::useFullWindowPath()

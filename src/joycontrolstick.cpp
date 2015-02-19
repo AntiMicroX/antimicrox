@@ -5,7 +5,6 @@
 
 #include "joycontrolstick.h"
 #include "inputdevice.h"
-//#include "antkeymapper.h"
 
 // Define Pi here.
 const double JoyControlStick::PI = acos(-1.0);
@@ -34,7 +33,12 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
     populateButtons();
 
     directionDelayTimer.setSingleShot(true);
+
+    axisEventChangeTimer.setInterval(0);
+    axisEventChangeTimer.setSingleShot(true);
+
     connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
+    connect(&axisEventChangeTimer, SIGNAL(timeout()), this, SLOT(activateEventFromAxis()));
 }
 
 JoyControlStick::~JoyControlStick()
@@ -45,6 +49,11 @@ JoyControlStick::~JoyControlStick()
     deleteButtons();
 }
 
+/**
+ * @brief Take the input value for the two axes that make up a stick and
+ *     activate the proper event based on the current values.
+ * @param Should set changing routines be ignored.
+ */
 void JoyControlStick::joyEvent(bool ignoresets)
 {
     safezone = !inDeadZone();
@@ -268,6 +277,8 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     if (safezone)
     {
         // Activate modifier button before activating directional buttons.
+        // Value from the new stick event will be used to determine
+        // distance events.
         modifierButton->joyEvent(true, ignoresets);
     }
     else
@@ -436,16 +447,6 @@ double JoyControlStick::calculateXDistanceFromDeadZone()
         distance = 0.0;
     }
 
-    /*qDebug() << "CIRCLE: " << circle;
-    qDebug() << "CIRCLE FULL: " << circleStickFull;
-    qDebug() << "OLD X: " << axis1Value;
-    qDebug() << "ADJUSTED X: " << adjustedAxis1Value;
-    qDebug() << "FULL CIRCLE X: " << axis1ValueCircleFull;
-    qDebug() << "LIVING DEAD GIRL: " << adjustedDeadXZone;
-    qDebug() << "GOING THE DISTANCE: " << distance;
-    qDebug();
-    */
-
     return distance;
 }
 
@@ -488,6 +489,10 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
     return distance;
 }
 
+/**
+ * @brief Get the raw radial distance of the stick. Values will be between 0 - 32,767.
+ * @return Radial distance in the range of 0 - 32,767.
+ */
 double JoyControlStick::getAbsoluteRawDistance()
 {
     double distance = 0.0;
@@ -725,6 +730,10 @@ void JoyControlStick::setMaxZone(int value)
     }
 }
 
+/**
+ * @brief Set the diagonal range value for a stick.
+ * @param Value between 1 - 89.
+ */
 void JoyControlStick::setDiagonalRange(int value)
 {
     if (value < 1)
@@ -744,12 +753,19 @@ void JoyControlStick::setDiagonalRange(int value)
     }
 }
 
+/**
+ * @brief Delete old stick direction buttons and create new stick direction
+ *     buttons.
+ */
 void JoyControlStick::refreshButtons()
 {
     deleteButtons();
     populateButtons();
 }
 
+/**
+ * @brief Delete stick direction buttons and stick modifier button.
+ */
 void JoyControlStick::deleteButtons()
 {
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
@@ -772,6 +788,11 @@ void JoyControlStick::deleteButtons()
     }
 }
 
+/**
+ * @brief Take a XML stream and set the stick and direction button properties
+ *     according to the values contained within the stream.
+ * @param QXmlStreamReader instance that will be used to read property values.
+ */
 void JoyControlStick::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && xml->name() == "stick")
@@ -856,6 +877,11 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
     }
 }
 
+/**
+ * @brief Write the status of the properties of a stick and direction buttons
+ *     to an XML stream.
+ * @param QXmlStreamWriter instance that will be used to write a profile.
+ */
 void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 {
     if (!isDefault())
@@ -920,6 +946,10 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
     }
 }
 
+/**
+ * @brief Reset all the properties of the stick direction buttons and the
+ *     stick modifier button.
+ */
 void JoyControlStick::resetButtons()
 {
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
@@ -938,6 +968,13 @@ void JoyControlStick::resetButtons()
     }
 }
 
+/**
+ * @brief Get a pointer to the stick direction button for the current active
+ *     direction.
+ * @param Value of the current direction of the stick.
+ * @return Pointer to the stick direction button for the current stick
+ *     direction.
+ */
 JoyControlStickButton* JoyControlStick::getDirectionButton(JoyStickDirections direction)
 {
     JoyControlStickButton *button = buttons.value(direction);
@@ -1131,16 +1168,28 @@ double JoyControlStick::calculateDirectionalDistance()
     return finalDistance;
 }
 
+/**
+ * @brief Get the value for the currently active stick direction.
+ * @return Value of the corresponding active stick direction.
+ */
 JoyControlStick::JoyStickDirections JoyControlStick::getCurrentDirection()
 {
     return currentDirection;
 }
 
+/**
+ * @brief Get the value for the corresponding X axis.
+ * @return X axis value.
+ */
 int JoyControlStick::getXCoordinate()
 {
     return axisX->getCurrentRawValue();
 }
 
+/**
+ * @brief Get the value for the corresponding Y axis.
+ * @return Y axis value.
+ */
 int JoyControlStick::getYCoordinate()
 {
     return axisY->getCurrentRawValue();
@@ -1733,6 +1782,10 @@ void JoyControlStick::setButtonsWheelSpeedY(int value)
     }
 }
 
+/**
+ * @brief Get pointer to the set that a stick belongs to.
+ * @return Pointer to the set that a stick belongs to.
+ */
 SetJoystick* JoyControlStick::getParentSet()
 {
     SetJoystick *temp = 0;
@@ -1747,18 +1800,35 @@ SetJoystick* JoyControlStick::getParentSet()
     return temp;
 }
 
+/**
+ * @brief Activate a stick direction button.
+ * @param Stick direction button that will be activated.
+ * @param Out - Pointer to the currently active button.
+ * @param Should set changing routines be ignored.
+ */
 void JoyControlStick::performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets)
 {
     eventbutton->joyEvent(true, ignoresets);
     activebutton = eventbutton;
 }
 
+/**
+ * @brief Stick direction button to release.
+ * @param Stick direction button that will be released.
+ * @param Should set changing routines be ignored.
+ */
 void JoyControlStick::performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets)
 {
     eventbutton->joyEvent(false, ignoresets);
     eventbutton = 0;
 }
 
+/**
+ * @brief Determine which stick direction buttons should be active for a
+ *     standard mode stick.
+ * @param Out - Pointer to an X axis stick direction button that should be active.
+ * @param Out - Pointer to a Y axis stick direction button that should be active.
+ */
 void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2)
 {
     double bearing = calculateBearing();
@@ -1821,6 +1891,13 @@ void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbu
     }
 }
 
+/**
+ * @brief Determine which stick direction button should be active for a 8 way
+ *     mode stick.
+ * @param Out - Pointer to an X axis stick direction button that should be active.
+ * @param Out - Pointer to a Y axis stick direction button that should be active.
+ * @param Out - Pointer to a diagonal stick direction button that should be active.
+ */
 void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2, JoyControlStickButton *&eventbutton3)
 {
     double bearing = calculateBearing();
@@ -1879,6 +1956,12 @@ void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbu
     }
 }
 
+/**
+ * @brief Determine which cardinal stick direction button should be active
+ *     when using a four way cardinal stick.
+ * @param Out - Pointer to an X axis stick direction button that should be active.
+ * @param Out - Pointer to a Y axis stick direction button that should be active.
+ */
 void JoyControlStick::determineFourWayCardinalEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2)
 {
     double bearing = calculateBearing();
@@ -1912,6 +1995,11 @@ void JoyControlStick::determineFourWayCardinalEvent(JoyControlStickButton *&even
     }
 }
 
+/**
+ * @brief Determine which stick direction button should be active when using 4 way
+ *     diagonal mode.
+ * @param Out - pointer to a diagonal stick direction button that should be active.
+ */
 void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3)
 {
     double bearing = calculateBearing();
@@ -2318,4 +2406,56 @@ double JoyControlStick::getButtonsEasingDuration()
 JoyControlStickModifierButton *JoyControlStick::getModifierButton()
 {
     return modifierButton;
+}
+
+void JoyControlStick::setEventFromAxis(JoyAxis *axis, bool ignoresets)
+{
+    Q_UNUSED(axis);
+    Q_UNUSED(ignoresets);
+
+    if (!axisEventChangeTimer.isActive())
+    {
+        axisEventChangeTimer.start();
+    }
+
+    /*if (!pendingAxisEvents.contains(axis))
+    {
+        pendingAxisEvents.insert(axis, ignoresets);
+        if (!axisEventChangeTimer.isActive())
+        {
+            axisEventChangeTimer.start();
+        }
+    }
+    */
+}
+
+bool JoyControlStick::hasPendingAxisEvents()
+{
+    bool result = pendingAxisEvents.size() > 0;
+    return result;
+}
+
+void JoyControlStick::clearPendingAxisEvents()
+{
+    pendingAxisEvents.clear();
+}
+
+void JoyControlStick::activateEventFromAxis()
+{
+    bool ignoresets = false;
+
+    /*QHashIterator<JoyAxis*, bool> iter(pendingAxisEvents);
+    while (iter.hasNext())
+    {
+        iter.next();
+        ignoresets = iter.value();
+        if (!ignoresets)
+        {
+            iter.toBack();
+        }
+    }
+    */
+
+    joyEvent(ignoresets);
+    clearPendingAxisEvents();
 }

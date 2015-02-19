@@ -20,7 +20,6 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     distance = 0.0;
     previousDistance = 0.0;
     qkeyaliasCode = 0;
-    //mouseInterval = new QElapsedTimer();
     easingActive = false;
 }
 
@@ -37,7 +36,6 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
 
     this->mode = mode;
     distance = 0.0;
-    //mouseInterval = new QElapsedTimer();
     easingActive = false;
 }
 
@@ -59,7 +57,6 @@ JoyButtonSlot::JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mo
 
     this->mode = mode;
     distance = 0.0;
-    //mouseInterval = new QElapsedTimer();
     easingActive = false;
 }
 
@@ -70,16 +67,9 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     qkeyaliasCode = slot->qkeyaliasCode;
     mode = slot->mode;
     distance = slot->distance;
-    //mouseInterval = new QElapsedTimer();
     easingActive = false;
     textData = slot->getTextData();
 }
-
-/*JoyButtonSlot::~JoyButtonSlot()
-{
-    delete mouseInterval;
-}
-*/
 
 void JoyButtonSlot::setSlotCode(int code)
 {

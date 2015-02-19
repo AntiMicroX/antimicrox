@@ -9,6 +9,11 @@ VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) 
     this->downButton = 0;
     this->leftButton = 0;
     this->rightButton = 0;
+
+    vdpadPendingEventTimer.setInterval(0);
+    vdpadPendingEventTimer.setSingleShot(true);
+
+    connect(&vdpadPendingEventTimer, SIGNAL(timeout()), this, SLOT(vdpadChangeEvent()));
 }
 
 VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
@@ -26,6 +31,11 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
 
     this->rightButton = rightButton;
     rightButton->setVDPad(this);
+
+    vdpadPendingEventTimer.setInterval(0);
+    vdpadPendingEventTimer.setSingleShot(true);
+
+    connect(&vdpadPendingEventTimer, SIGNAL(timeout()), this, SLOT(vdpadChangeEvent()));
 }
 
 VDPad::~VDPad()
@@ -243,4 +253,21 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
     }
 
     return button;
+}
+
+void VDPad::queueJoyEvent(bool ignoresets)
+{
+    Q_UNUSED(ignoresets);
+
+    if (!vdpadPendingEventTimer.isActive())
+    {
+        vdpadPendingEventTimer.start();
+    }
+}
+
+void VDPad::vdpadChangeEvent()
+{
+    // Always use true. The proper direction value will be determined
+    // in the joyEvent method.
+    joyEvent(true);
 }
