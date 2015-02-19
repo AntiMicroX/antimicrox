@@ -508,9 +508,7 @@ void JoyTabWidget::openConfigFileDialog()
             tempDir.cdUp();
             if (tempDir.path() == qApp->applicationDirPath())
             {
-                outputFilename = QString("%1/%2")
-                        .arg(fileinfo.dir().dirName())
-                        .arg(profileBaseFile.fileName());
+                outputFilename = QString("%1").arg(fileinfo.dir().dirName());
             }
         }
 #endif
@@ -990,7 +988,7 @@ void JoyTabWidget::saveSettings()
                QString outputFilename = filename;
 
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-               if (profileBaseFile.isAbsolute() && profileBaseFile.dir().path() == qApp->applicationDirPath())
+               if (profileBaseFile.isAbsolute())
                {
                    QDir tempDir = profileBaseFile.dir();
                    tempDir.cdUp();
@@ -1016,7 +1014,24 @@ void JoyTabWidget::saveSettings()
 
     if (!identifier.isEmpty())
     {
-        settings->setValue(controlEntryLastSelected, lastfile);
+        QFileInfo profileBaseFile(lastfile);
+        QString outputFilename = lastfile;
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+       if (profileBaseFile.isAbsolute())
+       {
+           QDir tempDir = profileBaseFile.dir();
+           tempDir.cdUp();
+           if (tempDir.path() == qApp->applicationDirPath())
+           {
+               outputFilename = QString("%1/%2")
+                       .arg(profileBaseFile.dir().dirName())
+                       .arg(profileBaseFile.fileName());
+           }
+       }
+#endif
+
+        settings->setValue(controlEntryLastSelected, outputFilename);
     }
 }
 
