@@ -499,7 +499,23 @@ void JoyTabWidget::openConfigFileDialog()
             emit joystickConfigChanged(joystick->getJoyNumber());
         }
 
-        settings->setValue("LastProfileDir", fileinfo.absoluteDir().absolutePath());
+        QString outputFilename = fileinfo.absoluteDir().absolutePath();
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+        if (fileinfo.absoluteDir().isAbsolute())
+        {
+            QDir tempDir = fileinfo.dir();
+            tempDir.cdUp();
+            if (tempDir.path() == qApp->applicationDirPath())
+            {
+                outputFilename = QString("%1/%2")
+                        .arg(fileinfo.dir().dirName())
+                        .arg(profileBaseFile.fileName());
+            }
+        }
+#endif
+
+        settings->setValue("LastProfileDir", outputFilename);
         settings->sync();
     }
 }
@@ -933,9 +949,16 @@ void JoyTabWidget::saveSettings()
             QString outputFilename = filename;
 
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-            if (profileBaseFile.isAbsolute() && profileBaseFile.dir().path() == qApp->applicationDirPath())
+            if (profileBaseFile.isAbsolute())
             {
-                outputFilename = QString("profiles/%1").arg(profileBaseFile.fileName());
+                QDir tempDir = profileBaseFile.dir();
+                tempDir.cdUp();
+                if (tempDir.path() == qApp->applicationDirPath())
+                {
+                    outputFilename = QString("%1/%2")
+                            .arg(profileBaseFile.dir().dirName())
+                            .arg(profileBaseFile.fileName());
+                }
             }
 #endif
 
@@ -969,7 +992,14 @@ void JoyTabWidget::saveSettings()
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
                if (profileBaseFile.isAbsolute() && profileBaseFile.dir().path() == qApp->applicationDirPath())
                {
-                   outputFilename = QString("profiles/%1").arg(profileBaseFile.fileName());
+                   QDir tempDir = profileBaseFile.dir();
+                   tempDir.cdUp();
+                   if (tempDir.path() == qApp->applicationDirPath())
+                   {
+                       outputFilename = QString("%1/%2")
+                               .arg(profileBaseFile.dir().dirName())
+                               .arg(profileBaseFile.fileName());
+                   }
                }
 #endif
                settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
