@@ -200,7 +200,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         aboutDialog = 0;
     }
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(WIN_PORTABLE_PACKAGE)
     if (graphical)
     {
         bool shouldAssociateProfiles = settings->value("AssociateProfiles", true).toBool();
@@ -297,7 +297,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         }
 
         WinExtras::grabCurrentPointerPrecision();
-        bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
+        bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
+                                                    AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
         if (disableEnhandedPoint)
         {
             WinExtras::disablePointerPrecision();

@@ -1,4 +1,5 @@
 //#include <QDebug>
+#include <QCoreApplication>
 #include <QLayoutItem>
 #include <QGroupBox>
 #include <QMessageBox>
@@ -928,8 +929,18 @@ void JoyTabWidget::saveSettings()
         QString profileText = configBox->itemText(index);
         if (!identifier.isEmpty())
         {
-            settings->setValue(controlEntryString.arg(currentjoy), filename);
             QFileInfo profileBaseFile(filename);
+            QString outputFilename = filename;
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+            if (profileBaseFile.isAbsolute() && profileBaseFile.dir().path() == qApp->applicationDirPath())
+            {
+                outputFilename = QString("profiles/%1").arg(profileBaseFile.fileName());
+            }
+#endif
+
+            settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
+
             if (profileBaseFile.baseName() != profileText)
             {
                 settings->setValue(controlEntryProfileName.arg(currentjoy), profileText);
@@ -952,8 +963,17 @@ void JoyTabWidget::saveSettings()
            QString profileText = configBox->itemText(i);
            if (!identifier.isEmpty())
            {
-               settings->setValue(controlEntryString.arg(currentjoy), filename);
                QFileInfo profileBaseFile(filename);
+               QString outputFilename = filename;
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+               if (profileBaseFile.isAbsolute() && profileBaseFile.dir().path() == qApp->applicationDirPath())
+               {
+                   outputFilename = QString("profiles/%1").arg(profileBaseFile.fileName());
+               }
+#endif
+               settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
+
                if (profileBaseFile.baseName() != profileText)
                {
                    settings->setValue(controlEntryProfileName.arg(currentjoy), profileText);
@@ -1013,6 +1033,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         if (!tempfilepath.isEmpty())
         {
             QFileInfo fileInfo(tempfilepath);
+
             if (fileInfo.exists() && configBox->findData(fileInfo.absoluteFilePath()) == -1)
             {
                 QString profileName = settings->value(controlEntryProfileName.arg(i), "").toString();
@@ -1044,7 +1065,14 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
     if (!lastfile.isEmpty())
     {
-        int lastindex = configBox->findData(lastfile);
+        QString lastFileAbsolute = lastfile;
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+        QFileInfo lastFileInfo(lastfile);
+        lastFileAbsolute = lastFileInfo.absoluteFilePath();
+#endif
+
+        int lastindex = configBox->findData(lastFileAbsolute);
         if (lastindex > 0)
         {
             configBox->setCurrentIndex(lastindex);

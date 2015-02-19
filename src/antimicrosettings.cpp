@@ -1,5 +1,7 @@
 #include "antimicrosettings.h"
 
+const bool AntiMicroSettings::defaultDisabledWinEnhanced = false;
+
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent) :
     QSettings(fileName, format, parent)
 {

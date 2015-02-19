@@ -14,6 +14,8 @@ public:
     QVariant runtimeValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void importFromCommandLine(CommandLineUtility &cmdutility);
 
+    static const bool defaultDisabledWinEnhanced;
+
 protected:
     QSettings cmdSettings;
 
