@@ -508,7 +508,7 @@ void JoyTabWidget::openConfigFileDialog()
             tempDir.cdUp();
             if (tempDir.path() == qApp->applicationDirPath())
             {
-                outputFilename = QString("%1").arg(fileinfo.dir().dirName());
+                outputFilename = QString("%1/").arg(fileinfo.dir().dirName());
             }
         }
 #endif
