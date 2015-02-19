@@ -175,6 +175,7 @@ protected:
     QTimer axisEventChangeTimer;
     unsigned int stickDelay;
     QHash<JoyAxis*, bool> pendingAxisEvents;
+    bool testAxisEvent;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
     JoyControlStickModifierButton *modifierButton;
@@ -202,13 +203,13 @@ public slots:
     void setCircleAdjust(double circle);
     void setStickDelay(int value);
     void setButtonsEasingDuration(double value);
+    void activateEventFromAxis();
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
 private slots:
     void stickDirectionChangeEvent();
-    void activateEventFromAxis();
 };
 
 #endif // JOYCONTROLSTICK_H

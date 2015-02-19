@@ -2012,3 +2012,29 @@ bool InputDevice::isKnownController()
 
     return result;
 }
+
+void InputDevice::activatePossibleControlStickEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    for (int i=0; i < currentSet->getNumberSticks(); i++)
+    {
+        JoyControlStick *tempStick = currentSet->getJoyStick(i);
+        if (tempStick && tempStick->hasPendingAxisEvents())
+        {
+            tempStick->activateEventFromAxis();
+        }
+    }
+}
+
+void InputDevice::activatePossibleVDPadEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    for (int i=0; i < currentSet->getNumberVDPads(); i++)
+    {
+        VDPad *tempVDPad = currentSet->getVDPad(i);
+        if (tempVDPad && tempVDPad->hasPendingEvent())
+        {
+            tempVDPad->vdpadChangeEvent();
+        }
+    }
+}

@@ -23,6 +23,7 @@ public:
     virtual QString getXmlName();
 
     void queueJoyEvent(bool ignoresets=false);
+    bool hasPendingEvent();
 
     static const QString xmlName;
 
@@ -31,12 +32,13 @@ protected:
     JoyButton *downButton;
     JoyButton *leftButton;
     JoyButton *rightButton;
+    bool pendingVDPadEvent;
 
     QTimer vdpadPendingEventTimer;
 
 signals:
 
-private slots:
+public slots:
     void vdpadChangeEvent();
 };
 

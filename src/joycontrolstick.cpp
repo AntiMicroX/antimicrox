@@ -145,6 +145,8 @@ void JoyControlStick::joyEvent(bool ignoresets)
     }
 
     emit moved(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+
+    testAxisEvent = false;
 }
 
 bool JoyControlStick::inDeadZone()
@@ -672,6 +674,7 @@ void JoyControlStick::reset()
     maxZone = JoyAxis::AXISMAXZONE;
     diagonalRange = 45;
     isActive = false;
+    testAxisEvent = false;
 
     /*if (activeButton1)
     {
@@ -2413,10 +2416,13 @@ void JoyControlStick::setEventFromAxis(JoyAxis *axis, bool ignoresets)
     Q_UNUSED(axis);
     Q_UNUSED(ignoresets);
 
-    if (!axisEventChangeTimer.isActive())
+    /*if (!axisEventChangeTimer.isActive())
     {
         axisEventChangeTimer.start();
     }
+    */
+
+    testAxisEvent = true;
 
     /*if (!pendingAxisEvents.contains(axis))
     {
@@ -2431,7 +2437,8 @@ void JoyControlStick::setEventFromAxis(JoyAxis *axis, bool ignoresets)
 
 bool JoyControlStick::hasPendingAxisEvents()
 {
-    bool result = pendingAxisEvents.size() > 0;
+    //bool result = pendingAxisEvents.size() > 0;
+    bool result = testAxisEvent;
     return result;
 }
 

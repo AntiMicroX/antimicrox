@@ -97,6 +97,9 @@ public:
     void transferReset();
     void reInitButtons();
 
+    void activatePossibleControlStickEvents();
+    void activatePossibleVDPadEvents();
+
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
     static const unsigned int DEFAULTKEYREPEATDELAY;

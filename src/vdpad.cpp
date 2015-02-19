@@ -10,10 +10,12 @@ VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) 
     this->leftButton = 0;
     this->rightButton = 0;
 
+    pendingVDPadEvent = false;
+
     vdpadPendingEventTimer.setInterval(0);
     vdpadPendingEventTimer.setSingleShot(true);
 
-    connect(&vdpadPendingEventTimer, SIGNAL(timeout()), this, SLOT(vdpadChangeEvent()));
+    //connect(&vdpadPendingEventTimer, SIGNAL(timeout()), this, SLOT(vdpadChangeEvent()));
 }
 
 VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
@@ -32,10 +34,12 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
     this->rightButton = rightButton;
     rightButton->setVDPad(this);
 
+    pendingVDPadEvent = false;
+
     vdpadPendingEventTimer.setInterval(0);
     vdpadPendingEventTimer.setSingleShot(true);
 
-    connect(&vdpadPendingEventTimer, SIGNAL(timeout()), this, SLOT(vdpadChangeEvent()));
+    //connect(&vdpadPendingEventTimer, SIGNAL(timeout()), this, SLOT(vdpadChangeEvent()));
 }
 
 VDPad::~VDPad()
@@ -130,6 +134,8 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
     }
 
     JoyDPad::joyEvent(tempDirection, ignoresets);
+
+    pendingVDPadEvent = false;
 }
 
 void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button)
@@ -255,14 +261,21 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
     return button;
 }
 
+bool VDPad::hasPendingEvent()
+{
+    return pendingVDPadEvent;
+}
+
 void VDPad::queueJoyEvent(bool ignoresets)
 {
     Q_UNUSED(ignoresets);
 
-    if (!vdpadPendingEventTimer.isActive())
+    /*if (!vdpadPendingEventTimer.isActive())
     {
         vdpadPendingEventTimer.start();
     }
+    */
+    pendingVDPadEvent = true;
 }
 
 void VDPad::vdpadChangeEvent()

@@ -59,6 +59,8 @@ void InputDaemon::run ()
 
     if (!stopped)
     {
+        QHash<SDL_JoystickID, InputDevice*> activeDevices;
+
         while (SDL_PollEvent(&event) > 0)
         {
             switch (event.type)
@@ -80,6 +82,11 @@ void InputDaemon::run ()
                         if (button)
                         {
                             button->joyEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
+
+                            if (!activeDevices.contains(event.jbutton.which))
+                            {
+                                activeDevices.insert(event.jbutton.which, joy);
+                            }
                         }
                     }
 
@@ -100,6 +107,11 @@ void InputDaemon::run ()
                         if (axis)
                         {
                             axis->joyEvent(event.jaxis.value);
+
+                            if (!activeDevices.contains(event.jaxis.which))
+                            {
+                                activeDevices.insert(event.jaxis.which, joy);
+                            }
                         }
                     }
 
@@ -120,6 +132,11 @@ void InputDaemon::run ()
                         if (dpad)
                         {
                             dpad->joyEvent(event.jhat.value);
+
+                            if (!activeDevices.contains(event.jhat.which))
+                            {
+                                activeDevices.insert(event.jhat.which, joy);
+                            }
                         }
                     }
 
@@ -139,6 +156,11 @@ void InputDaemon::run ()
                             //qDebug() << QTime::currentTime() << ": " << "Axis " << event.caxis.axis+1
                             //         << ": " << event.caxis.value;
                             axis->joyEvent(event.caxis.value);
+
+                            if (!activeDevices.contains(event.caxis.which))
+                            {
+                                activeDevices.insert(event.caxis.which, joy);
+                            }
                         }
                     }
                     break;
@@ -156,6 +178,11 @@ void InputDaemon::run ()
                         if (button)
                         {
                             button->joyEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
+
+                            if (!activeDevices.contains(event.cbutton.which))
+                            {
+                                activeDevices.insert(event.cbutton.which, joy);
+                            }
                         }
                     }
 
@@ -188,6 +215,15 @@ void InputDaemon::run ()
 
                 default:
                     break;
+            }
+
+            // Active possible queued stick and vdpad events.
+            QHashIterator<SDL_JoystickID, InputDevice*> activeDevIter(activeDevices);
+            while (activeDevIter.hasNext())
+            {
+                InputDevice *tempDevice = activeDevIter.next().value();
+                tempDevice->activatePossibleControlStickEvents();
+                tempDevice->activatePossibleVDPadEvents();
             }
         }
     }
