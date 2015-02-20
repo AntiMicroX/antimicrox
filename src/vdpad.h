@@ -34,12 +34,10 @@ protected:
     JoyButton *rightButton;
     bool pendingVDPadEvent;
 
-    QTimer vdpadPendingEventTimer;
-
 signals:
 
 public slots:
-    void vdpadChangeEvent();
+    void activatePendingEvent();
 };
 
 #endif // VDPAD_H

@@ -38,7 +38,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
     axisEventChangeTimer.setSingleShot(true);
 
     connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
-    connect(&axisEventChangeTimer, SIGNAL(timeout()), this, SLOT(activateEventFromAxis()));
+    connect(&axisEventChangeTimer, SIGNAL(timeout()), this, SLOT(activatePendingEvent()));
 }
 
 JoyControlStick::~JoyControlStick()
@@ -146,7 +146,7 @@ void JoyControlStick::joyEvent(bool ignoresets)
 
     emit moved(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
 
-    testAxisEvent = false;
+    pendingStickEvent = false;
 }
 
 bool JoyControlStick::inDeadZone()
@@ -674,7 +674,7 @@ void JoyControlStick::reset()
     maxZone = JoyAxis::AXISMAXZONE;
     diagonalRange = 45;
     isActive = false;
-    testAxisEvent = false;
+    pendingStickEvent = false;
 
     /*if (activeButton1)
     {
@@ -2411,58 +2411,21 @@ JoyControlStickModifierButton *JoyControlStick::getModifierButton()
     return modifierButton;
 }
 
-void JoyControlStick::setEventFromAxis(JoyAxis *axis, bool ignoresets)
+void JoyControlStick::queueJoyEvent(bool ignoresets)
 {
-    Q_UNUSED(axis);
     Q_UNUSED(ignoresets);
 
-    /*if (!axisEventChangeTimer.isActive())
-    {
-        axisEventChangeTimer.start();
-    }
-    */
-
-    testAxisEvent = true;
-
-    /*if (!pendingAxisEvents.contains(axis))
-    {
-        pendingAxisEvents.insert(axis, ignoresets);
-        if (!axisEventChangeTimer.isActive())
-        {
-            axisEventChangeTimer.start();
-        }
-    }
-    */
+    pendingStickEvent = true;
 }
 
-bool JoyControlStick::hasPendingAxisEvents()
+bool JoyControlStick::hasPendingEvent()
 {
-    //bool result = pendingAxisEvents.size() > 0;
-    bool result = testAxisEvent;
-    return result;
+    return pendingStickEvent;
 }
 
-void JoyControlStick::clearPendingAxisEvents()
-{
-    pendingAxisEvents.clear();
-}
-
-void JoyControlStick::activateEventFromAxis()
+void JoyControlStick::activatePendingEvent()
 {
     bool ignoresets = false;
 
-    /*QHashIterator<JoyAxis*, bool> iter(pendingAxisEvents);
-    while (iter.hasNext())
-    {
-        iter.next();
-        ignoresets = iter.value();
-        if (!ignoresets)
-        {
-            iter.toBack();
-        }
-    }
-    */
-
     joyEvent(ignoresets);
-    clearPendingAxisEvents();
 }

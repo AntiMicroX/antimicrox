@@ -61,7 +61,7 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
 
         if (!ignoresets)
         {
-            stick->setEventFromAxis(this, ignoresets);
+            stick->queueJoyEvent(ignoresets);
         }
         else
         {

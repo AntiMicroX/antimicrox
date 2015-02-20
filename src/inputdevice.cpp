@@ -2019,9 +2019,9 @@ void InputDevice::activatePossibleControlStickEvents()
     for (int i=0; i < currentSet->getNumberSticks(); i++)
     {
         JoyControlStick *tempStick = currentSet->getJoyStick(i);
-        if (tempStick && tempStick->hasPendingAxisEvents())
+        if (tempStick && tempStick->hasPendingEvent())
         {
-            tempStick->activateEventFromAxis();
+            tempStick->activatePendingEvent();
         }
     }
 }
@@ -2034,7 +2034,7 @@ void InputDevice::activatePossibleVDPadEvents()
         VDPad *tempVDPad = currentSet->getVDPad(i);
         if (tempVDPad && tempVDPad->hasPendingEvent())
         {
-            tempVDPad->vdpadChangeEvent();
+            tempVDPad->activatePendingEvent();
         }
     }
 }

@@ -16,15 +16,6 @@
 #include "eventhandlerfactory.h"
 #endif
 
-/*static QStringList buildEventGeneratorList()
-{
-    QStringList temp;
-
-    temp.append("xtest");
-    temp.append("uinput");
-    return temp;
-}*/
-
 QRegExp CommandLineUtility::trayRegexp = QRegExp("--tray");
 QRegExp CommandLineUtility::helpRegexp = QRegExp("(-h|--help)");
 QRegExp CommandLineUtility::versionRegexp = QRegExp("(-v|--version)");
@@ -46,7 +37,6 @@ QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 
     QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
 
-    //QStringList CommandLineUtility::eventGeneratorsList = buildEventGeneratorList();
     QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
 #endif

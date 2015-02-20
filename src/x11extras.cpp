@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <QFileInfo>
 
 //#include <QDebug>
 #include "x11extras.h"
@@ -295,71 +296,6 @@ int X11Extras::getApplicationPid(Window window)
             XFree(prop);
         }
     }
-    //status = XGetWindowProperty(display, window, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-    /*if (status == 0 && prop)
-    {
-        pid = prop[1] << 8;
-        pid += prop[0];
-        XFree(prop);
-    }
-    */
-    //else if (status == 0)
-    //{
-        //XFree(prop);
-
-        /*Window parent = 0;
-        Window root = 0;
-        Window *children;
-        unsigned int num_children;
-        bool quitTraversal = false;
-
-        while (!quitTraversal)
-        {
-            children = 0;
-
-            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
-            {
-                if (children) { // must test for null
-                    XFree(children);
-                }
-
-                if (parent)
-                {
-                    status = XGetWindowProperty(display, parent, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-                    if (status == 0 && prop)
-                    {
-                        pid = prop[1] << 8;
-                        pid += prop[0];
-
-                        quitTraversal = true;
-                    }
-                    else if (parent == 0)
-                    {
-                        quitTraversal = true;
-                    }
-                    else if (parent == root)
-                    {
-                        quitTraversal = true;
-                    }
-                    else
-                    {
-                        window = parent;
-                    }
-
-                    XFree(prop);
-                }
-                else
-                {
-                    quitTraversal = true;
-                }
-            }
-            else
-            {
-                quitTraversal = true;
-            }
-        }
-        */
-    //}
 
     return pid;
 }
@@ -375,20 +311,24 @@ QString X11Extras::getApplicationLocation(int pid)
     if (pid > 0)
     {
         QString procString = QString("/proc/%1/exe").arg(pid);
-        char buf[1024];
-        QByteArray tempByteArray = procString.toLocal8Bit();
-        ssize_t len = readlink(tempByteArray.constData(), buf, sizeof(buf)-1);
-        if (len != -1)
+        QFileInfo procFileInfo(procString);
+        if (procFileInfo.exists())
         {
-            buf[len] = '\0';
-        }
-
-        if (len > 0)
-        {
-            QString temp = QString::fromUtf8(buf);
-            if (!temp.isEmpty())
+            char buf[1024];
+            QByteArray tempByteArray = procString.toLocal8Bit();
+            ssize_t len = readlink(tempByteArray.constData(), buf, sizeof(buf)-1);
+            if (len != -1)
             {
-                exepath = temp;
+                buf[len] = '\0';
+            }
+
+            if (len > 0)
+            {
+                QString temp = QString::fromUtf8(buf);
+                if (!temp.isEmpty())
+                {
+                    exepath = temp;
+                }
             }
         }
     }
@@ -406,14 +346,6 @@ QString X11Extras::getApplicationLocation(int pid)
  */
 Window X11Extras::findClientWindow(Window window)
 {
-    /*Atom actual_type;
-    int actual_format = 0;
-    unsigned long nitems = 0;
-    unsigned long bytes_after = 0;
-    unsigned char *prop = 0;
-    int status = 0;
-    */
-
     Window parent = 1;
     Window root = 0;
     Window *children = 0;
@@ -421,33 +353,11 @@ Window X11Extras::findClientWindow(Window window)
     Window finalwindow = 0;
     Display *display = this->display();
 
-    //Atom wm_state_atom = XInternAtom(display, "WM_STATE", True);
-    //Atom net_wm_state_atom = XInternAtom(display, "_NET_WM_STATE", True);
-    //Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
-    //Atom wm_class = XInternAtom(display, "WM_CLASS", True);
-
     if (windowIsViewable(display, window) &&
         isWindowRelevant(display, window))
     {
         finalwindow = window;
     }
-
-    //status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-
-    //Atom pidAtom = XInternAtom(display, "_NET_WM_PID", True);
-    //status = XGetWindowProperty(display, window, pidAtom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-    //if (status == 0 && prop)
-    //{
-    //    finalwindow = window;
-    //}
-
-    /*if (prop)
-    {
-        XFree(prop);
-        prop = 0;
-    }
-    */
-
     else
     {
         XQueryTree(display, window, &root, &parent, &children, &num_children);
@@ -460,20 +370,6 @@ Window X11Extras::findClientWindow(Window window)
                 {
                     finalwindow = children[i];
                 }
-
-                //status = XGetWindowProperty(display, children[i], wm_state_atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-                /*if (status == 0 && prop)
-                {
-                    finalwindow = children[i];
-                }
-                */
-
-                /*if (prop)
-                {
-                    XFree(prop);
-                    prop = 0;
-                }
-                */
             }
         }
 
@@ -491,15 +387,6 @@ Window X11Extras::findClientWindow(Window window)
             children = 0;
         }
     }
-
-    /*if (finalwindow)
-    {
-        if (!windowHasProperty(display, finalwindow, pidAtom))
-        {
-            finalwindow = 0;
-        }
-    }
-    */
 
     return finalwindow;
 }

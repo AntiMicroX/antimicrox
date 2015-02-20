@@ -111,8 +111,10 @@ public:
 
     double getButtonsEasingDuration();
 
-    void setEventFromAxis(JoyAxis *axis, bool ignoresets);
-    bool hasPendingAxisEvents();
+    void queueJoyEvent(bool ignoresets);
+    bool hasPendingEvent();
+
+    void activatePendingEvent();
 
     static const double PI;
 
@@ -174,8 +176,7 @@ protected:
     QTimer directionDelayTimer;
     QTimer axisEventChangeTimer;
     unsigned int stickDelay;
-    QHash<JoyAxis*, bool> pendingAxisEvents;
-    bool testAxisEvent;
+    bool pendingStickEvent;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
     JoyControlStickModifierButton *modifierButton;
@@ -203,7 +204,6 @@ public slots:
     void setCircleAdjust(double circle);
     void setStickDelay(int value);
     void setButtonsEasingDuration(double value);
-    void activateEventFromAxis();
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

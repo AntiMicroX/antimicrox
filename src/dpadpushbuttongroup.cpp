@@ -23,118 +23,89 @@ void DPadPushButtonGroup::generateButtons()
     JoyDPadButton *button = 0;
     JoyDPadButtonWidget *pushbutton = 0;
 
+    button = buttons->value(JoyDPadButton::DpadLeftUp);
+    upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = upLeftButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
 
-        button = buttons->value(JoyDPadButton::DpadLeftUp);
-        upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = upLeftButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    button->establishPropertyUpdatedConnections();
 
-        addWidget(pushbutton, 0, 0);
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+
+    addWidget(pushbutton, 0, 0);
 
 
-        button = buttons->value(JoyDPadButton::DpadUp);
-        upButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = upButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    button = buttons->value(JoyDPadButton::DpadUp);
+    upButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = upButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
 
-        addWidget(pushbutton, 0, 1);
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        button = buttons->value(JoyDPadButton::DpadRightUp);
-        upRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = upRightButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    addWidget(pushbutton, 0, 1);
 
-        addWidget(pushbutton, 0, 2);
+    button = buttons->value(JoyDPadButton::DpadRightUp);
+    upRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = upRightButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
 
-        button = buttons->value(JoyDPadButton::DpadLeft);
-        leftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = leftButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        addWidget(pushbutton, 1, 0);
+    addWidget(pushbutton, 0, 2);
+
+    button = buttons->value(JoyDPadButton::DpadLeft);
+    leftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = leftButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+
+    addWidget(pushbutton, 1, 0);
 
     dpadWidget = new DPadPushButton(dpad, displayNames, parentWidget());
     dpadWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     connect(dpadWidget, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
-    //connect(namesPushButton, SIGNAL(clicked()), dpadpushbutton, SLOT(toggleNameDisplay()));
     addWidget(dpadWidget, 1, 1);
 
+    button = buttons->value(JoyDPadButton::DpadRight);
+    rightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = rightButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
 
-        button = buttons->value(JoyDPadButton::DpadRight);
-        rightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = rightButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        addWidget(pushbutton, 1, 2);
+    addWidget(pushbutton, 1, 2);
 
-        button = buttons->value(JoyDPadButton::DpadLeftDown);
-        downLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = downLeftButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    button = buttons->value(JoyDPadButton::DpadLeftDown);
+    downLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = downLeftButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        addWidget(pushbutton, 2, 0);
+    addWidget(pushbutton, 2, 0);
 
-        button = buttons->value(JoyDPadButton::DpadDown);
-        downButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = downButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    button = buttons->value(JoyDPadButton::DpadDown);
+    downButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = downButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        addWidget(pushbutton, 2, 1);
+    addWidget(pushbutton, 2, 1);
 
-        button = buttons->value(JoyDPadButton::DpadRightDown);
-        downRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-        pushbutton = downRightButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    button = buttons->value(JoyDPadButton::DpadRightDown);
+    downRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
+    pushbutton = downRightButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        addWidget(pushbutton, 2, 2);
+    addWidget(pushbutton, 2, 2);
 }
 
 void DPadPushButtonGroup::changeButtonLayout()

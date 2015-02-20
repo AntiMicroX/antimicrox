@@ -25,9 +25,7 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
 
     connect(nAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    //connect(nAxisButton, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
     connect(pAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    //connect(pAxisButton, SIGNAL(actionNameChanged()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(pAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);

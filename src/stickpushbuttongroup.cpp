@@ -23,125 +23,84 @@ void StickPushButtonGroup::generateButtons()
     JoyControlStickButton *button = 0;
     JoyControlStickButtonPushButton *pushbutton = 0;
 
+    button = stickButtons->value(JoyControlStick::StickLeftUp);
+    upLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = upLeftButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        button = stickButtons->value(JoyControlStick::StickLeftUp);
-        upLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = upLeftButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    addWidget(pushbutton, 0, 0);
 
-        addWidget(pushbutton, 0, 0);
+    button = stickButtons->value(JoyControlStick::StickUp);
+    upButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = upButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        button = stickButtons->value(JoyControlStick::StickUp);
-        upButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = upButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    addWidget(pushbutton, 0, 1);
 
-        addWidget(pushbutton, 0, 1);
+    button = stickButtons->value(JoyControlStick::StickRightUp);
+    upRightButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = upRightButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
+    addWidget(pushbutton, 0, 2);
 
+    button = stickButtons->value(JoyControlStick::StickLeft);
+    leftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = leftButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        button = stickButtons->value(JoyControlStick::StickRightUp);
-        upRightButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = upRightButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
-
-        addWidget(pushbutton, 0, 2);
-
-
-
-        button = stickButtons->value(JoyControlStick::StickLeft);
-        leftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = leftButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
-
-        addWidget(pushbutton, 1, 0);
+    addWidget(pushbutton, 1, 0);
 
     stickWidget = new JoyControlStickPushButton(stick, displayNames, parentWidget());
     stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     connect(stickWidget, SIGNAL(clicked()), this, SLOT(showStickDialog()));
-    //connect(namesPushButton, SIGNAL(clicked()), stickWidget, SLOT(toggleNameDisplay()));
+
     addWidget(stickWidget, 1, 1);
 
+    button = stickButtons->value(JoyControlStick::StickRight);
+    rightButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = rightButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        button = stickButtons->value(JoyControlStick::StickRight);
-        rightButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = rightButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    addWidget(pushbutton, 1, 2);
 
-        addWidget(pushbutton, 1, 2);
+    button = stickButtons->value(JoyControlStick::StickLeftDown);
+    downLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = downLeftButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
 
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        button = stickButtons->value(JoyControlStick::StickLeftDown);
-        downLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = downLeftButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    addWidget(pushbutton, 2, 0);
 
-        addWidget(pushbutton, 2, 0);
+    button = stickButtons->value(JoyControlStick::StickDown);
+    downButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = downButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
+    addWidget(pushbutton, 2, 1);
 
-        button = stickButtons->value(JoyControlStick::StickDown);
-        downButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = downButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
+    button = stickButtons->value(JoyControlStick::StickRightDown);
+    downRightButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
+    pushbutton = downRightButton;
+    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
+    button->establishPropertyUpdatedConnections();
+    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
 
-        addWidget(pushbutton, 2, 1);
-
-
-
-        button = stickButtons->value(JoyControlStick::StickRightDown);
-        downRightButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-        pushbutton = downRightButton;
-        connect(pushbutton, SIGNAL(clicked()), this, SLOT(openStickButtonDialog()));
-        //connect(namesPushButton, SIGNAL(clicked()), pushbutton, SLOT(toggleNameDisplay()));
-        button->establishPropertyUpdatedConnections();
-        //if (hideEmptyButtons)
-        //{
-            connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
-        //}
-
-        addWidget(pushbutton, 2, 2);
+    addWidget(pushbutton, 2, 2);
 }
 
 void StickPushButtonGroup::changeButtonLayout()
