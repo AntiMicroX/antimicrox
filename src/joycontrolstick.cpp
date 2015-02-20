@@ -34,11 +34,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
 
     directionDelayTimer.setSingleShot(true);
 
-    axisEventChangeTimer.setInterval(0);
-    axisEventChangeTimer.setSingleShot(true);
-
     connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
-    connect(&axisEventChangeTimer, SIGNAL(timeout()), this, SLOT(activatePendingEvent()));
 }
 
 JoyControlStick::~JoyControlStick()
@@ -2426,6 +2422,5 @@ bool JoyControlStick::hasPendingEvent()
 void JoyControlStick::activatePendingEvent()
 {
     bool ignoresets = false;
-
     joyEvent(ignoresets);
 }

@@ -174,7 +174,6 @@ protected:
     QString defaultStickName;
     double circle;
     QTimer directionDelayTimer;
-    QTimer axisEventChangeTimer;
     unsigned int stickDelay;
     bool pendingStickEvent;
 
