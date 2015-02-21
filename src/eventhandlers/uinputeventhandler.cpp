@@ -26,8 +26,8 @@
 
 #include "uinputeventhandler.h"
 
-static const QString mouseDeviceName("AntiMicro Mouse Emulation");
-static const QString keyboardDeviceName("AntiMicro Keyboard Emulation");
+static const QString mouseDeviceName("antimicro Mouse Emulation");
+static const QString keyboardDeviceName("antimicro Keyboard Emulation");
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)

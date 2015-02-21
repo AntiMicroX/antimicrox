@@ -72,7 +72,7 @@
         </font>
        </property>
        <property name="text">
-        <string>AntiMicro</string>
+        <string>antimicro</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignHCenter|Qt::AlignTop</set>

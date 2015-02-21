@@ -383,7 +383,7 @@ bool CommandLineUtility::isLaunchInTrayEnabled()
 void CommandLineUtility::printHelp()
 {
     QTextStream out(stdout);
-    out << tr("AntiMicro version") << " " << PadderCommon::programVersion << endl;
+    out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
     out << tr("Usage: antimicro [options] [profile]") << endl;
     out << endl;
     out << tr("Options") << ":" << endl;
@@ -454,7 +454,7 @@ bool CommandLineUtility::isVersionRequested()
 void CommandLineUtility::printVersionString()
 {
     QTextStream out(stdout);
-    out << tr("AntiMicro version") << " " << PadderCommon::programVersion << endl;
+    out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
 }
 
 bool CommandLineUtility::isTrayHidden()

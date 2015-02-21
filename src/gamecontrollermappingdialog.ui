@@ -33,7 +33,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;AntiMicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

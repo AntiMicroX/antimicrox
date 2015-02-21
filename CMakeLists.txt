@@ -1,7 +1,7 @@
 # Debian Wheezy has a package for version 2.8.9 so
 # that will be the minimum supported version.
 cmake_minimum_required(VERSION 2.8.9)
-project(AntiMicro)
+project(antimicro)
 
 if(WIN32)
     # Cause cmake to fail if Qt location is not specified.
@@ -723,9 +723,9 @@ if(WIN32)
     # Use a different file for each architecture due
     # to some DLL differences.
     if(TARGET_ARCH STREQUAL "x86")
-        set(WIXWXS "${MSIFOLDER}/AntiMicro.wxs")
+        set(WIXWXS "${MSIFOLDER}/antimicro.wxs")
     else()
-        set(WIXWXS "${MSIFOLDER}/AntiMicro_64.wxs")
+        set(WIXWXS "${MSIFOLDER}/antimicro_64.wxs")
     endif(TARGET_ARCH STREQUAL "x86")
 
     set(WIXOBJ "${MSIFOLDER}/antimicro.wixobj")

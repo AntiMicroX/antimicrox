@@ -183,7 +183,7 @@ clicked instead of quitting the program.</string>
          <item>
           <widget class="QCheckBox" name="launchAtWinStartupCheckBox">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Have Windows start AntiMicro at system startup.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Have Windows start antimicro at system startup.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Launch At Windows Startup</string>
@@ -256,7 +256,7 @@ first launches.</string>
          <item>
           <widget class="QCheckBox" name="associateProfilesCheckBox">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associate .amgp files with AntiMicro in Windows Explorer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associate .amgp files with antimicro in Windows Explorer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Associate Profiles</string>

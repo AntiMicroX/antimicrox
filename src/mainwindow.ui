@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>AntiMicro</string>
+   <string>antimicro</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">

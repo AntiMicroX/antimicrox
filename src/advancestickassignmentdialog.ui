@@ -82,7 +82,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Note: This window is meant for backwards compatibility with profiles made before AntiMicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</string>
+              <string>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
