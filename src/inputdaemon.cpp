@@ -590,10 +590,10 @@ void InputDaemon::clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 break;
                             }
 #endif
-
-                            sdlEventQueue->swap(tempQueue);
                         }
                     }
+
+                    sdlEventQueue->swap(tempQueue);
                 }
             }
         }
