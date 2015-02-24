@@ -469,7 +469,15 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     if (axis)
                     {
                         InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
-                        temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GAMECONTROLLERTRIGGERRELEASE);
+                        if (event.caxis.axis != SDL_CONTROLLER_AXIS_TRIGGERLEFT &&
+                            event.caxis.axis != SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
+                        {
+                            temp->changeAxesStatus(event.caxis.axis, event.caxis.value == 0);
+                        }
+                        else
+                        {
+                            temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GAMECONTROLLERTRIGGERRELEASE);
+                        }
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeAxesStatus(event.caxis.axis, !axis->inDeadZone(event.caxis.value));
