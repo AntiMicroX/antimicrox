@@ -64,7 +64,7 @@ void InputDaemon::run ()
         QQueue<SDL_Event> sdlEventQueue;
 
         firstInputPass(&sdlEventQueue);
-        clearInitialEvents(&sdlEventQueue);
+        clearUnplugEvents(&sdlEventQueue);
         secondInputPass(&sdlEventQueue);
 
         clearBitArrayStatusInstances();
@@ -526,7 +526,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
     }
 }
 
-void InputDaemon::clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue)
+void InputDaemon::clearUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
     QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
     while (genIter.hasNext())

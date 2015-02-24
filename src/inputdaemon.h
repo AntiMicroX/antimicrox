@@ -39,7 +39,7 @@ protected:
 
     void firstInputPass(QQueue<SDL_Event> *sdlEventQueue);
     void secondInputPass(QQueue<SDL_Event> *sdlEventQueue);
-    void clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue);
+    void clearUnplugEvents(QQueue<SDL_Event> *sdlEventQueue);
     QBitArray createUnplugEventBitArray(InputDevice *device);
     void clearBitArrayStatusInstances();
 
