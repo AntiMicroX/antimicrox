@@ -51,7 +51,7 @@ protected:
 
 #endif
 
-    QHash<InputDevice*, InputDeviceBitArrayStatus*> eventsGenerated;
+    QHash<InputDevice*, InputDeviceBitArrayStatus*> releaseEventsGenerated;
     QHash<InputDevice*, InputDeviceBitArrayStatus*> pendingEventValues;
 
     bool stopped;
@@ -60,6 +60,8 @@ protected:
     SDLEventReader *eventWorker;
     QThread *thread;
     AntiMicroSettings *settings;
+
+    static const int GAMECONTROLLERTRIGGERRELEASE;
 
 signals:
     void joystickRefreshed (InputDevice *joystick);

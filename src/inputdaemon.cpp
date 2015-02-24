@@ -6,6 +6,7 @@
 
 #include "inputdaemon.h"
 
+const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical, QObject *parent) :
     QObject(parent)
@@ -394,8 +395,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (button)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
-                        temp->changeButtonStatus(event.jbutton.button, true);
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        temp->changeButtonStatus(event.jbutton.button, event.type == SDL_JOYBUTTONUP);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeButtonStatus(event.jbutton.button,
@@ -420,8 +421,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (axis)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
-                        temp->changeAxesStatus(event.jaxis.axis, true);
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        temp->changeAxesStatus(event.jaxis.axis, event.jaxis.axis == 0);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeAxesStatus(event.jaxis.axis, !axis->inDeadZone(event.jaxis.value));
@@ -445,8 +446,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (dpad)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
-                        temp->changeHatStatus(event.jhat.hat, true);
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        temp->changeHatStatus(event.jhat.hat, event.jhat.value == 0);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeHatStatus(event.jhat.hat, event.jhat.value != 0 ? true : false);
@@ -467,8 +468,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
                     if (axis)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
-                        temp->changeAxesStatus(event.caxis.axis, true);
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GAMECONTROLLERTRIGGERRELEASE);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeAxesStatus(event.caxis.axis, !axis->inDeadZone(event.caxis.value));
@@ -489,8 +490,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (button)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
-                        temp->changeButtonStatus(event.cbutton.button, true);
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        temp->changeButtonStatus(event.cbutton.button, event.type == SDL_CONTROLLERBUTTONUP);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeButtonStatus(event.cbutton.button,
@@ -519,7 +520,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
-    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(eventsGenerated);
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
     while (genIter.hasNext())
     {
         genIter.next();
@@ -538,7 +539,10 @@ void InputDaemon::clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue)
                 InputDeviceBitArrayStatus *pendingTemp = pendingEventValues.value(device);
                 QBitArray pendingBitArray = pendingTemp->generateFinalBitArray();
                 QBitArray unplugBitArray = createUnplugEventBitArray(device);
-                if (pendingBitArray == unplugBitArray)
+                unsigned int pendingBitArraySize = pendingBitArray.size();
+
+                if (bitArraySize == pendingBitArraySize &&
+                    pendingBitArray == unplugBitArray)
                 {
                     QQueue<SDL_Event> tempQueue;
                     while (!sdlEventQueue->isEmpty())
@@ -792,7 +796,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::clearBitArrayStatusInstances()
 {
-    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(eventsGenerated);
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
     while (genIter.hasNext())
     {
         InputDeviceBitArrayStatus *temp = genIter.next().value();
@@ -803,7 +807,7 @@ void InputDaemon::clearBitArrayStatusInstances()
         }
     }
 
-    eventsGenerated.clear();
+    releaseEventsGenerated.clear();
 
     QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> pendIter(pendingEventValues);
     while (pendIter.hasNext())
