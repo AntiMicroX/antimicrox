@@ -6,6 +6,7 @@
 
 #include "inputdaemon.h"
 
+
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical, QObject *parent) :
     QObject(parent)
 {
@@ -55,177 +56,17 @@ void InputDaemon::startWorker()
 
 void InputDaemon::run ()
 {
-    SDL_Event event;
+    //SDL_Event event;
 
     if (!stopped)
     {
-        QHash<SDL_JoystickID, InputDevice*> activeDevices;
+        QQueue<SDL_Event> sdlEventQueue;
 
-        while (SDL_PollEvent(&event) > 0)
-        {
-            switch (event.type)
-            {
-                //qDebug() << QTime::currentTime() << " :";
-                case SDL_JOYBUTTONDOWN:
-                case SDL_JOYBUTTONUP:
-                {
-#ifdef USE_SDL_2
-                    InputDevice *joy = trackjoysticks.value(event.jbutton.which);
-#else
-                    InputDevice *joy = joysticks->value(event.jbutton.which);
-#endif
-                    if (joy)
-                    {
-                        SetJoystick* set = joy->getActiveSetJoystick();
-                        JoyButton *button = set->getJoyButton(event.jbutton.button);
+        firstInputPass(&sdlEventQueue);
+        clearInitialEvents(&sdlEventQueue);
+        secondInputPass(&sdlEventQueue);
 
-                        if (button)
-                        {
-                            button->joyEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
-
-                            if (!activeDevices.contains(event.jbutton.which))
-                            {
-                                activeDevices.insert(event.jbutton.which, joy);
-                            }
-                        }
-                    }
-
-                    break;
-                }
-
-                case SDL_JOYAXISMOTION:
-                {
-#ifdef USE_SDL_2
-                    InputDevice *joy = trackjoysticks.value(event.jaxis.which);
-#else
-                    InputDevice *joy = joysticks->value(event.jaxis.which);
-#endif
-                    if (joy)
-                    {
-                        SetJoystick* set = joy->getActiveSetJoystick();
-                        JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
-                        if (axis)
-                        {
-                            axis->joyEvent(event.jaxis.value);
-
-                            if (!activeDevices.contains(event.jaxis.which))
-                            {
-                                activeDevices.insert(event.jaxis.which, joy);
-                            }
-                        }
-                    }
-
-                    break;
-                }
-
-                case SDL_JOYHATMOTION:
-                {
-#ifdef USE_SDL_2
-                    InputDevice *joy = trackjoysticks.value(event.jhat.which);
-#else
-                    InputDevice *joy = joysticks->value(event.jhat.which);
-#endif
-                    if (joy)
-                    {
-                        SetJoystick* set = joy->getActiveSetJoystick();
-                        JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
-                        if (dpad)
-                        {
-                            dpad->joyEvent(event.jhat.value);
-
-                            if (!activeDevices.contains(event.jhat.which))
-                            {
-                                activeDevices.insert(event.jhat.which, joy);
-                            }
-                        }
-                    }
-
-                    break;
-                }
-
-#ifdef USE_SDL_2
-                case SDL_CONTROLLERAXISMOTION:
-                {
-                    InputDevice *joy = trackcontrollers.value(event.caxis.which);
-                    if (joy)
-                    {
-                        SetJoystick* set = joy->getActiveSetJoystick();
-                        JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
-                        if (axis)
-                        {
-                            //qDebug() << QTime::currentTime() << ": " << "Axis " << event.caxis.axis+1
-                            //         << ": " << event.caxis.value;
-                            axis->joyEvent(event.caxis.value);
-
-                            if (!activeDevices.contains(event.caxis.which))
-                            {
-                                activeDevices.insert(event.caxis.which, joy);
-                            }
-                        }
-                    }
-                    break;
-                }
-
-                case SDL_CONTROLLERBUTTONDOWN:
-                case SDL_CONTROLLERBUTTONUP:
-                {
-                    InputDevice *joy = trackcontrollers.value(event.cbutton.which);
-                    if (joy)
-                    {
-                        SetJoystick* set = joy->getActiveSetJoystick();
-                        JoyButton *button = set->getJoyButton(event.cbutton.button);
-
-                        if (button)
-                        {
-                            button->joyEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
-
-                            if (!activeDevices.contains(event.cbutton.which))
-                            {
-                                activeDevices.insert(event.cbutton.which, joy);
-                            }
-                        }
-                    }
-
-                    break;
-                }
-
-                case SDL_JOYDEVICEREMOVED:
-                {
-                    InputDevice *device = joysticks->value(event.jdevice.which);
-                    if (device)
-                    {
-                        removeDevice(device);
-                    }
-
-                    break;
-                }
-
-                case SDL_JOYDEVICEADDED:
-                {
-                    addInputDevice(event.jdevice.which);
-                    break;
-                }
-#endif
-
-                case SDL_QUIT:
-                {
-                    stopped = true;
-                    break;
-                }
-
-                default:
-                    break;
-            }
-
-            // Active possible queued stick and vdpad events.
-            QHashIterator<SDL_JoystickID, InputDevice*> activeDevIter(activeDevices);
-            while (activeDevIter.hasNext())
-            {
-                InputDevice *tempDevice = activeDevIter.next().value();
-                tempDevice->activatePossibleControlStickEvents();
-                tempDevice->activatePossibleVDPadEvents();
-            }
-        }
+        clearBitArrayStatusInstances();
     }
 
     //qDebug() << QTime::currentTime() << ": " << "END";
@@ -511,3 +352,469 @@ void InputDaemon::addInputDevice(int index)
 }
 
 #endif
+
+InputDeviceBitArrayStatus* InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArrayStatus *> *statusHash,
+                                                                   InputDevice *device, bool readCurrent)
+{
+    InputDeviceBitArrayStatus *bitArrayStatus = 0;
+
+    if (!statusHash->contains(device))
+    {
+        bitArrayStatus = new InputDeviceBitArrayStatus(device, readCurrent);
+        statusHash->insert(device, bitArrayStatus);
+    }
+    else
+    {
+        bitArrayStatus = statusHash->value(device);
+    }
+
+    return bitArrayStatus;
+}
+
+void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
+{
+    SDL_Event event;
+
+    while (SDL_PollEvent(&event) > 0)
+    {
+        switch (event.type)
+        {
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
+            {
+#ifdef USE_SDL_2
+                InputDevice *joy = trackjoysticks.value(event.jbutton.which);
+#else
+                InputDevice *joy = joysticks->value(event.jbutton.which);
+#endif
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyButton *button = set->getJoyButton(event.jbutton.button);
+
+                    if (button)
+                    {
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
+                        temp->changeButtonStatus(event.jbutton.button, true);
+
+                        InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
+                        pending->changeButtonStatus(event.jbutton.button,
+                                                  event.type == SDL_JOYBUTTONDOWN ? true : false);
+                        sdlEventQueue->append(event);
+                    }
+                }
+
+                break;
+            }
+            case SDL_JOYAXISMOTION:
+            {
+#ifdef USE_SDL_2
+                InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+#else
+                InputDevice *joy = joysticks->value(event.jaxis.which);
+#endif
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
+
+                    if (axis)
+                    {
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
+                        temp->changeAxesStatus(event.jaxis.axis, true);
+
+                        InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
+                        pending->changeAxesStatus(event.jaxis.axis, !axis->inDeadZone(event.jaxis.value));
+                        sdlEventQueue->append(event);
+                    }
+                }
+
+                break;
+            }
+            case SDL_JOYHATMOTION:
+            {
+#ifdef USE_SDL_2
+                InputDevice *joy = trackjoysticks.value(event.jhat.which);
+#else
+                InputDevice *joy = joysticks->value(event.jhat.which);
+#endif
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
+
+                    if (dpad)
+                    {
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
+                        temp->changeHatStatus(event.jhat.hat, true);
+
+                        InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
+                        pending->changeHatStatus(event.jhat.hat, event.jhat.value != 0 ? true : false);
+                        sdlEventQueue->append(event);
+                    }
+                }
+
+                break;
+            }
+
+#ifdef USE_SDL_2
+            case SDL_CONTROLLERAXISMOTION:
+            {
+                InputDevice *joy = trackcontrollers.value(event.caxis.which);
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
+                    if (axis)
+                    {
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
+                        temp->changeAxesStatus(event.caxis.axis, true);
+
+                        InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
+                        pending->changeAxesStatus(event.caxis.axis, !axis->inDeadZone(event.caxis.value));
+                        sdlEventQueue->append(event);
+                    }
+                }
+                break;
+            }
+
+            case SDL_CONTROLLERBUTTONDOWN:
+            case SDL_CONTROLLERBUTTONUP:
+            {
+                InputDevice *joy = trackcontrollers.value(event.cbutton.which);
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyButton *button = set->getJoyButton(event.cbutton.button);
+
+                    if (button)
+                    {
+                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&eventsGenerated, joy, false);
+                        temp->changeButtonStatus(event.cbutton.button, true);
+
+                        InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
+                        pending->changeButtonStatus(event.cbutton.button,
+                                                  event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
+                        sdlEventQueue->append(event);
+                    }
+                }
+
+                break;
+            }
+            case SDL_JOYDEVICEREMOVED:
+            case SDL_JOYDEVICEADDED:
+            {
+                sdlEventQueue->append(event);
+                break;
+            }
+#endif
+            case SDL_QUIT:
+            {
+                sdlEventQueue->append(event);
+                break;
+            }
+        }
+    }
+}
+
+void InputDaemon::clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue)
+{
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(eventsGenerated);
+    while (genIter.hasNext())
+    {
+        genIter.next();
+        InputDevice *device = genIter.key();
+        InputDeviceBitArrayStatus *generatedTemp = genIter.value();
+        QBitArray tempBitArray = generatedTemp->generateFinalBitArray();
+        //qDebug() << "ARRAY: " << tempBitArray;
+
+        unsigned int bitArraySize = tempBitArray.size();
+        //qDebug() << "ARRAY SIZE: " << bitArraySize;
+
+        if (bitArraySize > 0 && tempBitArray.count(true) == bitArraySize)
+        {
+            if (pendingEventValues.contains(device))
+            {
+                InputDeviceBitArrayStatus *pendingTemp = pendingEventValues.value(device);
+                QBitArray pendingBitArray = pendingTemp->generateFinalBitArray();
+                QBitArray unplugBitArray = createUnplugEventBitArray(device);
+                if (pendingBitArray == unplugBitArray)
+                {
+                    QQueue<SDL_Event> tempQueue;
+                    while (!sdlEventQueue->isEmpty())
+                    {
+                        SDL_Event event = sdlEventQueue->dequeue();
+                        switch (event.type)
+                        {
+                            case SDL_JOYBUTTONDOWN:
+                            case SDL_JOYBUTTONUP:
+                            {
+                                if (event.jbutton.which != device->getSDLJoystickID())
+                                {
+                                    tempQueue.enqueue(event);
+                                }
+                                break;
+                            }
+                            case SDL_JOYAXISMOTION:
+                            {
+                                if (event.jaxis.which != device->getSDLJoystickID())
+                                {
+                                    tempQueue.enqueue(event);
+                                }
+                                break;
+                            }
+                            case SDL_JOYHATMOTION:
+                            {
+                                if (event.jhat.which != device->getSDLJoystickID())
+                                {
+                                    tempQueue.enqueue(event);
+                                }
+                                break;
+                            }
+#ifdef USE_SDL_2
+                            case SDL_CONTROLLERAXISMOTION:
+                            {
+                                if (event.caxis.which != device->getSDLJoystickID())
+                                {
+                                    tempQueue.enqueue(event);
+                                }
+                                break;
+                            }
+                            case SDL_CONTROLLERBUTTONDOWN:
+                            case SDL_CONTROLLERBUTTONUP:
+                            {
+                                if (event.cbutton.which != device->getSDLJoystickID())
+                                {
+                                    tempQueue.enqueue(event);
+                                }
+                                break;
+                            }
+#endif
+
+                            sdlEventQueue->swap(tempQueue);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
+{
+    InputDeviceBitArrayStatus tempStatus(device, false);
+
+    for (int i=0; i < device->getNumberRawAxes(); i++)
+    {
+        JoyAxis *axis = device->getActiveSetJoystick()->getJoyAxis(i);
+        if (axis && axis->getThrottle() != JoyAxis::NormalThrottle)
+        {
+            tempStatus.changeAxesStatus(i, true);
+        }
+    }
+
+    QBitArray unplugBitArray = tempStatus.generateFinalBitArray();
+    return unplugBitArray;
+}
+
+void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
+{
+    QHash<SDL_JoystickID, InputDevice*> activeDevices;
+
+    while (!sdlEventQueue->isEmpty())
+    {
+        SDL_Event event = sdlEventQueue->dequeue();
+
+        switch (event.type)
+        {
+            //qDebug() << QTime::currentTime() << " :";
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
+            {
+#ifdef USE_SDL_2
+                InputDevice *joy = trackjoysticks.value(event.jbutton.which);
+#else
+                InputDevice *joy = joysticks->value(event.jbutton.which);
+#endif
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyButton *button = set->getJoyButton(event.jbutton.button);
+
+                    if (button)
+                    {
+                        button->joyEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
+
+                        if (!activeDevices.contains(event.jbutton.which))
+                        {
+                            activeDevices.insert(event.jbutton.which, joy);
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            case SDL_JOYAXISMOTION:
+            {
+#ifdef USE_SDL_2
+                InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+#else
+                InputDevice *joy = joysticks->value(event.jaxis.which);
+#endif
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
+                    if (axis)
+                    {
+                        axis->joyEvent(event.jaxis.value);
+
+                        if (!activeDevices.contains(event.jaxis.which))
+                        {
+                            activeDevices.insert(event.jaxis.which, joy);
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            case SDL_JOYHATMOTION:
+            {
+#ifdef USE_SDL_2
+                InputDevice *joy = trackjoysticks.value(event.jhat.which);
+#else
+                InputDevice *joy = joysticks->value(event.jhat.which);
+#endif
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
+                    if (dpad)
+                    {
+                        dpad->joyEvent(event.jhat.value);
+
+                        if (!activeDevices.contains(event.jhat.which))
+                        {
+                            activeDevices.insert(event.jhat.which, joy);
+                        }
+                    }
+                }
+
+                break;
+            }
+
+#ifdef USE_SDL_2
+            case SDL_CONTROLLERAXISMOTION:
+            {
+                InputDevice *joy = trackcontrollers.value(event.caxis.which);
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
+                    if (axis)
+                    {
+                        //qDebug() << QTime::currentTime() << ": " << "Axis " << event.caxis.axis+1
+                        //         << ": " << event.caxis.value;
+                        axis->joyEvent(event.caxis.value);
+
+                        if (!activeDevices.contains(event.caxis.which))
+                        {
+                            activeDevices.insert(event.caxis.which, joy);
+                        }
+                    }
+                }
+                break;
+            }
+
+            case SDL_CONTROLLERBUTTONDOWN:
+            case SDL_CONTROLLERBUTTONUP:
+            {
+                InputDevice *joy = trackcontrollers.value(event.cbutton.which);
+                if (joy)
+                {
+                    SetJoystick* set = joy->getActiveSetJoystick();
+                    JoyButton *button = set->getJoyButton(event.cbutton.button);
+
+                    if (button)
+                    {
+                        button->joyEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
+
+                        if (!activeDevices.contains(event.cbutton.which))
+                        {
+                            activeDevices.insert(event.cbutton.which, joy);
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            case SDL_JOYDEVICEREMOVED:
+            {
+                InputDevice *device = joysticks->value(event.jdevice.which);
+                if (device)
+                {
+                    removeDevice(device);
+                }
+
+                break;
+            }
+
+            case SDL_JOYDEVICEADDED:
+            {
+                addInputDevice(event.jdevice.which);
+                break;
+            }
+#endif
+
+            case SDL_QUIT:
+            {
+                stopped = true;
+                break;
+            }
+
+            default:
+                break;
+        }
+
+        // Active possible queued stick and vdpad events.
+        QHashIterator<SDL_JoystickID, InputDevice*> activeDevIter(activeDevices);
+        while (activeDevIter.hasNext())
+        {
+            InputDevice *tempDevice = activeDevIter.next().value();
+            tempDevice->activatePossibleControlStickEvents();
+            tempDevice->activatePossibleVDPadEvents();
+        }
+    }
+}
+
+void InputDaemon::clearBitArrayStatusInstances()
+{
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(eventsGenerated);
+    while (genIter.hasNext())
+    {
+        InputDeviceBitArrayStatus *temp = genIter.next().value();
+        if (temp)
+        {
+            delete temp;
+            temp = 0;
+        }
+    }
+
+    eventsGenerated.clear();
+
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> pendIter(pendingEventValues);
+    while (pendIter.hasNext())
+    {
+        InputDeviceBitArrayStatus *temp = pendIter.next().value();
+        if (temp)
+        {
+            delete temp;
+            temp = 0;
+        }
+    }
+
+    pendingEventValues.clear();
+}

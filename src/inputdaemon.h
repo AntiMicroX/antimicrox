@@ -4,6 +4,7 @@
 #include <QHash>
 #include <QMap>
 #include <QThread>
+#include <QQueue>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -19,6 +20,8 @@
 #include "joystick.h"
 #include "sdleventreader.h"
 #include "antimicrosettings.h"
+#include "inputdevicebitarraystatus.h"
+
 
 class InputDaemon : public QObject
 {
@@ -30,6 +33,16 @@ public:
     void startWorker();
 
 protected:
+    InputDeviceBitArrayStatus* createOrGrabBitStatusEntry(
+            QHash<InputDevice*, InputDeviceBitArrayStatus*> *statusHash,
+            InputDevice *device, bool readCurrent=true);
+
+    void firstInputPass(QQueue<SDL_Event> *sdlEventQueue);
+    void secondInputPass(QQueue<SDL_Event> *sdlEventQueue);
+    void clearInitialEvents(QQueue<SDL_Event> *sdlEventQueue);
+    QBitArray createUnplugEventBitArray(InputDevice *device);
+    void clearBitArrayStatusInstances();
+
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
 
 #ifdef USE_SDL_2
@@ -37,6 +50,9 @@ protected:
     QHash<SDL_JoystickID, GameController*> trackcontrollers;
 
 #endif
+
+    QHash<InputDevice*, InputDeviceBitArrayStatus*> eventsGenerated;
+    QHash<InputDevice*, InputDeviceBitArrayStatus*> pendingEventValues;
 
     bool stopped;
     bool graphical;

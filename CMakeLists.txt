@@ -164,6 +164,7 @@ set(antimicro_SOURCES src/main.cpp
     src/dpadpushbuttongroup.cpp
     src/joybuttonmousehelper.cpp
     src/logger.cpp
+    src/inputdevicebitarraystatus.cpp
 )
 
 # Platform dependent files.
@@ -288,6 +289,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/dpadpushbuttongroup.h
     src/joybuttonmousehelper.h
     src/logger.h
+    src/inputdevicebitarraystatus.h
 )
 
 # Platform dependent files.
