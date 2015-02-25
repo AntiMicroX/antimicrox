@@ -1,3 +1,25 @@
+2015-02-25 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.11.1
+
+* Added workaround to allow gamepad unplugging on Windows to not
+activate bindings for the triggers. This was caused by the way controller
+unplugging is handled by SDL (primarily with the Windows version).
+SDL sends a release value for all elements of an unplugged joystick a brief
+period before sending the expected SDL_JOYDEVICEREMOVED event. The problem is
+that the released value used for triggers assumes that the dead zone is half the
+trigger's full range. This would cause bindings for triggers to usually activate
+for a brief period before SDL would send the final SDL_JOYDEVICEREMOVED event
+which would then deactivate those bindings.
+
+* Changes for the portable Windows version. Allow relative profile paths for
+use in the portable package on Windows. Associate profiles registry change
+prompt skipped.
+
+* Queue stick and dpad events. Allows for better control of 8-way sticks
+and dpads.
+
+
 2015-02-07 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.11

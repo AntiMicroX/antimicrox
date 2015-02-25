@@ -2,7 +2,7 @@
 
 ## Description
 
-AntiMicro is a graphical program used to map keyboard keys and mouse controls
+antimicro is a graphical program used to map keyboard keys and mouse controls
 to a gamepad. This program is useful for playing PC games using a gamepad that
 do not have any form of built-in gamepad support. However, you can use this 
 program to control any desktop application with a gamepad; on Linux, this
@@ -11,7 +11,7 @@ this program.
 
 This program is currently supported under various Linux
 distributions, Windows (Vista and later), and FreeBSD. At the time of writing
-this, AntiMicro works in Windows XP but, since Windows XP is no longer
+this, antimicro works in Windows XP but, since Windows XP is no longer
 supported, running the program in Windows XP will not be officially supported.
 However, efforts will be made to not intentionally break compatibility
 with Windows XP.
@@ -29,25 +29,25 @@ The license can also be found online at
 [http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
 
 ## Download
-Download links are currently available from the AntiMicro Releases section on
+Download links are currently available from the antimicro Releases section on
 GitHub. Currently, the Windows archive, Debian Jessie deb files, and source code
 archives can be found in the Releases section.
 
 [https://github.com/Ryochan7/antimicro/releases](https://github.com/Ryochan7/antimicro/releases)
 
 For Ubuntu users, there is now a PPA available that you can use to have your
-package manager grab the latest AntiMicro updates automatically. For more details,
-check out the AntiMicro page on Launchpad.
+package manager grab the latest antimicro updates automatically. For more details,
+check out the antimicro page on Launchpad.
 
 [https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro](https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro)
 
 ## Pre-made Profiles
 
-There is a repository for pre-made AntiMicro profiles. Using a pre-made
+There is a repository for pre-made antimicro profiles. Using a pre-made
 profile, you can have a controller layout that is suitable for playing a
-game without having to map everything yourself. It makes using AntiMicro
+game without having to map everything yourself. It makes using antimicro
 really convenient. In order to use those pre-made profiles, you have to be
-running at least AntiMicro version 2.0 and AntiMicro must have been compiled
+running at least antimicro version 2.0 and antimicro must have been compiled
 with SDL 2 support.
 
 [https://github.com/Ryochan7/antimicro-profiles](https://github.com/Ryochan7/antimicro-profiles)
@@ -103,10 +103,10 @@ libraries that you have installed. The project is set up to
 look for a copy of SDL 2 followed by SDL 1.2. This behavior should work
 fine for most people. You can override this behavior by using the -DUSE_SDL_2
 option when you run cmake. Using -DUSE_SDL_2=ON when you run cmake will mean
-that you want AntiMicro compiled with SDL 2 support. Using -DUSE_SDL_2=OFF when
-you run cmake will mean that you want AntiMicro compiled with SDL 1.2 support.
+that you want antimicro compiled with SDL 2 support. Using -DUSE_SDL_2=OFF when
+you run cmake will mean that you want antimicro compiled with SDL 1.2 support.
 
-Here is an example of how to specify that you want AntiMicro to be compiled
+Here is an example of how to specify that you want antimicro to be compiled
 with SDL 2 support when you run qmake.
 
     cmake -DUSE_SDL_2=ON ..
@@ -150,7 +150,7 @@ in the sidebar to bring up the "Build Settings" section. Within
 menu, uncheck the "all" checkbox and then check the "copy_sdl_dll" checkbox
 and run "Build All".
 
-* At this point, AntiMicro has been built for Windows and is runnable
+* At this point, antimicro has been built for Windows and is runnable
 from Qt Creator. A couple more steps are required in order to make a
 distributable package.
 
