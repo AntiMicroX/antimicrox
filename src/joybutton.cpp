@@ -238,6 +238,11 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     keyPressHold.restart();
                     cycleResetHold.restart();
                     turboTimer.start();
+
+                    // Newly activated button. Just entered safe zone.
+                    initialLastMouseDistance();
+                    currentMouseDistance = getMouseDistanceFromDeadZone();
+
                     turboEvent();
                 }
                 else if (!isButtonPressed && !activePress && turboTimer.isActive())
@@ -298,11 +303,18 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                         waitForDeskEvent();
                     }
                 }
+
+                // Newly activated button. Just entered safe zone.
+                initialLastMouseDistance();
+                currentMouseDistance = getMouseDistanceFromDeadZone();
             }
             else if (!isButtonPressed && !activePress)
             {
                 waitForReleaseDeskEvent();
             }
+
+            updateLastMouseDistance = false;
+
         }
         else if (!useTurbo && isButtonPressed)
         {
@@ -322,6 +334,9 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                         waitForDeskEvent();
                     }
                 }
+
+                resetMouseDistances();
+                currentMouseDistance = getMouseDistanceFromDeadZone();
             }
         }
     }
@@ -972,6 +987,33 @@ void JoyButton::mouseEvent()
                                 difference = (difference * 2.5) - 1.5; // Experimental
                             }
 
+                            //if (temp - lastMouseDistance > 0)
+                            //{
+                                //qDebug() << "TEMP: " << temp;
+                                //qDebug() << "LAST: " << lastMouseDistance;
+                                //qDebug() << "";
+                            //}
+
+                            if (isPartRealAxis() && temp - lastMouseDistance >= 0.15)
+                            {
+                                //qDebug() << "CURRENT: " << temp;
+                                //qDebug() << "LAST KNOWN: " << lastMouseDistance;
+                                //qDebug() << "OLDDIFF: " << difference;
+
+                                double magfactor = 2.0;
+                                double slope = (magfactor - 1.01)/(0.5 - 0.15);
+                                double intercept = 1.01 - (slope * 0.15);
+
+                                //qDebug() << "WHAT IS MY NAME: " << qMin(0.5, (temp - lastMouseDistance));
+                                //qDebug() << "MULTI: " << (slope * qMin(0.5, (temp - lastMouseDistance)) + intercept); // 1.01 - 2.0
+                                difference = difference * (slope * qMin(0.5, (temp - lastMouseDistance)) + intercept); // 1.01 - 2.0
+                                //qDebug() << "MULTI: " << (8.54286 * qMin(0.5, (temp - lastMouseDistance)) - 0.27143); // 1.01 - 4.0
+                                //difference = difference * (8.54286 * qMin(0.5, (temp - lastMouseDistance)) - 0.27143); // 1.01 - 4.0
+
+                                //qDebug() << "UP IN HERE: " << difference;
+                                //qDebug() << "";
+                            }
+
                             break;
                         }
                         case EasingQuadraticCurve:
@@ -1068,7 +1110,11 @@ void JoyButton::mouseEvent()
                     //distance = (int)floor(sumDist + 0.5);
                     //distance = (int)floor(sumDist);
                     distance = sumDist;
-                    //qDebug() << "DISTANCE: " << distance;
+                    /*if (distance > 20.0)
+                    {
+                        qDebug() << "DISTANCE: " << distance;
+                    }
+                    */
 
                     //double prevDistance = buttonslot->getPreviousDistance();
                     //qDebug() << "PREV: " << prevDistance;
@@ -1164,6 +1210,8 @@ void JoyButton::mouseEvent()
                 buttonslot = 0;
             }
         }
+
+        updateLastMouseDistance = true;
 
         if (!tempQueue.isEmpty())
         {
@@ -2899,6 +2947,9 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
     if (!currentRelease)
     {
+        lastMouseDistance = 0.0;
+        currentMouseDistance = 0.0;
+
         if (slotiter && !slotiter->hasNext())
         {
             // At the end of the list of assignments.
@@ -2956,6 +3007,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
         emit activeZoneChanged();
     }
+
+
 }
 
 /**
@@ -4520,6 +4573,9 @@ void JoyButton::resetProperties()
     cycleResetInterval = 0;
     relativeSpring = false;
     lastDistance = 0.0;
+    lastMouseDistance = 0.0;
+    updateLastMouseDistance = false;
+    currentMouseDistance = 0.0;
     lastWheelVerticalDistance = 0.0;
     lastWheelHorizontalDistance = 0.0;
     tempTurboInterval = 0;
@@ -4531,4 +4587,31 @@ void JoyButton::resetProperties()
 bool JoyButton::isModifierButton()
 {
     return false;
+}
+
+void JoyButton::resetActiveButtonMouseDistances()
+{
+    mouseHelper.resetButtonMouseDistances();
+}
+
+void JoyButton::resetMouseDistances()
+{
+    if (updateLastMouseDistance)
+    {
+        lastMouseDistance = currentMouseDistance;
+        updateLastMouseDistance = false;
+    }
+
+    currentMouseDistance = getMouseDistanceFromDeadZone();
+}
+
+void JoyButton::initialLastMouseDistance()
+{
+    lastMouseDistance = getLastMouseDistanceFromDeadZone();
+    currentMouseDistance = getMouseDistanceFromDeadZone();
+}
+
+double JoyButton::getLastMouseDistanceFromDeadZone()
+{
+    return lastMouseDistance;
 }

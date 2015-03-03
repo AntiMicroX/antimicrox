@@ -112,3 +112,8 @@ bool JoyControlStickModifierButton::isModifierButton()
 {
     return true;
 }
+
+double JoyControlStickModifierButton::getLastMouseDistanceFromDeadZone()
+{
+    return stick->calculateLastDirectionalDistance();
+}

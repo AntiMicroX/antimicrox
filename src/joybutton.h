@@ -93,6 +93,7 @@ public:
 
     virtual double getDistanceFromDeadZone();
     virtual double getMouseDistanceFromDeadZone();
+    virtual double getLastMouseDistanceFromDeadZone();
 
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();
@@ -160,6 +161,11 @@ public:
 
     static int getMouseRefreshRate();
     static void setMouseRefreshRate(int refresh);
+
+    static void resetActiveButtonMouseDistances();
+    void resetMouseDistances();
+
+    virtual void initialLastMouseDistance();
 
     static const QString xmlName;
 
@@ -317,6 +323,9 @@ protected:
     double lastWheelVerticalDistance;
     double lastWheelHorizontalDistance;
     int tempTurboInterval;
+    double lastMouseDistance;
+    bool updateLastMouseDistance;
+    double currentMouseDistance;
 
     QString actionName;
     QString buttonName; // User specified button name

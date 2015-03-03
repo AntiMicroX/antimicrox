@@ -179,3 +179,8 @@ bool JoyControlStickButton::isPartRealAxis()
 {
     return true;
 }
+
+double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
+{
+    return stick->calculateLastMouseDirectionalDistance(this);
+}

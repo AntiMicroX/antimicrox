@@ -22,6 +22,8 @@ public:
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
 
+    virtual double getLastMouseDistanceFromDeadZone();
+
     static const QString xmlName;
 
 protected:

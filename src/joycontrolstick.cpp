@@ -325,42 +325,49 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     }
 }
 
+double JoyControlStick::calculateBearing()
+{
+    return calculateBearing(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+}
+
 /**
  * @brief Calculate the bearing (in degrees) corresponding to the current
  *    position of the X and Y axes of a stick.
  * @return Bearing (in degrees)
  */
-double JoyControlStick::calculateBearing()
+double JoyControlStick::calculateBearing(int axisXValue, int axisYValue)
 {
     double finalAngle = 0.0;
+    int axis1Value = axisXValue;
+    int axis2Value = axisYValue;
 
-    if (axisX->getCurrentRawValue() == 0 && axisY->getCurrentRawValue() == 0)
+    if (axis1Value == 0 && axis2Value == 0)
     {
         finalAngle = 0.0;
     }
     else
     {
-        double temp1 = axisX->getCurrentRawValue();
-        double temp2 = axisY->getCurrentRawValue();
+        double temp1 = axis1Value;
+        double temp2 = axis2Value;
 
         double angle = (atan2(temp1, -temp2) * 180) / PI;
 
-        if (axisX->getCurrentRawValue() >= 0 && axisY->getCurrentRawValue() <= 0)
+        if (axis1Value >= 0 && axis2Value <= 0)
         {
             // NE Quadrant
             finalAngle = angle;
         }
-        else if (axisX->getCurrentRawValue() >= 0 && axisY->getCurrentRawValue() >= 0)
+        else if (axis1Value >= 0 && axis2Value >= 0)
         {
             // SE Quadrant (angle will be positive)
             finalAngle = angle;
         }
-        else if (axisX->getCurrentRawValue() <= 0 && axisY->getCurrentRawValue() >= 0)
+        else if (axis1Value <= 0 && axis2Value >= 0)
         {
             // SW Quadrant (angle will be negative)
             finalAngle = 360.0 + angle;
         }
-        else if (axisX->getCurrentRawValue() <= 0 && axisY->getCurrentRawValue() <= 0)
+        else if (axis1Value <= 0 && axis2Value <= 0)
         {
             // NW Quadrant (angle will be negative)
             finalAngle = 360.0 + angle;
@@ -370,16 +377,21 @@ double JoyControlStick::calculateBearing()
     return finalAngle;
 }
 
+double JoyControlStick::getDistanceFromDeadZone()
+{
+    return getDistanceFromDeadZone(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+}
+
 /**
  * @brief Get radial distance of the stick position past the assigned dead zone.
  * @return Distance percentage in the range of 0.0 - 1.0.
  */
-double JoyControlStick::getDistanceFromDeadZone()
+double JoyControlStick::getDistanceFromDeadZone(int axisXValue, int axisYValue)
 {
     double distance = 0.0;
 
-    int axis1Value = axisX->getCurrentRawValue();
-    int axis2Value = axisY->getCurrentRawValue();
+    int axis1Value = axisXValue;
+    int axis2Value = axisYValue;
 
     double angle2 = atan2(axis1Value, -axis2Value);
     double ang_sin = sin(angle2);
@@ -409,55 +421,21 @@ double JoyControlStick::getDistanceFromDeadZone()
     return distance;
 }
 
-/**
- * @brief Get square distance of the X axis past the assigned dead zone.
- * @return Distance percentage in the range of 0.0 - 1.0.
- */
-double JoyControlStick::calculateXDistanceFromDeadZone()
+double JoyControlStick::calculateYDistanceFromDeadZone()
 {
-    double distance = 0.0;
-
-    int axis1Value = axisX->getCurrentRawValue();
-    int axis2Value = axisY->getCurrentRawValue();
-    //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
-
-    double angle2 = atan2(axis1Value, -axis2Value);
-    double ang_sin = sin(angle2);
-    double ang_cos = cos(angle2);
-
-    int deadX = abs((int)floor(deadZone * ang_sin + 0.5));
-    int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
-    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
-    double circle = this->circle;
-    double circleStickFull = (squareStickFull - 1) * circle + 1;
-    double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
-
-    int adjustedAxis1Value = circleStickFull > 1.0 ? (int)floor((axis1Value / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : axis1Value;
-    int adjustedDeadXZone = circleStickFull > 1.0 ? (int)floor((deadX / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : deadX;
-
-    distance = (abs(adjustedAxis1Value) - adjustedDeadXZone)/(double)(maxZone - adjustedDeadXZone);
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
-
-    return distance;
+    return calculateYDistanceFromDeadZone(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
 }
 
 /**
  * @brief Get square distance of the Y axis past the assigned dead zone.
  * @return Distance percentage in the range of 0.0 - 1.0.
  */
-double JoyControlStick::calculateYDistanceFromDeadZone()
+double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue, int axisYValue)
 {
     double distance = 0.0;
 
-    int axis1Value = axisX->getCurrentRawValue();
-    int axis2Value = axisY->getCurrentRawValue();
+    int axis1Value = axisXValue;
+    int axis2Value = axisYValue;
     //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
     double angle2 = atan2(axis1Value, -axis2Value);
@@ -475,6 +453,50 @@ double JoyControlStick::calculateYDistanceFromDeadZone()
     int adjustedDeadYZone = circleStickFull > 1.0 ? (int)floor((deadY / alternateStickFullValue) * abs(axis2ValueCircleFull) + 0.5) : deadY;
 
     distance = (abs(adjustedAxis2Value) - adjustedDeadYZone)/(double)(maxZone - adjustedDeadYZone);
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+    else if (distance < 0.0)
+    {
+        distance = 0.0;
+    }
+
+    return distance;
+}
+
+double JoyControlStick::calculateXDistanceFromDeadZone()
+{
+    return calculateXDistanceFromDeadZone(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+}
+
+/**
+ * @brief Get square distance of the X axis past the assigned dead zone.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
+double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue, int axisYValue)
+{
+    double distance = 0.0;
+
+    int axis1Value = axisXValue;
+    int axis2Value = axisYValue;
+    //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
+
+    double angle2 = atan2(axis1Value, -axis2Value);
+    double ang_sin = sin(angle2);
+    double ang_cos = cos(angle2);
+
+    int deadX = abs((int)floor(deadZone * ang_sin + 0.5));
+    int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
+    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double circle = this->circle;
+    double circleStickFull = (squareStickFull - 1) * circle + 1;
+    double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
+
+    int adjustedAxis1Value = circleStickFull > 1.0 ? (int)floor((axis1Value / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : axis1Value;
+    int adjustedDeadXZone = circleStickFull > 1.0 ? (int)floor((deadX / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : deadX;
+
+    distance = (abs(adjustedAxis1Value) - adjustedDeadXZone)/(double)(maxZone - adjustedDeadXZone);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -1115,6 +1137,268 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
             }
 
             finalDistance = radius * (diagonalAngle / 45.0);
+        }
+    }
+
+    return finalDistance;
+}
+
+
+double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickButton *button)
+{
+    double finalDistance = 0.0;
+
+    if (currentDirection == StickUp)
+    {
+        if (axisY->getLastKnownValue() >= 0)
+        {
+            finalDistance = 0.0;
+        }
+        else
+        {
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickRightUp)
+    {
+        if (button->getJoyNumber() == StickRight)
+        {
+            if (axisX->getLastKnownValue() < 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+
+        }
+        else if (button->getJoyNumber() == StickUp)
+        {
+            if (axisY->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickRightUp)
+        {
+            if (axisX->getLastKnownValue() <= 0 || axisY->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+    }
+    else if (currentDirection == StickRight)
+    {
+        if (axisX->getLastKnownValue() < 0)
+        {
+            finalDistance = 0.0;
+        }
+        else
+        {
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection  == StickRightDown)
+    {
+        if (button->getJoyNumber() == StickRight)
+        {
+            if (axisX->getLastKnownValue() < 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickDown)
+        {
+            if (axisY->getLastKnownValue() < 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickRightDown)
+        {
+            if (axisX->getLastKnownValue() <= 0 || axisY->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+    }
+    else if (currentDirection == StickDown)
+    {
+        if (axisY->getLastKnownValue() >= 0)
+        {
+            finalDistance = 0.0;
+        }
+        else
+        {
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickLeftDown)
+    {
+        if (button->getJoyNumber() == StickLeft)
+        {
+            if (axisX->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickDown)
+        {
+            if (axisY->getLastKnownValue() < 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickLeftDown)
+        {
+            if (axisX->getLastKnownValue() >= 0 || axisY->getLastKnownValue() <= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+    }
+    else if (currentDirection == StickLeft)
+    {
+        if (axisX->getLastKnownValue() >= 0)
+        {
+            finalDistance = 0.0;
+        }
+        else
+        {
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickLeftUp)
+    {
+        if (button->getJoyNumber() == StickLeft)
+        {
+            if (axisX->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickUp)
+        {
+            if (axisY->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+        else if (button->getJoyNumber() == StickLeftUp)
+        {
+            if (axisX->getLastKnownValue() >= 0 || axisY->getLastKnownValue() >= 0)
+            {
+                finalDistance = 0.0;
+            }
+            else
+            {
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            }
+        }
+    }
+
+    return finalDistance;
+}
+
+double JoyControlStick::calculateLastDirectionalDistance()
+{
+    double finalDistance = 0.0;
+
+    if (currentDirection == StickUp)
+    {
+        if (!axisX->getLastKnownValue() >= 0)
+        {
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickRightUp)
+    {
+        if (!axisY->getLastKnownValue() <= 0 && !axisY->getLastKnownValue() >= 0)
+        {
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickRight)
+    {
+        if (!axisX->getLastKnownValue() <= 0)
+        {
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection  == StickRightDown)
+    {
+        if (!axisY->getLastKnownValue() <= 0 && !axisY->getLastKnownValue() <= 0)
+        {
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickDown)
+    {
+        if (!axisY->getLastKnownValue() <= 0)
+        {
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickLeftDown)
+    {
+        if (!axisY->getLastKnownValue() >= 0 && !axisY->getLastKnownValue() <= 0)
+        {
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickLeft)
+    {
+        if (!axisX->getLastKnownValue() >= 0)
+        {
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+        }
+    }
+    else if (currentDirection == StickLeftUp)
+    {
+        if (!axisY->getLastKnownValue() >= 0 && !axisY->getLastKnownValue() >= 0)
+        {
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
         }
     }
 
@@ -1807,8 +2091,8 @@ SetJoystick* JoyControlStick::getParentSet()
  */
 void JoyControlStick::performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets)
 {
-    eventbutton->joyEvent(true, ignoresets);
     activebutton = eventbutton;
+    eventbutton->joyEvent(true, ignoresets);
 }
 
 /**

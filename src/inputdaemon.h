@@ -60,6 +60,7 @@ protected:
     SDLEventReader *eventWorker;
     QThread *thread;
     AntiMicroSettings *settings;
+    QTimer pollResetTimer;
 
     static const int GAMECONTROLLERTRIGGERRELEASE;
 
@@ -91,6 +92,7 @@ public slots:
 
 private slots:
     void stop();
+    void resetActiveButtonMouseDistances();
 };
 
 #endif // INPUTDAEMONTHREAD_H

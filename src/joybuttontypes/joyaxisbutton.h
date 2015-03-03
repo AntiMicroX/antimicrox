@@ -23,6 +23,8 @@ public:
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
 
+    virtual double getLastMouseDistanceFromDeadZone();
+
     static const QString xmlName;
 
 protected:

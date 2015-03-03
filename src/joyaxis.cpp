@@ -23,6 +23,7 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *pare
     QObject(parent)
 {
     stick = 0;
+    lastKnownValue = 0;
     this->originset = originset;
     this->parentSet = parentSet;
     naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);
@@ -41,6 +42,8 @@ JoyAxis::~JoyAxis()
 
 void JoyAxis::joyEvent(int value, bool ignoresets)
 {
+    lastKnownValue = currentThrottledValue;
+
     setCurrentRawValue(value);
     //currentRawValue = value;
     bool safezone = !inDeadZone(currentRawValue);
@@ -494,6 +497,7 @@ void JoyAxis::reset()
     paxisbutton->reset();
     naxisbutton->reset();
     activeButton = 0;
+    lastKnownValue = 0;
 
     adjustRange();
     setCurrentRawValue(currentThrottledDeadValue);
@@ -579,15 +583,21 @@ int JoyAxis::getCurrentThrottledDeadValue()
 
 double JoyAxis::getDistanceFromDeadZone()
 {
-    double distance = 0.0;
+    return getDistanceFromDeadZone(currentThrottledValue);
+}
 
-    if (currentThrottledValue >= deadZone)
+double JoyAxis::getDistanceFromDeadZone(int value)
+{
+    double distance = 0.0;
+    int currentValue = value;
+
+    if (currentValue >= deadZone)
     {
-        distance = (currentThrottledValue - deadZone)/(double)(maxZoneValue - deadZone);
+        distance = (currentValue - deadZone)/(double)(maxZoneValue - deadZone);
     }
-    else if (currentThrottledValue <= -deadZone)
+    else if (currentValue <= -deadZone)
     {
-        distance = (currentThrottledValue + deadZone)/(double)(-maxZoneValue + deadZone);
+        distance = (currentValue + deadZone)/(double)(-maxZoneValue + deadZone);
     }
 
     if (distance > 1.0)
@@ -1012,4 +1022,9 @@ double JoyAxis::getButtonsEasingDuration()
     }
 
     return result;
+}
+
+int JoyAxis::getLastKnownValue()
+{
+    return lastKnownValue;
 }

@@ -8,6 +8,7 @@ class JoyButtonMouseHelper : public QObject
     Q_OBJECT
 public:
     explicit JoyButtonMouseHelper(QObject *parent = 0);
+    void resetButtonMouseDistances();
 
 signals:
     void mouseCursorMoved(int mouseX, int mouseY, int elapsed);

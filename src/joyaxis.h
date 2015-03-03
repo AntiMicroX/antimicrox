@@ -56,6 +56,7 @@ public:
     JoyAxisButton* getAxisButtonByValue(int value);
 
     double getDistanceFromDeadZone();
+    double getDistanceFromDeadZone(int value);
     double calculateNormalizedAxisPlacement();
     double getAbsoluteAxisPlacement();
 
@@ -109,6 +110,8 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyAxis *destAxis);
 
+    int getLastKnownValue();
+
     // Define default values for many properties.
     static const int AXISMIN;
     static const int AXISMAX;
@@ -150,6 +153,8 @@ protected:
     QString axisName;
     QString defaultAxisName;
     SetJoystick *parentSet;
+    double lastMouseDistance;
+    int lastKnownValue;
 
 signals:
     void active(int value);

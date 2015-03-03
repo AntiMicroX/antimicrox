@@ -24,8 +24,14 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicr
     {
         connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+        // Timer in case SDL does not produce an axis event during a joystick
+        // poll.
+        pollResetTimer.setSingleShot(true);
+        pollResetTimer.setInterval(11);
+        connect(&pollResetTimer, SIGNAL(timeout()), this, SLOT(resetActiveButtonMouseDistances()));
         thread->start();
     }
+
     refreshJoysticks();
 }
 
@@ -52,6 +58,7 @@ void InputDaemon::startWorker()
         connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
         thread->start();
+        pollResetTimer.start();
     }
 }
 
@@ -59,8 +66,13 @@ void InputDaemon::run ()
 {
     //SDL_Event event;
 
+    // SDL has found events. The timeout is not necessary.
+    pollResetTimer.stop();
+
     if (!stopped)
     {
+        JoyButton::resetActiveButtonMouseDistances();
+
         QQueue<SDL_Event> sdlEventQueue;
 
         firstInputPass(&sdlEventQueue);
@@ -83,6 +95,7 @@ void InputDaemon::run ()
     else
     {
         QTimer::singleShot(0, eventWorker, SLOT(performWork()));
+        pollResetTimer.start();
     }
 }
 
@@ -169,6 +182,8 @@ void InputDaemon::refresh()
     connect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
     q.exec();
     disconnect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
+
+    pollResetTimer.stop();
 
     // Put in an extra delay before refreshing the joysticks
     QTimer temp;
@@ -829,4 +844,9 @@ void InputDaemon::clearBitArrayStatusInstances()
     }
 
     pendingEventValues.clear();
+}
+
+void InputDaemon::resetActiveButtonMouseDistances()
+{
+    JoyButton::resetActiveButtonMouseDistances();
 }
