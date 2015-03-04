@@ -576,12 +576,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                             case SDL_JOYBUTTONDOWN:
                             case SDL_JOYBUTTONUP:
                             {
-                                /*if (event.jbutton.which != device->getSDLJoystickID())
-                                {
-                                    tempQueue.enqueue(event);
-                                }
-                                */
-
                                 tempQueue.enqueue(event);
                                 break;
                             }
@@ -618,12 +612,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                             }
                             case SDL_JOYHATMOTION:
                             {
-                                /*if (event.jhat.which != device->getSDLJoystickID())
-                                {
-                                    tempQueue.enqueue(event);
-                                }
-                                */
-
                                 tempQueue.enqueue(event);
                                 break;
                             }
@@ -659,11 +647,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                             case SDL_CONTROLLERBUTTONDOWN:
                             case SDL_CONTROLLERBUTTONUP:
                             {
-                                /*if (event.cbutton.which != device->getSDLJoystickID())
-                                {
-                                    tempQueue.enqueue(event);
-                                }
-                                */
 
                                 tempQueue.enqueue(event);
                                 break;
@@ -675,6 +658,10 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 break;
                             }
 #endif
+                            default:
+                            {
+                                tempQueue.enqueue(event);
+                            }
                         }
                     }
 
