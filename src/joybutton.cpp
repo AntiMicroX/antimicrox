@@ -923,6 +923,7 @@ void JoyButton::mouseEvent()
                     }
 
                     double difference = getMouseDistanceFromDeadZone();
+                    double initialDifference = difference;
                     //qDebug() << "RIGHT DIFF: " << difference;
                     double mouse1 = 0;
                     double mouse2 = 0;
@@ -994,28 +995,6 @@ void JoyButton::mouseEvent()
                                 //qDebug() << "LAST: " << lastMouseDistance;
                                 //qDebug() << "";
                             //}
-
-                            if (extraAccelerationEnabled && isPartRealAxis() &&
-                                temp - lastMouseDistance >= 0.15)
-                            {
-                                //qDebug() << "CURRENT: " << temp;
-                                //qDebug() << "LAST KNOWN: " << lastMouseDistance;
-                                //qDebug() << "OLDDIFF: " << difference;
-
-                                double magfactor = extraAccelerationMultiplier;
-                                //double magfactor = 2.0;
-                                double slope = (magfactor - 1.01)/(0.5 - 0.15);
-                                double intercept = 1.01 - (slope * 0.15);
-
-                                //qDebug() << "WHAT IS MY NAME: " << qMin(0.5, (temp - lastMouseDistance));
-                                //qDebug() << "MULTI: " << (slope * qMin(0.5, (temp - lastMouseDistance)) + intercept); // 1.01 - 2.0
-                                difference = difference * (slope * qMin(0.5, (temp - lastMouseDistance)) + intercept); // 1.01 - 2.0
-                                //qDebug() << "MULTI: " << (8.54286 * qMin(0.5, (temp - lastMouseDistance)) - 0.27143); // 1.01 - 4.0
-                                //difference = difference * (8.54286 * qMin(0.5, (temp - lastMouseDistance)) - 0.27143); // 1.01 - 4.0
-
-                                //qDebug() << "UP IN HERE: " << difference;
-                                //qDebug() << "";
-                            }
 
                             break;
                         }
@@ -1108,6 +1087,29 @@ void JoyButton::mouseEvent()
 
                     double distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
+
+                    if (extraAccelerationEnabled && isPartRealAxis() &&
+                        initialDifference - lastMouseDistance >= 0.15)
+                    {
+                        //qDebug() << "CURRENT: " << temp;
+                        //qDebug() << "LAST KNOWN: " << lastMouseDistance;
+                        //qDebug() << "OLDDIFF: " << difference;
+
+                        double magfactor = extraAccelerationMultiplier;
+                        //double magfactor = 2.0;
+                        double slope = (magfactor - 1.01)/(0.5 - 0.15);
+                        double intercept = 1.01 - (slope * 0.15);
+
+                        //qDebug() << "WHAT IS MY NAME: " << qMin(0.5, (temp - lastMouseDistance));
+                        //qDebug() << "MULTI: " << (slope * qMin(0.5, (temp - lastMouseDistance)) + intercept); // 1.01 - 2.0
+                        difference = difference * (slope * qMin(0.5, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - 2.0
+                        //qDebug() << "MULTI: " << (8.54286 * qMin(0.5, (temp - lastMouseDistance)) - 0.27143); // 1.01 - 4.0
+                        //difference = difference * (8.54286 * qMin(0.5, (temp - lastMouseDistance)) - 0.27143); // 1.01 - 4.0
+
+                        //qDebug() << "UP IN HERE: " << difference;
+                        //qDebug() << "";
+                    }
+
                     //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
                     //distance = (int)floor(sumDist + 0.5);
