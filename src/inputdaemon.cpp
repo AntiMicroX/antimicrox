@@ -76,7 +76,7 @@ void InputDaemon::run ()
         QQueue<SDL_Event> sdlEventQueue;
 
         firstInputPass(&sdlEventQueue);
-        clearUnplugEvents(&sdlEventQueue);
+        modifyUnplugEvents(&sdlEventQueue);
         secondInputPass(&sdlEventQueue);
 
         clearBitArrayStatusInstances();
@@ -541,7 +541,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
     }
 }
 
-void InputDaemon::clearUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
+void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
     QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
     while (genIter.hasNext())
@@ -576,10 +576,13 @@ void InputDaemon::clearUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                             case SDL_JOYBUTTONDOWN:
                             case SDL_JOYBUTTONUP:
                             {
-                                if (event.jbutton.which != device->getSDLJoystickID())
+                                /*if (event.jbutton.which != device->getSDLJoystickID())
                                 {
                                     tempQueue.enqueue(event);
                                 }
+                                */
+
+                                tempQueue.enqueue(event);
                                 break;
                             }
                             case SDL_JOYAXISMOTION:
@@ -588,14 +591,40 @@ void InputDaemon::clearUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 {
                                     tempQueue.enqueue(event);
                                 }
+                                else
+                                {
+#ifdef USE_SDL_2
+                                    InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+#else
+                                    InputDevice *joy = joysticks->value(event.jaxis.which);
+#endif
+
+                                    if (joy)
+                                    {
+                                        JoyAxis *axis = joy->getActiveSetJoystick()->getJoyAxis(event.jaxis.axis);
+                                        if (axis)
+                                        {
+                                            if (axis->getThrottle() != JoyAxis::NormalThrottle)
+                                            {
+                                                event.jaxis.value = axis->getProperReleaseValue();
+                                            }
+                                        }
+                                    }
+
+                                    tempQueue.enqueue(event);
+                                }
+
                                 break;
                             }
                             case SDL_JOYHATMOTION:
                             {
-                                if (event.jhat.which != device->getSDLJoystickID())
+                                /*if (event.jhat.which != device->getSDLJoystickID())
                                 {
                                     tempQueue.enqueue(event);
                                 }
+                                */
+
+                                tempQueue.enqueue(event);
                                 break;
                             }
 #ifdef USE_SDL_2
@@ -605,15 +634,44 @@ void InputDaemon::clearUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 {
                                     tempQueue.enqueue(event);
                                 }
+                                else
+                                {
+                                    InputDevice *joy = trackcontrollers.value(event.caxis.which);
+                                    if (joy)
+                                    {
+                                        SetJoystick* set = joy->getActiveSetJoystick();
+                                        JoyAxis *axis = set->getJoyAxis(event.caxis.axis);
+                                        if (axis)
+                                        {
+                                            if (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
+                                                event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
+                                            {
+                                                event.caxis.value = axis->getProperReleaseValue();
+                                            }
+                                        }
+                                    }
+
+                                    tempQueue.enqueue(event);
+                                }
+
                                 break;
                             }
                             case SDL_CONTROLLERBUTTONDOWN:
                             case SDL_CONTROLLERBUTTONUP:
                             {
-                                if (event.cbutton.which != device->getSDLJoystickID())
+                                /*if (event.cbutton.which != device->getSDLJoystickID())
                                 {
                                     tempQueue.enqueue(event);
                                 }
+                                */
+
+                                tempQueue.enqueue(event);
+                                break;
+                            }
+                            case SDL_JOYDEVICEREMOVED:
+                            case SDL_JOYDEVICEADDED:
+                            {
+                                tempQueue.enqueue(event);
                                 break;
                             }
 #endif

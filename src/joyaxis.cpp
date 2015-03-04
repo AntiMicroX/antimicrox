@@ -1028,3 +1028,33 @@ int JoyAxis::getLastKnownValue()
 {
     return lastKnownValue;
 }
+
+/**
+ * @brief Determine an appropriate release value for an axis depending
+ *     on the current throttle setting being used.
+ * @return Release value for an axis
+ */
+int JoyAxis::getProperReleaseValue()
+{
+    // Handles NormalThrottle case
+    int value = 0;
+
+    if (throttle == NegativeHalfThrottle)
+    {
+        value = 0;
+    }
+    if (throttle == NegativeThrottle)
+    {
+        value = JoyAxis::AXISMAX;
+    }
+    else if (throttle == PositiveThrottle)
+    {
+        value = JoyAxis::AXISMIN;
+    }
+    else if (throttle == PositiveHalfThrottle)
+    {
+        value = 0;
+    }
+
+    return value;
+}

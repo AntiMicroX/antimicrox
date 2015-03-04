@@ -111,6 +111,7 @@ public:
     void copyAssignments(JoyAxis *destAxis);
 
     int getLastKnownValue();
+    int getProperReleaseValue();
 
     // Define default values for many properties.
     static const int AXISMIN;
