@@ -136,12 +136,22 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->horizontalSpinBox->setEnabled(false);
         ui->verticalSpinBox->setEnabled(false);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(false);
+
+        ui->extraAccelCheckBox->setChecked(false);
+        ui->extraAccelCheckBox->setEnabled(false);
+        ui->extraAccelDoubleSpinBox->setEnabled(false);
     }
     else
     {
         ui->horizontalSpinBox->setEnabled(true);
         ui->verticalSpinBox->setEnabled(true);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
+
+        ui->extraAccelCheckBox->setEnabled(true);
+        if (ui->extraAccelCheckBox->isChecked())
+        {
+            ui->extraAccelDoubleSpinBox->setEnabled(true);
+        }
     }
 }
 

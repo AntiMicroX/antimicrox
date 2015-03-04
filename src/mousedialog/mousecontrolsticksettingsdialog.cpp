@@ -95,6 +95,7 @@ void MouseControlStickSettingsDialog::changeMouseMode(int index)
             springPreviewWidget->setSpringWidth(ui->springWidthSpinBox->value());
             springPreviewWidget->setSpringHeight(ui->springHeightSpinBox->value());
         }
+        stick->setButtonsExtraAccelerationStatus(false);
     }
 }
 

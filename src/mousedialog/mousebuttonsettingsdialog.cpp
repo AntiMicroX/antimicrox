@@ -105,6 +105,11 @@ void MouseButtonSettingsDialog::changeMouseMode(int index)
             springPreviewWidget->setSpringWidth(ui->springWidthSpinBox->value());
             springPreviewWidget->setSpringHeight(ui->springHeightSpinBox->value());
         }
+
+        if (button->isPartRealAxis())
+        {
+            button->setExtraAccelerationStatus(false);
+        }
     }
 }
 

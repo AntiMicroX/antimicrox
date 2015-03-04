@@ -93,6 +93,8 @@ void MouseAxisSettingsDialog::changeMouseMode(int index)
             springPreviewWidget->setSpringWidth(ui->springWidthSpinBox->value());
             springPreviewWidget->setSpringHeight(ui->springHeightSpinBox->value());
         }
+        axis->getPAxisButton()->setExtraAccelerationStatus(false);
+        axis->getNAxisButton()->setExtraAccelerationStatus(false);
     }
 }
 
