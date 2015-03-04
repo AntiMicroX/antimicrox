@@ -288,7 +288,11 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
 
 void MouseControlStickSettingsDialog::calculateExtraAccelrationStatus()
 {
-    ui->extraAccelCheckBox->setChecked(stick->getButtonsExtraAccelerationStatus());
+    if (stick->getButtonsExtraAccelerationStatus())
+    {
+        ui->extraAccelCheckBox->setChecked(true);
+        ui->extraAccelDoubleSpinBox->setEnabled(true);
+    }
 }
 
 void MouseControlStickSettingsDialog::calculateExtraAccelerationMultiplier()
