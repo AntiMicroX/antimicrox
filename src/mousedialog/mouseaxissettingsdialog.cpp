@@ -44,6 +44,9 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     double easingDuration = axis->getButtonsEasingDuration();
     ui->easingDoubleSpinBox->setValue(easingDuration);
 
+    calculateExtraAccelrationStatus();
+    calculateExtraAccelerationMultiplier();
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -67,6 +70,9 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), axis, SLOT(setButtonsEasingDuration(double)));
+
+    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -254,4 +260,36 @@ void MouseAxisSettingsDialog::updateWindowTitleAxisName()
     }
 
     setWindowTitle(temp);
+}
+
+void MouseAxisSettingsDialog::calculateExtraAccelrationStatus()
+{
+    if (axis->getPAxisButton()->isExtraAccelerationEnabled() &&
+        axis->getNAxisButton()->isExtraAccelerationEnabled())
+    {
+        ui->extraAccelCheckBox->setChecked(true);
+        ui->extraAccelDoubleSpinBox->setEnabled(true);
+    }
+}
+
+void MouseAxisSettingsDialog::calculateExtraAccelerationMultiplier()
+{
+    if (axis->getPAxisButton()->getExtraAccelerationMultiplier() ==
+        axis->getNAxisButton()->getExtraAccelerationMultiplier())
+    {
+        double temp = axis->getPAxisButton()->getExtraAccelerationMultiplier();
+        ui->extraAccelDoubleSpinBox->setValue(temp);
+    }
+}
+
+void MouseAxisSettingsDialog::updateExtraAccelerationStatus(bool checked)
+{
+    axis->getPAxisButton()->setExtraAccelerationStatus(checked);
+    axis->getNAxisButton()->setExtraAccelerationStatus(checked);
+}
+
+void MouseAxisSettingsDialog::updateExtraAccelerationMultiplier(double value)
+{
+    axis->getPAxisButton()->setExtraAccelerationMultiplier(value);
+    axis->getNAxisButton()->setExtraAccelerationMultiplier(value);
 }

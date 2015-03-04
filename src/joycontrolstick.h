@@ -99,6 +99,12 @@ public:
     void setButtonsWheelSpeedX(int value);
     void setButtonsWheelSpeedY(int value);
 
+    void setButtonsExtraAccelerationStatus(bool enabled);
+    bool getButtonsExtraAccelerationStatus();
+
+    void setButtonsExtraAccelerationMultiplier(double value);
+    double getButtonsExtraAccelerationMultiplier();
+
     void releaseButtonEvents();
     QString getStickName();
 
@@ -125,7 +131,6 @@ public:
     bool hasPendingEvent();
 
     void activatePendingEvent();
-    void storeLastMouseDistances();
 
     static const double PI;
 

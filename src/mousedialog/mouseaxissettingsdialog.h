@@ -20,6 +20,8 @@ protected:
     //void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
     void updateWindowTitleAxisName();
+    void calculateExtraAccelrationStatus();
+    void calculateExtraAccelerationMultiplier();
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
@@ -40,6 +42,8 @@ public slots:
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
+    void updateExtraAccelerationStatus(bool checked);
+    void updateExtraAccelerationMultiplier(double value);
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

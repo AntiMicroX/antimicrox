@@ -33,6 +33,8 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelVerticalSpeedLabel(int)));
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelHorizontalSpeedLabel(int)));
+
+    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), ui->extraAccelDoubleSpinBox, SLOT(setEnabled(bool)));
 }
 
 MouseSettingsDialog::~MouseSettingsDialog()

@@ -46,6 +46,9 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     double easingDuration = stick->getButtonsEasingDuration();
     ui->easingDoubleSpinBox->setValue(easingDuration);
 
+    calculateExtraAccelrationStatus();
+    calculateExtraAccelerationMultiplier();
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -69,6 +72,9 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), stick, SLOT(setButtonsEasingDuration(double)));
+
+    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -277,4 +283,25 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
     }
 
     setWindowTitle(temp);
+}
+
+
+void MouseControlStickSettingsDialog::calculateExtraAccelrationStatus()
+{
+    ui->extraAccelCheckBox->setChecked(stick->getButtonsExtraAccelerationStatus());
+}
+
+void MouseControlStickSettingsDialog::calculateExtraAccelerationMultiplier()
+{
+    ui->extraAccelDoubleSpinBox->setValue(stick->getButtonsExtraAccelerationMultiplier());
+}
+
+void MouseControlStickSettingsDialog::updateExtraAccelerationStatus(bool checked)
+{
+    stick->setButtonsExtraAccelerationStatus(checked);
+}
+
+void MouseControlStickSettingsDialog::updateExtraAccelerationMultiplier(double value)
+{
+    stick->setButtonsExtraAccelerationMultiplier(value);
 }

@@ -20,6 +20,9 @@ protected:
     void calculateWheelSpeedPreset();
     void updateWindowTitleStickName();
 
+    void calculateExtraAccelrationStatus();
+    void calculateExtraAccelerationMultiplier();
+
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
 
@@ -38,6 +41,9 @@ public slots:
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
+
+    void updateExtraAccelerationStatus(bool checked);
+    void updateExtraAccelerationMultiplier(double value);
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOG_H

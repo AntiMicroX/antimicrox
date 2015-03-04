@@ -46,6 +46,19 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     double easingDuration = button->getEasingDuration();
     ui->easingDoubleSpinBox->setValue(easingDuration);
 
+    if (button->isPartRealAxis())
+    {
+        ui->extraAccelCheckBox->setChecked(button->isExtraAccelerationEnabled());
+        ui->extraAccelDoubleSpinBox->setValue(button->getExtraAccelerationMultiplier());
+    }
+    else
+    {
+        ui->extraAccelCheckBox->setVisible(false);
+        ui->extraAccelDoubleSpinBox->setVisible(false);
+        ui->extraAccelMultiLabel->setVisible(false);
+    }
+
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -69,6 +82,9 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedY(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), button, SLOT(setEasingDuration(double)));
+
+    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -215,3 +231,12 @@ void MouseButtonSettingsDialog::updateWindowTitleButtonName()
     setWindowTitle(temp);
 }
 
+void MouseButtonSettingsDialog::updateExtraAccelerationStatus(bool checked)
+{
+    button->setExtraAccelerationStatus(checked);
+}
+
+void MouseButtonSettingsDialog::updateExtraAccelerationMultiplier(double value)
+{
+    button->setExtraAccelerationMultiplier(value);
+}

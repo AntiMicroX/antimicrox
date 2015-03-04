@@ -2708,3 +2708,85 @@ void JoyControlStick::activatePendingEvent()
     bool ignoresets = false;
     joyEvent(ignoresets);
 }
+
+void JoyControlStick::setButtonsExtraAccelerationStatus(bool enabled)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setExtraAccelerationStatus(enabled);
+        }
+    }
+}
+
+bool JoyControlStick::getButtonsExtraAccelerationStatus()
+{
+    bool result = false;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            bool temp = button->isExtraAccelerationEnabled();
+            if (!temp)
+            {
+                result = false;
+                iter.toBack();
+            }
+            else
+            {
+                result = temp;
+            }
+        }
+    }
+
+    return result;
+}
+
+void JoyControlStick::setButtonsExtraAccelerationMultiplier(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setExtraAccelerationMultiplier(value);
+        }
+    }
+}
+
+double JoyControlStick::getButtonsExtraAccelerationMultiplier()
+{
+    double result = JoyButton::DEFAULTEXTRACCELVALUE;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            if (!iter.hasPrevious())
+            {
+                result = button->getExtraAccelerationMultiplier();
+            }
+            else
+            {
+                double temp = button->getExtraAccelerationMultiplier();
+                if (temp != result)
+                {
+                    result = JoyButton::DEFAULTEXTRACCELVALUE;
+                    iter.toBack();
+                }
+            }
+
+        }
+    }
+
+    return result;
+}

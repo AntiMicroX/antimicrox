@@ -46,6 +46,7 @@ const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
 const int JoyButton::IDLEMOUSEREFRESHRATE = 100;
+const double JoyButton::DEFAULTEXTRACCELVALUE = 2.0;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -994,13 +995,15 @@ void JoyButton::mouseEvent()
                                 //qDebug() << "";
                             //}
 
-                            if (isPartRealAxis() && temp - lastMouseDistance >= 0.15)
+                            if (extraAccelerationEnabled && isPartRealAxis() &&
+                                temp - lastMouseDistance >= 0.15)
                             {
                                 //qDebug() << "CURRENT: " << temp;
                                 //qDebug() << "LAST KNOWN: " << lastMouseDistance;
                                 //qDebug() << "OLDDIFF: " << difference;
 
-                                double magfactor = 2.0;
+                                double magfactor = extraAccelerationMultiplier;
+                                //double magfactor = 2.0;
                                 double slope = (magfactor - 1.01)/(0.5 - 0.15);
                                 double intercept = 1.01 - (slope * 0.15);
 
@@ -4582,6 +4585,8 @@ void JoyButton::resetProperties()
     //currentTurboMode = GradientTurbo;
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
+    extraAccelerationEnabled = false;
+    extraAccelerationMultiplier = DEFAULTEXTRACCELVALUE;
 }
 
 bool JoyButton::isModifierButton()
@@ -4614,4 +4619,36 @@ void JoyButton::initialLastMouseDistance()
 double JoyButton::getLastMouseDistanceFromDeadZone()
 {
     return lastMouseDistance;
+}
+
+bool JoyButton::isExtraAccelerationEnabled()
+{
+    return extraAccelerationEnabled;
+}
+
+double JoyButton::getExtraAccelerationMultiplier()
+{
+    return extraAccelerationMultiplier;
+}
+
+void JoyButton::setExtraAccelerationStatus(bool status)
+{
+    if (isPartRealAxis())
+    {
+        extraAccelerationEnabled = status;
+        emit propertyUpdated();
+    }
+    else
+    {
+        extraAccelerationEnabled = false;
+    }
+}
+
+void JoyButton::setExtraAccelerationMultiplier(double value)
+{
+    if (value >= 1.0 && value <= 100.0)
+    {
+        extraAccelerationMultiplier = value;
+        emit propertyUpdated();
+    }
 }

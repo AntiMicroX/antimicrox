@@ -35,6 +35,9 @@ public slots:
     void updateAccelerationCurvePresetComboBox();
     //void updateSmoothingSetting(bool clicked);
     void updateSpringRelativeStatus(bool value);
+
+    void updateExtraAccelerationStatus(bool checked);
+    void updateExtraAccelerationMultiplier(double value);
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOG_H

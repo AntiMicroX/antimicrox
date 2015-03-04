@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>624</width>
-    <height>480</height>
+    <height>535</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -152,8 +152,8 @@ axis is moved back to the dead zone.</string>
        <property name="title">
         <string>Mouse Speed Settings</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item alignment="Qt::AlignHCenter">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
          <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
           <property name="enabled">
            <bool>true</bool>
@@ -448,6 +448,52 @@ according to number of simulated notches per second.</string>
          </layout>
         </item>
         <item>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QCheckBox" name="extraAccelCheckBox">
+            <property name="text">
+             <string>Extra Acceleration</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="extraAccelMultiLabel">
+              <property name="text">
+               <string>Multiplier</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="extraAccelDoubleSpinBox">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>Maximum multiplier used to modify the mouse speed.
+If an axis is moved more than 15% within its safe zone
+in one joystick poll, the regular mouse speed at that
+axis position will be multiplied with an appropriate
+multiplier. The maximum multiplier value is used when
+an axis is moved 50% or higher in one joystick poll.</string>
+              </property>
+              <property name="minimum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>100.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>2.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
          <spacer name="verticalSpacer_4">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -648,6 +694,9 @@ mouse position set by a non-relative spring.</string>
     </widget>
    </item>
   </layout>
+  <zorder>buttonBox</zorder>
+  <zorder>groupBox_2</zorder>
+  <zorder>groupBox_3</zorder>
  </widget>
  <resources/>
  <connections>

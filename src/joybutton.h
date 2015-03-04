@@ -165,6 +165,12 @@ public:
     static void resetActiveButtonMouseDistances();
     void resetMouseDistances();
 
+    void setExtraAccelerationStatus(bool status);
+    void setExtraAccelerationMultiplier(double value);
+
+    bool isExtraAccelerationEnabled();
+    double getExtraAccelerationMultiplier();
+
     virtual void initialLastMouseDistance();
 
     static const QString xmlName;
@@ -206,6 +212,8 @@ public:
 
     static const int MAXIMUMMOUSEREFRESHRATE;
     static const int IDLEMOUSEREFRESHRATE;
+
+    static const double DEFAULTEXTRACCELVALUE;
 
     static QList<double> mouseHistoryX;
     static QList<double> mouseHistoryY;
@@ -341,6 +349,9 @@ protected:
     TurboMode currentTurboMode;
 
     double easingDuration;
+
+    bool extraAccelerationEnabled;
+    double extraAccelerationMultiplier;
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;

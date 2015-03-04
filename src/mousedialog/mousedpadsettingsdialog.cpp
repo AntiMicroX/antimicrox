@@ -44,6 +44,10 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     double easingDuration = dpad->getButtonsEasingDuration();
     ui->easingDoubleSpinBox->setValue(easingDuration);
 
+    ui->extraAccelCheckBox->setVisible(false);
+    ui->extraAccelDoubleSpinBox->setVisible(false);
+    ui->extraAccelMultiLabel->setVisible(false);
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
