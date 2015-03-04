@@ -1487,12 +1487,6 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             }
         }
 
-        /*if (smoothing != DEFAULTSMOOTHING)
-        {
-            xml->writeTextElement("mousesmoothing", smoothing ? "true" : "false");
-        }
-        */
-
         if (wheelSpeedX != DEFAULTWHEELX)
         {
             xml->writeTextElement("wheelspeedx", QString::number(wheelSpeedX));
@@ -1549,6 +1543,16 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         if (easingDuration != DEFAULTEASINGDURATION)
         {
             xml->writeTextElement("easingduration", QString::number(easingDuration));
+        }
+
+        if (extraAccelerationEnabled)
+        {
+            xml->writeTextElement("extraacceleration", "true");
+        }
+
+        if (extraAccelerationMultiplier != DEFAULTEXTRACCELVALUE)
+        {
+            xml->writeTextElement("accelerationmultiplier", QString::number(extraAccelerationMultiplier));
         }
 
         // Write information about assigned slots.
@@ -1792,16 +1796,6 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         double tempchoice = temptext.toDouble();
         setSensitivity(tempchoice);
     }
-    /*else if (xml->name() == "mousesmoothing" && xml->isStartElement())
-    {
-        found = true;
-        QString temptext = xml->readElementText();
-        if (temptext == "true")
-        {
-            setSmoothing(true);
-        }
-    }
-    */
     else if (xml->name() == "actionname" && xml->isStartElement())
     {
         found = true;
@@ -1840,6 +1834,22 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setEasingDuration(tempchoice);
+    }
+    else if (xml->name() == "extraacceleration" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        if (temptext == "true")
+        {
+            setExtraAccelerationStatus(true);
+        }
+    }
+    else if (xml->name() == "accelerationmultiplier" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setExtraAccelerationMultiplier(tempchoice);
     }
 
     return found;
@@ -3621,6 +3631,8 @@ bool JoyButton::isDefault()
     value = value && (cycleResetInterval == DEFAULTCYCLERESET);
     value = value && (relativeSpring == DEFAULTRELATIVESPRING);
     value = value && (easingDuration == DEFAULTEASINGDURATION);
+    value = value && (extraAccelerationEnabled == false);
+    value = value && (extraAccelerationMultiplier == DEFAULTEXTRACCELVALUE);
     return value;
 }
 
