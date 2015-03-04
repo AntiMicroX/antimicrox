@@ -153,7 +153,7 @@ axis is moved back to the dead zone.</string>
         <string>Mouse Speed Settings</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_12">
-        <item>
+        <item alignment="Qt::AlignHCenter">
          <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
           <property name="enabled">
            <bool>true</bool>
@@ -449,7 +449,7 @@ according to number of simulated notches per second.</string>
         </item>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_8">
-          <item>
+          <item alignment="Qt::AlignLeft">
            <widget class="QCheckBox" name="extraAccelCheckBox">
             <property name="text">
              <string>Extra Acceleration</string>
@@ -694,9 +694,6 @@ mouse position set by a non-relative spring.</string>
     </widget>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>groupBox_2</zorder>
-  <zorder>groupBox_3</zorder>
  </widget>
  <resources/>
  <connections>

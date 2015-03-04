@@ -2768,14 +2768,18 @@ double JoyControlStick::getButtonsExtraAccelerationMultiplier()
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
     {
-        JoyControlStickButton *button = iter.next().value();
-        if (button)
+        if (!iter.hasPrevious())
         {
-            if (!iter.hasPrevious())
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
             {
                 result = button->getExtraAccelerationMultiplier();
             }
-            else
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
             {
                 double temp = button->getExtraAccelerationMultiplier();
                 if (temp != result)
@@ -2784,7 +2788,6 @@ double JoyControlStick::getButtonsExtraAccelerationMultiplier()
                     iter.toBack();
                 }
             }
-
         }
     }
 
