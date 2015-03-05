@@ -194,7 +194,7 @@ int JoyAxis::calculateThrottledValue(int value)
         value = value <= 0 ? value : -value;
         temp = value;
     }
-    if (throttle == NegativeThrottle)
+    else if (throttle == NegativeThrottle)
     {
         temp = (value + AXISMIN) / 2;
     }
@@ -1043,7 +1043,7 @@ int JoyAxis::getProperReleaseValue()
     {
         value = 0;
     }
-    if (throttle == NegativeThrottle)
+    else if (throttle == NegativeThrottle)
     {
         value = JoyAxis::AXISMAX;
     }

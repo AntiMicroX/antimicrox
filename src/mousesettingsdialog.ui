@@ -451,6 +451,17 @@ according to number of simulated notches per second.</string>
          <layout class="QVBoxLayout" name="verticalLayout_8">
           <item alignment="Qt::AlignLeft">
            <widget class="QCheckBox" name="extraAccelCheckBox">
+            <property name="toolTip">
+             <string>Enable analog distance based acceleration.
+
+This setting will allow fast movements of an axis
+to be used to modify the output mouse speed at
+a given axis point. Faster movements will cause
+the resulting mouse speed to be faster than
+if the axis was around a fixed area. The multiplier
+will be used to specify the maximum value used
+to multiply the mouse speed.</string>
+            </property>
             <property name="text">
              <string>Extra Acceleration</string>
             </property>
