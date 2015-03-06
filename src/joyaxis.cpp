@@ -23,7 +23,8 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *pare
     QObject(parent)
 {
     stick = 0;
-    lastKnownValue = 0;
+    lastKnownThottledValue = 0;
+    lastKnownRawValue = 0;
     this->originset = originset;
     this->parentSet = parentSet;
     naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);
@@ -42,7 +43,8 @@ JoyAxis::~JoyAxis()
 
 void JoyAxis::joyEvent(int value, bool ignoresets)
 {
-    lastKnownValue = currentThrottledValue;
+    lastKnownThottledValue = currentThrottledValue;
+    lastKnownRawValue = currentRawValue;
 
     setCurrentRawValue(value);
     //currentRawValue = value;
@@ -497,7 +499,8 @@ void JoyAxis::reset()
     paxisbutton->reset();
     naxisbutton->reset();
     activeButton = 0;
-    lastKnownValue = 0;
+    lastKnownThottledValue = 0;
+    lastKnownRawValue = 0;
 
     adjustRange();
     setCurrentRawValue(currentThrottledDeadValue);
@@ -1024,9 +1027,14 @@ double JoyAxis::getButtonsEasingDuration()
     return result;
 }
 
-int JoyAxis::getLastKnownValue()
+int JoyAxis::getLastKnownThrottleValue()
 {
-    return lastKnownValue;
+    return lastKnownThottledValue;
+}
+
+int JoyAxis::getLastKnownRawValue()
+{
+    return lastKnownRawValue;
 }
 
 /**

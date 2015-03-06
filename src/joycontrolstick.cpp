@@ -1150,190 +1150,190 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
 
     if (currentDirection == StickUp)
     {
-        if (axisY->getLastKnownValue() >= 0)
+        if (axisY->getLastKnownThrottleValue() >= 0)
         {
             finalDistance = 0.0;
         }
         else
         {
-            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickRightUp)
     {
         if (button->getJoyNumber() == StickRight)
         {
-            if (axisX->getLastKnownValue() < 0)
+            if (axisX->getLastKnownThrottleValue() < 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
 
         }
         else if (button->getJoyNumber() == StickUp)
         {
-            if (axisY->getLastKnownValue() >= 0)
+            if (axisY->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickRightUp)
         {
-            if (axisX->getLastKnownValue() <= 0 || axisY->getLastKnownValue() >= 0)
+            if (axisX->getLastKnownThrottleValue() <= 0 || axisY->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
     }
     else if (currentDirection == StickRight)
     {
-        if (axisX->getLastKnownValue() < 0)
+        if (axisX->getLastKnownThrottleValue() < 0)
         {
             finalDistance = 0.0;
         }
         else
         {
-            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection  == StickRightDown)
     {
         if (button->getJoyNumber() == StickRight)
         {
-            if (axisX->getLastKnownValue() < 0)
+            if (axisX->getLastKnownThrottleValue() < 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickDown)
         {
-            if (axisY->getLastKnownValue() < 0)
+            if (axisY->getLastKnownThrottleValue() < 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickRightDown)
         {
-            if (axisX->getLastKnownValue() <= 0 || axisY->getLastKnownValue() >= 0)
+            if (axisX->getLastKnownThrottleValue() <= 0 || axisY->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
     }
     else if (currentDirection == StickDown)
     {
-        if (axisY->getLastKnownValue() >= 0)
+        if (axisY->getLastKnownThrottleValue() >= 0)
         {
             finalDistance = 0.0;
         }
         else
         {
-            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickLeftDown)
     {
         if (button->getJoyNumber() == StickLeft)
         {
-            if (axisX->getLastKnownValue() >= 0)
+            if (axisX->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickDown)
         {
-            if (axisY->getLastKnownValue() < 0)
+            if (axisY->getLastKnownThrottleValue() < 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickLeftDown)
         {
-            if (axisX->getLastKnownValue() >= 0 || axisY->getLastKnownValue() <= 0)
+            if (axisX->getLastKnownThrottleValue() >= 0 || axisY->getLastKnownThrottleValue() <= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
     }
     else if (currentDirection == StickLeft)
     {
-        if (axisX->getLastKnownValue() >= 0)
+        if (axisX->getLastKnownThrottleValue() >= 0)
         {
             finalDistance = 0.0;
         }
         else
         {
-            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickLeftUp)
     {
         if (button->getJoyNumber() == StickLeft)
         {
-            if (axisX->getLastKnownValue() >= 0)
+            if (axisX->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickUp)
         {
-            if (axisY->getLastKnownValue() >= 0)
+            if (axisY->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
         else if (button->getJoyNumber() == StickLeftUp)
         {
-            if (axisX->getLastKnownValue() >= 0 || axisY->getLastKnownValue() >= 0)
+            if (axisX->getLastKnownThrottleValue() >= 0 || axisY->getLastKnownThrottleValue() >= 0)
             {
                 finalDistance = 0.0;
             }
             else
             {
-                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+                finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
             }
         }
     }
@@ -1347,58 +1347,58 @@ double JoyControlStick::calculateLastDirectionalDistance()
 
     if (currentDirection == StickUp)
     {
-        if (!axisX->getLastKnownValue() >= 0)
+        if (!axisX->getLastKnownThrottleValue() >= 0)
         {
-            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickRightUp)
     {
-        if (!axisY->getLastKnownValue() <= 0 && !axisY->getLastKnownValue() >= 0)
+        if (!axisY->getLastKnownThrottleValue() <= 0 && !axisY->getLastKnownThrottleValue() >= 0)
         {
-            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickRight)
     {
-        if (!axisX->getLastKnownValue() <= 0)
+        if (!axisX->getLastKnownThrottleValue() <= 0)
         {
-            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection  == StickRightDown)
     {
-        if (!axisY->getLastKnownValue() <= 0 && !axisY->getLastKnownValue() <= 0)
+        if (!axisY->getLastKnownThrottleValue() <= 0 && !axisY->getLastKnownThrottleValue() <= 0)
         {
-            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickDown)
     {
-        if (!axisY->getLastKnownValue() <= 0)
+        if (!axisY->getLastKnownThrottleValue() <= 0)
         {
-            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateYDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickLeftDown)
     {
-        if (!axisY->getLastKnownValue() >= 0 && !axisY->getLastKnownValue() <= 0)
+        if (!axisY->getLastKnownThrottleValue() >= 0 && !axisY->getLastKnownThrottleValue() <= 0)
         {
-            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickLeft)
     {
-        if (!axisX->getLastKnownValue() >= 0)
+        if (!axisX->getLastKnownThrottleValue() >= 0)
         {
-            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = calculateXDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
     else if (currentDirection == StickLeftUp)
     {
-        if (!axisY->getLastKnownValue() >= 0 && !axisY->getLastKnownValue() >= 0)
+        if (!axisY->getLastKnownThrottleValue() >= 0 && !axisY->getLastKnownThrottleValue() >= 0)
         {
-            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownValue(), axisY->getLastKnownValue());
+            finalDistance = getDistanceFromDeadZone(axisX->getLastKnownThrottleValue(), axisY->getLastKnownThrottleValue());
         }
     }
 

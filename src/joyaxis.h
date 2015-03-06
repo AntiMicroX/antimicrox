@@ -110,7 +110,8 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyAxis *destAxis);
 
-    int getLastKnownValue();
+    int getLastKnownThrottleValue();
+    int getLastKnownRawValue();
     int getProperReleaseValue();
 
     // Define default values for many properties.
@@ -155,7 +156,8 @@ protected:
     QString defaultAxisName;
     SetJoystick *parentSet;
     double lastMouseDistance;
-    int lastKnownValue;
+    int lastKnownThottledValue;
+    int lastKnownRawValue;
 
 signals:
     void active(int value);
