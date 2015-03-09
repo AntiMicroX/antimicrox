@@ -227,6 +227,7 @@ protected:
     void clearAssignedSlots(bool signalEmit=true);
     void releaseSlotEvent();
     void findReleaseEventEnd();
+    void findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter);
     void findHoldEventEnd();
     bool checkForDelaySequence();
     void checkForPressedSetChange();

@@ -2054,10 +2054,19 @@ QString JoyButton::getActiveZoneSummary()
                     i++;
                     break;
                 }
+                case JoyButtonSlot::JoyRelease:
+                {
+                    if (!currentRelease)
+                    {
+                        findReleaseEventIterEnd(iter);
+                    }
+
+                    break;
+                }
                 default:
                 {
-                    iter->toBack();
-                    break;
+                    //iter->toBack();
+                    //break;
                 }
             }
 
@@ -3521,6 +3530,8 @@ void JoyButton::releaseSlotEvent()
     }
 }
 
+
+
 void JoyButton::findReleaseEventEnd()
 {
     bool found = false;
@@ -3546,6 +3557,37 @@ void JoyButton::findReleaseEventEnd()
     if (found && slotiter->hasPrevious())
     {
         slotiter->previous();
+    }
+}
+
+void JoyButton::findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter)
+{
+    bool found = false;
+    if (tempiter)
+    {
+        while (!found && tempiter->hasNext())
+        {
+            JoyButtonSlot *currentSlot = tempiter->next();
+            JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
+
+            if (mode == JoyButtonSlot::JoyRelease)
+            {
+                found = true;
+            }
+            else if (mode == JoyButtonSlot::JoyCycle)
+            {
+                found = true;
+            }
+            else if (mode == JoyButtonSlot::JoyHold)
+            {
+                found = true;
+            }
+        }
+
+        if (found && tempiter->hasPrevious())
+        {
+            tempiter->previous();
+        }
     }
 }
 
