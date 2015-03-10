@@ -1096,13 +1096,14 @@ void JoyButton::mouseEvent()
                         //qDebug() << "OLDDIFF: " << difference;
 
                         double magfactor = extraAccelerationMultiplier;
+                        double maxtravel = 0.6;
                         //double magfactor = 2.0;
-                        double slope = (magfactor - 1.01)/(0.5 - 0.15);
+                        double slope = (magfactor - 1.01)/(maxtravel - 0.15);
                         double intercept = 1.01 - (slope * 0.15);
 
-                        //qDebug() << "WHAT IS MY NAME: " << qMin(0.5, (initialDifference - lastMouseDistance));
-                        //qDebug() << "MULTI: " << (slope * qMin(0.5, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - 2.0
-                        difference = difference * (slope * qMin(0.5, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - 2.0
+                        //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
+                        //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
+                        difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
 
                         //qDebug() << "UP IN HERE: " << difference;
                         //qDebug() << "";
