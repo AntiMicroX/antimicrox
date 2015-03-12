@@ -1079,10 +1079,11 @@ void JoyButton::mouseEvent()
                             }
                             break;
                         }
-                        default:
+                        /*default:
                         {
                             break;
                         }
+                        */
                     }
 
                     double distance = 0;
@@ -1096,7 +1097,7 @@ void JoyButton::mouseEvent()
                         //qDebug() << "OLDDIFF: " << difference;
 
                         double magfactor = extraAccelerationMultiplier;
-                        double maxtravel = 0.6;
+                        double maxtravel = 0.65;
                         //double magfactor = 2.0;
                         double slope = (magfactor - 1.01)/(maxtravel - 0.15);
                         double intercept = 1.01 - (slope * 0.15);
