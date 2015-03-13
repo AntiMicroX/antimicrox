@@ -336,6 +336,9 @@ protected:
     bool updateLastMouseDistance;
     double currentMouseDistance;
 
+     // Take into account when mouse acceleration started
+    double startingMouseDistance;
+
     QString actionName;
     QString buttonName; // User specified button name
     QString defaultButtonName; // Name used by the system
