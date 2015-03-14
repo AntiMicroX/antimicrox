@@ -1103,7 +1103,7 @@ void JoyButton::mouseEvent()
                         //qDebug() << "OLDDIFF: " << difference;
 
                         double magfactor = extraAccelerationMultiplier;
-                        double minfactor = qMax(DEFAULTSTARTACCELMULTIPLIER, magfactor * (startAccelMultiplier * 0.01));
+                        double minfactor = qMax((DEFAULTSTARTACCELMULTIPLIER * 0.001) + 1.0, magfactor * (startAccelMultiplier * 0.01));
                         //double minfactor = magfactor / 2.0;
                         //double minfactor = qMax(1.00, magfactor * 0.01);
                         //double maxtravel = 0.65;
@@ -4806,7 +4806,7 @@ double JoyButton::getMaxAccelThreshold()
 
 void JoyButton::setStartAccelMultiplier(double value)
 {
-    if (value >= 1.0 && value <= 100.0)
+    if (value >= 0.0 && value <= 100.0)
     {
         startAccelMultiplier = value;
         emit propertyUpdated();

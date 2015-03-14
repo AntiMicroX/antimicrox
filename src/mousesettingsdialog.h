@@ -46,8 +46,8 @@ private slots:
     void updateMouseSpringStatusLabels(int coordX, int coordY);
     void refreshMouseCursorSpeedValues(int index);
 
-    void clampMinAccelThresholdValue(double value);
-    void clampMaxAccelThresholdValue(double value);
+    //void clampMinAccelThresholdValue(double value);
+    //void clampMaxAccelThresholdValue(double value);
 };
 
 #endif // MOUSESETTINGSDIALOG_H

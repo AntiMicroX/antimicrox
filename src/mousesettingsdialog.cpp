@@ -34,8 +34,8 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelVerticalSpeedLabel(int)));
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelHorizontalSpeedLabel(int)));
 
-    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMaxAccelThresholdValue(double)));
-    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMinAccelThresholdValue(double)));
+    //connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMaxAccelThresholdValue(double)));
+    //connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMinAccelThresholdValue(double)));
     //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), ui->extraAccelDoubleSpinBox, SLOT(setEnabled(bool)));
 }
 
@@ -339,7 +339,7 @@ void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
     updateVerticalSpeedConvertLabel(ui->verticalSpinBox->value());
 }
 
-void MouseSettingsDialog::clampMinAccelThresholdValue(double value)
+/*void MouseSettingsDialog::clampMinAccelThresholdValue(double value)
 {
     ui->minThresholdDoubleSpinBox->setMaximum(value);
 }
@@ -348,3 +348,4 @@ void MouseSettingsDialog::clampMaxAccelThresholdValue(double value)
 {
     ui->maxThresholdDoubleSpinBox->setMaximum(value);
 }
+*/

@@ -161,7 +161,7 @@ axis is moved back to the dead zone.</string>
           <bool>false</bool>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_12">
-          <item>
+          <item alignment="Qt::AlignHCenter">
            <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
             <property name="enabled">
              <bool>true</bool>
