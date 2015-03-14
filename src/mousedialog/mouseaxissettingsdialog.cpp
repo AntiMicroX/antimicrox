@@ -46,6 +46,9 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     calculateExtraAccelrationStatus();
     calculateExtraAccelerationMultiplier();
+    calculateStartAccelerationMultiplier();
+    calculateMinAccelerationThreshold();
+    calculateMaxAccelerationThreshold();
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -71,8 +74,12 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), axis, SLOT(setButtonsEasingDuration(double)));
 
-    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
     connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
+    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
+    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
+    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -269,8 +276,13 @@ void MouseAxisSettingsDialog::calculateExtraAccelrationStatus()
     if (axis->getPAxisButton()->isExtraAccelerationEnabled() &&
         axis->getNAxisButton()->isExtraAccelerationEnabled())
     {
-        ui->extraAccelCheckBox->setChecked(true);
-        ui->extraAccelDoubleSpinBox->setEnabled(true);
+        ui->extraAccelerationGroupBox->setChecked(true);
+        //ui->extraAccelCheckBox->setChecked(true);
+        //ui->extraAccelDoubleSpinBox->setEnabled(true);
+    }
+    else
+    {
+        ui->extraAccelerationGroupBox->setChecked(false);
     }
 }
 
@@ -284,6 +296,36 @@ void MouseAxisSettingsDialog::calculateExtraAccelerationMultiplier()
     }
 }
 
+void MouseAxisSettingsDialog::calculateStartAccelerationMultiplier()
+{
+    if (axis->getPAxisButton()->getStartAccelMultiplier() ==
+        axis->getNAxisButton()->getStartAccelMultiplier())
+    {
+        double temp = axis->getPAxisButton()->getStartAccelMultiplier();
+        ui->minMultiDoubleSpinBox->setValue(temp);
+    }
+}
+
+void MouseAxisSettingsDialog::calculateMinAccelerationThreshold()
+{
+    if (axis->getPAxisButton()->getMinAccelThreshold() ==
+        axis->getNAxisButton()->getMinAccelThreshold())
+    {
+        double temp = axis->getPAxisButton()->getMinAccelThreshold();
+        ui->minThresholdDoubleSpinBox->setValue(temp);
+    }
+}
+
+void MouseAxisSettingsDialog::calculateMaxAccelerationThreshold()
+{
+    if (axis->getPAxisButton()->getMaxAccelThreshold() ==
+        axis->getNAxisButton()->getMaxAccelThreshold())
+    {
+        double temp = axis->getPAxisButton()->getMaxAccelThreshold();
+        ui->maxThresholdDoubleSpinBox->setValue(temp);
+    }
+}
+
 void MouseAxisSettingsDialog::updateExtraAccelerationStatus(bool checked)
 {
     axis->getPAxisButton()->setExtraAccelerationStatus(checked);
@@ -294,4 +336,23 @@ void MouseAxisSettingsDialog::updateExtraAccelerationMultiplier(double value)
 {
     axis->getPAxisButton()->setExtraAccelerationMultiplier(value);
     axis->getNAxisButton()->setExtraAccelerationMultiplier(value);
+}
+
+
+void MouseAxisSettingsDialog::updateStartMultiPercentage(double value)
+{
+    axis->getPAxisButton()->setStartAccelMultiplier(value);
+    axis->getNAxisButton()->setStartAccelMultiplier(value);
+}
+
+void MouseAxisSettingsDialog::updateMinAccelThreshold(double value)
+{
+    axis->getPAxisButton()->setMinAccelThreshold(value);
+    axis->getNAxisButton()->setMinAccelThreshold(value);
+}
+
+void MouseAxisSettingsDialog::updateMaxAccelThreshold(double value)
+{
+    axis->getPAxisButton()->setMaxAccelThreshold(value);
+    axis->getNAxisButton()->setMaxAccelThreshold(value);
 }

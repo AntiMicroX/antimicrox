@@ -34,7 +34,9 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelVerticalSpeedLabel(int)));
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelHorizontalSpeedLabel(int)));
 
-    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), ui->extraAccelDoubleSpinBox, SLOT(setEnabled(bool)));
+    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMaxAccelThresholdValue(double)));
+    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMinAccelThresholdValue(double)));
+    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), ui->extraAccelDoubleSpinBox, SLOT(setEnabled(bool)));
 }
 
 MouseSettingsDialog::~MouseSettingsDialog()
@@ -137,9 +139,11 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->verticalSpinBox->setEnabled(false);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(false);
 
-        ui->extraAccelCheckBox->setChecked(false);
-        ui->extraAccelCheckBox->setEnabled(false);
-        ui->extraAccelDoubleSpinBox->setEnabled(false);
+        ui->extraAccelerationGroupBox->setChecked(false);
+        ui->extraAccelerationGroupBox->setEnabled(false);
+        //ui->extraAccelCheckBox->setChecked(false);
+        //ui->extraAccelCheckBox->setEnabled(false);
+        //ui->extraAccelDoubleSpinBox->setEnabled(false);
     }
     else
     {
@@ -147,10 +151,13 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->verticalSpinBox->setEnabled(true);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
 
-        ui->extraAccelCheckBox->setEnabled(true);
-        if (ui->extraAccelCheckBox->isChecked())
+        //ui->extraAccelCheckBox->setEnabled(true);
+        ui->extraAccelerationGroupBox->setEnabled(true);
+        //if (ui->extraAccelCheckBox->isChecked())
+        if (ui->extraAccelerationGroupBox->isChecked())
         {
-            ui->extraAccelDoubleSpinBox->setEnabled(true);
+            ui->extraAccelerationGroupBox->setEnabled(true);
+            //ui->extraAccelDoubleSpinBox->setEnabled(true);
         }
     }
 }
@@ -330,4 +337,14 @@ void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
 
     updateHorizontalSpeedConvertLabel(ui->horizontalSpinBox->value());
     updateVerticalSpeedConvertLabel(ui->verticalSpinBox->value());
+}
+
+void MouseSettingsDialog::clampMinAccelThresholdValue(double value)
+{
+    ui->minThresholdDoubleSpinBox->setMaximum(value);
+}
+
+void MouseSettingsDialog::clampMaxAccelThresholdValue(double value)
+{
+    ui->maxThresholdDoubleSpinBox->setMaximum(value);
 }

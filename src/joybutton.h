@@ -173,6 +173,15 @@ public:
 
     virtual void initialLastMouseDistance();
 
+    void setMinAccelThreshold(double value);
+    double getMinAccelThreshold();
+
+    void setMaxAccelThreshold(double value);
+    double getMaxAccelThreshold();
+
+    void setStartAccelMultiplier(double value);
+    double getStartAccelMultiplier();
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -214,6 +223,9 @@ public:
     static const int IDLEMOUSEREFRESHRATE;
 
     static const double DEFAULTEXTRACCELVALUE;
+    static const double DEFAULTMINACCELTHRESHOLD;
+    static const double DEFAULTMAXACCELTHRESHOLD;
+    static const double DEFAULTSTARTACCELMULTIPLIER;
 
     static QList<double> mouseHistoryX;
     static QList<double> mouseHistoryY;
@@ -332,12 +344,24 @@ protected:
     double lastWheelVerticalDistance;
     double lastWheelHorizontalDistance;
     int tempTurboInterval;
+
+    // Keep track of the previous mouse distance from the previous gamepad
+    // poll.
     double lastMouseDistance;
+
+    // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;
+
+    // Keep track of the current mouse distance after a poll. Used
+    // to update lastMouseDistance later.
     double currentMouseDistance;
 
-     // Take into account when mouse acceleration started
+    // Take into account when mouse acceleration started
     double startingMouseDistance;
+
+    double minMouseDistanceAccelThreshold;
+    double maxMouseDistanceAccelThreshold;
+    double startAccelMultiplier;
 
     QString actionName;
     QString buttonName; // User specified button name

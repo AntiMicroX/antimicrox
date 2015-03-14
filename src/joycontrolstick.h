@@ -105,6 +105,15 @@ public:
     void setButtonsExtraAccelerationMultiplier(double value);
     double getButtonsExtraAccelerationMultiplier();
 
+    void setButtonsStartAccelerationMultiplier(double value);
+    double getButtonsStartAccelerationMultiplier();
+
+    void setButtonsMinAccelerationThreshold(double value);
+    double getButtonsMinAccelerationThreshold();
+
+    void setButtonsMaxAccelerationThreshold(double value);
+    double getButtonsMaxAccelerationThreshold();
+
     void releaseButtonEvents();
     QString getStickName();
 

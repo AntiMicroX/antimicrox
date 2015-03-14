@@ -38,6 +38,11 @@ public slots:
 
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);
+
+private slots:
+    void updateStartMultiPercentage(double value);
+    void updateMinAccelThreshold(double value);
+    void updateMaxAccelThreshold(double value);
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOG_H

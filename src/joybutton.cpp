@@ -47,6 +47,9 @@ const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
 const int JoyButton::IDLEMOUSEREFRESHRATE = 100;
 const double JoyButton::DEFAULTEXTRACCELVALUE = 2.0;
+const double JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
+const double JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
+const double JoyButton::DEFAULTSTARTACCELMULTIPLIER = 0.0;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -1090,7 +1093,8 @@ void JoyButton::mouseEvent()
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
 
                     //double mintravel = 0.15;
-                    double mintravel = 0.10;
+                    //double mintravel = 0.10;
+                    double mintravel = minMouseDistanceAccelThreshold * 0.01;
                     if (extraAccelerationEnabled && isPartRealAxis() &&
                         initialDifference - lastMouseDistance >= mintravel)
                     {
@@ -1099,16 +1103,20 @@ void JoyButton::mouseEvent()
                         //qDebug() << "OLDDIFF: " << difference;
 
                         double magfactor = extraAccelerationMultiplier;
+                        double minfactor = qMax(DEFAULTSTARTACCELMULTIPLIER, magfactor * (startAccelMultiplier * 0.01));
+                        //double minfactor = magfactor / 2.0;
+                        //double minfactor = qMax(1.00, magfactor * 0.01);
                         //double maxtravel = 0.65;
-                        double maxtravel = 1.0;
+                        //double maxtravel = 1.0;
+                        double maxtravel = maxMouseDistanceAccelThreshold * 0.01;
                         //double magfactor = 2.0;
-                        double slope = (magfactor - 1.01)/(maxtravel - mintravel);
-                        double intercept = 1.01 - (slope * mintravel);
+                        double slope = (magfactor - minfactor)/(maxtravel - mintravel);
+                        double intercept = minfactor - (slope * mintravel);
 
                         //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
-                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
-                        difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
+                        difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
+                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
                         //qDebug() << "UP IN HERE: " << difference;
                         //qDebug() << "";
@@ -1564,6 +1572,21 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("accelerationmultiplier", QString::number(extraAccelerationMultiplier));
         }
 
+        if (startAccelMultiplier != DEFAULTSTARTACCELMULTIPLIER)
+        {
+            xml->writeTextElement("startaccelmultiplier", QString::number(startAccelMultiplier));
+        }
+
+        if (minMouseDistanceAccelThreshold != DEFAULTMINACCELTHRESHOLD)
+        {
+            xml->writeTextElement("minaccelthreshold", QString::number(minMouseDistanceAccelThreshold));
+        }
+
+        if (maxMouseDistanceAccelThreshold != DEFAULTMAXACCELTHRESHOLD)
+        {
+            xml->writeTextElement("maxaccelthreshold", QString::number(maxMouseDistanceAccelThreshold));
+        }
+
         // Write information about assigned slots.
         if (!assignments.isEmpty())
         {
@@ -1859,6 +1882,27 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setExtraAccelerationMultiplier(tempchoice);
+    }
+    else if (xml->name() == "startaccelmultiplier" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setStartAccelMultiplier(tempchoice);
+    }
+    else if (xml->name() == "minaccelthreshold" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setMinAccelThreshold(tempchoice);
+    }
+    else if (xml->name() == "maxaccelthreshold" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setMaxAccelThreshold(tempchoice);
     }
 
     return found;
@@ -3688,8 +3732,12 @@ bool JoyButton::isDefault()
     value = value && (cycleResetInterval == DEFAULTCYCLERESET);
     value = value && (relativeSpring == DEFAULTRELATIVESPRING);
     value = value && (easingDuration == DEFAULTEASINGDURATION);
+
     value = value && (extraAccelerationEnabled == false);
     value = value && (extraAccelerationMultiplier == DEFAULTEXTRACCELVALUE);
+    value = value && (minMouseDistanceAccelThreshold == DEFAULTMINACCELTHRESHOLD);
+    value = value && (maxMouseDistanceAccelThreshold == DEFAULTMAXACCELTHRESHOLD);
+    value = value && (startAccelMultiplier == DEFAULTSTARTACCELMULTIPLIER);
     return value;
 }
 
@@ -4655,8 +4703,12 @@ void JoyButton::resetProperties()
     //currentTurboMode = GradientTurbo;
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
+
     extraAccelerationEnabled = false;
     extraAccelerationMultiplier = DEFAULTEXTRACCELVALUE;
+    minMouseDistanceAccelThreshold = DEFAULTMINACCELTHRESHOLD;
+    maxMouseDistanceAccelThreshold = DEFAULTMAXACCELTHRESHOLD;
+    startAccelMultiplier = DEFAULTSTARTACCELMULTIPLIER;
 }
 
 bool JoyButton::isModifierButton()
@@ -4722,4 +4774,46 @@ void JoyButton::setExtraAccelerationMultiplier(double value)
         extraAccelerationMultiplier = value;
         emit propertyUpdated();
     }
+}
+
+void JoyButton::setMinAccelThreshold(double value)
+{
+    if (value >= 1.0 && value <= 100.0 && value <= maxMouseDistanceAccelThreshold)
+    {
+        minMouseDistanceAccelThreshold = value;
+        emit propertyUpdated();
+    }
+}
+
+double JoyButton::getMinAccelThreshold()
+{
+    return minMouseDistanceAccelThreshold;
+}
+
+void JoyButton::setMaxAccelThreshold(double value)
+{
+    if (value >= 1.0 && value <= 100.0 && value >= minMouseDistanceAccelThreshold)
+    {
+        maxMouseDistanceAccelThreshold = value;
+        emit propertyUpdated();
+    }
+}
+
+double JoyButton::getMaxAccelThreshold()
+{
+    return maxMouseDistanceAccelThreshold;
+}
+
+void JoyButton::setStartAccelMultiplier(double value)
+{
+    if (value >= 1.0 && value <= 100.0)
+    {
+        startAccelMultiplier = value;
+        emit propertyUpdated();
+    }
+}
+
+double JoyButton::getStartAccelMultiplier()
+{
+    return startAccelMultiplier;
 }

@@ -48,6 +48,9 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     calculateExtraAccelrationStatus();
     calculateExtraAccelerationMultiplier();
+    calculateStartAccelerationMultiplier();
+    calculateMinAccelerationThreshold();
+    calculateMaxAccelerationThreshold();
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -73,8 +76,12 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), stick, SLOT(setButtonsEasingDuration(double)));
 
-    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
     connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
+    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
+    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
+    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -291,14 +298,30 @@ void MouseControlStickSettingsDialog::calculateExtraAccelrationStatus()
 {
     if (stick->getButtonsExtraAccelerationStatus())
     {
-        ui->extraAccelCheckBox->setChecked(true);
-        ui->extraAccelDoubleSpinBox->setEnabled(true);
+        ui->extraAccelerationGroupBox->setChecked(true);
+        //ui->extraAccelCheckBox->setChecked(true);
+        //ui->extraAccelDoubleSpinBox->setEnabled(true);
     }
 }
 
 void MouseControlStickSettingsDialog::calculateExtraAccelerationMultiplier()
 {
     ui->extraAccelDoubleSpinBox->setValue(stick->getButtonsExtraAccelerationMultiplier());
+}
+
+void MouseControlStickSettingsDialog::calculateStartAccelerationMultiplier()
+{
+    ui->minMultiDoubleSpinBox->setValue(stick->getButtonsStartAccelerationMultiplier());
+}
+
+void MouseControlStickSettingsDialog::calculateMinAccelerationThreshold()
+{
+    ui->minThresholdDoubleSpinBox->setValue(stick->getButtonsMinAccelerationThreshold());
+}
+
+void MouseControlStickSettingsDialog::calculateMaxAccelerationThreshold()
+{
+    ui->maxThresholdDoubleSpinBox->setValue(stick->getButtonsMaxAccelerationThreshold());
 }
 
 void MouseControlStickSettingsDialog::updateExtraAccelerationStatus(bool checked)
@@ -309,4 +332,19 @@ void MouseControlStickSettingsDialog::updateExtraAccelerationStatus(bool checked
 void MouseControlStickSettingsDialog::updateExtraAccelerationMultiplier(double value)
 {
     stick->setButtonsExtraAccelerationMultiplier(value);
+}
+
+void MouseControlStickSettingsDialog::updateStartMultiPercentage(double value)
+{
+    stick->setButtonsStartAccelerationMultiplier(value);
+}
+
+void MouseControlStickSettingsDialog::updateMinAccelThreshold(double value)
+{
+    stick->setButtonsMinAccelerationThreshold(value);
+}
+
+void MouseControlStickSettingsDialog::updateMaxAccelThreshold(double value)
+{
+    stick->setButtonsMaxAccelerationThreshold(value);
 }

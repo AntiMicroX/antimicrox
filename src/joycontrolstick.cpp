@@ -2793,3 +2793,142 @@ double JoyControlStick::getButtonsExtraAccelerationMultiplier()
 
     return result;
 }
+
+
+void JoyControlStick::setButtonsStartAccelerationMultiplier(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setStartAccelMultiplier(value);
+        }
+    }
+}
+
+double JoyControlStick::getButtonsStartAccelerationMultiplier()
+{
+    double result = JoyButton::DEFAULTSTARTACCELMULTIPLIER;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                result = button->getStartAccelMultiplier();
+            }
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                double temp = button->getStartAccelMultiplier();
+                if (temp != result)
+                {
+                    result = JoyButton::DEFAULTSTARTACCELMULTIPLIER;
+                    iter.toBack();
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+void JoyControlStick::setButtonsMinAccelerationThreshold(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setMinAccelThreshold(value);
+        }
+    }
+}
+
+double JoyControlStick::getButtonsMinAccelerationThreshold()
+{
+    double result = JoyButton::DEFAULTMINACCELTHRESHOLD;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                result = button->getMinAccelThreshold();
+            }
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                double temp = button->getMinAccelThreshold();
+                if (temp != result)
+                {
+                    result = JoyButton::DEFAULTMINACCELTHRESHOLD;
+                    iter.toBack();
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+void JoyControlStick::setButtonsMaxAccelerationThreshold(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setMaxAccelThreshold(value);
+        }
+    }
+}
+
+double JoyControlStick::getButtonsMaxAccelerationThreshold()
+{
+    double result = JoyButton::DEFAULTMAXACCELTHRESHOLD;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                result = button->getMaxAccelThreshold();
+            }
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                double temp = button->getMaxAccelThreshold();
+                if (temp != result)
+                {
+                    result = JoyButton::DEFAULTMAXACCELTHRESHOLD;
+                    iter.toBack();
+                }
+            }
+        }
+    }
+
+    return result;
+}

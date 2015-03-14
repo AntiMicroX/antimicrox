@@ -48,14 +48,15 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     if (button->isPartRealAxis())
     {
-        ui->extraAccelCheckBox->setChecked(button->isExtraAccelerationEnabled());
+        ui->extraAccelerationGroupBox->setChecked(button->isExtraAccelerationEnabled());
         ui->extraAccelDoubleSpinBox->setValue(button->getExtraAccelerationMultiplier());
+        ui->minMultiDoubleSpinBox->setValue(button->getStartAccelMultiplier());
+        ui->minThresholdDoubleSpinBox->setValue(button->getMinAccelThreshold());
+        ui->maxThresholdDoubleSpinBox->setValue(button->getMaxAccelThreshold());
     }
     else
     {
-        ui->extraAccelCheckBox->setVisible(false);
-        ui->extraAccelDoubleSpinBox->setVisible(false);
-        ui->extraAccelMultiLabel->setVisible(false);
+        ui->extraAccelerationGroupBox->setVisible(false);
     }
 
 
@@ -83,8 +84,12 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), button, SLOT(setEasingDuration(double)));
 
-    connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
     connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
+    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
+    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
+    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -244,4 +249,19 @@ void MouseButtonSettingsDialog::updateExtraAccelerationStatus(bool checked)
 void MouseButtonSettingsDialog::updateExtraAccelerationMultiplier(double value)
 {
     button->setExtraAccelerationMultiplier(value);
+}
+
+void MouseButtonSettingsDialog::updateStartMultiPercentage(double value)
+{
+    button->setStartAccelMultiplier(value);
+}
+
+void MouseButtonSettingsDialog::updateMinAccelThreshold(double value)
+{
+    button->setMinAccelThreshold(value);
+}
+
+void MouseButtonSettingsDialog::updateMaxAccelThreshold(double value)
+{
+    button->setMaxAccelThreshold(value);
 }
