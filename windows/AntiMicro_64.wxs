@@ -65,6 +65,9 @@
                     <Directory Id="SHARE" Name="share">
                         <Directory Id="ANTIMICRO_1" Name="antimicro">
                             <Directory Id="TRANSLATIONS" Name="translations">
+                                <Component Id="ANTIMICRO.QM" Guid="1838C3B1-11E8-4C8B-BDA7-78CD8F124FC0">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro.qm" />
+                                </Component>
                                 <Component Id="ANTIMICRO_BR.QM" Guid="B78BAC38-6EF6-4BFE-A904-85000FD73A9E">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_br.qm" />
                                 </Component>
@@ -120,6 +123,7 @@
             <ComponentRef Id="README.MD" />
             <ComponentRef Id="GPL.TXT" />
             <ComponentRef Id="CHANGELOG" />
+            <ComponentRef Id="ANTIMICRO.QM" />
             <ComponentRef Id="ANTIMICRO_BR.QM" />
             <ComponentRef Id="ANTIMICRO_DE.QM" />
             <ComponentRef Id="ANTIMICRO_EN.QM" />
