@@ -1085,82 +1085,83 @@ of the all default profile option.</source>
         <translation>Відсутній</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="176"/>
+        <location filename="../../../src/axiseditdialog.ui" line="182"/>
+        <location filename="../../../src/axiseditdialog.ui" line="295"/>
         <source>Set the value to use as the limit for an axis. Useful for a
-defective analog stick.</source>
-        <translation>Встановити значення для обмеження границь вісі. 
-Зазвичай використовується для пошкоджених аналогових стіків.</translation>
+worn out analog stick.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="196"/>
+        <location filename="../../../src/axiseditdialog.ui" line="202"/>
         <source>Dead Zone:</source>
         <translation>Сліпа зона:</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="258"/>
+        <location filename="../../../src/axiseditdialog.ui" line="209"/>
+        <location filename="../../../src/axiseditdialog.ui" line="273"/>
         <source>Set the value of the dead zone for an axis.</source>
         <translation>Встановіть значення сліпої зони для вісі.</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="308"/>
+        <location filename="../../../src/axiseditdialog.ui" line="327"/>
         <source>Max Zone:</source>
         <translation>Максимальна зона:</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="319"/>
-        <location filename="../../../src/axiseditdialog.ui" line="368"/>
+        <location filename="../../../src/axiseditdialog.ui" line="338"/>
+        <location filename="../../../src/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
         <translation>[НЕМАЄ КНОПКИ]</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="326"/>
+        <location filename="../../../src/axiseditdialog.ui" line="345"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
         <translation>Параметри тяги визначають, як програма має реагувати 
 на утримання та натискання вісі.</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="340"/>
+        <location filename="../../../src/axiseditdialog.ui" line="359"/>
         <source>Negative Half Throttle</source>
         <translation>Зворотня напівтяга</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="345"/>
+        <location filename="../../../src/axiseditdialog.ui" line="364"/>
         <source>Negative Throttle</source>
         <translation>Зворотня тяга</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="350"/>
+        <location filename="../../../src/axiseditdialog.ui" line="369"/>
         <source>Normal</source>
         <translation>Звичайний</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="355"/>
+        <location filename="../../../src/axiseditdialog.ui" line="374"/>
         <source>Positive Throttle</source>
         <translation>Пряма тяга</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="360"/>
+        <location filename="../../../src/axiseditdialog.ui" line="379"/>
         <source>Positive Half Throttle</source>
         <translation>Пряма напівтяга</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="410"/>
+        <location filename="../../../src/axiseditdialog.ui" line="429"/>
         <source>Current Value:</source>
         <translation>Поточне значення:</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="456"/>
+        <location filename="../../../src/axiseditdialog.ui" line="475"/>
         <source>Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="466"/>
+        <location filename="../../../src/axiseditdialog.ui" line="485"/>
         <source>Specify the name of an axis.</source>
         <translation>Назначте ім&apos;я для вісі.</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="475"/>
+        <location filename="../../../src/axiseditdialog.ui" line="494"/>
         <source>Mouse Settings</source>
         <translation>Параметри мишки</translation>
     </message>
@@ -1617,53 +1618,69 @@ this button is being used.</source>
         <translation>Режим DPad:</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="107"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="106"/>
+        <source>Standard: 8 region stick with two direction buttons active
+when the stick is in a diagonal region.
+
+Eight Way: 8 region stick with each direction having its
+own dedicated button. Only one button is ever active at
+at time. Useful for rougelike games.
+
+4 Way Cardinal: 4 region stick with regions corresponding to
+the cardinal directions of the stick. Useful for menus.
+
+4 Way Diagonal: 4 region stick with each region corresponding
+to a diagonal zone of the stick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="121"/>
         <source>Standard</source>
         <translation>Стандарт</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="112"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
         <translation>Вісім сторін</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="117"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="131"/>
         <source>4 Way Cardinal</source>
         <translation>4 основні сторони</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="122"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="136"/>
         <source>4 Way Diagonal</source>
         <translation>4 діагональні сторони</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="152"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
         <translation>Затримка DPad&apos;а:</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="159"/>
-        <location filename="../../../src/dpadeditdialog.ui" line="193"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="173"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="207"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
         <translation>Час затримки, через який зміна напрямку набуде чинності.</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="199"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="213"/>
         <source> s</source>
         <translation> с</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="241"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="255"/>
         <source>Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="251"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
         <translation>Назначте ім&apos;я для DPad.</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="260"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="274"/>
         <source>Mouse Settings</source>
         <translation>Параметри мишки</translation>
     </message>
@@ -2005,9 +2022,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="896"/>
-        <location filename="../../../src/joyaxis.cpp" line="905"/>
-        <location filename="../../../src/joyaxis.cpp" line="911"/>
+        <location filename="../../../src/joyaxis.cpp" line="909"/>
+        <location filename="../../../src/joyaxis.cpp" line="918"/>
+        <location filename="../../../src/joyaxis.cpp" line="924"/>
         <source>Axis</source>
         <translation>Вісь</translation>
     </message>
@@ -2115,31 +2132,31 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1819"/>
-        <location filename="../../../src/joybutton.cpp" line="1827"/>
-        <location filename="../../../src/joybutton.cpp" line="1833"/>
+        <location filename="../../../src/joybutton.cpp" line="1933"/>
+        <location filename="../../../src/joybutton.cpp" line="1941"/>
+        <location filename="../../../src/joybutton.cpp" line="1947"/>
         <source>Button</source>
         <translation>Кнопка</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1872"/>
-        <location filename="../../../src/joybutton.cpp" line="2014"/>
-        <location filename="../../../src/joybutton.cpp" line="2044"/>
+        <location filename="../../../src/joybutton.cpp" line="1986"/>
+        <location filename="../../../src/joybutton.cpp" line="2142"/>
+        <location filename="../../../src/joybutton.cpp" line="2172"/>
         <source>[NO KEY]</source>
         <translation>[НЕМАЄ КНОПКИ]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1908"/>
+        <location filename="../../../src/joybutton.cpp" line="2022"/>
         <source>[Set %1 1W]</source>
         <translation>[Набір %1 1W]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1916"/>
+        <location filename="../../../src/joybutton.cpp" line="2030"/>
         <source>[Set %1 2W]</source>
         <translation>[Набір %1 2W]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1925"/>
+        <location filename="../../../src/joybutton.cpp" line="2039"/>
         <source>[Set %1 WH]</source>
         <translation>[Набір %1 WH]</translation>
     </message>
@@ -2304,9 +2321,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="../../../src/joycontrolstick.cpp" line="623"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="632"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="639"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="645"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="654"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="661"/>
         <source>Stick</source>
         <translation>Стік</translation>
     </message>
@@ -2509,79 +2526,110 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <translation>Режим стіка:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="363"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="362"/>
+        <source>Standard: 8 region stick with two direction buttons active
+when the stick is in a diagonal region.
+
+Eight Way: 8 region stick with each direction having its
+own dedicated button. Only one button is ever active at
+at time. Useful for rougelike games.
+
+4 Way Cardinal: 4 region stick with regions corresponding to
+the cardinal directions of the stick. Useful for menus.
+
+4 Way Diagonal: 4 region stick with each region corresponding
+to a diagonal zone of the stick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="377"/>
         <source>Standard</source>
         <translation>Стандарт</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="368"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="382"/>
         <source>Eight Way</source>
         <translation>Вісім сторін</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="373"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="387"/>
         <source>4 Way Cardinal</source>
         <translation>4 основні сторони</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="378"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="392"/>
         <source>4 Way Diagonal</source>
         <translation>4 діагональні сторони</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="413"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="427"/>
         <source>Dead Zone:</source>
         <translation>Сліпа зона:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="459"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="434"/>
+        <source>Dead zone value to use for an analog stick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="476"/>
         <source>Max Zone:</source>
         <translation>Максимальна зона:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="505"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="483"/>
+        <source>Value when an analog stick is considered moved 100%.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="525"/>
         <source>Diagonal Range:</source>
         <translation>Діагональний діапазон:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="542"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="532"/>
+        <source>The area (in degrees) that each diagonal region occupies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="565"/>
         <source>Square Stick:</source>
         <translation>Квадратність стіку:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="549"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="577"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="572"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="600"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="580"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="603"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="603"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="626"/>
         <source>Stick Delay:</source>
         <translation>Затримка стіка:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="610"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="644"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="633"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="667"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
         <translation>Час затримки, через який зміна напрямку набуде чинності.</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="650"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="673"/>
         <source> s</source>
         <translation> с</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="673"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="696"/>
         <source>Modifier:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="680"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="703"/>
         <source>Edit button that is active while the stick is active.
 
 This button is useful for assigning zones with
@@ -2590,22 +2638,22 @@ functionality to an analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="687"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="710"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="722"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="745"/>
         <source>Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="732"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="755"/>
         <source>Specify the name of an analog stick.</source>
         <translation>Назначте ім&apos;я для аналогового стіка.</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="741"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="764"/>
         <source>Mouse Settings</source>
         <translation>Параметри мишки</translation>
     </message>
@@ -3116,6 +3164,11 @@ clicked instead of quitting the program.</source>
         <translation>Закривати до лотку</translation>
     </message>
     <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="186"/>
+        <source>Have Windows start antimicro at system startup.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="189"/>
         <source>Launch At Windows Startup</source>
         <translation>Запускати разом із Windows</translation>
@@ -3192,6 +3245,11 @@ first launches.</source>
         <translation>Запускати в лотку</translation>
     </message>
     <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="259"/>
+        <source>Associate .amgp files with antimicro in Windows Explorer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="262"/>
         <source>Associate Profiles</source>
         <translation>Прив&apos;язати профілі</translation>
@@ -3210,27 +3268,39 @@ option is enabled.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="298"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="784"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="792"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="659"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="317"/>
+        <source>Specifies how much time should elapse before key repeating
+begins.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="382"/>
+        <source>Specifies how many times key presses will be performed
+per seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="667"/>
         <source>Class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="664"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="672"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="669"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="677"/>
         <source>Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="759"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="767"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
@@ -3238,32 +3308,32 @@ precise.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="765"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="773"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="775"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="783"/>
         <source>Smoothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="793"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="801"/>
         <source>History Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="819"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="827"/>
         <source>Weight Modifier:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="852"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="860"/>
         <source>Refresh Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="859"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="867"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
@@ -3278,122 +3348,112 @@ it unattended.</source>
         <translation>Затримка:</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="186"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Have Windows start antimicro at system startup.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="259"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associate .amgp files with antimicro in Windows Explorer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="345"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="349"/>
         <source> ms</source>
         <translation> мс</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="368"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="372"/>
         <source>Rate:</source>
         <translation>Частота:</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="400"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="408"/>
         <source> times/s</source>
         <translation> разів/с</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="444"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="452"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="469"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="477"/>
         <source>GUID</source>
         <translation>GUID</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="474"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="482"/>
         <source>Mapping String</source>
         <translation>Рядок відображення</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="479"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="487"/>
         <source>Disable?</source>
         <translation>Вимкнути?</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="489"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="738"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="497"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="746"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="501"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="509"/>
         <source>Insert</source>
         <translation>Вставити</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="520"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="528"/>
         <source>Default</source>
         <translation>Типова</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="525"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="533"/>
         <source>Brazilian Portuguese</source>
         <translation>Brazilian Portuguese</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="530"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="538"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="535"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="543"/>
         <source>German</source>
         <translation>German</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="552"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="644"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="560"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="652"/>
         <source>Active</source>
         <translation>Активний</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="577"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="585"/>
         <source>Devices:</source>
         <translation>Пристрої:</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="585"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="593"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="996"/>
         <source>All</source>
         <translation>Всі</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="649"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="657"/>
         <source>Device</source>
         <translation>Пристрій</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="654"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="662"/>
         <source>Profile</source>
         <translation>Профіль</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="674"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="682"/>
         <source>Default?</source>
         <translation>Типовий?</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="708"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="716"/>
         <source>Add</source>
         <translation>Додати</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="723"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="731"/>
         <source>Edit</source>
         <translation>Змінити</translation>
     </message>
@@ -3594,12 +3654,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseAxisSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="231"/>
+        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="246"/>
         <source>Mouse Settings - </source>
         <translation>Параметри мишки - </translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="245"/>
+        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="260"/>
         <source>Set %1</source>
         <translation>Набір %1</translation>
     </message>
@@ -3607,12 +3667,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseButtonSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="198"/>
+        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="224"/>
         <source>Mouse Settings - </source>
         <translation>Параметри мишки - </translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="204"/>
+        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="230"/>
         <source>Set %1</source>
         <translation>Набір %1</translation>
     </message>
@@ -3620,12 +3680,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseControlStickSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="254"/>
+        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="268"/>
         <source>Mouse Settings</source>
         <translation>Параметри мишки</translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="268"/>
+        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="282"/>
         <source>Set %1</source>
         <translation>Набір %1</translation>
     </message>
@@ -3633,12 +3693,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseDPadSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="267"/>
+        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="272"/>
         <source>Mouse Settings</source>
         <translation>Параметри мишки</translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="281"/>
+        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="286"/>
         <source>Set %1</source>
         <translation>Набір %1</translation>
     </message>
@@ -3685,190 +3745,290 @@ axis is moved back to the dead zone.</source>
         <translation>Прискорення:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="88"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="82"/>
+        <source>Enhanced: Three tier curve that makes the mouse move
+slow on the low end of an axis and fast on the high end.
+
+Linear: Mouse moves proportionally to axis.
+
+Quadratic: Mouse accelerates slowly on low end.
+
+Cubic: Mouse accelerates slower than Quadratic.
+
+Power Function: Allows for a more custom curve option.
+
+Easing Quadratic: Axis high end is gradually accelerated over a period of time using a Quadratic curve.
+
+Easing Cubic: Axis high end is gradually accelerated over
+a period of time using a Cubic curve.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="105"/>
         <source>Enhanced Precision</source>
         <translation>Покращена точність</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="93"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="110"/>
         <source>Linear</source>
         <translation>Лінійне</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="98"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="115"/>
         <source>Quadratic</source>
         <translation>Квадратичне</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="103"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="120"/>
         <source>Cubic</source>
         <translation>Кубічне</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="108"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="125"/>
         <source>Quadratic Extreme</source>
         <translation>Екстремально квадратичне</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="113"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="130"/>
         <source>Power Function</source>
         <translation>По степеневій функції</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="118"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="135"/>
         <source>Easing Quadratic</source>
         <translation>Просте квадратичне</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="123"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="140"/>
         <source>Easing Cubic</source>
         <translation>Просте кубічне</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="153"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="172"/>
         <source>Mouse Speed Settings</source>
         <translation>Параметри швидкості мишки</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="162"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="187"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
         <translation>Змінювати значення гоизонтальної
 та вертикальної швидкості разом.</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="166"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="191"/>
         <source>Change Together</source>
         <translation>Змінювати разом</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="191"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="216"/>
         <source>Horizontal
 Speed:</source>
         <translation>Горизонтальна
 швидкість:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="220"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="268"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="245"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="293"/>
         <source>1 = 20 pps</source>
         <translation>1 = 20 pps</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="239"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="264"/>
         <source>Vertical
 Speed:</source>
         <translation>Вертикальна
 швидкість:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="294"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="319"/>
         <source>Wheel Hori.
 Speed:</source>
         <translation>Коліщатко
 горизонт.:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="305"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="330"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
         <translation>Встановіть швидкість для горизонтальної прокрутки коліщатка
 миші відносно від числа симуляції кроків за секунду.</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="330"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="370"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="355"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="398"/>
         <source>1 = 1 notch(es)/s</source>
         <translation>1 = 1 крок(ів)/с</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="346"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="371"/>
         <source>Wheel Vert.
 Speed:</source>
         <translation>Коліщатко
 вертикаль.:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="354"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="382"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
         <translation>Встановіть швидкість для вертикальної прокрутки коліщатка
 миші відносно від числа симуляції кроків за секунду.</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="383"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="411"/>
         <source>Sensitivity:</source>
         <translation>Чутливість:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="419"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="424"/>
+        <source>For Power Function acceleration curve. Specifies
+the factor to use for curve sensitivity. When the value
+is above 1.0, the mouse movement will be accelerated
+faster at the low end of an axis.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="453"/>
         <source>Easing Duration:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="477"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="466"/>
+        <source>Specifies the amount of time (in seconds) that will
+be required before the mouse in fully accelerated
+after reaching the high end of an axis.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="511"/>
+        <source>Options for adding extra acceleration to the mouse
+movement beyond what the acceleration curve would
+produce.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="516"/>
+        <source>Extra Acceleration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="535"/>
+        <source>Multiplier:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="545"/>
+        <source>Highest value to accelerate mouse movement by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="548"/>
+        <source>x</source>
+        <translation type="unfinished">x</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="568"/>
+        <source>Start %:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="578"/>
+        <source>Acceleration begins at this percentage of the base multiplier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="581"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="622"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="653"/>
+        <source> %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="608"/>
+        <source>Min
+Threshold:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="619"/>
+        <source>Minimum amount of axis travel required for acceleration to begin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="639"/>
+        <source>Max
+Threshold:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="650"/>
+        <source>Maximum axis travel before acceleration has reached the multiplier value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="680"/>
         <source>Spring Settings</source>
         <translation>Параметри пружини</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="490"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="693"/>
         <source>Spring Width:</source>
         <translation>Ширина пружини:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="503"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="706"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="519"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="722"/>
         <source>Spring Height:</source>
         <translation>Висота пружини:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="532"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="735"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="551"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="754"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="555"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="758"/>
         <source>Relative</source>
         <translation>Відносний</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="578"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="781"/>
         <source>Mouse Status</source>
         <translation>Стан мишки</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="586"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="789"/>
         <source>X:</source>
         <translation>X:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="593"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="611"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="796"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="814"/>
         <source>0 (0 pps)</source>
         <translation>0 (0 pps)</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="604"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="807"/>
         <source>Y:</source>
         <translation>Y:</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../src/mousesettingsdialog.cpp" line="164"/>
-        <location filename="../../../src/mousesettingsdialog.cpp" line="172"/>
+        <location filename="../../../src/mousesettingsdialog.cpp" line="183"/>
+        <location filename="../../../src/mousesettingsdialog.cpp" line="191"/>
         <source>%n notch(es)/s</source>
         <translation>
             <numerusform>%n крок/с</numerusform>
