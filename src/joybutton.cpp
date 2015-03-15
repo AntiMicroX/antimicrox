@@ -4775,7 +4775,7 @@ void JoyButton::setExtraAccelerationStatus(bool status)
 
 void JoyButton::setExtraAccelerationMultiplier(double value)
 {
-    if (value >= 1.0 && value <= 100.0)
+    if (value >= 1.0 && value <= 200.0)
     {
         extraAccelerationMultiplier = value;
         emit propertyUpdated();
