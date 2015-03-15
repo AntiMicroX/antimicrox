@@ -21,3 +21,4 @@ Build/
 CMakeLists.txt.user*
 other/antimicro.1.gz
 doc/
+src/Changelog
