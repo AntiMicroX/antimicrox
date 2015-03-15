@@ -1,0 +1,4 @@
+Generate GUIDs for use in .wxs files
+
+http://www.guidgen.com/
+
