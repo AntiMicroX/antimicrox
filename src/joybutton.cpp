@@ -4029,7 +4029,13 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             }
         }
 
-        sendevent(adjustedX, adjustedY);
+        // This check is more of a precaution than anything. No need to cause
+        // a sync to happen when not needed.
+        if (adjustedX != 0 || adjustedY != 0)
+        {
+            sendevent(adjustedX, adjustedY);
+        }
+
         //qDebug() << "FINAL X: " << finalx;
         //qDebug() << "FINAL Y: " << finaly;
         //qDebug() << "ELAPSED: " << elapsedTime;
