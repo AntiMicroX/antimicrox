@@ -14,7 +14,7 @@
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="133"/>
+        <location filename="../../../src/aboutdialog.ui" line="136"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -39,12 +39,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="164"/>
+        <location filename="../../../src/aboutdialog.ui" line="167"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="204"/>
+        <location filename="../../../src/aboutdialog.ui" line="322"/>
+        <source>Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="360"/>
         <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
 
 The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
@@ -55,7 +60,7 @@ Once the Steam controller is finally released to the public, the need for this p
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="235"/>
+        <location filename="../../../src/aboutdialog.ui" line="192"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -173,12 +178,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="368"/>
+        <location filename="../../../src/aboutdialog.ui" line="379"/>
         <source>Copyright: 2013 - 2015</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="118"/>
+        <location filename="../../../src/aboutdialog.ui" line="121"/>
         <source>Credits</source>
         <translation>Mitwirkende</translation>
     </message>
@@ -188,42 +193,42 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="174"/>
+        <location filename="../../../src/aboutdialog.ui" line="336"/>
         <source>About Development</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="220"/>
+        <location filename="../../../src/aboutdialog.ui" line="177"/>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.cpp" line="36"/>
+        <location filename="../../../src/aboutdialog.cpp" line="38"/>
         <source>Program Version %1</source>
         <translation>Programmversion %1</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.cpp" line="37"/>
+        <location filename="../../../src/aboutdialog.cpp" line="39"/>
         <source>Program Compiled on %1 at %2</source>
         <translation>Programm kompiliert am %1 um %2</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.cpp" line="52"/>
+        <location filename="../../../src/aboutdialog.cpp" line="54"/>
         <source>Built Against SDL %1</source>
         <translation>Nutzt SDL %1</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.cpp" line="55"/>
+        <location filename="../../../src/aboutdialog.cpp" line="57"/>
         <source>Running With SDL %1</source>
         <translation>Läuft mit SDL %1</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.cpp" line="57"/>
+        <location filename="../../../src/aboutdialog.cpp" line="59"/>
         <source>Using Qt %1</source>
         <translation>Benutzt Qt %1</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.cpp" line="69"/>
+        <location filename="../../../src/aboutdialog.cpp" line="71"/>
         <source>Using Event Handler: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2552,58 +2557,61 @@ to a diagonal zone of the stick.</source>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="434"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="459"/>
         <source>Dead zone value to use for an analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="483"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="486"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="511"/>
         <source>Value when an analog stick is considered moved 100%.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="532"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="538"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="554"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="565"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="574"/>
         <source>Square Stick:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="572"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="600"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="581"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="609"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="603"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="612"/>
         <source>%</source>
         <translation type="unfinished">%</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="626"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="635"/>
         <source>Stick Delay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="633"/>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="667"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="642"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="676"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="673"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="682"/>
         <source> s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="696"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="705"/>
         <source>Modifier:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="703"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="712"/>
         <source>Edit button that is active while the stick is active.
 
 This button is useful for assigning zones with
@@ -2612,22 +2620,22 @@ functionality to an analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="710"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="719"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="745"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="754"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="755"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="764"/>
         <source>Specify the name of an analog stick.</source>
         <translation>Vergebe den Namen eines Analogsticks.</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="764"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="773"/>
         <source>Mouse Settings</source>
         <translation>Mauseinstellungen</translation>
     </message>
@@ -2657,12 +2665,12 @@ functionality to an analog stick.</source>
         <translation>Dead Zone:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="476"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="479"/>
         <source>Max Zone:</source>
         <translation>Max Zone:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="525"/>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="531"/>
         <source>Diagonal Range:</source>
         <translation>diagonale Reichweite:</translation>
     </message>
@@ -3753,6 +3761,224 @@ Zone zurück kehrt.</translation>
         <translation>Beschleunigung:</translation>
     </message>
     <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="108"/>
+        <source>Enhanced Precision</source>
+        <translation>Verbesserte Präzision</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="113"/>
+        <source>Linear</source>
+        <translation>linear</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="118"/>
+        <source>Quadratic</source>
+        <translation>quadratisch</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="123"/>
+        <source>Cubic</source>
+        <translation>kubisch</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="128"/>
+        <source>Quadratic Extreme</source>
+        <translation>extrem quadratisch</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="133"/>
+        <source>Power Function</source>
+        <translation>Power Funktion</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="138"/>
+        <source>Easing Quadratic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="143"/>
+        <source>Easing Cubic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="175"/>
+        <source>Mouse Speed Settings</source>
+        <translation>Einstellungen der Mausgeschwindigkeit</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="190"/>
+        <source>Enable to change the horizontal and vertical speed
+boxes at the same time.</source>
+        <translation>Aktivieren, um die horizontale und vertikale 
+Geschwindigkeitseinstellungen zur gleichen Zeit 
+zu ändern.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="194"/>
+        <source>Change Together</source>
+        <translation>Zusammen ändern</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="219"/>
+        <source>Horizontal
+Speed:</source>
+        <translation>Geschw.
+horizontal:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="248"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="296"/>
+        <source>1 = 20 pps</source>
+        <translation>1 = 20 pps</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="267"/>
+        <source>Vertical
+Speed:</source>
+        <translation>Geschw.
+vertikal:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="322"/>
+        <source>Wheel Hori.
+Speed:</source>
+        <translation>Rad-Gesch.
+horizontal:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="333"/>
+        <source>Set the speed used for horizontal mouse wheel movement
+according to number of simulated notches per second.</source>
+        <translation>Stellen Sie die Geschwindigkeit für die horizontale Mausrad-Bewegung
+entsprechend der Anzahl der simulierten Raster pro Sekunde ein.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="385"/>
+        <source>Set the speed used for vertical mouse wheel movement
+according to number of simulated notches per second.</source>
+        <translation>Stellen Sie die Geschwindigkeit für die vertikale Mausrad-Bewegung
+entsprechend der Anzahl der simulierten Raster pro Sekunde ein.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="427"/>
+        <source>For Power Function acceleration curve. Specifies
+the factor to use for curve sensitivity. When the value
+is above 1.0, the mouse movement will be accelerated
+faster at the low end of an axis.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="456"/>
+        <source>Easing Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="514"/>
+        <source>Options for adding extra acceleration to the mouse
+movement beyond what the acceleration curve would
+produce.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="519"/>
+        <source>Extra Acceleration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="538"/>
+        <source>Multiplier:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="548"/>
+        <source>Highest value to accelerate mouse movement by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="551"/>
+        <source>x</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="571"/>
+        <source>Start %:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="581"/>
+        <source>Acceleration begins at this percentage of the base multiplier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="584"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="625"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="656"/>
+        <source> %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="611"/>
+        <source>Min
+Threshold:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="622"/>
+        <source>Minimum amount of axis travel required for acceleration to begin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="642"/>
+        <source>Max
+Threshold:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="653"/>
+        <source>Maximum axis travel before acceleration has reached the multiplier value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="757"/>
+        <source>Specifies that the spring area will be relative to the
+mouse position set by a non-relative spring.</source>
+        <translation>Wenn aktiviert, 
+		Besagt, dass das Ursprungs-arreal
+		durch ein nicht-relativen Ursprung relativ zur Mausposition sein wird.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="761"/>
+        <source>Relative</source>
+        <translation>Relativ</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="784"/>
+        <source>Mouse Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="792"/>
+        <source>X:</source>
+        <translation type="unfinished">X:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="799"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="817"/>
+        <source>0 (0 pps)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="810"/>
+        <source>Y:</source>
+        <translation type="unfinished">Y:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="358"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="401"/>
+        <source>1 = 1 notch(es)/s</source>
+        <translation>1 = 1 Raste</translation>
+    </message>
+    <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="82"/>
         <source>Enhanced: Three tier curve that makes the mouse move
 slow on the low end of an axis and fast on the high end.
@@ -3763,6 +3989,9 @@ Quadratic: Mouse accelerates slowly on low end.
 
 Cubic: Mouse accelerates slower than Quadratic.
 
+Quadratic Extreme: Raises mouse speed 1.5 times once
+95% axis travel has been reached.
+
 Power Function: Allows for a more custom curve option.
 
 Easing Quadratic: Axis high end is gradually accelerated over a period of time using a Quadratic curve.
@@ -3772,254 +4001,36 @@ a period of time using a Cubic curve.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="105"/>
-        <source>Enhanced Precision</source>
-        <translation>Verbesserte Präzision</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="110"/>
-        <source>Linear</source>
-        <translation>linear</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="115"/>
-        <source>Quadratic</source>
-        <translation>quadratisch</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="120"/>
-        <source>Cubic</source>
-        <translation>kubisch</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="125"/>
-        <source>Quadratic Extreme</source>
-        <translation>extrem quadratisch</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="130"/>
-        <source>Power Function</source>
-        <translation>Power Funktion</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="135"/>
-        <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="140"/>
-        <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="172"/>
-        <source>Mouse Speed Settings</source>
-        <translation>Einstellungen der Mausgeschwindigkeit</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="187"/>
-        <source>Enable to change the horizontal and vertical speed
-boxes at the same time.</source>
-        <translation>Aktivieren, um die horizontale und vertikale 
-Geschwindigkeitseinstellungen zur gleichen Zeit 
-zu ändern.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="191"/>
-        <source>Change Together</source>
-        <translation>Zusammen ändern</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="216"/>
-        <source>Horizontal
-Speed:</source>
-        <translation>Geschw.
-horizontal:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="245"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="293"/>
-        <source>1 = 20 pps</source>
-        <translation>1 = 20 pps</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="264"/>
-        <source>Vertical
-Speed:</source>
-        <translation>Geschw.
-vertikal:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="319"/>
-        <source>Wheel Hori.
-Speed:</source>
-        <translation>Rad-Gesch.
-horizontal:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="330"/>
-        <source>Set the speed used for horizontal mouse wheel movement
-according to number of simulated notches per second.</source>
-        <translation>Stellen Sie die Geschwindigkeit für die horizontale Mausrad-Bewegung
-entsprechend der Anzahl der simulierten Raster pro Sekunde ein.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="382"/>
-        <source>Set the speed used for vertical mouse wheel movement
-according to number of simulated notches per second.</source>
-        <translation>Stellen Sie die Geschwindigkeit für die vertikale Mausrad-Bewegung
-entsprechend der Anzahl der simulierten Raster pro Sekunde ein.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="424"/>
-        <source>For Power Function acceleration curve. Specifies
-the factor to use for curve sensitivity. When the value
-is above 1.0, the mouse movement will be accelerated
-faster at the low end of an axis.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="453"/>
-        <source>Easing Duration:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="466"/>
-        <source>Specifies the amount of time (in seconds) that will
-be required before the mouse in fully accelerated
-after reaching the high end of an axis.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="511"/>
-        <source>Options for adding extra acceleration to the mouse
-movement beyond what the acceleration curve would
-produce.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="516"/>
-        <source>Extra Acceleration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="535"/>
-        <source>Multiplier:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="545"/>
-        <source>Highest value to accelerate mouse movement by</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="548"/>
-        <source>x</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="568"/>
-        <source>Start %:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="578"/>
-        <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="581"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="622"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="653"/>
-        <source> %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="608"/>
-        <source>Min
-Threshold:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="619"/>
-        <source>Minimum amount of axis travel required for acceleration to begin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="639"/>
-        <source>Max
-Threshold:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="650"/>
-        <source>Maximum axis travel before acceleration has reached the multiplier value</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="754"/>
-        <source>Specifies that the spring area will be relative to the
-mouse position set by a non-relative spring.</source>
-        <translation>Wenn aktiviert, 
-		Besagt, dass das Ursprungs-arreal
-		durch ein nicht-relativen Ursprung relativ zur Mausposition sein wird.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="758"/>
-        <source>Relative</source>
-        <translation>Relativ</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="781"/>
-        <source>Mouse Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="789"/>
-        <source>X:</source>
-        <translation type="unfinished">X:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="796"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="814"/>
-        <source>0 (0 pps)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="807"/>
-        <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="355"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="398"/>
-        <source>1 = 1 notch(es)/s</source>
-        <translation>1 = 1 Raste</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="371"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="374"/>
         <source>Wheel Vert.
 Speed:</source>
         <translation>Rad-Gesch
 vertikal:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="411"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="414"/>
         <source>Sensitivity:</source>
         <translation>Empfindlichkeit:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="680"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="469"/>
+        <source>Specifies the amount of time (in seconds) that will
+be required before the mouse is fully accelerated
+after reaching the high end of an axis.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="683"/>
         <source>Spring Settings</source>
         <translation>Sprungeinstellungen</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="693"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="696"/>
         <source>Spring Width:</source>
         <translation>Sprungweite:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="706"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="709"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
@@ -4028,12 +4039,12 @@ im Sprungmodus zurück legt. 0 wird die gesamte Breite
 auf Ihrem Bildschirm nutzen.</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="722"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="725"/>
         <source>Spring Height:</source>
         <translation>Sprunghöhe:</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="735"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="738"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>

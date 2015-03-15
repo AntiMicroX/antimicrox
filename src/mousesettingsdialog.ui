@@ -88,6 +88,9 @@ Quadratic: Mouse accelerates slowly on low end.
 
 Cubic: Mouse accelerates slower than Quadratic.
 
+Quadratic Extreme: Raises mouse speed 1.5 times once
+95% axis travel has been reached.
+
 Power Function: Allows for a more custom curve option.
 
 Easing Quadratic: Axis high end is gradually accelerated over a period of time using a Quadratic curve.
@@ -464,7 +467,7 @@ faster at the low end of an axis.</string>
               </property>
               <property name="toolTip">
                <string>Specifies the amount of time (in seconds) that will
-be required before the mouse in fully accelerated
+be required before the mouse is fully accelerated
 after reaching the high end of an axis.</string>
               </property>
               <property name="decimals">

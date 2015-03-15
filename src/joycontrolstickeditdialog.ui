@@ -455,6 +455,9 @@ to a diagonal zone of the stick.</string>
            </item>
            <item>
             <widget class="QSpinBox" name="deadZoneSpinBox">
+             <property name="toolTip">
+              <string>Dead zone value to use for an analog stick.</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -504,6 +507,9 @@ to a diagonal zone of the stick.</string>
            </item>
            <item>
             <widget class="QSpinBox" name="maxZoneSpinBox">
+             <property name="toolTip">
+              <string>Value when an analog stick is considered moved 100%.</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -544,6 +550,9 @@ to a diagonal zone of the stick.</string>
            </item>
            <item>
             <widget class="QSpinBox" name="diagonalRangeSpinBox">
+             <property name="toolTip">
+              <string>The area (in degrees) that each diagonal region occupies.</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
