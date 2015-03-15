@@ -113,6 +113,9 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
      <widget class="QWidget" name="credits">
       <attribute name="title">
        <string>Credits</string>
@@ -166,52 +169,6 @@ p, li { white-space: pre-wrap; }
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QTextBrowser" name="infoTextBrowser"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="aboutDev">
-      <attribute name="title">
-       <string>About Development</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
-         <property name="spacing">
-          <number>30</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="resources.qrc">:/images/profile.jpg</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPlainTextEdit" name="plainTextEdit">
-           <property name="plainText">
-            <string>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
-
-The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn't really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn't provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
-
-Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
-
-Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -360,6 +317,60 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="changelog">
+      <attribute name="title">
+       <string>Changelog</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QPlainTextEdit" name="changelogPlainTextEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="aboutDev">
+      <attribute name="title">
+       <string>About Development</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+         <property name="spacing">
+          <number>30</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="resources.qrc">:/images/profile.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPlainTextEdit" name="plainTextEdit">
+           <property name="plainText">
+            <string>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+
+The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn't really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn't provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
+
+Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
+
+Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -400,6 +411,9 @@ p, li { white-space: pre-wrap; }
     </layout>
    </item>
   </layout>
+  <zorder>versionLabel</zorder>
+  <zorder>copyrightLabel</zorder>
+  <zorder>tabWidget</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

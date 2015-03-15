@@ -645,6 +645,9 @@ configure_file(
     "${PROJECT_BINARY_DIR}/config.h"
 )
 
+# Copy current Changelog file to location that the resource file expects.
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+
 if(WIN32)
     if(TARGET_ARCH STREQUAL "x86")
         # Copy SDL2.dll to find installation directory.

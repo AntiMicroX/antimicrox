@@ -1,4 +1,6 @@
 #include <QtGlobal>
+#include <QResource>
+#include <QTextStream>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_version.h>
@@ -72,4 +74,13 @@ void AboutDialog::fillInfoTextBrowser()
 #endif
 
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
+
+    // Read Changelog text from resource and put text in text box.
+    QResource changelogFile(":/Changelog");
+    QFile temp(changelogFile.absoluteFilePath());
+    temp.open(QIODevice::Text | QIODevice::ReadOnly);
+    QTextStream changelogStream(&temp);
+    QString changelogText = changelogStream.readAll();
+    temp.close();
+    ui->changelogPlainTextEdit->setPlainText(changelogText);
 }
