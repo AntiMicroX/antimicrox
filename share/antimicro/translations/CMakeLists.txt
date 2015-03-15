@@ -1,6 +1,7 @@
 # This will ensure that the *.qm files will be stored
 # in the right place within the build directory.
 file(GLOB antimicro_TRANSLATIONS antimicro_*.ts)
+list(APPEND antimicro_TRANSLATIONS antimicro.ts)
 file(GLOB_RECURSE antimicro_BASE_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE antimicro_BASE_FORMS ${PROJECT_SOURCE_DIR}/src/*.ui)
 

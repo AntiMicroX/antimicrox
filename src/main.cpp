@@ -380,14 +380,14 @@ int main(int argc, char *argv[])
 #endif
 
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator.load(QString("qt_").append(QLocale::system().name()), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     a->installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 #if defined(Q_OS_UNIX)
-    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+    myappTranslator.load(QString("antimicro_").append(QLocale::system().name()), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
 #elif defined(Q_OS_WIN)
-    myappTranslator.load("antimicro_" + QLocale::system().name(), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+    myappTranslator.load(QString("antimicro_").append(QLocale::system().name()), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
 #endif
     a->installTranslator(&myappTranslator);
 
