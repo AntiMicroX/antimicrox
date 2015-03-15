@@ -78,6 +78,23 @@ axis is moved back to the dead zone.</string>
        </item>
        <item>
         <widget class="QComboBox" name="accelerationComboBox">
+         <property name="toolTip">
+          <string>Enhanced: Three tier curve that makes the mouse move
+slow on the low end of an axis and fast on the high end.
+
+Linear: Mouse moves proportionally to axis.
+
+Quadratic: Mouse accelerates slowly on low end.
+
+Cubic: Mouse accelerates slower than Quadratic.
+
+Power Function: Allows for a more custom curve option.
+
+Easing Quadratic: Axis high end is gradually accelerated over a period of time using a Quadratic curve.
+
+Easing Cubic: Axis high end is gradually accelerated over
+a period of time using a Cubic curve.</string>
+         </property>
          <item>
           <property name="text">
            <string/>
@@ -403,6 +420,12 @@ according to number of simulated notches per second.</string>
               <property name="enabled">
                <bool>false</bool>
               </property>
+              <property name="toolTip">
+               <string>For Power Function acceleration curve. Specifies
+the factor to use for curve sensitivity. When the value
+is above 1.0, the mouse movement will be accelerated
+faster at the low end of an axis.</string>
+              </property>
               <property name="decimals">
                <number>3</number>
               </property>
@@ -438,6 +461,11 @@ according to number of simulated notches per second.</string>
              <widget class="QDoubleSpinBox" name="easingDoubleSpinBox">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>Specifies the amount of time (in seconds) that will
+be required before the mouse in fully accelerated
+after reaching the high end of an axis.</string>
               </property>
               <property name="decimals">
                <number>2</number>
@@ -479,6 +507,11 @@ according to number of simulated notches per second.</string>
        </item>
        <item>
         <widget class="QGroupBox" name="extraAccelerationGroupBox">
+         <property name="toolTip">
+          <string>Options for adding extra acceleration to the mouse
+movement beyond what the acceleration curve would
+produce.</string>
+         </property>
          <property name="title">
           <string>Extra Acceleration</string>
          </property>
@@ -508,6 +541,9 @@ according to number of simulated notches per second.</string>
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="extraAccelDoubleSpinBox">
+                <property name="toolTip">
+                 <string>Highest value to accelerate mouse movement by</string>
+                </property>
                 <property name="suffix">
                  <string>x</string>
                 </property>
@@ -538,6 +574,9 @@ according to number of simulated notches per second.</string>
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="minMultiDoubleSpinBox">
+                <property name="toolTip">
+                 <string>Acceleration begins at this percentage of the base multiplier</string>
+                </property>
                 <property name="suffix">
                  <string> %</string>
                 </property>
@@ -576,6 +615,9 @@ Threshold:</string>
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="minThresholdDoubleSpinBox">
+                <property name="toolTip">
+                 <string>Minimum amount of axis travel required for acceleration to begin</string>
+                </property>
                 <property name="suffix">
                  <string> %</string>
                 </property>
@@ -604,6 +646,9 @@ Threshold:</string>
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="maxThresholdDoubleSpinBox">
+                <property name="toolTip">
+                 <string>Maximum axis travel before acceleration has reached the multiplier value</string>
+                </property>
                 <property name="suffix">
                  <string> %</string>
                 </property>

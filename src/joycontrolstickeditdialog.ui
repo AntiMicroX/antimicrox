@@ -358,6 +358,20 @@
                <height>0</height>
               </size>
              </property>
+             <property name="toolTip">
+              <string>Standard: 8 region stick with two direction buttons active
+when the stick is in a diagonal region.
+
+Eight Way: 8 region stick with each direction having its
+own dedicated button. Only one button is ever active at
+at time. Useful for rougelike games.
+
+4 Way Cardinal: 4 region stick with regions corresponding to
+the cardinal directions of the stick. Useful for menus.
+
+4 Way Diagonal: 4 region stick with each region corresponding
+to a diagonal zone of the stick.</string>
+             </property>
              <item>
               <property name="text">
                <string>Standard</string>
@@ -416,6 +430,9 @@
            </item>
            <item>
             <widget class="QSlider" name="deadZoneSlider">
+             <property name="toolTip">
+              <string>Dead zone value to use for an analog stick.</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -462,6 +479,9 @@
            </item>
            <item>
             <widget class="QSlider" name="maxZoneSlider">
+             <property name="toolTip">
+              <string>Value when an analog stick is considered moved 100%.</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -508,6 +528,9 @@
            </item>
            <item>
             <widget class="QSlider" name="diagonalRangeSlider">
+             <property name="toolTip">
+              <string>The area (in degrees) that each diagonal region occupies.</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
