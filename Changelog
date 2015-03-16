@@ -1,3 +1,23 @@
+2015-03-15 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.12
+
+* Added option for extra mouse acceleration. Enabling that option will
+increase the speed of the mouse based on the amount an axis has travelled in one
+gamepad poll and the set multiplier. This will greatly affect how the mouse
+behaves and it will make mouse movement looser. Using this feature can be
+problematic if the analog stick on your controller is worn out and loose.
+
+* Corrected issue with extra mouse sync events occurring when not needed (0,0
+events). This change seems to have smoothed out mouse movement on the low end
+of an axis a bit.
+
+* Tweaked controller unplug workaround to still invoke release events for
+axes and buttons. For triggers, the release value is modified from what is
+provided by SDL so an unplug event will cause a release event to occur for the
+triggers.
+
+
 2015-02-25 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.11.1
@@ -430,7 +450,7 @@ list to also be used when multiple controllers are detected.
 On the plus side, now the program is confirmed to work in
 Windows XP.
 
-* Fixed issues with Auto Profile support saving and precendence.
+* Fixed issues with Auto Profile support saving and precedence.
 
 
 2014-04-19 Travis Nickles <nickles.travis@gmail.com>
