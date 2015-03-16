@@ -797,8 +797,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *slot = tempbutton->getValue();
 
-    if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard ||
-        slot->getSlotMode() == JoyButtonSlot::JoyMouseButton ||
+    if (slot->getSlotMode() == JoyButtonSlot::JoyKeyboard && slot->getSlotCode() != 0)
+    {
+        ui->slotTypeComboBox->setCurrentIndex(KBMouseSlot);
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseButton ||
         slot->getSlotMode() == JoyButtonSlot::JoyMouseMovement)
     {
         ui->slotTypeComboBox->setCurrentIndex(KBMouseSlot);
@@ -867,10 +870,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 
         connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
     }
-    else
+    /*else
     {
         ui->slotTypeComboBox->setCurrentIndex(KBMouseSlot);
     }
+    */
 }
 
 void AdvanceButtonDialog::checkSlotTimeUpdate()
