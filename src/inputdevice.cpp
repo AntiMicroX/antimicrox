@@ -631,6 +631,9 @@ void InputDevice::setActiveSetNumber(int index)
 
             dpad->joyEvent(value, tempignore);
         }
+
+        activatePossibleControlStickEvents();
+        activatePossibleVDPadEvents();
     }
 }
 
