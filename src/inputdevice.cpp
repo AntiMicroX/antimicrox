@@ -198,6 +198,9 @@ void InputDevice::reInitButtons()
         dpad->joyEvent(value);
     }
 
+    activatePossibleControlStickEvents();
+    activatePossibleVDPadEvents();
+
     buttonstates.clear();
     axesstates.clear();
     dpadstates.clear();
