@@ -26,6 +26,7 @@ public:
     JoyControlStick *getStick();
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
+    virtual QString getActiveZoneSummary();
 
     virtual double getLastMouseDistanceFromDeadZone();
 

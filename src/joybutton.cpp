@@ -1996,31 +1996,23 @@ QString JoyButton::getSlotsSummary()
  */
 QString JoyButton::getActiveZoneSummary()
 {
-    QString newlabel;
-    QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
-    QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
-    QListIterator<JoyButtonSlot*> *iter = 0;
-    bool slotsActive = !activeSlots.isEmpty();
-    if (slotsActive)
-    {
-        iter = &activeSlotsIter;
-    }
-    else
-    {
-        iter = &assignmentsIter;
-        if (previousCycle)
-        {
-            iter->findNext(previousCycle);
-        }
-    }
+    QList<JoyButtonSlot*> tempList = getActiveZoneList();
+    QString temp = buildActiveZoneSummary(tempList);
+    return temp;
+}
 
+QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
+{
+    QString newlabel;
+    QListIterator<JoyButtonSlot*> iter(tempList);
     QStringList stringlist;
     int i = 0;
+    bool slotsActive = !activeSlots.isEmpty();
 
     if (setSelectionCondition == SetChangeOneWay)
     {
         newlabel.append(tr("[Set %1 1W]").arg(setSelection+1));
-        if (iter->hasNext())
+        if (iter.hasNext())
         {
             newlabel.append(" ");
         }
@@ -2028,7 +2020,7 @@ QString JoyButton::getActiveZoneSummary()
     else if (setSelectionCondition == SetChangeTwoWay)
     {
         newlabel = newlabel.append(tr("[Set %1 2W]").arg(setSelection+1));
-        if (iter->hasNext())
+        if (iter.hasNext())
         {
            newlabel.append(" ");
         }
@@ -2038,12 +2030,12 @@ QString JoyButton::getActiveZoneSummary()
     {
         newlabel.append(tr("[Set %1 WH]").arg(setSelection+1));
     }
-    else if (iter->hasNext())
+    else if (iter.hasNext())
     {
         bool behindHold = false;
-        while (iter->hasNext())
+        while (iter.hasNext())
         {
-            JoyButtonSlot *slot = iter->next();
+            JoyButtonSlot *slot = iter.next();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
             switch (mode)
             {
@@ -2078,7 +2070,7 @@ QString JoyButton::getActiveZoneSummary()
                     else
                     {
                         // Move iter to back so loop will end.
-                        iter->toBack();
+                        iter.toBack();
                     }
 
                     break;
@@ -2107,6 +2099,102 @@ QString JoyButton::getActiveZoneSummary()
                     i++;
                     break;
                 }
+                /*case JoyButtonSlot::JoyRelease:
+                {
+                    if (!currentRelease)
+                    {
+                        findReleaseEventIterEnd(iter);
+                    }
+
+                    break;
+                }
+                */
+                /*case JoyButtonSlot::JoyDistance:
+                {
+                    iter->toBack();
+                    break;
+                }
+                */
+                default:
+                {
+                    //iter->toBack();
+                    //break;
+                }
+            }
+
+            if (i > 4 && iter.hasNext())
+            {
+                stringlist.append(" ...");
+                iter.toBack();
+            }
+        }
+
+        newlabel.append(stringlist.join(", "));
+    }
+    else if (setSelectionCondition == SetChangeDisabled)
+    {
+        newlabel.append(tr("[NO KEY]"));
+    }
+
+    return newlabel;
+}
+
+QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
+{
+    QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
+    QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
+    QListIterator<JoyButtonSlot*> *iter = 0;
+    bool slotsActive = !activeSlots.isEmpty();
+    if (slotsActive)
+    {
+        iter = &activeSlotsIter;
+    }
+    else
+    {
+        iter = &assignmentsIter;
+        if (previousCycle)
+        {
+            iter->findNext(previousCycle);
+        }
+    }
+
+    QList<JoyButtonSlot*> tempSlotList;
+
+    if (setSelectionCondition != SetChangeWhileHeld && iter->hasNext())
+    {
+        while (iter->hasNext())
+        {
+            JoyButtonSlot *slot = iter->next();
+            JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+            switch (mode)
+            {
+                case JoyButtonSlot::JoyKeyboard:
+                case JoyButtonSlot::JoyMouseButton:
+                case JoyButtonSlot::JoyMouseMovement:
+                {
+                    tempSlotList.append(slot);
+                    break;
+                }
+                case JoyButtonSlot::JoyKeyPress:
+                {
+                    tempSlotList.append(slot);
+                    break;
+                }
+                case JoyButtonSlot::JoyHold:
+                {
+                    tempSlotList.append(slot);
+                    break;
+                }
+                case JoyButtonSlot::JoyLoadProfile:
+                {
+                    tempSlotList.append(slot);
+                    break;
+                }
+                case JoyButtonSlot::JoySetChange:
+                {
+                    tempSlotList.append(slot);
+                    break;
+                }
                 case JoyButtonSlot::JoyRelease:
                 {
                     if (!currentRelease)
@@ -2121,28 +2209,11 @@ QString JoyButton::getActiveZoneSummary()
                     iter->toBack();
                     break;
                 }
-                default:
-                {
-                    //iter->toBack();
-                    //break;
-                }
-            }
-
-            if (i > 4 && iter->hasNext())
-            {
-                stringlist.append(" ...");
-                iter->toBack();
             }
         }
-
-        newlabel.append(stringlist.join(", "));
-    }
-    else if (setSelectionCondition == SetChangeDisabled)
-    {
-        newlabel.append(tr("[NO KEY]"));
     }
 
-    return newlabel;
+    return tempSlotList;
 }
 
 /**

@@ -1,5 +1,6 @@
 //#include <QDebug>
 #include <cmath>
+#include <QStringList>
 
 #include "joycontrolstickbutton.h"
 #include "joycontrolstick.h"
@@ -183,4 +184,24 @@ bool JoyControlStickButton::isPartRealAxis()
 double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
 {
     return stick->calculateLastMouseDirectionalDistance(this);
+}
+
+/**
+ * @brief Generate a string that represents slots that will be activated or
+ *     slots that are currently active if a button is pressed
+ * @return String of currently applicable slots for a button
+ */
+QString JoyControlStickButton::getActiveZoneSummary()
+{
+    QList<JoyButtonSlot*> tempList;
+    if (stick->getModifierButton())
+    {
+        JoyControlStickModifierButton *tempButton = stick->getModifierButton();
+        QList<JoyButtonSlot*> activeModifierSlots = tempButton->getActiveZoneList();
+        tempList.append(activeModifierSlots);
+    }
+
+    tempList.append(getActiveZoneList());
+    QString temp = buildActiveZoneSummary(tempList);
+    return temp;
 }

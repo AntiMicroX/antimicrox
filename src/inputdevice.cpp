@@ -75,16 +75,6 @@ void InputDevice::reset()
  */
 void InputDevice::transferReset()
 {
-    //buttonstates.clear();
-    //axesstates.clear();
-    //dpadstates.clear();
-
-    //QList<bool> buttonstates;
-    //QList<int> axesstates;
-    //QList<int> dpadstates;
-    //QList<JoyControlStick::JoyStickDirections> stickstates;
-    //QList<int> vdpadstates;
-
     // Grab current states for all elements in old set
     SetJoystick *current_set = joystick_sets.value(active_set);
     for (int i = 0; i < current_set->getNumberButtons(); i++)
@@ -105,59 +95,7 @@ void InputDevice::transferReset()
         dpadstates.append(dpad->getCurrentDirection());
     }
 
-    /*for (int i=0; i < current_set->getNumberSticks(); i++)
-    {
-        JoyControlStick *stick = current_set->getJoyStick(i);
-        stickstates.append(stick->getCurrentDirection());
-    }
-
-    for (int i = 0; i < current_set->getNumberVDPads(); i++)
-    {
-        JoyDPad *dpad = current_set->getVDPad(i);
-        vdpadstates.append(dpad->getCurrentDirection());
-    }
-    */
-
     reset();
-
-    //current_set = joystick_sets.value(active_set);
-    /*for (int i = 0; i < current_set->getNumberButtons(); i++)
-    {
-        bool value = buttonstates.at(i);
-        JoyButton *button = current_set->getJoyButton(i);
-        button->joyEvent(value, false);
-    }
-    */
-
-    /*for (int i=0; i < current_set->getNumberSticks(); i++)
-    {
-        JoyControlStick::JoyStickDirections value = stickstates.at(i);
-        JoyControlStick *stick = current_set->getJoyStick(i);
-    }
-    */
-
-    /*for (int i = 0; i < current_set->getNumberAxes(); i++)
-    {
-        int value = axesstates.at(i);
-        JoyAxis *axis = current_set->getJoyAxis(i);
-        axis->joyEvent(value);
-    }
-    */
-
-    /*for (int i = 0; i < current_set->getNumberVDPads(); i++)
-    {
-        int value = vdpadstates.at(i);
-        JoyDPad *dpad = current_set->getVDPad(i);
-    }
-    */
-
-    /*for (int i = 0; i < current_set->getNumberHats(); i++)
-    {
-        int value = dpadstates.at(i);
-        JoyDPad *dpad = current_set->getJoyDPad(i);
-        dpad->joyEvent(value);
-    }
-    */
 }
 
 void InputDevice::reInitButtons()
@@ -170,26 +108,12 @@ void InputDevice::reInitButtons()
         button->joyEvent(value);
     }
 
-    /*for (int i=0; i < current_set->getNumberSticks(); i++)
-    {
-        JoyControlStick::JoyStickDirections value = stickstates.at(i);
-        JoyControlStick *stick = current_set->getJoyStick(i);
-    }
-    */
-
     for (int i = 0; i < current_set->getNumberAxes(); i++)
     {
         int value = axesstates.at(i);
         JoyAxis *axis = current_set->getJoyAxis(i);
         axis->joyEvent(value);
     }
-
-    /*for (int i = 0; i < current_set->getNumberVDPads(); i++)
-    {
-        int value = vdpadstates.at(i);
-        JoyDPad *dpad = current_set->getVDPad(i);
-    }
-    */
 
     for (int i = 0; i < current_set->getNumberHats(); i++)
     {

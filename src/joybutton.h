@@ -68,6 +68,7 @@ public:
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getSlotsSummary();
     virtual QString getSlotsString();
+    virtual QList<JoyButtonSlot*> getActiveZoneList();
     virtual QString getActiveZoneSummary();
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
@@ -246,6 +247,8 @@ protected:
     bool insertAssignedSlot(JoyButtonSlot *newSlot);
     unsigned int getPreferredKeyPressTime();
     void checkTurboCondition(JoyButtonSlot *slot);
+
+    QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
