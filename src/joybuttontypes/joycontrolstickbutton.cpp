@@ -194,9 +194,9 @@ double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
 QString JoyControlStickButton::getActiveZoneSummary()
 {
     QList<JoyButtonSlot*> tempList;
-    if (stick->getModifierButton())
+    JoyControlStickModifierButton *tempButton = stick->getModifierButton();
+    if (tempButton && tempButton->getButtonState())
     {
-        JoyControlStickModifierButton *tempButton = stick->getModifierButton();
         QList<JoyButtonSlot*> activeModifierSlots = tempButton->getActiveZoneList();
         tempList.append(activeModifierSlots);
     }
