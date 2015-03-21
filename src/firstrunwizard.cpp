@@ -11,21 +11,28 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
     // Make sure instance is deleted when finished.
     setAttribute(Qt::WA_DeleteOnClose);
 
+    setWindowTitle(tr("App Settings Wizard"));
+#ifndef Q_OS_MAC
+    setWizardStyle(ModernStyle);
+#endif
+
     this->settings = settings;
 
 #ifdef Q_OS_WIN
     if (AssociateProfilesPage::shouldDisplay(settings))
     {
-        addPage(new AssociateProfilesPage);
+        addPage(new AssociateProfilesPage(settings));
     }
 
 #endif
 
-    connect(this, SIGNAL(finished(int)), this, SLOT(adjustSettings()));
+    connect(this, SIGNAL(finished(int)), this, SLOT(adjustSettings(int)));
 }
 
-void FirstRunWizard::adjustSettings()
+void FirstRunWizard::adjustSettings(int status)
 {
+    Q_UNUSED(status);
+
 #ifdef Q_OS_WIN
     bool shouldAssociateProfiles = field("associateProfiles").toBool();
     if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)

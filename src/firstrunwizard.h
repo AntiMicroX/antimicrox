@@ -19,7 +19,7 @@ protected:
 signals:
 
 private slots:
-    void adjustSettings();
+    void adjustSettings(int status);
 };
 
 #endif // FIRSTRUNWIZARD_H
