@@ -31,7 +31,9 @@ public:
     MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings,
                bool graphical=true, QWidget *parent = 0);
     ~MainWindow();
-    
+
+    bool getGraphicalStatus();
+
 protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
@@ -83,6 +85,7 @@ public slots:
     void loadAppConfig(bool forceRefresh=false);
     void removeJoyTabs();
     void quitProgram();
+    void changeWindowStatus();
 
 #ifdef USE_SDL_2
     void testMappingUpdateNow(int index, InputDevice *device);

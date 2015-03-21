@@ -15,6 +15,7 @@ public:
     void importFromCommandLine(CommandLineUtility &cmdutility);
 
     static const bool defaultDisabledWinEnhanced;
+    static const bool defaultAssociateProfiles;
 
 protected:
     QSettings cmdSettings;

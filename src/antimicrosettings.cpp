@@ -1,6 +1,7 @@
 #include "antimicrosettings.h"
 
 const bool AntiMicroSettings::defaultDisabledWinEnhanced = false;
+const bool AntiMicroSettings::defaultAssociateProfiles = true;
 
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent) :
     QSettings(fileName, format, parent)

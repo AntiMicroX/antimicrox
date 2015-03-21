@@ -25,6 +25,8 @@
 #include <QStyle>
 #include <QStyleFactory>
 #include "winextras.h"
+#include "firstrunwizard.h"
+
 #endif
 
 #include "inputdevice.h"
@@ -568,18 +570,46 @@ int main(int argc, char *argv[])
 
     AntKeyMapper::getInstance(cmdutility.getEventGenerator());
 
-    AppLaunchHelper mainAppHelper(&settings);
-    mainAppHelper.initRunMethods();
-
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
-    QObject::connect(joypad_worker, SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)), w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
+    AppLaunchHelper mainAppHelper(&settings, w->getGraphicalStatus());
+    mainAppHelper.initRunMethods();
+
+#ifdef Q_OS_WIN
+    FirstRunWizard *runWillard = 0;
+
+    if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(&settings))
+    {
+        runWillard = new FirstRunWizard(&settings);
+        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
+        runWillard->show();
+    }
+    else
+    {
+        w->changeWindowStatus();
+    }
+
+#else
+    w->changeWindowStatus();
+
+#endif
+
+    QObject::connect(joypad_worker,
+                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
+                     w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
+
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
-    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)), w, SLOT(fillButtons(InputDevice*)));
+    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)),
+                     w, SLOT(fillButtons(InputDevice*)));
+
     QObject::connect(a, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+
+#ifdef Q_OS_WIN
+    QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
+#endif
     QObject::connect(localServer, SIGNAL(clientdisconnect()), w, SLOT(handleInstanceDisconnect()));
 
 #ifdef USE_SDL_2
@@ -588,7 +618,6 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), w, SLOT(removeJoyTab(SDL_JoystickID)));
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)));
 #endif
-
 
 #ifdef Q_OS_WIN
     // Raise process priority. Helps reduce timer delays caused by
@@ -603,6 +632,7 @@ int main(int argc, char *argv[])
     // the running of other processes.
     QThread::currentThread()->setPriority(QThread::HighPriority);
 #endif
+
     int app_result = a->exec();
 
     deleteInputDevices(joysticks);

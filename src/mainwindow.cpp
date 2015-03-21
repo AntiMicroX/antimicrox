@@ -2,7 +2,6 @@
 #include <QHash>
 #include <QHashIterator>
 #include <QMapIterator>
-#include <QFile>
 #include <QLocalSocket>
 #include <QTextStream>
 #include <QDesktopServices>
@@ -48,7 +47,9 @@
     #endif
 #endif
 
-MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings, bool graphical, QWidget *parent) :
+MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
+                       CommandLineUtility *cmdutility, AntiMicroSettings *settings,
+                       bool graphical, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -104,9 +105,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
     }
 
     // Look at flags and call setEnabled as desired; defaults to true.
-    // enabled status is used to specify whether errors
-    // in profile loading and saving should be
-    // display in a window or written to stderr.
+    // Enabled status is used to specify whether errors in profile loading and
+    // saving should be display in a window or written to stderr.
     if (graphical)
     {
         if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
@@ -200,33 +200,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
         aboutDialog = 0;
     }
 
-#if defined(Q_OS_WIN) && !defined(WIN_PORTABLE_PACKAGE)
-    if (graphical)
-    {
-        bool shouldAssociateProfiles = settings->value("AssociateProfiles", true).toBool();
-
-        if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
-        {
-            QMessageBox msg;
-            msg.setWindowTitle(tr("File Association"));
-            msg.setText(tr("No file association was found for .amgp files. Would you like to associate antimicro with .amgp files?"));
-            msg.setModal(true);
-            msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-            int result = msg.exec();
-            if (result == QMessageBox::Yes)
-            {
-                WinExtras::writeFileAssocationToRegistry();
-                settings->setValue("AssociateProfiles", 1);
-            }
-            else
-            {
-                settings->setValue("AssociateProfiles", 0);
-            }
-        }
-    }
-
-#endif
-
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -238,6 +211,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
     //connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
+
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -253,31 +227,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
 
 #endif
 
-    // Check flags to see if user requested for the main window and the tray icon
-    // to not be displayed.
-    if (graphical)
-    {
-        bool launchInTraySetting = settings->runtimeValue("LaunchInTray", false).toBool();
-        if (!cmdutility->isHiddenRequested() && (!launchInTraySetting || !QSystemTrayIcon::isSystemTrayAvailable()))
-        {
-            show();
-        }
-        else if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
-        {
-            // Window should already be hidden but make sure
-            // to disable flashing buttons.
-            hideWindow();
-
-            setEnabled(false); // Should already be disabled. Do it again just to be sure.
-        }
-        else if (cmdutility->isHiddenRequested() || launchInTraySetting)
-        {
-            // Window should already be hidden but make sure
-            // to disable flashing buttons.
-            hideWindow();
-        }
-    }
-
 #ifdef Q_OS_WIN
     if (graphical)
     {
@@ -289,19 +238,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLin
                 ui->uacPushButton->setIcon(uacIcon);
             }
             connect(ui->uacPushButton, SIGNAL(clicked()), this, SLOT(restartAsElevated()));
-            //QTimer::singleShot(5, this, SLOT(restartAsElevated()));
         }
         else
         {
             ui->uacPushButton->setVisible(false);
-        }
-
-        WinExtras::grabCurrentPointerPrecision();
-        bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
-                                                    AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
-        if (disableEnhandedPoint)
-        {
-            WinExtras::disablePointerPrecision();
         }
     }
 
@@ -569,13 +509,6 @@ void MainWindow::quitProgram()
     if (discard)
     {
         qApp->quit();
-#ifdef Q_OS_WIN
-        bool disableEnhancedPoint = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
-        if (disableEnhancedPoint && !WinExtras::isUsingEnhancedPointerPrecision())
-        {
-            WinExtras::enablePointerPrecision();
-        }
-#endif
     }
 }
 
@@ -1673,3 +1606,36 @@ void MainWindow::selectControllerJoyTab(QString GUID)
 }
 
 #endif
+
+void MainWindow::changeWindowStatus()
+{
+    // Check flags to see if user requested for the main window and the tray icon
+    // to not be displayed.
+    if (graphical)
+    {
+        bool launchInTraySetting = settings->runtimeValue("LaunchInTray", false).toBool();
+        if (!cmdutility->isHiddenRequested() && (!launchInTraySetting || !QSystemTrayIcon::isSystemTrayAvailable()))
+        {
+            show();
+        }
+        else if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
+        {
+            // Window should already be hidden but make sure
+            // to disable flashing buttons.
+            hideWindow();
+
+            setEnabled(false); // Should already be disabled. Do it again just to be sure.
+        }
+        else if (cmdutility->isHiddenRequested() || launchInTraySetting)
+        {
+            // Window should already be hidden but make sure
+            // to disable flashing buttons.
+            hideWindow();
+        }
+    }
+}
+
+bool MainWindow::getGraphicalStatus()
+{
+    return graphical;
+}

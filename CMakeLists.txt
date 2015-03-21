@@ -166,6 +166,7 @@ set(antimicro_SOURCES src/main.cpp
     src/logger.cpp
     src/inputdevicebitarraystatus.cpp
     src/applaunchhelper.cpp
+    src/firstrunwizard.cpp
 )
 
 # Platform dependent files.
@@ -201,6 +202,7 @@ elseif(WIN32)
          src/winappprofiletimerdialog.cpp
          src/autoprofilewatcher.cpp
          src/capturedwindowinfodialog.cpp
+         src/wizard/associateprofilespage.cpp
     )
 endif(UNIX)
 
@@ -292,6 +294,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/logger.h
     src/inputdevicebitarraystatus.h
     src/applaunchhelper.h
+    src/firstrunwizard.h
 )
 
 # Platform dependent files.
@@ -327,6 +330,7 @@ elseif(WIN32)
         src/winappprofiletimerdialog.h
         src/autoprofilewatcher.h
         src/capturedwindowinfodialog.h
+        src/wizard/associateprofilespage.h
     )
 endif(UNIX)
 
