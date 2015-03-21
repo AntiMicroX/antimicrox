@@ -36,6 +36,7 @@
 #include "autoprofileinfo.h"
 #include "localantimicroserver.h"
 #include "antimicrosettings.h"
+#include "applaunchhelper.h"
 
 #ifndef Q_OS_WIN
 #include <signal.h>
@@ -415,35 +416,10 @@ int main(int argc, char *argv[])
 
 #endif
 
-#ifdef USE_SDL_2
     if (cmdutility.shouldListControllers())
     {
-        outstream << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
-        outstream << endl;
-        outstream << QObject::tr("List Joysticks:") << endl;
-        outstream << QObject::tr("---------------") << endl;
-        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-        unsigned int indexNumber = 1;
-        while (iter.hasNext())
-        {
-            InputDevice *tempdevice = iter.next().value();
-            outstream << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
-            outstream << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
-            outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
-            outstream << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
-            QString gameControllerStatus = tempdevice->isGameController() ?
-                                           QObject::tr("Yes") : QObject::tr("No");
-            outstream << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
-            outstream << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
-            outstream << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
-            outstream << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
-
-            if (iter.hasNext())
-            {
-                outstream << endl;
-                indexNumber++;
-            }
-        }
+        AppLaunchHelper mainAppHelper(&settings, false);
+        mainAppHelper.printControllerList(joysticks);
 
         joypad_worker->quit();
 
@@ -473,6 +449,8 @@ int main(int argc, char *argv[])
 
         return 0;
     }
+
+#ifdef USE_SDL_2
     else if (cmdutility.shouldMapController())
     {
         MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
@@ -589,6 +567,9 @@ int main(int argc, char *argv[])
 #endif
 
     AntKeyMapper::getInstance(cmdutility.getEventGenerator());
+
+    AppLaunchHelper mainAppHelper(&settings);
+    mainAppHelper.initRunMethods();
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
