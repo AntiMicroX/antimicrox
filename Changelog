@@ -1,3 +1,19 @@
+2015-03-22 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.12.1
+
+* Implemented a small wizard that will be run when antimicro is launched
+for the first time. It currently only has a page for editing some of the mouse
+settings and a page for associating antimicro with .amgp files on Windows.
+
+* Show slots that are active for a stick modifier button on the main interface.
+The text for the main stick direction buttons will be prefixed with the
+currently active slots of the stick modifier button.
+
+* Corrected issue with stick and dpad events not getting activated on a set
+change. Events were being queued but not executed.
+
+
 2015-03-15 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.12
