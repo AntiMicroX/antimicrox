@@ -10,6 +10,7 @@ class FirstRunWizard : public QWizard
     Q_OBJECT
 public:
     enum {
+        WelcomePageID,
         AssociateProfilesPageID,
         MouseSettingsPageID
     };

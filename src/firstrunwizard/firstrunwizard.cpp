@@ -2,6 +2,8 @@
 
 #include "firstrunwizard.h"
 
+#include "firstrunwelcomepage.h"
+
 #ifdef Q_OS_WIN
 #include "associateprofilespage.h"
 #include "winextras.h"
@@ -21,6 +23,8 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
 #endif
 
     this->settings = settings;
+
+    setPage(WelcomePageID, new FirstRunWelcomePage(settings));
 
 #ifdef Q_OS_WIN
     if (AssociateProfilesPage::shouldDisplay(settings))

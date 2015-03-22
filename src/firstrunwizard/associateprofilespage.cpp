@@ -22,9 +22,12 @@ AssociateProfilesPage::AssociateProfilesPage(AntiMicroSettings *settings, QWidge
 
 void AssociateProfilesPage::initializePage()
 {
-    bool shouldAssociateProfiles = settings->value("AssociateProfiles",
-                                                   AntiMicroSettings::defaultAssociateProfiles).toBool();
-    associateCheckBox->setChecked(shouldAssociateProfiles);
+    if (!associateCheckBox->isChecked())
+    {
+        bool shouldAssociateProfiles = settings->value("AssociateProfiles",
+                                                       AntiMicroSettings::defaultAssociateProfiles).toBool();
+        associateCheckBox->setChecked(shouldAssociateProfiles);
+    }
 }
 
 /**

@@ -17,7 +17,8 @@ MouseSettingsPage::MouseSettingsPage(AntiMicroSettings *settings, QWidget *paren
 {
     this->settings = settings;
 
-    setTitle(tr("Mouse Smoothing"));
+    setTitle(tr("Mouse Settings"));
+    setSubTitle(tr("Customize settings used for mouse emulation"));
     QVBoxLayout *tempMainLayout = new QVBoxLayout;
     setLayout(tempMainLayout);
 

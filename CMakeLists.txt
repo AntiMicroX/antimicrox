@@ -168,6 +168,7 @@ set(antimicro_SOURCES src/main.cpp
     src/applaunchhelper.cpp
     src/firstrunwizard/firstrunwizard.cpp
     src/firstrunwizard/mousesettingspage.cpp
+    src/firstrunwizard/firstrunwelcomepage.cpp
 )
 
 # Platform dependent files.
@@ -297,6 +298,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/applaunchhelper.h
     src/firstrunwizard/firstrunwizard.h
     src/firstrunwizard/mousesettingspage.h
+    src/firstrunwizard/firstrunwelcomepage.h
 )
 
 # Platform dependent files.
