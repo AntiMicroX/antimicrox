@@ -82,6 +82,9 @@ void FirstRunWizard::adjustSettings(int status)
                            field("disableEnhancePrecision").toBool() ? "1" : "0");
 #endif
     }
+
+    // Save settings to file.
+    settings->sync();
 }
 
 /**
