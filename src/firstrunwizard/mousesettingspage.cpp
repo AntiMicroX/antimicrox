@@ -98,9 +98,9 @@ bool MouseSettingsPage::shouldDisplay(AntiMicroSettings *settings)
 {
     bool result = false;
     // Only show page if no saved settings exist.
-    if (settings->children().size() == 0)
+    if (settings->allKeys().size() == 0)
     {
-        return true;
+        result = true;
     }
 
     return result;

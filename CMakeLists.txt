@@ -166,8 +166,8 @@ set(antimicro_SOURCES src/main.cpp
     src/logger.cpp
     src/inputdevicebitarraystatus.cpp
     src/applaunchhelper.cpp
-    src/firstrunwizard.cpp
-    src/wizard/mousesettingspage.cpp
+    src/firstrunwizard/firstrunwizard.cpp
+    src/firstrunwizard/mousesettingspage.cpp
 )
 
 # Platform dependent files.
@@ -203,7 +203,7 @@ elseif(WIN32)
          src/winappprofiletimerdialog.cpp
          src/autoprofilewatcher.cpp
          src/capturedwindowinfodialog.cpp
-         src/wizard/associateprofilespage.cpp
+         src/firstrunwizard/associateprofilespage.cpp
     )
 endif(UNIX)
 
@@ -295,8 +295,8 @@ set(antimicro_HEADERS src/mainwindow.h
     src/logger.h
     src/inputdevicebitarraystatus.h
     src/applaunchhelper.h
-    src/firstrunwizard.h
-    src/wizard/mousesettingspage.h
+    src/firstrunwizard/firstrunwizard.h
+    src/firstrunwizard/mousesettingspage.h
 )
 
 # Platform dependent files.
@@ -332,7 +332,7 @@ elseif(WIN32)
         src/winappprofiletimerdialog.h
         src/autoprofilewatcher.h
         src/capturedwindowinfodialog.h
-        src/wizard/associateprofilespage.h
+        src/firstrunwizard/associateprofilespage.h
     )
 endif(UNIX)
 

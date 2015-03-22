@@ -3,11 +3,11 @@
 #include "firstrunwizard.h"
 
 #ifdef Q_OS_WIN
-#include "wizard/associateprofilespage.h"
+#include "associateprofilespage.h"
 #include "winextras.h"
 #endif
 
-#include "wizard/mousesettingspage.h"
+#include "mousesettingspage.h"
 
 FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
     QWizard(parent)
@@ -25,14 +25,14 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
 #ifdef Q_OS_WIN
     if (AssociateProfilesPage::shouldDisplay(settings))
     {
-        addPage(new AssociateProfilesPage(settings));
+        setPage(AssociateProfilesPageID, new AssociateProfilesPage(settings));
     }
 
 #endif
 
     if (MouseSettingsPage::shouldDisplay(settings))
     {
-        addPage(new MouseSettingsPage(settings));
+        setPage(MouseSettingsPageID, new MouseSettingsPage(settings));
     }
 
     button(QWizard::CancelButton)->setEnabled(false);
@@ -45,7 +45,7 @@ void FirstRunWizard::adjustSettings(int status)
     Q_UNUSED(status);
 
 #ifdef Q_OS_WIN
-    if (field("associateProfiles").isValid())
+    if (hasVisitedPage(AssociateProfilesPageID))
     {
         bool shouldAssociateProfiles = field("associateProfiles").toBool();
         if (shouldAssociateProfiles)
@@ -65,23 +65,11 @@ void FirstRunWizard::adjustSettings(int status)
 
 #endif
 
-    if (field("mouseSmoothing").isValid())
+    if (hasVisitedPage(MouseSettingsPageID))
     {
         settings->setValue("Mouse/Smoothing", field("mouseSmoothing").toBool());
-    }
-
-    if (field("historyBuffer").isValid())
-    {
         settings->setValue("Mouse/HistorySize", field("historyBuffer").toInt());
-    }
-
-    if (field("weightModifier").isValid())
-    {
         settings->setValue("Mouse/WeightModifier", field("weightModifier").toDouble());
-    }
-
-    if (field("mouseRefreshRate").isValid())
-    {
         settings->setValue("Mouse/RefreshRate", field("mouseRefreshRate").toInt()+1);
     }
 }

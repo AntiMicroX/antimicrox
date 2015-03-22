@@ -38,7 +38,7 @@
 #include "localantimicroserver.h"
 #include "antimicrosettings.h"
 #include "applaunchhelper.h"
-#include "firstrunwizard.h"
+#include "firstrunwizard/firstrunwizard.h"
 
 
 #ifndef Q_OS_WIN

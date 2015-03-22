@@ -9,6 +9,11 @@ class FirstRunWizard : public QWizard
 {
     Q_OBJECT
 public:
+    enum {
+        AssociateProfilesPageID,
+        MouseSettingsPageID
+    };
+
     explicit FirstRunWizard(AntiMicroSettings *settings, QWidget *parent = 0);
 
     static bool shouldDisplay(AntiMicroSettings *settings);
