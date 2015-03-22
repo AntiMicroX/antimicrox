@@ -22,11 +22,13 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
     setWizardStyle(ModernStyle);
 #endif
 
+    setOption(QWizard::IndependentPages);
+
     this->settings = settings;
 
     setPage(WelcomePageID, new FirstRunWelcomePage(settings));
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(WIN_PORTABLE_PACKAGE)
     if (AssociateProfilesPage::shouldDisplay(settings))
     {
         setPage(AssociateProfilesPageID, new AssociateProfilesPage(settings));
@@ -54,11 +56,11 @@ void FirstRunWizard::adjustSettings(int status)
         bool shouldAssociateProfiles = field("associateProfiles").toBool();
         if (shouldAssociateProfiles)
         {
-            settings->setValue("AssociateProfiles", 1);
+            settings->setValue("AssociateProfiles", "1");
         }
         else
         {
-            settings->setValue("AssociateProfiles", 0);
+            settings->setValue("AssociateProfiles", "0");
         }
 
         if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
@@ -71,10 +73,14 @@ void FirstRunWizard::adjustSettings(int status)
 
     if (hasVisitedPage(MouseSettingsPageID))
     {
-        settings->setValue("Mouse/Smoothing", field("mouseSmoothing").toBool());
+        settings->setValue("Mouse/Smoothing", field("mouseSmoothing").toBool() ? "1" : "0");
         settings->setValue("Mouse/HistorySize", field("historyBuffer").toInt());
         settings->setValue("Mouse/WeightModifier", field("weightModifier").toDouble());
         settings->setValue("Mouse/RefreshRate", field("mouseRefreshRate").toInt()+1);
+#ifdef Q_OS_WIN
+        settings->setValue("Mouse/DisableWinEnhancedPointer",
+                           field("disableEnhancePrecision").toBool() ? "1" : "0");
+#endif
     }
 }
 
@@ -87,7 +93,7 @@ void FirstRunWizard::adjustSettings(int status)
 bool FirstRunWizard::shouldDisplay(AntiMicroSettings *settings)
 {
     bool result = false;
-#if defined(Q_OS_WIN)
+#if defined(Q_OS_WIN) && !defined(WIN_PORTABLE_PACKAGE)
     result = result || AssociateProfilesPage::shouldDisplay(settings);
 #endif
 

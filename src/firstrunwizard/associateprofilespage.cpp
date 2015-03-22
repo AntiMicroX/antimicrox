@@ -10,6 +10,7 @@ AssociateProfilesPage::AssociateProfilesPage(AntiMicroSettings *settings, QWidge
     this->settings = settings;
 
     setTitle(tr("Associate Profiles"));
+    setSubTitle(tr("Associate .amgp files"));
     setLayout(new QVBoxLayout);
     layout()->addWidget(new QLabel(
                             tr("Would you like to associate antimicro with .amgp files?")));

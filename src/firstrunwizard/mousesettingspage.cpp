@@ -22,9 +22,21 @@ MouseSettingsPage::MouseSettingsPage(AntiMicroSettings *settings, QWidget *paren
     QVBoxLayout *tempMainLayout = new QVBoxLayout;
     setLayout(tempMainLayout);
 
-    QGroupBox *smoothingGroupBox = new QGroupBox(tr("Enable"));
+#ifdef Q_OS_WIN
+    QCheckBox *disablePrecision = new QCheckBox(tr("Disable Enhance Pointer Precision"));
+    disablePrecision->setToolTip(tr("Disable the \"Enhanced Pointer Precision\" Windows setting\n"
+                                    "while antimicro is running. Disabling \"Enhanced Pointer Precision\"\n"
+                                    "will allow mouse movement within antimicro to be more\n"
+                                    "precise."));
+    tempMainLayout->addWidget(disablePrecision);
+    tempMainLayout->addSpacerItem(new QSpacerItem(10, 10));
+    registerField("disableEnhancePrecision", disablePrecision);
+#endif
+
+    QGroupBox *smoothingGroupBox = new QGroupBox(tr("Smoothing"));
     smoothingGroupBox->setCheckable(true);
-    registerField("mouseSmoothing", smoothingGroupBox, "checked");
+    smoothingGroupBox->setChecked(false);
+    registerField("mouseSmoothing", smoothingGroupBox, "checked", SIGNAL(toggled(bool)));
 
     layout()->addWidget(smoothingGroupBox);
 
