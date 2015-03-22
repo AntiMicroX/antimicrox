@@ -88,7 +88,7 @@ bool FirstRunWizard::shouldDisplay(AntiMicroSettings *settings)
 {
     bool result = false;
 #if defined(Q_OS_WIN)
-    result = AssociateProfilesPage::shouldDisplay(settings);
+    result = result || AssociateProfilesPage::shouldDisplay(settings);
 #endif
 
     result = result || MouseSettingsPage::shouldDisplay(settings);
