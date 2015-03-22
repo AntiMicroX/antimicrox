@@ -167,6 +167,7 @@ set(antimicro_SOURCES src/main.cpp
     src/inputdevicebitarraystatus.cpp
     src/applaunchhelper.cpp
     src/firstrunwizard.cpp
+    src/wizard/mousesettingspage.cpp
 )
 
 # Platform dependent files.
@@ -295,6 +296,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/inputdevicebitarraystatus.h
     src/applaunchhelper.h
     src/firstrunwizard.h
+    src/wizard/mousesettingspage.h
 )
 
 # Platform dependent files.

@@ -25,7 +25,6 @@
 #include <QStyle>
 #include <QStyleFactory>
 #include "winextras.h"
-#include "firstrunwizard.h"
 
 #endif
 
@@ -39,6 +38,8 @@
 #include "localantimicroserver.h"
 #include "antimicrosettings.h"
 #include "applaunchhelper.h"
+#include "firstrunwizard.h"
+
 
 #ifndef Q_OS_WIN
 #include <signal.h>
@@ -572,10 +573,6 @@ int main(int argc, char *argv[])
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
-    AppLaunchHelper mainAppHelper(&settings, w->getGraphicalStatus());
-    mainAppHelper.initRunMethods();
-
-#ifdef Q_OS_WIN
     FirstRunWizard *runWillard = 0;
 
     if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(&settings))
@@ -589,10 +586,8 @@ int main(int argc, char *argv[])
         w->changeWindowStatus();
     }
 
-#else
-    w->changeWindowStatus();
-
-#endif
+    AppLaunchHelper mainAppHelper(&settings, w->getGraphicalStatus());
+    mainAppHelper.initRunMethods();
 
     QObject::connect(joypad_worker,
                      SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),

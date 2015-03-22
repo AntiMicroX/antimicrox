@@ -1,9 +1,13 @@
+#include <QAbstractButton>
+
 #include "firstrunwizard.h"
 
 #ifdef Q_OS_WIN
 #include "wizard/associateprofilespage.h"
 #include "winextras.h"
 #endif
+
+#include "wizard/mousesettingspage.h"
 
 FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
     QWizard(parent)
@@ -26,6 +30,13 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
 
 #endif
 
+    if (MouseSettingsPage::shouldDisplay(settings))
+    {
+        addPage(new MouseSettingsPage(settings));
+    }
+
+    button(QWizard::CancelButton)->setEnabled(false);
+
     connect(this, SIGNAL(finished(int)), this, SLOT(adjustSettings(int)));
 }
 
@@ -34,17 +45,45 @@ void FirstRunWizard::adjustSettings(int status)
     Q_UNUSED(status);
 
 #ifdef Q_OS_WIN
-    bool shouldAssociateProfiles = field("associateProfiles").toBool();
-    if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
+    if (field("associateProfiles").isValid())
     {
-        WinExtras::writeFileAssocationToRegistry();
-        settings->setValue("AssociateProfiles", 1);
+        bool shouldAssociateProfiles = field("associateProfiles").toBool();
+        if (shouldAssociateProfiles)
+        {
+            settings->setValue("AssociateProfiles", 1);
+        }
+        else
+        {
+            settings->setValue("AssociateProfiles", 0);
+        }
+
+        if (!WinExtras::containsFileAssociationinRegistry() && shouldAssociateProfiles)
+        {
+            WinExtras::writeFileAssocationToRegistry();
+        }
     }
-    else
-    {
-        settings->setValue("AssociateProfiles", 0);
-    }
+
 #endif
+
+    if (field("mouseSmoothing").isValid())
+    {
+        settings->setValue("Mouse/Smoothing", field("mouseSmoothing").toBool());
+    }
+
+    if (field("historyBuffer").isValid())
+    {
+        settings->setValue("Mouse/HistorySize", field("historyBuffer").toInt());
+    }
+
+    if (field("weightModifier").isValid())
+    {
+        settings->setValue("Mouse/WeightModifier", field("weightModifier").toDouble());
+    }
+
+    if (field("mouseRefreshRate").isValid())
+    {
+        settings->setValue("Mouse/RefreshRate", field("mouseRefreshRate").toInt()+1);
+    }
 }
 
 /**
@@ -58,9 +97,9 @@ bool FirstRunWizard::shouldDisplay(AntiMicroSettings *settings)
     bool result = false;
 #if defined(Q_OS_WIN)
     result = AssociateProfilesPage::shouldDisplay(settings);
-#else
-    Q_UNUSED(settings);
 #endif
+
+    result = result || MouseSettingsPage::shouldDisplay(settings);
 
     return result;
 }
