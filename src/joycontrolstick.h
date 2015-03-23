@@ -51,7 +51,7 @@ public:
     double calculateBearing();
     double calculateBearing(int axisXValue, int axisYValue);
 
-    QList<int> getDiagonalZoneAngles();
+    QList<double> getDiagonalZoneAngles();
     QList<int> getFourWayCardinalZoneAngles();
     QList<int> getFourWayDiagonalZoneAngles();
     QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();

@@ -103,16 +103,17 @@ void JoyControlStickStatusBox::drawEightWayBox()
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw diagonal zones
-    QList<int> anglesList = stick->getDiagonalZoneAngles();
-    QListIterator<int> iter(anglesList);
-    //qDebug() << "LIST START";
-    //qDebug() << "DIAGONAL RANGE: " << stick->getDiagonalRange();
-    //while (iter.hasNext())
-    //{
-    //    qDebug() << "ANGLE: " << iter.next();
-    //}
-    //qDebug() << "LIST END";
-    //qDebug();
+    QList<double> anglesList = stick->getDiagonalZoneAngles();
+    /*QListIterator<double> iter(anglesList);
+    qDebug() << "LIST START";
+    qDebug() << "DIAGONAL RANGE: " << stick->getDiagonalRange();
+    while (iter.hasNext())
+    {
+        qDebug() << "ANGLE: " << iter.next();
+    }
+    qDebug() << "LIST END";
+    qDebug();
+    */
 
     penny.setWidth(0);
     penny.setColor(Qt::black);

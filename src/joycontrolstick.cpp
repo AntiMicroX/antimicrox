@@ -1041,7 +1041,8 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)floor(bearing + 0.5) % 90;
+            int relativeBearing = static_cast<int>(bearing) % 90;
+            //int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -1070,7 +1071,8 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)floor(bearing + 0.5) % 90;
+            int relativeBearing = static_cast<int>(bearing) % 90;
+            //int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -1099,7 +1101,8 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)floor(bearing + 0.5) % 90;
+            int relativeBearing = static_cast<int>(bearing) % 90;
+            //int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -1128,7 +1131,8 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
         {
             double radius = getDistanceFromDeadZone();
             double bearing = calculateBearing();
-            int relativeBearing = (int)floor(bearing + 0.5) % 90;
+            int relativeBearing = static_cast<int>(bearing) % 90;
+            //int relativeBearing = (int)floor(bearing + 0.5) % 90;
             //bearing = round(bearing) % 90;
             int diagonalAngle = relativeBearing;
             if (relativeBearing > 45)
@@ -1548,29 +1552,30 @@ int JoyControlStick::calculateCircleYValue(int rawYValue)
     return value;
 }
 
-QList<int> JoyControlStick::getDiagonalZoneAngles()
+QList<double> JoyControlStick::getDiagonalZoneAngles()
 {
-    QList<int> anglesList;
+    QList<double> anglesList;
 
     int diagonalAngle = diagonalRange;
 
-    int cardinalAngle = (360 - (diagonalAngle * 4)) / 4;
+    double cardinalAngle = (360 - (diagonalAngle * 4)) / 4.0;
 
-    int initialLeft = 360 - (int)((cardinalAngle - 1) / 2);
-    int initialRight = (int)((cardinalAngle - 1)/ 2);
-    if ((cardinalAngle - 1) % 2 != 0)
+    double initialLeft = 360 - ((cardinalAngle) / 2.0);
+    double initialRight = ((cardinalAngle)/ 2.0);
+    /*if ((int)(cardinalAngle - 1) % 2 != 0)
     {
-        initialLeft = 360 - (cardinalAngle / 2);
-        initialRight = (cardinalAngle / 2) - 1;
+        initialLeft = 360 - (cardinalAngle / 2.0);
+        initialRight = (cardinalAngle / 2.0) - 1;
     }
+    */
 
-    int upRightInitial = initialRight + 1;
-    int rightInitial = upRightInitial + diagonalAngle;
-    int downRightInitial = rightInitial + cardinalAngle;
-    int downInitial = downRightInitial + diagonalAngle;
-    int downLeftInitial = downInitial + cardinalAngle;
-    int leftInitial = downLeftInitial + diagonalAngle;
-    int upLeftInitial = leftInitial + cardinalAngle;
+    double upRightInitial = initialRight;
+    double rightInitial = upRightInitial + diagonalAngle;
+    double downRightInitial = rightInitial + cardinalAngle;
+    double downInitial = downRightInitial + diagonalAngle;
+    double downLeftInitial = downInitial + cardinalAngle;
+    double leftInitial = downLeftInitial + diagonalAngle;
+    double upLeftInitial = leftInitial + cardinalAngle;
 
     anglesList.append(initialLeft);
     anglesList.append(initialRight);
@@ -2116,7 +2121,7 @@ void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbu
 {
     double bearing = calculateBearing();
 
-    QList<int> anglesList = getDiagonalZoneAngles();
+    QList<double> anglesList = getDiagonalZoneAngles();
     int initialLeft = anglesList.value(0);
     int initialRight = anglesList.value(1);
     int upRightInitial = anglesList.value(2);
@@ -2127,7 +2132,7 @@ void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbu
     int leftInitial = anglesList.value(7);
     int upLeftInitial = anglesList.value(8);
 
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
     if (bearing <= initialRight || bearing >= initialLeft)
     {
         currentDirection = StickUp;
@@ -2185,7 +2190,7 @@ void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbu
 {
     double bearing = calculateBearing();
 
-    QList<int> anglesList = getDiagonalZoneAngles();
+    QList<double> anglesList = getDiagonalZoneAngles();
     int initialLeft = anglesList.value(0);
     int initialRight = anglesList.value(1);
     int upRightInitial = anglesList.value(2);
@@ -2196,7 +2201,7 @@ void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbu
     int leftInitial = anglesList.value(7);
     int upLeftInitial = anglesList.value(8);
 
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
     if (bearing <= initialRight || bearing >= initialLeft)
     {
         currentDirection = StickUp;
@@ -2255,7 +2260,7 @@ void JoyControlStick::determineFourWayCardinalEvent(JoyControlStickButton *&even
     int leftInitial = anglesList.value(2);
     int upInitial = anglesList.value(3);
 
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
     if (bearing < rightInitial || bearing >= upInitial)
     {
         currentDirection = StickUp;
@@ -2293,7 +2298,7 @@ void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&even
     int downLeftInitial = anglesList.value(2);
     int upLeftInitial = anglesList.value(3);
 
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
     if (bearing >= upRightInitial && bearing < downRightInitial)
     {
         currentDirection = StickRightUp;
@@ -2325,9 +2330,9 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirect
     JoyStickDirections result = StickCentered;
 
     double bearing = calculateBearing();
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
 
-    QList<int> anglesList = getDiagonalZoneAngles();
+    QList<double> anglesList = getDiagonalZoneAngles();
     int initialLeft = anglesList.value(0);
     int initialRight = anglesList.value(1);
     int upRightInitial = anglesList.value(2);
@@ -2393,7 +2398,7 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDir
     JoyStickDirections result = StickCentered;
 
     double bearing = calculateBearing();
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
 
     QList<int> anglesList = getFourWayCardinalZoneAngles();
     int rightInitial = anglesList.value(0);
@@ -2431,7 +2436,7 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDir
     JoyStickDirections result = StickCentered;
 
     double bearing = calculateBearing();
-    bearing = floor(bearing + 0.5);
+    //bearing = floor(bearing + 0.5);
 
     QList<int> anglesList = getFourWayDiagonalZoneAngles();
     int upRightInitial = anglesList.value(0);
