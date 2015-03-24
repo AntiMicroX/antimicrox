@@ -5,6 +5,7 @@
 #include <QMapIterator>
 
 #include "inputdaemon.h"
+#include "logger.h"
 
 const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
@@ -71,6 +72,7 @@ void InputDaemon::run ()
 
     if (!stopped)
     {
+        //Logger::LogInfo("Gamepad Poll");
         JoyButton::resetActiveButtonMouseDistances();
 
         QQueue<SDL_Event> sdlEventQueue;
@@ -828,6 +830,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                 InputDevice *device = joysticks->value(event.jdevice.which);
                 if (device)
                 {
+                    Logger::LogInfo(QString("Removing joystick #%1").arg(device->getRealJoyNumber()));
                     removeDevice(device);
                 }
 
@@ -836,6 +839,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
             case SDL_JOYDEVICEADDED:
             {
+                Logger::LogInfo(QString("New joystick found - #%1").arg(event.jdevice.which+1));
                 addInputDevice(event.jdevice.which);
                 break;
             }

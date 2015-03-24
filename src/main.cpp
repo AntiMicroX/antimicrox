@@ -57,6 +57,7 @@
 #endif
 
 #include "antkeymapper.h"
+#include "logger.h"
 
 #ifndef Q_OS_WIN
 static void termSignalTermHandler(int signal)
@@ -122,19 +123,29 @@ int main(int argc, char *argv[])
     cmdarguments.removeFirst();
     cmdutility.parseArguments(cmdarguments);
 
+    Logger appLogger(&outstream, &errorstream);
+
     if (cmdutility.hasError())
     {
+        appLogger.LogError(cmdutility.getErrorText());
         return 1;
     }
     else if (cmdutility.isHelpRequested())
     {
-        cmdutility.printHelp();
+        appLogger.LogInfo(cmdutility.generateHelpString(), false);
+        //cmdutility.printHelp();
         return 0;
     }
     else if (cmdutility.isVersionRequested())
     {
-        cmdutility.printVersionString();
+        appLogger.LogInfo(cmdutility.generateVersionString());
+        //cmdutility.printVersionString();
         return 0;
+    }
+
+    if (cmdutility.getCurrentLogLevel() != appLogger.getCurrentLogLevel())
+    {
+        appLogger.setLogLevel(cmdutility.getCurrentLogLevel());
     }
 
     Q_INIT_RESOURCE(resources);
@@ -197,15 +208,17 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-            outstream << QObject::tr("Daemon launched") << endl;
+            appLogger.LogInfo(QObject::tr("Daemon launched"));
+            //outstream << QObject::tr("Daemon launched") << endl;
 
             a = new QApplication(argc, argv);
             localServer = new LocalAntiMicroServer();
             localServer->startLocalServer();
         }
-        else if (pid < 0) {
-
-            errorstream << QObject::tr("Failed to launch daemon") << endl;
+        else if (pid < 0)
+        {
+            appLogger.LogError(QObject::tr("Failed to launch daemon"));
+            //errorstream << QObject::tr("Failed to launch daemon") << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -214,8 +227,10 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
         //We got a good pid, Close the Parent Process
-        else if (pid > 0) {
-            outstream << QObject::tr("Launching daemon") << endl;
+        else if (pid > 0)
+        {
+            appLogger.LogInfo(QObject::tr("Launching daemon"));
+            //outstream << QObject::tr("Launching daemon") << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -241,7 +256,8 @@ int main(int argc, char *argv[])
             X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
             if (X11Extras::getInstance()->display() == NULL)
             {
-                errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
+                appLogger.LogError(QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()));
+                //errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
                 deleteInputDevices(joysticks);
                 delete joysticks;
@@ -267,8 +283,10 @@ int main(int argc, char *argv[])
 
         //Create a new Signature Id for our child
         sid = setsid();
-        if (sid < 0) {
-            errorstream << QObject::tr("Failed to set a signature id for the daemon") << endl;
+        if (sid < 0)
+        {
+            appLogger.LogError(QObject::tr("Failed to set a signature id for the daemon"));
+            //errorstream << QObject::tr("Failed to set a signature id for the daemon") << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -292,9 +310,11 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
 
-        if ((chdir("/")) < 0) {
-            errorstream << QObject::tr("Failed to change working directory to /")
-                        << endl;
+        if ((chdir("/")) < 0)
+        {
+            appLogger.LogError(QObject::tr("Failed to change working directory to /"));
+            //errorstream << QObject::tr("Failed to change working directory to /")
+            //            << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -340,7 +360,8 @@ int main(int argc, char *argv[])
             X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
             if (X11Extras::getInstance()->display() == NULL)
             {
-                errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
+                appLogger.LogError(QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()));
+                //errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
                 deleteInputDevices(joysticks);
                 delete joysticks;
@@ -512,8 +533,10 @@ int main(int argc, char *argv[])
     {
         QString eventDisplayName = EventHandlerFactory::handlerDisplayName(
                     EventHandlerFactory::fallBackIdentifier());
-        outstream << QObject::tr("Attempting to use fallback option %1 for event generation.")
-                     .arg(eventDisplayName) << endl;
+        appLogger.LogInfo(QObject::tr("Attempting to use fallback option %1 for event generation.")
+                                     .arg(eventDisplayName));
+        //outstream << QObject::tr("Attempting to use fallback option %1 for event generation.")
+        //             .arg(eventDisplayName) << endl;
 
         factory->deleteInstance();
         factory = EventHandlerFactory::getInstance(EventHandlerFactory::fallBackIdentifier());
@@ -530,7 +553,8 @@ int main(int argc, char *argv[])
 
     if (!status)
     {
-        errorstream << QObject::tr("Failed to open event generator. Exiting.") << endl;
+        appLogger.LogError(QObject::tr("Failed to open event generator. Exiting."));
+        //errorstream << QObject::tr("Failed to open event generator. Exiting.") << endl;
 
         joypad_worker->quit();
 
@@ -563,8 +587,9 @@ int main(int argc, char *argv[])
     }
     else
     {
-        outstream << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName())
-                  << endl;
+        appLogger.LogInfo(QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName()));
+        //outstream << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName())
+        //          << endl;
         factory->handler()->printPostMessages();
     }
 #endif
@@ -620,7 +645,8 @@ int main(int argc, char *argv[])
     bool raisedPriority = WinExtras::raiseProcessPriority();
     if (!raisedPriority)
     {
-        outstream << QObject::tr("Could not raise process priority.") << endl;
+        logUtil.LogInfo(QObject::tr("Could not raise process priority."));
+        //outstream << QObject::tr("Could not raise process priority.") << endl;
     }
 #else
     // Raise main thread prority. Helps reduce timer delays caused by
@@ -629,6 +655,8 @@ int main(int argc, char *argv[])
 #endif
 
     int app_result = a->exec();
+
+    appLogger.LogInfo(QObject::tr("Quitting Program"));
 
     deleteInputDevices(joysticks);
     delete joysticks;

@@ -5,6 +5,8 @@
 #include <QStringList>
 #include <QRegExp>
 
+#include "logger.h"
+
 class CommandLineUtility : public QObject
 {
     Q_OBJECT
@@ -41,10 +43,16 @@ public:
     void printHelp();
     void printVersionString();
 
+    QString generateHelpString();
+    QString generateVersionString();
+
     bool hasError();
+    Logger::LogLevel getCurrentLogLevel();
+    QString getErrorText();
 
 protected:
     bool isPossibleCommand(QString temp);
+    void setErrorMessage(QString temp);
 
     bool launchInTray;
     bool helpRequest;
@@ -62,6 +70,8 @@ protected:
     bool listControllers;
     bool mappingController;
     QString eventGenerator;
+    QString errorText;
+    Logger::LogLevel currentLogLevel;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -75,6 +85,8 @@ protected:
     static QRegExp gamepadListRegexp;
     static QRegExp mappingRegexp;
     static QRegExp qtStyleRegexp;
+    static QRegExp logLevelRegexp;
+
 #ifdef Q_OS_UNIX
     static QRegExp daemonRegexp;
     static QRegExp displayRegexp;

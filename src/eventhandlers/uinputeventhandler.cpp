@@ -4,11 +4,13 @@
 #include <linux/uinput.h>
 
 //#include <QDebug>
-#include <QTextStream>
+//#include <QTextStream>
 #include <QStringList>
 #include <QStringListIterator>
 #include <QFileInfo>
 #include <QTimer>
+
+#include <logger.h>
 
 
 #ifdef WITH_X11
@@ -102,7 +104,7 @@ bool UInputEventHandler::init()
 #ifdef WITH_X11
 void UInputEventHandler::x11ResetMouseAccelerationChange()
 {
-    QTextStream out(stdout);
+    //QTextStream out(stdout);
 
     int xi_opcode, event, error;
     xi_opcode = event = error = 0;
@@ -111,14 +113,16 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
     bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
     if (!result)
     {
-        out << tr("xinput extension was not found. No mouse acceleration changes will occur.") << endl;
+        Logger::LogInfo(tr("xinput extension was not found. No mouse acceleration changes will occur."));
+        //out << tr("xinput extension was not found. No mouse acceleration changes will occur.") << endl;
     }
     else
     {
         int ximajor = 2, ximinor = 0;
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
-            out << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.") << endl;
+            Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            //out << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.") << endl;
         }
     }
 
@@ -135,8 +139,9 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
             current_devices = &all_devices[i];
             if (current_devices->use == XISlavePointer && QString::fromUtf8(current_devices->name) == mouseDeviceName)
             {
-                out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
-                    << endl;
+                Logger::LogInfo(tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid));
+                //out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
+                //    << endl;
                 mouse_device = current_devices;
             }
         }
@@ -167,15 +172,18 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
 
             if (feedback_id <= -1)
             {
-                out << tr("PtrFeedbackClass was not found for virtual pointer."
-                          "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id)
-                    << endl;
+                Logger::LogInfo(tr("PtrFeedbackClass was not found for virtual pointer."
+                                   "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id));
+                //out << tr("PtrFeedbackClass was not found for virtual pointer."
+                //          "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id)
+                //    << endl;
                 result = false;
             }
             else
             {
-                out << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id)
-                    << endl;
+                Logger::LogInfo(tr("Changing mouse acceleration for device with id=%1").arg(device->device_id));
+                //out << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id)
+                //    << endl;
 
                 XPtrFeedbackControl	feedback;
                 feedback.c_class = PtrFeedbackClass;
@@ -310,7 +318,7 @@ void UInputEventHandler::sendMouseEvent(int xDis, int yDis)
 int UInputEventHandler::openUInputHandle()
 {
     int filehandle = -1;
-    QTextStream err(stderr);
+    //QTextStream err(stderr);
 
     QStringList locations;
     locations.append("/dev/input/uinput");
@@ -335,7 +343,9 @@ int UInputEventHandler::openUInputHandle()
         lastErrorString = tr("Could not find a valid uinput device file.\n"
                              "Please check that you have the uinput module loaded.\n"
                              "lsmod | grep uinput");
-        err << lastErrorString << endl << endl;
+        Logger::LogError(lastErrorString);
+        Logger::LogError("");
+        //err << lastErrorString << endl << endl;
     }
     else
     {
@@ -346,7 +356,9 @@ int UInputEventHandler::openUInputHandle()
             lastErrorString = tr("Could not open uinput device file\n"
                                  "Please check that you have permission to write to the device");
             lastErrorString.append("\n").append(possibleLocation);
-            err << lastErrorString << endl << endl;
+            Logger::LogError(lastErrorString);
+            Logger::LogError("");
+            //err << lastErrorString << endl << endl;
         }
         else
         {
@@ -476,10 +488,11 @@ QString UInputEventHandler::getIdentifier()
  */
 void UInputEventHandler::printPostMessages()
 {
-    QTextStream out(stdout);
+    //QTextStream out(stdout);
 
     if (!uinputDeviceLocation.isEmpty())
     {
-        out << tr("Using uinput device file %1").arg(uinputDeviceLocation) << endl;
+        Logger::LogInfo(tr("Using uinput device file %1").arg(uinputDeviceLocation));
+        //out << tr("Using uinput device file %1").arg(uinputDeviceLocation) << endl;
     }
 }

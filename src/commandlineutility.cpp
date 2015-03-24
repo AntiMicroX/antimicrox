@@ -28,6 +28,7 @@ QRegExp CommandLineUtility::startSetRegexp = QRegExp("--startSet");
 QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 QRegExp CommandLineUtility::qtStyleRegexp = QRegExp("-style");
+QRegExp CommandLineUtility::logLevelRegexp = QRegExp("--log-level");
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 
@@ -58,6 +59,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     displayString = "";
     listControllers = false;
     mappingController = false;
+    currentLogLevel = Logger::LOG_INFO;
 
 #ifdef Q_OS_WIN
     eventGenerator = "";
@@ -71,9 +73,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
 {
     QStringListIterator iter(arguments);
     //QTextStream out(stdout);
-    QTextStream errorsteam(stderr);
+    //QTextStream errorsteam(stderr);
 
-    while (iter.hasNext())
+    while (iter.hasNext() && !encounteredError)
     {
         QString temp = iter.next();
         if (helpRegexp.exactMatch(temp))
@@ -104,8 +106,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 {
                     if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
                     {
-                        errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
-                        encounteredError = true;
+                        setErrorMessage(tr("Profile location %1 is not an XML file.").arg(temp));
+                        //errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
+                        //encounteredError = true;
                     }
                     else
                     {
@@ -114,8 +117,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 }
                 else
                 {
-                    errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
-                    encounteredError = true;
+                    setErrorMessage(tr("Profile location %1 does not exist.").arg(temp));
+                    //errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
+                    //encounteredError = true;
                 }
             }
         }
@@ -137,8 +141,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 }
                 else
                 {
-                    errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                    encounteredError = true;
+                    setErrorMessage(tr("Controller identifier is not a valid value."));
+                    //errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                    //encounteredError = true;
                 }
             }
         }
@@ -171,8 +176,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                     }
                     else
                     {
-                        errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                        encounteredError = true;
+                        setErrorMessage(tr("Controller identifier is not a valid value."));
+                        //errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                        //encounteredError = true;
                     }
                 }
                 else
@@ -197,8 +203,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 }
                 else if (validNumber)
                 {
-                    errorsteam << tr("An invalid set number was specified.") << endl;
-                    encounteredError = true;
+                    setErrorMessage(tr("An invalid set number was specified."));
+                    //errorsteam << tr("An invalid set number was specified.") << endl;
+                    //encounteredError = true;
                 }
 
                 if (iter.hasNext())
@@ -217,8 +224,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                         }
                         else
                         {
-                            errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                            encounteredError = true;
+                            setErrorMessage(tr("Controller identifier is not a valid value."));
+                            //errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                            //encounteredError = true;
                         }
                     }
                     else
@@ -231,8 +239,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             }
             else
             {
-                errorsteam << tr("No set number was specified.") << endl;
-                encounteredError = true;
+                setErrorMessage(tr("No set number was specified."));
+                //errorsteam << tr("No set number was specified.") << endl;
+                //encounteredError = true;
             }
         }
 #ifdef USE_SDL_2
@@ -260,14 +269,16 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 }
                 else
                 {
-                    errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                    encounteredError = true;
+                    setErrorMessage(tr("Controller identifier is not a valid value."));
+                    //errorsteam << tr("Controller identifier is not a valid value.") << endl;
+                    //encounteredError = true;
                 }
             }
             else
             {
-                errorsteam << tr("No controller was specified.") << endl;
-                encounteredError = true;
+                setErrorMessage(tr("No controller was specified."));
+                //errorsteam << tr("No controller was specified.") << endl;
+                //encounteredError = true;
             }
         }
 #endif
@@ -286,8 +297,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             }
             else
             {
-                errorsteam << tr("No display string was specified.") << endl;
-                encounteredError = true;
+                setErrorMessage(tr("No display string was specified."));
+                //errorsteam << tr("No display string was specified.") << endl;
+                //encounteredError = true;
             }
         }
     #endif
@@ -302,8 +314,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 if (!eventGeneratorsList.contains(temp))
                 {
                     eventGenerator = "";
-                    errorsteam << tr("An invalid event generator was specified.") << endl;
-                    encounteredError = true;
+                    setErrorMessage(tr("An invalid event generator was specified."));
+                    //errorsteam << tr("An invalid event generator was specified.") << endl;
+                    //encounteredError = true;
                 }
                 else
                 {
@@ -312,8 +325,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             }
             else
             {
-                errorsteam << tr("No event generator string was specified.") << endl;
-                encounteredError = true;
+                setErrorMessage(tr("No event generator string was specified."));
+                //errorsteam << tr("No event generator string was specified.") << endl;
+                //encounteredError = true;
             }
         }
     #endif
@@ -327,9 +341,41 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             }
             else
             {
-                errorsteam << tr("Qt style flag was detected but no style was specified.") << endl;
-                encounteredError = true;
+                setErrorMessage(tr("Qt style flag was detected but no style was specified."));
+                //errorsteam << tr("Qt style flag was detected but no style was specified.") << endl;
+                //encounteredError = true;
             }
+        }
+        else if (logLevelRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+                QString temp = iter.next();
+                if (temp == "debug")
+                {
+                    currentLogLevel = Logger::LOG_DEBUG;
+                }
+                else if (temp == "info")
+                {
+                    currentLogLevel = Logger::LOG_INFO;
+                }
+                /*else if (temp == "warn")
+                {
+                    currentLogLevel = Logger::LOG_WARNING;
+                }
+                else if (temp == "error")
+                {
+                    currentLogLevel = Logger::LOG_ERROR;
+                }
+                */
+            }
+            else
+            {
+                setErrorMessage(tr("No log level specified."));
+                //errorsteam << tr("No log level specified.") << endl;
+                //encounteredError = true;
+            }
+
         }
         else if (isPossibleCommand(temp))
         {
@@ -358,8 +404,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             {
                 if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
                 {
-                    errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
-                    encounteredError = true;
+                    setErrorMessage(tr("Profile location %1 is not an XML file.").arg(temp));
+                    //errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
+                    //encounteredError = true;
                 }
                 else
                 {
@@ -368,8 +415,9 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             }
             else
             {
-                errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
-                encounteredError = true;
+                setErrorMessage(tr("Profile location %1 does not exist.").arg(temp));
+                //errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
+                //encounteredError = true;
             }
         }
     }
@@ -441,6 +489,69 @@ void CommandLineUtility::printHelp()
 
 }
 
+QString CommandLineUtility::generateHelpString()
+{
+    QString temp;
+    QTextStream out(&temp);
+    out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
+    out << tr("Usage: antimicro [options] [profile]") << endl;
+    out << endl;
+    out << tr("Options") << ":" << endl;
+    out << "-h, --help                    " << " " << tr("Print help text.") << endl;
+    out << "-v, --version                 " << " " << tr("Print version information.") << endl;
+    out << "--tray                        " << " " << tr("Launch program in system tray only.") << endl;
+    out << "--no-tray                     " << " " << tr("Launch program with the tray menu disabled.") << endl;
+    out << "--hidden                      " << " " << tr("Launch program without the main window\n                               displayed.") << endl;
+    out << "--profile <location>          " << " " <<
+           tr("Launch program with the configuration file\n                               selected as the default for selected\n                               controllers. Defaults to all controllers.")
+        << endl;
+    out << "--profile-controller <value>  " << " "
+        << tr("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
+        << endl;
+    out << "--unload [<value>]            " << " " << tr("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
+        << endl;
+    out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
+        << endl;
+#ifdef Q_OS_UNIX
+    out << "-d, --daemon                  " << " "
+        << tr("Launch program as a daemon.") << endl;
+    #ifdef WITH_X11
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+        #endif
+    out << "--display <value>             " << " "
+        << tr("Use specified display for X11 calls.\n"
+              "                               Useful for ssh.")
+        << endl;
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+        #endif
+    #endif
+
+    #if defined(WITH_UINPUT) && defined(WITH_XTEST)
+    out << "--eventgen (xtest|uinput)     " << " "
+        << tr("Choose between using XTest support and uinput\n"
+              "                               support for event generation. Default: xtest.")
+        << endl;
+    #endif
+
+#endif
+
+#ifdef USE_SDL_2
+    out << "-l, --list                    " << " "
+        << tr("Print information about joysticks detected by \n"
+              "                               SDL.") << endl;
+    out << "--map <value>                 " << " "
+        << tr("Open game controller mapping window of selected\n"
+              "                               controller. Value can be a controller index or\n"
+              "                               GUID.")
+        << endl;
+#endif
+
+    return temp;
+}
+
 bool CommandLineUtility::isHelpRequested()
 {
     return helpRequest;
@@ -455,6 +566,15 @@ void CommandLineUtility::printVersionString()
 {
     QTextStream out(stdout);
     out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
+}
+
+QString CommandLineUtility::generateVersionString()
+{
+    QString temp;
+    QTextStream out(&temp);
+    out << tr("antimicro version") << " " << PadderCommon::programVersion;
+
+    return temp;
 }
 
 bool CommandLineUtility::isTrayHidden()
@@ -556,3 +676,19 @@ QString CommandLineUtility::getDisplayString()
 }
 
 #endif
+
+Logger::LogLevel CommandLineUtility::getCurrentLogLevel()
+{
+    return currentLogLevel;
+}
+
+QString CommandLineUtility::getErrorText()
+{
+    return errorText;
+}
+
+void CommandLineUtility::setErrorMessage(QString temp)
+{
+    errorText = temp;
+    encounteredError = true;
+}

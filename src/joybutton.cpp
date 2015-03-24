@@ -7,6 +7,7 @@
 #include "joybutton.h"
 #include "vdpad.h"
 #include "event.h"
+#include "logger.h"
 
 const QString JoyButton::xmlName = "button";
 
@@ -247,11 +248,19 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     initialLastMouseDistance();
                     currentMouseDistance = getMouseDistanceFromDeadZone();
 
+                    Logger::LogDebug(tr("Processing turbo for %1.%2")
+                                    .arg(parentSet->getInputDevice()->getRealJoyNumber())
+                                    .arg(getPartialName()));
+
                     turboEvent();
                 }
                 else if (!isButtonPressed && !activePress && turboTimer.isActive())
                 {
                     turboTimer.stop();
+                    Logger::LogDebug(tr("Finishing turbo for button #%1 - %2")
+                                    .arg(parentSet->getInputDevice()->getRealJoyNumber())
+                                    .arg(getPartialName()));
+
                     if (isKeyPressed)
                     {
                         turboEvent();
@@ -299,6 +308,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 //createDeskTimer.start(0);
                 releaseDeskTimer.stop();
 
+                // Newly activated button. Just entered safe zone.
+                initialLastMouseDistance();
+                currentMouseDistance = getMouseDistanceFromDeadZone();
+
                 if (!keyPressTimer.isActive())
                 {
                     checkForPressedSetChange();
@@ -308,12 +321,16 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     }
                 }
 
-                // Newly activated button. Just entered safe zone.
-                initialLastMouseDistance();
-                currentMouseDistance = getMouseDistanceFromDeadZone();
+                Logger::LogDebug(tr("Processing press for button #%1 - %2")
+                                .arg(parentSet->getInputDevice()->getRealJoyNumber())
+                                .arg(getPartialName()));
             }
             else if (!isButtonPressed && !activePress)
             {
+                Logger::LogDebug(tr("Processing release for button #%1 - %2")
+                                .arg(parentSet->getInputDevice()->getRealJoyNumber())
+                                .arg(getPartialName()));
+
                 waitForReleaseDeskEvent();
             }
 
@@ -322,11 +339,18 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         }
         else if (!useTurbo && isButtonPressed)
         {
+            resetMouseDistances();
+            currentMouseDistance = getMouseDistanceFromDeadZone();
+
             if (!setChangeTimer.isActive())
             {
                 bool releasedCalled = distanceEvent();
                 if (releasedCalled)
                 {
+                    Logger::LogDebug(tr("Distance change for button #%1 - %2")
+                                    .arg(parentSet->getInputDevice()->getRealJoyNumber())
+                                    .arg(getPartialName()));
+
                     quitEvent = true;
                     buttonHold.restart();
                     buttonHeldRelease.restart();
@@ -338,9 +362,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                         waitForDeskEvent();
                     }
                 }
-
-                resetMouseDistances();
-                currentMouseDistance = getMouseDistanceFromDeadZone();
             }
         }
     }
