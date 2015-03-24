@@ -141,7 +141,7 @@ void Logger::Log()
             }
 
             QTextStream *writeStream = outputStream;
-            if (level > LOG_INFO && errorStream)
+            if (level < LOG_INFO && errorStream)
             {
                 writeStream = errorStream;
             }
