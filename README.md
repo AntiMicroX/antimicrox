@@ -252,7 +252,7 @@ for this program will be written.
 * Allow buttons to be bound to actions.
 * Use uinput by default and fallback to XTest if necessary. (MOSTLY DONE)
 * Move simulated event generation to a new thread.
-* Allow logging as long as it doesn't cause button lag.
+* ~~Allow logging as long as it doesn't cause button lag.~~
 * Allow notes to be added to a profile in various places.
 
 Along with this, I will put the simple mind map that I am using to
