@@ -19,6 +19,10 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
     instance->errorStream = 0;
+    instance->pendingTimer.setInterval(0);
+    instance->pendingTimer.setSingleShot(true);
+
+    connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
 }
 
 Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel, QObject *parent) :
@@ -28,6 +32,10 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLev
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
     instance->errorStream = errorStream;
+    instance->pendingTimer.setInterval(0);
+    instance->pendingTimer.setSingleShot(true);
+
+    connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
 }
 
 /**
@@ -101,43 +109,54 @@ QTextStream* Logger::getCurrentErrorStream()
 }
 
 /**
- * @brief Check if message should be logged according to the set log level.
- *     Log the message to the output stream.
+ * @brief Go through a list of pending messages and check if message should be
+ *     logged according to the set log level. Log the message to the output
+ *     stream.
  * @param Log level
  * @param String to write to output stream if appropriate to the current
  *     log level.
  */
-void Logger::Log(LogLevel level, const QString &message, bool newline)
+void Logger::Log()
 {
-    Q_ASSERT(instance != 0);
+    QMutexLocker locker(&logMutex);
+    Q_UNUSED(locker);
 
-    if (instance->outputLevel != LOG_NONE && level <= instance->outputLevel)
+    QListIterator<LogMessage> iter(pendingMessages);
+    while (iter.hasNext())
     {
-        QMutexLocker locker(&instance->logMutex);
-        Q_UNUSED(locker);
+        LogMessage pendingMessage = iter.next();
 
-        QString displayTime = "";
-        QString initialPrefix = "";
-        if (instance->outputLevel > LOG_INFO)
+        LogLevel level = pendingMessage.level;
+        QString message = pendingMessage.message;
+        bool newline = pendingMessage.newline;
+
+        if (outputLevel != LOG_NONE && level <= outputLevel)
         {
-            displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
-            initialPrefix = displayTime;
-        }
+            QString displayTime = "";
+            QString initialPrefix = "";
+            if (outputLevel > LOG_INFO)
+            {
+                displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
+                initialPrefix = displayTime;
+            }
 
-        QTextStream *writeStream = instance->outputStream;
-        if (level > LOG_INFO && instance->errorStream)
-        {
-            writeStream = instance->errorStream;
-        }
+            QTextStream *writeStream = outputStream;
+            if (level > LOG_INFO && errorStream)
+            {
+                writeStream = errorStream;
+            }
 
-        *writeStream << initialPrefix << message;
-        if (newline)
-        {
-            *writeStream << endl;
-        }
+            *writeStream << initialPrefix << message;
+            if (newline)
+            {
+                *writeStream << endl;
+            }
 
-        writeStream->flush();
+            writeStream->flush();
+        }
     }
+
+    pendingMessages.clear();
 }
 
 /**
@@ -174,5 +193,34 @@ void Logger::closeLogger(bool closeStream)
         }
     }
 
+    instance->pendingTimer.stop();
     instance = 0;
+}
+
+/**
+ * @brief Append message to list of messages that might get placed in the
+ *     log. Messages will be written later.
+ * @param Log level
+ * @param String to write to output stream if appropriate to the current
+ *     log level.
+ * @param Whether the logger should add a newline to the end of the message.
+ */
+void Logger::appendLog(LogLevel level, const QString &message, bool newline)
+{
+    Q_ASSERT(instance != 0);
+
+    QMutexLocker locker(&instance->logMutex);
+    Q_UNUSED(locker);
+
+    LogMessage temp;
+    temp.level = level;
+    temp.message = QString(message);
+    temp.newline = newline;
+
+    instance->pendingMessages.append(temp);
+
+    if (!instance->pendingTimer.isActive())
+    {
+        instance->pendingTimer.start();
+    }
 }
