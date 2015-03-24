@@ -645,7 +645,7 @@ int main(int argc, char *argv[])
     bool raisedPriority = WinExtras::raiseProcessPriority();
     if (!raisedPriority)
     {
-        logUtil.LogInfo(QObject::tr("Could not raise process priority."));
+        appLogger.LogInfo(QObject::tr("Could not raise process priority."));
         //outstream << QObject::tr("Could not raise process priority.") << endl;
     }
 #else
