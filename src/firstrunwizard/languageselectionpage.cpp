@@ -3,11 +3,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QAbstractButton>
-#ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QApplication>
-    #endif
-#endif
 
 #include "languageselectionpage.h"
 
