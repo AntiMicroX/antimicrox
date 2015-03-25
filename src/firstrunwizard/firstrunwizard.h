@@ -2,6 +2,7 @@
 #define FIRSTRUNWIZARD_H
 
 #include <QWizard>
+#include <QTranslator>
 
 #include "antimicrosettings.h"
 
@@ -11,16 +12,22 @@ class FirstRunWizard : public QWizard
 public:
     enum {
         WelcomePageID,
+        LanguageSelectionPageID,
         AssociateProfilesPageID,
         MouseSettingsPageID
     };
 
-    explicit FirstRunWizard(AntiMicroSettings *settings, QWidget *parent = 0);
+    explicit FirstRunWizard(AntiMicroSettings *settings, QTranslator *translator,
+                            QTranslator *appTranslator, QWidget *parent = 0);
+
+    virtual int nextId() const;
 
     static bool shouldDisplay(AntiMicroSettings *settings);
 
 protected:
     AntiMicroSettings *settings;
+    QTranslator *translator;
+    QTranslator *appTranslator;
 
 signals:
 

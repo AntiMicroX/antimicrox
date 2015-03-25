@@ -522,6 +522,32 @@ Settings will not take affect until you either refresh all joysticks or unplug t
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system's locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>10</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QListWidget" name="localeListWidget">
            <item>
             <property name="text">

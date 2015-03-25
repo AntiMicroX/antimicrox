@@ -10,8 +10,10 @@
 #endif
 
 #include "mousesettingspage.h"
+#include "languageselectionpage.h"
 
-FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
+FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QTranslator *translator,
+                               QTranslator *appTranslator, QWidget *parent) :
     QWizard(parent)
 {
     // Make sure instance is deleted when finished.
@@ -25,8 +27,11 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
     setOption(QWizard::IndependentPages);
 
     this->settings = settings;
+    this->translator = translator;
+    this->appTranslator = appTranslator;
 
     setPage(WelcomePageID, new FirstRunWelcomePage(settings));
+    setPage(LanguageSelectionPageID, new LanguageSelectionPage(settings, translator, appTranslator));
 
 #if defined(Q_OS_WIN) && !defined(WIN_PORTABLE_PACKAGE)
     if (AssociateProfilesPage::shouldDisplay(settings))
@@ -36,10 +41,7 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
 
 #endif
 
-    if (MouseSettingsPage::shouldDisplay(settings))
-    {
-        setPage(MouseSettingsPageID, new MouseSettingsPage(settings));
-    }
+    setPage(MouseSettingsPageID, new MouseSettingsPage(settings));
 
     button(QWizard::CancelButton)->setEnabled(false);
 
@@ -49,6 +51,18 @@ FirstRunWizard::FirstRunWizard(AntiMicroSettings *settings, QWidget *parent) :
 void FirstRunWizard::adjustSettings(int status)
 {
     Q_UNUSED(status);
+
+    if (hasVisitedPage(LanguageSelectionPageID))
+    {
+        QString tempLang = LanguageSelectionPage::languageForIndex(field("selectedLanguage").toInt());
+        if (tempLang != QLocale::system().name())
+        {
+            settings->setValue("Language", tempLang);
+            // Call for re-translation. Will be skipped if already called.
+            LanguageSelectionPage *langPage = static_cast<LanguageSelectionPage*>(page(LanguageSelectionPageID));
+            langPage->retranslateUi();
+        }
+    }
 
 #ifdef Q_OS_WIN
     if (hasVisitedPage(AssociateProfilesPageID))
@@ -87,6 +101,18 @@ void FirstRunWizard::adjustSettings(int status)
     settings->sync();
 }
 
+int FirstRunWizard::nextId() const
+{
+    // Passed the language selection page. Alter language setting if needed.
+    if (currentId() == MouseSettingsPageID)
+    {
+        LanguageSelectionPage *langPage = static_cast<LanguageSelectionPage*>(page(LanguageSelectionPageID));
+        langPage->retranslateUi();
+    }
+
+    return QWizard::nextId();
+}
+
 /**
  * @brief Determine whether the wizard should be initialized. Defaults to
  *   false.
@@ -100,7 +126,11 @@ bool FirstRunWizard::shouldDisplay(AntiMicroSettings *settings)
     result = result || AssociateProfilesPage::shouldDisplay(settings);
 #endif
 
-    result = result || MouseSettingsPage::shouldDisplay(settings);
+    // Only show wizard if no saved settings exist.
+    if (settings->allKeys().size() == 0)
+    {
+        result = true;
+    }
 
     return result;
 }
