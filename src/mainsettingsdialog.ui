@@ -540,7 +540,27 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            </item>
            <item>
             <property name="text">
+             <string>French</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>German</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Russian</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Serbian</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ukrainian</string>
             </property>
            </item>
           </widget>

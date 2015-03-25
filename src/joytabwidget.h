@@ -44,8 +44,9 @@ public:
 #endif
 
 protected:
+    virtual void changeEvent(QEvent *event);
     void removeCurrentButtons();
-    virtual void languageChange();
+    void retranslateUi();
     void disconnectMainComboBoxEvents();
     void reconnectMainComboBoxEvents();
     void disconnectCheckUnsavedEvent();

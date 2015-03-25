@@ -66,8 +66,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 
     findLocaleItem();
 
-    delete ui->categoriesListWidget->item(2);
-    ui->stackedWidget->removeWidget(ui->page);
+    //delete ui->categoriesListWidget->item(2);
+    //ui->stackedWidget->removeWidget(ui->page);
+
+    changePresetLanguage();
 
 #ifdef Q_OS_WIN
     ui->autoProfileTableWidget->hideColumn(3);
@@ -488,7 +490,8 @@ void MainSettingsDialog::saveNewSettings()
     {
         settings->remove("CloseToTray");
     }
-    //checkLocaleChange();
+
+    checkLocaleChange();
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -642,32 +645,40 @@ void MainSettingsDialog::checkLocaleChange()
             settings->remove("Language");
         }
 
-        changeLanguage(QLocale::system().name());
+        emit changeLanguage(QLocale::system().name());
     }
     else
     {
         QString newLocale = "en";
         if (row == 1)
         {
-            newLocale = "en";
+            newLocale = "br";
         }
         else if (row == 2)
         {
-            newLocale = "br";
+            newLocale = "en";
         }
         else if (row == 3)
         {
             newLocale = "fr";
         }
+        else if (row == 4)
+        {
+            newLocale = "de";
+        }
+        else if (row == 5)
+        {
+            newLocale = "ru";
+        }
+        else if (row == 6)
+        {
+            newLocale = "sr";
+        }
+        else if (row == 7)
+        {
+            newLocale = "uk";
+        }
 
-        /*QTranslator myappTranslator;
-#if defined(Q_OS_UNIX)
-        myappTranslator.load("antimicro_" + newLocale, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
-#elif defined(Q_OS_WIN)
-        myappTranslator.load("antimicro_" + newLocale, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-#endif
-        qApp->removeTranslator();
-        qApp->installTranslator(&myappTranslator);*/
         settings->setValue("Language", newLocale);
 
         emit changeLanguage(newLocale);
@@ -1710,5 +1721,41 @@ void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
     {
         ui->historySizeSpinBox->setEnabled(false);
         ui->weightModifierDoubleSpinBox->setEnabled(false);
+    }
+}
+
+void MainSettingsDialog::changePresetLanguage()
+{
+    if (settings->contains("Language"))
+    {
+        QString targetLang = settings->value("Language").toString();
+        if (targetLang == "br")
+        {
+            ui->localeListWidget->setCurrentRow(1);
+        }
+        else if (targetLang == "en")
+        {
+            ui->localeListWidget->setCurrentRow(2);
+        }
+        else if (targetLang == "fr")
+        {
+            ui->localeListWidget->setCurrentRow(3);
+        }
+        else if (targetLang == "de")
+        {
+            ui->localeListWidget->setCurrentRow(4);
+        }
+        else if (targetLang == "ru")
+        {
+            ui->localeListWidget->setCurrentRow(5);
+        }
+        else if (targetLang == "sr")
+        {
+            ui->localeListWidget->setCurrentRow(6);
+        }
+        else if (targetLang == "uk")
+        {
+            ui->localeListWidget->setCurrentRow(7);
+        }
     }
 }

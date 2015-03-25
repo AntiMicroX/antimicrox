@@ -20,6 +20,8 @@ private:
 
 protected:
     void fillInfoTextBrowser();
+    virtual void changeEvent(QEvent *event);
+    void retranslateUi();
 };
 
 #endif // ABOUTDIALOG_H

@@ -84,3 +84,20 @@ void AboutDialog::fillInfoTextBrowser()
     temp.close();
     ui->changelogPlainTextEdit->setPlainText(changelogText);
 }
+
+void AboutDialog::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        retranslateUi();
+    }
+
+    QDialog::changeEvent(event);
+}
+
+void AboutDialog::retranslateUi()
+{
+    ui->retranslateUi(this);
+
+    ui->versionLabel->setText(PadderCommon::programVersion);
+}

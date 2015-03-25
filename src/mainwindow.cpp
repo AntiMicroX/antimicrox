@@ -7,6 +7,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QMessageBox>
+#include <QLibraryInfo>
 
 #ifdef Q_OS_WIN
 #include <QSysInfo>
@@ -57,6 +58,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     ui->stackedWidget->setCurrentIndex(0);
 
     this->translator = 0;
+    this->appTranslator = 0;
     this->cmdutility = cmdutility;
     this->graphical = graphical;
     this->settings = settings;
@@ -837,6 +839,10 @@ void MainWindow::changeEvent(QEvent *event)
             }
         }
     }
+    else if (event->type() == QEvent::LanguageChange)
+    {
+        retranslateUi();
+    }
 
     QMainWindow::changeEvent(event);
 }
@@ -1050,7 +1056,7 @@ void MainWindow::openMainSettingsDialog()
 {
     QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
     MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
-    //connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
+    connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
 
     if (appWatcher)
     {
@@ -1094,16 +1100,26 @@ void MainWindow::changeLanguage(QString language)
 {
     if (translator)
     {
+        // Remove application specific translation strings
         qApp->removeTranslator(translator);
+
+        // Remove old Qt translation strings
+        if (appTranslator)
+        {
+            qApp->removeTranslator(appTranslator);
+
+            // Load new Qt translation strings
+            appTranslator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+            qApp->installTranslator(appTranslator);
+        }
+
+        // Load application specific translation strings
     #if defined(Q_OS_UNIX)
         translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
     #elif defined(Q_OS_WIN)
         translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
     #endif
         qApp->installTranslator(translator);
-        ui->retranslateUi(this);
-        delete aboutDialog;
-        aboutDialog = new AboutDialog(this);
     }
 }
 
@@ -1638,4 +1654,29 @@ void MainWindow::changeWindowStatus()
 bool MainWindow::getGraphicalStatus()
 {
     return graphical;
+}
+
+void MainWindow::setTranslator(QTranslator *translator)
+{
+    this->translator = translator;
+}
+
+QTranslator* MainWindow::getTranslator()
+{
+    return translator;
+}
+
+void MainWindow::setAppTranslator(QTranslator *translator)
+{
+    this->appTranslator = translator;
+}
+
+QTranslator* MainWindow::getAppTranslator()
+{
+    return appTranslator;
+}
+
+void MainWindow::retranslateUi()
+{
+    ui->retranslateUi(this);
 }

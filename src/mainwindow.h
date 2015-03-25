@@ -34,10 +34,17 @@ public:
 
     bool getGraphicalStatus();
 
+    void setTranslator(QTranslator *translator);
+    QTranslator* getTranslator();
+
+    void setAppTranslator(QTranslator *translator);
+    QTranslator* getAppTranslator();
+
 protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
+    void retranslateUi();
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
     void loadConfigFile(QString fileLocation, QString controllerID);
     void unloadCurrentConfig(int joystickIndex=0);
@@ -62,6 +69,7 @@ protected:
     CommandLineUtility *cmdutility;
     AntiMicroSettings *settings;
     QTranslator *translator;
+    QTranslator *appTranslator;
     AutoProfileWatcher *appWatcher;
 
 private:

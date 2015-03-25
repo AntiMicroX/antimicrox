@@ -1483,7 +1483,7 @@ void JoyTabWidget::removeProfileEditNotification()
     }
 }
 
-void JoyTabWidget::languageChange()
+void JoyTabWidget::retranslateUi()
 {
     removeButton->setText(tr("Remove"));
     removeButton->setToolTip(tr("Remove configuration from recent list."));
@@ -1510,8 +1510,10 @@ void JoyTabWidget::languageChange()
     refreshSetButtons();
     refreshCopySetActions();
 
+    gameControllerMappingPushButton->setText(tr("Controller Mapping"));
     stickAssignPushButton->setText(tr("Stick/Pad Assign"));
     quickSetPushButton->setText(tr("Quick Set"));
+    resetButton->setText(tr("Reset"));
 
     namesPushButton->setText(tr("Names"));
     namesPushButton->setToolTip(tr("Toggle button name displaying."));
@@ -2378,3 +2380,13 @@ void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 }
 
 #endif
+
+void JoyTabWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        retranslateUi();
+    }
+
+    QWidget::changeEvent(event);
+}

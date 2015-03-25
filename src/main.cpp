@@ -404,21 +404,27 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("/");
 #endif
 
+    AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings.importFromCommandLine(cmdutility);
+
+    QString targetLang = QLocale::system().name();
+    if (settings.contains("Language"))
+    {
+        targetLang = settings.value("Language").toString();
+    }
+
     QTranslator qtTranslator;
-    qtTranslator.load(QString("qt_").append(QLocale::system().name()), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     a->installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 #if defined(Q_OS_UNIX)
-    myappTranslator.load(QString("antimicro_").append(QLocale::system().name()), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+    myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
 #elif defined(Q_OS_WIN)
-    myappTranslator.load(QString("antimicro_").append(QLocale::system().name()), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
+    myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
 #endif
     a->installTranslator(&myappTranslator);
 
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
-    settings.importFromCommandLine(cmdutility);
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
 
 #ifndef Q_OS_WIN
@@ -610,6 +616,9 @@ int main(int argc, char *argv[])
     {
         w->changeWindowStatus();
     }
+
+    w->setAppTranslator(&qtTranslator);
+    w->setTranslator(&myappTranslator);
 
     AppLaunchHelper mainAppHelper(&settings, w->getGraphicalStatus());
     mainAppHelper.initRunMethods();

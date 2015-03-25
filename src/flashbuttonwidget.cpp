@@ -109,7 +109,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
     QPushButton::paintEvent(event);
 }
 
-void FlashButtonWidget::languageChange()
+void FlashButtonWidget::retranslateUi()
 {
     refreshLabel();
 }

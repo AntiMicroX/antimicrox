@@ -33,6 +33,7 @@ protected:
     void fillAutoProfilesTable(QString guid);
     void fillAllAutoProfilesTable();
     void clearAutoProfileData();
+    void changePresetLanguage();
 
     AntiMicroSettings *settings;
 
