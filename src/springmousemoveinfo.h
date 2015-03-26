@@ -15,6 +15,7 @@ namespace PadderCommon {
         // Should the cursor not move around the center
         // of the screen.
         bool relative;
+        int screen;
     } springModeInfo;
 }
 

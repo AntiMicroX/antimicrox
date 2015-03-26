@@ -802,10 +802,10 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_3">
-        <layout class="QVBoxLayout" name="verticalLayout_8">
+       <widget class="QWidget" name="mouseSettingsPage">
+        <layout class="QVBoxLayout" name="verticalLayout_9">
          <property name="spacing">
-          <number>8</number>
+          <number>10</number>
          </property>
          <item>
           <widget class="QCheckBox" name="disableWindowsEnhancedPointCheckBox">
@@ -829,8 +829,11 @@ precise.</string>
             <string>Smoothing</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="topMargin">
+             <number>10</number>
+            </property>
             <property name="bottomMargin">
-             <number>4</number>
+             <number>20</number>
             </property>
             <item>
              <widget class="QCheckBox" name="smoothingEnableCheckBox">
@@ -922,6 +925,43 @@ it unattended.</string>
           </layout>
          </item>
          <item>
+          <widget class="QGroupBox" name="springGroupBox">
+           <property name="title">
+            <string>Spring</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <property name="topMargin">
+             <number>10</number>
+            </property>
+            <property name="bottomMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QLabel" name="springScreenLabel">
+                <property name="text">
+                 <string>Screen:</string>
+                </property>
+                <property name="buddy">
+                 <cstring>springScreenComboBox</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="springScreenComboBox">
+                <property name="toolTip">
+                 <string>Utilize the specified screen for spring mode. The default
+is to use all available screens.</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_5">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -929,7 +969,7 @@ it unattended.</string>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>362</height>
+             <height>220</height>
             </size>
            </property>
           </spacer>

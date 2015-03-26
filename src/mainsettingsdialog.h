@@ -34,6 +34,7 @@ protected:
     void fillAllAutoProfilesTable();
     void clearAutoProfileData();
     void changePresetLanguage();
+    void fillSpringScreenPresets();
 
     AntiMicroSettings *settings;
 

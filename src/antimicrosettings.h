@@ -16,6 +16,7 @@ public:
 
     static const bool defaultDisabledWinEnhanced;
     static const bool defaultAssociateProfiles;
+    static const int defaultSpringScreen;
 
 protected:
     QSettings cmdSettings;

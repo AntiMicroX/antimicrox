@@ -20,6 +20,7 @@ void AppLaunchHelper::initRunMethods()
     {
         enablePossibleMouseSmoothing();
         changeMouseRefreshRate();
+        //changeSpringModeScreen();
 
 #ifdef Q_OS_WIN
         checkPointerPrecision();
@@ -90,6 +91,13 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
             indexNumber++;
         }
     }
+}
+
+void AppLaunchHelper::changeSpringModeScreen()
+{
+    int springScreen = settings->value("Mouse/SpringScreen",
+                                       AntiMicroSettings::defaultSpringScreen).toInt();
+    JoyButton::setSpringModeScreen(springScreen);
 }
 
 #ifdef Q_OS_WIN

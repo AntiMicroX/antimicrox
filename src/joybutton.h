@@ -163,6 +163,9 @@ public:
     static int getMouseRefreshRate();
     static void setMouseRefreshRate(int refresh);
 
+    static int getSpringModeScreen();
+    static void setSpringModeScreen(int screen);
+
     static void resetActiveButtonMouseDistances();
     void resetMouseDistances();
 
@@ -402,6 +405,7 @@ protected:
     static double weightModifier;
     static int mouseHistorySize;
     static int mouseRefreshRate;
+    static int springModeScreen;
 
 signals:
     void clicked (int index);

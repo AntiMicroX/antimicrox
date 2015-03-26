@@ -88,7 +88,7 @@ double JoyButton::weightModifier = 0;
 int JoyButton::mouseHistorySize = 1;
 
 int JoyButton::mouseRefreshRate = 5;
-
+int JoyButton::springModeScreen = -1;
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -1226,6 +1226,7 @@ void JoyButton::mouseEvent()
                     infoX.width = springWidth;
                     infoX.height = springHeight;
                     infoX.relative = relativeSpring;
+                    infoX.screen = springModeScreen;
                     springXSpeeds.append(infoX);
 
                     PadderCommon::springModeInfo infoY;
@@ -1233,6 +1234,7 @@ void JoyButton::mouseEvent()
                     infoY.width = springWidth;
                     infoY.height = springHeight;
                     infoY.relative = relativeSpring;
+                    infoY.screen = springModeScreen;
                     springYSpeeds.append(infoY);
 
                     //sendSpringEvent(mouse1, mouse2, springWidth, springHeight);
@@ -3513,6 +3515,7 @@ void JoyButton::releaseActiveSlots()
                     infoX.width = springWidth;
                     infoX.height = springHeight;
                     infoX.relative = relativeSpring;
+                    infoX.screen = springModeScreen;
                     springXSpeeds.append(infoX);
 
                     PadderCommon::springModeInfo infoY;
@@ -3521,6 +3524,7 @@ void JoyButton::releaseActiveSlots()
                     infoY.width = springWidth;
                     infoY.height = springHeight;
                     infoY.relative = relativeSpring;
+                    infoY.screen = springModeScreen;
                     springYSpeeds.append(infoY);
                 }
 
@@ -4174,10 +4178,10 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 {
     PadderCommon::springModeInfo fullSpring = {
-        -2.0, -2.0, 0, 0, false
+        -2.0, -2.0, 0, 0, false, springModeScreen
     };
     PadderCommon::springModeInfo relativeSpring = {
-        -2.0, -2.0, 0, 0, false
+        -2.0, -2.0, 0, 0, false, springModeScreen
     };
 
     int realMouseX = movedX = 0;
@@ -4254,6 +4258,9 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
                 complete = true;
             }
         }
+
+        fullSpring.screen = springModeScreen;
+        relativeSpring.screen = springModeScreen;
 
         if (relativeSpring.relative)
         {
@@ -4914,4 +4921,17 @@ void JoyButton::setStartAccelMultiplier(double value)
 double JoyButton::getStartAccelMultiplier()
 {
     return startAccelMultiplier;
+}
+
+int JoyButton::getSpringModeScreen()
+{
+    return springModeScreen;
+}
+
+void JoyButton::setSpringModeScreen(int screen)
+{
+    if (screen >= -1)
+    {
+        springModeScreen = screen;
+    }
 }

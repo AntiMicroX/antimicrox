@@ -91,7 +91,7 @@ bool UInputEventHandler::init()
     #endif
     // Some time needs to elapse after device creation before changing
     // pointer settings. Otherwise, settings will not take effect.
-    QTimer::singleShot(1000, this, SLOT(x11ResetMouseAccelerationChange()));
+    QTimer::singleShot(2000, this, SLOT(x11ResetMouseAccelerationChange()));
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     #endif

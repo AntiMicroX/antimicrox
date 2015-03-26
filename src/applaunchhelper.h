@@ -20,6 +20,7 @@ public:
 protected:
     void enablePossibleMouseSmoothing();
     void changeMouseRefreshRate();
+    void changeSpringModeScreen();
 #ifdef Q_OS_WIN
     void checkPointerPrecision();
 #endif

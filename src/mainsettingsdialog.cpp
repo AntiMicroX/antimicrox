@@ -9,6 +9,7 @@
 #include <QMapIterator>
 #include <QVariant>
 #include <QMessageBox>
+#include <QDesktopWidget>
 
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -248,6 +249,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
                           "the option in Windows."));
     ui->mouseRefreshRateComboBox->setToolTip(tempTooltip);
 #endif
+
+    fillSpringScreenPresets();
+    ui->springGroupBox->setVisible(false);
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
@@ -621,6 +625,13 @@ void MainSettingsDialog::saveNewSettings()
         settings->setValue("Mouse/RefreshRate", mouseRefreshRate);
         JoyButton::setMouseRefreshRate(mouseRefreshRate);
     }
+
+    /*
+    int springIndex = ui->springScreenComboBox->currentIndex();
+    int springScreen = ui->springScreenComboBox->itemData(springIndex).toInt();
+    JoyButton::setSpringModeScreen(springScreen);
+    settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
+    */
 
     settings->sync();
 }
@@ -1757,5 +1768,24 @@ void MainSettingsDialog::changePresetLanguage()
         {
             ui->localeListWidget->setCurrentRow(7);
         }
+    }
+}
+
+void MainSettingsDialog::fillSpringScreenPresets()
+{
+    ui->springScreenComboBox->clear();
+    ui->springScreenComboBox->addItem(tr("All Screens"),
+                                      QVariant(AntiMicroSettings::defaultSpringScreen));
+
+    QDesktopWidget deskWid;
+    for (int i=0; i < deskWid.screenCount(); i++)
+    {
+        ui->springScreenComboBox->addItem(QString(":%1").arg(i), QVariant(i));
+    }
+
+    int screenIndex = ui->springScreenComboBox->findData(JoyButton::getSpringModeScreen());
+    if (screenIndex > -1)
+    {
+        ui->springScreenComboBox->setCurrentIndex(screenIndex);
     }
 }
