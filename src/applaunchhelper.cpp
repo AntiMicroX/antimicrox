@@ -1,5 +1,6 @@
 #include <QTextStream>
 #include <QMapIterator>
+#include <QDesktopWidget>
 
 #include "applaunchhelper.h"
 
@@ -20,7 +21,7 @@ void AppLaunchHelper::initRunMethods()
     {
         enablePossibleMouseSmoothing();
         changeMouseRefreshRate();
-        //changeSpringModeScreen();
+        changeSpringModeScreen();
 
 #ifdef Q_OS_WIN
         checkPointerPrecision();
@@ -95,8 +96,17 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
 
 void AppLaunchHelper::changeSpringModeScreen()
 {
+    QDesktopWidget deskWid;
     int springScreen = settings->value("Mouse/SpringScreen",
                                        AntiMicroSettings::defaultSpringScreen).toInt();
+
+    if (springScreen >= deskWid.screenCount())
+    {
+        springScreen = -1;
+        settings->setValue("Mouse/SpringScreen", AntiMicroSettings::defaultSpringScreen);
+        settings->sync();
+    }
+
     JoyButton::setSpringModeScreen(springScreen);
 }
 

@@ -35,7 +35,7 @@
 
 #endif
 
-static MouseHelper *mouseHelperObj = 0;
+static MouseHelper mouseHelperObj;
 
 #ifdef Q_OS_UNIX
     static void finalSpringEvent(Display *display, unsigned int xmovecoor, unsigned int ymovecoor)
@@ -165,13 +165,7 @@ void sendevent(int code1, int code2)
 
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring, int* const mousePosX, int* const mousePosY)
 {
-    if (!mouseHelperObj)
-    {
-        mouseHelperObj = new MouseHelper();
-        QObject::connect(qApp, SIGNAL(aboutToQuit()), mouseHelperObj, SLOT(deleteLater()));
-    }
-
-    mouseHelperObj->mouseTimer.stop();
+    mouseHelperObj.mouseTimer.stop();
 
     if ((fullSpring->displacementX >= -2.0 && fullSpring->displacementX <= 1.0 &&
         fullSpring->displacementY >= -2.0 && fullSpring->displacementY <= 1.0) ||
@@ -191,9 +185,14 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         int currentMouseX = 0;
         int currentMouseY = 0;
 
-#if defined (Q_OS_UNIX)
         QDesktopWidget deskWid;
-        QRect deskRect = deskWid.screenGeometry();
+        if (fullSpring->screen >= deskWid.screenCount())
+        {
+            fullSpring->screen = -1;
+        }
+
+        QRect deskRect = deskWid.screenGeometry(fullSpring->screen);
+//#if defined (Q_OS_UNIX)
         width = deskRect.width();
         height = deskRect.height();
         QPoint currentPoint = QCursor::pos();
@@ -205,7 +204,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         //qDebug() << "WIDTH: " << width;
         //qDebug() << "HEIGHT: " << height;
 
-#elif defined (Q_OS_WIN)
+//#elif defined (Q_OS_WIN)
+/*
         POINT cursorPoint;
         GetCursorPos(&cursorPoint);
 
@@ -213,8 +213,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         height = GetSystemMetrics(SM_CYSCREEN);
         currentMouseX = cursorPoint.x;
         currentMouseY = cursorPoint.y;
-
-#endif
+*/
+//#endif
 
         midwidth = width / 2;
         midheight = height / 2;
@@ -238,26 +238,33 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
         unsigned int pivotX = midwidth;
         unsigned int pivotY = midheight;
-        if (mouseHelperObj->pivotPoint[0] != -1)
+        if (relativeSpring)
         {
-            pivotX = mouseHelperObj->pivotPoint[0];
-        }
-        else
-        {
-            pivotX = currentMouseX;
-        }
+            if (mouseHelperObj.pivotPoint[0] != -1)
+            {
+                pivotX = mouseHelperObj.pivotPoint[0];
+            }
+            else
+            {
+                pivotX = currentMouseX;
+            }
 
-        if (mouseHelperObj->pivotPoint[1] != -1)
-        {
-            pivotY = mouseHelperObj->pivotPoint[1];
-        }
-        else
-        {
-            pivotY = currentMouseY;
+            if (mouseHelperObj.pivotPoint[1] != -1)
+            {
+                pivotY = mouseHelperObj.pivotPoint[1];
+            }
+            else
+            {
+                pivotY = currentMouseY;
+            }
         }
 
         xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (fullSpring->displacementX * destMidWidth)): pivotX;
         ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (fullSpring->displacementY * destMidHeight)) : pivotY;
+
+        // Add top left coordinates of screen to new cursor coordinates.
+        xmovecoor += deskRect.x();
+        ymovecoor += deskRect.y();
 
         unsigned int fullSpringDestX = xmovecoor;
         unsigned int fullSpringDestY = ymovecoor;
@@ -312,90 +319,118 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #endif
 
             // If either position is set to center, force update.
-            if (xmovecoor == midwidth || ymovecoor == midheight)
+            if (xmovecoor == (deskRect.x() + midwidth) || ymovecoor == (deskRect.y() + midheight))
             {
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                if (fullSpring->screen <= -1)
+                {
+                    finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                }
+                else
+                {
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                }
 #endif
 
             }
-            else if (!mouseHelperObj->springMouseMoving && relativeSpring &&
+            else if (!mouseHelperObj.springMouseMoving && relativeSpring &&
                 (relativeSpring->displacementX >= -1.0 || relativeSpring->displacementY >= -1.0) &&
                 (diffx >= destRelativeWidth*.013 || diffy >= destRelativeHeight*.013))
             {
-                mouseHelperObj->springMouseMoving = true;
+                mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                if (fullSpring->screen <= -1)
+                {
+                    finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                }
+                else
+                {
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                }
 #endif
-                mouseHelperObj->mouseTimer.start(8);
+                mouseHelperObj.mouseTimer.start(8);
             }
-            else if (!mouseHelperObj->springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
+            else if (!mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
             {
-                mouseHelperObj->springMouseMoving = true;
+                mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                if (fullSpring->screen <= -1)
+                {
+                    finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                }
+                else
+                {
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                }
 #endif
 
                 //qDebug() << QTime::currentTime();
                 //qDebug() << "X: " << xmovecoor;
                 //qDebug() << "Y: " << ymovecoor;
 
-                mouseHelperObj->mouseTimer.start(8);
+                mouseHelperObj.mouseTimer.start(8);
             }
 
-            else if (mouseHelperObj->springMouseMoving && (diffx < 2 && diffy < 2))
+            else if (mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
             {
-                mouseHelperObj->springMouseMoving = false;
+                mouseHelperObj.springMouseMoving = false;
             }
-            else if (mouseHelperObj->springMouseMoving)
+            else if (mouseHelperObj.springMouseMoving)
             {
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
 
 #elif defined(Q_OS_WIN)
-                finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                if (fullSpring->screen <= -1)
+                {
+                    finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                }
+                else
+                {
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                }
 #endif
 
-                mouseHelperObj->mouseTimer.start(8);
+                mouseHelperObj.mouseTimer.start(8);
             }
 
-            mouseHelperObj->previousCursorLocation[0] = currentMouseX;
-            mouseHelperObj->previousCursorLocation[1] = currentMouseY;
-            mouseHelperObj->pivotPoint[0] = fullSpringDestX;
-            mouseHelperObj->pivotPoint[1] = fullSpringDestY;
+            mouseHelperObj.previousCursorLocation[0] = currentMouseX;
+            mouseHelperObj.previousCursorLocation[1] = currentMouseY;
+            mouseHelperObj.pivotPoint[0] = fullSpringDestX;
+            mouseHelperObj.pivotPoint[1] = fullSpringDestY;
         }
-        else if (mouseHelperObj->previousCursorLocation[0] == xmovecoor &&
-                 mouseHelperObj->previousCursorLocation[1] == ymovecoor)
+        else if (mouseHelperObj.previousCursorLocation[0] == xmovecoor &&
+                 mouseHelperObj.previousCursorLocation[1] == ymovecoor)
         {
-            mouseHelperObj->springMouseMoving = false;
+            mouseHelperObj.springMouseMoving = false;
         }
         else
         {
-            mouseHelperObj->previousCursorLocation[0] = currentMouseX;
-            mouseHelperObj->previousCursorLocation[1] = currentMouseY;
-            mouseHelperObj->pivotPoint[0] = fullSpringDestX;
-            mouseHelperObj->pivotPoint[1] = fullSpringDestY;
+            mouseHelperObj.previousCursorLocation[0] = currentMouseX;
+            mouseHelperObj.previousCursorLocation[1] = currentMouseY;
+            mouseHelperObj.pivotPoint[0] = fullSpringDestX;
+            mouseHelperObj.pivotPoint[1] = fullSpringDestY;
 
-            mouseHelperObj->mouseTimer.start(8);
+            mouseHelperObj.mouseTimer.start(8);
         }
     }
     else
     {
-        mouseHelperObj->springMouseMoving = false;
-        mouseHelperObj->pivotPoint[0] = -1;
-        mouseHelperObj->pivotPoint[1] = -1;
+        mouseHelperObj.springMouseMoving = false;
+        mouseHelperObj.pivotPoint[0] = -1;
+        mouseHelperObj.pivotPoint[1] = -1;
     }
 }
 

@@ -251,7 +251,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 #endif
 
     fillSpringScreenPresets();
-    ui->springGroupBox->setVisible(false);
+    //ui->springGroupBox->setVisible(false);
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
@@ -626,12 +626,10 @@ void MainSettingsDialog::saveNewSettings()
         JoyButton::setMouseRefreshRate(mouseRefreshRate);
     }
 
-    /*
     int springIndex = ui->springScreenComboBox->currentIndex();
     int springScreen = ui->springScreenComboBox->itemData(springIndex).toInt();
     JoyButton::setSpringModeScreen(springScreen);
     settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
-    */
 
     settings->sync();
 }
@@ -1774,7 +1772,7 @@ void MainSettingsDialog::changePresetLanguage()
 void MainSettingsDialog::fillSpringScreenPresets()
 {
     ui->springScreenComboBox->clear();
-    ui->springScreenComboBox->addItem(tr("All Screens"),
+    ui->springScreenComboBox->addItem(tr("Default"),
                                       QVariant(AntiMicroSettings::defaultSpringScreen));
 
     QDesktopWidget deskWid;
