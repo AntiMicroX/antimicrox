@@ -140,6 +140,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
         ui->joyModeComboBox->setCurrentIndex(0);
+        ui->diagonalRangeSlider->setValue(65);
     }
     else if (index == 2)
     {
@@ -148,6 +149,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
         ui->joyModeComboBox->setCurrentIndex(0);
+        ui->diagonalRangeSlider->setValue(65);
     }
     else if (index == 3)
     {
@@ -156,6 +158,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
         ui->joyModeComboBox->setCurrentIndex(0);
+        ui->diagonalRangeSlider->setValue(65);
     }
     else if (index == 4)
     {
@@ -164,6 +167,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         leftButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseRight, JoyButtonSlot::JoyMouseMovement, this);
         rightButtonSlot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
         ui->joyModeComboBox->setCurrentIndex(0);
+        ui->diagonalRangeSlider->setValue(65);
     }
     else if (index == 5)
     {
@@ -172,6 +176,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         leftButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Left), Qt::Key_Left, JoyButtonSlot::JoyKeyboard, this);
         rightButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Right), Qt::Key_Right, JoyButtonSlot::JoyKeyboard, this);
         ui->joyModeComboBox->setCurrentIndex(0);
+        ui->diagonalRangeSlider->setValue(45);
     }
     else if (index == 6)
     {
@@ -180,6 +185,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
         leftButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_A), Qt::Key_A, JoyButtonSlot::JoyKeyboard, this);
         rightButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_D), Qt::Key_D, JoyButtonSlot::JoyKeyboard, this);
         ui->joyModeComboBox->setCurrentIndex(0);
+        ui->diagonalRangeSlider->setValue(45);
     }
     else if (index == 7)
     {
@@ -210,6 +216,8 @@ void JoyControlStickEditDialog::implementPresets(int index)
             downLeftButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_1), QtKeyMapperBase::AntKey_KP_1, JoyButtonSlot::JoyKeyboard, this);
             downRightButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_3), QtKeyMapperBase::AntKey_KP_3, JoyButtonSlot::JoyKeyboard, this);
         }
+
+        ui->diagonalRangeSlider->setValue(45);
     }
     else if (index == 8)
     {
@@ -220,6 +228,8 @@ void JoyControlStickEditDialog::implementPresets(int index)
             JoyControlStickButton *button = iter.next().value();
             button->clearSlotsEventReset();
         }
+
+        ui->diagonalRangeSlider->setValue(45);
     }
 
     if (upButtonSlot)
