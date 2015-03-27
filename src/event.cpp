@@ -331,7 +331,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 }
                 else
                 {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
 
@@ -352,7 +352,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 }
                 else
                 {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
                 mouseHelperObj.mouseTimer.start(8);
@@ -371,7 +371,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 }
                 else
                 {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
 
@@ -399,7 +399,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 }
                 else
                 {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY))
+                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
 
