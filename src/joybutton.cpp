@@ -4577,6 +4577,11 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->relativeSpring = relativeSpring;
     destButton->currentTurboMode = currentTurboMode;
     destButton->easingDuration = easingDuration;
+    destButton->extraAccelerationEnabled = extraAccelerationEnabled;
+    destButton->extraAccelerationMultiplier = extraAccelerationMultiplier;
+    destButton->minMouseDistanceAccelThreshold = minMouseDistanceAccelThreshold;
+    destButton->maxMouseDistanceAccelThreshold = maxMouseDistanceAccelThreshold;
+    destButton->startAccelMultiplier = startAccelMultiplier;
 }
 
 /**
