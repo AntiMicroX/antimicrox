@@ -951,7 +951,8 @@ it unattended.</string>
               <item>
                <widget class="QComboBox" name="springScreenComboBox">
                 <property name="toolTip">
-                 <string>Utilize the specified screen for spring mode. The default
+                 <string>Utilize the specified screen for spring mode. On Linux, the
+default is to use the primary screen. On Windows, the default
 is to use all available screens.</string>
                 </property>
                </widget>
