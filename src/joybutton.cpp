@@ -335,6 +335,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
 
             updateLastMouseDistance = false;
+            updateStartingMouseDistance = false;
 
         }
         else if (!useTurbo && isButtonPressed)
@@ -1116,8 +1117,11 @@ void JoyButton::mouseEvent()
                     //double mintravel = 0.15;
                     //double mintravel = 0.10;
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
+                    //if (extraAccelerationEnabled && isPartRealAxis() &&
+                    //    initialDifference - lastMouseDistance >= mintravel)
                     if (extraAccelerationEnabled && isPartRealAxis() &&
-                        initialDifference - lastMouseDistance >= mintravel)
+                        initialDifference - startingMouseDistance >= mintravel &&
+                        initialDifference - lastMouseDistance < mintravel)
                     {
                         //qDebug() << "CURRENT: " << initialDifference;
                         //qDebug() << "LAST KNOWN: " << lastMouseDistance;
@@ -1136,16 +1140,29 @@ void JoyButton::mouseEvent()
 
                         //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
-                        difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
-                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
+                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
+                        difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
                         //qDebug() << "UP IN HERE: " << difference;
                         //qDebug() << "";
+                        updateStartingMouseDistance = true;
                     }
-                    else
+                    else if (extraAccelerationEnabled && isPartRealAxis() &&
+                             initialDifference - lastMouseDistance < mintravel)
+                    {
+                        startingMouseDistance = initialDifference;
+                        updateStartingMouseDistance = true;
+                    }
+                    else if (!extraAccelerationEnabled || !isPartRealAxis())
+                    {
+                        startingMouseDistance = initialDifference;
+                        updateStartingMouseDistance = true;
+                    }
+                    /*else
                     {
                         startingMouseDistance = initialDifference;
                     }
+                    */
 
                     //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
@@ -3124,6 +3141,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         lastMouseDistance = 0.0;
         currentMouseDistance = 0.0;
         startingMouseDistance = 0.0;
+        updateStartingMouseDistance = true;
 
         if (slotiter && !slotiter->hasNext())
         {
@@ -4800,6 +4818,7 @@ void JoyButton::resetProperties()
     lastDistance = 0.0;
     lastMouseDistance = 0.0;
     updateLastMouseDistance = false;
+    updateStartingMouseDistance = false;
     currentMouseDistance = 0.0;
     startingMouseDistance = 0.0;
     lastWheelVerticalDistance = 0.0;
@@ -4832,6 +4851,12 @@ void JoyButton::resetMouseDistances()
     {
         lastMouseDistance = currentMouseDistance;
         updateLastMouseDistance = false;
+
+        if (updateStartingMouseDistance)
+        {
+            startingMouseDistance = lastMouseDistance;
+            updateStartingMouseDistance = false;
+        }
     }
 
     currentMouseDistance = getMouseDistanceFromDeadZone();

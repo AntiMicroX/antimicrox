@@ -27,7 +27,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicr
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
         // Timer in case SDL does not produce an axis event during a joystick
         // poll.
-        pollResetTimer.setSingleShot(true);
+        //pollResetTimer.setSingleShot(true);
         pollResetTimer.setInterval(11);
         connect(&pollResetTimer, SIGNAL(timeout()), this, SLOT(resetActiveButtonMouseDistances()));
         thread->start();

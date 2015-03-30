@@ -358,6 +358,10 @@ protected:
     // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;
 
+    // Should startingMouseDistance be updated. Set after acceleration
+    // has finally been applied.
+    bool updateStartingMouseDistance;
+
     // Keep track of the current mouse distance after a poll. Used
     // to update lastMouseDistance later.
     double currentMouseDistance;
