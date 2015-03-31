@@ -1361,105 +1361,120 @@ this button is being used.</source>
 <context>
     <name>CommandLineUtility</name>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="107"/>
-        <location filename="../../../src/commandlineutility.cpp" line="361"/>
+        <location filename="../../../src/commandlineutility.cpp" line="109"/>
+        <location filename="../../../src/commandlineutility.cpp" line="407"/>
         <source>Profile location %1 is not an XML file.</source>
         <translation>Профиль, находящийся в %1 не является XML файлом.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="117"/>
-        <location filename="../../../src/commandlineutility.cpp" line="371"/>
+        <location filename="../../../src/commandlineutility.cpp" line="120"/>
+        <location filename="../../../src/commandlineutility.cpp" line="418"/>
         <source>Profile location %1 does not exist.</source>
         <translation>Профиль, находящийся в %1 не существует.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="289"/>
+        <location filename="../../../src/commandlineutility.cpp" line="300"/>
         <source>No display string was specified.</source>
         <translation>Не указана строка для отображения.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="140"/>
-        <location filename="../../../src/commandlineutility.cpp" line="174"/>
-        <location filename="../../../src/commandlineutility.cpp" line="220"/>
-        <location filename="../../../src/commandlineutility.cpp" line="263"/>
+        <location filename="../../../src/commandlineutility.cpp" line="144"/>
+        <location filename="../../../src/commandlineutility.cpp" line="179"/>
+        <location filename="../../../src/commandlineutility.cpp" line="227"/>
+        <location filename="../../../src/commandlineutility.cpp" line="272"/>
         <source>Controller identifier is not a valid value.</source>
         <translation>Идентификатор контроллера имеет недопустимое значение.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="200"/>
+        <location filename="../../../src/commandlineutility.cpp" line="206"/>
         <source>An invalid set number was specified.</source>
         <translation>Указан неверный набор значений.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="234"/>
+        <location filename="../../../src/commandlineutility.cpp" line="242"/>
         <source>No set number was specified.</source>
         <translation>Не указан набор значений.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="269"/>
+        <location filename="../../../src/commandlineutility.cpp" line="279"/>
         <source>No controller was specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="305"/>
+        <location filename="../../../src/commandlineutility.cpp" line="317"/>
         <source>An invalid event generator was specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="315"/>
+        <location filename="../../../src/commandlineutility.cpp" line="328"/>
         <source>No event generator string was specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="330"/>
+        <location filename="../../../src/commandlineutility.cpp" line="344"/>
         <source>Qt style flag was detected but no style was specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="386"/>
-        <location filename="../../../src/commandlineutility.cpp" line="457"/>
+        <location filename="../../../src/commandlineutility.cpp" line="374"/>
+        <source>No log level specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="434"/>
+        <location filename="../../../src/commandlineutility.cpp" line="496"/>
+        <location filename="../../../src/commandlineutility.cpp" line="568"/>
+        <location filename="../../../src/commandlineutility.cpp" line="575"/>
         <source>antimicro version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="387"/>
+        <location filename="../../../src/commandlineutility.cpp" line="435"/>
+        <location filename="../../../src/commandlineutility.cpp" line="497"/>
         <source>Usage: antimicro [options] [profile]</source>
         <translation>Использование: antimicro [опции] [профиль]</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="389"/>
+        <location filename="../../../src/commandlineutility.cpp" line="437"/>
+        <location filename="../../../src/commandlineutility.cpp" line="499"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="390"/>
+        <location filename="../../../src/commandlineutility.cpp" line="438"/>
+        <location filename="../../../src/commandlineutility.cpp" line="500"/>
         <source>Print help text.</source>
         <translation>Показать текст помощи.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="391"/>
+        <location filename="../../../src/commandlineutility.cpp" line="439"/>
+        <location filename="../../../src/commandlineutility.cpp" line="501"/>
         <source>Print version information.</source>
         <translation>Показать информацию о версии.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="392"/>
+        <location filename="../../../src/commandlineutility.cpp" line="440"/>
+        <location filename="../../../src/commandlineutility.cpp" line="502"/>
         <source>Launch program in system tray only.</source>
         <translation>Запускать программу только в системном трее.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="393"/>
+        <location filename="../../../src/commandlineutility.cpp" line="441"/>
+        <location filename="../../../src/commandlineutility.cpp" line="503"/>
         <source>Launch program with the tray menu disabled.</source>
         <translation>Запустить программу с отключенным меню трея.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="394"/>
+        <location filename="../../../src/commandlineutility.cpp" line="442"/>
+        <location filename="../../../src/commandlineutility.cpp" line="504"/>
         <source>Launch program without the main window
                                displayed.</source>
         <translation>Запускать программу без отображения
                                главного окна.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="396"/>
+        <location filename="../../../src/commandlineutility.cpp" line="444"/>
+        <location filename="../../../src/commandlineutility.cpp" line="506"/>
         <source>Launch program with the configuration file
                                selected as the default for selected
                                controllers. Defaults to all controllers.</source>
@@ -1468,7 +1483,8 @@ this button is being used.</source>
                                Настройки контроллеров будут выставлены по-умолчанию.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="399"/>
+        <location filename="../../../src/commandlineutility.cpp" line="447"/>
+        <location filename="../../../src/commandlineutility.cpp" line="509"/>
         <source>Apply configuration file to a specific
                                controller. Value can be a
                                controller index, name, or GUID.</source>
@@ -1477,44 +1493,51 @@ this button is being used.</source>
                                контроллера, имя или GUID.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="401"/>
+        <location filename="../../../src/commandlineutility.cpp" line="449"/>
+        <location filename="../../../src/commandlineutility.cpp" line="511"/>
         <source>Unload currently enabled profile(s). 
                                Value can be a controller index, name, or GUID.</source>
         <translation>Загрузить текущие активные профили. 
                                Значениями могут быть индекс контроллера, имя или GUID.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="403"/>
+        <location filename="../../../src/commandlineutility.cpp" line="451"/>
+        <location filename="../../../src/commandlineutility.cpp" line="513"/>
         <source>Start joysticks on a specific set.   
                                Value can be a controller index, name, or GUID.</source>
         <translation>Запускать геймпады на определнном наборе. 
                                Значениями могут быть индекс контроллера, имя или GUID. </translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="407"/>
+        <location filename="../../../src/commandlineutility.cpp" line="455"/>
+        <location filename="../../../src/commandlineutility.cpp" line="517"/>
         <source>Launch program as a daemon.</source>
         <translation>Запускать программу в качестве демона.</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="414"/>
+        <location filename="../../../src/commandlineutility.cpp" line="462"/>
+        <location filename="../../../src/commandlineutility.cpp" line="524"/>
         <source>Use specified display for X11 calls.
                                Useful for ssh.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="424"/>
+        <location filename="../../../src/commandlineutility.cpp" line="472"/>
+        <location filename="../../../src/commandlineutility.cpp" line="534"/>
         <source>Choose between using XTest support and uinput
                                support for event generation. Default: xtest.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="433"/>
+        <location filename="../../../src/commandlineutility.cpp" line="481"/>
+        <location filename="../../../src/commandlineutility.cpp" line="543"/>
         <source>Print information about joysticks detected by 
                                SDL.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="436"/>
+        <location filename="../../../src/commandlineutility.cpp" line="484"/>
+        <location filename="../../../src/commandlineutility.cpp" line="546"/>
         <source>Open game controller mapping window of selected
                                controller. Value can be a controller index or
                                GUID.</source>
@@ -1798,7 +1821,7 @@ to a diagonal zone of the stick.</source>
 <context>
     <name>FirstRunWizard</name>
     <message>
-        <location filename="../../../src/firstrunwizard/firstrunwizard.cpp" line="20"/>
+        <location filename="../../../src/firstrunwizard/firstrunwizard.cpp" line="22"/>
         <source>App Settings Wizard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2184,31 +2207,56 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1933"/>
-        <location filename="../../../src/joybutton.cpp" line="1941"/>
-        <location filename="../../../src/joybutton.cpp" line="1947"/>
+        <location filename="../../../src/joybutton.cpp" line="251"/>
+        <source>Processing turbo for %1.%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybutton.cpp" line="260"/>
+        <source>Finishing turbo for button #%1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybutton.cpp" line="324"/>
+        <source>Processing press for button #%1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybutton.cpp" line="330"/>
+        <source>Processing release for button #%1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybutton.cpp" line="351"/>
+        <source>Distance change for button #%1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybutton.cpp" line="1973"/>
+        <location filename="../../../src/joybutton.cpp" line="1981"/>
+        <location filename="../../../src/joybutton.cpp" line="1987"/>
         <source>Button</source>
         <translation>Кнопка</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1986"/>
-        <location filename="../../../src/joybutton.cpp" line="2136"/>
-        <location filename="../../../src/joybutton.cpp" line="2243"/>
+        <location filename="../../../src/joybutton.cpp" line="2026"/>
+        <location filename="../../../src/joybutton.cpp" line="2176"/>
+        <location filename="../../../src/joybutton.cpp" line="2283"/>
         <source>[NO KEY]</source>
         <translation>[ПУСТО]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2014"/>
+        <location filename="../../../src/joybutton.cpp" line="2054"/>
         <source>[Set %1 1W]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2022"/>
+        <location filename="../../../src/joybutton.cpp" line="2062"/>
         <source>[Set %1 2W]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2031"/>
+        <location filename="../../../src/joybutton.cpp" line="2071"/>
         <source>[Set %1 WH]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2713,12 +2761,12 @@ functionality to an analog stick.</source>
         <translation>Диагональный диапазон:</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="457"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="467"/>
         <source>Set</source>
         <translation>Установки для</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="471"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="481"/>
         <source>Set %1</source>
         <translation>Установки для %1</translation>
     </message>
@@ -2789,7 +2837,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joytabwidget.cpp" line="849"/>
         <location filename="../../../src/joytabwidget.cpp" line="902"/>
         <location filename="../../../src/joytabwidget.cpp" line="1045"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2263"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2265"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;Новый&gt;</translation>
     </message>
@@ -2907,54 +2955,56 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="378"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1513"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1514"/>
         <source>Stick/Pad Assign</source>
         <translation>Настройка Стиков/Крестровин</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="384"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1513"/>
         <source>Controller Mapping</source>
         <translation>Настройка Контроллера</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="391"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1514"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1515"/>
         <source>Quick Set</source>
         <translation>Быстрая Настройка</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="399"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1516"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1518"/>
         <source>Names</source>
         <translation>Бирки</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="401"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1517"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1519"/>
         <source>Toggle button name displaying.</source>
         <translation>Вкл. / Выкл. отображение названий команд на кнопках.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="406"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1519"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1521"/>
         <source>Pref</source>
         <translation>Настройки Профиля</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="408"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1520"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1522"/>
         <source>Change global profile settings.</source>
         <translation>Изменить общие настройки профиля.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="412"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1522"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1516"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1524"/>
         <source>Reset</source>
         <translation>Сброс</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="414"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1523"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1525"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>Отменяет изменения конфигурации. Перезагружает конфигурационный файл.</translation>
     </message>
@@ -2976,59 +3026,59 @@ functionality to an analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1594"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1596"/>
         <source>Save Profile Changes?</source>
         <translation>Сохранить изменения в профиле?</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1598"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1600"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>Изменения в новом профиле не были сохранены. Сохранить или отменить изменения в текущем профиле?</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1602"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1604"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>Изменения в профиле &quot;%1&quot; не были сохранены. Сохранить или отменить изменения в текущем профиле?</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1850"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1852"/>
         <source>Sticks</source>
         <translation>Стики</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1918"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1969"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1920"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1971"/>
         <source>DPads</source>
         <translation>Крестовины</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2109"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2111"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>&lt;center&gt;Не было назначено ни одной кнопки. Воспользуйтесь &quot;Быстрой Настройкой&quot; &lt;br&gt;для назначения кнопок или отключите сокрытие пустых кнопок.&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2299"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2324"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2301"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2326"/>
         <source>Set %1: %2</source>
         <translation>Набор %1: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2303"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2328"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2305"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2330"/>
         <source>Set %1</source>
         <translation>Набор %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2336"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2338"/>
         <source>Copy Set Assignments</source>
         <translation>Скопировать Набор Настроек</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2337"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2339"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>Вы уверены что хотите скопировать настройки и параметры устройства из %1? </translation>
     </message>
@@ -3150,6 +3200,64 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="142"/>
         <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LanguageSelectionPage</name>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="18"/>
+        <source>Language</source>
+        <translation type="unfinished">Язык</translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="19"/>
+        <source>Select a language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="24"/>
+        <source>antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="36"/>
+        <source>Default</source>
+        <translation type="unfinished">По-умолчанию</translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="37"/>
+        <source>Brazilian Portuguese</source>
+        <translation type="unfinished">Бразильский / Португальский</translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="38"/>
+        <source>English</source>
+        <translation type="unfinished">Английский</translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="39"/>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="40"/>
+        <source>German</source>
+        <translation type="unfinished">Немецкий</translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="41"/>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="42"/>
+        <source>Serbian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="43"/>
+        <source>Ukrainian</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3309,7 +3417,7 @@ option is enabled.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="298"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="792"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="841"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3326,22 +3434,47 @@ per seconds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="667"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="527"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="569"/>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="579"/>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="584"/>
+        <source>Serbian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="589"/>
+        <source>Ukrainian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="713"/>
         <source>Class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="672"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="718"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="677"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="723"/>
         <source>Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="767"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="813"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
@@ -3349,38 +3482,55 @@ precise.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="773"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="819"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="783"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="829"/>
         <source>Smoothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="801"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="850"/>
         <source>History Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="827"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="876"/>
         <source>Weight Modifier:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="860"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="909"/>
         <source>Refresh Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="867"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="916"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
 more CPU power. Setting this value too low can cause
 system instability. Please test the setting before using
 it unattended.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="930"/>
+        <source>Spring</source>
+        <translation type="unfinished">Пружина</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="944"/>
+        <source>Screen:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="954"/>
+        <source>Utilize the specified screen for spring mode. On Linux, the
+default is to use the primary screen. On Windows, the default
+is to use all available screens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3429,7 +3579,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="497"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="746"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="792"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
@@ -3439,81 +3589,82 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="528"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="554"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1775"/>
         <source>Default</source>
         <translation>По-умолчанию</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="533"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="559"/>
         <source>Brazilian Portuguese</source>
         <translation>Бразильский / Португальский</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="538"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="564"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="543"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="574"/>
         <source>German</source>
         <translation>Немецкий</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="560"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="652"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="606"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="698"/>
         <source>Active</source>
         <translation>Активировать</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="585"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="631"/>
         <source>Devices:</source>
         <translation>Устройства:</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="593"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="996"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="639"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1016"/>
         <source>All</source>
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="657"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="703"/>
         <source>Device</source>
         <translation>Устройство</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="662"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="708"/>
         <source>Profile</source>
         <translation>Профиль</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="682"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="728"/>
         <source>Default?</source>
         <translation>По-умолчанию?</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="716"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="762"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="731"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="777"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="244"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="247"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="628"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="640"/>
         <source>Select Default Profile Directory</source>
         <translation>Выбрать как профиль по-умолчанию</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1375"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1395"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>Вы уверены что хотите удалить этот профиль?</translation>
     </message>
@@ -3553,7 +3704,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="482"/>
+        <location filename="../../../src/mainwindow.cpp" line="484"/>
         <source>&amp;Quit</source>
         <translation>&amp;Выход</translation>
     </message>
@@ -3564,7 +3715,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="486"/>
+        <location filename="../../../src/mainwindow.cpp" line="488"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Обновить Геймпады</translation>
     </message>
@@ -3575,7 +3726,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="474"/>
+        <location filename="../../../src/mainwindow.cpp" line="476"/>
         <source>&amp;Hide</source>
         <translation>&amp;Скрыть</translation>
     </message>
@@ -3640,45 +3791,45 @@ the option in Windows.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="297"/>
-        <location filename="../../../src/mainwindow.cpp" line="372"/>
-        <location filename="../../../src/mainwindow.cpp" line="1343"/>
-        <location filename="../../../src/mainwindow.cpp" line="1388"/>
-        <location filename="../../../src/mainwindow.cpp" line="1410"/>
-        <location filename="../../../src/mainwindow.cpp" line="1423"/>
+        <location filename="../../../src/mainwindow.cpp" line="299"/>
+        <location filename="../../../src/mainwindow.cpp" line="374"/>
+        <location filename="../../../src/mainwindow.cpp" line="1359"/>
+        <location filename="../../../src/mainwindow.cpp" line="1404"/>
+        <location filename="../../../src/mainwindow.cpp" line="1426"/>
+        <location filename="../../../src/mainwindow.cpp" line="1439"/>
         <source>(%1)</source>
         <translation>(%1)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="427"/>
-        <location filename="../../../src/mainwindow.cpp" line="431"/>
+        <location filename="../../../src/mainwindow.cpp" line="429"/>
+        <location filename="../../../src/mainwindow.cpp" line="433"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="478"/>
+        <location filename="../../../src/mainwindow.cpp" line="480"/>
         <source>&amp;Restore</source>
         <translation>&amp;Восстановить</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1266"/>
+        <location filename="../../../src/mainwindow.cpp" line="1282"/>
         <source>Run as Administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1267"/>
+        <location filename="../../../src/mainwindow.cpp" line="1283"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1292"/>
+        <location filename="../../../src/mainwindow.cpp" line="1308"/>
         <source>Failed to elevate program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1293"/>
+        <location filename="../../../src/mainwindow.cpp" line="1309"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4247,118 +4398,123 @@ it unattended.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="200"/>
+        <location filename="../../../src/main.cpp" line="211"/>
         <source>Daemon launched</source>
         <translation>Демон запущен</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="208"/>
+        <location filename="../../../src/main.cpp" line="220"/>
         <source>Failed to launch daemon</source>
         <translation>Не удалось запустить демон</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="218"/>
+        <location filename="../../../src/main.cpp" line="232"/>
         <source>Launching daemon</source>
         <translation>Демон запускается</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="244"/>
-        <location filename="../../../src/main.cpp" line="343"/>
+        <location filename="../../../src/main.cpp" line="259"/>
+        <location filename="../../../src/main.cpp" line="363"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="271"/>
+        <location filename="../../../src/main.cpp" line="288"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>Не удалось подписать демон</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="296"/>
+        <location filename="../../../src/main.cpp" line="315"/>
         <source>Failed to change working directory to /</source>
         <translation>Не удалось менить рабочую директорию на &quot;/&quot;</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="62"/>
-        <source># of joysticks found: %1</source>
+        <location filename="../../../src/main.cpp" line="668"/>
+        <source>Quitting Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="64"/>
+        <source># of joysticks found: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/applaunchhelper.cpp" line="66"/>
         <source>List Joysticks:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="65"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="67"/>
         <source>---------------</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="71"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="73"/>
         <source>Joystick %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="72"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="74"/>
         <source>Index:           %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="74"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="76"/>
         <source>GUID:            %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="76"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="78"/>
         <source>Name:            %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="79"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="81"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="79"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="81"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="80"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="82"/>
         <source>Game Controller: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="83"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="85"/>
         <source># of Axes:       %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="84"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="86"/>
         <source># of Buttons:    %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="85"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="87"/>
         <source># of Hats:       %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="515"/>
+        <location filename="../../../src/main.cpp" line="542"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="533"/>
+        <location filename="../../../src/main.cpp" line="562"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="566"/>
+        <location filename="../../../src/main.cpp" line="596"/>
         <source>Using %1 as the event generator.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="623"/>
+        <location filename="../../../src/main.cpp" line="657"/>
         <source>Could not raise process priority.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4483,45 +4639,45 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>UInputEventHandler</name>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="114"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="116"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="121"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="124"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="138"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="142"/>
         <source>Virtual pointer found with id=%1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="170"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="175"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="177"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="184"/>
         <source>Changing mouse acceleration for device with id=%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="335"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="343"/>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="346"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="356"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="495"/>
         <source>Using uinput device file %1</source>
         <translation type="unfinished"></translation>
     </message>
