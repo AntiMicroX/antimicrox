@@ -453,6 +453,8 @@ void CommandLineUtility::printHelp()
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
         << tr("Launch program as a daemon.") << endl;
+    out << "--log-level (debug|info)      " << " " << tr("Enable logging.") << endl;
+
     #ifdef WITH_X11
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -515,6 +517,7 @@ QString CommandLineUtility::generateHelpString()
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
         << tr("Launch program as a daemon.") << endl;
+    out << "--log-level (debug|info)      " << " " << tr("Enable logging.") << endl;
     #ifdef WITH_X11
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))

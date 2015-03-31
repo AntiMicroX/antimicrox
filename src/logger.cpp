@@ -125,35 +125,7 @@ void Logger::Log()
     while (iter.hasNext())
     {
         LogMessage pendingMessage = iter.next();
-
-        LogLevel level = pendingMessage.level;
-        QString message = pendingMessage.message;
-        bool newline = pendingMessage.newline;
-
-        if (outputLevel != LOG_NONE && level <= outputLevel)
-        {
-            QString displayTime = "";
-            QString initialPrefix = "";
-            if (outputLevel > LOG_INFO)
-            {
-                displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
-                initialPrefix = displayTime;
-            }
-
-            QTextStream *writeStream = outputStream;
-            if (level < LOG_INFO && errorStream)
-            {
-                writeStream = errorStream;
-            }
-
-            *writeStream << initialPrefix << message;
-            if (newline)
-            {
-                *writeStream << endl;
-            }
-
-            writeStream->flush();
-        }
+        logMessage(pendingMessage);
     }
 
     pendingMessages.clear();
@@ -222,5 +194,65 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
     if (!instance->pendingTimer.isActive())
     {
         instance->pendingTimer.start();
+    }
+}
+
+void Logger::directLog(LogLevel level, const QString &message, bool newline)
+{
+    Q_ASSERT(instance != 0);
+
+    QMutexLocker locker(&instance->logMutex);
+    Q_UNUSED(locker);
+
+    LogMessage temp;
+    temp.level = level;
+    temp.message = QString(message);
+    temp.newline = newline;
+
+    instance->logMessage(temp);
+}
+
+void Logger::logMessage(LogMessage msg)
+{
+    LogLevel level = msg.level;
+    QString message = msg.message;
+    bool newline = msg.newline;
+
+    if (outputLevel != LOG_NONE && level <= outputLevel)
+    {
+        QString displayTime = "";
+        QString initialPrefix = "";
+        if (outputLevel > LOG_INFO)
+        {
+            displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
+            initialPrefix = displayTime;
+        }
+
+        QTextStream *writeStream = outputStream;
+        if (level < LOG_INFO && errorStream)
+        {
+            writeStream = errorStream;
+        }
+
+        *writeStream << initialPrefix << message;
+        if (newline)
+        {
+            *writeStream << endl;
+        }
+
+        writeStream->flush();
+    }
+}
+
+QTimer* Logger::getLogTimer()
+{
+    return &pendingTimer;
+}
+
+void Logger::stopLogTimer()
+{
+    if (pendingTimer.isActive())
+    {
+        pendingTimer.stop();
     }
 }

@@ -36,35 +36,68 @@ public:
     static void setCurrentErrorStream(QTextStream *stream);
     static QTextStream* getCurrentErrorStream();
 
+    QTimer* getLogTimer();
+    void stopLogTimer();
+
     static void appendLog(LogLevel level, const QString &message, bool newline=true);
+    static void directLog(LogLevel level, const QString &message, bool newline=true);
 
     // Some convenience functions that will hopefully speed up
     // logging operations.
-    inline static void LogInfo(const QString &message, bool newline=true)
+    inline static void LogInfo(const QString &message, bool newline=true, bool direct=false)
     {
-        appendLog(LOG_INFO, message, newline);
+        if (!direct)
+        {
+            appendLog(LOG_INFO, message, newline);
+        }
+        else
+        {
+            directLog(LOG_INFO, message, newline);
+        }
         //Log(LOG_INFO, message, newline);
     }
 
-    inline static void LogDebug(const QString &message, bool newline=true)
+    inline static void LogDebug(const QString &message, bool newline=true, bool direct=false)
     {
-        appendLog(LOG_DEBUG, message, newline);
+        if (!direct)
+        {
+            appendLog(LOG_DEBUG, message, newline);
+        }
+        else
+        {
+            directLog(LOG_DEBUG, message, newline);
+        }
+
         //Log(LOG_DEBUG, message, newline);
     }
 
-    inline static void LogWarning(const QString &message, bool newline=true)
+    inline static void LogWarning(const QString &message, bool newline=true, bool direct=false)
     {
-        appendLog(LOG_WARNING, message, newline);
+        if (!direct)
+        {
+            appendLog(LOG_WARNING, message, newline);
+        }
+        else
+        {
+            directLog(LOG_WARNING, message, newline);
+        }
         //Log(LOG_WARNING, message, newline);
     }
 
-    inline static void LogError(const QString &message, bool newline=true)
+    inline static void LogError(const QString &message, bool newline=true, bool direct=false)
     {
-        appendLog(LOG_ERROR, message, newline);
+        if (!direct)
+        {
+            appendLog(LOG_ERROR, message, newline);
+        }
+        else
+        {
+            directLog(LOG_ERROR, message, newline);
+        }
         //Log(LOG_ERROR, message, newline);
     }
 
-    inline static Logger* GetInstance()
+    inline static Logger* getInstance()
     {
         Q_ASSERT(instance != NULL);
         return instance;
@@ -72,6 +105,7 @@ public:
 
 protected:
     void closeLogger(bool closeStream=true);
+    void logMessage(LogMessage msg);
 
     QTextStream *outputStream;
     QTextStream *errorStream;
@@ -84,7 +118,7 @@ protected:
 
 signals:
 
-private slots:
+public slots:
     void Log();
 };
 
