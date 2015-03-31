@@ -1,3 +1,22 @@
+2015-03-31 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.13
+
+* Updated extra axis acceleration routine. Now, extra acceleration is
+calculated after an axis has stopped moving past the assigned threshold
+in one gamepad poll.
+
+* Stick presets now change the diagonal range of a stick. This is mainly
+beneficial for mouse control changes so that 65 degrees is used by default.
+
+* Added a screen selector for Spring mouse mode in settings menu.
+
+* Added a small language selection portion to the settings menu.
+
+* Added a small logger. Please run antimicro with "--log-level debug" in order
+to get output about button presses.
+
+
 2015-03-22 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.12.1
