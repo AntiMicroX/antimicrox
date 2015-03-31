@@ -670,11 +670,7 @@ int main(int argc, char *argv[])
     int app_result = a->exec();
 
     // Log any remaining messages if they exist.
-    Logger *loggerInstance = appLogger.getInstance();
-    if (loggerInstance)
-    {
-        loggerInstance->Log();
-    }
+    appLogger.Log();
 
     appLogger.LogInfo(QObject::tr("Quitting Program"), true, true);
 
