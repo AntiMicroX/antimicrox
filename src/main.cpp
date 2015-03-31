@@ -133,7 +133,6 @@ int main(int argc, char *argv[])
     else if (cmdutility.isHelpRequested())
     {
         appLogger.LogInfo(cmdutility.generateHelpString(), false, true);
-        appLogger.Log();
         //cmdutility.printHelp();
         return 0;
     }
