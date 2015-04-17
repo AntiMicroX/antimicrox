@@ -547,6 +547,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
     }
 }
 
+#ifdef USE_SDL_2
 void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
     QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
@@ -593,11 +594,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 }
                                 else
                                 {
-#ifdef USE_SDL_2
                                     InputDevice *joy = trackjoysticks.value(event.jaxis.which);
-#else
-                                    InputDevice *joy = joysticks->value(event.jaxis.which);
-#endif
 
                                     if (joy)
                                     {
@@ -621,7 +618,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 tempQueue.enqueue(event);
                                 break;
                             }
-#ifdef USE_SDL_2
                             case SDL_CONTROLLERAXISMOTION:
                             {
                                 if (event.caxis.which != device->getSDLJoystickID())
@@ -663,7 +659,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 tempQueue.enqueue(event);
                                 break;
                             }
-#endif
                             default:
                             {
                                 tempQueue.enqueue(event);
@@ -677,7 +672,9 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
         }
     }
 }
+#endif
 
+#ifdef USE_SDL_2
 QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 {
     InputDeviceBitArrayStatus tempStatus(device, false);
@@ -694,6 +691,7 @@ QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
     QBitArray unplugBitArray = tempStatus.generateFinalBitArray();
     return unplugBitArray;
 }
+#endif
 
 void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {

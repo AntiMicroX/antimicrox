@@ -39,8 +39,11 @@ protected:
 
     void firstInputPass(QQueue<SDL_Event> *sdlEventQueue);
     void secondInputPass(QQueue<SDL_Event> *sdlEventQueue);
+#ifdef USE_SDL_2
     void modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue);
     QBitArray createUnplugEventBitArray(InputDevice *device);
+#endif
+
     void clearBitArrayStatusInstances();
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
