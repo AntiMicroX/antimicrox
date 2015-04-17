@@ -253,7 +253,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     fillSpringScreenPresets();
     //ui->springGroupBox->setVisible(false);
 
-    ui->categoriesListWidget->setCurrentRow(0);
+    //ui->categoriesListWidget->setCurrentRow(0);
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
