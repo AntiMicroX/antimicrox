@@ -78,7 +78,11 @@ void InputDaemon::run ()
         QQueue<SDL_Event> sdlEventQueue;
 
         firstInputPass(&sdlEventQueue);
+
+#ifdef USE_SDL_2
         modifyUnplugEvents(&sdlEventQueue);
+#endif
+
         secondInputPass(&sdlEventQueue);
 
         clearBitArrayStatusInstances();
