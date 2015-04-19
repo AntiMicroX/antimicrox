@@ -31,7 +31,7 @@
 #include "setjoystick.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
-    QDialog(parent, Qt::Dialog),
+    QDialog(parent),
     ui(new Ui::ButtonEditDialog)
 {
     ui->setupUi(this);
