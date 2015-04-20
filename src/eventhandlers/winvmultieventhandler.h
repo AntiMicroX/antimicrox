@@ -1,18 +1,18 @@
-#ifndef WINSENDINPUTEVENTHANDLER_H
-#define WINSENDINPUTEVENTHANDLER_H
+#ifndef WINVMULTIEVENTHANDLER_H
+#define WINVMULTIEVENTHANDLER_H
 
 #include <QObject>
+#include <QVector>
 
 #include "baseeventhandler.h"
 
 #include <joybuttonslot.h>
 
-
-class WinSendInputEventHandler : public BaseEventHandler
+class WinVMultiEventHandler : public BaseEventHandler
 {
     Q_OBJECT
 public:
-    explicit WinSendInputEventHandler(QObject *parent = 0);
+    explicit WinVMultiEventHandler(QObject *parent = 0);
 
     virtual bool init();
     virtual bool cleanup();
@@ -22,10 +22,16 @@ public:
     virtual QString getName();
     virtual QString getIdentifier();
 
+protected:
+    pvmulti_client vmulti;
+    BYTE mouseButtons;
+    BYTE shiftKeys;
+    QVector<BYTE> keyboardKeys;
+
 signals:
 
 public slots:
 
 };
 
-#endif // WINSENDINPUTEVENTHANDLER_H
+#endif // WINVMULTIEVENTHANDLER_H

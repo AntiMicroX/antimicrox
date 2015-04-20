@@ -1,7 +1,7 @@
 #include <qt_windows.h>
 
 #include "winsendinputeventhandler.h"
-#include "winextras.h"
+#include <winextras.h>
 
 WinSendInputEventHandler::WinSendInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
