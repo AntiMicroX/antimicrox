@@ -4167,13 +4167,20 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
     lastMouseTime.restart();
 
-    // Check if mouse event timer should be stopped.
+    // Check if mouse event timer should use idle time.
     if (pendingMouseButtons.length() == 0)
     {
-        staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
-        //staticMouseEventTimer.stop();
+        if (staticMouseEventTimer.interval() != IDLEMOUSEREFRESHRATE)
+        {
+            staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
+        }
+
         cursorRemainderX = 0;
         cursorRemainderY = 0;
+
+        // Clear current mouse history
+        mouseHistoryX.clear();
+        mouseHistoryY.clear();
     }
     else
     {
