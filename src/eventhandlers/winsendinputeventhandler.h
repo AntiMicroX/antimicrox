@@ -21,7 +21,8 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual QString getName();
     virtual QString getIdentifier();
-
+    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                      unsigned int width, unsigned int height);
 signals:
 
 public slots:

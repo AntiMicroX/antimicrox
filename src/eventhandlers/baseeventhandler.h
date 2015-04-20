@@ -22,6 +22,9 @@ public:
     virtual QString getIdentifier() = 0;
     virtual void printPostMessages();
     QString getErrorString();
+    virtual void sendMouseAbsEvent(int xDis, int yDis);
+    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                      unsigned int width, unsigned int height);
 
 protected:
     QString lastErrorString;

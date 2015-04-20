@@ -16,6 +16,11 @@ WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
     keyboardKeys.fill(0);
 }
 
+WinVMultiEventHandler::~WinVMultiEventHandler()
+{
+    cleanup();
+}
+
 bool WinVMultiEventHandler::init()
 {
     bool result = true;
@@ -160,6 +165,11 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
 void WinVMultiEventHandler::sendMouseEvent(int xDis, int yDis)
 {
     vmulti_update_relative_mouse(vmulti, mouseButtons, xDis, yDis, 0);
+}
+
+void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
+{
+    vmulti_update_mouse(vmulti, mouseButtons, xDis, yDis, 0);
 }
 
 QString WinVMultiEventHandler::getName()

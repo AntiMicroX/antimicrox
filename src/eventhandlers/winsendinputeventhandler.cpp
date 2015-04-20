@@ -110,3 +110,21 @@ QString WinSendInputEventHandler::getIdentifier()
 {
     return QString("sendinput");
 }
+
+void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                                    unsigned int width, unsigned int height)
+{
+    if (width > 0 && height > 0)
+    {
+        INPUT temp[1] = {};
+        temp[0].type = INPUT_MOUSE;
+        temp[0].mi.mouseData = 0;
+        temp[0].mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
+
+        int fx = ceil(xDis * (65535.0/(double)width));
+        int fy = ceil(yDis * (65535.0/(double)height));
+        event[0].mi.dx = fx;
+        event[0].mi.dy = fy;
+        SendInput(1, event, sizeof(INPUT));
+    }
+}

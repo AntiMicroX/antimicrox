@@ -13,12 +13,14 @@ class WinVMultiEventHandler : public BaseEventHandler
     Q_OBJECT
 public:
     explicit WinVMultiEventHandler(QObject *parent = 0);
+    ~WinVMultiEventHandler();
 
     virtual bool init();
     virtual bool cleanup();
     virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
+    virtual void sendMouseAbsEvent(int xDis, int yDis);
     virtual QString getName();
     virtual QString getIdentifier();
 
