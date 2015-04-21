@@ -86,13 +86,12 @@ protected:
     static QRegExp mappingRegexp;
     static QRegExp qtStyleRegexp;
     static QRegExp logLevelRegexp;
+    static QRegExp eventgenRegexp;
+    static QStringList eventGeneratorsList;
 
 #ifdef Q_OS_UNIX
     static QRegExp daemonRegexp;
     static QRegExp displayRegexp;
-    static QRegExp eventgenRegexp;
-
-    static QStringList eventGeneratorsList;
 #endif
     
 signals:

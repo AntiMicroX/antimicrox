@@ -4,17 +4,20 @@
 #include <QObject>
 
 #ifdef Q_OS_WIN
-#include "qtwinkeymapper.h"
+  #include "qtwinkeymapper.h"
+
+  #ifdef WITH_VMULTI
+    #include "qtvmultikeymapper.h"
+  #endif
 #else
 
-    #if defined(WITH_XTEST)
-#include "qtx11keymapper.h"
-    #endif
+  #if defined(WITH_XTEST)
+    #include "qtx11keymapper.h"
+  #endif
 
-    #if defined(WITH_UINPUT)
-#include "qtuinputkeymapper.h"
-    #endif
-
+  #if defined(WITH_UINPUT)
+    #include "qtuinputkeymapper.h"
+  #endif
 #endif
 
 class AntKeyMapper : public QObject
@@ -36,15 +39,19 @@ protected:
 
 #ifdef Q_OS_WIN
     QtWinKeyMapper winMapper;
+
+  #ifdef WITH_VMULTI
+    QtVMultiKeyMapper vmultiMapper;
+  #endif
+
 #else
+  #if defined(WITH_XTEST)
+    QtX11KeyMapper x11Mapper;
+  #endif
 
-    #if defined(WITH_XTEST)
-        QtX11KeyMapper x11Mapper;
-    #endif
-
-    #if defined(WITH_UINPUT)
-        QtUInputKeyMapper uinputMapper;
-    #endif
+  #if defined(WITH_UINPUT)
+    QtUInputKeyMapper uinputMapper;
+  #endif
 
 #endif
 

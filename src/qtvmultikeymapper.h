@@ -5,6 +5,7 @@
 #include <QHash>
 
 #include "qtkeymapperbase.h"
+#include "qtwinkeymapper.h"
 
 class QtVMultiKeyMapper : public QtKeyMapperBase
 {
@@ -16,6 +17,8 @@ public:
 
 protected:
     void populateMappingHashes();
+
+    static QtWinKeyMapper nativeKeyMapper;
 
 signals:
 

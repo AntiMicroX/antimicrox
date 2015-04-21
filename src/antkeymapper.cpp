@@ -21,9 +21,17 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     internalMapper = 0;
 
 #ifdef Q_OS_WIN
-    Q_UNUSED(handler);
+  #ifdef WITH_VMULTI
+    if (handler == "vmulti")
+    {
+        internalMapper = &vmultiMapper;
+    }
+  #endif
 
-    internalMapper = &winMapper;
+    if (handler == "sendinput")
+    {
+        internalMapper = &winMapper;
+    }
 
 #else
     #ifdef WITH_XTEST

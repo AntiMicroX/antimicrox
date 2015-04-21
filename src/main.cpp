@@ -523,7 +523,6 @@ int main(int argc, char *argv[])
     }
 #endif
 
-#ifdef Q_OS_UNIX
     bool status = true;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance(cmdutility.getEventGenerator());
     if (!factory)
@@ -535,8 +534,9 @@ int main(int argc, char *argv[])
         status = factory->handler()->init();
     }
 
-#if defined(WITH_UINPUT) && defined(WITH_XTEST)
-    // Use xtest as a fallback.
+#if (defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) || \
+     defined(Q_OS_WIN)
+    // Use fallback event handler.
     if (!status && cmdutility.getEventGenerator() != EventHandlerFactory::fallBackIdentifier())
     {
         QString eventDisplayName = EventHandlerFactory::handlerDisplayName(
@@ -576,17 +576,17 @@ int main(int argc, char *argv[])
         delete localServer;
         localServer = 0;
 
-    #ifdef WITH_X11
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-        #endif
+  #endif
         X11Extras::deleteInstance();
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
-        #endif
-    #endif
+  #endif
+#endif
 
         delete a;
         a = 0;
@@ -601,7 +601,6 @@ int main(int argc, char *argv[])
         //          << endl;
         factory->handler()->printPostMessages();
     }
-#endif
 
     AntKeyMapper::getInstance(cmdutility.getEventGenerator());
 
@@ -686,21 +685,21 @@ int main(int argc, char *argv[])
     AntKeyMapper::getInstance()->deleteInstance();
 
 #ifdef Q_OS_UNIX
-    #ifdef WITH_X11
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  #ifdef WITH_X11
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
-    X11Extras::deleteInstance();
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    }
-        #endif
     #endif
+    X11Extras::deleteInstance();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
+  #endif
+#endif
 
     EventHandlerFactory::getInstance()->handler()->cleanup();
     EventHandlerFactory::getInstance()->deleteInstance();
-#endif
 
     delete w;
     w = 0;

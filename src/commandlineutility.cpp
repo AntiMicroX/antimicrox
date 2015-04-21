@@ -29,18 +29,17 @@ QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 QRegExp CommandLineUtility::qtStyleRegexp = QRegExp("-style");
 QRegExp CommandLineUtility::logLevelRegexp = QRegExp("--log-level");
+QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
+
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
 
-    #ifdef WITH_X11
-        QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
-    #endif
-
-    QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
-
-    QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
-
+  #ifdef WITH_X11
+    QRegExp CommandLineUtility::displayRegexp = QRegExp("--display");
+  #endif
 #endif
+
+QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
 CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)
@@ -61,12 +60,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     mappingController = false;
     currentLogLevel = Logger::LOG_INFO;
 
-#ifdef Q_OS_WIN
-    eventGenerator = "";
-#else
     eventGenerator = EventHandlerFactory::fallBackIdentifier();
-#endif
-
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
@@ -288,7 +282,7 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         {
             daemonMode = true;
         }
-    #ifdef WITH_X11
+  #ifdef WITH_X11
         else if (displayRegexp.exactMatch(temp))
         {
             if (iter.hasNext())
@@ -302,9 +296,11 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 //encounteredError = true;
             }
         }
-    #endif
+  #endif
+#endif
 
-    #if defined(WITH_UINPUT) && defined(WITH_XTEST)
+#if (defined (Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) \
+     || (defined(Q_OS_WIN) && defined(WITH_VMULTI))
         else if (eventgenRegexp.exactMatch(temp))
         {
             if (iter.hasNext())
@@ -330,8 +326,8 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 //encounteredError = true;
             }
         }
-    #endif
 #endif
+
         else if (qtStyleRegexp.exactMatch(temp))
         {
             if (iter.hasNext())
@@ -468,14 +464,18 @@ void CommandLineUtility::printHelp()
     }
         #endif
     #endif
+#endif
 
-    #if defined(WITH_UINPUT) && defined(WITH_XTEST)
+#if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
     out << "--eventgen (xtest|uinput)     " << " "
         << tr("Choose between using XTest support and uinput\n"
-              "                               support for event generation. Default: xtest.")
+           "                               support for event generation. Default: xtest.")
         << endl;
-    #endif
-
+#elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
+    out << "--eventgen (sendinput|vmulti) " << " "
+        << tr("Choose between using SendInput and vmulti\n"
+           "                           support for event generation. Default: sendinput.")
+        << endl;
 #endif
 
 #ifdef USE_SDL_2
@@ -531,14 +531,18 @@ QString CommandLineUtility::generateHelpString()
     }
         #endif
     #endif
+#endif
 
-    #if defined(WITH_UINPUT) && defined(WITH_XTEST)
+#if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
     out << "--eventgen (xtest|uinput)     " << " "
         << tr("Choose between using XTest support and uinput\n"
-              "                               support for event generation. Default: xtest.")
+           "                               support for event generation. Default: xtest.")
         << endl;
-    #endif
-
+#elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
+    out << "--eventgen (sendinput|vmulti) " << " "
+        << tr("Choose between using SendInput and vmulti\n"
+           "                           support for event generation. Default: sendinput.")
+        << endl;
 #endif
 
 #ifdef USE_SDL_2

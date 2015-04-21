@@ -32,6 +32,7 @@ option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
     option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
+    option(WITH_VMULTI "Compile with support for vmulti." OFF)
 
     if(PORTABLE_PACKAGE)
         add_definitions(-DWIN_PORTABLE_PACKAGE)
@@ -52,6 +53,10 @@ if(WIN32)
             message(FATAL_ERROR "No valid architecture choice used. Exiting.")
         endif(ARCH_INDEX EQUAL -1)
     endif(TARGET_ARCH)
+
+    if(WITH_VMULTI)
+        add_definitions(-DWITH_VMULTI)
+    endif(WITH_VMULTI)
 endif(WIN32)
 
 # Use pkg-config to find SDL library.
@@ -207,6 +212,13 @@ elseif(WIN32)
          src/capturedwindowinfodialog.cpp
          src/firstrunwizard/associateprofilespage.cpp
     )
+
+    if(WITH_VMULTI)
+        list(APPEND antimicro_SOURCES src/qtvmultikeymapper.cpp
+             src/eventhandlers/winsendinputeventhandler.cpp
+             src/eventhandlers/winvmultieventhandler.cpp
+        )
+    endif(WITH_VMULTI)
 endif(UNIX)
 
 # Files that require SDL 2 support.
@@ -338,6 +350,13 @@ elseif(WIN32)
         src/capturedwindowinfodialog.h
         src/firstrunwizard/associateprofilespage.h
     )
+
+    if(WITH_VMULTI)
+        list(APPEND antimicro_HEADERS src/qtvmultikeymapper.h
+             src/eventhandlers/winsendinputeventhandler.h
+             src/eventhandlers/winvmultieventhandler.h
+        )
+    endif(WITH_VMULTI)
 endif(UNIX)
 
 # Files that require SDL 2 support.
@@ -572,6 +591,11 @@ elseif (WIN32)
     endif(USE_SDL_2)
 
     list(APPEND LIBS "psapi")
+
+    if(WITH_VMULTI)
+        include_directories("${PROJECT_SOURCE_DIR}/vmulti/inc")
+        list(APPEND LIBS "hid setupapi")
+    endif(WITH_VMULTI)
 endif (UNIX)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
