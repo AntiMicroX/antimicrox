@@ -12,6 +12,8 @@ class QtVMultiKeyMapper : public QtKeyMapperBase
 public:
     explicit QtVMultiKeyMapper(QObject *parent = 0);
 
+    static const unsigned int consumerUsagePagePrefix = 0x12000;
+
 protected:
     void populateMappingHashes();
 

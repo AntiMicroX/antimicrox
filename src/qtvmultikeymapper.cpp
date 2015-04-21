@@ -130,6 +130,8 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Shift_R] = 0xE5;
         qtKeyToVirtualKey[AntKey_Meta_R] = 0xE7;
 
+        qtKeyToVirtualKey[Qt::Key_LaunchMedia] = 0x87 | consumerUsagePagePrefix;
+
         // Populate other hash. Flip key and value so mapping
         // goes VK -> Qt Key.
         QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);

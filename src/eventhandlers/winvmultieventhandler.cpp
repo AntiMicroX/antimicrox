@@ -12,6 +12,9 @@ WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
     vmulti = 0;
     mouseButtons = 0;
     shiftKeys = 0;
+    multiKeys = 0;
+    extraKeys = 0;
+
     keyboardKeys.resize(6);
     keyboardKeys.fill(0);
 }
@@ -60,31 +63,69 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 {
     int code = slot->getSlotCode();
 
+    BYTE pendingShift = 0x0;
+    BYTE pendingMultimedia = 0x0;
+    BYTE pendingExtra = 0x0;
+    BYTE pendingKey = 0x0;
+
     bool exists = keyboardKeys.contains(code);
+
+    if (code >= 0xE0 && code <= 0xE7)
+    {
+        pendingShift = 1 << (code - 0xE0);
+    }
+    else if (code > QtVMultiKeyMapper::consumerUsagePagePrefix)
+    {
+        if (code == 0x87 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 6;
+        }
+    }
+    else if (code > 0x65)
+    {
+        if (code == 0x7F)
+        {
+            pendingMultimedia = 1 << 4;
+        }
+        else if (code == 0x80)
+        {
+            pendingMultimedia = 1 << 6;
+        }
+        else if (code == 0x81)
+        {
+            pendingMultimedia = 1 << 5;
+        }
+    }
+    else
+    {
+        pendingKey = code;
+    }
+
     if (pressed)
     {
-        if (code >= 0xE0 && code <= 0xE7)
+        shiftKeys = shiftKeys | pendingShift;
+        multiKeys = multiKeys | pendingMultimedia;
+        extraKeys = extraKeys | pendingExtra;
+
+        if (!exists)
         {
-            shiftKeys = shiftKeys | (1 << (code - 0xE0));
-        }
-        else if (!exists)
-        {
+            // Check for an empty key value
             int index = keyboardKeys.indexOf(0);
             if (index != -1)
             {
-                keyboardKeys.replace(index, code);
+                keyboardKeys.replace(index, pendingKey);
             }
         }
     }
     else
     {
-        if (code >= 0xE0 && code <= 0xE7)
+        shiftKeys = shiftKeys ^ pendingShift;
+        multiKeys = multiKeys ^ pendingMultimedia;
+        extraKeys = extraKeys ^ pendingExtra;
+
+        if (exists)
         {
-            shiftKeys = shiftKeys ^ (1 << (code - 0xE0));
-        }
-        else if (exists)
-        {
-            int index = keyboardKeys.indexOf(code);
+            int index = keyboardKeys.indexOf(pendingKey);
             if (index != -1)
             {
                 keyboardKeys.replace(index, 0);
@@ -104,7 +145,15 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
     //qDebug() << "CURRENT: " << trying.join(",");
     //qDebug() << keykeyArray;
 
-    vmulti_update_keyboard(vmulti, shiftKeys, keykeyArray);
+    if (pendingKey > 0x0)
+    {
+        vmulti_update_keyboard(vmulti, shiftKeys, keykeyArray);
+    }
+
+    if (pendingMultimedia > 0 || pendingExtra > 0)
+    {
+        vmulti_update_keyboard_multimedia(vmulti, multiKeys, extraKeys);
+    }
 }
 
 void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)

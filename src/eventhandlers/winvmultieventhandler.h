@@ -28,6 +28,8 @@ protected:
     pvmulti_client vmulti;
     BYTE mouseButtons;
     BYTE shiftKeys;
+    BYTE multiKeys;
+    BYTE extraKeys;
     QVector<BYTE> keyboardKeys;
 
 signals:
