@@ -79,7 +79,9 @@ void QtVMultiKeyMapper::populateMappingHashes()
             qtKeyToVirtualKey[AntKey_KP_1 + i] = 0x59 + i;
         }
 
+        // Map Numpad 0 key
         qtKeyToVirtualKey[AntKey_KP_0] = 0x62;
+
         qtKeyToVirtualKey[AntKey_KP_Decimal] = 0x63;
 
         //qtKeyToVirtualKey[Qt::Key_Backslash] = 0x64;
@@ -130,7 +132,18 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Shift_R] = 0xE5;
         qtKeyToVirtualKey[AntKey_Meta_R] = 0xE7;
 
+        qtKeyToVirtualKey[Qt::Key_MediaNext] = 0xB5 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_MediaPrevious] = 0xB6 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_MediaStop] = 0xB7 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_HomePage] = 0x189 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_Launch0] = 0x194 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_Calculator] = 0x192 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_Favorites] = 0x22a | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_Search] = 0x221 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_Stop] = 0x226 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_Back] = 0x224 | consumerUsagePagePrefix;
         qtKeyToVirtualKey[Qt::Key_LaunchMedia] = 0x87 | consumerUsagePagePrefix;
+        qtKeyToVirtualKey[Qt::Key_LaunchMail] = 0x18a | consumerUsagePagePrefix;
 
         // Populate other hash. Flip key and value so mapping
         // goes VK -> Qt Key.
