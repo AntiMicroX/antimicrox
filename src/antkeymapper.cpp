@@ -55,15 +55,11 @@ AntKeyMapper* AntKeyMapper::getInstance(QString handler)
 {
     if (!_instance)
     {
-#ifdef Q_OS_WIN
-        _instance = new AntKeyMapper(handler);
-#else
         QStringList temp = buildEventGeneratorList();
         if (temp.contains(handler))
         {
             _instance = new AntKeyMapper(handler);
         }
-#endif
     }
 
     return _instance;
