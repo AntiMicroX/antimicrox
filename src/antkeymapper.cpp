@@ -10,8 +10,17 @@ static QStringList buildEventGeneratorList()
 {
     QStringList temp;
 
+#ifdef Q_OS_WIN
+    temp.append("sendinput");
+  #ifdef WITH_VMULTI
+    temp.append("vmulti");
+  #endif
+
+#else
     temp.append("xtest");
     temp.append("uinput");
+
+#endif
     return temp;
 }
 
