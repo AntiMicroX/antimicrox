@@ -577,15 +577,15 @@ elseif (WIN32)
     if(USE_SDL_2)
         # Perform extra voodoo to get proper library paths and include
         # proper headers.
-        if(TARGET_ARCH STREQUAL "x86")
-            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/lib")
-            list(APPEND LIBS ${SDL2_LIBRARY})
-            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/include")
-        else()
+        if(TARGET_ARCH STREQUAL "x86_64")
             find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/lib")
             list(APPEND LIBS ${SDL2_LIBRARY})
             include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/include")
-        endif(TARGET_ARCH STREQUAL "x86")
+        else()
+            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/lib")
+            list(APPEND LIBS ${SDL2_LIBRARY})
+            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/include")
+        endif(TARGET_ARCH STREQUAL "x86_64")
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
@@ -685,17 +685,17 @@ configure_file(
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
 if(WIN32)
-    if(TARGET_ARCH STREQUAL "x86")
-        # Copy SDL2.dll to find installation directory.
-        add_custom_target(copy_sdl_dll
-            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
-        )
-    else()
+    if(TARGET_ARCH STREQUAL "x86_64")
         # Copy SDL2.dll to find installation directory.
         add_custom_target(copy_sdl_dll
             COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
         )
-    endif(TARGET_ARCH STREQUAL "x86")
+    else()
+        # Copy SDL2.dll to find installation directory.
+        add_custom_target(copy_sdl_dll
+            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+        )
+    endif(TARGET_ARCH STREQUAL "x86_64")
 
 
     # Obtain location of Qt5 DLL files and assign them to a list.
@@ -711,14 +711,7 @@ if(WIN32)
     )
 
     # Copy relevant DLL files depending on the chosen architecture.
-    if(TARGET_ARCH STREQUAL "x86")
-        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt53.dll"
-            "${QTCORE_DLL_LOCATION}/icuin53.dll"
-            "${QTCORE_DLL_LOCATION}/icuuc53.dll"
-            "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll"
-        )
-    else()
+    if(TARGET_ARCH STREQUAL "x86_64")
         list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
             "${QTCORE_DLL_LOCATION}/icuin54.dll"
             "${QTCORE_DLL_LOCATION}/icuuc54.dll"
@@ -726,7 +719,14 @@ if(WIN32)
             "${QTCORE_DLL_LOCATION}/libGLESv2.dll"
             "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll"
         )
-    endif(TARGET_ARCH STREQUAL "x86")
+    else()
+        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt53.dll"
+            "${QTCORE_DLL_LOCATION}/icuin53.dll"
+            "${QTCORE_DLL_LOCATION}/icuuc53.dll"
+            "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
+            "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll"
+        )
+    endif(TARGET_ARCH STREQUAL "x86_64")
 
     # Target to copy Qt DLL files.
     add_custom_target(install_extra_dlls)
@@ -763,20 +763,20 @@ if(WIN32)
 
     # Use a different file for each architecture due
     # to some DLL differences.
-    if(TARGET_ARCH STREQUAL "x86")
-        set(WIXWXS "${MSIFOLDER}/antimicro.wxs")
-    else()
+    if(TARGET_ARCH STREQUAL "x86_64")
         set(WIXWXS "${MSIFOLDER}/antimicro_64.wxs")
-    endif(TARGET_ARCH STREQUAL "x86")
+    else()
+        set(WIXWXS "${MSIFOLDER}/antimicro.wxs")
+    endif(TARGET_ARCH STREQUAL "x86_64")
 
     set(WIXOBJ "${MSIFOLDER}/antimicro.wixobj")
 
     # Change output file depending on the target architecture.
-    if(TARGET_ARCH STREQUAL "x86")
-        set(WIXMSI "${MSIFOLDER}/antimicro.msi")
-    else()
+    if(TARGET_ARCH STREQUAL "x86_64")
         set(WIXMSI "${MSIFOLDER}/antimicro_64.msi")
-    endif(TARGET_ARCH STREQUAL "x86")
+    else()
+        set(WIXMSI "${MSIFOLDER}/antimicro.msi")
+    endif(TARGET_ARCH STREQUAL "x86_64")
 
     if(NOT WIXENV)
         # Display message when WIX is not set up. No extra target will be added.
