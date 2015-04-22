@@ -25,7 +25,8 @@
 #include "common.h"
 
 #ifdef Q_OS_WIN
-#include "winextras.h"
+  #include "eventhandlerfactory.h"
+  #include "winextras.h"
 #endif
 
 static const QString RUNATSTARTUPKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
@@ -120,6 +121,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     }
 
 #ifdef Q_OS_WIN
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
     QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
     QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
     if (!autoRunEntry.isEmpty())
@@ -127,24 +130,32 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->launchAtWinStartupCheckBox->setChecked(true);
     }
 
-    bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
-    if (keyRepeatEnabled)
+    if (handler && handler->getIdentifier() == "sendinput")
     {
-        ui->keyRepeatEnableCheckBox->setChecked(true);
-        ui->keyDelayHorizontalSlider->setEnabled(true);
-        ui->keyDelaySpinBox->setEnabled(true);
-        ui->keyRateHorizontalSlider->setEnabled(true);
-        ui->keyRateSpinBox->setEnabled(true);
+        bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
+        if (keyRepeatEnabled)
+        {
+            ui->keyRepeatEnableCheckBox->setChecked(true);
+            ui->keyDelayHorizontalSlider->setEnabled(true);
+            ui->keyDelaySpinBox->setEnabled(true);
+            ui->keyRateHorizontalSlider->setEnabled(true);
+            ui->keyRateSpinBox->setEnabled(true);
+        }
+
+        int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
+        int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
+
+        ui->keyDelayHorizontalSlider->setValue(keyRepeatDelay);
+        ui->keyDelaySpinBox->setValue(keyRepeatDelay);
+
+        ui->keyRateHorizontalSlider->setValue(1000/keyRepeatRate);
+        ui->keyRateSpinBox->setValue(1000/keyRepeatRate);
     }
-
-    int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
-    int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
-
-    ui->keyDelayHorizontalSlider->setValue(keyRepeatDelay);
-    ui->keyDelaySpinBox->setValue(keyRepeatDelay);
-
-    ui->keyRateHorizontalSlider->setValue(1000/keyRepeatRate);
-    ui->keyRateSpinBox->setValue(1000/keyRepeatRate);
+    else
+    {
+        ui->launchAtWinStartupCheckBox->setVisible(false);
+        ui->keyRepeatGroupBox->setVisible(false);
+    }
 
 #else
     ui->launchAtWinStartupCheckBox->setVisible(false);
@@ -527,9 +538,14 @@ void MainSettingsDialog::saveNewSettings()
         autoRunReg.remove("antimicro");
     }
 
-    settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatEnableCheckBox->isChecked() ? "1" : "0");
-    settings->setValue("KeyRepeat/KeyRepeatDelay", ui->keyDelaySpinBox->value());
-    settings->setValue("KeyRepeat/KeyRepeatRate", 1000/ui->keyRateSpinBox->value());
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
+    if (handler && handler->getIdentifier() == "sendinput")
+    {
+        settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatEnableCheckBox->isChecked() ? "1" : "0");
+        settings->setValue("KeyRepeat/KeyRepeatDelay", ui->keyDelaySpinBox->value());
+        settings->setValue("KeyRepeat/KeyRepeatRate", 1000/ui->keyRateSpinBox->value());
+    }
 
 #endif
 
