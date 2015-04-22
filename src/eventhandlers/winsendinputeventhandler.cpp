@@ -1,4 +1,5 @@
 #include <qt_windows.h>
+#include <cmath>
 
 #include "winsendinputeventhandler.h"
 #include <winextras.h>
@@ -123,8 +124,8 @@ void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned 
 
         int fx = ceil(xDis * (65535.0/(double)width));
         int fy = ceil(yDis * (65535.0/(double)height));
-        event[0].mi.dx = fx;
-        event[0].mi.dy = fy;
-        SendInput(1, event, sizeof(INPUT));
+        temp[0].mi.dx = fx;
+        temp[0].mi.dy = fy;
+        SendInput(1, temp, sizeof(INPUT));
     }
 }

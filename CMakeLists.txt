@@ -175,15 +175,12 @@ set(antimicro_SOURCES src/main.cpp
     src/firstrunwizard/mousesettingspage.cpp
     src/firstrunwizard/firstrunwelcomepage.cpp
     src/firstrunwizard/languageselectionpage.cpp
+    src/eventhandlers/baseeventhandler.cpp
+    src/eventhandlerfactory.cpp
 )
 
 # Platform dependent files.
 if(UNIX)
-    LIST(APPEND antimicro_SOURCES
-         src/eventhandlers/baseeventhandler.cpp
-         src/eventhandlerfactory.cpp
-    )
-
     if(WITH_X11)
         LIST(APPEND antimicro_SOURCES src/x11extras.cpp
              src/qtx11keymapper.cpp
@@ -211,11 +208,11 @@ elseif(WIN32)
          src/autoprofilewatcher.cpp
          src/capturedwindowinfodialog.cpp
          src/firstrunwizard/associateprofilespage.cpp
+         src/eventhandlers/winsendinputeventhandler.cpp
     )
 
     if(WITH_VMULTI)
         list(APPEND antimicro_SOURCES src/qtvmultikeymapper.cpp
-             src/eventhandlers/winsendinputeventhandler.cpp
              src/eventhandlers/winvmultieventhandler.cpp
         )
     endif(WITH_VMULTI)
@@ -313,15 +310,12 @@ set(antimicro_HEADERS src/mainwindow.h
     src/firstrunwizard/mousesettingspage.h
     src/firstrunwizard/firstrunwelcomepage.h
     src/firstrunwizard/languageselectionpage.h
+    src/eventhandlers/baseeventhandler.h
+    src/eventhandlerfactory.h
 )
 
 # Platform dependent files.
 if(UNIX)
-    LIST(APPEND antimicro_HEADERS
-         src/eventhandlers/baseeventhandler.h
-         src/eventhandlerfactory.h
-    )
-
     if(WITH_X11)
         LIST(APPEND antimicro_HEADERS src/x11extras.h
              src/qtx11keymapper.h
@@ -349,11 +343,11 @@ elseif(WIN32)
         src/autoprofilewatcher.h
         src/capturedwindowinfodialog.h
         src/firstrunwizard/associateprofilespage.h
+        src/eventhandlers/winsendinputeventhandler.h
     )
 
     if(WITH_VMULTI)
         list(APPEND antimicro_HEADERS src/qtvmultikeymapper.h
-             src/eventhandlers/winsendinputeventhandler.h
              src/eventhandlers/winvmultieventhandler.h
         )
     endif(WITH_VMULTI)

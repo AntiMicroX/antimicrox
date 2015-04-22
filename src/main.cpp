@@ -40,6 +40,7 @@
 #include "applaunchhelper.h"
 #include "firstrunwizard/firstrunwizard.h"
 
+#include "eventhandlerfactory.h"
 
 #ifndef Q_OS_WIN
 #include <signal.h>
@@ -48,7 +49,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include "eventhandlerfactory.h"
 
     #ifdef WITH_X11
 #include "x11extras.h"

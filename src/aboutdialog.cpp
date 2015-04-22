@@ -12,9 +12,7 @@
 #include "ui_aboutdialog.h"
 #include "common.h"
 
-#ifdef Q_OS_UNIX
 #include "eventhandlerfactory.h"
-#endif
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
@@ -58,7 +56,6 @@ void AboutDialog::fillInfoTextBrowser()
 
     finalInfoText.append(tr("Using Qt %1").arg(qVersion()));
 
-#ifdef Q_OS_UNIX
     BaseEventHandler *handler = 0;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance();
     if (factory)
@@ -70,8 +67,6 @@ void AboutDialog::fillInfoTextBrowser()
     {
         finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
     }
-
-#endif
 
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
 

@@ -12,7 +12,7 @@
   #ifdef WITH_XTEST
     #include "eventhandlers/xtesteventhandler.h"
   #endif
-#elif Q_OS_WIN
+#elif defined(Q_OS_WIN)
   #include "eventhandlers/winsendinputeventhandler.h"
 
   #ifdef WITH_VMULTI

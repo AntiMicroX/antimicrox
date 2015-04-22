@@ -38,7 +38,7 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
         eventHandler = new XTestEventHandler(this);
     }
     #endif
-#elif Q_OS_WIN
+#elif defined(Q_OS_WIN)
     if (handler == "sendinput")
     {
         eventHandler = new WinSendInputEventHandler(this);
@@ -104,7 +104,7 @@ QString EventHandlerFactory::fallBackIdentifier()
   #else
     temp = "xtest";
   #endif
-#elif Q_OS_WIN
+#elif defined(Q_OS_WIN)
     temp = "sendinput";
 #endif
 

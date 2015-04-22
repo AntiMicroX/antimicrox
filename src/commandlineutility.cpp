@@ -12,9 +12,7 @@
 #include "commandlineutility.h"
 #include "common.h"
 
-#ifdef Q_OS_UNIX
 #include "eventhandlerfactory.h"
-#endif
 
 QRegExp CommandLineUtility::trayRegexp = QRegExp("--tray");
 QRegExp CommandLineUtility::helpRegexp = QRegExp("(-h|--help)");
