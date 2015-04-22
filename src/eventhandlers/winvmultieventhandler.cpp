@@ -5,6 +5,7 @@
 #include "winvmultieventhandler.h"
 
 #include <vmulticlient.h>
+#include <qtvmultikeymapper.h>
 
 WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
     BaseEventHandler(parent)

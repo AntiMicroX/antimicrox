@@ -589,7 +589,7 @@ elseif (WIN32)
 
     if(WITH_VMULTI)
         include_directories("${PROJECT_SOURCE_DIR}/vmulti/inc")
-        list(APPEND LIBS "hid" setupapi")
+        list(APPEND LIBS "hid" "setupapi")
     endif(WITH_VMULTI)
 endif (UNIX)
 
