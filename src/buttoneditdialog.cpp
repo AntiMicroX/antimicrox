@@ -176,7 +176,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
   #endif
 
-      if (handler->getIdentifier() == "sendinput")
+      BACKEND_ELSE_IF (handler->getIdentifier() == "sendinput")
       {
           // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
           // by checking for extended bit in scan code.
@@ -208,7 +208,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         #endif
 
         #ifdef WITH_XTEST
-        if (handler->getIdentifier() == "xtest")
+        BACKEND_ELSE_IF (handler->getIdentifier() == "xtest")
         {
             // Check for alias against group 1 keysym.
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
