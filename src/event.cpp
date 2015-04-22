@@ -10,8 +10,9 @@
 
 #include "event.h"
 
-#if defined(Q_OS_UNIX)
 #include "eventhandlerfactory.h"
+
+#if defined(Q_OS_UNIX)
 
     #if defined(WITH_X11)
 
@@ -79,7 +80,7 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
-        unsigned int scancode = WinExtras::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
+        /*unsigned int scancode = WinExtras::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
         int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
         int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
 
@@ -92,10 +93,13 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         temp[0].ki.wVk = code;
         temp[0].ki.dwFlags = pressed ? tempflags : (tempflags | KEYEVENTF_KEYUP); // 0 for key press
         SendInput(1, temp, sizeof(INPUT));
+        */
+
+        EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
-        temp[0].type = INPUT_MOUSE;
+        /*temp[0].type = INPUT_MOUSE;
         if (code == 1)
         {
             temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_LEFTDOWN : MOUSEEVENTF_LEFTUP;
@@ -140,6 +144,8 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         }
 
         SendInput(1, temp, sizeof(INPUT));
+        */
+        EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
     }
 
 #endif
@@ -152,13 +158,16 @@ void sendevent(int code1, int code2)
     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
 
 #elif defined (Q_OS_WIN)
-    INPUT temp[1] = {};
+    /*INPUT temp[1] = {};
     temp[0].type = INPUT_MOUSE;
     temp[0].mi.mouseData = 0;
     temp[0].mi.dwFlags   =  MOUSEEVENTF_MOVE;
     temp[0].mi.dx = code1;
     temp[0].mi.dy = code2;
     SendInput(1, temp, sizeof(INPUT));
+    */
+
+    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
 
 #endif
 }

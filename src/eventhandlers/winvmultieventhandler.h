@@ -8,6 +8,8 @@
 
 #include <joybuttonslot.h>
 
+#include <vmulticlient.h>
+
 class WinVMultiEventHandler : public BaseEventHandler
 {
     Q_OBJECT

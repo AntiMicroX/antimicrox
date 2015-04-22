@@ -1,9 +1,9 @@
 //#include <QDebug>
 #include <qt_windows.h>
+#include <winextras.h>
 
 #include "winvmultieventhandler.h"
 
-#include <winextras.h>
 #include <vmulticlient.h>
 
 WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
@@ -152,7 +152,7 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
     if (pendingMultimedia > 0 || pendingExtra > 0)
     {
-        vmulti_update_keyboard_multimedia(vmulti, multiKeys, extraKeys);
+        vmulti_update_keyboard_enhanced(vmulti, multiKeys, extraKeys);
     }
 }
 
@@ -160,7 +160,9 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
 {
     BYTE pendingButton = 0;
     BYTE pendingWheel = 0;
+    BYTE pendingHWheel = 0;
 
+    int code = slot->getSlotCode();
     if (code == 1)
     {
         pendingButton = 0x01;
@@ -181,15 +183,14 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
     {
         pendingWheel = pressed ? -1 : 0;
     }
-    /*else if (code == 6)
+    else if (code == 6)
     {
-
+        pendingHWheel = pressed ? -1 : 0;
     }
     else if (code == 7)
     {
-
+        pendingHWheel = pressed ? 1 : 0;
     }
-    */
     else if (code == 8)
     {
         pendingButton = 0x08;
@@ -202,18 +203,18 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
     if (pressed)
     {
         mouseButtons = mouseButtons | pendingButton;
-        vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel);
+        vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
     }
     else
     {
         mouseButtons = mouseButtons ^ pendingButton;
-        vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel);
+        vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
     }
 }
 
 void WinVMultiEventHandler::sendMouseEvent(int xDis, int yDis)
 {
-    vmulti_update_relative_mouse(vmulti, mouseButtons, xDis, yDis, 0);
+    vmulti_update_relative_mouse(vmulti, mouseButtons, xDis, yDis, 0, 0);
 }
 
 void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
