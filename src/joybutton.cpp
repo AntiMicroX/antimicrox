@@ -9,6 +9,10 @@
 #include "event.h"
 #include "logger.h"
 
+#ifdef Q_OS_WIN
+  #include "eventhandlerfactory.h"
+#endif
+
 const QString JoyButton::xmlName = "button";
 
 // Set default values for many properties.
@@ -663,6 +667,7 @@ void JoyButton::activateSlots()
         bool exit = false;
         //bool delaySequence = checkForDelaySequence();
         bool delaySequence = false;
+        bool changeRepeatState = false;
 
         while (slotiter->hasNext() && !exit)
         {
@@ -680,6 +685,7 @@ void JoyButton::activateSlots()
                 if (!slot->isModifierKey())
                 {
                     lastActiveKey = slot;
+                    changeRepeatState = true;
                 }
 
                 /*releaseActiveSlots();
@@ -853,6 +859,10 @@ void JoyButton::activateSlots()
             }
         }
 
+#ifdef Q_OS_WIN
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+#endif
+
         if (delaySequence && !activeSlots.isEmpty())
         {
             keyPressHold.restart();
@@ -860,7 +870,9 @@ void JoyButton::activateSlots()
         }
 
 #ifdef Q_OS_WIN
-        else if (lastActiveKey && activeSlots.contains(lastActiveKey) &&
+        else if (handler && handler->getIdentifier() == "sendinput" &&
+                 changeRepeatState && lastActiveKey &&
+                 activeSlots.contains(lastActiveKey) &&
                  !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
@@ -3409,6 +3421,7 @@ void JoyButton::releaseActiveSlots()
 {
     if (!activeSlots.isEmpty())
     {
+        bool changeRepeatState = false;
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
         iter.toBack();
@@ -3425,13 +3438,14 @@ void JoyButton::releaseActiveSlots()
                 {
                     sendevent(slot, false);
                     activeKeys.remove(tempcode);
+                    changeRepeatState = true;
                 }
                 else
                 {
                     activeKeys.insert(tempcode, referencecount);
                 }
 
-                if (lastActiveKey == slot)
+                if (lastActiveKey == slot && referencecount <= 0)
                 {
                     lastActiveKey = 0;
                 }
@@ -3630,7 +3644,21 @@ void JoyButton::releaseActiveSlots()
             cursorRemainderY = 0;
         }
 
+#ifdef Q_OS_WIN
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
+        if (handler && handler->getIdentifier() == "sendinput" &&
+            changeRepeatState && lastActiveKey &&
+            !useTurbo)
+        {
+            InputDevice *device = getParentSet()->getInputDevice();
+            if (device->isKeyRepeatEnabled())
+            {
+                keyRepeatTimer.start(device->getKeyRepeatDelay());
+            }
+        }
+
+#endif
     }
 }
 
