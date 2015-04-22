@@ -3649,6 +3649,7 @@ void JoyButton::releaseActiveSlots()
 
         if (handler && handler->getIdentifier() == "sendinput" &&
             changeRepeatState && lastActiveKey &&
+            activeSlots.contains(lastActiveKey) &&
             !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
