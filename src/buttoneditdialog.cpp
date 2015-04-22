@@ -17,15 +17,17 @@
 
 #include "event.h"
 #include "antkeymapper.h"
+#include "eventhandlerfactory.h"
 
 #ifdef Q_OS_UNIX
-    #include "eventhandlerfactory.h"
 
     #if defined(WITH_UINPUT) && defined(WITH_X11)
         #include "qtx11keymapper.h"
 
         static QtX11KeyMapper x11KeyMapper;
     #endif
+#elif defined(Q_OS_WIN)
+    static QtWinKeyMapper nativeWinKeyMapper;
 #endif
 
 #include "setjoystick.h"
@@ -148,15 +150,41 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         int controlcode = event->nativeScanCode();
         int virtualactual = event->nativeVirtualKey();
 
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
 #ifdef Q_OS_WIN
-        // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
-        // by checking for extended bit in scan code.
-        int finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
-        int checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
+        int finalvirtual = 0;
+        int checkalias = 0;
+
+  #ifdef WITH_VMULTI
+      if (handler->getIdentifier() == "vmulti")
+      {
+          finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
+          checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
+
+          unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
+          if (tempQtKey > 0)
+          {
+              finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
+              checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
+          }
+          else
+          {
+              finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
+          }
+      }
+
+  #endif
+
+      if (handler->getIdentifier() == "sendinput")
+      {
+          // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
+          // by checking for extended bit in scan code.
+          finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
+          checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
+      }
 
 #else
-
-        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
     #if defined(WITH_X11)
         int finalvirtual = 0;

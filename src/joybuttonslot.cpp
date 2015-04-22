@@ -8,6 +8,9 @@
 #include "event.h"
 #include "inputdevice.h"
 
+#ifdef Q_OS_WIN
+  #include "qtwinkeymapper.h"
+#endif
 
 const int JoyButtonSlot::JOYSPEED = 20;
 const QString JoyButtonSlot::xmlName = "slot";
@@ -402,7 +405,13 @@ QString JoyButtonSlot::getSlotString()
     {
         if (mode == JoyButtonSlot::JoyKeyboard)
         {
-            newlabel = newlabel.append(keysymToKeyString(deviceCode, qkeyaliasCode).toUpper());
+            unsigned int tempDeviceCode = deviceCode;
+#ifdef Q_OS_WIN
+            static QtWinKeyMapper nativeWinKeyMapper;
+            tempDeviceCode = nativeWinKeyMapper.returnVirtualKey(qkeyaliasCode);
+#endif
+            newlabel = newlabel.append(keysymToKeyString(tempDeviceCode, qkeyaliasCode).toUpper());
+            //newlabel = newlabel.append(keysymToKeyString(deviceCode, qkeyaliasCode).toUpper());
         }
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {

@@ -5,9 +5,7 @@
 #include <event.h>
 #include <antkeymapper.h>
 
-#ifdef Q_OS_UNIX
 #include <eventhandlerfactory.h>
-#endif
 
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
 
@@ -42,8 +40,22 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     if (temp > 0)
     {
 #ifdef Q_OS_WIN
-        this->keycode = temp;
-        this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
+        static QtWinKeyMapper nativeWinKeyMapper;
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
+  #ifdef WITH_VMULTI
+        if (handler->getIdentifier() == "vmulti")
+        {
+            this->qkeyalias = nativeWinKeyMapper.returnQtKey(temp);
+            this->keycode = AntKeyMapper::getInstance()->returnVirtualKey(qkeyalias);
+        }
+  #endif
+        if (handler->getIdentifier() == "sendinput")
+        {
+            this->keycode = temp;
+            this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
+        }
+
         // Special exception for Numpad Enter on Windows.
         if (xcodestring == "KP_Enter")
         {

@@ -40,7 +40,7 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_NumberSign] = 0x32;
         qtKeyToVirtualKey[Qt::Key_Semicolon] = 0x33;
         qtKeyToVirtualKey[Qt::Key_Apostrophe] = 0x34;
-        qtKeyToVirtualKey[Qt::Key_Dead_Grave] = 0x35;
+        qtKeyToVirtualKey[Qt::Key_QuoteLeft] = 0x35;
         qtKeyToVirtualKey[Qt::Key_Comma] = 0x36;
         qtKeyToVirtualKey[Qt::Key_Period] = 0x37;
         qtKeyToVirtualKey[Qt::Key_Slash] = 0x38;
