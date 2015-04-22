@@ -71,35 +71,85 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
     bool exists = keyboardKeys.contains(code);
 
-    if (code >= 0xE0 && code <= 0xE7)
+    if (code <= 0x65)
+    {
+        pendingKey = code;
+    }
+    else if (code >= 0xE0 && code <= 0xE7)
     {
         pendingShift = 1 << (code - 0xE0);
     }
     else if (code > QtVMultiKeyMapper::consumerUsagePagePrefix)
     {
-        if (code == 0x87 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        if (code == 0xB5 | QtVMultiKeyMapper::consumerUsagePagePrefix)
         {
-            pendingExtra = 1 << 6;
+            pendingMultimedia = 1 << 0; // (Scan Next Track)
         }
+        else if (code == 0xB6 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingMultimedia = 1 << 1; // (Scan Previous Track)
+        }
+        else if (code == 0xB1 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingMultimedia = 1 << 3; // (Play / Pause)
+        }
+        else if (code == 0x189 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingMultimedia = 1 << 6; // (WWW Home)
+        }
+
+        else if (code == 0x194 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 0; // (My Computer)
+        }
+        else if (code == 0x192 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 1; // (Calculator)
+        }
+        else if (code == 0x22a | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 2; // (WWW fav)
+        }
+        else if (code == 0x221 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 3; // (WWW search)
+        }
+        else if (code == 0xB7 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 3; // (WWW stop)
+        }
+        else if (code == 0x224 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 4; // (WWW back)
+        }
+        else if (code == 0x87 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 5; // (Media Select)
+        }
+        else if (code == 0x18a | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        {
+            pendingExtra = 1 << 6; // (Mail)
+        }
+
     }
     else if (code > 0x65)
     {
-        if (code == 0x7F)
+        if (code == 0x78)
         {
-            pendingMultimedia = 1 << 4;
+            pendingMultimedia = 1 << 2; // (Stop)
         }
-        else if (code == 0x80)
+        else if (code == 0x7F)
         {
-            pendingMultimedia = 1 << 6;
+            pendingMultimedia = 1 << 4; // (Mute)
         }
         else if (code == 0x81)
         {
-            pendingMultimedia = 1 << 5;
+            pendingMultimedia = 1 << 5; // (Volume Down)
         }
-    }
-    else
-    {
-        pendingKey = code;
+        else if (code == 0x80)
+        {
+            pendingMultimedia = 1 << 6; // (Volume Up)
+        }
     }
 
     if (pressed)

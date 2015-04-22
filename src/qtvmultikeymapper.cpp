@@ -132,6 +132,7 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Shift_R] = 0xE5;
         qtKeyToVirtualKey[AntKey_Meta_R] = 0xE7;
 
+        qtKeyToVirtualKey[Qt::Key_MediaPause] = 0xB1 | consumerUsagePagePrefix;
         qtKeyToVirtualKey[Qt::Key_MediaNext] = 0xB5 | consumerUsagePagePrefix;
         qtKeyToVirtualKey[Qt::Key_MediaPrevious] = 0xB6 | consumerUsagePagePrefix;
         qtKeyToVirtualKey[Qt::Key_MediaStop] = 0xB7 | consumerUsagePagePrefix;
