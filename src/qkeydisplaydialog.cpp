@@ -1,28 +1,30 @@
+//#include <QDebug>
+#include <QKeySequence>
+
 #include "qkeydisplaydialog.h"
 #include "ui_qkeydisplaydialog.h"
 
+#include "eventhandlerfactory.h"
+#include "antkeymapper.h"
+
 #ifdef Q_OS_WIN
-#include "winextras.h"
+  #include "winextras.h"
 #endif
 
 #ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#include <QApplication>
-    #endif
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #include <QApplication>
+  #endif
 
-#include "eventhandlerfactory.h"
 
-    #if defined(WITH_UINPUT) && defined(WITH_X11)
-#include "qtx11keymapper.h"
-
-static QtX11KeyMapper x11KeyMapper;
-    #endif
-
-#include "event.h"
-
+  #if defined(WITH_UINPUT) && defined(WITH_X11)
+    #include "qtx11keymapper.h"
+    static QtX11KeyMapper x11KeyMapper;
+  #endif
+#elif defined(Q_OS_WIN)
+    static QtWinKeyMapper nativeWinKeyMapper;
 #endif
 
-#include "antkeymapper.h"
 
 QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     QDialog(parent),
@@ -31,6 +33,9 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
+
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+    ui->eventHandlerLabel->setText(handler->getName());
 
 #ifdef Q_OS_UNIX
     #if defined(WITH_UINPUT)
@@ -47,14 +52,12 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
         #endif
     #endif
 
-    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-    ui->eventHandlerLabel->setText(handler->getName());
-
 #else
-    ui->formLayout->removeWidget(ui->eventHandlerTitleLabel);
+    /*ui->formLayout->removeWidget(ui->eventHandlerTitleLabel);
     ui->formLayout->removeWidget(ui->eventHandlerLabel);
     ui->eventHandlerTitleLabel->setVisible(false);
     ui->eventHandlerLabel->setVisible(false);
+    */
 #endif
 
 }
@@ -82,8 +85,22 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 {
     unsigned int scancode = event->nativeScanCode();
     unsigned int virtualkey = event->nativeVirtualKey();
+
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 #ifdef Q_OS_WIN
     unsigned int finalvirtual = WinExtras::correctVirtualKey(scancode, virtualkey);
+    unsigned int tempvirtual = finalvirtual;
+
+  #ifdef WITH_VMULTI
+    if (handler->getIdentifier() == "vmulti")
+    {
+        unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
+        if (tempQtKey > 0)
+        {
+            tempvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
+        }
+    }
+  #endif
 #else
 
     unsigned int finalvirtual = 0;
@@ -127,7 +144,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));
 
 #ifdef Q_OS_WIN
-    QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(finalvirtual, scancode), 0, 16);
+    QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(tempvirtual, scancode), 0, 16);
 #else
     QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(finalvirtual), 0, 16);
 #endif
