@@ -524,6 +524,7 @@ int main(int argc, char *argv[])
 #endif
 
     bool status = true;
+    QString eventGeneratorIdentifier;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance(cmdutility.getEventGenerator());
     if (!factory)
     {
@@ -600,9 +601,10 @@ int main(int argc, char *argv[])
         //outstream << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName())
         //          << endl;
         factory->handler()->printPostMessages();
+        eventGeneratorIdentifier = factory->handler()->getIdentifier();
     }
 
-    AntKeyMapper::getInstance(cmdutility.getEventGenerator());
+    AntKeyMapper::getInstance(eventGeneratorIdentifier);
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 

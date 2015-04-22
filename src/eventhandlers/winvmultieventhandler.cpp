@@ -39,6 +39,7 @@ bool WinVMultiEventHandler::init()
     if (vmulti && !vmulti_connect(vmulti))
     {
         vmulti_free(vmulti);
+        vmulti = 0;
         result = false;
     }
 
