@@ -890,6 +890,7 @@ void JoyButton::activateSlots()
             {
                 if (lastActiveKey && activeSlots.contains(lastActiveKey))
                 {
+                    repeatHelper.setLastActiveKey(lastActiveKey);
                     repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
                     repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
                     //keyRepeatTimer.start(device->getKeyRepeatDelay());
@@ -3684,6 +3685,7 @@ void JoyButton::releaseActiveSlots()
             {
                 if (lastActiveKey)
                 {
+                    repeatHelper.setLastActiveKey(lastActiveKey);
                     repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
                     repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
                     //keyRepeatTimer.start(device->getKeyRepeatDelay());
