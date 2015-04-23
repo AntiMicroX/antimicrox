@@ -286,7 +286,7 @@ protected:
     QTimer setChangeTimer;
     QTimer keyPressTimer;
     QTimer delayTimer;
-    QTimer keyRepeatTimer;
+    //QTimer keyRepeatTimer;
     QTimer slotSetChangeTimer;
     static QTimer staticMouseEventTimer;
 
@@ -484,7 +484,7 @@ private slots:
     void waitForReleaseDeskEvent();
     void holdEvent();
     void delayEvent();
-    void repeatKeysEvent();
+    //void repeatKeysEvent();
 
     void pauseWaitEvent();
     void checkForSetChange();

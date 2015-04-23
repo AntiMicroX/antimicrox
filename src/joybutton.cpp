@@ -444,7 +444,7 @@ void JoyButton::reset()
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    keyRepeatTimer.stop();
+    //keyRepeatTimer.stop();
     slotSetChangeTimer.stop();
 
     if (slotiter)
@@ -3094,7 +3094,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    keyRepeatTimer.stop();
+    //keyRepeatTimer.stop();
     setChangeTimer.stop();
 
     releaseActiveSlots();
@@ -3362,7 +3362,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    keyRepeatTimer.stop();
+    //keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -3413,7 +3413,7 @@ void JoyButton::eventReset()
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    keyRepeatTimer.stop();
+    //keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -4573,7 +4573,7 @@ bool JoyButton::isCycleResetActive()
  *     Method is not used in Linux as key repeating is taken care of
  *     by X instead.
  */
-void JoyButton::repeatKeysEvent()
+/*void JoyButton::repeatKeysEvent()
 {
     if (!activeSlots.isEmpty() && lastActiveKey && activeSlots.contains(lastActiveKey))
     {
@@ -4593,6 +4593,7 @@ void JoyButton::repeatKeysEvent()
         keyRepeatTimer.stop();
     }
 }
+*/
 
 void JoyButton::establishPropertyUpdatedConnections()
 {
