@@ -16,6 +16,10 @@
 #include "springmousemoveinfo.h"
 #include "joybuttonmousehelper.h"
 
+#ifdef Q_OS_WIN
+  #include "joykeyrepeathelper.h"
+#endif
+
 class VDPad;
 class SetJoystick;
 
@@ -404,6 +408,10 @@ protected:
 
     static QHash<unsigned int, int> activeKeys;
     static QHash<unsigned int, int> activeMouseButtons;
+#ifdef Q_OS_WIN
+    static JoyKeyRepeatHelper repeatHelper;
+#endif
+
     static JoyButtonSlot *lastActiveKey;
     static JoyButtonMouseHelper mouseHelper;
     static double weightModifier;

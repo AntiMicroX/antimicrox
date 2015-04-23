@@ -685,6 +685,9 @@ void JoyButton::activateSlots()
                 if (!slot->isModifierKey())
                 {
                     lastActiveKey = slot;
+#ifdef Q_OS_WIN
+                    repeatHelper.setLastActiveKey(lastActiveKey);
+#endif
                     changeRepeatState = true;
                 }
 
@@ -870,7 +873,7 @@ void JoyButton::activateSlots()
         }
 
 #ifdef Q_OS_WIN
-        else if (handler && handler->getIdentifier() == "sendinput" &&
+        /*else if (handler && handler->getIdentifier() == "sendinput" &&
                  changeRepeatState && lastActiveKey &&
                  activeSlots.contains(lastActiveKey) &&
                  !useTurbo)
@@ -879,6 +882,20 @@ void JoyButton::activateSlots()
             if (device->isKeyRepeatEnabled())
             {
                 keyRepeatTimer.start(device->getKeyRepeatDelay());
+            }
+        }
+        */
+        else if (handler && handler->getIdentifier() == "sendinput" &&
+                 changeRepeatState && lastActiveKey &&
+                 activeSlots.contains(lastActiveKey) &&
+                 !useTurbo)
+        {
+            InputDevice *device = getParentSet()->getInputDevice();
+            if (device->isKeyRepeatEnabled())
+            {
+                repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
+                repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
+                //keyRepeatTimer.start(device->getKeyRepeatDelay());
             }
         }
 #endif
@@ -3448,6 +3465,9 @@ void JoyButton::releaseActiveSlots()
                 if (lastActiveKey == slot && referencecount <= 0)
                 {
                     lastActiveKey = 0;
+#ifdef Q_OS_WIN
+                    repeatHelper.setLastActiveKey(0);
+#endif
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
@@ -3649,13 +3669,15 @@ void JoyButton::releaseActiveSlots()
 
         if (handler && handler->getIdentifier() == "sendinput" &&
             changeRepeatState && lastActiveKey &&
-            activeSlots.contains(lastActiveKey) &&
+            //activeSlots.contains(lastActiveKey) &&
             !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
             if (device->isKeyRepeatEnabled())
             {
-                keyRepeatTimer.start(device->getKeyRepeatDelay());
+                repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
+                repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
+                //keyRepeatTimer.start(device->getKeyRepeatDelay());
             }
         }
 

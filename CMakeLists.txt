@@ -209,6 +209,7 @@ elseif(WIN32)
          src/capturedwindowinfodialog.cpp
          src/firstrunwizard/associateprofilespage.cpp
          src/eventhandlers/winsendinputeventhandler.cpp
+         src/joykeyrepeathelper.cpp
     )
 
     if(WITH_VMULTI)
@@ -345,6 +346,7 @@ elseif(WIN32)
         src/capturedwindowinfodialog.h
         src/firstrunwizard/associateprofilespage.h
         src/eventhandlers/winsendinputeventhandler.h
+        src/joykeyrepeathelper.h
     )
 
     if(WITH_VMULTI)
