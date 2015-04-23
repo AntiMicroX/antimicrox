@@ -1,4 +1,5 @@
 #include "joykeyrepeathelper.h"
+#include "event.h"
 
 JoyKeyRepeatHelper::JoyKeyRepeatHelper(QObject *parent) :
     QObject(parent)
@@ -29,6 +30,10 @@ void JoyKeyRepeatHelper::repeatKeysEvent()
     }
 }
 
+void JoyKeyRepeatHelper::setLastActiveKey(JoyButtonSlot *slot)
+{
+    lastActiveKey = slot;
+}
 
 JoyButtonSlot* JoyKeyRepeatHelper::getLastActiveKey()
 {

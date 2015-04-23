@@ -94,6 +94,10 @@ int JoyButton::mouseHistorySize = 1;
 int JoyButton::mouseRefreshRate = 5;
 int JoyButton::springModeScreen = -1;
 
+#ifdef Q_OS_WIN
+JoyKeyRepeatHelper JoyButton::repeatHelper;
+#endif
+
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {
@@ -113,7 +117,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
-    connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
+    //connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
     connect(&slotSetChangeTimer, SIGNAL(timeout()), this, SLOT(slotSetChange()));
 
     establishMouseTimerConnections();
@@ -437,6 +441,9 @@ void JoyButton::reset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+#ifdef Q_OS_WIN
+    repeatHelper.getRepeatTimer()->stop();
+#endif
     keyRepeatTimer.stop();
     slotSetChangeTimer.stop();
 
@@ -685,9 +692,11 @@ void JoyButton::activateSlots()
                 if (!slot->isModifierKey())
                 {
                     lastActiveKey = slot;
-#ifdef Q_OS_WIN
-                    repeatHelper.setLastActiveKey(lastActiveKey);
-#endif
+                    changeRepeatState = true;
+                }
+                else
+                {
+                    lastActiveKey = 0;
                     changeRepeatState = true;
                 }
 
@@ -873,29 +882,23 @@ void JoyButton::activateSlots()
         }
 
 #ifdef Q_OS_WIN
-        /*else if (handler && handler->getIdentifier() == "sendinput" &&
-                 changeRepeatState && lastActiveKey &&
-                 activeSlots.contains(lastActiveKey) &&
-                 !useTurbo)
-        {
-            InputDevice *device = getParentSet()->getInputDevice();
-            if (device->isKeyRepeatEnabled())
-            {
-                keyRepeatTimer.start(device->getKeyRepeatDelay());
-            }
-        }
-        */
         else if (handler && handler->getIdentifier() == "sendinput" &&
-                 changeRepeatState && lastActiveKey &&
-                 activeSlots.contains(lastActiveKey) &&
-                 !useTurbo)
+                 changeRepeatState && !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
             if (device->isKeyRepeatEnabled())
             {
-                repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
-                repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
-                //keyRepeatTimer.start(device->getKeyRepeatDelay());
+                if (lastActiveKey && activeSlots.contains(lastActiveKey))
+                {
+                    repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
+                    repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
+                    //keyRepeatTimer.start(device->getKeyRepeatDelay());
+                }
+                else if (repeatHelper.getRepeatTimer()->isActive())
+                {
+                    repeatHelper.setLastActiveKey(0);
+                    repeatHelper.getRepeatTimer()->stop();
+                }
             }
         }
 #endif
@@ -3087,6 +3090,9 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     createDeskTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+#ifdef Q_OS_WIN
+    repeatHelper.getRepeatTimer()->stop();
+#endif
     keyRepeatTimer.stop();
     setChangeTimer.stop();
 
@@ -3352,6 +3358,9 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+#ifdef Q_OS_WIN
+    repeatHelper.getRepeatTimer()->stop();
+#endif
     keyRepeatTimer.stop();
 
     if (slotiter)
@@ -3400,6 +3409,9 @@ void JoyButton::eventReset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+#ifdef Q_OS_WIN
+    repeatHelper.getRepeatTimer()->stop();
+#endif
     keyRepeatTimer.stop();
 
     if (slotiter)
@@ -3465,9 +3477,6 @@ void JoyButton::releaseActiveSlots()
                 if (lastActiveKey == slot && referencecount <= 0)
                 {
                     lastActiveKey = 0;
-#ifdef Q_OS_WIN
-                    repeatHelper.setLastActiveKey(0);
-#endif
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
@@ -3668,16 +3677,22 @@ void JoyButton::releaseActiveSlots()
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
         if (handler && handler->getIdentifier() == "sendinput" &&
-            changeRepeatState && lastActiveKey &&
-            //activeSlots.contains(lastActiveKey) &&
-            !useTurbo)
+            changeRepeatState && lastActiveKey && !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
             if (device->isKeyRepeatEnabled())
             {
-                repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
-                repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
-                //keyRepeatTimer.start(device->getKeyRepeatDelay());
+                if (lastActiveKey)
+                {
+                    repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
+                    repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
+                    //keyRepeatTimer.start(device->getKeyRepeatDelay());
+                }
+                 else if (repeatHelper.getRepeatTimer()->isActive())
+                 {
+                     repeatHelper.setLastActiveKey(0);
+                     repeatHelper.getRepeatTimer()->stop();
+                 }
             }
         }
 
@@ -4570,6 +4585,9 @@ void JoyButton::repeatKeysEvent()
     }
     else
     {
+#ifdef Q_OS_WIN
+        repeatHelper.getRepeatTimer()->stop();
+#endif
         keyRepeatTimer.stop();
     }
 }
