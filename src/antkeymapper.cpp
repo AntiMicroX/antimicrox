@@ -37,7 +37,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     }
   #endif
 
-    if (handler == "sendinput")
+    BACKEND_ELSE_IF (handler == "sendinput")
     {
         internalMapper = &winMapper;
     }

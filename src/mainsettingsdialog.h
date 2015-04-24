@@ -28,7 +28,7 @@ protected:
     void fillControllerMappingsTable();
     void insertTempControllerMapping(QHash<QString, QList<QVariant> > &hash, QString newGUID);
     void checkLocaleChange();
-    void findLocaleItem();
+    //void findLocaleItem();
     void populateAutoProfiles();
     void fillAutoProfilesTable(QString guid);
     void fillAllAutoProfilesTable();

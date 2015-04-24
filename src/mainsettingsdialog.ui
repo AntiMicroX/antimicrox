@@ -549,6 +549,9 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          </item>
          <item>
           <widget class="QListWidget" name="localeListWidget">
+           <property name="currentRow">
+            <number>0</number>
+           </property>
            <item>
             <property name="text">
              <string>Default</string>

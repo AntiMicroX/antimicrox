@@ -50,7 +50,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
             this->keycode = AntKeyMapper::getInstance()->returnVirtualKey(qkeyalias);
         }
   #endif
-        if (handler->getIdentifier() == "sendinput")
+        BACKEND_ELSE_IF (handler->getIdentifier() == "sendinput")
         {
             this->keycode = temp;
             this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);

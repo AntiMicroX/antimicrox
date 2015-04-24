@@ -110,7 +110,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
   #endif
 
-        if (handler->getIdentifier() == "sendinput")
+        BACKEND_ELSE_IF (handler->getIdentifier() == "sendinput")
         {
             // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
             // by checking for extended bit in scan code.

@@ -66,7 +66,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->closeToTrayCheckBox->setChecked(true);
     }
 
-    findLocaleItem();
+    //findLocaleItem();
 
     //delete ui->categoriesListWidget->item(2);
     //ui->stackedWidget->removeWidget(ui->page);
@@ -712,7 +712,7 @@ void MainSettingsDialog::checkLocaleChange()
     }
 }
 
-void MainSettingsDialog::findLocaleItem()
+/*void MainSettingsDialog::findLocaleItem()
 {
     QLocale::Language currentLocale = QLocale().language();
     QLocale::Language systemLocale = QLocale::system().language();
@@ -730,6 +730,7 @@ void MainSettingsDialog::findLocaleItem()
         ui->localeListWidget->setCurrentRow(2);
     }
 }
+*/
 
 void MainSettingsDialog::populateAutoProfiles()
 {
@@ -1784,6 +1785,14 @@ void MainSettingsDialog::changePresetLanguage()
         {
             ui->localeListWidget->setCurrentRow(7);
         }
+        else
+        {
+            ui->localeListWidget->setCurrentRow(0);
+        }
+    }
+    else
+    {
+        ui->localeListWidget->setCurrentRow(0);
     }
 }
 
