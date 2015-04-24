@@ -541,7 +541,7 @@ to a diagonal zone of the stick.</string>
               <number>1</number>
              </property>
              <property name="maximum">
-              <number>89</number>
+              <number>90</number>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -557,7 +557,7 @@ to a diagonal zone of the stick.</string>
               <number>1</number>
              </property>
              <property name="maximum">
-              <number>89</number>
+              <number>90</number>
              </property>
              <property name="value">
               <number>45</number>

@@ -47,7 +47,7 @@ const double JoyButton::MAXIMUMEASINGDURATION = 5.0;
 
 const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
 const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
-const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 30;
+const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 100;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
 const int JoyButton::IDLEMOUSEREFRESHRATE = 100;

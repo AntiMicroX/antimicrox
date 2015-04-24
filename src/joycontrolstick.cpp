@@ -753,7 +753,7 @@ void JoyControlStick::setMaxZone(int value)
 
 /**
  * @brief Set the diagonal range value for a stick.
- * @param Value between 1 - 89.
+ * @param Value between 1 - 90.
  */
 void JoyControlStick::setDiagonalRange(int value)
 {
@@ -761,9 +761,9 @@ void JoyControlStick::setDiagonalRange(int value)
     {
         value = 1;
     }
-    else if (value > 89)
+    else if (value > 90)
     {
-        value = 89;
+        value = 90;
     }
 
     if (value != diagonalRange)
@@ -2122,15 +2122,15 @@ void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbu
     double bearing = calculateBearing();
 
     QList<double> anglesList = getDiagonalZoneAngles();
-    int initialLeft = anglesList.value(0);
-    int initialRight = anglesList.value(1);
-    int upRightInitial = anglesList.value(2);
-    int rightInitial = anglesList.value(3);
-    int downRightInitial = anglesList.value(4);
-    int downInitial = anglesList.value(5);
-    int downLeftInitial = anglesList.value(6);
-    int leftInitial = anglesList.value(7);
-    int upLeftInitial = anglesList.value(8);
+    double initialLeft = anglesList.value(0);
+    double initialRight = anglesList.value(1);
+    double upRightInitial = anglesList.value(2);
+    double rightInitial = anglesList.value(3);
+    double downRightInitial = anglesList.value(4);
+    double downInitial = anglesList.value(5);
+    double downLeftInitial = anglesList.value(6);
+    double leftInitial = anglesList.value(7);
+    double upLeftInitial = anglesList.value(8);
 
     //bearing = floor(bearing + 0.5);
     if (bearing <= initialRight || bearing >= initialLeft)
@@ -2191,15 +2191,15 @@ void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbu
     double bearing = calculateBearing();
 
     QList<double> anglesList = getDiagonalZoneAngles();
-    int initialLeft = anglesList.value(0);
-    int initialRight = anglesList.value(1);
-    int upRightInitial = anglesList.value(2);
-    int rightInitial = anglesList.value(3);
-    int downRightInitial = anglesList.value(4);
-    int downInitial = anglesList.value(5);
-    int downLeftInitial = anglesList.value(6);
-    int leftInitial = anglesList.value(7);
-    int upLeftInitial = anglesList.value(8);
+    double initialLeft = anglesList.value(0);
+    double initialRight = anglesList.value(1);
+    double upRightInitial = anglesList.value(2);
+    double rightInitial = anglesList.value(3);
+    double downRightInitial = anglesList.value(4);
+    double downInitial = anglesList.value(5);
+    double downLeftInitial = anglesList.value(6);
+    double leftInitial = anglesList.value(7);
+    double upLeftInitial = anglesList.value(8);
 
     //bearing = floor(bearing + 0.5);
     if (bearing <= initialRight || bearing >= initialLeft)
