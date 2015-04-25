@@ -107,6 +107,7 @@ public:
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
+    bool elementsHaveNames();
 
     SDL_Joystick* joyhandle;
     QHash<int, SetJoystick*> joystick_sets;
