@@ -5147,6 +5147,7 @@ void JoyButton::setAccelEasingDuration(double value)
     if (value >= 0.0 && value <= 5.0)
     {
         accelDuration = value;
+        emit propertyUpdated();
     }
 }
 
