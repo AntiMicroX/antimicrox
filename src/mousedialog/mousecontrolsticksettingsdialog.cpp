@@ -23,7 +23,6 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
         ui->sensitivityDoubleSpinBox->setValue(stick->getButtonsPresetSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
-    //selectSmoothingPreset();
 
     updateWindowTitleStickName();
 
@@ -51,6 +50,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     calculateStartAccelerationMultiplier();
     calculateMinAccelerationThreshold();
     calculateMaxAccelerationThreshold();
+    calculateAccelEasingDuration();
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -69,7 +69,6 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
@@ -77,11 +76,11 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), stick, SLOT(setButtonsEasingDuration(double)));
 
     connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
-    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
     connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
     connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
+    connect(ui->accelEasingDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelEasingDuration(double)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -324,6 +323,11 @@ void MouseControlStickSettingsDialog::calculateMaxAccelerationThreshold()
     ui->maxThresholdDoubleSpinBox->setValue(stick->getButtonsMaxAccelerationThreshold());
 }
 
+void MouseControlStickSettingsDialog::calculateAccelEasingDuration()
+{
+    ui->accelEasingDoubleSpinBox->setValue(stick->getButtonsAccelerationEasingDuration());
+}
+
 void MouseControlStickSettingsDialog::updateExtraAccelerationStatus(bool checked)
 {
     stick->setButtonsExtraAccelerationStatus(checked);
@@ -347,4 +351,9 @@ void MouseControlStickSettingsDialog::updateMinAccelThreshold(double value)
 void MouseControlStickSettingsDialog::updateMaxAccelThreshold(double value)
 {
     stick->setButtonsMaxAccelerationThreshold(value);
+}
+
+void MouseControlStickSettingsDialog::updateAccelEasingDuration(double value)
+{
+    stick->setButtonsAccelerationEasingDuration(value);
 }

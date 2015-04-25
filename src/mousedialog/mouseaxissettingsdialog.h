@@ -20,12 +20,13 @@ protected:
     //void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
     void updateWindowTitleAxisName();
+
     void calculateExtraAccelrationStatus();
     void calculateExtraAccelerationMultiplier();
-
     void calculateStartAccelerationMultiplier();
     void calculateMinAccelerationThreshold();
     void calculateMaxAccelerationThreshold();
+    void calculateAccelEasingDuration();
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
@@ -53,6 +54,7 @@ private slots:
     void updateStartMultiPercentage(double value);
     void updateMinAccelThreshold(double value);
     void updateMaxAccelThreshold(double value);
+    void updateAccelEasingDuration(double value);
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

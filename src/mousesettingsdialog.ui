@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>587</width>
-    <height>525</height>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -470,6 +470,9 @@ faster at the low end of an axis.</string>
 be required before the mouse is fully accelerated
 after reaching the high end of an axis.</string>
               </property>
+              <property name="suffix">
+               <string> s</string>
+              </property>
               <property name="decimals">
                <number>2</number>
               </property>
@@ -581,7 +584,7 @@ produce.</string>
                  <string>Acceleration begins at this percentage of the base multiplier</string>
                 </property>
                 <property name="suffix">
-                 <string> %</string>
+                 <string>%</string>
                 </property>
                 <property name="minimum">
                  <double>0.000000000000000</double>
@@ -622,7 +625,7 @@ Threshold:</string>
                  <string>Minimum amount of axis travel required for acceleration to begin</string>
                 </property>
                 <property name="suffix">
-                 <string> %</string>
+                 <string>%</string>
                 </property>
                 <property name="maximum">
                  <double>100.000000000000000</double>
@@ -653,7 +656,7 @@ Threshold:</string>
                  <string>Maximum axis travel before acceleration has reached the multiplier value</string>
                 </property>
                 <property name="suffix">
-                 <string> %</string>
+                 <string>%</string>
                 </property>
                 <property name="maximum">
                  <double>100.000000000000000</double>
@@ -664,6 +667,39 @@ Threshold:</string>
                </widget>
               </item>
              </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_22">
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string>Easing Duration:</string>
+              </property>
+              <property name="buddy">
+               <cstring>accelEasingDoubleSpinBox</cstring>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="accelEasingDoubleSpinBox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Extend the time that acceleration is applied. Useful&lt;/p&gt;&lt;p&gt;for allowing quick 180 degree turns.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="suffix">
+               <string> s</string>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

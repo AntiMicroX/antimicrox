@@ -2937,3 +2937,50 @@ double JoyControlStick::getButtonsMaxAccelerationThreshold()
 
     return result;
 }
+
+
+void JoyControlStick::setButtonsAccelerationEasingDuration(double value)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setAccelEasingDuration(value);
+        }
+    }
+}
+
+double JoyControlStick::getButtonsAccelerationEasingDuration()
+{
+    double result = JoyButton::DEFAULTACCELEASINGDURATION;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                result = button->getAccelEasingDuration();
+            }
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                double temp = button->getAccelEasingDuration();
+                if (temp != result)
+                {
+                    result = JoyButton::DEFAULTACCELEASINGDURATION;
+                    iter.toBack();
+                }
+            }
+        }
+    }
+
+    return result;
+}

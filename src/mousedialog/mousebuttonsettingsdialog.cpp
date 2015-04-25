@@ -22,7 +22,6 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->sensitivityDoubleSpinBox->setValue(button->getSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
-    //selectSmoothingPreset();
 
     updateWindowTitleButtonName();
 
@@ -53,6 +52,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->minMultiDoubleSpinBox->setValue(button->getStartAccelMultiplier());
         ui->minThresholdDoubleSpinBox->setValue(button->getMinAccelThreshold());
         ui->maxThresholdDoubleSpinBox->setValue(button->getMaxAccelThreshold());
+        ui->accelEasingDoubleSpinBox->setValue(button->getAccelEasingDuration());
     }
     else
     {
@@ -77,19 +77,18 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedX(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), button, SLOT(setWheelSpeedY(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), button, SLOT(setEasingDuration(double)));
 
-    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
     connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
     connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
     connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
+    connect(ui->accelEasingDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelEasingDuration(double)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -264,4 +263,9 @@ void MouseButtonSettingsDialog::updateMinAccelThreshold(double value)
 void MouseButtonSettingsDialog::updateMaxAccelThreshold(double value)
 {
     button->setMaxAccelThreshold(value);
+}
+
+void MouseButtonSettingsDialog::updateAccelEasingDuration(double value)
+{
+    button->setAccelEasingDuration(value);
 }

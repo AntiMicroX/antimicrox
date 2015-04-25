@@ -190,6 +190,9 @@ public:
     void setStartAccelMultiplier(double value);
     double getStartAccelMultiplier();
 
+    void setAccelEasingDuration(double value);
+    double getAccelEasingDuration();
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -234,6 +237,7 @@ public:
     static const double DEFAULTMINACCELTHRESHOLD;
     static const double DEFAULTMAXACCELTHRESHOLD;
     static const double DEFAULTSTARTACCELMULTIPLIER;
+    static const double DEFAULTACCELEASINGDURATION;
 
     static QList<double> mouseHistoryX;
     static QList<double> mouseHistoryY;
@@ -362,6 +366,7 @@ protected:
     // Multiplier and time used for acceleration easing.
     double currentAccelMulti;
     QTime accelEasingTime;
+    double accelDuration;
 
     // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;

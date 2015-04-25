@@ -21,7 +21,6 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
         ui->sensitivityDoubleSpinBox->setValue(dpad->getButtonsPresetSensitivity());
     }
     updateAccelerationCurvePresetComboBox();
-    //selectSmoothingPreset();
 
     updateWindowTitleDPadName();
 
@@ -45,9 +44,6 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     ui->easingDoubleSpinBox->setValue(easingDuration);
 
     ui->extraAccelerationGroupBox->setVisible(false);
-    //ui->extraAccelCheckBox->setVisible(false);
-    //ui->extraAccelDoubleSpinBox->setVisible(false);
-    //ui->extraAccelMultiLabel->setVisible(false);
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -66,7 +62,6 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
-    //connect(ui->smoothingCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSmoothingSetting(bool)));
 
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedHorizontalSpeed(int)));
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
@@ -77,16 +72,6 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(mouseHelper, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
     connect(mouseHelper, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
     lastMouseStatUpdate.start();
-
-    /*SetJoystick *set = dpad->getParentSet();
-    if (set && set->getInputDevice())
-    {
-        InputDevice *device = set->getInputDevice();
-        connect(device, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
-        connect(device, SIGNAL(mouseSpringMoved(int,int)), this, SLOT(updateMouseSpringStatusLabels(int,int)));
-        lastMouseStatUpdate.start();
-    }
-    */
 }
 
 void MouseDPadSettingsDialog::changeMouseMode(int index)

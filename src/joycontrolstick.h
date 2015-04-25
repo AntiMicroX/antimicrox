@@ -114,6 +114,9 @@ public:
     void setButtonsMaxAccelerationThreshold(double value);
     double getButtonsMaxAccelerationThreshold();
 
+    void setButtonsAccelerationEasingDuration(double value);
+    double getButtonsAccelerationEasingDuration();
+
     void releaseButtonEvents();
     QString getStickName();
 

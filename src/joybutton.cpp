@@ -1,4 +1,4 @@
-#include <QDebug>
+//#include <QDebug>
 #include <QStringList>
 #include <cmath>
 
@@ -55,6 +55,7 @@ const double JoyButton::DEFAULTEXTRACCELVALUE = 2.0;
 const double JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
 const double JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
 const double JoyButton::DEFAULTSTARTACCELMULTIPLIER = 0.0;
+const double JoyButton::DEFAULTACCELEASINGDURATION = 0.1;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -1175,18 +1176,19 @@ void JoyButton::mouseEvent()
 
                         //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
-                        qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
+                        //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
                         //difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
                         difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
-                        qDebug() << "UP IN HERE: " << difference;
-                        qDebug() << "";
+                        //qDebug() << "UP IN HERE: " << difference;
+                        //qDebug() << "";
                         //startingMouseDistance = difference;
                         updateStartingMouseDistance = true;
                         currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
                         accelEasingTime.restart();
                     }
-                    else if (extraAccelerationEnabled && isPartRealAxis() && currentAccelMulti > 0.0 &&
+                    else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
+                             currentAccelMulti > 0.0 &&
                              fabs(initialDifference - lastMouseDistance) < mintravel)
                              //initialDifference - startingMouseDistance < -mintravel)
                     {
@@ -1194,16 +1196,18 @@ void JoyButton::mouseEvent()
                         //qDebug() << "MIN TRAVEL: " << mintravel;
                         //updateStartingMouseDistance = true;
                         unsigned int elapsedElapsed = accelEasingTime.elapsed();
-                        double elapsedDuration = 0.1 * (currentAccelMulti / extraAccelerationMultiplier);
+                        //double elapsedDuration = 0.1 * (currentAccelMulti / extraAccelerationMultiplier);
+                        double elapsedDuration = accelDuration *
+                                (currentAccelMulti / extraAccelerationMultiplier);
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
                             elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
                             elapsedDiff = (1.0 - currentAccelMulti) * elapsedDiff + currentAccelMulti;
                             difference = elapsedDiff * difference;
-                            qDebug() << "DURATION: " << elapsedDuration;
-                            qDebug() << "NEW: " << elapsedDiff;
-                            qDebug() << "COMING THROUGH THE RYE: " << difference;
+                            //qDebug() << "DURATION: " << elapsedDuration;
+                            //qDebug() << "NEW: " << elapsedDiff;
+                            //qDebug() << "COMING THROUGH THE RYE: " << difference;
                         }
                         else
                         {
@@ -1718,6 +1722,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("maxaccelthreshold", QString::number(maxMouseDistanceAccelThreshold));
         }
 
+        if (accelDuration != DEFAULTACCELEASINGDURATION)
+        {
+            xml->writeTextElement("acceleasingduration", QString::number(accelDuration));
+        }
+
         // Write information about assigned slots.
         if (!assignments.isEmpty())
         {
@@ -2034,6 +2043,13 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setMaxAccelThreshold(tempchoice);
+    }
+    else if (xml->name() == "acceleasingduration" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        double tempchoice = temptext.toDouble();
+        setAccelEasingDuration(tempchoice);
     }
 
     return found;
@@ -3991,6 +4007,7 @@ bool JoyButton::isDefault()
     value = value && (minMouseDistanceAccelThreshold == DEFAULTMINACCELTHRESHOLD);
     value = value && (maxMouseDistanceAccelThreshold == DEFAULTMAXACCELTHRESHOLD);
     value = value && (startAccelMultiplier == DEFAULTSTARTACCELMULTIPLIER);
+    value = value && (accelDuration == DEFAULTACCELEASINGDURATION);
     return value;
 }
 
@@ -4996,6 +5013,7 @@ void JoyButton::resetProperties()
     minMouseDistanceAccelThreshold = DEFAULTMINACCELTHRESHOLD;
     maxMouseDistanceAccelThreshold = DEFAULTMAXACCELTHRESHOLD;
     startAccelMultiplier = DEFAULTSTARTACCELMULTIPLIER;
+    accelDuration = DEFAULTACCELEASINGDURATION;
 }
 
 bool JoyButton::isModifierButton()
@@ -5122,4 +5140,17 @@ void JoyButton::setSpringModeScreen(int screen)
     {
         springModeScreen = screen;
     }
+}
+
+void JoyButton::setAccelEasingDuration(double value)
+{
+    if (value >= 0.0 && value <= 5.0)
+    {
+        accelDuration = value;
+    }
+}
+
+double JoyButton::getAccelEasingDuration()
+{
+    return accelDuration;
 }
