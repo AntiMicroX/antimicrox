@@ -359,6 +359,10 @@ protected:
     // poll.
     double lastMouseDistance;
 
+    // Multiplier and time used for acceleration easing.
+    double currentAccelMulti;
+    QTime accelEasingTime;
+
     // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;
 

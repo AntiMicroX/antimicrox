@@ -1,4 +1,4 @@
-//#include <QDebug>
+#include <QDebug>
 #include <QStringList>
 #include <cmath>
 
@@ -753,6 +753,7 @@ void JoyButton::activateSlots()
                 {
                     lastMouseTime.restart();
                     staticMouseEventTimer.start(0);
+                    accelEasingTime.restart();
                 }
             }
             else if (mode == JoyButtonSlot::JoyPause)
@@ -1147,6 +1148,7 @@ void JoyButton::mouseEvent()
                     double distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
 
+                    //qDebug() << "Keep Trying: " << initialDifference - lastMouseDistance;
                     //double mintravel = 0.15;
                     //double mintravel = 0.10;
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
@@ -1173,14 +1175,63 @@ void JoyButton::mouseEvent()
 
                         //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
+                        qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
                         //difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
                         difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
-                        //qDebug() << "UP IN HERE: " << difference;
-                        //qDebug() << "";
+                        qDebug() << "UP IN HERE: " << difference;
+                        qDebug() << "";
+                        //startingMouseDistance = difference;
                         updateStartingMouseDistance = true;
+                        currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
+                        accelEasingTime.restart();
+                    }
+                    else if (extraAccelerationEnabled && isPartRealAxis() && currentAccelMulti > 0.0 &&
+                             fabs(initialDifference - lastMouseDistance) < mintravel)
+                             //initialDifference - startingMouseDistance < -mintravel)
+                    {
+                        //qDebug() << "Keep Trying: " << fabs(initialDifference - lastMouseDistance);
+                        //qDebug() << "MIN TRAVEL: " << mintravel;
+                        //updateStartingMouseDistance = true;
+                        unsigned int elapsedElapsed = accelEasingTime.elapsed();
+                        double elapsedDuration = 0.1 * (currentAccelMulti / extraAccelerationMultiplier);
+                        double elapsedDiff = 1.0;
+                        if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
+                        {
+                            elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
+                            elapsedDiff = (1.0 - currentAccelMulti) * elapsedDiff + currentAccelMulti;
+                            difference = elapsedDiff * difference;
+                            qDebug() << "DURATION: " << elapsedDuration;
+                            qDebug() << "NEW: " << elapsedDiff;
+                            qDebug() << "COMING THROUGH THE RYE: " << difference;
+                        }
+                        else
+                        {
+                            elapsedDiff = 1.0;
+                            currentAccelMulti = 0.0;
+                            //qDebug() << "RESET";
+                        }
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() &&
+                             fabs(initialDifference - lastMouseDistance) >= mintravel)
+                             //initialDifference - startingMouseDistance < mintravel)
+                    {
+                        currentAccelMulti = 0.0;
+                        //startingMouseDistance = initialDifference;
+                        //updateStartingMouseDistance = true;
+                        //qDebug() << "IN THIS";
+                        //qDebug() << "";
+                    }
+                    else if (extraAccelerationEnabled && isPartRealAxis())
+                    {
+                        currentAccelMulti = 0.0;
+                        updateStartingMouseDistance = true;
+                        //qDebug() << "IN THIS2";
+                        //qDebug() << "";
+                    }
+
+
+                    /*else if (extraAccelerationEnabled && isPartRealAxis() &&
                              initialDifference - lastMouseDistance < mintravel)
                     {
                         startingMouseDistance = initialDifference;
@@ -1191,6 +1242,7 @@ void JoyButton::mouseEvent()
                         startingMouseDistance = initialDifference;
                         updateStartingMouseDistance = true;
                     }
+                    */
                     /*else
                     {
                         startingMouseDistance = initialDifference;
@@ -1201,6 +1253,12 @@ void JoyButton::mouseEvent()
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
 
                     distance = sumDist;
+                    /*if (updateStartingMouseDistance)
+                    {
+                        qDebug() << "DISTANCE: " << distance;
+                        qDebug();
+                    }
+                    */
                     /*if (distance > 20.0)
                     {
                         qDebug() << "DISTANCE: " << distance;
@@ -3175,6 +3233,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     if (!currentRelease)
     {
         lastMouseDistance = 0.0;
+        currentAccelMulti = 0.0;
         currentMouseDistance = 0.0;
         startingMouseDistance = 0.0;
         updateStartingMouseDistance = true;
@@ -4919,6 +4978,7 @@ void JoyButton::resetProperties()
     cycleResetInterval = 0;
     relativeSpring = false;
     lastDistance = 0.0;
+    currentAccelMulti = 0.0;
     lastMouseDistance = 0.0;
     updateLastMouseDistance = false;
     updateStartingMouseDistance = false;
