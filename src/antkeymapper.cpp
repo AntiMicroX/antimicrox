@@ -3,6 +3,7 @@
 #include <QStringList>
 
 #include "antkeymapper.h"
+#include "eventhandlerfactory.h"
 
 AntKeyMapper* AntKeyMapper::_instance = 0;
 
