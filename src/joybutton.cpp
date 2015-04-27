@@ -1724,7 +1724,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 
         if (accelDuration != DEFAULTACCELEASINGDURATION)
         {
-            xml->writeTextElement("acceleasingduration", QString::number(accelDuration));
+            xml->writeTextElement("accelextraduration", QString::number(accelDuration));
         }
 
         // Write information about assigned slots.
@@ -2044,7 +2044,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         double tempchoice = temptext.toDouble();
         setMaxAccelThreshold(tempchoice);
     }
-    else if (xml->name() == "acceleasingduration" && xml->isStartElement())
+    else if (xml->name() == "accelextraduration" && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
