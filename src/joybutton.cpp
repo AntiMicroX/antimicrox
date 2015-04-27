@@ -1153,11 +1153,11 @@ void JoyButton::mouseEvent()
                     //double mintravel = 0.15;
                     //double mintravel = 0.10;
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
-                    //if (extraAccelerationEnabled && isPartRealAxis() &&
-                    //    initialDifference - lastMouseDistance >= mintravel)
                     if (extraAccelerationEnabled && isPartRealAxis() &&
-                        initialDifference - startingMouseDistance >= mintravel &&
-                        initialDifference - lastMouseDistance < mintravel)
+                        initialDifference - lastMouseDistance >= mintravel)
+                    //if (extraAccelerationEnabled && isPartRealAxis() &&
+                    //    initialDifference - startingMouseDistance >= mintravel &&
+                    //    initialDifference - lastMouseDistance < mintravel)
                     {
                         //qDebug() << "CURRENT: " << initialDifference;
                         //qDebug() << "LAST KNOWN: " << lastMouseDistance;
@@ -1177,14 +1177,15 @@ void JoyButton::mouseEvent()
                         //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
-                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
-                        difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
+                        difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
+                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
                         //qDebug() << "UP IN HERE: " << difference;
                         //qDebug() << "";
                         //startingMouseDistance = difference;
                         updateStartingMouseDistance = true;
-                        currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
+                        //currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
+                        currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
                         accelEasingTime.restart();
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
