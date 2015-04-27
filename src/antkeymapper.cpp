@@ -35,12 +35,14 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "vmulti")
     {
         internalMapper = &vmultiMapper;
+        nativeKeyMapper = &winMapper;
     }
   #endif
 
     BACKEND_ELSE_IF (handler == "sendinput")
     {
         internalMapper = &winMapper;
+        nativeKeyMapper = &winMapper;
     }
 
 #else
@@ -48,6 +50,11 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "xtest")
     {
         internalMapper = &x11Mapper;
+#ifdef WITH_UINPUT
+        nativeKeyMapper = &uinputMapper;
+#else
+        nativeKeyMapper = 0;
+#endif
     }
     #endif
 
@@ -55,6 +62,11 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "uinput")
     {
         internalMapper = &uinputMapper;
+#ifdef WITH_XTEST
+        nativeKeyMapper = &x11Mapper;
+#else
+        nativeKeyMapper = 0;
+#endif
     }
     #endif
 
@@ -97,4 +109,9 @@ unsigned int AntKeyMapper::returnVirtualKey(unsigned int qkey)
 bool AntKeyMapper::isModifierKey(unsigned int qkey)
 {
     return internalMapper->isModifier(qkey);
+}
+
+QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper()
+{
+    return nativeKeyMapper;
 }

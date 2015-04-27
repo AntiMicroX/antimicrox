@@ -30,12 +30,14 @@ public:
     unsigned int returnVirtualKey(unsigned int qkey);
     unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
     bool isModifierKey(unsigned int qkey);
+    QtKeyMapperBase* getNativeKeyMapper();
 
 protected:
     explicit AntKeyMapper(QString handler = "", QObject *parent = 0);
 
     static AntKeyMapper *_instance;
     QtKeyMapperBase *internalMapper;
+    QtKeyMapperBase *nativeKeyMapper;
 
 #ifdef Q_OS_WIN
     QtWinKeyMapper winMapper;

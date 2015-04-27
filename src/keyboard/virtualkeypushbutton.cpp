@@ -4,7 +4,6 @@
 #include "virtualkeypushbutton.h"
 #include <event.h>
 #include <antkeymapper.h>
-
 #include <eventhandlerfactory.h>
 
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
@@ -40,13 +39,14 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     if (temp > 0)
     {
 #ifdef Q_OS_WIN
-        static QtWinKeyMapper nativeWinKeyMapper;
+        //static QtWinKeyMapper nativeWinKeyMapper;
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
   #ifdef WITH_VMULTI
         if (handler->getIdentifier() == "vmulti")
         {
-            this->qkeyalias = nativeWinKeyMapper.returnQtKey(temp);
+            QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+            this->qkeyalias = nativeWinKeyMapper->returnQtKey(temp);
             this->keycode = AntKeyMapper::getInstance()->returnVirtualKey(qkeyalias);
         }
   #endif

@@ -19,16 +19,15 @@
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
 
-#ifdef Q_OS_UNIX
+/*#ifdef Q_OS_UNIX
 
     #if defined(WITH_UINPUT) && defined(WITH_X11)
         #include "qtx11keymapper.h"
 
         static QtX11KeyMapper x11KeyMapper;
     #endif
-#elif defined(Q_OS_WIN)
-    static QtWinKeyMapper nativeWinKeyMapper;
 #endif
+*/
 
 #include "setjoystick.h"
 
@@ -162,7 +161,14 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
           finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
           checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
 
-          unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
+          //unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
+          QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+          unsigned int tempQtKey = 0;
+          if (nativeWinKeyMapper)
+          {
+              tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
+          }
+
           if (tempQtKey > 0)
           {
               finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
@@ -201,7 +207,9 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         if (handler->getIdentifier() == "uinput")
         {
             // Find Qt Key corresponding to X11 KeySym.
-            checkalias = x11KeyMapper.returnQtKey(finalvirtual);
+            //checkalias = x11KeyMapper.returnQtKey(finalvirtual);
+            QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+            checkalias = x11KeyMapper->returnQtKey(finalvirtual);
             // Find corresponding Linux input key for the Qt key.
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(checkalias);
         }
