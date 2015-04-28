@@ -400,13 +400,12 @@ double JoyControlStick::getDistanceFromDeadZone(int axisXValue, int axisYValue)
     unsigned int squared_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
     unsigned int dist = sqrt(squared_dist);
 
-    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
-    double circleStickFull = (squareStickFull - 1) * circle + 1;
-    double alternateStickFullValue = circleStickFull * JoyAxis::AXISMAX;
+    double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
-    int adjustedDist = circleStickFull > 1.0 ? (dist / alternateStickFullValue) * JoyAxis::AXISMAX : dist;
-    int adjustedDeadZone = circleStickFull > 1.0 ? (deadZone / alternateStickFullValue) * JoyAxis::AXISMAX : deadZone;
+    double adjustedDist = circleStickFull > 1.0 ? (dist / circleStickFull) : dist;
+    double adjustedDeadZone = circleStickFull > 1.0 ? (deadZone / circleStickFull) : deadZone;
 
     distance = (adjustedDist - adjustedDeadZone)/(double)(maxZone - adjustedDeadZone);
     if (distance > 1.0)
@@ -443,16 +442,16 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue, int axisY
     double ang_cos = cos(angle2);
 
     int deadY = abs(floor(deadZone * ang_cos) + 0.5);
-    int axis2ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5);
-    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    //int axis2ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5);
+    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
-    double circleStickFull = (squareStickFull - 1) * circle + 1;
-    double alternateStickFullValue = circleStickFull * abs(axis2ValueCircleFull);
+    double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
+    //double circleToSquareTest = axis2Value * squareStickFullPhi;
 
-    int adjustedAxis2Value = circleStickFull > 1.0 ? (int)floor((axis2Value / alternateStickFullValue) * abs(axis2ValueCircleFull) + 0.5) : axis2Value;
-    int adjustedDeadYZone = circleStickFull > 1.0 ? (int)floor((deadY / alternateStickFullValue) * abs(axis2ValueCircleFull) + 0.5) : deadY;
+    double adjustedAxis2Value = circleStickFull > 1.0 ? (axis2Value / circleStickFull) : axis2Value;
+    double adjustedDeadYZone = circleStickFull > 1.0 ? (deadY / circleStickFull) : deadY;
 
-    distance = (abs(adjustedAxis2Value) - adjustedDeadYZone)/(double)(maxZone - adjustedDeadYZone);
+    distance = (fabs(adjustedAxis2Value) - adjustedDeadYZone)/(double)(maxZone - adjustedDeadYZone);
     if (distance > 1.0)
     {
         distance = 1.0;
@@ -487,16 +486,16 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue, int axisY
     double ang_cos = cos(angle2);
 
     int deadX = abs((int)floor(deadZone * ang_sin + 0.5));
-    int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
-    double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    //int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
+    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
-    double circleStickFull = (squareStickFull - 1) * circle + 1;
-    double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
+    double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
+    //double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
 
-    int adjustedAxis1Value = circleStickFull > 1.0 ? (int)floor((axis1Value / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : axis1Value;
-    int adjustedDeadXZone = circleStickFull > 1.0 ? (int)floor((deadX / alternateStickFullValue) * abs(axis1ValueCircleFull) + 0.5) : deadX;
+    double adjustedAxis1Value = circleStickFull > 1.0 ? (axis1Value / circleStickFull) : axis1Value;
+    double adjustedDeadXZone = circleStickFull > 1.0 ? (deadX / circleStickFull) : deadX;
 
-    distance = (abs(adjustedAxis1Value) - adjustedDeadXZone)/(double)(maxZone - adjustedDeadXZone);
+    distance = (fabs(adjustedAxis1Value) - adjustedDeadXZone)/(double)(maxZone - adjustedDeadXZone);
     if (distance > 1.0)
     {
         distance = 1.0;
