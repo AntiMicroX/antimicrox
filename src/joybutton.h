@@ -190,8 +190,8 @@ public:
     void setStartAccelMultiplier(double value);
     double getStartAccelMultiplier();
 
-    void setAccelEasingDuration(double value);
-    double getAccelEasingDuration();
+    void setAccelExtraDuration(double value);
+    double getAccelExtraDuration();
 
     static const QString xmlName;
 
@@ -365,7 +365,7 @@ protected:
 
     // Multiplier and time used for acceleration easing.
     double currentAccelMulti;
-    QTime accelEasingTime;
+    QTime accelExtraDurationTime;
     double accelDuration;
 
     // Should lastMouseDistance be updated. Set after mouse event.

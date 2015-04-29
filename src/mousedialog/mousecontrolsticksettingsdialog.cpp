@@ -50,7 +50,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     calculateStartAccelerationMultiplier();
     calculateMinAccelerationThreshold();
     calculateMaxAccelerationThreshold();
-    calculateAccelEasingDuration();
+    calculateAccelExtraDuration();
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -80,7 +80,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
-    connect(ui->accelEasingDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelEasingDuration(double)));
+    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -323,9 +323,9 @@ void MouseControlStickSettingsDialog::calculateMaxAccelerationThreshold()
     ui->maxThresholdDoubleSpinBox->setValue(stick->getButtonsMaxAccelerationThreshold());
 }
 
-void MouseControlStickSettingsDialog::calculateAccelEasingDuration()
+void MouseControlStickSettingsDialog::calculateAccelExtraDuration()
 {
-    ui->accelEasingDoubleSpinBox->setValue(stick->getButtonsAccelerationEasingDuration());
+    ui->accelExtraDurationDoubleSpinBox->setValue(stick->getButtonsAccelerationEasingDuration());
 }
 
 void MouseControlStickSettingsDialog::updateExtraAccelerationStatus(bool checked)
@@ -353,7 +353,7 @@ void MouseControlStickSettingsDialog::updateMaxAccelThreshold(double value)
     stick->setButtonsMaxAccelerationThreshold(value);
 }
 
-void MouseControlStickSettingsDialog::updateAccelEasingDuration(double value)
+void MouseControlStickSettingsDialog::updateAccelExtraDuration(double value)
 {
-    stick->setButtonsAccelerationEasingDuration(value);
+    stick->setButtonsAccelerationExtraDuration(value);
 }

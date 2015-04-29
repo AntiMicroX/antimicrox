@@ -48,7 +48,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     calculateStartAccelerationMultiplier();
     calculateMinAccelerationThreshold();
     calculateMaxAccelerationThreshold();
-    calculateAccelEasingDuration();
+    calculateAccelExtraDuration();
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -78,7 +78,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
-    connect(ui->accelEasingDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelEasingDuration(double)));
+    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -325,13 +325,13 @@ void MouseAxisSettingsDialog::calculateMaxAccelerationThreshold()
     }
 }
 
-void MouseAxisSettingsDialog::calculateAccelEasingDuration()
+void MouseAxisSettingsDialog::calculateAccelExtraDuration()
 {
-    if (axis->getPAxisButton()->getAccelEasingDuration() ==
-        axis->getNAxisButton()->getAccelEasingDuration())
+    if (axis->getPAxisButton()->getAccelExtraDuration() ==
+        axis->getNAxisButton()->getAccelExtraDuration())
     {
-        double temp = axis->getPAxisButton()->getAccelEasingDuration();
-        ui->accelEasingDoubleSpinBox->setValue(temp);
+        double temp = axis->getPAxisButton()->getAccelExtraDuration();
+        ui->accelExtraDurationDoubleSpinBox->setValue(temp);
     }
 }
 
@@ -366,8 +366,8 @@ void MouseAxisSettingsDialog::updateMaxAccelThreshold(double value)
     axis->getNAxisButton()->setMaxAccelThreshold(value);
 }
 
-void MouseAxisSettingsDialog::updateAccelEasingDuration(double value)
+void MouseAxisSettingsDialog::updateAccelExtraDuration(double value)
 {
-    axis->getPAxisButton()->setAccelEasingDuration(value);
-    axis->getNAxisButton()->setAccelEasingDuration(value);
+    axis->getPAxisButton()->setAccelExtraDuration(value);
+    axis->getNAxisButton()->setAccelExtraDuration(value);
 }

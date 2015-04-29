@@ -675,15 +675,15 @@ Threshold:</string>
             <item>
              <widget class="QLabel" name="label_11">
               <property name="text">
-               <string>Easing Duration:</string>
+               <string>Extra Duration:</string>
               </property>
               <property name="buddy">
-               <cstring>accelEasingDoubleSpinBox</cstring>
+               <cstring>accelExtraDurationDoubleSpinBox</cstring>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="accelEasingDoubleSpinBox">
+             <widget class="QDoubleSpinBox" name="accelExtraDurationDoubleSpinBox">
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Extend the time that acceleration is applied. Useful&lt;/p&gt;&lt;p&gt;for allowing quick 180 degree turns.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>

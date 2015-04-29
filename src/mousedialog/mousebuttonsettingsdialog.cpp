@@ -52,7 +52,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->minMultiDoubleSpinBox->setValue(button->getStartAccelMultiplier());
         ui->minThresholdDoubleSpinBox->setValue(button->getMinAccelThreshold());
         ui->maxThresholdDoubleSpinBox->setValue(button->getMaxAccelThreshold());
-        ui->accelEasingDoubleSpinBox->setValue(button->getAccelEasingDuration());
+        ui->accelExtraDurationDoubleSpinBox->setValue(button->getAccelExtraDuration());
     }
     else
     {
@@ -88,7 +88,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
-    connect(ui->accelEasingDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelEasingDuration(double)));
+    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -265,7 +265,7 @@ void MouseButtonSettingsDialog::updateMaxAccelThreshold(double value)
     button->setMaxAccelThreshold(value);
 }
 
-void MouseButtonSettingsDialog::updateAccelEasingDuration(double value)
+void MouseButtonSettingsDialog::updateAccelExtraDuration(double value)
 {
-    button->setAccelEasingDuration(value);
+    button->setAccelExtraDuration(value);
 }

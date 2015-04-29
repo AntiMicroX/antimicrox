@@ -754,7 +754,7 @@ void JoyButton::activateSlots()
                 {
                     lastMouseTime.restart();
                     staticMouseEventTimer.start(0);
-                    accelEasingTime.restart();
+                    accelExtraDurationTime.restart();
                 }
             }
             else if (mode == JoyButtonSlot::JoyPause)
@@ -1186,7 +1186,7 @@ void JoyButton::mouseEvent()
                         updateStartingMouseDistance = true;
                         //currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
                         currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
-                        accelEasingTime.restart();
+                        accelExtraDurationTime.restart();
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
                              currentAccelMulti > 0.0 &&
@@ -1196,16 +1196,17 @@ void JoyButton::mouseEvent()
                         //qDebug() << "Keep Trying: " << fabs(initialDifference - lastMouseDistance);
                         //qDebug() << "MIN TRAVEL: " << mintravel;
                         //updateStartingMouseDistance = true;
-                        unsigned int elapsedElapsed = accelEasingTime.elapsed();
+                        unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
                         //double elapsedDuration = 0.1 * (currentAccelMulti / extraAccelerationMultiplier);
                         double elapsedDuration = accelDuration *
                                 (currentAccelMulti / extraAccelerationMultiplier);
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
-                            elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
-                            elapsedDiff = (1.0 - currentAccelMulti) * elapsedDiff + currentAccelMulti;
-                            difference = elapsedDiff * difference;
+                            //elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
+                            //elapsedDiff = (1.0 - currentAccelMulti) * elapsedDiff + currentAccelMulti;
+                            //difference = elapsedDiff * difference;
+                            difference = currentAccelMulti * difference;
                             //qDebug() << "DURATION: " << elapsedDuration;
                             //qDebug() << "NEW: " << elapsedDiff;
                             //qDebug() << "COMING THROUGH THE RYE: " << difference;
@@ -2050,7 +2051,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
-        setAccelEasingDuration(tempchoice);
+        setAccelExtraDuration(tempchoice);
     }
 
     return found;
@@ -5143,7 +5144,7 @@ void JoyButton::setSpringModeScreen(int screen)
     }
 }
 
-void JoyButton::setAccelEasingDuration(double value)
+void JoyButton::setAccelExtraDuration(double value)
 {
     if (value >= 0.0 && value <= 5.0)
     {
@@ -5152,7 +5153,7 @@ void JoyButton::setAccelEasingDuration(double value)
     }
 }
 
-double JoyButton::getAccelEasingDuration()
+double JoyButton::getAccelExtraDuration()
 {
     return accelDuration;
 }

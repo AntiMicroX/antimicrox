@@ -26,7 +26,7 @@ protected:
     void calculateStartAccelerationMultiplier();
     void calculateMinAccelerationThreshold();
     void calculateMaxAccelerationThreshold();
-    void calculateAccelEasingDuration();
+    void calculateAccelExtraDuration();
 
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
@@ -54,7 +54,7 @@ private slots:
     void updateStartMultiPercentage(double value);
     void updateMinAccelThreshold(double value);
     void updateMaxAccelThreshold(double value);
-    void updateAccelEasingDuration(double value);
+    void updateAccelExtraDuration(double value);
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOG_H

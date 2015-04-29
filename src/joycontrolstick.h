@@ -114,7 +114,7 @@ public:
     void setButtonsMaxAccelerationThreshold(double value);
     double getButtonsMaxAccelerationThreshold();
 
-    void setButtonsAccelerationEasingDuration(double value);
+    void setButtonsAccelerationExtraDuration(double value);
     double getButtonsAccelerationEasingDuration();
 
     void releaseButtonEvents();
