@@ -1205,8 +1205,10 @@ void JoyButton::mouseEvent()
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
-                            //elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
-                            //elapsedDiff = (1.0 - currentAccelMulti) * elapsedDiff + currentAccelMulti;
+                            /*elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
+                            elapsedDiff = (1.0 - currentAccelMulti) * elapsedDiff + currentAccelMulti;
+                            */
+
                             //difference = elapsedDiff * difference;
                             difference = currentAccelMulti * difference;
                             //qDebug() << "DURATION: " << elapsedDuration;
