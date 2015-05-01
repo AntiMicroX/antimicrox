@@ -685,8 +685,9 @@ Threshold:</string>
             <item>
              <widget class="QDoubleSpinBox" name="accelExtraDurationDoubleSpinBox">
               <property name="toolTip">
-               <string>Extend the time that acceleration is applied. Useful for
-allowing quick 180 degree turns.</string>
+               <string>Extend the time that extra acceleration is applied. Axis travel
+will be taken into account. A slower flick will decrease the
+actual time that extra acceleration will be applied.</string>
               </property>
               <property name="suffix">
                <string> s</string>
