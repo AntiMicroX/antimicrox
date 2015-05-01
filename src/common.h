@@ -85,7 +85,7 @@ namespace PadderCommon
     const QString configFilePath = QString(configPath).append("/").append(configFileName);
 #endif
 
-    const int LATESTCONFIGFILEVERSION = 16;
+    const int LATESTCONFIGFILEVERSION = 17;
     // Specify the last known profile version that requires a migration
     // to be performed in order to be compatible with the latest version.
     const int LATESTCONFIGMIGRATIONVERSION = 5;

@@ -1,3 +1,41 @@
+2015-05-01 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.14
+
+* Refactored extra axis acceleration. This revision uses individual gamepad
+polls again. Other changes in the code have made switching back feasible. With
+minor adjustments, the mouse will be looser but very controllable.
+
+* Added longer duration for extra axis acceleration. This allows extra
+acceleration to be performed over a period of time as opposed to just one
+gamepad poll.
+
+* Changed key repeat routine when using SendInput on Windows. Key releases
+restart the last active key repeat delay.
+
+* Now using Qt64-NG for the 64 bit Windows builds.
+
+* Initial experiments with vmulti support in the Windows version. Using that
+driver would allow antimicro to use a virtual keyboard and mouse rather than
+using SendInput. That would allow antimicro to work around UAC problems and
+anti-cheat programs. Support is not currently compiled into the Windows builds
+due to not being able to properly distribute the vmulti driver.
+
+* Do not write empty names tag in profiles if no custom button names have been
+specified.
+
+* Allow mouse history buffer size to go up to 100.
+
+* Allow diagonal range to go up to 90 degrees.
+
+* Remove old mouse speeds from mouse history buffer if stick has been returned
+to the dead zone. History buffer will be filled with zeroes.
+
+* Omit hotplugging dependent code when compiling against SDL 1.2.
+
+* Fixed dpad pointer bug when certain QueuedConnection slots are executed.
+
+
 2015-03-31 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.13
