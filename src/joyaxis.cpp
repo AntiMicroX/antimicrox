@@ -615,6 +615,25 @@ double JoyAxis::getDistanceFromDeadZone(int value)
     return distance;
 }
 
+double JoyAxis::getRawDistance(int value)
+{
+    double distance = 0.0;
+    int currentValue = value;
+
+    distance = currentValue / static_cast<double>(maxZoneValue);
+
+    if (distance > 1.0)
+    {
+        distance = 1.0;
+    }
+    else if (distance < -1.0)
+    {
+        distance = -1.0;
+    }
+
+    return distance;
+}
+
 void JoyAxis::propogateThrottleChange()
 {
     emit throttleChangePropogated(this->index);

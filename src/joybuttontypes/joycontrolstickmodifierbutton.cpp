@@ -117,3 +117,15 @@ double JoyControlStickModifierButton::getLastMouseDistanceFromDeadZone()
 {
     return stick->calculateLastDirectionalDistance();
 }
+
+double JoyControlStickModifierButton::getAccelerationDistance()
+{
+    double temp = stick->getAbsoluteRawDistance();
+    return temp;
+}
+
+double JoyControlStickModifierButton::getLastAccelerationDistance()
+{
+    double temp = stick->calculateLastAccelerationDirectionalDistance();
+    return temp;
+}

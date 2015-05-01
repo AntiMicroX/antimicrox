@@ -23,6 +23,8 @@ public:
     virtual bool isModifierButton();
 
     virtual double getLastMouseDistanceFromDeadZone();
+    virtual double getAccelerationDistance();
+    virtual double getLastAccelerationDistance();
 
     static const QString xmlName;
 

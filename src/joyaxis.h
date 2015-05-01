@@ -57,6 +57,7 @@ public:
 
     double getDistanceFromDeadZone();
     double getDistanceFromDeadZone(int value);
+    double getRawDistance(int value);
     double calculateNormalizedAxisPlacement();
     double getAbsoluteAxisPlacement();
 

@@ -255,7 +255,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 
                     // Newly activated button. Just entered safe zone.
                     initialLastMouseDistance();
-                    currentMouseDistance = getMouseDistanceFromDeadZone();
+                    currentAccelerationDistance = getAccelerationDistance();
 
                     Logger::LogDebug(tr("Processing turbo for %1.%2")
                                     .arg(parentSet->getInputDevice()->getRealJoyNumber())
@@ -319,7 +319,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 
                 // Newly activated button. Just entered safe zone.
                 initialLastMouseDistance();
-                currentMouseDistance = getMouseDistanceFromDeadZone();
+                currentAccelerationDistance = getAccelerationDistance();
 
                 if (!keyPressTimer.isActive())
                 {
@@ -350,7 +350,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         else if (!useTurbo && isButtonPressed)
         {
             resetMouseDistances();
-            currentMouseDistance = getMouseDistanceFromDeadZone();
+            currentAccelerationDistance = getAccelerationDistance();
 
             if (!setChangeTimer.isActive())
             {
@@ -1154,7 +1154,8 @@ void JoyButton::mouseEvent()
                     //double mintravel = 0.10;
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
                     if (extraAccelerationEnabled && isPartRealAxis() &&
-                        initialDifference - lastMouseDistance >= mintravel)
+                        fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel &&
+                        (getAccelerationDistance() - lastAccelerationDistance >= 0) == (getAccelerationDistance() >= 0))
                     //if (extraAccelerationEnabled && isPartRealAxis() &&
                     //    initialDifference - startingMouseDistance >= mintravel &&
                     //    initialDifference - lastMouseDistance < mintravel)
@@ -1163,6 +1164,7 @@ void JoyButton::mouseEvent()
                         //qDebug() << "LAST KNOWN: " << lastMouseDistance;
                         //qDebug() << "OLDDIFF: " << difference;
 
+                        //qDebug() << "HELP ME: " << getAccelerationDistance() << " | " << lastAccelerationDistance;
                         double magfactor = extraAccelerationMultiplier;
                         double minfactor = qMax((DEFAULTSTARTACCELMULTIPLIER * 0.001) + 1.0, magfactor * (startAccelMultiplier * 0.01));
                         //double minfactor = magfactor / 2.0;
@@ -1174,10 +1176,10 @@ void JoyButton::mouseEvent()
                         double slope = (magfactor - minfactor)/(maxtravel - mintravel);
                         double intercept = minfactor - (slope * mintravel);
 
-                        //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (initialDifference - lastMouseDistance));
-                        //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept); // 1.01 - multiplier
+                        //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (getAccelerationDistance() - lastAccelerationDistance));
+                        //qDebug() << "MULTI: " << (slope * qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance)) + intercept); // 1.01 - multiplier
                         //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
-                        difference = difference * (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
+                        difference = difference * (slope * qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance)) + intercept);
                         //difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
                         //qDebug() << "UP IN HERE: " << difference;
@@ -1185,15 +1187,15 @@ void JoyButton::mouseEvent()
                         //startingMouseDistance = difference;
                         updateStartingMouseDistance = true;
                         //currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
-                        currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - lastMouseDistance)) + intercept);
+                        currentAccelMulti = (slope * qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance)) + intercept);
                         accelExtraDurationTime.restart();
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
                              currentAccelMulti > 0.0 &&
-                             fabs(initialDifference - lastMouseDistance) < mintravel)
+                             fabs(getAccelerationDistance() - lastAccelerationDistance) < mintravel)
                              //initialDifference - startingMouseDistance < -mintravel)
                     {
-                        //qDebug() << "Keep Trying: " << fabs(initialDifference - lastMouseDistance);
+                        //qDebug() << "Keep Trying: " << fabs(getAccelerationDistance() - lastAccelerationDistance);
                         //qDebug() << "MIN TRAVEL: " << mintravel;
                         //updateStartingMouseDistance = true;
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
@@ -1219,7 +1221,7 @@ void JoyButton::mouseEvent()
                         }
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() &&
-                             fabs(initialDifference - lastMouseDistance) >= mintravel)
+                             fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel)
                              //initialDifference - startingMouseDistance < mintravel)
                     {
                         currentAccelMulti = 0.0;
@@ -3250,10 +3252,10 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
     if (!currentRelease)
     {
-        lastMouseDistance = 0.0;
+        lastAccelerationDistance = 0.0;
         currentAccelMulti = 0.0;
-        currentMouseDistance = 0.0;
-        startingMouseDistance = 0.0;
+        currentAccelerationDistance = 0.0;
+        startingAccelerationDistance = 0.0;
         updateStartingMouseDistance = true;
 
         if (slotiter && !slotiter->hasNext())
@@ -3331,6 +3333,11 @@ double JoyButton::getDistanceFromDeadZone()
     }
 
     return distance;
+}
+
+double JoyButton::getAccelerationDistance()
+{
+    return this->getDistanceFromDeadZone();
 }
 
 /**
@@ -4998,11 +5005,11 @@ void JoyButton::resetProperties()
     relativeSpring = false;
     lastDistance = 0.0;
     currentAccelMulti = 0.0;
-    lastMouseDistance = 0.0;
+    lastAccelerationDistance = 0.0;
     updateLastMouseDistance = false;
     updateStartingMouseDistance = false;
-    currentMouseDistance = 0.0;
-    startingMouseDistance = 0.0;
+    currentAccelerationDistance = 0.0;
+    startingAccelerationDistance = 0.0;
     lastWheelVerticalDistance = 0.0;
     lastWheelHorizontalDistance = 0.0;
     tempTurboInterval = 0;
@@ -5032,29 +5039,34 @@ void JoyButton::resetMouseDistances()
 {
     if (updateLastMouseDistance)
     {
-        lastMouseDistance = currentMouseDistance;
+        lastAccelerationDistance = currentAccelerationDistance;
         updateLastMouseDistance = false;
 
         if (updateStartingMouseDistance)
         {
-            startingMouseDistance = lastMouseDistance;
+            startingAccelerationDistance = lastAccelerationDistance;
             updateStartingMouseDistance = false;
         }
     }
 
-    currentMouseDistance = getMouseDistanceFromDeadZone();
+    currentAccelerationDistance = getAccelerationDistance();
 }
 
 void JoyButton::initialLastMouseDistance()
 {
-    lastMouseDistance = getLastMouseDistanceFromDeadZone();
-    currentMouseDistance = getMouseDistanceFromDeadZone();
-    startingMouseDistance = lastMouseDistance;
+    lastAccelerationDistance = getLastAccelerationDistance();
+    currentAccelerationDistance = getAccelerationDistance();
+    startingAccelerationDistance = lastAccelerationDistance;
 }
 
 double JoyButton::getLastMouseDistanceFromDeadZone()
 {
-    return lastMouseDistance;
+    return lastAccelerationDistance;
+}
+
+double JoyButton::getLastAccelerationDistance()
+{
+    return lastAccelerationDistance;
 }
 
 bool JoyButton::isExtraAccelerationEnabled()

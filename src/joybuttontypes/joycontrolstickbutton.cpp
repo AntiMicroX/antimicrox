@@ -186,6 +186,18 @@ double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
     return stick->calculateLastMouseDirectionalDistance(this);
 }
 
+double JoyControlStickButton::getLastAccelerationDistance()
+{
+    double temp = stick->calculateLastAccelerationDistance(this);
+    return temp;
+}
+
+double JoyControlStickButton::getAccelerationDistance()
+{
+    double temp = stick->calculateAccelerationDistance(this);
+    return temp;
+}
+
 /**
  * @brief Generate a string that represents slots that will be activated or
  *     slots that are currently active if a button is pressed

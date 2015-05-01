@@ -193,6 +193,9 @@ public:
     void setAccelExtraDuration(double value);
     double getAccelExtraDuration();
 
+    virtual double getAccelerationDistance();
+    virtual double getLastAccelerationDistance();
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -361,7 +364,7 @@ protected:
 
     // Keep track of the previous mouse distance from the previous gamepad
     // poll.
-    double lastMouseDistance;
+    double lastAccelerationDistance;
 
     // Multiplier and time used for acceleration easing.
     double currentAccelMulti;
@@ -377,10 +380,10 @@ protected:
 
     // Keep track of the current mouse distance after a poll. Used
     // to update lastMouseDistance later.
-    double currentMouseDistance;
+    double currentAccelerationDistance;
 
     // Take into account when mouse acceleration started
-    double startingMouseDistance;
+    double startingAccelerationDistance;
 
     double minMouseDistanceAccelThreshold;
     double maxMouseDistanceAccelThreshold;

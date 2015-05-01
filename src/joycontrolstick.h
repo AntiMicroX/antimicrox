@@ -33,6 +33,7 @@ public:
     double getDistanceFromDeadZone(int axisXValue, int axisYValue);
 
     double getAbsoluteRawDistance();
+    double getAbsoluteRawDistance(int axisXValue, int axisYValue);
     double getNormalizedAbsoluteDistance();
 
     int getIndex();
@@ -72,6 +73,14 @@ public:
     double calculateLastDirectionalDistance();
 
     double calculateLastMouseDirectionalDistance(JoyControlStickButton *button);
+
+
+    double calculateLastAccelerationDistance(JoyControlStickButton *button);
+    double calculateAccelerationDistance(JoyControlStickButton *button);
+    double calculateXAxisDistance(int axisXValue);
+    double calculateYAxisDistance(int axisYValue);
+    double calculateLastAccelerationDirectionalDistance();
+    double getRadialDistance(int axisXValue, int axisYValue);
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();
@@ -186,6 +195,10 @@ protected:
 
     int calculateCircleXValue(int rawXValue);
     int calculateCircleYValue(int rawYValue);
+
+    double calculateEightWayDiagonalDistanceFromDeadZone();
+    double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue);
+    double calculateRawEightWayDiagonalDistance(int axisXValue, int axisYValue);
 
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
     void clearPendingAxisEvents();
