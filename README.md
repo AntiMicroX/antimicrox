@@ -1,5 +1,11 @@
 # antimicro
 
+## Ceased Development
+
+As of May 04, 2015, development of antimicro has ceased for the foreseeable
+future. Too many real life problems keep getting me off track and those
+issues need to be resolved first before I can devote time to any project.
+
 ## Description
 
 antimicro is a graphical program used to map keyboard keys and mouse controls
