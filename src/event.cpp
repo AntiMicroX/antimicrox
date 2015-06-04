@@ -7,10 +7,12 @@
 #include <QStringList>
 #include <QCursor>
 #include <QDesktopWidget>
+#include <QProcess>
 
 #include "event.h"
 
 #include "eventhandlerfactory.h"
+
 
 #if defined(Q_OS_UNIX)
 
@@ -63,113 +65,31 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     //int code = slot->getSlotCode();
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
-#if defined (Q_OS_UNIX)
-
     if (device == JoyButtonSlot::JoyKeyboard)
     {
         EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
+        //if (pressed)
+        //{
+            //EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent("PILLOWY Mounds of Mashed POTATOES!!");
+        //}
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
         EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
+        //if (pressed)
+        //{
+            /*QProcess proctor;
+            proctor.setProgram("gvim");
+            proctor.start(QIODevice::ReadOnly);
+            */
+            //QProcess::startDetached("gvim");
+        //}
     }
-
-#elif defined (Q_OS_WIN)
-    int code = slot->getSlotCode();
-    INPUT temp[1] = {};
-
-    if (device == JoyButtonSlot::JoyKeyboard)
-    {
-        /*unsigned int scancode = WinExtras::scancodeFromVirtualKey(code, slot->getSlotCodeAlias());
-        int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
-        int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
-
-        temp[0].type = INPUT_KEYBOARD;
-        //temp[0].ki.wScan = MapVirtualKey(code, MAPVK_VK_TO_VSC);
-        temp[0].ki.wScan = scancode;
-        temp[0].ki.time = 0;
-        temp[0].ki.dwExtraInfo = 0;
-
-        temp[0].ki.wVk = code;
-        temp[0].ki.dwFlags = pressed ? tempflags : (tempflags | KEYEVENTF_KEYUP); // 0 for key press
-        SendInput(1, temp, sizeof(INPUT));
-        */
-
-        EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
-    }
-    else if (device == JoyButtonSlot::JoyMouseButton)
-    {
-        /*temp[0].type = INPUT_MOUSE;
-        if (code == 1)
-        {
-            temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_LEFTDOWN : MOUSEEVENTF_LEFTUP;
-        }
-        else if (code == 2)
-        {
-            temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_MIDDLEDOWN : MOUSEEVENTF_MIDDLEUP;
-        }
-        else if (code == 3)
-        {
-            temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_RIGHTDOWN : MOUSEEVENTF_RIGHTUP;
-        }
-        else if (code == 4)
-        {
-            temp[0].mi.dwFlags = MOUSEEVENTF_WHEEL;
-            temp[0].mi.mouseData = pressed ? WHEEL_DELTA : 0;
-        }
-        else if (code == 5)
-        {
-            temp[0].mi.dwFlags = MOUSEEVENTF_WHEEL;
-            temp[0].mi.mouseData = pressed ? -WHEEL_DELTA : 0;
-        }
-        else if (code == 6)
-        {
-            temp[0].mi.dwFlags = 0x01000;
-            temp[0].mi.mouseData = pressed ? -WHEEL_DELTA : 0;
-        }
-        else if (code == 7)
-        {
-            temp[0].mi.dwFlags = 0x01000;
-            temp[0].mi.mouseData = pressed ? WHEEL_DELTA : 0;
-        }
-        else if (code == 8)
-        {
-            temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_XDOWN : MOUSEEVENTF_XUP;
-            temp[0].mi.mouseData = XBUTTON1;
-        }
-        else if (code == 9)
-        {
-            temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_XDOWN : MOUSEEVENTF_XUP;
-            temp[0].mi.mouseData = XBUTTON2;
-        }
-
-        SendInput(1, temp, sizeof(INPUT));
-        */
-        EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
-    }
-
-#endif
 }
 
 void sendevent(int code1, int code2)
 {
-#if defined (Q_OS_UNIX)
-
     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
-
-#elif defined (Q_OS_WIN)
-    /*INPUT temp[1] = {};
-    temp[0].type = INPUT_MOUSE;
-    temp[0].mi.mouseData = 0;
-    temp[0].mi.dwFlags   =  MOUSEEVENTF_MOVE;
-    temp[0].mi.dx = code1;
-    temp[0].mi.dy = code2;
-    SendInput(1, temp, sizeof(INPUT));
-    */
-
-    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
-
-#endif
 }
 
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring, int* const mousePosX, int* const mousePosY)
@@ -245,8 +165,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         destMidWidth = destSpringWidth / 2;
         destMidHeight = destSpringHeight / 2;
 
-        unsigned int pivotX = midwidth;
-        unsigned int pivotY = midheight;
+        unsigned int pivotX = currentMouseX;
+        unsigned int pivotY = currentMouseY;
         if (relativeSpring)
         {
             if (mouseHelperObj.pivotPoint[0] != -1)
@@ -327,6 +247,9 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
 #endif
 
+            //qDebug() << "MIDX: " << (deskRect.x() + midwidth);
+            //qDebug() << "MIDY: " << (deskRect.y() + midheight);
+
             // If either position is set to center, force update.
             if (xmovecoor == (deskRect.x() + midwidth) || ymovecoor == (deskRect.y() + midheight))
             {
@@ -364,12 +287,13 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                     sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
-                mouseHelperObj.mouseTimer.start(8);
+                mouseHelperObj.mouseTimer.start(11);
             }
             else if (!mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
             {
                 mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
+
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
 
@@ -385,16 +309,17 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 #endif
 
                 //qDebug() << QTime::currentTime();
-                //qDebug() << "X: " << xmovecoor;
-                //qDebug() << "Y: " << ymovecoor;
+                //qDebug() << "X: " << (xmovecoor - currentMouseX / (deskRect.x() + midheight));
+                //qDebug() << "Y: " << ymovecoor - currentMouseY / (deskRect.y() + midheight);
 
-                mouseHelperObj.mouseTimer.start(8);
+                mouseHelperObj.mouseTimer.start(11);
             }
 
             else if (mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
             {
                 mouseHelperObj.springMouseMoving = false;
             }
+
             else if (mouseHelperObj.springMouseMoving)
             {
 #if defined(Q_OS_UNIX)
@@ -412,8 +337,9 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 }
 #endif
 
-                mouseHelperObj.mouseTimer.start(8);
+                mouseHelperObj.mouseTimer.start(11);
             }
+
 
             mouseHelperObj.previousCursorLocation[0] = currentMouseX;
             mouseHelperObj.previousCursorLocation[1] = currentMouseY;
@@ -432,7 +358,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             mouseHelperObj.pivotPoint[0] = fullSpringDestX;
             mouseHelperObj.pivotPoint[1] = fullSpringDestY;
 
-            mouseHelperObj.mouseTimer.start(8);
+            mouseHelperObj.mouseTimer.start(11);
         }
     }
     else
