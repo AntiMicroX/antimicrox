@@ -28,8 +28,6 @@ public:
     virtual bool isPartRealAxis();
     virtual QString getActiveZoneSummary();
 
-    virtual double getLastMouseDistanceFromDeadZone();
-
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 

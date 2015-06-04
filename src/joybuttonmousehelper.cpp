@@ -82,7 +82,7 @@ void JoyButtonMouseHelper::resetButtonMouseDistances()
         while (iter.hasNext())
         {
             JoyButton *temp = iter.next();
-            temp->resetMouseDistances();
+            temp->resetAccelerationDistances();
         }
     }
 }

@@ -187,11 +187,11 @@ protected:
     void deleteButtons();
     void resetButtons();
 
-    double calculateXDistanceFromDeadZone();
-    double calculateXDistanceFromDeadZone(int axisXValue, int axisYValue);
+    double calculateXDistanceFromDeadZone(bool interpolate=false);
+    double calculateXDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
 
-    double calculateYDistanceFromDeadZone();
-    double calculateYDistanceFromDeadZone(int axisXValue, int axisYValue);
+    double calculateYDistanceFromDeadZone(bool interpolate=false);
+    double calculateYDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
 
     int calculateCircleXValue(int rawXValue);
     int calculateCircleYValue(int rawYValue);

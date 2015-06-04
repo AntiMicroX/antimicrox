@@ -153,17 +153,6 @@ bool JoyAxisButton::isPartRealAxis()
     return true;
 }
 
-double JoyAxisButton::getLastMouseDistanceFromDeadZone()
-{
-    double distance = 0.0;
-    if (axis->getAxisButtonByValue(axis->getLastKnownThrottleValue()) == this)
-    {
-        distance = axis->getDistanceFromDeadZone(axis->getLastKnownThrottleValue());
-    }
-
-    return distance;
-}
-
 double JoyAxisButton::getAccelerationDistance()
 {
     double distance = 0.0;

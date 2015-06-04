@@ -98,7 +98,6 @@ public:
 
     virtual double getDistanceFromDeadZone();
     virtual double getMouseDistanceFromDeadZone();
-    virtual double getLastMouseDistanceFromDeadZone();
 
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();
@@ -171,7 +170,7 @@ public:
     static void setSpringModeScreen(int screen);
 
     static void resetActiveButtonMouseDistances();
-    void resetMouseDistances();
+    void resetAccelerationDistances();
 
     void setExtraAccelerationStatus(bool status);
     void setExtraAccelerationMultiplier(double value);
@@ -179,7 +178,7 @@ public:
     bool isExtraAccelerationEnabled();
     double getExtraAccelerationMultiplier();
 
-    virtual void initialLastMouseDistance();
+    virtual void initializeAccelerationDistanceValues();
 
     void setMinAccelThreshold(double value);
     double getMinAccelThreshold();

@@ -1,10 +1,9 @@
 # antimicro
 
-## Ceased Development
+## Lower Priority Development
 
-As of May 04, 2015, development of antimicro has ceased for the foreseeable
-future. Too many real life problems keep getting me off track and those
-issues need to be resolved first before I can devote time to any project.
+As of June 04, 2015, development of antimicro has resumed but updates will be
+less frequent than in the past. Other tasks will take priority.
 
 ## Description
 

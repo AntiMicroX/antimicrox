@@ -23,8 +23,6 @@ public:
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
 
-    virtual double getLastMouseDistanceFromDeadZone();
-
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
