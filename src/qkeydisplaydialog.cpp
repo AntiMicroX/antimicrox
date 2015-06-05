@@ -22,7 +22,7 @@
     static QtX11KeyMapper x11KeyMapper;
   #endif
 #elif defined(Q_OS_WIN)
-    static QtWinKeyMapper nativeWinKeyMapper;
+    //static QtWinKeyMapper nativeWinKeyMapper;
 #endif
 
 
@@ -94,10 +94,14 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
   #ifdef WITH_VMULTI
     if (handler->getIdentifier() == "vmulti")
     {
-        unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
-        if (tempQtKey > 0)
+        QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+        if (nativeWinKeyMapper)
         {
-            tempvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
+            unsigned int tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
+            if (tempQtKey > 0)
+            {
+                tempvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
+            }
         }
     }
   #endif
