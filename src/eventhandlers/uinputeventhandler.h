@@ -22,6 +22,8 @@ public:
     virtual QString getIdentifier();
     virtual void printPostMessages();
 
+    virtual void sendTextEntryEvent(QString maintext);
+
 protected:
     int openUInputHandle();
     void setKeyboardEvents(int filehandle);

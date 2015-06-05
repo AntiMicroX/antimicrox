@@ -19,6 +19,8 @@ public:
     virtual QString getName();
     virtual QString getIdentifier();
 
+    virtual void sendTextEntryEvent(QString maintext);
+
 signals:
 
 public slots:

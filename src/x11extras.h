@@ -26,6 +26,8 @@ public:
     QString getWindowTitle(Window window);
     QString getWindowClass(Window window);
     unsigned long getWindowInFocus();
+    unsigned int getGroup1KeySym(unsigned int virtualkey);
+    void x11ResetMouseAccelerationChange();
 
     static X11Extras* getInstance();
     static void deleteInstance();

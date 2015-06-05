@@ -1,10 +1,18 @@
 #include <unistd.h>
+//#include <QDebug>
 #include <QFileInfo>
 
-//#include <QDebug>
-#include "x11extras.h"
+#include "common.h"
 
 #include <X11/Xatom.h>
+#include <X11/XKBlib.h>
+#include <X11/extensions/XInput.h>
+#include <X11/extensions/XInput2.h>
+
+#include "x11extras.h"
+
+static const QString mouseDeviceName = PadderCommon::mouseDeviceName;
+static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
 
 X11Extras* X11Extras::_instance = 0;
 
@@ -582,3 +590,121 @@ QString X11Extras::getXDisplayString()
 {
     return _customDisplayString;
 }
+
+unsigned int X11Extras::getGroup1KeySym(unsigned int virtualkey)
+{
+    unsigned int result = 0;
+    Display *display = this->display();
+
+    unsigned int temp = XKeysymToKeycode(display, virtualkey);
+    result = XkbKeycodeToKeysym(display, temp, 0, 0);
+
+    return result;
+}
+
+void X11Extras::x11ResetMouseAccelerationChange()
+ {
+    //QTextStream out(stdout);
+
+    int xi_opcode, event, error;
+    xi_opcode = event = error = 0;
+    Display *display = this->display();
+
+    bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
+    if (!result)
+    {
+        Logger::LogInfo(tr("xinput extension was not found. No mouse acceleration changes will occur."));
+        //out << tr("xinput extension was not found. No mouse acceleration changes will occur.") << endl;
+    }
+    else
+    {
+        int ximajor = 2, ximinor = 0;
+        if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
+        {
+            Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            //out << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.") << endl;
+        }
+    }
+
+    if (result)
+    {
+        XIDeviceInfo *all_devices = 0;
+        XIDeviceInfo *current_devices = 0;
+        XIDeviceInfo *mouse_device = 0;
+
+        int num_devices = 0;
+        all_devices = XIQueryDevice(display, XIAllDevices, &num_devices);
+        for (int i=0; i < num_devices; i++)
+        {
+            current_devices = &all_devices[i];
+            if (current_devices->use == XISlavePointer && QString::fromUtf8(current_devices->name) == mouseDeviceName)
+            {
+                Logger::LogInfo(tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid));
+                //out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
+                //    << endl;
+                mouse_device = current_devices;
+            }
+        }
+
+        if (mouse_device)
+        {
+            XDevice *device = XOpenDevice(display, mouse_device->deviceid);
+
+            int num_feedbacks = 0;
+            int feedback_id = -1;
+            XFeedbackState *feedbacks = XGetFeedbackControl(display, device, &num_feedbacks);
+            XFeedbackState *temp = feedbacks;
+            for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
+            {
+                if (temp->c_class == PtrFeedbackClass)
+                {
+                    feedback_id = temp->id;
+                }
+
+                if (i+1 < num_feedbacks)
+                {
+                    temp = (XFeedbackState*) ((char*) temp + temp->length);
+                }
+            }
+
+            XFree(feedbacks);
+            feedbacks = temp = 0;
+
+            if (feedback_id <= -1)
+            {
+                Logger::LogInfo(tr("PtrFeedbackClass was not found for virtual pointer."
+                                   "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id));
+                //out << tr("PtrFeedbackClass was not found for virtual pointer."
+                //          "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id)
+                //    << endl;
+                result = false;
+            }
+            else
+            {
+                Logger::LogInfo(tr("Changing mouse acceleration for device with id=%1").arg(device->device_id));
+                //out << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id)
+                //    << endl;
+
+                XPtrFeedbackControl	feedback;
+                feedback.c_class = PtrFeedbackClass;
+                feedback.length = sizeof(XPtrFeedbackControl);
+                feedback.id = feedback_id;
+                feedback.threshold = 0;
+                feedback.accelNum = 1;
+                feedback.accelDenom = 1;
+
+                XChangeFeedbackControl(display, device, DvAccelNum|DvAccelDenom|DvThreshold,
+                           (XFeedbackControl*) &feedback);
+
+                XSync(display, false);
+            }
+
+            XCloseDevice(display, device);
+        }
+
+        if (all_devices)
+        {
+            XIFreeDeviceInfo(all_devices);
+        }
+     }
+ }

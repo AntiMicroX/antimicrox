@@ -44,3 +44,8 @@ void BaseEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis
     Q_UNUSED(width);
     Q_UNUSED(height);
 }
+
+void BaseEventHandler::sendTextEntryEvent(QString maintext)
+{
+
+}

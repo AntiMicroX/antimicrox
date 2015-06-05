@@ -4,32 +4,26 @@
 #include <linux/uinput.h>
 
 //#include <QDebug>
-//#include <QTextStream>
 #include <QStringList>
 #include <QStringListIterator>
 #include <QFileInfo>
 #include <QTimer>
-
+#include <antkeymapper.h>
 #include <logger.h>
+#include <common.h>
 
+static const QString mouseDeviceName = PadderCommon::mouseDeviceName;
+static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
 
 #ifdef WITH_X11
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#include <QApplication>
+      #include <QApplication>
     #endif
 
-#include <X11/Xlib.h>
-#include <X11/extensions/XInput.h>
-#include <X11/extensions/XInput2.h>
-
-#include <x11extras.h>
-
+  #include <x11extras.h>
 #endif
 
 #include "uinputeventhandler.h"
-
-static const QString mouseDeviceName("antimicro Mouse Emulation");
-static const QString keyboardDeviceName("antimicro Keyboard Emulation");
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -104,108 +98,9 @@ bool UInputEventHandler::init()
 #ifdef WITH_X11
 void UInputEventHandler::x11ResetMouseAccelerationChange()
 {
-    //QTextStream out(stdout);
-
-    int xi_opcode, event, error;
-    xi_opcode = event = error = 0;
-    Display *display = X11Extras::getInstance()->display();
-
-    bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
-    if (!result)
+    if (X11Extras::getInstance())
     {
-        Logger::LogInfo(tr("xinput extension was not found. No mouse acceleration changes will occur."));
-        //out << tr("xinput extension was not found. No mouse acceleration changes will occur.") << endl;
-    }
-    else
-    {
-        int ximajor = 2, ximinor = 0;
-        if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
-        {
-            Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
-            //out << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.") << endl;
-        }
-    }
-
-    if (result)
-    {
-        XIDeviceInfo *all_devices = 0;
-        XIDeviceInfo *current_devices = 0;
-        XIDeviceInfo *mouse_device = 0;
-
-        int num_devices = 0;
-        all_devices = XIQueryDevice(display, XIAllDevices, &num_devices);
-        for (int i=0; i < num_devices; i++)
-        {
-            current_devices = &all_devices[i];
-            if (current_devices->use == XISlavePointer && QString::fromUtf8(current_devices->name) == mouseDeviceName)
-            {
-                Logger::LogInfo(tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid));
-                //out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
-                //    << endl;
-                mouse_device = current_devices;
-            }
-        }
-
-        if (mouse_device)
-        {
-            XDevice *device = XOpenDevice(display, mouse_device->deviceid);
-
-            int num_feedbacks = 0;
-            int feedback_id = -1;
-            XFeedbackState *feedbacks = XGetFeedbackControl(display, device, &num_feedbacks);
-            XFeedbackState *temp = feedbacks;
-            for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
-            {
-                if (temp->c_class == PtrFeedbackClass)
-                {
-                    feedback_id = temp->id;
-                }
-
-                if (i+1 < num_feedbacks)
-                {
-                    temp = (XFeedbackState*) ((char*) temp + temp->length);
-                }
-            }
-
-            XFree(feedbacks);
-            feedbacks = temp = 0;
-
-            if (feedback_id <= -1)
-            {
-                Logger::LogInfo(tr("PtrFeedbackClass was not found for virtual pointer."
-                                   "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id));
-                //out << tr("PtrFeedbackClass was not found for virtual pointer."
-                //          "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id)
-                //    << endl;
-                result = false;
-            }
-            else
-            {
-                Logger::LogInfo(tr("Changing mouse acceleration for device with id=%1").arg(device->device_id));
-                //out << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id)
-                //    << endl;
-
-                XPtrFeedbackControl	feedback;
-                feedback.c_class = PtrFeedbackClass;
-                feedback.length = sizeof(XPtrFeedbackControl);
-                feedback.id = feedback_id;
-                feedback.threshold = 0;
-                feedback.accelNum = 1;
-                feedback.accelDenom = 1;
-
-                XChangeFeedbackControl(display, device, DvAccelNum|DvAccelDenom|DvThreshold,
-                           (XFeedbackControl*) &feedback);
-
-                XSync(display, false);
-            }
-
-            XCloseDevice(display, device);
-        }
-
-        if (all_devices)
-        {
-            XIFreeDeviceInfo(all_devices);
-        }
+        X11Extras::getInstance()->x11ResetMouseAccelerationChange();
     }
 }
 #endif
@@ -494,5 +389,95 @@ void UInputEventHandler::printPostMessages()
     {
         Logger::LogInfo(tr("Using uinput device file %1").arg(uinputDeviceLocation));
         //out << tr("Using uinput device file %1").arg(uinputDeviceLocation) << endl;
+    }
+}
+
+void UInputEventHandler::sendTextEntryEvent(QString maintext)
+{
+    AntKeyMapper *mapper = AntKeyMapper::getInstance();
+
+    if (mapper && mapper->getKeyMapper())
+    {
+        QtUInputKeyMapper *keymapper = static_cast<QtUInputKeyMapper*>(mapper->getKeyMapper());
+        QtX11KeyMapper *nativeWinKeyMapper = 0;
+        if (mapper->getNativeKeyMapper())
+        {
+            nativeWinKeyMapper = static_cast<QtX11KeyMapper*>(mapper->getNativeKeyMapper());
+        }
+
+        QList<unsigned int> tempList;
+        for (int i=0; i < maintext.size(); i++)
+        {
+            tempList.clear();
+
+            QtUInputKeyMapper::charKeyInformation temp; // = keymapper->patriarchy(maintext.at(i));
+            temp.virtualkey = 0;
+            temp.modifiers = Qt::NoModifier;
+
+            if (nativeWinKeyMapper)
+            {
+                QtX11KeyMapper::charKeyInformation tempX11 = nativeWinKeyMapper->getCharKeyInformation(maintext.at(i));
+                tempX11.virtualkey = X11Extras::getInstance()->getGroup1KeySym(tempX11.virtualkey);
+                unsigned int tempQtKey = nativeWinKeyMapper->returnQtKey(tempX11.virtualkey);
+                if (tempQtKey > 0)
+                {
+                    temp.virtualkey = keymapper->returnVirtualKey(tempQtKey);
+                    temp.modifiers = tempX11.modifiers;
+                }
+                else
+                {
+                    temp = keymapper->getCharKeyInformation(maintext.at(i));
+                }
+            }
+            else
+            {
+                temp = keymapper->getCharKeyInformation(maintext.at(i));
+            }
+
+            if (temp.virtualkey > KEY_RESERVED)
+            {
+                if (temp.modifiers != Qt::NoModifier)
+                {
+                    if (temp.modifiers.testFlag(Qt::ShiftModifier))
+                    {
+                        tempList.append(KEY_LEFTSHIFT);
+                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTSHIFT, 1, false);
+                    }
+
+                    if (temp.modifiers.testFlag(Qt::ControlModifier))
+                    {
+                        tempList.append(KEY_LEFTCTRL);
+                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTCTRL, 1, false);
+                    }
+
+                    if (temp.modifiers.testFlag(Qt::AltModifier))
+                    {
+                        tempList.append(KEY_LEFTALT);
+                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTALT, 1, false);
+                    }
+
+                    if (temp.modifiers.testFlag(Qt::MetaModifier))
+                    {
+                        tempList.append(KEY_RIGHTALT);
+                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_RIGHTALT, 1, false);
+                    }
+                }
+
+                tempList.append(temp.virtualkey);
+                write_uinput_event(keyboardFileHandler, EV_KEY, temp.virtualkey, 1, true);
+            }
+
+            if (tempList.size() > 0)
+            {
+                QListIterator<unsigned int> tempiter(tempList);
+                tempiter.toBack();
+                while (tempiter.hasPrevious())
+                {
+                    unsigned int currentcode = tempiter.previous();
+                    bool sync = !tempiter.hasPrevious() ? true : false;
+                    write_uinput_event(keyboardFileHandler, EV_KEY, currentcode, 0, sync);
+                }
+            }
+        }
     }
 }

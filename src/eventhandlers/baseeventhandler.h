@@ -25,6 +25,7 @@ public:
     virtual void sendMouseAbsEvent(int xDis, int yDis);
     virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
                                       unsigned int width, unsigned int height);
+    virtual void sendTextEntryEvent(QString maintext);
 
 protected:
     QString lastErrorString;
