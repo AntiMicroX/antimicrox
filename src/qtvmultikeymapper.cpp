@@ -5,6 +5,7 @@
 QtVMultiKeyMapper::QtVMultiKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
+    identifier = "vmulti";
     populateMappingHashes();
 }
 

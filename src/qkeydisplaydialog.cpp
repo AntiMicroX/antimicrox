@@ -18,8 +18,8 @@
 
 
   #if defined(WITH_UINPUT) && defined(WITH_X11)
-    #include "qtx11keymapper.h"
-    static QtX11KeyMapper x11KeyMapper;
+    //#include "qtx11keymapper.h"
+    //static QtX11KeyMapper x11KeyMapper;
   #endif
 #elif defined(Q_OS_WIN)
     //static QtWinKeyMapper nativeWinKeyMapper;
@@ -117,7 +117,14 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         //finalvirtual = X11KeyCodeToX11KeySym(scancode);
         #ifdef WITH_UINPUT
-        unsigned int tempalias = x11KeyMapper.returnQtKey(virtualkey);
+        //unsigned int tempalias = x11KeyMapper.returnQtKey(virtualkey);
+        unsigned int tempalias = 0;
+        QtKeyMapperBase *nativeKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+        if (nativeKeyMapper && nativeKeyMapper->getIdentifier() == "xtest")
+        {
+            tempalias = nativeKeyMapper->returnQtKey(virtualkey);
+        }
+
         finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         #endif
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))

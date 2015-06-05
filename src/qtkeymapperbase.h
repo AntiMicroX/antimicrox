@@ -10,9 +10,17 @@ class QtKeyMapperBase : public QObject
 public:
     explicit QtKeyMapperBase(QObject *parent = 0);
 
+    typedef struct _charKeyInformation
+    {
+        Qt::KeyboardModifiers modifiers;
+        unsigned int virtualkey;
+    } charKeyInformation;
+
     virtual unsigned int returnVirtualKey(unsigned int qkey);
     virtual unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
     virtual bool isModifier(unsigned int qkey);
+    charKeyInformation getCharKeyInformation(QChar value);
+    QString getIdentifier();
 
     static const unsigned int customQtKeyPrefix = 0x10000000;
     static const unsigned int customKeyPrefix = 0x20000000;
@@ -52,12 +60,6 @@ public:
         AntKey_KP_9 = Qt::Key_9 | customQtKeyPrefix
     };
 
-    typedef struct _charKeyInformation
-    {
-        Qt::KeyboardModifiers modifiers;
-        unsigned int virtualkey;
-    } charKeyInformation;
-
 protected:
     virtual void populateMappingHashes() = 0;
     virtual void populateCharKeyInformation() = 0;
@@ -65,6 +67,7 @@ protected:
     QHash<unsigned int, unsigned int> qtKeyToVirtualKey;
     QHash<unsigned int, unsigned int> virtualKeyToQtKey;
     QHash<unsigned int, charKeyInformation> virtualkeyToCharKeyInformation;
+    QString identifier;
 
 signals:
 

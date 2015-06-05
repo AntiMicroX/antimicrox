@@ -95,6 +95,7 @@ static QHash<QString, unsigned int> deadKeyToQtKeyHash = initDeadKeyToQtKey();
 QtWinKeyMapper::QtWinKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
+    identifier = "sendinput";
     populateMappingHashes();
     populateCharKeyInformation();
 }
@@ -383,18 +384,4 @@ void QtWinKeyMapper::populateCharKeyInformation()
     }
 
     //qDebug() << "TOTAL: " << total;
-}
-
-QtWinKeyMapper::charKeyInformation QtWinKeyMapper::getCharKeyInformation(QChar value)
-{
-    charKeyInformation temp;
-    temp.virtualkey = 0;
-    temp.modifiers = Qt::NoModifier;
-
-    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
-    {
-        temp = virtualkeyToCharKeyInformation.value(value.unicode());
-    }
-
-    return temp;
 }

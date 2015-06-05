@@ -12,6 +12,7 @@
 QtUInputKeyMapper::QtUInputKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
+    identifier = "uinput";
     populateMappingHashes();
     populateCharKeyInformation();
 }
@@ -514,19 +515,4 @@ void QtUInputKeyMapper::populateCharKeyInformation()
     temp.virtualkey = KEY_SLASH;
     unicodeTempValue = QChar('?').unicode();
     virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
-}
-
-
-QtUInputKeyMapper::charKeyInformation QtUInputKeyMapper::getCharKeyInformation(QChar value)
-{
-    charKeyInformation temp;
-    temp.virtualkey = 0;
-    temp.modifiers = Qt::NoModifier;
-
-    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
-    {
-        temp = virtualkeyToCharKeyInformation.value(value.unicode());
-    }
-
-    return temp;
 }

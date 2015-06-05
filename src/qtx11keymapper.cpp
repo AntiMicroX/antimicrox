@@ -18,6 +18,7 @@
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
+    identifier = "xtest";
     populateMappingHashes();
     populateCharKeyInformation();
 }
@@ -361,16 +362,4 @@ void QtX11KeyMapper::populateCharKeyInformation()
     }
 }
 
-QtX11KeyMapper::charKeyInformation QtX11KeyMapper::getCharKeyInformation(QChar value)
-{
-    charKeyInformation temp;
-    temp.virtualkey = 0;
-    temp.modifiers = Qt::NoModifier;
 
-    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
-    {
-        temp = virtualkeyToCharKeyInformation.value(value.unicode());
-    }
-
-    return temp;
-}

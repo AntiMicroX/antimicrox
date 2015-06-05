@@ -18,7 +18,7 @@ public:
 protected:
     void populateMappingHashes();
 
-    static QtWinKeyMapper nativeKeyMapper;
+    //static QtWinKeyMapper nativeKeyMapper;
 
 signals:
 

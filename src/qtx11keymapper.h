@@ -12,7 +12,6 @@ class QtX11KeyMapper : public QtKeyMapperBase
     Q_OBJECT
 public:
     explicit QtX11KeyMapper(QObject *parent = 0);
-    charKeyInformation getCharKeyInformation(QChar value);
 
 protected:
     void populateMappingHashes();

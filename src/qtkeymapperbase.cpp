@@ -45,3 +45,26 @@ bool QtKeyMapperBase::isModifier(unsigned int qkey)
 
     return modifier;
 }
+
+QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar value)
+{
+    charKeyInformation temp;
+    temp.virtualkey = 0;
+    temp.modifiers = Qt::NoModifier;
+
+    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
+    {
+        temp = virtualkeyToCharKeyInformation.value(value.unicode());
+    }
+
+    return temp;
+}
+
+/**
+ * @brief Obtain identifier string for key mapper.
+ * @return Identifier string.
+ */
+QString QtKeyMapperBase::getIdentifier()
+{
+    return identifier;
+}

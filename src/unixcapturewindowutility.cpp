@@ -7,8 +7,6 @@
 #include "qtx11keymapper.h"
 #include "unixcapturewindowutility.h"
 
-static QtX11KeyMapper x11KeyMapper;
-
 UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
     QObject(parent)
 {
@@ -21,6 +19,9 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
  */
 void UnixCaptureWindowUtility::attemptWindowCapture()
 {
+    // Only create instance when needed.
+    static QtX11KeyMapper x11KeyMapper;
+
     targetPath = "";
     failed = false;
     bool escaped = false;
