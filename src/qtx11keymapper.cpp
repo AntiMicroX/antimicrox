@@ -2,18 +2,24 @@
 #define XK_LATIN1
 #define XK_KOREAN
 #define XK_XKB_KEYS
-#include <X11/keysymdef.h>
-#include <X11/XF86keysym.h>
 
+//#include <QDebug>
+#include <QApplication>
 #include <QHashIterator>
 
-#include "qtx11keymapper.h"
+#include <X11/keysymdef.h>
+#include <X11/XF86keysym.h>
+#include <X11/XKBlib.h>
+#include <X11/Xutil.h>
 
+#include "qtx11keymapper.h"
+#include "x11extras.h"
 
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
     populateMappingHashes();
+    populateCharKeyInformation();
 }
 
 /*
@@ -271,4 +277,100 @@ void QtX11KeyMapper::populateMappingHashes()
             virtualKeyToQtKey[iter.value()] = iter.key();
         }
     }
+}
+
+void QtX11KeyMapper::populateCharKeyInformation()
+{
+    virtualkeyToCharKeyInformation.clear();
+    Display* display = X11Extras::getInstance()->display();
+
+    unsigned int total = 0;
+    for (int i=8; i <= 255; i++)
+    {
+        for (int j=0; j <= 3; j++)
+        {
+            Qt::KeyboardModifiers dicis;
+            if (j >= 2)
+            {
+                dicis |= Qt::MetaModifier;
+            }
+
+            if (j == 1 || j == 3)
+            {
+                dicis |= Qt::ShiftModifier;
+            }
+
+            unsigned int testsym = XkbKeycodeToKeysym(display, i,
+                                                      dicis & Qt::MetaModifier ? 1 : 0,
+                                                      dicis & Qt::ShiftModifier ? 1 : 0);
+            if (testsym != NoSymbol)
+            {
+                XKeyPressedEvent tempevent;
+                tempevent.keycode = i;
+                tempevent.type = KeyPress;
+                tempevent.display = display;
+                tempevent.state = 0;
+                if (dicis & Qt::ShiftModifier)
+                {
+                    tempevent.state |= ShiftMask;
+                }
+
+                if (dicis & Qt::MetaModifier)
+                {
+                    tempevent.state |= Mod1Mask;
+                }
+
+                char returnstring[256];
+                memset(returnstring, 0, sizeof(returnstring));
+                int bitestoreturn = sizeof(returnstring) - 1;
+                int numchars = XLookupString(&tempevent, returnstring, bitestoreturn, NULL, NULL);
+                if (numchars > 0)
+                {
+                    returnstring[numchars] = '\0';
+                    QString tempstring = QString::fromUtf8(returnstring);
+                    if (tempstring.length() == 1)
+                    {
+                        QChar tempchar(tempstring.at(0));
+                        charKeyInformation testKeyInformation;
+                        testKeyInformation.modifiers = dicis;
+                        testKeyInformation.virtualkey = testsym;
+                        if (!virtualkeyToCharKeyInformation.contains(tempchar.unicode()))
+                        {
+                            virtualkeyToCharKeyInformation.insert(tempchar.unicode(), testKeyInformation);
+                            //qDebug() << "I FOUND SOMETHING: " << tempchar;
+                            total++;
+                        }
+                    }
+                    else
+                    {
+                        //qDebug() << "YOU FAIL: " << tempchar;
+                    }
+                }
+
+            }
+        }
+    }
+
+    //qDebug() << "TOTAL: " << total;
+    //qDebug() << "";
+
+    QChar tempa('*');
+    if (virtualkeyToCharKeyInformation.contains(tempa.unicode()))
+    {
+        charKeyInformation projects = virtualkeyToCharKeyInformation.value(tempa.unicode());
+    }
+}
+
+QtX11KeyMapper::charKeyInformation QtX11KeyMapper::getCharKeyInformation(QChar value)
+{
+    charKeyInformation temp;
+    temp.virtualkey = 0;
+    temp.modifiers = Qt::NoModifier;
+
+    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
+    {
+        temp = virtualkeyToCharKeyInformation.value(value.unicode());
+    }
+
+    return temp;
 }

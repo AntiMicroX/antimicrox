@@ -3,12 +3,17 @@
 
 //#include <QDebug>
 
+#include <QChar>
+#include <QList>
+#include <QListIterator>
+
 #include "qtuinputkeymapper.h"
 
 QtUInputKeyMapper::QtUInputKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
     populateMappingHashes();
+    populateCharKeyInformation();
 }
 
 void QtUInputKeyMapper::populateAlphaHashes()
@@ -333,4 +338,195 @@ void QtUInputKeyMapper::populateMappingHashes()
         virtualKeyToQtKey[KEY_KP9] = AntKey_KP_9;
         virtualKeyToQtKey[KEY_CALC] = Qt::Key_Launch1;
     }
+}
+
+void QtUInputKeyMapper::populateCharKeyInformation()
+{
+    virtualkeyToCharKeyInformation.clear();
+
+    unsigned int unicodeTempValue = 0;
+    unsigned int listIndex = 0;
+
+    charKeyInformation temp;
+    temp.modifiers = Qt::NoModifier;
+    temp.virtualkey = 0;
+
+    // Map 0-9 keys
+    for (unsigned int i=QChar('1').unicode(); i <= QChar('9').unicode(); i++)
+    {
+        temp.virtualkey = KEY_1 + i;
+        virtualkeyToCharKeyInformation.insert(i, temp);
+    }
+
+    temp.virtualkey = KEY_0;
+    virtualkeyToCharKeyInformation.insert(QChar('0').unicode(), temp);
+
+    temp.virtualkey = KEY_MINUS;
+    virtualkeyToCharKeyInformation.insert(QChar('-').unicode(), temp);
+
+    temp.virtualkey = KEY_EQUAL;
+    virtualkeyToCharKeyInformation.insert(QChar('=').unicode(), temp);
+
+    QList<unsigned int> tempKeys;
+    tempKeys.append(KEY_A);
+    tempKeys.append(KEY_B);
+    tempKeys.append(KEY_C);
+    tempKeys.append(KEY_D);
+    tempKeys.append(KEY_E);
+    tempKeys.append(KEY_F);
+    tempKeys.append(KEY_G);
+    tempKeys.append(KEY_H);
+    tempKeys.append(KEY_I);
+    tempKeys.append(KEY_J);
+    tempKeys.append(KEY_K);
+    tempKeys.append(KEY_L);
+    tempKeys.append(KEY_M);
+    tempKeys.append(KEY_N);
+    tempKeys.append(KEY_O);
+    tempKeys.append(KEY_P);
+    tempKeys.append(KEY_Q);
+    tempKeys.append(KEY_R);
+    tempKeys.append(KEY_S);
+    tempKeys.append(KEY_T);
+    tempKeys.append(KEY_U);
+    tempKeys.append(KEY_V);
+    tempKeys.append(KEY_W);
+    tempKeys.append(KEY_X);
+    tempKeys.append(KEY_Y);
+    tempKeys.append(KEY_Z);
+
+    unicodeTempValue = QChar('a').unicode();
+    QListIterator<unsigned int> tempIter(tempKeys);
+    while (tempIter.hasNext())
+    {
+        temp.virtualkey = tempIter.next();
+        virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+        unicodeTempValue++;
+    }
+
+    tempIter.toFront();
+
+    temp.modifiers = Qt::ShiftModifier;
+    unicodeTempValue = QChar('A').unicode();
+    while (tempIter.hasNext())
+    {
+        temp.virtualkey = tempIter.next();
+        virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+        unicodeTempValue++;
+    }
+
+    tempKeys.clear();
+
+    temp.modifiers = Qt::ShiftModifier;
+    tempKeys.append(QChar('!').unicode());
+    tempKeys.append(QChar('@').unicode());
+    tempKeys.append(QChar('#').unicode());
+    tempKeys.append(QChar('$').unicode());
+    tempKeys.append(QChar('%').unicode());
+    tempKeys.append(QChar('^').unicode());
+    tempKeys.append(QChar('&').unicode());
+    tempKeys.append(QChar('*').unicode());
+    tempKeys.append(QChar('(').unicode());
+    tempKeys.append(QChar(')').unicode());
+    tempKeys.append(QChar('_').unicode());
+    tempKeys.append(QChar('+').unicode());
+
+    tempIter = QListIterator<unsigned int>(tempKeys);
+    listIndex = 0;
+    while (tempIter.hasNext())
+    {
+        unicodeTempValue = tempIter.next();
+        temp.virtualkey = KEY_1 + listIndex;
+        virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+        listIndex++;
+    }
+
+    tempKeys.clear();
+
+    temp.modifiers = Qt::NoModifier;
+    temp.virtualkey = KEY_SPACE;
+    unicodeTempValue = QChar(' ').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_LEFTBRACE;
+    unicodeTempValue = QChar('[').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_RIGHTBRACE;
+    unicodeTempValue = QChar(']').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_BACKSLASH;
+    unicodeTempValue = QChar('\\').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_SEMICOLON;
+    unicodeTempValue = QChar(';').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_APOSTROPHE;
+    unicodeTempValue = QChar('\'').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_COMMA;
+    unicodeTempValue = QChar(',').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_DOT;
+    unicodeTempValue = QChar('.').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_SLASH;
+    unicodeTempValue = QChar('/').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+
+    temp.modifiers = Qt::ShiftModifier;
+
+    temp.virtualkey = KEY_LEFTBRACE;
+    unicodeTempValue = QChar('{').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_RIGHTBRACE;
+    unicodeTempValue = QChar('}').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_BACKSLASH;
+    unicodeTempValue = QChar('|').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_SEMICOLON;
+    unicodeTempValue = QChar(':').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_APOSTROPHE;
+    unicodeTempValue = QChar('"').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_COMMA;
+    unicodeTempValue = QChar('<').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_DOT;
+    unicodeTempValue = QChar('>').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+
+    temp.virtualkey = KEY_SLASH;
+    unicodeTempValue = QChar('?').unicode();
+    virtualkeyToCharKeyInformation.insert(unicodeTempValue, temp);
+}
+
+
+QtUInputKeyMapper::charKeyInformation QtUInputKeyMapper::getCharKeyInformation(QChar value)
+{
+    charKeyInformation temp;
+    temp.virtualkey = 0;
+    temp.modifiers = Qt::NoModifier;
+
+    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
+    {
+        temp = virtualkeyToCharKeyInformation.value(value.unicode());
+    }
+
+    return temp;
 }
