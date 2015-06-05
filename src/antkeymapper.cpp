@@ -115,3 +115,8 @@ QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper()
 {
     return nativeKeyMapper;
 }
+
+QtKeyMapperBase* AntKeyMapper::getKeyMapper()
+{
+    return internalMapper;
+}

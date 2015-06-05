@@ -31,6 +31,7 @@ public:
     unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
     bool isModifierKey(unsigned int qkey);
     QtKeyMapperBase* getNativeKeyMapper();
+    QtKeyMapperBase* getKeyMapper();
 
 protected:
     explicit AntKeyMapper(QString handler = "", QObject *parent = 0);
