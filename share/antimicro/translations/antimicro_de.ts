@@ -190,7 +190,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/aboutdialog.ui" line="75"/>
         <source>antimicro</source>
-        <translation>Test</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="336"/>
