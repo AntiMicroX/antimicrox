@@ -3548,7 +3548,7 @@ antimicro.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="832"/>
         <source>Smoothing</source>
-        <translation>Glätten</translation>
+        <translation>Glättung</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="853"/>
@@ -4749,7 +4749,7 @@ Möchten Sie die Änderungen an alle Sets übertragen?</translation>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="175"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
-        <translation>PtrFeedbackCalls wurde nicht für den virtuellen Mauszeiger gefunden. Es wird keine Mausbeschleunigungsänderungen  für das Gerät mit id=%1 geben.</translation>
+        <translation>PtrFeedbackCalls wurde nicht für den virtuellen Mauszeiger gefunden. Es wird keine Mausbeschleunigungsänderungen  für das Gerät mit id=%1 geben</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="184"/>
@@ -5187,7 +5187,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Pos1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
@@ -5477,7 +5477,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="127"/>
         <source>Caps</source>
-        <translation>Feststelltaste</translation>
+        <translation>Feststell</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="128"/>
@@ -5616,7 +5616,13 @@ N
 T
 E
 R</source>
-        <translation></translation>
+        <translation>E
+I
+N
+G
+A
+B
+E</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
