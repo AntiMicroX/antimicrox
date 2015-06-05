@@ -56,6 +56,7 @@ static QHash<QString, unsigned int> intCharToQtKey()
     temp.insert(QString('{'), Qt::Key_BraceLeft);
     temp.insert(QString('}'), Qt::Key_BraceRight);
     temp.insert(QString::fromUtf8("\u00A1"), Qt::Key_exclamdown);
+    temp.insert(QString('~'), Qt::Key_AsciiTilde);
     //temp.insert(QString::fromUtf8("\u20A0"), Qt::Key_)
 
     return temp;
@@ -64,21 +65,21 @@ static QHash<QString, unsigned int> intCharToQtKey()
 static QHash<QString, unsigned int> initDeadKeyToQtKey()
 {
     QHash<QString, unsigned int> temp;
-    temp.insert(QString('`'), Qt::Key_Dead_Grave);
-    temp.insert(QString('\''), Qt::Key_Dead_Acute);
+    //temp.insert(QString('`'), Qt::Key_Dead_Grave);
+    //temp.insert(QString('\''), Qt::Key_Dead_Acute);
     temp.insert(QString::fromUtf8("\u00B4"), Qt::Key_Dead_Grave);
-    temp.insert(QString('^'), Qt::Key_Dead_Circumflex);
-    temp.insert(QString('~'), Qt::Key_Dead_Tilde);
+    //temp.insert(QString('^'), Qt::Key_Dead_Circumflex);
+    //temp.insert(QString('~'), Qt::Key_Dead_Tilde);
     temp.insert(QString::fromUtf8("\u02DC"), Qt::Key_Dead_Tilde);
     temp.insert(QString::fromUtf8("\u00AF"), Qt::Key_Dead_Macron);
     temp.insert(QString::fromUtf8("\u02D8"), Qt::Key_Dead_Breve);
     temp.insert(QString::fromUtf8("\u02D9"), Qt::Key_Dead_Abovedot);
-    temp.insert(QString('"'), Qt::Key_Dead_Diaeresis);
+    //temp.insert(QString('"'), Qt::Key_Dead_Diaeresis);
     temp.insert(QString::fromUtf8("\u00A8"), Qt::Key_Dead_Diaeresis);
     temp.insert(QString::fromUtf8("\u02DA"), Qt::Key_Dead_Abovering);
     temp.insert(QString::fromUtf8("\u02DD"), Qt::Key_Dead_Doubleacute);
     temp.insert(QString::fromUtf8("\u02C7"), Qt::Key_Dead_Caron);
-    temp.insert(QString(','), Qt::Key_Dead_Cedilla);
+    //temp.insert(QString(','), Qt::Key_Dead_Cedilla);
     temp.insert(QString::fromUtf8("\u00B8"), Qt::Key_Dead_Cedilla);
     temp.insert(QString::fromUtf8("\u02DB"), Qt::Key_Dead_Ogonek);
     temp.insert(QString::fromUtf8("\u037A"), Qt::Key_Dead_Iota);
