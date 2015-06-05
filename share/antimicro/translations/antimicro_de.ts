@@ -1163,7 +1163,7 @@ bei abgenutzten Analogsticks.</translation>
         <location filename="../../../src/axiseditdialog.ui" line="338"/>
         <location filename="../../../src/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation></translation>
+        <translation>[KEINE TASTE]</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="345"/>
@@ -4478,7 +4478,7 @@ it unattended.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="160"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Pos1</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="161"/>
@@ -5172,7 +5172,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>PrtSc</source>
-        <translation>Drucken</translation>
+        <translation>Druck</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
@@ -5197,12 +5197,12 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>PgUp</source>
-        <translation>Bild rauf</translation>
+        <translation>Bild ↑</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="225"/>
         <source>PgDn</source>
-        <translation>Bild runter</translation>
+        <translation>Bild ↓</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
@@ -5277,7 +5277,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="245"/>
         <source>SCLK</source>
-        <translation>Rollen</translation>
+        <translation>Rol ↓</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="246"/>
@@ -5529,7 +5529,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="137"/>
         <source>PGUP</source>
-        <translation>Bild rauf</translation>
+        <translation type="unfinished">Bild ↑</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="138"/>
@@ -5539,7 +5539,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben zu diesem gerät zu schreib
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="139"/>
         <source>PGDN</source>
-        <translation>Bild runter</translation>
+        <translation>Bild ↓</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="140"/>
@@ -5616,13 +5616,7 @@ N
 T
 E
 R</source>
-        <translation>E
-I
-N
-G
-A
-B
-E</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
@@ -5777,7 +5771,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="485"/>
         <source>NONE</source>
-        <translation>KEIN</translation>
+        <translation>KEINE</translation>
     </message>
 </context>
 <context>
