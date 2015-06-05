@@ -6,6 +6,7 @@
 
 #include <vmulticlient.h>
 #include <qtvmultikeymapper.h>
+#include <antkeymapper.h>
 
 WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -272,6 +273,14 @@ void WinVMultiEventHandler::sendMouseEvent(int xDis, int yDis)
 void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
 {
     vmulti_update_mouse(vmulti, mouseButtons, xDis, yDis, 0);
+}
+
+/*
+ * TODO: Implement text event using information from QtWinKeyMapper.
+ */
+void WinVMultiEventHandler::sendTextEntryEvent(QString maintext)
+{
+
 }
 
 QString WinVMultiEventHandler::getName()

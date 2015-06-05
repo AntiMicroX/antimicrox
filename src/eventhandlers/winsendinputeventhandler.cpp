@@ -3,6 +3,7 @@
 
 #include "winsendinputeventhandler.h"
 #include <winextras.h>
+#include <antkeymapper.h>
 
 WinSendInputEventHandler::WinSendInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -127,5 +128,90 @@ void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned 
         temp[0].mi.dx = fx;
         temp[0].mi.dy = fy;
         SendInput(1, temp, sizeof(INPUT));
+    }
+}
+
+void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
+{
+    AntKeyMapper *mapper = AntKeyMapper::getInstance();
+
+    if (mapper && mapper->getKeyMapper())
+    {
+        QtWinKeyMapper *keymapper = static_cast<QtWinKeyMapper*>(mapper->getKeyMapper());
+
+        for (int i=0; i < maintext.size(); i++)
+        {
+            QtWinKeyMapper::charKeyInformation temp = keymapper->patriarchy(maintext.at(i));
+            QList<unsigned int> tempList;
+
+            if (temp.charMmodifiers != Qt::NoModifier)
+            {
+                if (temp.charMmodifiers.testFlag(Qt::ShiftModifier))
+                {
+                    tempList.append(VK_LSHIFT);
+                }
+
+                if (temp.charMmodifiers.testFlag(Qt::ControlModifier))
+                {
+                    tempList.append(VK_LCONTROL);
+                }
+
+                if (temp.charMmodifiers.testFlag(Qt::MetaModifier))
+                {
+                    tempList.append(VK_LWIN);
+                }
+            }
+
+            tempList.append(temp.virtualkey);
+
+            if (tempList.size() > 0)
+            {
+                INPUT tempBuffer[tempList.size()] = {0};
+
+                QListIterator<unsigned int> tempiter(tempList);
+                unsigned int j = 0;
+                while (tempiter.hasNext())
+                {
+                    unsigned int tempcode = tempiter.next();
+                    unsigned int scancode = WinExtras::scancodeFromVirtualKey(tempcode);
+                    int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
+                    int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
+                    tempBuffer[j].type = INPUT_KEYBOARD;
+                    tempBuffer[j].ki.wScan = scancode;
+                    tempBuffer[j].ki.time = 0;
+                    tempBuffer[j].ki.dwExtraInfo = 0;
+
+                    tempBuffer[j].ki.wVk = tempcode;
+                    tempBuffer[j].ki.dwFlags = tempflags;
+                    j++;
+                }
+
+                SendInput(j, tempBuffer, sizeof(INPUT));
+
+                tempiter.toBack();
+                j = 0;
+                memset(tempBuffer, 0, sizeof(tempBuffer));
+                //INPUT tempBuffer2[tempList.size()] = {0};
+                while (tempiter.hasPrevious())
+                {
+                    unsigned int tempcode = tempiter.previous();
+                    unsigned int scancode = WinExtras::scancodeFromVirtualKey(tempcode);
+                    int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
+                    int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
+                    tempBuffer[j].type = INPUT_KEYBOARD;
+                    tempBuffer[j].ki.wScan = scancode;
+                    tempBuffer[j].ki.time = 0;
+                    tempBuffer[j].ki.dwExtraInfo = 0;
+
+                    tempBuffer[j].ki.wVk = tempcode;
+                    tempBuffer[j].ki.dwFlags = tempflags | KEYEVENTF_KEYUP;
+                    j++;
+                }
+
+                SendInput(j, tempBuffer, sizeof(INPUT));
+            }
+        }
     }
 }

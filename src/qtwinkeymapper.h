@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHash>
+#include <QChar>
 
 #include "qtkeymapperbase.h"
 
@@ -13,9 +14,11 @@ public:
     explicit QtWinKeyMapper(QObject *parent = 0);
 
     virtual unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
+    charKeyInformation getCharKeyInformation(QChar value);
 
 protected:
     void populateMappingHashes();
+    void populateCharKeyInformation();
 
 signals:
 

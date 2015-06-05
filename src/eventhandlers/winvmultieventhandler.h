@@ -23,6 +23,8 @@ public:
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual void sendMouseAbsEvent(int xDis, int yDis);
+    // TODO: Implement text event using information from QtWinKeyMapper.
+    virtual void sendTextEntryEvent(QString maintext);
     virtual QString getName();
     virtual QString getIdentifier();
 

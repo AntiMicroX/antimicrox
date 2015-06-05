@@ -52,11 +52,19 @@ public:
         AntKey_KP_9 = Qt::Key_9 | customQtKeyPrefix
     };
 
+    typedef struct _charKeyInformation
+    {
+        Qt::KeyboardModifiers modifiers;
+        unsigned int virtualkey;
+    } charKeyInformation;
+
 protected:
     virtual void populateMappingHashes() = 0;
+    virtual void populateCharKeyInformation() = 0;
 
     QHash<unsigned int, unsigned int> qtKeyToVirtualKey;
     QHash<unsigned int, unsigned int> virtualKeyToQtKey;
+    QHash<unsigned int, charKeyInformation> virtualkeyToCharKeyInformation;
 
 signals:
 

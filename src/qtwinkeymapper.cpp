@@ -1,4 +1,5 @@
 #include <qt_windows.h>
+//#include <QDebug>
 #include <QHashIterator>
 
 #include "winextras.h"
@@ -95,6 +96,7 @@ QtWinKeyMapper::QtWinKeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
     populateMappingHashes();
+    populateCharKeyInformation();
 }
 
 void QtWinKeyMapper::populateMappingHashes()
@@ -314,4 +316,85 @@ unsigned int QtWinKeyMapper::returnQtKey(unsigned int key, unsigned int scancode
     }
 
     return tempkey;
+}
+
+void QtWinKeyMapper::populateCharKeyInformation()
+{
+    virtualkeyToCharKeyInformation.clear();
+
+    unsigned int total = 0;
+    //BYTE ks[256];
+    //GetKeyboardState(ks);
+    /*for (int x=0; x <= 255; x++)
+    {
+        if (ks[x] != 0)
+        {
+            qDebug() << "TEST: " << QString::number(x)
+                     << " | " << QString::number(ks[x]);
+        }
+    }
+    */
+
+    for (int i=VK_SPACE; i <= VK_OEM_CLEAR; i++)
+    {
+        unsigned int scancode = MapVirtualKey(i, 0);
+
+        for (int j=0; j <= 3; j++)
+        {
+            WCHAR cbuf[256];
+            BYTE tempks[256];
+            memset(tempks, 0, sizeof(tempks));
+
+            Qt::KeyboardModifiers dicis;
+            if (j >= 2)
+            {
+                dicis |= Qt::MetaModifier;
+                tempks[VK_LWIN] = 1 << 7;
+                //tempks[VK_RWIN] = 1 << 7;
+            }
+
+            if (j == 1 || j == 3)
+            {
+                dicis |= Qt::ShiftModifier;
+                tempks[VK_LSHIFT] = 1 << 7;
+                tempks[VK_SHIFT] = 1 << 7;
+                //qDebug() << "NEVER ME: ";
+            }
+
+            int charlength = ToUnicode(i, scancode, tempks, cbuf, 255, 0);
+            if (charlength == 1 || charlength < 0)
+            {
+                QString temp = QString::fromWCharArray(cbuf);
+                if (temp.size() > 0)
+                {
+                    QChar tempchar(temp.at(0));
+                    charKeyInformation tempinfo;
+                    tempinfo.modifiers = dicis;
+                    tempinfo.virtualkey = i;
+                    if (!virtualkeyToCharKeyInformation.contains(tempchar.unicode()))
+                    {
+                        virtualkeyToCharKeyInformation.insert(tempchar.unicode(), tempinfo);
+                        total++;
+                    }
+                }
+            }
+        }
+
+    }
+
+    //qDebug() << "TOTAL: " << total;
+}
+
+QtWinKeyMapper::charKeyInformation QtWinKeyMapper::getCharKeyInformation(QChar value)
+{
+    charKeyInformation temp;
+    temp.virtualkey = 0;
+    temp.modifiers = Qt::NoModifier;
+
+    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
+    {
+        temp = virtualkeyToCharKeyInformation.value(value.unicode());
+    }
+
+    return temp;
 }

@@ -23,6 +23,8 @@ public:
     virtual QString getIdentifier();
     virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
                                       unsigned int width, unsigned int height);
+    virtual void sendTextEntryEvent(QString maintext);
+
 signals:
 
 public slots:
