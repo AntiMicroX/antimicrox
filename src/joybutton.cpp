@@ -1032,21 +1032,21 @@ void JoyButton::mouseEvent()
                                 //difference = difference * difference;
 
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.405; // Experimental
+                                difference = difference * 0.40495; // Experimental
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
                                 //difference = difference - 0.24;
-                                difference = difference - 0.238; // Experimental
+                                difference = difference - 0.23802; // Experimental
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
                                 //difference = (difference * 2.2) - 1.2;
-                                difference = (difference * 2.19) - 1.19; // Experimental
+                                difference = (difference * 2.1901) - 1.1901; // Experimental
                             }
 
                             //if (temp - lastMouseDistance > 0)
@@ -1071,7 +1071,7 @@ void JoyButton::mouseEvent()
                                 //difference = difference * difference;
 
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.405; // Experimental
+                                difference = difference * 0.40495; // Experimental
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -1084,7 +1084,7 @@ void JoyButton::mouseEvent()
                                 // Perform Linear accleration with an appropriate
                                 // offset.
                                 //difference = difference - 0.24;
-                                difference = difference - 0.238; // Experimental
+                                difference = difference - 0.23802; // Experimental
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -1134,7 +1134,7 @@ void JoyButton::mouseEvent()
 
                                 //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0. Non-gradient version.
                                 //difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5. Non-gradient version.
-                                difference = difference * 1.34 - 0.51; // Range 0.562 - 1.5
+                                difference = difference * 1.340028571 - 0.510042857; // Range 0.56198 - 1.5
                             }
                             break;
                         }
