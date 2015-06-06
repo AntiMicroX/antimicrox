@@ -1,31 +1,20 @@
 //#include <QDebug>
 
-#include "simplekeygrabberbutton.h"
 #include "event.h"
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
 
 #ifdef Q_OS_WIN
-#include "winextras.h"
+  #include "winextras.h"
 #endif
 
 #ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#include <QApplication>
-    #endif
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #include <QApplication>
+  #endif
 #endif
 
-/*#ifdef Q_OS_UNIX
-
-    #if defined(WITH_UINPUT) && defined(WITH_X11)
-        #include "qtx11keymapper.h"
-
-        static QtX11KeyMapper x11KeyMapper;
-    #endif
-#elif defined(Q_OS_WIN)
-    static QtWinKeyMapper nativeWinKeyMapper;
-#endif
-*/
+#include "simplekeygrabberbutton.h"
 
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
     QPushButton(parent)
@@ -208,21 +197,24 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
         else
         {
-            if (checkalias > 0)
+            if (checkalias > 0 && finalvirtual > 0)
             {
                 buttonslot.setSlotCode(finalvirtual, checkalias);
                 buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
                 setText(keysymToKeyString(finalvirtual, checkalias).toUpper());
+
+                edited = true;
+                valueUpdated = true;
             }
-            else
+            else if (virtualactual > 0)
             {
                 buttonslot.setSlotCode(virtualactual);
                 buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
                 setText(keysymToKeyString(virtualactual).toUpper());
-            }
 
-            edited = true;
-            valueUpdated = true;
+                edited = true;
+                valueUpdated = true;
+            }
         }
 
         grabNextAction = false;

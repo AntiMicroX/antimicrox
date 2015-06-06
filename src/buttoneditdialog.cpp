@@ -279,16 +279,24 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
         if (controlcode > 0)
         {
-            if (checkalias > 0)
+            if (checkalias > 0 && finalvirtual > 0)
             {
                 JoyButtonSlot *tempslot = new JoyButtonSlot(finalvirtual, checkalias, JoyButtonSlot::JoyKeyboard, this);
                 emit keyGrabbed(tempslot);
             }
-            else
+            else if (virtualactual > 0)
             {
                 JoyButtonSlot *tempslot = new JoyButtonSlot(virtualactual, JoyButtonSlot::JoyKeyboard, this);
                 emit keyGrabbed(tempslot);
             }
+            else
+            {
+                QDialog::keyReleaseEvent(event);
+            }
+        }
+        else
+        {
+            QDialog::keyReleaseEvent(event);
         }
     }
     else

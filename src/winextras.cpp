@@ -186,6 +186,10 @@ unsigned int WinExtras::correctVirtualKey(unsigned int scancode, unsigned int vi
     case VK_MENU:
         finalvirtual = extended ? VK_RMENU : VK_LMENU;
         break;
+    case 0x5E:
+        // Ignore System Reserved VK
+        finalvirtual = 0;
+        break;
     default:
         finalvirtual = virtualkey;
     }

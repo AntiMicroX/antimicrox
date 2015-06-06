@@ -244,16 +244,20 @@ void QtWinKeyMapper::populateMappingHashes()
             int charlength = ToAscii(oemkey, scancode, ks, (WORD*)cbuf, 0);
             if (charlength < 0)
             {
+                charlength = ToAscii(VK_SPACE, scancode, ks, (WORD*)cbuf, 0);
                 QString temp = QString::fromUtf8(cbuf);
-                QHashIterator<QString, unsigned int> tempiter(deadKeyToQtKeyHash);
-                while (tempiter.hasNext())
+                if (temp.length() > 0)
                 {
-                    tempiter.next();
-                    QString currentChar = tempiter.key();
-                    if (currentChar == temp)
+                    QHashIterator<QString, unsigned int> tempiter(charToQtKeyHash);
+                    while (tempiter.hasNext())
                     {
-                        dynamicOEMToQtKeyHash[oemkey] = tempiter.value();
-                        tempiter.toBack();
+                        tempiter.next();
+                        QString currentChar = tempiter.key();
+                        if (currentChar == temp)
+                        {
+                            dynamicOEMToQtKeyHash[oemkey] = tempiter.value();
+                            tempiter.toBack();
+                        }
                     }
                 }
             }
