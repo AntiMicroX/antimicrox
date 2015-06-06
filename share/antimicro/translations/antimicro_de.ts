@@ -1548,7 +1548,7 @@ this button is being used.</source>
         <source>Choose between using SendInput and vmulti
                            support for event generation. Default: sendinput.</source>
         <translation>Wähle zwischen der Nutzung von SendInput und vmulti
-                           support zur Ereignisgenerierung. Default: sendinput.</translation>
+                           support zur Ereignisgenerierung. Standard: sendinput.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="481"/>
