@@ -5799,7 +5799,7 @@ E</translation>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="23"/>
         <source>After pressing the &quot;Capture Application&quot; button, please select the application window that you want to have a profile associated with. The active application will be captured after the selected number of seconds.</source>
-        <translation>Wählen Sie das Fenster aus mit dem Sie das Profil assozieren möchten, nachdem sie auf den &quot;Wähle Applikation&quot; Button geklickt haben. Die aktive Applikation wird nach der angegebenen Zahl an Sekunden ausgewählt.</translation>
+        <translation>Wählen Sie das Fenster aus mit dem Sie das Profil assozieren möchten, nachdem Sie auf den &quot;Wähle Applikation&quot; Button geklickt haben. Die aktive Applikation wird nach der angegebenen Zahl an Sekunden ausgewählt.</translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="38"/>
