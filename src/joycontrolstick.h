@@ -198,7 +198,7 @@ protected:
 
     double calculateEightWayDiagonalDistanceFromDeadZone();
     double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue);
-    double calculateRawEightWayDiagonalDistance(int axisXValue, int axisYValue);
+    double calculateEightWayDiagonalDistance(int axisXValue, int axisYValue);
 
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
     void clearPendingAxisEvents();

@@ -1521,7 +1521,7 @@ double JoyControlStick::calculateLastAccelerationDirectionalDistance()
     {
         if (!axisY->getLastKnownRawValue() <= 0 && !axisY->getLastKnownRawValue() >= 0)
         {
-            finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+            finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
         }
     }
     else if (currentDirection == StickRight)
@@ -1535,7 +1535,7 @@ double JoyControlStick::calculateLastAccelerationDirectionalDistance()
     {
         if (!axisY->getLastKnownRawValue() <= 0 && !axisY->getLastKnownRawValue() <= 0)
         {
-            finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+            finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
         }
     }
     else if (currentDirection == StickDown)
@@ -1549,7 +1549,7 @@ double JoyControlStick::calculateLastAccelerationDirectionalDistance()
     {
         if (!axisY->getLastKnownRawValue() >= 0 && !axisY->getLastKnownRawValue() <= 0)
         {
-            finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+            finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
         }
     }
     else if (currentDirection == StickLeft)
@@ -1563,7 +1563,7 @@ double JoyControlStick::calculateLastAccelerationDirectionalDistance()
     {
         if (!axisY->getLastKnownRawValue() >= 0 && !axisY->getLastKnownRawValue() >= 0)
         {
-            finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+            finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
         }
     }
 
@@ -3194,7 +3194,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
             }
         }
     }
@@ -3241,7 +3241,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
             }
         }
     }
@@ -3288,7 +3288,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
             }
         }
     }
@@ -3335,7 +3335,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
             }
         }
     }
@@ -3391,7 +3391,7 @@ double JoyControlStick::calculateLastAccelerationDistance(JoyControlStickButton 
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
             }
         }
     }
@@ -3438,7 +3438,7 @@ double JoyControlStick::calculateLastAccelerationDistance(JoyControlStickButton 
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
             }
         }
     }
@@ -3485,7 +3485,7 @@ double JoyControlStick::calculateLastAccelerationDistance(JoyControlStickButton 
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
             }
         }
     }
@@ -3532,7 +3532,7 @@ double JoyControlStick::calculateLastAccelerationDistance(JoyControlStickButton 
             }
             else
             {
-                finalDistance = calculateRawEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
+                finalDistance = calculateEightWayDiagonalDistance(axisX->getLastKnownRawValue(), axisY->getLastKnownRawValue());
             }
         }
     }
@@ -3603,7 +3603,7 @@ double JoyControlStick::calculateEightWayDiagonalDistanceFromDeadZone(int axisXV
     return distance;
 }
 
-double JoyControlStick::calculateRawEightWayDiagonalDistance(int axisXValue, int axisYValue)
+double JoyControlStick::calculateEightWayDiagonalDistance(int axisXValue, int axisYValue)
 {
     double distance = 0.0;
 
