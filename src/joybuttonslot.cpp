@@ -643,7 +643,7 @@ QString JoyButtonSlot::getSlotString()
             if (!textData.isEmpty())
             {
                 QFileInfo tempFileInfo(textData);
-                temp.append(tempFileInfo.baseName());
+                temp.append(tempFileInfo.fileName());
             }
 
             newlabel.append(tr("[Exec] %1").arg(temp));
