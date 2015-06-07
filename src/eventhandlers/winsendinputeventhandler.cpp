@@ -156,6 +156,11 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
                     tempList.append(VK_LCONTROL);
                 }
 
+                if (temp.modifiers.testFlag(Qt::AltModifier))
+                {
+                    tempList.append(VK_LMENU);
+                }
+
                 if (temp.modifiers.testFlag(Qt::MetaModifier))
                 {
                     tempList.append(VK_LWIN);

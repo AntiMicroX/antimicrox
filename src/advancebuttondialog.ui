@@ -36,7 +36,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>-1</number>
+    <number>6</number>
    </property>
    <property name="topMargin">
     <number>4</number>
@@ -242,6 +242,11 @@
              <item>
               <property name="text">
                <string>Set Change</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text Entry</string>
               </property>
              </item>
             </widget>
@@ -667,6 +672,13 @@
              </item>
             </layout>
            </widget>
+           <widget class="QWidget" name="textEntryPage">
+            <layout class="QVBoxLayout" name="verticalLayout_17">
+             <item>
+              <widget class="QLineEdit" name="textEntryLineEdit"/>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </item>
          <item>
@@ -823,7 +835,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <property name="spacing">
-            <number>-1</number>
+            <number>6</number>
            </property>
            <property name="topMargin">
             <number>0</number>

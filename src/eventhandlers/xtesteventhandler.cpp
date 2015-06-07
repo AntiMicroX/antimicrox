@@ -79,6 +79,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
     unsigned int shiftcode = 0;
     unsigned int controlcode = 0;
     unsigned int metacode = 0;
+    unsigned int altcode = 0;
 
     if (mapper && mapper->getKeyMapper())
     {
@@ -120,6 +121,19 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                         unsigned int modifiercode = controlcode;
                         XTestFakeKeyEvent(display, modifiercode, 1, 0);
                         //currentModifiers |= Qt::ControlModifier;
+                        tempList.append(modifiercode);
+                    }
+
+                    if (temp.modifiers.testFlag(Qt::AltModifier))
+                    {
+                        if (altcode == 0)
+                        {
+                            altcode = XKeysymToKeycode(display, XK_Alt_L);
+                        }
+
+                        unsigned int modifiercode = altcode;
+                        XTestFakeKeyEvent(display, modifiercode, 1, 0);
+                        //currentModifiers |= Qt::AltModifier;
                         tempList.append(modifiercode);
                     }
 

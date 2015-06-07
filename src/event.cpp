@@ -68,10 +68,6 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     if (device == JoyButtonSlot::JoyKeyboard)
     {
         EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
-        //if (pressed)
-        //{
-            //EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent("PILLOWY Mounds of Mashed POTATOES!!");
-        //}
     }
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
@@ -84,6 +80,10 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
             */
             //QProcess::startDetached("gvim");
         //}
+    }
+    else if (device == JoyButtonSlot::JoyTextEntry && pressed && !slot->getTextData().isEmpty())
+    {
+        EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
     }
 }
 

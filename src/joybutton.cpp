@@ -871,6 +871,10 @@ void JoyButton::activateSlots()
                 //QTimer::singleShot(0, this, SLOT(slotSetChange()));
                 exit = true;
             }
+            else if (mode == JoyButtonSlot::JoyTextEntry)
+            {
+                sendevent(slot, true);
+            }
         }
 
 #ifdef Q_OS_WIN
@@ -2250,6 +2254,19 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     i++;
                     break;
                 }
+                case JoyButtonSlot::JoyTextEntry:
+                {
+                    QString temp = slot->getSlotString();
+                    if (behindHold)
+                    {
+                        temp.prepend("[H] ");
+                        behindHold = false;
+                    }
+
+                    stringlist.append(temp);
+                    i++;
+                    break;
+                }
                 /*case JoyButtonSlot::JoyRelease:
                 {
                     if (!currentRelease)
@@ -2358,6 +2375,11 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
                 case JoyButtonSlot::JoyDistance:
                 {
                     iter->toBack();
+                    break;
+                }
+                case JoyButtonSlot::JoyTextEntry:
+                {
+                    tempSlotList.append(slot);
                     break;
                 }
             }
@@ -2625,6 +2647,11 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
     {
         permitSlot = true;
     }
+    else if (newSlot->getSlotMode() == JoyButtonSlot::JoyTextEntry &&
+             !newSlot->getTextData().isEmpty())
+    {
+        permitSlot = true;
+    }
     else if (newSlot->getSlotCode() >= 0)
     {
         permitSlot = true;
@@ -2658,6 +2685,11 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
         }
     }
     else if (newslot->getSlotMode() == JoyButtonSlot::JoyLoadProfile)
+    {
+        permitSlot = true;
+    }
+    else if (newslot->getSlotMode() == JoyButtonSlot::JoyTextEntry &&
+             !newslot->getTextData().isEmpty())
     {
         permitSlot = true;
     }

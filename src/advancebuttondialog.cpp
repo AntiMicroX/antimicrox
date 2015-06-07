@@ -54,6 +54,14 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
                 existingCode->setToolTip(buttonslot->getTextData());
             }
         }
+        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyTextEntry)
+        {
+            if (!buttonslot->getTextData().isEmpty())
+            {
+                existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyTextEntry);
+                existingCode->setToolTip(buttonslot->getTextData());
+            }
+        }
         else
         {
             existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotCodeAlias(), buttonslot->getSlotMode());
@@ -364,6 +372,10 @@ void AdvanceButtonDialog::insertSlot()
     else if (slotTypeIndex == SetChangeSlot)
     {
         insertSetChangeSlot();
+    }
+    else if (slotTypeIndex == TextEntry)
+    {
+        insertTextEntrySlot();
     }
 
     /*if (current != (count - 1))
@@ -792,6 +804,23 @@ void AdvanceButtonDialog::insertDelaySlot()
     }
 }
 
+void AdvanceButtonDialog::insertTextEntrySlot()
+{
+    int index = ui->slotListWidget->currentRow();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    QString temp = ui->textEntryLineEdit->text();
+    if (!temp.isEmpty())
+    {
+        tempbutton->setValue(temp, JoyButtonSlot::JoyTextEntry);
+        // Stop all events on JoyButton
+        this->button->eventReset();
+
+        this->button->setAssignedSlot(tempbutton->getValue(), index);
+        tempbutton->setToolTip(temp);
+        updateSlotsScrollArea(0);
+    }
+}
+
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 {
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -869,6 +898,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
         }
 
         connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyTextEntry)
+    {
+        ui->slotTypeComboBox->setCurrentIndex(TextEntry);
+        ui->textEntryLineEdit->setText(slot->getTextData());
     }
     /*else
     {
@@ -1260,6 +1294,10 @@ void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
     {
         ui->slotControlsStackedWidget->setCurrentIndex(5);
     }
+    else if (index == TextEntry)
+    {
+        ui->slotControlsStackedWidget->setCurrentIndex(6);
+    }
 }
 
 void AdvanceButtonDialog::changeSlotHelpText(int index)
@@ -1321,5 +1359,10 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
     else if (index == SetChangeSlot)
     {
         ui->slotTypeHelpLabel->setText(tr("Change to selected set once slot is activated."));
+    }
+    else if (index == TextEntry)
+    {
+        ui->slotTypeHelpLabel->setText(tr("Full string will be typed when a "
+                                          "button is activated."));
     }
 }

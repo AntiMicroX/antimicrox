@@ -308,6 +308,7 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
     switch (mode)
     {
         case JoyButtonSlot::JoyLoadProfile:
+        case JoyButtonSlot::JoyTextEntry:
         {
             buttonslot.setTextData(value);
             buttonslot.setSlotMode(mode);

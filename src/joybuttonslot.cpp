@@ -74,6 +74,17 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     textData = slot->getTextData();
 }
 
+JoyButtonSlot::JoyButtonSlot(QString text, QObject *parent) :
+    QObject(parent)
+{
+    deviceCode = 0;
+    qkeyaliasCode = 0;
+    mode = JoyTextEntry;
+    distance = 0.0;
+    easingActive = false;
+    textData = text;
+}
+
 void JoyButtonSlot::setSlotCode(int code)
 {
     if (code >= 0)
@@ -170,6 +181,7 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
     if (xml->isStartElement() && xml->name() == "slot")
     {
         QString profile;
+        QString tempStringData;
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "slot"))
@@ -189,6 +201,11 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 QString temptext = xml->readElementText();
                 profile = temptext;
                 //this->setTextData(temptext);
+            }
+            else if (xml->name() == "text" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                tempStringData = temptext;
             }
             else if (xml->name() == "mode" && xml->isStartElement())
             {
@@ -246,6 +263,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoySetChange);
                 }
+                else if (temptext == "textentry")
+                {
+                    this->setSlotMode(JoyTextEntry);
+                }
             }
             else
             {
@@ -292,6 +313,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 this->setSlotCode(-1);
             }
         }
+        else if (this->getSlotMode() == JoyTextEntry && !tempStringData.isEmpty())
+        {
+            this->setTextData(tempStringData);
+        }
     }
 }
 
@@ -327,6 +352,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyLoadProfile && !textData.isEmpty())
     {
         xml->writeTextElement("profile", textData);
+    }
+    else if (mode == JoyTextEntry && !textData.isEmpty())
+    {
+        xml->writeTextElement("text", textData);
     }
     else
     {
@@ -385,6 +414,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoySetChange)
     {
         xml->writeCharacters("setchange");
+    }
+    else if (mode == JoyTextEntry)
+    {
+        xml->writeCharacters("textentry");
     }
 
     xml->writeEndElement();
@@ -560,6 +593,10 @@ QString JoyButtonSlot::getSlotString()
         else if (mode == JoySetChange)
         {
             newlabel.append(tr("Set Change %1").arg(deviceCode+1));
+        }
+        else if (mode == JoyTextEntry)
+        {
+            newlabel.append(tr("Text - %1").arg(textData));
         }
     }
     else
