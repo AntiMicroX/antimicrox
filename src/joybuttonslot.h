@@ -71,6 +71,8 @@ protected:
     bool easingActive;
     QString textData;
 
+    static const int MAXTEXTENTRYDISPLAYLENGTH;
+
 signals:
     
 public slots:

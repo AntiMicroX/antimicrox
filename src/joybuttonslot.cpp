@@ -13,6 +13,7 @@
 
 const int JoyButtonSlot::JOYSPEED = 20;
 const QString JoyButtonSlot::xmlName = "slot";
+const int JoyButtonSlot::MAXTEXTENTRYDISPLAYLENGTH = 40;
 
 JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     QObject(parent)
@@ -628,11 +629,24 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyTextEntry)
         {
-            newlabel.append(tr("[Text] %1").arg(textData));
+            QString temp = textData;
+            if (temp.length() > MAXTEXTENTRYDISPLAYLENGTH)
+            {
+                temp.truncate(MAXTEXTENTRYDISPLAYLENGTH - 3);
+                temp.append("...");
+            }
+            newlabel.append(tr("[Text] %1").arg(temp));
         }
         else if (mode == JoyExecute)
         {
-            newlabel.append(tr("[Exec] %1").arg(textData));
+            QString temp;
+            if (!textData.isEmpty())
+            {
+                QFileInfo tempFileInfo(textData);
+                temp.append(tempFileInfo.baseName());
+            }
+
+            newlabel.append(tr("[Exec] %1").arg(temp));
         }
     }
     else
