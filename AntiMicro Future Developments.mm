@@ -1,4 +1,4 @@
-<map version="0.9.0">
+<map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1420094589396" TEXT="AntiMicro Future Developments">
 <node CREATED="1398676376577" FOLDED="true" HGAP="19" ID="ID_1223827762" MODIFIED="1427231988304" POSITION="left" TEXT="Split Actions into a Seperate Entity?" VSHIFT="-5">
@@ -9,7 +9,7 @@
 <node CREATED="1420094431903" FOLDED="true" HGAP="18" ID="ID_475045149" MODIFIED="1420094854839" POSITION="right" TEXT="Allow buttons to be bound to actions." VSHIFT="-4">
 <node CREATED="1420094839855" ID="ID_1670829131" MODIFIED="1420094853324" TEXT="A special exception will have to be made for direct assignments."/>
 </node>
-<node CREATED="1420094449038" FOLDED="true" HGAP="22" ID="ID_287590243" MODIFIED="1427231588401" POSITION="right" TEXT="Use uinput by default and fallback to XTest if necessary." VSHIFT="-5">
+<node CREATED="1420094449038" FOLDED="true" HGAP="22" ID="ID_287590243" MODIFIED="1433647333360" POSITION="right" TEXT="Use uinput by default and fallback to XTest if necessary." VSHIFT="-5">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1420094775157" ID="ID_1731182902" MODIFIED="1420094816470" TEXT="Most of the work has already been done. At this point, it is just a matter of making uinput the default when no handler is given as a command line argument."/>
 </node>
