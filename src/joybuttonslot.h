@@ -15,7 +15,7 @@ public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,
                              JoyPause, JoyHold, JoyCycle, JoyDistance,
                              JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
-                             JoyLoadProfile, JoySetChange, JoyTextEntry};
+                             JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute};
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
                                   MouseWheelLeft=6, MouseWheelRight=7};
@@ -25,7 +25,7 @@ public:
     explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=0);
     explicit JoyButtonSlot(int code, unsigned int alias, JoySlotInputAction mode, QObject *parent=0);
     explicit JoyButtonSlot(JoyButtonSlot *slot, QObject *parent=0);
-    explicit JoyButtonSlot(QString text, QObject *parent=0);
+    explicit JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent=0);
 
     void setSlotCode(int code);
     int getSlotCode();

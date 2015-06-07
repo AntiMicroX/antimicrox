@@ -875,6 +875,10 @@ void JoyButton::activateSlots()
             {
                 sendevent(slot, true);
             }
+            else if (mode == JoyButtonSlot::JoyExecute)
+            {
+                sendevent(slot, true);
+            }
         }
 
 #ifdef Q_OS_WIN
@@ -2231,30 +2235,9 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     break;
                 }
                 case JoyButtonSlot::JoyLoadProfile:
-                {
-                    QString temp = slot->getSlotString();
-                    if (behindHold)
-                    {
-                        temp.prepend("[H] ");
-                        behindHold = false;
-                    }
-                    stringlist.append(temp);
-                    i++;
-                    break;
-                }
                 case JoyButtonSlot::JoySetChange:
-                {
-                    QString temp = slot->getSlotString();
-                    if (behindHold)
-                    {
-                        temp.prepend("[H] ");
-                        behindHold = false;
-                    }
-                    stringlist.append(temp);
-                    i++;
-                    break;
-                }
                 case JoyButtonSlot::JoyTextEntry:
+                case JoyButtonSlot::JoyExecute:
                 {
                     QString temp = slot->getSlotString();
                     if (behindHold)
@@ -2344,21 +2327,11 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
                     break;
                 }
                 case JoyButtonSlot::JoyKeyPress:
-                {
-                    tempSlotList.append(slot);
-                    break;
-                }
                 case JoyButtonSlot::JoyHold:
-                {
-                    tempSlotList.append(slot);
-                    break;
-                }
                 case JoyButtonSlot::JoyLoadProfile:
-                {
-                    tempSlotList.append(slot);
-                    break;
-                }
                 case JoyButtonSlot::JoySetChange:
+                case JoyButtonSlot::JoyTextEntry:
+                case JoyButtonSlot::JoyExecute:
                 {
                     tempSlotList.append(slot);
                     break;
@@ -2375,11 +2348,6 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
                 case JoyButtonSlot::JoyDistance:
                 {
                     iter->toBack();
-                    break;
-                }
-                case JoyButtonSlot::JoyTextEntry:
-                {
-                    tempSlotList.append(slot);
                     break;
                 }
             }
@@ -2652,6 +2620,11 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
     {
         permitSlot = true;
     }
+    else if (newSlot->getSlotMode() == JoyButtonSlot::JoyExecute &&
+             !newSlot->getTextData().isEmpty())
+    {
+        permitSlot = true;
+    }
     else if (newSlot->getSlotCode() >= 0)
     {
         permitSlot = true;
@@ -2689,6 +2662,11 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
         permitSlot = true;
     }
     else if (newslot->getSlotMode() == JoyButtonSlot::JoyTextEntry &&
+             !newslot->getTextData().isEmpty())
+    {
+        permitSlot = true;
+    }
+    else if (newslot->getSlotMode() == JoyButtonSlot::JoyExecute &&
              !newslot->getTextData().isEmpty())
     {
         permitSlot = true;

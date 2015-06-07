@@ -66,7 +66,7 @@ EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
     if (!instance)
     {
         QStringList temp = buildEventGeneratorList();
-        if (temp.contains(handler))
+        if (!handler.isEmpty() && temp.contains(handler))
         {
             instance = new EventHandlerFactory(handler);
         }

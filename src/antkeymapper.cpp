@@ -78,7 +78,7 @@ AntKeyMapper* AntKeyMapper::getInstance(QString handler)
     if (!_instance)
     {
         QStringList temp = buildEventGeneratorList();
-        if (temp.contains(handler))
+        if (!handler.isEmpty() && temp.contains(handler))
         {
             _instance = new AntKeyMapper(handler);
         }

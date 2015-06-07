@@ -23,9 +23,9 @@ private:
     Ui::AdvanceButtonDialog *ui;
 
     enum SlotTypeComboIndex {
-        KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, HoldSlot,
-        LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot, ReleaseSlot,
-        SetChangeSlot, TextEntry,
+        KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, ExecuteSlot,
+        HoldSlot, LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot,
+        ReleaseSlot, SetChangeSlot, TextEntry,
     };
 
 protected:
@@ -79,6 +79,7 @@ private slots:
     void insertDelaySlot();
     void insertSetChangeSlot();
     void insertTextEntrySlot();
+    void insertExecuteSlot();
 
     void updateActionTimeLabel();
     void updateSetSelection();
@@ -95,6 +96,7 @@ private slots:
     void setButtonCycleReset(bool enabled);
     void setButtonTurboMode(int value);
     void showSelectProfileWindow();
+    void showFindExecutableWindow(bool);
 
     void changeSlotTypeDisplay(int index);
     void changeSlotHelpText(int index);

@@ -1,16 +1,15 @@
 //#include <QDebug>
-
 #include <QFileInfo>
 
+#include "inputdevice.h"
 #include "joybuttonslot.h"
 
 #include "antkeymapper.h"
 #include "event.h"
-#include "inputdevice.h"
 
-#ifdef Q_OS_WIN
-  #include "qtwinkeymapper.h"
-#endif
+//#ifdef Q_OS_WIN
+//  #include "qtwinkeymapper.h"
+//#endif
 
 const int JoyButtonSlot::JOYSPEED = 20;
 const QString JoyButtonSlot::xmlName = "slot";
@@ -74,15 +73,20 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     textData = slot->getTextData();
 }
 
-JoyButtonSlot::JoyButtonSlot(QString text, QObject *parent) :
+JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent) :
     QObject(parent)
 {
     deviceCode = 0;
     qkeyaliasCode = 0;
-    mode = JoyTextEntry;
+    this->mode = mode;
     distance = 0.0;
     easingActive = false;
-    textData = text;
+    if (mode == JoyLoadProfile ||
+        mode == JoyTextEntry ||
+        mode == JoyExecute)
+    {
+        textData = text;
+    }
 }
 
 void JoyButtonSlot::setSlotCode(int code)
@@ -200,9 +204,13 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
             {
                 QString temptext = xml->readElementText();
                 profile = temptext;
-                //this->setTextData(temptext);
             }
             else if (xml->name() == "text" && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                tempStringData = temptext;
+            }
+            else if (xml->name() == "path" && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 tempStringData = temptext;
@@ -267,6 +275,10 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
                 {
                     this->setSlotMode(JoyTextEntry);
                 }
+                else if (temptext == "execute")
+                {
+                    this->setSlotMode(JoyExecute);
+                }
             }
             else
             {
@@ -317,6 +329,14 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
         {
             this->setTextData(tempStringData);
         }
+        else if (this->getSlotMode() == JoyExecute && !tempStringData.isEmpty())
+        {
+            QFileInfo tempFile(tempStringData);
+            if (tempFile.exists() && tempFile.isExecutable())
+            {
+                this->setTextData(tempStringData);
+            }
+        }
     }
 }
 
@@ -356,6 +376,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     else if (mode == JoyTextEntry && !textData.isEmpty())
     {
         xml->writeTextElement("text", textData);
+    }
+    else if (mode == JoyExecute && !textData.isEmpty())
+    {
+        xml->writeTextElement("path", textData);
     }
     else
     {
@@ -419,6 +443,10 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     {
         xml->writeCharacters("textentry");
     }
+    else if (mode == JoyExecute)
+    {
+        xml->writeCharacters("execute");
+    }
 
     xml->writeEndElement();
 
@@ -440,8 +468,12 @@ QString JoyButtonSlot::getSlotString()
         {
             unsigned int tempDeviceCode = deviceCode;
 #ifdef Q_OS_WIN
-            static QtWinKeyMapper nativeWinKeyMapper;
-            tempDeviceCode = nativeWinKeyMapper.returnVirtualKey(qkeyaliasCode);
+            //static QtWinKeyMapper nativeWinKeyMapper;
+            QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+            if (nativeWinKeyMapper)
+            {
+                tempDeviceCode = nativeWinKeyMapper->returnVirtualKey(qkeyaliasCode);
+            }
 #endif
             newlabel = newlabel.append(keysymToKeyString(tempDeviceCode, qkeyaliasCode).toUpper());
             //newlabel = newlabel.append(keysymToKeyString(deviceCode, qkeyaliasCode).toUpper());
@@ -596,7 +628,11 @@ QString JoyButtonSlot::getSlotString()
         }
         else if (mode == JoyTextEntry)
         {
-            newlabel.append(tr("Text - %1").arg(textData));
+            newlabel.append(tr("[Text] %1").arg(textData));
+        }
+        else if (mode == JoyExecute)
+        {
+            newlabel.append(tr("[Exec] %1").arg(textData));
         }
     }
     else
@@ -659,6 +695,8 @@ bool JoyButtonSlot::isValidSlot()
     switch (mode)
     {
         case JoyLoadProfile:
+        case JoyTextEntry:
+        case JoyExecute:
         {
             if (textData.isEmpty())
             {

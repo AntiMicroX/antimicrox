@@ -72,6 +72,15 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     else if (device == JoyButtonSlot::JoyMouseButton)
     {
         EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
+    }
+    else if (device == JoyButtonSlot::JoyTextEntry && pressed && !slot->getTextData().isEmpty())
+    {
+        EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
+    }
+    else if (device == JoyButtonSlot::JoyExecute && pressed && !slot->getTextData().isEmpty())
+    {
+        QString execString = slot->getTextData();
+        QProcess::startDetached(execString);
         //if (pressed)
         //{
             /*QProcess proctor;
@@ -80,10 +89,6 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
             */
             //QProcess::startDetached("gvim");
         //}
-    }
-    else if (device == JoyButtonSlot::JoyTextEntry && pressed && !slot->getTextData().isEmpty())
-    {
-        EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
     }
 }
 

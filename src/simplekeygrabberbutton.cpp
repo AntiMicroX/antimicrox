@@ -43,7 +43,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     int controlcode = 0;
     if (grabNextAction && event->type() == QEvent::MouseButtonRelease)
     {
-        QMouseEvent *mouseEve = (QMouseEvent*) event;
+        QMouseEvent *mouseEve = static_cast<QMouseEvent*>(event);
         if (mouseEve->button() == Qt::RightButton)
         {
             controlcode = 3;
@@ -233,7 +233,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     }
     else if (grabNextAction && event->type() == QEvent::Wheel)
     {
-        QWheelEvent *wheelEve = (QWheelEvent*) event;
+        QWheelEvent *wheelEve = static_cast<QWheelEvent*>(event);
         QString text = QString(tr("Mouse")).append(" ");
 
         if (wheelEve->orientation() == Qt::Vertical && wheelEve->delta() >= 120)
@@ -270,7 +270,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     }
     else if (event->type() == QEvent::MouseButtonRelease)
     {
-        QMouseEvent *mouseEve = (QMouseEvent*) event;
+        QMouseEvent *mouseEve = static_cast<QMouseEvent*>(event);
         if (mouseEve->button() == Qt::LeftButton)
         {
             grabNextAction = true;
@@ -309,6 +309,7 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
     {
         case JoyButtonSlot::JoyLoadProfile:
         case JoyButtonSlot::JoyTextEntry:
+        case JoyButtonSlot::JoyExecute:
         {
             buttonslot.setTextData(value);
             buttonslot.setSlotMode(mode);

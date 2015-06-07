@@ -1,6 +1,8 @@
 //#include <QDebug>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QPushButton>
+#include <QToolButton>
 #include <QHBoxLayout>
 #include <cmath>
 
@@ -59,6 +61,14 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
             if (!buttonslot->getTextData().isEmpty())
             {
                 existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyTextEntry);
+                existingCode->setToolTip(buttonslot->getTextData());
+            }
+        }
+        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyExecute)
+        {
+            if (!buttonslot->getTextData().isEmpty())
+            {
+                existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyExecute);
                 existingCode->setToolTip(buttonslot->getTextData());
             }
         }
@@ -172,6 +182,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
     connect(ui->turboModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setButtonTurboMode(int)));
     connect(ui->loadProfilePushButton, SIGNAL(clicked()), this, SLOT(showSelectProfileWindow()));
+    connect(ui->execToolButton, SIGNAL(clicked(bool)), this, SLOT(showFindExecutableWindow(bool)));
 }
 
 AdvanceButtonDialog::~AdvanceButtonDialog()
@@ -376,6 +387,10 @@ void AdvanceButtonDialog::insertSlot()
     else if (slotTypeIndex == TextEntry)
     {
         insertTextEntrySlot();
+    }
+    else if (slotTypeIndex == ExecuteSlot)
+    {
+        insertExecuteSlot();
     }
 
     /*if (current != (count - 1))
@@ -821,6 +836,27 @@ void AdvanceButtonDialog::insertTextEntrySlot()
     }
 }
 
+void AdvanceButtonDialog::insertExecuteSlot()
+{
+    int index = ui->slotListWidget->currentRow();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    QString temp = ui->execLineEdit->text();
+    if (!temp.isEmpty())
+    {
+        QFileInfo tempFileInfo(temp);
+        if (tempFileInfo.exists() && tempFileInfo.isExecutable())
+        {
+            tempbutton->setValue(temp, JoyButtonSlot::JoyExecute);
+            // Stop all events on JoyButton
+            this->button->eventReset();
+
+            this->button->setAssignedSlot(tempbutton->getValue(), index);
+            tempbutton->setToolTip(temp);
+            updateSlotsScrollArea(0);
+        }
+    }
+}
+
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 {
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -903,6 +939,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     {
         ui->slotTypeComboBox->setCurrentIndex(TextEntry);
         ui->textEntryLineEdit->setText(slot->getTextData());
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyExecute)
+    {
+        ui->slotTypeComboBox->setCurrentIndex(ExecuteSlot);
+        ui->execLineEdit->setText(slot->getTextData());
     }
     /*else
     {
@@ -1248,6 +1289,30 @@ void AdvanceButtonDialog::showSelectProfileWindow()
     }
 }
 
+void AdvanceButtonDialog::showFindExecutableWindow(bool)
+{
+    QString temp = ui->execLineEdit->text();
+    QString lookupDir = QDir::homePath();
+    if (!temp.isEmpty())
+    {
+        QFileInfo tempFileInfo(temp);
+        if (tempFileInfo.absoluteDir().exists())
+        {
+            lookupDir = tempFileInfo.absoluteDir().absolutePath();
+        }
+    }
+
+    QString filepath = QFileDialog::getOpenFileName(this, tr("Choose Executable"), lookupDir);
+    if (!filepath.isEmpty())
+    {
+        QFileInfo tempFileInfo(filepath);
+        if (tempFileInfo.exists() && tempFileInfo.isExecutable())
+        {
+            ui->execLineEdit->setText(filepath);
+        }
+    }
+}
+
 void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
 {
     if (index == KBMouseSlot)
@@ -1297,6 +1362,10 @@ void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
     else if (index == TextEntry)
     {
         ui->slotControlsStackedWidget->setCurrentIndex(6);
+    }
+    else if (index == ExecuteSlot)
+    {
+        ui->slotControlsStackedWidget->setCurrentIndex(7);
     }
 }
 
@@ -1363,6 +1432,10 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
     else if (index == TextEntry)
     {
         ui->slotTypeHelpLabel->setText(tr("Full string will be typed when a "
-                                          "button is activated."));
+                                          "slot is activated."));
+    }
+    else if (index == ExecuteSlot)
+    {
+        ui->slotTypeHelpLabel->setText(tr("Execute program when slot is activated."));
     }
 }
