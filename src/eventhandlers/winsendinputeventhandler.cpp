@@ -123,8 +123,8 @@ void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned 
         temp[0].mi.mouseData = 0;
         temp[0].mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
 
-        int fx = ceil(xDis * (65535.0/(double)width));
-        int fy = ceil(yDis * (65535.0/(double)height));
+        int fx = ceil(xDis * (65535.0/static_cast<double>(width)));
+        int fy = ceil(yDis * (65535.0/static_cast<double>(height)));
         temp[0].mi.dx = fx;
         temp[0].mi.dy = fy;
         SendInput(1, temp, sizeof(INPUT));
@@ -141,22 +141,22 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
 
         for (int i=0; i < maintext.size(); i++)
         {
-            QtWinKeyMapper::charKeyInformation temp = keymapper->patriarchy(maintext.at(i));
+            QtWinKeyMapper::charKeyInformation temp = keymapper->getCharKeyInformation(maintext.at(i));
             QList<unsigned int> tempList;
 
-            if (temp.charMmodifiers != Qt::NoModifier)
+            if (temp.modifiers != Qt::NoModifier)
             {
-                if (temp.charMmodifiers.testFlag(Qt::ShiftModifier))
+                if (temp.modifiers.testFlag(Qt::ShiftModifier))
                 {
                     tempList.append(VK_LSHIFT);
                 }
 
-                if (temp.charMmodifiers.testFlag(Qt::ControlModifier))
+                if (temp.modifiers.testFlag(Qt::ControlModifier))
                 {
                     tempList.append(VK_LCONTROL);
                 }
 
-                if (temp.charMmodifiers.testFlag(Qt::MetaModifier))
+                if (temp.modifiers.testFlag(Qt::MetaModifier))
                 {
                     tempList.append(VK_LWIN);
                 }

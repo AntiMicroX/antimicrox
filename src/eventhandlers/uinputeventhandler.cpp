@@ -410,7 +410,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
         {
             tempList.clear();
 
-            QtUInputKeyMapper::charKeyInformation temp; // = keymapper->patriarchy(maintext.at(i));
+            QtUInputKeyMapper::charKeyInformation temp;
             temp.virtualkey = 0;
             temp.modifiers = Qt::NoModifier;
 
