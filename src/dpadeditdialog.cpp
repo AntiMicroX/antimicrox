@@ -50,8 +50,9 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
     connect(ui->dpadNameLineEdit, SIGNAL(textEdited(QString)), dpad, SLOT(setDPadName(QString)));
 
-    connect(ui->dpadDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateDPadDelaySpinBox(int)));
     connect(ui->dpadDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateJoyDPadDelay(int)));
+    connect(dpad, SIGNAL(dpadDelayChanged(int)), this, SLOT(updateDPadDelaySpinBox(int)));
+    connect(ui->dpadDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateDPadDelaySlider(double)));
 
     connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(updateWindowTitleDPadName()));
 }
@@ -337,16 +338,41 @@ void DPadEditDialog::enableMouseSettingButton()
     ui->mouseSettingsPushButton->setEnabled(true);
 }
 
+/**
+ * @brief Update QDoubleSpinBox value based on updated dpad delay value.
+ * @param Delay value obtained from JoyDPad.
+ */
 void DPadEditDialog::updateDPadDelaySpinBox(int value)
 {
-    ui->dpadDelayDoubleSpinBox->setValue(value * .01);
+    double temp = static_cast<double>(value * 0.001);
+    ui->dpadDelayDoubleSpinBox->setValue(temp);
 }
 
+/**
+ * @brief Update JoyDPad delay value based on QSlider value.
+ * @param Value from QSlider.
+ */
 void DPadEditDialog::updateJoyDPadDelay(int value)
 {
-    dpad->setDPadDelay(value * 10);
+    int temp = value * 10;
+    if (dpad->getDPadDelay() != temp)
+    {
+        dpad->setDPadDelay(temp);
+    }
 }
 
+/**
+ * @brief Update QSlider value based on value from QDoubleSpinBox.
+ * @param Value from QDoubleSpinBox.
+ */
+void DPadEditDialog::updateDPadDelaySlider(double value)
+{
+    int temp = static_cast<int>(value * 100);
+    if (ui->dpadDelaySlider->value() != temp)
+    {
+        ui->dpadDelaySlider->setValue(temp);
+    }
+}
 
 void DPadEditDialog::updateWindowTitleDPadName()
 {

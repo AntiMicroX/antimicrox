@@ -676,7 +676,7 @@ to a diagonal zone of the stick.</string>
               <string>Time lapsed before a direction change is taken into effect.</string>
              </property>
              <property name="readOnly">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="suffix">
               <string> s</string>

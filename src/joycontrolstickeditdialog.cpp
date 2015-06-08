@@ -94,19 +94,19 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
     connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
     connect(ui->squareStickSlider, SIGNAL(valueChanged(int)), ui->squareStickSpinBox, SLOT(setValue(int)));
-    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateStickDelaySpinBox(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), ui->maxZoneSlider, SLOT(setValue(int)));
     connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
     connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), ui->squareStickSlider, SLOT(setValue(int)));
-    //connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
+    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateControlStickDelay(int)));
 
     connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
     connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
     connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeCircleAdjust(int)));
-    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), this, SLOT(updateControlStickDelay(int)));
+    connect(stick, SIGNAL(stickDelayChanged(int)), this, SLOT(updateStickDelaySpinBox(int)));
+    connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
 
     connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
     connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
@@ -497,19 +497,40 @@ void JoyControlStickEditDialog::changeCircleAdjust(int value)
     stick->setCircleAdjust(value * .01);
 }
 
+/**
+ * @brief Update QDoubleSpinBox value based on updated stick delay value.
+ * @param Delay value obtained from JoyControlStick.
+ */
 void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
 {
-    ui->stickDelayDoubleSpinBox->setValue(value * .01);
+    double temp = static_cast<double>(value * 0.001);
+    ui->stickDelayDoubleSpinBox->setValue(temp);
 }
 
+/**
+ * @brief Update QSlider value based on value from QDoubleSpinBox.
+ * @param Value from QDoubleSpinBox.
+ */
 void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 {
-    ui->stickDelaySlider->setValue(value * 100);
+    int temp = static_cast<int>(value * 100);
+    if (ui->stickDelaySlider->value() != temp)
+    {
+        ui->stickDelaySlider->setValue(temp);
+    }
 }
 
+/**
+ * @brief Update JoyControlStick delay value based on QSlider value.
+ * @param Value from QSlider.
+ */
 void JoyControlStickEditDialog::updateControlStickDelay(int value)
 {
-    stick->setStickDelay(value * 10);
+    int temp = value * 10;
+    if (stick->getStickDelay() != temp)
+    {
+        stick->setStickDelay(temp);
+    }
 }
 
 void JoyControlStickEditDialog::openModifierEditDialog()

@@ -33,6 +33,7 @@ private slots:
     void updateWindowTitleDPadName();
     void updateDPadDelaySpinBox(int value);
     void updateJoyDPadDelay(int value);
+    void updateDPadDelaySlider(double value);
 };
 
 #endif // DPADEDITDIALOG_H
