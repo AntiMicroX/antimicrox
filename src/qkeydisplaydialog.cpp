@@ -16,6 +16,7 @@
     #include <QApplication>
   #endif
 
+  #include "x11extras.h"
 
   #if defined(WITH_UINPUT) && defined(WITH_X11)
     //#include "qtx11keymapper.h"
@@ -43,10 +44,11 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         #endif
-    ui->formLayout->removeWidget(ui->nativeTitleLabel);
+    /*ui->formLayout->removeWidget(ui->nativeTitleLabel);
     ui->formLayout->removeWidget(ui->nativeKeyLabel);
     ui->nativeTitleLabel->setVisible(false);
     ui->nativeKeyLabel->setVisible(false);
+    */
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
         #endif
@@ -115,18 +117,18 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     {
         #endif
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
-        //finalvirtual = X11KeyCodeToX11KeySym(scancode);
+        finalvirtual = X11Extras::getInstance()->getGroup1KeySym(virtualkey);
+
         #ifdef WITH_UINPUT
-        //unsigned int tempalias = x11KeyMapper.returnQtKey(virtualkey);
         unsigned int tempalias = 0;
         QtKeyMapperBase *nativeKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
         if (nativeKeyMapper && nativeKeyMapper->getIdentifier() == "xtest")
         {
             tempalias = nativeKeyMapper->returnQtKey(virtualkey);
+            finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         }
-
-        finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         #endif
+
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else

@@ -2266,10 +2266,10 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     break;
                 }
                 */
-                default:
+                case JoyButtonSlot::JoyDelay:
                 {
-                    //iter->toBack();
-                    //break;
+                    iter.toBack();
+                    break;
                 }
             }
 

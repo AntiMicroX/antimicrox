@@ -263,7 +263,7 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Control_R] = XK_Control_R;
         //qtKeyToX11KeySym[AntKey_Shift_Lock] = XK_Shift_Lock;
         //qtKeyToVirtualKey[AntKey_Meta_R] = XK_Meta_R;
-        qtKeyToVirtualKey[AntKey_Alt_R] = XK_Multi_key;
+        qtKeyToVirtualKey[AntKey_Alt_R] = XK_Alt_R;
         qtKeyToVirtualKey[AntKey_KP_Multiply] = XK_KP_Multiply;
 
         for (int i=0; i <= (XK_KP_9 - XK_KP_0); i++)
