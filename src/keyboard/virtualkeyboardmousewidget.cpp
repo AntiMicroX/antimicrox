@@ -712,6 +712,41 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
     otherKeysMenu->addAction(tempAction);
 #endif
 
+    tempAction = new QAction(tr("Browser Back"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Back);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Browser Favorites"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Favorites);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Browser Forward"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Forward);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Browser Home"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_HomePage);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Browser Refresh"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Refresh);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Browser Search"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Search);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Browser Stop"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Stop);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
     tempAction = new QAction(tr("Calc"), otherKeysMenu);
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Launch1);
     tempAction->setData(temp);
@@ -719,11 +754,6 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 
     tempAction = new QAction(tr("Email"), otherKeysMenu);
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMail);
-    tempAction->setData(temp);
-    otherKeysMenu->addAction(tempAction);
-
-    tempAction = new QAction(tr("Home Page"), otherKeysMenu);
-    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_HomePage);
     tempAction->setData(temp);
     otherKeysMenu->addAction(tempAction);
 
