@@ -12,6 +12,8 @@
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QMenu>
+#include <QAction>
 
 #include "virtualkeypushbutton.h"
 #include "virtualmousepushbutton.h"
@@ -28,6 +30,20 @@ public:
     bool isKeyboardTabVisible();
 
 protected:
+    void setupVirtualKeyboardLayout();
+    QVBoxLayout* setupMainKeyboardLayout();
+    QVBoxLayout* setupAuxKeyboardLayout();
+    QVBoxLayout* setupKeyboardNumPadLayout();
+
+    void setupMouseControlLayout();
+    VirtualKeyPushButton* createNewKey(QString xcodestring);
+    QPushButton* createNoneKey();
+    void populateTopRowKeys();
+    QPushButton* createOtherKeysMenu();
+
+
+    virtual void resizeEvent(QResizeEvent *event);
+
     JoyButton *button;
     QWidget *keyboardTab;
     QWidget *mouseTab;
@@ -39,20 +55,9 @@ protected:
     QPushButton *mouseSettingsPushButton;
     //QCheckBox *mouseChangeTogether;
     //QComboBox *mouseModeComboBox;
+    QMenu *otherKeysMenu;
 
     static QHash<QString, QString> topRowKeys;
-
-    void setupVirtualKeyboardLayout();
-    QVBoxLayout* setupMainKeyboardLayout();
-    QVBoxLayout* setupAuxKeyboardLayout();
-    QVBoxLayout* setupKeyboardNumPadLayout();
-
-    void setupMouseControlLayout();
-    VirtualKeyPushButton* createNewKey(QString xcodestring);
-    QPushButton* createNoneKey();
-    void populateTopRowKeys();
-
-    virtual void resizeEvent(QResizeEvent *event);
 
 signals:
     void selectionFinished();
@@ -76,6 +81,8 @@ private slots:
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
     void setButtonFontSizes();
+    void otherKeysActionSingle(bool triggered);
+    void otherKeysActionAdvanced(bool triggered);
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

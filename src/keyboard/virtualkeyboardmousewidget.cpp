@@ -8,6 +8,7 @@
 #include "virtualkeyboardmousewidget.h"
 #include <mousedialog/mousebuttonsettingsdialog.h>
 #include <event.h>
+#include <antkeymapper.h>
 
 QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, QString> ();
 
@@ -25,7 +26,6 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
     this->addTab(mouseTab, tr("Mouse"));
 
     this->setTabPosition(QTabWidget::South);
-
 
     setupVirtualKeyboardLayout();
     setupMouseControlLayout();
@@ -186,7 +186,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("Super_L"));
     tempHBoxLayout->addWidget(createNewKey("Alt_L"));
     tempHBoxLayout->addWidget(createNewKey("space"));
-    tempHBoxLayout->addWidget(createNewKey("Multi_key"));
+    tempHBoxLayout->addWidget(createNewKey("Alt_R"));
     tempHBoxLayout->addWidget(createNewKey("Menu"));
     tempHBoxLayout->addWidget(createNewKey("Control_R"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
@@ -246,9 +246,19 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
     QGridLayout *tempGridLayout = new QGridLayout();
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout();
 
-    finalVBoxLayout->addWidget(noneButton);
-    finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed));
+    QPushButton *othersKeysButton = createOtherKeysMenu();
 
+    //tempHBoxLayout->addWidget(othersKeysButton);
+    //tempHBoxLayout->addWidget(noneButton);
+
+    //finalVBoxLayout->addLayout(tempHBoxLayout);
+    finalVBoxLayout->addWidget(noneButton);
+    finalVBoxLayout->addWidget(othersKeysButton);
+    finalVBoxLayout->setStretchFactor(noneButton, 1);
+    finalVBoxLayout->setStretchFactor(othersKeysButton, 1);
+    finalVBoxLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
+
+    tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     tempHBoxLayout->addWidget(createNewKey("Num_Lock"));
     tempHBoxLayout->addWidget(createNewKey("KP_Divide"));
@@ -282,6 +292,7 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
 
     tempVBoxLayout->addLayout(tempHBoxLayout);
     finalVBoxLayout->addLayout(tempVBoxLayout);
+    finalVBoxLayout->setStretchFactor(tempVBoxLayout, 8);
 
     return finalVBoxLayout;
 }
@@ -483,9 +494,9 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 {
     QPushButton *pushButton = new QPushButton(tr("NONE"), this);
-    pushButton->setMinimumSize(120, 40);
-    pushButton->setMaximumHeight(100);
-    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton->setMinimumSize(0, 25);
+    //pushButton->setMaximumHeight(100);
+    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     pushButton->setSizePolicy(sizePolicy);
     QFont font1;
     font1.setBold(true);
@@ -550,6 +561,14 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
         connect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), this, SLOT(processSingleKeyboardSelection(int, unsigned int)));
     }
 
+    QListIterator<QAction*> iterActions(otherKeysMenu->actions());
+    while (iterActions.hasNext())
+    {
+        QAction *temp = iterActions.next();
+        disconnect(temp, SIGNAL(triggered(bool)), 0, 0);
+        connect(temp, SIGNAL(triggered(bool)), this, SLOT(otherKeysActionSingle(bool)));
+    }
+
     disconnect(noneButton, SIGNAL(clicked()), 0, 0);
     connect(noneButton, SIGNAL(clicked()), this, SLOT(clearButtonSlotsFinish()));
     //qDebug() << "COUNT: " << newlist.count();
@@ -564,6 +583,14 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
         VirtualKeyPushButton *keybutton = iter.next();
         disconnect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), 0, 0);
         connect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), this, SLOT(processAdvancedKeyboardSelection(int)));
+    }
+
+    QListIterator<QAction*> iterActions(otherKeysMenu->actions());
+    while (iterActions.hasNext())
+    {
+        QAction *temp = iterActions.next();
+        disconnect(temp, SIGNAL(triggered(bool)), 0, 0);
+        connect(temp, SIGNAL(triggered(bool)), this, SLOT(otherKeysActionAdvanced(bool)));
     }
 
     disconnect(noneButton, SIGNAL(clicked()), 0, 0);
@@ -660,4 +687,109 @@ void VirtualKeyboardMouseWidget::setButtonFontSizes()
         temp->setFont(tempFont);
     }
     */
+}
+
+QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
+{
+    QPushButton *otherKeysPushbutton = new QPushButton("Others", this);
+    otherKeysPushbutton->setMinimumSize(0, 25);
+    //fuckMotherFuck->setMaximumHeight(100);
+    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+    otherKeysPushbutton->setSizePolicy(sizePolicy);
+    QFont font1;
+    font1.setBold(true);
+    otherKeysPushbutton->setFont(font1);
+
+    otherKeysMenu = new QMenu(this);
+
+    QAction *tempAction = 0;
+    unsigned int temp = 0;
+
+#ifdef Q_OS_WIN
+    tempAction = new QAction(tr("Applications"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_ApplicationLeft);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+#endif
+
+    tempAction = new QAction(tr("Calc"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Launch1);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Email"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMail);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Home Page"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_HomePage);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Media"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMedia);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Media Next"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_MediaPrevious);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Media Play"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_MediaPlay);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Media Previous"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_MediaPrevious);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Media Stop"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_MediaStop);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Search"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Search);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Volume Down"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_VolumeDown);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Volume Mute"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_VolumeMute);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    tempAction = new QAction(tr("Volume Up"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_VolumeUp);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+
+    otherKeysPushbutton->setMenu(otherKeysMenu);
+    return otherKeysPushbutton;
+}
+
+void VirtualKeyboardMouseWidget::otherKeysActionSingle(bool triggered)
+{
+    Q_UNUSED(triggered);
+
+    QAction *tempAction = static_cast<QAction*>(sender());
+    unsigned int virtualkey = tempAction->data().toInt();
+    processSingleKeyboardSelection(virtualkey, AntKeyMapper::getInstance()->returnQtKey(virtualkey));
+}
+
+void VirtualKeyboardMouseWidget::otherKeysActionAdvanced(bool triggered)
+{
+    Q_UNUSED(triggered);
+
+    QAction *tempAction = static_cast<QAction*>(sender());
+    unsigned int virtualkey = tempAction->data().toInt();
+    processAdvancedKeyboardSelection(virtualkey);
 }

@@ -176,6 +176,7 @@ void QtWinKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_LaunchMedia] = VK_LAUNCH_MEDIA_SELECT;
         qtKeyToVirtualKey[Qt::Key_Launch0] = VK_LAUNCH_APP1;
         qtKeyToVirtualKey[Qt::Key_Launch1] = VK_LAUNCH_APP2;
+        qtKeyToVirtualKey[Qt::Key_Kanji] = VK_KANJI;
 
         // The following VK_OEM_* keys are consistent across all
         // keyboard layouts.

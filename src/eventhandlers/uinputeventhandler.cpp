@@ -458,8 +458,8 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
 
                     if (temp.modifiers.testFlag(Qt::MetaModifier))
                     {
-                        tempList.append(KEY_RIGHTALT);
-                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_RIGHTALT, 1, false);
+                        tempList.append(KEY_LEFTMETA);
+                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTMETA, 1, false);
                     }
                 }
 

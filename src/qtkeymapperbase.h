@@ -66,6 +66,7 @@ protected:
 
     QHash<unsigned int, unsigned int> qtKeyToVirtualKey;
     QHash<unsigned int, unsigned int> virtualKeyToQtKey;
+    // Unicode representation -> VK+Modifier information
     QHash<unsigned int, charKeyInformation> virtualkeyToCharKeyInformation;
     QString identifier;
 

@@ -195,6 +195,7 @@ void QtUInputKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_MediaPrevious] = KEY_PREVIOUSSONG;
         qtKeyToVirtualKey[Qt::Key_MediaNext] = KEY_NEXTSONG;
         qtKeyToVirtualKey[Qt::Key_MediaRecord] = KEY_RECORD;
+        qtKeyToVirtualKey[Qt::Key_LaunchMedia] = KEY_MEDIA;
 
         // Map 0-9 keys
         for (unsigned int i=0; i <= (KEY_9 - KEY_1); i++)
