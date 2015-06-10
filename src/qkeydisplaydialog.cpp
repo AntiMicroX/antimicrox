@@ -16,14 +16,9 @@
     #include <QApplication>
   #endif
 
-  #include "x11extras.h"
-
-  #if defined(WITH_UINPUT) && defined(WITH_X11)
-    //#include "qtx11keymapper.h"
-    //static QtX11KeyMapper x11KeyMapper;
+  #ifdef WITH_X11
+    #include "x11extras.h"
   #endif
-#elif defined(Q_OS_WIN)
-    //static QtWinKeyMapper nativeWinKeyMapper;
 #endif
 
 
