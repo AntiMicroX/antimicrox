@@ -9,6 +9,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setModal(true);
+    resize(size().width(), 450);
 
     this->button = button;
 
@@ -58,7 +59,6 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     {
         ui->extraAccelerationGroupBox->setVisible(false);
     }
-
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>587</width>
-    <height>554</height>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -170,7 +170,7 @@ a period of time using a Cubic curve.</string>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="mouseSpeedGroupBox">
          <property name="title">
           <string>Mouse Speed Settings</string>
          </property>
@@ -180,7 +180,7 @@ a period of time using a Cubic curve.</string>
          <property name="checkable">
           <bool>false</bool>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_12">
+         <layout class="QVBoxLayout" name="mouseSpeedVerticalLayout">
           <item alignment="Qt::AlignHCenter">
            <widget class="QCheckBox" name="changeMouseSpeedsTogetherCheckBox">
             <property name="enabled">
@@ -407,9 +407,9 @@ according to number of simulated notches per second.</string>
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <layout class="QHBoxLayout" name="senHorizontalLayout">
             <item>
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="sensLabel">
               <property name="text">
                <string>Sensitivity:</string>
               </property>
@@ -449,9 +449,9 @@ faster at the low end of an axis.</string>
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="easingHorizontalLayout">
             <item>
-             <widget class="QLabel" name="label_10">
+             <widget class="QLabel" name="easingDurationLabel">
               <property name="text">
                <string>Easing Duration:</string>
               </property>
@@ -699,7 +699,7 @@ actual time that extra acceleration will be applied.</string>
                <double>5.000000000000000</double>
               </property>
               <property name="singleStep">
-               <double>0.100000000000000</double>
+               <double>0.010000000000000</double>
               </property>
              </widget>
             </item>

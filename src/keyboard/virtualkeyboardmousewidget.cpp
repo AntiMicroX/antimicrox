@@ -707,7 +707,7 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 
 #ifdef Q_OS_WIN
     tempAction = new QAction(tr("Applications"), otherKeysMenu);
-    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_ApplicationLeft);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Menu);
     tempAction->setData(temp);
     otherKeysMenu->addAction(tempAction);
 #endif

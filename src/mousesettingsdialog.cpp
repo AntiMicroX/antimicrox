@@ -1,4 +1,6 @@
 #include <QString>
+#include <QLabel>
+#include <QDoubleSpinBox>
 
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
@@ -21,7 +23,6 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(ui->accelerationComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(refreshMouseCursorSpeedValues(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSpringSectionStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseSpeedBoxStatus(int)));
-    //connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSmoothingStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeWheelSpeedBoxStatus(int)));
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSensitivityStatusForMouseMode(int)));
 
@@ -36,7 +37,6 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
     //connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMaxAccelThresholdValue(double)));
     //connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMinAccelThresholdValue(double)));
-    //connect(ui->extraAccelCheckBox, SIGNAL(clicked(bool)), ui->extraAccelDoubleSpinBox, SLOT(setEnabled(bool)));
 }
 
 MouseSettingsDialog::~MouseSettingsDialog()
@@ -51,20 +51,28 @@ void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
 
     if (currentMouseMode == 1 && temp == JoyButton::PowerCurve)
     {
+        //ui->sensitivityDoubleSpinBox->setVisible(true);
+        //ui->sensLabel->setVisible(true);
         ui->sensitivityDoubleSpinBox->setEnabled(true);
     }
     else
     {
+        //ui->sensitivityDoubleSpinBox->setVisible(false);
+        //ui->sensLabel->setVisible(false);
         ui->sensitivityDoubleSpinBox->setEnabled(false);
     }
 
     if (currentMouseMode == 1 && (temp == JoyButton::EasingQuadraticCurve ||
                                   temp == JoyButton::EasingCubicCurve))
     {
+        //ui->easingDoubleSpinBox->setVisible(true);
+        //ui->easingDurationLabel->setVisible(true);
         ui->easingDoubleSpinBox->setEnabled(true);
     }
     else
     {
+        //ui->easingDoubleSpinBox->setVisible(false);
+        //ui->easingDurationLabel->setVisible(false);
         ui->easingDoubleSpinBox->setEnabled(false);
     }
 }
@@ -84,19 +92,6 @@ void MouseSettingsDialog::changeSpringSectionStatus(int index)
         ui->relativeSpringCheckBox->setEnabled(false);
     }
 }
-
-/*void MouseSettingsDialog::changeSmoothingStatus(int index)
-{
-    if (index == 1)
-    {
-        ui->smoothingCheckBox->setEnabled(true);
-    }
-    else
-    {
-        ui->smoothingCheckBox->setEnabled(false);
-    }
-}
-*/
 
 void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 {
