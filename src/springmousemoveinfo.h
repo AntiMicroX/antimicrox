@@ -2,7 +2,7 @@
 #define SPRINGMOUSEMOVEINFO_H
 
 namespace PadderCommon {
-    typedef struct springModeInfo
+    typedef struct _springModeInfo
     {
         // Displacement of the X axis
         double displacementX;

@@ -153,6 +153,9 @@ public:
 
     void activatePendingEvent();
 
+    //virtual double getSpringDeadCircleX();
+    //virtual double getSpringDeadCircleY();
+
     static const double PI;
 
     // Define default values for stick properties.
@@ -174,11 +177,19 @@ protected:
     void determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3);
 
     JoyControlStick::JoyStickDirections determineStandardModeDirection();
+    JoyControlStick::JoyStickDirections determineStandardModeDirection(int axisXValue, int axisYValue);
+
     JoyControlStick::JoyStickDirections determineEightWayModeDirection();
+    JoyControlStick::JoyStickDirections determineEightWayModeDirection(int axisXValue, int axisYValue);
+
     JoyControlStick::JoyStickDirections determineFourWayCardinalDirection();
+    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection(int axisXValue, int axisYValue);
+
     JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection();
+    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection(int axisXValue, int axisYValue);
 
     JoyControlStick::JoyStickDirections calculateStickDirection();
+    JoyControlStick::JoyStickDirections calculateStickDirection(int axisXValue, int axisYValue);
 
     void performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets);
@@ -193,8 +204,8 @@ protected:
     double calculateYDistanceFromDeadZone(bool interpolate=false);
     double calculateYDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
 
-    int calculateCircleXValue(int rawXValue);
-    int calculateCircleYValue(int rawYValue);
+    int calculateCircleXValue(int axisXValue, int axisYValue);
+    int calculateCircleYValue(int axisXValue, int axisYValue);
 
     double calculateEightWayDiagonalDistanceFromDeadZone();
     double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue);

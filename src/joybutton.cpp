@@ -4481,7 +4481,6 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
         movedX = realMouseX;
         movedY = realMouseY;
         hasMoved = true;
-
     }
 
     lastMouseTime.restart();
@@ -5173,4 +5172,21 @@ void JoyButton::setAccelExtraDuration(double value)
 double JoyButton::getAccelExtraDuration()
 {
     return accelDuration;
+}
+
+bool JoyButton::hasFutureSpringEvents()
+{
+    bool result = false;
+    QListIterator<JoyButton*> iter(pendingMouseButtons);
+    while (iter.hasNext())
+    {
+        JoyButton *temp = iter.next();
+        if (temp->getMouseMode() == MouseSpring)
+        {
+            result = true;
+            iter.toBack();
+        }
+    }
+
+    return result;
 }

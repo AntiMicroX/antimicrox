@@ -260,12 +260,13 @@ protected:
     bool insertAssignedSlot(JoyButtonSlot *newSlot);
     unsigned int getPreferredKeyPressTime();
     void checkTurboCondition(JoyButtonSlot *slot);
+    static bool hasFutureSpringEvents();
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
-    typedef struct mouseCursorInfo
+    typedef struct _mouseCursorInfo
     {
         JoyButtonSlot *slot;
         double code;

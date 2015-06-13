@@ -155,7 +155,7 @@ JoyControlStick* JoyControlStickButton::getStick()
 
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
 {
-    return (JoyStickDirectionsType::JoyStickDirections)index;
+    return static_cast<JoyStickDirectionsType::JoyStickDirections>(index);
 }
 
 /**
