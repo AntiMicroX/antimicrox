@@ -56,6 +56,7 @@ const double JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
 const double JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
 const double JoyButton::DEFAULTSTARTACCELMULTIPLIER = 0.0;
 const double JoyButton::DEFAULTACCELEASINGDURATION = 0.1;
+const int JoyButton::DEFAULTSPRINGRELEASERADIUS = 0;
 
 // Keep references to active keys and mouse buttons.
 QHash<unsigned int, int> JoyButton::activeKeys;
@@ -254,7 +255,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     turboTimer.start();
 
                     // Newly activated button. Just entered safe zone.
-                    initializeAccelerationDistanceValues();
+                    initializeDistanceValues();
                     currentAccelerationDistance = getAccelerationDistance();
 
                     Logger::LogDebug(tr("Processing turbo for %1.%2")
@@ -318,7 +319,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 releaseDeskTimer.stop();
 
                 // Newly activated button. Just entered safe zone.
-                initializeAccelerationDistanceValues();
+                initializeDistanceValues();
                 currentAccelerationDistance = getAccelerationDistance();
 
                 if (!keyPressTimer.isActive())
@@ -744,6 +745,11 @@ void JoyButton::activateSlots()
                 activeSlots.append(slot);
                 //mouseEventQueue.enqueue(slot);
                 //mouseEvent();
+                if (pendingMouseButtons.size() == 0)
+                {
+                    mouseHelper.setFirstSpringStatus(true);
+                }
+
                 pendingMouseButtons.append(this);
                 mouseEventQueue.enqueue(slot);
                 //currentMouseEvent = 0;
@@ -951,6 +957,8 @@ void JoyButton::mouseEvent()
 
     if (buttonslot || !mouseEventQueue.isEmpty())
     {
+        updateLastMouseDistance = true;
+
         QQueue<JoyButtonSlot*> tempQueue;
 
         if (!buttonslot)
@@ -1036,33 +1044,21 @@ void JoyButton::mouseEvent()
                             double temp = difference;
                             if (temp <= 0.4)
                             {
-                                // Perform Quadratic acceleration.
-                                //difference = difference * difference;
-
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.40495; // Experimental
+                                difference = difference * 0.40495;
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                //difference = difference - 0.24;
-                                difference = difference - 0.23802; // Experimental
+                                difference = difference - 0.23802;
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                //difference = (difference * 2.2) - 1.2;
-                                difference = (difference * 2.1901) - 1.1901; // Experimental
+                                difference = (difference * 2.1901) - 1.1901;
                             }
-
-                            //if (temp - lastMouseDistance > 0)
-                            //{
-                                //qDebug() << "TEMP: " << temp;
-                                //qDebug() << "LAST: " << lastMouseDistance;
-                                //qDebug() << "";
-                            //}
 
                             break;
                         }
@@ -1075,11 +1071,8 @@ void JoyButton::mouseEvent()
                             double temp = difference;
                             if (temp <= 0.4)
                             {
-                                // Perform Quadratic acceleration.
-                                //difference = difference * difference;
-
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.40495; // Experimental
+                                difference = difference * 0.40495;
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -1091,8 +1084,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                //difference = difference - 0.24;
-                                difference = difference - 0.23802; // Experimental
+                                difference = difference - 0.23802;
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -1139,18 +1131,10 @@ void JoyButton::mouseEvent()
 
                                 // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
-
-                                //difference = difference * 7.2 - 5.2; // Range 0.56 - 2.0. Non-gradient version.
-                                //difference = difference * 4.7 - 3.2; // Range 0.56 - 1.5. Non-gradient version.
                                 difference = difference * 1.340028571 - 0.510042857; // Range 0.56198 - 1.5
                             }
                             break;
                         }
-                        /*default:
-                        {
-                            break;
-                        }
-                        */
                     }
 
                     double distance = 0;
@@ -1220,6 +1204,10 @@ void JoyButton::mouseEvent()
                             //qDebug() << "DURATION: " << elapsedDuration;
                             //qDebug() << "NEW: " << elapsedDiff;
                             //qDebug() << "COMING THROUGH THE RYE: " << difference;
+
+                            // As acceleration is applied, do not update last
+                            // distance values when not necessary.
+                            updateLastMouseDistance = false;
                         }
                         else
                         {
@@ -1319,34 +1307,55 @@ void JoyButton::mouseEvent()
                     double mouse1 = -2.0;
                     double mouse2 = -2.0;
                     double difference = getMouseDistanceFromDeadZone();
-                    double sumDist = buttonslot->getMouseDistance();
+                    //double sumDist = buttonslot->getMouseDistance();
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {
                         mouse1 = difference;
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse2 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
                     }
                     else if (mousedirection == JoyButtonSlot::MouseLeft)
                     {
                         mouse1 = -difference;
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse2 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
                     }
                     else if (mousedirection == JoyButtonSlot::MouseDown)
                     {
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse1 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
+
                         mouse2 = difference;
                     }
                     else if (mousedirection == JoyButtonSlot::MouseUp)
                     {
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse1 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
+
                         mouse2 = -difference;
                     }
 
-                    double tempdiff = (difference >= 0.0) ? difference : -difference;
+                    /*double tempdiff = (difference >= 0.0) ? difference : -difference;
                     double change = sumDist - tempdiff;
                     change = (change >= 0.0) ? change : -change;
-
-                    //springXSpeeds.append(mouse1);
-                    //springYSpeeds.append(mouse2);
+                    */
 
                     PadderCommon::springModeInfo infoX;
                     infoX.displacementX = mouse1;
+                    infoX.springDeadX = 0.0;
                     infoX.width = springWidth;
                     infoX.height = springHeight;
                     infoX.relative = relativeSpring;
@@ -1355,6 +1364,7 @@ void JoyButton::mouseEvent()
 
                     PadderCommon::springModeInfo infoY;
                     infoY.displacementY = mouse2;
+                    infoY.springDeadY = 0.0;
                     infoY.width = springWidth;
                     infoY.height = springHeight;
                     infoY.relative = relativeSpring;
@@ -1377,8 +1387,6 @@ void JoyButton::mouseEvent()
                 buttonslot = 0;
             }
         }
-
-        updateLastMouseDistance = true;
 
         if (!tempQueue.isEmpty())
         {
@@ -1739,6 +1747,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("accelextraduration", QString::number(accelDuration));
         }
 
+        if (springDeadCircleMultiplier != DEFAULTSPRINGRELEASERADIUS)
+        {
+            xml->writeTextElement("springreleaseradius", QString::number(springDeadCircleMultiplier));
+        }
+
         // Write information about assigned slots.
         if (!assignments.isEmpty())
         {
@@ -2062,6 +2075,16 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setAccelExtraDuration(tempchoice);
+    }
+    else if (xml->name() == "springreleaseradius" && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+        if (!relativeSpring)
+        {
+            setSpringDeadCircleMultiplier(tempchoice);
+        }
     }
 
     return found;
@@ -3266,6 +3289,9 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         currentAccelMulti = 0.0;
         currentAccelerationDistance = 0.0;
         startingAccelerationDistance = 0.0;
+
+        lastMouseDistance = 0.0;
+        currentMouseDistance = 0.0;
         updateStartingMouseDistance = true;
 
         if (slotiter && !slotiter->hasNext())
@@ -3665,9 +3691,69 @@ void JoyButton::releaseActiveSlots()
                     double mouse2 = (tempcode == JoyButtonSlot::MouseUp ||
                                      tempcode == JoyButtonSlot::MouseDown) ? 0.0 : -2.0;
 
+                    double springDeadCircleX = 0.0;
+                    if (getSpringDeadCircleMultiplier() > 0)
+                    {
+                        if (tempcode == JoyButtonSlot::MouseLeft)
+                        {
+                            double temp = getCurrentSpringDeadCircle();
+                            if (temp > getLastMouseDistanceFromDeadZone())
+                            {
+                                springDeadCircleX = -getLastMouseDistanceFromDeadZone();
+                            }
+                            else
+                            {
+                                springDeadCircleX = -temp;
+                            }
+                        }
+                        else if (tempcode == JoyButtonSlot::MouseRight)
+                        {
+                            double temp = getCurrentSpringDeadCircle();
+                            if (temp > getLastMouseDistanceFromDeadZone())
+                            {
+                                springDeadCircleX = getLastMouseDistanceFromDeadZone();
+                            }
+                            else
+                            {
+                                springDeadCircleX = temp;
+                            }
+                        }
+                    }
+
+                    double springDeadCircleY = 0.0;
+                    if (getSpringDeadCircleMultiplier() > 0)
+                    {
+                        if (tempcode == JoyButtonSlot::MouseUp)
+                        {
+                            double temp = getCurrentSpringDeadCircle();
+                            if (temp > getLastMouseDistanceFromDeadZone())
+                            {
+                                springDeadCircleY = -getLastMouseDistanceFromDeadZone();
+                            }
+                            else
+                            {
+                                springDeadCircleY = -temp;
+                            }
+                        }
+                        else if (tempcode == JoyButtonSlot::MouseDown)
+                        {
+                            double temp = getCurrentSpringDeadCircle();
+                            if (temp > getLastMouseDistanceFromDeadZone())
+                            {
+                                springDeadCircleY = getLastMouseDistanceFromDeadZone();
+                            }
+                            else
+                            {
+                                springDeadCircleY = temp;
+                            }
+                        }
+                    }
+
                     PadderCommon::springModeInfo infoX;
                     infoX.displacementX = mouse1;
                     infoX.displacementY = -2.0;
+                    infoX.springDeadX = springDeadCircleX;
+                    infoX.springDeadY = springDeadCircleY;
                     infoX.width = springWidth;
                     infoX.height = springHeight;
                     infoX.relative = relativeSpring;
@@ -3677,6 +3763,8 @@ void JoyButton::releaseActiveSlots()
                     PadderCommon::springModeInfo infoY;
                     infoY.displacementX = -2.0;
                     infoY.displacementY = mouse2;
+                    infoY.springDeadX = springDeadCircleX;
+                    infoY.springDeadY = springDeadCircleY;
                     infoY.width = springWidth;
                     infoY.height = springHeight;
                     infoY.relative = relativeSpring;
@@ -4027,6 +4115,7 @@ bool JoyButton::isDefault()
     value = value && (maxMouseDistanceAccelThreshold == DEFAULTMAXACCELTHRESHOLD);
     value = value && (startAccelMultiplier == DEFAULTSTARTACCELMULTIPLIER);
     value = value && (accelDuration == DEFAULTACCELEASINGDURATION);
+    value = value && (springDeadCircleMultiplier == DEFAULTSPRINGRELEASERADIUS);
     return value;
 }
 
@@ -4385,10 +4474,10 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 {
     PadderCommon::springModeInfo fullSpring = {
-        -2.0, -2.0, 0, 0, false, springModeScreen
+        -2.0, -2.0, 0, 0, false, springModeScreen, 0.0, 0.0
     };
     PadderCommon::springModeInfo relativeSpring = {
-        -2.0, -2.0, 0, 0, false, springModeScreen
+        -2.0, -2.0, 0, 0, false, springModeScreen, 0.0, 0.0
     };
 
     int realMouseX = movedX = 0;
@@ -4405,6 +4494,9 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
             double tempx = -2.0;
             double tempy = -2.0;
 
+            double tempSpringDeadX = 0.0;
+            double tempSpringDeadY = 0.0;
+
             PadderCommon::springModeInfo infoX;
             PadderCommon::springModeInfo infoY;
 
@@ -4414,6 +4506,9 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
             tempx = infoX.displacementX;
             tempy = infoY.displacementY;
 
+            tempSpringDeadX = infoX.springDeadX;
+            tempSpringDeadY = infoY.springDeadY;
+
             if (infoX.relative)
             {
                 if (relativeSpring.displacementX == -2.0)
@@ -4421,6 +4516,7 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
                     relativeSpring.displacementX = tempx;
                 }
                 relativeSpring.relative = true;
+
                 // Use largest found width for spring
                 // mode dimensions.
                 relativeSpring.width = qMax(infoX.width, relativeSpring.width);
@@ -4431,6 +4527,12 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
                 {
                     fullSpring.displacementX = tempx;
                 }
+
+                if (fullSpring.springDeadX == 0.0)
+                {
+                    fullSpring.springDeadX = tempSpringDeadX;
+                }
+
                 // Use largest found width for spring
                 // mode dimensions.
                 fullSpring.width = qMax(infoX.width, fullSpring.width);
@@ -4444,6 +4546,7 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
                 }
 
                 relativeSpring.relative = true;
+
                 // Use largest found height for spring
                 // mode dimensions.
                 relativeSpring.height = qMax(infoX.height, relativeSpring.height);
@@ -4454,6 +4557,12 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
                 {
                     fullSpring.displacementY = tempy;
                 }
+
+                if (fullSpring.springDeadY == 0.0)
+                {
+                    fullSpring.springDeadY = tempSpringDeadY;
+                }
+
                 // Use largest found height for spring
                 // mode dimensions.
                 fullSpring.height = qMax(infoX.height, fullSpring.height);
@@ -4461,6 +4570,11 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 
             if ((relativeSpring.displacementX != -2.0 && relativeSpring.displacementY != -2.0) &&
                 (fullSpring.displacementX != -2.0 && fullSpring.displacementY != -2.0))
+            {
+                complete = true;
+            }
+            else if ((relativeSpring.springDeadX != 0.0 && relativeSpring.springDeadY != 0.0) &&
+                     (fullSpring.springDeadX != 0.0 && fullSpring.springDeadY != 0.0))
             {
                 complete = true;
             }
@@ -4475,7 +4589,25 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
         }
         else
         {
-            sendSpringEvent(&fullSpring, 0, &realMouseX, &realMouseY);
+            if (!hasFutureSpringEvents())
+            {
+                if (fullSpring.springDeadX != 0.0)
+                {
+                    fullSpring.displacementX = fullSpring.springDeadX;
+                }
+
+                if (fullSpring.springDeadY != 0.0)
+                {
+                    fullSpring.displacementY = fullSpring.springDeadY;
+                }
+
+                sendSpringEvent(&fullSpring, 0, &realMouseX, &realMouseY);
+            }
+            else
+            {
+                sendSpringEvent(&fullSpring, 0, &realMouseX, &realMouseY);
+            }
+
         }
 
         movedX = realMouseX;
@@ -4721,7 +4853,16 @@ void JoyButton::establishMouseTimerConnections()
 
 void JoyButton::setSpringRelativeStatus(bool value)
 {
-    relativeSpring = value;
+    if (value != relativeSpring)
+    {
+        if (value)
+        {
+            setSpringDeadCircleMultiplier(0);
+        }
+
+        relativeSpring = value;
+        emit propertyUpdated();
+    }
 }
 
 bool JoyButton::isRelativeSpring()
@@ -4774,6 +4915,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->minMouseDistanceAccelThreshold = minMouseDistanceAccelThreshold;
     destButton->maxMouseDistanceAccelThreshold = maxMouseDistanceAccelThreshold;
     destButton->startAccelMultiplier = startAccelMultiplier;
+    destButton->springDeadCircleMultiplier = springDeadCircleMultiplier;
 }
 
 /**
@@ -5015,6 +5157,8 @@ void JoyButton::resetProperties()
     lastDistance = 0.0;
     currentAccelMulti = 0.0;
     lastAccelerationDistance = 0.0;
+    lastMouseDistance = 0.0;
+    currentMouseDistance = 0.0;
     updateLastMouseDistance = false;
     updateStartingMouseDistance = false;
     currentAccelerationDistance = 0.0;
@@ -5025,6 +5169,7 @@ void JoyButton::resetProperties()
     //currentTurboMode = GradientTurbo;
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
+    springDeadCircleMultiplier = DEFAULTSPRINGRELEASERADIUS;
 
     extraAccelerationEnabled = false;
     extraAccelerationMultiplier = DEFAULTEXTRACCELVALUE;
@@ -5049,6 +5194,7 @@ void JoyButton::resetAccelerationDistances()
     if (updateLastMouseDistance)
     {
         lastAccelerationDistance = currentAccelerationDistance;
+        lastMouseDistance = currentMouseDistance;
         updateLastMouseDistance = false;
 
         if (updateStartingMouseDistance)
@@ -5059,13 +5205,22 @@ void JoyButton::resetAccelerationDistances()
     }
 
     currentAccelerationDistance = getAccelerationDistance();
+    currentMouseDistance = getMouseDistanceFromDeadZone();
 }
 
-void JoyButton::initializeAccelerationDistanceValues()
+void JoyButton::initializeDistanceValues()
 {
     lastAccelerationDistance = getLastAccelerationDistance();
     currentAccelerationDistance = getAccelerationDistance();
     startingAccelerationDistance = lastAccelerationDistance;
+
+    lastMouseDistance = getLastMouseDistanceFromDeadZone();
+    currentMouseDistance = getMouseDistanceFromDeadZone();
+}
+
+double JoyButton::getLastMouseDistanceFromDeadZone()
+{
+    return lastMouseDistance;
 }
 
 double JoyButton::getLastAccelerationDistance()
@@ -5189,4 +5344,23 @@ bool JoyButton::hasFutureSpringEvents()
     }
 
     return result;
+}
+
+void JoyButton::setSpringDeadCircleMultiplier(int value)
+{
+    if (value >= 0 && value <= 100)
+    {
+        springDeadCircleMultiplier = value;
+        emit propertyUpdated();
+    }
+}
+
+int JoyButton::getSpringDeadCircleMultiplier()
+{
+    return springDeadCircleMultiplier;
+}
+
+double JoyButton::getCurrentSpringDeadCircle()
+{
+    return (springDeadCircleMultiplier * 0.01);
 }

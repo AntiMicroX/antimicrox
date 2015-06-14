@@ -172,3 +172,14 @@ double JoyAxisButton::getLastAccelerationDistance()
 
     return distance;
 }
+
+double JoyAxisButton::getLastMouseDistanceFromDeadZone()
+{
+    double distance = 0.0;
+    if (axis->getAxisButtonByValue(axis->getLastKnownThrottleValue()) == this)
+    {
+        distance = axis->getDistanceFromDeadZone(axis->getLastKnownThrottleValue());
+    }
+
+    return distance;
+}

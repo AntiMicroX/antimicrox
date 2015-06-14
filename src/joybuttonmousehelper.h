@@ -9,6 +9,11 @@ class JoyButtonMouseHelper : public QObject
 public:
     explicit JoyButtonMouseHelper(QObject *parent = 0);
     void resetButtonMouseDistances();
+    void setFirstSpringStatus(bool status);
+    bool getFirstSpringStatus();
+
+protected:
+    bool firstSpringEvent;
 
 signals:
     void mouseCursorMoved(int mouseX, int mouseY, int elapsed);

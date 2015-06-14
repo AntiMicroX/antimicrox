@@ -183,7 +183,7 @@ bool JoyControlStickButton::isPartRealAxis()
 
 double JoyControlStickButton::getLastAccelerationDistance()
 {
-    double temp = stick->calculateLastAccelerationDistance(this);
+    double temp = stick->calculateLastAccelerationButtonDistance(this);
     return temp;
 }
 
@@ -211,4 +211,29 @@ QString JoyControlStickButton::getActiveZoneSummary()
     tempList.append(getActiveZoneList());
     QString temp = buildActiveZoneSummary(tempList);
     return temp;
+}
+
+double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
+{
+    return stick->calculateLastMouseDirectionalDistance(this);
+}
+
+double JoyControlStickButton::getCurrentSpringDeadCircle()
+{
+    double result = (springDeadCircleMultiplier * 0.01);
+    if (index == JoyControlStick::StickLeft || index == JoyControlStick::StickRight)
+    {
+        result = stick->getSpringDeadCircleX() * (springDeadCircleMultiplier * 0.01);
+    }
+    else if (index == JoyControlStick::StickUp || index == JoyControlStick::StickDown)
+    {
+        result = stick->getSpringDeadCircleY() * (springDeadCircleMultiplier * 0.01);
+    }
+    else if (index == JoyControlStick::StickRightUp || index == JoyControlStick::StickRightDown ||
+             index == JoyControlStick::StickLeftDown || index == JoyControlStick::StickLeftUp)
+    {
+        result = 0.0;
+    }
+
+    return result;
 }

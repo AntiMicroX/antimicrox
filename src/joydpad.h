@@ -80,6 +80,9 @@ public:
     unsigned int getDPadDelay();
     double getButtonsEasingDuration();
 
+    void setButtonsSpringDeadCircleMultiplier(int value);
+    int getButtonsSpringDeadCircleMultiplier();
+
     static const QString xmlName;
     static const unsigned int DEFAULTDPADDELAY;
 

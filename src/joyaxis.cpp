@@ -514,6 +514,7 @@ void JoyAxis::reset(int index)
     this->index = index;
 }
 
+// TODO: Possibly remove.
 double JoyAxis::calculateNormalizedAxisPlacement()
 {
     double difference = (abs(currentThrottledValue))/(double)(maxZoneValue);
@@ -529,6 +530,7 @@ double JoyAxis::calculateNormalizedAxisPlacement()
     return difference;
 }
 
+// TODO: Possibly remove.
 double JoyAxis::getAbsoluteAxisPlacement()
 {
     double difference = (abs(currentRawValue))/(double)(maxZoneValue);

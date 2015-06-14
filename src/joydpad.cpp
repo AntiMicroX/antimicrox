@@ -1027,3 +1027,42 @@ double JoyDPad::getButtonsEasingDuration()
 
     return result;
 }
+
+void JoyDPad::setButtonsSpringDeadCircleMultiplier(int value)
+{
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setSpringDeadCircleMultiplier(value);
+    }
+}
+
+int JoyDPad::getButtonsSpringDeadCircleMultiplier()
+{
+    int result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
+
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            result = button->getSpringDeadCircleMultiplier();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            int temp = button->getSpringDeadCircleMultiplier();
+            if (temp != result)
+            {
+                result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
+                iter.toBack();
+            }
+        }
+    }
+
+    return result;
+}

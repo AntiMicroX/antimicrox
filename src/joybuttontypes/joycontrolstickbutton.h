@@ -21,7 +21,10 @@ public:
     QString getDirectionName();
     JoyStickDirectionsType::JoyStickDirections getDirection();
     virtual double getDistanceFromDeadZone();
+
     virtual double getMouseDistanceFromDeadZone();
+    virtual double getLastMouseDistanceFromDeadZone();
+
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyControlStick *getStick();
     virtual void setTurboMode(TurboMode mode);
@@ -34,6 +37,8 @@ public:
     static const QString xmlName;
 
 protected:
+    virtual double getCurrentSpringDeadCircle();
+
     JoyControlStick *stick;
 
 signals:

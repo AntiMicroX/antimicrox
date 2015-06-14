@@ -1,6 +1,8 @@
 #include "mousedpadsettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <QSpinBox>
+
 #include <inputdevice.h>
 #include <setjoystick.h>
 
@@ -8,15 +10,14 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     MouseSettingsDialog(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
-    resize(size().width(), 450);
+    setGeometry(geometry().x(), geometry().y(), size().width(), 450);
 
     this->dpad = dpad;
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     if (dpad->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(dpad->getButtonsPresetSensitivity());
@@ -46,6 +47,11 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     ui->extraAccelerationGroupBox->setVisible(false);
 
+    calculateReleaseSpringRadius();
+
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -68,6 +74,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelSpeedVerticalSpeed(int)));
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), dpad, SLOT(setButtonsEasingDuration(double)));
+
+    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
 
     JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
     connect(mouseHelper, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
@@ -281,4 +289,14 @@ void MouseDPadSettingsDialog::updateWindowTitleDPadName()
     }
 
     setWindowTitle(temp);
+}
+
+void MouseDPadSettingsDialog::updateReleaseSpringRadius(int value)
+{
+    dpad->setButtonsSpringDeadCircleMultiplier(value);
+}
+
+void MouseDPadSettingsDialog::calculateReleaseSpringRadius()
+{
+    ui->releaseSpringRadiusspinBox->setValue(dpad->getButtonsSpringDeadCircleMultiplier());
 }

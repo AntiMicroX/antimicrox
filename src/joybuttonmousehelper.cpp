@@ -7,6 +7,7 @@
 JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent) :
     QObject(parent)
 {
+    firstSpringEvent = false;
 }
 
 /**
@@ -71,6 +72,8 @@ void JoyButtonMouseHelper::mouseEvent()
     {
         moveSpringMouse();
     }
+
+    firstSpringEvent = false;
 }
 
 void JoyButtonMouseHelper::resetButtonMouseDistances()
@@ -85,4 +88,14 @@ void JoyButtonMouseHelper::resetButtonMouseDistances()
             temp->resetAccelerationDistances();
         }
     }
+}
+
+void JoyButtonMouseHelper::setFirstSpringStatus(bool status)
+{
+    firstSpringEvent = status;
+}
+
+bool JoyButtonMouseHelper::getFirstSpringStatus()
+{
+    return firstSpringEvent;
 }

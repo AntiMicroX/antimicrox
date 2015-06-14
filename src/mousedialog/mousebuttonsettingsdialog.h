@@ -44,6 +44,7 @@ private slots:
     void updateMinAccelThreshold(double value);
     void updateMaxAccelThreshold(double value);
     void updateAccelExtraDuration(double value);
+    void updateReleaseSpringRadius(int value);
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOG_H

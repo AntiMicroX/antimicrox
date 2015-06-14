@@ -98,6 +98,7 @@ public:
 
     virtual double getDistanceFromDeadZone();
     virtual double getMouseDistanceFromDeadZone();
+    virtual double getLastMouseDistanceFromDeadZone();
 
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();
@@ -178,7 +179,7 @@ public:
     bool isExtraAccelerationEnabled();
     double getExtraAccelerationMultiplier();
 
-    virtual void initializeAccelerationDistanceValues();
+    virtual void initializeDistanceValues();
 
     void setMinAccelThreshold(double value);
     double getMinAccelThreshold();
@@ -194,6 +195,9 @@ public:
 
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
+
+    void setSpringDeadCircleMultiplier(int value);
+    int getSpringDeadCircleMultiplier();
 
     static const QString xmlName;
 
@@ -241,6 +245,8 @@ public:
     static const double DEFAULTSTARTACCELMULTIPLIER;
     static const double DEFAULTACCELEASINGDURATION;
 
+    static const int DEFAULTSPRINGRELEASERADIUS;
+
     static QList<double> mouseHistoryX;
     static QList<double> mouseHistoryY;
 
@@ -261,6 +267,7 @@ protected:
     unsigned int getPreferredKeyPressTime();
     void checkTurboCondition(JoyButtonSlot *slot);
     static bool hasFutureSpringEvents();
+    virtual double getCurrentSpringDeadCircle();
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
 
@@ -364,6 +371,10 @@ protected:
 
     // Keep track of the previous mouse distance from the previous gamepad
     // poll.
+    double lastMouseDistance;
+
+    // Keep track of the previous full distance from the previous gamepad
+    // poll.
     double lastAccelerationDistance;
 
     // Multiplier and time used for acceleration easing.
@@ -377,6 +388,10 @@ protected:
     // Should startingMouseDistance be updated. Set after acceleration
     // has finally been applied.
     bool updateStartingMouseDistance;
+
+    // Keep track of the current mouse distance after a poll. Used
+    // to update lastMouseDistance later.
+    double currentMouseDistance;
 
     // Keep track of the current mouse distance after a poll. Used
     // to update lastMouseDistance later.
@@ -406,6 +421,8 @@ protected:
 
     bool extraAccelerationEnabled;
     double extraAccelerationMultiplier;
+
+    int springDeadCircleMultiplier;
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;

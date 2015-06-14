@@ -16,6 +16,8 @@ public:
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
     virtual double getMouseDistanceFromDeadZone();
+    virtual double getLastMouseDistanceFromDeadZone();
+
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
     JoyControlStick *getStick();
     virtual void setTurboMode(TurboMode mode);

@@ -1,5 +1,7 @@
 #include "mousebuttonsettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
+#include <QSpinBox>
+#include <QCheckBox>
 
 #include <inputdevice.h>
 #include <setjoystick.h>
@@ -9,21 +11,20 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setModal(true);
-    resize(size().width(), 450);
+    setGeometry(geometry().x(), geometry().y(), size().width(), 450);
 
     this->button = button;
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     if (button->getSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(button->getSensitivity());
     }
-    updateAccelerationCurvePresetComboBox();
 
+    updateAccelerationCurvePresetComboBox();
     updateWindowTitleButtonName();
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
@@ -60,6 +61,11 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->extraAccelerationGroupBox->setVisible(false);
     }
 
+    ui->releaseSpringRadiusspinBox->setValue(button->getSpringDeadCircleMultiplier());
+
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -89,6 +95,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
     connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
+
+    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -268,4 +276,9 @@ void MouseButtonSettingsDialog::updateMaxAccelThreshold(double value)
 void MouseButtonSettingsDialog::updateAccelExtraDuration(double value)
 {
     button->setAccelExtraDuration(value);
+}
+
+void MouseButtonSettingsDialog::updateReleaseSpringRadius(int value)
+{
+    button->setSpringDeadCircleMultiplier(value);
 }

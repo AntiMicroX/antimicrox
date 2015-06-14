@@ -45,6 +45,8 @@ private slots:
     void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed);
     void updateMouseSpringStatusLabels(int coordX, int coordY);
     void refreshMouseCursorSpeedValues(int index);
+    void disableReleaseSpringBox(bool enable);
+    void resetReleaseRadius(bool enabled);
 
     //void clampMinAccelThresholdValue(double value);
     //void clampMaxAccelThresholdValue(double value);

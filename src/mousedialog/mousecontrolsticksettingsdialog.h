@@ -28,6 +28,8 @@ protected:
     void calculateMaxAccelerationThreshold();
     void calculateAccelExtraDuration();
 
+    void calculateReleaseSpringRadius();
+
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
 
@@ -55,6 +57,7 @@ private slots:
     void updateMinAccelThreshold(double value);
     void updateMaxAccelThreshold(double value);
     void updateAccelExtraDuration(double value);
+    void updateReleaseSpringRadius(int value);
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOG_H

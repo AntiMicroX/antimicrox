@@ -3,6 +3,8 @@
 #include "mousecontrolsticksettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <QSpinBox>
+
 #include <inputdevice.h>
 #include <setjoystick.h>
 
@@ -16,8 +18,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     if (stick->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(stick->getButtonsPresetSensitivity());
@@ -51,6 +52,10 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     calculateMinAccelerationThreshold();
     calculateMaxAccelerationThreshold();
     calculateAccelExtraDuration();
+    calculateReleaseSpringRadius();
+
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
 
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
@@ -81,6 +86,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
     connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
+
+    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -356,4 +363,14 @@ void MouseControlStickSettingsDialog::updateMaxAccelThreshold(double value)
 void MouseControlStickSettingsDialog::updateAccelExtraDuration(double value)
 {
     stick->setButtonsAccelerationExtraDuration(value);
+}
+
+void MouseControlStickSettingsDialog::updateReleaseSpringRadius(int value)
+{
+    stick->setButtonsSpringDeadCircleMultiplier(value);
+}
+
+void MouseControlStickSettingsDialog::calculateReleaseSpringRadius()
+{
+    ui->releaseSpringRadiusspinBox->setValue(stick->getButtonsSpringDeadCircleMultiplier());
 }

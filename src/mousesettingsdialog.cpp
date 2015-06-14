@@ -1,6 +1,8 @@
 #include <QString>
 #include <QLabel>
 #include <QDoubleSpinBox>
+#include <QSpinBox>
+#include <QCheckBox>
 
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
@@ -34,6 +36,9 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
     connect(ui->wheelVertSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelVerticalSpeedLabel(int)));
     connect(ui->wheelHoriSpeedSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateWheelHorizontalSpeedLabel(int)));
+
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(disableReleaseSpringBox(bool)));
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(resetReleaseRadius(bool)));
 
     //connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMaxAccelThresholdValue(double)));
     //connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMinAccelThresholdValue(double)));
@@ -84,12 +89,15 @@ void MouseSettingsDialog::changeSpringSectionStatus(int index)
         ui->springWidthSpinBox->setEnabled(true);
         ui->springHeightSpinBox->setEnabled(true);
         ui->relativeSpringCheckBox->setEnabled(true);
+        bool enableSpringRadiusBox = !ui->relativeSpringCheckBox->isChecked();
+        ui->releaseSpringRadiusspinBox->setEnabled(enableSpringRadiusBox);
     }
     else
     {
         ui->springWidthSpinBox->setEnabled(false);
         ui->springHeightSpinBox->setEnabled(false);
         ui->relativeSpringCheckBox->setEnabled(false);
+        ui->releaseSpringRadiusspinBox->setEnabled(false);
     }
 }
 
@@ -334,6 +342,19 @@ void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
     updateVerticalSpeedConvertLabel(ui->verticalSpinBox->value());
 }
 
+void MouseSettingsDialog::disableReleaseSpringBox(bool enable)
+{
+    ui->releaseSpringRadiusspinBox->setEnabled(!enable);
+}
+
+void MouseSettingsDialog::resetReleaseRadius(bool enabled)
+{
+    if (enabled && ui->releaseSpringRadiusspinBox->value() > 0)
+    {
+        ui->releaseSpringRadiusspinBox->setValue(0);
+    }
+}
+
 /*void MouseSettingsDialog::clampMinAccelThresholdValue(double value)
 {
     ui->minThresholdDoubleSpinBox->setMaximum(value);
@@ -344,3 +365,4 @@ void MouseSettingsDialog::clampMaxAccelThresholdValue(double value)
     ui->maxThresholdDoubleSpinBox->setMaximum(value);
 }
 */
+

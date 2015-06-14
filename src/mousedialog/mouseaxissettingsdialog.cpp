@@ -1,6 +1,8 @@
 #include "mouseaxissettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include <QSpinBox>
+
 #include <inputdevice.h>
 #include <setjoystick.h>
 
@@ -14,8 +16,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
     calculateSpringPreset();
-    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
-    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     if (axis->getButtonsPresetSensitivity() > 0.0)
     {
         ui->sensitivityDoubleSpinBox->setValue(axis->getButtonsPresetSensitivity());
@@ -50,6 +51,11 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     calculateMaxAccelerationThreshold();
     calculateAccelExtraDuration();
 
+    calculateReleaseSpringRadius();
+
+    changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
+    changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
+
     connect(this, SIGNAL(finished(int)), springPreviewWidget, SLOT(deleteLater()));
 
     connect(ui->mouseModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeMouseMode(int)));
@@ -79,6 +85,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
     connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
     connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
+
+    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -370,4 +378,22 @@ void MouseAxisSettingsDialog::updateAccelExtraDuration(double value)
 {
     axis->getPAxisButton()->setAccelExtraDuration(value);
     axis->getNAxisButton()->setAccelExtraDuration(value);
+}
+
+void MouseAxisSettingsDialog::updateReleaseSpringRadius(int value)
+{
+    axis->getPAxisButton()->setSpringDeadCircleMultiplier(value);
+    axis->getNAxisButton()->setSpringDeadCircleMultiplier(value);
+}
+
+void MouseAxisSettingsDialog::calculateReleaseSpringRadius()
+{
+    int result = 0;
+    if (axis->getPAxisButton()->getSpringDeadCircleMultiplier() ==
+        axis->getNAxisButton()->getSpringDeadCircleMultiplier())
+    {
+        result = axis->getPAxisButton()->getSpringDeadCircleMultiplier();
+    }
+
+    ui->releaseSpringRadiusspinBox->setValue(result);
 }

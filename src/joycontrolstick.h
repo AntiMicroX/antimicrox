@@ -18,7 +18,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
 {
     Q_OBJECT
 public:
-    explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY, int index, int originset = 0, QObject *parent = 0);
+    explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY,
+                             int index, int originset = 0, QObject *parent = 0);
     ~JoyControlStick();
 
     enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
@@ -56,7 +57,7 @@ public:
     QList<int> getFourWayCardinalZoneAngles();
     QList<int> getFourWayDiagonalZoneAngles();
     QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();
-    JoyControlStickModifierButton *getModifierButton();
+    JoyControlStickModifierButton* getModifierButton();
     JoyAxis* getAxisX();
     JoyAxis* getAxisY();
 
@@ -75,7 +76,7 @@ public:
     double calculateLastMouseDirectionalDistance(JoyControlStickButton *button);
 
 
-    double calculateLastAccelerationDistance(JoyControlStickButton *button);
+    double calculateLastAccelerationButtonDistance(JoyControlStickButton *button);
     double calculateAccelerationDistance(JoyControlStickButton *button);
     double calculateXAxisDistance(int axisXValue);
     double calculateYAxisDistance(int axisYValue);
@@ -126,6 +127,9 @@ public:
     void setButtonsAccelerationExtraDuration(double value);
     double getButtonsAccelerationEasingDuration();
 
+    void setButtonsSpringDeadCircleMultiplier(int value);
+    int getButtonsSpringDeadCircleMultiplier();
+
     void releaseButtonEvents();
     QString getStickName();
 
@@ -152,9 +156,10 @@ public:
     bool hasPendingEvent();
 
     void activatePendingEvent();
+    //double calculateXDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
 
-    //virtual double getSpringDeadCircleX();
-    //virtual double getSpringDeadCircleY();
+    double getSpringDeadCircleX();
+    double getSpringDeadCircleY();
 
     static const double PI;
 
@@ -210,6 +215,9 @@ protected:
     double calculateEightWayDiagonalDistanceFromDeadZone();
     double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue);
     double calculateEightWayDiagonalDistance(int axisXValue, int axisYValue);
+
+    inline double calculateXDiagonalDeadZone(int axisXValue, int axisYValue);
+    inline double calculateYDiagonalDeadZone(int axisXValue, int axisYValue);
 
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
     void clearPendingAxisEvents();

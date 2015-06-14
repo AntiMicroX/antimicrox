@@ -19,6 +19,7 @@ protected:
     //void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
     void updateWindowTitleDPadName();
+    void calculateReleaseSpringRadius();
 
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
@@ -38,6 +39,9 @@ public slots:
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
+
+private slots:
+    void updateReleaseSpringRadius(int value);
 };
 
 #endif // MOUSEDPADSETTINGSDIALOG_H

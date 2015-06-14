@@ -16,6 +16,8 @@ namespace PadderCommon {
         // of the screen.
         bool relative;
         int screen;
+        double springDeadX;
+        double springDeadY;
     } springModeInfo;
 }
 

@@ -723,9 +723,6 @@ actual time that extra acceleration will be applied.</string>
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
-            <property name="topMargin">
-             <number>10</number>
-            </property>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
@@ -779,6 +776,36 @@ of your screen.</string>
                 </property>
                 <property name="maximum">
                  <number>16777215</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QLabel" name="releaseSpringRadiusLabel">
+                <property name="text">
+                 <string>Release Radius:</string>
+                </property>
+                <property name="buddy">
+                 <cstring>releaseSpringRadiusspinBox</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="releaseSpringRadiusspinBox">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="toolTip">
+                 <string/>
+                </property>
+                <property name="suffix">
+                 <string>%</string>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
                 </property>
                </widget>
               </item>
