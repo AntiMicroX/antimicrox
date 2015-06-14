@@ -513,9 +513,9 @@ void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode, uns
     emit selectionFinished();
 }
 
-void VirtualKeyboardMouseWidget::processAdvancedKeyboardSelection(int keycode)
+void VirtualKeyboardMouseWidget::processAdvancedKeyboardSelection(int keycode, unsigned int alias)
 {
-    emit selectionMade(keycode);
+    emit selectionMade(keycode, alias);
 }
 
 void VirtualKeyboardMouseWidget::processSingleMouseSelection(JoyButtonSlot *tempslot)
@@ -582,7 +582,7 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
     {
         VirtualKeyPushButton *keybutton = iter.next();
         disconnect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), 0, 0);
-        connect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), this, SLOT(processAdvancedKeyboardSelection(int)));
+        connect(keybutton, SIGNAL(keycodeObtained(int, unsigned int)), this, SLOT(processAdvancedKeyboardSelection(int, unsigned int)));
     }
 
     QListIterator<QAction*> iterActions(otherKeysMenu->actions());
@@ -821,5 +821,5 @@ void VirtualKeyboardMouseWidget::otherKeysActionAdvanced(bool triggered)
 
     QAction *tempAction = static_cast<QAction*>(sender());
     unsigned int virtualkey = tempAction->data().toInt();
-    processAdvancedKeyboardSelection(virtualkey);
+    processAdvancedKeyboardSelection(virtualkey, AntKeyMapper::getInstance()->returnQtKey(virtualkey));
 }

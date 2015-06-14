@@ -62,7 +62,7 @@ protected:
 signals:
     void selectionFinished();
     void selectionCleared();
-    void selectionMade(int keycode);
+    void selectionMade(int keycode, unsigned int alias);
     void selectionMade(JoyButtonSlot *slot);
 
 public slots:
@@ -73,7 +73,7 @@ public slots:
 
 private slots:
     void processSingleKeyboardSelection(int keycode, unsigned int alias);
-    void processAdvancedKeyboardSelection(int keycode);
+    void processAdvancedKeyboardSelection(int keycode, unsigned int alias);
     void processSingleMouseSelection(JoyButtonSlot *tempslot);
     void processAdvancedMouseSelection(JoyButtonSlot *tempslot);
     void clearButtonSlots();

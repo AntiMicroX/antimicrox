@@ -83,7 +83,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
   #ifdef WITH_VMULTI
         if (handler->getIdentifier() == "vmulti")
         {
-            finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
+            finalvirtual = WinExtras::correctVirtualKey(tempcode, virtualactual);
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
             QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
             unsigned int tempQtKey = 0;
@@ -110,8 +110,8 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
             // by checking for extended bit in scan code.
-            finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
-            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
+            finalvirtual = WinExtras::correctVirtualKey(tempcode, virtualactual);
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, tempcode);
         }
 
 #else
@@ -152,7 +152,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         else
         {
             // Not running on xcb platform.
-            finalvirtual = controlcode;
+            finalvirtual = tempcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
         #endif
@@ -171,7 +171,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         else
         {
             // Not running on xcb platform.
-            finalvirtual = controlcode;
+            finalvirtual = tempcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
         #endif

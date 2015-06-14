@@ -83,7 +83,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     connect(ui->advancedPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedDialog()));
     connect(this, SIGNAL(advancedDialogOpened()), ui->virtualKeyMouseTabWidget, SLOT(establishVirtualKeyboardAdvancedSignalConnections()));
     connect(this, SIGNAL(advancedDialogOpened()), ui->virtualKeyMouseTabWidget, SLOT(establishVirtualMouseAdvancedSignalConnections()));
-    connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionMade(int)), this, SLOT(createTempSlot(int)));
+    //connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionMade(int)), this, SLOT(createTempSlot(int)));
 
     connect(ui->actionNameLineEdit, SIGNAL(textEdited(QString)), button, SLOT(setActionName(QString)));
     connect(ui->buttonNameLineEdit, SIGNAL(textEdited(QString)), button, SLOT(setButtonName(QString)));
@@ -341,15 +341,17 @@ void ButtonEditDialog::openAdvancedDialog()
     connect(this, SIGNAL(keyGrabbed(JoyButtonSlot*)), dialog, SLOT(placeNewSlot(JoyButtonSlot*)));
     connect(this, SIGNAL(selectionCleared()), dialog, SLOT(clearAllSlots()));
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionMade(JoyButtonSlot*)), dialog, SLOT(placeNewSlot(JoyButtonSlot*)));
+    connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionMade(int, unsigned int)), this, SLOT(createTempSlot(int, unsigned int)));
     connect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionCleared()), dialog, SLOT(clearAllSlots()));
 
     connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
     emit advancedDialogOpened();
 }
 
-void ButtonEditDialog::createTempSlot(int keycode)
+void ButtonEditDialog::createTempSlot(int keycode, unsigned int alias)
 {
-    JoyButtonSlot *slot = new JoyButtonSlot(keycode, JoyButtonSlot::JoyKeyboard, this);
+    JoyButtonSlot *slot = new JoyButtonSlot(keycode, alias,
+                                            JoyButtonSlot::JoyKeyboard, this);
     emit sendTempSlotToAdvanced(slot);
 }
 
@@ -377,6 +379,8 @@ void ButtonEditDialog::setTurboButtonEnabled(bool state)
 void ButtonEditDialog::closedAdvancedDialog()
 {
     ui->advancedPushButton->setEnabled(true);
+
+    disconnect(ui->virtualKeyMouseTabWidget, SIGNAL(selectionMade(int, unsigned int)), this, 0);
 
     // Re-connect previously disconnected event
     connect(this, SIGNAL(keyGrabbed(JoyButtonSlot*)), this, SLOT(processSlotAssignment(JoyButtonSlot*)));
