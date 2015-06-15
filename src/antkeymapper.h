@@ -32,6 +32,7 @@ public:
     bool isModifierKey(unsigned int qkey);
     QtKeyMapperBase* getNativeKeyMapper();
     QtKeyMapperBase* getKeyMapper();
+    bool hasNativeKeyMapper();
 
 protected:
     explicit AntKeyMapper(QString handler = "", QObject *parent = 0);

@@ -42,7 +42,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     BACKEND_ELSE_IF (handler == "sendinput")
     {
         internalMapper = &winMapper;
-        nativeKeyMapper = &winMapper;
+        nativeKeyMapper = 0;
     }
 
 #else
@@ -50,11 +50,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "xtest")
     {
         internalMapper = &x11Mapper;
-#ifdef WITH_UINPUT
-        nativeKeyMapper = &uinputMapper;
-#else
         nativeKeyMapper = 0;
-#endif
     }
     #endif
 
@@ -119,4 +115,10 @@ QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper()
 QtKeyMapperBase* AntKeyMapper::getKeyMapper()
 {
     return internalMapper;
+}
+
+bool AntKeyMapper::hasNativeKeyMapper()
+{
+    bool result = nativeKeyMapper != 0;
+    return result;
 }
