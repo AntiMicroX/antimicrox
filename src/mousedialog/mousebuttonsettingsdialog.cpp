@@ -11,7 +11,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setModal(true);
-    setGeometry(geometry().x(), geometry().y(), size().width(), 450);
+    resize(size().width(), 450);
+    //setGeometry(geometry().x(), geometry().y(), size().width(), 450);
 
     this->button = button;
 

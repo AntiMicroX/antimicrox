@@ -10,7 +10,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     MouseSettingsDialog(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
-    setGeometry(geometry().x(), geometry().y(), size().width(), 450);
+    resize(size().width(), 450);
+    //setGeometry(geometry().x(), geometry().y(), size().width(), 450);
 
     this->dpad = dpad;
 
