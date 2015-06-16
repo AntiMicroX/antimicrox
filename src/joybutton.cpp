@@ -1190,9 +1190,13 @@ void JoyButton::mouseEvent()
                         //qDebug() << "MIN TRAVEL: " << mintravel;
                         //updateStartingMouseDistance = true;
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
-                        //double elapsedDuration = 0.1 * (currentAccelMulti / extraAccelerationMultiplier);
-                        double elapsedDuration = accelDuration *
-                                (currentAccelMulti / extraAccelerationMultiplier);
+                        //double elapsedDuration = accelDuration;
+                        //double orgelapsedDuration = accelDuration *
+                        //        (currentAccelMulti / extraAccelerationMultiplier);
+
+                        // Use easeOut to modify duration time used.
+                        double multiDiff = (currentAccelMulti / extraAccelerationMultiplier);
+                        double elapsedDuration = -accelDuration * (multiDiff) * (multiDiff - 2) + 0;
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
@@ -1204,6 +1208,13 @@ void JoyButton::mouseEvent()
                             //qDebug() << "DURATION: " << elapsedDuration;
                             //qDebug() << "NEW: " << elapsedDiff;
                             //qDebug() << "COMING THROUGH THE RYE: " << difference;
+
+                            /*Logger::LogInfo(QString("Duration: %1").arg(elapsedDuration));
+                            Logger::LogInfo(QString("ORG Duration: %1").arg(orgelapsedDuration));
+                            Logger::LogInfo(QString("NEW: %1").arg(elapsedDiff));
+                            Logger::LogInfo(QString("COMING THROUGH THE RYE: %1").arg(difference));
+                            Logger::LogInfo(QString(""));
+                            */
 
                             // As acceleration is applied, do not update last
                             // distance values when not necessary.
