@@ -100,6 +100,8 @@ int JoyButton::springModeScreen = -1;
 JoyKeyRepeatHelper JoyButton::repeatHelper;
 #endif
 
+//static const double PI = acos(-1.0);
+
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {
@@ -1191,12 +1193,15 @@ void JoyButton::mouseEvent()
                         //updateStartingMouseDistance = true;
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
                         //double elapsedDuration = accelDuration;
-                        //double orgelapsedDuration = accelDuration *
-                        //        (currentAccelMulti / extraAccelerationMultiplier);
+                        double orgelapsedDuration = accelDuration *
+                                (currentAccelMulti / extraAccelerationMultiplier);
 
                         // Use easeOut to modify duration time used.
                         double multiDiff = (currentAccelMulti / extraAccelerationMultiplier);
-                        double elapsedDuration = -accelDuration * (multiDiff) * (multiDiff - 2) + 0;
+                        //double elapsedDuration = -accelDuration * (multiDiff) * (multiDiff - 2) + 0;
+                        //double elapsedDuration = accelDuration * sin(multiDiff * (PI/2.0)) + 0;
+
+                        double elapsedDuration = orgelapsedDuration;
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
@@ -1209,12 +1214,11 @@ void JoyButton::mouseEvent()
                             //qDebug() << "NEW: " << elapsedDiff;
                             //qDebug() << "COMING THROUGH THE RYE: " << difference;
 
-                            /*Logger::LogInfo(QString("Duration: %1").arg(elapsedDuration));
+                            Logger::LogInfo(QString("Duration: %1").arg(elapsedDuration));
                             Logger::LogInfo(QString("ORG Duration: %1").arg(orgelapsedDuration));
                             Logger::LogInfo(QString("NEW: %1").arg(elapsedDiff));
                             Logger::LogInfo(QString("COMING THROUGH THE RYE: %1").arg(difference));
                             Logger::LogInfo(QString(""));
-                            */
 
                             // As acceleration is applied, do not update last
                             // distance values when not necessary.
