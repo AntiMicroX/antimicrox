@@ -381,6 +381,8 @@ protected:
     double currentAccelMulti;
     QTime accelExtraDurationTime;
     double accelDuration;
+    double oldAccelMulti;
+    //double trynow;
 
     // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;

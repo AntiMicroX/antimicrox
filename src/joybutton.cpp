@@ -100,7 +100,7 @@ int JoyButton::springModeScreen = -1;
 JoyKeyRepeatHelper JoyButton::repeatHelper;
 #endif
 
-//static const double PI = acos(-1.0);
+static const double PI = acos(-1.0);
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -189,6 +189,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 //qDebug() << "PRESS STARTED: " << QTime::currentTime().toString("hh:mm:ss.zzz");
                 emit clicked(index);
+                oldAccelMulti = 0.0;
+                //trynow = 0.0;
             }
             else
             {
@@ -1146,6 +1148,9 @@ void JoyButton::mouseEvent()
                     //double mintravel = 0.15;
                     //double mintravel = 0.10;
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
+                    double minstop = qMax(0.10, mintravel);
+
+                    // Last check ensures that acceleration is only applied for the same direction.
                     if (extraAccelerationEnabled && isPartRealAxis() &&
                         fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel &&
                         (getAccelerationDistance() - lastAccelerationDistance >= 0) == (getAccelerationDistance() >= 0))
@@ -1169,35 +1174,123 @@ void JoyButton::mouseEvent()
                         double slope = (magfactor - minfactor)/(maxtravel - mintravel);
                         double intercept = minfactor - (slope * mintravel);
 
-                        //qDebug() << "WHAT IS MY NAME: " << qMin(maxtravel, (getAccelerationDistance() - lastAccelerationDistance));
-                        //qDebug() << "MULTI: " << (slope * qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance)) + intercept); // 1.01 - multiplier
-                        //qDebug() << "MULTI: " << (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
-                        difference = difference * (slope * qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance)) + intercept);
+                        double intermediateTravel = qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance));
+                        if (currentAccelMulti > 1.0 && oldAccelMulti == 0.0)
+                        {
+                            intermediateTravel = qMin(maxtravel, intermediateTravel + mintravel);
+                            //Logger::LogInfo(QString("IN THIS: %1\n").arg(intermediateTravel));
+                        }
+                        //Logger::LogInfo(QString("Original: %1\n").arg(intermediateTravel));
+                        //intermediateTravel = (intermediateTravel - mintravel) / (maxtravel - mintravel);
+
+                        //intermediateTravel = -1.0 * intermediateTravel *(intermediateTravel - 2) + 0;
+                        //double intermediateTravel2 = 1.0 * sin(intermediateTravel * (PI/2.0)) + 0;
+
+                        //intermediateTravel = intermediateTravel2 * (maxtravel - mintravel) + mintravel;
+
+                        //Logger::LogInfo(QString("Altered: %1").arg(intermediateTravel));
+                        //Logger::LogInfo(QString(""));
+
+                        double currentAccelMultiTemp = (slope * intermediateTravel + intercept);
+                        double getMultiDiff = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor)) - 1;
+                        double getMultiDiff2 = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
+
+                        //currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * sin(getMultiDiff2 * (PI/2.0)) + minfactor;
+                        //currentAccelMultiTemp = -(extraAccelerationMultiplier - minfactor) * (getMultiDiff2 * (getMultiDiff2 - 2)) + minfactor;
+                        //currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1) + minfactor;
+
+                        /*double finalTemp = 0.0;
+                        if (getMultiDiff2 <= 0.3)
+                        {
+                            double m = (0.48 - 0.0) / (0.3 - 0.0);
+                            double b = 0.0;
+                            finalTemp = m * getMultiDiff2;
+                        }
+                        else if (getMultiDiff2 <= 0.6)
+                        {
+                            double m = (0.875 - 0.48) / (0.6 - 0.3);
+                            double b = 0.48 - (m * 0.3);
+                            finalTemp = (m * getMultiDiff2) + b;
+                        }
+                        else if (getMultiDiff2 > 0.6)
+                        {
+                            double m = (1.0 - 0.875) / (1.0 - 0.6);
+                            double b = 0.875 - (m * 0.6);
+                            finalTemp = (m * getMultiDiff2) + b;
+                        }
+
+                        currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * finalTemp + minfactor;
+                        */
+
+                        difference = difference * currentAccelMultiTemp;
+
                         //difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
 
                         //qDebug() << "UP IN HERE: " << difference;
                         //qDebug() << "";
                         //startingMouseDistance = difference;
-                        updateStartingMouseDistance = true;
+                        //updateStartingMouseDistance = true;
                         //currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
-                        currentAccelMulti = (slope * qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance)) + intercept);
+
+                        //currentAccelMulti = (slope * intermediateTravel + intercept);
+                        //oldAccelMulti = currentAccelMulti;
+                        //Logger::LogInfo(QString("Original: %1").arg(currentAccelMulti));
+                        currentAccelMulti = currentAccelMultiTemp;
+
+                        //currentAccelMulti = (extraAccelerationMultiplier - minfactor) * sin(getMultiDiff2 * (PI/2.0)) + minfactor;
+                        //currentAccelMulti = -(extraAccelerationMultiplier - minfactor) * (getMultiDiff2 * (getMultiDiff2 - 2)) + minfactor;
+                        //currentAccelMulti = (extraAccelerationMultiplier - minfactor) * ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1) + minfactor;
+                        oldAccelMulti = currentAccelMulti;
+
+
                         accelExtraDurationTime.restart();
+                        // Set time to NULL
+                        /*if (!accelExtraDurationTime.isNull())
+                        {
+                            accelExtraDurationTime = QTime();//.setHMS(0, 0, 0);
+                        }
+                        */
+
+                        //trynow = startingAccelerationDistance;
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
                              currentAccelMulti > 0.0 &&
-                             fabs(getAccelerationDistance() - lastAccelerationDistance) < mintravel)
+                             fabs(getAccelerationDistance() - lastAccelerationDistance) < minstop)
                              //initialDifference - startingMouseDistance < -mintravel)
                     {
                         //qDebug() << "Keep Trying: " << fabs(getAccelerationDistance() - lastAccelerationDistance);
                         //qDebug() << "MIN TRAVEL: " << mintravel;
-                        //updateStartingMouseDistance = true;
+                        updateStartingMouseDistance = true;
+                        double magfactor = extraAccelerationMultiplier;
+                        double minfactor = qMax((DEFAULTSTARTACCELMULTIPLIER * 0.001) + 1.0, magfactor * (startAccelMultiplier * 0.01));
+                        /*unsigned int elapsedElapsed = 0;
+
+                        if (accelExtraDurationTime.isNull())
+                        {
+                            accelExtraDurationTime.restart();
+
+                        }
+                        else
+                        {
+                            //Logger::LogInfo(QString("I INVESTIGATE GHOSTSSSSS: %1").arg(1));
+                            elapsedElapsed = accelExtraDurationTime.elapsed();
+                        }
+                        */
+
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
+
                         //double elapsedDuration = accelDuration;
                         double orgelapsedDuration = accelDuration *
-                                (currentAccelMulti / extraAccelerationMultiplier);
+                                ((currentAccelMulti - minfactor) / (extraAccelerationMultiplier - minfactor));
+
+                        //double orgelapsedDuration = 0.0;
+                        double maxtravel = maxMouseDistanceAccelThreshold * 0.01;
+
+                        //double orgelapsedDuration = accelDuration *
+                        //        ((currentAccelMulti) / (extraAccelerationMultiplier));
 
                         // Use easeOut to modify duration time used.
-                        double multiDiff = (currentAccelMulti / extraAccelerationMultiplier);
+                        double multiDiff = ((currentAccelMulti  - minfactor) / (extraAccelerationMultiplier - minfactor));
                         //double elapsedDuration = -accelDuration * (multiDiff) * (multiDiff - 2) + 0;
                         //double elapsedDuration = accelDuration * sin(multiDiff * (PI/2.0)) + 0;
 
@@ -1214,37 +1307,60 @@ void JoyButton::mouseEvent()
                             //qDebug() << "NEW: " << elapsedDiff;
                             //qDebug() << "COMING THROUGH THE RYE: " << difference;
 
-                            Logger::LogInfo(QString("Duration: %1").arg(elapsedDuration));
+                            /*Logger::LogInfo(QString("Duration: %1").arg(elapsedDuration));
                             Logger::LogInfo(QString("ORG Duration: %1").arg(orgelapsedDuration));
                             Logger::LogInfo(QString("NEW: %1").arg(elapsedDiff));
                             Logger::LogInfo(QString("COMING THROUGH THE RYE: %1").arg(difference));
                             Logger::LogInfo(QString(""));
+                            */
 
                             // As acceleration is applied, do not update last
                             // distance values when not necessary.
                             updateLastMouseDistance = false;
+                            oldAccelMulti = 0.0;
                         }
                         else
                         {
                             elapsedDiff = 1.0;
                             currentAccelMulti = 0.0;
+                            oldAccelMulti = 0.0;
+                            //trynow = 0.0;
                             //qDebug() << "RESET";
                         }
                     }
-                    else if (extraAccelerationEnabled && isPartRealAxis() &&
-                             fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel)
+                    /*else if (extraAccelerationEnabled && isPartRealAxis() &&
+                             fabs(getAccelerationDistance() - lastAccelerationDistance) >= minstop)
                              //initialDifference - startingMouseDistance < mintravel)
                     {
+                        if (currentAccelMulti > 0.0)
+                        {
+                            Logger::LogInfo(QString("Test: %1\n").arg(currentAccelMulti));
+                        }
+
+
                         currentAccelMulti = 0.0;
                         //startingMouseDistance = initialDifference;
                         //updateStartingMouseDistance = true;
                         //qDebug() << "IN THIS";
                         //qDebug() << "";
+                        oldAccelMulti = 0.0;
+                        trynow = 0.0;
+                        updateStartingMouseDistance = true;
+
                     }
+                    */
+
                     else if (extraAccelerationEnabled && isPartRealAxis())
                     {
                         currentAccelMulti = 0.0;
                         updateStartingMouseDistance = true;
+                        oldAccelMulti = 0.0;
+                        //trynow = 0.0;
+                        if (currentAccelMulti > 0)
+                        {
+                            Logger::LogInfo(QString("I INVESTIGATE GHOSTSSSSS: %1\n").arg(currentAccelMulti));
+                        }
+
                         //qDebug() << "IN THIS2";
                         //qDebug() << "";
                     }
@@ -1272,17 +1388,6 @@ void JoyButton::mouseEvent()
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
 
                     distance = sumDist;
-                    /*if (updateStartingMouseDistance)
-                    {
-                        qDebug() << "DISTANCE: " << distance;
-                        qDebug();
-                    }
-                    */
-                    /*if (distance > 20.0)
-                    {
-                        qDebug() << "DISTANCE: " << distance;
-                    }
-                    */
 
                     //double prevDistance = buttonslot->getPreviousDistance();
                     //qDebug() << "PREV: " << prevDistance;
@@ -3304,6 +3409,9 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         currentAccelMulti = 0.0;
         currentAccelerationDistance = 0.0;
         startingAccelerationDistance = 0.0;
+        oldAccelMulti = 0.0;
+        //trynow = 0.0;
+        accelExtraDurationTime.restart();
 
         lastMouseDistance = 0.0;
         currentMouseDistance = 0.0;
@@ -5182,6 +5290,8 @@ void JoyButton::resetProperties()
     lastWheelHorizontalDistance = 0.0;
     tempTurboInterval = 0;
     //currentTurboMode = GradientTurbo;
+    oldAccelMulti = 0.0;
+    //trynow = 0.0;
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
     springDeadCircleMultiplier = DEFAULTSPRINGRELEASERADIUS;
@@ -5211,11 +5321,13 @@ void JoyButton::resetAccelerationDistances()
         lastAccelerationDistance = currentAccelerationDistance;
         lastMouseDistance = currentMouseDistance;
         updateLastMouseDistance = false;
+        oldAccelMulti = 0.0;
 
         if (updateStartingMouseDistance)
         {
             startingAccelerationDistance = lastAccelerationDistance;
             updateStartingMouseDistance = false;
+            //trynow = 0.0;
         }
     }
 
