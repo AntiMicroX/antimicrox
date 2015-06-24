@@ -391,6 +391,8 @@ protected:
     // has finally been applied.
     bool updateStartingMouseDistance;
 
+    double updateOldAccelMulti;
+
     // Keep track of the current mouse distance after a poll. Used
     // to update lastMouseDistance later.
     double currentMouseDistance;
