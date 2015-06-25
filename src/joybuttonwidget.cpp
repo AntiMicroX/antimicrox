@@ -9,6 +9,7 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     this->button = button;
 
     refreshLabel();
+    enableFlashes();
 
     if (button->getButtonState())
     {
@@ -17,8 +18,6 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
-
-    enableFlashes();
 
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));

@@ -9,7 +9,7 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     refreshLabel();
     enableFlashes();
 
-    if (dpad->getCurrentDirection() != (int)JoyDPadButton::DpadCentered)
+    if (dpad->getCurrentDirection() != static_cast<int>(JoyDPadButton::DpadCentered))
     {
         flash();
     }

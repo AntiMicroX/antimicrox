@@ -1281,7 +1281,7 @@ void InputDevice::removeControlStick(int index)
 
 bool InputDevice::isActive()
 {
-    return buttonDownCount != 0;
+    return buttonDownCount > 0;
 }
 
 void InputDevice::buttonDownEvent(int setindex, int buttonindex)

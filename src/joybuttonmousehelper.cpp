@@ -78,8 +78,8 @@ void JoyButtonMouseHelper::mouseEvent()
 
 void JoyButtonMouseHelper::resetButtonMouseDistances()
 {
-    if (!JoyButton::hasCursorEvents())
-    {
+    //if (!JoyButton::hasCursorEvents())
+    //{
         QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
         QListIterator<JoyButton*> iter(*buttonList);
         while (iter.hasNext())
@@ -87,7 +87,7 @@ void JoyButtonMouseHelper::resetButtonMouseDistances()
             JoyButton *temp = iter.next();
             temp->resetAccelerationDistances();
         }
-    }
+    //}
 }
 
 void JoyButtonMouseHelper::setFirstSpringStatus(bool status)

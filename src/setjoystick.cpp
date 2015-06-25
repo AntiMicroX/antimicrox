@@ -665,7 +665,8 @@ void SetJoystick::propogateSetDPadButtonClick(int button)
     if (dpadButton)
     {
         JoyDPad *dpad = dpadButton->getDPad();
-        if (dpad && !dpadButton->getIgnoreEventState())
+        if (dpad && dpadButton->getButtonState() &&
+            !dpadButton->getIgnoreEventState())
         {
             emit setDPadButtonClick(index, dpad->getIndex(), button);
         }
@@ -678,7 +679,8 @@ void SetJoystick::propogateSetDPadButtonRelease(int button)
     if (dpadButton)
     {
         JoyDPad *dpad = dpadButton->getDPad();
-        if (dpad && !dpadButton->getIgnoreEventState())
+        if (dpad && !dpadButton->getButtonState() &&
+            !dpadButton->getIgnoreEventState())
         {
             emit setDPadButtonRelease(index, dpad->getIndex(), button);
         }
