@@ -178,6 +178,10 @@ int main(int argc, char *argv[])
         {
             w.saveAppConfig();
         }
+        else if (!cmdutility.hasError() && cmdutility.isUnloadRequested())
+        {
+            w.saveAppConfig();
+        }
 
         joypad_worker->quit();
         w.removeJoyTabs();
