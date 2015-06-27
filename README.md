@@ -46,6 +46,37 @@ check out the antimicro page on Launchpad.
 
 [https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro](https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro)
 
+## Command line
+
+    Usage: antimicro [options] [profile]
+
+    Options:
+    -h, --help                     Print help text.
+    -v, --version                  Print version information.
+    --tray                         Launch program in system tray only.
+    --no-tray                      Launch program with the tray menu disabled.
+    --hidden                       Launch program without the main window
+                                   displayed.
+    --profile <location>           Launch program with the configuration file
+                                   selected as the default for selected
+                                   controllers. Defaults to all controllers.
+    --profile-controller <value>   Apply configuration file to a specific
+                                   controller. Value can be a
+                                   controller index, name, or GUID.
+    --unload [<value>]             Unload currently enabled profile(s).
+                                   Value can be a controller index, name, or GUID.
+    --startSet <number> [<value>]  Start joysticks on a specific set.
+                                   Value can be a controller index, name, or GUID.
+    -d, --daemon                   Launch program as a daemon.
+    --log-level (debug|info)       Enable logging.
+    --eventgen (xtest|uinput)      Choose between using XTest support and uinput
+                                   support for event generation. Default: xtest.
+    -l, --list                     Print information about joysticks detected by
+                                   SDL.
+    --map <value>                  Open game controller mapping window of selected
+                                   controller. Value can be a controller index or
+                                   GUID.
+
 ## Pre-made Profiles
 
 There is a repository for pre-made antimicro profiles. Using a pre-made

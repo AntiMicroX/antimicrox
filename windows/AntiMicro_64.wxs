@@ -57,6 +57,9 @@
                     <Component Id="CHANGELOG" Guid="49AA82FA-AE90-47D7-B55B-E6C28F7161CB">
                         <File Source="..\antimicro\Changelog" />
                     </Component>
+                    <Component Id="PROFILETIPS.MD" Guid="6BAA8497-A0C5-4D52-989E-F8DA5874BABB">
+                        <File Source="..\antimicro\ProfileTips.md" />
+                    </Component>
                     <Directory Id="PLATFORMS" Name="platforms">
                         <Component Id="QWINDOWS.DLL" Guid="F2A419FC-7EA8-436C-8CE9-68755251E39A">
                             <File Source="..\antimicro\platforms\qwindows.dll" />
@@ -123,6 +126,7 @@
             <ComponentRef Id="README.MD" />
             <ComponentRef Id="GPL.TXT" />
             <ComponentRef Id="CHANGELOG" />
+            <ComponentRef Id="PROFILETIPS.MD" />
             <ComponentRef Id="ANTIMICRO.QM" />
             <ComponentRef Id="ANTIMICRO_BR.QM" />
             <ComponentRef Id="ANTIMICRO_DE.QM" />

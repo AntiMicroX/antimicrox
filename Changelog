@@ -1,3 +1,46 @@
+2015-06-27 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.15
+
+* Changed routine for extra acceleration for mouse movement. The new version
+is a bit faster and more responsive than the previous version.
+
+* Added release circle setting for spring mouse mode. This can be used to have
+the mouse return to a region around a character based on the last detected
+direction of an analog stick.
+
+* Added a sub-menu to the virtual keyboard. Some multimedia and browser keys
+can now be selected.
+
+* Added Execute slot type. A program can be set to launch when a slot is
+activated.
+
+* Added Text Entry slot type. You can now have a string of text typed
+when a slot is activated. This can be useful for inputting common commands in
+games.
+
+* Added proper interpolation to determine the start of diagonal regions of
+analog sticks. This is used for mouse movement in order to determine the proper
+starting dead zone point.
+
+* Changed Enhanced Precision mouse acceleration curve. The new changes in the
+curve should be much looser than before.
+
+* Fixed --unload command line option. Enforce reloading of config file
+when finished.
+
+* Fixed issue with spring mouse mode where the mouse would temporarily return
+to center when switching stick directions quickly.
+
+* Fixed some bindings in the virtual keyboard when using SendInput for the
+event generator.
+
+* Fixed issue with widgets used to update stick and dpad delay. The spinbox can
+now be used to edit the delay.
+
+* Reduced multiple instances of some objects. Reduces memory usage slightly.
+
+
 2015-05-01 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.14
