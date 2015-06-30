@@ -5,6 +5,7 @@
 #include <QList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QRegExp>
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -42,8 +43,11 @@ public:
 
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
+
     // GUID only available on SDL 2.
     virtual QString getGUIDString() = 0;
+    virtual QString getRawGUIDString();
+
     virtual QString getStringIdentifier();
     virtual QString getXmlName() = 0;
     virtual void closeSDLDevice() = 0;
@@ -100,6 +104,9 @@ public:
     void activatePossibleControlStickEvents();
     void activatePossibleVDPadEvents();
 
+    bool isEmptyGUID(QString tempGUID);
+    bool isRelevantGUID(QString tempGUID);
+
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
     static const unsigned int DEFAULTKEYREPEATDELAY;
@@ -128,6 +135,8 @@ protected:
     QList<bool> buttonstates;
     QList<int> axesstates;
     QList<int> dpadstates;
+
+    static QRegExp emptyGUID;
 
 signals:
     void setChangeActivated(int index);

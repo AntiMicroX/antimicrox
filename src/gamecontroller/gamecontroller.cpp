@@ -1,9 +1,6 @@
 //#include <QDebug>
-#include <QRegExp>
 
 #include "gamecontroller.h"
-
-static QRegExp nonEmptyGUID("^[^0]+$");
 
 const QString GameController::xmlName = "gamecontroller";
 
@@ -41,6 +38,24 @@ QString GameController::getSDLName()
 
 QString GameController::getGUIDString()
 {
+    QString temp = getRawGUIDString();
+#ifdef Q_OS_WIN
+    // On Windows, if device is seen as a game controller by SDL
+    // and the device has an empty GUID, assume that it is an XInput
+    // compatible device. Send back xinput as the GUID since SDL uses it
+    // internally anyway.
+    /*if (!temp.isEmpty() && temp.contains(emptyGUID))
+    {
+        temp = "xinput";
+    }
+    */
+#endif
+
+    return temp;
+}
+
+QString GameController::getRawGUIDString()
+{
     QString temp;
     if (controller)
     {
@@ -51,17 +66,6 @@ QString GameController::getGUIDString()
             char guidString[65] = {'0'};
             SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
             temp = QString(guidString);
-#ifdef Q_OS_WIN
-            // On Windows, if device is seen as a game controller by SDL
-            // and the device has an empty GUID, assume that it is an XInput
-            // compatible device. Send back xinput as the GUID since SDL uses it
-            // internally anyway.
-            /*if (!temp.contains(nonEmptyGUID))
-            {
-                temp = "xinput";
-            }
-            */
-#endif
         }
     }
 
@@ -864,4 +868,22 @@ SDL_JoystickID GameController::getSDLJoystickID()
 bool GameController::isGameController()
 {
     return true;
+}
+
+/**
+ * @brief Check if GUID passed matches the expected GUID for a device.
+ *     Needed for xinput GUID abstraction.
+ * @param GUID string
+ * @return if GUID is considered a match.
+ */
+bool GameController::isRelevantGUID(QString tempGUID)
+{
+    bool result = false;
+
+    if (InputDevice::isRelevantGUID(tempGUID))// || isEmptyGUID(tempGUID))
+    {
+        result = true;
+    }
+
+    return result;
 }

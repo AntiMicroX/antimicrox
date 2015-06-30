@@ -18,8 +18,11 @@ public:
 
     virtual QString getName();
     virtual QString getSDLName();
+
     // GUID available on SDL 2.
     virtual QString getGUIDString();
+    virtual QString getRawGUIDString();
+
     virtual QString getXmlName();
     virtual bool isGameController();
     virtual void closeSDLDevice();
@@ -34,6 +37,8 @@ public:
 
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);
+
+    bool isRelevantGUID(QString tempGUID);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

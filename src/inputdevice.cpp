@@ -8,6 +8,8 @@ const int InputDevice::DEFAULTKEYPRESSTIME = 100;
 const unsigned int InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
 const unsigned int InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 
+QRegExp InputDevice::emptyGUID("^[0]+$");
+
 InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
@@ -2083,4 +2085,44 @@ bool InputDevice::elementsHaveNames()
     }
 
     return result;
+}
+
+/**
+ * @brief Check if the GUID passed is considered empty.
+ * @param GUID string
+ * @return if GUID is considered empty.
+ */
+bool InputDevice::isEmptyGUID(QString tempGUID)
+{
+    bool result = false;
+
+    if (tempGUID.contains(emptyGUID))
+    {
+        result = true;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Check if GUID passed matches the expected GUID for a device.
+ *     Needed for xinput GUID abstraction.
+ * @param GUID string
+ * @return if GUID is considered a match.
+ */
+bool InputDevice::isRelevantGUID(QString tempGUID)
+{
+    bool result = false;
+    if (tempGUID == getGUIDString())
+    {
+        result = true;
+    }
+
+    return result;
+}
+
+QString InputDevice::getRawGUIDString()
+{
+    QString temp = getGUIDString();
+    return temp;
 }
