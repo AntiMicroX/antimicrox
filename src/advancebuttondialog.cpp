@@ -91,10 +91,12 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         }
         else
         {
-            existingCode->setValue(buttonslot->getSlotCode(), buttonslot->getSlotCodeAlias(), buttonslot->getSlotMode());
+            existingCode->setValue(buttonslot->getSlotCode(),
+                                   buttonslot->getSlotCodeAlias(),
+                                   buttonslot->getSlotMode());
         }
 
-        QListWidgetItem *item = new QListWidgetItem();
+        QListWidgetItem *item = new QListWidgetItem(ui->slotListWidget);
         item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(existingCode));
         QHBoxLayout *layout= new QHBoxLayout();
         layout->setContentsMargins(10, 0, 10, 0);
@@ -103,7 +105,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         widget->setLayout(layout);
         item->setSizeHint(widget->sizeHint());
 
-        ui->slotListWidget->addItem(item);
         ui->slotListWidget->setItemWidget(item, widget);
         connectButtonEvents(existingCode);
     }
@@ -112,7 +113,8 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     populateSetSelectionComboBox();
     populateSlotSetSelectionComboBox();
 
-    if (this->button->getSetSelection() > -1 && this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled)
+    if (this->button->getSetSelection() > -1 &&
+        this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled)
     {
         int selectIndex = (int)this->button->getChangeSetCondition();
         selectIndex += this->button->getSetSelection() * 3;
@@ -303,7 +305,9 @@ void AdvanceButtonDialog::changeSelectedSlot()
     for (int i = 0; i < ui->slotListWidget->count() && !leave; i++)
     {
         QListWidgetItem *item = ui->slotListWidget->item(i);
-        SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole)
+                .value<SimpleKeyGrabberButton*>();
+
         if (button == tempbutton)
         {
             ui->slotListWidget->setCurrentRow(i);
@@ -316,8 +320,9 @@ void AdvanceButtonDialog::changeSelectedSlot()
 void AdvanceButtonDialog::appendBlankKeyGrabber()
 {
     SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
-    QListWidgetItem *item = new QListWidgetItem();
-    item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
+    QListWidgetItem *item = new QListWidgetItem(ui->slotListWidget);
+    item->setData(Qt::UserRole,
+                  QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
 
     QHBoxLayout *layout= new QHBoxLayout();
     layout->setContentsMargins(10, 0, 10, 0);
@@ -326,7 +331,6 @@ void AdvanceButtonDialog::appendBlankKeyGrabber()
     widget->setLayout(layout);
     item->setSizeHint(widget->sizeHint());
 
-    ui->slotListWidget->addItem(item);
     ui->slotListWidget->setItemWidget(item, widget);
     ui->slotListWidget->setCurrentItem(item);
     connectButtonEvents(blankButton);
@@ -346,7 +350,8 @@ void AdvanceButtonDialog::insertSlot()
             SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
             QListWidgetItem *item = new QListWidgetItem();
             ui->slotListWidget->insertItem(current, item);
-            item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
+            item->setData(Qt::UserRole,
+                          QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
             QHBoxLayout *layout= new QHBoxLayout();
             layout->addWidget(blankButton);
             QWidget *widget = new QWidget();
@@ -409,33 +414,13 @@ void AdvanceButtonDialog::insertSlot()
     {
         insertExecuteSlot();
     }
-
-    /*if (current != (count - 1))
-    {
-        SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
-        QListWidgetItem *item = new QListWidgetItem();
-        ui->slotListWidget->insertItem(current, item);
-        item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
-        QHBoxLayout *layout= new QHBoxLayout();
-        layout->addWidget(blankButton);
-        QWidget *widget = new QWidget();
-        widget->setLayout(layout);
-        item->setSizeHint(widget->sizeHint());
-        ui->slotListWidget->setItemWidget(item, widget);
-        ui->slotListWidget->setCurrentItem(item);
-        connectButtonEvents(blankButton);
-        blankButton->refreshButtonLabel();
-
-        this->button->insertAssignedSlot(0, 0, current);
-        updateSlotsScrollArea(0);
-    }
-    */
 }
 
 void AdvanceButtonDialog::insertPauseSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
     if (actionTime >= 0)
     {
@@ -451,7 +436,8 @@ void AdvanceButtonDialog::insertPauseSlot()
 void AdvanceButtonDialog::insertReleaseSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
     if (actionTime > 0)
     {
@@ -467,7 +453,8 @@ void AdvanceButtonDialog::insertReleaseSlot()
 void AdvanceButtonDialog::insertHoldSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
     if (actionTime > 0)
     {
@@ -483,7 +470,8 @@ void AdvanceButtonDialog::insertHoldSlot()
 void AdvanceButtonDialog::insertSetChangeSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
     int currentIndex = ui->slotSetChangeComboBox->currentIndex();
     unsigned int setIndex = ui->slotSetChangeComboBox->itemData(currentIndex).toInt();
@@ -559,7 +547,8 @@ void AdvanceButtonDialog::changeTurboForSequences()
     bool containsSequences = false;
     for (int i = 0; i < ui->slotListWidget->count() && !containsSequences; i++)
     {
-        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)
+                ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         JoyButtonSlot *tempbuttonslot = button->getValue();
         if (tempbuttonslot->getSlotCode() > 0 &&
             (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyPause ||
@@ -600,7 +589,8 @@ void AdvanceButtonDialog::changeTurboForSequences()
 void AdvanceButtonDialog::insertCycleSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     tempbutton->setValue(1, JoyButtonSlot::JoyCycle);
 
     // Stop all events on JoyButton
@@ -613,12 +603,14 @@ void AdvanceButtonDialog::insertCycleSlot()
 void AdvanceButtonDialog::insertDistanceSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
     int tempDistance = 0;
     for (int i = 0; i < ui->slotListWidget->count(); i++)
     {
-        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)
+                ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         JoyButtonSlot *tempbuttonslot = button->getValue();
         if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyDistance)
         {
@@ -646,13 +638,16 @@ void AdvanceButtonDialog::insertDistanceSlot()
 void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     tempbutton->setValue(slot->getSlotCode(), slot->getSlotCodeAlias(), slot->getSlotMode());
 
     // Stop all events on JoyButton
     this->button->eventReset();
 
-    this->button->setAssignedSlot(slot->getSlotCode(), slot->getSlotCodeAlias(), index, slot->getSlotMode());
+    this->button->setAssignedSlot(slot->getSlotCode(),
+                                  slot->getSlotCodeAlias(), index,
+                                  slot->getSlotMode());
     updateSlotsScrollArea(slot->getSlotCode());
     slot->deleteLater();
 }
@@ -789,7 +784,8 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
 void AdvanceButtonDialog::insertMouseSpeedModSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int tempMouseMod = ui->mouseSpeedModSpinBox->value();
     if (tempMouseMod > 0)
     {
@@ -806,7 +802,8 @@ void AdvanceButtonDialog::insertMouseSpeedModSlot()
 void AdvanceButtonDialog::insertKeyPressSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
     if (actionTime > 0)
     {
@@ -823,7 +820,8 @@ void AdvanceButtonDialog::insertKeyPressSlot()
 void AdvanceButtonDialog::insertDelaySlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
     if (actionTime > 0)
     {
@@ -839,7 +837,8 @@ void AdvanceButtonDialog::insertDelaySlot()
 void AdvanceButtonDialog::insertTextEntrySlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     QString temp = ui->textEntryLineEdit->text();
     if (!temp.isEmpty())
     {
@@ -856,7 +855,8 @@ void AdvanceButtonDialog::insertTextEntrySlot()
 void AdvanceButtonDialog::insertExecuteSlot()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     QString temp = ui->execLineEdit->text();
     if (!temp.isEmpty())
     {
@@ -902,9 +902,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     {
         ui->slotTypeComboBox->setCurrentIndex(DistanceSlot);
 
-        disconnect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
+        disconnect(ui->distanceSpinBox, SIGNAL(valueChanged(int)),
+                   this, SLOT(checkSlotDistanceUpdate()));
         ui->distanceSpinBox->setValue(slot->getSlotCode());
-        connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
+        connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)),
+                this, SLOT(checkSlotDistanceUpdate()));
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
     {
@@ -918,9 +920,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseSpeedMod)
     {
         ui->slotTypeComboBox->setCurrentIndex(MouseModSlot);
-        disconnect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
+        disconnect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)),
+                   this, SLOT(checkSlotMouseModUpdate()));
         ui->mouseSpeedModSpinBox->setValue(slot->getSlotCode());
-        connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
+        connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)),
+                this, SLOT(checkSlotMouseModUpdate()));
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
     {
@@ -939,7 +943,8 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoySetChange)
     {
-        disconnect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
+        disconnect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)),
+                   this, SLOT(checkSlotSetChangeUpdate()));
 
         ui->slotTypeComboBox->setCurrentIndex(SetChangeSlot);
         unsigned int chooseIndex = slot->getSlotCode();
@@ -950,7 +955,8 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
             ui->slotSetChangeComboBox->setCurrentIndex(foundIndex);
         }
 
-        connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
+        connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(checkSlotSetChangeUpdate()));
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyTextEntry)
     {
@@ -972,7 +978,8 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 void AdvanceButtonDialog::checkSlotTimeUpdate()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *tempbuttonslot = tempbutton->getValue();
     if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyPause ||
         tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyHold ||
@@ -997,7 +1004,8 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
 void AdvanceButtonDialog::checkSlotMouseModUpdate()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *tempbuttonslot = tempbutton->getValue();
 
     int tempMouseMod = ui->mouseSpeedModSpinBox->value();
@@ -1018,7 +1026,8 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
 void AdvanceButtonDialog::checkSlotSetChangeUpdate()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *buttonslot = tempbutton->getValue();
     if (buttonslot->getSlotMode() == JoyButtonSlot::JoySetChange)
     {
@@ -1040,7 +1049,8 @@ void AdvanceButtonDialog::checkSlotSetChangeUpdate()
 void AdvanceButtonDialog::checkSlotDistanceUpdate()
 {
     int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+            ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *buttonslot = tempbutton->getValue();
     int tempDistance = 0;
 
@@ -1048,7 +1058,8 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
     {
         for (int i = 0; i < ui->slotListWidget->count(); i++)
         {
-            SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+            SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)
+                    ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
             JoyButtonSlot *tempbuttonslot = button->getValue();
             if (tempbuttonslot->getSlotMode() == JoyButtonSlot::JoyDistance)
             {
@@ -1154,28 +1165,44 @@ void AdvanceButtonDialog::resetTimeBoxes()
 
 void AdvanceButtonDialog::disconnectTimeBoxesEvents()
 {
-    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(updateActionTimeLabel()));
 
-    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
+               this, SLOT(checkSlotTimeUpdate()));
 }
 
 void AdvanceButtonDialog::connectTimeBoxesEvents()
 {
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(updateActionTimeLabel()));
 
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(checkSlotTimeUpdate()));
 }
 
 void AdvanceButtonDialog::populateSetSelectionComboBox()
@@ -1291,11 +1318,13 @@ void AdvanceButtonDialog::showSelectProfileWindow()
     AntiMicroSettings *settings = this->button->getParentSet()->getInputDevice()->getSettings();
 
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString filename = QFileDialog::getOpenFileName(this, tr("Choose Profile"), lookupDir, tr("Config Files (*.amgp *.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
+                                                    lookupDir, tr("Config Files (*.amgp *.xml)"));
     if (!filename.isEmpty())
     {
         int index = ui->slotListWidget->currentRow();
-        SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+                ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         tempbutton->setValue(filename, JoyButtonSlot::JoyLoadProfile);
         // Stop all events on JoyButton
         this->button->eventReset();

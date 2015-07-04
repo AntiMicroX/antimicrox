@@ -2424,6 +2424,13 @@ QString JoyButton::getCustomName()
     return customName;
 }
 
+/**
+ * @brief Create new JoyButtonSlot with data provided and append the new slot
+ *     an existing to the assignment list.
+ * @param Native virtual code being used.
+ * @param Mode of the slot.
+ * @return Whether the new slot was successfully added to the assignment list.
+ */
 bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
 {
     bool slotInserted = false;
@@ -2463,7 +2470,16 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
     return slotInserted;
 }
 
-bool JoyButton::setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode)
+/**
+ * @brief Create new JoyButtonSlot with data provided and append the new slot
+ *     an existing to the assignment list.
+ * @param Native virtual code being used.
+ * @param Qt key alias used for abstracting native virtual code.
+ * @param Mode of the slot.
+ * @return Whether the new slot was successfully added to the assignment list.
+ */
+bool JoyButton::setAssignedSlot(int code, unsigned int alias,
+                                JoyButtonSlot::JoySlotInputAction mode)
 {
     bool slotInserted = false;
     JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
@@ -2502,7 +2518,17 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, JoyButtonSlot::Joy
     return slotInserted;
 }
 
-bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
+/**
+ * @brief Create new JoyButtonSlot with data provided and replace an existing
+ *     slot in the assignment list if one exists.
+ * @param Native virtual code being used.
+ * @param Qt key alias used for abstracting native virtual code.
+ * @param Index number in the list.
+ * @param Mode of the slot.
+ * @return Whether the new slot was successfully added to the assignment list.
+ */
+bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index,
+                                JoyButtonSlot::JoySlotInputAction mode)
 {
     bool permitSlot = true;
 
@@ -2562,7 +2588,17 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, JoyButt
     return permitSlot;
 }
 
-bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
+/**
+ * @brief Create new JoyButtonSlot with data provided and insert it into
+ *     assignments list if it is valid.
+ * @param Native virtual code being used.
+ * @param Qt key alias used for abstracting native virtual code.
+ * @param Index number in the list.
+ * @param Mode of the slot.
+ * @return Whether the new slot was successfully added to the assignment list.
+ */
+bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
+                                   JoyButtonSlot::JoySlotInputAction mode)
 {
     bool permitSlot = true;
 
@@ -2591,20 +2627,12 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index, JoyB
     {
         if (index >= 0 && index < assignments.count())
         {
+            // Insert new slot into list. Move old slots if needed.
             assignments.insert(index, slot);
-            /*JoyButtonSlot *temp = assignments.at(index);
-            if (temp)
-            {
-                delete temp;
-                temp = 0;
-            }
-
-            assignments.replace(index, slot);
-            */
         }
         else if (index >= assignments.count())
         {
-            // Append code into a new slot
+            // Append new slot into list.
             assignments.append(slot);
         }
 
@@ -2739,7 +2767,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
 QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
 {
-    QList<JoyButtonSlot*> *newassign = new QList<JoyButtonSlot*> (assignments);
+    QList<JoyButtonSlot*> *newassign = &assignments;
     return newassign;
 }
 
