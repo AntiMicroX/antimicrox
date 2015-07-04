@@ -27,6 +27,7 @@
 #include <QVariant>
 #include <QMessageBox>
 #include <QDesktopWidget>
+#include <QComboBox>
 
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -46,9 +47,12 @@
   #include "winextras.h"
 #endif
 
-static const QString RUNATSTARTUPKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
+static const QString RUNATSTARTUPKEY(
+        "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 
-MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice *> *devices, QWidget *parent) :
+MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
+                                       QList<InputDevice *> *devices,
+                                       QWidget *parent) :
     QDialog(parent, Qt::Dialog),
     ui(new Ui::MainSettingsDialog)
 {
@@ -279,9 +283,17 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 #endif
 
     fillSpringScreenPresets();
-    //ui->springGroupBox->setVisible(false);
 
-    //ui->categoriesListWidget->setCurrentRow(0);
+    for (int i=1; i <= 16; i++)
+    {
+        ui->gamepadPollRateComboBox->addItem(QString("%1 ms").arg(i), QVariant(i));
+    }
+
+    int gamepadPollIndex = ui->gamepadPollRateComboBox->findData(JoyButton::getGamepadRefreshRate());
+    if (gamepadPollIndex >= 0)
+    {
+        ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
+    }
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
@@ -665,6 +677,13 @@ void MainSettingsDialog::saveNewSettings()
     int springScreen = ui->springScreenComboBox->itemData(springIndex).toInt();
     JoyButton::setSpringModeScreen(springScreen);
     settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
+
+    unsigned int gamepadPollRate = ui->gamepadPollRateComboBox->currentData().toUInt();
+    if (gamepadPollRate != JoyButton::getGamepadRefreshRate())
+    {
+        JoyButton::setGamepadRefreshRate(gamepadPollRate);
+        settings->setValue("GamepadPollRate", QString::number(gamepadPollRate));
+    }
 
     settings->sync();
 }

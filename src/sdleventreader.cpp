@@ -31,14 +31,14 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
     this->joysticks = joysticks;
     this->settings = settings;
     this->pollRate = settings->value("GamepadPollRate",
-                                     AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
+                                     AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
 
     pollRateTimer.setParent(this);
     pollRateTimer.setTimerType(Qt::PreciseTimer);
 
     initSDL();
 
-    //connect(&pollRateTimer, SIGNAL(timeout()), this, SLOT(performWork()));
+    connect(&pollRateTimer, SIGNAL(timeout()), this, SLOT(performWork()));
 }
 
 SDLEventReader::~SDLEventReader()
@@ -119,11 +119,11 @@ void SDLEventReader::performWork()
 {
     if (sdlIsOpen)
     {
-        int status = SDL_WaitEvent(NULL);
-        //int status = CheckForEvents();
+        //int status = SDL_WaitEvent(NULL);
+        int status = CheckForEvents();
         if (status)
         {
-            //pollRateTimer.stop();
+            pollRateTimer.stop();
             emit eventRaised();
         }
     }
@@ -181,8 +181,8 @@ int SDLEventReader::CheckForEvents()
     int result = 0;
     bool exit = false;
 
-    while (!exit)
-    {
+    //while (!exit)
+    //{
         SDL_PumpEvents();
         switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
         {
@@ -195,22 +195,27 @@ int SDLEventReader::CheckForEvents()
             case 1:
             {
                 /*Logger::LogInfo(
-                            QString("Gamepad Poll %1").arg(QTime::currentTime().toString("hh:mm:ss.zzz")),
+                            QString("Gamepad Poll %1").arg(
+                                QTime::currentTime().toString("hh:mm:ss.zzz")),
                             true, true);
                 */
+
                 result = 1;
                 exit = true;
                 break;
             }
             case 0:
             {
-                //pollRateTimer.start();
+                if (!pollRateTimer.isActive())
+                {
+                    pollRateTimer.start();
+                }
                 //exit = true;
-                SDL_Delay(10);
+                //SDL_Delay(10);
                 break;
             }
         }
-    }
+    //}
 
     return result;
 }
@@ -219,9 +224,15 @@ void SDLEventReader::updatePollRate(unsigned int tempPollRate)
 {
     if (tempPollRate >= 1 && tempPollRate <= 16)
     {
+        bool wasActive = pollRateTimer.isActive();
         pollRateTimer.stop();
 
         this->pollRate = tempPollRate;
         pollRateTimer.setInterval(pollRate);
+
+        if (wasActive)
+        {
+            pollRateTimer.start();
+        }
     }
 }

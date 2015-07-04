@@ -300,11 +300,10 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                     sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
-                /*mouseHelperObj.mouseTimer.start(
+                mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                */
-                mouseHelperObj.mouseTimer.start(11);
+                //mouseHelperObj.mouseTimer.start(11);
             }
             else if (!mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
             {
@@ -329,11 +328,10 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 //qDebug() << "X: " << (xmovecoor - currentMouseX / (deskRect.x() + midheight));
                 //qDebug() << "Y: " << ymovecoor - currentMouseY / (deskRect.y() + midheight);
 
-                /*mouseHelperObj.mouseTimer.start(
+                mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                */
-                mouseHelperObj.mouseTimer.start(11);
+                //mouseHelperObj.mouseTimer.start(11);
             }
 
             else if (mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
@@ -358,11 +356,10 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
                 }
 #endif
 
-                /*mouseHelperObj.mouseTimer.start(
+                mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                */
-                mouseHelperObj.mouseTimer.start(11);
+                //mouseHelperObj.mouseTimer.start(11);
             }
 
 
@@ -383,11 +380,10 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             mouseHelperObj.pivotPoint[0] = fullSpringDestX;
             mouseHelperObj.pivotPoint[1] = fullSpringDestY;
 
-            /*mouseHelperObj.mouseTimer.start(
+            mouseHelperObj.mouseTimer.start(
                         qMax(JoyButton::getMouseRefreshRate(),
                              JoyButton::getGamepadRefreshRate()) + 1);
-            */
-            mouseHelperObj.mouseTimer.start(11);
+            //mouseHelperObj.mouseTimer.start(11);
         }
     }
     else

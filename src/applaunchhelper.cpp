@@ -40,7 +40,7 @@ void AppLaunchHelper::initRunMethods()
         enablePossibleMouseSmoothing();
         changeMouseRefreshRate();
         changeSpringModeScreen();
-        //changeGamepadPollRate();
+        changeGamepadPollRate();
 
 #ifdef Q_OS_WIN
         checkPointerPrecision();
@@ -79,7 +79,7 @@ void AppLaunchHelper::changeMouseRefreshRate()
 void AppLaunchHelper::changeGamepadPollRate()
 {
     unsigned int pollRate = settings->value("GamepadPollRate",
-                                            AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
+                                            AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
     if (pollRate > 0)
     {
         JoyButton::setGamepadRefreshRate(pollRate);

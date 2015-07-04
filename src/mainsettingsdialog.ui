@@ -91,15 +91,6 @@
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
-         <property name="spacing">
-          <number>8</number>
-         </property>
-         <property name="leftMargin">
-          <number>10</number>
-         </property>
-         <property name="topMargin">
-          <number>4</number>
-         </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <property name="spacing">
@@ -164,6 +155,44 @@
              </property>
              <property name="value">
               <number>5</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>8</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <property name="bottomMargin">
+            <number>8</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="gamepadPollRateLabel">
+             <property name="text">
+              <string>Gamepad Poll Rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="gamepadPollRateComboBox">
+             <property name="toolTip">
+              <string>Change the poll rate that the program uses to discover new
+events from gamepads. Defaults to 10 ms.</string>
              </property>
             </widget>
            </item>
@@ -267,7 +296,7 @@ first launches.</string>
           </widget>
          </item>
          <item>
-          <spacer name="verticalSpacer_4">
+          <spacer name="verticalSpacer_7">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>

@@ -45,24 +45,24 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
-        /*connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
+        connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
+                eventWorker, SLOT(updatePollRate(uint)));
+
+        connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
                 this, SLOT(updatePollResetRate(uint)));
         connect(JoyButton::getMouseHelper(), SIGNAL(mouseRefreshRateUpdated(uint)),
                 this, SLOT(updatePollResetRate(uint)));
 
-        connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
-                eventWorker, SLOT(updatePollRate(uint)));
-        */
-
         // Timer in case SDL does not produce an axis event during a joystick
         // poll.
         //pollResetTimer.setSingleShot(true);
-        /*pollResetTimer.setInterval(
+        pollResetTimer.setInterval(
                     qMax(JoyButton::getMouseRefreshRate(),
                          JoyButton::getGamepadRefreshRate()) + 1);
-        */
-        pollResetTimer.setInterval(11);
-        connect(&pollResetTimer, SIGNAL(timeout()), this, SLOT(resetActiveButtonMouseDistances()));
+
+        //pollResetTimer.setInterval(11);
+        connect(&pollResetTimer, SIGNAL(timeout()), this,
+                SLOT(resetActiveButtonMouseDistances()));
         thread->start();
     }
 
@@ -98,8 +98,6 @@ void InputDaemon::startWorker()
 
 void InputDaemon::run ()
 {
-    //SDL_Event event;
-
     // SDL has found events. The timeout is not necessary.
     pollResetTimer.stop();
 
@@ -121,7 +119,6 @@ void InputDaemon::run ()
         clearBitArrayStatusInstances();
     }
 
-    //qDebug() << QTime::currentTime() << ": " << "END";
     if (stopped)
     {
         if (joysticks->count() > 0)
@@ -939,7 +936,16 @@ void InputDaemon::updatePollResetRate(unsigned int tempPollRate)
 {
     Q_UNUSED(tempPollRate);
 
+
+    bool wasActive = pollResetTimer.isActive();
+    pollResetTimer.stop();
+
     pollResetTimer.setInterval(
                 qMax(JoyButton::getMouseRefreshRate(),
                      JoyButton::getGamepadRefreshRate()) + 1);
+
+    if (wasActive)
+    {
+        pollResetTimer.start();
+    }
 }
