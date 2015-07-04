@@ -9,7 +9,9 @@
 
 const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
-InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical, QObject *parent) :
+InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
+                         AntiMicroSettings *settings,
+                         bool graphical, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
@@ -17,17 +19,31 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicr
     this->graphical = graphical;
     this->settings = settings;
 
-    eventWorker = new SDLEventReader(joysticks, settings);
     thread = new QThread();
+    eventWorker = new SDLEventReader(joysticks, settings);
     eventWorker->moveToThread(thread);
 
     if (graphical)
     {
         connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+
+        /*connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
+                this, SLOT(updatePollResetRate(uint)));
+        connect(JoyButton::getMouseHelper(), SIGNAL(mouseRefreshRateUpdated(uint)),
+                this, SLOT(updatePollResetRate(uint)));
+
+        connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
+                eventWorker, SLOT(updatePollRate(uint)));
+        */
+
         // Timer in case SDL does not produce an axis event during a joystick
         // poll.
         //pollResetTimer.setSingleShot(true);
+        /*pollResetTimer.setInterval(
+                    qMax(JoyButton::getMouseRefreshRate(),
+                         JoyButton::getGamepadRefreshRate()) + 1);
+        */
         pollResetTimer.setInterval(11);
         connect(&pollResetTimer, SIGNAL(timeout()), this, SLOT(resetActiveButtonMouseDistances()));
         thread->start();
@@ -72,7 +88,7 @@ void InputDaemon::run ()
 
     if (!stopped)
     {
-        //Logger::LogInfo("Gamepad Poll");
+        //Logger::LogInfo(QString("Gamepad Poll %1").arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
         JoyButton::resetActiveButtonMouseDistances();
 
         QQueue<SDL_Event> sdlEventQueue;
@@ -900,4 +916,13 @@ void InputDaemon::clearBitArrayStatusInstances()
 void InputDaemon::resetActiveButtonMouseDistances()
 {
     JoyButton::resetActiveButtonMouseDistances();
+}
+
+void InputDaemon::updatePollResetRate(unsigned int tempPollRate)
+{
+    Q_UNUSED(tempPollRate);
+
+    pollResetTimer.setInterval(
+                qMax(JoyButton::getMouseRefreshRate(),
+                     JoyButton::getGamepadRefreshRate()) + 1);
 }

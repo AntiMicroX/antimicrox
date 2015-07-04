@@ -99,3 +99,13 @@ bool JoyButtonMouseHelper::getFirstSpringStatus()
 {
     return firstSpringEvent;
 }
+
+void JoyButtonMouseHelper::carryGamePollRateUpdate(unsigned int pollRate)
+{
+    emit gamepadRefreshRateUpdated(pollRate);
+}
+
+void JoyButtonMouseHelper::carryMouseRefreshRateUpdate(unsigned int refreshRate)
+{
+    emit mouseRefreshRateUpdated(refreshRate);
+}

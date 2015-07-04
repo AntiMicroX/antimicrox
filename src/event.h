@@ -7,8 +7,6 @@
 #include "mousehelper.h"
 #include "springmousemoveinfo.h"
 
-enum JoyInputDevice {JoyKeyboard=0, JoyMouse};
-
 void sendevent (JoyButtonSlot *slot, bool pressed=true);
 void sendevent(int code1, int code2);
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring=0, int* const mousePosX=0, int* const mousePos=0);

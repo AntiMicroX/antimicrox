@@ -199,6 +199,9 @@ public:
     void setSpringDeadCircleMultiplier(int value);
     int getSpringDeadCircleMultiplier();
 
+    static int getGamepadRefreshRate();
+    static void setGamepadRefreshRate(int refresh);
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -451,6 +454,7 @@ protected:
     static int mouseHistorySize;
     static int mouseRefreshRate;
     static int springModeScreen;
+    static int gamepadRefreshRate;
 
 signals:
     void clicked (int index);
@@ -517,7 +521,6 @@ private slots:
     void waitForReleaseDeskEvent();
     void holdEvent();
     void delayEvent();
-    //void repeatKeysEvent();
 
     void pauseWaitEvent();
     void checkForSetChange();

@@ -12,7 +12,8 @@ class AppLaunchHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit AppLaunchHelper(AntiMicroSettings *settings, bool graphical=false, QObject *parent=0);
+    explicit AppLaunchHelper(AntiMicroSettings *settings, bool graphical=false,
+                             QObject *parent=0);
 
     void initRunMethods();
     void printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks);
@@ -21,6 +22,7 @@ protected:
     void enablePossibleMouseSmoothing();
     void changeMouseRefreshRate();
     void changeSpringModeScreen();
+    void changeGamepadPollRate();
 #ifdef Q_OS_WIN
     void checkPointerPrecision();
 #endif

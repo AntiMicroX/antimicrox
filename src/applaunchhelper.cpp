@@ -8,7 +8,8 @@
 #include <winextras.h>
 #endif
 
-AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical, QObject *parent) :
+AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical,
+                                 QObject *parent) :
     QObject(parent)
 {
     this->settings = settings;
@@ -22,6 +23,7 @@ void AppLaunchHelper::initRunMethods()
         enablePossibleMouseSmoothing();
         changeMouseRefreshRate();
         changeSpringModeScreen();
+        //changeGamepadPollRate();
 
 #ifdef Q_OS_WIN
         checkPointerPrecision();
@@ -54,6 +56,16 @@ void AppLaunchHelper::changeMouseRefreshRate()
     if (refreshRate > 0)
     {
         JoyButton::setMouseRefreshRate(refreshRate);
+    }
+}
+
+void AppLaunchHelper::changeGamepadPollRate()
+{
+    unsigned int pollRate = settings->value("GamepadPollRate",
+                                            AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
+    if (pollRate > 0)
+    {
+        JoyButton::setGamepadRefreshRate(pollRate);
     }
 }
 
@@ -103,7 +115,8 @@ void AppLaunchHelper::changeSpringModeScreen()
     if (springScreen >= deskWid.screenCount())
     {
         springScreen = -1;
-        settings->setValue("Mouse/SpringScreen", AntiMicroSettings::defaultSpringScreen);
+        settings->setValue("Mouse/SpringScreen",
+                           AntiMicroSettings::defaultSpringScreen);
         settings->sync();
     }
 

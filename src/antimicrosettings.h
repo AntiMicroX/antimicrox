@@ -17,6 +17,7 @@ public:
     static const bool defaultDisabledWinEnhanced;
     static const bool defaultAssociateProfiles;
     static const int defaultSpringScreen;
+    static const unsigned int defaultSDLGamepadPollRate;
 
 protected:
     QSettings cmdSettings;

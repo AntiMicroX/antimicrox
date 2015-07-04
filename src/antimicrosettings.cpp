@@ -3,6 +3,7 @@
 const bool AntiMicroSettings::defaultDisabledWinEnhanced = false;
 const bool AntiMicroSettings::defaultAssociateProfiles = true;
 const int AntiMicroSettings::defaultSpringScreen = -1;
+const unsigned int AntiMicroSettings::defaultSDLGamepadPollRate = 10;
 
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent) :
     QSettings(fileName, format, parent)

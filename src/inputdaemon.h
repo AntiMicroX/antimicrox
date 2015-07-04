@@ -70,7 +70,7 @@ protected:
 signals:
     void joystickRefreshed (InputDevice *joystick);
     void joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*> *joysticks);
-    void complete(InputDevice* joystick);
+    void complete(InputDevice *joystick);
     void complete();
 
 #ifdef USE_SDL_2
@@ -96,6 +96,7 @@ public slots:
 private slots:
     void stop();
     void resetActiveButtonMouseDistances();
+    void updatePollResetRate(unsigned int tempPollRate);
 };
 
 #endif // INPUTDAEMONTHREAD_H

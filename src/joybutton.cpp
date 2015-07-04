@@ -84,9 +84,11 @@ JoyButtonMouseHelper JoyButton::mouseHelper;
 QTimer JoyButton::staticMouseEventTimer;
 QList<JoyButton*> JoyButton::pendingMouseButtons;
 
+// History buffers used for mouse smoothing routine.
 QList<double> JoyButton::mouseHistoryX;
 QList<double> JoyButton::mouseHistoryY;
 
+// Carry over remainder of a cursor move for the next mouse event.
 double JoyButton::cursorRemainderX = 0.0;
 double JoyButton::cursorRemainderY = 0.0;
 
@@ -95,6 +97,7 @@ int JoyButton::mouseHistorySize = 1;
 
 int JoyButton::mouseRefreshRate = 5;
 int JoyButton::springModeScreen = -1;
+int JoyButton::gamepadRefreshRate = 10;
 
 #ifdef Q_OS_WIN
 JoyKeyRepeatHelper JoyButton::repeatHelper;
@@ -121,9 +124,9 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
-    //connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
     connect(&slotSetChangeTimer, SIGNAL(timeout()), this, SLOT(slotSetChange()));
 
+    // Will only matter on the first call
     establishMouseTimerConnections();
 
     // Make sure to call before calling reset
@@ -706,12 +709,6 @@ void JoyButton::activateSlots()
                     lastActiveKey = 0;
                     changeRepeatState = true;
                 }
-
-                /*releaseActiveSlots();
-                //abortSetChanging();
-                exit = true;
-                QTimer::singleShot(0, this, SLOT(abortSetChanging()));
-                */
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
@@ -849,7 +846,6 @@ void JoyButton::activateSlots()
                 if (activeSlots.isEmpty())
                 {
                     delaySequence = true;
-                    //currentKeyPress = new JoyButtonSlot(2000, JoyButtonSlot::JoyKeyPress, this);
                     currentKeyPress = slot;
                 }
                 else
@@ -1147,9 +1143,6 @@ void JoyButton::mouseEvent()
                     double distance = 0;
                     difference = (mouseSpeedModifier == 1.0) ? difference : (difference * mouseSpeedModifier);
 
-                    //qDebug() << "Keep Trying: " << initialDifference - lastMouseDistance;
-                    //double mintravel = 0.15;
-                    //double mintravel = 0.10;
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
                     double minstop = qMax(0.05, mintravel);
                     double currentTravel = fabs(getAccelerationDistance() - lastAccelerationDistance);
@@ -1158,23 +1151,10 @@ void JoyButton::mouseEvent()
                     if (extraAccelerationEnabled && isPartRealAxis() &&
                         fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel &&
                         (getAccelerationDistance() - lastAccelerationDistance >= 0) == (getAccelerationDistance() >= 0))
-                    //if (extraAccelerationEnabled && isPartRealAxis() &&
-                    //    initialDifference - startingMouseDistance >= mintravel &&
-                    //    initialDifference - lastMouseDistance < mintravel)
                     {
-                        //qDebug() << "CURRENT: " << initialDifference;
-                        //qDebug() << "LAST KNOWN: " << lastMouseDistance;
-                        //qDebug() << "OLDDIFF: " << difference;
-
-                        //qDebug() << "HELP ME: " << getAccelerationDistance() << " | " << lastAccelerationDistance;
                         double magfactor = extraAccelerationMultiplier;
                         double minfactor = qMax((DEFAULTSTARTACCELMULTIPLIER * 0.001) + 1.0, magfactor * (startAccelMultiplier * 0.01));
-                        //double minfactor = magfactor / 2.0;
-                        //double minfactor = qMax(1.00, magfactor * 0.01);
-                        //double maxtravel = 0.65;
-                        //double maxtravel = 1.0;
                         double maxtravel = maxMouseDistanceAccelThreshold * 0.01;
-                        //double magfactor = 2.0;
                         double slope = (magfactor - minfactor)/(maxtravel - mintravel);
                         double intercept = minfactor - (slope * mintravel);
 
@@ -1182,18 +1162,7 @@ void JoyButton::mouseEvent()
                         if (currentAccelMulti > 1.0 && oldAccelMulti == 0.0)
                         {
                             intermediateTravel = qMin(maxtravel, intermediateTravel + mintravel);
-                            //Logger::LogInfo(QString("IN THIS: %1\n").arg(intermediateTravel));
                         }
-                        //Logger::LogInfo(QString("Original: %1\n").arg(intermediateTravel));
-                        //intermediateTravel = (intermediateTravel - mintravel) / (maxtravel - mintravel);
-
-                        //intermediateTravel = -1.0 * intermediateTravel *(intermediateTravel - 2) + 0;
-                        //double intermediateTravel2 = 1.0 * sin(intermediateTravel * (PI/2.0)) + 0;
-
-                        //intermediateTravel = intermediateTravel2 * (maxtravel - mintravel) + mintravel;
-
-                        //Logger::LogInfo(QString("Altered: %1").arg(intermediateTravel));
-                        //Logger::LogInfo(QString(""));
 
                         double currentAccelMultiTemp = (slope * intermediateTravel + intercept);
                         double getMultiDiff = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor)) - 1;
@@ -1203,38 +1172,7 @@ void JoyButton::mouseEvent()
                         //currentAccelMultiTemp = -(extraAccelerationMultiplier - minfactor) * (getMultiDiff2 * (getMultiDiff2 - 2)) + minfactor;
                         //currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1) + minfactor;
 
-                        /*double finalTemp = 0.0;
-                        if (getMultiDiff2 <= 0.3)
-                        {
-                            double m = (0.48 - 0.0) / (0.3 - 0.0);
-                            double b = 0.0;
-                            finalTemp = m * getMultiDiff2;
-                        }
-                        else if (getMultiDiff2 <= 0.6)
-                        {
-                            double m = (0.875 - 0.48) / (0.6 - 0.3);
-                            double b = 0.48 - (m * 0.3);
-                            finalTemp = (m * getMultiDiff2) + b;
-                        }
-                        else if (getMultiDiff2 > 0.6)
-                        {
-                            double m = (1.0 - 0.875) / (1.0 - 0.6);
-                            double b = 0.875 - (m * 0.6);
-                            finalTemp = (m * getMultiDiff2) + b;
-                        }
-
-                        currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * finalTemp + minfactor;
-                        */
-
                         difference = difference * currentAccelMultiTemp;
-
-                        //difference = difference * (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept); // 1.01 - multiplier
-
-                        //qDebug() << "UP IN HERE: " << difference;
-                        //qDebug() << "";
-                        //startingMouseDistance = difference;
-                        //updateStartingMouseDistance = true;
-                        //currentAccelMulti = (slope * qMin(maxtravel, (initialDifference - startingMouseDistance)) + intercept);
 
                         //currentAccelMulti = (slope * intermediateTravel + intercept);
                         //oldAccelMulti = currentAccelMulti;
@@ -1248,19 +1186,10 @@ void JoyButton::mouseEvent()
                         updateOldAccelMulti = currentAccelMulti;
 
                         accelExtraDurationTime.restart();
-                        // Set time to NULL
-                        /*if (!accelExtraDurationTime.isNull())
-                        {
-                            accelExtraDurationTime = QTime();//.setHMS(0, 0, 0);
-                        }
-                        */
-
-                        //trynow = startingAccelerationDistance;
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
                              currentAccelMulti > 0.0 &&
                              fabs(getAccelerationDistance() - startingAccelerationDistance) < minstop)
-                             //initialDifference - startingMouseDistance < -mintravel)
                     {
                         //qDebug() << "Keep Trying: " << fabs(getAccelerationDistance() - lastAccelerationDistance);
                         //qDebug() << "MIN TRAVEL: " << mintravel;
@@ -1272,27 +1201,7 @@ void JoyButton::mouseEvent()
                         double slope = (magfactor - minfactor)/(maxtravel - mintravel);
                         double intercept = minfactor - (slope * mintravel);
 
-                        /*unsigned int elapsedElapsed = 0;
-
-                        if (accelExtraDurationTime.isNull())
-                        {
-                            accelExtraDurationTime.restart();
-
-                        }
-                        else
-                        {
-                            //Logger::LogInfo(QString("I INVESTIGATE GHOSTSSSSS: %1").arg(1));
-                            elapsedElapsed = accelExtraDurationTime.elapsed();
-                        }
-                        */
-
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
-                        /*double fullIntermediateTravel = qMin(maxtravel, fabs(getAccelerationDistance() - startingAccelerationDistance));
-                        if (fabs(getAccelerationDistance()) < fabs(startingAccelerationDistance))
-                        {
-                            fullIntermediateTravel = fullIntermediateTravel * -1;
-                        }
-                        */
 
                         double tempAccel = currentAccelMulti;
                         //double multiModifier = (maxtravel + fullIntermediateTravel) / maxtravel;
@@ -1305,8 +1214,6 @@ void JoyButton::mouseEvent()
                         //double elapsedDuration = accelDuration;
                         double orgelapsedDuration = accelDuration *
                                 ((tempAccel - minfactor) / (extraAccelerationMultiplier - minfactor));
-
-                        //double orgelapsedDuration = 0.0;
 
                         //double orgelapsedDuration = accelDuration *
                         //        ((currentAccelMulti) / (extraAccelerationMultiplier));
@@ -1338,7 +1245,6 @@ void JoyButton::mouseEvent()
 
                             // As acceleration is applied, do not update last
                             // distance values when not necessary.
-                            //updateLastMouseDistance = tempUpdateLastMouse;
                             updateStartingMouseDistance = false;
                             updateOldAccelMulti = currentAccelMulti;
                         }
@@ -1347,73 +1253,18 @@ void JoyButton::mouseEvent()
                             elapsedDiff = 1.0;
                             currentAccelMulti = 0.0;
                             updateOldAccelMulti = 0.0;
-                            //trynow = 0.0;
-                            //qDebug() << "RESET";
                         }
                     }
-                    /*else if (extraAccelerationEnabled && isPartRealAxis() &&
-                             fabs(getAccelerationDistance() - lastAccelerationDistance) >= minstop)
-                             //initialDifference - startingMouseDistance < mintravel)
-                    {
-                        if (currentAccelMulti > 0.0)
-                        {
-                            Logger::LogInfo(QString("Test: %1\n").arg(currentAccelMulti));
-                        }
-
-
-                        currentAccelMulti = 0.0;
-                        //startingMouseDistance = initialDifference;
-                        //updateStartingMouseDistance = true;
-                        //qDebug() << "IN THIS";
-                        //qDebug() << "";
-                        oldAccelMulti = 0.0;
-                        trynow = 0.0;
-                        updateStartingMouseDistance = true;
-
-                    }
-                    */
-
                     else if (extraAccelerationEnabled && isPartRealAxis())
                     {
                         currentAccelMulti = 0.0;
                         updateStartingMouseDistance = true;
                         oldAccelMulti = updateOldAccelMulti = 0.0;
-                        //trynow = 0.0;
-                        if (currentAccelMulti > 0)
-                        {
-                            //Logger::LogInfo(QString("I INVESTIGATE GHOSTSSSSS: %1\n").arg(currentAccelMulti));
-                        }
-
-                        //qDebug() << "IN THIS2";
-                        //qDebug() << "";
                     }
-
-
-                    /*else if (extraAccelerationEnabled && isPartRealAxis() &&
-                             initialDifference - lastMouseDistance < mintravel)
-                    {
-                        startingMouseDistance = initialDifference;
-                        updateStartingMouseDistance = true;
-                    }
-                    else if (!extraAccelerationEnabled || !isPartRealAxis())
-                    {
-                        startingMouseDistance = initialDifference;
-                        updateStartingMouseDistance = true;
-                    }
-                    */
-                    /*else
-                    {
-                        startingMouseDistance = initialDifference;
-                    }
-                    */
 
                     //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
-
                     distance = sumDist;
-
-                    //double prevDistance = buttonslot->getPreviousDistance();
-                    //qDebug() << "PREV: " << prevDistance;
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {
@@ -1450,7 +1301,6 @@ void JoyButton::mouseEvent()
                     double mouse1 = -2.0;
                     double mouse2 = -2.0;
                     double difference = getMouseDistanceFromDeadZone();
-                    //double sumDist = buttonslot->getMouseDistance();
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {
@@ -1491,11 +1341,6 @@ void JoyButton::mouseEvent()
                         mouse2 = -difference;
                     }
 
-                    /*double tempdiff = (difference >= 0.0) ? difference : -difference;
-                    double change = sumDist - tempdiff;
-                    change = (change >= 0.0) ? change : -change;
-                    */
-
                     PadderCommon::springModeInfo infoX;
                     infoX.displacementX = mouse1;
                     infoX.springDeadX = 0.0;
@@ -1514,7 +1359,6 @@ void JoyButton::mouseEvent()
                     infoY.screen = springModeScreen;
                     springYSpeeds.append(infoY);
 
-                    //sendSpringEvent(mouse1, mouse2, springWidth, springHeight);
                     mouseInterval->restart();
                 }
 
@@ -3753,15 +3597,15 @@ void JoyButton::releaseActiveSlots()
                     tempcode != JoyButtonSlot::MouseWheelLeft &&
                     tempcode != JoyButtonSlot::MouseWheelRight)
                 {
-                    int referenceount = activeMouseButtons.value(tempcode, 1) - 1;
-                    if (referenceount <= 0)
+                    int referencecount = activeMouseButtons.value(tempcode, 1) - 1;
+                    if (referencecount <= 0)
                     {
                         sendevent(slot, false);
                         activeMouseButtons.remove(tempcode);
                     }
                     else
                     {
-                        activeMouseButtons.insert(tempcode, referenceount);
+                        activeMouseButtons.insert(tempcode, referencecount);
                     }
                 }
                 else if (tempcode == JoyButtonSlot::MouseWheelUp ||
@@ -3986,18 +3830,6 @@ void JoyButton::releaseActiveSlots()
                 }
             }
 
-            /*staticMouseEventTimer.stop();
-            mouseHistoryX.clear();
-            mouseHistoryY.clear();
-            for (int i=0; i < 10; i++)
-            {
-                mouseHistoryX.append(0);
-            }
-            for (int i=0; i < 10; i++)
-            {
-                mouseHistoryY.append(0);
-            }
-            */
             cursorRemainderX = 0;
             cursorRemainderY = 0;
         }
@@ -4473,8 +4305,19 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         }
 
         finalx += cursorRemainderX;
+        if (abs(finalx) > 127)
+        {
+            finalx = (finalx < 0) ? -127 : 127;
+        }
+
         mouseHistoryX.prepend(finalx);
+
         finaly += cursorRemainderY;
+        if (abs(finaly) > 127)
+        {
+            finaly = (finaly < 0) ? -127 : 127;
+        }
+
         mouseHistoryY.prepend(finaly);
 
         cursorRemainderX = 0;
@@ -4488,39 +4331,34 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         double weightModifier = JoyButton::weightModifier;
         double finalWeight = 0.0;
 
-        //qDebug() << "OG: " << finalx;
         while (iterX.hasNext())
         {
             double temp = iterX.next();
-            //qDebug() << "SAMPLE: " << temp;
             adjustedX += temp * currentWeight;
             finalWeight += currentWeight;
             currentWeight *= weightModifier;
         }
 
-        //qDebug();
-        //qDebug() << "X TO THE Z: " << adjustedX;
         if (fabs(adjustedX) > 0)
         {
-            adjustedX = adjustedX / (double)finalWeight;
+            adjustedX = adjustedX / static_cast<double>(finalWeight);
 
             if (adjustedX > 0)
             {
                 double oldX = adjustedX;
-                adjustedX = (int)floor(adjustedX);
+                adjustedX = static_cast<int>(floor(adjustedX));
                 //adjustedX = (int)floor(adjustedX + 0.5); // Old rounding behavior
                 cursorRemainderX = oldX - adjustedX;
             }
             else
             {
                 double oldX = adjustedX;
-                adjustedX = (int)ceil(adjustedX);
+                adjustedX = static_cast<int>(ceil(adjustedX));
                 //adjustedX = (int)ceil(adjustedX - 0.5); // Old rounding behavior
                 cursorRemainderX = oldX - adjustedX;
             }
 
         }
-        //qDebug() << "FINAL X TO THE Z: " << adjustedX;
 
         QListIterator<double> iterY(mouseHistoryY);
         currentWeight = 1.0;
@@ -4536,18 +4374,18 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         if (fabs(adjustedY) > 0)
         {
-            adjustedY = adjustedY / (double)finalWeight;
+            adjustedY = adjustedY / static_cast<double>(finalWeight);
             if (adjustedY > 0)
             {
                 double oldY = adjustedY;
-                adjustedY = (int)floor(adjustedY);
+                adjustedY = static_cast<int>(floor(adjustedY));
                 //adjustedY = (int)floor(adjustedY + 0.5); // Old rounding behavior
                 cursorRemainderY = oldY - adjustedY;
             }
             else
             {
                 double oldY = adjustedY;
-                adjustedY = (int)ceil(adjustedY);
+                adjustedY = static_cast<int>(ceil(adjustedY));
                 //adjustedY = (int)ceil(adjustedY - 0.5); // Old rounding behavior
                 cursorRemainderY = oldY - adjustedY;
             }
@@ -4565,8 +4403,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         //qDebug() << "ELAPSED: " << elapsedTime;
         //qDebug() << "REMAINDER X: " << remainderX;
 
-        movedX = (int)adjustedX;
-        movedY = (int)adjustedY;
+        movedX = static_cast<int>(adjustedX);
+        movedY = static_cast<int>(adjustedY);
         movedElapsed = elapsedTime;
     }
     else
@@ -4897,7 +4735,7 @@ unsigned int JoyButton::getPreferredKeyPressTime()
     unsigned int tempPressTime = InputDevice::DEFAULTKEYPRESSTIME;
     if (currentKeyPress && currentKeyPress->getSlotCode() > 0)
     {
-        tempPressTime = (unsigned int)currentKeyPress->getSlotCode();
+        tempPressTime = static_cast<unsigned int>(currentKeyPress->getSlotCode());
     }
     else if (parentSet->getInputDevice()->getDeviceKeyPressTime() > 0)
     {
@@ -4940,33 +4778,6 @@ bool JoyButton::isCycleResetActive()
     return cycleResetActive;
 }
 
-/**
- * @brief Send key event needed to fake key repeating in Windows.
- *     Method is not used in Linux as key repeating is taken care of
- *     by X instead.
- */
-/*void JoyButton::repeatKeysEvent()
-{
-    if (!activeSlots.isEmpty() && lastActiveKey && activeSlots.contains(lastActiveKey))
-    {
-        JoyButtonSlot *slot = lastActiveKey;
-
-        // Send another key press to fake a key repeat
-        sendevent(slot);
-
-        InputDevice *device = getParentSet()->getInputDevice();
-        keyRepeatTimer.start(device->getKeyRepeatRate());
-    }
-    else
-    {
-#ifdef Q_OS_WIN
-        repeatHelper.getRepeatTimer()->stop();
-#endif
-        keyRepeatTimer.stop();
-    }
-}
-*/
-
 void JoyButton::establishPropertyUpdatedConnections()
 {
     connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
@@ -4979,6 +4790,10 @@ void JoyButton::disconnectPropertyUpdatedConnections()
     disconnect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 
+/**
+ * @brief Change initial settings used for mouse event timer being used by
+ *     the application.
+ */
 void JoyButton::establishMouseTimerConnections()
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -4989,7 +4804,9 @@ void JoyButton::establishMouseTimerConnections()
 #endif
 
     // Only one connection will be made for each.
-    connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper, SLOT(mouseEvent()), Qt::UniqueConnection);
+    connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
+            SLOT(mouseEvent()), Qt::UniqueConnection);
+
     if (!staticMouseEventTimer.isActive())
     {
         lastMouseTime.start();
@@ -5155,11 +4972,19 @@ bool JoyButton::hasSpringEvents()
     return (springXSpeeds.length() != 0) || (springYSpeeds.length() != 0);
 }
 
+/**
+ * @brief Get the weight modifier being used for mouse smoothing.
+ * @return Weight modifier in the range of 0.0 - 1.0.
+ */
 double JoyButton::getWeightModifier()
 {
     return weightModifier;
 }
 
+/**
+ * @brief Set the weight modifier to use for mouse smoothing.
+ * @param Weight modifier in the range of 0.0 - 1.0.
+ */
 void JoyButton::setWeightModifier(double modifier)
 {
     if (modifier >= 0.0 && modifier <= MAXIMUMWEIGHTMODIFIER)
@@ -5231,6 +5056,30 @@ void JoyButton::setMouseRefreshRate(int refresh)
             mouseHistoryX.clear();
             mouseHistoryY.clear();
         }
+
+        mouseHelper.carryMouseRefreshRateUpdate(mouseRefreshRate);
+    }
+}
+
+/**
+ * @brief Get the gamepad poll rate used by the application.
+ * @return Poll rate in ms.
+ */
+int JoyButton::getGamepadRefreshRate()
+{
+    return gamepadRefreshRate;
+}
+
+/**
+ * @brief Set the gamepad poll rate to be used in the application.
+ * @param Poll rate in ms.
+ */
+void JoyButton::setGamepadRefreshRate(int refresh)
+{
+    if (refresh >= 1 && refresh <= 16)
+    {
+        gamepadRefreshRate = refresh;
+        mouseHelper.carryGamePollRateUpdate(gamepadRefreshRate);
     }
 }
 

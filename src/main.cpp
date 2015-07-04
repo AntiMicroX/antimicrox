@@ -133,13 +133,11 @@ int main(int argc, char *argv[])
     else if (cmdutility.isHelpRequested())
     {
         appLogger.LogInfo(cmdutility.generateHelpString(), false, true);
-        //cmdutility.printHelp();
         return 0;
     }
     else if (cmdutility.isVersionRequested())
     {
         appLogger.LogInfo(cmdutility.generateVersionString(), true, true);
-        //cmdutility.printVersionString();
         return 0;
     }
 
@@ -213,7 +211,6 @@ int main(int argc, char *argv[])
         if (pid == 0)
         {
             appLogger.LogInfo(QObject::tr("Daemon launched"), true, true);
-            //outstream << QObject::tr("Daemon launched") << endl;
 
             a = new QApplication(argc, argv);
             localServer = new LocalAntiMicroServer();
@@ -222,7 +219,6 @@ int main(int argc, char *argv[])
         else if (pid < 0)
         {
             appLogger.LogError(QObject::tr("Failed to launch daemon"), true, true);
-            //errorstream << QObject::tr("Failed to launch daemon") << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -234,7 +230,6 @@ int main(int argc, char *argv[])
         else if (pid > 0)
         {
             appLogger.LogInfo(QObject::tr("Launching daemon"), true, true);
-            //outstream << QObject::tr("Launching daemon") << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -548,8 +543,6 @@ int main(int argc, char *argv[])
                     EventHandlerFactory::fallBackIdentifier());
         appLogger.LogInfo(QObject::tr("Attempting to use fallback option %1 for event generation.")
                                      .arg(eventDisplayName), true, true);
-        //outstream << QObject::tr("Attempting to use fallback option %1 for event generation.")
-        //             .arg(eventDisplayName) << endl;
 
         factory->deleteInstance();
         factory = EventHandlerFactory::getInstance(EventHandlerFactory::fallBackIdentifier());
@@ -567,7 +560,6 @@ int main(int argc, char *argv[])
     if (!status)
     {
         appLogger.LogError(QObject::tr("Failed to open event generator. Exiting."), true, true);
-        //errorstream << QObject::tr("Failed to open event generator. Exiting.") << endl;
 
         joypad_worker->quit();
 
@@ -602,8 +594,6 @@ int main(int argc, char *argv[])
     {
         appLogger.LogInfo(QObject::tr("Using %1 as the event generator.")
                           .arg(factory->handler()->getName()), true, true);
-        //outstream << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName())
-        //          << endl;
         factory->handler()->printPostMessages();
         eventGeneratorIdentifier = factory->handler()->getIdentifier();
     }
@@ -663,7 +653,6 @@ int main(int argc, char *argv[])
     if (!raisedPriority)
     {
         appLogger.LogInfo(QObject::tr("Could not raise process priority."), true, true);
-        //outstream << QObject::tr("Could not raise process priority.") << endl;
     }
 #else
     // Raise main thread prority. Helps reduce timer delays caused by

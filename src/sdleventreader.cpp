@@ -4,14 +4,24 @@
 #include <QSettings>
 #include <QMapIterator>
 
+#include "logger.h"
 #include "sdleventreader.h"
 
-SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings, QObject *parent) :
+SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
+                               AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
     this->joysticks = joysticks;
     this->settings = settings;
+    this->pollRate = settings->value("GamepadPollRate",
+                                     AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
+
+    pollRateTimer.setParent(this);
+    pollRateTimer.setTimerType(Qt::PreciseTimer);
+
     initSDL();
+
+    //connect(&pollRateTimer, SIGNAL(timeout()), this, SLOT(performWork()));
 }
 
 SDLEventReader::~SDLEventReader()
@@ -56,11 +66,17 @@ void SDLEventReader::initSDL()
     //SDL_GameControllerAddMapping("03000000100800000100000010010000,Twin USB Joystick,a:b2,b:b1,x:b3,y:b0,back:b8,start:b9,leftshoulder:b6,rightshoulder:b7,leftstick:b10,rightstick:b11,leftx:a0,lefty:a1,rightx:a3,righty:a2,lefttrigger:b4,righttrigger:b5,dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2");
 #endif
 
+    pollRateTimer.stop();
+    pollRateTimer.setInterval(pollRate);
+    //pollRateTimer.setSingleShot(true);
+
     emit sdlStarted();
 }
 
 void SDLEventReader::closeSDL()
 {
+    pollRateTimer.stop();
+
     SDL_Event event;
 
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
@@ -87,8 +103,10 @@ void SDLEventReader::performWork()
     if (sdlIsOpen)
     {
         int status = SDL_WaitEvent(NULL);
+        //int status = CheckForEvents();
         if (status)
         {
+            //pollRateTimer.stop();
             emit eventRaised();
         }
     }
@@ -139,4 +157,54 @@ void SDLEventReader::clearEvents()
 bool SDLEventReader::isSDLOpen()
 {
     return sdlIsOpen;
+}
+
+int SDLEventReader::CheckForEvents()
+{
+    int result = 0;
+    bool exit = false;
+
+    while (!exit)
+    {
+        SDL_PumpEvents();
+        switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
+        {
+            case -1:
+            {
+                result = 0;
+                exit = true;
+                break;
+            }
+            case 1:
+            {
+                /*Logger::LogInfo(
+                            QString("Gamepad Poll %1").arg(QTime::currentTime().toString("hh:mm:ss.zzz")),
+                            true, true);
+                */
+                result = 1;
+                exit = true;
+                break;
+            }
+            case 0:
+            {
+                //pollRateTimer.start();
+                //exit = true;
+                SDL_Delay(10);
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
+void SDLEventReader::updatePollRate(unsigned int tempPollRate)
+{
+    if (tempPollRate >= 1 && tempPollRate <= 16)
+    {
+        pollRateTimer.stop();
+
+        this->pollRate = tempPollRate;
+        pollRateTimer.setInterval(pollRate);
+    }
 }

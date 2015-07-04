@@ -11,6 +11,8 @@ public:
     void resetButtonMouseDistances();
     void setFirstSpringStatus(bool status);
     bool getFirstSpringStatus();
+    void carryGamePollRateUpdate(unsigned int pollRate);
+    void carryMouseRefreshRateUpdate(unsigned int refreshRate);
 
 protected:
     bool firstSpringEvent;
@@ -18,6 +20,8 @@ protected:
 signals:
     void mouseCursorMoved(int mouseX, int mouseY, int elapsed);
     void mouseSpringMoved(int mouseX, int mouseY);
+    void gamepadRefreshRateUpdated(unsigned int pollRate);
+    void mouseRefreshRateUpdated(unsigned int refreshRate);
 
 public slots:
     void moveMouseCursor();
