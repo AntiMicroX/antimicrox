@@ -287,6 +287,17 @@ void WinVMultiEventHandler::sendMouseEvent(int xDis, int yDis)
     vmulti_update_relative_mouse(vmulti, mouseButtons, xDis, yDis, 0, 0);
 }
 
+void WinVMultiEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                                 unsigned int width, unsigned int height)
+{
+    if (width > 0 && height > 0)
+    {
+        int fx = ceil(xDis * (32767.0/static_cast<double>(width)));
+        int fy = ceil(yDis * (32767.0/static_cast<double>(height)));
+        sendMouseAbsEvent(fx, fy);
+    }
+}
+
 void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
 {
     vmulti_update_mouse(vmulti, mouseButtons, xDis, yDis, 0);

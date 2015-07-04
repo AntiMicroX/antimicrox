@@ -21,7 +21,7 @@
 #include <QSettings>
 #include <QMapIterator>
 
-#include "logger.h"
+//#include "logger.h"
 #include "sdleventreader.h"
 
 SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
