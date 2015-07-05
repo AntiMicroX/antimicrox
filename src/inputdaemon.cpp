@@ -266,7 +266,7 @@ void InputDaemon::quit()
         eventWorker->stop();
     }
 
-    eventWorker->deleteLater();
+    QMetaObject::invokeMethod(eventWorker, SLOT(deleteLater()), Qt::BlockingQueuedConnection);
     eventWorker = 0;
 }
 
