@@ -266,7 +266,7 @@ void InputDaemon::quit()
         eventWorker->stop();
     }
 
-    delete eventWorker;
+    eventWorker->deleteLater();
     eventWorker = 0;
 }
 

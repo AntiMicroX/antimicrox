@@ -215,14 +215,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             double diffx = abs(currentMouseX - xmovecoor);
             double diffy = abs(currentMouseY - ymovecoor);
 
-#ifdef Q_OS_WIN
-            INPUT temp[1] = {};
-            temp[0].type = INPUT_MOUSE;
-            temp[0].mi.mouseData = 0;
-            temp[0].mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
-
-#endif
-
             // If either position is set to center, force update.
             if (xmovecoor == (deskRect.x() + midwidth) || ymovecoor == (deskRect.y() + midheight))
             {
@@ -233,8 +225,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(temp, xmovecoor, ymovecoor, width, height);
-                    //finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
                 }
                 else
                 {
@@ -256,8 +247,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(temp, xmovecoor, ymovecoor, width, height);
-                    //finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
                 }
                 else
                 {
@@ -281,8 +271,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(temp, xmovecoor, ymovecoor, width, height);
-                    //finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
                 }
                 else
                 {
@@ -311,8 +300,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(temp, xmovecoor, ymovecoor, width, height);
-                    //finalSpringEvent(temp, xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
                 }
                 else
                 {
