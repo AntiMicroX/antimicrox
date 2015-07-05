@@ -1838,7 +1838,7 @@ int JoyControlStick::calculateCircleXValue(int axisXValue, int axisYValue)
 
 int JoyControlStick::calculateCircleYValue(int axisXValue, int axisYValue)
 {
-    int value = axisXValue;
+    int value = axisYValue;
     if (this->circle > 0.0)
     {
         int axis1Value = axisXValue;
@@ -1854,8 +1854,8 @@ int JoyControlStick::calculateCircleYValue(int axisXValue, int axisYValue)
         double circleStickFull = (squareStickFull - 1) * circle + 1;
         //double alternateStickFullValue = circleStickFull * abs(axisYValueCircleFull);
 
-        //value = circleStickFull > 1.0 ? static_cast<int>(floor((axisXValue / alternateStickFullValue) * abs(axisYValueCircleFull) + 0.5)) : value;
-        value = circleStickFull > 1.0 ? static_cast<int>(floor((axisXValue / circleStickFull) + 0.5)) : value;
+        //value = circleStickFull > 1.0 ? static_cast<int>(floor((axisYValue / alternateStickFullValue) * abs(axisYValueCircleFull) + 0.5)) : value;
+        value = circleStickFull > 1.0 ? static_cast<int>(floor((axisYValue / circleStickFull) + 0.5)) : value;
     }
 
     return value;
