@@ -678,7 +678,8 @@ void MainSettingsDialog::saveNewSettings()
     JoyButton::setSpringModeScreen(springScreen);
     settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
 
-    unsigned int gamepadPollRate = ui->gamepadPollRateComboBox->currentData().toUInt();
+    int pollIndex = ui->gamepadPollRateComboBox->currentIndex();
+    unsigned int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toUInt();
     if (gamepadPollRate != JoyButton::getGamepadRefreshRate())
     {
         JoyButton::setGamepadRefreshRate(gamepadPollRate);
