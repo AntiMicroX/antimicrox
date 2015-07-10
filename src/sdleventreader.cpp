@@ -34,7 +34,9 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
                                      AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
 
     pollRateTimer.setParent(this);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     pollRateTimer.setTimerType(Qt::PreciseTimer);
+#endif
 
     initSDL();
 
