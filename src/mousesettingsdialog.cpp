@@ -25,7 +25,7 @@
 #include "ui_mousesettingsdialog.h"
 
 MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Window),
     ui(new Ui::MouseSettingsDialog)
 {
     ui->setupUi(this);

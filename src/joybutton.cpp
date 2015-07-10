@@ -4342,8 +4342,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         {
             mouseCursorInfo infoX = cursorXSpeeds.takeFirst();
             mouseCursorInfo infoY = cursorYSpeeds.takeFirst();
-            finalx += infoX.code;
-            finaly += infoY.code;
+            finalx = qMax(infoX.code, finalx);
+            finaly = qMax(infoY.code, finaly);
 
             infoX.slot->getMouseInterval()->restart();
             infoY.slot->getMouseInterval()->restart();

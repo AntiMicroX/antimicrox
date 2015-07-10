@@ -212,6 +212,7 @@ void InputDaemon::refresh()
 {
     stop();
 
+    Logger::LogInfo("Refreshing joystick list");
     eventWorker->refresh();
 
     QEventLoop q;

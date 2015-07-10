@@ -192,7 +192,11 @@
             <widget class="QComboBox" name="gamepadPollRateComboBox">
              <property name="toolTip">
               <string>Change the poll rate that the program uses to discover new
-events from gamepads. Defaults to 10 ms.</string>
+events from gamepads. Defaults to 10 ms.
+
+Reducing the poll rate value could cause the application to
+use more CPU power so please test the setting that you use
+before using antimicro unattended.</string>
              </property>
             </widget>
            </item>
