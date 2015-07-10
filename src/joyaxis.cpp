@@ -58,18 +58,22 @@ JoyAxis::~JoyAxis()
     delete naxisbutton;
 }
 
-void JoyAxis::joyEvent(int value, bool ignoresets)
+void JoyAxis::queuePendingEvent(int value, bool ignoresets)
 {
-    lastKnownThottledValue = currentThrottledValue;
-    lastKnownRawValue = currentRawValue;
-
-    setCurrentRawValue(value);
-    //currentRawValue = value;
-    bool safezone = !inDeadZone(currentRawValue);
-    currentThrottledValue = calculateThrottledValue(value);
+    pendingEvent = false;
+    pendingValue = 0;
+    pendingIgnoreSets = false;
 
     if (this->stick)
     {
+        lastKnownThottledValue = currentThrottledValue;
+        lastKnownRawValue = currentRawValue;
+
+        setCurrentRawValue(value);
+        //currentRawValue = value;
+        bool safezone = !inDeadZone(currentRawValue);
+        currentThrottledValue = calculateThrottledValue(value);
+
         if (safezone && !isActive)
         {
             isActive = eventActive = true;
@@ -89,9 +93,44 @@ void JoyAxis::joyEvent(int value, bool ignoresets)
         {
             stick->joyEvent(ignoresets);
         }
+
+        emit moved(currentRawValue);
     }
     else
     {
+        pendingEvent = true;
+        pendingValue = value;
+        pendingIgnoreSets = ignoresets;
+    }
+}
+
+void JoyAxis::activatePendingEvent()
+{
+    if (pendingEvent)
+    {
+        joyEvent(pendingValue);
+        pendingEvent = false;
+        pendingValue = false;
+    }
+}
+
+bool JoyAxis::hasPendingEvent()
+{
+    return pendingEvent;
+}
+
+void JoyAxis::joyEvent(int value, bool ignoresets)
+{
+    if (!this->stick)
+    {
+        lastKnownThottledValue = currentThrottledValue;
+        lastKnownRawValue = currentRawValue;
+
+        setCurrentRawValue(value);
+        //currentRawValue = value;
+        bool safezone = !inDeadZone(currentRawValue);
+        currentThrottledValue = calculateThrottledValue(value);
+
         // If in joystick mode and this is the first detected event,
         // use the current value as the axis center point. If the value
         // is below -30,000 then consider it a trigger.
@@ -523,6 +562,10 @@ void JoyAxis::reset()
     setCurrentRawValue(currentThrottledDeadValue);
     currentThrottledValue = calculateThrottledValue(currentRawValue);
     axisName.clear();
+
+    pendingEvent = false;
+    pendingValue = currentRawValue;
+    pendingIgnoreSets = false;
 }
 
 void JoyAxis::reset(int index)

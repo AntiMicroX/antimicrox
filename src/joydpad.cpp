@@ -39,6 +39,10 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
 
     populateButtons();
 
+    pendingEvent = false;
+    pendingEventDirection = prevDirection;
+    pendingIgnoreSets = false;
+
     directionDelayTimer.setSingleShot(true);
     connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(dpadDirectionChangeEvent()));
 }
@@ -235,6 +239,30 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
 
         xml->writeEndElement();
     }
+}
+
+void JoyDPad::queuePendingEvent(int value, bool ignoresets)
+{
+    pendingEvent = true;
+    pendingEventDirection = value;
+    pendingIgnoreSets = ignoresets;
+}
+
+void JoyDPad::activatePendingEvent()
+{
+    if (pendingEvent)
+    {
+        joyEvent(pendingEventDirection, pendingIgnoreSets);
+
+        pendingEvent = false;
+        pendingEventDirection = static_cast<int>(JoyDPadButton::DpadCentered);
+        pendingIgnoreSets = false;
+    }
+}
+
+bool JoyDPad::hasPendingEvent()
+{
+    return pendingEvent;
 }
 
 void JoyDPad::joyEvent(int value, bool ignoresets)

@@ -115,7 +115,7 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
 {
     Q_UNUSED(pressed);
 
-    int tempDirection = (int)JoyDPadButton::DpadCentered;
+    int tempDirection = static_cast<int>(JoyDPadButton::DpadCentered);
 
     /*
      * Check which buttons are currently active
@@ -282,7 +282,13 @@ void VDPad::queueJoyEvent(bool ignoresets)
 
 void VDPad::activatePendingEvent()
 {
-    // Always use true. The proper direction value will be determined
-    // in the joyEvent method.
-    joyEvent(true);
+    if (pendingVDPadEvent)
+    {
+        // Always use true. The proper direction value will be determined
+        // in the joyEvent method.
+        joyEvent(true);
+
+        pendingVDPadEvent = false;
+    }
+
 }

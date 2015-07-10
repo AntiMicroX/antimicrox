@@ -57,6 +57,10 @@ public:
     enum TurboMode {NormalTurbo=0, GradientTurbo, PulseTurbo};
 
     void joyEvent(bool pressed, bool ignoresets=false);
+    void queuePendingEvent(bool pressed, bool ignoresets=false);
+    void activatePendingEvent();
+    bool hasPendingEvent();
+
     int getJoyNumber();
     virtual int getRealJoyNumber();
     void setJoyNumber(int index);
@@ -447,6 +451,10 @@ protected:
     double extraAccelerationMultiplier;
 
     int springDeadCircleMultiplier;
+
+    bool pendingPress;
+    bool pendingEvent;
+    bool pendingIgnoreSets;
 
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;

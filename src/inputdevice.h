@@ -118,8 +118,12 @@ public:
     void transferReset();
     void reInitButtons();
 
+    void activatePossiblePendingEvents();
     void activatePossibleControlStickEvents();
+    void activatePossibleAxisEvents();
+    void activatePossibleDPadEvents();
     void activatePossibleVDPadEvents();
+    void activatePossibleButtonEvents();
 
     bool isEmptyGUID(QString tempGUID);
     bool isRelevantGUID(QString tempGUID);

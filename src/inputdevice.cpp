@@ -124,25 +124,31 @@ void InputDevice::reInitButtons()
     {
         bool value = buttonstates.at(i);
         JoyButton *button = current_set->getJoyButton(i);
-        button->joyEvent(value);
+        //button->joyEvent(value);
+        button->queuePendingEvent(value);
     }
 
     for (int i = 0; i < current_set->getNumberAxes(); i++)
     {
         int value = axesstates.at(i);
         JoyAxis *axis = current_set->getJoyAxis(i);
-        axis->joyEvent(value);
+        //axis->joyEvent(value);
+        axis->queuePendingEvent(value);
     }
 
     for (int i = 0; i < current_set->getNumberHats(); i++)
     {
         int value = dpadstates.at(i);
         JoyDPad *dpad = current_set->getJoyDPad(i);
-        dpad->joyEvent(value);
+        //dpad->joyEvent(value);
+        dpad->queuePendingEvent(value);
     }
 
     activatePossibleControlStickEvents();
+    activatePossibleAxisEvents();
+    activatePossibleDPadEvents();
     activatePossibleVDPadEvents();
+    activatePossibleButtonEvents();
 
     buttonstates.clear();
     axesstates.clear();
@@ -430,7 +436,8 @@ void InputDevice::setActiveSetNumber(int index)
                 }
             }
 
-            button->joyEvent(value, tempignore);
+            //button->joyEvent(value, tempignore);
+            button->queuePendingEvent(value, tempignore);
         }
 
         // Activate all axis buttons in the switched set
@@ -468,7 +475,8 @@ void InputDevice::setActiveSetNumber(int index)
                 axis->getNAxisButton()->setWhileHeldStatus(false);
             }
 
-            axis->joyEvent(value, tempignore);
+            //axis->joyEvent(value, tempignore);
+            axis->queuePendingEvent(value, tempignore);
         }
 
         // Activate all dpad buttons in the switched set
@@ -575,11 +583,15 @@ void InputDevice::setActiveSetNumber(int index)
                 }
             }
 
-            dpad->joyEvent(value, tempignore);
+            //dpad->joyEvent(value, tempignore);
+            dpad->queuePendingEvent(value, tempignore);
         }
 
         activatePossibleControlStickEvents();
+        activatePossibleAxisEvents();
+        activatePossibleDPadEvents();
         activatePossibleVDPadEvents();
+        activatePossibleButtonEvents();
     }
 }
 
@@ -1968,6 +1980,15 @@ bool InputDevice::isKnownController()
     return result;
 }
 
+void InputDevice::activatePossiblePendingEvents()
+{
+    activatePossibleControlStickEvents();
+    activatePossibleAxisEvents();
+    activatePossibleDPadEvents();
+    activatePossibleVDPadEvents();
+    activatePossibleButtonEvents();
+}
+
 void InputDevice::activatePossibleControlStickEvents()
 {
     SetJoystick *currentSet = getActiveSetJoystick();
@@ -1981,6 +2002,32 @@ void InputDevice::activatePossibleControlStickEvents()
     }
 }
 
+void InputDevice::activatePossibleAxisEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    for (int i=0; i < currentSet->getNumberAxes(); i++)
+    {
+        JoyAxis *tempAxis = currentSet->getJoyAxis(i);
+        if (tempAxis && tempAxis->hasPendingEvent())
+        {
+            tempAxis->activatePendingEvent();
+        }
+    }
+}
+
+void InputDevice::activatePossibleDPadEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    for (int i=0; i < currentSet->getNumberHats(); i++)
+    {
+        JoyDPad *tempDPad = currentSet->getJoyDPad(i);
+        if (tempDPad && tempDPad->hasPendingEvent())
+        {
+            tempDPad->activatePendingEvent();
+        }
+    }
+}
+
 void InputDevice::activatePossibleVDPadEvents()
 {
     SetJoystick *currentSet = getActiveSetJoystick();
@@ -1990,6 +2037,19 @@ void InputDevice::activatePossibleVDPadEvents()
         if (tempVDPad && tempVDPad->hasPendingEvent())
         {
             tempVDPad->activatePendingEvent();
+        }
+    }
+}
+
+void InputDevice::activatePossibleButtonEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    for (int i=0; i < currentSet->getNumberButtons(); i++)
+    {
+        JoyButton *tempButton = currentSet->getJoyButton(i);
+        if (tempButton && tempButton->hasPendingEvent())
+        {
+            tempButton->activatePendingEvent();
         }
     }
 }

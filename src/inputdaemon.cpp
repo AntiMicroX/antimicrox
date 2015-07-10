@@ -85,6 +85,9 @@ InputDaemon::~InputDaemon()
     }
 }
 
+/**
+ * @brief TODO: NOT USED. DECIDE WHETHER IT SHOULD BE REMOVED.
+ */
 void InputDaemon::startWorker()
 {
     if (!thread->isRunning())
@@ -750,7 +753,8 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (button)
                     {
-                        button->joyEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
+                        //button->joyEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
+                        button->queuePendingEvent(event.type == SDL_JOYBUTTONDOWN ? true : false);
 
                         if (!activeDevices.contains(event.jbutton.which))
                         {
@@ -775,7 +779,8 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     JoyAxis *axis = set->getJoyAxis(event.jaxis.axis);
                     if (axis)
                     {
-                        axis->joyEvent(event.jaxis.value);
+                        //axis->joyEvent(event.jaxis.value);
+                        axis->queuePendingEvent(event.jaxis.value);
 
                         if (!activeDevices.contains(event.jaxis.which))
                         {
@@ -800,6 +805,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     JoyDPad *dpad = set->getJoyDPad(event.jhat.hat);
                     if (dpad)
                     {
+                        //dpad->joyEvent(event.jhat.value);
                         dpad->joyEvent(event.jhat.value);
 
                         if (!activeDevices.contains(event.jhat.which))
@@ -824,7 +830,8 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     {
                         //qDebug() << QTime::currentTime() << ": " << "Axis " << event.caxis.axis+1
                         //         << ": " << event.caxis.value;
-                        axis->joyEvent(event.caxis.value);
+                        //axis->joyEvent(event.caxis.value);
+                        axis->queuePendingEvent(event.caxis.value);
 
                         if (!activeDevices.contains(event.caxis.which))
                         {
@@ -846,7 +853,8 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (button)
                     {
-                        button->joyEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
+                        //button->joyEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
+                        button->queuePendingEvent(event.type == SDL_CONTROLLERBUTTONDOWN ? true : false);
 
                         if (!activeDevices.contains(event.cbutton.which))
                         {
@@ -894,7 +902,10 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
         {
             InputDevice *tempDevice = activeDevIter.next().value();
             tempDevice->activatePossibleControlStickEvents();
+            tempDevice->activatePossibleAxisEvents();
+            tempDevice->activatePossibleDPadEvents();
             tempDevice->activatePossibleVDPadEvents();
+            tempDevice->activatePossibleButtonEvents();
         }
     }
 }

@@ -45,6 +45,10 @@ public:
     };
 
     void joyEvent(int value, bool ignoresets=false);
+    void queuePendingEvent(int value, bool ignoresets=false);
+    void activatePendingEvent();
+    bool hasPendingEvent();
+
     bool inDeadZone(int value);
 
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
@@ -176,6 +180,10 @@ protected:
     double lastMouseDistance;
     int lastKnownThottledValue;
     int lastKnownRawValue;
+
+    int pendingValue;
+    bool pendingEvent;
+    bool pendingIgnoreSets;
 
 signals:
     void active(int value);

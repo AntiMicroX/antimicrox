@@ -122,7 +122,8 @@ JoyKeyRepeatHelper JoyButton::repeatHelper;
 
 static const double PI = acos(-1.0);
 
-JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
+JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
+                     QObject *parent) :
     QObject(parent)
 {
     vdpad = 0;
@@ -160,8 +161,12 @@ JoyButton::~JoyButton()
     reset();
 }
 
-void JoyButton::joyEvent(bool pressed, bool ignoresets)
+void JoyButton::queuePendingEvent(bool pressed, bool ignoresets)
 {
+    pendingEvent = false;
+    pendingPress = false;
+    pendingIgnoreSets = false;
+
     if (this->vdpad)
     {
         if (pressed != isButtonPressed)
@@ -186,7 +191,34 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
         }
     }
-    else if (ignoreEvents)
+    else
+    {
+        pendingEvent = true;
+        pendingPress = pressed;
+        pendingIgnoreSets = ignoresets;
+    }
+}
+
+void JoyButton::activatePendingEvent()
+{
+    if (pendingEvent)
+    {
+        joyEvent(pendingPress, pendingIgnoreSets);
+
+        pendingEvent = false;
+        pendingPress = false;
+        pendingIgnoreSets = false;
+    }
+}
+
+bool JoyButton::hasPendingEvent()
+{
+    return pendingEvent;
+}
+
+void JoyButton::joyEvent(bool pressed, bool ignoresets)
+{
+    if (ignoreEvents)
     {
         if (pressed != isButtonPressed)
         {
@@ -4342,8 +4374,17 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         {
             mouseCursorInfo infoX = cursorXSpeeds.takeFirst();
             mouseCursorInfo infoY = cursorYSpeeds.takeFirst();
-            finalx = qMax(infoX.code, finalx);
-            finaly = qMax(infoY.code, finaly);
+            if (infoX.code != 0)
+            {
+                finalx = (infoX.code < 0) ? qMin(infoX.code, finalx) :
+                                            qMax(infoX.code, finalx);
+            }
+
+            if (infoY.code != 0)
+            {
+                finaly = (infoY.code < 0) ? qMin(infoY.code, finaly) :
+                                            qMax(infoY.code, finaly);
+            }
 
             infoX.slot->getMouseInterval()->restart();
             infoY.slot->getMouseInterval()->restart();
@@ -5213,6 +5254,10 @@ void JoyButton::resetProperties()
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
     springDeadCircleMultiplier = DEFAULTSPRINGRELEASERADIUS;
+
+    pendingEvent = false;
+    pendingPress = false;
+    pendingIgnoreSets = false;
 
     extraAccelerationEnabled = false;
     extraAccelerationMultiplier = DEFAULTEXTRACCELVALUE;

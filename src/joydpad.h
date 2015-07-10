@@ -44,7 +44,11 @@ public:
     int getIndex();
     int getRealJoyNumber();
     virtual QString getName(bool fullForceFormat=false, bool displayNames=false);
+
     void joyEvent(int value, bool ignoresets=false);
+    void queuePendingEvent(int value, bool ignoresets=false);
+    void activatePendingEvent();
+    bool hasPendingEvent();
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();
@@ -121,6 +125,10 @@ protected:
     SetJoystick *parentSet;
     QTimer directionDelayTimer;
     unsigned int dpadDelay;
+
+    bool pendingEvent;
+    int pendingEventDirection;
+    bool pendingIgnoreSets;
 
 signals:
     void active(int value);
