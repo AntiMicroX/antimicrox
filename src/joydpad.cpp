@@ -265,6 +265,13 @@ bool JoyDPad::hasPendingEvent()
     return pendingEvent;
 }
 
+void JoyDPad::clearPendingEvent()
+{
+    pendingEvent = false;
+    pendingEventDirection = static_cast<int>(JoyDPadButton::DpadCentered);
+    pendingIgnoreSets = false;
+}
+
 void JoyDPad::joyEvent(int value, bool ignoresets)
 {
     if (value != (int)pendingDirection)

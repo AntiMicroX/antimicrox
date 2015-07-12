@@ -48,6 +48,7 @@ public:
     void queuePendingEvent(int value, bool ignoresets=false);
     void activatePendingEvent();
     bool hasPendingEvent();
+    void clearPendingEvent();
 
     bool inDeadZone(int value);
 
@@ -153,6 +154,7 @@ protected:
     int calculateThrottledValue(int value);
     void setCurrentRawValue(int value);
     void performCalibration(int value);
+    void stickPassEvent(int value, bool ignoresets=false);
 
     virtual bool readMainConfig(QXmlStreamReader *xml);
     virtual bool readButtonConfig(QXmlStreamReader *xml);

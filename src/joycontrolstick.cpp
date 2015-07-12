@@ -3053,8 +3053,14 @@ void JoyControlStick::activatePendingEvent()
     {
         bool ignoresets = false;
         joyEvent(ignoresets);
+
         pendingStickEvent = false;
     }
+}
+
+void JoyControlStick::clearPendingEvent()
+{
+    pendingStickEvent = false;
 }
 
 void JoyControlStick::setButtonsExtraAccelerationStatus(bool enabled)

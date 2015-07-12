@@ -292,3 +292,8 @@ void VDPad::activatePendingEvent()
     }
 
 }
+
+void VDPad::clearPendingEvent()
+{
+    pendingVDPadEvent = false;
+}

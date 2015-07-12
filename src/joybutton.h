@@ -60,6 +60,7 @@ public:
     void queuePendingEvent(bool pressed, bool ignoresets=false);
     void activatePendingEvent();
     bool hasPendingEvent();
+    void clearPendingEvent();
 
     int getJoyNumber();
     virtual int getRealJoyNumber();
@@ -292,6 +293,7 @@ protected:
     void checkTurboCondition(JoyButtonSlot *slot);
     static bool hasFutureSpringEvents();
     virtual double getCurrentSpringDeadCircle();
+    void vdpadPassEvent(bool pressed, bool ignoresets=false);
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
 

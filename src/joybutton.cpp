@@ -169,27 +169,7 @@ void JoyButton::queuePendingEvent(bool pressed, bool ignoresets)
 
     if (this->vdpad)
     {
-        if (pressed != isButtonPressed)
-        {
-            isButtonPressed = pressed;
-            if (isButtonPressed)
-            {
-                emit clicked(index);
-            }
-            else
-            {
-                emit released(index);
-            }
-
-            if (!ignoresets)
-            {
-                this->vdpad->queueJoyEvent(ignoresets);
-            }
-            else
-            {
-                this->vdpad->joyEvent(pressed, ignoresets);
-            }
-        }
+        vdpadPassEvent(pressed, ignoresets);
     }
     else
     {
@@ -216,9 +196,45 @@ bool JoyButton::hasPendingEvent()
     return pendingEvent;
 }
 
+void JoyButton::clearPendingEvent()
+{
+    pendingEvent = false;
+    pendingPress = false;
+    pendingIgnoreSets = false;
+}
+
+void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
+{
+    if (this->vdpad && pressed != isButtonPressed)
+    {
+        isButtonPressed = pressed;
+        if (isButtonPressed)
+        {
+            emit clicked(index);
+        }
+        else
+        {
+            emit released(index);
+        }
+
+        if (!ignoresets)
+        {
+            this->vdpad->queueJoyEvent(ignoresets);
+        }
+        else
+        {
+            this->vdpad->joyEvent(pressed, ignoresets);
+        }
+    }
+}
+
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
-    if (ignoreEvents)
+    if (this->vdpad && !pendingEvent)
+    {
+        vdpadPassEvent(pressed, ignoresets);
+    }
+    else if (ignoreEvents)
     {
         if (pressed != isButtonPressed)
         {

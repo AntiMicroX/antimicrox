@@ -49,6 +49,7 @@ public:
     void queuePendingEvent(int value, bool ignoresets=false);
     void activatePendingEvent();
     bool hasPendingEvent();
+    void clearPendingEvent();
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();

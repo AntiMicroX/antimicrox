@@ -41,6 +41,7 @@ public:
 
     void queueJoyEvent(bool ignoresets=false);
     bool hasPendingEvent();
+    void clearPendingEvent();
 
     static const QString xmlName;
 

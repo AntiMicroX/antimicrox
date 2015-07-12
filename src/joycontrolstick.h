@@ -171,8 +171,8 @@ public:
 
     void queueJoyEvent(bool ignoresets);
     bool hasPendingEvent();
-
     void activatePendingEvent();
+    void clearPendingEvent();
     //double calculateXDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
 
     double getSpringDeadCircleX();

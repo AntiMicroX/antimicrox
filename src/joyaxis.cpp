@@ -66,6 +66,44 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets)
 
     if (this->stick)
     {
+        stickPassEvent(value, ignoresets);
+    }
+    else
+    {
+        pendingEvent = true;
+        pendingValue = value;
+        pendingIgnoreSets = ignoresets;
+    }
+}
+
+void JoyAxis::activatePendingEvent()
+{
+    if (pendingEvent)
+    {
+        joyEvent(pendingValue);
+
+        pendingEvent = false;
+        pendingValue = false;
+        pendingIgnoreSets = false;
+    }
+}
+
+bool JoyAxis::hasPendingEvent()
+{
+    return pendingEvent;
+}
+
+void JoyAxis::clearPendingEvent()
+{
+    pendingEvent = false;
+    pendingValue = false;
+    pendingIgnoreSets = false;
+}
+
+void JoyAxis::stickPassEvent(int value, bool ignoresets)
+{
+    if (this->stick)
+    {
         lastKnownThottledValue = currentThrottledValue;
         lastKnownRawValue = currentRawValue;
 
@@ -96,32 +134,15 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets)
 
         emit moved(currentRawValue);
     }
-    else
-    {
-        pendingEvent = true;
-        pendingValue = value;
-        pendingIgnoreSets = ignoresets;
-    }
-}
-
-void JoyAxis::activatePendingEvent()
-{
-    if (pendingEvent)
-    {
-        joyEvent(pendingValue);
-        pendingEvent = false;
-        pendingValue = false;
-    }
-}
-
-bool JoyAxis::hasPendingEvent()
-{
-    return pendingEvent;
 }
 
 void JoyAxis::joyEvent(int value, bool ignoresets)
 {
-    if (!this->stick)
+    if (this->stick && !pendingEvent)
+    {
+        stickPassEvent(value, ignoresets);
+    }
+    else
     {
         lastKnownThottledValue = currentThrottledValue;
         lastKnownRawValue = currentRawValue;
