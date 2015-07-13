@@ -281,28 +281,34 @@ void SetJoystick::propogateSetVDPadButtonAssociation(int button, int dpad, int n
     }
 }
 
+/**
+ * @brief Perform a release of all elements of a set. Stick and vdpad
+ *     releases will be handled by the associated button or axis.
+ */
 void SetJoystick::release()
 {
-    QHashIterator<int, JoyButton*> iter(buttons);
-    while (iter.hasNext())
+    QHashIterator<int, JoyAxis*> iterAxes(axes);
+    while (iterAxes.hasNext())
     {
-        JoyButton *button = iter.next().value();
-        button->joyEvent(false, true);
-    }
-
-    QHashIterator<int, JoyAxis*> iter2(axes);
-    while (iter2.hasNext())
-    {
-        JoyAxis *axis = iter2.next().value();
+        JoyAxis *axis = iterAxes.next().value();
         axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
     }
 
-    QHashIterator<int, JoyDPad*> iter3(hats);
-    while (iter3.hasNext())
+    QHashIterator<int, JoyDPad*> iterDPads(hats);
+    while (iterDPads.hasNext())
     {
-        JoyDPad *dpad = iter3.next().value();
+        JoyDPad *dpad = iterDPads.next().value();
         dpad->joyEvent(0, true);
     }
+
+    QHashIterator<int, JoyButton*> iterButtons(buttons);
+    while (iterButtons.hasNext())
+    {
+        JoyButton *button = iterButtons.next().value();
+        button->joyEvent(false, true);
+    }
+
+
 }
 
 void SetJoystick::readConfig(QXmlStreamReader *xml)
