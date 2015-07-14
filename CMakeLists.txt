@@ -769,6 +769,18 @@ if(WIN32)
         install_platforms_dll
     )
 
+    # Copy bundled Qt translation files.
+    file(GLOB QT_TRANSLATION_FILES "${CMAKE_PREFIX_PATH}/translations/qt_[^help]*.qm")
+    add_custom_target(copy_qt_translations)
+    foreach(CURRENT_QM_FILE ${QT_TRANSLATION_FILES})
+        set(CURRENT_QM_FILENAME "")
+        string(REPLACE "${CMAKE_PREFIX_PATH}/translations/" "" CURRENT_QM_FILENAME ${CURRENT_QM_FILE})
+        add_custom_command(TARGET copy_qt_translations PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy "${CURRENT_QM_FILE}"
+            "${CMAKE_INSTALL_PREFIX}/share/qt/translations/${CURRENT_QM_FILENAME}"
+        )
+    endforeach()
+
     # Set variables needed for MSI building.
     set(MSIFOLDER "${PROJECT_SOURCE_DIR}/windows")
     set(WIXENV $ENV{WIX})

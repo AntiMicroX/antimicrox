@@ -432,7 +432,12 @@ int main(int argc, char *argv[])
     }
 
     QTranslator qtTranslator;
+#if defined(Q_OS_UNIX)
     qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#elif defined(Q_OS_WIN)
+    qtTranslator.load(QString("qt_").append(targetLang),
+                      QApplication::applicationDirPath().append("\\share\\qt\\translations"));
+#endif
     a->installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
