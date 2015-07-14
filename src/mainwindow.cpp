@@ -1110,39 +1110,14 @@ void MainWindow::openMainSettingsDialog()
 }
 
 /**
- * @brief TODO: Implement language switching within the program again?
- * @param Language code.
+ * @brief Change language used by the application.
+ * @param Language code
  */
 void MainWindow::changeLanguage(QString language)
 {
-    if (translator)
+    if (translator && appTranslator)
     {
-        // Remove application specific translation strings
-        qApp->removeTranslator(translator);
-
-        // Remove old Qt translation strings
-        if (appTranslator)
-        {
-            qApp->removeTranslator(appTranslator);
-
-            // Load new Qt translation strings
-        #if defined(Q_OS_UNIX)
-            translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-        #elif defined(Q_OS_WIN)
-            translator->load(QString("qt_").append(language),
-                              QApplication::applicationDirPath().append("\\share\\qt\\translations"));
-        #endif
-
-            qApp->installTranslator(appTranslator);
-        }
-
-        // Load application specific translation strings
-    #if defined(Q_OS_UNIX)
-        translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
-    #elif defined(Q_OS_WIN)
-        translator->load("antimicro_" + language, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-    #endif
-        qApp->installTranslator(translator);
+        PadderCommon::reloadTranslations(translator, appTranslator, language);
     }
 }
 

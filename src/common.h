@@ -23,6 +23,7 @@
 #include <QDir>
 #include <QStringList>
 #include <QFileInfo>
+#include <QTranslator>
 
 #include "config.h"
 #include "antimicrosettings.h"
@@ -123,6 +124,9 @@ namespace PadderCommon
 
     QString preferredProfileDir(AntiMicroSettings *settings);
     QStringList arguments(int &argc, char **argv);
+    void reloadTranslations(QTranslator *translator,
+                            QTranslator *appTranslator,
+                            QString language);
 }
 
 #endif // COMMON_H

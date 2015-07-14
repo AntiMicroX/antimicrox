@@ -23,8 +23,12 @@
 #include <QApplication>
 
 #include "languageselectionpage.h"
+#include "common.h"
 
-LanguageSelectionPage::LanguageSelectionPage(AntiMicroSettings *settings, QTranslator *translator, QTranslator *appTranslator, QWidget *parent) :
+LanguageSelectionPage::LanguageSelectionPage(AntiMicroSettings *settings,
+                                             QTranslator *translator,
+                                             QTranslator *appTranslator,
+                                             QWidget *parent) :
     QWizardPage(parent)
 {
     this->settings = settings;
@@ -106,29 +110,7 @@ void LanguageSelectionPage::retranslateUi()
         QString lang = languageForIndex(field("selectedLanguage").toInt());
         if (!lang.isEmpty())
         {
-            // Remove application specific translation strings
-            qApp->removeTranslator(translator);
-
-            // Remove old Qt translation strings
-            qApp->removeTranslator(appTranslator);
-
-            // Load new Qt translation strings
-        #if defined(Q_OS_UNIX)
-            translator->load(QString("qt_").append(lang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-        #elif defined(Q_OS_WIN)
-            translator->load(QString("qt_").append(lang),
-                              QApplication::applicationDirPath().append("\\share\\qt\\translations"));
-        #endif
-
-            qApp->installTranslator(appTranslator);
-
-            // Load application specific translation strings
-        #if defined(Q_OS_UNIX)
-            translator->load("antimicro_" + lang, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
-        #elif defined(Q_OS_WIN)
-            translator->load("antimicro_" + lang, QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-        #endif
-            qApp->installTranslator(translator);
+            PadderCommon::reloadTranslations(translator, appTranslator, lang);
         }
     }
 
