@@ -83,8 +83,6 @@ public:
     void replaceAxes(JoyAxis *axisX, JoyAxis* axisY);
 
     JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
-    double calculateNormalizedAxis1Placement();
-    double calculateNormalizedAxis2Placement();
     double calculateMouseDirectionalDistance(JoyControlStickButton *button);
 
     double calculateDirectionalDistance();

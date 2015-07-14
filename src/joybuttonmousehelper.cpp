@@ -32,8 +32,6 @@ JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent) :
  */
 void JoyButtonMouseHelper::moveMouseCursor()
 {
-    //qDebug() << QTime::currentTime();
-
     int finalx = 0;
     int finaly = 0;
     int elapsedTime = 5;
@@ -64,12 +62,8 @@ void JoyButtonMouseHelper::moveSpringMouse()
  */
 void JoyButtonMouseHelper::mouseEvent()
 {
-    //qDebug() << "ENTER";
-
     if (!JoyButton::hasCursorEvents() && !JoyButton::hasSpringEvents())
     {
-        //qDebug() << "GO THROUGH LIST";
-
         QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
         QListIterator<JoyButton*> iter(*buttonList);
         while (iter.hasNext())
@@ -79,11 +73,7 @@ void JoyButtonMouseHelper::mouseEvent()
         }
     }
 
-    //if (JoyButton::hasCursorEvents())
-    //{
-        //qDebug() << "CURSOR EVENT: ";
-        moveMouseCursor();
-    //}
+    moveMouseCursor();
 
     if (JoyButton::hasSpringEvents())
     {
@@ -95,16 +85,13 @@ void JoyButtonMouseHelper::mouseEvent()
 
 void JoyButtonMouseHelper::resetButtonMouseDistances()
 {
-    //if (!JoyButton::hasCursorEvents())
-    //{
-        QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
-        QListIterator<JoyButton*> iter(*buttonList);
-        while (iter.hasNext())
-        {
-            JoyButton *temp = iter.next();
-            temp->resetAccelerationDistances();
-        }
-    //}
+    QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
+    QListIterator<JoyButton*> iter(*buttonList);
+    while (iter.hasNext())
+    {
+        JoyButton *temp = iter.next();
+        temp->resetAccelerationDistances();
+    }
 }
 
 void JoyButtonMouseHelper::setFirstSpringStatus(bool status)

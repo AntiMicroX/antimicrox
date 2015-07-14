@@ -36,7 +36,8 @@ const JoyAxis::ThrottleTypes JoyAxis::DEFAULTTHROTTLE = JoyAxis::NormalThrottle;
 
 const QString JoyAxis::xmlName = "axis";
 
-JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent) :
+JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
+                 QObject *parent) :
     QObject(parent)
 {
     stick = 0;
@@ -595,38 +596,6 @@ void JoyAxis::reset(int index)
     this->index = index;
 }
 
-// TODO: Possibly remove.
-double JoyAxis::calculateNormalizedAxisPlacement()
-{
-    double difference = (abs(currentThrottledValue))/(double)(maxZoneValue);
-    if (difference > 1.0)
-    {
-        difference = 1.0;
-    }
-    else if (difference < 0.0)
-    {
-        difference = 0.0;
-    }
-
-    return difference;
-}
-
-// TODO: Possibly remove.
-double JoyAxis::getAbsoluteAxisPlacement()
-{
-    double difference = (abs(currentRawValue))/(double)(maxZoneValue);
-    if (difference > 1.0)
-    {
-        difference = 1.0;
-    }
-    else if (difference < 0.0)
-    {
-        difference = 0.0;
-    }
-
-    return difference;
-}
-
 JoyAxisButton* JoyAxis::getPAxisButton()
 {
     return paxisbutton;
@@ -679,22 +648,14 @@ double JoyAxis::getDistanceFromDeadZone(int value)
 
     if (currentValue >= deadZone)
     {
-        distance = (currentValue - deadZone)/(double)(maxZoneValue - deadZone);
+        distance = (currentValue - deadZone)/static_cast<double>(maxZoneValue - deadZone);
     }
     else if (currentValue <= -deadZone)
     {
-        distance = (currentValue + deadZone)/(double)(-maxZoneValue + deadZone);
+        distance = (currentValue + deadZone)/static_cast<double>(-maxZoneValue + deadZone);
     }
 
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
-
+    distance = qBound(0.0, distance, 1.0);
     return distance;
 }
 
@@ -704,15 +665,7 @@ double JoyAxis::getRawDistance(int value)
     int currentValue = value;
 
     distance = currentValue / static_cast<double>(maxZoneValue);
-
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < -1.0)
-    {
-        distance = -1.0;
-    }
+    distance = qBound(0.0, distance, 1.0);
 
     return distance;
 }

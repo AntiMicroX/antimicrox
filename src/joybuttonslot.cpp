@@ -24,10 +24,6 @@
 #include "antkeymapper.h"
 #include "event.h"
 
-//#ifdef Q_OS_WIN
-//  #include "qtwinkeymapper.h"
-//#endif
-
 const int JoyButtonSlot::JOYSPEED = 20;
 const QString JoyButtonSlot::xmlName = "slot";
 const int JoyButtonSlot::MAXTEXTENTRYDISPLAYLENGTH = 40;
@@ -486,7 +482,6 @@ QString JoyButtonSlot::getSlotString()
         {
             unsigned int tempDeviceCode = deviceCode;
 #ifdef Q_OS_WIN
-            //static QtWinKeyMapper nativeWinKeyMapper;
             QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
             if (nativeWinKeyMapper)
             {
@@ -494,7 +489,6 @@ QString JoyButtonSlot::getSlotString()
             }
 #endif
             newlabel = newlabel.append(keysymToKeyString(tempDeviceCode, qkeyaliasCode).toUpper());
-            //newlabel = newlabel.append(keysymToKeyString(deviceCode, qkeyaliasCode).toUpper());
         }
         else if (mode == JoyButtonSlot::JoyMouseButton)
         {

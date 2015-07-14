@@ -127,11 +127,6 @@
              <property name="text">
               <string/>
              </property>
-             <property name="icon">
-              <iconset theme="document-open-folder">
-               <normaloff/>
-              </iconset>
-             </property>
             </widget>
            </item>
           </layout>

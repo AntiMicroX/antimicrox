@@ -80,8 +80,6 @@ public:
     double getDistanceFromDeadZone();
     double getDistanceFromDeadZone(int value);
     double getRawDistance(int value);
-    double calculateNormalizedAxisPlacement();
-    double getAbsoluteAxisPlacement();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

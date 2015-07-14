@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QDesktopWidget>
 #include <QComboBox>
+#include <QPushButton>
 
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -58,6 +59,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document-open-folder",
+                                                           QIcon(":/icons/16x16/actions/document-open-folder.png")));
 
     this->settings = settings;
     this->allDefaultProfile = 0;

@@ -255,10 +255,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
         {
             if (pressed)
             {
-                //qDebug() << "PRESS STARTED: " << QTime::currentTime().toString("hh:mm:ss.zzz");
                 emit clicked(index);
                 oldAccelMulti = updateOldAccelMulti = 0.0;
-                //trynow = 0.0;
             }
             else
             {
@@ -330,7 +328,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     initializeDistanceValues();
                     currentAccelerationDistance = getAccelerationDistance();
 
-                    Logger::LogDebug(tr("Processing turbo for %1.%2")
+                    Logger::LogDebug(tr("Processing turbo for #%1 - %2")
                                     .arg(parentSet->getInputDevice()->getRealJoyNumber())
                                     .arg(getPartialName()));
 
@@ -346,7 +344,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     if (isKeyPressed)
                     {
                         turboEvent();
-                        //QTimer::singleShot(0, this, SLOT(turboEvent()));
                     }
                     else
                     {
@@ -578,7 +575,6 @@ void JoyButton::turboEvent()
             if (turboTimer.interval() != tempInterval)
             {
                 turboTimer.start(tempInterval);
-                //turboTimer.start(10);
             }
         }
     }
@@ -599,7 +595,6 @@ void JoyButton::turboEvent()
             if (turboTimer.interval() != tempInterval)
             {
                 turboTimer.start(tempInterval);
-                //turboTimer.start(turboInterval - 10);
             }
 
         }
@@ -975,7 +970,6 @@ void JoyButton::activateSlots()
                     repeatHelper.setLastActiveKey(lastActiveKey);
                     repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
                     repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
-                    //keyRepeatTimer.start(device->getKeyRepeatDelay());
                 }
                 else if (repeatHelper.getRepeatTimer()->isActive())
                 {
@@ -1009,7 +1003,7 @@ void JoyButton::slotSetChange()
 
 /**
  * @brief Calculate mouse movement coordinates for mouse movement slots
- *     currently active for this button.
+ *     currently active.
  */
 void JoyButton::mouseEvent()
 {
@@ -4703,11 +4697,10 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 
     lastMouseTime.restart();
 
-    // Check if mouse event timer should be stopped.
+    // Check if mouse event timer should use idle time.
     if (pendingMouseButtons.length() == 0)
     {
         staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
-        //staticMouseEventTimer.stop();
     }
     else
     {

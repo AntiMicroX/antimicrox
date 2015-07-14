@@ -65,7 +65,7 @@ JoyControlStick::~JoyControlStick()
 
 /**
  * @brief Take the input value for the two axes that make up a stick and
- *     activate the proper event based on the current values.
+ *   activate the proper event based on the current values.
  * @param Should set changing routines be ignored.
  */
 void JoyControlStick::joyEvent(bool ignoresets)
@@ -87,23 +87,16 @@ void JoyControlStick::joyEvent(bool ignoresets)
         }
         else
         {
-            //createDeskEvent(ignoresets);
-            //directionDelayTimer.start(stickDelay);
             if (!directionDelayTimer.isActive())
             {
                 directionDelayTimer.start(stickDelay);
             }
         }
-
-        //createDeskEvent(ignoresets);
     }
     else if (!safezone && isActive)
     {
         isActive = false;
-        //currentDirection = StickCentered;
         emit released(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-        //directionDelayTimer.stop();
-        //createDeskEvent(ignoresets);
         if (ignoresets || stickDelay == 0)
         {
             if (directionDelayTimer.isActive())
@@ -115,8 +108,6 @@ void JoyControlStick::joyEvent(bool ignoresets)
         }
         else
         {
-            //createDeskEvent(ignoresets);
-            //directionDelayTimer.start(stickDelay);
             if (!directionDelayTimer.isActive())
             {
                 directionDelayTimer.start(stickDelay);
@@ -154,8 +145,6 @@ void JoyControlStick::joyEvent(bool ignoresets)
                 createDeskEvent(ignoresets);
             }
         }
-
-        //createDeskEvent(ignoresets);
     }
 
     emit moved(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
@@ -163,52 +152,76 @@ void JoyControlStick::joyEvent(bool ignoresets)
     pendingStickEvent = false;
 }
 
+/**
+ * @brief Check the current stick position to see if it lies in
+ *   the assigned dead zone.
+ * @return If stick position is in the assigned dead zone
+ */
 bool JoyControlStick::inDeadZone()
 {
     int axis1Value = axisX->getCurrentRawValue();
     int axis2Value = axisY->getCurrentRawValue();
 
-    unsigned int squareDist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
+    unsigned int squareDist = static_cast<unsigned int>(axis1Value*axis1Value) +
+            static_cast<unsigned int>(axis2Value*axis2Value);
 
-    return squareDist <= (unsigned int)(deadZone*deadZone);
+    return squareDist <= static_cast<unsigned int>(deadZone*deadZone);
 }
 
+/**
+ * @brief Populate the virtual buttons assigned to an analog stick.
+ */
 void JoyControlStick::populateButtons()
 {
-    JoyControlStickButton *button = new JoyControlStickButton (this, StickUp, originset, getParentSet(), this);
+    JoyControlStickButton *button = new JoyControlStickButton(this, StickUp,
+                                                              originset, getParentSet(), this);
     buttons.insert(StickUp, button);
 
-    button = new JoyControlStickButton (this, StickDown, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickDown, originset,
+                                       getParentSet(), this);
     buttons.insert(StickDown, button);
 
-    button = new JoyControlStickButton(this, StickLeft, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickLeft, originset,
+                                       getParentSet(), this);
     buttons.insert(StickLeft, button);
 
-    button = new JoyControlStickButton(this, StickRight, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickRight, originset,
+                                       getParentSet(), this);
     buttons.insert(StickRight, button);
 
-    button = new JoyControlStickButton(this, StickLeftUp, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickLeftUp, originset,
+                                       getParentSet(), this);
     buttons.insert(StickLeftUp, button);
 
-    button = new JoyControlStickButton(this, StickLeftDown, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickLeftDown, originset,
+                                       getParentSet(), this);
     buttons.insert(StickLeftDown, button);
 
-    button = new JoyControlStickButton(this, StickRightDown, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickRightDown, originset,
+                                       getParentSet(), this);
     buttons.insert(StickRightDown, button);
 
-    button = new JoyControlStickButton(this, StickRightUp, originset, getParentSet(), this);
+    button = new JoyControlStickButton(this, StickRightUp, originset,
+                                       getParentSet(), this);
     buttons.insert(StickRightUp, button);
 
-    modifierButton = new JoyControlStickModifierButton(this, originset, getParentSet(), this);
-    //modifierButton->setAssignedSlot(60, JoyButtonSlot::JoyDistance);
-    //modifierButton->setAssignedSlot(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Shift), Qt::Key_Shift);
+    modifierButton = new JoyControlStickModifierButton(this, originset,
+                                                       getParentSet(), this);
 }
 
+/**
+ * @brief Get the assigned dead zone value.
+ * @return Assigned dead zone value
+ */
 int JoyControlStick::getDeadZone()
 {
     return deadZone;
 }
 
+/**
+ * @brief Get the assigned diagonal range value.
+ * @return Assigned diagonal range.
+ */
 int JoyControlStick::getDiagonalRange()
 {
     return diagonalRange;
@@ -216,10 +229,10 @@ int JoyControlStick::getDiagonalRange()
 
 /**
  * @brief Find the position of the two stick axes, deactivate no longer used
- *     stick direction button and then activate direction buttons for new
- *     direction.
+ *   stick direction button and then activate direction buttons for new
+ *   direction.
  * @param Should set changing operations be ignored. Necessary in the middle
- *     of a set change.
+ *   of a set change.
  */
 void JoyControlStick::createDeskEvent(bool ignoresets)
 {
@@ -343,14 +356,21 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
     }
 }
 
+/**
+ * @brief Calculate the bearing (in degrees) corresponding to the current
+ *   position of the X and Y axes of a stick.
+ * @return Bearing (in degrees)
+ */
 double JoyControlStick::calculateBearing()
 {
     return calculateBearing(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
 }
 
 /**
- * @brief Calculate the bearing (in degrees) corresponding to the current
- *    position of the X and Y axes of a stick.
+ * @brief Calculate the bearing (in degrees) corresponding to the
+ *   passed X and Y axes values associated with the stick.
+ * @param X axis value
+ * @param Y axis value
  * @return Bearing (in degrees)
  */
 double JoyControlStick::calculateBearing(int axisXValue, int axisYValue)
@@ -395,6 +415,11 @@ double JoyControlStick::calculateBearing(int axisXValue, int axisYValue)
     return finalAngle;
 }
 
+/**
+ * @brief Get current radial distance of the stick position past the assigned
+ *   dead zone.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
 double JoyControlStick::getDistanceFromDeadZone()
 {
     return getDistanceFromDeadZone(axisX->getCurrentRawValue(),
@@ -402,7 +427,10 @@ double JoyControlStick::getDistanceFromDeadZone()
 }
 
 /**
- * @brief Get radial distance of the stick position past the assigned dead zone.
+ * @brief Get radial distance of the stick position past the assigned dead zone
+ *   based on the passed X and Y axes values associated with the stick.
+ * @param X axis value
+ * @param Y axis value
  * @return Distance percentage in the range of 0.0 - 1.0.
  */
 double JoyControlStick::getDistanceFromDeadZone(int axisXValue, int axisYValue)
@@ -428,18 +456,15 @@ double JoyControlStick::getDistanceFromDeadZone(int axisXValue, int axisYValue)
     double adjustedDeadZone = circleStickFull > 1.0 ? (deadZone / circleStickFull) : deadZone;
 
     distance = (adjustedDist - adjustedDeadZone)/(double)(maxZone - adjustedDeadZone);
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
-
+    distance = qBound(0.0, distance, 1.0);
     return distance;
 }
 
+/**
+ * @brief Get distance of the Y axis past the assigned dead zone.
+ * @param Should interpolation be performed along the diagonal regions.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
 double JoyControlStick::calculateYDistanceFromDeadZone(bool interpolate)
 {
     return calculateYDistanceFromDeadZone(axisX->getCurrentRawValue(),
@@ -448,10 +473,15 @@ double JoyControlStick::calculateYDistanceFromDeadZone(bool interpolate)
 }
 
 /**
- * @brief Get square distance of the Y axis past the assigned dead zone.
+ * @brief Get distance of the Y axis past the assigned dead zone based
+ *   on the passed X and Y axis values for the analog stick.
+ * @param X axis value
+ * @param Y axis value
+ * @param Should interpolation be performed along the diagonal regions.
  * @return Distance percentage in the range of 0.0 - 1.0.
  */
-double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate)
+double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
+                                                       int axisYValue, bool interpolate)
 {
     double distance = 0.0;
 
@@ -473,6 +503,8 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue, int axisY
     double adjustedAxis2Value = circleStickFull > 1.0 ? (axis2Value / circleStickFull) : axis2Value;
     double adjustedDeadYZone = circleStickFull > 1.0 ? (deadY / circleStickFull) : deadY;
 
+    // Interpolation would return the correct value if diagonalRange is 90 but
+    // the routine gets skipped to save time.
     if (interpolate && diagonalRange < 90)
     {
         JoyStickDirections direction = calculateStickDirection(axis1Value, axis2Value);
@@ -570,21 +602,15 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue, int axisY
         distance = tempdist4;
     }
 
-    /*if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
-    */
-
     distance = qBound(0.0, distance, 1.0);
-
     return distance;
 }
 
+/**
+ * @brief Get distance of the X axis past the assigned dead zone.
+ * @param Should interpolation be performed along the diagonal regions.
+ * @return Distance percentage in the range of 0.0 - 1.0.
+ */
 double JoyControlStick::calculateXDistanceFromDeadZone(bool interpolate)
 {
     return calculateXDistanceFromDeadZone(axisX->getCurrentRawValue(),
@@ -593,10 +619,15 @@ double JoyControlStick::calculateXDistanceFromDeadZone(bool interpolate)
 }
 
 /**
- * @brief Get square distance of the X axis past the assigned dead zone.
+ * @brief Get distance of the X axis past the assigned dead zone based
+ *   on the passed X and Y axis values for the analog stick.
+ * @param X axis value
+ * @param Y axis value
+ * @param Should interpolation be performed along the diagonal regions.
  * @return Distance percentage in the range of 0.0 - 1.0.
  */
-double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate)
+double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
+                                                       int axisYValue, bool interpolate)
 {
     double distance = 0.0;
 
@@ -618,6 +649,8 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue, int axisY
     double adjustedAxis1Value = circleStickFull > 1.0 ? (axis1Value / circleStickFull) : axis1Value;
     double adjustedDeadXZone = circleStickFull > 1.0 ? (deadX / circleStickFull) : deadX;
 
+    // Interpolation would return the correct value if diagonalRange is 90 but
+    // the routine gets skipped to save time.
     if (interpolate && diagonalRange < 90)
     {
         JoyStickDirections direction = calculateStickDirection(axis1Value, axis2Value);
@@ -715,18 +748,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue, int axisY
         distance = tempdist4;
     }
 
-    /*if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
-    */
-
     distance = qBound(0.0, distance, 1.0);
-
     return distance;
 }
 
@@ -1245,18 +1267,6 @@ JoyControlStickButton* JoyControlStick::getDirectionButton(JoyStickDirections di
 {
     JoyControlStickButton *button = buttons.value(direction);
     return button;
-}
-
-// TODO: Possibly remove.
-double JoyControlStick::calculateNormalizedAxis1Placement()
-{
-    return axisX->calculateNormalizedAxisPlacement();
-}
-
-// TODO: Possibly remove.
-double JoyControlStick::calculateNormalizedAxis2Placement()
-{
-    return axisY->calculateNormalizedAxisPlacement();
 }
 
 /**
@@ -2640,7 +2650,8 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirect
                                           axisY->getCurrentRawValue());
 }
 
-JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirection(int axisXValue, int axisYValue)
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineStandardModeDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
 
@@ -2698,13 +2709,15 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirect
  * @brief Find the current stick direction based on a Eight Way mode stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirection()
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineEightWayModeDirection()
 {
     return determineStandardModeDirection(axisX->getCurrentRawValue(),
                                           axisY->getCurrentRawValue());
 }
 
-JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirection(int axisXValue, int axisYValue)
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineEightWayModeDirection(int axisXValue, int axisYValue)
 {
     return determineStandardModeDirection(axisXValue, axisYValue);
 }
@@ -2714,13 +2727,15 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirect
  *     stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDirection()
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineFourWayCardinalDirection()
 {
     return determineFourWayCardinalDirection(axisX->getCurrentRawValue(),
                                              axisY->getCurrentRawValue());
 }
 
-JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDirection(int axisXValue, int axisYValue)
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineFourWayCardinalDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
 
@@ -2758,13 +2773,15 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDir
  *     stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDirection()
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineFourWayDiagonalDirection()
 {
     return determineFourWayDiagonalDirection(axisX->getCurrentRawValue(),
                                              axisY->getCurrentRawValue());
 }
 
-JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDirection(int axisXValue, int axisYValue)
+JoyControlStick::JoyStickDirections
+JoyControlStick::determineFourWayDiagonalDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
 
@@ -2802,13 +2819,15 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDir
  *     of the X and Y axes and the current mode of the stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::calculateStickDirection()
+JoyControlStick::JoyStickDirections
+JoyControlStick::calculateStickDirection()
 {
     return calculateStickDirection(axisX->getCurrentRawValue(),
                                    axisY->getCurrentRawValue());
 }
 
-JoyControlStick::JoyStickDirections JoyControlStick::calculateStickDirection(int axisXValue, int axisYValue)
+JoyControlStick::JoyStickDirections
+JoyControlStick::calculateStickDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
 
