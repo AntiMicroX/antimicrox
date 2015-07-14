@@ -1486,7 +1486,8 @@ void JoyTabWidget::refreshSetButtons()
 void JoyTabWidget::displayProfileEditNotification()
 {
     int currentIndex = configBox->currentIndex();
-    configBox->setItemIcon(currentIndex, QIcon::fromTheme("document-save-as"));
+    configBox->setItemIcon(currentIndex, QIcon::fromTheme("document-save-as",
+                                         QIcon(":/icons/16x16/actions/document-save.png")));
 }
 
 void JoyTabWidget::removeProfileEditNotification()

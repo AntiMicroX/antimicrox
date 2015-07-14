@@ -7,5 +7,6 @@
         <file>images/button.png</file>
         <file>images/profile.jpg</file>
         <file>Changelog</file>
+        <file>icons/16x16/actions/document-save.png</file>
     </qresource>
 </RCC>
