@@ -113,7 +113,13 @@ void LanguageSelectionPage::retranslateUi()
             qApp->removeTranslator(appTranslator);
 
             // Load new Qt translation strings
-            appTranslator->load(QString("qt_").append(lang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        #if defined(Q_OS_UNIX)
+            translator->load(QString("qt_").append(lang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        #elif defined(Q_OS_WIN)
+            translator->load(QString("qt_").append(lang),
+                              QApplication::applicationDirPath().append("\\share\\qt\\translations"));
+        #endif
+
             qApp->installTranslator(appTranslator);
 
             // Load application specific translation strings
