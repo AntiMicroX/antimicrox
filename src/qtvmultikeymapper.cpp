@@ -174,3 +174,8 @@ void QtVMultiKeyMapper::populateMappingHashes()
         }
     }
 }
+
+void QtVMultiKeyMapper::populateCharKeyInformation()
+{
+
+}

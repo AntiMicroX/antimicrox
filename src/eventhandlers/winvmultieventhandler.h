@@ -27,6 +27,10 @@
 
 #include <vmulticlient.h>
 
+#include <antkeymapper.h>
+#include "winsendinputeventhandler.h"
+
+
 class WinVMultiEventHandler : public BaseEventHandler
 {
     Q_OBJECT
@@ -55,6 +59,9 @@ protected:
     BYTE multiKeys;
     BYTE extraKeys;
     QVector<BYTE> keyboardKeys;
+    WinSendInputEventHandler sendInputHandler;
+    AntKeyMapper *nativeKeyMapper;
+
 
 signals:
 

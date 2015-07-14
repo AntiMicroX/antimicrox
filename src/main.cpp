@@ -541,6 +541,7 @@ int main(int argc, char *argv[])
 
     bool status = true;
     QString eventGeneratorIdentifier;
+    AntKeyMapper *keyMapper = 0;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance(cmdutility.getEventGenerator());
     if (!factory)
     {
@@ -548,7 +549,10 @@ int main(int argc, char *argv[])
     }
     else
     {
+        eventGeneratorIdentifier = factory->handler()->getIdentifier();
+        keyMapper = AntKeyMapper::getInstance(eventGeneratorIdentifier);
         status = factory->handler()->init();
+        factory->handler()->printPostMessages();
     }
 
 #if (defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) || \
@@ -561,6 +565,12 @@ int main(int argc, char *argv[])
         appLogger.LogInfo(QObject::tr("Attempting to use fallback option %1 for event generation.")
                                      .arg(eventDisplayName), true, true);
 
+        if (keyMapper)
+        {
+            keyMapper->deleteInstance();
+            keyMapper = 0;
+        }
+
         factory->deleteInstance();
         factory = EventHandlerFactory::getInstance(EventHandlerFactory::fallBackIdentifier());
         if (!factory)
@@ -569,7 +579,10 @@ int main(int argc, char *argv[])
         }
         else
         {
+            eventGeneratorIdentifier = factory->handler()->getIdentifier();
+            keyMapper = AntKeyMapper::getInstance(eventGeneratorIdentifier);
             status = factory->handler()->init();
+            factory->handler()->printPostMessages();
         }
     }
 #endif
@@ -589,6 +602,12 @@ int main(int argc, char *argv[])
 
         delete localServer;
         localServer = 0;
+
+        if (keyMapper)
+        {
+            keyMapper->deleteInstance();
+            keyMapper = 0;
+        }
 
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
   #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -611,11 +630,7 @@ int main(int argc, char *argv[])
     {
         appLogger.LogInfo(QObject::tr("Using %1 as the event generator.")
                           .arg(factory->handler()->getName()), true, true);
-        factory->handler()->printPostMessages();
-        eventGeneratorIdentifier = factory->handler()->getIdentifier();
     }
-
-    AntKeyMapper::getInstance(eventGeneratorIdentifier);
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 

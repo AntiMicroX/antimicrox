@@ -18,15 +18,15 @@
 //#include <QDebug>
 #include <qt_windows.h>
 #include <winextras.h>
+#include <cmath>
 
 #include "winvmultieventhandler.h"
 
-#include <vmulticlient.h>
 #include <qtvmultikeymapper.h>
-#include <antkeymapper.h>
 
 WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
-    BaseEventHandler(parent)
+    BaseEventHandler(parent),
+    sendInputHandler(this)
 {
     vmulti = 0;
     mouseButtons = 0;
@@ -36,6 +36,8 @@ WinVMultiEventHandler::WinVMultiEventHandler(QObject *parent) :
 
     keyboardKeys.resize(6);
     keyboardKeys.fill(0);
+
+    nativeKeyMapper = 0;
 }
 
 WinVMultiEventHandler::~WinVMultiEventHandler()
@@ -61,6 +63,15 @@ bool WinVMultiEventHandler::init()
         result = false;
     }
 
+    if (vmulti)
+    {
+        nativeKeyMapper = 0;
+        if (AntKeyMapper::getInstance("vmulti")->hasNativeKeyMapper())
+        {
+            nativeKeyMapper = AntKeyMapper::getInstance("vmulti")->getNativeKeyMapper();
+        }
+    }
+
     return result;
 }
 
@@ -76,6 +87,8 @@ bool WinVMultiEventHandler::cleanup()
         vmulti = 0;
     }
 
+    nativeKeyMapper = 0;
+
     return result;
 }
 
@@ -88,6 +101,9 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
     BYTE pendingExtra = 0x0;
     BYTE pendingKey = 0x0;
 
+    JoyButtonSlot tempSendInputSlot(slot);
+    bool useSendInput = false;
+
     bool exists = keyboardKeys.contains(code);
 
     if (code <= 0x65)
@@ -96,11 +112,30 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
     }
     else if (code >= 0xE0 && code <= 0xE7)
     {
-        pendingShift = 1 << (code - 0xE0);
+        //pendingShift = 1 << (code - 0xE0);
+        if (nativeKeyMapper)
+        {
+            unsigned int nativeKey = nativeKeyMapper->returnVirtualKey(slot->getSlotCodeAlias());
+            if (nativeKey > 0)
+            {
+                tempslot.setSlotCode(nativeKey);
+                useSendInput = true;
+            }
+        }
     }
     else if (code > QtVMultiKeyMapper::consumerUsagePagePrefix)
     {
-        if (code == 0xB5 | QtVMultiKeyMapper::consumerUsagePagePrefix)
+        if (nativeKeyMapper)
+        {
+            unsigned int nativeKey = nativeKeyMapper->returnVirtualKey(slot->getSlotCodeAlias());
+            if (nativeKey > 0)
+            {
+                tempslot.setSlotCode(nativeKey);
+                useSendInput = true;
+            }
+        }
+
+        /*if (code == 0xB5 | QtVMultiKeyMapper::consumerUsagePagePrefix)
         {
             pendingMultimedia = 1 << 0; // (Scan Next Track)
         }
@@ -149,11 +184,23 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
         {
             pendingExtra = 1 << 6; // (Mail)
         }
+        */
 
     }
     else if (code > 0x65)
     {
-        if (code == 0x78)
+        if (nativeKeyMapper)
+        {
+            unsigned int nativeKey = nativeKeyMapper->returnVirtualKey(slot->getSlotCodeAlias());
+            if (nativeKey > 0)
+            {
+                tempslot.setSlotCode(nativeKey);
+                //sendInputHandler.sendKeyboardEvent(tempslot, pressed);
+                useSendInput = true;
+            }
+        }
+
+        /*if (code == 0x78)
         {
             pendingMultimedia = 1 << 2; // (Stop)
         }
@@ -169,60 +216,69 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
         {
             pendingMultimedia = 1 << 6; // (Volume Up)
         }
+        */
     }
 
-    if (pressed)
+    if (!useSendInput)
     {
-        shiftKeys = shiftKeys | pendingShift;
-        multiKeys = multiKeys | pendingMultimedia;
-        extraKeys = extraKeys | pendingExtra;
-
-        if (!exists)
+        if (pressed)
         {
-            // Check for an empty key value
-            int index = keyboardKeys.indexOf(0);
-            if (index != -1)
+            shiftKeys = shiftKeys | pendingShift;
+            multiKeys = multiKeys | pendingMultimedia;
+            extraKeys = extraKeys | pendingExtra;
+
+            if (!exists)
             {
-                keyboardKeys.replace(index, pendingKey);
+                // Check for an empty key value
+                int index = keyboardKeys.indexOf(0);
+                if (index != -1)
+                {
+                    keyboardKeys.replace(index, pendingKey);
+                }
             }
+        }
+        else
+        {
+            shiftKeys = shiftKeys ^ pendingShift;
+            multiKeys = multiKeys ^ pendingMultimedia;
+            extraKeys = extraKeys ^ pendingExtra;
+
+            if (exists)
+            {
+                int index = keyboardKeys.indexOf(pendingKey);
+                if (index != -1)
+                {
+                    keyboardKeys.replace(index, 0);
+                }
+            }
+        }
+
+        BYTE *keykeyArray = keyboardKeys.data();
+        /*QStringList trying;
+        for (int i=0; i < 6; i++)
+        {
+            BYTE current = keykeyArray[i];
+            trying.append(QString("0x%1").arg(QString::number(current, 16)));
+        }
+        */
+
+        //qDebug() << "CURRENT: " << trying.join(",");
+        //qDebug() << keykeyArray;
+
+        if (pendingKey > 0x0)
+        {
+            vmulti_update_keyboard(vmulti, shiftKeys, keykeyArray);
+        }
+
+        if (pendingMultimedia > 0 || pendingExtra > 0)
+        {
+            //vmulti_update_keyboard_enhanced(vmulti, multiKeys, extraKeys);
         }
     }
     else
     {
-        shiftKeys = shiftKeys ^ pendingShift;
-        multiKeys = multiKeys ^ pendingMultimedia;
-        extraKeys = extraKeys ^ pendingExtra;
-
-        if (exists)
-        {
-            int index = keyboardKeys.indexOf(pendingKey);
-            if (index != -1)
-            {
-                keyboardKeys.replace(index, 0);
-            }
-        }
-    }
-
-    BYTE *keykeyArray = keyboardKeys.data();
-    /*QStringList trying;
-    for (int i=0; i < 6; i++)
-    {
-        BYTE current = keykeyArray[i];
-        trying.append(QString("0x%1").arg(QString::number(current, 16)));
-    }
-    */
-
-    //qDebug() << "CURRENT: " << trying.join(",");
-    //qDebug() << keykeyArray;
-
-    if (pendingKey > 0x0)
-    {
-        vmulti_update_keyboard(vmulti, shiftKeys, keykeyArray);
-    }
-
-    if (pendingMultimedia > 0 || pendingExtra > 0)
-    {
-        vmulti_update_keyboard_enhanced(vmulti, multiKeys, extraKeys);
+        sendInputHandler.sendKeyboardEvent(tempslot, pressed);
+        useSendInput = false;
     }
 }
 
@@ -231,6 +287,8 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
     BYTE pendingButton = 0;
     BYTE pendingWheel = 0;
     BYTE pendingHWheel = 0;
+
+    bool useSendInput = false;
 
     int code = slot->getSlotCode();
     if (code == 1)
@@ -253,6 +311,11 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
     {
         pendingWheel = pressed ? -1 : 0;
     }
+    else if (code >= 6 && code <= 9)
+    {
+        useSendInput = true;
+    }
+    /*
     else if (code == 6)
     {
         pendingHWheel = pressed ? -1 : 0;
@@ -269,22 +332,30 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
     {
         pendingButton = 0x10;
     }
+    */
 
-    if (pressed)
+    if (!useSendInput)
     {
-        mouseButtons = mouseButtons | pendingButton;
-        vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
+        if (pressed)
+        {
+            mouseButtons = mouseButtons | pendingButton;
+            vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
+        }
+        else
+        {
+            mouseButtons = mouseButtons ^ pendingButton;
+            vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
+        }
     }
     else
     {
-        mouseButtons = mouseButtons ^ pendingButton;
-        vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
+        sendInputHandler.sendMouseButtonEvent(slot, pressed);
     }
 }
 
 void WinVMultiEventHandler::sendMouseEvent(int xDis, int yDis)
 {
-    vmulti_update_relative_mouse(vmulti, mouseButtons, xDis, yDis, 0, 0);
+    vmulti_update_relative_mouse(vmulti, mouseButtons, xDis, yDis, 0);//, 0);
 }
 
 void WinVMultiEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
@@ -300,7 +371,7 @@ void WinVMultiEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int
 
 void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
 {
-    vmulti_update_mouse(vmulti, mouseButtons, xDis, yDis, 0);
+    vmulti_update_mouse(vmulti, mouseButtons, xDis, yDis, 0);//, 0);
 }
 
 /*
@@ -308,7 +379,7 @@ void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
  */
 void WinVMultiEventHandler::sendTextEntryEvent(QString maintext)
 {
-
+    sendInputHandler.sendTextEntryEvent(maintext);
 }
 
 QString WinVMultiEventHandler::getName()

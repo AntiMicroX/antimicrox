@@ -34,6 +34,7 @@ public:
 
 protected:
     void populateMappingHashes();
+    void populateCharKeyInformation();
 
     //static QtWinKeyMapper nativeKeyMapper;
 
