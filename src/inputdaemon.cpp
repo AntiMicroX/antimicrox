@@ -223,11 +223,16 @@ void InputDaemon::refresh()
     stop();
 
     Logger::LogInfo("Refreshing joystick list");
-    eventWorker->refresh();
 
     QEventLoop q;
     connect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
-    q.exec();
+    QMetaObject::invokeMethod(eventWorker, "refresh", Qt::BlockingQueuedConnection);
+
+    if (eventWorker->isSDLOpen())
+    {
+        q.exec();
+    }
+
     disconnect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
 
     pollResetTimer.stop();
@@ -239,7 +244,9 @@ void InputDaemon::refresh()
     q.exec();
 
     refreshJoysticks();
-    QTimer::singleShot(0, eventWorker, SLOT(performWork()));
+    QTimer::singleShot(100, eventWorker, SLOT(performWork()));
+
+    stopped = false;
 }
 
 void InputDaemon::refreshJoystick(InputDevice *joystick)
@@ -292,6 +299,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
     {
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
         SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
+
         if (device->getSDLJoystickID() == joystickID)
         {
             found = true;
@@ -326,6 +334,8 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
                 }
             }
         }
+
+        SDL_JoystickClose(joystick);
     }
 }
 
@@ -381,6 +391,8 @@ void InputDaemon::addInputDevice(int index)
 
             if (SDL_IsGameController(index) && !disableGameController)
             {
+                SDL_JoystickClose(joystick);
+
                 SDL_GameController *controller = SDL_GameControllerOpen(index);
                 if (controller)
                 {
@@ -413,13 +425,18 @@ void InputDaemon::addInputDevice(int index)
                 emit deviceAdded(curJoystick);
             }
         }
+        else
+        {
+            SDL_JoystickClose(joystick);
+        }
     }
 }
 
 #endif
 
-InputDeviceBitArrayStatus* InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArrayStatus *> *statusHash,
-                                                                   InputDevice *device, bool readCurrent)
+InputDeviceBitArrayStatus*
+InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArrayStatus *> *statusHash,
+                                        InputDevice *device, bool readCurrent)
 {
     InputDeviceBitArrayStatus *bitArrayStatus = 0;
 

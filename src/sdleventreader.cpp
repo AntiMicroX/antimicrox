@@ -139,6 +139,8 @@ void SDLEventReader::stop()
         event.type = SDL_QUIT;
         SDL_PushEvent(&event);
     }
+
+    pollRateTimer.stop();
 }
 
 void SDLEventReader::refresh()
@@ -146,14 +148,13 @@ void SDLEventReader::refresh()
     if (sdlIsOpen)
     {
         stop();
-        connect(this, SIGNAL(eventRaised()), this, SLOT(secondaryRefresh()));
+
+        QTimer::singleShot(0, this, SLOT(secondaryRefresh()));
     }
 }
 
 void SDLEventReader::secondaryRefresh()
 {
-    disconnect(this, SIGNAL(eventRaised()), this, 0);
-
     if (sdlIsOpen)
     {
         closeSDL();
