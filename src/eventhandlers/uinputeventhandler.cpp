@@ -255,8 +255,8 @@ int UInputEventHandler::openUInputHandle()
         lastErrorString = tr("Could not find a valid uinput device file.\n"
                              "Please check that you have the uinput module loaded.\n"
                              "lsmod | grep uinput");
-        Logger::LogError(lastErrorString);
-        Logger::LogError("");
+        //Logger::LogError(lastErrorString);
+        //Logger::LogError("");
         //err << lastErrorString << endl << endl;
     }
     else
@@ -268,8 +268,8 @@ int UInputEventHandler::openUInputHandle()
             lastErrorString = tr("Could not open uinput device file\n"
                                  "Please check that you have permission to write to the device");
             lastErrorString.append("\n").append(possibleLocation);
-            Logger::LogError(lastErrorString);
-            Logger::LogError("");
+            //Logger::LogError(lastErrorString);
+            //Logger::LogError("");
             //err << lastErrorString << endl << endl;
         }
         else
@@ -359,7 +359,8 @@ void UInputEventHandler::closeUInputDevice(int filehandle)
 }
 
 
-void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type, unsigned int code, int value, bool syn)
+void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type,
+                                            unsigned int code, int value, bool syn)
 {
     struct input_event ev;
     struct input_event ev2;
@@ -401,6 +402,11 @@ QString UInputEventHandler::getIdentifier()
 void UInputEventHandler::printPostMessages()
 {
     //QTextStream out(stdout);
+
+    if (!lastErrorString.isEmpty())
+    {
+        Logger::LogInfo(lastErrorString);
+    }
 
     if (!uinputDeviceLocation.isEmpty())
     {

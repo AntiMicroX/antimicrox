@@ -58,7 +58,6 @@ protected:
     void populateTopRowKeys();
     QPushButton* createOtherKeysMenu();
 
-
     virtual void resizeEvent(QResizeEvent *event);
 
     JoyButton *button;

@@ -198,8 +198,11 @@ int main(int argc, char *argv[])
             w.saveAppConfig();
         }
 
-        joypad_worker->quit();
         w.removeJoyTabs();
+        QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+        QTimer::singleShot(50, &a, SLOT(quit()));
+
+        int result = a.exec();
 
         settings.sync();
         socket.disconnectFromServer();
@@ -211,7 +214,7 @@ int main(int argc, char *argv[])
         delete joypad_worker;
         joypad_worker = 0;
 
-        return 0;
+        return result;
     }
 
     LocalAntiMicroServer *localServer = 0;
@@ -330,8 +333,6 @@ int main(int argc, char *argv[])
         if ((chdir("/")) < 0)
         {
             appLogger.LogError(QObject::tr("Failed to change working directory to /"), true, true);
-            //errorstream << QObject::tr("Failed to change working directory to /")
-            //            << endl;
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -379,7 +380,6 @@ int main(int argc, char *argv[])
             {
                 appLogger.LogError(QObject::tr("Display string \"%1\" is not valid.")
                                    .arg(cmdutility.getDisplayString()), true, true);
-                //errorstream << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString()) << endl;
 
                 deleteInputDevices(joysticks);
                 delete joysticks;
@@ -448,8 +448,6 @@ int main(int argc, char *argv[])
 #endif
     a->installTranslator(&myappTranslator);
 
-    InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
-
 #ifndef Q_OS_WIN
     // Have program handle SIGTERM
     struct sigaction termaction;
@@ -471,6 +469,7 @@ int main(int argc, char *argv[])
 
     if (cmdutility.shouldListControllers())
     {
+        InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
         AppLaunchHelper mainAppHelper(&settings, false);
         mainAppHelper.printControllerList(joysticks);
 
@@ -506,6 +505,7 @@ int main(int argc, char *argv[])
 #ifdef USE_SDL_2
     else if (cmdutility.shouldMapController())
     {
+        InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
         MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
         QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
@@ -596,14 +596,9 @@ int main(int argc, char *argv[])
     {
         appLogger.LogError(QObject::tr("Failed to open event generator. Exiting."), true, true);
 
-        joypad_worker->quit();
-
         deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
-
-        delete joypad_worker;
-        joypad_worker = 0;
 
         delete localServer;
         localServer = 0;
@@ -637,6 +632,7 @@ int main(int argc, char *argv[])
                           .arg(factory->handler()->getName()), true, true);
     }
 
+    InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
     MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
     FirstRunWizard *runWillard = 0;

@@ -1324,6 +1324,11 @@ void JoyButton::mouseEvent()
                     //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
                     distance = sumDist;
+                    /*if (sumDist >= 1.0)
+                    {
+                        distance = floor(sumDist);
+                    }
+                    */
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {

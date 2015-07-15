@@ -32,12 +32,12 @@ QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, 
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidget *parent) :
     QTabWidget(parent)
 {
-    populateTopRowKeys();
-
     this->button = button;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
     noneButton = createNoneKey();
+
+    populateTopRowKeys();
 
     this->addTab(keyboardTab, tr("Keyboard"));
     this->addTab(mouseTab, tr("Mouse"));
@@ -57,11 +57,11 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(JoyButton *button, QWidge
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
     QTabWidget(parent)
 {
-    populateTopRowKeys();
-
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
     noneButton = createNoneKey();
+
+    populateTopRowKeys();
 
     this->addTab(keyboardTab, tr("Keyboard"));
     this->addTab(mouseTab, tr("Mouse"));

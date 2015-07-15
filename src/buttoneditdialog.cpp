@@ -35,17 +35,6 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
-
-/*#ifdef Q_OS_UNIX
-
-    #if defined(WITH_UINPUT) && defined(WITH_X11)
-        #include "qtx11keymapper.h"
-
-        static QtX11KeyMapper x11KeyMapper;
-    #endif
-#endif
-*/
-
 #include "setjoystick.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
@@ -59,6 +48,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
 #endif
 
     setAttribute(Qt::WA_DeleteOnClose);
+    setWindowModality(Qt::WindowModal);
 
     ignoreRelease = false;
 
@@ -66,9 +56,10 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
     ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(button, this);
-    ui->virtualKeyMouseTabWidget->setFocus();
 
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
+    //ui->virtualKeyMouseTabWidget->setFocus();
+
     ui->slotSummaryLabel->setText(button->getSlotsString());
     updateWindowTitleButtonName();
 

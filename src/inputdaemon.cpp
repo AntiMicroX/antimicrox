@@ -36,9 +36,16 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     this->graphical = graphical;
     this->settings = settings;
 
-    thread = new QThread();
     eventWorker = new SDLEventReader(joysticks, settings);
-    eventWorker->moveToThread(thread);
+    if (graphical)
+    {
+        thread = new QThread();
+        eventWorker->moveToThread(thread);
+    }
+    else
+    {
+        thread = 0;
+    }
 
     if (graphical)
     {
@@ -264,13 +271,15 @@ void InputDaemon::quit()
             q.exec();
         }
         temptime.stop();
+
+        QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
     }
     else
     {
         eventWorker->stop();
+        delete eventWorker;
     }
 
-    QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
     eventWorker = 0;
 }
 
