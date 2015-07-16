@@ -7,11 +7,11 @@
   <!-- Identify the application security requirements. -->
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
-      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
-        <requestedExecutionLevel
-          level="asInvoker"
-          uiAccess="false"/>
-        </requestedPrivileges>
+       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+         <requestedExecutionLevel
+           level="requireAdministrator"
+           uiAccess="true"/>
+       </requestedPrivileges>
     </security>
   </trustInfo>
 </assembly>

@@ -4,7 +4,7 @@
         <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" InstallScope="perMachine" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Directory Id="TARGETDIR" Name="SourceDir">
-            <Directory Id="ProgramFilesFolder" Name="PFiles">
+            <Directory Id="ProgramFiles64Folder" Name="PFiles">
                 <Directory Id="ANTIMICRO" Name="AntiMicro">
                     <Component Id="ANTIMICRO.EXE" Guid="90E3430C-0DE6-484D-AEDE-3DE77D1F63D9">
                         <File Source="..\antimicro\antimicro.exe">

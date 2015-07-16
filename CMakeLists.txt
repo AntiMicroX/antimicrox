@@ -50,6 +50,7 @@ if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
     option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
     option(WITH_VMULTI "Compile with support for vmulti." OFF)
+    option(PERFORM_SIGNING "Sign final executable." OFF)
 
     if(PORTABLE_PACKAGE)
         add_definitions(-DWIN_PORTABLE_PACKAGE)
@@ -235,6 +236,11 @@ elseif(WIN32)
 #            vmulti/client/client.c
         )
     endif(WITH_VMULTI)
+
+    if(PERFORM_SIGNING)
+        add_definitions(-DPERFORM_SIGNING)
+    endif(PERFORM_SIGNING)
+
 endif(UNIX)
 
 # Files that require SDL 2 support.
@@ -623,7 +629,6 @@ if(USE_QT5)
         add_executable(antimicro ${antimicro_SOURCES}
             ${antimicro_FORMS_HEADERS}
             ${antimicro_RESOURCES_RCC}
-            src/antimicro.rc
         )
     elseif(WIN32)
         # The WIN32 is required to specify a GUI application.
@@ -781,6 +786,12 @@ if(WIN32)
         )
     endforeach()
 
+    # Sign final executable
+    if(PERFORM_SIGNING)
+      install(CODE "execute_process(COMMAND \"C:/Program Files (x86)/Windows Kits/8.1/bin/x64/signtool.exe\"
+              sign /v /a /s ROOT /n antimicro ${CMAKE_INSTALL_PREFIX}/antimicro.exe)")
+    endif(PERFORM_SIGNING)
+
     # Set variables needed for MSI building.
     set(MSIFOLDER "${PROJECT_SOURCE_DIR}/windows")
     set(WIXENV $ENV{WIX})
@@ -808,9 +819,18 @@ if(WIN32)
     else()
         # Target to build .msi installer file.
         add_custom_target(buildmsi)
+
+        # Change arch value passed to candle.exe
+        set(WIXARCH "")
+        if(TARGET_ARCH STREQUAL "x86_64")
+            set(WIXARCH "x64")
+        else()
+            set(WIXARCH "x86")
+        endif(TARGET_ARCH STREQUAL "x86_64")
+
         add_custom_command(TARGET buildmsi PRE_BUILD
-            COMMAND "${WIXENV}\\bin\\candle.exe" ${WIXWXS} -out ${WIXOBJ} -sw1113 &&
-                "${WIXENV}\\bin\\light.exe" ${WIXOBJ} -out ${WIXMSI} -sw1076 -spdb
+            COMMAND "${WIXENV}\\bin\\candle.exe" ${WIXWXS} -out ${WIXOBJ} -sw1113 -arch ${WIXARCH} &&
+            "${WIXENV}\\bin\\light.exe" ${WIXOBJ} -out ${WIXMSI} -sw1076 -spdb
         )
         set(WIXFILES ${WIXOBJ} ${WIXMSI})
         set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${WIXFILES}")
