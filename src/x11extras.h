@@ -27,6 +27,20 @@ class X11Extras : public QObject
 {
     Q_OBJECT
 public:
+    struct ptrInformation {
+        long id;
+        int threshold;
+        int accelNum;
+        int accelDenom;
+
+        ptrInformation()
+        {
+            id = -1;
+            threshold = 0;
+            accelNum = 0;
+            accelDenom = 1;
+        }
+    };
 
     unsigned long appRootWindow(int screen = -1);
     Display* display();
@@ -45,9 +59,11 @@ public:
     unsigned long getWindowInFocus();
     unsigned int getGroup1KeySym(unsigned int virtualkey);
     void x11ResetMouseAccelerationChange();
+    struct ptrInformation getPointInformation();
 
     static X11Extras* getInstance();
     static void deleteInstance();
+
 
 protected:
     explicit X11Extras(QObject *parent = 0);

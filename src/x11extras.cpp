@@ -631,7 +631,6 @@ void X11Extras::x11ResetMouseAccelerationChange()
     if (!result)
     {
         Logger::LogInfo(tr("xinput extension was not found. No mouse acceleration changes will occur."));
-        //out << tr("xinput extension was not found. No mouse acceleration changes will occur.") << endl;
     }
     else
     {
@@ -639,7 +638,7 @@ void X11Extras::x11ResetMouseAccelerationChange()
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
             Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
-            //out << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.") << endl;
+            result = false;
         }
     }
 
@@ -725,3 +724,88 @@ void X11Extras::x11ResetMouseAccelerationChange()
         }
      }
  }
+
+struct X11Extras::ptrInformation X11Extras::getPointInformation()
+{
+    struct ptrInformation tempInfo;
+
+    int xi_opcode, event, error;
+    xi_opcode = event = error = 0;
+    Display *display = this->display();
+
+    bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
+    if (result)
+    {
+        int ximajor = 2, ximinor = 0;
+        if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
+        {
+            Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            result = false;
+        }
+    }
+
+    if (result)
+    {
+        XIDeviceInfo *all_devices = 0;
+        XIDeviceInfo *current_devices = 0;
+        XIDeviceInfo *mouse_device = 0;
+
+        int num_devices = 0;
+        all_devices = XIQueryDevice(display, XIAllDevices, &num_devices);
+        for (int i=0; i < num_devices; i++)
+        {
+            current_devices = &all_devices[i];
+            if (current_devices->use == XISlavePointer &&
+                QString::fromUtf8(current_devices->name) == mouseDeviceName)
+            {
+                mouse_device = current_devices;
+            }
+        }
+
+        if (mouse_device)
+        {
+            XDevice *device = XOpenDevice(display, mouse_device->deviceid);
+
+            int num_feedbacks = 0;
+            int feedback_id = -1;
+            XFeedbackState *feedbacks = XGetFeedbackControl(display, device, &num_feedbacks);
+            XFeedbackState *temp = feedbacks;
+            for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
+            {
+                if (temp->c_class == PtrFeedbackClass)
+                {
+                    feedback_id = temp->id;
+                }
+
+                if (feedback_id == -1 && (i+1 < num_feedbacks))
+                {
+                    temp = (XFeedbackState*) ((char*) temp + temp->length);
+                }
+            }
+
+            if (feedback_id <= -1)
+            {
+                result = false;
+            }
+            else
+            {
+                XPtrFeedbackState *tempPtrFeedback = (XPtrFeedbackState*) temp;
+                tempInfo.id = feedback_id;
+                tempInfo.accelNum = tempPtrFeedback->accelNum;
+                tempInfo.accelDenom = tempPtrFeedback->accelDenom;
+                tempInfo.threshold = tempPtrFeedback->threshold;
+            }
+
+            XFree(feedbacks);
+            feedbacks = temp = 0;
+            XCloseDevice(display, device);
+        }
+
+        if (all_devices)
+        {
+            XIFreeDeviceInfo(all_devices);
+        }
+    }
+
+    return tempInfo;
+}

@@ -29,11 +29,16 @@
 #include <QDesktopWidget>
 #include <QComboBox>
 #include <QPushButton>
+#include <QLabel>
 
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QApplication>
     #endif
+
+#include "x11extras.h"
+#include "eventhandlerfactory.h"
+
 #endif
 
 #include "mainsettingsdialog.h"
@@ -299,6 +304,30 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
     }
 
+#ifdef Q_OS_UNIX
+    if (EventHandlerFactory::getInstance()->handler()->getIdentifier() == "uinput")
+    {
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
+            refreshExtraMouseInfo();
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        else
+        {
+            ui->extraInfoFrame->hide();
+        }
+        #endif
+    }
+    else
+    {
+        ui->extraInfoFrame->hide();
+    }
+#else
+    ui->extraInfoFrame->hide();
+#endif
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -323,6 +352,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     connect(ui->keyRateSpinBox, SIGNAL(valueChanged(int)), ui->keyRateHorizontalSlider, SLOT(setValue(int)));
 
     connect(ui->smoothingEnableCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkSmoothingWidgetStatus(bool)));
+    connect(ui->resetAccelPushButton, SIGNAL(clicked(bool)), this, SLOT(resetMouseAcceleration()));
 }
 
 MainSettingsDialog::~MainSettingsDialog()
@@ -1854,4 +1884,33 @@ void MainSettingsDialog::fillSpringScreenPresets()
     {
         ui->springScreenComboBox->setCurrentIndex(screenIndex);
     }
+}
+
+void MainSettingsDialog::refreshExtraMouseInfo()
+{
+    QString handler = EventHandlerFactory::getInstance()->handler()->getIdentifier();
+    if (handler == "uinput")
+    {
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+        #endif
+            struct X11Extras::ptrInformation temp = X11Extras::getInstance()->getPointInformation();
+            if (temp.id >= 0)
+            {
+                ui->accelNumLabel->setText(QString::number(temp.accelNum));
+                ui->accelDenomLabel->setText(QString::number(temp.accelDenom));
+                ui->accelThresLabel->setText(QString::number(temp.threshold));
+            }
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        #endif
+    }
+}
+
+void MainSettingsDialog::resetMouseAcceleration()
+{
+    X11Extras::getInstance()->x11ResetMouseAccelerationChange();
+    refreshExtraMouseInfo();
 }

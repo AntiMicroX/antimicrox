@@ -52,6 +52,7 @@ protected:
     void clearAutoProfileData();
     void changePresetLanguage();
     void fillSpringScreenPresets();
+    void refreshExtraMouseInfo();
 
     AntiMicroSettings *settings;
 
@@ -98,6 +99,7 @@ protected slots:
     void autoProfileButtonsActiveState(bool enabled);
     void changeKeyRepeatWidgetsStatus(bool enabled);
     void checkSmoothingWidgetStatus(bool enabled);
+    void resetMouseAcceleration();
 };
 
 #endif // MAINSETTINGSDIALOG_H
