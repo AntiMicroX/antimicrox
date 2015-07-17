@@ -56,6 +56,9 @@ public:
     QTimer* getLogTimer();
     void stopLogTimer();
 
+    bool getWriteTime();
+    void setWriteTime(bool status);
+
     static void appendLog(LogLevel level, const QString &message, bool newline=true);
     static void directLog(LogLevel level, const QString &message, bool newline=true);
 
@@ -130,10 +133,12 @@ protected:
     QMutex logMutex;
     QTimer pendingTimer;
     QList<LogMessage> pendingMessages;
+    bool writeTime;
 
     static Logger *instance;
 
 signals:
+    void stringWritten(QString text);
 
 public slots:
     void Log();
