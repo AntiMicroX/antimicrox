@@ -789,7 +789,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation()
             }
             else
             {
-                XPtrFeedbackState *tempPtrFeedback = (XPtrFeedbackState*) temp;
+                XPtrFeedbackState *tempPtrFeedback = reinterpret_cast<XPtrFeedbackState*>(temp);
                 tempInfo.id = feedback_id;
                 tempInfo.accelNum = tempPtrFeedback->accelNum;
                 tempInfo.accelDenom = tempPtrFeedback->accelDenom;
