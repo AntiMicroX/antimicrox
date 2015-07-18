@@ -659,13 +659,19 @@ double JoyAxis::getDistanceFromDeadZone(int value)
     return distance;
 }
 
+/**
+ * @brief Get the current value for an axis in either direction converted to
+ *   the range of -1.0 to 1.0.
+ * @param Current interger value of the axis
+ * @return Axis value in the range of -1.0 to 1.0
+ */
 double JoyAxis::getRawDistance(int value)
 {
     double distance = 0.0;
     int currentValue = value;
 
     distance = currentValue / static_cast<double>(maxZoneValue);
-    distance = qBound(0.0, distance, 1.0);
+    distance = qBound(-1.0, distance, 1.0);
 
     return distance;
 }
