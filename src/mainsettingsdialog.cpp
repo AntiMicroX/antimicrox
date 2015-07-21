@@ -36,7 +36,6 @@
 #include <QApplication>
     #endif
 
-#include "x11extras.h"
 #include "eventhandlerfactory.h"
 
 #endif
@@ -51,6 +50,8 @@
 #ifdef Q_OS_WIN
   #include "eventhandlerfactory.h"
   #include "winextras.h"
+#elif defined(Q_OS_UNIX)
+  #include "x11extras.h"
 #endif
 
 static const QString RUNATSTARTUPKEY(

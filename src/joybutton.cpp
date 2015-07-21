@@ -92,7 +92,7 @@ QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Keeps timestamp of last mouse event.
-QTime JoyButton::lastMouseTime;
+QElapsedTimer JoyButton::lastMouseTime;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -1035,8 +1035,17 @@ void JoyButton::mouseEvent()
             int mousedirection = buttonslot->getSlotCode();
             JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
             int mousespeed = 0;
-            int timeElapsed = mouseInterval->elapsed();
-            int nanoTimeElapsed = mouseInterval->nsecsElapsed();
+            //int timeElapsed = mouseInterval->elapsed();
+            //int nanoTimeElapsed = mouseInterval->nsecsElapsed();
+            unsigned int timeElapsed = lastMouseTime.elapsed();
+            unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+
+            if (staticMouseEventTimer.interval() == 0)
+            {
+                timeElapsed = getMouseRefreshRate();
+                nanoTimeElapsed = getMouseRefreshRate() * 100000;
+                //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(nanoTimeElapsed));
+            }
 
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
@@ -1061,7 +1070,7 @@ void JoyButton::mouseEvent()
                     }
 
                     double difference = getMouseDistanceFromDeadZone();
-                    double initialDifference = difference;
+                    //double initialDifference = difference;
                     //qDebug() << "RIGHT DIFF: " << difference;
                     double mouse1 = 0;
                     double mouse2 = 0;
