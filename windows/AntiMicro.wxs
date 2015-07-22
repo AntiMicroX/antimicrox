@@ -3,13 +3,14 @@
     <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="2.13.0" Manufacturer="AntiMicro" UpgradeCode="988F58F3-1B49-406D-A3C0-214078ABF6BD">
         <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" InstallScope="perMachine" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <Property Id="DISABLEADVTSHORTCUTS" Value="1" />
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="ProgramFilesFolder" Name="PFiles">
                 <Directory Id="ANTIMICRO" Name="AntiMicro">
                     <Component Id="ANTIMICRO.EXE" Guid="90E3430C-0DE6-484D-AEDE-3DE77D1F63D9">
                         <File Source="..\antimicro\antimicro.exe">
-                            <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="AntiMicro" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="DesktopIcon.exe" IconIndex="0" />
-                            <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="AntiMicro" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
+                            <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="AntiMicro" WorkingDirectory="ANTIMICRO" Advertise="yes" Icon="DesktopIcon.exe" IconIndex="0" />
+                            <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="AntiMicro" WorkingDirectory="ANTIMICRO" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
                         </File>
                     </Component>
                     <Component Id="ICUDT53.DLL" Guid="E1D9A8BF-6C31-470B-8333-ECFE5DECB701">
@@ -91,6 +92,52 @@
                                 </Component>
                             </Directory>
                         </Directory>
+                        <Directory Id="QT" Name="qt">
+                            <Directory Id="QTTRANSLATIONS" Name="translations">
+                                <Component Id="QT_FA.QM" Guid="CBB09EE1-6171-410B-9791-8AE47209D7EE">
+                                    <File Source="..\antimicro\share\qt\translations\qt_fa.qm" />
+                                </Component>
+                                <Component Id="QT_FI.QM" Guid="88FDA26A-3706-40C6-812C-714F5EC3362D">
+                                    <File Source="..\antimicro\share\qt\translations\qt_fi.qm" />
+                                </Component>
+                                <Component Id="QT_FR.QM" Guid="034D3CCD-C136-420B-BD96-5D98A7B2E0D1">
+                                    <File Source="..\antimicro\share\qt\translations\qt_fr.qm" />
+                                </Component>
+                                <Component Id="QT_GL.QM" Guid="D473593F-FC0F-46F1-A6A3-CBDE4A8FB404">
+                                    <File Source="..\antimicro\share\qt\translations\qt_gl.qm" />
+                                </Component>
+                                <Component Id="QT_IT.QM" Guid="49AEA817-37DF-4A6E-B602-B893AC767949">
+                                    <File Source="..\antimicro\share\qt\translations\qt_it.qm" />
+                                </Component>
+                                <Component Id="QT_JA.QM" Guid="3195E536-D6A3-43E0-B814-D095C8EDDBCB">
+                                    <File Source="..\antimicro\share\qt\translations\qt_ja.qm" />
+                                </Component>
+                                <Component Id="QT_KO.QM" Guid="8A77A7F6-3CF8-454E-82FA-7873B9BCA4AB">
+                                    <File Source="..\antimicro\share\qt\translations\qt_ko.qm" />
+                                </Component>
+                                <Component Id="QT_RU.QM" Guid="167E0EE5-7524-486F-A58D-6853F535D599">
+                                    <File Source="..\antimicro\share\qt\translations\qt_ru.qm" />
+                                </Component>
+                                <Component Id="QT_SK.QM" Guid="E1DFDCF3-ABEF-42B9-849C-377785E48184">
+                                    <File Source="..\antimicro\share\qt\translations\qt_sk.qm" />
+                                </Component>
+                                <Component Id="QT_SL.QM" Guid="F8B7D84B-8409-4ABB-8944-344D8233E95C">
+                                    <File Source="..\antimicro\share\qt\translations\qt_sl.qm" />
+                                </Component>
+                                <Component Id="QT_SV.QM" Guid="45D61FF0-5881-4648-9D45-E79632C383AD">
+                                    <File Source="..\antimicro\share\qt\translations\qt_sv.qm" />
+                                </Component>
+                                <Component Id="QT_UK.QM" Guid="8B5346B2-FA5C-4ACE-9390-C26E1492699E">
+                                    <File Source="..\antimicro\share\qt\translations\qt_uk.qm" />
+                                </Component>
+                                <Component Id="QT_ZH_CN.QM" Guid="EC2647FC-A877-4898-B659-602393AEB1A8">
+                                    <File Source="..\antimicro\share\qt\translations\qt_zh_CN.qm" />
+                                </Component>
+                                <Component Id="QT_ZH_TW.QM" Guid="FB2541D5-275A-468D-86F8-3A6E6B66F23B">
+                                    <File Source="..\antimicro\share\qt\translations\qt_zh_TW.qm" />
+                                </Component>
+                            </Directory>
+                        </Directory>
                     </Directory>
                 </Directory>
             </Directory>
@@ -131,6 +178,20 @@
             <ComponentRef Id="ANTIMICRO_RU.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
             <ComponentRef Id="ANTIMICRO_UK.QM" />
+            <ComponentRef Id="QT_FA.QM" />
+            <ComponentRef Id="QT_FI.QM" />
+            <ComponentRef Id="QT_FR.QM" />
+            <ComponentRef Id="QT_GL.QM" />
+            <ComponentRef Id="QT_IT.QM" />
+            <ComponentRef Id="QT_JA.QM" />
+            <ComponentRef Id="QT_KO.QM" />
+            <ComponentRef Id="QT_RU.QM" />
+            <ComponentRef Id="QT_SK.QM" />
+            <ComponentRef Id="QT_SL.QM" />
+            <ComponentRef Id="QT_SV.QM" />
+            <ComponentRef Id="QT_UK.QM" />
+            <ComponentRef Id="QT_ZH_CN.QM" />
+            <ComponentRef Id="QT_ZH_TW.QM" />
             <ComponentRef Id="StartMenuShortcuts" />
         </Feature>
         <UI />
