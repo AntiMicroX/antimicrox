@@ -897,7 +897,9 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                 InputDevice *device = joysticks->value(event.jdevice.which);
                 if (device)
                 {
-                    Logger::LogInfo(QString("Removing joystick #%1").arg(device->getRealJoyNumber()));
+                    Logger::LogInfo(QString("Removing joystick #%1 [%2]")
+                                    .arg(device->getRealJoyNumber())
+                                    .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
                     removeDevice(device);
                 }
 
@@ -906,7 +908,9 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
             case SDL_JOYDEVICEADDED:
             {
-                Logger::LogInfo(QString("New joystick found - #%1").arg(event.jdevice.which+1));
+                Logger::LogInfo(QString("New joystick found - #%1 [%2]")
+                                .arg(event.jdevice.which+1)
+                                .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
                 addInputDevice(event.jdevice.which);
                 break;
             }
