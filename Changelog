@@ -1,3 +1,38 @@
+2015-07-22 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.16
+
+* Loosen initial mouse movement experienced after going outside the dead zone.
+
+* Added option in the mouse settings section that would allow antimicro to
+reset the acceleration values being used for the uinput virtual mouse pointer.
+This is useful after playing older Linux games that change the acceleration
+settings for all mouse pointers after a game exits. Postal 2 and Doom 3 are two
+examples of games in my game library that exhibit this behavior.
+
+* Queue all events before performing any actions. The priority of various events
+has been changed as well.
+
+* Added option to change the gamepad poll rate used by the application. By
+default, the old 10 ms poll rate will be used.
+
+* Bundle a few backup icon files. Mainly useful on SteamOS since the themes
+used don't bundle a couple of essential icons that are expected to be present.
+
+* Compiled vmulti support into Windows build. The driver is not currently
+provided. The program needs to be started with the arguments --eventgen vmulti.
+
+* Temporarily stop packaging a 64 bit version of the program for Windows.
+Unfortunately, the version of Qt being used has a problem regarding timer
+accuracy that is not experienced with the 32 bit version of Qt being used.
+At this time, working around the problem is not feasible so there will be no
+64 bit release. Please use the 32 bit version.
+
+* Change shortcuts used for the .msi package.
+
+* Bundle Qt translation files for Windows version.
+
+
 2015-06-27 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.15

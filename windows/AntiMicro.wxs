@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="2.13.0" Manufacturer="AntiMicro" UpgradeCode="988F58F3-1B49-406D-A3C0-214078ABF6BD">
+    <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="2.16.0" Manufacturer="AntiMicro" UpgradeCode="FE3CB16F-6006-4C70-95D3-848CB725F227">
         <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" InstallScope="perMachine" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Property Id="DISABLEADVTSHORTCUTS" Value="1" />
