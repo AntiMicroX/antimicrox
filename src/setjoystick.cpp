@@ -291,6 +291,7 @@ void SetJoystick::release()
     while (iterAxes.hasNext())
     {
         JoyAxis *axis = iterAxes.next().value();
+        axis->clearPendingEvent();
         axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
     }
 
@@ -298,6 +299,7 @@ void SetJoystick::release()
     while (iterDPads.hasNext())
     {
         JoyDPad *dpad = iterDPads.next().value();
+        dpad->clearPendingEvent();
         dpad->joyEvent(0, true);
     }
 
@@ -305,10 +307,9 @@ void SetJoystick::release()
     while (iterButtons.hasNext())
     {
         JoyButton *button = iterButtons.next().value();
+        button->clearPendingEvent();
         button->joyEvent(false, true);
     }
-
-
 }
 
 void SetJoystick::readConfig(QXmlStreamReader *xml)
