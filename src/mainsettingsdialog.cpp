@@ -1889,7 +1889,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
 
 void MainSettingsDialog::refreshExtraMouseInfo()
 {
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
     QString handler = EventHandlerFactory::getInstance()->handler()->getIdentifier();
     if (handler == "uinput")
     {
@@ -1914,8 +1914,15 @@ void MainSettingsDialog::refreshExtraMouseInfo()
 
 void MainSettingsDialog::resetMouseAcceleration()
 {
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+  #endif
     X11Extras::getInstance()->x11ResetMouseAccelerationChange();
     refreshExtraMouseInfo();
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+  #endif
 #endif
 }

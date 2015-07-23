@@ -216,6 +216,7 @@ void InputDaemon::refreshJoysticks()
 void InputDaemon::stop()
 {
     stopped = true;
+    pollResetTimer.stop();
 }
 
 void InputDaemon::refresh()
@@ -259,6 +260,8 @@ void InputDaemon::refreshJoystick(InputDevice *joystick)
 void InputDaemon::quit()
 {
     stopped = true;
+    pollResetTimer.stop();
+
     disconnect(eventWorker, SIGNAL(eventRaised()), this, 0);
 
     // Wait for SDL to finish. Let worker destructor close SDL.
@@ -271,7 +274,9 @@ void InputDaemon::quit()
         connect(eventWorker, SIGNAL(eventRaised()), &q, SLOT(quit()));
         connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
 
-        eventWorker->stop();
+        //eventWorker->stop();
+        QMetaObject::invokeMethod(eventWorker, "stop", Qt::BlockingQueuedConnection);
+
         temptime.start(500);
         if (eventWorker->isSDLOpen())
         {
@@ -279,11 +284,13 @@ void InputDaemon::quit()
         }
         temptime.stop();
 
+        QMetaObject::invokeMethod(eventWorker, "quit", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
     }
     else
     {
         eventWorker->stop();
+        eventWorker->quit();
         delete eventWorker;
     }
 

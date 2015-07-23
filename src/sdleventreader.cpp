@@ -98,12 +98,15 @@ void SDLEventReader::closeSDL()
 
     SDL_Event event;
 
-    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-    while (iter.hasNext())
+    if (joysticks)
     {
-        iter.next();
-        InputDevice *current = iter.value();
-        current->closeSDLDevice();
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        while (iter.hasNext())
+        {
+            iter.next();
+            InputDevice *current = iter.value();
+            current->closeSDLDevice();
+        }
     }
 
     // Clear any pending events
@@ -237,5 +240,19 @@ void SDLEventReader::updatePollRate(unsigned int tempPollRate)
         {
             pollRateTimer.start();
         }
+    }
+}
+
+void SDLEventReader::resetJoystickMap()
+{
+    joysticks = 0;
+}
+
+void SDLEventReader::quit()
+{
+    if (sdlIsOpen)
+    {
+        closeSDL();
+        joysticks = 0;
     }
 }
