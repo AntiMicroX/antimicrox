@@ -435,8 +435,12 @@ int main(int argc, char *argv[])
 #if defined(Q_OS_UNIX)
     qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 #elif defined(Q_OS_WIN)
+  #ifdef QT_DEBUG
+    qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+  #else
     qtTranslator.load(QString("qt_").append(targetLang),
                       QApplication::applicationDirPath().append("\\share\\qt\\translations"));
+  #endif
 #endif
     a->installTranslator(&qtTranslator);
 

@@ -105,8 +105,12 @@ namespace PadderCommon
     #if defined(Q_OS_UNIX)
         translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     #elif defined(Q_OS_WIN)
+      #ifdef QT_DEBUG
+        translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+      #else
         translator->load(QString("qt_").append(language),
                           QApplication::applicationDirPath().append("\\share\\qt\\translations"));
+      #endif
     #endif
 
         qApp->installTranslator(appTranslator);
