@@ -1889,6 +1889,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
 
 void MainSettingsDialog::refreshExtraMouseInfo()
 {
+#ifdef Q_OS_UNIX
     QString handler = EventHandlerFactory::getInstance()->handler()->getIdentifier();
     if (handler == "uinput")
     {
@@ -1908,10 +1909,13 @@ void MainSettingsDialog::refreshExtraMouseInfo()
         }
         #endif
     }
+#endif
 }
 
 void MainSettingsDialog::resetMouseAcceleration()
 {
+#ifdef Q_OS_UNIX
     X11Extras::getInstance()->x11ResetMouseAccelerationChange();
     refreshExtraMouseInfo();
+#endif
 }

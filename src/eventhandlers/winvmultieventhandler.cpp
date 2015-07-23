@@ -118,7 +118,7 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
             unsigned int nativeKey = nativeKeyMapper->returnVirtualKey(slot->getSlotCodeAlias());
             if (nativeKey > 0)
             {
-                tempslot.setSlotCode(nativeKey);
+                tempSendInputSlot.setSlotCode(nativeKey);
                 useSendInput = true;
             }
         }
@@ -130,7 +130,7 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
             unsigned int nativeKey = nativeKeyMapper->returnVirtualKey(slot->getSlotCodeAlias());
             if (nativeKey > 0)
             {
-                tempslot.setSlotCode(nativeKey);
+                tempSendInputSlot.setSlotCode(nativeKey);
                 useSendInput = true;
             }
         }
@@ -194,7 +194,7 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
             unsigned int nativeKey = nativeKeyMapper->returnVirtualKey(slot->getSlotCodeAlias());
             if (nativeKey > 0)
             {
-                tempslot.setSlotCode(nativeKey);
+                tempSendInputSlot.setSlotCode(nativeKey);
                 //sendInputHandler.sendKeyboardEvent(tempslot, pressed);
                 useSendInput = true;
             }
@@ -277,7 +277,7 @@ void WinVMultiEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
     }
     else
     {
-        sendInputHandler.sendKeyboardEvent(tempslot, pressed);
+        sendInputHandler.sendKeyboardEvent(&tempSendInputSlot, pressed);
         useSendInput = false;
     }
 }
@@ -339,12 +339,12 @@ void WinVMultiEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool press
         if (pressed)
         {
             mouseButtons = mouseButtons | pendingButton;
-            vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
+            vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel);//, pendingHWheel);
         }
         else
         {
             mouseButtons = mouseButtons ^ pendingButton;
-            vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel, pendingHWheel);
+            vmulti_update_relative_mouse(vmulti, mouseButtons, 0, 0, pendingWheel);//, pendingHWheel);
         }
     }
     else

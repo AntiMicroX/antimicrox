@@ -60,7 +60,7 @@ protected:
     BYTE extraKeys;
     QVector<BYTE> keyboardKeys;
     WinSendInputEventHandler sendInputHandler;
-    AntKeyMapper *nativeKeyMapper;
+    QtKeyMapperBase *nativeKeyMapper;
 
 
 signals:
