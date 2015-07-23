@@ -36,7 +36,7 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
     instance->errorStream = 0;
-    instance->pendingTimer.setInterval(10);
+    instance->pendingTimer.setInterval(1);
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
@@ -60,7 +60,7 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
     instance->errorStream = errorStream;
-    instance->pendingTimer.setInterval(10);
+    instance->pendingTimer.setInterval(1);
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
