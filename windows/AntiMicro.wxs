@@ -94,6 +94,21 @@
                         </Directory>
                         <Directory Id="QT" Name="qt">
                             <Directory Id="QTTRANSLATIONS" Name="translations">
+                                <Component Id="QT_AR.QM" Guid="8B3C5EE6-AE7C-4416-AA75-FE03DD2CE594">
+                                    <File Source="..\antimicro\share\qt\translations\qt_ar.qm" />
+                                </Component>
+                                <Component Id="QT_CA.QM" Guid="9829B4BB-177B-44F0-9566-CC464C15035C">
+                                    <File Source="..\antimicro\share\qt\translations\qt_ca.qm" />
+                                </Component>
+                                <Component Id="QT_CS.QM" Guid="6373FA22-6B73-4B4A-8B87-CF438F5DFB09">
+                                    <File Source="..\antimicro\share\qt\translations\qt_cs.qm" />
+                                </Component>
+                                <Component Id="QT_DA.QM" Guid="1C4FB8FB-F423-4F2C-89B7-0AAC95EA3432">
+                                    <File Source="..\antimicro\share\qt\translations\qt_da.qm" />
+                                </Component>
+                                <Component Id="QT_DE.QM" Guid="e58519e7-b0e5-4f81-bebe-13c69d1a0c17">
+                                    <File Source="..\antimicro\share\qt\translations\qt_de.qm" />
+                                </Component>
                                 <Component Id="QT_FA.QM" Guid="CBB09EE1-6171-410B-9791-8AE47209D7EE">
                                     <File Source="..\antimicro\share\qt\translations\qt_fa.qm" />
                                 </Component>
@@ -178,6 +193,11 @@
             <ComponentRef Id="ANTIMICRO_RU.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
             <ComponentRef Id="ANTIMICRO_UK.QM" />
+            <ComponentRef Id="QT_AR.QM" />
+            <ComponentRef Id="QT_CA.QM" />
+            <ComponentRef Id="QT_CS.QM" />
+            <ComponentRef Id="QT_DA.QM" />
+            <ComponentRef Id="QT_DE.QM" />
             <ComponentRef Id="QT_FA.QM" />
             <ComponentRef Id="QT_FI.QM" />
             <ComponentRef Id="QT_FR.QM" />
