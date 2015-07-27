@@ -61,6 +61,8 @@ const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 const double JoyButton::DEFAULTEASINGDURATION = 0.5;
 const double JoyButton::MINIMUMEASINGDURATION = 0.2;
 const double JoyButton::MAXIMUMEASINGDURATION = 5.0;
+const unsigned int JoyButton::MINCYCLERESETTIME = 10;
+const unsigned int JoyButton::MAXCYCLERESETTIME = 60000;
 
 const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
 const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
@@ -1762,7 +1764,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("cycleresetactive", "true");
         }
 
-        if (cycleResetInterval >= 10)
+        if (cycleResetInterval >= MINCYCLERESETTIME)
         {
             xml->writeTextElement("cycleresetinterval", QString::number(cycleResetInterval));
         }
@@ -1904,7 +1906,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         found = true;
         QString temptext = xml->readElementText();
         unsigned int tempchoice = temptext.toInt();
-        if (tempchoice >= 10)
+        if (tempchoice >= MINCYCLERESETTIME)
         {
             this->setCycleResetTime(tempchoice);
         }
@@ -4856,10 +4858,10 @@ unsigned int JoyButton::getPreferredKeyPressTime()
 
 void JoyButton::setCycleResetTime(unsigned int interval)
 {
-    if (interval >= 10)
+    if (interval >= MINCYCLERESETTIME)
     {
-        unsigned int ceiling = 6000;
-        unsigned int temp = qMax(interval, ceiling);
+        unsigned int ceiling = MAXCYCLERESETTIME;
+        unsigned int temp = qBound(MINCYCLERESETTIME, interval, ceiling);
         cycleResetInterval = temp;
         emit propertyUpdated();
     }

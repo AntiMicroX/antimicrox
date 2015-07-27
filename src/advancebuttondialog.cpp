@@ -21,6 +21,7 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QHBoxLayout>
+#include <QDoubleSpinBox>
 #include <cmath>
 
 #include "advancebuttondialog.h"
@@ -161,6 +162,8 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     //performStatsWidgetRefresh(ui->slotListWidget->currentItem());
     changeSlotHelpText(ui->slotTypeComboBox->currentIndex());
+
+    ui->resetCycleDoubleSpinBox->setMaximum(static_cast<double>(JoyButton::MAXCYCLERESETTIME * 0.001));
 
     connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
     connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(checkTurboIntervalValue(int)));

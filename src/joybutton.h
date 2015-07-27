@@ -264,6 +264,9 @@ public:
     static const int MAXIMUMMOUSEREFRESHRATE;
     static const int IDLEMOUSEREFRESHRATE;
 
+    static const unsigned int MINCYCLERESETTIME;
+    static const unsigned int MAXCYCLERESETTIME;
+
     static const double DEFAULTEXTRACCELVALUE;
     static const double DEFAULTMINACCELTHRESHOLD;
     static const double DEFAULTMAXACCELTHRESHOLD;
