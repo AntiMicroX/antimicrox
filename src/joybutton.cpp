@@ -822,9 +822,13 @@ void JoyButton::activateSlots()
                 // precision on the lower end of an axis.
                 if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() != 0)
                 {
-                    lastMouseTime.restart();
-                    staticMouseEventTimer.start(0);
-                    accelExtraDurationTime.restart();
+                    if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() == IDLEMOUSEREFRESHRATE)
+                    {
+                        lastMouseTime.restart();
+                        accelExtraDurationTime.restart();
+                        int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
+                        staticMouseEventTimer.start(tempRate);
+                    }
                 }
             }
             else if (mode == JoyButtonSlot::JoyPause)
@@ -937,7 +941,6 @@ void JoyButton::activateSlots()
                 releaseActiveSlots();
                 currentSetChangeSlot = slot;
                 slotSetChangeTimer.start();
-                //QTimer::singleShot(0, this, SLOT(slotSetChange()));
                 exit = true;
             }
             else if (mode == JoyButtonSlot::JoyTextEntry)
@@ -1037,13 +1040,13 @@ void JoyButton::mouseEvent()
             int mousedirection = buttonslot->getSlotCode();
             JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
             int mousespeed = 0;
-            //int timeElapsed = mouseInterval->elapsed();
-            //int nanoTimeElapsed = mouseInterval->nsecsElapsed();
+
             unsigned int timeElapsed = lastMouseTime.elapsed();
             unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
 
-            if (staticMouseEventTimer.interval() == 0)
+            if (staticMouseEventTimer.interval() < mouseRefreshRate)
             {
+                //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(staticMouseEventTimer.interval()));
                 timeElapsed = getMouseRefreshRate();
                 nanoTimeElapsed = getMouseRefreshRate() * 100000;
                 //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(nanoTimeElapsed));
@@ -1072,8 +1075,7 @@ void JoyButton::mouseEvent()
                     }
 
                     double difference = getMouseDistanceFromDeadZone();
-                    //double initialDifference = difference;
-                    //qDebug() << "RIGHT DIFF: " << difference;
+
                     double mouse1 = 0;
                     double mouse2 = 0;
                     double sumDist = buttonslot->getMouseDistance();
@@ -1302,16 +1304,6 @@ void JoyButton::mouseEvent()
 
                             difference = elapsedDiff * difference;
                             //difference = currentAccelMulti * difference;
-                            //qDebug() << "DURATION: " << elapsedDuration;
-                            //qDebug() << "NEW: " << elapsedDiff;
-                            //qDebug() << "COMING THROUGH THE RYE: " << difference;
-
-                            /*Logger::LogInfo(QString("Duration: %1").arg(elapsedDuration));
-                            Logger::LogInfo(QString("ORG Duration: %1").arg(orgelapsedDuration));
-                            Logger::LogInfo(QString("NEW: %1").arg(elapsedDiff));
-                            Logger::LogInfo(QString("COMING THROUGH THE RYE: %1").arg(difference));
-                            Logger::LogInfo(QString(""));
-                            */
 
                             // As acceleration is applied, do not update last
                             // distance values when not necessary.
