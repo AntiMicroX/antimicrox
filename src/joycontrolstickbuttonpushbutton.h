@@ -33,6 +33,7 @@ public:
 
     JoyControlStickButton* getButton();
     void setButton(JoyControlStickButton *button);
+    void tryFlash();
 
 protected:
     virtual QString generateLabel();

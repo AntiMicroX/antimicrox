@@ -29,7 +29,9 @@ class JoyButtonWidget : public FlashButtonWidget
 
 public:
     explicit JoyButtonWidget(JoyButton* button, bool displayNames, QWidget *parent=0);
+
     JoyButton* getJoyButton();
+    void tryFlash();
 
 protected:
     virtual QString generateLabel();

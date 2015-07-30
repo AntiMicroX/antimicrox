@@ -29,7 +29,9 @@ class JoyAxisWidget : public FlashButtonWidget
 
 public:
     explicit JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent=0);
+
     JoyAxis* getAxis();
+    void tryFlash();
 
 protected:
     virtual QString generateLabel();

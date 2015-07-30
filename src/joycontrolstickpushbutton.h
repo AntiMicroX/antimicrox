@@ -29,7 +29,9 @@ class JoyControlStickPushButton : public FlashButtonWidget
 
 public:
     explicit JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent = 0);
+
     JoyControlStick* getStick();
+    void tryFlash();
     
 protected:
     virtual QString generateLabel();

@@ -29,7 +29,9 @@ class DPadPushButton : public FlashButtonWidget
 
 public:
     explicit DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent = 0);
+
     JoyDPad* getDPad();
+    void tryFlash();
 
 protected:
     QString generateLabel();

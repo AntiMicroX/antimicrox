@@ -29,6 +29,7 @@ class DPadPushButtonGroup : public QGridLayout
     Q_OBJECT
 public:
     explicit DPadPushButtonGroup(JoyDPad *dpad, bool displayNames = false, QWidget *parent = 0);
+
     JoyDPad *getDPad();
 
 protected:

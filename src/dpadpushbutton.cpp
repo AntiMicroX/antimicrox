@@ -26,10 +26,7 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     refreshLabel();
     enableFlashes();
 
-    if (dpad->getCurrentDirection() != static_cast<int>(JoyDPadButton::DpadCentered))
-    {
-        flash();
-    }
+    tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
@@ -76,4 +73,12 @@ void DPadPushButton::showContextMenu(const QPoint &point)
     DPadContextMenu *contextMenu = new DPadContextMenu(dpad, this);
     contextMenu->buildMenu();
     contextMenu->popup(globalPos);
+}
+
+void DPadPushButton::tryFlash()
+{
+    if (dpad->getCurrentDirection() != static_cast<int>(JoyDPadButton::DpadCentered))
+    {
+        flash();
+    }
 }

@@ -33,10 +33,7 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 
-    if (nAxisButton->getButtonState() || pAxisButton->getButtonState())
-    {
-        flash();
-    }
+    tryFlash();
 
     connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
@@ -88,4 +85,15 @@ void JoyAxisWidget::showContextMenu(const QPoint &point)
     JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(axis, this);
     contextMenu->buildMenu();
     contextMenu->popup(globalPos);
+}
+
+void JoyAxisWidget::tryFlash()
+{
+    JoyAxisButton *nAxisButton = axis->getNAxisButton();
+    JoyAxisButton *pAxisButton = axis->getPAxisButton();
+
+    if (nAxisButton->getButtonState() || pAxisButton->getButtonState())
+    {
+        flash();
+    }
 }

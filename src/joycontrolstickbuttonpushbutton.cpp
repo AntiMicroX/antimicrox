@@ -28,10 +28,7 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     refreshLabel();
     enableFlashes();
 
-    if (button->getButtonState())
-    {
-        flash();
-    }
+    tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
@@ -112,4 +109,12 @@ void JoyControlStickButtonPushButton::showContextMenu(const QPoint &point)
     JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
     contextMenu->buildMenu();
     contextMenu->popup(globalPos);
+}
+
+void JoyControlStickButtonPushButton::tryFlash()
+{
+    if (button->getButtonState())
+    {
+        flash();
+    }
 }

@@ -700,6 +700,7 @@ void MainWindow::enableFlashActions()
         {
             JoyButtonWidget *buttonWidget = iter.next();
             buttonWidget->enableFlashes();
+            buttonWidget->tryFlash();
         }
 
         QList<JoyAxisWidget*> list2 = ui->tabWidget->widget(i)->findChildren<JoyAxisWidget*>();
@@ -708,6 +709,7 @@ void MainWindow::enableFlashActions()
         {
             JoyAxisWidget *axisWidget = iter2.next();
             axisWidget->enableFlashes();
+            axisWidget->tryFlash();
         }
 
         QList<JoyControlStickPushButton*> list3 = ui->tabWidget->widget(i)->findChildren<JoyControlStickPushButton*>();
@@ -716,6 +718,7 @@ void MainWindow::enableFlashActions()
         {
             JoyControlStickPushButton *stickWidget = iter3.next();
             stickWidget->enableFlashes();
+            stickWidget->tryFlash();
         }
 
         QList<JoyDPadButtonWidget*> list4 = ui->tabWidget->widget(i)->findChildren<JoyDPadButtonWidget*>();
@@ -724,6 +727,7 @@ void MainWindow::enableFlashActions()
         {
             JoyDPadButtonWidget *dpadWidget = iter4.next();
             dpadWidget->enableFlashes();
+            dpadWidget->tryFlash();
         }
 
         QList<JoyControlStickButtonPushButton*> list6 = ui->tabWidget->widget(i)->findChildren<JoyControlStickButtonPushButton*>();
@@ -732,6 +736,7 @@ void MainWindow::enableFlashActions()
         {
             JoyControlStickButtonPushButton *stickButtonWidget = iter6.next();
             stickButtonWidget->enableFlashes();
+            stickButtonWidget->tryFlash();
         }
 
         QList<DPadPushButton*> list7 = ui->tabWidget->widget(i)->findChildren<DPadPushButton*>();
@@ -740,6 +745,7 @@ void MainWindow::enableFlashActions()
         {
             DPadPushButton *dpadWidget = iter7.next();
             dpadWidget->enableFlashes();
+            dpadWidget->tryFlash();
         }
 
         JoyTabWidget *tabWidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
