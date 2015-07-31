@@ -58,11 +58,18 @@ public:
     QString getWindowClass(Window window);
     unsigned long getWindowInFocus();
     unsigned int getGroup1KeySym(unsigned int virtualkey);
+
     void x11ResetMouseAccelerationChange();
+    void x11ResetMouseAccelerationChange(QString pointerName);
     struct ptrInformation getPointInformation();
+    struct ptrInformation getPointInformation(QString pointerName);
 
     static X11Extras* getInstance();
     static void deleteInstance();
+
+    static const QString mouseDeviceName;
+    static const QString keyboardDeviceName;
+    static const QString xtestMouseDeviceName;
 
 
 protected:

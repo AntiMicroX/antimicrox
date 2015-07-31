@@ -28,8 +28,9 @@
 
 #include "x11extras.h"
 
-static const QString mouseDeviceName = PadderCommon::mouseDeviceName;
-static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
+const QString X11Extras::mouseDeviceName = PadderCommon::mouseDeviceName;
+const QString X11Extras::keyboardDeviceName = PadderCommon::keyboardDeviceName;
+const QString X11Extras::xtestMouseDeviceName = QString("Virtual core XTEST pointer");
 
 X11Extras* X11Extras::_instance = 0;
 
@@ -619,7 +620,7 @@ unsigned int X11Extras::getGroup1KeySym(unsigned int virtualkey)
     return result;
 }
 
-void X11Extras::x11ResetMouseAccelerationChange()
+void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
  {
     //QTextStream out(stdout);
 
@@ -653,7 +654,8 @@ void X11Extras::x11ResetMouseAccelerationChange()
         for (int i=0; i < num_devices; i++)
         {
             current_devices = &all_devices[i];
-            if (current_devices->use == XISlavePointer && QString::fromUtf8(current_devices->name) == mouseDeviceName)
+            if (current_devices->use == XISlavePointer &&
+                QString::fromUtf8(current_devices->name) == pointerName)
             {
                 Logger::LogInfo(tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid));
                 //out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
@@ -725,7 +727,12 @@ void X11Extras::x11ResetMouseAccelerationChange()
      }
  }
 
-struct X11Extras::ptrInformation X11Extras::getPointInformation()
+void X11Extras::x11ResetMouseAccelerationChange()
+{
+    x11ResetMouseAccelerationChange(mouseDeviceName);
+}
+
+struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerName)
 {
     struct ptrInformation tempInfo;
 
@@ -756,7 +763,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation()
         {
             current_devices = &all_devices[i];
             if (current_devices->use == XISlavePointer &&
-                QString::fromUtf8(current_devices->name) == mouseDeviceName)
+                QString::fromUtf8(current_devices->name) == pointerName)
             {
                 mouse_device = current_devices;
             }
@@ -808,4 +815,9 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation()
     }
 
     return tempInfo;
+}
+
+struct X11Extras::ptrInformation X11Extras::getPointInformation()
+{
+    return getPointInformation(mouseDeviceName);
 }
