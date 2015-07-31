@@ -69,7 +69,7 @@ const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
 const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 100;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
-const int JoyButton::IDLEMOUSEREFRESHRATE = 100;
+int JoyButton::IDLEMOUSEREFRESHRATE = (5 * 20);
 const double JoyButton::DEFAULTEXTRACCELVALUE = 2.0;
 const double JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
 const double JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
@@ -824,9 +824,29 @@ void JoyButton::activateSlots()
                 {
                     if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() == IDLEMOUSEREFRESHRATE)
                     {
+                        int tempRate = 0;
+                        //int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
+                        int mousePollTime = lastMouseTime.elapsed();
+                        if (mousePollTime <= mouseRefreshRate)
+                        {
+                            tempRate = qMax(0, mouseRefreshRate - mousePollTime);
+                        }
+                        else
+                        {
+                            mousePollTime = mousePollTime % mouseRefreshRate;
+                            if (mousePollTime == 0)
+                            {
+                                tempRate = mousePollTime;
+                            }
+                            else
+                            {
+                                tempRate = mouseRefreshRate - mousePollTime;
+                            }
+                        }
+
                         lastMouseTime.restart();
                         accelExtraDurationTime.restart();
-                        int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
+                        //int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
                         staticMouseEventTimer.start(tempRate);
                     }
                 }
@@ -1043,7 +1063,6 @@ void JoyButton::mouseEvent()
 
             unsigned int timeElapsed = lastMouseTime.elapsed();
             unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
-
             if (staticMouseEventTimer.interval() < mouseRefreshRate)
             {
                 //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(staticMouseEventTimer.interval()));
@@ -4367,6 +4386,11 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     double finaly = 0.0;
     int elapsedTime = lastMouseTime.elapsed();
     movedElapsed = lastMouseTime.elapsed();
+    if (staticMouseEventTimer.interval() < mouseRefreshRate)
+    {
+        elapsedTime = mouseRefreshRate;
+        movedElapsed = mouseRefreshRate;
+    }
 
     if (mouseHistoryX.size() >= mouseHistorySize)
     {
@@ -4509,7 +4533,7 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         movedX = static_cast<int>(adjustedX);
         movedY = static_cast<int>(adjustedY);
-        movedElapsed = elapsedTime;
+        //Logger::LogInfo(QString("MOVED %1 X | %2 Y").arg(movedX).arg(movedY));
     }
     else
     {
@@ -4517,7 +4541,7 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         mouseHistoryY.prepend(0);
     }
 
-    lastMouseTime.restart();
+    //lastMouseTime.restart();
 
     // Check if mouse event timer should use idle time.
     if (pendingMouseButtons.length() == 0)
@@ -4703,7 +4727,7 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
         hasMoved = true;
     }
 
-    lastMouseTime.restart();
+    //lastMouseTime.restart();
 
     // Check if mouse event timer should use idle time.
     if (pendingMouseButtons.length() == 0)
@@ -5138,13 +5162,15 @@ void JoyButton::setMouseRefreshRate(int refresh)
     if (refresh >= 1 && refresh <= 16)
     {
         mouseRefreshRate = refresh;
+        int temp = IDLEMOUSEREFRESHRATE;
+        IDLEMOUSEREFRESHRATE = mouseRefreshRate * 20;
 
         if (staticMouseEventTimer.isActive())
         {
             lastMouseTime.restart();
             int tempInterval = staticMouseEventTimer.interval();
 
-            if (tempInterval != IDLEMOUSEREFRESHRATE &&
+            if (tempInterval != temp &&
                 tempInterval != 0)
             {
                 staticMouseEventTimer.start(mouseRefreshRate);
@@ -5152,7 +5178,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
             else
             {
                 // Restart QTimer to keep QTimer in line with QTime
-                staticMouseEventTimer.start(tempInterval);
+                staticMouseEventTimer.start(temp);
             }
 
             // Clear current mouse history
@@ -5474,4 +5500,9 @@ int JoyButton::getSpringDeadCircleMultiplier()
 double JoyButton::getCurrentSpringDeadCircle()
 {
     return (springDeadCircleMultiplier * 0.01);
+}
+
+void JoyButton::restartLastMouseTime()
+{
+    lastMouseTime.restart();
 }

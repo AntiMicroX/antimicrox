@@ -224,6 +224,8 @@ public:
     static int getGamepadRefreshRate();
     static void setGamepadRefreshRate(int refresh);
 
+    static void restartLastMouseTime();
+
     static const QString xmlName;
 
     // Define default values for many properties.
@@ -262,7 +264,7 @@ public:
     static const double MAXIMUMWEIGHTMODIFIER;
 
     static const int MAXIMUMMOUSEREFRESHRATE;
-    static const int IDLEMOUSEREFRESHRATE;
+    static int IDLEMOUSEREFRESHRATE;
 
     static const unsigned int MINCYCLERESETTIME;
     static const unsigned int MAXCYCLERESETTIME;

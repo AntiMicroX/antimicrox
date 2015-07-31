@@ -80,6 +80,7 @@ void JoyButtonMouseHelper::mouseEvent()
         moveSpringMouse();
     }
 
+    JoyButton::restartLastMouseTime();
     firstSpringEvent = false;
 }
 
