@@ -1065,10 +1065,11 @@ void JoyButton::mouseEvent()
             unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
             if (staticMouseEventTimer.interval() < mouseRefreshRate)
             {
+                unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
                 //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(staticMouseEventTimer.interval()));
-                timeElapsed = getMouseRefreshRate();
-                nanoTimeElapsed = getMouseRefreshRate() * 100000;
                 //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(nanoTimeElapsed));
+                timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
+                nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
             }
 
             bool isActive = activeSlots.contains(buttonslot);
@@ -4385,11 +4386,11 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     double finalx = 0.0;
     double finaly = 0.0;
     int elapsedTime = lastMouseTime.elapsed();
-    movedElapsed = lastMouseTime.elapsed();
+    movedElapsed = elapsedTime;
     if (staticMouseEventTimer.interval() < mouseRefreshRate)
     {
-        elapsedTime = mouseRefreshRate;
-        movedElapsed = mouseRefreshRate;
+        elapsedTime = mouseRefreshRate + (elapsedTime - staticMouseEventTimer.interval());
+        movedElapsed = elapsedTime;
     }
 
     if (mouseHistoryX.size() >= mouseHistorySize)
