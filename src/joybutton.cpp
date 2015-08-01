@@ -393,6 +393,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 initializeDistanceValues();
                 currentAccelerationDistance = getAccelerationDistance();
 
+                Logger::LogDebug(tr("Processing press for button #%1 - %2")
+                                .arg(parentSet->getInputDevice()->getRealJoyNumber())
+                                .arg(getPartialName()));
+
                 if (!keyPressTimer.isActive())
                 {
                     checkForPressedSetChange();
@@ -402,9 +406,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     }
                 }
 
-                Logger::LogDebug(tr("Processing press for button #%1 - %2")
-                                .arg(parentSet->getInputDevice()->getRealJoyNumber())
-                                .arg(getPartialName()));
+
             }
             else if (!isButtonPressed && !activePress)
             {
@@ -1053,6 +1055,16 @@ void JoyButton::mouseEvent()
             buttonslot = mouseEventQueue.dequeue();
         }
 
+        unsigned int timeElapsed = lastMouseTime.elapsed();
+        unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+
+        if (staticMouseEventTimer.interval() < mouseRefreshRate)
+        {
+            unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
+            timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
+            nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
+        }
+
         while (buttonslot)
         {
             QElapsedTimer* mouseInterval = buttonslot->getMouseInterval();
@@ -1060,17 +1072,6 @@ void JoyButton::mouseEvent()
             int mousedirection = buttonslot->getSlotCode();
             JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
             int mousespeed = 0;
-
-            unsigned int timeElapsed = lastMouseTime.elapsed();
-            unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
-            if (staticMouseEventTimer.interval() < mouseRefreshRate)
-            {
-                unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
-                //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(staticMouseEventTimer.interval()));
-                //Logger::LogInfo(QString("JOHNNY BRANMUFFINS %1").arg(nanoTimeElapsed));
-                timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
-                nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
-            }
 
             bool isActive = activeSlots.contains(buttonslot);
             if (isActive)
@@ -1140,19 +1141,19 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.40495;
+                                difference = difference * 0.375;
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.23802;
+                                difference = difference - 0.25;
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 2.1901) - 1.1901;
+                                difference = (difference * 2.25) - 1.25;
                             }
 
                             break;
@@ -1167,7 +1168,7 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.40495;
+                                difference = difference * 0.375;
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -1179,7 +1180,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.23802;
+                                difference = difference - 0.25;
 
                                 if (buttonslot->isEasingActive())
                                 {
@@ -1198,7 +1199,7 @@ void JoyButton::mouseEvent()
                                 {
                                     buttonslot->setEasingStatus(true);
                                     buttonslot->getEasingTime()->restart();
-                                    easingElapsed = timeElapsed;
+                                    easingElapsed = 0;
                                 }
 
                                 // Determine the multiplier to use for the current maximum mouse speed
@@ -1226,7 +1227,7 @@ void JoyButton::mouseEvent()
 
                                 // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
-                                difference = difference * 1.340028571 - 0.510042857; // Range 0.56198 - 1.5
+                                difference = difference * 1.357142857 - 0.535714286; // Range 0.55 - 1.5
                             }
                             break;
                         }
