@@ -826,8 +826,7 @@ void JoyButton::activateSlots()
                 {
                     if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() == IDLEMOUSEREFRESHRATE)
                     {
-                        int tempRate = 0;
-                        //int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
+                        /*int tempRate = 0;
                         int mousePollTime = lastMouseTime.elapsed();
                         if (mousePollTime <= mouseRefreshRate)
                         {
@@ -844,11 +843,13 @@ void JoyButton::activateSlots()
                             {
                                 tempRate = mouseRefreshRate - mousePollTime;
                             }
-                        }
+                        }*/
 
                         lastMouseTime.restart();
                         accelExtraDurationTime.restart();
-                        //int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
+                        int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
+                        //Logger::LogInfo(QString("STARTING OVER: %1 %2").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(tempRate));
+
                         staticMouseEventTimer.start(tempRate);
                     }
                 }
@@ -1058,12 +1059,19 @@ void JoyButton::mouseEvent()
         unsigned int timeElapsed = lastMouseTime.elapsed();
         unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
 
+        // Presumed initial mouse movement. Use full duration rather than
+        // partial.
         if (staticMouseEventTimer.interval() < mouseRefreshRate)
         {
             unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
             timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
             nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
+            //Logger::LogInfo(QString("staticMouseEventTimer: %1").arg(staticMouseEventTimer.interval()));
+            //Logger::LogInfo(QString("ELAPSED: %1\n").arg(timeElapsed));
         }
+
+        //Logger::LogInfo(QString("staticMouseEventTimer: %1").arg(staticMouseEventTimer.interval()));
+        //Logger::LogInfo(QString("ELAPSED: %1\n").arg(nanoTimeElapsed));
 
         while (buttonslot)
         {
@@ -1170,6 +1178,7 @@ void JoyButton::mouseEvent()
                                 // Low slope value for really slow acceleration
                                 difference = difference * 0.375;
 
+                                // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
                                 {
                                     buttonslot->setEasingStatus(false);
@@ -1182,6 +1191,7 @@ void JoyButton::mouseEvent()
                                 // offset.
                                 difference = difference - 0.25;
 
+                                // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
                                 {
                                     buttonslot->setEasingStatus(false);
@@ -3932,7 +3942,7 @@ void JoyButton::releaseActiveSlots()
         if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
             springXSpeeds.length() == 0)
         {
-            lastMouseTime.restart();
+            /*lastMouseTime.restart();
             if (staticMouseEventTimer.interval() != IDLEMOUSEREFRESHRATE)
             {
                 staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
@@ -3945,10 +3955,12 @@ void JoyButton::releaseActiveSlots()
                     mouseHistoryY.append(0);
                 }
             }
+            */
 
             cursorRemainderX = 0;
             cursorRemainderY = 0;
         }
+
 
 #ifdef Q_OS_WIN
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
@@ -4434,7 +4446,14 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             infoY.slot->getMouseInterval()->restart();
         }
 
-        finalx += cursorRemainderX;
+        // Only apply remainder if both current displacement and remainder
+        // follow the same direction.
+        if ((cursorRemainderX >= 0) == (finalx >= 0))
+        {
+            finalx += cursorRemainderX;
+        }
+
+        // Cap maximum relative mouse movement.
         if (abs(finalx) > 127)
         {
             finalx = (finalx < 0) ? -127 : 127;
@@ -4442,7 +4461,14 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         mouseHistoryX.prepend(finalx);
 
-        finaly += cursorRemainderY;
+        // Only apply remainder if both current displacement and remainder
+        // follow the same direction.
+        if ((cursorRemainderY >= 0) == (finaly >= 0))
+        {
+            finaly += cursorRemainderY;
+        }
+
+        // Cap maximum relative mouse movement.
         if (abs(finaly) > 127)
         {
             finaly = (finaly < 0) ? -127 : 127;
@@ -4528,14 +4554,13 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             sendevent(adjustedX, adjustedY);
         }
 
-        //qDebug() << "FINAL X: " << finalx;
-        //qDebug() << "FINAL Y: " << finaly;
-        //qDebug() << "ELAPSED: " << elapsedTime;
-        //qDebug() << "REMAINDER X: " << remainderX;
+        //Logger::LogInfo(QString("FINAL X: %1").arg(adjustedX));
+        //Logger::LogInfo(QString("FINAL Y: %1\n").arg(adjustedY));
+        //Logger::LogInfo(QString("ELAPSED: %1\n").arg(elapsedTime));
+        //Logger::LogInfo(QString("REMAINDER X: %1").arg(cursorRemainderX));
 
         movedX = static_cast<int>(adjustedX);
         movedY = static_cast<int>(adjustedY);
-        //Logger::LogInfo(QString("MOVED %1 X | %2 Y").arg(movedX).arg(movedY));
     }
     else
     {
@@ -4574,8 +4599,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             // Restore intended QTimer interval.
             staticMouseEventTimer.start(mouseRefreshRate);
         }
-
     }
+
 
     cursorXSpeeds.clear();
     cursorYSpeeds.clear();
