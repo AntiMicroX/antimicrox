@@ -1,3 +1,23 @@
+2015-08-02 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.17
+
+* Changed Enhanced Precision acceleration curve. The curve has been slowed down
+slightly.
+
+* Changed how initial mouse movement is performed when the gamepad poll rate
+and the mouse refresh rate differ.
+
+* Flash interface buttons after restoring the main window from the tray icon.
+
+* Tweaked mouse movement remainder routine. Remainders now only apply when
+the direction along an axis is the same.
+
+* Raised maximum cycle reset time to 60 seconds.
+
+* Fixed improper cycle reset interval.
+
+
 2015-07-22 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.16

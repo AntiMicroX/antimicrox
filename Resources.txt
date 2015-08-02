@@ -2,3 +2,6 @@ Generate GUIDs for use in .wxs files
 
 http://www.guidgen.com/
 
+Site used to generate acceleration curve images
+
+http://rechneronline.de/function-graphs/

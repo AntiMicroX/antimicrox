@@ -1066,12 +1066,7 @@ void JoyButton::mouseEvent()
             unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
             timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
             nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
-            //Logger::LogInfo(QString("staticMouseEventTimer: %1").arg(staticMouseEventTimer.interval()));
-            //Logger::LogInfo(QString("ELAPSED: %1\n").arg(timeElapsed));
         }
-
-        //Logger::LogInfo(QString("staticMouseEventTimer: %1").arg(staticMouseEventTimer.interval()));
-        //Logger::LogInfo(QString("ELAPSED: %1\n").arg(nanoTimeElapsed));
 
         while (buttonslot)
         {
@@ -3942,21 +3937,6 @@ void JoyButton::releaseActiveSlots()
         if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
             springXSpeeds.length() == 0)
         {
-            /*lastMouseTime.restart();
-            if (staticMouseEventTimer.interval() != IDLEMOUSEREFRESHRATE)
-            {
-                staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
-                mouseHistoryX.clear();
-                mouseHistoryY.clear();
-
-                for (int i=0; i < mouseHistorySize; i++)
-                {
-                    mouseHistoryX.append(0);
-                    mouseHistoryY.append(0);
-                }
-            }
-            */
-
             cursorRemainderX = 0;
             cursorRemainderY = 0;
         }
