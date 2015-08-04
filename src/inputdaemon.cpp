@@ -23,13 +23,15 @@
 
 #include "inputdaemon.h"
 #include "logger.h"
+#include "common.h"
 
 const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                          AntiMicroSettings *settings,
                          bool graphical, QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    pollResetTimer(this)
 {
     this->joysticks = joysticks;
     this->stopped = false;
@@ -49,6 +51,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     if (graphical)
     {
+        connect(thread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
         connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
@@ -72,8 +75,10 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                 SLOT(resetActiveButtonMouseDistances()));
         thread->start();
     }
-
-    refreshJoysticks();
+    else
+    {
+        refreshJoysticks();
+    }
 }
 
 InputDaemon::~InputDaemon()
@@ -99,10 +104,10 @@ void InputDaemon::startWorker()
 {
     if (!thread->isRunning())
     {
-        connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
-        connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+        //connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+        //connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
         thread->start();
-        pollResetTimer.start();
+        //pollResetTimer.start();
     }
 }
 
@@ -131,7 +136,7 @@ void InputDaemon::run ()
 
     if (stopped)
     {
-        if (joysticks->count() > 0)
+        if (joysticks->size() > 0)
         {
             emit complete(joysticks->value(0));
         }
@@ -211,6 +216,27 @@ void InputDaemon::refreshJoysticks()
 #endif
 
     emit joysticksRefreshed(joysticks);
+}
+
+void InputDaemon::deleteJoysticks()
+{
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+
+    while (iter.hasNext())
+    {
+        InputDevice *joystick = iter.next().value();
+        if (joystick)
+        {
+            delete joystick;
+            joystick = 0;
+        }
+    }
+
+    joysticks->clear();
+#ifdef USE_SDL_2
+    trackjoysticks.clear();
+    trackcontrollers.clear();
+#endif
 }
 
 void InputDaemon::stop()
@@ -350,6 +376,18 @@ void InputDaemon::removeDevice(InputDevice *device)
 {
     if (device)
     {
+        PadderCommon::editingLock.lockForRead();
+        bool isEditing = PadderCommon::editingBindings;
+        PadderCommon::editingLock.unlock();
+
+        if (isEditing)
+        {
+            QMutex *dismutex = &PadderCommon::waitMutex;
+            dismutex->lock();
+            PadderCommon::waitThisOut.wakeAll();
+            dismutex->unlock();
+        }
+
         SDL_JoystickID deviceID = device->getSDLJoystickID();
 
         joysticks->remove(deviceID);
@@ -358,7 +396,7 @@ void InputDaemon::removeDevice(InputDevice *device)
 
         refreshIndexes();
 
-        emit deviceRemoved(deviceID);
+        emit deviceRemoved(static_cast<int>(deviceID));
         device->deleteLater();
     }
 }
@@ -907,6 +945,8 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     Logger::LogInfo(QString("Removing joystick #%1 [%2]")
                                     .arg(device->getRealJoyNumber())
                                     .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+
+                    //activeDevices.remove(event.jdevice.which);
                     removeDevice(device);
                 }
 
@@ -933,7 +973,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                 break;
         }
 
-        // Active possible queued stick and vdpad events.
+        // Active possible queued events.
         QHashIterator<SDL_JoystickID, InputDevice*> activeDevIter(activeDevices);
         while (activeDevIter.hasNext())
         {
@@ -943,6 +983,12 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             tempDevice->activatePossibleDPadEvents();
             tempDevice->activatePossibleVDPadEvents();
             tempDevice->activatePossibleButtonEvents();
+        }
+
+        if (JoyButton::shouldInvokeMouseEvents())
+        {
+            // Do not wait for next event loop run. Execute immediately.
+            JoyButton::invokeMouseEvents();
         }
     }
 }

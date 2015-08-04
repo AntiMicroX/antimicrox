@@ -139,9 +139,11 @@ protected:
 
 signals:
     void stringWritten(QString text);
+    void pendingMessage();
 
 public slots:
     void Log();
+    void startPendingTimer();
 };
 
 #endif // LOGGER_H

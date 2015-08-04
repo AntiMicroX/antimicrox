@@ -24,6 +24,9 @@
 #include <QStringList>
 #include <QFileInfo>
 #include <QTranslator>
+#include <QWaitCondition>
+#include <QMutex>
+#include <QReadWriteLock>
 
 #include "config.h"
 #include "antimicrosettings.h"
@@ -122,11 +125,18 @@ namespace PadderCommon
         QString("%1.%2").arg(ANTIMICRO_MAJOR_VERSION)
             .arg(ANTIMICRO_MINOR_VERSION);
 
+    extern QWaitCondition waitThisOut;
+    extern QMutex waitMutex;
+    extern bool editingBindings;
+    extern QReadWriteLock editingLock;
+
     QString preferredProfileDir(AntiMicroSettings *settings);
     QStringList arguments(int &argc, char **argv);
     void reloadTranslations(QTranslator *translator,
                             QTranslator *appTranslator,
                             QString language);
+    void lockInputDevices();
+    void unlockInputDevices();
 }
 
 #endif // COMMON_H

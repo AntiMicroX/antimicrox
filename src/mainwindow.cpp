@@ -275,6 +275,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::fillButtons()
+{
+    fillButtons(joysticks);
+}
+
 void MainWindow::fillButtons(InputDevice *joystick)
 {
     int joyindex = joystick->getJoyNumber();
@@ -327,7 +332,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         }
     }
 
-    if (joysticks->count() > 0)
+    if (joysticks->size() > 0)
     {
         loadAppConfig();
 
@@ -370,7 +375,7 @@ void MainWindow::populateTrayIcon()
 
     trayIconMenu->clear();
     profileActions.clear();
-    unsigned int joystickCount = joysticks->count();
+    unsigned int joystickCount = joysticks->size();
 
     if (joystickCount > 0)
     {
@@ -397,89 +402,92 @@ void MainWindow::populateTrayIcon()
             }
 
             JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-            QHash<int, QString> *configs = widget->recentConfigs();
-            QHashIterator<int, QString> configIter(*configs);
-            QList<QAction*> tempProfileList;
-            while (configIter.hasNext())
+            if (widget)
             {
-                configIter.next();
+                QHash<int, QString> *configs = widget->recentConfigs();
+                QHashIterator<int, QString> configIter(*configs);
+                QList<QAction*> tempProfileList;
+                while (configIter.hasNext())
+                {
+                    configIter.next();
+                    QAction *newaction = 0;
+                    if (joysticksubMenu)
+                    {
+                        newaction = new QAction(configIter.value(), joysticksubMenu);
+                    }
+                    else
+                    {
+                        newaction = new QAction(configIter.value(), trayIconMenu);
+                    }
+
+                    newaction->setCheckable(true);
+                    newaction->setChecked(false);
+
+                    if (configIter.key() == widget->getCurrentConfigIndex())
+                    {
+                        newaction->setChecked(true);
+                    }
+
+                    QHash<QString, QVariant> tempmap;
+                    tempmap.insert(QString::number(i), QVariant (configIter.key()));
+                    QVariant tempvar (tempmap);
+                    newaction->setData(tempvar);
+                    connect(newaction, SIGNAL(triggered(bool)), this, SLOT(profileTrayActionTriggered(bool)));
+
+                    if (useSingleList)
+                    {
+                        tempProfileList.append(newaction);
+                    }
+                    else
+                    {
+                        joysticksubMenu->addAction(newaction);
+                    }
+                }
+
+                delete configs;
+                configs = 0;
+
                 QAction *newaction = 0;
                 if (joysticksubMenu)
                 {
-                    newaction = new QAction(configIter.value(), joysticksubMenu);
+                    newaction = new QAction(tr("Open File"), joysticksubMenu);
                 }
                 else
                 {
-                    newaction = new QAction(configIter.value(), trayIconMenu);
+                    newaction = new QAction(tr("Open File"), trayIconMenu);
                 }
 
-                newaction->setCheckable(true);
-                newaction->setChecked(false);
-
-                if (configIter.key() == widget->getCurrentConfigIndex())
-                {
-                    newaction->setChecked(true);
-                }
-
-                QHash<QString, QVariant> tempmap;
-                tempmap.insert(QString::number(i), QVariant (configIter.key()));
-                QVariant tempvar (tempmap);
-                newaction->setData(tempvar);
-                connect(newaction, SIGNAL(triggered(bool)), this, SLOT(profileTrayActionTriggered(bool)));
+                newaction->setIcon(QIcon::fromTheme("document-open"));
+                connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
 
                 if (useSingleList)
                 {
-                    tempProfileList.append(newaction);
+                    QAction *titleAction = new QAction(joytabName, trayIconMenu);
+                    titleAction->setCheckable(false);
+
+                    QFont actionFont = titleAction->font();
+                    actionFont.setBold(true);
+                    titleAction->setFont(actionFont);
+
+                    trayIconMenu->addAction(titleAction);
+                    trayIconMenu->addActions(tempProfileList);
+                    trayIconMenu->addAction(newaction);
+
+                    profileActions.insert(i, tempProfileList);
+
+                    if (iter.hasNext())
+                    {
+                        trayIconMenu->addSeparator();
+                    }
                 }
                 else
                 {
                     joysticksubMenu->addAction(newaction);
+                    connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
                 }
+
+                i++;
             }
-
-            delete configs;
-            configs = 0;
-
-            QAction *newaction = 0;
-            if (joysticksubMenu)
-            {
-                newaction = new QAction(tr("Open File"), joysticksubMenu);
-            }
-            else
-            {
-                newaction = new QAction(tr("Open File"), trayIconMenu);
-            }
-
-            newaction->setIcon(QIcon::fromTheme("document-open"));
-            connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
-
-            if (useSingleList)
-            {
-                QAction *titleAction = new QAction(joytabName, trayIconMenu);
-                titleAction->setCheckable(false);
-
-                QFont actionFont = titleAction->font();
-                actionFont.setBold(true);
-                titleAction->setFont(actionFont);
-
-                trayIconMenu->addAction(titleAction);
-                trayIconMenu->addActions(tempProfileList);
-                trayIconMenu->addAction(newaction);
-
-                profileActions.insert(i, tempProfileList);
-
-                if (iter.hasNext())
-                {
-                    trayIconMenu->addSeparator();
-                }
-            }
-            else
-            {
-                joysticksubMenu->addAction(newaction);
-                connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
-            }
-
-            i++;
         }
 
         if (useSingleList)
@@ -579,7 +587,7 @@ void MainWindow::mainMenuChange()
 
 void MainWindow::saveAppConfig()
 {
-    if (joysticks->count() > 0)
+    if (joysticks->size() > 0)
     {
         JoyTabWidget *temptabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(0));
         settings->setValue("DisplayNames",
@@ -1376,7 +1384,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     }
 }
 
-void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
+void MainWindow::removeJoyTab(int deviceID)
 {
     bool found = false;
     for (int i=0; i < ui->tabWidget->count() && !found; i++)

@@ -123,4 +123,29 @@ namespace PadderCommon
     #endif
         qApp->installTranslator(translator);
     }
+
+    void lockInputDevices()
+    {
+        editingLock.lockForWrite();
+        editingBindings = true;
+        editingLock.unlock();
+
+        waitMutex.lock();
+        //editingBindings = true;
+        waitThisOut.wait(&waitMutex);
+    }
+
+    void unlockInputDevices()
+    {
+        editingLock.lockForWrite();
+        editingBindings = false;
+        editingLock.unlock();
+
+        waitMutex.unlock();
+    }
+
+    QWaitCondition waitThisOut;
+    QMutex waitMutex;
+    QReadWriteLock editingLock;
+    bool editingBindings = false;
 }

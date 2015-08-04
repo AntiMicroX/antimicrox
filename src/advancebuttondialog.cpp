@@ -28,6 +28,7 @@
 #include "ui_advancebuttondialog.h"
 #include "event.h"
 #include "inputdevice.h"
+//#include "logger.h"
 
 const int AdvanceButtonDialog::MINIMUMTURBO = 2;
 
@@ -261,22 +262,29 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 
 void AdvanceButtonDialog::updateSelectedSlot(int value)
 {
+    PadderCommon::lockInputDevices();
+
     SimpleKeyGrabberButton *grabbutton = static_cast<SimpleKeyGrabberButton*>(sender());
     JoyButtonSlot *tempbuttonslot = grabbutton->getValue();
     int index = ui->slotListWidget->currentRow();
 
     // Stop all events on JoyButton
-    this->button->eventReset();
+    //this->button->eventReset();
+    QMetaObject::invokeMethod(this->button, "eventReset");
 
     this->button->setAssignedSlot(tempbuttonslot->getSlotCode(),
                                   tempbuttonslot->getSlotCodeAlias(),
                                   index,
                                   tempbuttonslot->getSlotMode());
     updateSlotsScrollArea(value);
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::deleteSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     int itemcount = ui->slotListWidget->count();
 
@@ -293,10 +301,14 @@ void AdvanceButtonDialog::deleteSlot()
     changeTurboForSequences();
 
     // Stop all events on JoyButton
-    button->eventReset();
+    QMetaObject::invokeMethod(button, "eventReset", Qt::BlockingQueuedConnection);
+    //button->eventReset();
 
     button->removeAssignedSlot(index);
     performStatsWidgetRefresh(ui->slotListWidget->currentItem());
+
+    PadderCommon::unlockInputDevices();
+
     emit slotsChanged();
 }
 
@@ -348,6 +360,8 @@ void AdvanceButtonDialog::insertSlot()
 
     if (slotTypeIndex == KBMouseSlot)
     {
+        PadderCommon::lockInputDevices();
+
         if (current != (count - 1))
         {
             SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
@@ -365,9 +379,15 @@ void AdvanceButtonDialog::insertSlot()
             connectButtonEvents(blankButton);
             blankButton->refreshButtonLabel();
 
-            this->button->insertAssignedSlot(0, 0, current);
+            QMetaObject::invokeMethod(this->button, "insertAssignedSlot",
+                                      Qt::BlockingQueuedConnection,
+                                      Q_ARG(int, 0), Q_ARG(uint, 0),
+                                      Q_ARG(int, current));
+            //this->button->insertAssignedSlot(0, 0, current);
             updateSlotsScrollArea(0);
         }
+
+        PadderCommon::unlockInputDevices();
     }
     else if (slotTypeIndex == CycleSlot)
     {
@@ -421,6 +441,8 @@ void AdvanceButtonDialog::insertSlot()
 
 void AdvanceButtonDialog::insertPauseSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -429,15 +451,20 @@ void AdvanceButtonDialog::insertPauseSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyPause);
         updateSlotsScrollArea(actionTime);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertReleaseSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -446,15 +473,20 @@ void AdvanceButtonDialog::insertReleaseSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyRelease);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyRelease);
         updateSlotsScrollArea(actionTime);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertHoldSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -463,15 +495,20 @@ void AdvanceButtonDialog::insertHoldSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyHold);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyHold);
         updateSlotsScrollArea(actionTime);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertSetChangeSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -482,11 +519,14 @@ void AdvanceButtonDialog::insertSetChangeSlot()
     {
         tempbutton->setValue(setIndex, JoyButtonSlot::JoySetChange);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(setIndex, 0, index, JoyButtonSlot::JoySetChange);
         updateSlotsScrollArea(setIndex);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 int AdvanceButtonDialog::actionTimeConvert()
@@ -536,12 +576,17 @@ void AdvanceButtonDialog::updateActionTimeLabel()
 
 void AdvanceButtonDialog::clearAllSlots()
 {
+    PadderCommon::lockInputDevices();
+
     ui->slotListWidget->clear();
     appendBlankKeyGrabber();
     changeTurboForSequences();
 
-    button->clearSlotsEventReset();
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+    //button->clearSlotsEventReset();
     performStatsWidgetRefresh(ui->slotListWidget->currentItem());
+
+    PadderCommon::unlockInputDevices();
     emit slotsChanged();
 }
 
@@ -591,20 +636,31 @@ void AdvanceButtonDialog::changeTurboForSequences()
 
 void AdvanceButtonDialog::insertCycleSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     tempbutton->setValue(1, JoyButtonSlot::JoyCycle);
 
     // Stop all events on JoyButton
-    this->button->eventReset();
+    QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+    //this->button->eventReset();
 
+    /*QMetaObject::invokeMethod(this->button, "setAssignedSlot", Q_ARG(int, 1),
+                              Q_ARG(uint, 0), Q_ARG(int, index),
+                              Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyCycle));
+    */
     this->button->setAssignedSlot(1, 0, index, JoyButtonSlot::JoyCycle);
     updateSlotsScrollArea(1);
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertDistanceSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -631,11 +687,14 @@ void AdvanceButtonDialog::insertDistanceSlot()
         tempbutton->setValue(testDistance, JoyButtonSlot::JoyDistance);
 
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(testDistance, 0, index, JoyButtonSlot::JoyDistance);
         updateSlotsScrollArea(testDistance);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
@@ -646,7 +705,8 @@ void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
     tempbutton->setValue(slot->getSlotCode(), slot->getSlotCodeAlias(), slot->getSlotMode());
 
     // Stop all events on JoyButton
-    this->button->eventReset();
+    QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+    //this->button->eventReset();
 
     this->button->setAssignedSlot(slot->getSlotCode(),
                                   slot->getSlotCodeAlias(), index,
@@ -786,6 +846,8 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
 
 void AdvanceButtonDialog::insertMouseSpeedModSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -795,15 +857,20 @@ void AdvanceButtonDialog::insertMouseSpeedModSlot()
         tempbutton->setValue(tempMouseMod, JoyButtonSlot::JoyMouseSpeedMod);
 
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(tempMouseMod, 0, index, JoyButtonSlot::JoyMouseSpeedMod);
         updateSlotsScrollArea(tempMouseMod);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertKeyPressSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -813,15 +880,20 @@ void AdvanceButtonDialog::insertKeyPressSlot()
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyKeyPress);
 
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyKeyPress);
         updateSlotsScrollArea(actionTime);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertDelaySlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -830,15 +902,20 @@ void AdvanceButtonDialog::insertDelaySlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyDelay);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyDelay);
         updateSlotsScrollArea(actionTime);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertTextEntrySlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -847,16 +924,21 @@ void AdvanceButtonDialog::insertTextEntrySlot()
     {
         tempbutton->setValue(temp, JoyButtonSlot::JoyTextEntry);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(tempbutton->getValue(), index);
         tempbutton->setToolTip(temp);
         updateSlotsScrollArea(0);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::insertExecuteSlot()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -868,13 +950,16 @@ void AdvanceButtonDialog::insertExecuteSlot()
         {
             tempbutton->setValue(temp, JoyButtonSlot::JoyExecute);
             // Stop all events on JoyButton
-            this->button->eventReset();
+            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            //this->button->eventReset();
 
             this->button->setAssignedSlot(tempbutton->getValue(), index);
             tempbutton->setToolTip(temp);
             updateSlotsScrollArea(0);
         }
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
@@ -980,6 +1065,8 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 
 void AdvanceButtonDialog::checkSlotTimeUpdate()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -996,16 +1083,21 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
             tempbutton->setValue(actionTime, tempbuttonslot->getSlotMode());
 
             // Stop all events on JoyButton
-            this->button->eventReset();
+            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            //this->button->eventReset();
 
             this->button->setAssignedSlot(actionTime, 0, index, tempbuttonslot->getSlotMode());
             updateSlotsScrollArea(actionTime);
         }
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::checkSlotMouseModUpdate()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -1019,15 +1111,20 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
         tempbutton->setValue(tempMouseMod, tempbuttonslot->getSlotMode());
 
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(tempMouseMod, 0, index, tempbuttonslot->getSlotMode());
         updateSlotsScrollArea(tempMouseMod);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::checkSlotSetChangeUpdate()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -1041,16 +1138,21 @@ void AdvanceButtonDialog::checkSlotSetChangeUpdate()
         {
             tempbutton->setValue(setIndex, buttonslot->getSlotMode());
             // Stop all events on JoyButton
-            this->button->eventReset();
+            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            //this->button->eventReset();
 
             this->button->setAssignedSlot(setIndex, 0, index, buttonslot->getSlotMode());
             updateSlotsScrollArea(setIndex);
         }
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::checkSlotDistanceUpdate()
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -1082,12 +1184,15 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
             tempbutton->setValue(testDistance, buttonslot->getSlotMode());
 
             // Stop all events on JoyButton
-            this->button->eventReset();
+            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            //this->button->eventReset();
 
             this->button->setAssignedSlot(testDistance, 0, index, buttonslot->getSlotMode());
             updateSlotsScrollArea(testDistance);
         }
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::updateWindowTitleButtonName()
@@ -1318,6 +1423,8 @@ void AdvanceButtonDialog::setButtonTurboMode(int value)
 
 void AdvanceButtonDialog::showSelectProfileWindow()
 {
+    PadderCommon::lockInputDevices();
+
     AntiMicroSettings *settings = this->button->getParentSet()->getInputDevice()->getSettings();
 
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
@@ -1330,12 +1437,15 @@ void AdvanceButtonDialog::showSelectProfileWindow()
                 ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         tempbutton->setValue(filename, JoyButtonSlot::JoyLoadProfile);
         // Stop all events on JoyButton
-        this->button->eventReset();
+        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        //this->button->eventReset();
 
         this->button->setAssignedSlot(tempbutton->getValue(), index);
         tempbutton->setToolTip(filename);
         updateSlotsScrollArea(0);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AdvanceButtonDialog::showFindExecutableWindow(bool)

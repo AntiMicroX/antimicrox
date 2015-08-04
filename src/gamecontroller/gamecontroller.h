@@ -57,9 +57,6 @@ public:
 
     bool isRelevantGUID(QString tempGUID);
 
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
-
     static const QString xmlName;
 
 protected:
@@ -71,6 +68,8 @@ signals:
 
 
 public slots:
+    virtual void readConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
 
 protected slots:
     virtual void axisActivatedEvent(int setindex, int axisindex, int value);

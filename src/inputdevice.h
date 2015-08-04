@@ -86,9 +86,6 @@ public:
     void setDPadName(int dpadIndex, QString tempName);
     void setVDPadName(int vdpadIndex, QString tempName);
 
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
-
     virtual int getNumberRawButtons() = 0;
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
@@ -115,7 +112,6 @@ public:
     void sendLoadProfileRequest(QString location);
     AntiMicroSettings *getSettings();
 
-    void transferReset();
     void reInitButtons();
 
     void activatePossiblePendingEvents();
@@ -180,6 +176,7 @@ signals:
 
 public slots:
     void reset();
+    void transferReset();
     void resetButtonDownCount();
     void setActiveSetNumber(int index);
     void changeSetButtonAssociation(int button_index, int originset, int newset, int mode);
@@ -190,6 +187,9 @@ public slots:
     void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
     void setProfileName(QString value);
+
+    virtual void readConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();

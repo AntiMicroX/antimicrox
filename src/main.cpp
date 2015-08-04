@@ -37,6 +37,7 @@
 #include <QTextStream>
 #include <QLocalSocket>
 #include <QSettings>
+#include <QThread>
 
 #ifdef Q_OS_WIN
 #include <QStyle>
@@ -66,10 +67,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-
-    #ifdef WITH_X11
-#include "x11extras.h"
-    #endif
+  #ifdef WITH_X11
+    #include "x11extras.h"
+  #endif
 
 #endif
 
@@ -172,6 +172,7 @@ int main(int argc, char *argv[])
     }
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks = new QMap<SDL_JoystickID, InputDevice*>();
+    QThread inputEventThread;
 
     // Cross-platform way of performing IPC. Currently,
     // only establish a connection and then disconnect.
@@ -478,8 +479,9 @@ int main(int argc, char *argv[])
         mainAppHelper.printControllerList(joysticks);
 
         joypad_worker->quit();
+        joypad_worker->deleteJoysticks();
 
-        deleteInputDevices(joysticks);
+        //deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
 
@@ -510,14 +512,21 @@ int main(int argc, char *argv[])
     else if (cmdutility.shouldMapController())
     {
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
+        joypad_worker->moveToThread(&inputEventThread);
+        //QObject::connect(&inputEventThread, SIGNAL(started()), joypad_worker, SLOT(refreshJoysticks()));
+        inputEventThread.start(QThread::HighPriority);
+
         MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
 
         QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+        QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
+        QObject::connect(a, SIGNAL(aboutToQuit()), &inputEventThread, SLOT(quit()));
 
         int app_result = a->exec();
+        inputEventThread.wait();
 
-        deleteInputDevices(joysticks);
+        //deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
 
@@ -637,8 +646,11 @@ int main(int argc, char *argv[])
     }
 
     InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings);
-    MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
+    joypad_worker->moveToThread(&inputEventThread);
+    //QObject::connect(&inputEventThread, SIGNAL(started()), joypad_worker, SLOT(refreshJoysticks()));
+    inputEventThread.start(QThread::HighPriority);
 
+    MainWindow *w = new MainWindow(joysticks, &cmdutility, &settings);
     FirstRunWizard *runWillard = 0;
 
     if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(&settings))
@@ -647,10 +659,6 @@ int main(int argc, char *argv[])
         QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
         runWillard->show();
     }
-    else
-    {
-        w->changeWindowStatus();
-    }
 
     w->setAppTranslator(&qtTranslator);
     w->setTranslator(&myappTranslator);
@@ -658,18 +666,19 @@ int main(int argc, char *argv[])
     AppLaunchHelper mainAppHelper(&settings, w->getGraphicalStatus());
     mainAppHelper.initRunMethods();
 
-    QObject::connect(joypad_worker,
-                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
-                     w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
-
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)),
                      w, SLOT(fillButtons(InputDevice*)));
+    QObject::connect(joypad_worker,
+                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
+                     w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
 
     QObject::connect(a, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), &inputEventThread, SLOT(quit()));
 
 #ifdef Q_OS_WIN
     QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
@@ -679,8 +688,11 @@ int main(int argc, char *argv[])
 #ifdef USE_SDL_2
     QObject::connect(w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
     QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), w, SLOT(testMappingUpdateNow(int,InputDevice*)));
-    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), w, SLOT(removeJoyTab(SDL_JoystickID)));
-    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)));
+
+    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(int)), w, SLOT(removeJoyTab(int)),
+                     Qt::BlockingQueuedConnection);
+    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)),
+                     Qt::BlockingQueuedConnection);
 #endif
 
 #ifdef Q_OS_WIN
@@ -697,14 +709,20 @@ int main(int argc, char *argv[])
     QThread::currentThread()->setPriority(QThread::HighPriority);
 #endif
 
+    JoyButton::setStaticMouseThread(&inputEventThread);
+
+    QTimer::singleShot(20, w, SLOT(changeWindowStatus()));
+
     int app_result = a->exec();
+    inputEventThread.wait();
 
     // Log any remaining messages if they exist.
     appLogger.Log();
 
     appLogger.LogInfo(QObject::tr("Quitting Program"), true, true);
 
-    deleteInputDevices(joysticks);
+    //deleteInputDevices(joysticks);
+
     delete joysticks;
     joysticks = 0;
 

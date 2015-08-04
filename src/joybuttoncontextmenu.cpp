@@ -18,9 +18,11 @@
 //#include <QDebug>
 #include <QActionGroup>
 
-#include "inputdevice.h"
-
 #include "joybuttoncontextmenu.h"
+
+#include "inputdevice.h"
+#include "common.h"
+
 
 JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
     QMenu(parent)
@@ -163,5 +165,8 @@ void JoyButtonContextMenu::disableSetMode()
 
 void JoyButtonContextMenu::clearButton()
 {
-    button->clearSlotsEventReset();
+    PadderCommon::lockInputDevices();
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+    //button->clearSlotsEventReset();
+    PadderCommon::unlockInputDevices();
 }

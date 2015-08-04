@@ -97,11 +97,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->closeToTrayCheckBox->setChecked(true);
     }
 
-    //findLocaleItem();
-
-    //delete ui->categoriesListWidget->item(2);
-    //ui->stackedWidget->removeWidget(ui->page);
-
     changePresetLanguage();
 
 #ifdef Q_OS_WIN
@@ -667,6 +662,8 @@ void MainSettingsDialog::saveNewSettings()
 
 #endif
 
+    PadderCommon::lockInputDevices();
+
     bool smoothingEnabled = ui->smoothingEnableCheckBox->isChecked();
     int historySize = ui->historySizeSpinBox->value();
     double weightModifier = ui->weightModifierDoubleSpinBox->value();
@@ -720,6 +717,8 @@ void MainSettingsDialog::saveNewSettings()
         JoyButton::setGamepadRefreshRate(gamepadPollRate);
         settings->setValue("GamepadPollRate", QString::number(gamepadPollRate));
     }
+
+    PadderCommon::unlockInputDevices();
 
     settings->sync();
 }

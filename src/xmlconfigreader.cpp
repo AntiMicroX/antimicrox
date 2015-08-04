@@ -22,6 +22,7 @@
 #include "xmlconfigreader.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
+#include "common.h"
 
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
@@ -133,7 +134,9 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-                joystick->readConfig(xml);
+                QMetaObject::invokeMethod(joystick, "readConfig", Qt::BlockingQueuedConnection,
+                                          Q_ARG(QXmlStreamReader*, xml));
+                //joystick->readConfig(xml);
             }
             else
             {

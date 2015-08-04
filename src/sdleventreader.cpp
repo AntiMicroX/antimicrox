@@ -87,6 +87,7 @@ void SDLEventReader::initSDL()
 
     pollRateTimer.stop();
     pollRateTimer.setInterval(pollRate);
+    //pollRateTimer.start();
     //pollRateTimer.setSingleShot(true);
 
     emit sdlStarted();
@@ -126,6 +127,19 @@ void SDLEventReader::performWork()
     {
         //int status = SDL_WaitEvent(NULL);
         int status = CheckForEvents();
+
+        PadderCommon::editingLock.lockForRead();
+        bool isEditing = PadderCommon::editingBindings;
+        PadderCommon::editingLock.unlock();
+
+        if (isEditing)
+        {
+            QMutex *dismutex = &PadderCommon::waitMutex;
+            dismutex->lock();
+            PadderCommon::waitThisOut.wakeAll();
+            dismutex->unlock();
+        }
+
         if (status)
         {
             pollRateTimer.stop();
@@ -186,6 +200,12 @@ int SDLEventReader::CheckForEvents()
 {
     int result = 0;
     bool exit = false;
+
+    /*Logger::LogInfo(
+                                QString("Gamepad Poll %1").arg(
+                                    QTime::currentTime().toString("hh:mm:ss.zzz")),
+                                true, true);
+    */
 
     //while (!exit)
     //{

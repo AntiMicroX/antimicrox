@@ -102,6 +102,7 @@ signals:
 #endif
 
 public slots:
+    void fillButtons();
     void fillButtons(InputDevice *joystick);
     void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();
@@ -114,7 +115,7 @@ public slots:
 
 #ifdef USE_SDL_2
     void testMappingUpdateNow(int index, InputDevice *device);
-    void removeJoyTab(SDL_JoystickID deviceID);
+    void removeJoyTab(int deviceID);
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
     void selectControllerJoyTab(unsigned int index);

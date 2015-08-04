@@ -40,6 +40,7 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
+    connect(instance, SIGNAL(pendingMessage()), instance, SLOT(startPendingTimer()));
     connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
 }
 
@@ -64,6 +65,7 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
+    connect(instance, SIGNAL(pendingMessage()), instance, SLOT(startPendingTimer()));
     connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
 }
 
@@ -225,10 +227,12 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
 
     instance->pendingMessages.append(temp);
 
-    if (!instance->pendingTimer.isActive())
+    /*if (!instance->pendingTimer.isActive())
     {
         instance->pendingTimer.start();
     }
+    */
+    emit instance->pendingMessage();
 }
 
 /**
@@ -340,4 +344,14 @@ bool Logger::getWriteTime()
     Q_ASSERT(instance != 0);
 
     return writeTime;
+}
+
+void Logger::startPendingTimer()
+{
+    Q_ASSERT(instance != 0);
+
+    if (!instance->pendingTimer.isActive())
+    {
+        instance->pendingTimer.start();
+    }
 }

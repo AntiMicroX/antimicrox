@@ -19,6 +19,7 @@
 
 #include "joycontrolstickbuttonpushbutton.h"
 #include "joybuttoncontextmenu.h"
+#include "joycontrolstick.h"
 
 JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
@@ -36,6 +37,8 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
+    connect(button->getStick()->getModifierButton(), SIGNAL(activeZoneChanged()),
+            this, SLOT(refreshLabel()));
 }
 
 JoyControlStickButton* JoyControlStickButtonPushButton::getButton()

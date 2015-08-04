@@ -36,6 +36,7 @@
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
 #include "setjoystick.h"
+#include "common.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -399,15 +400,22 @@ void ButtonEditDialog::closedAdvancedDialog()
 
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
-    button->clearSlotsEventReset(false);
+    PadderCommon::lockInputDevices();
+
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                              Q_ARG(bool, false));
+    //button->clearSlotsEventReset(false);
     button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), tempslot->getSlotMode());
     this->close();
     tempslot->deleteLater();
+
+    PadderCommon::unlockInputDevices();
 }
 
 void ButtonEditDialog::clearButtonSlots()
 {
-    button->clearSlotsEventReset();
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Q_ARG(bool, false));
+    //button->clearSlotsEventReset();
 }
 
 void ButtonEditDialog::sendSelectionFinished()

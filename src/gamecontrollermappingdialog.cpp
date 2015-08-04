@@ -106,6 +106,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
     this->device = device;
     this->settings = settings;
 
+    PadderCommon::lockInputDevices();
+
     device->getActiveSetJoystick()->setIgnoreEventState(true);
     device->getActiveSetJoystick()->release();
 
@@ -142,6 +144,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
     connect(ui->buttonMappingTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeButtonDisplay()));
     connect(ui->axisDeadZoneComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeAxisDeadZone(int)));
     connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents(int)));
+
+    PadderCommon::unlockInputDevices();
 }
 
 GameControllerMappingDialog::~GameControllerMappingDialog()
@@ -431,9 +435,13 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
         }
         else
         {
+            PadderCommon::lockInputDevices();
+
             connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
             connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
             connect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
+
+            PadderCommon::unlockInputDevices();
         }
     }
 }
@@ -469,6 +477,8 @@ void GameControllerMappingDialog::enableDeviceConnections()
 
 void GameControllerMappingDialog::disableDeviceConnections()
 {
+    PadderCommon::lockInputDevices();
+
     disconnect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
     for (int i=0; i < device->getActiveSetJoystick()->getNumberAxes(); i++)
@@ -485,11 +495,15 @@ void GameControllerMappingDialog::disableDeviceConnections()
     disconnect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
     disconnect(device, SIGNAL(rawAxisReleased(int,int)), this, SLOT(axisRelease(int,int)));
     disconnect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, SLOT(dpadRelease(int,int)));
+
+    PadderCommon::unlockInputDevices();
 }
 
 void GameControllerMappingDialog::enableButtonEvents(int code)
 {
     Q_UNUSED(code);
+
+    PadderCommon::lockInputDevices();
 
     //if (code == QDialogButtonBox::AcceptRole)
     //{
@@ -497,6 +511,8 @@ void GameControllerMappingDialog::enableButtonEvents(int code)
         device->getActiveSetJoystick()->release();
         device->getActiveSetJoystick()->setAxesDeadZones(&originalAxesDeadZones);
     //}
+
+    PadderCommon::unlockInputDevices();
 }
 
 QString GameControllerMappingDialog::generateSDLMappingString()
@@ -606,11 +622,15 @@ void GameControllerMappingDialog::populateAxisDeadZoneComboBox()
 
 void GameControllerMappingDialog::changeAxisDeadZone(int index)
 {
+    PadderCommon::lockInputDevices();
+
     unsigned int value = ui->axisDeadZoneComboBox->itemData(index).toInt();
     if (value >= 5000 && value <= 32000)
     {
         device->getActiveSetJoystick()->raiseAxesDeadZones(value);
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void GameControllerMappingDialog::updateLastAxisLineEdit(int value)

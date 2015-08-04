@@ -669,6 +669,8 @@ void JoyTabWidget::saveConfigFile()
 
 void JoyTabWidget::resetJoystick()
 {
+    PadderCommon::lockInputDevices();
+
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
     {
@@ -677,8 +679,10 @@ void JoyTabWidget::resetJoystick()
         removeCurrentButtons();
         //joystick->reset();
         joystick->revertProfileEdited();
-        joystick->transferReset();
-        joystick->reInitButtons();
+        QMetaObject::invokeMethod(joystick, "transferReset", Qt::BlockingQueuedConnection);
+        //joystick->transferReset();
+        QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
+        //joystick->reInitButtons();
 
         XMLConfigReader reader;
         reader.setFileName(filename);
@@ -722,14 +726,19 @@ void JoyTabWidget::resetJoystick()
         removeCurrentButtons();
         joystick->revertProfileEdited();
         //joystick->reset();
-        joystick->transferReset();
-        joystick->reInitButtons();
+
+        QMetaObject::invokeMethod(joystick, "transferReset", Qt::BlockingQueuedConnection);
+        //joystick->transferReset();
+        QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
+        //joystick->reInitButtons();
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
     }
 
     configBox->setItemIcon(currentIndex, QIcon());
+
+    PadderCommon::unlockInputDevices();
 }
 
 void JoyTabWidget::saveAsConfig()
@@ -834,6 +843,8 @@ void JoyTabWidget::saveAsConfig()
 
 void JoyTabWidget::changeJoyConfig(int index)
 {
+    PadderCommon::lockInputDevices();
+
     disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
     QString filename;
@@ -849,7 +860,9 @@ void JoyTabWidget::changeJoyConfig(int index)
 
         if (joystick->getActiveSetNumber() != 0)
         {
-            joystick->setActiveSetNumber(0);
+            QMetaObject::invokeMethod(joystick, "setActiveSetNumber", Qt::BlockingQueuedConnection,
+                                      Q_ARG(int, 0));
+            //joystick->setActiveSetNumber(0);
             changeCurrentSet(0);
         }
 
@@ -908,10 +921,14 @@ void JoyTabWidget::changeJoyConfig(int index)
         }
 
         //joystick->reset();
-        joystick->transferReset();
+
+        QMetaObject::invokeMethod(joystick, "transferReset", Qt::BlockingQueuedConnection);
+        //joystick->transferReset();
         joystick->resetButtonDownCount();
         emit forceTabUnflash(this);
-        joystick->reInitButtons();
+
+        QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
+        //joystick->reInitButtons();
 
         fillButtons();
         refreshSetButtons();
@@ -924,6 +941,8 @@ void JoyTabWidget::changeJoyConfig(int index)
     comboBoxIndex = index;
 
     connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
+
+    PadderCommon::unlockInputDevices();
 }
 
 void JoyTabWidget::saveSettings()
@@ -1155,7 +1174,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
 QHash<int, QString>* JoyTabWidget::recentConfigs()
 {
-    QHash<int, QString> *temp = new QHash<int, QString> ();
+    QHash<int, QString> *temp = new QHash<int, QString>();
     for (int i=1; i < configBox->count(); i++)
     {
         QString current = configBox->itemText(i);

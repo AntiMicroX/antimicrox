@@ -25,6 +25,7 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "setjoystick.h"
+#include "common.h"
 
 AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -174,6 +175,8 @@ void AxisEditDialog::implementAxisPresets(int index)
     JoyButtonSlot *nbuttonslot = 0;
     JoyButtonSlot *pbuttonslot = 0;
 
+    PadderCommon::lockInputDevices();
+
     if (index == 1)
     {
         nbuttonslot = new JoyButtonSlot(JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
@@ -228,17 +231,22 @@ void AxisEditDialog::implementAxisPresets(int index)
     {
         JoyAxisButton *nbutton = axis->getNAxisButton();
         JoyAxisButton *pbutton = axis->getPAxisButton();
-        nbutton->clearSlotsEventReset();
+
+        QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+        //nbutton->clearSlotsEventReset();
         refreshNButtonLabel();
 
-        pbutton->clearSlotsEventReset();
+        QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+        //pbutton->clearSlotsEventReset();
         refreshPButtonLabel();
     }
 
     if (nbuttonslot)
     {
         JoyAxisButton *button = axis->getNAxisButton();
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
         refreshNButtonLabel();
         nbuttonslot->deleteLater();
@@ -247,11 +255,15 @@ void AxisEditDialog::implementAxisPresets(int index)
     if (pbuttonslot)
     {
         JoyAxisButton *button = axis->getPAxisButton();
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void AxisEditDialog::updateDeadZoneBox(int value)

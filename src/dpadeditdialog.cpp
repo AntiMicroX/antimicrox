@@ -25,6 +25,7 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "setjoystick.h"
+#include "common.h"
 
 DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -81,6 +82,8 @@ DPadEditDialog::~DPadEditDialog()
 
 void DPadEditDialog::implementPresets(int index)
 {
+    PadderCommon::lockInputDevices();
+
     JoyButtonSlot *upButtonSlot = 0;
     JoyButtonSlot *downButtonSlot = 0;
     JoyButtonSlot *leftButtonSlot = 0;
@@ -175,14 +178,17 @@ void DPadEditDialog::implementPresets(int index)
         while (iter.hasNext())
         {
             JoyDPadButton *button = iter.next().value();
-            button->clearSlotsEventReset();
+            QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+            //button->clearSlotsEventReset();
         }
     }
 
     if (upButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadUp);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(upButtonSlot->getSlotCode(), upButtonSlot->getSlotCodeAlias(), upButtonSlot->getSlotMode());
         upButtonSlot->deleteLater();
     }
@@ -190,7 +196,9 @@ void DPadEditDialog::implementPresets(int index)
     if (downButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadDown);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(downButtonSlot->getSlotCode(), downButtonSlot->getSlotCodeAlias(), downButtonSlot->getSlotMode());
         downButtonSlot->deleteLater();
     }
@@ -198,7 +206,9 @@ void DPadEditDialog::implementPresets(int index)
     if (leftButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadLeft);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(leftButtonSlot->getSlotCode(), leftButtonSlot->getSlotCodeAlias(), leftButtonSlot->getSlotMode());
         leftButtonSlot->deleteLater();
     }
@@ -206,7 +216,9 @@ void DPadEditDialog::implementPresets(int index)
     if (rightButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadRight);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(rightButtonSlot->getSlotCode(), rightButtonSlot->getSlotCodeAlias(), rightButtonSlot->getSlotMode());
         rightButtonSlot->deleteLater();
     }
@@ -214,7 +226,9 @@ void DPadEditDialog::implementPresets(int index)
     if (upLeftButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadLeftUp);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(upLeftButtonSlot->getSlotCode(), upLeftButtonSlot->getSlotCodeAlias(), upLeftButtonSlot->getSlotMode());
         upLeftButtonSlot->deleteLater();
     }
@@ -222,7 +236,9 @@ void DPadEditDialog::implementPresets(int index)
     if (upRightButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadRightUp);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(upRightButtonSlot->getSlotCode(), upRightButtonSlot->getSlotCodeAlias(), upRightButtonSlot->getSlotMode());
         upRightButtonSlot->deleteLater();
     }
@@ -230,7 +246,9 @@ void DPadEditDialog::implementPresets(int index)
     if (downLeftButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadLeftDown);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(downLeftButtonSlot->getSlotCode(), downLeftButtonSlot->getSlotCodeAlias(), downLeftButtonSlot->getSlotMode());
         downLeftButtonSlot->deleteLater();
     }
@@ -238,10 +256,14 @@ void DPadEditDialog::implementPresets(int index)
     if (downRightButtonSlot)
     {
         JoyDPadButton *button = dpad->getJoyButton(JoyDPadButton::DpadRightDown);
-        button->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                  Q_ARG(bool, false));
+        //button->clearSlotsEventReset(false);
         button->setAssignedSlot(downRightButtonSlot->getSlotCode(), downRightButtonSlot->getSlotCodeAlias(), downRightButtonSlot->getSlotMode());
         downRightButtonSlot->deleteLater();
     }
+
+    PadderCommon::unlockInputDevices();
 }
 
 void DPadEditDialog::implementModes(int index)

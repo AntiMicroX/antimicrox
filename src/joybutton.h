@@ -26,6 +26,7 @@
 #include <QListIterator>
 #include <QHash>
 #include <QQueue>
+#include <QReadWriteLock>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
@@ -80,8 +81,7 @@ public:
     bool setAssignedSlot(int code, unsigned int alias, int index,
                          JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
-    bool insertAssignedSlot(int code, unsigned int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
     bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
 
     void removeAssignedSlot(int index);
@@ -225,6 +225,11 @@ public:
     static void setGamepadRefreshRate(int refresh);
 
     static void restartLastMouseTime();
+
+    static void setStaticMouseThread(QThread *thread);
+
+    static bool shouldInvokeMouseEvents();
+    static void invokeMouseEvents();
 
     static const QString xmlName;
 
@@ -463,6 +468,9 @@ protected:
     bool pendingEvent;
     bool pendingIgnoreSets;
 
+    QReadWriteLock activeZoneLock;
+    QReadWriteLock assignmentsLock;
+
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -532,6 +540,9 @@ public slots:
 
     virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
+
+    bool insertAssignedSlot(int code, unsigned int alias, int index,
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     void establishMouseTimerConnections();
     void establishPropertyUpdatedConnections();
