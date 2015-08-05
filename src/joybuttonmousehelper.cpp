@@ -114,3 +114,8 @@ void JoyButtonMouseHelper::carryMouseRefreshRateUpdate(unsigned int refreshRate)
 {
     emit mouseRefreshRateUpdated(refreshRate);
 }
+
+void JoyButtonMouseHelper::changeThread(QThread *thread)
+{
+    JoyButton::setStaticMouseThread(thread);
+}

@@ -102,6 +102,7 @@ public slots:
     void refreshJoysticks();
     void deleteJoysticks();
     void startWorker();
+    //void changeMouseThread(QThread *thread);
 
 #ifdef USE_SDL_2
     void refreshMapping(QString mapping, InputDevice *device);

@@ -138,7 +138,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         setEnabled(false);
     }
 
-    fillButtons(joysticks);
+    //fillButtons(joysticks);
     if (cmdutility->hasProfile())
     {
         if (cmdutility->hasControllerNumber())

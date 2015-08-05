@@ -682,6 +682,7 @@ int main(int argc, char *argv[])
     QObject::connect(a, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
     QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(revertMouseThread()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()), Qt::BlockingQueuedConnection);
@@ -716,8 +717,10 @@ int main(int argc, char *argv[])
     QThread::currentThread()->setPriority(QThread::HighPriority);
 #endif
 
-    JoyButton::setStaticMouseThread(inputEventThread);
+    //JoyButton::setStaticMouseThread(inputEventThread);
+    mainAppHelper.changeMouseThread(inputEventThread);
 
+    QTimer::singleShot(20, w, SLOT(fillButtons()));
     QTimer::singleShot(20, w, SLOT(changeWindowStatus()));
 
     int app_result = a->exec();

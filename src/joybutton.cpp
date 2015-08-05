@@ -16,6 +16,7 @@
  */
 
 //#include <QDebug>
+#include <QThread>
 #include <QStringList>
 #include <cmath>
 
@@ -5566,6 +5567,12 @@ void JoyButton::setStaticMouseThread(QThread *thread)
                               Q_ARG(int, oldInterval));
     //staticMouseEventTimer.start(oldInterval);
     lastMouseTime.start();
+}
+
+void JoyButton::indirectStaticMouseThread(QThread *thread)
+{
+    QMetaObject::invokeMethod(&mouseHelper, "changeThread",
+                              Q_ARG(QThread*, thread));
 }
 
 bool JoyButton::shouldInvokeMouseEvents()

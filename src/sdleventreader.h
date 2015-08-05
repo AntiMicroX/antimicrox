@@ -68,6 +68,7 @@ public slots:
     void updatePollRate(unsigned int tempPollRate);
     void resetJoystickMap();
     void quit();
+    void closeDevices();
 
 private slots:
     void secondaryRefresh();

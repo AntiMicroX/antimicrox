@@ -19,6 +19,7 @@
 #define JOYBUTTONMOUSEHELPER_H
 
 #include <QObject>
+#include <QThread>
 
 class JoyButtonMouseHelper : public QObject
 {
@@ -44,6 +45,7 @@ public slots:
     void moveMouseCursor();
     void moveSpringMouse();
     void mouseEvent();
+    void changeThread(QThread *thread);
 };
 
 #endif // JOYBUTTONMOUSEHELPER_H

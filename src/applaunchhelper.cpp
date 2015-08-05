@@ -163,3 +163,13 @@ void AppLaunchHelper::appQuitPointerPrecision()
 }
 
 #endif
+
+void AppLaunchHelper::revertMouseThread()
+{
+    JoyButton::indirectStaticMouseThread(QThread::currentThread());
+}
+
+void AppLaunchHelper::changeMouseThread(QThread *thread)
+{
+    JoyButton::setStaticMouseThread(thread);
+}

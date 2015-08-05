@@ -20,6 +20,7 @@
 
 #include <QObject>
 #include <QMap>
+#include <QThread>
 
 #include "inputdevice.h"
 #include "joybutton.h"
@@ -53,6 +54,9 @@ public slots:
 #ifdef Q_OS_WIN
     void appQuitPointerPrecision();
 #endif
+
+    void revertMouseThread();
+    void changeMouseThread(QThread *thread);
 
 };
 

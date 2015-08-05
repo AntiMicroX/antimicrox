@@ -216,6 +216,7 @@ public:
     static void restartLastMouseTime();
 
     static void setStaticMouseThread(QThread *thread);
+    static void indirectStaticMouseThread(QThread *thread);
 
     static bool shouldInvokeMouseEvents();
     static void invokeMouseEvents();

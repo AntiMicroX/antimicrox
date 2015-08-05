@@ -398,6 +398,8 @@ void InputDaemon::removeDevice(InputDevice *device)
         refreshIndexes();
 
         emit deviceRemoved(static_cast<int>(deviceID));
+
+        device->closeSDLDevice();
         device->deleteLater();
     }
 }
@@ -1045,3 +1047,9 @@ void InputDaemon::updatePollResetRate(unsigned int tempPollRate)
         pollResetTimer.start();
     }
 }
+
+/*void InputDaemon::changeMouseThread(QThread *thread)
+{
+    JoyButton::indirectStaticMouseThread(thread);
+}
+*/
