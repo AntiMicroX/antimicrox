@@ -376,7 +376,7 @@ void InputDaemon::removeDevice(InputDevice *device)
 {
     if (device)
     {
-        PadderCommon::editingLock.lockForRead();
+        /*PadderCommon::editingLock.lockForRead();
         bool isEditing = PadderCommon::editingBindings;
         PadderCommon::editingLock.unlock();
 
@@ -387,6 +387,7 @@ void InputDaemon::removeDevice(InputDevice *device)
             PadderCommon::waitThisOut.wakeAll();
             dismutex->unlock();
         }
+        */
 
         SDL_JoystickID deviceID = device->getSDLJoystickID();
 

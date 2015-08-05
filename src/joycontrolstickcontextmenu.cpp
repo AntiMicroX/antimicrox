@@ -271,80 +271,112 @@ void JoyControlStickContextMenu::setStickPreset()
     if (upButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickUp);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(upButtonSlot->getSlotCode(), upButtonSlot->getSlotCodeAlias(), upButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, upButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, upButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, upButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(upButtonSlot->getSlotCode(), upButtonSlot->getSlotCodeAlias(), upButtonSlot->getSlotMode());
         upButtonSlot->deleteLater();
     }
 
     if (downButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickDown);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(downButtonSlot->getSlotCode(), downButtonSlot->getSlotCodeAlias(), downButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, downButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, downButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, downButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(downButtonSlot->getSlotCode(), downButtonSlot->getSlotCodeAlias(), downButtonSlot->getSlotMode());
         downButtonSlot->deleteLater();
     }
 
     if (leftButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickLeft);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(leftButtonSlot->getSlotCode(), leftButtonSlot->getSlotCodeAlias(), leftButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, leftButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, leftButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, leftButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(leftButtonSlot->getSlotCode(), leftButtonSlot->getSlotCodeAlias(), leftButtonSlot->getSlotMode());
         leftButtonSlot->deleteLater();
     }
 
     if (rightButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickRight);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(rightButtonSlot->getSlotCode(), rightButtonSlot->getSlotCodeAlias(), rightButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, rightButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, rightButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, rightButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(rightButtonSlot->getSlotCode(), rightButtonSlot->getSlotCodeAlias(), rightButtonSlot->getSlotMode());
         rightButtonSlot->deleteLater();
     }
 
     if (upLeftButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickLeftUp);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(upLeftButtonSlot->getSlotCode(), upLeftButtonSlot->getSlotCodeAlias(), upLeftButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, upLeftButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, upLeftButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, upLeftButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(upLeftButtonSlot->getSlotCode(), upLeftButtonSlot->getSlotCodeAlias(), upLeftButtonSlot->getSlotMode());
         upLeftButtonSlot->deleteLater();
     }
 
     if (upRightButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickRightUp);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(upRightButtonSlot->getSlotCode(), upRightButtonSlot->getSlotCodeAlias(), upRightButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, upRightButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, upRightButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, upRightButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(upRightButtonSlot->getSlotCode(), upRightButtonSlot->getSlotCodeAlias(), upRightButtonSlot->getSlotMode());
         upRightButtonSlot->deleteLater();
     }
 
     if (downLeftButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickLeftDown);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(downLeftButtonSlot->getSlotCode(), downLeftButtonSlot->getSlotCodeAlias(), downLeftButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, downLeftButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, downLeftButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, downLeftButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(downLeftButtonSlot->getSlotCode(), downLeftButtonSlot->getSlotCodeAlias(), downLeftButtonSlot->getSlotMode());
         downLeftButtonSlot->deleteLater();
     }
 
     if (downRightButtonSlot)
     {
         JoyControlStickButton *button = stick->getDirectionButton(JoyControlStick::StickRightDown);
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(downRightButtonSlot->getSlotCode(), downRightButtonSlot->getSlotCodeAlias(), downRightButtonSlot->getSlotMode());
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, downRightButtonSlot->getSlotCode()),
+                                  Q_ARG(unsigned int, downRightButtonSlot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, downRightButtonSlot->getSlotMode()));
+        //button->setAssignedSlot(downRightButtonSlot->getSlotCode(), downRightButtonSlot->getSlotCodeAlias(), downRightButtonSlot->getSlotMode());
         downRightButtonSlot->deleteLater();
     }
 

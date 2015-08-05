@@ -524,9 +524,14 @@ QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 
 void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode, unsigned int alias)
 {
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset");
     //button->clearSlotsEventReset();
-    button->setAssignedSlot(keycode, alias);
+    QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, keycode),
+                              Q_ARG(unsigned int, alias),
+                              Q_ARG(int, 0),
+                              Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyKeyboard));
+    //button->setAssignedSlot(keycode, alias);
 
     emit selectionFinished();
 }
@@ -538,9 +543,12 @@ void VirtualKeyboardMouseWidget::processAdvancedKeyboardSelection(int keycode, u
 
 void VirtualKeyboardMouseWidget::processSingleMouseSelection(JoyButtonSlot *tempslot)
 {
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset");
     //button->clearSlotsEventReset();
-    button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotMode());
+    QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, tempslot->getSlotCode()),
+                              Q_ARG(JoyButtonSlot::JoySlotInputAction, tempslot->getSlotMode()));
+    //button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotMode());
     emit selectionFinished();
 }
 

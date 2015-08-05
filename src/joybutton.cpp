@@ -2856,6 +2856,25 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
     return permitSlot;
 }
 
+/*bool JoyButton::setAssignedSlot(int code, int mode)
+{
+    return setAssignedSlot(code,
+                           static_cast<JoyButtonSlot::JoySlotInputAction>(mode));
+}
+
+bool JoyButton::setAssignedSlot(int code, unsigned int alias, int mode)
+{
+    return setAssignedSlot(code, alias,
+                           static_cast<JoyButtonSlot::JoySlotInputAction>(mode));
+}
+
+bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, int mode)
+{
+    return setAssignedSlot(code, alias, index,
+                           static_cast<JoyButtonSlot::JoySlotInputAction>(mode));
+}
+*/
+
 QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
 {
     QList<JoyButtonSlot*> *newassign = &assignments;
@@ -4962,11 +4981,12 @@ void JoyButton::establishMouseTimerConnections()
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
             SLOT(mouseEvent()), Qt::UniqueConnection);
 
-    if (!staticMouseEventTimer.isActive())
+    /*if (!staticMouseEventTimer.isActive())
     {
         lastMouseTime.start();
         staticMouseEventTimer.start(IDLEMOUSEREFRESHRATE);
     }
+    */
 }
 
 void JoyButton::setSpringRelativeStatus(bool value)
@@ -5537,18 +5557,14 @@ void JoyButton::restartLastMouseTime()
 
 void JoyButton::setStaticMouseThread(QThread *thread)
 {
-    //disconnect(&staticMouseEventTimer, 0, 0, 0);
-
     int oldInterval = staticMouseEventTimer.interval();
     staticMouseEventTimer.stop();
     staticMouseEventTimer.moveToThread(thread);
     mouseHelper.moveToThread(thread);
 
-    // Only one connection will be made for each.
-    //connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
-    //        SLOT(mouseEvent()), Qt::UniqueConnection);
-
-    staticMouseEventTimer.start(oldInterval);
+    QMetaObject::invokeMethod(&staticMouseEventTimer, "start", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, oldInterval));
+    //staticMouseEventTimer.start(oldInterval);
     lastMouseTime.start();
 }
 

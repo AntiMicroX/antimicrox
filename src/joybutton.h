@@ -72,17 +72,6 @@ public:
     bool isUsingTurbo();
     void setCustomName(QString name);
     QString getCustomName();
-    bool setAssignedSlot(int code,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-
-    bool setAssignedSlot(int code, unsigned int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-
-    bool setAssignedSlot(int code, unsigned int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-
-
-    bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
 
     void removeAssignedSlot(int index);
 
@@ -304,6 +293,8 @@ protected:
     static bool hasFutureSpringEvents();
     virtual double getCurrentSpringDeadCircle();
     void vdpadPassEvent(bool pressed, bool ignoresets=false);
+    bool insertAssignedSlot(int code, unsigned int alias, int index,
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
 
@@ -541,8 +532,22 @@ public slots:
     virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
 
-    bool insertAssignedSlot(int code, unsigned int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    //bool setAssignedSlot(int code, int mode);
+
+    //bool setAssignedSlot(int code, unsigned int alias, int mode);
+
+    //bool setAssignedSlot(int code, unsigned int alias, int index, int mode);
+
+    bool setAssignedSlot(int code, unsigned int alias, int index,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
+    bool setAssignedSlot(int code,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
+    bool setAssignedSlot(int code, unsigned int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+
+    bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
 
     void establishMouseTimerConnections();
     void establishPropertyUpdatedConnections();

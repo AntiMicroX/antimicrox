@@ -244,10 +244,15 @@ void AxisEditDialog::implementAxisPresets(int index)
     if (nbuttonslot)
     {
         JoyAxisButton *button = axis->getNAxisButton();
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
+
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, nbuttonslot->getSlotCode()),
+                                  Q_ARG(unsigned int, nbuttonslot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
+        //button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
         refreshNButtonLabel();
         nbuttonslot->deleteLater();
     }
@@ -255,10 +260,14 @@ void AxisEditDialog::implementAxisPresets(int index)
     if (pbuttonslot)
     {
         JoyAxisButton *button = axis->getPAxisButton();
-        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
-                                  Q_ARG(bool, false));
+        QMetaObject::invokeMethod(button, "clearSlotsEventReset", Q_ARG(bool, false));
         //button->clearSlotsEventReset(false);
-        button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+
+        QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, pbuttonslot->getSlotCode()),
+                                  Q_ARG(unsigned int, pbuttonslot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
+        //button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
     }
@@ -501,10 +510,12 @@ void AxisEditDialog::implementTriggerPresets(int index)
     {
         JoyAxisButton *nbutton = axis->getNAxisButton();
         JoyAxisButton *pbutton = axis->getPAxisButton();
-        nbutton->clearSlotsEventReset();
+        //nbutton->clearSlotsEventReset();
+        QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
         refreshNButtonLabel();
 
-        pbutton->clearSlotsEventReset();
+        QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+        //pbutton->clearSlotsEventReset();
         refreshPButtonLabel();
     }
 
@@ -515,12 +526,20 @@ void AxisEditDialog::implementTriggerPresets(int index)
         JoyAxisButton *pbutton = axis->getPAxisButton();
         if (nbutton->getAssignedSlots()->length() > 0)
         {
-            nbutton->clearSlotsEventReset();
+            QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+                                      Q_ARG(bool, false));
+            //nbutton->clearSlotsEventReset();
             refreshNButtonLabel();
         }
 
-        pbutton->clearSlotsEventReset(false);
-        pbutton->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+        QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset",
+                                  Q_ARG(bool, false));
+        //pbutton->clearSlotsEventReset(false);
+        QMetaObject::invokeMethod(pbutton, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, pbuttonslot->getSlotCode()),
+                                  Q_ARG(unsigned int, pbuttonslot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
+        //pbutton->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
     }

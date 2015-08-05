@@ -271,11 +271,18 @@ void AdvanceButtonDialog::updateSelectedSlot(int value)
     // Stop all events on JoyButton
     //this->button->eventReset();
     QMetaObject::invokeMethod(this->button, "eventReset");
+    QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, tempbuttonslot->getSlotCode()),
+                              Q_ARG(unsigned int, tempbuttonslot->getSlotCodeAlias()),
+                              Q_ARG(int, index),
+                              Q_ARG(JoyButtonSlot::JoySlotInputAction, tempbuttonslot->getSlotMode()));
 
-    this->button->setAssignedSlot(tempbuttonslot->getSlotCode(),
+    /*this->button->setAssignedSlot(tempbuttonslot->getSlotCode(),
                                   tempbuttonslot->getSlotCodeAlias(),
                                   index,
                                   tempbuttonslot->getSlotMode());
+    */
+
     updateSlotsScrollArea(value);
 
     PadderCommon::unlockInputDevices();
@@ -451,10 +458,16 @@ void AdvanceButtonDialog::insertPauseSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyPause);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, actionTime),
+                                  Q_ARG(int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(int, static_cast<int>(JoyButtonSlot::JoyPause)));
+        //this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyPause);
+
         updateSlotsScrollArea(actionTime);
     }
 
@@ -473,10 +486,15 @@ void AdvanceButtonDialog::insertReleaseSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyRelease);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyRelease);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, actionTime),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyRelease));
+        //this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyRelease);
         updateSlotsScrollArea(actionTime);
     }
 
@@ -495,10 +513,15 @@ void AdvanceButtonDialog::insertHoldSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyHold);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyHold);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, actionTime),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyHold));
+        //this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyHold);
         updateSlotsScrollArea(actionTime);
     }
 
@@ -519,10 +542,15 @@ void AdvanceButtonDialog::insertSetChangeSlot()
     {
         tempbutton->setValue(setIndex, JoyButtonSlot::JoySetChange);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(setIndex, 0, index, JoyButtonSlot::JoySetChange);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, setIndex),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoySetChange));
+        //this->button->setAssignedSlot(setIndex, 0, index, JoyButtonSlot::JoySetChange);
         updateSlotsScrollArea(setIndex);
     }
 
@@ -644,14 +672,16 @@ void AdvanceButtonDialog::insertCycleSlot()
     tempbutton->setValue(1, JoyButtonSlot::JoyCycle);
 
     // Stop all events on JoyButton
-    QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+    QMetaObject::invokeMethod(this->button, "eventReset");
     //this->button->eventReset();
 
-    /*QMetaObject::invokeMethod(this->button, "setAssignedSlot", Q_ARG(int, 1),
-                              Q_ARG(uint, 0), Q_ARG(int, index),
+    QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, 1),
+                              Q_ARG(unsigned int, 0),
+                              Q_ARG(int, index),
                               Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyCycle));
-    */
-    this->button->setAssignedSlot(1, 0, index, JoyButtonSlot::JoyCycle);
+
+    //this->button->setAssignedSlot(1, 0, index, JoyButtonSlot::JoyCycle);
     updateSlotsScrollArea(1);
 
     PadderCommon::unlockInputDevices();
@@ -687,10 +717,15 @@ void AdvanceButtonDialog::insertDistanceSlot()
         tempbutton->setValue(testDistance, JoyButtonSlot::JoyDistance);
 
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(testDistance, 0, index, JoyButtonSlot::JoyDistance);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, testDistance),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyDistance));
+        //this->button->setAssignedSlot(testDistance, 0, index, JoyButtonSlot::JoyDistance);
         updateSlotsScrollArea(testDistance);
     }
 
@@ -705,12 +740,18 @@ void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
     tempbutton->setValue(slot->getSlotCode(), slot->getSlotCodeAlias(), slot->getSlotMode());
 
     // Stop all events on JoyButton
-    QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+    QMetaObject::invokeMethod(this->button, "eventReset");
     //this->button->eventReset();
 
-    this->button->setAssignedSlot(slot->getSlotCode(),
+    QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, slot->getSlotCode()),
+                              Q_ARG(unsigned int, slot->getSlotCodeAlias()),
+                              Q_ARG(int, index),
+                              Q_ARG(JoyButtonSlot::JoySlotInputAction, slot->getSlotMode()));
+    /*this->button->setAssignedSlot(slot->getSlotCode(),
                                   slot->getSlotCodeAlias(), index,
                                   slot->getSlotMode());
+    */
     updateSlotsScrollArea(slot->getSlotCode());
     slot->deleteLater();
 }
@@ -857,10 +898,15 @@ void AdvanceButtonDialog::insertMouseSpeedModSlot()
         tempbutton->setValue(tempMouseMod, JoyButtonSlot::JoyMouseSpeedMod);
 
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(tempMouseMod, 0, index, JoyButtonSlot::JoyMouseSpeedMod);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, tempMouseMod),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyMouseSpeedMod));
+        //this->button->setAssignedSlot(tempMouseMod, 0, index, JoyButtonSlot::JoyMouseSpeedMod);
         updateSlotsScrollArea(tempMouseMod);
     }
 
@@ -880,10 +926,15 @@ void AdvanceButtonDialog::insertKeyPressSlot()
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyKeyPress);
 
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyKeyPress);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, actionTime),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyKeyPress));
+        //this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyKeyPress);
         updateSlotsScrollArea(actionTime);
     }
 
@@ -902,10 +953,15 @@ void AdvanceButtonDialog::insertDelaySlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyDelay);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyDelay);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, actionTime),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyDelay));
+        //this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyDelay);
         updateSlotsScrollArea(actionTime);
     }
 
@@ -924,10 +980,13 @@ void AdvanceButtonDialog::insertTextEntrySlot()
     {
         tempbutton->setValue(temp, JoyButtonSlot::JoyTextEntry);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(tempbutton->getValue(), index);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(JoyButtonSlot*, tempbutton->getValue()),
+                                  Q_ARG(int, index));
+        //this->button->setAssignedSlot(tempbutton->getValue(), index);
         tempbutton->setToolTip(temp);
         updateSlotsScrollArea(0);
     }
@@ -950,10 +1009,13 @@ void AdvanceButtonDialog::insertExecuteSlot()
         {
             tempbutton->setValue(temp, JoyButtonSlot::JoyExecute);
             // Stop all events on JoyButton
-            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            QMetaObject::invokeMethod(this->button, "eventReset");
             //this->button->eventReset();
 
-            this->button->setAssignedSlot(tempbutton->getValue(), index);
+            QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                      Q_ARG(JoyButtonSlot*, tempbutton->getValue()),
+                                      Q_ARG(int, index));
+            //this->button->setAssignedSlot(tempbutton->getValue(), index);
             tempbutton->setToolTip(temp);
             updateSlotsScrollArea(0);
         }
@@ -1083,10 +1145,15 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
             tempbutton->setValue(actionTime, tempbuttonslot->getSlotMode());
 
             // Stop all events on JoyButton
-            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            QMetaObject::invokeMethod(this->button, "eventReset");
             //this->button->eventReset();
 
-            this->button->setAssignedSlot(actionTime, 0, index, tempbuttonslot->getSlotMode());
+            QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                      Q_ARG(int, actionTime),
+                                      Q_ARG(unsigned int, 0),
+                                      Q_ARG(int, index),
+                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, tempbuttonslot->getSlotMode()));
+            //this->button->setAssignedSlot(actionTime, 0, index, tempbuttonslot->getSlotMode());
             updateSlotsScrollArea(actionTime);
         }
     }
@@ -1111,10 +1178,15 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
         tempbutton->setValue(tempMouseMod, tempbuttonslot->getSlotMode());
 
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(tempMouseMod, 0, index, tempbuttonslot->getSlotMode());
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, tempMouseMod),
+                                  Q_ARG(unsigned int, 0),
+                                  Q_ARG(int, index),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, tempbuttonslot->getSlotMode()));
+        //this->button->setAssignedSlot(tempMouseMod, 0, index, tempbuttonslot->getSlotMode());
         updateSlotsScrollArea(tempMouseMod);
     }
 
@@ -1138,10 +1210,15 @@ void AdvanceButtonDialog::checkSlotSetChangeUpdate()
         {
             tempbutton->setValue(setIndex, buttonslot->getSlotMode());
             // Stop all events on JoyButton
-            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            QMetaObject::invokeMethod(this->button, "eventReset");
             //this->button->eventReset();
 
-            this->button->setAssignedSlot(setIndex, 0, index, buttonslot->getSlotMode());
+            QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                      Q_ARG(int, setIndex),
+                                      Q_ARG(unsigned int, 0),
+                                      Q_ARG(int, index),
+                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, buttonslot->getSlotMode()));
+            //this->button->setAssignedSlot(setIndex, 0, index, buttonslot->getSlotMode());
             updateSlotsScrollArea(setIndex);
         }
     }
@@ -1184,10 +1261,15 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
             tempbutton->setValue(testDistance, buttonslot->getSlotMode());
 
             // Stop all events on JoyButton
-            QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+            QMetaObject::invokeMethod(this->button, "eventReset");
             //this->button->eventReset();
 
-            this->button->setAssignedSlot(testDistance, 0, index, buttonslot->getSlotMode());
+            QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                      Q_ARG(int, testDistance),
+                                      Q_ARG(unsigned int, 0),
+                                      Q_ARG(int, index),
+                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, buttonslot->getSlotMode()));
+            //this->button->setAssignedSlot(testDistance, 0, index, buttonslot->getSlotMode());
             updateSlotsScrollArea(testDistance);
         }
     }
@@ -1437,10 +1519,13 @@ void AdvanceButtonDialog::showSelectProfileWindow()
                 ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         tempbutton->setValue(filename, JoyButtonSlot::JoyLoadProfile);
         // Stop all events on JoyButton
-        QMetaObject::invokeMethod(this->button, "eventReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
-        this->button->setAssignedSlot(tempbutton->getValue(), index);
+        QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(JoyButtonSlot*, tempbutton->getValue()),
+                                  Q_ARG(int, index));
+        //this->button->setAssignedSlot(tempbutton->getValue(), index);
         tempbutton->setToolTip(filename);
         updateSlotsScrollArea(0);
     }

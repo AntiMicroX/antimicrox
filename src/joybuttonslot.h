@@ -33,6 +33,7 @@ public:
                              JoyPause, JoyHold, JoyCycle, JoyDistance,
                              JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
                              JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute};
+
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
                                   MouseWheelLeft=6, MouseWheelRight=7};
@@ -97,6 +98,7 @@ public slots:
 };
 
 Q_DECLARE_METATYPE(JoyButtonSlot*)
+Q_DECLARE_METATYPE(JoyButtonSlot::JoySlotInputAction)
 
 
 #endif // JOYBUTTONSLOT_H

@@ -402,10 +402,14 @@ void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
     PadderCommon::lockInputDevices();
 
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                               Q_ARG(bool, false));
     //button->clearSlotsEventReset(false);
-    button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), tempslot->getSlotMode());
+    QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, tempslot->getSlotCode()),
+                              Q_ARG(unsigned int, tempslot->getSlotCodeAlias()),
+                              Q_ARG(JoyButtonSlot::JoySlotInputAction, tempslot->getSlotMode()));
+    //button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), tempslot->getSlotMode());
     this->close();
     tempslot->deleteLater();
 
