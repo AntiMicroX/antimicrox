@@ -5559,7 +5559,7 @@ void JoyButton::restartLastMouseTime()
 void JoyButton::setStaticMouseThread(QThread *thread)
 {
     int oldInterval = staticMouseEventTimer.interval();
-    staticMouseEventTimer.stop();
+    //staticMouseEventTimer.stop();
     staticMouseEventTimer.moveToThread(thread);
     mouseHelper.moveToThread(thread);
 
@@ -5571,6 +5571,7 @@ void JoyButton::setStaticMouseThread(QThread *thread)
 
 void JoyButton::indirectStaticMouseThread(QThread *thread)
 {
+    QMetaObject::invokeMethod(&staticMouseEventTimer, "stop");
     QMetaObject::invokeMethod(&mouseHelper, "changeThread",
                               Q_ARG(QThread*, thread));
 }

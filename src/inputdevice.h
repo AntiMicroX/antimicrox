@@ -112,8 +112,6 @@ public:
     void sendLoadProfileRequest(QString location);
     AntiMicroSettings *getSettings();
 
-    void reInitButtons();
-
     void activatePossiblePendingEvents();
     void activatePossibleControlStickEvents();
     void activatePossibleAxisEvents();
@@ -177,6 +175,7 @@ signals:
 public slots:
     void reset();
     void transferReset();
+    void reInitButtons();
     void resetButtonDownCount();
     void setActiveSetNumber(int index);
     void changeSetButtonAssociation(int button_index, int originset, int newset, int mode);

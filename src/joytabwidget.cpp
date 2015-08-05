@@ -679,9 +679,9 @@ void JoyTabWidget::resetJoystick()
         removeCurrentButtons();
         //joystick->reset();
         joystick->revertProfileEdited();
-        QMetaObject::invokeMethod(joystick, "transferReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(joystick, "transferReset");
         //joystick->transferReset();
-        QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(joystick, "reInitButtons");
         //joystick->reInitButtons();
 
         XMLConfigReader reader;
@@ -860,7 +860,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
         if (joystick->getActiveSetNumber() != 0)
         {
-            QMetaObject::invokeMethod(joystick, "setActiveSetNumber", Qt::BlockingQueuedConnection,
+            QMetaObject::invokeMethod(joystick, "setActiveSetNumber",
                                       Q_ARG(int, 0));
             //joystick->setActiveSetNumber(0);
             changeCurrentSet(0);
@@ -922,7 +922,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
         //joystick->reset();
 
-        QMetaObject::invokeMethod(joystick, "transferReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(joystick, "transferReset");
         //joystick->transferReset();
         joystick->resetButtonDownCount();
         emit forceTabUnflash(this);

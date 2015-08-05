@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<JoyButtonSlot*>();
     qRegisterMetaType<InputDevice*>();
     qRegisterMetaType<AutoProfileInfo*>();
+    qRegisterMetaType<QThread*>();
     qRegisterMetaType<JoyButtonSlot::JoySlotInputAction>("JoyButtonSlot::JoySlotInputAction");
 
     QTextStream outstream(stdout);
@@ -686,7 +687,7 @@ int main(int argc, char *argv[])
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()), Qt::BlockingQueuedConnection);
-    QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
+    //QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
 
 #ifdef Q_OS_WIN
     QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
@@ -720,10 +721,11 @@ int main(int argc, char *argv[])
     //JoyButton::setStaticMouseThread(inputEventThread);
     mainAppHelper.changeMouseThread(inputEventThread);
 
-    QTimer::singleShot(20, w, SLOT(fillButtons()));
+    QTimer::singleShot(0, w, SLOT(fillButtons()));
     QTimer::singleShot(20, w, SLOT(changeWindowStatus()));
 
     int app_result = a->exec();
+    inputEventThread->quit();
     inputEventThread->wait();
 
     // Log any remaining messages if they exist.
