@@ -73,8 +73,6 @@ public:
     void setCustomName(QString name);
     QString getCustomName();
 
-    void removeAssignedSlot(int index);
-
     QList<JoyButtonSlot*> *getAssignedSlots();
 
     virtual void readConfig(QXmlStreamReader *xml);
@@ -549,6 +547,8 @@ public slots:
                          JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
+
+    void removeAssignedSlot(int index);
 
     void establishMouseTimerConnections();
     void establishPropertyUpdatedConnections();

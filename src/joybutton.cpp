@@ -3597,7 +3597,9 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
 }
 
 void JoyButton::removeAssignedSlot(int index)
-{    
+{
+    QWriteLocker tempAssignLocker(&assignmentsLock);
+
     if (index >= 0 && index < assignments.size())
     {
         JoyButtonSlot *slot = assignments.takeAt(index);

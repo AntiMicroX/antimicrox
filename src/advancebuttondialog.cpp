@@ -308,10 +308,11 @@ void AdvanceButtonDialog::deleteSlot()
     changeTurboForSequences();
 
     // Stop all events on JoyButton
-    QMetaObject::invokeMethod(button, "eventReset", Qt::BlockingQueuedConnection);
+    QMetaObject::invokeMethod(button, "eventReset");
     //button->eventReset();
 
-    button->removeAssignedSlot(index);
+    QMetaObject::invokeMethod(button, "removeAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, index));
     performStatsWidgetRefresh(ui->slotListWidget->currentItem());
 
     PadderCommon::unlockInputDevices();
