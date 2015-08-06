@@ -21,6 +21,7 @@
 
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 #include "antkeymapper.h"
+#include "inputdevice.h"
 #include "common.h"
 
 JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, QWidget *parent) :
@@ -155,6 +156,9 @@ void JoyControlStickContextMenu::setStickMode()
 void JoyControlStickContextMenu::setStickPreset()
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = stick->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     QAction *action = static_cast<QAction*>(sender());
     int item = action->data().toInt();

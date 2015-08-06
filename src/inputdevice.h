@@ -171,6 +171,7 @@ signals:
     void propertyUpdated();
     void profileNameEdited(QString text);
     void requestProfileLoad(QString location);
+    void requestWait();
 
 public slots:
     void reset();
@@ -186,6 +187,7 @@ public slots:
     void setDeviceKeyPressTime(unsigned int newPressTime);
     void profileEdited();
     void setProfileName(QString value);
+    void haltServices();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

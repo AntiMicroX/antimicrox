@@ -166,7 +166,10 @@ void JoyButtonContextMenu::disableSetMode()
 void JoyButtonContextMenu::clearButton()
 {
     PadderCommon::lockInputDevices();
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+    InputDevice *tempDevice = button->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
+    QMetaObject::invokeMethod(button, "clearSlotsEventReset");
     //button->clearSlotsEventReset();
     PadderCommon::unlockInputDevices();
 }

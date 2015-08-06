@@ -30,6 +30,7 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QLabel>
+#include <QList>
 
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -663,6 +664,13 @@ void MainSettingsDialog::saveNewSettings()
 #endif
 
     PadderCommon::lockInputDevices();
+
+    if (connectedDevices->size() > 0)
+    {
+        InputDevice *tempDevice = connectedDevices->at(0);
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+    }
+
 
     bool smoothingEnabled = ui->smoothingEnableCheckBox->isChecked();
     int historySize = ui->historySizeSpinBox->value();

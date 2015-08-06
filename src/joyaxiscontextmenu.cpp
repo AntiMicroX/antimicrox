@@ -18,6 +18,7 @@
 #include "joyaxiscontextmenu.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "antkeymapper.h"
+#include "inputdevice.h"
 #include "common.h"
 
 JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
@@ -224,6 +225,9 @@ int JoyAxisContextMenu::getPresetIndex()
 void JoyAxisContextMenu::setAxisPreset()
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = axis->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     QAction *action = static_cast<QAction*>(sender());
     int item = action->data().toInt();

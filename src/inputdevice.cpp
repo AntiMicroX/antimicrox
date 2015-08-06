@@ -2203,3 +2203,8 @@ QString InputDevice::getRawGUIDString()
     QString temp = getGUIDString();
     return temp;
 }
+
+void InputDevice::haltServices()
+{
+    emit requestWait();
+}

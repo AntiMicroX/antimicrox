@@ -25,6 +25,7 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "setjoystick.h"
+#include "inputdevice.h"
 #include "common.h"
 
 DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
@@ -83,6 +84,9 @@ DPadEditDialog::~DPadEditDialog()
 void DPadEditDialog::implementPresets(int index)
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = dpad->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     JoyButtonSlot *upButtonSlot = 0;
     JoyButtonSlot *downButtonSlot = 0;

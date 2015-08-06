@@ -270,6 +270,9 @@ void AdvanceButtonDialog::updateSelectedSlot(int value)
 
     // Stop all events on JoyButton
     //this->button->eventReset();
+    InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
     QMetaObject::invokeMethod(this->button, "eventReset");
     QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
                               Q_ARG(int, tempbuttonslot->getSlotCode()),
@@ -308,6 +311,9 @@ void AdvanceButtonDialog::deleteSlot()
     changeTurboForSequences();
 
     // Stop all events on JoyButton
+    InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
     QMetaObject::invokeMethod(button, "eventReset");
     //button->eventReset();
 
@@ -369,6 +375,8 @@ void AdvanceButtonDialog::insertSlot()
     if (slotTypeIndex == KBMouseSlot)
     {
         PadderCommon::lockInputDevices();
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
         if (current != (count - 1))
         {
@@ -458,7 +466,10 @@ void AdvanceButtonDialog::insertPauseSlot()
     if (actionTime >= 0)
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyPause);
+
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -514,6 +525,9 @@ void AdvanceButtonDialog::insertHoldSlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyHold);
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -542,7 +556,10 @@ void AdvanceButtonDialog::insertSetChangeSlot()
     if (setIndex >= 0)
     {
         tempbutton->setValue(setIndex, JoyButtonSlot::JoySetChange);
+
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -611,6 +628,8 @@ void AdvanceButtonDialog::clearAllSlots()
     appendBlankKeyGrabber();
     changeTurboForSequences();
 
+    InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
     QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
     //button->clearSlotsEventReset();
     performStatsWidgetRefresh(ui->slotListWidget->currentItem());
@@ -673,6 +692,9 @@ void AdvanceButtonDialog::insertCycleSlot()
     tempbutton->setValue(1, JoyButtonSlot::JoyCycle);
 
     // Stop all events on JoyButton
+    InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
     QMetaObject::invokeMethod(this->button, "eventReset");
     //this->button->eventReset();
 
@@ -899,6 +921,9 @@ void AdvanceButtonDialog::insertMouseSpeedModSlot()
         tempbutton->setValue(tempMouseMod, JoyButtonSlot::JoyMouseSpeedMod);
 
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -927,6 +952,8 @@ void AdvanceButtonDialog::insertKeyPressSlot()
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyKeyPress);
 
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -954,6 +981,8 @@ void AdvanceButtonDialog::insertDelaySlot()
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyDelay);
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -981,6 +1010,8 @@ void AdvanceButtonDialog::insertTextEntrySlot()
     {
         tempbutton->setValue(temp, JoyButtonSlot::JoyTextEntry);
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -1146,6 +1177,8 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
             tempbutton->setValue(actionTime, tempbuttonslot->getSlotMode());
 
             // Stop all events on JoyButton
+            InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+            QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
             QMetaObject::invokeMethod(this->button, "eventReset");
             //this->button->eventReset();
 
@@ -1179,6 +1212,8 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
         tempbutton->setValue(tempMouseMod, tempbuttonslot->getSlotMode());
 
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 
@@ -1211,6 +1246,9 @@ void AdvanceButtonDialog::checkSlotSetChangeUpdate()
         {
             tempbutton->setValue(setIndex, buttonslot->getSlotMode());
             // Stop all events on JoyButton
+            InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+            QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
             QMetaObject::invokeMethod(this->button, "eventReset");
             //this->button->eventReset();
 
@@ -1520,6 +1558,8 @@ void AdvanceButtonDialog::showSelectProfileWindow()
                 ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         tempbutton->setValue(filename, JoyButtonSlot::JoyLoadProfile);
         // Stop all events on JoyButton
+        InputDevice *tempDevice = this->button->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
         QMetaObject::invokeMethod(this->button, "eventReset");
         //this->button->eventReset();
 

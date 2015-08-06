@@ -25,6 +25,7 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "setjoystick.h"
+#include "inputdevice.h"
 #include "common.h"
 
 AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
@@ -176,6 +177,8 @@ void AxisEditDialog::implementAxisPresets(int index)
     JoyButtonSlot *pbuttonslot = 0;
 
     PadderCommon::lockInputDevices();
+    InputDevice *tempDevice = axis->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     if (index == 1)
     {

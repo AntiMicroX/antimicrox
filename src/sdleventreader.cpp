@@ -285,3 +285,13 @@ void SDLEventReader::closeDevices()
         }
     }
 }
+
+/**
+ * @brief Method to block activity on the SDLEventReader object and its thread
+ *   event loop.
+ */
+void SDLEventReader::haltServices()
+{
+    PadderCommon::lockInputDevices();
+    PadderCommon::unlockInputDevices();
+}

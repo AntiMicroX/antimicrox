@@ -18,6 +18,7 @@
 #include "dpadcontextmenu.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "antkeymapper.h"
+#include "inputdevice.h"
 #include "common.h"
 
 DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
@@ -163,6 +164,9 @@ void DPadContextMenu::setDPadMode()
 void DPadContextMenu::setDPadPreset()
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = dpad->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     QAction *action = static_cast<QAction*>(sender());
     int item = action->data().toInt();

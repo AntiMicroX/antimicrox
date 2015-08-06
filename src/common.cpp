@@ -126,6 +126,7 @@ namespace PadderCommon
 
     void lockInputDevices()
     {
+        waitMutex.lock();
         /*editingLock.lockForWrite();
         editingBindings = true;
         editingLock.unlock();
@@ -138,6 +139,7 @@ namespace PadderCommon
 
     void unlockInputDevices()
     {
+        waitMutex.unlock();
         /*editingLock.lockForWrite();
         editingBindings = false;
         editingLock.unlock();

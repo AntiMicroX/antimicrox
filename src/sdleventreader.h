@@ -69,6 +69,7 @@ public slots:
     void resetJoystickMap();
     void quit();
     void closeDevices();
+    void haltServices();
 
 private slots:
     void secondaryRefresh();

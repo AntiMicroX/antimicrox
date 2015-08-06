@@ -36,6 +36,7 @@
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
 #include "setjoystick.h"
+#include "inputdevice.h"
 #include "common.h"
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
@@ -401,6 +402,9 @@ void ButtonEditDialog::closedAdvancedDialog()
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = button->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                               Q_ARG(bool, false));

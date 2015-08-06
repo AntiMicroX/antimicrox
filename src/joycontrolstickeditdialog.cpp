@@ -26,6 +26,7 @@
 #include "antkeymapper.h"
 #include "setjoystick.h"
 #include "buttoneditdialog.h"
+#include "inputdevice.h"
 #include "common.h"
 
 JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent) :
@@ -143,6 +144,9 @@ JoyControlStickEditDialog::~JoyControlStickEditDialog()
 void JoyControlStickEditDialog::implementPresets(int index)
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = stick->getParentSet()->getInputDevice();
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     JoyButtonSlot *upButtonSlot = 0;
     JoyButtonSlot *downButtonSlot = 0;

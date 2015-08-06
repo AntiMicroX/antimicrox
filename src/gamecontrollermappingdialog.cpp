@@ -108,6 +108,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
 
     PadderCommon::lockInputDevices();
 
+    QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
     device->getActiveSetJoystick()->setIgnoreEventState(true);
     device->getActiveSetJoystick()->release();
 
@@ -437,6 +439,8 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
         {
             PadderCommon::lockInputDevices();
 
+            QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
             connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
             connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
             connect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
@@ -479,6 +483,8 @@ void GameControllerMappingDialog::disableDeviceConnections()
 {
     PadderCommon::lockInputDevices();
 
+    QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
     disconnect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
     for (int i=0; i < device->getActiveSetJoystick()->getNumberAxes(); i++)
@@ -504,6 +510,8 @@ void GameControllerMappingDialog::enableButtonEvents(int code)
     Q_UNUSED(code);
 
     PadderCommon::lockInputDevices();
+
+    QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
 
     //if (code == QDialogButtonBox::AcceptRole)
     //{
@@ -623,6 +631,8 @@ void GameControllerMappingDialog::populateAxisDeadZoneComboBox()
 void GameControllerMappingDialog::changeAxisDeadZone(int index)
 {
     PadderCommon::lockInputDevices();
+
+    QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
 
     unsigned int value = ui->axisDeadZoneComboBox->itemData(index).toInt();
     if (value >= 5000 && value <= 32000)

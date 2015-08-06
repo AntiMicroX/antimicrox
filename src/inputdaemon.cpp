@@ -192,6 +192,7 @@ void InputDaemon::refreshJoysticks()
         {
             SDL_GameController *controller = SDL_GameControllerOpen(i);
             GameController *damncontroller = new GameController(controller, i, settings, this);
+            connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
             SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
             SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
             joysticks->insert(joystickID, damncontroller);
@@ -200,6 +201,7 @@ void InputDaemon::refreshJoysticks()
         else
         {
             Joystick *curJoystick = new Joystick(joystick, i, settings, this);
+            connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
             SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
             joysticks->insert(joystickID, curJoystick);
             trackjoysticks.insert(joystickID, curJoystick);
@@ -207,6 +209,7 @@ void InputDaemon::refreshJoysticks()
 #else
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
         Joystick *curJoystick = new Joystick(joystick, i, settings, this);
+        connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
         joysticks->insert(i, curJoystick);
 #endif
     }

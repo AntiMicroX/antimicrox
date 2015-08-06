@@ -671,6 +671,9 @@ void JoyTabWidget::resetJoystick()
 {
     PadderCommon::lockInputDevices();
 
+    InputDevice *tempDevice = joystick;
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
     {
@@ -844,6 +847,9 @@ void JoyTabWidget::saveAsConfig()
 void JoyTabWidget::changeJoyConfig(int index)
 {
     PadderCommon::lockInputDevices();
+
+    InputDevice *tempDevice = joystick;
+    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
