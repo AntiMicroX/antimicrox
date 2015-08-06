@@ -27,6 +27,7 @@
 #include <QWaitCondition>
 #include <QMutex>
 #include <QReadWriteLock>
+#include <QThread>
 
 #include "config.h"
 #include "antimicrosettings.h"
@@ -138,5 +139,7 @@ namespace PadderCommon
     void lockInputDevices();
     void unlockInputDevices();
 }
+
+Q_DECLARE_METATYPE(QThread*)
 
 #endif // COMMON_H

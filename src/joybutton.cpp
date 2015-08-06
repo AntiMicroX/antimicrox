@@ -1136,18 +1136,21 @@ void JoyButton::mouseEvent()
                             {
                                 // Low slope value for really slow acceleration
                                 difference = difference * 0.375;
+                                //difference = difference * 0.37;
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
                                 difference = difference - 0.25;
+                                //difference = difference - 0.252;
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
                                 difference = (difference * 2.25) - 1.25;
+                                //difference = (difference * 2.26) - 1.26;
                             }
 
                             break;
@@ -5224,12 +5227,16 @@ void JoyButton::setMouseRefreshRate(int refresh)
             if (tempInterval != temp &&
                 tempInterval != 0)
             {
-                staticMouseEventTimer.start(mouseRefreshRate);
+                QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
+                                          Q_ARG(int, mouseRefreshRate));
+                //staticMouseEventTimer.start(mouseRefreshRate);
             }
             else
             {
                 // Restart QTimer to keep QTimer in line with QTime
-                staticMouseEventTimer.start(temp);
+                QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
+                                          Q_ARG(int, temp));
+                //staticMouseEventTimer.start(temp);
             }
 
             // Clear current mouse history
