@@ -5569,6 +5569,9 @@ void JoyButton::setStaticMouseThread(QThread *thread)
                               Q_ARG(int, oldInterval));
     //staticMouseEventTimer.start(oldInterval);
     lastMouseTime.start();
+#ifdef Q_OS_WIN
+    repeatHelper.moveToThread(thread);
+#endif
 }
 
 void JoyButton::indirectStaticMouseThread(QThread *thread)

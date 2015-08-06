@@ -22,6 +22,7 @@ JoyKeyRepeatHelper::JoyKeyRepeatHelper(QObject *parent) :
     QObject(parent)
 {
     lastActiveKey = 0;
+    keyRepeatTimer.setParent(this);
     connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
 }
 
