@@ -126,22 +126,24 @@ namespace PadderCommon
 
     void lockInputDevices()
     {
-        editingLock.lockForWrite();
+        /*editingLock.lockForWrite();
         editingBindings = true;
         editingLock.unlock();
 
         waitMutex.lock();
         //editingBindings = true;
         waitThisOut.wait(&waitMutex);
+        */
     }
 
     void unlockInputDevices()
     {
-        editingLock.lockForWrite();
+        /*editingLock.lockForWrite();
         editingBindings = false;
         editingLock.unlock();
 
         waitMutex.unlock();
+        */
     }
 
     QWaitCondition waitThisOut;

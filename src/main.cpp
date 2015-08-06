@@ -686,8 +686,7 @@ int main(int argc, char *argv[])
     QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(revertMouseThread()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()), Qt::BlockingQueuedConnection);
-    //QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()));
 
 #ifdef Q_OS_WIN
     QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
@@ -718,34 +717,31 @@ int main(int argc, char *argv[])
     QThread::currentThread()->setPriority(QThread::HighPriority);
 #endif
 
-    //JoyButton::setStaticMouseThread(inputEventThread);
     mainAppHelper.changeMouseThread(inputEventThread);
 
     QTimer::singleShot(0, w, SLOT(fillButtons()));
     QTimer::singleShot(20, w, SLOT(changeWindowStatus()));
 
     int app_result = a->exec();
-    inputEventThread->quit();
-    inputEventThread->wait();
 
     // Log any remaining messages if they exist.
     appLogger.Log();
 
     appLogger.LogInfo(QObject::tr("Quitting Program"), true, true);
 
-    //deleteInputDevices(joysticks);
-
-    delete joysticks;
-    joysticks = 0;
-
-    //delete joypad_worker;
     joypad_worker = 0;
 
     delete localServer;
     localServer = 0;
 
+    inputEventThread->quit();
+    inputEventThread->wait();
+
     delete inputEventThread;
     inputEventThread = 0;
+
+    delete joysticks;
+    joysticks = 0;
 
     AntKeyMapper::getInstance()->deleteInstance();
 

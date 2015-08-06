@@ -119,7 +119,7 @@ void SDLEventReader::performWork()
         //int status = SDL_WaitEvent(NULL);
         int status = CheckForEvents();
 
-        PadderCommon::editingLock.lockForRead();
+        /*PadderCommon::editingLock.lockForRead();
         bool isEditing = PadderCommon::editingBindings;
         PadderCommon::editingLock.unlock();
 
@@ -130,6 +130,7 @@ void SDLEventReader::performWork()
             PadderCommon::waitThisOut.wakeAll();
             dismutex->unlock();
         }
+        */
 
         if (status)
         {

@@ -297,20 +297,21 @@ void InputDaemon::quit()
         QEventLoop q;
         QTimer temptime;
 
-        connect(eventWorker, SIGNAL(eventRaised()), &q, SLOT(quit()));
-        connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
+        //connect(eventWorker, SIGNAL(eventRaised()), &q, SLOT(quit()));
+        //connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
 
         //eventWorker->stop();
-        QMetaObject::invokeMethod(eventWorker, "stop", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(eventWorker, "stop");
 
-        temptime.start(500);
-        if (eventWorker->isSDLOpen())
+        //temptime.start(500);
+        /*if (eventWorker->isSDLOpen())
         {
             q.exec();
         }
         temptime.stop();
+        */
 
-        QMetaObject::invokeMethod(eventWorker, "quit", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(eventWorker, "quit");
         QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
     }
     else

@@ -5563,7 +5563,7 @@ void JoyButton::setStaticMouseThread(QThread *thread)
     staticMouseEventTimer.moveToThread(thread);
     mouseHelper.moveToThread(thread);
 
-    QMetaObject::invokeMethod(&staticMouseEventTimer, "start", Qt::BlockingQueuedConnection,
+    QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                               Q_ARG(int, oldInterval));
     //staticMouseEventTimer.start(oldInterval);
     lastMouseTime.start();
