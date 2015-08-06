@@ -5577,6 +5577,9 @@ void JoyButton::setStaticMouseThread(QThread *thread)
 void JoyButton::indirectStaticMouseThread(QThread *thread)
 {
     QMetaObject::invokeMethod(&staticMouseEventTimer, "stop");
+#ifdef Q_OS_WIN
+    QMetaObject::invokeMethod(repeatHelper.getRepeatTimer(), "stop");
+#endif
     QMetaObject::invokeMethod(&mouseHelper, "changeThread",
                               Q_ARG(QThread*, thread));
 }
