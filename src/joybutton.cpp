@@ -1135,21 +1135,21 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.375;
+                                difference = difference * 0.3705;
                                 //difference = difference * 0.37;
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.25;
+                                difference = difference - 0.2518;
                                 //difference = difference - 0.252;
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 2.25) - 1.25;
+                                difference = (difference * 2.259) - 1.259;
                                 //difference = (difference * 2.26) - 1.26;
                             }
 
