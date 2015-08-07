@@ -21,6 +21,7 @@
 #include <QObject>
 #include <QString>
 #include <QHash>
+#include <QPoint>
 #include <X11/Xlib.h>
 
 class X11Extras : public QObject
@@ -89,7 +90,7 @@ protected:
 signals:
     
 public slots:
-    
+    QPoint getPos();
 };
 
 #endif // X11EXTRAS_H

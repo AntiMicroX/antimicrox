@@ -821,3 +821,20 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation()
 {
     return getPointInformation(mouseDeviceName);
 }
+
+QPoint X11Extras::getPos()
+{
+    XEvent mouseEvent;
+    Window wid = DefaultRootWindow(display());
+    XWindowAttributes xwAttr;
+
+    XQueryPointer(display(), wid,
+                  &mouseEvent.xbutton.root, &mouseEvent.xbutton.window,
+                  &mouseEvent.xbutton.x_root, &mouseEvent.xbutton.y_root,
+                  &mouseEvent.xbutton.x, &mouseEvent.xbutton.y,
+                  &mouseEvent.xbutton.state);
+
+    XGetWindowAttributes(display(), wid, &xwAttr);
+    QPoint currentPoint(mouseEvent.xbutton.x_root, mouseEvent.xbutton.y_root);
+    return currentPoint;
+}

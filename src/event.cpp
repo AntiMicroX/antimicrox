@@ -119,7 +119,23 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         QRect deskRect = deskWid.screenGeometry(fullSpring->screen);
         width = deskRect.width();
         height = deskRect.height();
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
+        QPoint currentPoint;
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+  #endif
+            currentPoint = X11Extras::getInstance()->getPos();
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        }
+        else
+        {
+            currentPoint = QCursor::pos();
+        }
+  #endif
+#else
         QPoint currentPoint = QCursor::pos();
+#endif
         currentMouseX = currentPoint.x();
         currentMouseY = currentPoint.y();
 
