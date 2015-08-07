@@ -275,7 +275,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
+            X11Extras::setCustomDisplay(cmdutility.getDisplayString());
+            X11Extras::getInstance()->syncDisplay();
             if (X11Extras::getInstance()->display() == NULL)
             {
                 appLogger.LogError(QObject::tr("Display string \"%1\" is not valid.")
@@ -289,7 +290,7 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
-                X11Extras::deleteInstance();
+                //X11Extras::deleteInstance();
 
                 exit(EXIT_FAILURE);
             }
@@ -752,7 +753,7 @@ int main(int argc, char *argv[])
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
-    X11Extras::deleteInstance();
+    //X11Extras::deleteInstance();
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     #endif

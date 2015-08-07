@@ -18,6 +18,7 @@
 #include <unistd.h>
 //#include <QDebug>
 #include <QFileInfo>
+#include <QThreadStorage>
 
 #include "common.h"
 
@@ -32,12 +33,17 @@ const QString X11Extras::mouseDeviceName = PadderCommon::mouseDeviceName;
 const QString X11Extras::keyboardDeviceName = PadderCommon::keyboardDeviceName;
 const QString X11Extras::xtestMouseDeviceName = QString("Virtual core XTEST pointer");
 
+QString X11Extras::_customDisplayString = QString("");
+
+static QThreadStorage<X11Extras*> displays;
+
 X11Extras* X11Extras::_instance = 0;
 
 X11Extras::X11Extras(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    knownAliases()
 {
-    knownAliases = QHash<QString, QString> ();
+    //knownAliases = QHash<QString, QString> ();
     _display = XOpenDisplay(NULL);
     populateKnownAliases();
 }
@@ -51,26 +57,46 @@ X11Extras::~X11Extras()
     {
         XCloseDisplay(display());
         _display = 0;
-        _customDisplayString = "";
+        //_customDisplayString = "";
     }
 }
 
 X11Extras *X11Extras::getInstance()
 {
-    if (!_instance)
+    /*if (!_instance)
     {
         _instance = new X11Extras();
     }
 
     return _instance;
+    */
+    X11Extras *temp = 0;
+    if (!displays.hasLocalData())
+    {
+        temp = new X11Extras();
+        displays.setLocalData(temp);
+    }
+    else
+    {
+        temp = displays.localData();
+    }
+
+    return temp;
 }
 
 void X11Extras::deleteInstance()
 {
-    if (_instance)
+    /*if (_instance)
     {
         delete _instance;
         _instance = 0;
+    }
+    */
+    if (displays.hasLocalData())
+    {
+        X11Extras *temp = displays.localData();
+        delete temp;
+        displays.setLocalData(0);
     }
 }
 
@@ -98,7 +124,7 @@ void X11Extras::closeDisplay()
     {
         XCloseDisplay(display());
         _display = 0;
-        _customDisplayString = "";
+        //_customDisplayString = "";
     }
 }
 
@@ -108,7 +134,7 @@ void X11Extras::closeDisplay()
 void X11Extras::syncDisplay()
 {
     _display = XOpenDisplay(NULL);
-    _customDisplayString = "";
+    //_customDisplayString = "";
 }
 
 /**
@@ -120,7 +146,7 @@ void X11Extras::syncDisplay(QString displayString)
 {
     QByteArray tempByteArray = displayString.toLocal8Bit();
     _display = XOpenDisplay(tempByteArray.constData());
-    if (_display)
+    /*if (_display)
     {
         _customDisplayString = displayString;
     }
@@ -128,6 +154,12 @@ void X11Extras::syncDisplay(QString displayString)
     {
         _customDisplayString = "";
     }
+    */
+}
+
+void X11Extras::setCustomDisplay(QString displayString)
+{
+    _customDisplayString = displayString;
 }
 
 /**

@@ -43,6 +43,8 @@ public:
         }
     };
 
+    ~X11Extras();
+
     unsigned long appRootWindow(int screen = -1);
     Display* display();
     bool hasValidDisplay();
@@ -54,7 +56,7 @@ public:
     void closeDisplay();
     void syncDisplay();
     void syncDisplay(QString displayString);
-    QString getXDisplayString();
+    static QString getXDisplayString();
     QString getWindowTitle(Window window);
     QString getWindowClass(Window window);
     unsigned long getWindowInFocus();
@@ -64,6 +66,8 @@ public:
     void x11ResetMouseAccelerationChange(QString pointerName);
     struct ptrInformation getPointInformation();
     struct ptrInformation getPointInformation(QString pointerName);
+
+    static void setCustomDisplay(QString displayString);
 
     static X11Extras* getInstance();
     static void deleteInstance();
@@ -75,7 +79,6 @@ public:
 
 protected:
     explicit X11Extras(QObject *parent = 0);
-    ~X11Extras();
 
     void populateKnownAliases();
     bool windowHasProperty(Display *display, Window window, Atom atom);
@@ -85,7 +88,7 @@ protected:
     Display *_display;
     static X11Extras *_instance;
     QHash<QString, QString> knownAliases;
-    QString _customDisplayString;
+    static QString _customDisplayString;
 
 signals:
     
