@@ -47,6 +47,7 @@ public:
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
     virtual QString getActiveZoneSummary();
+    virtual QString getCalculatedActiveZoneSummary();
 
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();

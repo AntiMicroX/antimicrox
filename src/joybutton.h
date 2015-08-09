@@ -83,6 +83,7 @@ public:
     virtual QString getSlotsString();
     virtual QList<JoyButtonSlot*> getActiveZoneList();
     virtual QString getActiveZoneSummary();
+    virtual QString getCalculatedActiveZoneSummary();
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
 
@@ -155,6 +156,8 @@ public:
     TurboMode getTurboMode();
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
+
+    bool hasActiveSlots();
 
     static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value);
     double getEasingDuration();
@@ -461,6 +464,9 @@ protected:
     QReadWriteLock activeZoneLock;
     QReadWriteLock assignmentsLock;
 
+    QString activeZoneString;
+    QTimer activeZoneTimer;
+
     static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
 
@@ -575,6 +581,7 @@ private slots:
     void checkForSetChange();
     void keyPressEvent();
     void slotSetChange();
+    void buildActiveZoneSummaryString();
 };
 
 

@@ -99,7 +99,7 @@ QString JoyControlStickButtonPushButton::generateLabel()
         }
         else
         {
-            temp = button->getActiveZoneSummary().replace("&", "&&");
+            temp = button->getCalculatedActiveZoneSummary().replace("&", "&&");
         }
     }
 

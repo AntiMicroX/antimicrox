@@ -230,6 +230,24 @@ QString JoyControlStickButton::getActiveZoneSummary()
     return temp;
 }
 
+QString JoyControlStickButton::getCalculatedActiveZoneSummary()
+{
+    JoyControlStickModifierButton *tempButton = stick->getModifierButton();
+    QString temp;
+    QStringList stringlist;
+
+    if (tempButton && tempButton->getButtonState() &&
+        tempButton->hasActiveSlots() && getButtonState())
+    {
+        stringlist.append(tempButton->getCalculatedActiveZoneSummary());
+    }
+
+    stringlist.append(JoyButton::getCalculatedActiveZoneSummary());
+    temp = stringlist.join(", ");
+
+    return temp;
+}
+
 double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
 {
     return stick->calculateLastMouseDirectionalDistance(this);

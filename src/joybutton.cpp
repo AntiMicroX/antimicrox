@@ -146,6 +146,10 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
     connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
     connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
     connect(&slotSetChangeTimer, SIGNAL(timeout()), this, SLOT(slotSetChange()));
+    connect(&activeZoneTimer, SIGNAL(timeout()), this, SLOT(buildActiveZoneSummaryString()));
+
+    activeZoneTimer.setInterval(0);
+    activeZoneTimer.setSingleShot(true);
 
     // Will only matter on the first call
     establishMouseTimerConnections();
@@ -999,7 +1003,8 @@ void JoyButton::activateSlots()
         }
 #endif
 
-        emit activeZoneChanged();
+        //emit activeZoneChanged();
+        activeZoneTimer.start();
     }
 }
 
@@ -2174,7 +2179,7 @@ QString JoyButton::getName(bool forceFullFormat, bool displayNames)
     }
     else
     {
-        newlabel.append(getActiveZoneSummary());
+        newlabel.append(getCalculatedActiveZoneSummary());
     }
     return newlabel;
 }
@@ -2255,6 +2260,17 @@ QString JoyButton::getActiveZoneSummary()
     QList<JoyButtonSlot*> tempList = getActiveZoneList();
     QString temp = buildActiveZoneSummary(tempList);
     return temp;
+}
+
+QString JoyButton::getCalculatedActiveZoneSummary()
+{
+    return this->activeZoneString;
+}
+
+void JoyButton::buildActiveZoneSummaryString()
+{
+    this->activeZoneString = getActiveZoneSummary();
+    emit activeZoneChanged();
 }
 
 QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
@@ -3986,7 +4002,8 @@ void JoyButton::releaseActiveSlots()
             cursorRemainderY = 0;
         }
 
-        emit activeZoneChanged();
+        //emit activeZoneChanged();
+        activeZoneTimer.start();
 
 #ifdef Q_OS_WIN
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
@@ -5366,6 +5383,8 @@ void JoyButton::resetProperties()
     maxMouseDistanceAccelThreshold = DEFAULTMAXACCELTHRESHOLD;
     startAccelMultiplier = DEFAULTSTARTACCELMULTIPLIER;
     accelDuration = DEFAULTACCELEASINGDURATION;
+
+    activeZoneTimer.start();
 }
 
 bool JoyButton::isModifierButton()
@@ -5614,4 +5633,9 @@ bool JoyButton::shouldInvokeMouseEvents()
 void JoyButton::invokeMouseEvents()
 {
     mouseHelper.mouseEvent();
+}
+
+bool JoyButton::hasActiveSlots()
+{
+    return !activeSlots.isEmpty();
 }

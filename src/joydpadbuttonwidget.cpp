@@ -37,7 +37,7 @@ QString JoyDPadButtonWidget::generateLabel()
     }
     else
     {
-        temp = button->getActiveZoneSummary();
+        temp = button->getCalculatedActiveZoneSummary();
     }
     temp.replace("&", "&&");
     return temp;
