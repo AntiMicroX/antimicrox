@@ -3646,6 +3646,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+    activeZoneTimer.stop();
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
@@ -3682,6 +3683,8 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 
     isKeyPressed = isButtonPressed = false;
 
+    //buildActiveZoneSummaryString();
+    activeZoneTimer.start();
     quitEvent = true;
 }
 
@@ -3699,6 +3702,7 @@ void JoyButton::eventReset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+    activeZoneTimer.stop();
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
@@ -5384,6 +5388,7 @@ void JoyButton::resetProperties()
     startAccelMultiplier = DEFAULTSTARTACCELMULTIPLIER;
     accelDuration = DEFAULTACCELEASINGDURATION;
 
+    //buildActiveZoneSummaryString();
     activeZoneTimer.start();
 }
 
