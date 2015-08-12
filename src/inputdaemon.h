@@ -90,7 +90,7 @@ signals:
 
 #ifdef USE_SDL_2
     void deviceUpdated(int index, InputDevice *device);
-    void deviceRemoved(int deviceID);
+    void deviceRemoved(SDL_JoystickID deviceID);
     void deviceAdded(InputDevice *device);
 #endif
 

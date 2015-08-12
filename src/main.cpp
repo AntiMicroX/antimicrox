@@ -116,6 +116,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<InputDevice*>();
     qRegisterMetaType<AutoProfileInfo*>();
     qRegisterMetaType<QThread*>();
+    qRegisterMetaType<SDL_JoystickID>();
     qRegisterMetaType<JoyButtonSlot::JoySlotInputAction>("JoyButtonSlot::JoySlotInputAction");
 
     QTextStream outstream(stdout);
@@ -698,7 +699,7 @@ int main(int argc, char *argv[])
     QObject::connect(w, SIGNAL(mappingUpdated(QString,InputDevice*)), joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
     QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)), w, SLOT(testMappingUpdateNow(int,InputDevice*)));
 
-    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(int)), w, SLOT(removeJoyTab(int)),
+    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)), w, SLOT(removeJoyTab(SDL_JoystickID)),
                      Qt::BlockingQueuedConnection);
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)), w, SLOT(addJoyTab(InputDevice*)),
                      Qt::BlockingQueuedConnection);
@@ -712,10 +713,6 @@ int main(int argc, char *argv[])
     {
         appLogger.LogInfo(QObject::tr("Could not raise process priority."), true, true);
     }
-#else
-    // Raise main thread prority. Helps reduce timer delays caused by
-    // the running of other processes.
-    QThread::currentThread()->setPriority(QThread::HighPriority);
 #endif
 
     mainAppHelper.changeMouseThread(inputEventThread);

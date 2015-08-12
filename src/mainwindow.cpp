@@ -1384,7 +1384,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     }
 }
 
-void MainWindow::removeJoyTab(int deviceID)
+void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 {
     bool found = false;
     for (int i=0; i < ui->tabWidget->count() && !found; i++)

@@ -73,7 +73,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         //pollResetTimer.setInterval(11);
         connect(&pollResetTimer, SIGNAL(timeout()), this,
                 SLOT(resetActiveButtonMouseDistances()));
-        thread->start();
+        thread->start(QThread::HighPriority);
     }
     else
     {
@@ -401,7 +401,7 @@ void InputDaemon::removeDevice(InputDevice *device)
 
         refreshIndexes();
 
-        emit deviceRemoved(static_cast<int>(deviceID));
+        emit deviceRemoved(deviceID);
 
         device->closeSDLDevice();
         device->deleteLater();

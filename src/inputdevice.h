@@ -226,5 +226,6 @@ protected slots:
 };
 
 Q_DECLARE_METATYPE(InputDevice*)
+Q_DECLARE_METATYPE(SDL_JoystickID)
 
 #endif // INPUTDEVICE_H
