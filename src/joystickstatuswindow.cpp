@@ -79,7 +79,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     ui->axesScrollArea->setLayout(axesBox);
 
     QGridLayout *buttonsGrid = new QGridLayout();
-    buttonsGrid->setHorizontalSpacing(4);
+    buttonsGrid->setHorizontalSpacing(10);
     buttonsGrid->setVerticalSpacing(10);
 
     int currentRow = 0;
@@ -90,8 +90,9 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
         if (button)
         {
             JoyButtonStatusBox *statusbox = new JoyButtonStatusBox(button);
-            statusbox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-            statusbox->setMinimumSize(30, 30);
+            statusbox->setSizePolicy(QSizePolicy::Expanding,
+                                     QSizePolicy::Expanding);
+
             buttonsGrid->addWidget(statusbox, currentRow, currentColumn);
             currentColumn++;
             if (currentColumn >= 6)

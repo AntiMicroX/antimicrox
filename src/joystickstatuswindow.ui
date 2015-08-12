@@ -268,6 +268,15 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
           <string>Axes</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
           <property name="bottomMargin">
            <number>4</number>
           </property>
@@ -290,8 +299,8 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>350</width>
-               <height>131</height>
+               <width>338</width>
+               <height>142</height>
               </rect>
              </property>
             </widget>
@@ -308,7 +317,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>20</height>
+              <height>10</height>
              </size>
             </property>
            </spacer>
@@ -322,6 +331,15 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
           <string>Buttons</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
           <property name="bottomMargin">
            <number>4</number>
           </property>
@@ -344,8 +362,8 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>350</width>
-               <height>131</height>
+               <width>338</width>
+               <height>141</height>
               </rect>
              </property>
             </widget>
@@ -362,7 +380,7 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>20</height>
+              <height>10</height>
              </size>
             </property>
            </spacer>
@@ -376,6 +394,15 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
           <string>Hats</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_8">
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
           <property name="bottomMargin">
            <number>14</number>
           </property>
