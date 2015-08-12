@@ -888,24 +888,6 @@ double JoyAxis::getButtonsPresetSensitivity()
     return presetSensitivity;
 }
 
-void JoyAxis::setButtonsSmoothing(bool enabled)
-{
-    paxisbutton->setSmoothing(enabled);
-    naxisbutton->setSmoothing(enabled);
-}
-
-bool JoyAxis::getButtonsPresetSmoothing()
-{
-    bool presetSmoothing = false;
-
-    if (paxisbutton->isSmoothingEnabled() == naxisbutton->isSmoothingEnabled())
-    {
-        presetSmoothing = paxisbutton->isSmoothingEnabled();
-    }
-
-    return presetSmoothing;
-}
-
 JoyAxisButton* JoyAxis::getAxisButtonByValue(int value)
 {
     JoyAxisButton *eventbutton = 0;

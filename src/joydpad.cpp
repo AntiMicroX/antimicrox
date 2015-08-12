@@ -663,44 +663,6 @@ QHash<int, JoyDPadButton*> JoyDPad::getApplicableButtons()
     return temphash;
 }
 
-void JoyDPad::setButtonsSmoothing(bool enabled)
-{
-    QHashIterator<int, JoyDPadButton*> iter(buttons);
-    while (iter.hasNext())
-    {
-        JoyDPadButton *button = iter.next().value();
-        button->setSmoothing(enabled);
-    }
-}
-
-bool JoyDPad::getButtonsPresetSmoothing()
-{
-    bool presetSmoothing = false;
-
-    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton*> iter(temphash);
-    while (iter.hasNext())
-    {
-        if (!iter.hasPrevious())
-        {
-            JoyDPadButton *button = iter.next().value();
-            presetSmoothing = button->isSmoothingEnabled();
-        }
-        else
-        {
-            JoyDPadButton *button = iter.next().value();
-            bool temp = button->isSmoothingEnabled();
-            if (temp != presetSmoothing)
-            {
-                presetSmoothing = false;
-                iter.toBack();
-            }
-        }
-    }
-
-    return presetSmoothing;
-}
-
 void JoyDPad::setDPadName(QString tempName)
 {
     if (tempName.length() <= 20 && tempName != dpadName)

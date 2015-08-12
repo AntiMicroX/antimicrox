@@ -118,9 +118,6 @@ public:
     void setButtonsSensitivity(double value);
     double getButtonsPresetSensitivity();
 
-    void setButtonsSmoothing(bool enabled=false);
-    bool getButtonsPresetSmoothing();
-
     void setButtonsWheelSpeedX(int value);
     void setButtonsWheelSpeedY(int value);
 

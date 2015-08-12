@@ -35,7 +35,6 @@ const QString JoyButton::xmlName = "button";
 
 // Set default values for many properties.
 const int JoyButton::ENABLEDTURBODEFAULT = 100;
-const double JoyButton::SMOOTHINGFACTOR = 0.85;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
 const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
@@ -52,7 +51,6 @@ const JoyButton::JoyMouseMovementMode JoyButton::DEFAULTMOUSEMODE = JoyButton::M
 const int JoyButton::DEFAULTSPRINGWIDTH = 0;
 const int JoyButton::DEFAULTSPRINGHEIGHT = 0;
 const double JoyButton::DEFAULTSENSITIVITY = 1.0;
-const bool JoyButton::DEFAULTSMOOTHING = false;
 const int JoyButton::DEFAULTWHEELX = 20;
 const int JoyButton::DEFAULTWHEELY = 20;
 const bool JoyButton::DEFAULTCYCLERESETACTIVE = false;
@@ -4252,7 +4250,6 @@ bool JoyButton::isDefault()
     value = value && (springWidth == DEFAULTSPRINGWIDTH);
     value = value && (springHeight == DEFAULTSPRINGHEIGHT);
     value = value && (sensitivity == DEFAULTSENSITIVITY);
-    value = value && (smoothing == DEFAULTSMOOTHING);
     value = value && (actionName.isEmpty());
     //value = value && (buttonName.isEmpty());
     value = value && (wheelSpeedX == DEFAULTWHEELX);
@@ -4344,17 +4341,6 @@ void JoyButton::setSensitivity(double value)
 double JoyButton::getSensitivity()
 {
     return sensitivity;
-}
-
-void JoyButton::setSmoothing(bool enabled)
-{
-    smoothing = enabled;
-    emit propertyUpdated();
-}
-
-bool JoyButton::isSmoothingEnabled()
-{
-    return smoothing;
 }
 
 bool JoyButton::getWhileHeldStatus()
@@ -5065,7 +5051,6 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->springWidth = springWidth;
     destButton->springHeight = springHeight;
     destButton->sensitivity = sensitivity;
-    destButton->smoothing = smoothing;
     //destButton->setSelection = setSelection;
     //destButton->setSelectionCondition = setSelectionCondition;
     destButton->buttonName = buttonName;
@@ -5346,7 +5331,6 @@ void JoyButton::resetProperties()
     springWidth = 0;
     springHeight = 0;
     sensitivity = 1.0;
-    smoothing = false;
     setSelection = -1;
     setSelectionCondition = SetChangeDisabled;
     ignoresets = false;

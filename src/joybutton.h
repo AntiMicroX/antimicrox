@@ -130,8 +130,6 @@ public:
 
     double getSensitivity();
 
-    void setSmoothing(bool enabled=false);
-    bool isSmoothingEnabled();
     bool getWhileHeldStatus();
     void setWhileHeldStatus(bool status);
 
@@ -226,7 +224,6 @@ public:
 
     // Define default values for many properties.
     static const int ENABLEDTURBODEFAULT;
-    static const double SMOOTHINGFACTOR;
     static const double DEFAULTMOUSESPEEDMOD;
     static const unsigned int DEFAULTKEYREPEATDELAY;
     static const unsigned int DEFAULTKEYREPEATRATE;
@@ -242,7 +239,6 @@ public:
     static const int DEFAULTSPRINGWIDTH;
     static const int DEFAULTSPRINGHEIGHT;
     static const double DEFAULTSENSITIVITY;
-    static const bool DEFAULTSMOOTHING;
     static const int DEFAULTWHEELX;
     static const int DEFAULTWHEELY;
     static const bool DEFAULTCYCLERESETACTIVE;

@@ -2316,44 +2316,6 @@ QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> JoyControlSti
     return temphash;
 }
 
-void JoyControlStick::setButtonsSmoothing(bool enabled)
-{
-    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
-    while (iter.hasNext())
-    {
-        JoyControlStickButton *button = iter.next().value();
-        button->setSmoothing(enabled);
-    }
-}
-
-bool JoyControlStick::getButtonsPresetSmoothing()
-{
-    bool presetSmoothing = false;
-
-    QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
-    while (iter.hasNext())
-    {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            presetSmoothing = button->isSmoothingEnabled();
-        }
-        else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            bool temp = button->isSmoothingEnabled();
-            if (temp != presetSmoothing)
-            {
-                presetSmoothing = false;
-                iter.toBack();
-            }
-        }
-    }
-
-    return presetSmoothing;
-}
-
 void JoyControlStick::setStickName(QString tempName)
 {
     if (tempName.length() <= 20 && tempName != stickName)
