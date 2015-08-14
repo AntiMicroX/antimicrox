@@ -21,8 +21,9 @@
 #include <QString>
 
 #include "joybuttonslot.h"
-#include "mousehelper.h"
+//#include "mousehelper.h"
 #include "springmousemoveinfo.h"
+#include "common.h"
 
 void sendevent (JoyButtonSlot *slot, bool pressed=true);
 void sendevent(int code1, int code2);

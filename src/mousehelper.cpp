@@ -25,6 +25,7 @@ MouseHelper::MouseHelper(QObject *parent) :
     previousCursorLocation[1] = 0;
     pivotPoint[0] = -1;
     pivotPoint[1] = -1;
+    mouseTimer.setParent(this);
     mouseTimer.setSingleShot(true);
     QObject::connect(&mouseTimer, SIGNAL(timeout()), this, SLOT(resetSpringMouseMoving()));
 }
@@ -32,4 +33,26 @@ MouseHelper::MouseHelper(QObject *parent) :
 void MouseHelper::resetSpringMouseMoving()
 {
     springMouseMoving = false;
+}
+
+void MouseHelper::initDeskWid()
+{
+    if (!deskWid)
+    {
+        deskWid = new QDesktopWidget;
+    }
+}
+
+void MouseHelper::deleteDeskWid()
+{
+    if (deskWid)
+    {
+        delete deskWid;
+        deskWid = 0;
+    }
+}
+
+QDesktopWidget* MouseHelper::getDesktopWidget()
+{
+    return deskWid;
 }

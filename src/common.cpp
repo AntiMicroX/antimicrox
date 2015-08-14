@@ -152,4 +152,5 @@ namespace PadderCommon
     QMutex waitMutex;
     QReadWriteLock editingLock;
     bool editingBindings = false;
+    MouseHelper mouseHelperObj;
 }

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QHash>
+#include <QPoint>
 
 class WinExtras : public QObject
 {
@@ -28,6 +29,7 @@ public:
     static void grabCurrentPointerPrecision();
     static QString getCurrentWindowText();
     static bool raiseProcessPriority();
+    static QPoint getCursorPos();
 
 protected:
     explicit WinExtras(QObject *parent = 0);

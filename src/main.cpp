@@ -515,9 +515,11 @@ int main(int argc, char *argv[])
 #ifdef USE_SDL_2
     else if (cmdutility.shouldMapController())
     {
+        PadderCommon::mouseHelperObj.initDeskWid();
         InputDaemon *joypad_worker = new InputDaemon(joysticks, settings);
         inputEventThread = new QThread();
         joypad_worker->moveToThread(inputEventThread);
+        PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
         //QObject::connect(inputEventThread, SIGNAL(started()), joypad_worker, SLOT(refreshJoysticks()));
         inputEventThread->start(QThread::HighPriority);
 
@@ -527,6 +529,7 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()), Qt::BlockingQueuedConnection);
         QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
+        QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()));
 
         int app_result = a->exec();
         inputEventThread->wait();
@@ -653,9 +656,11 @@ int main(int argc, char *argv[])
                           .arg(factory->handler()->getName()), true, true);
     }
 
+    PadderCommon::mouseHelperObj.initDeskWid();
     InputDaemon *joypad_worker = new InputDaemon(joysticks, settings);
     inputEventThread = new QThread();
     joypad_worker->moveToThread(inputEventThread);
+    PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
     //QObject::connect(inputEventThread, SIGNAL(started()), joypad_worker, SLOT(refreshJoysticks()));
     inputEventThread->start(QThread::HighPriority);
 
@@ -689,6 +694,7 @@ int main(int argc, char *argv[])
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()));
 
 #ifdef Q_OS_WIN
     QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));

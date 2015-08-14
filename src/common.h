@@ -31,6 +31,7 @@
 
 #include "config.h"
 #include "antimicrosettings.h"
+#include "mousehelper.h"
 
 #ifdef Q_OS_WIN
 
@@ -130,6 +131,7 @@ namespace PadderCommon
     extern QMutex waitMutex;
     extern bool editingBindings;
     extern QReadWriteLock editingLock;
+    extern MouseHelper mouseHelperObj;
 
     QString preferredProfileDir(AntiMicroSettings *settings);
     QStringList arguments(int &argc, char **argv);

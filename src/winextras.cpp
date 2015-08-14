@@ -491,3 +491,12 @@ bool WinExtras::raiseProcessPriority()
 
     return result;
 }
+
+QPoint WinExtras::getCursorPos()
+{
+    POINT cursorPoint;
+    GetCursorPos(&cursorPoint);
+
+    QPoint temp(cursorPoint.x, cursorPoint.y);
+    return temp;
+}

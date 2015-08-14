@@ -54,7 +54,6 @@
 
 #endif
 
-static MouseHelper mouseHelperObj;
 
 // Create the event used by the operating system.
 void sendevent(JoyButtonSlot *slot, bool pressed)
@@ -90,7 +89,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                      PadderCommon::springModeInfo *relativeSpring,
                      int* const mousePosX, int* const mousePosY)
 {
-    mouseHelperObj.mouseTimer.stop();
+    PadderCommon::mouseHelperObj.mouseTimer.stop();
 
     if ((fullSpring->displacementX >= -2.0 && fullSpring->displacementX <= 1.0 &&
         fullSpring->displacementY >= -2.0 && fullSpring->displacementY <= 1.0) ||
@@ -110,13 +109,13 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         int currentMouseX = 0;
         int currentMouseY = 0;
 
-        QDesktopWidget deskWid;
-        if (fullSpring->screen >= deskWid.screenCount())
+        //QDesktopWidget deskWid;
+        if (fullSpring->screen >= PadderCommon::mouseHelperObj.getDesktopWidget()->screenCount())
         {
             fullSpring->screen = -1;
         }
 
-        QRect deskRect = deskWid.screenGeometry(fullSpring->screen);
+        QRect deskRect = PadderCommon::mouseHelperObj.getDesktopWidget()->screenGeometry(fullSpring->screen);
         width = deskRect.width();
         height = deskRect.height();
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
@@ -163,18 +162,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         unsigned int pivotY = currentMouseY;
         if (relativeSpring)
         {
-            if (mouseHelperObj.pivotPoint[0] != -1)
+            if (PadderCommon::mouseHelperObj.pivotPoint[0] != -1)
             {
-                pivotX = mouseHelperObj.pivotPoint[0];
+                pivotX = PadderCommon::mouseHelperObj.pivotPoint[0];
             }
             else
             {
                 pivotX = currentMouseX;
             }
 
-            if (mouseHelperObj.pivotPoint[1] != -1)
+            if (PadderCommon::mouseHelperObj.pivotPoint[1] != -1)
             {
-                pivotY = mouseHelperObj.pivotPoint[1];
+                pivotY = PadderCommon::mouseHelperObj.pivotPoint[1];
             }
             else
             {
@@ -250,11 +249,11 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #endif
 
             }
-            else if (!mouseHelperObj.springMouseMoving && relativeSpring &&
+            else if (!PadderCommon::mouseHelperObj.springMouseMoving && relativeSpring &&
                 (relativeSpring->displacementX >= -1.0 || relativeSpring->displacementY >= -1.0) &&
                 (diffx >= destRelativeWidth*.013 || diffy >= destRelativeHeight*.013))
             {
-                mouseHelperObj.springMouseMoving = true;
+                PadderCommon::mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                               ymovecoor - currentMouseY);
@@ -270,14 +269,14 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                     sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 #endif
-                mouseHelperObj.mouseTimer.start(
+                PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                //mouseHelperObj.mouseTimer.start(11);
+                //PadderCommon::mouseHelperObj.mouseTimer.start(11);
             }
-            else if (!mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
+            else if (!PadderCommon::mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
             {
-                mouseHelperObj.springMouseMoving = true;
+                PadderCommon::mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
 
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
@@ -295,18 +294,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 }
 #endif
 
-                mouseHelperObj.mouseTimer.start(
+                PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                //mouseHelperObj.mouseTimer.start(11);
+                //PadderCommon::mouseHelperObj.mouseTimer.start(11);
             }
 
-            else if (mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
+            else if (PadderCommon::mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
             {
-                mouseHelperObj.springMouseMoving = false;
+                PadderCommon::mouseHelperObj.springMouseMoving = false;
             }
 
-            else if (mouseHelperObj.springMouseMoving)
+            else if (PadderCommon::mouseHelperObj.springMouseMoving)
             {
 #if defined(Q_OS_UNIX)
                 EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
@@ -324,41 +323,41 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 }
 #endif
 
-                mouseHelperObj.mouseTimer.start(
+                PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                //mouseHelperObj.mouseTimer.start(11);
+                //PadderCommon::mouseHelperObj.mouseTimer.start(11);
             }
 
 
-            mouseHelperObj.previousCursorLocation[0] = currentMouseX;
-            mouseHelperObj.previousCursorLocation[1] = currentMouseY;
-            mouseHelperObj.pivotPoint[0] = fullSpringDestX;
-            mouseHelperObj.pivotPoint[1] = fullSpringDestY;
+            PadderCommon::mouseHelperObj.previousCursorLocation[0] = currentMouseX;
+            PadderCommon::mouseHelperObj.previousCursorLocation[1] = currentMouseY;
+            PadderCommon::mouseHelperObj.pivotPoint[0] = fullSpringDestX;
+            PadderCommon::mouseHelperObj.pivotPoint[1] = fullSpringDestY;
         }
-        else if (mouseHelperObj.previousCursorLocation[0] == xmovecoor &&
-                 mouseHelperObj.previousCursorLocation[1] == ymovecoor)
+        else if (PadderCommon::mouseHelperObj.previousCursorLocation[0] == xmovecoor &&
+                 PadderCommon::mouseHelperObj.previousCursorLocation[1] == ymovecoor)
         {
-            mouseHelperObj.springMouseMoving = false;
+            PadderCommon::mouseHelperObj.springMouseMoving = false;
         }
         else
         {
-            mouseHelperObj.previousCursorLocation[0] = currentMouseX;
-            mouseHelperObj.previousCursorLocation[1] = currentMouseY;
-            mouseHelperObj.pivotPoint[0] = fullSpringDestX;
-            mouseHelperObj.pivotPoint[1] = fullSpringDestY;
+            PadderCommon::mouseHelperObj.previousCursorLocation[0] = currentMouseX;
+            PadderCommon::mouseHelperObj.previousCursorLocation[1] = currentMouseY;
+            PadderCommon::mouseHelperObj.pivotPoint[0] = fullSpringDestX;
+            PadderCommon::mouseHelperObj.pivotPoint[1] = fullSpringDestY;
 
-            mouseHelperObj.mouseTimer.start(
+            PadderCommon::mouseHelperObj.mouseTimer.start(
                         qMax(JoyButton::getMouseRefreshRate(),
                              JoyButton::getGamepadRefreshRate()) + 1);
-            //mouseHelperObj.mouseTimer.start(11);
+            //PadderCommon::mouseHelperObj.mouseTimer.start(11);
         }
     }
     else
     {
-        mouseHelperObj.springMouseMoving = false;
-        mouseHelperObj.pivotPoint[0] = -1;
-        mouseHelperObj.pivotPoint[1] = -1;
+        PadderCommon::mouseHelperObj.springMouseMoving = false;
+        PadderCommon::mouseHelperObj.pivotPoint[0] = -1;
+        PadderCommon::mouseHelperObj.pivotPoint[1] = -1;
     }
 }
 
