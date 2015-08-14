@@ -663,7 +663,7 @@ void SetJoystick::propogateSetStickButtonClick(int button)
     if (stickButton)
     {
         JoyControlStick *stick = stickButton->getStick();
-        if (!stickButton->getIgnoreEventState())
+        if (stick && !stickButton->getIgnoreEventState())
         {
             emit setStickButtonClick(index, stick->getIndex(), button);
         }
