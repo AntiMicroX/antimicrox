@@ -188,24 +188,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     {
         this->graphical = graphical = false;
     }
-#ifdef USE_SDL_2
-    else if (cmdutility->shouldMapController())
-    {
-        this->graphical = graphical = false;
-        if (cmdutility->hasControllerNumber())
-        {
-            unsigned int joypadIndex = cmdutility->getControllerNumber();
-            selectControllerJoyTab(joypadIndex);
-            openGameControllerMappingWindow(true);
-        }
-        else if (cmdutility->hasControllerID())
-        {
-            QString joypadGUID = cmdutility->getControllerID();
-            selectControllerJoyTab(joypadGUID);
-            openGameControllerMappingWindow(true);
-        }
-    }
-#endif
 
     resize(settings->value("WindowSize", size()).toSize());
     move(settings->value("WindowPosition", pos()).toPoint());
@@ -275,9 +257,78 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+#ifdef USE_SDL_2
+void MainWindow::controllerMapOpening()
+{
+    if (cmdutility->shouldMapController())
+    {
+        this->graphical = graphical = false;
+        if (cmdutility->hasControllerNumber())
+        {
+            unsigned int joypadIndex = cmdutility->getControllerNumber();
+            selectControllerJoyTab(joypadIndex);
+            openGameControllerMappingWindow(true);
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            QString joypadGUID = cmdutility->getControllerID();
+            selectControllerJoyTab(joypadGUID);
+            openGameControllerMappingWindow(true);
+        }
+        else
+        {
+            Logger::LogInfo(tr("Could not find a proper controller identifier. "
+                               "Exiting."));
+            qApp->quit();
+        }
+    }
+}
+#endif
+
 void MainWindow::fillButtons()
 {
     fillButtons(joysticks);
+}
+
+void MainWindow::makeJoystickTabs()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    removeJoyTabs();
+
+#ifdef USE_SDL_2
+    // Make temporary QMap with devices inserted using the device index as the
+    // key rather than joystick ID.
+    QMap<SDL_JoystickID, InputDevice*> temp;
+    QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
+    while (iterTemp.hasNext())
+    {
+        iterTemp.next();
+
+        InputDevice *joystick = iterTemp.value();
+        temp.insert(joystick->getJoyNumber(), joystick);
+    }
+
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(temp);
+#else
+    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+#endif
+
+    while (iter.hasNext())
+    {
+        iter.next();
+
+        InputDevice *joystick = iter.value();
+        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, settings, this);
+        QString joytabName = joystick->getSDLName();
+        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
+        ui->tabWidget->addTab(tabwidget, joytabName);
+    }
+
+    if (joysticks > 0)
+    {
+        ui->tabWidget->setCurrentIndex(0);
+        ui->stackedWidget->setCurrentIndex(1);
+    }
 }
 
 void MainWindow::fillButtons(InputDevice *joystick)
@@ -1348,6 +1399,11 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
                 connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
             }
         }
+    }
+    else if (openAsMain)
+    {
+        Logger::LogInfo(tr("Could not find controller. Exiting."));
+        qApp->quit();
     }
 }
 

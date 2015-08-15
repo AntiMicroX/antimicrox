@@ -532,7 +532,14 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()),
                          Qt::DirectConnection);
 
+        QTimer::singleShot(0, w, SLOT(makeJoystickTabs()));
+        QTimer::singleShot(100, w, SLOT(controllerMapOpening()));
+
         int app_result = a->exec();
+
+        // Log any remaining messages if they exist.
+        appLogger.Log();
+
         inputEventThread->wait();
 
         //deleteInputDevices(joysticks);

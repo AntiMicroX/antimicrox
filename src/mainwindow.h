@@ -45,7 +45,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings,
+    MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
+               CommandLineUtility *cmdutility,
+               AntiMicroSettings *settings,
                bool graphical=true, QWidget *parent = 0);
     ~MainWindow();
 
@@ -103,6 +105,7 @@ signals:
 
 public slots:
     void fillButtons();
+    void makeJoystickTabs();
     void fillButtons(InputDevice *joystick);
     void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();
@@ -114,6 +117,7 @@ public slots:
     void changeWindowStatus();
 
 #ifdef USE_SDL_2
+    void controllerMapOpening();
     void testMappingUpdateNow(int index, InputDevice *device);
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
