@@ -530,7 +530,7 @@ of the all default profile option.</source>
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1096"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1322"/>
         <source>Advanced</source>
         <translation>高级选项</translation>
     </message>
@@ -610,7 +610,7 @@ of the all default profile option.</source>
         <translation>0秒</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1464"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1700"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>在按键间插入暂停。</translation>
     </message>
@@ -621,7 +621,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="280"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1425"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1661"/>
         <source>Insert a new blank slot.</source>
         <translation>插入新动作。</translation>
     </message>
@@ -787,7 +787,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1029"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1214"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1440"/>
         <source>Disabled</source>
         <translation>禁用</translation>
     </message>
@@ -912,109 +912,109 @@ of the all default profile option.</source>
         <translation>按下时选择设置8</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="221"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="222"/>
         <source>sec.</source>
         <translation>秒。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="222"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="223"/>
         <source>/sec.</source>
         <translation>/秒。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1101"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1327"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1222"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1266"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1448"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1492"/>
         <source>Select Set %1</source>
         <translation>选择设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1237"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1463"/>
         <source>One Way</source>
         <translation>单向</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1240"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1466"/>
         <source>Two Way</source>
         <translation>双向</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1243"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1469"/>
         <source>While Held</source>
         <translation>按下时</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1354"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1590"/>
         <source>Choose Executable</source>
         <translation>选择可执行文件</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1429"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1665"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
         <translation>“周期”动作之后的动作将在下一次按下相同按钮的时候被执行。可以添加多个“周期”动作来创建一个按键序列中不同的子序列。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1435"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1671"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
         <translation>根据指定时长延迟下个动作开始执行的时间。延迟之前处于活动状态的动作将在延迟结束后保持活动状态。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1442"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1678"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
         <translation>“距离”动作之后的动作只有在轴移出不灵敏区并超过指定距离之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1448"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1684"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
         <translation>插入一个“按下”动作。“按下”动作之后的动作只有在按钮被按下超过指定的时长之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1453"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1689"/>
         <source>Chose a profile to load when this slot is activated.</source>
         <translation>当该动作被执行时，载入所选配置文件。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1457"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1693"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
         <translation>“鼠标变速”动作被处理时，将根据指定的百分比改变所有鼠标速度。这可以用在狙击时减缓鼠标速度。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1468"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1704"/>
         <source>Specify the time that keys past this slot should be held down.</source>
         <translation>按钮被按下超过指定的时长将保持被按下的状态。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1473"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1709"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
         <translation>插入一个“释放”动作。“释放”动作之后的动作只有在按钮被按下超过指定时长并被释放之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1479"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1715"/>
         <source>Change to selected set once slot is activated.</source>
         <translation>该动作被执行时，切换到所选的设置。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1483"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1719"/>
         <source>Full string will be typed when a slot is activated.</source>
         <translation>当该动作被执行时，整个字符串将被键入。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1488"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1724"/>
         <source>Execute program when slot is activated.</source>
         <translation>当该动作被执行时，运行一个程序。</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="670"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1324"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1552"/>
         <source>Choose Profile</source>
         <translation>选择配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1325"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1553"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>配置文件（*.amgp *.xml）</translation>
     </message>
@@ -1209,68 +1209,68 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="77"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="577"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="611"/>
         <source>Mouse (Horizontal)</source>
         <translation>鼠标（水平）</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="82"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="578"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="612"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>鼠标（水平翻转）</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="87"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="579"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="613"/>
         <source>Mouse (Vertical)</source>
         <translation>鼠标（垂直）</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="92"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="580"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="614"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>鼠标（垂直翻转）</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="97"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="581"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="615"/>
         <source>Arrows: Up | Down</source>
         <translation>方向键：上|下</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="102"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="582"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="616"/>
         <source>Arrows: Left | Right</source>
         <translation>方向键：左|右</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="107"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="583"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="617"/>
         <source>Keys: W | S</source>
         <translation>按键：W | S</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="112"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="584"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="618"/>
         <source>Keys: A | D</source>
         <translation>按键：A | D</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="117"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="585"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="619"/>
         <source>NumPad: KP_8 | KP_2</source>
         <translation>数字键盘：8 | 2</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="122"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="586"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="620"/>
         <source>NumPad: KP_4 | KP_6</source>
         <translation>数字键盘：4 | 6</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="127"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="587"/>
-        <location filename="../../../src/axiseditdialog.cpp" line="597"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="621"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="631"/>
         <source>None</source>
         <translation>无</translation>
     </message>
@@ -1361,22 +1361,22 @@ interpret an axis hold or release.</source>
         <translation>当前值：</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.cpp" line="544"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="578"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.cpp" line="558"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="592"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.cpp" line="595"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="629"/>
         <source>Left Mouse Button</source>
         <translation>鼠标左键</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.cpp" line="596"/>
+        <location filename="../../../src/axiseditdialog.cpp" line="630"/>
         <source>Right Mouse Button</source>
         <translation>鼠标右键</translation>
     </message>
@@ -1456,12 +1456,12 @@ this button is being used.</source>
         <translation>高级选项</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="420"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="436"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="425"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="441"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -1726,67 +1726,67 @@ this button is being used.</source>
 <context>
     <name>DPadContextMenu</name>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="42"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="44"/>
         <source>Mouse (Normal)</source>
         <translation>鼠标（正常）</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="50"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>鼠标（水平翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="60"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>鼠标（垂直翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="66"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="68"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>鼠标（水平翻转 + 垂直翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="74"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="76"/>
         <source>Arrows</source>
         <translation>方向键</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="82"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="84"/>
         <source>Keys: W | A | S | D</source>
         <translation>按键：W | A | S | D</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="90"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="92"/>
         <source>NumPad</source>
         <translation>数字键盘</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="98"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="100"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="110"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="112"/>
         <source>Standard</source>
         <translation>标准</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="117"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="119"/>
         <source>Eight Way</source>
         <translation>八向</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="125"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="127"/>
         <source>4 Way Cardinal</source>
         <translation>正四向</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="133"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="135"/>
         <source>4 Way Diagonal</source>
         <translation>斜四向</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="143"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="145"/>
         <source>Mouse Settings</source>
         <translation>鼠标设置</translation>
     </message>
@@ -1919,12 +1919,12 @@ to a diagonal zone of the stick.</source>
         <translation>八向</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.cpp" line="396"/>
+        <location filename="../../../src/dpadeditdialog.cpp" line="454"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadeditdialog.cpp" line="410"/>
+        <location filename="../../../src/dpadeditdialog.cpp" line="468"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -2199,17 +2199,17 @@ to a diagonal zone of the stick.</source>
         <translation>32000</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="122"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="126"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
         <translation>游戏控制器映射（%1）（#%2）</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="422"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="428"/>
         <source>Discard Controller Mapping?</source>
         <translation>放弃修改游戏控制器映射？</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="423"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="429"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
@@ -2279,9 +2279,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="970"/>
-        <location filename="../../../src/joyaxis.cpp" line="979"/>
-        <location filename="../../../src/joyaxis.cpp" line="985"/>
+        <location filename="../../../src/joyaxis.cpp" line="952"/>
+        <location filename="../../../src/joyaxis.cpp" line="961"/>
+        <location filename="../../../src/joyaxis.cpp" line="967"/>
         <source>Axis</source>
         <translation>轴</translation>
     </message>
@@ -2314,74 +2314,74 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxisContextMenu</name>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="57"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="59"/>
         <source>Mouse (Horizontal)</source>
         <translation>鼠标（水平）</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="65"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="67"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>鼠标（水平翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="73"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="75"/>
         <source>Mouse (Vertical)</source>
         <translation>鼠标（垂直）</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="81"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="83"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>鼠标（垂直翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="89"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="91"/>
         <source>Arrows: Up | Down</source>
         <translation>方向键：上|下</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="97"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="99"/>
         <source>Arrows: Left | Right</source>
         <translation>方向键：左|右</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="105"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="107"/>
         <source>Keys: W | S</source>
         <translation>按键：W | S</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="113"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="115"/>
         <source>Keys: A | D</source>
         <translation>按键：A | D</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="121"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="123"/>
         <source>NumPad: KP_8 | KP_2</source>
         <translation>数字键盘：8 | 2</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="129"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="131"/>
         <source>NumPad: KP_4 | KP_6</source>
         <translation>数字键盘：4 | 6</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="137"/>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="336"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="139"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="359"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="146"/>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="345"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="148"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="368"/>
         <source>Mouse Settings</source>
         <translation>鼠标设置</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="320"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="343"/>
         <source>Left Mouse Button</source>
         <translation>鼠标左键</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="328"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="351"/>
         <source>Right Mouse Button</source>
         <translation>鼠标右键</translation>
     </message>
@@ -2389,56 +2389,56 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="333"/>
+        <location filename="../../../src/joybutton.cpp" line="336"/>
         <source>Processing turbo for #%1 - %2</source>
         <translation>正在处理按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="342"/>
+        <location filename="../../../src/joybutton.cpp" line="345"/>
         <source>Finishing turbo for button #%1 - %2</source>
         <translation>正在完成按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="396"/>
+        <location filename="../../../src/joybutton.cpp" line="399"/>
         <source>Processing press for button #%1 - %2</source>
         <translation>正在处理按下按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="413"/>
+        <location filename="../../../src/joybutton.cpp" line="416"/>
         <source>Processing release for button #%1 - %2</source>
         <translation>正在处理释放按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="435"/>
+        <location filename="../../../src/joybutton.cpp" line="438"/>
         <source>Distance change for button #%1 - %2</source>
         <translation>按钮#%1-%2距离改变</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2195"/>
+        <location filename="../../../src/joybutton.cpp" line="2189"/>
+        <location filename="../../../src/joybutton.cpp" line="2197"/>
         <location filename="../../../src/joybutton.cpp" line="2203"/>
-        <location filename="../../../src/joybutton.cpp" line="2209"/>
         <source>Button</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2248"/>
-        <location filename="../../../src/joybutton.cpp" line="2390"/>
-        <location filename="../../../src/joybutton.cpp" line="2487"/>
+        <location filename="../../../src/joybutton.cpp" line="2242"/>
+        <location filename="../../../src/joybutton.cpp" line="2395"/>
+        <location filename="../../../src/joybutton.cpp" line="2499"/>
         <source>[NO KEY]</source>
         <translation>[无按键]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2276"/>
+        <location filename="../../../src/joybutton.cpp" line="2281"/>
         <source>[Set %1 1W]</source>
         <translation>[单向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2284"/>
+        <location filename="../../../src/joybutton.cpp" line="2289"/>
         <source>[Set %1 2W]</source>
         <translation>[双向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2293"/>
+        <location filename="../../../src/joybutton.cpp" line="2298"/>
         <source>[Set %1 WH]</source>
         <translation>[按下时选择设置%1]</translation>
     </message>
@@ -2446,47 +2446,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButtonContextMenu</name>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="37"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="39"/>
         <source>Toggle</source>
         <translation>开关</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="42"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="44"/>
         <source>Turbo</source>
         <translation>连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="49"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="51"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="55"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="57"/>
         <source>Set Select</source>
         <translation>选择设置</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="57"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="59"/>
         <source>Disabled</source>
         <translation>禁用</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="69"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="71"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="81"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="83"/>
         <source>Set %1 1W</source>
         <translation>单向选择设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="92"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="94"/>
         <source>Set %1 2W</source>
         <translation>双向选择设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttoncontextmenu.cpp" line="103"/>
+        <location filename="../../../src/joybuttoncontextmenu.cpp" line="105"/>
         <source>Set %1 WH</source>
         <translation>按下时选择设置%1</translation>
     </message>
@@ -2661,67 +2661,67 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyControlStickContextMenu</name>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="41"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="43"/>
         <source>Mouse (Normal)</source>
         <translation>鼠标（正常）</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="49"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>鼠标（水平翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="57"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="59"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>鼠标（垂直翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="65"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="67"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>鼠标（水平翻转 + 垂直翻转）</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="73"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="75"/>
         <source>Arrows</source>
         <translation>方向键</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="81"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="83"/>
         <source>Keys: W | A | S | D</source>
         <translation>按键：W | A | S | D</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="89"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="91"/>
         <source>NumPad</source>
         <translation>数字键盘</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="97"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="99"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="109"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="111"/>
         <source>Standard</source>
         <translation>标准</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="116"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="118"/>
         <source>Eight Way</source>
         <translation>八向</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="124"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="126"/>
         <source>4 Way Cardinal</source>
         <translation>正四向</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="132"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="134"/>
         <source>4 Way Diagonal</source>
         <translation>斜四向</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="142"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="144"/>
         <source>Mouse Settings</source>
         <translation>鼠标设置</translation>
     </message>
@@ -2957,12 +2957,12 @@ functionality to an analog stick.</source>
         <translation>对角线区域范围：</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="484"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="542"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="498"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="556"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -3029,65 +3029,65 @@ functionality to an analog stick.</source>
     <name>JoyTabWidget</name>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="60"/>
-        <location filename="../../../src/joytabwidget.cpp" line="721"/>
-        <location filename="../../../src/joytabwidget.cpp" line="866"/>
-        <location filename="../../../src/joytabwidget.cpp" line="919"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1062"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2283"/>
+        <location filename="../../../src/joytabwidget.cpp" line="728"/>
+        <location filename="../../../src/joytabwidget.cpp" line="885"/>
+        <location filename="../../../src/joytabwidget.cpp" line="942"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1087"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2308"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;新&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="68"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1506"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1531"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="70"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1507"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1532"/>
         <source>Remove configuration from recent list.</source>
         <translation>从最近使用列表中移除配置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="76"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1509"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1534"/>
         <source>Load</source>
         <translation>载入</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="78"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1510"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1535"/>
         <source>Load configuration file.</source>
         <translation>载入配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="84"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1512"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1537"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="86"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1513"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1538"/>
         <source>Save changes to configuration file.</source>
         <translation>保存更改到配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="93"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1515"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1540"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="95"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1516"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
         <source>Save changes to a new configuration file.</source>
         <translation>保存更改到新的配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="290"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1518"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
         <source>Sets</source>
         <translation>设置</translation>
     </message>
@@ -3103,104 +3103,104 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="301"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1519"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
         <source>Set 1</source>
         <translation>设置1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="305"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1520"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
         <source>Set 2</source>
         <translation>设置2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="309"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1521"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
         <source>Set 3</source>
         <translation>设置3</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="313"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1522"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
         <source>Set 4</source>
         <translation>设置4</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="317"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1523"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
         <source>Set 5</source>
         <translation>设置5</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="321"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1524"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1549"/>
         <source>Set 6</source>
         <translation>设置6</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="325"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1525"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
         <source>Set 7</source>
         <translation>设置7</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="329"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1526"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
         <source>Set 8</source>
         <translation>设置8</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="395"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1532"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
         <source>Stick/Pad Assign</source>
         <translation>摇杆/十字键分配</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="401"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1531"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1556"/>
         <source>Controller Mapping</source>
         <translation>游戏控制器映射</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="408"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1533"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
         <source>Quick Set</source>
         <translation>快速设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="416"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1536"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1561"/>
         <source>Names</source>
         <translation>名称</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="418"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1537"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1562"/>
         <source>Toggle button name displaying.</source>
         <translation>开关按钮名称显示。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="423"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1539"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1564"/>
         <source>Pref</source>
         <translation>偏好设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="425"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1540"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1565"/>
         <source>Change global profile settings.</source>
         <translation>改变全局配置文件设置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="429"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1534"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1542"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1567"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="431"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>还原设置的更改。重新加载配置文件。</translation>
     </message>
@@ -3216,78 +3216,78 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="583"/>
-        <location filename="../../../src/joytabwidget.cpp" line="744"/>
-        <location filename="../../../src/joytabwidget.cpp" line="754"/>
+        <location filename="../../../src/joytabwidget.cpp" line="756"/>
+        <location filename="../../../src/joytabwidget.cpp" line="766"/>
         <source>Config File (*.%1.amgp)</source>
         <translation>配置文件（*.%1.amgp）</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1561"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1614"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1586"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1639"/>
         <source>Save Profile Changes?</source>
         <translation>保存配置文件更改？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1564"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1618"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1589"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1643"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>新配置文件的更改尚未保存。您想保存还是放弃修改当前的配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1622"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1593"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1647"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>配置文件“%1”的更改尚未保存。您想保存还是放弃修改此配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1870"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1895"/>
         <source>Sticks</source>
         <translation>摇杆</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1938"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1989"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1963"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2014"/>
         <source>DPads</source>
         <translation>十字键</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2129"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2154"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>按钮未被分配。请使用“快速设置”来将按键分配到按钮，或取消隐藏空白按钮。</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2319"/>
         <location filename="../../../src/joytabwidget.cpp" line="2344"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2369"/>
         <source>Set %1: %2</source>
         <translation>设置%1：%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2323"/>
         <location filename="../../../src/joytabwidget.cpp" line="2348"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2373"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2356"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2381"/>
         <source>Copy Set Assignments</source>
         <translation>复制设置分配信息</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2357"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2382"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>您确定要从 %1 复制分配信息和设备属性吗？</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="583"/>
-        <location filename="../../../src/joytabwidget.cpp" line="744"/>
-        <location filename="../../../src/joytabwidget.cpp" line="754"/>
+        <location filename="../../../src/joytabwidget.cpp" line="756"/>
+        <location filename="../../../src/joytabwidget.cpp" line="766"/>
         <source>Save Config</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1474"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1481"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1499"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1506"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
@@ -3364,12 +3364,12 @@ to buttons or disable hiding empty buttons.</source>
         <translation>轴</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="322"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="331"/>
         <source>Buttons</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.ui" line="376"/>
+        <location filename="../../../src/joystickstatuswindow.ui" line="394"/>
         <source>Hats</source>
         <translation>帽子开关</translation>
     </message>
@@ -3384,17 +3384,17 @@ to buttons or disable hiding empty buttons.</source>
         <translation>轴%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.cpp" line="117"/>
+        <location filename="../../../src/joystickstatuswindow.cpp" line="118"/>
         <source>Hat %1</source>
         <translation>帽子开关%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.cpp" line="156"/>
+        <location filename="../../../src/joystickstatuswindow.cpp" line="157"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../../src/joystickstatuswindow.cpp" line="159"/>
+        <location filename="../../../src/joystickstatuswindow.cpp" line="160"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
@@ -3807,7 +3807,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1874"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1881"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
@@ -3859,7 +3859,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="682"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1107"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1114"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
@@ -3908,19 +3908,19 @@ is to use all available screens.</source>
 在 Windows 系统上，默认使用所有可用屏幕。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="289"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="285"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
         <translation>另外，对于希望使用较低值的 Windows 用户，如果您未禁用 Windows 的“提高指针精确度”选项，请勾选本程序中的“禁用提高指针精确度”复选框。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="730"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="737"/>
         <source>Select Default Profile Directory</source>
         <translation>选择默认配置文件目录</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1486"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1493"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>您确认要删除这个配置文件吗？</translation>
     </message>
@@ -3961,7 +3961,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="501"/>
+        <location filename="../../../src/mainwindow.cpp" line="509"/>
         <source>&amp;Quit</source>
         <translation>退出 (&amp;Q)</translation>
     </message>
@@ -3972,7 +3972,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="505"/>
+        <location filename="../../../src/mainwindow.cpp" line="513"/>
         <source>&amp;Update Joysticks</source>
         <translation>更新摇杆 (&amp;U)</translation>
     </message>
@@ -3983,7 +3983,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="493"/>
+        <location filename="../../../src/mainwindow.cpp" line="501"/>
         <source>&amp;Hide</source>
         <translation>隐藏 (&amp;H)</translation>
     </message>
@@ -4048,33 +4048,33 @@ the option in Windows.</source>
         <translation>维基页面</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="316"/>
-        <location filename="../../../src/mainwindow.cpp" line="391"/>
-        <location filename="../../../src/mainwindow.cpp" line="1363"/>
-        <location filename="../../../src/mainwindow.cpp" line="1408"/>
-        <location filename="../../../src/mainwindow.cpp" line="1430"/>
-        <location filename="../../../src/mainwindow.cpp" line="1443"/>
+        <location filename="../../../src/mainwindow.cpp" line="321"/>
+        <location filename="../../../src/mainwindow.cpp" line="396"/>
+        <location filename="../../../src/mainwindow.cpp" line="1371"/>
+        <location filename="../../../src/mainwindow.cpp" line="1416"/>
+        <location filename="../../../src/mainwindow.cpp" line="1438"/>
+        <location filename="../../../src/mainwindow.cpp" line="1451"/>
         <source>(%1)</source>
         <translation>（%1）</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="446"/>
-        <location filename="../../../src/mainwindow.cpp" line="450"/>
+        <location filename="../../../src/mainwindow.cpp" line="453"/>
+        <location filename="../../../src/mainwindow.cpp" line="457"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="497"/>
+        <location filename="../../../src/mainwindow.cpp" line="505"/>
         <source>&amp;Restore</source>
         <translation>还原 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1286"/>
+        <location filename="../../../src/mainwindow.cpp" line="1294"/>
         <source>Run as Administrator?</source>
         <translation>以管理员权限运行？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1287"/>
+        <location filename="../../../src/mainwindow.cpp" line="1295"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4082,12 +4082,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 有些以管理员权限运行的游戏无法识别 antimicro 生成的事件，除非 antimicro 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制（UAC）导致的权限问题。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1312"/>
+        <location filename="../../../src/mainwindow.cpp" line="1320"/>
         <source>Failed to elevate program</source>
         <translation>无法提升本程序权限</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1313"/>
+        <location filename="../../../src/mainwindow.cpp" line="1321"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>无法以管理员权限重新运行本程序</translation>
     </message>
@@ -4677,38 +4677,38 @@ it unattended.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="233"/>
+        <location filename="../../../src/main.cpp" line="237"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="241"/>
+        <location filename="../../../src/main.cpp" line="245"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="252"/>
+        <location filename="../../../src/main.cpp" line="256"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="278"/>
-        <location filename="../../../src/main.cpp" line="381"/>
+        <location filename="../../../src/main.cpp" line="283"/>
+        <location filename="../../../src/main.cpp" line="386"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="308"/>
+        <location filename="../../../src/main.cpp" line="313"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="335"/>
+        <location filename="../../../src/main.cpp" line="340"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="705"/>
+        <location filename="../../../src/main.cpp" line="736"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
@@ -4778,22 +4778,22 @@ it unattended.</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="574"/>
+        <location filename="../../../src/main.cpp" line="595"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="601"/>
+        <location filename="../../../src/main.cpp" line="622"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="635"/>
+        <location filename="../../../src/main.cpp" line="656"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="692"/>
+        <location filename="../../../src/main.cpp" line="722"/>
         <source>Could not raise process priority.</source>
         <translation>无法提升进程优先级。</translation>
     </message>
@@ -4917,7 +4917,7 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>UInputEventHandler</name>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="255"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="347"/>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
@@ -4926,14 +4926,14 @@ lsmod | grep uinput</source>
 lsmod | grep uinput</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="268"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="360"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation>无法打开 uinput 设备文件
 请确认您有写入该设备的权限</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="413"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="505"/>
         <source>Using uinput device file %1</source>
         <translation>使用 uinput 设备文件%1</translation>
     </message>
@@ -5938,97 +5938,97 @@ R</translation>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="726"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="738"/>
         <source>Applications</source>
         <translation>应用程序</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="732"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="744"/>
         <source>Browser Back</source>
         <translation>浏览器后退</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="737"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="749"/>
         <source>Browser Favorites</source>
         <translation>浏览器收藏</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="742"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="754"/>
         <source>Browser Forward</source>
         <translation>浏览器前进</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="747"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="759"/>
         <source>Browser Home</source>
         <translation>浏览器主页</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="752"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="764"/>
         <source>Browser Refresh</source>
         <translation>浏览器刷新</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="757"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="769"/>
         <source>Browser Search</source>
         <translation>浏览器搜索</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="762"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="774"/>
         <source>Browser Stop</source>
         <translation>浏览器停止</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="767"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="779"/>
         <source>Calc</source>
         <translation>计算器</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="772"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="784"/>
         <source>Email</source>
         <translation>邮件</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="777"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="789"/>
         <source>Media</source>
         <translation>多媒体</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="782"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="794"/>
         <source>Media Next</source>
         <translation>多媒体下一首</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="787"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="799"/>
         <source>Media Play</source>
         <translation>多媒体播放</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="792"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="804"/>
         <source>Media Previous</source>
         <translation>多媒体上一首</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="797"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="809"/>
         <source>Media Stop</source>
         <translation>多媒体停止</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="802"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="814"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="807"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="819"/>
         <source>Volume Down</source>
         <translation>音量减小</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="812"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="824"/>
         <source>Volume Mute</source>
         <translation>静音</translation>
     </message>
     <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="817"/>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="829"/>
         <source>Volume Up</source>
         <translation>音量增加</translation>
     </message>
@@ -6086,63 +6086,63 @@ R</translation>
 <context>
     <name>X11Extras</name>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="166"/>
+        <location filename="../../../src/x11extras.cpp" line="198"/>
         <source>ESC</source>
         <translation>ESC</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="167"/>
+        <location filename="../../../src/x11extras.cpp" line="199"/>
         <source>Tab</source>
         <translation>Tab</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="168"/>
+        <location filename="../../../src/x11extras.cpp" line="200"/>
         <source>Space</source>
         <translation>Space</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="169"/>
+        <location filename="../../../src/x11extras.cpp" line="201"/>
         <source>DEL</source>
         <translation>DEL</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="170"/>
+        <location filename="../../../src/x11extras.cpp" line="202"/>
         <source>Return</source>
         <translation>Return</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="171"/>
+        <location filename="../../../src/x11extras.cpp" line="203"/>
         <source>KP_Enter</source>
         <translation>KP_Enter</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="172"/>
+        <location filename="../../../src/x11extras.cpp" line="204"/>
         <source>Backspace</source>
         <translation>Backspace</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="634"/>
+        <location filename="../../../src/x11extras.cpp" line="666"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
         <translation>未找到 XInput 扩展。鼠标加速选项将无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="641"/>
-        <location filename="../../../src/x11extras.cpp" line="749"/>
+        <location filename="../../../src/x11extras.cpp" line="673"/>
+        <location filename="../../../src/x11extras.cpp" line="781"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
         <translation>XInput 版本必需至少为2.0。鼠标加速选项将无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="660"/>
+        <location filename="../../../src/x11extras.cpp" line="692"/>
         <source>Virtual pointer found with id=%1.</source>
         <translation>发现虚拟指针 ID=%1。</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="693"/>
+        <location filename="../../../src/x11extras.cpp" line="725"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
         <translation>未找到虚拟指针的 PtrFeedbackClass。鼠标加速选项在 ID=%1 的设备上将无效</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="702"/>
+        <location filename="../../../src/x11extras.cpp" line="734"/>
         <source>Changing mouse acceleration for device with id=%1</source>
         <translation>正在改变 ID=%1 的设备上的鼠标加速选项</translation>
     </message>
@@ -6150,7 +6150,7 @@ R</translation>
 <context>
     <name>XMLConfigReader</name>
     <message>
-        <location filename="../../../src/xmlconfigreader.cpp" line="126"/>
+        <location filename="../../../src/xmlconfigreader.cpp" line="127"/>
         <source>Could not write updated profile XML to file %1.</source>
         <translation>无法将更新后的配置 XML 写入文件 %1。</translation>
     </message>
