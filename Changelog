@@ -1,3 +1,22 @@
+2015-08-15 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.18
+
+* Perform event simulation in its own thread. Timer used for mouse speed
+calculations has improved as a result.
+
+* Slow down Enhanced Precision mouse acceleration curve slightly. Changes
+were mainly due to overall mouse emulation being tweaked.
+
+* Distributing 64 bit builds for Windows again.
+
+* Using a simulated event to click the minimize button in title bar now works
+on Windows. The move to using a dedicated thread for event simulation allows
+that to work now.
+
+* Simplified Chinese translation added thanks to zzpxyx.
+
+
 2015-08-02 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.17
