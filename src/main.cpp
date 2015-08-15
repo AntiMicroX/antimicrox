@@ -427,7 +427,8 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("/");
 #endif
 
-    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath, QSettings::IniFormat);
+    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath,
+                                                        QSettings::IniFormat);
     settings->importFromCommandLine(cmdutility);
 
     QString targetLang = QLocale::system().name();
@@ -675,18 +676,22 @@ int main(int argc, char *argv[])
     MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
     FirstRunWizard *runWillard = 0;
 
-    if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
-    {
-        runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
-        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
-        runWillard->show();
-    }
-
     w->setAppTranslator(&qtTranslator);
     w->setTranslator(&myappTranslator);
 
     AppLaunchHelper mainAppHelper(settings, w->getGraphicalStatus());
-    mainAppHelper.initRunMethods();
+
+    if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
+    {
+        runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
+        QObject::connect(runWillard, SIGNAL(finished(int)), &mainAppHelper, SLOT(initRunMethods()));
+        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
+        runWillard->show();
+    }
+    else
+    {
+        mainAppHelper.initRunMethods();
+    }
 
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)),
@@ -733,7 +738,7 @@ int main(int argc, char *argv[])
     mainAppHelper.changeMouseThread(inputEventThread);
 
     QTimer::singleShot(0, w, SLOT(fillButtons()));
-    QTimer::singleShot(20, w, SLOT(changeWindowStatus()));
+    QTimer::singleShot(100, w, SLOT(changeWindowStatus()));
 
     int app_result = a->exec();
 

@@ -2262,10 +2262,21 @@ QString JoyButton::getCalculatedActiveZoneSummary()
     return this->activeZoneString;
 }
 
+/**
+ * @brief Generate active zone string and notify other objects.
+ */
 void JoyButton::buildActiveZoneSummaryString()
 {
     this->activeZoneString = getActiveZoneSummary();
     emit activeZoneChanged();
+}
+
+/**
+ * @brief Generate active zone string but do not notify any other object.
+ */
+void JoyButton::localBuildActiveZoneSummaryString()
+{
+    this->activeZoneString = getActiveZoneSummary();
 }
 
 QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
@@ -2751,7 +2762,7 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
         checkTurboCondition(slot);
         assignmentsLock.unlock();
 
-        buildActiveZoneSummaryString();
+        localBuildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -2808,7 +2819,7 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
         assignments.append(newSlot);
         assignmentsLock.unlock();
 
-        buildActiveZoneSummaryString();
+        localBuildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -2878,7 +2889,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
         assignmentsLock.unlock();
 
-        buildActiveZoneSummaryString();
+        localBuildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -3626,7 +3637,7 @@ void JoyButton::removeAssignedSlot(int index)
 
         tempAssignLocker.unlock();
 
-        buildActiveZoneSummaryString();
+        localBuildActiveZoneSummaryString();
         emit slotsChanged();
     }
 }

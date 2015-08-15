@@ -572,6 +572,7 @@ private slots:
     void keyPressEvent();
     void slotSetChange();
     void buildActiveZoneSummaryString();
+    void localBuildActiveZoneSummaryString();
 };
 
 

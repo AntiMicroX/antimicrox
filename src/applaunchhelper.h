@@ -33,7 +33,6 @@ public:
     explicit AppLaunchHelper(AntiMicroSettings *settings, bool graphical=false,
                              QObject *parent=0);
 
-    void initRunMethods();
     void printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks);
 
 protected:
@@ -55,6 +54,7 @@ public slots:
     void appQuitPointerPrecision();
 #endif
 
+    void initRunMethods();
     void revertMouseThread();
     void changeMouseThread(QThread *thread);
 
