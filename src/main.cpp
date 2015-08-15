@@ -529,7 +529,8 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()), Qt::BlockingQueuedConnection);
         QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
-        QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()));
+        QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()),
+                         Qt::DirectConnection);
 
         int app_result = a->exec();
         inputEventThread->wait();
@@ -694,7 +695,8 @@ int main(int argc, char *argv[])
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
     QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()));
+    QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()),
+                     Qt::DirectConnection);
 
 #ifdef Q_OS_WIN
     QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
