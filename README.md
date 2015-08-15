@@ -322,6 +322,7 @@ Anton Tornqvist <antont@inbox.lv>
 ### Translators
 
 VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese  
+zzpxyx - Chinese  
 Belleguic Terence <hizo@free.fr> - French  
 Leonard Koenig <leonard.r.koenig@googlemail.com> - German  
 phob - German  
