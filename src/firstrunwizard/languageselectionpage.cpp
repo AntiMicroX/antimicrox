@@ -61,6 +61,7 @@ LanguageSelectionPage::LanguageSelectionPage(AntiMicroSettings *settings,
     langListWidget->addItem(tr("German"));
     langListWidget->addItem(tr("Russian"));
     langListWidget->addItem(tr("Serbian"));
+    langListWidget->addItem(tr("Simplified Chinese"));
     langListWidget->addItem(tr("Ukrainian"));
 
     tempLayout->addWidget(langListWidget);
@@ -96,6 +97,10 @@ QString LanguageSelectionPage::languageForIndex(int currentIndex)
         temp = "sr";
     }
     else if (currentIndex == 7)
+    {
+        temp = "zh_CN";
+    }
+    else if (currentIndex == 8)
     {
         temp = "uk";
     }

@@ -782,6 +782,10 @@ void MainSettingsDialog::checkLocaleChange()
         }
         else if (row == 7)
         {
+            newLocale = "zh_CN";
+        }
+        else if (row == 8)
+        {
             newLocale = "uk";
         }
 
@@ -790,26 +794,6 @@ void MainSettingsDialog::checkLocaleChange()
         emit changeLanguage(newLocale);
     }
 }
-
-/*void MainSettingsDialog::findLocaleItem()
-{
-    QLocale::Language currentLocale = QLocale().language();
-    QLocale::Language systemLocale = QLocale::system().language();
-
-    if (currentLocale == systemLocale)
-    {
-        ui->localeListWidget->setCurrentRow(0);
-    }
-    else if (currentLocale == QLocale::English)
-    {
-        ui->localeListWidget->setCurrentRow(1);
-    }
-    else if (currentLocale == QLocale::Portuguese)
-    {
-        ui->localeListWidget->setCurrentRow(2);
-    }
-}
-*/
 
 void MainSettingsDialog::populateAutoProfiles()
 {
@@ -1860,9 +1844,13 @@ void MainSettingsDialog::changePresetLanguage()
         {
             ui->localeListWidget->setCurrentRow(6);
         }
-        else if (targetLang == "uk")
+        else if (targetLang == "zh_CN")
         {
             ui->localeListWidget->setCurrentRow(7);
+        }
+        else if (targetLang == "uk")
+        {
+            ui->localeListWidget->setCurrentRow(8);
         }
         else
         {

@@ -590,7 +590,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <widget class="QListWidget" name="localeListWidget">
            <property name="currentRow">
-            <number>0</number>
+            <number>-1</number>
            </property>
            <item>
             <property name="text">
@@ -625,6 +625,11 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            <item>
             <property name="text">
              <string>Serbian</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Simplified Chinese</string>
             </property>
            </item>
            <item>
