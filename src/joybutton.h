@@ -533,12 +533,6 @@ public slots:
     virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
 
-    //bool setAssignedSlot(int code, int mode);
-
-    //bool setAssignedSlot(int code, unsigned int alias, int mode);
-
-    //bool setAssignedSlot(int code, unsigned int alias, int index, int mode);
-
     bool setAssignedSlot(int code, unsigned int alias, int index,
                          JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 

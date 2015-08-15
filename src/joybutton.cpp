@@ -2530,14 +2530,22 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
             double tempDistance = getTotalSlotDistance(slot);
             if (tempDistance <= 1.0)
             {
+                assignmentsLock.lockForWrite();
                 assignments.append(slot);
+                assignmentsLock.unlock();
+
+                buildActiveZoneSummaryString();
                 slotInserted = true;
             }
         }
     }
     else if (slot->getSlotCode() >= 0)
     {
+        assignmentsLock.lockForWrite();
         assignments.append(slot);
+        assignmentsLock.unlock();
+
+        buildActiveZoneSummaryString();
         slotInserted = true;
     }
 
@@ -2569,8 +2577,6 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
 bool JoyButton::setAssignedSlot(int code, unsigned int alias,
                                 JoyButtonSlot::JoySlotInputAction mode)
 {
-    assignmentsLock.lockForWrite();
-
     bool slotInserted = false;
     JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
@@ -2580,14 +2586,22 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias,
             double tempDistance = getTotalSlotDistance(slot);
             if (tempDistance <= 1.0)
             {
+                assignmentsLock.lockForWrite();
                 assignments.append(slot);
+                assignmentsLock.unlock();
+
+                buildActiveZoneSummaryString();
                 slotInserted = true;
             }
         }
     }
     else if (slot->getSlotCode() >= 0)
     {
+        assignmentsLock.lockForWrite();
         assignments.append(slot);
+        assignmentsLock.unlock();
+
+        buildActiveZoneSummaryString();
         slotInserted = true;
     }
 
@@ -2604,8 +2618,6 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias,
             slot = 0;
         }
     }
-
-    assignmentsLock.unlock();
 
     return slotInserted;
 }
@@ -2669,6 +2681,8 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index,
 
         checkTurboCondition(slot);
         assignmentsLock.unlock();
+
+        buildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -2735,8 +2749,10 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
         }
 
         checkTurboCondition(slot);
-
         assignmentsLock.unlock();
+
+        buildActiveZoneSummaryString();
+
         emit slotsChanged();
     }
     else
@@ -2791,6 +2807,8 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
         checkTurboCondition(newSlot);
         assignments.append(newSlot);
         assignmentsLock.unlock();
+
+        buildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -2860,6 +2878,8 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
         assignmentsLock.unlock();
 
+        buildActiveZoneSummaryString();
+
         emit slotsChanged();
     }
     else
@@ -2870,25 +2890,6 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
     return permitSlot;
 }
-
-/*bool JoyButton::setAssignedSlot(int code, int mode)
-{
-    return setAssignedSlot(code,
-                           static_cast<JoyButtonSlot::JoySlotInputAction>(mode));
-}
-
-bool JoyButton::setAssignedSlot(int code, unsigned int alias, int mode)
-{
-    return setAssignedSlot(code, alias,
-                           static_cast<JoyButtonSlot::JoySlotInputAction>(mode));
-}
-
-bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index, int mode)
-{
-    return setAssignedSlot(code, alias, index,
-                           static_cast<JoyButtonSlot::JoySlotInputAction>(mode));
-}
-*/
 
 QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
 {
@@ -3623,6 +3624,9 @@ void JoyButton::removeAssignedSlot(int index)
             slot = 0;
         }
 
+        tempAssignLocker.unlock();
+
+        buildActiveZoneSummaryString();
         emit slotsChanged();
     }
 }
