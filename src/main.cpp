@@ -119,6 +119,17 @@ int main(int argc, char *argv[])
     qRegisterMetaType<SDL_JoystickID>();
     qRegisterMetaType<JoyButtonSlot::JoySlotInputAction>("JoyButtonSlot::JoySlotInputAction");
 
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+    #endif
+    XInitThreads();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    #endif
+#endif
+
     QTextStream outstream(stdout);
     QTextStream errorstream(stderr);
 
@@ -291,7 +302,7 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
-                //X11Extras::deleteInstance();
+                X11Extras::getInstance()->closeDisplay();
 
                 exit(EXIT_FAILURE);
             }
@@ -325,7 +336,7 @@ int main(int argc, char *argv[])
             if (QApplication::platformName() == QStringLiteral("xcb"))
             {
         #endif
-            X11Extras::deleteInstance();
+            X11Extras::getInstance()->closeDisplay();
 
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
             }
@@ -352,7 +363,7 @@ int main(int argc, char *argv[])
             if (QApplication::platformName() == QStringLiteral("xcb"))
             {
         #endif
-            X11Extras::deleteInstance();
+            X11Extras::getInstance()->closeDisplay();
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
             }
         #endif
@@ -393,7 +404,7 @@ int main(int argc, char *argv[])
                 delete localServer;
                 localServer = 0;
 
-                X11Extras::deleteInstance();
+                X11Extras::getInstance()->closeDisplay();
 
                 exit(EXIT_FAILURE);
             }
@@ -501,7 +512,7 @@ int main(int argc, char *argv[])
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
         #endif
-        X11Extras::deleteInstance();
+        X11Extras::getInstance()->closeDisplay();
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
         #endif
@@ -561,7 +572,7 @@ int main(int argc, char *argv[])
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
     #endif
-        X11Extras::deleteInstance();
+        X11Extras::getInstance()->closeDisplay();
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
     #endif
@@ -648,7 +659,7 @@ int main(int argc, char *argv[])
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
   #endif
-        X11Extras::deleteInstance();
+        X11Extras::getInstance()->closeDisplay();
   #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
   #endif
@@ -763,18 +774,15 @@ int main(int argc, char *argv[])
 
     AntKeyMapper::getInstance()->deleteInstance();
 
-#ifdef Q_OS_UNIX
-  #ifdef WITH_X11
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
-    //X11Extras::deleteInstance();
+    X11Extras::getInstance()->closeDisplay();
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     #endif
-  #endif
 #endif
 
     EventHandlerFactory::getInstance()->handler()->cleanup();

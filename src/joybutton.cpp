@@ -2259,7 +2259,10 @@ QString JoyButton::getActiveZoneSummary()
 
 QString JoyButton::getCalculatedActiveZoneSummary()
 {
-    return this->activeZoneString;
+    activeZoneStringLock.lockForRead();
+    QString temp = this->activeZoneString;
+    activeZoneStringLock.unlock();
+    return temp;
 }
 
 /**
@@ -2267,7 +2270,10 @@ QString JoyButton::getCalculatedActiveZoneSummary()
  */
 void JoyButton::buildActiveZoneSummaryString()
 {
+    activeZoneStringLock.lockForWrite();
     this->activeZoneString = getActiveZoneSummary();
+    activeZoneStringLock.unlock();
+
     emit activeZoneChanged();
 }
 
@@ -2276,7 +2282,9 @@ void JoyButton::buildActiveZoneSummaryString()
  */
 void JoyButton::localBuildActiveZoneSummaryString()
 {
+    activeZoneStringLock.lockForWrite();
     this->activeZoneString = getActiveZoneSummary();
+    activeZoneStringLock.unlock();
 }
 
 QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
@@ -2411,21 +2419,28 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 
 QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
 {
-    QReadLocker *tempLocker = 0;
-
     QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
     QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
+
     QListIterator<JoyButtonSlot*> *iter = 0;
+    QReadWriteLock *tempLock = 0;
     //bool slotsActive = !activeSlots.isEmpty();
     if (getButtonState())
     {
-        tempLocker = new QReadLocker(&activeZoneLock);
+        //tempLocker = new QReadLocker(&activeZoneLock);
+        tempLock = &activeZoneLock;
         iter = &activeSlotsIter;
     }
     else
     {
-        tempLocker = new QReadLocker(&assignmentsLock);
+        //tempLocker = new QReadLocker(&assignmentsLock);
+        tempLock = &assignmentsLock;
         iter = &assignmentsIter;
+    }
+
+    QReadLocker tempLocker(tempLock);
+    if (tempLock == &assignmentsLock)
+    {
         if (previousCycle)
         {
             iter->findNext(previousCycle);
@@ -2477,8 +2492,8 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
         }
     }
 
-    delete tempLocker;
-    tempLocker = 0;
+    //delete tempLocker;
+    //tempLocker = 0;
 
     return tempSlotList;
 }
@@ -5385,6 +5400,7 @@ void JoyButton::resetProperties()
     accelDuration = DEFAULTACCELEASINGDURATION;
 
     //buildActiveZoneSummaryString();
+    activeZoneString = tr("[NO KEY]");
     activeZoneTimer.start();
 }
 

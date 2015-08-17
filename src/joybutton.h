@@ -459,6 +459,7 @@ protected:
 
     QReadWriteLock activeZoneLock;
     QReadWriteLock assignmentsLock;
+    QReadWriteLock activeZoneStringLock;
 
     QString activeZoneString;
     QTimer activeZoneTimer;
