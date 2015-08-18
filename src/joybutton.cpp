@@ -5021,7 +5021,10 @@ void JoyButton::establishMouseTimerConnections()
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
             SLOT(mouseEvent()), Qt::UniqueConnection);
 
-    staticMouseEventTimer.setInterval(IDLEMOUSEREFRESHRATE);
+    if (staticMouseEventTimer.interval() != IDLEMOUSEREFRESHRATE)
+    {
+        staticMouseEventTimer.setInterval(IDLEMOUSEREFRESHRATE);
+    }
 
     /*if (!staticMouseEventTimer.isActive())
     {
