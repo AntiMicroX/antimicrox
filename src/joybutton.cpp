@@ -5021,6 +5021,8 @@ void JoyButton::establishMouseTimerConnections()
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
             SLOT(mouseEvent()), Qt::UniqueConnection);
 
+    staticMouseEventTimer.setInterval(IDLEMOUSEREFRESHRATE);
+
     /*if (!staticMouseEventTimer.isActive())
     {
         lastMouseTime.start();
@@ -5262,19 +5264,21 @@ void JoyButton::setMouseRefreshRate(int refresh)
             {
                 QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                                           Q_ARG(int, mouseRefreshRate));
-                //staticMouseEventTimer.start(mouseRefreshRate);
             }
             else
             {
                 // Restart QTimer to keep QTimer in line with QTime
                 QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                                           Q_ARG(int, temp));
-                //staticMouseEventTimer.start(temp);
             }
 
             // Clear current mouse history
             mouseHistoryX.clear();
             mouseHistoryY.clear();
+        }
+        else
+        {
+            staticMouseEventTimer.setInterval(IDLEMOUSEREFRESHRATE);
         }
 
         mouseHelper.carryMouseRefreshRateUpdate(mouseRefreshRate);
