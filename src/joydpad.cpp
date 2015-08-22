@@ -853,8 +853,36 @@ void JoyDPad::createDeskEvent(bool ignoresets)
             }
             else if (currentMode == FourWayCardinal && prevDirection)
             {
-                prevButton = buttons.value(prevDirection);
-                prevButton->joyEvent(false, ignoresets);
+                if ((prevDirection == JoyDPadButton::DpadUp ||
+                    prevDirection == JoyDPadButton::DpadRightUp) &&
+                    (value != JoyDPadButton::DpadUp && value != JoyDPadButton::DpadRightUp))
+                {
+                    prevButton = buttons.value(JoyDPadButton::DpadUp);
+                }
+                else if ((prevDirection == JoyDPadButton::DpadDown ||
+                         prevDirection == JoyDPadButton::DpadLeftDown) &&
+                         (value != JoyDPadButton::DpadDown && value != JoyDPadButton::DpadLeftDown))
+                {
+                    prevButton = buttons.value(JoyDPadButton::DpadDown);
+                }
+                else if ((prevDirection == JoyDPadButton::DpadLeft ||
+                         prevDirection == JoyDPadButton::DpadLeftUp) &&
+                         (value != JoyDPadButton::DpadLeft && value != JoyDPadButton::DpadLeftUp))
+                {
+                    prevButton = buttons.value(JoyDPadButton::DpadLeft);
+                }
+                else if ((prevDirection == JoyDPadButton::DpadRight ||
+                         prevDirection == JoyDPadButton::DpadRightDown) &&
+                         (value != JoyDPadButton::DpadRight && value != JoyDPadButton::DpadRightDown))
+                {
+                    prevButton = buttons.value(JoyDPadButton::DpadRight);
+                }
+
+                if (prevButton)
+                {
+                    prevButton->joyEvent(false, ignoresets);
+                }
+
             }
             else if (currentMode == FourWayDiagonal && prevDirection)
             {
@@ -934,22 +962,26 @@ void JoyDPad::createDeskEvent(bool ignoresets)
         }
         else if (currentMode == FourWayCardinal)
         {
-            if (value == JoyDPadButton::DpadUp)
+            if (value == JoyDPadButton::DpadUp ||
+                value == JoyDPadButton::DpadRightUp)
             {
                 curButton = buttons.value(JoyDPadButton::DpadUp);
                 curButton->joyEvent(true, ignoresets);
             }
-            else if (value == JoyDPadButton::DpadDown)
+            else if (value == JoyDPadButton::DpadDown ||
+                     value == JoyDPadButton::DpadLeftDown)
             {
                 curButton = buttons.value(JoyDPadButton::DpadDown);
                 curButton->joyEvent(true, ignoresets);
             }
-            else if (value == JoyDPadButton::DpadLeft)
+            else if (value == JoyDPadButton::DpadLeft ||
+                     value == JoyDPadButton::DpadLeftUp)
             {
                 curButton = buttons.value(JoyDPadButton::DpadLeft);
                 curButton->joyEvent(true, ignoresets);
             }
-            else if (value == JoyDPadButton::DpadRight)
+            else if (value == JoyDPadButton::DpadRight ||
+                     value == JoyDPadButton::DpadRightDown)
             {
                 curButton = buttons.value(JoyDPadButton::DpadRight);
                 curButton->joyEvent(true, ignoresets);

@@ -2,9 +2,10 @@
 
 Version 2.18.1
 
-* Fix some threading issues when using X11.
+* Fixed some threading issues when using X11.
 
-* Fix excessive CPU load on startup when no controller is connected.
+* Fixed excessive CPU load on startup when no controller is connected.
+
 
 2015-08-15 Travis Nickles <nickles.travis@gmail.com>
 
