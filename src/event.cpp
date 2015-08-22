@@ -181,12 +181,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             }
         }
 
-        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (fullSpring->displacementX * destMidWidth)): pivotX;
-        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (fullSpring->displacementY * destMidHeight)) : pivotY;
-
-        // Add top left coordinates of screen to new cursor coordinates.
-        xmovecoor += deskRect.x();
-        ymovecoor += deskRect.y();
+        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (fullSpring->displacementX * destMidWidth) + deskRect.x()): pivotX;
+        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (fullSpring->displacementY * destMidHeight) + deskRect.y()) : pivotY;
 
         unsigned int fullSpringDestX = xmovecoor;
         unsigned int fullSpringDestY = ymovecoor;
