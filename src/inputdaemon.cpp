@@ -38,9 +38,9 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     this->graphical = graphical;
     this->settings = settings;
 
-    eventWorker = new SDLEventReader(joysticks, settings, this);
+    eventWorker = new SDLEventReader(joysticks, settings);
     thread = 0;
-    /*if (graphical)
+    if (graphical)
     {
         thread = new QThread();
         eventWorker->moveToThread(thread);
@@ -49,12 +49,11 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     {
         thread = 0;
     }
-    */
 
     if (graphical)
     {
-        //connect(thread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
-        //connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+        connect(thread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
+        connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
         connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
@@ -67,7 +66,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
         // Timer in case SDL does not produce an axis event during a joystick
         // poll.
-        //pollResetTimer.setSingleShot(true);
+        pollResetTimer.setSingleShot(true);
         pollResetTimer.setInterval(
                     qMax(JoyButton::getMouseRefreshRate(),
                          JoyButton::getGamepadRefreshRate()) + 1);
@@ -75,8 +74,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         //pollResetTimer.setInterval(11);
         connect(&pollResetTimer, SIGNAL(timeout()), this,
                 SLOT(resetActiveButtonMouseDistances()));
-        //thread->start(QThread::HighPriority);
-        QTimer::singleShot(0, eventWorker, SLOT(performWork()));
+        thread->start(QThread::HighPriority);
+        //QTimer::singleShot(0, eventWorker, SLOT(performWork()));
     }
     else
     {
@@ -318,8 +317,8 @@ void InputDaemon::quit()
         */
 
         QMetaObject::invokeMethod(eventWorker, "quit");
-        //QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
-        QMetaObject::invokeMethod(eventWorker, "deleteLater");
+        QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
+        //QMetaObject::invokeMethod(eventWorker, "deleteLater");
     }
     else
     {
@@ -1035,6 +1034,8 @@ void InputDaemon::clearBitArrayStatusInstances()
 
 void InputDaemon::resetActiveButtonMouseDistances()
 {
+    pollResetTimer.stop();
+
     JoyButton::resetActiveButtonMouseDistances();
 }
 
