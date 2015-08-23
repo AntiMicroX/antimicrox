@@ -532,7 +532,6 @@ int main(int argc, char *argv[])
         inputEventThread = new QThread();
         joypad_worker->moveToThread(inputEventThread);
         PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
-        //QObject::connect(inputEventThread, SIGNAL(started()), joypad_worker, SLOT(refreshJoysticks()));
         inputEventThread->start(QThread::HighPriority);
 
         MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
@@ -681,7 +680,6 @@ int main(int argc, char *argv[])
     inputEventThread = new QThread();
     joypad_worker->moveToThread(inputEventThread);
     PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
-    //QObject::connect(inputEventThread, SIGNAL(started()), joypad_worker, SLOT(refreshJoysticks()));
     inputEventThread->start(QThread::HighPriority);
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
@@ -736,6 +734,8 @@ int main(int argc, char *argv[])
 
     mainAppHelper.changeMouseThread(inputEventThread);
 
+    QTimer::singleShot(0, w, SLOT(fillButtons()));
+
     if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
     {
         runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
@@ -748,8 +748,6 @@ int main(int argc, char *argv[])
         mainAppHelper.initRunMethods();
         QTimer::singleShot(100, w, SLOT(changeWindowStatus()));
     }
-
-    QTimer::singleShot(0, w, SLOT(fillButtons()));
 
     int app_result = a->exec();
 

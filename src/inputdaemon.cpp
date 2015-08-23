@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+﻿/* antimicro Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,21 +39,21 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     this->settings = settings;
 
     eventWorker = new SDLEventReader(joysticks, settings);
-    thread = 0;
+    sdlWorkerThread = 0;
     if (graphical)
     {
-        thread = new QThread();
-        eventWorker->moveToThread(thread);
+        sdlWorkerThread = new QThread();
+        eventWorker->moveToThread(sdlWorkerThread);
     }
     else
     {
-        thread = 0;
+        sdlWorkerThread = 0;
     }
 
     if (graphical)
     {
-        connect(thread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
-        connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+        connect(sdlWorkerThread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
+        connect(sdlWorkerThread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
         connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
@@ -71,11 +71,10 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                     qMax(JoyButton::getMouseRefreshRate(),
                          JoyButton::getGamepadRefreshRate()) + 1);
 
-        //pollResetTimer.setInterval(11);
         connect(&pollResetTimer, SIGNAL(timeout()), this,
                 SLOT(resetActiveButtonMouseDistances()));
-        thread->start(QThread::HighPriority);
-        //QTimer::singleShot(0, eventWorker, SLOT(performWork()));
+        sdlWorkerThread->start(QThread::HighPriority);
+        //QMetaObject::invokeMethod(eventWorker, "performWork", Qt::QueuedConnection);
     }
     else
     {
@@ -90,12 +89,12 @@ InputDaemon::~InputDaemon()
         quit();
     }
 
-    if (thread)
+    if (sdlWorkerThread)
     {
-        thread->quit();
-        thread->wait();
-        delete thread;
-        thread = 0;
+        sdlWorkerThread->quit();
+        sdlWorkerThread->wait();
+        delete sdlWorkerThread;
+        sdlWorkerThread = 0;
     }
 }
 
@@ -104,11 +103,11 @@ InputDaemon::~InputDaemon()
  */
 void InputDaemon::startWorker()
 {
-    if (!thread->isRunning())
+    if (!sdlWorkerThread->isRunning())
     {
         //connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         //connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
-        thread->start();
+        sdlWorkerThread->start();
         //pollResetTimer.start();
     }
 }

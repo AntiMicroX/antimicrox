@@ -76,7 +76,7 @@ protected:
     bool graphical;
 
     SDLEventReader *eventWorker;
-    QThread *thread;
+    QThread *sdlWorkerThread;
     AntiMicroSettings *settings;
     QTimer pollResetTimer;
 
