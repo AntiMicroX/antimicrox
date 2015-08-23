@@ -692,18 +692,6 @@ int main(int argc, char *argv[])
 
     AppLaunchHelper mainAppHelper(settings, w->getGraphicalStatus());
 
-    if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
-    {
-        runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
-        QObject::connect(runWillard, SIGNAL(finished(int)), &mainAppHelper, SLOT(initRunMethods()));
-        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
-        runWillard->show();
-    }
-    else
-    {
-        mainAppHelper.initRunMethods();
-    }
-
     QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
     QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)),
                      w, SLOT(fillButtons(InputDevice*)));
@@ -748,8 +736,20 @@ int main(int argc, char *argv[])
 
     mainAppHelper.changeMouseThread(inputEventThread);
 
+    if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
+    {
+        runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
+        QObject::connect(runWillard, SIGNAL(finished(int)), &mainAppHelper, SLOT(initRunMethods()));
+        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
+        runWillard->show();
+    }
+    else
+    {
+        mainAppHelper.initRunMethods();
+        QTimer::singleShot(100, w, SLOT(changeWindowStatus()));
+    }
+
     QTimer::singleShot(0, w, SLOT(fillButtons()));
-    QTimer::singleShot(100, w, SLOT(changeWindowStatus()));
 
     int app_result = a->exec();
 

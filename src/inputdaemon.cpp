@@ -38,8 +38,9 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     this->graphical = graphical;
     this->settings = settings;
 
-    eventWorker = new SDLEventReader(joysticks, settings);
-    if (graphical)
+    eventWorker = new SDLEventReader(joysticks, settings, this);
+    thread = 0;
+    /*if (graphical)
     {
         thread = new QThread();
         eventWorker->moveToThread(thread);
@@ -48,11 +49,12 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     {
         thread = 0;
     }
+    */
 
     if (graphical)
     {
-        connect(thread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
-        connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
+        //connect(thread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
+        //connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
         connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(uint)),
@@ -73,7 +75,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         //pollResetTimer.setInterval(11);
         connect(&pollResetTimer, SIGNAL(timeout()), this,
                 SLOT(resetActiveButtonMouseDistances()));
-        thread->start(QThread::HighPriority);
+        //thread->start(QThread::HighPriority);
+        QTimer::singleShot(0, eventWorker, SLOT(performWork()));
     }
     else
     {
@@ -315,7 +318,8 @@ void InputDaemon::quit()
         */
 
         QMetaObject::invokeMethod(eventWorker, "quit");
-        QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
+        //QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(eventWorker, "deleteLater");
     }
     else
     {
@@ -1051,9 +1055,3 @@ void InputDaemon::updatePollResetRate(unsigned int tempPollRate)
         pollResetTimer.start();
     }
 }
-
-/*void InputDaemon::changeMouseThread(QThread *thread)
-{
-    JoyButton::indirectStaticMouseThread(thread);
-}
-*/
