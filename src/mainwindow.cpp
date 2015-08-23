@@ -903,7 +903,9 @@ void MainWindow::changeEvent(QEvent *event)
             bool minimizeToTaskbar = settings->value("MinimizeToTaskbar", false).toBool();
             if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon && !minimizeToTaskbar)
             {
-                hideWindow();
+                //hideWindow();
+                disableFlashActions();
+                signalDisconnect = true;
             }
             else
             {
@@ -911,7 +913,7 @@ void MainWindow::changeEvent(QEvent *event)
                 signalDisconnect = true;
             }
         }
-        else if (e->oldState() == Qt::WindowMinimized)
+        else if (e->oldState() == Qt::WindowMinimized && !isMinimized())
         {
             if (signalDisconnect)
             {
