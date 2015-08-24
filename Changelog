@@ -1,3 +1,17 @@
+2015-08-24 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.18.2
+
+* Fixed overly active timer used to reset acceleration distances when
+no events are returned from SDL in a given gamepad poll.
+
+* Sebian translation updated by Jay Alexander Fleming.
+
+* Changed behavior of 4 Way Cardinal mode for DPads. Diagonals are no longer
+counted as a dead zone. This change is more likely temporary.
+Up+Right - Up, Down+Right - Right, Down+Left - Down, Up+Left - Left
+
+
 2015-08-18 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.18.1
