@@ -106,6 +106,7 @@ signals:
 public slots:
     void fillButtons();
     void makeJoystickTabs();
+    void alterConfigFromSettings();
     void fillButtons(InputDevice *joystick);
     void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();

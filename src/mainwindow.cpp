@@ -139,56 +139,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         setEnabled(false);
     }
 
-    fillButtons(joysticks);
-    if (cmdutility->hasProfile())
-    {
-        if (cmdutility->hasControllerNumber())
-        {
-            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->getControllerNumber());
-        }
-        else if (cmdutility->hasControllerID())
-        {
-            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->hasControllerID());
-        }
-        else
-        {
-            loadConfigFile(cmdutility->getProfileLocation());
-        }
-    }
-    else if (cmdutility->isUnloadRequested())
-    {
-        if (cmdutility->hasControllerNumber())
-        {
-            unloadCurrentConfig(cmdutility->getControllerNumber());
-        }
-        else if (cmdutility->hasControllerID())
-        {
-            unloadCurrentConfig(cmdutility->hasControllerID());
-        }
-        else
-        {
-            unloadCurrentConfig(0);
-        }
-    }
-    else if (cmdutility->getStartSetNumber() > 0)
-    {
-        if (cmdutility->hasControllerNumber())
-        {
-            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerNumber());
-        }
-        else if (cmdutility->hasControllerID())
-        {
-            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerID());
-        }
-        else
-        {
-            changeStartSetNumber(cmdutility->getJoyStartSetNumber());
-        }
-    }
-    else if (cmdutility->shouldListControllers())
-    {
-        this->graphical = graphical = false;
-    }
+    //fillButtons(joysticks);
 
     resize(settings->value("WindowSize", size()).toSize());
     move(settings->value("WindowPosition", pos()).toPoint());
@@ -256,6 +207,59 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::alterConfigFromSettings()
+{
+    if (cmdutility->hasProfile())
+    {
+        if (cmdutility->hasControllerNumber())
+        {
+            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->getControllerNumber());
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->hasControllerID());
+        }
+        else
+        {
+            loadConfigFile(cmdutility->getProfileLocation());
+        }
+    }
+    else if (cmdutility->isUnloadRequested())
+    {
+        if (cmdutility->hasControllerNumber())
+        {
+            unloadCurrentConfig(cmdutility->getControllerNumber());
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            unloadCurrentConfig(cmdutility->hasControllerID());
+        }
+        else
+        {
+            unloadCurrentConfig(0);
+        }
+    }
+    else if (cmdutility->getStartSetNumber() > 0)
+    {
+        if (cmdutility->hasControllerNumber())
+        {
+            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerNumber());
+        }
+        else if (cmdutility->hasControllerID())
+        {
+            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerID());
+        }
+        else
+        {
+            changeStartSetNumber(cmdutility->getJoyStartSetNumber());
+        }
+    }
+    else if (cmdutility->shouldListControllers())
+    {
+        this->graphical = graphical = false;
+    }
 }
 
 #ifdef USE_SDL_2

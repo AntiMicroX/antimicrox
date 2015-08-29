@@ -498,7 +498,6 @@ int main(int argc, char *argv[])
         joypad_worker->quit();
         joypad_worker->deleteJoysticks();
 
-        //deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
 
@@ -546,8 +545,7 @@ int main(int argc, char *argv[])
                          SLOT(deleteDeskWid()), Qt::DirectConnection);
 
         w->makeJoystickTabs();
-        //QTimer::singleShot(0, w, SLOT(makeJoystickTabs()));
-        QTimer::singleShot(100, w, SLOT(controllerMapOpening()));
+        QTimer::singleShot(0, w, SLOT(controllerMapOpening()));
 
         joypad_worker->startWorker();
         int app_result = a->exec();
@@ -557,7 +555,6 @@ int main(int argc, char *argv[])
 
         inputEventThread->wait();
 
-        //deleteInputDevices(joysticks);
         delete joysticks;
         joysticks = 0;
 
@@ -753,7 +750,9 @@ int main(int argc, char *argv[])
     else
     {
         mainAppHelper.initRunMethods();
-        QTimer::singleShot(100, w, SLOT(changeWindowStatus()));
+        w->fillButtons();
+        w->alterConfigFromSettings();
+        w->changeWindowStatus();
     }
 
     joypad_worker->startWorker();
