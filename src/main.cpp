@@ -545,9 +545,11 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj,
                          SLOT(deleteDeskWid()), Qt::DirectConnection);
 
-        QTimer::singleShot(0, w, SLOT(makeJoystickTabs()));
+        w->makeJoystickTabs();
+        //QTimer::singleShot(0, w, SLOT(makeJoystickTabs()));
         QTimer::singleShot(100, w, SLOT(controllerMapOpening()));
 
+        joypad_worker->startWorker();
         int app_result = a->exec();
 
         // Log any remaining messages if they exist.
@@ -754,6 +756,7 @@ int main(int argc, char *argv[])
         QTimer::singleShot(100, w, SLOT(changeWindowStatus()));
     }
 
+    joypad_worker->startWorker();
     int app_result = a->exec();
 
     // Log any remaining messages if they exist.

@@ -132,6 +132,21 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
 {
     vdpad = 0;
     slotiter = 0;
+
+    turboTimer.setParent(this);
+    pauseTimer.setParent(this);
+    holdTimer.setParent(this);
+    pauseWaitTimer.setParent(this);
+    createDeskTimer.setParent(this);
+    releaseDeskTimer.setParent(this);
+    mouseWheelVerticalEventTimer.setParent(this);
+    mouseWheelHorizontalEventTimer.setParent(this);
+    setChangeTimer.setParent(this);
+    keyPressTimer.setParent(this);
+    delayTimer.setParent(this);
+    slotSetChangeTimer.setParent(this);
+    activeZoneTimer.setParent(this);
+
     setChangeTimer.setSingleShot(true);
     slotSetChangeTimer.setSingleShot(true);
     this->parentSet = parentSet;
@@ -523,10 +538,12 @@ void JoyButton::reset()
     setChangeTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
+
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
     //keyRepeatTimer.stop();
+
     slotSetChangeTimer.stop();
 
     if (slotiter)
@@ -5443,7 +5460,6 @@ void JoyButton::resetProperties()
     tempTurboInterval = 0;
     //currentTurboMode = GradientTurbo;
     oldAccelMulti = 0.0;
-    //trynow = 0.0;
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
     springDeadCircleMultiplier = DEFAULTSPRINGRELEASERADIUS;
@@ -5462,7 +5478,8 @@ void JoyButton::resetProperties()
 
     //buildActiveZoneSummaryString();
     activeZoneString = tr("[NO KEY]");
-    activeZoneTimer.start();
+    localBuildActiveZoneSummaryString();
+    //activeZoneTimer.start();
 }
 
 bool JoyButton::isModifierButton()

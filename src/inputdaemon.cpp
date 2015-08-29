@@ -39,21 +39,17 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     this->settings = settings;
 
     eventWorker = new SDLEventReader(joysticks, settings);
+    refreshJoysticks();
+
     sdlWorkerThread = 0;
     if (graphical)
     {
         sdlWorkerThread = new QThread();
         eventWorker->moveToThread(sdlWorkerThread);
     }
-    else
-    {
-        sdlWorkerThread = 0;
-    }
 
     if (graphical)
     {
-        connect(sdlWorkerThread, SIGNAL(started()), this, SLOT(refreshJoysticks()),
-                Qt::BlockingQueuedConnection);
         connect(sdlWorkerThread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
@@ -75,12 +71,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         connect(&pollResetTimer, SIGNAL(timeout()), this,
                 SLOT(resetActiveButtonMouseDistances()));
 
-        sdlWorkerThread->start(QThread::HighPriority);
+        //sdlWorkerThread->start(QThread::HighPriority);
         //QMetaObject::invokeMethod(eventWorker, "performWork", Qt::QueuedConnection);
-    }
-    else
-    {
-        refreshJoysticks();
     }
 }
 
@@ -100,16 +92,11 @@ InputDaemon::~InputDaemon()
     }
 }
 
-/**
- * @brief TODO: NOT USED. DECIDE WHETHER IT SHOULD BE REMOVED.
- */
 void InputDaemon::startWorker()
 {
     if (!sdlWorkerThread->isRunning())
     {
-        //connect(thread, SIGNAL(started()), eventWorker, SLOT(performWork()));
-        //connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
-        sdlWorkerThread->start();
+        sdlWorkerThread->start(QThread::HighPriority);
         //pollResetTimer.start();
     }
 }
