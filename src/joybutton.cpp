@@ -1259,27 +1259,30 @@ void JoyButton::mouseEvent()
                             intermediateTravel = qMin(maxtravel, intermediateTravel + mintravel);
                         }
 
-                        double currentAccelMultiTemp = (slope * intermediateTravel + intercept);
-                        double getMultiDiff = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor)) - 1;
-                        double getMultiDiff2 = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
-
-                        //currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * sin(getMultiDiff2 * (PI/2.0)) + minfactor;
-                        //currentAccelMultiTemp = -(extraAccelerationMultiplier - minfactor) * (getMultiDiff2 * (getMultiDiff2 - 2)) + minfactor;
-                        //currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1) + minfactor;
+                        double currentAccelMultiTemp = 0.0;
+                        if (extraAccelCurve == LinearAccelCurve)
+                        {
+                            currentAccelMultiTemp = (slope * intermediateTravel + intercept);
+                        }
+                        else if (extraAccelCurve == EaseOutSineCurve)
+                        {
+                            double getMultiDiff2 = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
+                            currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * sin(getMultiDiff2 * (PI/2.0)) + minfactor;
+                        }
+                        else if (extraAccelCurve == EaseOutQuadAccelCurve)
+                        {
+                            double getMultiDiff2 = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
+                            currentAccelMultiTemp = -(extraAccelerationMultiplier - minfactor) * (getMultiDiff2 * (getMultiDiff2 - 2)) + minfactor;
+                        }
+                        else if (extraAccelCurve == EaseOutCubicAccelCurve)
+                        {
+                            double getMultiDiff = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor)) - 1;
+                            currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1) + minfactor;
+                        }
 
                         difference = difference * currentAccelMultiTemp;
-
-                        //currentAccelMulti = (slope * intermediateTravel + intercept);
-                        //oldAccelMulti = currentAccelMulti;
-                        //Logger::LogInfo(QString("Original: %1").arg(currentAccelMulti));
                         currentAccelMulti = currentAccelMultiTemp;
-
-                        //currentAccelMulti = (extraAccelerationMultiplier - minfactor) * sin(getMultiDiff2 * (PI/2.0)) + minfactor;
-                        //currentAccelMulti = -(extraAccelerationMultiplier - minfactor) * (getMultiDiff2 * (getMultiDiff2 - 2)) + minfactor;
-                        //currentAccelMulti = (extraAccelerationMultiplier - minfactor) * ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1) + minfactor;
-                        //oldAccelMulti = currentAccelMulti;
                         updateOldAccelMulti = currentAccelMulti;
-
                         accelExtraDurationTime.restart();
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
@@ -1350,11 +1353,6 @@ void JoyButton::mouseEvent()
                     //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
                     distance = sumDist;
-                    /*if (sumDist >= 1.0)
-                    {
-                        distance = floor(sumDist);
-                    }
-                    */
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
                     {
