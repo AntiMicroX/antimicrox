@@ -338,23 +338,10 @@ p, li { white-space: pre-wrap; }
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0">
          <property name="spacing">
           <number>30</number>
          </property>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="resources.qrc">:/images/profile.jpg</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="QPlainTextEdit" name="plainTextEdit">
            <property name="plainText">

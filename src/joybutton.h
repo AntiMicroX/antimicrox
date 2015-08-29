@@ -331,7 +331,6 @@ protected:
     QTimer setChangeTimer;
     QTimer keyPressTimer;
     QTimer delayTimer;
-    //QTimer keyRepeatTimer;
     QTimer slotSetChangeTimer;
     static QTimer staticMouseEventTimer;
 

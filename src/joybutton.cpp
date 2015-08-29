@@ -542,7 +542,6 @@ void JoyButton::reset()
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    //keyRepeatTimer.stop();
 
     slotSetChangeTimer.stop();
 
@@ -553,7 +552,6 @@ void JoyButton::reset()
     }
 
     releaseActiveSlots();
-    //releaseDeskEvent(true);
     clearAssignedSlots();
 
     isButtonPressedQueue.clear();
@@ -3458,7 +3456,6 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    //keyRepeatTimer.stop();
     setChangeTimer.stop();
 
     releaseActiveSlots();
@@ -3744,7 +3741,6 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    //keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -3753,7 +3749,6 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     }
 
     releaseActiveSlots();
-    //releaseDeskEvent(true);
     clearAssignedSlots(clearSignalEmit);
 
     isButtonPressedQueue.clear();
@@ -3800,7 +3795,6 @@ void JoyButton::eventReset()
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
-    //keyRepeatTimer.stop();
 
     if (slotiter)
     {
@@ -4117,7 +4111,6 @@ void JoyButton::releaseActiveSlots()
                     repeatHelper.setLastActiveKey(lastActiveKey);
                     repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
                     repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
-                    //keyRepeatTimer.start(device->getKeyRepeatDelay());
                 }
                  else if (repeatHelper.getRepeatTimer()->isActive())
                  {
@@ -5476,10 +5469,9 @@ void JoyButton::resetProperties()
     accelDuration = DEFAULTACCELEASINGDURATION;
     extraAccelCurve = LinearAccelCurve;
 
-    //buildActiveZoneSummaryString();
+    activeZoneStringLock.lockForWrite();
     activeZoneString = tr("[NO KEY]");
-    localBuildActiveZoneSummaryString();
-    //activeZoneTimer.start();
+    activeZoneStringLock.unlock();
 }
 
 bool JoyButton::isModifierButton()

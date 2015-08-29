@@ -519,7 +519,9 @@ after reaching the high end of an axis.</string>
          <property name="toolTip">
           <string>Options for adding extra acceleration to the mouse
 movement beyond what the acceleration curve would
-produce.</string>
+produce. This is meant to help work around some of
+the issues of the very limited input range available using
+typical gamepad analog sticks.</string>
          </property>
          <property name="title">
           <string>Extra Acceleration</string>

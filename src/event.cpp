@@ -230,8 +230,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             if (xmovecoor == (deskRect.x() + midwidth) || ymovecoor == (deskRect.y() + midheight))
             {
 #if defined(Q_OS_UNIX)
-                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                              ymovecoor - currentMouseY);
+                BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                     ymovecoor);
+                }
+                else
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                                  ymovecoor - currentMouseY);
+                }
+
 #elif defined(Q_OS_WIN)
                 if (fullSpring->screen <= -1)
                 {
@@ -251,8 +261,17 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             {
                 PadderCommon::mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
-                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                              ymovecoor - currentMouseY);
+                BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                     ymovecoor);
+                }
+                else
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                                  ymovecoor - currentMouseY);
+                }
 
 #elif defined(Q_OS_WIN)
                 if (fullSpring->screen <= -1)
@@ -268,15 +287,24 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                //PadderCommon::mouseHelperObj.mouseTimer.start(11);
             }
             else if (!PadderCommon::mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
             {
                 PadderCommon::mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
 
-                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                              ymovecoor - currentMouseY);
+                BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                     ymovecoor);
+                }
+                else
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                                  ymovecoor - currentMouseY);
+                }
+
 
 #elif defined(Q_OS_WIN)
                 if (fullSpring->screen <= -1)
@@ -293,7 +321,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                //PadderCommon::mouseHelperObj.mouseTimer.start(11);
             }
 
             else if (PadderCommon::mouseHelperObj.springMouseMoving && (diffx < 2 && diffy < 2))
@@ -304,8 +331,17 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             else if (PadderCommon::mouseHelperObj.springMouseMoving)
             {
 #if defined(Q_OS_UNIX)
-                EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                              ymovecoor - currentMouseY);
+                BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                     ymovecoor);
+                }
+                else
+                {
+                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
+                                                                                  ymovecoor - currentMouseY);
+                }
 
 #elif defined(Q_OS_WIN)
                 if (fullSpring->screen <= -1)
@@ -322,7 +358,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
-                //PadderCommon::mouseHelperObj.mouseTimer.start(11);
             }
 
 
@@ -346,7 +381,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             PadderCommon::mouseHelperObj.mouseTimer.start(
                         qMax(JoyButton::getMouseRefreshRate(),
                              JoyButton::getGamepadRefreshRate()) + 1);
-            //PadderCommon::mouseHelperObj.mouseTimer.start(11);
         }
     }
     else
