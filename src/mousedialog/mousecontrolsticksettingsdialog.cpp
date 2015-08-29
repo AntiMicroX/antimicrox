@@ -21,6 +21,7 @@
 #include "ui_mousesettingsdialog.h"
 
 #include <QSpinBox>
+#include <QComboBox>
 
 #include <inputdevice.h>
 #include <setjoystick.h>
@@ -46,7 +47,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
-        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(),
+                                                          ui->springHeightSpinBox->value());
     }
     else
     {
@@ -70,6 +72,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     calculateMaxAccelerationThreshold();
     calculateAccelExtraDuration();
     calculateReleaseSpringRadius();
+    calculateExtraAccelerationCurve();
 
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
@@ -105,6 +108,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
 
     connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
+    connect(ui->extraAccelCurveComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateExtraAccelerationCurve(int)));
 }
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
@@ -390,4 +394,22 @@ void MouseControlStickSettingsDialog::updateReleaseSpringRadius(int value)
 void MouseControlStickSettingsDialog::calculateReleaseSpringRadius()
 {
     ui->releaseSpringRadiusspinBox->setValue(stick->getButtonsSpringDeadCircleMultiplier());
+}
+
+void MouseControlStickSettingsDialog::calculateExtraAccelerationCurve()
+{
+    JoyButton::JoyExtraAccelerationCurve curve = stick->getButtonsExtraAccelerationCurve();
+    updateExtraAccelerationCurvePresetComboBox(curve);
+}
+
+void MouseControlStickSettingsDialog::updateExtraAccelerationCurve(int index)
+{
+    JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
+    if (index > 0)
+    {
+        InputDevice *device = stick->getParentSet()->getInputDevice();
+        QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+        stick->setButtonsAccelerationExtraDuration(temp);
+        PadderCommon::unlockInputDevices();
+    }
 }

@@ -45,6 +45,7 @@ protected:
     void calculateMaxAccelerationThreshold();
     void calculateAccelExtraDuration();
     void calculateReleaseSpringRadius();
+    void calculateExtraAccelerationCurve();
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
@@ -74,6 +75,7 @@ private slots:
     void updateMaxAccelThreshold(double value);
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
+    void updateExtraAccelerationCurve(int index);
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

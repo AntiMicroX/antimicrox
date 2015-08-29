@@ -4052,3 +4052,49 @@ double JoyControlStick::getSpringDeadCircleY()
 
     return result;
 }
+
+void JoyControlStick::setButtonsExtraAccelCurve(JoyButton::JoyExtraAccelerationCurve curve)
+{
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        if (button)
+        {
+            button->setExtraAccelerationCurve(curve);
+        }
+    }
+}
+
+JoyButton::JoyExtraAccelerationCurve JoyControlStick::getButtonsExtraAccelerationCurve()
+{
+    JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
+
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                result = button->getExtraAccelerationCurve();
+            }
+        }
+        else
+        {
+            JoyControlStickButton *button = iter.next().value();
+            if (button)
+            {
+                JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
+                if (temp != result)
+                {
+                    result = JoyButton::LinearAccelCurve;
+                    iter.toBack();
+                }
+            }
+        }
+    }
+
+    return result;
+}

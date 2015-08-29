@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>587</width>
-    <height>582</height>
+    <height>612</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -160,7 +160,7 @@ a period of time using a Cubic curve.</string>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>20</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>
@@ -513,6 +513,9 @@ after reaching the high end of an axis.</string>
        </item>
        <item>
         <widget class="QGroupBox" name="extraAccelerationGroupBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="toolTip">
           <string>Options for adding extra acceleration to the mouse
 movement beyond what the acceleration curve would
@@ -530,7 +533,7 @@ produce.</string>
          <property name="checked">
           <bool>false</bool>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_13">
+         <layout class="QVBoxLayout" name="verticalLayout_12">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_20">
             <item>
@@ -701,6 +704,46 @@ actual time that extra acceleration will be applied.</string>
               <property name="singleStep">
                <double>0.050000000000000</double>
               </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_16">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>Curve:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="extraAccelCurveComboBox">
+              <item>
+               <property name="text">
+                <string/>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Linear</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ease Out Sine</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ease Out Quad</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ease Out Cubic</string>
+               </property>
+              </item>
              </widget>
             </item>
            </layout>

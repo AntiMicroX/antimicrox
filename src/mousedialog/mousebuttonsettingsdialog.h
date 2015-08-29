@@ -35,6 +35,7 @@ protected:
     void calculateMouseSpeedPreset();
     //void selectSmoothingPreset();
     void updateWindowTitleButtonName();
+    void calculateExtraAccelerationCurve();
 
     JoyButton *button;
     SpringModeRegionPreview *springPreviewWidget;
@@ -62,6 +63,7 @@ private slots:
     void updateMaxAccelThreshold(double value);
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
+    void updateExtraAccelerationCurve(int index);
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOG_H

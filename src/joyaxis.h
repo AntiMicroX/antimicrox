@@ -132,6 +132,9 @@ public:
     int getLastKnownRawValue();
     int getProperReleaseValue();
 
+    void setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
+    JoyButton::JoyExtraAccelerationCurve getExtraAccelerationCurve();
+
     // Define default values for many properties.
     static const int AXISMIN;
     static const int AXISMAX;

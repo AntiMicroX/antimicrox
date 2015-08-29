@@ -19,6 +19,7 @@
 #include "ui_mousesettingsdialog.h"
 
 #include <QSpinBox>
+#include <QComboBox>
 
 #include <inputdevice.h>
 #include <setjoystick.h>
@@ -46,7 +47,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
-        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(),
+                                                          ui->springHeightSpinBox->value());
     }
     else
     {
@@ -66,6 +68,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     ui->extraAccelerationGroupBox->setVisible(false);
 
     calculateReleaseSpringRadius();
+    calculateExtraAccelerationCurve();
 
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
@@ -94,6 +97,7 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), dpad, SLOT(setButtonsEasingDuration(double)));
 
     connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
+    connect(ui->extraAccelCurveComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateExtraAccelerationCurve(int)));
 
     JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
     connect(mouseHelper, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
@@ -317,4 +321,28 @@ void MouseDPadSettingsDialog::updateReleaseSpringRadius(int value)
 void MouseDPadSettingsDialog::calculateReleaseSpringRadius()
 {
     ui->releaseSpringRadiusspinBox->setValue(dpad->getButtonsSpringDeadCircleMultiplier());
+}
+
+void MouseDPadSettingsDialog::calculateExtraAccelerationCurve()
+{
+    JoyButton::JoyExtraAccelerationCurve curve = dpad->getButtonsExtraAccelerationCurve();
+    updateExtraAccelerationCurvePresetComboBox(curve);
+}
+
+void MouseDPadSettingsDialog::updateExtraAccelerationCurve(int index)
+{
+    JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
+
+    if (index > 0)
+    {
+        InputDevice *device = dpad->getParentSet()->getInputDevice();
+
+        PadderCommon::lockInputDevices();
+        QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
+        temp = getExtraAccelCurveForIndex(index);
+        dpad->setButtonsExtraAccelerationCurve(temp);
+
+        PadderCommon::unlockInputDevices();
+    }
 }

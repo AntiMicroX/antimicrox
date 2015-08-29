@@ -37,6 +37,7 @@ protected:
     void calculateWheelSpeedPreset();
     void updateWindowTitleDPadName();
     void calculateReleaseSpringRadius();
+    void calculateExtraAccelerationCurve();
 
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
@@ -59,6 +60,7 @@ public slots:
 
 private slots:
     void updateReleaseSpringRadius(int value);
+    void updateExtraAccelerationCurve(int index);
 };
 
 #endif // MOUSEDPADSETTINGSDIALOG_H

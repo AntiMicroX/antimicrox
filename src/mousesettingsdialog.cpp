@@ -20,6 +20,7 @@
 #include <QDoubleSpinBox>
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QComboBox>
 
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
@@ -30,8 +31,6 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
-    //ui->relativeSpringCheckBox->setVisible(false);
 
     JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
     connect(mouseHelper, SIGNAL(mouseCursorMoved(int,int,int)), this, SLOT(updateMouseCursorStatusLabels(int,int,int)));
@@ -56,9 +55,6 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(disableReleaseSpringBox(bool)));
     connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(resetReleaseRadius(bool)));
-
-    //connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMaxAccelThresholdValue(double)));
-    //connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(clampMinAccelThresholdValue(double)));
 }
 
 MouseSettingsDialog::~MouseSettingsDialog()
@@ -73,28 +69,20 @@ void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
 
     if (currentMouseMode == 1 && temp == JoyButton::PowerCurve)
     {
-        //ui->sensitivityDoubleSpinBox->setVisible(true);
-        //ui->sensLabel->setVisible(true);
         ui->sensitivityDoubleSpinBox->setEnabled(true);
     }
     else
     {
-        //ui->sensitivityDoubleSpinBox->setVisible(false);
-        //ui->sensLabel->setVisible(false);
         ui->sensitivityDoubleSpinBox->setEnabled(false);
     }
 
     if (currentMouseMode == 1 && (temp == JoyButton::EasingQuadraticCurve ||
                                   temp == JoyButton::EasingCubicCurve))
     {
-        //ui->easingDoubleSpinBox->setVisible(true);
-        //ui->easingDurationLabel->setVisible(true);
         ui->easingDoubleSpinBox->setEnabled(true);
     }
     else
     {
-        //ui->easingDoubleSpinBox->setVisible(false);
-        //ui->easingDurationLabel->setVisible(false);
         ui->easingDoubleSpinBox->setEnabled(false);
     }
 }
@@ -161,9 +149,6 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
 
         ui->extraAccelerationGroupBox->setChecked(false);
         ui->extraAccelerationGroupBox->setEnabled(false);
-        //ui->extraAccelCheckBox->setChecked(false);
-        //ui->extraAccelCheckBox->setEnabled(false);
-        //ui->extraAccelDoubleSpinBox->setEnabled(false);
     }
     else
     {
@@ -171,13 +156,10 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->verticalSpinBox->setEnabled(true);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
 
-        //ui->extraAccelCheckBox->setEnabled(true);
         ui->extraAccelerationGroupBox->setEnabled(true);
-        //if (ui->extraAccelCheckBox->isChecked())
         if (ui->extraAccelerationGroupBox->isChecked())
         {
             ui->extraAccelerationGroupBox->setEnabled(true);
-            //ui->extraAccelDoubleSpinBox->setEnabled(true);
         }
     }
 }
@@ -372,14 +354,53 @@ void MouseSettingsDialog::resetReleaseRadius(bool enabled)
     }
 }
 
-/*void MouseSettingsDialog::clampMinAccelThresholdValue(double value)
+JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForIndex(int index)
 {
-    ui->minThresholdDoubleSpinBox->setMaximum(value);
+    JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
+
+    if (index == 1)
+    {
+        temp = JoyButton::LinearAccelCurve;
+    }
+    else if (index == 2)
+    {
+        temp = JoyButton::EaseOutSineCurve;
+    }
+    else if (index == 3)
+    {
+        temp = JoyButton::EaseOutQuadAccelCurve;
+    }
+    else if (index == 4)
+    {
+        temp = JoyButton::EaseOutCubicAccelCurve;
+    }
+
+    return temp;
 }
 
-void MouseSettingsDialog::clampMaxAccelThresholdValue(double value)
+void
+MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
+(JoyButton::JoyExtraAccelerationCurve curve)
 {
-    ui->maxThresholdDoubleSpinBox->setMaximum(value);
+    int temp = 0;
+
+    if (curve == JoyButton::LinearAccelCurve)
+    {
+        temp = 1;
+    }
+    else if (curve == JoyButton::EaseOutSineCurve)
+    {
+        temp = 2;
+    }
+    else if (curve == JoyButton::EaseOutQuadAccelCurve)
+    {
+        temp = 3;
+    }
+    else if (curve == JoyButton::EaseOutCubicAccelCurve)
+    {
+        temp = 4;
+    }
+
+    ui->extraAccelCurveComboBox->setCurrentIndex(temp);
 }
-*/
 

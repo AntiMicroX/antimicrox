@@ -37,7 +37,9 @@ public:
     
 protected:
     void updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve);
+    void updateExtraAccelerationCurvePresetComboBox(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyMouseCurve getMouseCurveForIndex(int index);
+    JoyButton::JoyExtraAccelerationCurve getExtraAccelCurveForIndex(int index);
 
     Ui::MouseSettingsDialog *ui;
     QTime lastMouseStatUpdate;
@@ -64,9 +66,6 @@ private slots:
     void refreshMouseCursorSpeedValues(int index);
     void disableReleaseSpringBox(bool enable);
     void resetReleaseRadius(bool enabled);
-
-    //void clampMinAccelThresholdValue(double value);
-    //void clampMaxAccelThresholdValue(double value);
 };
 
 #endif // MOUSESETTINGSDIALOG_H

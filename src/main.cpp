@@ -245,7 +245,7 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-            appLogger.LogInfo(QObject::tr("Daemon launched"), true, true);
+            appLogger.LogInfo(QObject::tr("Daemon launched"));
 
             a = new QApplication(argc, argv);
             localServer = new LocalAntiMicroServer();
@@ -611,7 +611,7 @@ int main(int argc, char *argv[])
         QString eventDisplayName = EventHandlerFactory::handlerDisplayName(
                     EventHandlerFactory::fallBackIdentifier());
         appLogger.LogInfo(QObject::tr("Attempting to use fallback option %1 for event generation.")
-                                     .arg(eventDisplayName), true, true);
+                                     .arg(eventDisplayName));
 
         if (keyMapper)
         {
@@ -637,7 +637,8 @@ int main(int argc, char *argv[])
 
     if (!status)
     {
-        appLogger.LogError(QObject::tr("Failed to open event generator. Exiting."), true, true);
+        appLogger.LogError(QObject::tr("Failed to open event generator. Exiting."));
+        appLogger.Log();
 
         deleteInputDevices(joysticks);
         delete joysticks;
@@ -672,7 +673,7 @@ int main(int argc, char *argv[])
     else
     {
         appLogger.LogInfo(QObject::tr("Using %1 as the event generator.")
-                          .arg(factory->handler()->getName()), true, true);
+                          .arg(factory->handler()->getName()));
     }
 
     PadderCommon::mouseHelperObj.initDeskWid();
@@ -728,7 +729,7 @@ int main(int argc, char *argv[])
     bool raisedPriority = WinExtras::raiseProcessPriority();
     if (!raisedPriority)
     {
-        appLogger.LogInfo(QObject::tr("Could not raise process priority."), true, true);
+        appLogger.LogInfo(QObject::tr("Could not raise process priority."));
     }
 #endif
 

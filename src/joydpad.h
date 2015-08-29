@@ -102,6 +102,9 @@ public:
     void setButtonsSpringDeadCircleMultiplier(int value);
     int getButtonsSpringDeadCircleMultiplier();
 
+    void setButtonsExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
+    JoyButton::JoyExtraAccelerationCurve getButtonsExtraAccelerationCurve();
+
     static const QString xmlName;
     static const unsigned int DEFAULTDPADDELAY;
 

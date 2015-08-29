@@ -142,6 +142,9 @@ public:
     void setButtonsSpringDeadCircleMultiplier(int value);
     int getButtonsSpringDeadCircleMultiplier();
 
+    void setButtonsExtraAccelCurve(JoyButton::JoyExtraAccelerationCurve curve);
+    JoyButton::JoyExtraAccelerationCurve getButtonsExtraAccelerationCurve();
+
     void releaseButtonEvents();
     QString getStickName();
 

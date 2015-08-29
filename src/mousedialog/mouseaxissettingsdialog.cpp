@@ -19,6 +19,7 @@
 #include "ui_mousesettingsdialog.h"
 
 #include <QSpinBox>
+#include <QComboBox>
 
 #include <inputdevice.h>
 #include <setjoystick.h>
@@ -44,7 +45,8 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
-        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(),
+                                                          ui->springHeightSpinBox->value());
     }
     else
     {
@@ -69,6 +71,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     calculateAccelExtraDuration();
 
     calculateReleaseSpringRadius();
+    calculateExtraAccelerationCurve();
 
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
@@ -104,6 +107,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
 
     connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
+    connect(ui->extraAccelCurveComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateExtraAccelerationCurve(int)));
 }
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
@@ -413,4 +417,32 @@ void MouseAxisSettingsDialog::calculateReleaseSpringRadius()
     }
 
     ui->releaseSpringRadiusspinBox->setValue(result);
+}
+
+void MouseAxisSettingsDialog::updateExtraAccelerationCurve(int index)
+{
+    JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
+
+    if (index > 0)
+    {
+        InputDevice *device = axis->getParentSet()->getInputDevice();
+
+        PadderCommon::lockInputDevices();
+        QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
+        axis->getPAxisButton()->setExtraAccelerationCurve(temp);
+        axis->getNAxisButton()->setExtraAccelerationCurve(temp);
+
+        PadderCommon::unlockInputDevices();
+    }
+}
+
+void MouseAxisSettingsDialog::calculateExtraAccelerationCurve()
+{
+    if (axis->getPAxisButton()->getExtraAccelerationCurve() ==
+        axis->getNAxisButton()->getExtraAccelerationCurve())
+    {
+        JoyButton::JoyExtraAccelerationCurve temp = axis->getPAxisButton()->getExtraAccelerationCurve();
+        updateExtraAccelerationCurvePresetComboBox(temp);
+    }
 }

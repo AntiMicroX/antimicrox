@@ -1112,3 +1112,42 @@ int JoyDPad::getButtonsSpringDeadCircleMultiplier()
 
     return result;
 }
+
+void JoyDPad::setButtonsExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve)
+{
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setExtraAccelerationCurve(curve);
+    }
+}
+
+JoyButton::JoyExtraAccelerationCurve JoyDPad::getButtonsExtraAccelerationCurve()
+{
+    JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
+
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        if (!iter.hasPrevious())
+        {
+            JoyDPadButton *button = iter.next().value();
+            result = button->getExtraAccelerationCurve();
+        }
+        else
+        {
+            JoyDPadButton *button = iter.next().value();
+            JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
+            if (temp != result)
+            {
+                result = JoyButton::LinearAccelCurve;
+                iter.toBack();
+            }
+        }
+    }
+
+    return result;
+}

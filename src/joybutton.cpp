@@ -74,6 +74,9 @@ const double JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
 const double JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
 const double JoyButton::DEFAULTSTARTACCELMULTIPLIER = 0.0;
 const double JoyButton::DEFAULTACCELEASINGDURATION = 0.1;
+const JoyButton::JoyExtraAccelerationCurve
+JoyButton::DEFAULTEXTRAACCELCURVE = JoyButton::LinearAccelCurve;
+
 const int JoyButton::DEFAULTSPRINGRELEASERADIUS = 0;
 
 // Keep references to active keys and mouse buttons.
@@ -1826,6 +1829,32 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("springreleaseradius", QString::number(springDeadCircleMultiplier));
         }
 
+        if (extraAccelCurve != DEFAULTEXTRAACCELCURVE)
+        {
+            QString temp;
+            if (extraAccelCurve == LinearAccelCurve)
+            {
+                temp = "linear";
+            }
+            else if (extraAccelCurve == EaseOutSineCurve)
+            {
+                temp = "easeoutsine";
+            }
+            else if (extraAccelCurve == EaseOutQuadAccelCurve)
+            {
+                temp = "easeoutquad";
+            }
+            else if (extraAccelCurve == EaseOutCubicAccelCurve)
+            {
+                temp = "easeoutcubic";
+            }
+
+            if (!temp.isEmpty())
+            {
+                xml->writeTextElement("extraaccelerationcurve", temp);
+            }
+        }
+
         // Write information about assigned slots.
         if (!assignments.isEmpty())
         {
@@ -2149,6 +2178,31 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setAccelExtraDuration(tempchoice);
+    }
+    else if (xml->name() == "extraaccelerationcurve" && xml->isStartElement())
+    {
+        found = true;
+
+        QString temptext = xml->readElementText();
+        JoyExtraAccelerationCurve tempcurve = DEFAULTEXTRAACCELCURVE;
+        if (temptext == "linear")
+        {
+            tempcurve = LinearAccelCurve;
+        }
+        else if (temptext == "easeoutsine")
+        {
+            tempcurve = EaseOutSineCurve;
+        }
+        else if (temptext == "easeoutquad")
+        {
+            tempcurve = EaseOutQuadAccelCurve;
+        }
+        else if (temptext == "easeoutcubic")
+        {
+            tempcurve = EaseOutCubicAccelCurve;
+        }
+
+        setExtraAccelerationCurve(tempcurve);
     }
     else if (xml->name() == "springreleaseradius" && xml->isStartElement())
     {
@@ -4293,6 +4347,7 @@ bool JoyButton::isDefault()
     value = value && (startAccelMultiplier == DEFAULTSTARTACCELMULTIPLIER);
     value = value && (accelDuration == DEFAULTACCELEASINGDURATION);
     value = value && (springDeadCircleMultiplier == DEFAULTSPRINGRELEASERADIUS);
+    value = value && (extraAccelCurve == DEFAULTEXTRAACCELCURVE);
     return value;
 }
 
@@ -5068,7 +5123,6 @@ void JoyButton::copyAssignments(JoyButton *destButton)
         JoyButtonSlot *slot = iter.next();
         JoyButtonSlot *newslot = new JoyButtonSlot(slot, destButton);
         destButton->insertAssignedSlot(newslot);
-        //destButton->assignments.append(slot);
     }
 
     destButton->toggle = toggle;
@@ -5098,6 +5152,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->maxMouseDistanceAccelThreshold = maxMouseDistanceAccelThreshold;
     destButton->startAccelMultiplier = startAccelMultiplier;
     destButton->springDeadCircleMultiplier = springDeadCircleMultiplier;
+    destButton->extraAccelCurve = extraAccelCurve;
 }
 
 /**
@@ -5405,6 +5460,7 @@ void JoyButton::resetProperties()
     maxMouseDistanceAccelThreshold = DEFAULTMAXACCELTHRESHOLD;
     startAccelMultiplier = DEFAULTSTARTACCELMULTIPLIER;
     accelDuration = DEFAULTACCELEASINGDURATION;
+    extraAccelCurve = LinearAccelCurve;
 
     //buildActiveZoneSummaryString();
     activeZoneString = tr("[NO KEY]");
@@ -5662,4 +5718,14 @@ void JoyButton::invokeMouseEvents()
 bool JoyButton::hasActiveSlots()
 {
     return !activeSlots.isEmpty();
+}
+
+void JoyButton::setExtraAccelerationCurve(JoyExtraAccelerationCurve curve)
+{
+    extraAccelCurve = curve;
+}
+
+JoyButton::JoyExtraAccelerationCurve JoyButton::getExtraAccelerationCurve()
+{
+    return extraAccelCurve;
 }

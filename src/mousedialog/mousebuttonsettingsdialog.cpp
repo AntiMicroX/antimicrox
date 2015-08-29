@@ -19,6 +19,7 @@
 #include "ui_mousesettingsdialog.h"
 #include <QSpinBox>
 #include <QCheckBox>
+#include <QComboBox>
 
 #include <inputdevice.h>
 #include <setjoystick.h>
@@ -46,7 +47,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
-        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(),
+                                                          ui->springHeightSpinBox->value());
     }
     else
     {
@@ -79,6 +81,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     }
 
     ui->releaseSpringRadiusspinBox->setValue(button->getSpringDeadCircleMultiplier());
+    calculateExtraAccelerationCurve();
 
     changeSpringSectionStatus(ui->mouseModeComboBox->currentIndex());
     changeSettingsWidgetStatus(ui->accelerationComboBox->currentIndex());
@@ -114,6 +117,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
 
     connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
+    connect(ui->extraAccelCurveComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateExtraAccelerationCurve(int)));
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -298,4 +302,28 @@ void MouseButtonSettingsDialog::updateAccelExtraDuration(double value)
 void MouseButtonSettingsDialog::updateReleaseSpringRadius(int value)
 {
     button->setSpringDeadCircleMultiplier(value);
+}
+
+void MouseButtonSettingsDialog::calculateExtraAccelerationCurve()
+{
+    JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
+    updateExtraAccelerationCurvePresetComboBox(temp);
+}
+
+void MouseButtonSettingsDialog::updateExtraAccelerationCurve(int index)
+{
+    JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
+
+    if (index > 0)
+    {
+        InputDevice *device = button->getParentSet()->getInputDevice();
+
+        PadderCommon::lockInputDevices();
+        QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
+        button->setExtraAccelerationCurve(temp);
+        button->setExtraAccelerationCurve(temp);
+
+        PadderCommon::unlockInputDevices();
+    }
 }

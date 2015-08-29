@@ -1109,3 +1109,20 @@ int JoyAxis::getProperReleaseValue()
 
     return value;
 }
+
+void JoyAxis::setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve)
+{
+    paxisbutton->setExtraAccelerationCurve(curve);
+    naxisbutton->setExtraAccelerationCurve(curve);
+}
+
+JoyButton::JoyExtraAccelerationCurve JoyAxis::getExtraAccelerationCurve()
+{
+    JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
+    if (paxisbutton->getExtraAccelerationCurve() == naxisbutton->getExtraAccelerationCurve())
+    {
+        result = paxisbutton->getExtraAccelerationCurve();
+    }
+
+    return result;
+}

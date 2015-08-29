@@ -55,6 +55,8 @@ public:
     enum JoyMouseCurve {EnhancedPrecisionCurve=0, LinearCurve, QuadraticCurve,
                         CubicCurve, QuadraticExtremeCurve, PowerCurve,
                         EasingQuadraticCurve, EasingCubicCurve};
+    enum JoyExtraAccelerationCurve {LinearAccelCurve, EaseOutSineCurve,
+                                    EaseOutQuadAccelCurve, EaseOutCubicAccelCurve};
     enum TurboMode {NormalTurbo=0, GradientTurbo, PulseTurbo};
 
     void joyEvent(bool pressed, bool ignoresets=false);
@@ -203,6 +205,9 @@ public:
     void setAccelExtraDuration(double value);
     double getAccelExtraDuration();
 
+    void setExtraAccelerationCurve(JoyExtraAccelerationCurve curve);
+    JoyExtraAccelerationCurve getExtraAccelerationCurve();
+
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
@@ -266,6 +271,7 @@ public:
     static const double DEFAULTMAXACCELTHRESHOLD;
     static const double DEFAULTSTARTACCELMULTIPLIER;
     static const double DEFAULTACCELEASINGDURATION;
+    static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
 
     static const int DEFAULTSPRINGRELEASERADIUS;
 
@@ -407,7 +413,6 @@ protected:
     QTime accelExtraDurationTime;
     double accelDuration;
     double oldAccelMulti;
-    //double trynow;
 
     // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;
@@ -432,6 +437,8 @@ protected:
     double minMouseDistanceAccelThreshold;
     double maxMouseDistanceAccelThreshold;
     double startAccelMultiplier;
+
+    JoyExtraAccelerationCurve extraAccelCurve;
 
     QString actionName;
     QString buttonName; // User specified button name
