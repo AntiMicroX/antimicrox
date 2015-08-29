@@ -52,7 +52,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     if (graphical)
     {
-        connect(sdlWorkerThread, SIGNAL(started()), this, SLOT(refreshJoysticks()));
+        connect(sdlWorkerThread, SIGNAL(started()), this, SLOT(refreshJoysticks()),
+                Qt::BlockingQueuedConnection);
         connect(sdlWorkerThread, SIGNAL(started()), eventWorker, SLOT(performWork()));
         connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
 
@@ -73,6 +74,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
         connect(&pollResetTimer, SIGNAL(timeout()), this,
                 SLOT(resetActiveButtonMouseDistances()));
+
         sdlWorkerThread->start(QThread::HighPriority);
         //QMetaObject::invokeMethod(eventWorker, "performWork", Qt::QueuedConnection);
     }
@@ -298,23 +300,7 @@ void InputDaemon::quit()
     // Let InputDaemon destructor close thread instance.
     if (graphical)
     {
-        QEventLoop q;
-        QTimer temptime;
-
-        //connect(eventWorker, SIGNAL(eventRaised()), &q, SLOT(quit()));
-        //connect(&temptime, SIGNAL(timeout()), &q, SLOT(quit()));
-
-        //eventWorker->stop();
         QMetaObject::invokeMethod(eventWorker, "stop");
-
-        //temptime.start(500);
-        /*if (eventWorker->isSDLOpen())
-        {
-            q.exec();
-        }
-        temptime.stop();
-        */
-
         QMetaObject::invokeMethod(eventWorker, "quit");
         QMetaObject::invokeMethod(eventWorker, "deleteLater", Qt::BlockingQueuedConnection);
         //QMetaObject::invokeMethod(eventWorker, "deleteLater");
@@ -382,19 +368,6 @@ void InputDaemon::removeDevice(InputDevice *device)
 {
     if (device)
     {
-        /*PadderCommon::editingLock.lockForRead();
-        bool isEditing = PadderCommon::editingBindings;
-        PadderCommon::editingLock.unlock();
-
-        if (isEditing)
-        {
-            QMutex *dismutex = &PadderCommon::waitMutex;
-            dismutex->lock();
-            PadderCommon::waitThisOut.wakeAll();
-            dismutex->unlock();
-        }
-        */
-
         SDL_JoystickID deviceID = device->getSDLJoystickID();
 
         joysticks->remove(deviceID);

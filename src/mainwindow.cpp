@@ -120,7 +120,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         trayIconMenu = new QMenu(this);
         trayIcon = new QSystemTrayIcon(this);
         connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
-        connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
+        connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
     }
 
     // Look at flags and call setEnabled as desired; defaults to true.
@@ -138,7 +139,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         setEnabled(false);
     }
 
-    //fillButtons(joysticks);
+    fillButtons(joysticks);
     if (cmdutility->hasProfile())
     {
         if (cmdutility->hasControllerNumber())
@@ -1698,7 +1699,8 @@ void MainWindow::changeWindowStatus()
     if (graphical)
     {
         bool launchInTraySetting = settings->runtimeValue("LaunchInTray", false).toBool();
-        if (!cmdutility->isHiddenRequested() && (!launchInTraySetting || !QSystemTrayIcon::isSystemTrayAvailable()))
+        if (!cmdutility->isHiddenRequested() &&
+            (!launchInTraySetting || !QSystemTrayIcon::isSystemTrayAvailable()))
         {
             show();
         }

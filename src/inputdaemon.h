@@ -44,7 +44,9 @@ class InputDaemon : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputDaemon (QMap<SDL_JoystickID, InputDevice*> *joysticks, AntiMicroSettings *settings, bool graphical=true, QObject *parent=0);
+    explicit InputDaemon (QMap<SDL_JoystickID, InputDevice*> *joysticks,
+                          AntiMicroSettings *settings, bool graphical=true,
+                          QObject *parent=0);
     ~InputDaemon();
 
 protected:

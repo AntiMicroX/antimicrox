@@ -57,7 +57,6 @@ public slots:
     void initRunMethods();
     void revertMouseThread();
     void changeMouseThread(QThread *thread);
-
 };
 
 #endif // APPLAUNCHHELPER_H
