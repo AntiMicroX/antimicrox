@@ -55,7 +55,7 @@ void GameControllerSet::populateSticksDPad()
     JoyButton *buttonDown = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_DOWN);
     JoyButton *buttonLeft = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_LEFT);
     JoyButton *buttonRight = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
-    GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, index, this);
+    GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, index, this, this);
     controllerDPad->setDefaultDPadName("DPad");
     //controllerDPad->setDPadDelay(10);
     addVDPad(0, controllerDPad);
@@ -334,13 +334,13 @@ void GameControllerSet::refreshAxes()
         if (i == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
             i == SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
         {
-            GameControllerTrigger *trigger = new GameControllerTrigger(i, index, this);
+            GameControllerTrigger *trigger = new GameControllerTrigger(i, index, this, this);
             axes.insert(i, trigger);
             enableAxisConnections(trigger);
         }
         else
         {
-            JoyAxis *axis = new JoyAxis(i, index, this);
+            JoyAxis *axis = new JoyAxis(i, index, this, this);
             axes.insert(i, axis);
             enableAxisConnections(axis);
         }

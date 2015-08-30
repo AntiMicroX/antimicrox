@@ -210,7 +210,7 @@ void AdvanceStickAssignmentDialog::changeStateVDPadWidgets(bool enabled)
             SetJoystick *currentset = joystick->getSetJoystick(i);
             if (!currentset->getVDPad(0))
             {
-                VDPad *vdpad = new VDPad(0, i, currentset);
+                VDPad *vdpad = new VDPad(0, i, currentset, currentset);
                 currentset->addVDPad(0, vdpad);
             }
         }

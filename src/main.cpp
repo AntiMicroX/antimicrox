@@ -530,9 +530,7 @@ int main(int argc, char *argv[])
         PadderCommon::mouseHelperObj.initDeskWid();
         InputDaemon *joypad_worker = new InputDaemon(joysticks, settings);
         inputEventThread = new QThread();
-        joypad_worker->moveToThread(inputEventThread);
-        PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
-        inputEventThread->start(QThread::HighPriority);
+
 
         MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
 
@@ -540,25 +538,33 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker,
                          SLOT(deleteJoysticks()), Qt::BlockingQueuedConnection);
-        QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
+        //QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
         QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj,
                          SLOT(deleteDeskWid()), Qt::DirectConnection);
+        QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),
+                         Qt::BlockingQueuedConnection);
 
         w->makeJoystickTabs();
         QTimer::singleShot(0, w, SLOT(controllerMapOpening()));
 
         joypad_worker->startWorker();
+
+        joypad_worker->moveToThread(inputEventThread);
+        PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
+        inputEventThread->start(QThread::HighPriority);
+
         int app_result = a->exec();
 
         // Log any remaining messages if they exist.
         appLogger.Log();
 
+        inputEventThread->quit();
         inputEventThread->wait();
 
         delete joysticks;
         joysticks = 0;
 
-        delete joypad_worker;
+        //delete joypad_worker;
         joypad_worker = 0;
 
         delete localServer;
@@ -680,9 +686,7 @@ int main(int argc, char *argv[])
     PadderCommon::mouseHelperObj.initDeskWid();
     InputDaemon *joypad_worker = new InputDaemon(joysticks, settings);
     inputEventThread = new QThread();
-    joypad_worker->moveToThread(inputEventThread);
-    PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
-    inputEventThread->start(QThread::HighPriority);
+
 
     MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
     FirstRunWizard *runWillard = 0;
@@ -756,6 +760,11 @@ int main(int argc, char *argv[])
     }
 
     joypad_worker->startWorker();
+
+    joypad_worker->moveToThread(inputEventThread);
+    PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
+    inputEventThread->start(QThread::HighPriority);
+
     int app_result = a->exec();
 
     // Log any remaining messages if they exist.

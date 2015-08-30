@@ -724,7 +724,7 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
                         VDPad *vdpad = currentset->getVDPad(vdpadIndex-1);
                         if (!vdpad)
                         {
-                            vdpad = new VDPad(vdpadIndex-1, i, currentset);
+                            vdpad = new VDPad(vdpadIndex-1, i, currentset, currentset);
                             currentset->addVDPad(vdpadIndex-1, vdpad);
                         }
                     }

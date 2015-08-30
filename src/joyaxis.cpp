@@ -55,8 +55,6 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
 JoyAxis::~JoyAxis()
 {
     reset();
-    delete paxisbutton;
-    delete naxisbutton;
 }
 
 void JoyAxis::queuePendingEvent(int value, bool ignoresets)
