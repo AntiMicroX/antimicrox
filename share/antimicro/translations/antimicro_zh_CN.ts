@@ -29,7 +29,7 @@
         <translation>更新日志</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="361"/>
+        <location filename="../../../src/aboutdialog.ui" line="348"/>
         <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
 
 The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
@@ -46,7 +46,7 @@ Once the Steam controller is finally released to the public, the need for this p
 等到 Steam 手柄向公众发布的时候，对这个程序的需求可能就消失了。相对于使用这个程序进行键鼠模拟而言，Steam 手柄单单在概念上就有如此之多的优势。</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="380"/>
+        <location filename="../../../src/aboutdialog.ui" line="367"/>
         <source>Copyright: 2013 - 2015</source>
         <translation>版权：2013 - 2015</translation>
     </message>
@@ -459,7 +459,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="126"/>
         <source>Current (%1)</source>
-        <translation>当前（%1)</translation>
+        <translation>当前 (%1)</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="174"/>
@@ -475,7 +475,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="191"/>
         <source>Programs (*.exe)</source>
-        <translation>程序（*.exe）</translation>
+        <translation>程序 (*.exe)</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="246"/>
@@ -1018,7 +1018,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1553"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation>配置文件（*.amgp *.xml）</translation>
+        <translation>配置文件 (*.amgp *.xml)</translation>
     </message>
 </context>
 <context>
@@ -2203,7 +2203,7 @@ to a diagonal zone of the stick.</source>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.cpp" line="126"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation>游戏控制器映射（%1）（#%2）</translation>
+        <translation>游戏控制器映射 (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.cpp" line="428"/>
@@ -2281,9 +2281,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="952"/>
-        <location filename="../../../src/joyaxis.cpp" line="961"/>
-        <location filename="../../../src/joyaxis.cpp" line="967"/>
+        <location filename="../../../src/joyaxis.cpp" line="950"/>
+        <location filename="../../../src/joyaxis.cpp" line="959"/>
+        <location filename="../../../src/joyaxis.cpp" line="965"/>
         <source>Axis</source>
         <translation>轴</translation>
     </message>
@@ -2391,57 +2391,57 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="336"/>
+        <location filename="../../../src/joybutton.cpp" line="354"/>
         <source>Processing turbo for #%1 - %2</source>
         <translation>正在处理按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="345"/>
+        <location filename="../../../src/joybutton.cpp" line="363"/>
         <source>Finishing turbo for button #%1 - %2</source>
         <translation>正在完成按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="399"/>
+        <location filename="../../../src/joybutton.cpp" line="417"/>
         <source>Processing press for button #%1 - %2</source>
         <translation>正在处理按下按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="416"/>
+        <location filename="../../../src/joybutton.cpp" line="434"/>
         <source>Processing release for button #%1 - %2</source>
         <translation>正在处理释放按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="438"/>
+        <location filename="../../../src/joybutton.cpp" line="456"/>
         <source>Distance change for button #%1 - %2</source>
         <translation>按钮#%1-%2距离改变</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2189"/>
-        <location filename="../../../src/joybutton.cpp" line="2197"/>
-        <location filename="../../../src/joybutton.cpp" line="2203"/>
+        <location filename="../../../src/joybutton.cpp" line="2252"/>
+        <location filename="../../../src/joybutton.cpp" line="2260"/>
+        <location filename="../../../src/joybutton.cpp" line="2266"/>
         <source>Button</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2242"/>
-        <location filename="../../../src/joybutton.cpp" line="2414"/>
-        <location filename="../../../src/joybutton.cpp" line="2525"/>
-        <location filename="../../../src/joybutton.cpp" line="5410"/>
+        <location filename="../../../src/joybutton.cpp" line="2305"/>
+        <location filename="../../../src/joybutton.cpp" line="2477"/>
+        <location filename="../../../src/joybutton.cpp" line="2588"/>
+        <location filename="../../../src/joybutton.cpp" line="5469"/>
         <source>[NO KEY]</source>
         <translation>[无按键]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2300"/>
+        <location filename="../../../src/joybutton.cpp" line="2363"/>
         <source>[Set %1 1W]</source>
         <translation>[单向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2308"/>
+        <location filename="../../../src/joybutton.cpp" line="2371"/>
         <source>[Set %1 2W]</source>
         <translation>[双向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2317"/>
+        <location filename="../../../src/joybutton.cpp" line="2380"/>
         <source>[Set %1 WH]</source>
         <translation>[按下时选择设置%1]</translation>
     </message>
@@ -3215,14 +3215,14 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="494"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation>配置文件（*.amgp *.xml）</translation>
+        <translation>配置文件 (*.amgp *.xml)</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="583"/>
         <location filename="../../../src/joytabwidget.cpp" line="756"/>
         <location filename="../../../src/joytabwidget.cpp" line="766"/>
         <source>Config File (*.%1.amgp)</source>
-        <translation>配置文件（*.%1.amgp）</translation>
+        <translation>配置文件 (*.%1.amgp)</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="1586"/>
@@ -3379,7 +3379,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="40"/>
         <source>%1 (#%2) Properties</source>
-        <translation>%1（#%2）属性</translation>
+        <translation>%1 (#%2) 属性</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="64"/>
@@ -3974,7 +3974,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="560"/>
+        <location filename="../../../src/mainwindow.cpp" line="565"/>
         <source>&amp;Quit</source>
         <translation>退出 (&amp;Q)</translation>
     </message>
@@ -3985,7 +3985,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="564"/>
+        <location filename="../../../src/mainwindow.cpp" line="569"/>
         <source>&amp;Update Joysticks</source>
         <translation>更新摇杆 (&amp;U)</translation>
     </message>
@@ -3996,7 +3996,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="552"/>
+        <location filename="../../../src/mainwindow.cpp" line="557"/>
         <source>&amp;Hide</source>
         <translation>隐藏 (&amp;H)</translation>
     </message>
@@ -4061,57 +4061,57 @@ the option in Windows.</source>
         <translation>维基页面</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="280"/>
+        <location filename="../../../src/mainwindow.cpp" line="285"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
         <translation>无法找到合适的游戏控制器标识符。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="323"/>
-        <location filename="../../../src/mainwindow.cpp" line="372"/>
-        <location filename="../../../src/mainwindow.cpp" line="447"/>
-        <location filename="../../../src/mainwindow.cpp" line="1427"/>
-        <location filename="../../../src/mainwindow.cpp" line="1472"/>
-        <location filename="../../../src/mainwindow.cpp" line="1494"/>
-        <location filename="../../../src/mainwindow.cpp" line="1507"/>
+        <location filename="../../../src/mainwindow.cpp" line="328"/>
+        <location filename="../../../src/mainwindow.cpp" line="377"/>
+        <location filename="../../../src/mainwindow.cpp" line="452"/>
+        <location filename="../../../src/mainwindow.cpp" line="1435"/>
+        <location filename="../../../src/mainwindow.cpp" line="1480"/>
+        <location filename="../../../src/mainwindow.cpp" line="1502"/>
+        <location filename="../../../src/mainwindow.cpp" line="1515"/>
         <source>(%1)</source>
         <translation>（%1）</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="504"/>
-        <location filename="../../../src/mainwindow.cpp" line="508"/>
+        <location filename="../../../src/mainwindow.cpp" line="509"/>
+        <location filename="../../../src/mainwindow.cpp" line="513"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="556"/>
+        <location filename="../../../src/mainwindow.cpp" line="561"/>
         <source>&amp;Restore</source>
         <translation>还原 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1345"/>
+        <location filename="../../../src/mainwindow.cpp" line="1350"/>
         <source>Run as Administrator?</source>
         <translation>以管理员权限运行？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1346"/>
+        <location filename="../../../src/mainwindow.cpp" line="1351"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
         <translation>您确定要使用管理员权限运行本程序吗？
-有些以管理员权限运行的游戏无法识别 antimicro 生成的事件，除非 antimicro 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制（UAC）导致的权限问题。</translation>
+有些以管理员权限运行的游戏无法识别 antimicro 生成的事件，除非 antimicro 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制 (UAC) 导致的权限问题。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1371"/>
+        <location filename="../../../src/mainwindow.cpp" line="1376"/>
         <source>Failed to elevate program</source>
         <translation>无法提升本程序权限</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1372"/>
+        <location filename="../../../src/mainwindow.cpp" line="1377"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>无法以管理员权限重新运行本程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1405"/>
+        <location filename="../../../src/mainwindow.cpp" line="1413"/>
         <source>Could not find controller. Exiting.</source>
         <translation>无法找到游戏控制器。正在退出。</translation>
     </message>
@@ -4119,12 +4119,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseAxisSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="270"/>
+        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="274"/>
         <source>Mouse Settings - </source>
         <translation>鼠标设置 - </translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="284"/>
+        <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="288"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -4132,12 +4132,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseButtonSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="248"/>
+        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="252"/>
         <source>Mouse Settings - </source>
         <translation>鼠标设置 - </translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="254"/>
+        <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="258"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -4145,12 +4145,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseControlStickSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="291"/>
+        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="295"/>
         <source>Mouse Settings</source>
         <translation>鼠标设置</translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="305"/>
+        <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="309"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -4158,12 +4158,12 @@ Some games run as Administrator which will cause events generated by antimicro t
 <context>
     <name>MouseDPadSettingsDialog</name>
     <message>
-        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="284"/>
+        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="288"/>
         <source>Mouse Settings</source>
         <translation>鼠标设置</translation>
     </message>
     <message>
-        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="298"/>
+        <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="302"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -4246,6 +4246,7 @@ a period of time using a Cubic curve.</source>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="113"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="731"/>
         <source>Linear</source>
         <translation>线性</translation>
     </message>
@@ -4354,124 +4355,137 @@ after reaching the high end of an axis.</source>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="474"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="693"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="698"/>
         <source> s</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="517"/>
-        <source>Options for adding extra acceleration to the mouse
-movement beyond what the acceleration curve would
-produce.</source>
-        <translation>添加加速曲线以外的附加加速选项。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="522"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="527"/>
         <source>Extra Acceleration</source>
-        <translation>附加加速</translation>
+        <translation>额外加速</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="541"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="546"/>
         <source>Multiplier:</source>
         <translation>倍数：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="551"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="556"/>
         <source>Highest value to accelerate mouse movement by</source>
         <translation>鼠标速度的最大加速值</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="554"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="559"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="574"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="579"/>
         <source>Start %:</source>
         <translation>起始百分比：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="584"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="589"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
         <translation>加速以基础倍数的此百分比速率开始</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="587"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="628"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="659"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="805"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="592"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="633"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="664"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="850"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="614"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="619"/>
         <source>Min
 Threshold:</source>
         <translation>最小阈值：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="625"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="630"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
         <translation>轴的移动幅度大于此最小阈值之后加速才开始</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="645"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="650"/>
         <source>Max
 Threshold:</source>
         <translation>最大阈值：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="656"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="661"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
         <translation>轴的移动幅度达到此最大阈值时加速达到上述倍数值</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="678"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="683"/>
         <source>Extra Duration:</source>
-        <translation>附加时长：</translation>
+        <translation>额外加速时长：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="688"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="693"/>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
-        <translation>此期间内附加加速生效。
-轴的移动幅度考虑在内。缓慢的轴移动将减小实际的附加加速生效时间。</translation>
+        <translation>此期间内额外加速生效。
+轴的移动幅度考虑在内。缓慢的轴移动将减小实际的额外加速生效时间。</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="789"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="718"/>
+        <source>Curve:</source>
+        <translation>曲线：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="736"/>
+        <source>Ease Out Sine</source>
+        <translation>正弦滑出缓动</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="741"/>
+        <source>Ease Out Quad</source>
+        <translation>平方滑出缓动</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="746"/>
+        <source>Ease Out Cubic</source>
+        <translation>立方滑出缓动</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="834"/>
         <source>Release Radius:</source>
         <translation>释放半径：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="822"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="867"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
         <translation>弹簧区域将相对于鼠标指针的位置。鼠标指针的位置可由其它非弹簧模式指定。</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="826"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="871"/>
         <source>Relative</source>
         <translation>相对</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="849"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="894"/>
         <source>Mouse Status</source>
         <translation>鼠标状态</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="857"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="902"/>
         <source>X:</source>
         <translation>X轴：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="864"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="882"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="909"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="927"/>
         <source>0 (0 pps)</source>
         <translation>0（0像素/秒）</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="875"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="920"/>
         <source>Y:</source>
         <translation>Y轴：</translation>
     </message>
@@ -4493,37 +4507,47 @@ Speed:</source>
         <translation>灵敏度：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="721"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="520"/>
+        <source>Options for adding extra acceleration to the mouse
+movement beyond what the acceleration curve would
+produce. This is meant to help work around some of
+the issues of the very limited input range available using
+typical gamepad analog sticks.</source>
+        <translation>在加速曲线之上为鼠标移动增添额外加速。
+这些选项是为了绕过某些由于手柄模拟摇杆的输入范围有限所带来的问题。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="766"/>
         <source>Spring Settings</source>
         <translation>弹簧设置</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="731"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="776"/>
         <source>Spring Width:</source>
         <translation>弹簧区域宽度：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="744"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="789"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
         <translation>设置鼠标以弹簧模式移动的区域的宽度。设为0时将使用您整个屏幕的宽度。</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="760"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="805"/>
         <source>Spring Height:</source>
         <translation>弹簧区域高度：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="773"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="818"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
         <translation>设置鼠标以弹簧模式移动的区域的高度。设为0时将使用您整个屏幕的高度。</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../src/mousesettingsdialog.cpp" line="203"/>
-        <location filename="../../../src/mousesettingsdialog.cpp" line="211"/>
+        <location filename="../../../src/mousesettingsdialog.cpp" line="185"/>
+        <location filename="../../../src/mousesettingsdialog.cpp" line="193"/>
         <source>%n notch(es)/s</source>
         <translation>
             <numerusform>%n凹槽/秒</numerusform>
@@ -4701,38 +4725,38 @@ it unattended.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="248"/>
+        <location filename="../../../src/main.cpp" line="249"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="256"/>
+        <location filename="../../../src/main.cpp" line="257"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="267"/>
+        <location filename="../../../src/main.cpp" line="268"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="294"/>
-        <location filename="../../../src/main.cpp" line="397"/>
+        <location filename="../../../src/main.cpp" line="295"/>
+        <location filename="../../../src/main.cpp" line="398"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="324"/>
+        <location filename="../../../src/main.cpp" line="325"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="351"/>
+        <location filename="../../../src/main.cpp" line="352"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="757"/>
+        <location filename="../../../src/main.cpp" line="772"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
@@ -4802,22 +4826,22 @@ it unattended.</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="613"/>
+        <location filename="../../../src/main.cpp" line="619"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="640"/>
+        <location filename="../../../src/main.cpp" line="646"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="674"/>
+        <location filename="../../../src/main.cpp" line="681"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="731"/>
+        <location filename="../../../src/main.cpp" line="740"/>
         <source>Could not raise process priority.</source>
         <translation>无法提升进程优先级。</translation>
     </message>
