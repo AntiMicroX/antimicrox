@@ -1274,12 +1274,8 @@ void JoyButton::mouseEvent()
                             intermediateTravel = qMin(maxtravel, intermediateTravel + mintravel);
                         }
 
-                        double currentAccelMultiTemp = 0.0;
-                        if (extraAccelCurve == LinearAccelCurve)
-                        {
-                            currentAccelMultiTemp = (slope * intermediateTravel + intercept);
-                        }
-                        else if (extraAccelCurve == EaseOutSineCurve)
+                        double currentAccelMultiTemp = (slope * intermediateTravel + intercept);
+                        if (extraAccelCurve == EaseOutSineCurve)
                         {
                             double getMultiDiff2 = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
                             currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * sin(getMultiDiff2 * (PI/2.0)) + minfactor;
@@ -5730,6 +5726,7 @@ bool JoyButton::hasActiveSlots()
 void JoyButton::setExtraAccelerationCurve(JoyExtraAccelerationCurve curve)
 {
     extraAccelCurve = curve;
+    emit propertyUpdated();
 }
 
 JoyButton::JoyExtraAccelerationCurve JoyButton::getExtraAccelerationCurve()

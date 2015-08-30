@@ -538,7 +538,6 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker,
                          SLOT(deleteJoysticks()), Qt::BlockingQueuedConnection);
-        //QObject::connect(a, SIGNAL(aboutToQuit()), inputEventThread, SLOT(quit()));
         QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj,
                          SLOT(deleteDeskWid()), Qt::DirectConnection);
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),

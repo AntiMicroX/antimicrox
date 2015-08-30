@@ -1393,16 +1393,19 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
         if (joystick)
         {
             GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
-            dialog->show();
 
             if (openAsMain)
             {
+                dialog->setParent(0);
+                dialog->setWindowFlags(Qt::Window);
                 connect(dialog, SIGNAL(finished(int)), qApp, SLOT(quit()));
             }
             else
             {
                 connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
             }
+
+            dialog->show();
         }
     }
     else if (openAsMain)
