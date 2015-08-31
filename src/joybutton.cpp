@@ -69,6 +69,7 @@ const int JoyButton::MAXIMUMMOUSEHISTORYSIZE = 100;
 const double JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
 int JoyButton::IDLEMOUSEREFRESHRATE = (5 * 20);
+const int JoyButton::DEFAULTIDLEMOUSEREFRESHRATE = 100;
 const double JoyButton::DEFAULTEXTRACCELVALUE = 2.0;
 const double JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
 const double JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
@@ -280,6 +281,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 emit clicked(index);
                 oldAccelMulti = updateOldAccelMulti = 0.0;
+                accelTravel = 0.0;
             }
             else
             {
@@ -1255,7 +1257,7 @@ void JoyButton::mouseEvent()
 
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
                     double minstop = qMax(0.05, mintravel);
-                    double currentTravel = fabs(getAccelerationDistance() - lastAccelerationDistance);
+                    double currentTravel = getAccelerationDistance() - lastAccelerationDistance;
 
                     // Last check ensures that acceleration is only applied for the same direction.
                     if (extraAccelerationEnabled && isPartRealAxis() &&
@@ -1294,6 +1296,7 @@ void JoyButton::mouseEvent()
                         difference = difference * currentAccelMultiTemp;
                         currentAccelMulti = currentAccelMultiTemp;
                         updateOldAccelMulti = currentAccelMulti;
+                        accelTravel = intermediateTravel;
                         accelExtraDurationTime.restart();
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
@@ -1312,7 +1315,12 @@ void JoyButton::mouseEvent()
 
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
 
-                        double intermediateTravel = qMin(maxtravel, fabs(getAccelerationDistance() - startingAccelerationDistance));
+                        double intermediateTravel = accelTravel;
+                        if ((getAccelerationDistance() - startingAccelerationDistance >= 0) != (getAccelerationDistance() >= 0))
+                        {
+                            // Travelling towards dead zone. Decrease acceleration and duration.
+                            intermediateTravel = intermediateTravel - fabs(getAccelerationDistance() - startingAccelerationDistance);
+                        }
 
                         // Linear case
                         double currentAccelMultiTemp = (slope * intermediateTravel + intercept);
@@ -1342,25 +1350,6 @@ void JoyButton::mouseEvent()
                         }
 
                         double tempAccel = currentAccelMultiTemp;
-
-                        /*double tempAccel = currentAccelMulti;
-                        //double multiModifier = (maxtravel + fullIntermediateTravel) / maxtravel;
-                        double multiModifier = getAccelerationDistance() / startingAccelerationDistance;
-                        if (multiModifier >= 0.0 && multiModifier < 1.0)
-                        {
-                            tempAccel = multiModifier * currentAccelMulti;
-                        }
-
-                        double orgelapsedDuration = accelDuration *
-                                ((tempAccel - minfactor) / (extraAccelerationMultiplier - minfactor));
-                        */
-
-                        // Use easeOut to modify duration time used.
-                        //double multiDiff = ((currentAccelMulti  - minfactor) / (extraAccelerationMultiplier - minfactor));
-                        //double elapsedDuration = -accelDuration * (multiDiff) * (multiDiff - 2) + 0;
-                        //double elapsedDuration = accelDuration * sin(multiDiff * (PI/2.0)) + 0;
-
-                        //double elapsedDuration = orgelapsedDuration;
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
@@ -1379,6 +1368,7 @@ void JoyButton::mouseEvent()
                             elapsedDiff = 1.0;
                             currentAccelMulti = 0.0;
                             updateOldAccelMulti = 0.0;
+                            accelTravel = 0.0;
                         }
                     }
                     else if (extraAccelerationEnabled && isPartRealAxis())
@@ -1386,6 +1376,7 @@ void JoyButton::mouseEvent()
                         currentAccelMulti = 0.0;
                         updateStartingMouseDistance = true;
                         oldAccelMulti = updateOldAccelMulti = 0.0;
+                        accelTravel = 0.0;
                     }
 
                     //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
@@ -3563,7 +3554,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         currentAccelerationDistance = 0.0;
         startingAccelerationDistance = 0.0;
         oldAccelMulti = updateOldAccelMulti = 0.0;
-        //trynow = 0.0;
+        accelTravel = 0.0;
         accelExtraDurationTime.restart();
 
         lastMouseDistance = 0.0;
@@ -5341,7 +5332,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
     {
         mouseRefreshRate = refresh;
         int temp = IDLEMOUSEREFRESHRATE;
-        IDLEMOUSEREFRESHRATE = mouseRefreshRate * 20;
+        //IDLEMOUSEREFRESHRATE = mouseRefreshRate * 20;
 
         if (staticMouseEventTimer.isActive())
         {
@@ -5476,6 +5467,7 @@ void JoyButton::resetProperties()
     tempTurboInterval = 0;
     //currentTurboMode = GradientTurbo;
     oldAccelMulti = 0.0;
+    accelTravel = 0.0;
     currentTurboMode = DEFAULTTURBOMODE;
     easingDuration = DEFAULTEASINGDURATION;
     springDeadCircleMultiplier = DEFAULTSPRINGRELEASERADIUS;

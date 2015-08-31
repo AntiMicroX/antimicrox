@@ -261,6 +261,7 @@ public:
     static const double MAXIMUMWEIGHTMODIFIER;
 
     static const int MAXIMUMMOUSEREFRESHRATE;
+    static const int DEFAULTIDLEMOUSEREFRESHRATE;
     static int IDLEMOUSEREFRESHRATE;
 
     static const unsigned int MINCYCLERESETTIME;
@@ -412,6 +413,7 @@ protected:
     QTime accelExtraDurationTime;
     double accelDuration;
     double oldAccelMulti;
+    double accelTravel; // Track travel when accel started
 
     // Should lastMouseDistance be updated. Set after mouse event.
     bool updateLastMouseDistance;
