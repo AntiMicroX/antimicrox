@@ -1,3 +1,14 @@
+2015-08-31 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.19
+
+* Added curve options for extra acceleration.
+
+* Fixed bug when App Settings Wizard would pop up when not needed.
+
+* Simplified Chinese translation updated.
+
+
 2015-08-24 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.18.2
