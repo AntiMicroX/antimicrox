@@ -78,6 +78,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     fillControllerMappingsTable();
 #endif
 
+    settings->getLock()->lock();
+
     QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     int numberRecentProfiles = settings->value("NumberRecentProfiles", 5).toInt();
     bool closeToTray = settings->value("CloseToTray", false).toBool();
@@ -325,6 +327,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui->extraInfoFrame->hide();
 #endif
 
+    settings->getLock()->unlock();
+
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
@@ -379,6 +383,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
 
     QHash<QString, QList<QVariant> > tempHash;
 
+    settings->getLock()->lock();
     settings->beginGroup("Mappings");
 
     QStringList mappings = settings->allKeys();
@@ -418,6 +423,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
     }
 
     settings->endGroup();
+    settings->getLock()->unlock();
 
     QHashIterator<QString, QList<QVariant> > iter2(tempHash);
     int i = 0;
@@ -510,6 +516,8 @@ void MainSettingsDialog::deleteMappingRow()
 
 void MainSettingsDialog::syncMappingSettings()
 {
+    settings->getLock()->lock();
+
     settings->beginGroup("Mappings");
     settings->remove("");
 
@@ -532,6 +540,7 @@ void MainSettingsDialog::syncMappingSettings()
     }
 
     settings->endGroup();
+    settings->getLock()->unlock();
 }
 
 void MainSettingsDialog::saveNewSettings()
@@ -540,6 +549,7 @@ void MainSettingsDialog::saveNewSettings()
     syncMappingSettings();
 #endif
 
+    settings->getLock()->lock();
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
     bool closeToTray = ui->closeToTrayCheckBox->isChecked();
@@ -567,6 +577,7 @@ void MainSettingsDialog::saveNewSettings()
     {
         settings->remove("CloseToTray");
     }
+    settings->getLock()->unlock();
 
     checkLocaleChange();
 #ifdef Q_OS_UNIX
@@ -584,6 +595,7 @@ void MainSettingsDialog::saveNewSettings()
     saveAutoProfileSettings();
 #endif
 
+    settings->getLock()->lock();
 #ifdef Q_OS_WIN
     QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
     QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
@@ -729,6 +741,7 @@ void MainSettingsDialog::saveNewSettings()
     PadderCommon::unlockInputDevices();
 
     settings->sync();
+    settings->getLock()->unlock();
 }
 
 void MainSettingsDialog::selectDefaultProfileDir()
@@ -743,6 +756,7 @@ void MainSettingsDialog::selectDefaultProfileDir()
 
 void MainSettingsDialog::checkLocaleChange()
 {
+    settings->getLock()->lock();
     int row = ui->localeListWidget->currentRow();
     if (row == 0)
     {
@@ -751,6 +765,7 @@ void MainSettingsDialog::checkLocaleChange()
             settings->remove("Language");
         }
 
+        settings->getLock()->unlock();
         emit changeLanguage(QLocale::system().name());
     }
     else
@@ -791,6 +806,7 @@ void MainSettingsDialog::checkLocaleChange()
 
         settings->setValue("Language", newLocale);
 
+        settings->getLock()->unlock();
         emit changeLanguage(newLocale);
     }
 }
@@ -1140,7 +1156,7 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
 
 void MainSettingsDialog::saveAutoProfileSettings()
 {
-
+    settings->getLock()->lock();
     settings->beginGroup("DefaultAutoProfiles");
     QStringList defaultkeys = settings->allKeys();
     settings->endGroup();
@@ -1229,6 +1245,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
         i++;
     }
     settings->endGroup();
+    settings->getLock()->unlock();
 }
 
 void MainSettingsDialog::fillAllAutoProfilesTable()

@@ -143,11 +143,13 @@ bool FirstRunWizard::shouldDisplay(AntiMicroSettings *settings)
     result = result || AssociateProfilesPage::shouldDisplay(settings);
 #endif
 
+    settings->getLock()->lock();
     // Only show wizard if no saved settings exist.
     if (settings->allKeys().size() == 0)
     {
         result = true;
     }
+    settings->getLock()->unlock();
 
     return result;
 }

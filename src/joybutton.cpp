@@ -1312,7 +1312,38 @@ void JoyButton::mouseEvent()
 
                         unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
 
-                        double tempAccel = currentAccelMulti;
+                        double intermediateTravel = qMin(maxtravel, fabs(getAccelerationDistance() - startingAccelerationDistance));
+
+                        // Linear case
+                        double currentAccelMultiTemp = (slope * intermediateTravel + intercept);
+                        double elapsedDuration = accelDuration *
+                                ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
+
+                        if (extraAccelCurve == EaseOutSineCurve)
+                        {
+                            double multiDiff = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
+                            double temp = sin(multiDiff * (PI/2.0));
+                            elapsedDuration = accelDuration * temp + 0;
+                            currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * sin(multiDiff * (PI/2.0)) + minfactor;
+                        }
+                        else if (extraAccelCurve == EaseOutQuadAccelCurve)
+                        {
+                            double getMultiDiff2 = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor));
+                            double temp = (getMultiDiff2 * (getMultiDiff2 - 2));
+                            elapsedDuration = -accelDuration * temp + 0;
+                            currentAccelMultiTemp = -(extraAccelerationMultiplier - minfactor) * temp + minfactor;
+                        }
+                        else if (extraAccelCurve == EaseOutCubicAccelCurve)
+                        {
+                            double getMultiDiff = ((currentAccelMultiTemp - minfactor) / (extraAccelerationMultiplier - minfactor)) - 1;
+                            double temp = ((getMultiDiff) * (getMultiDiff) * (getMultiDiff) + 1);
+                            elapsedDuration = accelDuration * temp + 0;
+                            currentAccelMultiTemp = (extraAccelerationMultiplier - minfactor) * temp + minfactor;
+                        }
+
+                        double tempAccel = currentAccelMultiTemp;
+
+                        /*double tempAccel = currentAccelMulti;
                         //double multiModifier = (maxtravel + fullIntermediateTravel) / maxtravel;
                         double multiModifier = getAccelerationDistance() / startingAccelerationDistance;
                         if (multiModifier >= 0.0 && multiModifier < 1.0)
@@ -1320,19 +1351,16 @@ void JoyButton::mouseEvent()
                             tempAccel = multiModifier * currentAccelMulti;
                         }
 
-                        //double elapsedDuration = accelDuration;
                         double orgelapsedDuration = accelDuration *
                                 ((tempAccel - minfactor) / (extraAccelerationMultiplier - minfactor));
-
-                        //double orgelapsedDuration = accelDuration *
-                        //        ((currentAccelMulti) / (extraAccelerationMultiplier));
+                        */
 
                         // Use easeOut to modify duration time used.
                         //double multiDiff = ((currentAccelMulti  - minfactor) / (extraAccelerationMultiplier - minfactor));
                         //double elapsedDuration = -accelDuration * (multiDiff) * (multiDiff - 2) + 0;
                         //double elapsedDuration = accelDuration * sin(multiDiff * (PI/2.0)) + 0;
 
-                        double elapsedDuration = orgelapsedDuration;
+                        //double elapsedDuration = orgelapsedDuration;
                         double elapsedDiff = 1.0;
                         if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
                         {
@@ -1340,7 +1368,6 @@ void JoyButton::mouseEvent()
                             elapsedDiff = (1.0 - tempAccel) * (elapsedDiff * elapsedDiff * elapsedDiff) + tempAccel;
 
                             difference = elapsedDiff * difference;
-                            //difference = currentAccelMulti * difference;
 
                             // As acceleration is applied, do not update last
                             // distance values when not necessary.

@@ -238,6 +238,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     //QStringList assignments = settings->allKeys();
     //QStringListIterator iter(assignments);
 
+    settings->getLock()->lock();
     settings->beginGroup("DefaultAutoProfiles");
     QString exe;
     QString guid;
@@ -370,6 +371,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     }
 
     settings->endGroup();
+    settings->getLock()->unlock();
 }
 
 void AutoProfileWatcher::clearProfileAssignments()

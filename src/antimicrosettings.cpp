@@ -71,3 +71,8 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
         cmdSettings.setValue("DisplaySDLMapping", 1);
     }
 }
+
+QMutex* AntiMicroSettings::getLock()
+{
+    return &lock;
+}

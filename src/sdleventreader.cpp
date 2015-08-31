@@ -30,8 +30,10 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
 {
     this->joysticks = joysticks;
     this->settings = settings;
+    settings->getLock()->lock();
     this->pollRate = settings->value("GamepadPollRate",
                                      AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
+    settings->getLock()->unlock();
 
     pollRateTimer.setParent(this);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -65,6 +67,7 @@ void SDLEventReader::initSDL()
 
 #ifdef USE_SDL_2
     //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+    settings->getLock()->lock();
     settings->beginGroup("Mappings");
     QStringList mappings = settings->allKeys();
     QStringListIterator iter(mappings);
@@ -81,6 +84,7 @@ void SDLEventReader::initSDL()
     }
 
     settings->endGroup();
+    settings->getLock()->unlock();
 
     //SDL_GameControllerAddMapping("03000000100800000100000010010000,Twin USB Joystick,a:b2,b:b1,x:b3,y:b0,back:b8,start:b9,leftshoulder:b6,rightshoulder:b7,leftstick:b10,rightstick:b11,leftx:a0,lefty:a1,rightx:a3,righty:a2,lefttrigger:b4,righttrigger:b5,dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2");
 #endif
@@ -118,19 +122,6 @@ void SDLEventReader::performWork()
     {
         //int status = SDL_WaitEvent(NULL);
         int status = CheckForEvents();
-
-        /*PadderCommon::editingLock.lockForRead();
-        bool isEditing = PadderCommon::editingBindings;
-        PadderCommon::editingLock.unlock();
-
-        if (isEditing)
-        {
-            QMutex *dismutex = &PadderCommon::waitMutex;
-            dismutex->lock();
-            PadderCommon::waitThisOut.wakeAll();
-            dismutex->unlock();
-        }
-        */
 
         if (status)
         {
@@ -199,41 +190,38 @@ int SDLEventReader::CheckForEvents()
                                 true, true);
     */
 
-    //while (!exit)
-    //{
-        SDL_PumpEvents();
-        switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
+    SDL_PumpEvents();
+    switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
+    {
+        case -1:
         {
-            case -1:
-            {
-                result = 0;
-                exit = true;
-                break;
-            }
-            case 1:
-            {
-                /*Logger::LogInfo(
-                            QString("Gamepad Poll %1").arg(
-                                QTime::currentTime().toString("hh:mm:ss.zzz")),
-                            true, true);
-                */
-
-                result = 1;
-                exit = true;
-                break;
-            }
-            case 0:
-            {
-                if (!pollRateTimer.isActive())
-                {
-                    pollRateTimer.start();
-                }
-                //exit = true;
-                //SDL_Delay(10);
-                break;
-            }
+            result = 0;
+            exit = true;
+            break;
         }
-    //}
+        case 1:
+        {
+            /*Logger::LogInfo(
+                        QString("Gamepad Poll %1").arg(
+                            QTime::currentTime().toString("hh:mm:ss.zzz")),
+                        true, true);
+            */
+
+            result = 1;
+            exit = true;
+            break;
+        }
+        case 0:
+        {
+            if (!pollRateTimer.isActive())
+            {
+                pollRateTimer.start();
+            }
+            //exit = true;
+            //SDL_Delay(10);
+            break;
+        }
+    }
 
     return result;
 }

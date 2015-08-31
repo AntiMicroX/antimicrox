@@ -128,10 +128,12 @@ bool MouseSettingsPage::shouldDisplay(AntiMicroSettings *settings)
 {
     bool result = false;
     // Only show page if no saved settings exist.
+    settings->getLock()->lock();
     if (settings->allKeys().size() == 0)
     {
         result = true;
     }
+    settings->getLock()->unlock();
 
     return result;
 }

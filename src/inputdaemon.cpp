@@ -161,6 +161,7 @@ void InputDaemon::refreshJoysticks()
 #endif
 
 #ifdef USE_SDL_2
+    settings->getLock()->lock();
     settings->beginGroup("Mappings");
 #endif
 
@@ -206,6 +207,7 @@ void InputDaemon::refreshJoysticks()
 
 #ifdef USE_SDL_2
     settings->endGroup();
+    settings->getLock()->unlock();
 #endif
 
     emit joysticksRefreshed(joysticks);
@@ -393,6 +395,7 @@ void InputDaemon::addInputDevice(int index)
 
         if (!joysticks->contains(tempJoystickID))
         {
+            settings->getLock()->lock();
             settings->beginGroup("Mappings");
 
             QString temp;
@@ -419,6 +422,7 @@ void InputDaemon::addInputDevice(int index)
                         trackcontrollers.insert(tempJoystickID, damncontroller);
 
                         settings->endGroup();
+                        settings->getLock()->unlock();
 
                         emit deviceAdded(damncontroller);
                     }
@@ -426,6 +430,7 @@ void InputDaemon::addInputDevice(int index)
                 else
                 {
                     settings->endGroup();
+                    settings->getLock()->unlock();
                 }
             }
             else
@@ -435,6 +440,7 @@ void InputDaemon::addInputDevice(int index)
                 trackjoysticks.insert(tempJoystickID, curJoystick);
 
                 settings->endGroup();
+                settings->getLock()->unlock();
 
                 emit deviceAdded(curJoystick);
             }

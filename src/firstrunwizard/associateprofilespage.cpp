@@ -41,6 +41,8 @@ bool AssociateProfilesPage::shouldDisplay(AntiMicroSettings *settings)
 {
     bool result = false;
 #if defined(Q_OS_WIN) && !defined(WIN_PORTABLE_PACKAGE)
+    settings->getLock()->lock();
+
     bool shouldAssociateProfiles = settings->value("AssociateProfiles",
                                                    AntiMicroSettings::defaultAssociateProfiles).toBool();
 
@@ -48,6 +50,9 @@ bool AssociateProfilesPage::shouldDisplay(AntiMicroSettings *settings)
     {
         result = true;
     }
+
+    settings->getLock()->unlock();
+
 #else
     Q_UNUSED(settings);
 #endif
