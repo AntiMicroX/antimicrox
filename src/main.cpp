@@ -747,6 +747,8 @@ int main(int argc, char *argv[])
     {
         runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
         QObject::connect(runWillard, SIGNAL(finished(int)), &mainAppHelper, SLOT(initRunMethods()));
+        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(fillButtons()));
+        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(alterConfigFromSettings()));
         QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
         runWillard->show();
     }
