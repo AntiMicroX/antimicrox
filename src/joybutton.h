@@ -555,7 +555,7 @@ public slots:
 
     void removeAssignedSlot(int index);
 
-    void establishMouseTimerConnections();
+    static void establishMouseTimerConnections();
     void establishPropertyUpdatedConnections();
     void disconnectPropertyUpdatedConnections();
 

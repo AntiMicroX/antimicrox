@@ -37,6 +37,7 @@ void AppLaunchHelper::initRunMethods()
 {
     if (graphical)
     {
+        establishMouseTimerConnections();
         enablePossibleMouseSmoothing();
         changeMouseRefreshRate();
         changeSpringModeScreen();
@@ -172,4 +173,9 @@ void AppLaunchHelper::revertMouseThread()
 void AppLaunchHelper::changeMouseThread(QThread *thread)
 {
     JoyButton::setStaticMouseThread(thread);
+}
+
+void AppLaunchHelper::establishMouseTimerConnections()
+{
+    JoyButton::establishMouseTimerConnections();
 }

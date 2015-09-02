@@ -741,8 +741,6 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    mainAppHelper.changeMouseThread(inputEventThread);
-
     if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
     {
         runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
@@ -759,6 +757,8 @@ int main(int argc, char *argv[])
         w->alterConfigFromSettings();
         w->changeWindowStatus();
     }
+
+    mainAppHelper.changeMouseThread(inputEventThread);
 
     joypad_worker->startWorker();
 

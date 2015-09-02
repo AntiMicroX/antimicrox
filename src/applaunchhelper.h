@@ -37,6 +37,7 @@ public:
 
 protected:
     void enablePossibleMouseSmoothing();
+    void establishMouseTimerConnections();
     void changeMouseRefreshRate();
     void changeSpringModeScreen();
     void changeGamepadPollRate();
