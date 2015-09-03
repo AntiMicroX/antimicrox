@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-            appLogger.LogInfo(QObject::tr("Daemon launched"));
+            appLogger.LogInfo(QObject::tr("Daemon launched"), true, true);
 
             a = new QApplication(argc, argv);
             localServer = new LocalAntiMicroServer();
