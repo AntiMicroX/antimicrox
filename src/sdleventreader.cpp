@@ -191,7 +191,11 @@ int SDLEventReader::CheckForEvents()
     */
 
     SDL_PumpEvents();
+    #ifdef USE_SDL_2
     switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
+    #else
+    switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, 0xFFFF))
+    #endif
     {
         case -1:
         {
