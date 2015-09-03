@@ -17,7 +17,6 @@
 
 //#include <QDebug>
 #include <QtGlobal>
-#include <cassert>
 
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
@@ -219,9 +218,9 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         {
             // Find Qt Key corresponding to X11 KeySym.
             //checkalias = x11KeyMapper.returnQtKey(finalvirtual);
-            assert(AntKeyMapper::getInstance()->hasNativeKeyMapper());
+            Q_ASSERT(AntKeyMapper::getInstance()->hasNativeKeyMapper());
             QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-            assert(x11KeyMapper!=NULL);
+            Q_ASSERT(x11KeyMapper != NULL);
             checkalias = x11KeyMapper->returnQtKey(finalvirtual);
             // Find corresponding Linux input key for the Qt key.
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(checkalias);

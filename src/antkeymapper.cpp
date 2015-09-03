@@ -18,7 +18,6 @@
 //#include <QDebug>
 #include <QtGlobal>
 #include <QStringList>
-#include <cassert>
 
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
@@ -95,9 +94,9 @@ AntKeyMapper* AntKeyMapper::getInstance(QString handler)
 {
     if (!_instance)
     {
-        assert(!handler.isEmpty());
+        Q_ASSERT(!handler.isEmpty());
         QStringList temp = buildEventGeneratorList();
-        assert(temp.contains(handler));
+        Q_ASSERT(temp.contains(handler));
         _instance = new AntKeyMapper(handler);
     }
 
