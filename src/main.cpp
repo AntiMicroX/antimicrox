@@ -204,6 +204,7 @@ int main(int argc, char *argv[])
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
         MainWindow w(joysticks, &cmdutility, &settings, false);
         w.fillButtons();
+        w.alterConfigFromSettings();
 
         if (!cmdutility.hasError() && cmdutility.hasProfile())
         {
