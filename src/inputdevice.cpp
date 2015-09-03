@@ -2208,3 +2208,9 @@ void InputDevice::haltServices()
 {
     emit requestWait();
 }
+
+void InputDevice::finalRemoval()
+{
+    this->closeSDLDevice();
+    this->deleteLater();
+}

@@ -126,7 +126,7 @@ namespace PadderCommon
 
     void lockInputDevices()
     {
-        waitMutex.lock();
+        sdlWaitMutex.lock();
         /*editingLock.lockForWrite();
         editingBindings = true;
         editingLock.unlock();
@@ -139,7 +139,7 @@ namespace PadderCommon
 
     void unlockInputDevices()
     {
-        waitMutex.unlock();
+        sdlWaitMutex.unlock();
         /*editingLock.lockForWrite();
         editingBindings = false;
         editingLock.unlock();
@@ -149,7 +149,8 @@ namespace PadderCommon
     }
 
     QWaitCondition waitThisOut;
-    QMutex waitMutex;
+    QMutex sdlWaitMutex;
+    QMutex inputDaemonMutex;
     QReadWriteLock editingLock;
     bool editingBindings = false;
     MouseHelper mouseHelperObj;

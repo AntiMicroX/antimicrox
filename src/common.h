@@ -128,7 +128,8 @@ namespace PadderCommon
             .arg(ANTIMICRO_MINOR_VERSION);
 
     extern QWaitCondition waitThisOut;
-    extern QMutex waitMutex;
+    extern QMutex sdlWaitMutex;
+    extern QMutex inputDaemonMutex;
     extern bool editingBindings;
     extern QReadWriteLock editingLock;
     extern MouseHelper mouseHelperObj;

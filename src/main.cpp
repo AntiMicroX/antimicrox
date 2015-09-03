@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<InputDevice*>();
     qRegisterMetaType<AutoProfileInfo*>();
     qRegisterMetaType<QThread*>();
-    qRegisterMetaType<SDL_JoystickID>();
+    qRegisterMetaType<SDL_JoystickID>("SDL_JoystickID");
     qRegisterMetaType<JoyButtonSlot::JoySlotInputAction>("JoyButtonSlot::JoySlotInputAction");
 
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
         AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
         MainWindow w(joysticks, &cmdutility, &settings, false);
-        //w.fillButtons();
+        w.fillButtons();
 
         if (!cmdutility.hasError() && cmdutility.hasProfile())
         {
@@ -543,6 +543,7 @@ int main(int argc, char *argv[])
         QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),
                          Qt::BlockingQueuedConnection);
 
+        //JoyButton::establishMouseTimerConnections();
         w->makeJoystickTabs();
         QTimer::singleShot(0, w, SLOT(controllerMapOpening()));
 
@@ -724,11 +725,9 @@ int main(int argc, char *argv[])
                      w, SLOT(testMappingUpdateNow(int,InputDevice*)));
 
     QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)),
-                     w, SLOT(removeJoyTab(SDL_JoystickID)),
-                     Qt::BlockingQueuedConnection);
+                     w, SLOT(removeJoyTab(SDL_JoystickID)));
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)),
-                     w, SLOT(addJoyTab(InputDevice*)),
-                     Qt::BlockingQueuedConnection);
+                     w, SLOT(addJoyTab(InputDevice*)));
 #endif
 
 #ifdef Q_OS_WIN

@@ -1463,6 +1463,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
             // the tab before deleting tab.
             ui->tabWidget->disableFlashes(tab->getJoystick());
             ui->tabWidget->removeTab(i);
+            QMetaObject::invokeMethod(tab->getJoystick(), "finalRemoval");
             delete tab;
             tab = 0;
             found = true;

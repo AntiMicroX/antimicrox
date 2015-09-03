@@ -23,6 +23,7 @@
 #include <QLinearGradient>
 
 #include "joycontrolstickstatusbox.h"
+#include "common.h"
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     QWidget(parent)
@@ -81,6 +82,8 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
+    PadderCommon::inputDaemonMutex.lock();
+
     if (stick->getJoyMode() == JoyControlStick::StandardMode ||
         stick->getJoyMode() == JoyControlStick::EightWayMode)
     {
@@ -94,6 +97,8 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
     {
         drawFourWayDiagonalBox();
     }
+
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyControlStickStatusBox::drawEightWayBox()

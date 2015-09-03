@@ -377,6 +377,8 @@ void JoyControlStickEditDialog::refreshStickStats(int x, int y)
     Q_UNUSED(x);
     Q_UNUSED(y);
 
+    PadderCommon::inputDaemonMutex.lock();
+
     QString xCoorString = QString::number(stick->getXCoordinate());
     if (stick->getCircleAdjust() > 0.0)
     {
@@ -396,6 +398,8 @@ void JoyControlStickEditDialog::refreshStickStats(int x, int y)
 
     double validDistance = stick->getDistanceFromDeadZone() * 100.0;
     ui->fromSafeZoneValueLabel->setText(QString::number(validDistance));
+
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyControlStickEditDialog::checkMaxZone(int value)

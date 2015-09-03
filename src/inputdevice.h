@@ -188,6 +188,7 @@ public slots:
     void profileEdited();
     void setProfileName(QString value);
     void haltServices();
+    void finalRemoval();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

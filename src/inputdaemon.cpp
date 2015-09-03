@@ -103,6 +103,8 @@ void InputDaemon::startWorker()
 
 void InputDaemon::run ()
 {
+    PadderCommon::inputDaemonMutex.lock();
+
     // SDL has found events. The timeout is not necessary.
     pollResetTimer.stop();
 
@@ -138,6 +140,8 @@ void InputDaemon::run ()
         QTimer::singleShot(0, eventWorker, SLOT(performWork()));
         pollResetTimer.start();
     }
+
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void InputDaemon::refreshJoysticks()
@@ -340,6 +344,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 
                     SDL_GameController *controller = SDL_GameControllerOpen(i);
                     GameController *damncontroller = new GameController(controller, i, settings, this);
+                    connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
                     SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
                     joystickID = SDL_JoystickInstanceID(sdlStick);
                     joysticks->insert(joystickID, damncontroller);
@@ -366,9 +371,6 @@ void InputDaemon::removeDevice(InputDevice *device)
         refreshIndexes();
 
         emit deviceRemoved(deviceID);
-
-        device->closeSDLDevice();
-        device->deleteLater();
     }
 }
 
@@ -418,6 +420,7 @@ void InputDaemon::addInputDevice(int index)
                     if (!joysticks->contains(tempJoystickID))
                     {
                         GameController *damncontroller = new GameController(controller, index, settings, this);
+                        connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
                         joysticks->insert(tempJoystickID, damncontroller);
                         trackcontrollers.insert(tempJoystickID, damncontroller);
 
