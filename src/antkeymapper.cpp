@@ -36,8 +36,12 @@ static QStringList buildEventGeneratorList()
   #endif
 
 #else
+  #ifdef WITH_XTEST
     temp.append("xtest");
+  #endif
+  #ifdef WITH_UINPUT
     temp.append("uinput");
+  #endif
 
 #endif
     return temp;
