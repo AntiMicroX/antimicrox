@@ -454,17 +454,17 @@ set(USE_QT5 OFF)
 set(USE_QT4 OFF)
 
 if(UNIX)
-    # Check if Qt4 was specified using an environment variable
+    # Check if Qt 4 or 5 was specified using an environment variable
     # or by specifying -DQT_QMAKE_EXECUTABLE.
     # Otherwise, check for Qt libraries.
-    if ("$ENV{QT_SELECT}" EQUAL 4)
-        set(USE_QT4 ON)
-    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt4")
-        set(USE_QT4 ON)
-    elseif("$ENV{QT_SELECT}" EQUAL 5)
+    if("$ENV{QT_SELECT}" EQUAL 5)
         set(USE_QT5 ON)
     elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt5")
         set(USE_QT5 ON)
+    elseif ("$ENV{QT_SELECT}" EQUAL 4)
+        set(USE_QT4 ON)
+    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt4")
+        set(USE_QT4 ON)
     else()
         find_package(Qt5Core QUIET)
         if(Qt5Core_FOUND)
@@ -477,7 +477,7 @@ if(UNIX)
                 message(FATAL_ERROR "No Qt libraries could be found.")
             endif(QT_FOUND)
         endif(Qt5Core_FOUND)
-    endif("$ENV{QT_SELECT}" EQUAL 4)
+    endif("$ENV{QT_SELECT}" EQUAL 5)
 elseif(WIN32)
     # Use Qt5 on Windows.
     set(USE_QT5 ON)
