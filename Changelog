@@ -1,3 +1,21 @@
+2015-09-03 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.19.1
+
+* Fixed SDL 1.2 build support.
+
+* Fixed issue with SDL thread not being stopped due to connections not being
+made in some situations.
+
+* Fixed loading of a profile from a second instance.
+
+* Fixed problem with main window not being populated after the App Settings
+Wizard was finished.
+
+* Fixed another portion of the program that assumed that a controller would be
+connected at startup. Fixes excessive CPU load.
+
+
 2015-08-31 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.19
