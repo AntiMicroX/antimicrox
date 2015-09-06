@@ -19,43 +19,6 @@
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="168"/>
-        <source>Info</source>
-        <translation>信息</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="323"/>
-        <source>Changelog</source>
-        <translation>更新日志</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="348"/>
-        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
-
-The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
-
-Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
-
-Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</source>
-        <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
-
-对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
-
-从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
-
-等到 Steam 手柄向公众发布的时候，对这个程序的需求可能就消失了。相对于使用这个程序进行键鼠模拟而言，Steam 手柄单单在概念上就有如此之多的优势。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="367"/>
-        <source>Copyright: 2013 - 2015</source>
-        <translation>版权：2013 - 2015</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="121"/>
-        <source>Credits</source>
-        <translation>致谢</translation>
-    </message>
-    <message>
         <location filename="../../../src/aboutdialog.ui" line="136"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -66,7 +29,8 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;Zerro Alvein&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aybe&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -88,7 +52,8 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;贡献者：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;Zerro Alvein&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aybe&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;翻译：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -103,7 +68,44 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="193"/>
+        <location filename="../../../src/aboutdialog.ui" line="169"/>
+        <source>Info</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="324"/>
+        <source>Changelog</source>
+        <translation>更新日志</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="349"/>
+        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+
+The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
+
+Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
+
+Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</source>
+        <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
+
+对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
+
+从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
+
+等到 Steam 手柄向公众发布的时候，对这个程序的需求可能就消失了。相对于使用这个程序进行键鼠模拟而言，Steam 手柄单单在概念上就有如此之多的优势。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="368"/>
+        <source>Copyright: 2013 - 2015</source>
+        <translation>版权：2013 - 2015</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="121"/>
+        <source>Credits</source>
+        <translation>致谢</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="194"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -334,12 +336,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="337"/>
+        <location filename="../../../src/aboutdialog.ui" line="338"/>
         <source>About Development</source>
         <translation>关于开发</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="178"/>
+        <location filename="../../../src/aboutdialog.ui" line="179"/>
         <source>License</source>
         <translation>许可</translation>
     </message>
@@ -1458,12 +1460,12 @@ this button is being used.</source>
         <translation>高级选项</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="436"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="438"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../../src/buttoneditdialog.cpp" line="441"/>
+        <location filename="../../../src/buttoneditdialog.cpp" line="443"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -2960,12 +2962,12 @@ functionality to an analog stick.</source>
         <translation>对角线区域范围：</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="542"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="546"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="556"/>
+        <location filename="../../../src/joycontrolstickeditdialog.cpp" line="560"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
@@ -4070,9 +4072,9 @@ the option in Windows.</source>
         <location filename="../../../src/mainwindow.cpp" line="377"/>
         <location filename="../../../src/mainwindow.cpp" line="452"/>
         <location filename="../../../src/mainwindow.cpp" line="1435"/>
-        <location filename="../../../src/mainwindow.cpp" line="1480"/>
-        <location filename="../../../src/mainwindow.cpp" line="1502"/>
-        <location filename="../../../src/mainwindow.cpp" line="1515"/>
+        <location filename="../../../src/mainwindow.cpp" line="1481"/>
+        <location filename="../../../src/mainwindow.cpp" line="1503"/>
+        <location filename="../../../src/mainwindow.cpp" line="1516"/>
         <source>(%1)</source>
         <translation>（%1）</translation>
     </message>
@@ -4725,118 +4727,118 @@ it unattended.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="249"/>
+        <location filename="../../../src/main.cpp" line="250"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="257"/>
+        <location filename="../../../src/main.cpp" line="258"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="268"/>
+        <location filename="../../../src/main.cpp" line="269"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="295"/>
-        <location filename="../../../src/main.cpp" line="398"/>
+        <location filename="../../../src/main.cpp" line="296"/>
+        <location filename="../../../src/main.cpp" line="399"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="325"/>
+        <location filename="../../../src/main.cpp" line="326"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="352"/>
+        <location filename="../../../src/main.cpp" line="353"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="772"/>
+        <location filename="../../../src/main.cpp" line="774"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="93"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="94"/>
         <source># of joysticks found: %1</source>
         <translation>已发现摇杆数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="95"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="96"/>
         <source>List Joysticks:</source>
         <translation>摇杆列表：</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="96"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="97"/>
         <source>---------------</source>
         <translation>---------------</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="102"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="103"/>
         <source>Joystick %1:</source>
         <translation>摇杆%1：</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="103"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="104"/>
         <source>Index:           %1</source>
         <translation>编号：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="105"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="106"/>
         <source>GUID:            %1</source>
         <translation>全局唯一标识符：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="107"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="108"/>
         <source>Name:            %1</source>
         <translation>名称：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="110"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="110"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="111"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="112"/>
         <source>Game Controller: %1</source>
         <translation>游戏控制器：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="114"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="115"/>
         <source># of Axes:       %1</source>
         <translation>轴数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="115"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="116"/>
         <source># of Buttons:    %1</source>
         <translation>按钮数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="116"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="117"/>
         <source># of Hats:       %1</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="619"/>
+        <location filename="../../../src/main.cpp" line="621"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="646"/>
+        <location filename="../../../src/main.cpp" line="648"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="681"/>
+        <location filename="../../../src/main.cpp" line="683"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
