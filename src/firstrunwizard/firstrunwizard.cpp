@@ -69,6 +69,8 @@ void FirstRunWizard::adjustSettings(int status)
 {
     Q_UNUSED(status);
 
+    settings->getLock()->lock();
+
     if (hasVisitedPage(LanguageSelectionPageID))
     {
         QString tempLang = LanguageSelectionPage::languageForIndex(field("selectedLanguage").toInt());
@@ -114,8 +116,13 @@ void FirstRunWizard::adjustSettings(int status)
 #endif
     }
 
+    // Flag Wizard as having been used
+    settings->setValue("WizardUsed", "1");
+
     // Save settings to file.
     settings->sync();
+
+    settings->getLock()->unlock();
 }
 
 int FirstRunWizard::nextId() const
