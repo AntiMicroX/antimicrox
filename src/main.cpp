@@ -743,7 +743,8 @@ int main(int argc, char *argv[])
 
     // Do not check if wizard should display if profile has been specified
     // or if main window is set to hidden.
-    if (cmdutility.getProfileLocation().isEmpty() &&
+    ControllerOptionsInfo tempControllerOptions = cmdutility.getControllerOptionsList()->at(0);
+    if (!tempControllerOptions.hasProfile() && !cmdutility.hasProfile() &&
         w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
     {
         runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);

@@ -211,54 +211,85 @@ MainWindow::~MainWindow()
 
 void MainWindow::alterConfigFromSettings()
 {
-    if (cmdutility->hasProfile())
+    if (cmdutility->shouldListControllers())
+    {
+        this->graphical = graphical = false;
+    }
+    else if (cmdutility->hasProfile())
     {
         if (cmdutility->hasControllerNumber())
         {
-            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->getControllerNumber());
+            loadConfigFile(cmdutility->getProfileLocation(),
+                           cmdutility->getControllerNumber());
         }
         else if (cmdutility->hasControllerID())
         {
-            loadConfigFile(cmdutility->getProfileLocation(), cmdutility->hasControllerID());
+            loadConfigFile(cmdutility->getProfileLocation(),
+                           cmdutility->hasControllerID());
         }
         else
         {
             loadConfigFile(cmdutility->getProfileLocation());
         }
     }
-    else if (cmdutility->isUnloadRequested())
+
+    QList<ControllerOptionsInfo> *tempList = cmdutility->getControllerOptionsList();
+    //unsigned int optionListSize = tempList->size();
+
+    QListIterator<ControllerOptionsInfo> optionIter(*tempList);
+    while (optionIter.hasNext())
     {
-        if (cmdutility->hasControllerNumber())
+        ControllerOptionsInfo temp = optionIter.next();
+        if (temp.hasProfile())
         {
-            unloadCurrentConfig(cmdutility->getControllerNumber());
+            if (temp.hasControllerNumber())
+            {
+                loadConfigFile(temp.getProfileLocation(),
+                               temp.getControllerNumber());
+            }
+            else if (temp.hasControllerID())
+            {
+                loadConfigFile(temp.getProfileLocation(),
+                               temp.hasControllerID());
+            }
+            else
+            {
+                loadConfigFile(temp.getProfileLocation());
+            }
         }
-        else if (cmdutility->hasControllerID())
+        else if (temp.isUnloadRequested())
         {
-            unloadCurrentConfig(cmdutility->hasControllerID());
+            if (temp.hasControllerNumber())
+            {
+                unloadCurrentConfig(temp.getControllerNumber());
+            }
+            else if (temp.hasControllerID())
+            {
+                unloadCurrentConfig(temp.hasControllerID());
+            }
+            else
+            {
+                unloadCurrentConfig(0);
+            }
         }
-        else
+
+        if (temp.getStartSetNumber() > 0)
         {
-            unloadCurrentConfig(0);
+            if (temp.hasControllerNumber())
+            {
+                changeStartSetNumber(temp.getJoyStartSetNumber(),
+                                     temp.getControllerNumber());
+            }
+            else if (temp.hasControllerID())
+            {
+                changeStartSetNumber(temp.getJoyStartSetNumber(),
+                                     temp.getControllerID());
+            }
+            else
+            {
+                changeStartSetNumber(temp.getJoyStartSetNumber());
+            }
         }
-    }
-    else if (cmdutility->getStartSetNumber() > 0)
-    {
-        if (cmdutility->hasControllerNumber())
-        {
-            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerNumber());
-        }
-        else if (cmdutility->hasControllerID())
-        {
-            changeStartSetNumber(cmdutility->getJoyStartSetNumber(), cmdutility->getControllerID());
-        }
-        else
-        {
-            changeStartSetNumber(cmdutility->getJoyStartSetNumber());
-        }
-    }
-    else if (cmdutility->shouldListControllers())
-    {
-        this->graphical = graphical = false;
     }
 }
 
@@ -268,13 +299,17 @@ void MainWindow::controllerMapOpening()
     if (cmdutility->shouldMapController())
     {
         this->graphical = graphical = false;
-        if (cmdutility->hasControllerNumber())
+
+        QList<ControllerOptionsInfo> *tempList = cmdutility->getControllerOptionsList();
+        ControllerOptionsInfo temp = tempList->at(0);
+
+        if (temp.hasControllerNumber())
         {
             unsigned int joypadIndex = cmdutility->getControllerNumber();
             selectControllerJoyTab(joypadIndex);
             openGameControllerMappingWindow(true);
         }
-        else if (cmdutility->hasControllerID())
+        else if (temp.hasControllerID())
         {
             QString joypadGUID = cmdutility->getControllerID();
             selectControllerJoyTab(joypadGUID);

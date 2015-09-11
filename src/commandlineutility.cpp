@@ -45,6 +45,7 @@ QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 QRegExp CommandLineUtility::qtStyleRegexp = QRegExp("-style");
 QRegExp CommandLineUtility::logLevelRegexp = QRegExp("--log-level");
 QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
+QRegExp CommandLineUtility::nextRegexp = QRegExp("--next");
 
 #ifdef Q_OS_UNIX
 QRegExp CommandLineUtility::daemonRegexp = QRegExp("--daemon|-d");
@@ -75,15 +76,16 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     mappingController = false;
     currentLogLevel = Logger::LOG_INFO;
 
+    currentListsIndex = 0;
+    ControllerOptionsInfo tempInfo;
+    controllerOptionsList.append(tempInfo);
+
     eventGenerator = EventHandlerFactory::fallBackIdentifier();
 }
 
 void CommandLineUtility::parseArguments(QStringList& arguments)
 {
     QStringListIterator iter(arguments);
-    //QTextStream out(stdout);
-    //QTextStream errorsteam(stderr);
-
     while (iter.hasNext() && !encounteredError)
     {
         QString temp = iter.next();
@@ -116,19 +118,18 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                     if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
                     {
                         setErrorMessage(tr("Profile location %1 is not an XML file.").arg(temp));
-                        //errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
-                        //encounteredError = true;
                     }
                     else
                     {
-                        profileLocation = fileInfo.absoluteFilePath();
+                        QString tempProfileLocation = fileInfo.absoluteFilePath();
+                        ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                        tempInfo.setProfileLocation(tempProfileLocation);
+                        controllerOptionsList.replace(currentListsIndex, tempInfo);
                     }
                 }
                 else
                 {
                     setErrorMessage(tr("Profile location %1 does not exist.").arg(temp));
-                    //errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
-                    //encounteredError = true;
                 }
             }
         }
@@ -142,17 +143,29 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 int tempNumber = temp.toInt(&validNumber);
                 if (validNumber)
                 {
-                    controllerNumber = tempNumber;
+                    if (controllerNumber == 0)
+                    {
+                        controllerNumber = tempNumber;
+                    }
+
+                    ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                    tempInfo.setControllerNumber(tempNumber);
+                    controllerOptionsList.replace(currentListsIndex, tempInfo);
                 }
                 else if (!temp.isEmpty())
                 {
-                    controllerIDString = temp;
+                    if (controllerIDString.isEmpty())
+                    {
+                        controllerIDString = temp;
+                    }
+
+                    ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                    tempInfo.setControllerID(temp);
+                    controllerOptionsList.replace(currentListsIndex, tempInfo);
                 }
                 else
                 {
                     setErrorMessage(tr("Controller identifier is not a valid value."));
-                    //errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                    //encounteredError = true;
                 }
             }
         }
@@ -162,8 +175,10 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
         }
         else if (unloadRegexp.exactMatch(temp))
         {
-            unloadProfile = true;
-            profileLocation = "";
+            ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+            tempInfo.setProfileLocation("");
+            tempInfo.setUnloadRequest(true);
+            controllerOptionsList.replace(currentListsIndex, tempInfo);
 
             if (iter.hasNext())
             {
@@ -178,16 +193,20 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                     if (validNumber)
                     {
                         controllerNumber = tempNumber;
+                        tempInfo = controllerOptionsList.at(currentListsIndex);
+                        tempInfo.setControllerNumber(controllerNumber);
+                        controllerOptionsList.replace(currentListsIndex, tempInfo);
                     }
                     else if (!temp.isEmpty())
                     {
                         controllerIDString = temp;
+                        tempInfo = controllerOptionsList.at(currentListsIndex);
+                        tempInfo.setControllerID(controllerIDString);
+                        controllerOptionsList.replace(currentListsIndex, tempInfo);
                     }
                     else
                     {
                         setErrorMessage(tr("Controller identifier is not a valid value."));
-                        //errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                        //encounteredError = true;
                     }
                 }
                 else
@@ -196,6 +215,11 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                     // Move iterator back to previous item.
                     iter.previous();
                 }
+            }
+            else
+            {
+                unloadProfile = true;
+                profileLocation = "";
             }
         }
         else if (startSetRegexp.exactMatch(temp))
@@ -209,12 +233,13 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 if (validNumber && tempNumber >= 1 && tempNumber <= 8)
                 {
                     startSetNumber = tempNumber;
+                    ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                    tempInfo.setStartSetNumber(startSetNumber);
+                    controllerOptionsList.replace(currentListsIndex, tempInfo);
                 }
                 else if (validNumber)
                 {
-                    setErrorMessage(tr("An invalid set number was specified."));
-                    //errorsteam << tr("An invalid set number was specified.") << endl;
-                    //encounteredError = true;
+                    setErrorMessage(tr("An invalid set number '%1' was specified.").arg(tempNumber));
                 }
 
                 if (iter.hasNext())
@@ -226,16 +251,20 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                         if (validNumber)
                         {
                             controllerNumber = tempNumber;
+                            ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                            tempInfo.setControllerNumber(controllerNumber);
+                            controllerOptionsList.replace(currentListsIndex, tempInfo);
                         }
                         else if (!temp.isEmpty())
                         {
                             controllerIDString = temp;
+                            ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                            tempInfo.setControllerID(controllerIDString);
+                            controllerOptionsList.replace(currentListsIndex, tempInfo);
                         }
                         else
                         {
-                            setErrorMessage(tr("Controller identifier is not a valid value."));
-                            //errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                            //encounteredError = true;
+                            setErrorMessage(tr("Controller identifier '%s'' is not a valid value.").arg(temp));
                         }
                     }
                     else
@@ -249,10 +278,16 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
             else
             {
                 setErrorMessage(tr("No set number was specified."));
-                //errorsteam << tr("No set number was specified.") << endl;
-                //encounteredError = true;
             }
         }
+        else if (nextRegexp.exactMatch(temp))
+        {
+            currentListsIndex++;
+
+            ControllerOptionsInfo tempInfo;
+            controllerOptionsList.append(tempInfo);
+        }
+
 #ifdef USE_SDL_2
         else if (gamepadListRegexp.exactMatch(temp))
         {
@@ -279,15 +314,11 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 else
                 {
                     setErrorMessage(tr("Controller identifier is not a valid value."));
-                    //errorsteam << tr("Controller identifier is not a valid value.") << endl;
-                    //encounteredError = true;
                 }
             }
             else
             {
                 setErrorMessage(tr("No controller was specified."));
-                //errorsteam << tr("No controller was specified.") << endl;
-                //encounteredError = true;
             }
         }
 #endif
@@ -416,19 +447,22 @@ void CommandLineUtility::parseArguments(QStringList& arguments)
                 if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
                 {
                     setErrorMessage(tr("Profile location %1 is not an XML file.").arg(temp));
-                    //errorsteam << tr("Profile location %1 is not an XML file.").arg(temp) << endl;
-                    //encounteredError = true;
                 }
                 else
                 {
                     profileLocation = fileInfo.absoluteFilePath();
+                    // Only use properties if no other OptionsInfo lines have
+                    // been defined.
+                    if (currentListsIndex > 0)
+                    {
+                        controllerNumber = 0;
+                        controllerIDString.clear();
+                    }
                 }
             }
             else
             {
                 setErrorMessage(tr("Profile location %1 does not exist.").arg(temp));
-                //errorsteam << tr("Profile location %1 does not exist.").arg(temp) << endl;
-                //encounteredError = true;
             }
         }
     }
@@ -443,7 +477,7 @@ void CommandLineUtility::printHelp()
 {
     QTextStream out(stdout);
     out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
-    out << tr("Usage: antimicro [options] [profile]") << endl;
+    out << tr("Usage: antimicro [options...] [profile]") << endl;
     out << endl;
     out << tr("Options") << ":" << endl;
     out << "-h, --help                    " << " " << tr("Print help text.") << endl;
@@ -461,10 +495,13 @@ void CommandLineUtility::printHelp()
         << endl;
     out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
         << endl;
+    out << "--next                        " << " " << tr("Advance profile loading set options.")
+        << endl;
+
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
         << tr("Launch program as a daemon.") << endl;
-    out << "--log-level (debug|info)      " << " " << tr("Enable logging.") << endl;
+    out << "--log-level {debug,info}      " << " " << tr("Enable logging.") << endl;
 
     #ifdef WITH_X11
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -482,12 +519,12 @@ void CommandLineUtility::printHelp()
 #endif
 
 #if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
-    out << "--eventgen (xtest|uinput)     " << " "
+    out << "--eventgen {xtest,uinput}     " << " "
         << tr("Choose between using XTest support and uinput\n"
            "                               support for event generation. Default: xtest.")
         << endl;
 #elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
-    out << "--eventgen (sendinput|vmulti) " << " "
+    out << "--eventgen {sendinput,vmulti} " << " "
         << tr("Choose between using SendInput and vmulti\n"
            "                           support for event generation. Default: sendinput.")
         << endl;
@@ -511,7 +548,7 @@ QString CommandLineUtility::generateHelpString()
     QString temp;
     QTextStream out(&temp);
     out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
-    out << tr("Usage: antimicro [options] [profile]") << endl;
+    out << tr("Usage: antimicro [options...] [profile]") << endl;
     out << endl;
     out << tr("Options") << ":" << endl;
     out << "-h, --help                    " << " " << tr("Print help text.") << endl;
@@ -529,10 +566,13 @@ QString CommandLineUtility::generateHelpString()
         << endl;
     out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
         << endl;
+    out << "--next                        " << " " << tr("Advance profile loading set options.")
+        << endl;
+
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
         << tr("Launch program as a daemon.") << endl;
-    out << "--log-level (debug|info)      " << " " << tr("Enable logging.") << endl;
+    out << "--log-level {debug,info}      " << " " << tr("Enable logging.") << endl;
     #ifdef WITH_X11
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -549,12 +589,12 @@ QString CommandLineUtility::generateHelpString()
 #endif
 
 #if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
-    out << "--eventgen (xtest|uinput)     " << " "
+    out << "--eventgen {xtest,uinput}     " << " "
         << tr("Choose between using XTest support and uinput\n"
            "                               support for event generation. Default: xtest.")
         << endl;
 #elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
-    out << "--eventgen (sendinput|vmulti) " << " "
+    out << "--eventgen {sendinput,vmulti} " << " "
         << tr("Choose between using SendInput and vmulti\n"
            "                           support for event generation. Default: sendinput.")
         << endl;
@@ -656,7 +696,7 @@ unsigned int CommandLineUtility::getStartSetNumber()
 
 unsigned int CommandLineUtility::getJoyStartSetNumber()
 {
-    return startSetNumber-1;
+    return startSetNumber - 1;
 }
 
 bool CommandLineUtility::isPossibleCommand(QString temp)
@@ -713,4 +753,9 @@ void CommandLineUtility::setErrorMessage(QString temp)
 {
     errorText = temp;
     encounteredError = true;
+}
+
+QList<ControllerOptionsInfo>* CommandLineUtility::getControllerOptionsList()
+{
+    return &controllerOptionsList;
 }

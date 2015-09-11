@@ -21,8 +21,99 @@
 #include <QObject>
 #include <QStringList>
 #include <QRegExp>
+#include <QList>
 
 #include "logger.h"
+
+class ControllerOptionsInfo {
+public:
+    ControllerOptionsInfo()
+    {
+        controllerNumber = 0;
+        startSetNumber = 0;
+        unloadProfile = false;
+    }
+
+    bool hasProfile()
+    {
+        return !profileLocation.isEmpty();
+    }
+
+    QString getProfileLocation()
+    {
+        return profileLocation;
+    }
+
+    void setProfileLocation(QString location)
+    {
+        profileLocation = location;
+    }
+
+    bool hasControllerNumber()
+    {
+        return (controllerNumber > 0);
+    }
+
+    unsigned int getControllerNumber()
+    {
+        return controllerNumber;
+    }
+
+    void setControllerNumber(unsigned int temp)
+    {
+        controllerNumber = temp;
+    }
+
+    bool hasControllerID()
+    {
+        return !controllerIDString.isEmpty();
+    }
+
+    QString getControllerID()
+    {
+        return controllerIDString;
+    }
+
+    void setControllerID(QString temp)
+    {
+        controllerIDString = temp;
+    }
+
+    bool isUnloadRequested()
+    {
+        return unloadProfile;
+    }
+
+    void setUnloadRequest(bool status)
+    {
+        unloadProfile = status;
+    }
+
+    unsigned int getStartSetNumber()
+    {
+        return startSetNumber;
+    }
+
+    unsigned int getJoyStartSetNumber()
+    {
+        return startSetNumber - 1;
+    }
+
+    void setStartSetNumber(unsigned int temp)
+    {
+        if (temp >= 1 && temp <= 8)
+        {
+            startSetNumber = temp;
+        }
+    }
+
+protected:
+    QString profileLocation;
+    unsigned int controllerNumber;
+    QString controllerIDString;
+    unsigned int startSetNumber;
+    bool unloadProfile;
+};
 
 class CommandLineUtility : public QObject
 {
@@ -40,8 +131,11 @@ public:
     bool hasControllerID();
 
     QString getProfileLocation();
+
     unsigned int getControllerNumber();
+
     QString getControllerID();
+
     bool isHiddenRequested();
     bool isUnloadRequested();
     bool shouldListControllers();
@@ -49,6 +143,9 @@ public:
 
     unsigned int getStartSetNumber();
     unsigned int getJoyStartSetNumber();
+    QList<unsigned int>* getJoyStartSetNumberList();
+
+    QList<ControllerOptionsInfo>* getControllerOptionsList();
 
     QString getEventGenerator();
 
@@ -75,13 +172,17 @@ protected:
     bool helpRequest;
     bool versionRequest;
     bool hideTrayIcon;
+
     QString profileLocation;
     unsigned int controllerNumber;
     QString controllerIDString;
+
     bool encounteredError;
     bool hiddenRequest;
     bool unloadProfile;
+
     unsigned int startSetNumber;
+
     bool daemonMode;
     QString displayString;
     bool listControllers;
@@ -89,6 +190,8 @@ protected:
     QString eventGenerator;
     QString errorText;
     Logger::LogLevel currentLogLevel;
+    unsigned int currentListsIndex;
+    QList<ControllerOptionsInfo> controllerOptionsList;
 
     static QRegExp trayRegexp;
     static QRegExp helpRegexp;
@@ -104,6 +207,7 @@ protected:
     static QRegExp qtStyleRegexp;
     static QRegExp logLevelRegexp;
     static QRegExp eventgenRegexp;
+    static QRegExp nextRegexp;
     static QStringList eventGeneratorsList;
 
 #ifdef Q_OS_UNIX
