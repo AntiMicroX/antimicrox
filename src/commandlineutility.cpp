@@ -759,3 +759,21 @@ QList<ControllerOptionsInfo>* CommandLineUtility::getControllerOptionsList()
 {
     return &controllerOptionsList;
 }
+
+bool CommandLineUtility::hasProfileInOptions()
+{
+    bool result = false;
+
+    QListIterator<ControllerOptionsInfo> iter(controllerOptionsList);
+    while (iter.hasNext())
+    {
+        ControllerOptionsInfo temp = iter.next();
+        if (temp.hasProfile())
+        {
+            result = true;
+            iter.toBack();
+        }
+    }
+
+    return result;
+}

@@ -146,6 +146,7 @@ public:
     QList<unsigned int>* getJoyStartSetNumberList();
 
     QList<ControllerOptionsInfo>* getControllerOptionsList();
+    bool hasProfileInOptions();
 
     QString getEventGenerator();
 
