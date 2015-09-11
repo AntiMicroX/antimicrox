@@ -741,7 +741,10 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    if (w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
+    // Do not check if wizard should display if profile has been specified
+    // or if main window is set to hidden.
+    if (cmdutility.getProfileLocation().isEmpty() &&
+        w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
     {
         runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
         QObject::connect(runWillard, SIGNAL(finished(int)), &mainAppHelper, SLOT(initRunMethods()));
@@ -755,7 +758,7 @@ int main(int argc, char *argv[])
         mainAppHelper.initRunMethods();
         w->fillButtons();
         w->alterConfigFromSettings();
-        w->changeWindowStatus();
+        QTimer::singleShot(0, w, SLOT(changeWindowStatus()));
     }
 
     mainAppHelper.changeMouseThread(inputEventThread);
