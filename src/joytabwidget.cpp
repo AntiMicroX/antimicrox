@@ -2383,8 +2383,15 @@ void JoyTabWidget::performSetCopy()
         int status = msgBox.exec();
         if (status == QMessageBox::Yes)
         {
-            sourceSet->copyAssignments(destSet);
+            PadderCommon::lockInputDevices();
+
+            QMetaObject::invokeMethod(sourceSet, "copyAssignments", Qt::BlockingQueuedConnection,
+                                      Q_ARG(SetJoystick*, destSet));
+
+            //sourceSet->copyAssignments(destSet);
             fillSetButtons(destSet);
+
+            PadderCommon::unlockInputDevices();
         }
     }
 }

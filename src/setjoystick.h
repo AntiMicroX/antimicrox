@@ -71,7 +71,6 @@ public:
     QString getName();
     QString getSetLabel();
 
-    void copyAssignments(SetJoystick *destSet);
     void raiseAxesDeadZones(int deadZone=0);
     void currentAxesDeadZones(QList<int> *axesDeadZones);
     void setAxesDeadZones(QList<int> *axesDeadZones);
@@ -138,6 +137,7 @@ signals:
     
 public slots:
     virtual void reset();
+    void copyAssignments(SetJoystick *destSet);
     void propogateSetChange(int index);
     void propogateSetButtonAssociation(int button, int newset, int mode);
     void propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode);

@@ -113,6 +113,7 @@ void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 int main(int argc, char *argv[])
 {
     qRegisterMetaType<JoyButtonSlot*>();
+    qRegisterMetaType<SetJoystick*>();
     qRegisterMetaType<InputDevice*>();
     qRegisterMetaType<AutoProfileInfo*>();
     qRegisterMetaType<QThread*>();
