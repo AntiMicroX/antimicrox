@@ -475,9 +475,9 @@ void AdvanceButtonDialog::insertPauseSlot()
 
         QMetaObject::invokeMethod(this->button, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                   Q_ARG(int, actionTime),
-                                  Q_ARG(int, 0),
+                                  Q_ARG(unsigned int, 0),
                                   Q_ARG(int, index),
-                                  Q_ARG(int, static_cast<int>(JoyButtonSlot::JoyPause)));
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoyPause));
         //this->button->setAssignedSlot(actionTime, 0, index, JoyButtonSlot::JoyPause);
 
         updateSlotsScrollArea(actionTime);
