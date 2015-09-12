@@ -1538,189 +1538,199 @@ this button is being used.</source>
 <context>
     <name>CommandLineUtility</name>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="118"/>
-        <location filename="../../../src/commandlineutility.cpp" line="418"/>
+        <location filename="../../../src/commandlineutility.cpp" line="120"/>
+        <location filename="../../../src/commandlineutility.cpp" line="449"/>
         <source>Profile location %1 is not an XML file.</source>
         <translation>配置文件 %1 不是一个 XML 文件。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="129"/>
-        <location filename="../../../src/commandlineutility.cpp" line="429"/>
+        <location filename="../../../src/commandlineutility.cpp" line="132"/>
+        <location filename="../../../src/commandlineutility.cpp" line="465"/>
         <source>Profile location %1 does not exist.</source>
         <translation>配置文件 %1 不存在。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="309"/>
+        <location filename="../../../src/commandlineutility.cpp" line="242"/>
+        <source>An invalid set number &apos;%1&apos; was specified.</source>
+        <translation>指定的设置编号 &quot;%1&quot; 无效。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="267"/>
+        <source>Controller identifier &apos;%s&apos;&apos; is not a valid value.</source>
+        <translation>游戏控制器标识符 &quot;%s&quot; 无效。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="340"/>
         <source>No display string was specified.</source>
         <translation>未指定显示字符串。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="153"/>
-        <location filename="../../../src/commandlineutility.cpp" line="188"/>
-        <location filename="../../../src/commandlineutility.cpp" line="236"/>
-        <location filename="../../../src/commandlineutility.cpp" line="281"/>
+        <location filename="../../../src/commandlineutility.cpp" line="168"/>
+        <location filename="../../../src/commandlineutility.cpp" line="209"/>
+        <location filename="../../../src/commandlineutility.cpp" line="316"/>
         <source>Controller identifier is not a valid value.</source>
         <translation>游戏控制器标识符无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="215"/>
-        <source>An invalid set number was specified.</source>
-        <translation>指定的设置编号无效。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="251"/>
+        <location filename="../../../src/commandlineutility.cpp" line="280"/>
         <source>No set number was specified.</source>
         <translation>未指定设置编号。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="288"/>
+        <location filename="../../../src/commandlineutility.cpp" line="321"/>
         <source>No controller was specified.</source>
         <translation>未指定游戏控制器。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="328"/>
+        <location filename="../../../src/commandlineutility.cpp" line="359"/>
         <source>An invalid event generator was specified.</source>
         <translation>指定的事件发生器无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="339"/>
+        <location filename="../../../src/commandlineutility.cpp" line="370"/>
         <source>No event generator string was specified.</source>
         <translation>未指定事件发生器字符串。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="355"/>
+        <location filename="../../../src/commandlineutility.cpp" line="386"/>
         <source>Qt style flag was detected but no style was specified.</source>
         <translation>检测到 Qt 样式标识，但未指定样式。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="385"/>
+        <location filename="../../../src/commandlineutility.cpp" line="416"/>
         <source>No log level specified.</source>
         <translation>未指定日志级别。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="445"/>
-        <location filename="../../../src/commandlineutility.cpp" line="513"/>
-        <location filename="../../../src/commandlineutility.cpp" line="590"/>
-        <location filename="../../../src/commandlineutility.cpp" line="597"/>
+        <location filename="../../../src/commandlineutility.cpp" line="479"/>
+        <location filename="../../../src/commandlineutility.cpp" line="550"/>
+        <location filename="../../../src/commandlineutility.cpp" line="630"/>
+        <location filename="../../../src/commandlineutility.cpp" line="637"/>
         <source>antimicro version</source>
         <translation>antimicro 版本</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="446"/>
-        <location filename="../../../src/commandlineutility.cpp" line="514"/>
-        <source>Usage: antimicro [options] [profile]</source>
-        <translation>用法：antimicro [选项] [配置]</translation>
+        <location filename="../../../src/commandlineutility.cpp" line="480"/>
+        <location filename="../../../src/commandlineutility.cpp" line="551"/>
+        <source>Usage: antimicro [options...] [profile]</source>
+        <translation>用法：antimicro [选项] [配置文件]</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="448"/>
-        <location filename="../../../src/commandlineutility.cpp" line="516"/>
+        <location filename="../../../src/commandlineutility.cpp" line="482"/>
+        <location filename="../../../src/commandlineutility.cpp" line="553"/>
         <source>Options</source>
         <translation>选项</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="449"/>
-        <location filename="../../../src/commandlineutility.cpp" line="517"/>
+        <location filename="../../../src/commandlineutility.cpp" line="483"/>
+        <location filename="../../../src/commandlineutility.cpp" line="554"/>
         <source>Print help text.</source>
         <translation>打印帮助文本。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="450"/>
-        <location filename="../../../src/commandlineutility.cpp" line="518"/>
+        <location filename="../../../src/commandlineutility.cpp" line="484"/>
+        <location filename="../../../src/commandlineutility.cpp" line="555"/>
         <source>Print version information.</source>
         <translation>打印版本信息。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="451"/>
-        <location filename="../../../src/commandlineutility.cpp" line="519"/>
+        <location filename="../../../src/commandlineutility.cpp" line="485"/>
+        <location filename="../../../src/commandlineutility.cpp" line="556"/>
         <source>Launch program in system tray only.</source>
         <translation>启动后最小化到系统托盘。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="452"/>
-        <location filename="../../../src/commandlineutility.cpp" line="520"/>
+        <location filename="../../../src/commandlineutility.cpp" line="486"/>
+        <location filename="../../../src/commandlineutility.cpp" line="557"/>
         <source>Launch program with the tray menu disabled.</source>
         <translation>启动后禁用系统托盘菜单。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="453"/>
-        <location filename="../../../src/commandlineutility.cpp" line="521"/>
+        <location filename="../../../src/commandlineutility.cpp" line="487"/>
+        <location filename="../../../src/commandlineutility.cpp" line="558"/>
         <source>Launch program without the main window
                                displayed.</source>
         <translation>启动后不显示主窗口。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="455"/>
-        <location filename="../../../src/commandlineutility.cpp" line="523"/>
+        <location filename="../../../src/commandlineutility.cpp" line="489"/>
+        <location filename="../../../src/commandlineutility.cpp" line="560"/>
         <source>Launch program with the configuration file
                                selected as the default for selected
                                controllers. Defaults to all controllers.</source>
         <translation>启动后将指定的配置文件作为默认配置文件。默认应用到所有游戏控制器。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="458"/>
-        <location filename="../../../src/commandlineutility.cpp" line="526"/>
+        <location filename="../../../src/commandlineutility.cpp" line="492"/>
+        <location filename="../../../src/commandlineutility.cpp" line="563"/>
         <source>Apply configuration file to a specific
                                controller. Value can be a
                                controller index, name, or GUID.</source>
         <translation>应用配置文件到指定的游戏控制器。值可以是编号、名称或全局唯一标识符。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="460"/>
-        <location filename="../../../src/commandlineutility.cpp" line="528"/>
+        <location filename="../../../src/commandlineutility.cpp" line="494"/>
+        <location filename="../../../src/commandlineutility.cpp" line="565"/>
         <source>Unload currently enabled profile(s). 
                                Value can be a controller index, name, or GUID.</source>
         <translation>卸载当前生效的配置文件。值可以是控制器编号、名称或全局唯一标识符。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="462"/>
-        <location filename="../../../src/commandlineutility.cpp" line="530"/>
+        <location filename="../../../src/commandlineutility.cpp" line="496"/>
+        <location filename="../../../src/commandlineutility.cpp" line="567"/>
         <source>Start joysticks on a specific set.   
                                Value can be a controller index, name, or GUID.</source>
         <translation>为摇杆指定设置编号。值可以是控制器编号、名称或全局唯一标识符。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="466"/>
-        <location filename="../../../src/commandlineutility.cpp" line="534"/>
+        <location filename="../../../src/commandlineutility.cpp" line="498"/>
+        <location filename="../../../src/commandlineutility.cpp" line="569"/>
+        <source>Advance profile loading set options.</source>
+        <translation>切换到下一个配置文件载入选项。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="503"/>
+        <location filename="../../../src/commandlineutility.cpp" line="574"/>
         <source>Launch program as a daemon.</source>
         <translation>以后台服务方式启动程序。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="467"/>
-        <location filename="../../../src/commandlineutility.cpp" line="535"/>
+        <location filename="../../../src/commandlineutility.cpp" line="504"/>
+        <location filename="../../../src/commandlineutility.cpp" line="575"/>
         <source>Enable logging.</source>
         <translation>开启日志。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="475"/>
-        <location filename="../../../src/commandlineutility.cpp" line="542"/>
+        <location filename="../../../src/commandlineutility.cpp" line="512"/>
+        <location filename="../../../src/commandlineutility.cpp" line="582"/>
         <source>Use specified display for X11 calls.
                                Useful for ssh.</source>
         <translation>为 X11 调用指定显示设备。对 ssh 尤其有用。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="486"/>
-        <location filename="../../../src/commandlineutility.cpp" line="553"/>
+        <location filename="../../../src/commandlineutility.cpp" line="523"/>
+        <location filename="../../../src/commandlineutility.cpp" line="593"/>
         <source>Choose between using XTest support and uinput
                                support for event generation. Default: xtest.</source>
         <translation>为事件发生器选择 XTest 支持或 uinput 支持。默认：XTest。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="491"/>
-        <location filename="../../../src/commandlineutility.cpp" line="558"/>
+        <location filename="../../../src/commandlineutility.cpp" line="528"/>
+        <location filename="../../../src/commandlineutility.cpp" line="598"/>
         <source>Choose between using SendInput and vmulti
                            support for event generation. Default: sendinput.</source>
         <translation>为事件发生器选择使用 SendInput 或 vmulti 支持。默认：SendInput。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="498"/>
-        <location filename="../../../src/commandlineutility.cpp" line="565"/>
+        <location filename="../../../src/commandlineutility.cpp" line="535"/>
+        <location filename="../../../src/commandlineutility.cpp" line="605"/>
         <source>Print information about joysticks detected by 
                                SDL.</source>
         <translation>打印 SDL 检测到的摇杆。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="501"/>
-        <location filename="../../../src/commandlineutility.cpp" line="568"/>
+        <location filename="../../../src/commandlineutility.cpp" line="538"/>
+        <location filename="../../../src/commandlineutility.cpp" line="608"/>
         <source>Open game controller mapping window of selected
                                controller. Value can be a controller index or
                                GUID.</source>
@@ -3976,7 +3986,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="565"/>
+        <location filename="../../../src/mainwindow.cpp" line="600"/>
         <source>&amp;Quit</source>
         <translation>退出 (&amp;Q)</translation>
     </message>
@@ -3987,7 +3997,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="569"/>
+        <location filename="../../../src/mainwindow.cpp" line="604"/>
         <source>&amp;Update Joysticks</source>
         <translation>更新摇杆 (&amp;U)</translation>
     </message>
@@ -3998,7 +4008,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="557"/>
+        <location filename="../../../src/mainwindow.cpp" line="592"/>
         <source>&amp;Hide</source>
         <translation>隐藏 (&amp;H)</translation>
     </message>
@@ -4063,39 +4073,39 @@ the option in Windows.</source>
         <translation>维基页面</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="285"/>
+        <location filename="../../../src/mainwindow.cpp" line="320"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
         <translation>无法找到合适的游戏控制器标识符。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="328"/>
-        <location filename="../../../src/mainwindow.cpp" line="377"/>
-        <location filename="../../../src/mainwindow.cpp" line="452"/>
-        <location filename="../../../src/mainwindow.cpp" line="1435"/>
-        <location filename="../../../src/mainwindow.cpp" line="1481"/>
-        <location filename="../../../src/mainwindow.cpp" line="1503"/>
+        <location filename="../../../src/mainwindow.cpp" line="363"/>
+        <location filename="../../../src/mainwindow.cpp" line="412"/>
+        <location filename="../../../src/mainwindow.cpp" line="487"/>
+        <location filename="../../../src/mainwindow.cpp" line="1470"/>
         <location filename="../../../src/mainwindow.cpp" line="1516"/>
+        <location filename="../../../src/mainwindow.cpp" line="1538"/>
+        <location filename="../../../src/mainwindow.cpp" line="1551"/>
         <source>(%1)</source>
         <translation>（%1）</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="509"/>
-        <location filename="../../../src/mainwindow.cpp" line="513"/>
+        <location filename="../../../src/mainwindow.cpp" line="544"/>
+        <location filename="../../../src/mainwindow.cpp" line="548"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="561"/>
+        <location filename="../../../src/mainwindow.cpp" line="596"/>
         <source>&amp;Restore</source>
         <translation>还原 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1350"/>
+        <location filename="../../../src/mainwindow.cpp" line="1385"/>
         <source>Run as Administrator?</source>
         <translation>以管理员权限运行？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1351"/>
+        <location filename="../../../src/mainwindow.cpp" line="1386"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4103,17 +4113,17 @@ Some games run as Administrator which will cause events generated by antimicro t
 有些以管理员权限运行的游戏无法识别 antimicro 生成的事件，除非 antimicro 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制 (UAC) 导致的权限问题。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1376"/>
+        <location filename="../../../src/mainwindow.cpp" line="1411"/>
         <source>Failed to elevate program</source>
         <translation>无法提升本程序权限</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1377"/>
+        <location filename="../../../src/mainwindow.cpp" line="1412"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>无法以管理员权限重新运行本程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1413"/>
+        <location filename="../../../src/mainwindow.cpp" line="1448"/>
         <source>Could not find controller. Exiting.</source>
         <translation>无法找到游戏控制器。正在退出。</translation>
     </message>
@@ -4758,7 +4768,7 @@ it unattended.</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="774"/>
+        <location filename="../../../src/main.cpp" line="777"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
