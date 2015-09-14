@@ -1033,7 +1033,8 @@ void JoyAxis::performCalibration(int value)
     else
     {
         // Ensure that default throttle is used when a device is reset.
-        device->setCalibrationThrottle(index, (JoyAxis::ThrottleTypes)throttle);
+        device->setCalibrationThrottle(index,
+                                       static_cast<JoyAxis::ThrottleTypes>(throttle));
     }
     //else if (value >= -15000 && value <= 15000)
     //{
