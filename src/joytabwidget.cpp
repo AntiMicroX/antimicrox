@@ -601,11 +601,15 @@ void JoyTabWidget::saveConfigFile()
 
     if (!filename.isEmpty())
     {
+        PadderCommon::inputDaemonMutex.lock();
+
         QFileInfo fileinfo(filename);
 
         XMLConfigWriter writer;
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
+
+        PadderCommon::inputDaemonMutex.unlock();
 
         if (writer.hasError() && this->window()->isEnabled())
         {
@@ -626,6 +630,8 @@ void JoyTabWidget::saveConfigFile()
 
             if (existingIndex == -1)
             {
+                PadderCommon::inputDaemonMutex.lock();
+
                 if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
                 {
                     configBox->removeItem(numberRecentProfiles);
@@ -649,10 +655,15 @@ void JoyTabWidget::saveConfigFile()
 
                 configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
+
+                PadderCommon::inputDaemonMutex.unlock();
+
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
+                PadderCommon::inputDaemonMutex.lock();
+
                 joystick->revertProfileEdited();
                 if (!joystick->getProfileName().isEmpty())
                 {
@@ -661,6 +672,9 @@ void JoyTabWidget::saveConfigFile()
 
                 configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
+
+                PadderCommon::inputDaemonMutex.unlock();
+
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
         }
@@ -958,6 +972,8 @@ void JoyTabWidget::saveSettings()
     QString filename = "";
     QString lastfile = "";
 
+    settings->getLock()->lock();
+
     int index = configBox->currentIndex();
     int currentjoy = 1;
 
@@ -1077,11 +1093,15 @@ void JoyTabWidget::saveSettings()
 
         settings->setValue(controlEntryLastSelected, outputFilename);
     }
+
+    settings->getLock()->unlock();
 }
 
 void JoyTabWidget::loadSettings(bool forceRefresh)
 {
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+
+    settings->getLock()->lock();
 
     if (configBox->count() > 1)
     {
@@ -1151,6 +1171,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     }
 
     settings->endGroup();
+    settings->getLock()->unlock();
 
     if (!lastfile.isEmpty())
     {
@@ -1417,14 +1438,19 @@ void JoyTabWidget::unloadConfig()
 
 void JoyTabWidget::saveDeviceSettings(bool sync)
 {
+    settings->getLock()->lock();
     settings->beginGroup("Controllers");
-    saveSettings();
-    settings->endGroup();
+    settings->getLock()->unlock();
 
+    saveSettings();
+
+    settings->getLock()->lock();
+    settings->endGroup();
     if (sync)
     {
         settings->sync();
     }
+    settings->getLock()->unlock();
 }
 
 void JoyTabWidget::loadDeviceSettings()
