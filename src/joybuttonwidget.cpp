@@ -33,9 +33,9 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
+    //connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
+    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
 }
 
 JoyButton* JoyButtonWidget::getJoyButton()

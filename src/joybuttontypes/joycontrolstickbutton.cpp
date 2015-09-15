@@ -134,6 +134,8 @@ double JoyControlStickButton::getMouseDistanceFromDeadZone()
 
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
+    SetChangeCondition oldCondition = setSelectionCondition;
+
     if (condition != setSelectionCondition && !passive)
     {
         if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
@@ -157,6 +159,12 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     if (setSelectionCondition == SetChangeDisabled)
     {
         setChangeSetSelection(-1);
+    }
+
+    if (setSelectionCondition != oldCondition)
+    {
+        buildActiveZoneSummaryString();
+        emit propertyUpdated();
     }
 }
 

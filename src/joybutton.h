@@ -95,10 +95,11 @@ public:
     int getWheelSpeedX();
     int getWheelSpeedY();
 
-    void setChangeSetSelection(int index);
+    void setChangeSetSelection(int index, bool updateActiveString=true);
     int getSetSelection();
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    virtual void setChangeSetCondition(SetChangeCondition condition,
+                                       bool passive=false, bool updateActiveString=true);
     SetChangeCondition getChangeSetCondition();
 
     bool getButtonState();
@@ -292,7 +293,7 @@ protected:
     void findHoldEventEnd();
     bool checkForDelaySequence();
     void checkForPressedSetChange();
-    bool insertAssignedSlot(JoyButtonSlot *newSlot);
+    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true);
     unsigned int getPreferredKeyPressTime();
     void checkTurboCondition(JoyButtonSlot *slot);
     static bool hasFutureSpringEvents();
@@ -302,6 +303,7 @@ protected:
                             JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
+    void localBuildActiveZoneSummaryString();
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
@@ -567,6 +569,7 @@ protected slots:
     virtual void wheelEventHorizontal();
     void createDeskEvent();
     void releaseDeskEvent(bool skipsetchange=false);
+    void buildActiveZoneSummaryString();
 
 private slots:
     void releaseActiveSlots();
@@ -580,8 +583,6 @@ private slots:
     void checkForSetChange();
     void keyPressEvent();
     void slotSetChange();
-    void buildActiveZoneSummaryString();
-    void localBuildActiveZoneSummaryString();
 };
 
 

@@ -1661,6 +1661,10 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
             {
                 xml->skipCurrentElement();
             }
+            else
+            {
+                buildActiveZoneSummaryString();
+            }
 
             xml->readNextStartElement();
         }
@@ -1992,7 +1996,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
                 bool validSlot = buttonslot->isValidSlot();
                 if (validSlot)
                 {
-                    bool inserted = insertAssignedSlot(buttonslot);
+                    bool inserted = insertAssignedSlot(buttonslot, false);
                     if (!inserted)
                     {
                         delete buttonslot;
@@ -2022,7 +2026,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             int tempchoice = temptext.toInt();
             if (tempchoice >= 0 && tempchoice <= InputDevice::NUMBER_JOYSETS)
             {
-                this->setChangeSetSelection(tempchoice - 1);
+                this->setChangeSetSelection(tempchoice - 1, false);
             }
         }
     }
@@ -2048,7 +2052,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
 
             if (tempcondition != SetChangeDisabled)
             {
-                this->setChangeSetCondition(tempcondition);
+                this->setChangeSetCondition(tempcondition, false, false);
             }
         }
     }
@@ -2479,6 +2483,11 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     iter.toBack();
                     break;
                 }
+                case JoyButtonSlot::JoyCycle:
+                {
+                    iter.toBack();
+                    break;
+                }
             }
 
             if (i > 4 && iter.hasNext())
@@ -2505,21 +2514,20 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
 
     QListIterator<JoyButtonSlot*> *iter = 0;
     QReadWriteLock *tempLock = 0;
-    //bool slotsActive = !activeSlots.isEmpty();
     if (getButtonState())
     {
-        //tempLocker = new QReadLocker(&activeZoneLock);
         tempLock = &activeZoneLock;
         iter = &activeSlotsIter;
     }
     else
     {
-        //tempLocker = new QReadLocker(&assignmentsLock);
         tempLock = &assignmentsLock;
         iter = &assignmentsIter;
     }
 
     QReadLocker tempLocker(tempLock);
+    Q_UNUSED(tempLocker);
+
     if (tempLock == &assignmentsLock)
     {
         if (previousCycle)
@@ -2569,12 +2577,14 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
                     iter->toBack();
                     break;
                 }
+                case JoyButtonSlot::JoyCycle:
+                {
+                    iter->toBack();
+                    break;
+                }
             }
         }
     }
-
-    //delete tempLocker;
-    //tempLocker = 0;
 
     return tempSlotList;
 }
@@ -2858,7 +2868,7 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
         checkTurboCondition(slot);
         assignmentsLock.unlock();
 
-        localBuildActiveZoneSummaryString();
+        buildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -2874,7 +2884,7 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
     return permitSlot;
 }
 
-bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
+bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString)
 {
     bool permitSlot = false;
 
@@ -2915,7 +2925,11 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot)
         assignments.append(newSlot);
         assignmentsLock.unlock();
 
-        localBuildActiveZoneSummaryString();
+        if (updateActiveString)
+        {
+            buildActiveZoneSummaryString();
+        }
+
 
         emit slotsChanged();
     }
@@ -2985,7 +2999,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
         assignmentsLock.unlock();
 
-        localBuildActiveZoneSummaryString();
+        buildActiveZoneSummaryString();
 
         emit slotsChanged();
     }
@@ -3032,11 +3046,17 @@ int JoyButton::getMouseSpeedY()
     return mouseSpeedY;
 }
 
-void JoyButton::setChangeSetSelection(int index)
+void JoyButton::setChangeSetSelection(int index, bool updateActiveString)
 {
     if (index >= -1 && index <= 7)
     {
         setSelection = index;
+
+        if (updateActiveString)
+        {
+            buildActiveZoneSummaryString();
+        }
+
         emit propertyUpdated();
     }
 }
@@ -3046,7 +3066,8 @@ int JoyButton::getSetSelection()
     return setSelection;
 }
 
-void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+void JoyButton::setChangeSetCondition(SetChangeCondition condition,
+                                      bool passive, bool updateActiveString)
 {
     SetChangeCondition oldCondition = setSelectionCondition;
 
@@ -3077,6 +3098,11 @@ void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive
 
     if (setSelectionCondition != oldCondition)
     {
+        if (updateActiveString)
+        {
+            buildActiveZoneSummaryString();
+        }
+
         emit propertyUpdated();
     }
 }
@@ -3732,7 +3758,7 @@ void JoyButton::removeAssignedSlot(int index)
 
         tempAssignLocker.unlock();
 
-        localBuildActiveZoneSummaryString();
+        buildActiveZoneSummaryString();
         emit slotsChanged();
     }
 }
@@ -5144,7 +5170,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     {
         JoyButtonSlot *slot = iter.next();
         JoyButtonSlot *newslot = new JoyButtonSlot(slot, destButton);
-        destButton->insertAssignedSlot(newslot);
+        destButton->insertAssignedSlot(newslot, false);
     }
 
     destButton->toggle = toggle;
@@ -5175,6 +5201,8 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->startAccelMultiplier = startAccelMultiplier;
     destButton->springDeadCircleMultiplier = springDeadCircleMultiplier;
     destButton->extraAccelCurve = extraAccelCurve;
+
+    buildActiveZoneSummaryString();
 }
 
 /**

@@ -111,6 +111,12 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     {
         emit propertyUpdated();
     }
+
+    if (setSelectionCondition != oldCondition)
+    {
+        buildActiveZoneSummaryString();
+        emit propertyUpdated();
+    }
 }
 
 /**
