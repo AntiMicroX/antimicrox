@@ -172,4 +172,6 @@ protected slots:
     void propogateSetVDPadNameChange();
 };
 
+Q_DECLARE_METATYPE(SetJoystick*)
+
 #endif // SETJOYSTICK_H
