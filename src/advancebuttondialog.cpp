@@ -757,6 +757,8 @@ void AdvanceButtonDialog::insertDistanceSlot()
 
 void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 {
+    PadderCommon::lockInputDevices();
+
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -776,6 +778,9 @@ void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
                                   slot->getSlotMode());
     */
     updateSlotsScrollArea(slot->getSlotCode());
+
+    PadderCommon::unlockInputDevices();
+
     slot->deleteLater();
 }
 
@@ -807,6 +812,8 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
 
 void AdvanceButtonDialog::updateSetSelection()
 {
+    PadderCommon::inputDaemonMutex.lock();
+
     int condition_choice = 0;
     int chosen_set = -1;
     JoyButton::SetChangeCondition set_selection_condition = JoyButton::SetChangeDisabled;
@@ -861,6 +868,8 @@ void AdvanceButtonDialog::updateSetSelection()
     {
         button->setChangeSetCondition(JoyButton::SetChangeDisabled);
     }
+
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void AdvanceButtonDialog::checkTurboIntervalValue(int value)
