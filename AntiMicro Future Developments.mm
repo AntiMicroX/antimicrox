@@ -13,7 +13,8 @@
 <icon BUILTIN="button_ok"/>
 <node CREATED="1420094775157" ID="ID_1731182902" MODIFIED="1420094816470" TEXT="Most of the work has already been done. At this point, it is just a matter of making uinput the default when no handler is given as a command line argument."/>
 </node>
-<node CREATED="1420094462889" FOLDED="true" ID="ID_1831540910" MODIFIED="1420094771580" POSITION="right" TEXT="Move simulated event generation to a new thread.">
+<node CREATED="1420094462889" FOLDED="true" ID="ID_1831540910" MODIFIED="1442328189165" POSITION="right" TEXT="Move simulated event generation to a new thread.">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1420094736282" ID="ID_826806136" MODIFIED="1420094766897" TEXT="This will mainly help people on Windows but it will allow timers within the program to be more precise."/>
 </node>
 <node CREATED="1420094472645" FOLDED="true" ID="ID_1669687536" MODIFIED="1427231960129" POSITION="left" TEXT="Allow logging as long as it doesn&apos;t cause button lag.">
