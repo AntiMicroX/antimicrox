@@ -43,7 +43,29 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - Ukrainian&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;贡献者：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;Zerro Alvein&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aybe&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;翻译：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - 巴西葡萄牙语&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zzpxyx - 简体中文&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - 法语&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - 德语&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;phob - 德语&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - 俄语&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - 塞尔维亚语&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - 乌克兰语&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="169"/>
@@ -1530,12 +1552,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="242"/>
         <source>An invalid set number &apos;%1&apos; was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>指定的设置编号 &quot;%1&quot; 无效。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="267"/>
         <source>Controller identifier &apos;%s&apos;&apos; is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏控制器标识符 &quot;%s&quot; 无效。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="340"/>
@@ -1591,7 +1613,7 @@ this button is being used.</source>
         <location filename="../../../src/commandlineutility.cpp" line="480"/>
         <location filename="../../../src/commandlineutility.cpp" line="551"/>
         <source>Usage: antimicro [options...] [profile]</source>
-        <translation type="unfinished"></translation>
+        <translation>用法：antimicro [选项] [配置文件]</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="482"/>
@@ -1664,7 +1686,7 @@ this button is being used.</source>
         <location filename="../../../src/commandlineutility.cpp" line="498"/>
         <location filename="../../../src/commandlineutility.cpp" line="569"/>
         <source>Advance profile loading set options.</source>
-        <translation type="unfinished"></translation>
+        <translation>切换到下一个配置文件载入选项。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="503"/>
@@ -4715,38 +4737,38 @@ it unattended.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="251"/>
+        <location filename="../../../src/main.cpp" line="250"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="259"/>
+        <location filename="../../../src/main.cpp" line="258"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="270"/>
+        <location filename="../../../src/main.cpp" line="269"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="297"/>
-        <location filename="../../../src/main.cpp" line="400"/>
+        <location filename="../../../src/main.cpp" line="296"/>
+        <location filename="../../../src/main.cpp" line="399"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="327"/>
+        <location filename="../../../src/main.cpp" line="326"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="354"/>
+        <location filename="../../../src/main.cpp" line="353"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="778"/>
+        <location filename="../../../src/main.cpp" line="777"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
@@ -4816,17 +4838,17 @@ it unattended.</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="622"/>
+        <location filename="../../../src/main.cpp" line="621"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="649"/>
+        <location filename="../../../src/main.cpp" line="648"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="684"/>
+        <location filename="../../../src/main.cpp" line="683"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
