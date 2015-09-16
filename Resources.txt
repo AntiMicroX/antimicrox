@@ -2,6 +2,14 @@ Generate GUIDs for use in .wxs files
 
 http://www.guidgen.com/
 
+Site used to check out the behavior of different easing curves
+
+http://easings.net/
+
+Repository of code examples for many different easing curves
+
+https://github.com/jesusgollonet/ofpennereasing
+
 Site used to generate acceleration curve images
 
 http://rechneronline.de/function-graphs/

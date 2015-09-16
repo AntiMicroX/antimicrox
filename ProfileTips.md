@@ -37,10 +37,8 @@ the value to 0.01 seconds can greatly increase control in some games.
 To allow for better mouse control with an analog stick, it is recommended
 that you use a diagonal range of at least 65 degrees instead of the
 normal 45 degree value. If you want more twitchy mouse control, you will
-likely want to set the diagonal range of the stick to 89 degrees. This will
-minimize the range used for the absolute cardinal directions. You can also set
-the diagonal range to 90 degrees to almost eliminate any single cardinal
-direction.
+likely want to set the diagonal range of the stick to 89 degrees or 90 degrees.
+This will minimize the range used for the absolute cardinal directions.
 
 Another tip that will allow for more twitchy mouse control is related
 to the dead zone used for the analog stick. Decreasing the value used for
@@ -60,10 +58,16 @@ One final thing that you can do to make mouse movement more twitchy is to
 enable extra acceleration for mouse events. Changing the **extra duration** of
 acceleration will have the biggest impact on mouse movement. Increasing the
 maximum extra duration of the acceleration will loosen the mouse movement.
-Also, changing the **multiplier** is another option that will change how mouse
-movement behaves. Both of these options can allow for a stick to be able to
-perform a quick 180 degree turn while still having precision on the low end for
-aiming at targets.
+Changing the **multiplier** is another option that will change how mouse
+movement behaves. One final option that can be changed is to use a different
+curve for extra acceleration. **Linear** is still the default setting since it
+was the only option available for many versions but I find myself using
+**Ease Out Quad** lately. Besides altering the final multiplier used, it also
+changes the final duration experienced.
+
+With all the options available for extra acceleration, you will have an easier
+time performing a quick 180 degree turn while still having precision on the low
+end of a stick for aiming at targets.
 
 ## Action Names
 

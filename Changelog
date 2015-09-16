@@ -1,3 +1,18 @@
+2015-09-15 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.19.2
+
+* Add --next to allow multiple profiles to be loaded in one command call.
+
+* Add a flag to settings file when wizard is finished. Don't depend on any
+other settings being changed during an application run.
+
+* Fixed issue with inserting Pause slots.
+
+* Fixed issue with blank application filepath being matched for auto profile
+support.
+
+
 2015-09-03 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.19.1
