@@ -4737,38 +4737,38 @@ it unattended.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="250"/>
+        <location filename="../../../src/main.cpp" line="251"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="258"/>
+        <location filename="../../../src/main.cpp" line="259"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="269"/>
+        <location filename="../../../src/main.cpp" line="270"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="296"/>
-        <location filename="../../../src/main.cpp" line="399"/>
+        <location filename="../../../src/main.cpp" line="297"/>
+        <location filename="../../../src/main.cpp" line="400"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="326"/>
+        <location filename="../../../src/main.cpp" line="327"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="353"/>
+        <location filename="../../../src/main.cpp" line="354"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="777"/>
+        <location filename="../../../src/main.cpp" line="778"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
@@ -4838,17 +4838,17 @@ it unattended.</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="621"/>
+        <location filename="../../../src/main.cpp" line="622"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="648"/>
+        <location filename="../../../src/main.cpp" line="649"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="683"/>
+        <location filename="../../../src/main.cpp" line="684"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
