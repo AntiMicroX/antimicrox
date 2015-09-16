@@ -207,7 +207,8 @@ int main(int argc, char *argv[])
         w.fillButtons();
         w.alterConfigFromSettings();
 
-        if (!cmdutility.hasError() && cmdutility.hasProfile())
+        if (!cmdutility.hasError() &&
+           (cmdutility.hasProfile() || cmdutility.hasProfileInOptions()))
         {
             w.saveAppConfig();
         }
