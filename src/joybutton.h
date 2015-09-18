@@ -299,8 +299,6 @@ protected:
     static bool hasFutureSpringEvents();
     virtual double getCurrentSpringDeadCircle();
     void vdpadPassEvent(bool pressed, bool ignoresets=false);
-    bool insertAssignedSlot(int code, unsigned int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
     void localBuildActiveZoneSummaryString();
@@ -554,6 +552,9 @@ public slots:
                          JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
+
+    bool insertAssignedSlot(int code, unsigned int alias, int index,
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
     void removeAssignedSlot(int index);
 
