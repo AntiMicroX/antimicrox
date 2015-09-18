@@ -195,6 +195,7 @@ set(antimicro_SOURCES src/main.cpp
     src/firstrunwizard/languageselectionpage.cpp
     src/eventhandlers/baseeventhandler.cpp
     src/eventhandlerfactory.cpp
+    src/uihelpers/advancebuttondialoghelper.cpp
 )
 
 # Platform dependent files.
@@ -337,6 +338,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/firstrunwizard/languageselectionpage.h
     src/eventhandlers/baseeventhandler.h
     src/eventhandlerfactory.h
+    src/uihelpers/advancebuttondialoghelper.h
 )
 
 # Platform dependent files.
