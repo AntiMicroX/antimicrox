@@ -98,6 +98,7 @@ QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Keeps timestamp of last mouse event.
 QElapsedTimer JoyButton::lastMouseTime;
+QTime testOldMouseTime;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -863,6 +864,7 @@ void JoyButton::activateSlots()
                         staticMouseEventTimer.start(tempRate);
 
                         lastMouseTime.restart();
+                        testOldMouseTime.restart();
                         accelExtraDurationTime.restart();
                     }
                 }
@@ -1071,6 +1073,7 @@ void JoyButton::mouseEvent()
         }
 
         unsigned int timeElapsed = lastMouseTime.elapsed();
+        //timeElapsed = testOldMouseTime.elapsed();
         unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
 
         // Presumed initial mouse movement. Use full duration rather than
@@ -5164,7 +5167,11 @@ bool JoyButton::isRelativeSpring()
 void JoyButton::copyAssignments(JoyButton *destButton)
 {
     destButton->eventReset();
+    destButton->assignmentsLock.lockForWrite();
     destButton->assignments.clear();
+    destButton->assignmentsLock.unlock();
+
+    assignmentsLock.lockForWrite();
     QListIterator<JoyButtonSlot*> iter(assignments);
     while (iter.hasNext())
     {
@@ -5172,6 +5179,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
         JoyButtonSlot *newslot = new JoyButtonSlot(slot, destButton);
         destButton->insertAssignedSlot(newslot, false);
     }
+    assignmentsLock.unlock();
 
     destButton->toggle = toggle;
     destButton->turboInterval = turboInterval;
@@ -5364,6 +5372,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
 
         if (staticMouseEventTimer.isActive())
         {
+            testOldMouseTime.restart();
             lastMouseTime.restart();
             int tempInterval = staticMouseEventTimer.interval();
 
@@ -5711,6 +5720,7 @@ double JoyButton::getCurrentSpringDeadCircle()
 
 void JoyButton::restartLastMouseTime()
 {
+    testOldMouseTime.restart();
     lastMouseTime.restart();
 }
 
@@ -5724,6 +5734,7 @@ void JoyButton::setStaticMouseThread(QThread *thread)
     QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                               Q_ARG(int, oldInterval));
     //staticMouseEventTimer.start(oldInterval);
+    testOldMouseTime.restart();
     lastMouseTime.start();
 #ifdef Q_OS_WIN
     repeatHelper.moveToThread(thread);
@@ -5752,6 +5763,7 @@ bool JoyButton::shouldInvokeMouseEvents()
             result = true;
         }
         else if (lastMouseTime.hasExpired(timerInterval))
+        //else if (testOldMouseTime.elapsed() > timerInterval)
         {
             result = true;
         }
