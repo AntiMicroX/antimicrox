@@ -744,7 +744,7 @@ void JoyTabWidget::resetJoystick()
         joystick->revertProfileEdited();
         //joystick->reset();
 
-        QMetaObject::invokeMethod(joystick, "transferReset", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(joystick, "transferReset");
         //joystick->transferReset();
         QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
         //joystick->reInitButtons();
