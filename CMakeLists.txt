@@ -200,6 +200,7 @@ set(antimicro_SOURCES src/main.cpp
     src/uihelpers/joytabwidgethelper.cpp
     src/uihelpers/joyaxiscontextmenuhelper.cpp
     src/uihelpers/joycontrolstickcontextmenuhelper.cpp
+    src/uihelpers/dpadcontextmenuhelper.cpp
 )
 
 # Platform dependent files.
@@ -347,6 +348,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/uihelpers/joytabwidgethelper.h
     src/uihelpers/joyaxiscontextmenuhelper.h
     src/uihelpers/joycontrolstickcontextmenuhelper.h
+    src/uihelpers/dpadcontextmenuhelper.h
 )
 
 # Platform dependent files.

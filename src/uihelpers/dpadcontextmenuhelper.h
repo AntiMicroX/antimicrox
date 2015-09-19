@@ -15,36 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DPADCONTEXTMENU_H
-#define DPADCONTEXTMENU_H
+#ifndef DPADCONTEXTMENUHELPER_H
+#define DPADCONTEXTMENUHELPER_H
 
-#include <QMenu>
+#include <QObject>
+#include <QHash>
 
 #include "joydpad.h"
+#include "joybuttonslot.h"
 
-#include "uihelpers/dpadcontextmenuhelper.h"
-
-class DPadContextMenu : public QMenu
+class DPadContextMenuHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit DPadContextMenu(JoyDPad *dpad, QWidget *parent = 0);
-    void buildMenu();
+    explicit DPadContextMenuHelper(JoyDPad *dpad, QObject *parent = 0);
+    void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> *tempSlots);
+    void clearPendingSlots();
 
 protected:
-    int getPresetIndex();
-
     JoyDPad *dpad;
-    DPadContextMenuHelper helper;
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> pendingSlots;
 
 signals:
 
 public slots:
-
-private slots:
-    void setDPadPreset();
-    void setDPadMode();
-    void openMouseSettingsDialog();
+    void setFromPendingSlots();
+    void clearButtonsSlotsEventReset();
 };
 
-#endif // DPADCONTEXTMENU_H
+#endif // DPADCONTEXTMENUHELPER_H
