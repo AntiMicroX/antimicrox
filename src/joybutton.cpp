@@ -5213,6 +5213,10 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->extraAccelCurve = extraAccelCurve;
 
     destButton->buildActiveZoneSummaryString();
+    if (!destButton->isDefault())
+    {
+        emit propertyUpdated();
+    }
 }
 
 /**

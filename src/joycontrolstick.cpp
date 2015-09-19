@@ -2922,6 +2922,11 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
     {
         modifierButton->copyAssignments(destModifierButton);
     }
+
+    if (!destStick->isDefault())
+    {
+        emit propertyUpdated();
+    }
 }
 
 /**

@@ -1050,6 +1050,11 @@ void JoyAxis::copyAssignments(JoyAxis *destAxis)
     destAxis->axisName = axisName;
     paxisbutton->copyAssignments(destAxis->paxisbutton);
     naxisbutton->copyAssignments(destAxis->naxisbutton);
+
+    if (!destAxis->isDefault())
+    {
+        emit propertyUpdated();
+    }
 }
 
 void JoyAxis::setButtonsEasingDuration(double value)

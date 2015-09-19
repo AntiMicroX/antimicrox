@@ -804,6 +804,11 @@ void JoyDPad::copyAssignments(JoyDPad *destDPad)
             }
         }
     }
+
+    if (!destDPad->isDefault())
+    {
+        emit propertyUpdated();
+    }
 }
 
 void JoyDPad::createDeskEvent(bool ignoresets)
