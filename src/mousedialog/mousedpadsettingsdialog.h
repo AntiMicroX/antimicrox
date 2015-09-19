@@ -33,7 +33,6 @@ protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
-    //void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
     void updateWindowTitleDPadName();
     void calculateReleaseSpringRadius();
@@ -53,7 +52,6 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    //void updateSmoothingSetting(bool clicked);
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);

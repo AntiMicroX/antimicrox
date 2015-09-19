@@ -239,26 +239,6 @@ void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-/*void MouseControlStickSettingsDialog::updateSmoothingSetting(bool clicked)
-{
-    stick->setButtonsSmoothing(clicked);
-}
-*/
-
-/*void MouseControlStickSettingsDialog::selectSmoothingPreset()
-{
-    bool smoothing = stick->getButtonsPresetSmoothing();
-    if (smoothing)
-    {
-        ui->smoothingCheckBox->setChecked(true);
-    }
-    else
-    {
-        ui->smoothingCheckBox->setChecked(false);
-    }
-}
-*/
-
 void MouseControlStickSettingsDialog::calculateWheelSpeedPreset()
 {
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
@@ -326,8 +306,6 @@ void MouseControlStickSettingsDialog::calculateExtraAccelrationStatus()
     if (stick->getButtonsExtraAccelerationStatus())
     {
         ui->extraAccelerationGroupBox->setChecked(true);
-        //ui->extraAccelCheckBox->setChecked(true);
-        //ui->extraAccelDoubleSpinBox->setEnabled(true);
     }
 }
 

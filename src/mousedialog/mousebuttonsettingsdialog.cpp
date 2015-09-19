@@ -221,26 +221,6 @@ void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-/*void MouseButtonSettingsDialog::updateSmoothingSetting(bool clicked)
-{
-    button->setSmoothing(clicked);
-}
-*/
-
-/*void MouseButtonSettingsDialog::selectSmoothingPreset()
-{
-    bool smoothing = button->isSmoothingEnabled();
-    if (smoothing)
-    {
-        ui->smoothingCheckBox->setChecked(true);
-    }
-    else
-    {
-        ui->smoothingCheckBox->setChecked(false);
-    }
-}
-*/
-
 void MouseButtonSettingsDialog::updateSpringRelativeStatus(bool value)
 {
     button->setSpringRelativeStatus(value);

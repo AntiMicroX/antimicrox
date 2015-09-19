@@ -232,26 +232,6 @@ void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-/*void MouseDPadSettingsDialog::updateSmoothingSetting(bool clicked)
-{
-    dpad->setButtonsSmoothing(clicked);
-}
-*/
-
-/*void MouseDPadSettingsDialog::selectSmoothingPreset()
-{
-    bool smoothing = dpad->getButtonsPresetSmoothing();
-    if (smoothing)
-    {
-        ui->smoothingCheckBox->setChecked(true);
-    }
-    else
-    {
-        ui->smoothingCheckBox->setChecked(false);
-    }
-}
-*/
-
 void MouseDPadSettingsDialog::calculateWheelSpeedPreset()
 {
     QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());

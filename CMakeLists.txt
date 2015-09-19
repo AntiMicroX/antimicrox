@@ -198,6 +198,8 @@ set(antimicro_SOURCES src/main.cpp
     src/uihelpers/advancebuttondialoghelper.cpp
     src/uihelpers/buttoneditdialoghelper.cpp
     src/uihelpers/joytabwidgethelper.cpp
+    src/uihelpers/joyaxiscontextmenuhelper.cpp
+    src/uihelpers/joycontrolstickcontextmenuhelper.cpp
 )
 
 # Platform dependent files.
@@ -343,6 +345,8 @@ set(antimicro_HEADERS src/mainwindow.h
     src/uihelpers/advancebuttondialoghelper.h
     src/uihelpers/buttoneditdialoghelper.h
     src/uihelpers/joytabwidgethelper.h
+    src/uihelpers/joyaxiscontextmenuhelper.h
+    src/uihelpers/joycontrolstickcontextmenuhelper.h
 )
 
 # Platform dependent files.

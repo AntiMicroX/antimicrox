@@ -21,6 +21,7 @@
 #include <QMenu>
 
 #include "joycontrolstick.h"
+#include "uihelpers/joycontrolstickcontextmenuhelper.h"
 
 class JoyControlStickContextMenu : public QMenu
 {
@@ -33,6 +34,7 @@ protected:
     int getPresetIndex();
 
     JoyControlStick *stick;
+    JoyControlStickContextMenuHelper helper;
 
 signals:
 

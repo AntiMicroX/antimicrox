@@ -36,6 +36,8 @@ void JoyButtonContextMenu::buildMenu()
 {
     QAction *action = 0;
 
+    PadderCommon::inputDaemonMutex.lock();
+
     action = this->addAction(tr("Toggle"));
     action->setCheckable(true);
     action->setChecked(button->getToggleState());
@@ -118,16 +120,22 @@ void JoyButtonContextMenu::buildMenu()
             tempSetMenu->setEnabled(false);
         }
     }
+
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyButtonContextMenu::switchToggle()
 {
+    PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->getToggleState());
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyButtonContextMenu::switchTurbo()
 {
+    PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->isUsingTurbo());
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyButtonContextMenu::switchSetMode()
@@ -151,25 +159,23 @@ void JoyButtonContextMenu::switchSetMode()
         temp = JoyButton::SetChangeWhileHeld;
     }
 
+    PadderCommon::inputDaemonMutex.lock();
     // First, remove old condition for the button in both sets.
     // After that, make the new assignment.
     button->setChangeSetCondition(JoyButton::SetChangeDisabled);
     button->setChangeSetSelection(setSelection);
     button->setChangeSetCondition(temp);
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyButtonContextMenu::disableSetMode()
 {
+    PadderCommon::inputDaemonMutex.lock();
     button->setChangeSetCondition(JoyButton::SetChangeDisabled);
+    PadderCommon::inputDaemonMutex.unlock();
 }
 
 void JoyButtonContextMenu::clearButton()
 {
-    PadderCommon::lockInputDevices();
-    InputDevice *tempDevice = button->getParentSet()->getInputDevice();
-    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
-
     QMetaObject::invokeMethod(button, "clearSlotsEventReset");
-    //button->clearSlotsEventReset();
-    PadderCommon::unlockInputDevices();
 }

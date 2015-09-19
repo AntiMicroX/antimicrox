@@ -15,38 +15,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef JOYAXISCONTEXTMENU_H
-#define JOYAXISCONTEXTMENU_H
+#ifndef JOYAXISCONTEXTMENUHELPER_H
+#define JOYAXISCONTEXTMENUHELPER_H
 
-#include <QMenu>
+#include <QObject>
 
 #include "joyaxis.h"
-#include "uihelpers/joyaxiscontextmenuhelper.h"
+#include "joybuttonslot.h"
 
-class JoyAxisContextMenu : public QMenu
+class JoyAxisContextMenuHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyAxisContextMenu(JoyAxis *axis, QWidget *parent = 0);
-    void buildMenu();
-    void buildAxisMenu();
-    void buildTriggerMenu();
+    explicit JoyAxisContextMenuHelper(JoyAxis *axis, QObject *parent = 0);
 
 protected:
-    int getPresetIndex();
-    int getTriggerPresetIndex();
-
     JoyAxis *axis;
-    JoyAxisContextMenuHelper helper;
 
 signals:
 
 public slots:
-
-private slots:
-    void setAxisPreset();
-    void setTriggerPreset();
-    void openMouseSettingsDialog();
+    void setNAssignedSlot(int code, unsigned int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void setPAssignedSlot(int code, unsigned int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void clearAndResetAxisButtons();
 };
 
-#endif // JOYAXISCONTEXTMENU_H
+#endif // JOYAXISCONTEXTMENUHELPER_H
