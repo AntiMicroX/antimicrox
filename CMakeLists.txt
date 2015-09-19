@@ -353,10 +353,10 @@ set(antimicro_HEADERS src/mainwindow.h
     src/uihelpers/joyaxiscontextmenuhelper.h
     src/uihelpers/joycontrolstickcontextmenuhelper.h
     src/uihelpers/dpadcontextmenuhelper.h
-    src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.cpp
+    src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.h
     src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.h
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
-    src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
+    src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
 )
 
 # Platform dependent files.
