@@ -44,7 +44,6 @@ class JoyTabWidget : public QWidget
     Q_OBJECT
 public:
     explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = 0);
-    ~JoyTabWidget();
 
     void saveSettings();
     void loadSettings(bool forceRefresh=false);
@@ -145,7 +144,7 @@ protected:
     bool hideEmptyButtons;
     QString oldProfileName;
 
-    JoyTabWidgetHelper *tabHelper;
+    JoyTabWidgetHelper tabHelper;
 
     static const int DEFAULTNUMBERPROFILES = 5;
 

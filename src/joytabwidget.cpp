@@ -44,13 +44,13 @@
 #endif
 
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    tabHelper(joystick)
 {
     this->joystick = joystick;
     this->settings = settings;
 
-    tabHelper = new JoyTabWidgetHelper(joystick);
-    tabHelper->moveToThread(joystick->thread());
+    tabHelper.moveToThread(joystick->thread());
 
     comboBoxIndex = 0;
     hideEmptyButtons = false;
@@ -489,15 +489,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     reconnectMainComboBoxEvents();
 }
 
-JoyTabWidget::~JoyTabWidget()
-{
-    if (tabHelper)
-    {
-        delete tabHelper;
-        tabHelper = 0;
-    }
-}
-
 void JoyTabWidget::openConfigFileDialog()
 {
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
@@ -617,9 +608,9 @@ void JoyTabWidget::saveConfigFile()
 
         QFileInfo fileinfo(filename);
 
-        QMetaObject::invokeMethod(tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(&tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, fileinfo.absoluteFilePath()));
-        XMLConfigWriter *writer = tabHelper->getWriter();
+        XMLConfigWriter *writer = tabHelper.getWriter();
 
         /*XMLConfigWriter writer;
         writer.setFileName(fileinfo.absoluteFilePath());
@@ -723,7 +714,7 @@ void JoyTabWidget::resetJoystick()
         reader.configJoystick(joystick);
         */
 
-        QMetaObject::invokeMethod(tabHelper, "readConfigFileWithRevert", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(&tabHelper, "readConfigFileWithRevert", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, filename));
 
         fillButtons();
@@ -744,7 +735,7 @@ void JoyTabWidget::resetJoystick()
 
         oldProfileName = tempProfileName;
 
-        XMLConfigReader *reader = tabHelper->getReader();
+        XMLConfigReader *reader = tabHelper.getReader();
         if (reader->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
@@ -764,7 +755,7 @@ void JoyTabWidget::resetJoystick()
         configBox->setItemText(0, tr("<New>"));
         removeCurrentButtons();
 
-        QMetaObject::invokeMethod(tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
 
         //joystick->revertProfileEdited();
         //joystick->reset();
@@ -824,9 +815,9 @@ void JoyTabWidget::saveAsConfig()
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
         */
-        QMetaObject::invokeMethod(tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(&tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, fileinfo.absoluteFilePath()));
-        XMLConfigWriter *writer = tabHelper->getWriter();
+        XMLConfigWriter *writer = tabHelper.getWriter();
 
         if (writer->hasError() && this->window()->isEnabled())
         {
@@ -926,15 +917,15 @@ void JoyTabWidget::changeJoyConfig(int index)
         reader.configJoystick(joystick);
         */
 
-        QMetaObject::invokeMethod(tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
+        QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, filename));
 
-        //tabHelper->readConfigFile(filename);
+        //tabHelper.readConfigFile(filename);
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
         configBox->setItemText(0, tr("<New>"));
-        XMLConfigReader *reader = tabHelper->getReader();
+        XMLConfigReader *reader = tabHelper.getReader();
 
         if (reader->hasError() && this->window()->isEnabled())
         {
@@ -987,7 +978,7 @@ void JoyTabWidget::changeJoyConfig(int index)
         //joystick->resetButtonDownCount();
         emit forceTabUnflash(this);
 
-        QMetaObject::invokeMethod(tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
 
         //QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
         //joystick->reInitButtons();
@@ -2501,10 +2492,7 @@ void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 
 void JoyTabWidget::refreshHelperThread()
 {
-    if (tabHelper)
-    {
-        tabHelper->moveToThread(joystick->thread());
-    }
+    tabHelper.moveToThread(joystick->thread());
 }
 
 void JoyTabWidget::changeEvent(QEvent *event)

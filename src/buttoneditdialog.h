@@ -23,6 +23,8 @@
 #include "joybutton.h"
 #include "keyboard/virtualkeyboardmousewidget.h"
 #include "advancebuttondialog.h"
+#include "uihelpers/buttoneditdialoghelper.h"
+
 
 namespace Ui {
 class ButtonEditDialog;
@@ -39,6 +41,7 @@ public:
 protected:
     JoyButton *button;
     bool ignoreRelease;
+    ButtonEditDialogHelper helper;
 
     virtual void keyReleaseEvent(QKeyEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);

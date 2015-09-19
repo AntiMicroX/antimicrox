@@ -23,6 +23,7 @@
 
 #include "joybutton.h"
 #include "simplekeygrabberbutton.h"
+#include "uihelpers/advancebuttondialoghelper.h"
 
 namespace Ui {
 class AdvanceButtonDialog;
@@ -63,6 +64,7 @@ protected:
 
     int oldRow;
     JoyButton *button;
+    AdvanceButtonDialogHelper helper;
     static const int MINIMUMTURBO;
 
 signals:
