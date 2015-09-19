@@ -22,7 +22,7 @@
 #include "springmoderegionpreview.h"
 
 #include <joyaxis.h>
-
+#include "uihelpers/mouseaxissettingsdialoghelper.h"
 
 class MouseAxisSettingsDialog : public MouseSettingsDialog
 {
@@ -49,6 +49,7 @@ protected:
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
+    MouseAxisSettingsDialogHelper helper;
 
 signals:
     
@@ -66,15 +67,8 @@ public slots:
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
-    void updateExtraAccelerationStatus(bool checked);
-    void updateExtraAccelerationMultiplier(double value);
 
 private slots:
-    void updateStartMultiPercentage(double value);
-    void updateMinAccelThreshold(double value);
-    void updateMaxAccelThreshold(double value);
-    void updateAccelExtraDuration(double value);
-    void updateReleaseSpringRadius(int value);
     void updateExtraAccelerationCurve(int index);
 };
 

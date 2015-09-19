@@ -22,6 +22,7 @@
 #include "springmoderegionpreview.h"
 
 #include <joybutton.h>
+#include "uihelpers/mousebuttonsettingsdialoghelper.h"
 
 class MouseButtonSettingsDialog : public MouseSettingsDialog
 {
@@ -38,6 +39,7 @@ protected:
 
     JoyButton *button;
     SpringModeRegionPreview *springPreviewWidget;
+    MouseButtonSettingsDialogHelper helper;
 
 signals:
     
@@ -50,17 +52,9 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    void updateSpringRelativeStatus(bool value);
-
-    void updateExtraAccelerationStatus(bool checked);
-    void updateExtraAccelerationMultiplier(double value);
+    //void updateSpringRelativeStatus(bool value);
 
 private slots:
-    void updateStartMultiPercentage(double value);
-    void updateMinAccelThreshold(double value);
-    void updateMaxAccelThreshold(double value);
-    void updateAccelExtraDuration(double value);
-    void updateReleaseSpringRadius(int value);
     void updateExtraAccelerationCurve(int index);
 };
 

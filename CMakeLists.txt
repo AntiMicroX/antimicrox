@@ -201,6 +201,10 @@ set(antimicro_SOURCES src/main.cpp
     src/uihelpers/joyaxiscontextmenuhelper.cpp
     src/uihelpers/joycontrolstickcontextmenuhelper.cpp
     src/uihelpers/dpadcontextmenuhelper.cpp
+    src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.cpp
+    src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.cpp
+    src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
+    src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
 )
 
 # Platform dependent files.
@@ -349,6 +353,10 @@ set(antimicro_HEADERS src/mainwindow.h
     src/uihelpers/joyaxiscontextmenuhelper.h
     src/uihelpers/joycontrolstickcontextmenuhelper.h
     src/uihelpers/dpadcontextmenuhelper.h
+    src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.cpp
+    src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.h
+    src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
+    src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
 )
 
 # Platform dependent files.

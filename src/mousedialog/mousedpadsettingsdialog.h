@@ -22,6 +22,7 @@
 #include "springmoderegionpreview.h"
 
 #include <joydpad.h>
+#include "uihelpers/mousedpadsettingsdialoghelper.h"
 
 class MouseDPadSettingsDialog : public MouseSettingsDialog
 {
@@ -40,6 +41,7 @@ protected:
 
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
+    MouseDpadSettingsDialogHelper helper;
 
 signals:
     

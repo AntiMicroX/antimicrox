@@ -25,13 +25,15 @@
 #include <setjoystick.h>
 
 MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget *parent) :
-    MouseSettingsDialog(parent)
+    MouseSettingsDialog(parent),
+    helper(button)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     resize(size().width(), 450);
     //setGeometry(geometry().x(), geometry().y(), size().width(), 450);
 
     this->button = button;
+    helper.moveToThread(button->thread());
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
@@ -100,7 +102,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateSpringHeight(int)));
     connect(ui->springHeightSpinBox, SIGNAL(valueChanged(int)), springPreviewWidget, SLOT(setSpringHeight(int)));
 
-    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), this, SLOT(updateSpringRelativeStatus(bool)));
+    connect(ui->relativeSpringCheckBox, SIGNAL(clicked(bool)), &helper, SLOT(updateSpringRelativeStatus(bool)));
 
     connect(ui->sensitivityDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateSensitivity(double)));
 
@@ -109,14 +111,14 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), button, SLOT(setEasingDuration(double)));
 
-    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
-    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
-    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
-    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
-    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
-    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
+    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), &helper, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateExtraAccelerationMultiplier(double)));
+    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateStartMultiPercentage(double)));
+    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateMinAccelThreshold(double)));
+    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateMaxAccelThreshold(double)));
+    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateAccelExtraDuration(double)));
+    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), &helper, SLOT(updateReleaseSpringRadius(int)));
 
-    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
     connect(ui->extraAccelCurveComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateExtraAccelerationCurve(int)));
 }
 
@@ -154,22 +156,22 @@ void MouseButtonSettingsDialog::changeMouseCurve(int index)
 
 void MouseButtonSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
-    button->setMouseSpeedX(value);
+    QMetaObject::invokeMethod(button, "setMouseSpeedX", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::updateConfigVerticalSpeed(int value)
 {
-    button->setMouseSpeedY(value);
+    QMetaObject::invokeMethod(button, "setMouseSpeedY", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::updateSpringWidth(int value)
 {
-    button->setSpringWidth(value);
+    QMetaObject::invokeMethod(button, "setSpringWidth", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::updateSpringHeight(int value)
 {
-    button->setSpringHeight(value);
+    QMetaObject::invokeMethod(button, "setSpringHeight", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::selectCurrentMouseModePreset()
@@ -221,10 +223,11 @@ void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
-void MouseButtonSettingsDialog::updateSpringRelativeStatus(bool value)
+/*void MouseButtonSettingsDialog::updateSpringRelativeStatus(bool value)
 {
     button->setSpringRelativeStatus(value);
 }
+*/
 
 void MouseButtonSettingsDialog::updateWindowTitleButtonName()
 {
@@ -249,41 +252,6 @@ void MouseButtonSettingsDialog::updateWindowTitleButtonName()
     setWindowTitle(temp);
 }
 
-void MouseButtonSettingsDialog::updateExtraAccelerationStatus(bool checked)
-{
-    button->setExtraAccelerationStatus(checked);
-}
-
-void MouseButtonSettingsDialog::updateExtraAccelerationMultiplier(double value)
-{
-    button->setExtraAccelerationMultiplier(value);
-}
-
-void MouseButtonSettingsDialog::updateStartMultiPercentage(double value)
-{
-    button->setStartAccelMultiplier(value);
-}
-
-void MouseButtonSettingsDialog::updateMinAccelThreshold(double value)
-{
-    button->setMinAccelThreshold(value);
-}
-
-void MouseButtonSettingsDialog::updateMaxAccelThreshold(double value)
-{
-    button->setMaxAccelThreshold(value);
-}
-
-void MouseButtonSettingsDialog::updateAccelExtraDuration(double value)
-{
-    button->setAccelExtraDuration(value);
-}
-
-void MouseButtonSettingsDialog::updateReleaseSpringRadius(int value)
-{
-    button->setSpringDeadCircleMultiplier(value);
-}
-
 void MouseButtonSettingsDialog::calculateExtraAccelerationCurve()
 {
     JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
@@ -296,14 +264,11 @@ void MouseButtonSettingsDialog::updateExtraAccelerationCurve(int index)
 
     if (index > 0)
     {
-        InputDevice *device = button->getParentSet()->getInputDevice();
-
-        PadderCommon::lockInputDevices();
-        QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+        PadderCommon::inputDaemonMutex.lock();
 
         button->setExtraAccelerationCurve(temp);
         button->setExtraAccelerationCurve(temp);
 
-        PadderCommon::unlockInputDevices();
+        PadderCommon::inputDaemonMutex.unlock();
     }
 }

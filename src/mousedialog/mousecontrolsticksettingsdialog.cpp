@@ -27,11 +27,13 @@
 #include <setjoystick.h>
 
 MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent) :
-    MouseSettingsDialog(parent)
+    MouseSettingsDialog(parent),
+    helper(stick)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->stick = stick;
+    helper.moveToThread(stick->thread());
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
@@ -100,14 +102,14 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
     connect(ui->easingDoubleSpinBox, SIGNAL(valueChanged(double)), stick, SLOT(setButtonsEasingDuration(double)));
 
-    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), this, SLOT(updateExtraAccelerationStatus(bool)));
-    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateExtraAccelerationMultiplier(double)));
-    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStartMultiPercentage(double)));
-    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMinAccelThreshold(double)));
-    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateMaxAccelThreshold(double)));
-    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateAccelExtraDuration(double)));
+    connect(ui->extraAccelerationGroupBox, SIGNAL(clicked(bool)), &helper, SLOT(updateExtraAccelerationStatus(bool)));
+    connect(ui->extraAccelDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateExtraAccelerationMultiplier(double)));
+    connect(ui->minMultiDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateStartMultiPercentage(double)));
+    connect(ui->minThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateMinAccelThreshold(double)));
+    connect(ui->maxThresholdDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateMaxAccelThreshold(double)));
+    connect(ui->accelExtraDurationDoubleSpinBox, SIGNAL(valueChanged(double)), &helper, SLOT(updateAccelExtraDuration(double)));
+    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), &helper, SLOT(updateReleaseSpringRadius(int)));
 
-    connect(ui->releaseSpringRadiusspinBox, SIGNAL(valueChanged(int)), this, SLOT(updateReleaseSpringRadius(int)));
     connect(ui->extraAccelCurveComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateExtraAccelerationCurve(int)));
 }
 
@@ -334,41 +336,6 @@ void MouseControlStickSettingsDialog::calculateAccelExtraDuration()
     ui->accelExtraDurationDoubleSpinBox->setValue(stick->getButtonsAccelerationEasingDuration());
 }
 
-void MouseControlStickSettingsDialog::updateExtraAccelerationStatus(bool checked)
-{
-    stick->setButtonsExtraAccelerationStatus(checked);
-}
-
-void MouseControlStickSettingsDialog::updateExtraAccelerationMultiplier(double value)
-{
-    stick->setButtonsExtraAccelerationMultiplier(value);
-}
-
-void MouseControlStickSettingsDialog::updateStartMultiPercentage(double value)
-{
-    stick->setButtonsStartAccelerationMultiplier(value);
-}
-
-void MouseControlStickSettingsDialog::updateMinAccelThreshold(double value)
-{
-    stick->setButtonsMinAccelerationThreshold(value);
-}
-
-void MouseControlStickSettingsDialog::updateMaxAccelThreshold(double value)
-{
-    stick->setButtonsMaxAccelerationThreshold(value);
-}
-
-void MouseControlStickSettingsDialog::updateAccelExtraDuration(double value)
-{
-    stick->setButtonsAccelerationExtraDuration(value);
-}
-
-void MouseControlStickSettingsDialog::updateReleaseSpringRadius(int value)
-{
-    stick->setButtonsSpringDeadCircleMultiplier(value);
-}
-
 void MouseControlStickSettingsDialog::calculateReleaseSpringRadius()
 {
     ui->releaseSpringRadiusspinBox->setValue(stick->getButtonsSpringDeadCircleMultiplier());
@@ -385,11 +352,15 @@ void MouseControlStickSettingsDialog::updateExtraAccelerationCurve(int index)
     JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
     if (index > 0)
     {
-        PadderCommon::lockInputDevices();
+        //PadderCommon::lockInputDevices();
 
-        InputDevice *device = stick->getParentSet()->getInputDevice();
-        QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+        //InputDevice *device = stick->getParentSet()->getInputDevice();
+        //QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
+
+        PadderCommon::inputDaemonMutex.lock();
         stick->setButtonsExtraAccelCurve(temp);
-        PadderCommon::unlockInputDevices();
+        PadderCommon::inputDaemonMutex.unlock();
+
+        //PadderCommon::unlockInputDevices();
     }
 }

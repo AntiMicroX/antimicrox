@@ -22,6 +22,7 @@
 #include "springmoderegionpreview.h"
 
 #include <joycontrolstick.h>
+#include "uihelpers/mousecontrolsticksettingsdialoghelper.h"
 
 class MouseControlStickSettingsDialog : public MouseSettingsDialog
 {
@@ -49,6 +50,7 @@ protected:
 
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
+    MouseControlStickSettingsDialogHelper helper;
 
 signals:
     
@@ -65,15 +67,7 @@ public slots:
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
 
-    void updateExtraAccelerationStatus(bool checked);
-    void updateExtraAccelerationMultiplier(double value);
-
 private slots:
-    void updateStartMultiPercentage(double value);
-    void updateMinAccelThreshold(double value);
-    void updateMaxAccelThreshold(double value);
-    void updateAccelExtraDuration(double value);
-    void updateReleaseSpringRadius(int value);
     void updateExtraAccelerationCurve(int index);
 };
 
