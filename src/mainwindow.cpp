@@ -1793,3 +1793,15 @@ void MainWindow::retranslateUi()
 {
     ui->retranslateUi(this);
 }
+
+void MainWindow::refreshTabHelperThreads()
+{
+    for (int i=0; i < ui->tabWidget->count(); i++)
+    {
+        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        if (widget)
+        {
+            widget->refreshHelperThread();
+        }
+    }
+}

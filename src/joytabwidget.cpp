@@ -49,6 +49,9 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     this->joystick = joystick;
     this->settings = settings;
 
+    tabHelper = new JoyTabWidgetHelper(joystick);
+    tabHelper->moveToThread(joystick->thread());
+
     comboBoxIndex = 0;
     hideEmptyButtons = false;
 
@@ -486,6 +489,15 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     reconnectMainComboBoxEvents();
 }
 
+JoyTabWidget::~JoyTabWidget()
+{
+    if (tabHelper)
+    {
+        delete tabHelper;
+        tabHelper = 0;
+    }
+}
+
 void JoyTabWidget::openConfigFileDialog()
 {
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
@@ -601,28 +613,33 @@ void JoyTabWidget::saveConfigFile()
 
     if (!filename.isEmpty())
     {
-        PadderCommon::inputDaemonMutex.lock();
+        //PadderCommon::inputDaemonMutex.lock();
 
         QFileInfo fileinfo(filename);
 
-        XMLConfigWriter writer;
+        QMetaObject::invokeMethod(tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
+                                  Q_ARG(QString, fileinfo.absoluteFilePath()));
+        XMLConfigWriter *writer = tabHelper->getWriter();
+
+        /*XMLConfigWriter writer;
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
+        */
 
-        PadderCommon::inputDaemonMutex.unlock();
+        //PadderCommon::inputDaemonMutex.unlock();
 
-        if (writer.hasError() && this->window()->isEnabled())
+        if (writer->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
             msg.setStandardButtons(QMessageBox::Close);
-            msg.setText(writer.getErrorString());
+            msg.setText(writer->getErrorString());
             msg.setModal(true);
             msg.exec();
         }
-        else if (writer.hasError() && !this->window()->isEnabled())
+        else if (writer->hasError() && !this->window()->isEnabled())
         {
             QTextStream error(stderr);
-            error << writer.getErrorString() << endl;
+            error << writer->getErrorString() << endl;
         }
         else
         {
@@ -630,7 +647,7 @@ void JoyTabWidget::saveConfigFile()
 
             if (existingIndex == -1)
             {
-                PadderCommon::inputDaemonMutex.lock();
+                //PadderCommon::inputDaemonMutex.lock();
 
                 if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
                 {
@@ -656,13 +673,13 @@ void JoyTabWidget::saveConfigFile()
                 configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
 
-                PadderCommon::inputDaemonMutex.unlock();
+                //PadderCommon::inputDaemonMutex.unlock();
 
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
-                PadderCommon::inputDaemonMutex.lock();
+                //PadderCommon::inputDaemonMutex.lock();
 
                 joystick->revertProfileEdited();
                 if (!joystick->getProfileName().isEmpty())
@@ -673,7 +690,7 @@ void JoyTabWidget::saveConfigFile()
                 configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
 
-                PadderCommon::inputDaemonMutex.unlock();
+                //PadderCommon::inputDaemonMutex.unlock();
 
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
@@ -683,10 +700,10 @@ void JoyTabWidget::saveConfigFile()
 
 void JoyTabWidget::resetJoystick()
 {
-    PadderCommon::lockInputDevices();
+    //PadderCommon::lockInputDevices();
 
-    InputDevice *tempDevice = joystick;
-    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+    //InputDevice *tempDevice = joystick;
+    //QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
@@ -695,15 +712,19 @@ void JoyTabWidget::resetJoystick()
 
         removeCurrentButtons();
         //joystick->reset();
-        joystick->revertProfileEdited();
-        QMetaObject::invokeMethod(joystick, "transferReset");
+        //joystick->revertProfileEdited();
+        //QMetaObject::invokeMethod(joystick, "transferReset");
         //joystick->transferReset();
-        QMetaObject::invokeMethod(joystick, "reInitButtons");
+        //QMetaObject::invokeMethod(joystick, "reInitButtons");
         //joystick->reInitButtons();
 
-        XMLConfigReader reader;
+        /*XMLConfigReader reader;
         reader.setFileName(filename);
         reader.configJoystick(joystick);
+        */
+
+        QMetaObject::invokeMethod(tabHelper, "readConfigFileWithRevert", Qt::BlockingQueuedConnection,
+                                  Q_ARG(QString, filename));
 
         fillButtons();
         refreshSetButtons();
@@ -723,30 +744,34 @@ void JoyTabWidget::resetJoystick()
 
         oldProfileName = tempProfileName;
 
-        if (reader.hasError() && this->window()->isEnabled())
+        XMLConfigReader *reader = tabHelper->getReader();
+        if (reader->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
             msg.setStandardButtons(QMessageBox::Close);
-            msg.setText(reader.getErrorString());
+            msg.setText(reader->getErrorString());
             msg.setModal(true);
             msg.exec();
         }
-        else if (reader.hasError() && !this->window()->isEnabled())
+        else if (reader->hasError() && !this->window()->isEnabled())
         {
             QTextStream error(stderr);
-            error << reader.getErrorString() << endl;
+            error << reader->getErrorString() << endl;
         }
     }
     else
     {
         configBox->setItemText(0, tr("<New>"));
         removeCurrentButtons();
-        joystick->revertProfileEdited();
+
+        QMetaObject::invokeMethod(tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+
+        //joystick->revertProfileEdited();
         //joystick->reset();
 
-        QMetaObject::invokeMethod(joystick, "transferReset");
+        //QMetaObject::invokeMethod(joystick, "transferReset");
         //joystick->transferReset();
-        QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
+        //QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
         //joystick->reInitButtons();
         fillButtons();
         refreshSetButtons();
@@ -755,7 +780,7 @@ void JoyTabWidget::resetJoystick()
 
     configBox->setItemIcon(currentIndex, QIcon());
 
-    PadderCommon::unlockInputDevices();
+    //PadderCommon::unlockInputDevices();
 }
 
 void JoyTabWidget::saveAsConfig()
@@ -795,22 +820,26 @@ void JoyTabWidget::saveAsConfig()
         }
         fileinfo.setFile(filename);
 
-        XMLConfigWriter writer;
+        /*XMLConfigWriter writer;
         writer.setFileName(fileinfo.absoluteFilePath());
         writer.write(joystick);
+        */
+        QMetaObject::invokeMethod(tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
+                                  Q_ARG(QString, fileinfo.absoluteFilePath()));
+        XMLConfigWriter *writer = tabHelper->getWriter();
 
-        if (writer.hasError() && this->window()->isEnabled())
+        if (writer->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
             msg.setStandardButtons(QMessageBox::Close);
-            msg.setText(writer.getErrorString());
+            msg.setText(writer->getErrorString());
             msg.setModal(true);
             msg.exec();
         }
-        else if (writer.hasError() && !this->window()->isEnabled())
+        else if (writer->hasError() && !this->window()->isEnabled())
         {
             QTextStream error(stderr);
-            error << writer.getErrorString() << endl;
+            error << writer->getErrorString() << endl;
         }
         else
         {
@@ -860,10 +889,10 @@ void JoyTabWidget::saveAsConfig()
 
 void JoyTabWidget::changeJoyConfig(int index)
 {
-    PadderCommon::lockInputDevices();
+    //PadderCommon::lockInputDevices();
 
-    InputDevice *tempDevice = joystick;
-    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
+    //InputDevice *tempDevice = joystick;
+    //QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
@@ -878,7 +907,7 @@ void JoyTabWidget::changeJoyConfig(int index)
     {
         removeCurrentButtons();
 
-        if (joystick->getActiveSetNumber() != 0)
+        /*if (joystick->getActiveSetNumber() != 0)
         {
             QMetaObject::invokeMethod(joystick, "setActiveSetNumber",
                                       Q_ARG(int, 0));
@@ -887,30 +916,38 @@ void JoyTabWidget::changeJoyConfig(int index)
         }
 
         QMetaObject::invokeMethod(joystick, "resetButtonDownCount");
+        */
+
         //joystick->resetButtonDownCount();
         emit forceTabUnflash(this);
 
-        XMLConfigReader reader;
+        /*XMLConfigReader reader;
         reader.setFileName(filename);
         reader.configJoystick(joystick);
+        */
 
+        QMetaObject::invokeMethod(tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
+                                  Q_ARG(QString, filename));
+
+        //tabHelper->readConfigFile(filename);
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
         configBox->setItemText(0, tr("<New>"));
+        XMLConfigReader *reader = tabHelper->getReader();
 
-        if (reader.hasError() && this->window()->isEnabled())
+        if (reader->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
             msg.setStandardButtons(QMessageBox::Close);
-            msg.setText(reader.getErrorString());
+            msg.setText(reader->getErrorString());
             msg.setModal(true);
             msg.exec();
         }
-        else if (reader.hasError() && !this->window()->isEnabled())
+        else if (reader->hasError() && !this->window()->isEnabled())
         {
             QTextStream error(stderr);
-            error << reader.getErrorString() << endl;
+            error << reader->getErrorString() << endl;
         }
 
         QString profileName;
@@ -935,21 +972,24 @@ void JoyTabWidget::changeJoyConfig(int index)
     {
         removeCurrentButtons();
 
-        if (joystick->getActiveSetNumber() != 0)
+        /*if (joystick->getActiveSetNumber() != 0)
         {
             joystick->setActiveSetNumber(0);
             changeCurrentSet(0);
         }
+        */
 
         //joystick->reset();
 
-        QMetaObject::invokeMethod(joystick, "transferReset");
+        //QMetaObject::invokeMethod(joystick, "transferReset");
         //joystick->transferReset();
-        QMetaObject::invokeMethod(joystick, "resetButtonDownCount");
+        //QMetaObject::invokeMethod(joystick, "resetButtonDownCount");
         //joystick->resetButtonDownCount();
         emit forceTabUnflash(this);
 
-        QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
+        QMetaObject::invokeMethod(tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+
+        //QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
         //joystick->reInitButtons();
 
         fillButtons();
@@ -964,7 +1004,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
     connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
-    PadderCommon::unlockInputDevices();
+    //PadderCommon::unlockInputDevices();
 }
 
 void JoyTabWidget::saveSettings()
@@ -2459,6 +2499,14 @@ void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 
 #endif
 
+void JoyTabWidget::refreshHelperThread()
+{
+    if (tabHelper)
+    {
+        tabHelper->moveToThread(joystick->thread());
+    }
+}
+
 void JoyTabWidget::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange)
@@ -2468,3 +2516,4 @@ void JoyTabWidget::changeEvent(QEvent *event)
 
     QWidget::changeEvent(event);
 }
+

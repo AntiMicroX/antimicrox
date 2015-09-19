@@ -116,6 +116,7 @@ public slots:
     void removeJoyTabs();
     void quitProgram();
     void changeWindowStatus();
+    void refreshTabHelperThreads();
 
 #ifdef USE_SDL_2
     void controllerMapOpening();

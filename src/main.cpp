@@ -758,8 +758,8 @@ int main(int argc, char *argv[])
     else
     {
         mainAppHelper.initRunMethods();
-        w->fillButtons();
-        w->alterConfigFromSettings();
+        QTimer::singleShot(0, w, SLOT(fillButtons()));
+        QTimer::singleShot(0, w, SLOT(alterConfigFromSettings()));
         QTimer::singleShot(0, w, SLOT(changeWindowStatus()));
     }
 

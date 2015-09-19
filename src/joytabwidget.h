@@ -31,6 +31,8 @@
 #include <QScrollArea>
 #include <QIcon>
 
+#include "uihelpers/joytabwidgethelper.h"
+
 #include "joystick.h"
 #include "axiseditdialog.h"
 #include "inputdevice.h"
@@ -42,6 +44,7 @@ class JoyTabWidget : public QWidget
     Q_OBJECT
 public:
     explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = 0);
+    ~JoyTabWidget();
 
     void saveSettings();
     void loadSettings(bool forceRefresh=false);
@@ -55,6 +58,7 @@ public:
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
     void checkHideEmptyOption();
+    void refreshHelperThread();
 
 #ifdef Q_OS_WIN
     void deviceKeyRepeatSettings();
@@ -140,6 +144,8 @@ protected:
     int comboBoxIndex;
     bool hideEmptyButtons;
     QString oldProfileName;
+
+    JoyTabWidgetHelper *tabHelper;
 
     static const int DEFAULTNUMBERPROFILES = 5;
 

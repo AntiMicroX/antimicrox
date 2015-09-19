@@ -134,9 +134,9 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-                QMetaObject::invokeMethod(joystick, "readConfig", Qt::BlockingQueuedConnection,
-                                          Q_ARG(QXmlStreamReader*, xml));
-                //joystick->readConfig(xml);
+                //QMetaObject::invokeMethod(joystick, "readConfig", Qt::BlockingQueuedConnection,
+                //                          Q_ARG(QXmlStreamReader*, xml));
+                joystick->readConfig(xml);
             }
             else
             {
