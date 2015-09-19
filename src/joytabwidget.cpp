@@ -491,10 +491,14 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
 void JoyTabWidget::openConfigFileDialog()
 {
+    settings->getLock()->lock();
+
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
 
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, tr("Config Files (*.amgp *.xml)"));
+
+    settings->getLock()->unlock();
 
     if (!filename.isNull() && !filename.isEmpty())
     {
@@ -533,8 +537,12 @@ void JoyTabWidget::openConfigFileDialog()
         }
 #endif
 
+        settings->getLock()->lock();
+
         settings->setValue("LastProfileDir", outputFilename);
         settings->sync();
+
+        settings->getLock()->unlock();
     }
 }
 
