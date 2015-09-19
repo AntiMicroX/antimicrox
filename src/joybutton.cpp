@@ -5212,7 +5212,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->springDeadCircleMultiplier = springDeadCircleMultiplier;
     destButton->extraAccelCurve = extraAccelCurve;
 
-    buildActiveZoneSummaryString();
+    destButton->buildActiveZoneSummaryString();
 }
 
 /**

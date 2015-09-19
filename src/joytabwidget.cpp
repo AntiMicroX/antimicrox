@@ -2452,6 +2452,8 @@ void JoyTabWidget::performSetCopy()
         {
             PadderCommon::lockInputDevices();
 
+            removeSetButtons(destSet);
+
             QMetaObject::invokeMethod(sourceSet, "copyAssignments", Qt::BlockingQueuedConnection,
                                       Q_ARG(SetJoystick*, destSet));
 
