@@ -196,6 +196,7 @@ set(antimicro_SOURCES src/main.cpp
     src/eventhandlers/baseeventhandler.cpp
     src/eventhandlerfactory.cpp
     src/uihelpers/advancebuttondialoghelper.cpp
+    src/uihelpers/buttoneditdialoghelper.cpp
 )
 
 # Platform dependent files.
@@ -339,6 +340,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/eventhandlers/baseeventhandler.h
     src/eventhandlerfactory.h
     src/uihelpers/advancebuttondialoghelper.h
+    src/uihelpers/buttoneditdialoghelper.h
 )
 
 # Platform dependent files.

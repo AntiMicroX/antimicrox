@@ -3382,6 +3382,7 @@ bool JoyButton::containsSequence()
 {
     bool result = false;
 
+    assignmentsLock.lockForRead();
     QListIterator<JoyButtonSlot*> tempiter(assignments);
     while (tempiter.hasNext())
     {
@@ -3396,6 +3397,7 @@ bool JoyButton::containsSequence()
             tempiter.toBack();
         }
     }
+    assignmentsLock.unlock();
 
     return result;
 }

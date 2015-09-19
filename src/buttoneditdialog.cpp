@@ -32,6 +32,8 @@
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
 
+#include "uihelpers/buttoneditdialoghelper.h"
+
 #include "event.h"
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
@@ -53,6 +55,8 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     setWindowModality(Qt::WindowModal);
 
     ignoreRelease = false;
+
+    PadderCommon::inputDaemonMutex.lock();
 
     this->button = button;
     ui->virtualKeyMouseTabWidget->hide();
@@ -77,6 +81,8 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, QWidget *parent) :
     {
         ui->buttonNameLineEdit->setText(button->getButtonName());
     }
+
+    PadderCommon::inputDaemonMutex.unlock();
 
     connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(checkForKeyboardWidgetFocus(QWidget*,QWidget*)));
 
@@ -380,7 +386,9 @@ void ButtonEditDialog::checkTurboSetting(bool state)
         ui->turboCheckBox->setEnabled(true);
     }
 
-    button->setUseTurbo(state);
+    ButtonEditDialogHelper helper(this->button);
+    helper.moveToThread(this->button->thread());
+    helper.setUseTurbo(state);
 }
 
 void ButtonEditDialog::setTurboButtonEnabled(bool state)
@@ -403,29 +411,20 @@ void ButtonEditDialog::closedAdvancedDialog()
 
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
-    PadderCommon::lockInputDevices();
+    ButtonEditDialogHelper helper(this->button);
+    helper.moveToThread(this->button->thread());
+    QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(int, tempslot->getSlotCode()),
+                                  Q_ARG(unsigned int, tempslot->getSlotCodeAlias()),
+                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, tempslot->getSlotMode()));
 
-    InputDevice *tempDevice = button->getParentSet()->getInputDevice();
-    QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
-
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-                              Q_ARG(bool, false));
-    //button->clearSlotsEventReset(false);
-    QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                              Q_ARG(int, tempslot->getSlotCode()),
-                              Q_ARG(unsigned int, tempslot->getSlotCodeAlias()),
-                              Q_ARG(JoyButtonSlot::JoySlotInputAction, tempslot->getSlotMode()));
-    //button->setAssignedSlot(tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), tempslot->getSlotMode());
     this->close();
     tempslot->deleteLater();
-
-    PadderCommon::unlockInputDevices();
 }
 
 void ButtonEditDialog::clearButtonSlots()
 {
     QMetaObject::invokeMethod(button, "clearSlotsEventReset", Q_ARG(bool, false));
-    //button->clearSlotsEventReset();
 }
 
 void ButtonEditDialog::sendSelectionFinished()
