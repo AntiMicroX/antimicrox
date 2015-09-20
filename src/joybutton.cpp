@@ -976,10 +976,11 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoySetChange)
             {
-                releaseActiveSlots();
-                currentSetChangeSlot = slot;
-                slotSetChangeTimer.start();
-                exit = true;
+                activeSlots.append(slot);
+                //releaseActiveSlots();
+                //currentSetChangeSlot = slot;
+                //slotSetChangeTimer.start();
+                //exit = true;
             }
             else if (mode == JoyButtonSlot::JoyTextEntry)
             {
@@ -4098,6 +4099,11 @@ void JoyButton::releaseActiveSlots()
                     mouseSpeedModifier = DEFAULTMOUSESPEEDMOD;
                 }
             }
+            else if (mode == JoyButtonSlot::JoySetChange)
+            {
+                currentSetChangeSlot = slot;
+                slotSetChangeTimer.start();
+            }
         }
 
         activeSlots.clear();
@@ -4128,7 +4134,7 @@ void JoyButton::releaseActiveSlots()
             wheelHorizontalTime.restart();
         }
 
-        // Check if mouse event timer should be stopped.
+        // Check if mouse remainder should be zero.
         // Only need to check one list from cursor speeds and spring speeds
         // since the correspond Y lists will be the same size.
         if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
