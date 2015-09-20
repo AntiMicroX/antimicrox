@@ -552,10 +552,10 @@ void AxisEditDialog::refreshPreset()
 {
     // Disconnect event associated with presetsComboBox so a change in the index does not
     // alter the axis buttons
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementAxisPresets(int)));
+    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     selectAxisCurrentPreset();
     // Reconnect the event
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementAxisPresets(int)));
+    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 }
 
 void AxisEditDialog::openMouseSettingsDialog()
