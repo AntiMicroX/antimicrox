@@ -37,6 +37,8 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     this->joystick = joystick;
 
+    PadderCommon::inputDaemonMutex.lock();
+
     setWindowTitle(tr("%1 (#%2) Properties").arg(joystick->getSDLName())
                    .arg(joystick->getRealJoyNumber()));
 
@@ -166,6 +168,8 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     ui->sdlGameControllerLabel->setVisible(false);
 #endif
 
+    PadderCommon::inputDaemonMutex.unlock();
+
     connect(joystick, SIGNAL(destroyed()), this, SLOT(obliterate()));
     connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates(int)));
 }
@@ -179,8 +183,12 @@ void JoystickStatusWindow::restoreButtonStates(int code)
 {
     if (code == QDialogButtonBox::AcceptRole)
     {
+        PadderCommon::inputDaemonMutex.lock();
+
         joystick->getActiveSetJoystick()->setIgnoreEventState(false);
         joystick->getActiveSetJoystick()->release();
+
+        PadderCommon::inputDaemonMutex.unlock();
     }
 }
 
