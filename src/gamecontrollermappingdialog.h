@@ -23,6 +23,7 @@
 #include <QList>
 #include <QAbstractButton>
 
+#include "uihelpers/gamecontrollermappingdialoghelper.h"
 #include "inputdevice.h"
 #include "gamecontroller/gamecontroller.h"
 #include "antimicrosettings.h"
@@ -57,7 +58,10 @@ protected:
     InputDevice *device;
     AntiMicroSettings *settings;
     unsigned int buttonGrabs;
+    QList<int> eventTriggerAxes;
     QList<int> originalAxesDeadZones;
+    GameControllerMappingDialogHelper helper;
+    int currentDeadZoneValue;
 
 private:
     Ui::GameControllerMappingDialog *ui;
@@ -79,6 +83,7 @@ private slots:
     void changeButtonDisplay();
     void changeAxisDeadZone(int index);
     void updateLastAxisLineEdit(int value);
+    void updateLastAxisLineEditRaw(int index, int value);
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOG_H

@@ -508,6 +508,12 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         sdlEventQueue->append(event);
                     }
                 }
+#ifdef USE_SDL_2
+                else
+                {
+                    sdlEventQueue->append(event);
+                }
+#endif
 
                 break;
             }
@@ -533,6 +539,12 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         sdlEventQueue->append(event);
                     }
                 }
+#ifdef USE_SDL_2
+                else
+                {
+                    sdlEventQueue->append(event);
+                }
+#endif
 
                 break;
             }
@@ -558,6 +570,12 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         sdlEventQueue->append(event);
                     }
                 }
+#ifdef USE_SDL_2
+                else
+                {
+                    sdlEventQueue->append(event);
+                }
+#endif
 
                 break;
             }
@@ -811,6 +829,13 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                     }
                 }
+#ifdef USE_SDL_2
+                else if (trackcontrollers.contains(event.jbutton.which))
+                {
+                    GameController *gamepad = trackcontrollers.value(event.jbutton.which);
+                    gamepad->rawButtonEvent(event.jbutton.button, event.type == SDL_JOYBUTTONDOWN ? true : false);
+                }
+#endif
 
                 break;
             }
@@ -837,6 +862,13 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                     }
                 }
+#ifdef USE_SDL_2
+                else if (trackcontrollers.contains(event.jaxis.which))
+                {
+                    GameController *gamepad = trackcontrollers.value(event.jaxis.which);
+                    gamepad->rawAxisEvent(event.jaxis.axis, event.jaxis.value);
+                }
+#endif
 
                 break;
             }
@@ -863,6 +895,13 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                     }
                 }
+#ifdef USE_SDL_2
+                else if (trackcontrollers.contains(event.jhat.which))
+                {
+                    GameController *gamepad = trackcontrollers.value(event.jaxis.which);
+                    gamepad->rawDPadEvent(event.jhat.hat, event.jhat.value);
+                }
+#endif
 
                 break;
             }
