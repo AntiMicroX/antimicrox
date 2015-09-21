@@ -91,7 +91,7 @@ static QHash<SDL_GameControllerAxis, int> initAxisPlacement()
 
 QHash<int, QString> GameControllerMappingDialog::tempaliases = initAliases();
 
-QHash<SDL_GameControllerButton, int> GameControllerMappingDialog::buttonPlacement =  initButtonPlacement();
+QHash<SDL_GameControllerButton, int> GameControllerMappingDialog::buttonPlacement = initButtonPlacement();
 QHash<SDL_GameControllerAxis, int> GameControllerMappingDialog::axisPlacement = initAxisPlacement();
 
 GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
@@ -105,6 +105,7 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
     setAttribute(Qt::WA_DeleteOnClose);
 
     buttonGrabs = 0;
+    usingGameController = false;
 
     this->device = device;
     this->settings = settings;
@@ -119,6 +120,7 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
     GameController *controller = qobject_cast<GameController*>(device);
     if (controller)
     {
+        usingGameController = true;
         populateGameControllerBindings(controller);
         ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
     }
@@ -207,10 +209,13 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
     bool skip = false;
     bool change = true;
 
-    if (eventTriggerAxes.contains(axis) && value < -currentDeadZoneValue)
+    if (usingGameController)
     {
-        skip = true;
-        eventTriggerAxes.removeAll(axis);
+        if (eventTriggerAxes.contains(axis) && value < -currentDeadZoneValue)
+        {
+            skip = true;
+            eventTriggerAxes.removeAll(axis);
+        }
     }
 
     if (!skip && ui->buttonMappingTableWidget->currentRow() > -1)
@@ -221,14 +226,17 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
         if (row < 17)
         {
-            bool considerTrigger = (row == 15 || row == 16);
-            if (considerTrigger && value > currentDeadZoneValue && !eventTriggerAxes.contains(axis))
+            if (usingGameController)
             {
-                eventTriggerAxes.append(axis);
-            }
-            else if (considerTrigger && value < currentDeadZoneValue)
-            {
-                skip = true;
+                bool considerTrigger = (row == 15 || row == 16);
+                if (considerTrigger && value > currentDeadZoneValue && !eventTriggerAxes.contains(axis))
+                {
+                    eventTriggerAxes.append(axis);
+                }
+                else if (considerTrigger && value < currentDeadZoneValue)
+                {
+                    skip = true;
+                }
             }
 
             if (!skip)
@@ -457,20 +465,24 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
 
 void GameControllerMappingDialog::removeControllerMapping()
 {
+    settings->getLock()->lock();
+
     settings->beginGroup("Mappings");
     settings->remove(device->getGUIDString());
     settings->remove(QString("%1Disable").arg(device->getGUIDString()));
     settings->endGroup();
     settings->sync();
+
+    settings->getLock()->unlock();
 }
 
 void GameControllerMappingDialog::enableDeviceConnections()
 {
     connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     connect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
-    connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(updateLastAxisLineEditRaw(int,int)));
-    connect(device, SIGNAL(rawAxisButtonClick(int,int)), this, SLOT(axisAssign(int,int)));
-    connect(device, SIGNAL(rawAxisButtonRelease(int,int)), this, SLOT(axisRelease(int,int)));
+    connect(device, SIGNAL(rawAxisMoved(int,int)), this, SLOT(updateLastAxisLineEditRaw(int,int)));
+    connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
+    connect(device, SIGNAL(rawAxisReleased(int,int)), this, SLOT(axisRelease(int,int)));
     connect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
     connect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, SLOT(dpadRelease(int,int)));
 }
@@ -479,9 +491,9 @@ void GameControllerMappingDialog::disableDeviceConnections()
 {
     disconnect(device, SIGNAL(rawButtonClick(int)), this, 0);
     disconnect(device, SIGNAL(rawButtonRelease(int)), this, 0);
+    disconnect(device, SIGNAL(rawAxisMoved(int,int)), this, 0);
     disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, 0);
-    disconnect(device, SIGNAL(rawAxisButtonClick(int,int)), this, 0);
-    disconnect(device, SIGNAL(rawAxisButtonRelease(int,int)), this, 0);
+    disconnect(device, SIGNAL(rawAxisReleased(int,int)), this, 0);
     disconnect(device, SIGNAL(rawDPadButtonClick(int,int)), this, 0);
     disconnect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, 0);
 }
@@ -551,17 +563,34 @@ void GameControllerMappingDialog::changeButtonDisplay()
     ui->gameControllerDisplayWidget->setActiveButton(ui->buttonMappingTableWidget->currentRow());
 }
 
+/**
+ * @brief TODO: Possibly remove. This was used for decrementing a reference
+ *   count.
+ * @param axis
+ * @param value
+ */
 void GameControllerMappingDialog::axisRelease(int axis, int value)
 {
     Q_UNUSED(axis);
     Q_UNUSED(value);
 }
 
+/**
+ * @brief TODO: Possibly remove. This was used for decrementing a reference
+ *   count.
+ * @param buttonindex
+ */
 void GameControllerMappingDialog::buttonRelease(int buttonindex)
 {
     Q_UNUSED(buttonindex);
 }
 
+/**
+ * @brief TODO: Possibly remove. This was used for decrementing a reference
+ *   count.
+ * @param dpad
+ * @param buttonindex
+ */
 void GameControllerMappingDialog::dpadRelease(int dpad, int buttonindex)
 {
     Q_UNUSED(dpad);

@@ -62,6 +62,7 @@ protected:
     QList<int> originalAxesDeadZones;
     GameControllerMappingDialogHelper helper;
     int currentDeadZoneValue;
+    bool usingGameController;
 
 private:
     Ui::GameControllerMappingDialog *ui;

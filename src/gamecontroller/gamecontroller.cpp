@@ -933,15 +933,15 @@ void GameController::rawAxisEvent(int index, int value)
     if (!knownaxis && fabs(value) > rawAxisDeadZone)
     {
         axisvalues.insert(index, value);
-        emit rawAxisButtonClick(index, value);
+        emit rawAxisActivated(index, value);
     }
     else if (knownaxis && fabs(value) < rawAxisDeadZone)
     {
         axisvalues.remove(index);
-        emit rawAxisButtonRelease(index, value);
+        emit rawAxisReleased(index, value);
     }
 
-    emit rawAxisActivated(index, value);
+    emit rawAxisMoved(index, value);
 }
 
 void GameController::rawDPadEvent(int index, int value)

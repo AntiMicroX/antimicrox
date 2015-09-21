@@ -354,6 +354,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
             }
         }
 
+        // Make sure to decrement reference count
         SDL_JoystickClose(joystick);
     }
 }
@@ -380,6 +381,9 @@ void InputDaemon::refreshIndexes()
     {
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
         SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
+        // Make sure to decrement reference count
+        SDL_JoystickClose(joystick);
+
         InputDevice *tempdevice = joysticks->value(joystickID);
         if (tempdevice)
         {
@@ -410,6 +414,7 @@ void InputDaemon::addInputDevice(int index)
 
             if (SDL_IsGameController(index) && !disableGameController)
             {
+                // Make sure to decrement reference count
                 SDL_JoystickClose(joystick);
 
                 SDL_GameController *controller = SDL_GameControllerOpen(index);
@@ -450,6 +455,7 @@ void InputDaemon::addInputDevice(int index)
         }
         else
         {
+            // Make sure to decrement reference count
             SDL_JoystickClose(joystick);
         }
     }
@@ -861,6 +867,8 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                             activeDevices.insert(event.jaxis.which, joy);
                         }
                     }
+
+                    joy->rawAxisEvent(event.jaxis.which, event.jaxis.value);
                 }
 #ifdef USE_SDL_2
                 else if (trackcontrollers.contains(event.jaxis.which))

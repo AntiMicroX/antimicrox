@@ -124,6 +124,7 @@ public:
 
     void setRawAxisDeadZone(int deadZone);
     int getRawAxisDeadZone();
+    void rawAxisEvent(int index, int value);
 
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
@@ -173,6 +174,7 @@ signals:
     void rawDPadButtonRelease(int dpad, int buttonindex);
     void rawAxisActivated(int axis, int value);
     void rawAxisReleased(int axis, int value);
+    void rawAxisMoved(int axis, int value);
     void profileUpdated();
     void propertyUpdated();
     void profileNameEdited(QString text);

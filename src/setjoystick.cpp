@@ -1058,16 +1058,6 @@ void SetJoystick::raiseAxesDeadZones(int deadZone)
         temp->setDeadZone(tempDeadZone);
         temp->establishPropertyUpdatedConnection();
     }
-
-    /*QHashIterator<int, JoyControlStick*> stickIter(sticks);
-    while (stickIter.hasNext())
-    {
-        JoyControlStick *temp = stickIter.next().value();
-        temp->disconnectPropertyUpdatedConnection();
-        temp->setDeadZone(20000);
-        temp->establishPropertyUpdatedConnection();
-    }
-    */
 }
 
 void SetJoystick::currentAxesDeadZones(QList<int> *axesDeadZones)

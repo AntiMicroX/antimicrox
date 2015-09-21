@@ -2233,3 +2233,8 @@ int InputDevice::getRawAxisDeadZone()
 {
     return rawAxisDeadZone;
 }
+
+void InputDevice::rawAxisEvent(int index, int value)
+{
+    emit rawAxisMoved(index, value);
+}
