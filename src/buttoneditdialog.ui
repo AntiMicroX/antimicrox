@@ -194,10 +194,10 @@
        <item>
         <widget class="QLabel" name="buttonNameLabel">
          <property name="text">
-          <string>Name:</string>
+          <string>Na&amp;me:</string>
          </property>
          <property name="buddy">
-          <cstring></cstring>
+          <cstring>buttonNameLineEdit</cstring>
          </property>
         </widget>
        </item>
@@ -224,7 +224,7 @@
           <string>Action:</string>
          </property>
          <property name="buddy">
-          <cstring></cstring>
+          <cstring>actionNameLineEdit</cstring>
          </property>
         </widget>
        </item>
