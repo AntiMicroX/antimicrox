@@ -699,28 +699,14 @@ void JoyTabWidget::saveConfigFile()
 
 void JoyTabWidget::resetJoystick()
 {
-    //PadderCommon::lockInputDevices();
-
-    //InputDevice *tempDevice = joystick;
-    //QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
     {
         QString filename = configBox->itemData(currentIndex).toString();
+        configBox->setItemIcon(currentIndex, QIcon());
 
         removeCurrentButtons();
-        //joystick->reset();
-        //joystick->revertProfileEdited();
-        //QMetaObject::invokeMethod(joystick, "transferReset");
-        //joystick->transferReset();
-        //QMetaObject::invokeMethod(joystick, "reInitButtons");
-        //joystick->reInitButtons();
-
-        /*XMLConfigReader reader;
-        reader.setFileName(filename);
-        reader.configJoystick(joystick);
-        */
 
         QMetaObject::invokeMethod(&tabHelper, "readConfigFileWithRevert", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, filename));
@@ -761,25 +747,16 @@ void JoyTabWidget::resetJoystick()
     else
     {
         configBox->setItemText(0, tr("<New>"));
+        configBox->setItemIcon(0, QIcon());
+
         removeCurrentButtons();
 
         QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
 
-        //joystick->revertProfileEdited();
-        //joystick->reset();
-
-        //QMetaObject::invokeMethod(joystick, "transferReset");
-        //joystick->transferReset();
-        //QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
-        //joystick->reInitButtons();
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
     }
-
-    configBox->setItemIcon(currentIndex, QIcon());
-
-    //PadderCommon::unlockInputDevices();
 }
 
 void JoyTabWidget::saveAsConfig()
