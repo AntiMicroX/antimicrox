@@ -83,7 +83,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>10</height>
+       <height>4</height>
       </size>
      </property>
     </spacer>
@@ -197,7 +197,7 @@
           <string>Name:</string>
          </property>
          <property name="buddy">
-          <cstring>buttonNameLineEdit</cstring>
+          <cstring></cstring>
          </property>
         </widget>
        </item>
@@ -224,7 +224,7 @@
           <string>Action:</string>
          </property>
          <property name="buddy">
-          <cstring>actionNameLineEdit</cstring>
+          <cstring></cstring>
          </property>
         </widget>
        </item>
