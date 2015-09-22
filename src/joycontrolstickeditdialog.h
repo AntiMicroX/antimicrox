@@ -21,6 +21,7 @@
 #include <QDialog>
 
 #include "joycontrolstick.h"
+#include "uihelpers/joycontrolstickeditdialoghelper.h"
 
 namespace Ui {
 class JoyControlStickEditDialog;
@@ -38,6 +39,7 @@ protected:
     void selectCurrentPreset();
 
     JoyControlStick *stick;
+    JoyControlStickEditDialogHelper helper;
 
 private:
     Ui::JoyControlStickEditDialog *ui;
@@ -56,7 +58,6 @@ private slots:
     void changeCircleAdjust(int value);
     void updateStickDelaySpinBox(int value);
     void updateStickDelaySlider(double value);
-    void updateControlStickDelay(int value);
     void openModifierEditDialog();
     void changeModifierSummary();
 };

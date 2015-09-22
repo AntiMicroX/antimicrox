@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "joycontrolstickcontextmenuhelper.h"
+#include "joycontrolstickeditdialoghelper.h"
 
-JoyControlStickContextMenuHelper::JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent) :
+JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent) :
     QObject(parent)
 {
     Q_ASSERT(stick);
@@ -25,7 +25,7 @@ JoyControlStickContextMenuHelper::JoyControlStickContextMenuHelper(JoyControlSti
     this->stick = stick;
 }
 
-void JoyControlStickContextMenuHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections,
+void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections,
                                                       JoyButtonSlot *> *tempSlots)
 {
     pendingSlots.clear();
@@ -41,12 +41,12 @@ void JoyControlStickContextMenuHelper::setPendingSlots(QHash<JoyControlStick::Jo
     }
 }
 
-void JoyControlStickContextMenuHelper::clearPendingSlots()
+void JoyControlStickEditDialogHelper::clearPendingSlots()
 {
     pendingSlots.clear();
 }
 
-void JoyControlStickContextMenuHelper::setFromPendingSlots()
+void JoyControlStickEditDialogHelper::setFromPendingSlots()
 {
     if (!pendingSlots.isEmpty())
     {
@@ -73,7 +73,7 @@ void JoyControlStickContextMenuHelper::setFromPendingSlots()
     }
 }
 
-void JoyControlStickContextMenuHelper::clearButtonsSlotsEventReset()
+void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 {
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = stick->getButtons();
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*buttons);
@@ -84,5 +84,14 @@ void JoyControlStickContextMenuHelper::clearButtonsSlotsEventReset()
         {
             button->clearSlotsEventReset();
         }
+    }
+}
+
+void JoyControlStickEditDialogHelper::updateControlStickDelay(int value)
+{
+    int temp = value * 10;
+    if (stick->getStickDelay() != temp)
+    {
+        stick->setStickDelay(temp);
     }
 }

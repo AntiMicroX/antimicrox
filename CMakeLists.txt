@@ -202,6 +202,7 @@ set(antimicro_SOURCES src/main.cpp
     src/uihelpers/joycontrolstickcontextmenuhelper.cpp
     src/uihelpers/dpadcontextmenuhelper.cpp
     src/uihelpers/dpadeditdialoghelper.cpp
+    src/uihelpers/joycontrolstickeditdialoghelper.cpp
     src/uihelpers/gamecontrollermappingdialoghelper.cpp
     src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.cpp
     src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.cpp
@@ -356,6 +357,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/uihelpers/joycontrolstickcontextmenuhelper.h
     src/uihelpers/dpadcontextmenuhelper.h
     src/uihelpers/dpadeditdialoghelper.h
+    src/uihelpers/joycontrolstickeditdialoghelper.h
     src/uihelpers/gamecontrollermappingdialoghelper.h
     src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.h
     src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.h

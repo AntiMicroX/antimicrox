@@ -15,19 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef JOYCONTROLSTICKCONTEXTMENUHELPER_H
-#define JOYCONTROLSTICKCONTEXTMENUHELPER_H
+#ifndef JOYCONTROLSTICKEDITDIALOGHELPER_H
+#define JOYCONTROLSTICKEDITDIALOGHELPER_H
 
 #include <QObject>
 #include <QHash>
 
 #include "joycontrolstick.h"
 
-class JoyControlStickContextMenuHelper : public QObject
+class JoyControlStickEditDialogHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent = 0);
+    explicit JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent = 0);
     void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> *tempSlots);
     void clearPendingSlots();
 
@@ -40,6 +40,7 @@ signals:
 public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
+    void updateControlStickDelay(int value);
 };
 
-#endif // JOYCONTROLSTICKCONTEXTMENUHELPER_H
+#endif // JOYCONTROLSTICKEDITDIALOGHELPER_H
