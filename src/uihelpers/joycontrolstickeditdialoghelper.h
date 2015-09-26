@@ -15,43 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DPADEDITDIALOG_H
-#define DPADEDITDIALOG_H
+#ifndef JOYCONTROLSTICKEDITDIALOGHELPER_H
+#define JOYCONTROLSTICKEDITDIALOGHELPER_H
 
-#include <QDialog>
+#include <QObject>
+#include <QHash>
 
-#include "joydpad.h"
-#include "uihelpers/dpadeditdialoghelper.h"
+#include "joycontrolstick.h"
 
-namespace Ui {
-class DPadEditDialog;
-}
-
-class DPadEditDialog : public QDialog
+class JoyControlStickEditDialogHelper : public QObject
 {
     Q_OBJECT
-    
 public:
-    explicit DPadEditDialog(JoyDPad *dpad, QWidget *parent = 0);
-    ~DPadEditDialog();
+    explicit JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent = 0);
+    void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> *tempSlots);
+    void clearPendingSlots();
 
 protected:
-    void selectCurrentPreset();
+    JoyControlStick *stick;
+    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> pendingSlots;
 
-    JoyDPad *dpad;
-    DPadEditDialogHelper helper;
+signals:
 
-private:
-    Ui::DPadEditDialog *ui;
-
-private slots:
-    void implementPresets(int index);
-    void implementModes(int index);
-    void openMouseSettingsDialog();
-    void enableMouseSettingButton();
-    void updateWindowTitleDPadName();
-    void updateDPadDelaySpinBox(int value);
-    void updateDPadDelaySlider(double value);
+public slots:
+    void setFromPendingSlots();
+    void clearButtonsSlotsEventReset();
+    void updateControlStickDelay(int value);
 };
 
-#endif // DPADEDITDIALOG_H
+#endif // JOYCONTROLSTICKEDITDIALOGHELPER_H

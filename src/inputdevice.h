@@ -122,10 +122,15 @@ public:
     bool isEmptyGUID(QString tempGUID);
     bool isRelevantGUID(QString tempGUID);
 
+    void setRawAxisDeadZone(int deadZone);
+    int getRawAxisDeadZone();
+    void rawAxisEvent(int index, int value);
+
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
     static const unsigned int DEFAULTKEYREPEATDELAY;
     static const unsigned int DEFAULTKEYREPEATRATE;
+    static const int RAISEDDEADZONE;
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
@@ -151,6 +156,8 @@ protected:
     QList<int> axesstates;
     QList<int> dpadstates;
 
+    int rawAxisDeadZone;
+
     static QRegExp emptyGUID;
 
 signals:
@@ -167,6 +174,7 @@ signals:
     void rawDPadButtonRelease(int dpad, int buttonindex);
     void rawAxisActivated(int axis, int value);
     void rawAxisReleased(int axis, int value);
+    void rawAxisMoved(int axis, int value);
     void profileUpdated();
     void propertyUpdated();
     void profileNameEdited(QString text);

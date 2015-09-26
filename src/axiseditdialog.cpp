@@ -235,12 +235,10 @@ void AxisEditDialog::implementAxisPresets(int index)
         JoyAxisButton *nbutton = axis->getNAxisButton();
         JoyAxisButton *pbutton = axis->getPAxisButton();
 
-        QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
-        //nbutton->clearSlotsEventReset();
-        refreshNButtonLabel();
-
+        QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset");
         QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
-        //pbutton->clearSlotsEventReset();
+
+        refreshNButtonLabel();
         refreshPButtonLabel();
     }
 
@@ -249,13 +247,12 @@ void AxisEditDialog::implementAxisPresets(int index)
         JoyAxisButton *button = axis->getNAxisButton();
         QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
 
         QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                   Q_ARG(int, nbuttonslot->getSlotCode()),
                                   Q_ARG(unsigned int, nbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
-        //button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
+
         refreshNButtonLabel();
         nbuttonslot->deleteLater();
     }
@@ -264,13 +261,12 @@ void AxisEditDialog::implementAxisPresets(int index)
     {
         JoyAxisButton *button = axis->getPAxisButton();
         QMetaObject::invokeMethod(button, "clearSlotsEventReset", Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
 
         QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                   Q_ARG(int, pbuttonslot->getSlotCode()),
                                   Q_ARG(unsigned int, pbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
-        //button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
     }
@@ -513,12 +509,11 @@ void AxisEditDialog::implementTriggerPresets(int index)
     {
         JoyAxisButton *nbutton = axis->getNAxisButton();
         JoyAxisButton *pbutton = axis->getPAxisButton();
-        //nbutton->clearSlotsEventReset();
-        QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
-        refreshNButtonLabel();
 
+        QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset");
         QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
-        //pbutton->clearSlotsEventReset();
+
+        refreshNButtonLabel();
         refreshPButtonLabel();
     }
 
@@ -531,18 +526,17 @@ void AxisEditDialog::implementTriggerPresets(int index)
         {
             QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
                                       Q_ARG(bool, false));
-            //nbutton->clearSlotsEventReset();
             refreshNButtonLabel();
         }
 
         QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
-        //pbutton->clearSlotsEventReset(false);
+
         QMetaObject::invokeMethod(pbutton, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                   Q_ARG(int, pbuttonslot->getSlotCode()),
                                   Q_ARG(unsigned int, pbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
-        //pbutton->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+
         refreshPButtonLabel();
         pbuttonslot->deleteLater();
     }
@@ -552,10 +546,10 @@ void AxisEditDialog::refreshPreset()
 {
     // Disconnect event associated with presetsComboBox so a change in the index does not
     // alter the axis buttons
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementAxisPresets(int)));
+    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
     selectAxisCurrentPreset();
     // Reconnect the event
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementAxisPresets(int)));
+    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 }
 
 void AxisEditDialog::openMouseSettingsDialog()

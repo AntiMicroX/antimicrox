@@ -24,6 +24,7 @@ const int InputDevice::NUMBER_JOYSETS = 8;
 const int InputDevice::DEFAULTKEYPRESSTIME = 100;
 const unsigned int InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
 const unsigned int InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
+const int InputDevice::RAISEDDEADZONE = 20000;
 
 QRegExp InputDevice::emptyGUID("^[0]+$");
 
@@ -44,6 +45,7 @@ InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *
 
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
+    rawAxisDeadZone = RAISEDDEADZONE;
     this->settings = settings;
 }
 
@@ -2213,4 +2215,26 @@ void InputDevice::finalRemoval()
 {
     this->closeSDLDevice();
     this->deleteLater();
+}
+
+void InputDevice::setRawAxisDeadZone(int deadZone)
+{
+    if (deadZone > 0 && deadZone <= JoyAxis::AXISMAX)
+    {
+        this->rawAxisDeadZone = deadZone;
+    }
+    else
+    {
+        this->rawAxisDeadZone = RAISEDDEADZONE;
+    }
+}
+
+int InputDevice::getRawAxisDeadZone()
+{
+    return rawAxisDeadZone;
+}
+
+void InputDevice::rawAxisEvent(int index, int value)
+{
+    emit rawAxisMoved(index, value);
 }

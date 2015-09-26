@@ -159,6 +159,7 @@ void QtUInputKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_HomePage] = KEY_HOMEPAGE;
         qtKeyToVirtualKey[Qt::Key_LaunchMail] = KEY_MAIL;
         qtKeyToVirtualKey[Qt::Key_Back] = KEY_BACK;
+        qtKeyToVirtualKey[Qt::Key_Favorites] = KEY_FAVORITES;
         qtKeyToVirtualKey[Qt::Key_Forward] = KEY_FORWARD;
         qtKeyToVirtualKey[Qt::Key_Suspend] = KEY_SUSPEND;
         qtKeyToVirtualKey[Qt::Key_Close] = KEY_CLOSE;

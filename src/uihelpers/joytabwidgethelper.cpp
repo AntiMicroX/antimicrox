@@ -99,8 +99,12 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
 
 bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
 {
+    bool result = false;
     device->revertProfileEdited();
-    return readConfigFile(filepath);
+
+    result = readConfigFile(filepath);
+
+    return result;
 }
 
 bool JoyTabWidgetHelper::writeConfigFile(QString filepath)

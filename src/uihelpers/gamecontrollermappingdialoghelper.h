@@ -15,43 +15,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DPADEDITDIALOG_H
-#define DPADEDITDIALOG_H
+#ifndef GAMECONTROLLERMAPPINGDIALOGHELPER_H
+#define GAMECONTROLLERMAPPINGDIALOGHELPER_H
 
-#include <QDialog>
+#include <QObject>
+#include <QList>
 
-#include "joydpad.h"
-#include "uihelpers/dpadeditdialoghelper.h"
+#include "inputdevice.h"
 
-namespace Ui {
-class DPadEditDialog;
-}
-
-class DPadEditDialog : public QDialog
+class GameControllerMappingDialogHelper : public QObject
 {
     Q_OBJECT
-    
 public:
-    explicit DPadEditDialog(JoyDPad *dpad, QWidget *parent = 0);
-    ~DPadEditDialog();
+    explicit GameControllerMappingDialogHelper(InputDevice *device, QObject *parent = 0);
 
 protected:
-    void selectCurrentPreset();
+    InputDevice *device;
+    QList<int> originalAxesDeadZones;
 
-    JoyDPad *dpad;
-    DPadEditDialogHelper helper;
+signals:
 
-private:
-    Ui::DPadEditDialog *ui;
-
-private slots:
-    void implementPresets(int index);
-    void implementModes(int index);
-    void openMouseSettingsDialog();
-    void enableMouseSettingButton();
-    void updateWindowTitleDPadName();
-    void updateDPadDelaySpinBox(int value);
-    void updateDPadDelaySlider(double value);
+public slots:
+    void raiseDeadZones();
+    void raiseDeadZones(int deadZone);
+    void setupDeadZones();
+    void restoreDeviceDeadZones();
 };
 
-#endif // DPADEDITDIALOG_H
+#endif // GAMECONTROLLERMAPPINGDIALOGHELPER_H

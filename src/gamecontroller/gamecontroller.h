@@ -56,6 +56,13 @@ public:
     SDL_GameControllerButtonBind getBindForButton(int index);
 
     bool isRelevantGUID(QString tempGUID);
+    void rawButtonEvent(int index, bool pressed);
+    void rawAxisEvent(int index, int value);
+    void rawDPadEvent(int index, int value);
+
+    QHash<int, bool> rawbuttons;
+    QHash<int, int> axisvalues;
+    QHash<int, int> dpadvalues;
 
     static const QString xmlName;
 

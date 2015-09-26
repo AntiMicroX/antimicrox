@@ -103,18 +103,18 @@
           </size>
          </property>
          <property name="toolTip">
-          <string>Standard: 8 region stick with two direction buttons active
-when the stick is in a diagonal region.
+          <string>Standard: 8 region dpad with two direction buttons active
+when the dpad is in a diagonal region.
 
-Eight Way: 8 region stick with each direction having its
+Eight Way: 8 region dpad with each direction having its
 own dedicated button. Only one button is ever active at
 at time. Useful for rougelike games.
 
-4 Way Cardinal: 4 region stick with regions corresponding to
-the cardinal directions of the stick. Useful for menus.
+4 Way Cardinal: 4 region dpad with regions corresponding to
+the cardinal directions of the dpad. Useful for menus.
 
-4 Way Diagonal: 4 region stick with each region corresponding
-to a diagonal zone of the stick.</string>
+4 Way Diagonal: 4 region dpad with each region corresponding
+to a diagonal zone.</string>
          </property>
          <item>
           <property name="text">
@@ -252,7 +252,7 @@ to a diagonal zone of the stick.</string>
      <item>
       <widget class="QLabel" name="dpadNameLabel">
        <property name="text">
-        <string>Name:</string>
+        <string>&amp;Name:</string>
        </property>
        <property name="buddy">
         <cstring>dpadNameLineEdit</cstring>
