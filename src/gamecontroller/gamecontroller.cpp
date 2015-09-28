@@ -16,6 +16,7 @@
  */
 
 //#include <QDebug>
+#include <cmath>
 
 #include "gamecontroller.h"
 //#include "logger.h"
