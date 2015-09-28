@@ -340,10 +340,15 @@ void GameControllerMappingDialog::saveChanges()
 {
     QString mappingString = generateSDLMappingString();
 
+    settings->getLock()->lock();
+
     settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
     settings->setValue(QString("Mappings/%1%2").arg(device->getGUIDString()).arg("Disable"), "0");
     settings->sync();
+
     bool displayMapping = settings->runtimeValue("DisplaySDLMapping", false).toBool();
+    settings->getLock()->unlock();
+
     if (displayMapping)
     {
         QTextStream out(stdout);
