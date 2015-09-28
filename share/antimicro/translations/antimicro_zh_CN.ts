@@ -19,6 +19,43 @@
         <translation>版本</translation>
     </message>
     <message>
+        <location filename="../../../src/aboutdialog.ui" line="170"/>
+        <source>Info</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="325"/>
+        <source>Changelog</source>
+        <translation>更新日志</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="350"/>
+        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+
+The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
+
+Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
+
+Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</source>
+        <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
+
+对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
+
+从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
+
+等到 Steam 手柄向公众发布的时候，对这个程序的需求可能就消失了。相对于使用这个程序进行键鼠模拟而言，Steam 手柄单单在概念上就有如此之多的优势。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="369"/>
+        <source>Copyright: 2013 - 2015</source>
+        <translation>版权：2013 - 2015</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="121"/>
+        <source>Credits</source>
+        <translation>致谢</translation>
+    </message>
+    <message>
         <location filename="../../../src/aboutdialog.ui" line="136"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -39,73 +76,15 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - German&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;phob - German&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;tou omiya - Japanese&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - Russian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - Ukrainian&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;贡献者：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;Zerro Alvein&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aybe&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;翻译：&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - 巴西葡萄牙语&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zzpxyx - 简体中文&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - 法语&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - 德语&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;phob - 德语&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - 俄语&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - 塞尔维亚语&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - 乌克兰语&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="169"/>
-        <source>Info</source>
-        <translation>信息</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="324"/>
-        <source>Changelog</source>
-        <translation>更新日志</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="349"/>
-        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
-
-The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
-
-Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
-
-Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</source>
-        <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
-
-对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
-
-从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
-
-等到 Steam 手柄向公众发布的时候，对这个程序的需求可能就消失了。相对于使用这个程序进行键鼠模拟而言，Steam 手柄单单在概念上就有如此之多的优势。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="368"/>
-        <source>Copyright: 2013 - 2015</source>
-        <translation>版权：2013 - 2015</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="121"/>
-        <source>Credits</source>
-        <translation>致谢</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="194"/>
+        <location filename="../../../src/aboutdialog.ui" line="195"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -336,12 +315,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="338"/>
+        <location filename="../../../src/aboutdialog.ui" line="339"/>
         <source>About Development</source>
         <translation>关于开发</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="179"/>
+        <location filename="../../../src/aboutdialog.ui" line="180"/>
         <source>License</source>
         <translation>许可</translation>
     </message>
@@ -2403,57 +2382,57 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="357"/>
+        <location filename="../../../src/joybutton.cpp" line="358"/>
         <source>Processing turbo for #%1 - %2</source>
         <translation>正在处理按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="366"/>
+        <location filename="../../../src/joybutton.cpp" line="367"/>
         <source>Finishing turbo for button #%1 - %2</source>
         <translation>正在完成按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="420"/>
+        <location filename="../../../src/joybutton.cpp" line="421"/>
         <source>Processing press for button #%1 - %2</source>
         <translation>正在处理按下按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="437"/>
+        <location filename="../../../src/joybutton.cpp" line="438"/>
         <source>Processing release for button #%1 - %2</source>
         <translation>正在处理释放按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="459"/>
+        <location filename="../../../src/joybutton.cpp" line="460"/>
         <source>Distance change for button #%1 - %2</source>
         <translation>按钮#%1-%2距离改变</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2278"/>
-        <location filename="../../../src/joybutton.cpp" line="2286"/>
-        <location filename="../../../src/joybutton.cpp" line="2292"/>
+        <location filename="../../../src/joybutton.cpp" line="2279"/>
+        <location filename="../../../src/joybutton.cpp" line="2287"/>
+        <location filename="../../../src/joybutton.cpp" line="2293"/>
         <source>Button</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2331"/>
-        <location filename="../../../src/joybutton.cpp" line="2508"/>
-        <location filename="../../../src/joybutton.cpp" line="2620"/>
-        <location filename="../../../src/joybutton.cpp" line="5537"/>
+        <location filename="../../../src/joybutton.cpp" line="2332"/>
+        <location filename="../../../src/joybutton.cpp" line="2509"/>
+        <location filename="../../../src/joybutton.cpp" line="2621"/>
+        <location filename="../../../src/joybutton.cpp" line="5538"/>
         <source>[NO KEY]</source>
         <translation>[无按键]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2389"/>
+        <location filename="../../../src/joybutton.cpp" line="2390"/>
         <source>[Set %1 1W]</source>
         <translation>[单向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2397"/>
+        <location filename="../../../src/joybutton.cpp" line="2398"/>
         <source>[Set %1 2W]</source>
         <translation>[双向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2406"/>
+        <location filename="../../../src/joybutton.cpp" line="2407"/>
         <source>[Set %1 WH]</source>
         <translation>[按下时选择设置%1]</translation>
     </message>
@@ -3044,65 +3023,65 @@ functionality to an analog stick.</source>
     <name>JoyTabWidget</name>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="63"/>
-        <location filename="../../../src/joytabwidget.cpp" line="749"/>
-        <location filename="../../../src/joytabwidget.cpp" line="912"/>
-        <location filename="../../../src/joytabwidget.cpp" line="974"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1125"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2352"/>
+        <location filename="../../../src/joytabwidget.cpp" line="751"/>
+        <location filename="../../../src/joytabwidget.cpp" line="889"/>
+        <location filename="../../../src/joytabwidget.cpp" line="933"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1082"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2309"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;新&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="71"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1575"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1532"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="73"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1576"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1533"/>
         <source>Remove configuration from recent list.</source>
         <translation>从最近使用列表中移除配置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="79"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1578"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1535"/>
         <source>Load</source>
         <translation>载入</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="81"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1579"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1536"/>
         <source>Load configuration file.</source>
         <translation>载入配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="87"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1581"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1538"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="89"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1582"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1539"/>
         <source>Save changes to configuration file.</source>
         <translation>保存更改到配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="96"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1584"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="98"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1585"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1542"/>
         <source>Save changes to a new configuration file.</source>
         <translation>保存更改到新的配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="293"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1587"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
         <source>Sets</source>
         <translation>设置</translation>
     </message>
@@ -3118,104 +3097,104 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="304"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1588"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
         <source>Set 1</source>
         <translation>设置1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="308"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1589"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
         <source>Set 2</source>
         <translation>设置2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="312"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1590"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
         <source>Set 3</source>
         <translation>设置3</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="316"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1591"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
         <source>Set 4</source>
         <translation>设置4</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="320"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1592"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1549"/>
         <source>Set 5</source>
         <translation>设置5</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="324"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1593"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
         <source>Set 6</source>
         <translation>设置6</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="328"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1594"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
         <source>Set 7</source>
         <translation>设置7</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="332"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1595"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1552"/>
         <source>Set 8</source>
         <translation>设置8</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="398"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1601"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
         <source>Stick/Pad Assign</source>
         <translation>摇杆/十字键分配</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="404"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1600"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
         <source>Controller Mapping</source>
         <translation>游戏控制器映射</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="411"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1602"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
         <source>Quick Set</source>
         <translation>快速设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="419"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1605"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1562"/>
         <source>Names</source>
         <translation>名称</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="421"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1606"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1563"/>
         <source>Toggle button name displaying.</source>
         <translation>开关按钮名称显示。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="426"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1608"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1565"/>
         <source>Pref</source>
         <translation>偏好设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="428"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1609"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1566"/>
         <source>Change global profile settings.</source>
         <translation>改变全局配置文件设置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="432"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1603"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1611"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1560"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="434"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1612"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1569"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>还原设置的更改。重新加载配置文件。</translation>
     </message>
@@ -3231,78 +3210,78 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="594"/>
-        <location filename="../../../src/joytabwidget.cpp" line="771"/>
-        <location filename="../../../src/joytabwidget.cpp" line="781"/>
+        <location filename="../../../src/joytabwidget.cpp" line="773"/>
+        <location filename="../../../src/joytabwidget.cpp" line="783"/>
         <source>Config File (*.%1.amgp)</source>
         <translation>配置文件 (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1630"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1683"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1587"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1640"/>
         <source>Save Profile Changes?</source>
         <translation>保存配置文件更改？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1633"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1687"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1590"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1644"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>新配置文件的更改尚未保存。您想保存还是放弃修改当前的配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1637"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1691"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1594"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1648"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>配置文件“%1”的更改尚未保存。您想保存还是放弃修改此配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1939"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1896"/>
         <source>Sticks</source>
         <translation>摇杆</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2007"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2058"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1964"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2015"/>
         <source>DPads</source>
         <translation>十字键</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2198"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2155"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>按钮未被分配。请使用“快速设置”来将按键分配到按钮，或取消隐藏空白按钮。</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2388"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2413"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2345"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2370"/>
         <source>Set %1: %2</source>
         <translation>设置%1：%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2392"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2417"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2349"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2374"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2425"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2382"/>
         <source>Copy Set Assignments</source>
         <translation>复制设置分配信息</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2426"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2383"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>您确定要从 %1 复制分配信息和设备属性吗？</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="594"/>
-        <location filename="../../../src/joytabwidget.cpp" line="771"/>
-        <location filename="../../../src/joytabwidget.cpp" line="781"/>
+        <location filename="../../../src/joytabwidget.cpp" line="773"/>
+        <location filename="../../../src/joytabwidget.cpp" line="783"/>
         <source>Save Config</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1500"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1507"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
@@ -3458,21 +3437,26 @@ to buttons or disable hiding empty buttons.</source>
     </message>
     <message>
         <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="62"/>
+        <source>Japanese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="63"/>
         <source>Russian</source>
         <translation>俄语</translation>
     </message>
     <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="63"/>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="64"/>
         <source>Serbian</source>
         <translation>塞尔维亚语</translation>
     </message>
     <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="64"/>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="65"/>
         <source>Simplified Chinese</source>
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="65"/>
+        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="66"/>
         <source>Ukrainian</source>
         <translation>乌克兰语</translation>
     </message>
@@ -3508,11 +3492,6 @@ to buttons or disable hiding empty buttons.</source>
         <location filename="../../../src/mainsettingsdialog.ui" line="82"/>
         <source>Mouse</source>
         <translation>鼠标</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="108"/>
-        <source>Profile Directory:</source>
-        <translation>配置文件目录：</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="118"/>
@@ -3642,32 +3621,32 @@ option is enabled.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="332"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="892"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="897"/>
         <source>Enable</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="632"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="637"/>
         <source>Simplified Chinese</source>
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="761"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="766"/>
         <source>Class</source>
         <translation>类</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="766"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="771"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="771"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="776"/>
         <source>Program</source>
         <translation>程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="864"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="869"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
@@ -3676,32 +3655,22 @@ precise.</source>
 禁用“提高指针精确度”可使鼠标在开启 antimicro 的情况下更精准地移动。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="870"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="875"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation>禁用提高指针精确度</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="880"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="885"/>
         <source>Smoothing</source>
         <translation>平滑</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="901"/>
-        <source>History Size:</source>
-        <translation>历史样本数：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="927"/>
-        <source>Weight Modifier:</source>
-        <translation>权重修饰因数：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="960"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="965"/>
         <source>Refresh Rate:</source>
         <translation>刷新率：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="967"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="972"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
@@ -3714,29 +3683,29 @@ it unattended.</source>
 请在以无人值守方式使用前测试此选项。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1039"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1044"/>
         <source>Accel Numerator:</source>
         <translation>加速度分子：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1052"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1083"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1114"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1057"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1088"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1119"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1076"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1081"/>
         <source>Accel Denominator:</source>
         <translation>加速度分母：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1107"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1112"/>
         <source>Accel Threshold:</source>
         <translation>加速度阈值：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1151"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1156"/>
         <source>If the acceleration values for the virtual mouse have been
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
@@ -3744,7 +3713,7 @@ values used by the virtual mouse.</source>
         <translation>如果虚拟鼠标的加速度值被另一个进程改变，尤其是在退出老游戏的时候，您可能需要重置虚拟鼠标使用的加速度值。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1157"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1162"/>
         <source>Reset Acceleration</source>
         <translation>重置加速度</translation>
     </message>
@@ -3752,6 +3721,11 @@ values used by the virtual mouse.</source>
         <location filename="../../../src/mainsettingsdialog.ui" line="341"/>
         <source>Delay:</source>
         <translation>延迟：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="108"/>
+        <source>Profi&amp;le Directory:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="220"/>
@@ -3816,7 +3790,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="534"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="840"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="845"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -3832,7 +3806,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1886"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1895"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
@@ -3858,73 +3832,88 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="622"/>
+        <source>Japanese</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="627"/>
         <source>Russian</source>
         <translation>俄语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="627"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="632"/>
         <source>Serbian</source>
         <translation>塞尔维亚语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="637"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="642"/>
         <source>Ukrainian</source>
         <translation>乌克兰语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="654"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="746"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="659"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="751"/>
         <source>Active</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="679"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="684"/>
         <source>Devices:</source>
         <translation>设备：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="687"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1114"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="692"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1119"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="751"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="756"/>
         <source>Device</source>
         <translation>设备</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="756"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="761"/>
         <source>Profile</source>
         <translation>配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="776"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="781"/>
         <source>Default?</source>
         <translation>默认？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="810"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="815"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="825"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="830"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="981"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="906"/>
+        <source>Histor&amp;y Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="932"/>
+        <source>Weight &amp;Modifier:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="986"/>
         <source>Spring</source>
         <translation>弹簧</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="995"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1000"/>
         <source>Screen:</source>
         <translation>屏幕：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1005"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1010"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
@@ -3933,19 +3922,19 @@ is to use all available screens.</source>
 在 Windows 系统上，默认使用所有可用屏幕。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="287"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="288"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
         <translation>另外，对于希望使用较低值的 Windows 用户，如果您未禁用 Windows 的“提高指针精确度”选项，请勾选本程序中的“禁用提高指针精确度”复选框。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="750"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="751"/>
         <source>Select Default Profile Directory</source>
         <translation>选择默认配置文件目录</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1494"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1499"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>您确认要删除这个配置文件吗？</translation>
     </message>
