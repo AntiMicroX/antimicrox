@@ -867,15 +867,9 @@ void JoyTabWidget::saveAsConfig()
 
 void JoyTabWidget::changeJoyConfig(int index)
 {
-    //PadderCommon::lockInputDevices();
-
-    //InputDevice *tempDevice = joystick;
-    //QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
-
     disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
     QString filename;
-
     if (index > 0)
     {
         filename = configBox->itemData(index).toString();
@@ -884,37 +878,35 @@ void JoyTabWidget::changeJoyConfig(int index)
     if (!filename.isEmpty())
     {
         removeCurrentButtons();
-
-        /*if (joystick->getActiveSetNumber() != 0)
-        {
-            QMetaObject::invokeMethod(joystick, "setActiveSetNumber",
-                                      Q_ARG(int, 0));
-            //joystick->setActiveSetNumber(0);
-            changeCurrentSet(0);
-        }
-
-        QMetaObject::invokeMethod(joystick, "resetButtonDownCount");
-        */
-
-        //joystick->resetButtonDownCount();
         emit forceTabUnflash(this);
-
-        /*XMLConfigReader reader;
-        reader.setFileName(filename);
-        reader.configJoystick(joystick);
-        */
 
         QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, filename));
 
-        //tabHelper.readConfigFile(filename);
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
         configBox->setItemText(0, tr("<New>"));
         XMLConfigReader *reader = tabHelper.getReader();
 
-        if (reader->hasError() && this->window()->isEnabled())
+        if (!reader->hasError())
+        {
+            QString profileName;
+            if (!joystick->getProfileName().isEmpty())
+            {
+                profileName = joystick->getProfileName();
+                oldProfileName = profileName;
+            }
+            else
+            {
+                QFileInfo profile(filename);
+                oldProfileName = profile.baseName();
+                profileName = oldProfileName;
+            }
+
+            configBox->setItemText(index, profileName);
+        }
+        else if (reader->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
             msg.setStandardButtons(QMessageBox::Close);
@@ -927,48 +919,13 @@ void JoyTabWidget::changeJoyConfig(int index)
             QTextStream error(stderr);
             error << reader->getErrorString() << endl;
         }
-
-        QString profileName;
-        if (!joystick->getProfileName().isEmpty())
-        {
-            profileName = joystick->getProfileName();
-            oldProfileName = profileName;
-        }
-        else
-        {
-            QFileInfo profile(filename);
-            oldProfileName = profile.baseName();
-            profileName = oldProfileName;
-        }
-
-        if (configBox->itemText(index) != profileName)
-        {
-            configBox->setItemText(index, profileName);
-        }
     }
     else if (index == 0)
     {
         removeCurrentButtons();
-
-        /*if (joystick->getActiveSetNumber() != 0)
-        {
-            joystick->setActiveSetNumber(0);
-            changeCurrentSet(0);
-        }
-        */
-
-        //joystick->reset();
-
-        //QMetaObject::invokeMethod(joystick, "transferReset");
-        //joystick->transferReset();
-        //QMetaObject::invokeMethod(joystick, "resetButtonDownCount");
-        //joystick->resetButtonDownCount();
         emit forceTabUnflash(this);
 
         QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
-
-        //QMetaObject::invokeMethod(joystick, "reInitButtons", Qt::BlockingQueuedConnection);
-        //joystick->reInitButtons();
 
         fillButtons();
         refreshSetButtons();
@@ -981,8 +938,6 @@ void JoyTabWidget::changeJoyConfig(int index)
     comboBoxIndex = index;
 
     connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
-
-    //PadderCommon::unlockInputDevices();
 }
 
 void JoyTabWidget::saveSettings()
