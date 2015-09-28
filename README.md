@@ -327,6 +327,7 @@ zzpxyx - Chinese
 Belleguic Terence <hizo@free.fr> - French  
 Leonard Koenig <leonard.r.koenig@googlemail.com> - German  
 phob - German  
+tou omiya - Japanese  
 Dmitriy Koshel <form.eater@gmail.com> - Russian  
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
 burunduk - Ukrainian
