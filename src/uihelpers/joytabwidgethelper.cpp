@@ -76,6 +76,7 @@ QString JoyTabWidgetHelper::getErrorString()
 bool JoyTabWidgetHelper::readConfigFile(QString filepath)
 {
     bool result = false;
+    device->disconnectPropertyUpdatedConnection();
 
     if (device->getActiveSetNumber() != 0)
     {
@@ -92,6 +93,8 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
     this->reader = new XMLConfigReader;
     this->reader->setFileName(filepath);
     this->reader->configJoystick(device);
+
+    device->establishPropertyUpdatedConnection();
 
     result = !this->reader->hasError();
     return result;
@@ -127,6 +130,8 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
 void JoyTabWidgetHelper::reInitDevice()
 {
+    device->disconnectPropertyUpdatedConnection();
+
     if (device->getActiveSetNumber() != 0)
     {
         device->setActiveSetNumber(0);
@@ -135,6 +140,9 @@ void JoyTabWidgetHelper::reInitDevice()
     device->transferReset();
     device->resetButtonDownCount();
     device->reInitButtons();
+
+
+    device->establishPropertyUpdatedConnection();
 }
 
 void JoyTabWidgetHelper::reInitDeviceWithRevert()

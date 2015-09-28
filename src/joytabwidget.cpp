@@ -699,12 +699,10 @@ void JoyTabWidget::saveConfigFile()
 
 void JoyTabWidget::resetJoystick()
 {
-
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
     {
         QString filename = configBox->itemData(currentIndex).toString();
-        configBox->setItemIcon(currentIndex, QIcon());
 
         removeCurrentButtons();
 
@@ -715,22 +713,26 @@ void JoyTabWidget::resetJoystick()
         refreshSetButtons();
         refreshCopySetActions();
 
-        QString tempProfileName;
-        if (!joystick->getProfileName().isEmpty())
-        {
-            tempProfileName = joystick->getProfileName();
-            configBox->setItemText(currentIndex, tempProfileName);
-        }
-        else
-        {
-            tempProfileName = oldProfileName;
-            configBox->setItemText(currentIndex, oldProfileName);
-        }
-
-        oldProfileName = tempProfileName;
-
         XMLConfigReader *reader = tabHelper.getReader();
-        if (reader->hasError() && this->window()->isEnabled())
+        if (!reader->hasError())
+        {
+            configBox->setItemIcon(currentIndex, QIcon());
+
+            QString tempProfileName;
+            if (!joystick->getProfileName().isEmpty())
+            {
+                tempProfileName = joystick->getProfileName();
+                configBox->setItemText(currentIndex, tempProfileName);
+            }
+            else
+            {
+                tempProfileName = oldProfileName;
+                configBox->setItemText(currentIndex, oldProfileName);
+            }
+
+            oldProfileName = tempProfileName;
+        }
+        else if (reader->hasError() && this->window()->isEnabled())
         {
             QMessageBox msg;
             msg.setStandardButtons(QMessageBox::Close);
