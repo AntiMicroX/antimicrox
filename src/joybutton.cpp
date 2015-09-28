@@ -376,6 +376,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     {
                         lastDistance = getMouseDistanceFromDeadZone();
                     }
+
+                    activeZoneTimer.start();
                 }
             }
             // Toogle is enabled and a controller button change has occurred.
@@ -2519,7 +2521,12 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
 
     QListIterator<JoyButtonSlot*> *iter = 0;
     QReadWriteLock *tempLock = 0;
-    if (getButtonState())
+
+    activeZoneLock.lockForRead();
+    int numActiveSlots = activeSlots.size();
+    activeZoneLock.unlock();
+
+    if (numActiveSlots > 0)
     {
         tempLock = &activeZoneLock;
         iter = &activeSlotsIter;
