@@ -98,7 +98,8 @@ QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Keeps timestamp of last mouse event.
 QElapsedTimer JoyButton::lastMouseTime;
-QTime testOldMouseTime;
+// Temporary test object to test old mouse time behavior.
+//QTime testOldMouseTime;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -864,7 +865,7 @@ void JoyButton::activateSlots()
                         staticMouseEventTimer.start(tempRate);
 
                         lastMouseTime.restart();
-                        testOldMouseTime.restart();
+                        //testOldMouseTime.restart();
                         accelExtraDurationTime.restart();
                     }
                 }
@@ -5384,7 +5385,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
 
         if (staticMouseEventTimer.isActive())
         {
-            testOldMouseTime.restart();
+            //testOldMouseTime.restart();
             lastMouseTime.restart();
             int tempInterval = staticMouseEventTimer.interval();
 
@@ -5732,7 +5733,7 @@ double JoyButton::getCurrentSpringDeadCircle()
 
 void JoyButton::restartLastMouseTime()
 {
-    testOldMouseTime.restart();
+    //testOldMouseTime.restart();
     lastMouseTime.restart();
 }
 
@@ -5746,7 +5747,7 @@ void JoyButton::setStaticMouseThread(QThread *thread)
     QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                               Q_ARG(int, oldInterval));
     //staticMouseEventTimer.start(oldInterval);
-    testOldMouseTime.restart();
+    //testOldMouseTime.restart();
     lastMouseTime.start();
 #ifdef Q_OS_WIN
     repeatHelper.moveToThread(thread);
