@@ -37,10 +37,13 @@ unload currently enabled profile(s). Value can be a controller index, name, or G
 \fB\-\-startSet\fR \fI<number>\fR \fI[<value>]\fR
 start joysticks on a specific set. Value can be a controller index, name, or GUID.
 .TP
+\fB\-\-next\fR
+Advance profile loading set options.
+.TP
 \fB\-d\fR, \fB\-\-daemon\fR
 launch program as a daemon.
 .TP
-\fB\-\-log\-level\fR \fI(debug|info)\fR
+\fB\-\-log\-level\fR \fI{debug,info}\fR
 Enable logging.
 .TP
 \fB\-l\fR, \fB\-\-list\fR
@@ -49,7 +52,7 @@ Print information about joysticks detected by SDL.
 \fB\-\-map\fR \fI<value>\fR
 Open game controller mapping window of selected controller. Value can be a controller index or GUID.
 .TP
-\fB\-\-eventgen\fR \fI(xtest|uinput)\fR
+\fB\-\-eventgen\fR \fI{xtest,uinput}\fR
 Choose between using XTest support and uinput support for event generation. Default: xtest.
 
 .SH BUGS
