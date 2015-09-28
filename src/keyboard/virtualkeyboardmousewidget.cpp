@@ -792,7 +792,7 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
     otherKeysMenu->addAction(tempAction);
 
     tempAction = new QAction(tr("Media Next"), otherKeysMenu);
-    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_MediaPrevious);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_MediaNext);
     tempAction->setData(temp);
     otherKeysMenu->addAction(tempAction);
 
