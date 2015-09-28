@@ -29,6 +29,7 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
 {
     targetPath = "";
     failed = false;
+    targetWindow = None;
 }
 
 /**
@@ -40,7 +41,9 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     static QtX11KeyMapper x11KeyMapper;
 
     targetPath = "";
+    targetWindow = None;
     failed = false;
+
     bool escaped = false;
 
     Cursor cursor;
