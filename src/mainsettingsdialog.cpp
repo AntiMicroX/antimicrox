@@ -31,6 +31,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QList>
+#include <QListWidget>
 
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -789,17 +790,21 @@ void MainSettingsDialog::checkLocaleChange()
         }
         else if (row == 5)
         {
-            newLocale = "ru";
+            newLocale = "ja";
         }
         else if (row == 6)
         {
-            newLocale = "sr";
+            newLocale = "ru";
         }
         else if (row == 7)
         {
-            newLocale = "zh_CN";
+            newLocale = "sr";
         }
         else if (row == 8)
+        {
+            newLocale = "zh_CN";
+        }
+        else if (row == 9)
         {
             newLocale = "uk";
         }
@@ -1853,21 +1858,25 @@ void MainSettingsDialog::changePresetLanguage()
         {
             ui->localeListWidget->setCurrentRow(4);
         }
-        else if (targetLang == "ru")
+        else if (targetLang == "ja")
         {
             ui->localeListWidget->setCurrentRow(5);
         }
-        else if (targetLang == "sr")
+        else if (targetLang == "ru")
         {
             ui->localeListWidget->setCurrentRow(6);
         }
-        else if (targetLang == "zh_CN")
+        else if (targetLang == "sr")
         {
             ui->localeListWidget->setCurrentRow(7);
         }
-        else if (targetLang == "uk")
+        else if (targetLang == "zh_CN")
         {
             ui->localeListWidget->setCurrentRow(8);
+        }
+        else if (targetLang == "uk")
+        {
+            ui->localeListWidget->setCurrentRow(9);
         }
         else
         {

@@ -105,7 +105,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Profile Directory:</string>
+              <string>Profi&amp;le Directory:</string>
              </property>
              <property name="buddy">
               <cstring>profileDefaultDirLineEdit</cstring>
@@ -619,6 +619,11 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            </item>
            <item>
             <property name="text">
+             <string>Japanese</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Russian</string>
             </property>
            </item>
@@ -898,7 +903,7 @@ precise.</string>
               <item row="0" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
-                 <string>History Size:</string>
+                 <string>Histor&amp;y Size:</string>
                 </property>
                 <property name="buddy">
                  <cstring>historySizeSpinBox</cstring>
@@ -924,7 +929,7 @@ precise.</string>
               <item row="1" column="0">
                <widget class="QLabel" name="label_7">
                 <property name="text">
-                 <string>Weight Modifier:</string>
+                 <string>Weight &amp;Modifier:</string>
                 </property>
                 <property name="buddy">
                  <cstring>weightModifierDoubleSpinBox</cstring>
