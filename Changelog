@@ -1,3 +1,28 @@
+2015-09-29 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.19.3
+
+* Japanese translation provided by tou omiya.
+
+* Make sure Game Controller Mapping dialog window reads raw joystick events.
+This should fix problems regarding improper mapping causing controller elements
+to no longer be mappable.
+
+* Make Set Change slots activate on button release instead of button press.
+
+* Tweaked the locking being performed in various portions of the program.
+
+* Fixed a problem with blank info window appearing when escaping from window
+capture utility dialog.
+
+* Fixed issues with document-save-as icon staying displayed after resetting
+a profile.
+
+* Fixed "Media Next" key binding for virtual keyboard.
+
+* Fixed various issues regarding binding slots in the Advanced Edit dialog window.
+
+
 2015-09-15 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.19.2

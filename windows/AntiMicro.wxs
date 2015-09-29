@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="2.19.2" Manufacturer="AntiMicro" UpgradeCode="F08D66F3-D710-4C6B-B965-5C844CAC8D24">
+    <Product Id="584F5685-C0E5-4D84-B6F2-045B801A0BA1" Name="AntiMicro" Language="1033" Version="2.19.3" Manufacturer="AntiMicro" UpgradeCode="550193DF-CF93-4246-B14F-CF8F7E943BCD">
         <Package Description="AntiMicro" Comments="AntiMicro" InstallerVersion="200" InstallScope="perMachine" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Property Id="DISABLEADVTSHORTCUTS" Value="1" />
@@ -81,6 +81,9 @@
                                 <Component Id="ANTIMICRO_FR.QM" Guid="A0A9F9F1-E999-4398-9483-CA98DD90191D">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_fr.qm" />
                                 </Component>
+                                <Component Id="ANTIMICRO_JA.QM" Guid="9BCC2EFE-8F50-4E4F-B523-DF5CF7B1BB45">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_ja.qm" />
+                                </Component>
                                 <Component Id="ANTIMICRO_RU.QM" Guid="BCD2572E-7B08-49D7-8BA6-732F2990C1EE">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_ru.qm" />
                                 </Component>
@@ -89,6 +92,9 @@
                                 </Component>
                                 <Component Id="ANTIMICRO_UK.QM" Guid="3C9F0917-7DDB-4F22-9164-624B2647B075">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_uk.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_ZH_CN.QM" Guid="B7A4696B-05F0-40C5-9F8C-88CC06B94030">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_zh_CN.qm" />
                                 </Component>
                             </Directory>
                         </Directory>
@@ -190,9 +196,11 @@
             <ComponentRef Id="ANTIMICRO_DE.QM" />
             <ComponentRef Id="ANTIMICRO_EN.QM" />
             <ComponentRef Id="ANTIMICRO_FR.QM" />
+            <ComponentRef Id="ANTIMICRO_JA.QM" />
             <ComponentRef Id="ANTIMICRO_RU.QM" />
             <ComponentRef Id="ANTIMICRO_SR.QM" />
             <ComponentRef Id="ANTIMICRO_UK.QM" />
+            <ComponentRef Id="ANTIMICRO_ZH_CN.QM" />
             <ComponentRef Id="QT_AR.QM" />
             <ComponentRef Id="QT_CA.QM" />
             <ComponentRef Id="QT_CS.QM" />
