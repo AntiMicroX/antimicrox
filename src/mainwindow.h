@@ -96,7 +96,6 @@ private:
 
 signals:
     void joystickRefreshRequested();
-    void joystickRefreshRequested(InputDevice *joystick);
     void readConfig(int index);
 
 #ifdef USE_SDL_2
@@ -133,7 +132,6 @@ private slots:
     void mainMenuChange();
     void disableFlashActions();
     void enableFlashActions();
-    void joystickRefreshPropogate(InputDevice *joystick);
 
     void joystickTrayShow();
     void singleTrayProfileMenuShow();

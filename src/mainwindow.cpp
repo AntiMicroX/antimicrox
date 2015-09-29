@@ -443,11 +443,6 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     ui->actionQuit->setEnabled(true);
 }
 
-void MainWindow::joystickRefreshPropogate(InputDevice *joystick)
-{
-    emit joystickRefreshRequested(joystick);
-}
-
 // Intermediate slot to be used in Form Designer
 void MainWindow::startJoystickRefresh()
 {

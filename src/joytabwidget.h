@@ -149,8 +149,6 @@ protected:
     static const int DEFAULTNUMBERPROFILES = 5;
 
 signals:
-    void joystickRefreshRequested();
-    void joystickRefreshRequested(InputDevice *joystick);
     void joystickConfigChanged(int index);
     void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);

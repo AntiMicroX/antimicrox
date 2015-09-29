@@ -932,7 +932,6 @@ void JoyTabWidget::changeJoyConfig(int index)
         refreshCopySetActions();
         configBox->setItemText(0, tr("<New>"));
         oldProfileName = "";
-        emit joystickRefreshRequested(joystick);
     }
 
     comboBoxIndex = index;
