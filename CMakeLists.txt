@@ -210,64 +210,6 @@ set(antimicro_SOURCES src/main.cpp
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
 )
 
-# Platform dependent files.
-if(UNIX)
-    if(WITH_X11)
-        LIST(APPEND antimicro_SOURCES src/x11extras.cpp
-             src/qtx11keymapper.cpp
-             src/unixcapturewindowutility.cpp
-             src/autoprofilewatcher.cpp
-             src/capturedwindowinfodialog.cpp
-        )
-
-        if(WITH_XTEST)
-            LIST(APPEND antimicro_SOURCES src/eventhandlers/xtesteventhandler.cpp)
-        endif(WITH_XTEST)
-    endif(WITH_X11)
-
-    if(WITH_UINPUT)
-        LIST(APPEND antimicro_SOURCES src/qtuinputkeymapper.cpp
-             src/uinputhelper.cpp
-             src/eventhandlers/uinputeventhandler.cpp
-        )
-    endif(WITH_UINPUT)
-
-elseif(WIN32)
-    LIST(APPEND antimicro_SOURCES src/winextras.cpp
-         src/qtwinkeymapper.cpp
-         src/winappprofiletimerdialog.cpp
-         src/autoprofilewatcher.cpp
-         src/capturedwindowinfodialog.cpp
-         src/firstrunwizard/associateprofilespage.cpp
-         src/eventhandlers/winsendinputeventhandler.cpp
-         src/joykeyrepeathelper.cpp
-    )
-
-    if(WITH_VMULTI)
-        list(APPEND antimicro_SOURCES src/qtvmultikeymapper.cpp
-             src/eventhandlers/winvmultieventhandler.cpp
-#            vmulti/client/client.c
-        )
-    endif(WITH_VMULTI)
-
-    if(PERFORM_SIGNING)
-        add_definitions(-DPERFORM_SIGNING)
-    endif(PERFORM_SIGNING)
-
-endif(UNIX)
-
-# Files that require SDL 2 support.
-if(USE_SDL_2)
-    LIST(APPEND antimicro_SOURCES src/gamecontroller/gamecontroller.cpp
-         src/gamecontroller/gamecontrollerdpad.cpp
-         src/gamecontroller/gamecontrollerset.cpp
-         src/gamecontroller/gamecontrollertrigger.cpp
-         src/gamecontrollermappingdialog.cpp
-         src/gamecontrollerexample.cpp
-    )
-endif(USE_SDL_2)
-
-
 set(antimicro_HEADERS src/mainwindow.h
     src/joybuttonwidget.h
     src/joystick.h
@@ -365,58 +307,6 @@ set(antimicro_HEADERS src/mainwindow.h
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
 )
 
-# Platform dependent files.
-if(UNIX)
-    if(WITH_X11)
-        LIST(APPEND antimicro_HEADERS src/x11extras.h
-             src/qtx11keymapper.h
-             src/unixcapturewindowutility.h
-             src/autoprofilewatcher.h
-             src/capturedwindowinfodialog.h
-        )
-
-        if(WITH_XTEST)
-            LIST(APPEND antimicro_HEADERS src/eventhandlers/xtesteventhandler.h)
-        endif(WITH_XTEST)
-    endif(WITH_X11)
-
-    if(WITH_UINPUT)
-        LIST(APPEND antimicro_HEADERS src/qtuinputkeymapper.h
-             src/uinputhelper.h
-             src/eventhandlers/uinputeventhandler.h
-        )
-    endif(WITH_UINPUT)
-
-elseif(WIN32)
-    LIST(APPEND antimicro_HEADERS src/winextras.h
-        src/qtwinkeymapper.h
-        src/winappprofiletimerdialog.h
-        src/autoprofilewatcher.h
-        src/capturedwindowinfodialog.h
-        src/firstrunwizard/associateprofilespage.h
-        src/eventhandlers/winsendinputeventhandler.h
-        src/joykeyrepeathelper.h
-    )
-
-    if(WITH_VMULTI)
-        list(APPEND antimicro_HEADERS src/qtvmultikeymapper.h
-             src/eventhandlers/winvmultieventhandler.h
-        )
-    endif(WITH_VMULTI)
-endif(UNIX)
-
-# Files that require SDL 2 support.
-if(USE_SDL_2)
-    LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
-        src/gamecontroller/gamecontrollerdpad.h
-        src/gamecontroller/gamecontrollerset.h
-        src/gamecontroller/gamecontrollertrigger.h
-        src/gamecontrollermappingdialog.h
-        src/gamecontrollerexample.h
-    )
-endif(USE_SDL_2)
-
-
 set(antimicro_FORMS src/mainwindow.ui
     src/axiseditdialog.ui
     src/advancebuttondialog.ui
@@ -439,32 +329,108 @@ set(antimicro_FORMS src/mainwindow.ui
     src/capturedwindowinfodialog.ui
 )
 
-if(WIN32)
-    LIST(APPEND antimicro_FORMS src/winappprofiletimerdialog.ui)
-endif(WIN32)
-
 set(antimicro_RESOURCES src/resources.qrc)
-if(WIN32)
-    # Add Windows specific resource file used for application
-    # icons.
+
+# Files that require SDL 2 support.
+if(USE_SDL_2)
+    LIST(APPEND antimicro_SOURCES src/gamecontroller/gamecontroller.cpp
+         src/gamecontroller/gamecontrollerdpad.cpp
+         src/gamecontroller/gamecontrollerset.cpp
+         src/gamecontroller/gamecontrollertrigger.cpp
+         src/gamecontrollermappingdialog.cpp
+         src/gamecontrollerexample.cpp
+    )
+    LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
+        src/gamecontroller/gamecontrollerdpad.h
+        src/gamecontroller/gamecontrollerset.h
+        src/gamecontroller/gamecontrollertrigger.h
+        src/gamecontrollermappingdialog.h
+        src/gamecontrollerexample.h
+    )
+endif(USE_SDL_2)
+
+# Platform dependent files.
+if(UNIX)
+    if(WITH_X11)
+        LIST(APPEND antimicro_SOURCES src/x11extras.cpp
+             src/qtx11keymapper.cpp
+             src/unixcapturewindowutility.cpp
+             src/autoprofilewatcher.cpp
+             src/capturedwindowinfodialog.cpp
+        )
+        LIST(APPEND antimicro_HEADERS src/x11extras.h
+             src/qtx11keymapper.h
+             src/unixcapturewindowutility.h
+             src/autoprofilewatcher.h
+             src/capturedwindowinfodialog.h
+        )
+
+        if(WITH_XTEST)
+            LIST(APPEND antimicro_SOURCES src/eventhandlers/xtesteventhandler.cpp)
+            LIST(APPEND antimicro_HEADERS src/eventhandlers/xtesteventhandler.h)
+        endif(WITH_XTEST)
+    endif(WITH_X11)
+
+    if(WITH_UINPUT)
+        LIST(APPEND antimicro_SOURCES src/qtuinputkeymapper.cpp
+             src/uinputhelper.cpp
+             src/eventhandlers/uinputeventhandler.cpp
+        )
+        LIST(APPEND antimicro_HEADERS src/qtuinputkeymapper.h
+             src/uinputhelper.h
+             src/eventhandlers/uinputeventhandler.h
+        )
+    endif(WITH_UINPUT)
+
+elseif(WIN32)
+    LIST(APPEND antimicro_SOURCES src/winextras.cpp
+         src/qtwinkeymapper.cpp
+         src/winappprofiletimerdialog.cpp
+         src/autoprofilewatcher.cpp
+         src/capturedwindowinfodialog.cpp
+         src/firstrunwizard/associateprofilespage.cpp
+         src/eventhandlers/winsendinputeventhandler.cpp
+         src/joykeyrepeathelper.cpp
+    )
+    LIST(APPEND antimicro_HEADERS src/winextras.h
+        src/qtwinkeymapper.h
+        src/winappprofiletimerdialog.h
+        src/autoprofilewatcher.h
+        src/capturedwindowinfodialog.h
+        src/firstrunwizard/associateprofilespage.h
+        src/eventhandlers/winsendinputeventhandler.h
+        src/joykeyrepeathelper.h
+    )
+    LIST(APPEND antimicro_FORMS src/winappprofiletimerdialog.ui)
+    # Add Windows specific resource file used for application icons.
     LIST(APPEND antimicro_RESOURCES src/resources_windows.qrc)
-endif(WIN32)
+
+    if(WITH_VMULTI)
+        list(APPEND antimicro_SOURCES src/qtvmultikeymapper.cpp
+             src/eventhandlers/winvmultieventhandler.cpp
+#            vmulti/client/client.c
+        )
+        list(APPEND antimicro_HEADERS src/qtvmultikeymapper.h
+             src/eventhandlers/winvmultieventhandler.h
+        )
+    endif(WITH_VMULTI)
+endif(UNIX)
 
 set(USE_QT5 OFF)
 set(USE_QT4 OFF)
 
 if(UNIX)
-    # Check if Qt4 was specified using an environment variable
+    # Check if Qt 4 or 5 was specified using an environment variable
     # or by specifying -DQT_QMAKE_EXECUTABLE.
     # Otherwise, check for Qt libraries.
-    if ("$ENV{QT_SELECT}" EQUAL 4)
-        set(USE_QT4 ON)
-    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt4")
-        set(USE_QT4 ON)
-    elseif("$ENV{QT_SELECT}" EQUAL 5)
+    if("$ENV{QT_SELECT}" EQUAL 5)
         set(USE_QT5 ON)
     elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt5")
         set(USE_QT5 ON)
+    elseif ("$ENV{QT_SELECT}" EQUAL 4)
+        set(USE_QT4 ON)
+    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt4")
+        set(USE_QT4 ON)
     else()
         find_package(Qt5Core QUIET)
         if(Qt5Core_FOUND)
@@ -477,7 +443,7 @@ if(UNIX)
                 message(FATAL_ERROR "No Qt libraries could be found.")
             endif(QT_FOUND)
         endif(Qt5Core_FOUND)
-    endif("$ENV{QT_SELECT}" EQUAL 4)
+    endif("$ENV{QT_SELECT}" EQUAL 5)
 elseif(WIN32)
     # Use Qt5 on Windows.
     set(USE_QT5 ON)
@@ -497,6 +463,12 @@ endif(USE_QT5)
 if(USE_SDL_2)
     add_definitions(-DUSE_SDL_2)
 endif(USE_SDL_2)
+
+if (WIN32)
+    if(PERFORM_SIGNING)
+        add_definitions(-DPERFORM_SIGNING)
+    endif(PERFORM_SIGNING)
+endif (WIN32)
 
 if(UNIX)
     if(WITH_X11)
