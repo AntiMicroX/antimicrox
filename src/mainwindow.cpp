@@ -119,9 +119,11 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     {
         trayIconMenu = new QMenu(this);
         trayIcon = new QSystemTrayIcon(this);
+        trayIcon->setContextMenu(trayIconMenu);
+
         connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
         connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
+                this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)));
     }
 
     // Look at flags and call setEnabled as desired; defaults to true.
@@ -643,6 +645,9 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger)
     {
+#ifdef Q_OS_UNIX
+        this->trayIcon->contextMenu()->popup(QCursor::pos());
+#else
         if (this->isHidden())
         {
             this->show();
@@ -651,8 +656,8 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
         {
             this->hideWindow();
         }
+#endif
     }
-
 }
 
 void MainWindow::mainMenuChange()
