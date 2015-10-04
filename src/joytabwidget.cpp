@@ -1133,7 +1133,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         }
     }
 
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
 
     QString lastfile;
 
@@ -1685,7 +1685,7 @@ void JoyTabWidget::disconnectMainComboBoxEvents()
 
 void JoyTabWidget::reconnectMainComboBoxEvents()
 {
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
+    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()), Qt::QueuedConnection);
     connect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
 }
