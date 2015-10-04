@@ -1,5 +1,7 @@
 # antimicro
 
+[![Join the chat at https://gitter.im/Ryochan7/antimicro](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryochan7/antimicro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Lower Priority Development
 
 As of June 04, 2015, development of antimicro has resumed but updates will be
