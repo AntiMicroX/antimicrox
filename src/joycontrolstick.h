@@ -176,6 +176,9 @@ public:
     double getSpringDeadCircleX();
     double getSpringDeadCircleY();
 
+    QHash<JoyStickDirections, JoyControlStickButton*> getButtonsForDirection(JoyControlStick::JoyStickDirections direction);
+    void setDirButtonsUpdateInitAccel(JoyControlStick::JoyStickDirections direction, bool state);
+
     static const double PI;
 
     // Define default values for stick properties.

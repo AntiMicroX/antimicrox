@@ -645,12 +645,11 @@ QHash<int, JoyDPadButton*> JoyDPad::getApplicableButtons()
     if (currentMode == StandardMode || currentMode == EightWayMode ||
         currentMode == FourWayCardinal)
     {
-
+        temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+        temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+        temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+        temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
     }
-    temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
-    temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
-    temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
-    temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
 
     if (currentMode == EightWayMode || currentMode == FourWayDiagonal)
     {
@@ -1155,4 +1154,83 @@ JoyButton::JoyExtraAccelerationCurve JoyDPad::getButtonsExtraAccelerationCurve()
     }
 
     return result;
+}
+
+QHash<int, JoyDPadButton*> JoyDPad::getDirectionButtons(JoyDPadButton::JoyDPadDirections direction)
+{
+    QHash<int, JoyDPadButton*> temphash;
+    if (currentMode == StandardMode)
+    {
+        if (direction & JoyDPadButton::DpadUp)
+        {
+            temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
+        }
+
+        if (direction & JoyDPadButton::DpadDown)
+        {
+            temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
+        }
+
+        if (direction & JoyDPadButton::DpadLeft)
+        {
+            temphash.insert(JoyDPadButton::DpadLeft, buttons.value(JoyDPadButton::DpadLeft));
+        }
+
+        if (direction & JoyDPadButton::DpadRight)
+        {
+            temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
+        }
+    }
+    else if (currentMode == EightWayMode)
+    {
+        temphash.insert(direction, buttons.value(direction));
+    }
+    else if (currentMode == FourWayCardinal)
+    {
+        if (direction == JoyDPadButton::DpadUp ||
+            direction == JoyDPadButton::DpadDown ||
+            direction == JoyDPadButton::DpadLeft ||
+            direction == JoyDPadButton::DpadRight)
+        {
+            temphash.insert(direction, buttons.value(direction));
+        }
+    }
+    else if (currentMode == FourWayDiagonal)
+    {
+        if (direction == JoyDPadButton::DpadRightUp ||
+            direction == JoyDPadButton::DpadRightDown ||
+            direction == JoyDPadButton::DpadLeftDown ||
+            direction == JoyDPadButton::DpadLeftUp)
+        {
+            temphash.insert(direction, buttons.value(direction));
+        }
+    }
+
+    return temphash;
+}
+
+void JoyDPad::setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections direction, bool state)
+{
+    QHash<int, JoyDPadButton*> apphash = getDirectionButtons(direction);
+    QHashIterator<int, JoyDPadButton*> iter(apphash);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->setUpdateInitAccel(state);
+    }
+}
+
+void JoyDPad::copyLastDistanceValues(JoyDPad *srcDPad)
+{
+    QHash<int, JoyDPadButton*> apphash = srcDPad->getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(apphash);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        if (button->getButtonState())
+        {
+            this->buttons.value(iter.key())->copyLastAccelerationDistance(button);
+            this->buttons.value(iter.key())->copyLastMouseDistanceFromDeadZone(button);
+        }
+    }
 }

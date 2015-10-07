@@ -4103,3 +4103,75 @@ JoyButton::JoyExtraAccelerationCurve JoyControlStick::getButtonsExtraAcceleratio
 
     return result;
 }
+
+void
+JoyControlStick::setDirButtonsUpdateInitAccel(JoyControlStick::JoyStickDirections direction, bool state)
+{
+    QHash<JoyStickDirections, JoyControlStickButton*> apphash = getButtonsForDirection(direction);
+    QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(apphash);
+    while (iter.hasNext())
+    {
+        JoyControlStickButton *button = iter.next().value();
+        button->setUpdateInitAccel(state);
+    }
+}
+
+
+QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*>
+JoyControlStick::getButtonsForDirection(JoyControlStick::JoyStickDirections direction)
+{
+    QHash<JoyStickDirections, JoyControlStickButton*> temphash;
+    if (currentMode == StandardMode)
+    {
+        if (direction & JoyControlStick::StickUp)
+        {
+            JoyControlStickButton *button = this->buttons.value(JoyControlStick::StickUp);
+            temphash.insert(JoyControlStick::StickUp, button);
+        }
+
+        if (direction & JoyControlStick::StickRight)
+        {
+            JoyControlStickButton *button = this->buttons.value(JoyControlStick::StickRight);
+            temphash.insert(JoyControlStick::StickRight, button);
+        }
+
+        if (direction & JoyControlStick::StickDown)
+        {
+            JoyControlStickButton *button = this->buttons.value(JoyControlStick::StickDown);
+            temphash.insert(JoyControlStick::StickDown, button);
+        }
+
+        if (direction & JoyControlStick::StickLeft)
+        {
+            JoyControlStickButton *button = this->buttons.value(JoyControlStick::StickLeft);
+            temphash.insert(JoyControlStick::StickLeft, button);
+        }
+    }
+    else if (currentMode == EightWayMode)
+    {
+        temphash.insert(direction, buttons.value(direction));
+    }
+    else if (currentMode == FourWayCardinal)
+    {
+        if (direction == JoyControlStick::StickUp ||
+            direction == JoyControlStick::StickDown ||
+            direction == JoyControlStick::StickLeft ||
+            direction == JoyControlStick::StickRight)
+        {
+            temphash.insert(direction, buttons.value(direction));
+        }
+
+    }
+    else if (currentMode == FourWayDiagonal)
+    {
+        if (direction == JoyControlStick::StickRightUp ||
+            direction == JoyControlStick::StickRightDown ||
+            direction == JoyControlStick::StickLeftDown ||
+            direction == JoyControlStick::StickLeftUp)
+        {
+            temphash.insert(direction, buttons.value(direction));
+        }
+    }
+
+    return temphash;
+}
