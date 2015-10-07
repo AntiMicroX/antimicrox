@@ -44,8 +44,8 @@ public:
         PositiveHalfThrottle = 2
     };
 
-    void joyEvent(int value, bool ignoresets=false);
-    void queuePendingEvent(int value, bool ignoresets=false);
+    void joyEvent(int value, bool ignoresets=false, bool updateLastValues=true);
+    void queuePendingEvent(int value, bool ignoresets=false, bool updateLastValues=true);
     void activatePendingEvent();
     bool hasPendingEvent();
     void clearPendingEvent();
@@ -132,6 +132,10 @@ public:
     int getLastKnownRawValue();
     int getProperReleaseValue();
 
+    // Don't use direct assignment but copying from a current axis.
+    void copyRawValues(JoyAxis *srcAxis);
+    void copyThrottledValues(JoyAxis *srcAxis);
+
     void setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
@@ -152,7 +156,7 @@ protected:
     int calculateThrottledValue(int value);
     void setCurrentRawValue(int value);
     void performCalibration(int value);
-    void stickPassEvent(int value, bool ignoresets=false);
+    void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true);
 
     virtual bool readMainConfig(QXmlStreamReader *xml);
     virtual bool readButtonConfig(QXmlStreamReader *xml);
@@ -177,13 +181,13 @@ protected:
     QString axisName;
     QString defaultAxisName;
     SetJoystick *parentSet;
-    double lastMouseDistance;
     int lastKnownThottledValue;
     int lastKnownRawValue;
 
     int pendingValue;
     bool pendingEvent;
     bool pendingIgnoreSets;
+    bool pendingUpdateLastValues;
 
 signals:
     void active(int value);

@@ -113,6 +113,10 @@ public:
     virtual double getMouseDistanceFromDeadZone();
     virtual double getLastMouseDistanceFromDeadZone();
 
+    // Don't use direct assignment but copying from a current button.
+    virtual void copyLastMouseDistanceFromDeadZone(JoyButton *srcButton);
+    virtual void copyLastAccelerationDistance(JoyButton *srcButton);
+
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();
     bool isPartVDPad();

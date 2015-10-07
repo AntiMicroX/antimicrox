@@ -5601,6 +5601,16 @@ double JoyButton::getLastAccelerationDistance()
     return lastAccelerationDistance;
 }
 
+void JoyButton::copyLastMouseDistanceFromDeadZone(JoyButton *srcButton)
+{
+    this->lastMouseDistance = srcButton->lastMouseDistance;
+}
+
+void JoyButton::copyLastAccelerationDistance(JoyButton *srcButton)
+{
+    this->lastAccelerationDistance = srcButton->lastAccelerationDistance;
+}
+
 bool JoyButton::isExtraAccelerationEnabled()
 {
     return extraAccelerationEnabled;
