@@ -645,9 +645,6 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger)
     {
-#ifdef Q_OS_UNIX
-        this->trayIcon->contextMenu()->popup(QCursor::pos());
-#else
         if (this->isHidden())
         {
             this->show();
@@ -656,8 +653,20 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
         {
             this->hideWindow();
         }
-#endif
     }
+#ifdef Q_OS_UNIX
+    else if (reason == QSystemTrayIcon::MiddleClick)
+    {
+        if (this->isHidden())
+        {
+            this->show();
+        }
+        else
+        {
+            this->hideWindow();
+        }
+    }
+#endif
 }
 
 void MainWindow::mainMenuChange()
@@ -927,6 +936,7 @@ void MainWindow::showEvent(QShowEvent *event)
             }
 
             activateWindow();
+            raise();
         }
     }
 
