@@ -699,7 +699,7 @@ configure_file(
 # Copy current Changelog file to location that the resource file expects.
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
-install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} -E remove \"${PROJECT_SOURCE_DIR}/src/Changelog\"")
+install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} -E remove \"${PROJECT_SOURCE_DIR}/src/Changelog\")")
 
 if(WIN32)
     if(TARGET_ARCH STREQUAL "x86_64")
