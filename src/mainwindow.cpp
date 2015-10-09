@@ -922,8 +922,22 @@ void MainWindow::showEvent(QShowEvent *event)
         // Restore flashing buttons
         enableFlashActions();
         signalDisconnect = false;
-        this->activateWindow();
-        QTimer::singleShot(0, this, SLOT(raise()));
+
+        // Only needed if hidden with the system tray enabled
+        if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
+        {
+            if (isMinimized())
+            {
+                if (isMaximized())
+                {
+                    showMaximized();
+                }
+                else
+                {
+                    showNormal();
+                }
+            }
+        }
     }
 
     QMainWindow::showEvent(event);
@@ -931,14 +945,15 @@ void MainWindow::showEvent(QShowEvent *event)
 
 void MainWindow::changeEvent(QEvent *event)
 {
-    if (event->type() == QEvent::ActivationChange && !this->isActiveWindow())
+    if (event->type() == QEvent::WindowStateChange)
     {
-        if (isMinimized())
+        QWindowStateChangeEvent *e = static_cast<QWindowStateChangeEvent*>(event);
+        if (e->oldState() != Qt::WindowMinimized && isMinimized())
         {
             bool minimizeToTaskbar = settings->value("MinimizeToTaskbar", false).toBool();
             if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon && !minimizeToTaskbar)
             {
-                hideWindow();
+                this->hideWindow();
             }
             else
             {
