@@ -654,19 +654,6 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
             this->hideWindow();
         }
     }
-#ifdef Q_OS_UNIX
-    else if (reason == QSystemTrayIcon::MiddleClick)
-    {
-        if (this->isHidden())
-        {
-            this->show();
-        }
-        else
-        {
-            this->hideWindow();
-        }
-    }
-#endif
 }
 
 void MainWindow::mainMenuChange()
