@@ -305,25 +305,18 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
 
 #ifdef Q_OS_UNIX
-    if (EventHandlerFactory::getInstance()->handler()->getIdentifier() == "uinput")
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-        if (QApplication::platformName() == QStringLiteral("xcb"))
-        {
-        #endif
-            refreshExtraMouseInfo();
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-        }
-        else
-        {
-            ui->extraInfoFrame->hide();
-        }
-        #endif
+    #endif
+        refreshExtraMouseInfo();
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
         ui->extraInfoFrame->hide();
     }
+    #endif
 #else
     ui->extraInfoFrame->hide();
 #endif
@@ -1912,24 +1905,30 @@ void MainSettingsDialog::refreshExtraMouseInfo()
 {
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
     QString handler = EventHandlerFactory::getInstance()->handler()->getIdentifier();
-    if (handler == "uinput")
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-        if (QApplication::platformName() == QStringLiteral("xcb"))
+    #endif
+        struct X11Extras::ptrInformation temp;
+        if (handler == "uinput")
         {
-        #endif
-            struct X11Extras::ptrInformation temp = X11Extras::getInstance()->getPointInformation();
-            if (temp.id >= 0)
-            {
-                ui->accelNumLabel->setText(QString::number(temp.accelNum));
-                ui->accelDenomLabel->setText(QString::number(temp.accelDenom));
-                ui->accelThresLabel->setText(QString::number(temp.threshold));
-            }
-
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+            temp = X11Extras::getInstance()->getPointInformation();
         }
-        #endif
+        else if (handler == "xtest")
+        {
+            temp = X11Extras::getInstance()->getPointInformation(X11Extras::xtestMouseDeviceName);
+        }
+
+        if (temp.id >= 0)
+        {
+            ui->accelNumLabel->setText(QString::number(temp.accelNum));
+            ui->accelDenomLabel->setText(QString::number(temp.accelDenom));
+            ui->accelThresLabel->setText(QString::number(temp.threshold));
+        }
+
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
+    #endif
 #endif
 }
 
