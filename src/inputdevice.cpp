@@ -617,11 +617,12 @@ void InputDevice::setActiveSetNumber(int index)
         activatePossibleDPadEvents();
         activatePossibleVDPadEvents();
         activatePossibleButtonEvents();
-        if (JoyButton::shouldInvokeMouseEvents())
+        /*if (JoyButton::shouldInvokeMouseEvents())
         {
             // Run mouse events early if needed.
             JoyButton::invokeMouseEvents();
         }
+        */
     }
 }
 
