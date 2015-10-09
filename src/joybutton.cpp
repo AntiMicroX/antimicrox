@@ -99,7 +99,7 @@ QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 // Keeps timestamp of last mouse event.
 QElapsedTimer JoyButton::lastMouseTime;
 // Temporary test object to test old mouse time behavior.
-//QTime testOldMouseTime;
+QTime testOldMouseTime;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -882,7 +882,7 @@ void JoyButton::activateSlots()
                         staticMouseEventTimer.start(tempRate);
 
                         lastMouseTime.restart();
-                        //testOldMouseTime.restart();
+                        testOldMouseTime.restart();
                         accelExtraDurationTime.restart();
                     }
                 }
@@ -1092,8 +1092,11 @@ void JoyButton::mouseEvent()
         }
 
         unsigned int timeElapsed = lastMouseTime.elapsed();
-        //timeElapsed = testOldMouseTime.elapsed();
+        //Logger::LogInfo(QString("TESTER: %1").arg(timeElapsed));
+
+        timeElapsed = testOldMouseTime.elapsed();
         unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+        //Logger::LogInfo(QString("TESTER 2: %1\n").arg(nanoTimeElapsed));
 
         // Presumed initial mouse movement. Use full duration rather than
         // partial.
@@ -1401,8 +1404,8 @@ void JoyButton::mouseEvent()
                         accelTravel = 0.0;
                     }
 
-                    //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                    //sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
                     distance = sumDist;
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
@@ -5407,7 +5410,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
 
         if (staticMouseEventTimer.isActive())
         {
-            //testOldMouseTime.restart();
+            testOldMouseTime.restart();
             lastMouseTime.restart();
             int tempInterval = staticMouseEventTimer.interval();
 
@@ -5767,7 +5770,7 @@ double JoyButton::getCurrentSpringDeadCircle()
 
 void JoyButton::restartLastMouseTime()
 {
-    //testOldMouseTime.restart();
+    testOldMouseTime.restart();
     lastMouseTime.restart();
 }
 
@@ -5812,8 +5815,9 @@ bool JoyButton::shouldInvokeMouseEvents()
         {
             result = true;
         }
-        else if (lastMouseTime.hasExpired(timerInterval))
-        //else if (testOldMouseTime.elapsed() > timerInterval)
+        //else if (lastMouseTime.elapsed() >= timerInterval)
+        //else if (lastMouseTime.hasExpired(timerInterval))
+        else if (testOldMouseTime.elapsed() >= timerInterval)
         {
             result = true;
         }
