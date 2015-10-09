@@ -936,6 +936,9 @@ void MainWindow::showEvent(QShowEvent *event)
                 {
                     showNormal();
                 }
+
+                activateWindow();
+                raise();
             }
         }
     }
