@@ -1,3 +1,22 @@
+2015-10-10 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.20
+
+* Replace usage of QElapsedTimer with QTime for mouse movement calculations.
+
+* Start using Qt 5 with Ubuntu Vivid package.
+
+* Change XTest pointer acceleration when starting the program.
+
+* Allow release slot to have a 0 ms interval. This is useful for people who
+use a gamepad poll rate less than 10 ms.
+
+* Change minimize to tray code to work better with later versions of Gnome 3
+and Unity.
+
+* Transfer travel distance axis changes when switching sets.
+
+
 2015-09-29 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.19.3

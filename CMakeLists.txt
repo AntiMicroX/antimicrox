@@ -32,8 +32,8 @@ endif(WIN32)
 
 # The version number.
 set(ANTIMICRO_MAJOR_VERSION 2)
-set(ANTIMICRO_MINOR_VERSION 19)
-set(ANTIMICRO_PATCH_VERSION 3)
+set(ANTIMICRO_MINOR_VERSION 20)
+set(ANTIMICRO_PATCH_VERSION 1)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
 
