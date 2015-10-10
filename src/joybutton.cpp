@@ -4598,7 +4598,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     movedY = 0;
     double finalx = 0.0;
     double finaly = 0.0;
-    int elapsedTime = lastMouseTime.elapsed();
+    //int elapsedTime = lastMouseTime.elapsed();
+    int elapsedTime = testOldMouseTime.elapsed();
     movedElapsed = elapsedTime;
     if (staticMouseEventTimer.interval() < mouseRefreshRate)
     {
@@ -5789,6 +5790,8 @@ void JoyButton::setStaticMouseThread(QThread *thread)
                               Q_ARG(int, oldInterval));
 
     lastMouseTime.start();
+    testOldMouseTime.start();
+
 #ifdef Q_OS_WIN
     repeatHelper.moveToThread(thread);
 #endif
