@@ -97,7 +97,7 @@ QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Keeps timestamp of last mouse event.
-QElapsedTimer JoyButton::lastMouseTime;
+//QElapsedTimer JoyButton::lastMouseTime;
 // Temporary test object to test old mouse time behavior.
 QTime testOldMouseTime;
 
@@ -881,7 +881,7 @@ void JoyButton::activateSlots()
                         //Logger::LogInfo(QString("STARTING OVER: %1 %2").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(tempRate));
                         staticMouseEventTimer.start(tempRate);
 
-                        lastMouseTime.restart();
+                        //lastMouseTime.restart();
                         testOldMouseTime.restart();
                         accelExtraDurationTime.restart();
                     }
@@ -1091,20 +1091,20 @@ void JoyButton::mouseEvent()
             buttonslot = mouseEventQueue.dequeue();
         }
 
-        unsigned int timeElapsed = lastMouseTime.elapsed();
+        //unsigned int timeElapsed = lastMouseTime.elapsed();
         //Logger::LogInfo(QString("TESTER: %1").arg(timeElapsed));
 
-        timeElapsed = testOldMouseTime.elapsed();
-        unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+        unsigned int timeElapsed = testOldMouseTime.elapsed();
+        //unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
         //Logger::LogInfo(QString("TESTER 2: %1\n").arg(nanoTimeElapsed));
 
         // Presumed initial mouse movement. Use full duration rather than
         // partial.
         if (staticMouseEventTimer.interval() < mouseRefreshRate)
         {
-            unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
+            //unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
             timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
-            nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
+            //nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
         }
 
         while (buttonslot)
@@ -5412,7 +5412,7 @@ void JoyButton::setMouseRefreshRate(int refresh)
         if (staticMouseEventTimer.isActive())
         {
             testOldMouseTime.restart();
-            lastMouseTime.restart();
+            //lastMouseTime.restart();
             int tempInterval = staticMouseEventTimer.interval();
 
             if (tempInterval != temp &&
@@ -5772,7 +5772,7 @@ double JoyButton::getCurrentSpringDeadCircle()
 void JoyButton::restartLastMouseTime()
 {
     testOldMouseTime.restart();
-    lastMouseTime.restart();
+    //lastMouseTime.restart();
 }
 
 void JoyButton::setStaticMouseThread(QThread *thread)
@@ -5789,7 +5789,7 @@ void JoyButton::setStaticMouseThread(QThread *thread)
     QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                               Q_ARG(int, oldInterval));
 
-    lastMouseTime.start();
+    //lastMouseTime.start();
     testOldMouseTime.start();
 
 #ifdef Q_OS_WIN
