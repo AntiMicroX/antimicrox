@@ -105,6 +105,11 @@ public:
     void setButtonsExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyExtraAccelerationCurve getButtonsExtraAccelerationCurve();
 
+    QHash<int, JoyDPadButton*> getDirectionButtons(JoyDPadButton::JoyDPadDirections direction);
+
+    void setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections direction, bool state);
+    void copyLastDistanceValues(JoyDPad *srcDPad);
+
     static const QString xmlName;
     static const unsigned int DEFAULTDPADDELAY;
 

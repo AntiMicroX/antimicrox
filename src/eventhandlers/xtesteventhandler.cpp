@@ -33,6 +33,12 @@ XTestEventHandler::XTestEventHandler(QObject *parent) :
 
 bool XTestEventHandler::init()
 {
+    X11Extras *instance = X11Extras::getInstance();
+    if (instance)
+    {
+        instance->x11ResetMouseAccelerationChange(X11Extras::xtestMouseDeviceName);
+    }
+
     return true;
 }
 

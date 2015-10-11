@@ -57,21 +57,23 @@ JoyAxis::~JoyAxis()
     reset();
 }
 
-void JoyAxis::queuePendingEvent(int value, bool ignoresets)
+void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValues)
 {
     pendingEvent = false;
     pendingValue = 0;
     pendingIgnoreSets = false;
+    pendingUpdateLastValues = true;
 
     if (this->stick)
     {
-        stickPassEvent(value, ignoresets);
+        stickPassEvent(value, ignoresets, updateLastValues);
     }
     else
     {
         pendingEvent = true;
         pendingValue = value;
         pendingIgnoreSets = ignoresets;
+        pendingUpdateLastValues = updateLastValues;
     }
 }
 
@@ -79,11 +81,12 @@ void JoyAxis::activatePendingEvent()
 {
     if (pendingEvent)
     {
-        joyEvent(pendingValue);
+        joyEvent(pendingValue, pendingUpdateLastValues);
 
         pendingEvent = false;
         pendingValue = false;
         pendingIgnoreSets = false;
+        pendingUpdateLastValues = true;
     }
 }
 
@@ -99,12 +102,15 @@ void JoyAxis::clearPendingEvent()
     pendingIgnoreSets = false;
 }
 
-void JoyAxis::stickPassEvent(int value, bool ignoresets)
+void JoyAxis::stickPassEvent(int value, bool ignoresets, bool updateLastValues)
 {
     if (this->stick)
     {
-        lastKnownThottledValue = currentThrottledValue;
-        lastKnownRawValue = currentRawValue;
+        if (updateLastValues)
+        {
+            lastKnownThottledValue = currentThrottledValue;
+            lastKnownRawValue = currentRawValue;
+        }
 
         setCurrentRawValue(value);
         //currentRawValue = value;
@@ -135,16 +141,19 @@ void JoyAxis::stickPassEvent(int value, bool ignoresets)
     }
 }
 
-void JoyAxis::joyEvent(int value, bool ignoresets)
+void JoyAxis::joyEvent(int value, bool ignoresets, bool updateLastValues)
 {
     if (this->stick && !pendingEvent)
     {
-        stickPassEvent(value, ignoresets);
+        stickPassEvent(value, ignoresets, updateLastValues);
     }
     else
     {
-        lastKnownThottledValue = currentThrottledValue;
-        lastKnownRawValue = currentRawValue;
+        if (updateLastValues)
+        {
+            lastKnownThottledValue = currentThrottledValue;
+            lastKnownRawValue = currentRawValue;
+        }
 
         setCurrentRawValue(value);
         //currentRawValue = value;
@@ -586,6 +595,7 @@ void JoyAxis::reset()
     pendingEvent = false;
     pendingValue = currentRawValue;
     pendingIgnoreSets = false;
+    pendingUpdateLastValues = true;
 }
 
 void JoyAxis::reset(int index)
@@ -1129,4 +1139,16 @@ JoyButton::JoyExtraAccelerationCurve JoyAxis::getExtraAccelerationCurve()
     }
 
     return result;
+}
+
+void JoyAxis::copyRawValues(JoyAxis *srcAxis)
+{
+    this->lastKnownRawValue = srcAxis->lastKnownRawValue;
+    this->currentRawValue = srcAxis->currentRawValue;
+}
+
+void JoyAxis::copyThrottledValues(JoyAxis *srcAxis)
+{
+    this->lastKnownThottledValue = srcAxis->lastKnownThottledValue;
+    this->currentThrottledValue = srcAxis->currentThrottledValue;
 }

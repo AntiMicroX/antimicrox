@@ -170,34 +170,57 @@ void InputDevice::setActiveSetNumber(int index)
         // Grab current states for all elements in old set
         SetJoystick *current_set = joystick_sets.value(active_set);
         SetJoystick *old_set = current_set;
+        SetJoystick *tempSet = joystick_sets.value(index);
+
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
             JoyButton *button = current_set->getJoyButton(i);
             buttonstates.append(button->getButtonState());
+            tempSet->getJoyButton(i)->copyLastMouseDistanceFromDeadZone(button);
+            tempSet->getJoyButton(i)->copyLastAccelerationDistance(button);
+            tempSet->getJoyButton(i)->setUpdateInitAccel(false);
         }
 
         for (int i = 0; i < current_set->getNumberAxes(); i++)
         {
             JoyAxis *axis = current_set->getJoyAxis(i);
             axesstates.append(axis->getCurrentRawValue());
+            tempSet->getJoyAxis(i)->copyRawValues(axis);
+            tempSet->getJoyAxis(i)->copyThrottledValues(axis);
+            JoyAxisButton *button = tempSet->getJoyAxis(i)->getAxisButtonByValue(axis->getCurrentRawValue());
+            if (button)
+            {
+                button->setUpdateInitAccel(false);
+            }
         }
 
         for (int i = 0; i < current_set->getNumberHats(); i++)
         {
             JoyDPad *dpad = current_set->getJoyDPad(i);
             dpadstates.append(dpad->getCurrentDirection());
+            JoyDPadButton::JoyDPadDirections tempDir =
+                    static_cast<JoyDPadButton::JoyDPadDirections>(dpad->getCurrentDirection());
+            tempSet->getJoyDPad(i)->setDirButtonsUpdateInitAccel(tempDir, false);
+            tempSet->getJoyDPad(i)->copyLastDistanceValues(dpad);
         }
 
         for (int i=0; i < current_set->getNumberSticks(); i++)
         {
+            // Last distances for elements are taken from associated axes.
+            // Copying is not required here.
             JoyControlStick *stick = current_set->getJoyStick(i);
             stickstates.append(stick->getCurrentDirection());
+            tempSet->getJoyStick(i)->setDirButtonsUpdateInitAccel(stick->getCurrentDirection(), false);
         }
 
         for (int i = 0; i < current_set->getNumberVDPads(); i++)
         {
             JoyDPad *dpad = current_set->getVDPad(i);
             vdpadstates.append(dpad->getCurrentDirection());
+            JoyDPadButton::JoyDPadDirections tempDir =
+                    static_cast<JoyDPadButton::JoyDPadDirections>(dpad->getCurrentDirection());
+            tempSet->getVDPad(i)->setDirButtonsUpdateInitAccel(tempDir, false);
+            tempSet->getVDPad(i)->copyLastDistanceValues(dpad);
         }
 
         // Release all current pressed elements and change set number
@@ -478,7 +501,7 @@ void InputDevice::setActiveSetNumber(int index)
             }
 
             //axis->joyEvent(value, tempignore);
-            axis->queuePendingEvent(value, tempignore);
+            axis->queuePendingEvent(value, tempignore, false);
         }
 
         // Activate all dpad buttons in the switched set
@@ -594,6 +617,12 @@ void InputDevice::setActiveSetNumber(int index)
         activatePossibleDPadEvents();
         activatePossibleVDPadEvents();
         activatePossibleButtonEvents();
+        /*if (JoyButton::shouldInvokeMouseEvents())
+        {
+            // Run mouse events early if needed.
+            JoyButton::invokeMouseEvents();
+        }
+        */
     }
 }
 

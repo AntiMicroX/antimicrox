@@ -654,8 +654,6 @@ unsigned int X11Extras::getGroup1KeySym(unsigned int virtualkey)
 
 void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
  {
-    //QTextStream out(stdout);
-
     int xi_opcode, event, error;
     xi_opcode = event = error = 0;
     Display *display = this->display();
@@ -690,8 +688,6 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
                 QString::fromUtf8(current_devices->name) == pointerName)
             {
                 Logger::LogInfo(tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid));
-                //out << tr("Virtual pointer found with id=%1.").arg(current_devices->deviceid)
-                //    << endl;
                 mouse_device = current_devices;
             }
         }
@@ -724,16 +720,12 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             {
                 Logger::LogInfo(tr("PtrFeedbackClass was not found for virtual pointer."
                                    "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id));
-                //out << tr("PtrFeedbackClass was not found for virtual pointer."
-                //          "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id)
-                //    << endl;
+
                 result = false;
             }
             else
             {
                 Logger::LogInfo(tr("Changing mouse acceleration for device with id=%1").arg(device->device_id));
-                //out << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id)
-                //    << endl;
 
                 XPtrFeedbackControl	feedback;
                 feedback.c_class = PtrFeedbackClass;

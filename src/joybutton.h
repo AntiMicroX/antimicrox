@@ -113,6 +113,13 @@ public:
     virtual double getMouseDistanceFromDeadZone();
     virtual double getLastMouseDistanceFromDeadZone();
 
+    // Don't use direct assignment but copying from a current button.
+    virtual void copyLastMouseDistanceFromDeadZone(JoyButton *srcButton);
+    virtual void copyLastAccelerationDistance(JoyButton *srcButton);
+
+    void copyExtraAccelerationState(JoyButton *srcButton);
+    void setUpdateInitAccel(bool state);
+
     virtual void setVDPad(VDPad *vdpad);
     void removeVDPad();
     bool isPartVDPad();
@@ -423,6 +430,8 @@ protected:
     bool updateStartingMouseDistance;
 
     double updateOldAccelMulti;
+
+    bool updateInitAccelValues;
 
     // Keep track of the current mouse distance after a poll. Used
     // to update lastMouseDistance later.

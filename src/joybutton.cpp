@@ -97,9 +97,9 @@ QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Keeps timestamp of last mouse event.
-QElapsedTimer JoyButton::lastMouseTime;
+//QElapsedTimer JoyButton::lastMouseTime;
 // Temporary test object to test old mouse time behavior.
-//QTime testOldMouseTime;
+QTime testOldMouseTime;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -282,8 +282,11 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             if (pressed)
             {
                 emit clicked(index);
-                oldAccelMulti = updateOldAccelMulti = 0.0;
-                accelTravel = 0.0;
+                if (updateInitAccelValues)
+                {
+                    oldAccelMulti = updateOldAccelMulti = 0.0;
+                    accelTravel = 0.0;
+                }
             }
             else
             {
@@ -352,7 +355,10 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     turboTimer.start();
 
                     // Newly activated button. Just entered safe zone.
-                    initializeDistanceValues();
+                    if (updateInitAccelValues)
+                    {
+                        initializeDistanceValues();
+                    }
                     currentAccelerationDistance = getAccelerationDistance();
 
                     Logger::LogDebug(tr("Processing turbo for #%1 - %2")
@@ -417,7 +423,11 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 releaseDeskTimer.stop();
 
                 // Newly activated button. Just entered safe zone.
-                initializeDistanceValues();
+                if (updateInitAccelValues)
+                {
+                    initializeDistanceValues();
+                }
+
                 currentAccelerationDistance = getAccelerationDistance();
 
                 Logger::LogDebug(tr("Processing press for button #%1 - %2")
@@ -444,9 +454,12 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 waitForReleaseDeskEvent();
             }
 
-            updateLastMouseDistance = false;
-            updateStartingMouseDistance = false;
-            updateOldAccelMulti = 0.0;
+            if (updateInitAccelValues)
+            {
+                updateLastMouseDistance = false;
+                updateStartingMouseDistance = false;
+                updateOldAccelMulti = 0.0;
+            }
 
         }
         else if (!useTurbo && isButtonPressed)
@@ -477,6 +490,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
         }
     }
+
+    updateInitAccelValues = true;
 }
 
 /**
@@ -866,8 +881,8 @@ void JoyButton::activateSlots()
                         //Logger::LogInfo(QString("STARTING OVER: %1 %2").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(tempRate));
                         staticMouseEventTimer.start(tempRate);
 
-                        lastMouseTime.restart();
-                        //testOldMouseTime.restart();
+                        //lastMouseTime.restart();
+                        testOldMouseTime.restart();
                         accelExtraDurationTime.restart();
                     }
                 }
@@ -1076,17 +1091,20 @@ void JoyButton::mouseEvent()
             buttonslot = mouseEventQueue.dequeue();
         }
 
-        unsigned int timeElapsed = lastMouseTime.elapsed();
-        //timeElapsed = testOldMouseTime.elapsed();
-        unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+        //unsigned int timeElapsed = lastMouseTime.elapsed();
+        //Logger::LogInfo(QString("TESTER: %1").arg(timeElapsed));
+
+        unsigned int timeElapsed = testOldMouseTime.elapsed();
+        //unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+        //Logger::LogInfo(QString("TESTER 2: %1\n").arg(nanoTimeElapsed));
 
         // Presumed initial mouse movement. Use full duration rather than
         // partial.
         if (staticMouseEventTimer.interval() < mouseRefreshRate)
         {
-            unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
+            //unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
             timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
-            nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
+            //nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
         }
 
         while (buttonslot)
@@ -1386,8 +1404,8 @@ void JoyButton::mouseEvent()
                         accelTravel = 0.0;
                     }
 
-                    //sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
-                    sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
+                    sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
+                    //sumDist = difference * (nanoTimeElapsed * 0.000000001) * mousespeed * JoyButtonSlot::JOYSPEED;
                     distance = sumDist;
 
                     if (mousedirection == JoyButtonSlot::MouseRight)
@@ -4580,7 +4598,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     movedY = 0;
     double finalx = 0.0;
     double finaly = 0.0;
-    int elapsedTime = lastMouseTime.elapsed();
+    //int elapsedTime = lastMouseTime.elapsed();
+    int elapsedTime = testOldMouseTime.elapsed();
     movedElapsed = elapsedTime;
     if (staticMouseEventTimer.interval() < mouseRefreshRate)
     {
@@ -5392,8 +5411,8 @@ void JoyButton::setMouseRefreshRate(int refresh)
 
         if (staticMouseEventTimer.isActive())
         {
-            //testOldMouseTime.restart();
-            lastMouseTime.restart();
+            testOldMouseTime.restart();
+            //lastMouseTime.restart();
             int tempInterval = staticMouseEventTimer.interval();
 
             if (tempInterval != temp &&
@@ -5517,6 +5536,8 @@ void JoyButton::resetProperties()
     updateLastMouseDistance = false;
     updateStartingMouseDistance = false;
     updateOldAccelMulti = 0.0;
+    updateInitAccelValues = true;
+
     currentAccelerationDistance = 0.0;
     startingAccelerationDistance = 0.0;
     lastWheelVerticalDistance = 0.0;
@@ -5599,6 +5620,16 @@ double JoyButton::getLastMouseDistanceFromDeadZone()
 double JoyButton::getLastAccelerationDistance()
 {
     return lastAccelerationDistance;
+}
+
+void JoyButton::copyLastMouseDistanceFromDeadZone(JoyButton *srcButton)
+{
+    this->lastMouseDistance = srcButton->lastMouseDistance;
+}
+
+void JoyButton::copyLastAccelerationDistance(JoyButton *srcButton)
+{
+    this->lastAccelerationDistance = srcButton->lastAccelerationDistance;
 }
 
 bool JoyButton::isExtraAccelerationEnabled()
@@ -5740,22 +5771,27 @@ double JoyButton::getCurrentSpringDeadCircle()
 
 void JoyButton::restartLastMouseTime()
 {
-    //testOldMouseTime.restart();
-    lastMouseTime.restart();
+    testOldMouseTime.restart();
+    //lastMouseTime.restart();
 }
 
 void JoyButton::setStaticMouseThread(QThread *thread)
 {
     int oldInterval = staticMouseEventTimer.interval();
-    //staticMouseEventTimer.stop();
+    if (oldInterval == 0)
+    {
+        oldInterval = IDLEMOUSEREFRESHRATE;
+    }
+
     staticMouseEventTimer.moveToThread(thread);
     mouseHelper.moveToThread(thread);
 
     QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
                               Q_ARG(int, oldInterval));
-    //staticMouseEventTimer.start(oldInterval);
-    //testOldMouseTime.restart();
-    lastMouseTime.start();
+
+    //lastMouseTime.start();
+    testOldMouseTime.start();
+
 #ifdef Q_OS_WIN
     repeatHelper.moveToThread(thread);
 #endif
@@ -5782,8 +5818,9 @@ bool JoyButton::shouldInvokeMouseEvents()
         {
             result = true;
         }
-        else if (lastMouseTime.hasExpired(timerInterval))
-        //else if (testOldMouseTime.elapsed() > timerInterval)
+        //else if (lastMouseTime.elapsed() >= timerInterval)
+        //else if (lastMouseTime.hasExpired(timerInterval))
+        else if (testOldMouseTime.elapsed() >= timerInterval)
         {
             result = true;
         }
@@ -5811,4 +5848,29 @@ void JoyButton::setExtraAccelerationCurve(JoyExtraAccelerationCurve curve)
 JoyButton::JoyExtraAccelerationCurve JoyButton::getExtraAccelerationCurve()
 {
     return extraAccelCurve;
+}
+
+void JoyButton::copyExtraAccelerationState(JoyButton *srcButton)
+{
+    this->currentAccelMulti = srcButton->currentAccelMulti;
+    this->oldAccelMulti = srcButton->oldAccelMulti;
+    this->accelTravel = srcButton->accelTravel;
+
+    this->startingAccelerationDistance = srcButton->startingAccelerationDistance;
+    this->lastAccelerationDistance = srcButton->lastAccelerationDistance;
+    this->lastMouseDistance = srcButton->lastMouseDistance;
+
+    this->accelExtraDurationTime.setHMS(srcButton->accelExtraDurationTime.hour(),
+                                        srcButton->accelExtraDurationTime.minute(),
+                                        srcButton->accelExtraDurationTime.second(),
+                                        srcButton->accelExtraDurationTime.msec());
+
+    this->updateOldAccelMulti = srcButton->updateOldAccelMulti;
+    this->updateStartingMouseDistance = srcButton->updateStartingMouseDistance;
+    this->updateLastMouseDistance = srcButton->lastMouseDistance;
+}
+
+void JoyButton::setUpdateInitAccel(bool state)
+{
+    this->updateInitAccelValues = state;
 }

@@ -456,7 +456,7 @@ void AdvanceButtonDialog::insertReleaseSlot()
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     int actionTime = actionTimeConvert();
-    if (actionTime > 0)
+    if (actionTime >= 0)
     {
         tempbutton->setValue(actionTime, JoyButtonSlot::JoyRelease);
 

@@ -1911,7 +1911,7 @@ to a diagonal zone.</source>
 <context>
     <name>GameController</name>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="43"/>
+        <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="44"/>
         <source>Game Controller</source>
         <translation>Контролер програма</translation>
     </message>
@@ -2104,12 +2104,12 @@ to a diagonal zone.</source>
         <translation>Придруживач тастера контролера (%1) (#%2)</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="449"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="454"/>
         <source>Discard Controller Mapping?</source>
         <translation>Поништавање придруживања контролера?</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="450"/>
+        <location filename="../../../src/gamecontrollermappingdialog.cpp" line="455"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
@@ -2179,9 +2179,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="950"/>
-        <location filename="../../../src/joyaxis.cpp" line="959"/>
-        <location filename="../../../src/joyaxis.cpp" line="965"/>
+        <location filename="../../../src/joyaxis.cpp" line="960"/>
+        <location filename="../../../src/joyaxis.cpp" line="969"/>
+        <location filename="../../../src/joyaxis.cpp" line="975"/>
         <source>Axis</source>
         <translation>Правац</translation>
     </message>
@@ -2289,57 +2289,57 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="358"/>
+        <location filename="../../../src/joybutton.cpp" line="364"/>
         <source>Processing turbo for #%1 - %2</source>
         <translation>Буџим за #%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="367"/>
+        <location filename="../../../src/joybutton.cpp" line="373"/>
         <source>Finishing turbo for button #%1 - %2</source>
         <translation>Завршено набуџивање тастера #%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="421"/>
+        <location filename="../../../src/joybutton.cpp" line="433"/>
         <source>Processing press for button #%1 - %2</source>
         <translation>Притискам за тастер #%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="438"/>
+        <location filename="../../../src/joybutton.cpp" line="450"/>
         <source>Processing release for button #%1 - %2</source>
         <translation>Отпуштам за тастер #%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="460"/>
+        <location filename="../../../src/joybutton.cpp" line="475"/>
         <source>Distance change for button #%1 - %2</source>
         <translation>Промена раздаљине за тастер #%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2279"/>
-        <location filename="../../../src/joybutton.cpp" line="2287"/>
-        <location filename="../../../src/joybutton.cpp" line="2293"/>
+        <location filename="../../../src/joybutton.cpp" line="2299"/>
+        <location filename="../../../src/joybutton.cpp" line="2307"/>
+        <location filename="../../../src/joybutton.cpp" line="2313"/>
         <source>Button</source>
         <translation>Тастер</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2332"/>
-        <location filename="../../../src/joybutton.cpp" line="2509"/>
-        <location filename="../../../src/joybutton.cpp" line="2621"/>
-        <location filename="../../../src/joybutton.cpp" line="5538"/>
+        <location filename="../../../src/joybutton.cpp" line="2352"/>
+        <location filename="../../../src/joybutton.cpp" line="2529"/>
+        <location filename="../../../src/joybutton.cpp" line="2646"/>
+        <location filename="../../../src/joybutton.cpp" line="5565"/>
         <source>[NO KEY]</source>
         <translation>[Без тастера]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2390"/>
+        <location filename="../../../src/joybutton.cpp" line="2410"/>
         <source>[Set %1 1W]</source>
         <translation>[Скуп %1 1-смерно]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2398"/>
+        <location filename="../../../src/joybutton.cpp" line="2418"/>
         <source>[Set %1 2W]</source>
         <translation>[Скуп %1 2-смерно]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2407"/>
+        <location filename="../../../src/joybutton.cpp" line="2427"/>
         <source>[Set %1 WH]</source>
         <translation>[Скуп %1 WH]</translation>
     </message>
@@ -2944,62 +2944,62 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joytabwidget.cpp" line="751"/>
         <location filename="../../../src/joytabwidget.cpp" line="889"/>
         <location filename="../../../src/joytabwidget.cpp" line="933"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1082"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2309"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1081"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2308"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;Ново&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="71"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1532"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1531"/>
         <source>Remove</source>
         <translation>Уклони</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="73"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1533"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1532"/>
         <source>Remove configuration from recent list.</source>
         <translation>Уклони подешавање са текуће листе.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="79"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1535"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1534"/>
         <source>Load</source>
         <translation>Учитај</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="81"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1536"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1535"/>
         <source>Load configuration file.</source>
         <translation>Учитај датотеку са подешавањима.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="87"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1538"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1537"/>
         <source>Save</source>
         <translation>Сачувај</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="89"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1539"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1538"/>
         <source>Save changes to configuration file.</source>
         <translation>Сачувај измене у датотеку подешавања.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="96"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1540"/>
         <source>Save As</source>
         <translation>Сачувај као</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="98"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1542"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
         <source>Save changes to a new configuration file.</source>
         <translation>Сачувај измене у новој датотеци подешавања.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="293"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
         <source>Sets</source>
         <translation>Скупови</translation>
     </message>
@@ -3015,104 +3015,104 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="304"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
         <source>Set 1</source>
         <translation>1. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="308"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
         <source>Set 2</source>
         <translation>2. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="312"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
         <source>Set 3</source>
         <translation>3. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="316"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
         <source>Set 4</source>
         <translation>4. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="320"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1549"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
         <source>Set 5</source>
         <translation>5. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="324"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1549"/>
         <source>Set 6</source>
         <translation>6. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="328"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
         <source>Set 7</source>
         <translation>7. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="332"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1552"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
         <source>Set 8</source>
         <translation>8. скупа</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="398"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
         <source>Stick/Pad Assign</source>
         <translation>Придружи Управљач/Тастатуру</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="404"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1556"/>
         <source>Controller Mapping</source>
         <translation>Придруживач тастера контролера</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="411"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
         <source>Quick Set</source>
         <translation>Брзе поставке</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="419"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1562"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1561"/>
         <source>Names</source>
         <translation>Називи</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="421"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1563"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1562"/>
         <source>Toggle button name displaying.</source>
         <translation>Приказивање назива преклопника.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="426"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1565"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1564"/>
         <source>Pref</source>
         <translation>Опште поставке</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="428"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1566"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1565"/>
         <source>Change global profile settings.</source>
         <translation>Измените опште поставке профила.</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="432"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1560"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1567"/>
         <source>Reset</source>
         <translation>Поништи</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="434"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1569"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>Поништи измене и учитај опет датотеку са подешавањем.</translation>
     </message>
@@ -3134,60 +3134,60 @@ functionality to an analog stick.</source>
         <translation>Датотека подешавања (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1587"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1640"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1586"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1639"/>
         <source>Save Profile Changes?</source>
         <translation>Да ли да сачувам измене профила?</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1590"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1644"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1589"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1643"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>Имате несачуваних промена новог профила. Да ли желите да их сачувам или да их поништим?</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1594"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1648"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1593"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1647"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>Имате несачуваних промена у профилу &quot;%1&quot; . Да ли желите да их сачувам или да их поништим?</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1896"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1895"/>
         <source>Sticks</source>
         <translation>Управљачи</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1964"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2015"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1963"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2014"/>
         <source>DPads</source>
         <translation>Д-тастери</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2155"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2154"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>Нема придруживања за дугмад. Можете да употребите „Брзе поставке“
 за придруживања дугмадима или да искључите скривање „празних“ дугмади.</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2345"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2370"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2344"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2369"/>
         <source>Set %1: %2</source>
         <translation>Скуп %1: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2349"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2374"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2348"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2373"/>
         <source>Set %1</source>
         <translation>Скуп %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2382"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2381"/>
         <source>Copy Set Assignments</source>
         <translation>Умножи придруживања из скупа</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2383"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2382"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>Да ли заиста желите да умножите придруживања и особине уређаја из %1?</translation>
     </message>
@@ -3199,8 +3199,8 @@ to buttons or disable hiding empty buttons.</source>
         <translation>Сачувај подешавања</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1500"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1507"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1499"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1506"/>
         <source>Set</source>
         <translation>Постави</translation>
     </message>
@@ -3800,7 +3800,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1895"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1888"/>
         <source>Default</source>
         <translation>подразумевано</translation>
     </message>
@@ -3832,7 +3832,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="692"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1119"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1112"/>
         <source>All</source>
         <translation>Сви</translation>
     </message>
@@ -3871,12 +3871,12 @@ the option in Windows.</source>
 нису онемогућили ову опцију у самом систему.</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="751"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="744"/>
         <source>Select Default Profile Directory</source>
         <translation>Одабир уобичајеног директоријум профила</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1499"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1492"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>Да ли заиста желите да уклоните овај профил?</translation>
     </message>
@@ -3922,7 +3922,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="600"/>
+        <location filename="../../../src/mainwindow.cpp" line="597"/>
         <source>&amp;Quit</source>
         <translation>&amp;Затвори</translation>
     </message>
@@ -3933,7 +3933,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="604"/>
+        <location filename="../../../src/mainwindow.cpp" line="601"/>
         <source>&amp;Update Joysticks</source>
         <translation>Про&amp;нађи џојстике</translation>
     </message>
@@ -3944,7 +3944,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="592"/>
+        <location filename="../../../src/mainwindow.cpp" line="589"/>
         <source>&amp;Hide</source>
         <translation>&amp;Сакриј</translation>
     </message>
@@ -4004,39 +4004,39 @@ the option in Windows.</source>
         <translation>Вики-стране</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="320"/>
+        <location filename="../../../src/mainwindow.cpp" line="322"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="363"/>
-        <location filename="../../../src/mainwindow.cpp" line="412"/>
-        <location filename="../../../src/mainwindow.cpp" line="487"/>
-        <location filename="../../../src/mainwindow.cpp" line="1470"/>
-        <location filename="../../../src/mainwindow.cpp" line="1516"/>
-        <location filename="../../../src/mainwindow.cpp" line="1538"/>
-        <location filename="../../../src/mainwindow.cpp" line="1551"/>
+        <location filename="../../../src/mainwindow.cpp" line="365"/>
+        <location filename="../../../src/mainwindow.cpp" line="414"/>
+        <location filename="../../../src/mainwindow.cpp" line="484"/>
+        <location filename="../../../src/mainwindow.cpp" line="1461"/>
+        <location filename="../../../src/mainwindow.cpp" line="1507"/>
+        <location filename="../../../src/mainwindow.cpp" line="1529"/>
+        <location filename="../../../src/mainwindow.cpp" line="1542"/>
         <source>(%1)</source>
         <translation>(%1)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="544"/>
-        <location filename="../../../src/mainwindow.cpp" line="548"/>
+        <location filename="../../../src/mainwindow.cpp" line="541"/>
+        <location filename="../../../src/mainwindow.cpp" line="545"/>
         <source>Open File</source>
         <translation>Отвори датотеку</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="596"/>
+        <location filename="../../../src/mainwindow.cpp" line="593"/>
         <source>&amp;Restore</source>
         <translation>В&amp;рати</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1385"/>
+        <location filename="../../../src/mainwindow.cpp" line="1376"/>
         <source>Run as Administrator?</source>
         <translation>Покрени као администратор?</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1386"/>
+        <location filename="../../../src/mainwindow.cpp" line="1377"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4045,17 +4045,17 @@ Some games run as Administrator which will cause events generated by antimicro t
 Неки програми покренути уз администраторске дозволе могу да доведу до тога да радње које захтева Анти-микро не буду ваљано препознате све док се и сам Анти-микро не покрене уз исте дозволе. Код Видоуз-Виста или новијих виндоуза ово је изазвано проблемима са дозволама које ствара опција за управљање корисничким налозима (енг. скр. „UAC“).</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1411"/>
+        <location filename="../../../src/mainwindow.cpp" line="1402"/>
         <source>Failed to elevate program</source>
         <translation>Не могу да покренем програм</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1412"/>
+        <location filename="../../../src/mainwindow.cpp" line="1403"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>Неуспело покретање програма са админ. дозволама</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1448"/>
+        <location filename="../../../src/mainwindow.cpp" line="1439"/>
         <source>Could not find controller. Exiting.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6163,28 +6163,28 @@ R</source>
         <translation>Уназад</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="666"/>
+        <location filename="../../../src/x11extras.cpp" line="664"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
         <translation>Није нађено проширење „xinput“. Нису могуће измене брзина при руковању мишем.</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="673"/>
-        <location filename="../../../src/x11extras.cpp" line="781"/>
+        <location filename="../../../src/x11extras.cpp" line="671"/>
+        <location filename="../../../src/x11extras.cpp" line="773"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
         <translation>Издање проширење „xinput“ је старије од издања 2.0. Нису могуће измене брзина при руковању мишем.</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="692"/>
+        <location filename="../../../src/x11extras.cpp" line="690"/>
         <source>Virtual pointer found with id=%1.</source>
         <translation>Нађен је патворени показивач са ИБ=%1.</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="725"/>
+        <location filename="../../../src/x11extras.cpp" line="721"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
         <translation>Није нађено „НPtrFeedbackClass“ за патворени показивач. Нису могуће измене брзина при руковању мишем за уређај чији је ИБ=%1</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="734"/>
+        <location filename="../../../src/x11extras.cpp" line="728"/>
         <source>Changing mouse acceleration for device with id=%1</source>
         <translation>Измена убрзања при употреби миша за уређај чији је ИБ=%1</translation>
     </message>

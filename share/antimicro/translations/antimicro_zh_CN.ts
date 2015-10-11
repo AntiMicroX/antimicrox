@@ -2295,9 +2295,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="950"/>
-        <location filename="../../../src/joyaxis.cpp" line="959"/>
-        <location filename="../../../src/joyaxis.cpp" line="965"/>
+        <location filename="../../../src/joyaxis.cpp" line="960"/>
+        <location filename="../../../src/joyaxis.cpp" line="969"/>
+        <location filename="../../../src/joyaxis.cpp" line="975"/>
         <source>Axis</source>
         <translation>轴</translation>
     </message>
@@ -2405,57 +2405,57 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="358"/>
+        <location filename="../../../src/joybutton.cpp" line="364"/>
         <source>Processing turbo for #%1 - %2</source>
         <translation>正在处理按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="367"/>
+        <location filename="../../../src/joybutton.cpp" line="373"/>
         <source>Finishing turbo for button #%1 - %2</source>
         <translation>正在完成按钮#%1-%2的连发</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="423"/>
+        <location filename="../../../src/joybutton.cpp" line="433"/>
         <source>Processing press for button #%1 - %2</source>
         <translation>正在处理按下按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="440"/>
+        <location filename="../../../src/joybutton.cpp" line="450"/>
         <source>Processing release for button #%1 - %2</source>
         <translation>正在处理释放按钮#%1-%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="462"/>
+        <location filename="../../../src/joybutton.cpp" line="475"/>
         <source>Distance change for button #%1 - %2</source>
         <translation>按钮#%1-%2距离改变</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2281"/>
-        <location filename="../../../src/joybutton.cpp" line="2289"/>
-        <location filename="../../../src/joybutton.cpp" line="2295"/>
+        <location filename="../../../src/joybutton.cpp" line="2299"/>
+        <location filename="../../../src/joybutton.cpp" line="2307"/>
+        <location filename="../../../src/joybutton.cpp" line="2313"/>
         <source>Button</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2334"/>
-        <location filename="../../../src/joybutton.cpp" line="2511"/>
-        <location filename="../../../src/joybutton.cpp" line="2628"/>
-        <location filename="../../../src/joybutton.cpp" line="5545"/>
+        <location filename="../../../src/joybutton.cpp" line="2352"/>
+        <location filename="../../../src/joybutton.cpp" line="2529"/>
+        <location filename="../../../src/joybutton.cpp" line="2646"/>
+        <location filename="../../../src/joybutton.cpp" line="5566"/>
         <source>[NO KEY]</source>
         <translation>[无按键]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2392"/>
+        <location filename="../../../src/joybutton.cpp" line="2410"/>
         <source>[Set %1 1W]</source>
         <translation>[单向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2400"/>
+        <location filename="../../../src/joybutton.cpp" line="2418"/>
         <source>[Set %1 2W]</source>
         <translation>[双向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2409"/>
+        <location filename="../../../src/joybutton.cpp" line="2427"/>
         <source>[Set %1 WH]</source>
         <translation>[按下时选择设置%1]</translation>
     </message>
@@ -3829,7 +3829,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1895"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1888"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
@@ -3886,7 +3886,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="692"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1119"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1112"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
@@ -3918,7 +3918,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="906"/>
         <source>Histor&amp;y Size:</source>
-        <translation>历史缓冲 (&amp;y)：</translation>
+        <translation>历史缓冲大小 (&amp;y)：</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="932"/>
@@ -3952,12 +3952,12 @@ the option in Windows.</source>
         <translation>另外，对于希望使用较低值的 Windows 用户，如果您未禁用 Windows 的“提高指针精确度”选项，请勾选本程序中的“禁用提高指针精确度”复选框。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="751"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="744"/>
         <source>Select Default Profile Directory</source>
         <translation>选择默认配置文件目录</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1499"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1492"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>您确认要删除这个配置文件吗？</translation>
     </message>
@@ -3998,7 +3998,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="595"/>
+        <location filename="../../../src/mainwindow.cpp" line="597"/>
         <source>&amp;Quit</source>
         <translation>退出 (&amp;Q)</translation>
     </message>
@@ -4009,7 +4009,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="599"/>
+        <location filename="../../../src/mainwindow.cpp" line="601"/>
         <source>&amp;Update Joysticks</source>
         <translation>更新摇杆 (&amp;U)</translation>
     </message>
@@ -4020,7 +4020,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="587"/>
+        <location filename="../../../src/mainwindow.cpp" line="589"/>
         <source>&amp;Hide</source>
         <translation>隐藏 (&amp;H)</translation>
     </message>
@@ -4085,39 +4085,39 @@ the option in Windows.</source>
         <translation>维基页面</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="320"/>
+        <location filename="../../../src/mainwindow.cpp" line="322"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
         <translation>无法找到合适的游戏控制器标识符。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="363"/>
-        <location filename="../../../src/mainwindow.cpp" line="412"/>
-        <location filename="../../../src/mainwindow.cpp" line="482"/>
-        <location filename="../../../src/mainwindow.cpp" line="1465"/>
-        <location filename="../../../src/mainwindow.cpp" line="1511"/>
-        <location filename="../../../src/mainwindow.cpp" line="1533"/>
-        <location filename="../../../src/mainwindow.cpp" line="1546"/>
+        <location filename="../../../src/mainwindow.cpp" line="365"/>
+        <location filename="../../../src/mainwindow.cpp" line="414"/>
+        <location filename="../../../src/mainwindow.cpp" line="484"/>
+        <location filename="../../../src/mainwindow.cpp" line="1461"/>
+        <location filename="../../../src/mainwindow.cpp" line="1507"/>
+        <location filename="../../../src/mainwindow.cpp" line="1529"/>
+        <location filename="../../../src/mainwindow.cpp" line="1542"/>
         <source>(%1)</source>
         <translation>（%1）</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="539"/>
-        <location filename="../../../src/mainwindow.cpp" line="543"/>
+        <location filename="../../../src/mainwindow.cpp" line="541"/>
+        <location filename="../../../src/mainwindow.cpp" line="545"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="591"/>
+        <location filename="../../../src/mainwindow.cpp" line="593"/>
         <source>&amp;Restore</source>
         <translation>还原 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1380"/>
+        <location filename="../../../src/mainwindow.cpp" line="1376"/>
         <source>Run as Administrator?</source>
         <translation>以管理员权限运行？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1381"/>
+        <location filename="../../../src/mainwindow.cpp" line="1377"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4125,17 +4125,17 @@ Some games run as Administrator which will cause events generated by antimicro t
 有些以管理员权限运行的游戏无法识别 antimicro 生成的事件，除非 antimicro 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制 (UAC) 导致的权限问题。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1406"/>
+        <location filename="../../../src/mainwindow.cpp" line="1402"/>
         <source>Failed to elevate program</source>
         <translation>无法提升本程序权限</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1407"/>
+        <location filename="../../../src/mainwindow.cpp" line="1403"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>无法以管理员权限重新运行本程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1443"/>
+        <location filename="../../../src/mainwindow.cpp" line="1439"/>
         <source>Could not find controller. Exiting.</source>
         <translation>无法找到游戏控制器。正在退出。</translation>
     </message>
@@ -6193,28 +6193,28 @@ R</translation>
         <translation>Backspace</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="666"/>
+        <location filename="../../../src/x11extras.cpp" line="664"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
         <translation>未找到 XInput 扩展。鼠标加速选项将无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="673"/>
-        <location filename="../../../src/x11extras.cpp" line="781"/>
+        <location filename="../../../src/x11extras.cpp" line="671"/>
+        <location filename="../../../src/x11extras.cpp" line="773"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
         <translation>XInput 版本必需至少为2.0。鼠标加速选项将无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="692"/>
+        <location filename="../../../src/x11extras.cpp" line="690"/>
         <source>Virtual pointer found with id=%1.</source>
         <translation>发现虚拟指针 ID=%1。</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="725"/>
+        <location filename="../../../src/x11extras.cpp" line="721"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
         <translation>未找到虚拟指针的 PtrFeedbackClass。鼠标加速选项在 ID=%1 的设备上将无效</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="734"/>
+        <location filename="../../../src/x11extras.cpp" line="728"/>
         <source>Changing mouse acceleration for device with id=%1</source>
         <translation>正在改变 ID=%1 的设备上的鼠标加速选项</translation>
     </message>

@@ -119,9 +119,11 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     {
         trayIconMenu = new QMenu(this);
         trayIcon = new QSystemTrayIcon(this);
+        trayIcon->setContextMenu(trayIconMenu);
+
         connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
         connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)), Qt::DirectConnection);
+                this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)));
     }
 
     // Look at flags and call setEnabled as desired; defaults to true.
@@ -652,7 +654,6 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
             this->hideWindow();
         }
     }
-
 }
 
 void MainWindow::mainMenuChange()
@@ -903,7 +904,7 @@ void MainWindow::joystickTrayShow()
 void MainWindow::showEvent(QShowEvent *event)
 {
     // Check if hideEvent has been processed
-    if (signalDisconnect)
+    if (signalDisconnect && isVisible())
     {
         // Restore flashing buttons
         enableFlashActions();
@@ -912,16 +913,20 @@ void MainWindow::showEvent(QShowEvent *event)
         // Only needed if hidden with the system tray enabled
         if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
         {
-            if (isMaximized())
+            if (isMinimized())
             {
-                showMaximized();
-            }
-            else
-            {
-                showNormal();
-            }
+                if (isMaximized())
+                {
+                    showMaximized();
+                }
+                else
+                {
+                    showNormal();
+                }
 
-            activateWindow();
+                activateWindow();
+                raise();
+            }
         }
     }
 
@@ -932,27 +937,18 @@ void MainWindow::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::WindowStateChange)
     {
-        QWindowStateChangeEvent *e = (QWindowStateChangeEvent*)event;
+        QWindowStateChangeEvent *e = static_cast<QWindowStateChangeEvent*>(event);
         if (e->oldState() != Qt::WindowMinimized && isMinimized())
         {
             bool minimizeToTaskbar = settings->value("MinimizeToTaskbar", false).toBool();
             if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon && !minimizeToTaskbar)
             {
-                hideWindow();
+                this->hideWindow();
             }
             else
             {
                 disableFlashActions();
                 signalDisconnect = true;
-            }
-        }
-        else if (e->oldState() == Qt::WindowMinimized && !isMinimized())
-        {
-            if (signalDisconnect)
-            {
-                // Restore flashing buttons
-                enableFlashActions();
-                signalDisconnect = false;
             }
         }
     }
