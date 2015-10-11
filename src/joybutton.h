@@ -382,7 +382,8 @@ protected:
     QTime turboHold;
     QTime wheelVerticalTime;
     QTime wheelHorizontalTime;
-    static QElapsedTimer lastMouseTime;
+    //static QElapsedTimer lastMouseTime;
+    static QTime testOldMouseTime;
 
     QQueue<bool> ignoreSetQueue;
     QQueue<bool> isButtonPressedQueue;

@@ -99,7 +99,7 @@ QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 // Keeps timestamp of last mouse event.
 //QElapsedTimer JoyButton::lastMouseTime;
 // Temporary test object to test old mouse time behavior.
-QTime testOldMouseTime;
+QTime JoyButton::testOldMouseTime;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -1183,19 +1183,19 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.3707;
+                                difference = difference * 0.36;
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.25172;
+                                difference = difference - 0.256;
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 2.2586) - 1.2586;
+                                difference = (difference * 2.28) - 1.28;
                             }
 
                             break;
