@@ -1210,7 +1210,7 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.3707;
+                                difference = difference * 0.3625;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1223,7 +1223,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.25172;
+                                difference = difference - 0.255;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1271,7 +1271,7 @@ void JoyButton::mouseEvent()
 
                                 // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
-                                difference = difference * 1.3596 - 0.5394; // Range 0.54828 - 1.5
+                                difference = difference * 1.3643 - 0.5464; // Range 0.545 - 1.5
                             }
                             break;
                         }
@@ -1282,7 +1282,7 @@ void JoyButton::mouseEvent()
 
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
                     double minstop = qMax(0.05, mintravel);
-                    double currentTravel = getAccelerationDistance() - lastAccelerationDistance;
+                    //double currentTravel = getAccelerationDistance() - lastAccelerationDistance;
 
                     // Last check ensures that acceleration is only applied for the same direction.
                     if (extraAccelerationEnabled && isPartRealAxis() &&
