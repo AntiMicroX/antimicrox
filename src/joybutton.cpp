@@ -810,7 +810,6 @@ void JoyButton::activateSlots()
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
                 sendevent(slot, true);
-                //qDebug() << "PRESS FINISHED: " << QTime::currentTime().toString("hh:mm:ss.zzz");
                 activeSlots.append(slot);
                 int oldvalue = activeKeys.value(tempcode, 0) + 1;
                 activeKeys.insert(tempcode, oldvalue);
@@ -995,10 +994,6 @@ void JoyButton::activateSlots()
             else if (mode == JoyButtonSlot::JoySetChange)
             {
                 activeSlots.append(slot);
-                //releaseActiveSlots();
-                //currentSetChangeSlot = slot;
-                //slotSetChangeTimer.start();
-                //exit = true;
             }
             else if (mode == JoyButtonSlot::JoyTextEntry)
             {
@@ -1092,11 +1087,8 @@ void JoyButton::mouseEvent()
         }
 
         //unsigned int timeElapsed = lastMouseTime.elapsed();
-        //Logger::LogInfo(QString("TESTER: %1").arg(timeElapsed));
-
         unsigned int timeElapsed = testOldMouseTime.elapsed();
         //unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
-        //Logger::LogInfo(QString("TESTER 2: %1\n").arg(nanoTimeElapsed));
 
         // Presumed initial mouse movement. Use full duration rather than
         // partial.
@@ -1183,19 +1175,19 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.36175;
+                                difference = difference * 0.36;
                             }
                             else if (temp <= 0.8)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.2553;
+                                difference = difference - 0.256;
                             }
                             else if (temp > 0.8)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 2.2765) - 1.2765;
+                                difference = (difference * 2.28) - 1.28;
                             }
 
                             break;
@@ -1210,7 +1202,7 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.3625;
+                                difference = difference * 0.36;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1223,7 +1215,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.255;
+                                difference = difference - 0.256;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1238,7 +1230,6 @@ void JoyButton::mouseEvent()
                                 // time has passed.
                                 unsigned int easingElapsed = buttonslot->getEasingTime()->elapsed();
                                 double easingDuration = this->easingDuration; // Time in seconds
-                                //qDebug() << "TEMP: " << temp;
                                 if (!buttonslot->isEasingActive())
                                 {
                                     buttonslot->setEasingStatus(true);
@@ -1271,7 +1262,8 @@ void JoyButton::mouseEvent()
 
                                 // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
-                                difference = difference * 1.3643 - 0.5464; // Range 0.545 - 1.5
+                                 // Range 0.545 - 1.5
+                                difference = difference * 1.365714286 - 0.548571429;
                             }
                             break;
                         }
