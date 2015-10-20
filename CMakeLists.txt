@@ -53,6 +53,8 @@ if(WIN32)
     option(PERFORM_SIGNING "Sign final executable." OFF)
 
     if(PORTABLE_PACKAGE)
+        message("Portable package mode build")
+
         add_definitions(-DWIN_PORTABLE_PACKAGE)
 
         # Only way to force install target to be dependent on createprofiledir.
