@@ -189,6 +189,7 @@ set(antimicro_SOURCES src/main.cpp
     src/logger.cpp
     src/inputdevicebitarraystatus.cpp
     src/applaunchhelper.cpp
+    src/slotitemlistwidget.cpp
     src/firstrunwizard/firstrunwizard.cpp
     src/firstrunwizard/mousesettingspage.cpp
     src/firstrunwizard/firstrunwelcomepage.cpp
@@ -286,6 +287,7 @@ set(antimicro_HEADERS src/mainwindow.h
     src/logger.h
     src/inputdevicebitarraystatus.h
     src/applaunchhelper.h
+    src/slotitemlistwidget.h
     src/firstrunwizard/firstrunwizard.h
     src/firstrunwizard/mousesettingspage.h
     src/firstrunwizard/firstrunwelcomepage.h

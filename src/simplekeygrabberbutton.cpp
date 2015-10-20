@@ -352,3 +352,8 @@ bool SimpleKeyGrabberButton::isEdited()
 {
     return edited;
 }
+
+bool SimpleKeyGrabberButton::isGrabbing()
+{
+    return grabNextAction;
+}

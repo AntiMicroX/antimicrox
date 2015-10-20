@@ -102,7 +102,7 @@
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_9">
          <item>
-          <widget class="QListWidget" name="slotListWidget">
+          <widget class="SlotItemListWidget" name="slotListWidget">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1194,6 +1194,13 @@
   <zorder>line</zorder>
   <zorder></zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SlotItemListWidget</class>
+   <extends>QListWidget</extends>
+   <header>slotitemlistwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

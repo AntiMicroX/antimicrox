@@ -36,6 +36,7 @@ public:
     void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyLoadProfile);
     JoyButtonSlot* getValue();
     bool isEdited();
+    bool isGrabbing();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
