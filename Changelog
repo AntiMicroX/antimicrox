@@ -1,3 +1,14 @@
+2015-10-19 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.20.2
+
+* Change Enhanced Precision and Easing Quad/Cubic acceleration
+curves
+
+* Skipped straight to 2.20.2 since version 2.20 actually had 2.20.1 marked
+as its version in the application
+
+
 2015-10-10 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.20
