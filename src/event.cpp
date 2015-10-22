@@ -231,10 +231,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             {
 #if defined(Q_OS_UNIX)
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                if (fullSpring->screen <= -1)
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                     ymovecoor);
+                    if (handler->getIdentifier() == "xtest")
+                    {
+                        EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                         ymovecoor);
+                    }
+                    else if (handler->getIdentifier() == "uinput")
+                    {
+                        EventHandlerFactory::getInstance()->handler()
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                    }
                 }
                 else
                 {
@@ -262,10 +270,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 PadderCommon::mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                if (fullSpring->screen <= -1)
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                     ymovecoor);
+                    if (handler->getIdentifier() == "xtest")
+                    {
+                        EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                         ymovecoor);
+                    }
+                    else if (handler->getIdentifier() == "uinput")
+                    {
+                        EventHandlerFactory::getInstance()->handler()
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                    }
                 }
                 else
                 {
@@ -294,10 +310,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #if defined(Q_OS_UNIX)
 
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                if (fullSpring->screen <= -1)
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                     ymovecoor);
+                    if (handler->getIdentifier() == "xtest")
+                    {
+                        EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                         ymovecoor);
+                    }
+                    else if (handler->getIdentifier() == "uinput")
+                    {
+                        EventHandlerFactory::getInstance()->handler()
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                    }
                 }
                 else
                 {
@@ -332,10 +356,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             {
 #if defined(Q_OS_UNIX)
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-                if (fullSpring->screen <= -1 && handler->getIdentifier() == "xtest")
+                if (fullSpring->screen <= -1)
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                     ymovecoor);
+                    if (handler->getIdentifier() == "xtest")
+                    {
+                        EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+                                                                                         ymovecoor);
+                    }
+                    else if (handler->getIdentifier() == "uinput")
+                    {
+                        EventHandlerFactory::getInstance()->handler()
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                    }
                 }
                 else
                 {

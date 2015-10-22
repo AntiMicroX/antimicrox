@@ -36,6 +36,8 @@ public:
     virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
+    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                      unsigned int width, unsigned int height);
     virtual QString getName();
     virtual QString getIdentifier();
     virtual void printPostMessages();
@@ -45,16 +47,19 @@ public:
 protected:
     int openUInputHandle();
     void setKeyboardEvents(int filehandle);
-    void setMouseEvents(int filehandle);
+    void setRelMouseEvents(int filehandle);
+    void setSpringMouseEvents(int filehandle);
     void populateKeyCodes(int filehandle);
     void createUInputKeyboardDevice(int filehandle);
     void createUInputMouseDevice(int filehandle);
+    void createUInputSpringMouseDevice(int filehandle);
     void closeUInputDevice(int filehandle);
     void write_uinput_event(int filehandle, unsigned int type,
                             unsigned int code, int value, bool syn=true);
 
     int keyboardFileHandler;
     int mouseFileHandler;
+    int springMouseFileHandler;
     QString uinputDeviceLocation;
 
 signals:

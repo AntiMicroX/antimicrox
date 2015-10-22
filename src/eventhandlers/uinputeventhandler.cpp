@@ -19,6 +19,7 @@
 #include <fcntl.h>
 #include <linux/input.h>
 #include <linux/uinput.h>
+#include <cmath>
 
 //#include <QDebug>
 #include <QStringList>
@@ -31,6 +32,7 @@
 
 static const QString mouseDeviceName = PadderCommon::mouseDeviceName;
 static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
+static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName;
 
 #ifdef WITH_X11
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -47,6 +49,7 @@ UInputEventHandler::UInputEventHandler(QObject *parent) :
 {
     keyboardFileHandler = 0;
     mouseFileHandler = 0;
+    springMouseFileHandler = 0;
 }
 
 UInputEventHandler::~UInputEventHandler()
@@ -79,12 +82,27 @@ bool UInputEventHandler::init()
 
     if (result)
     {
-        // Open mouse file handle to use for mouse emulation.
+        // Open mouse file handle to use for relative mouse emulation.
         mouseFileHandler = openUInputHandle();
         if (mouseFileHandler > 0)
         {
-            setMouseEvents(mouseFileHandler);
+            setRelMouseEvents(mouseFileHandler);
             createUInputMouseDevice(mouseFileHandler);
+        }
+        else
+        {
+            result = false;
+        }
+    }
+
+    if (result)
+    {
+        // Open mouse file handle to use for absolute mouse emulation.
+        springMouseFileHandler = openUInputHandle();
+        if (springMouseFileHandler > 0)
+        {
+            setSpringMouseEvents(springMouseFileHandler);
+            createUInputSpringMouseDevice(springMouseFileHandler);
         }
         else
         {
@@ -134,6 +152,12 @@ bool UInputEventHandler::cleanup()
     {
         closeUInputDevice(mouseFileHandler);
         mouseFileHandler = 0;
+    }
+
+    if (springMouseFileHandler > 0)
+    {
+        closeUInputDevice(springMouseFileHandler);
+        springMouseFileHandler = 0;
     }
 
     return true;
@@ -227,10 +251,25 @@ void UInputEventHandler::sendMouseEvent(int xDis, int yDis)
     write_uinput_event(mouseFileHandler, EV_REL, REL_Y, yDis);
 }
 
+void UInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                              unsigned int width, unsigned int height)
+{
+    if (width > 0 && height > 0)
+    {
+        double midwidth = static_cast<double>(width) / 2.0;
+        double midheight = static_cast<double>(height) / 2.0;
+
+        int fx = ceil(32767 * ((xDis - midwidth) / midwidth));
+        int fy = ceil(32767 * ((yDis - midheight) / midheight));
+
+        write_uinput_event(springMouseFileHandler, EV_ABS, ABS_X, fx, false);
+        write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, fy);
+    }
+}
+
 int UInputEventHandler::openUInputHandle()
 {
     int filehandle = -1;
-    //QTextStream err(stderr);
 
     QStringList locations;
     locations.append("/dev/input/uinput");
@@ -255,9 +294,6 @@ int UInputEventHandler::openUInputHandle()
         lastErrorString = tr("Could not find a valid uinput device file.\n"
                              "Please check that you have the uinput module loaded.\n"
                              "lsmod | grep uinput");
-        //Logger::LogError(lastErrorString);
-        //Logger::LogError("");
-        //err << lastErrorString << endl << endl;
     }
     else
     {
@@ -268,9 +304,6 @@ int UInputEventHandler::openUInputHandle()
             lastErrorString = tr("Could not open uinput device file\n"
                                  "Please check that you have permission to write to the device");
             lastErrorString.append("\n").append(possibleLocation);
-            //Logger::LogError(lastErrorString);
-            //Logger::LogError("");
-            //err << lastErrorString << endl << endl;
         }
         else
         {
@@ -289,7 +322,7 @@ void UInputEventHandler::setKeyboardEvents(int filehandle)
     result = ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
 }
 
-void UInputEventHandler::setMouseEvents(int filehandle)
+void UInputEventHandler::setRelMouseEvents(int filehandle)
 {
     int result = 0;
     result = ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
@@ -306,6 +339,27 @@ void UInputEventHandler::setMouseEvents(int filehandle)
     result = ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
     result = ioctl(filehandle, UI_SET_KEYBIT, BTN_SIDE);
     result = ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
+}
+
+void UInputEventHandler::setSpringMouseEvents(int filehandle)
+{
+    int result = 0;
+    result = ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
+    result = ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
+
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_LEFT);
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_RIGHT);
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_SIDE);
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
+
+    result = ioctl(filehandle, UI_SET_EVBIT, EV_ABS);
+    result = ioctl(filehandle, UI_SET_ABSBIT, ABS_X);
+    result = ioctl(filehandle, UI_SET_ABSBIT, ABS_Y);
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_TOUCH);
+    // BTN_TOOL_PEN is required for the mouse to be seen as an
+    // absolute mouse as opposed to a relative mouse.
+    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_TOOL_PEN);
 }
 
 void UInputEventHandler::populateKeyCodes(int filehandle)
@@ -345,6 +399,31 @@ void UInputEventHandler::createUInputMouseDevice(int filehandle)
     uidev.id.vendor  = 0x0;
     uidev.id.product = 0x0;
     uidev.id.version = 1;
+
+    int result = 0;
+    result = write(filehandle, &uidev, sizeof(uidev));
+    result = ioctl(filehandle, UI_DEV_CREATE);
+}
+
+void UInputEventHandler::createUInputSpringMouseDevice(int filehandle)
+{
+    struct uinput_user_dev uidev;
+
+    memset(&uidev, 0, sizeof(uidev));
+    QByteArray temp = springMouseDeviceName.toUtf8();
+    strncpy(uidev.name, temp.constData(), UINPUT_MAX_NAME_SIZE);
+    uidev.id.bustype = BUS_USB;
+    uidev.id.vendor  = 0x0;
+    uidev.id.product = 0x0;
+    uidev.id.version = 1;
+
+    uidev.absmin[ABS_X] = -32767;
+    uidev.absmax[ABS_X] = 32767;
+    uidev.absflat[ABS_X] = 0;
+
+    uidev.absmin[ABS_Y] = -32767;
+    uidev.absmax[ABS_Y] = 32767;
+    uidev.absflat[ABS_Y] = 0;
 
     int result = 0;
     result = write(filehandle, &uidev, sizeof(uidev));
@@ -411,7 +490,6 @@ void UInputEventHandler::printPostMessages()
     if (!uinputDeviceLocation.isEmpty())
     {
         Logger::LogInfo(tr("Using uinput device file %1").arg(uinputDeviceLocation));
-        //out << tr("Using uinput device file %1").arg(uinputDeviceLocation) << endl;
     }
 }
 

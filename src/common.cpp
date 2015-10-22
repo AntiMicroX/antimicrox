@@ -154,4 +154,8 @@ namespace PadderCommon
     QReadWriteLock editingLock;
     bool editingBindings = false;
     MouseHelper mouseHelperObj;
+
+    QString mouseDeviceName("antimicro Mouse Emulation");
+    QString keyboardDeviceName("antimicro Keyboard Emulation");
+    QString springMouseDeviceName("antimicro Abs Mouse Emulation");
 }
