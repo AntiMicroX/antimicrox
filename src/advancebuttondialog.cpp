@@ -22,6 +22,7 @@
 #include <QToolButton>
 #include <QHBoxLayout>
 #include <QDoubleSpinBox>
+#include <QLineEdit>
 #include <cmath>
 
 #include "advancebuttondialog.h"
@@ -94,6 +95,12 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
             {
                 existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyExecute);
                 existingCode->setToolTip(buttonslot->getTextData());
+
+                if (buttonslot->getExtraData().canConvert<QString>())
+                {
+                    QString argumentsTemp = buttonslot->getExtraData().toString();
+                    existingCode->getValue()->setExtraData(argumentsTemp);
+                }
             }
         }
         else
@@ -903,12 +910,17 @@ void AdvanceButtonDialog::insertExecuteSlot()
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     QString temp = ui->execLineEdit->text();
+    QString argumentsTemp = ui->execArgumentsLineEdit->text();
     if (!temp.isEmpty())
     {
         QFileInfo tempFileInfo(temp);
         if (tempFileInfo.exists() && tempFileInfo.isExecutable())
         {
             tempbutton->setValue(temp, JoyButtonSlot::JoyExecute);
+            if (!argumentsTemp.isEmpty())
+            {
+                tempbutton->getValue()->setExtraData(QVariant(argumentsTemp));
+            }
 
             QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                       Q_ARG(JoyButtonSlot*, tempbutton->getValue()),
@@ -1013,6 +1025,7 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     {
         ui->slotTypeComboBox->setCurrentIndex(ExecuteSlot);
         ui->execLineEdit->setText(slot->getTextData());
+        ui->execArgumentsLineEdit->setText(slot->getExtraData().toString());
     }
     /*else
     {

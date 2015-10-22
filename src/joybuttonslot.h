@@ -24,6 +24,7 @@
 #include <QMetaType>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QVariant>
 
 class JoyButtonSlot : public QObject
 {
@@ -70,6 +71,9 @@ public:
     void setTextData(QString textData);
     QString getTextData();
 
+    void setExtraData(QVariant data);
+    QVariant getExtraData();
+
     bool isValidSlot();
 
     virtual void readConfig(QXmlStreamReader *xml);
@@ -88,6 +92,7 @@ protected:
     QTime easingTime;
     bool easingActive;
     QString textData;
+    QVariant extraData;
 
     static const int MAXTEXTENTRYDISPLAYLENGTH;
 

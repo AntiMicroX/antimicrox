@@ -139,6 +139,7 @@ namespace PadderCommon
 
     QString preferredProfileDir(AntiMicroSettings *settings);
     QStringList arguments(int &argc, char **argv);
+    QStringList parseArgumentsString(QString tempString);
     void reloadTranslations(QTranslator *translator,
                             QTranslator *appTranslator,
                             QString language);

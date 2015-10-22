@@ -121,7 +121,7 @@ class CommandLineUtility : public QObject
 public:
     explicit CommandLineUtility(QObject *parent = 0);
 
-    void parseArguments(QStringList& arguments);
+    void parseArguments(QStringList &arguments);
     bool isLaunchInTrayEnabled();
     bool isHelpRequested();
     bool isVersionRequested();

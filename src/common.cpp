@@ -85,6 +85,30 @@ namespace PadderCommon
         return list;
     }
 
+    QStringList parseArgumentsString(QString tempString)
+    {
+        bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
+        QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
+        QStringList finalList;
+        QStringListIterator iter(tempList);
+        while (iter.hasNext())
+        {
+            QString temp = iter.next();
+            if (inside)
+            {
+                finalList.append(temp);
+            }
+            else
+            {
+                finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+            }
+
+            inside = !inside;
+        }
+
+        return finalList;
+    }
+
     /**
      * @brief Reload main application and base Qt translation files.
      * @param Based Qt translator

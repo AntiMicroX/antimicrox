@@ -509,7 +509,7 @@
                   <string/>
                  </property>
                  <property name="text">
-                  <string>Mouse Speed Mod:</string>
+                  <string>&amp;Mouse Speed Mod:</string>
                  </property>
                  <property name="buddy">
                   <cstring>mouseSpeedModSpinBox</cstring>
@@ -688,18 +688,43 @@
             </layout>
            </widget>
            <widget class="QWidget" name="execPage">
-            <layout class="QVBoxLayout" name="verticalLayout_18">
+            <layout class="QVBoxLayout" name="verticalLayout_19">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <layout class="QVBoxLayout" name="verticalLayout_18">
                <item>
-                <widget class="QLineEdit" name="execLineEdit"/>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Executable:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="execLineEdit"/>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="execToolButton">
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
                <item>
-                <widget class="QToolButton" name="execToolButton">
-                 <property name="text">
-                  <string>...</string>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>Arguments:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="execArgumentsLineEdit"/>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>

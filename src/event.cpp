@@ -76,7 +76,16 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     else if (device == JoyButtonSlot::JoyExecute && pressed && !slot->getTextData().isEmpty())
     {
         QString execString = slot->getTextData();
-        QProcess::startDetached(execString);
+        if (slot->getExtraData().canConvert<QString>())
+        {
+            QString argumentsString = slot->getExtraData().toString();
+            QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
+            QProcess::startDetached(execString, argumentsTempList);
+        }
+        else
+        {
+            QProcess::startDetached(execString);
+        }
     }
 }
 

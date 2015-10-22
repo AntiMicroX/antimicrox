@@ -83,7 +83,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     eventGenerator = EventHandlerFactory::fallBackIdentifier();
 }
 
-void CommandLineUtility::parseArguments(QStringList& arguments)
+void CommandLineUtility::parseArguments(QStringList &arguments)
 {
     QStringListIterator iter(arguments);
     while (iter.hasNext() && !encounteredError)
