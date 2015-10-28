@@ -536,7 +536,7 @@ of the all default profile option.</source>
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1146"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1159"/>
         <source>Advanced</source>
         <translation>高级选项</translation>
     </message>
@@ -616,7 +616,7 @@ of the all default profile option.</source>
         <translation>0秒</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1515"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1528"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>在按键间插入暂停。</translation>
     </message>
@@ -627,7 +627,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="280"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1476"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1489"/>
         <source>Insert a new blank slot.</source>
         <translation>插入新动作。</translation>
     </message>
@@ -650,6 +650,11 @@ of the all default profile option.</source>
         <location filename="../../../src/advancebuttondialog.ui" line="428"/>
         <source>0m</source>
         <translation>0分</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="512"/>
+        <source>&amp;Mouse Speed Mod:</source>
+        <translation>鼠标速度更改 (&amp;M)：</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="567"/>
@@ -715,11 +720,6 @@ of the all default profile option.</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="512"/>
-        <source>Mouse Speed Mod:</source>
-        <translation>鼠标速度更改：</translation>
-    </message>
-    <message>
         <location filename="../../../src/advancebuttondialog.ui" line="528"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
         <translation>设置鼠标移动速度百分比。</translation>
@@ -735,292 +735,302 @@ of the all default profile option.</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="700"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="699"/>
+        <source>Executable:</source>
+        <translation>可执行文件：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="709"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="745"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="788"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="1015"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="720"/>
+        <source>Arguments:</source>
+        <translation>参数：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="770"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="813"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1040"/>
         <source>Enabled</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="812"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="837"/>
         <source>Mode:</source>
         <translation>模式：</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="822"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="847"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正常：以所选频率重复按下并释放按键。&lt;/p&gt;&lt;p&gt;梯度：根据轴移动幅度调整按钮被按下和释放的延迟。频率保持不变。&lt;/p&gt;&lt;p&gt;脉冲：调整每秒按钮被按下和释放的次数。按钮延迟保持不变。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="826"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="851"/>
         <source>Normal</source>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="831"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="856"/>
         <source>Gradient</source>
         <translation>梯度</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="836"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="861"/>
         <source>Pulse</source>
         <translation>脉冲</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="890"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="915"/>
         <source>Delay:</source>
         <translation>延迟：</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="915"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="940"/>
         <source>0.10s</source>
         <translation>0.10秒</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="985"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1010"/>
         <source>Rate:</source>
         <translation>频率：</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="992"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1017"/>
         <source>10.0/s</source>
         <translation>10.0/秒</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1029"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1264"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1054"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1277"/>
         <source>Disabled</source>
         <translation>禁用</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1034"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1059"/>
         <source>Select Set 1 One Way</source>
         <translation>单向选择设置1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1039"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1064"/>
         <source>Select Set 1 Two Way</source>
         <translation>双向选择设置1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1044"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1069"/>
         <source>Select Set 1 While Held</source>
         <translation>按下时选择设置1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1049"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1074"/>
         <source>Select Set 2 One Way</source>
         <translation>单向选择设置2</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1054"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1079"/>
         <source>Select Set 2 Two Way</source>
         <translation>双向选择设置2</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1059"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1084"/>
         <source>Select Set 2 While Held</source>
         <translation>按下时选择设置2</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1064"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1089"/>
         <source>Select Set 3 One Way</source>
         <translation>单向选择设置3</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1069"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1094"/>
         <source>Select Set 3 Two Way</source>
         <translation>双向选择设置3</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1074"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1099"/>
         <source>Select Set 3 While Held</source>
         <translation>按下时选择设置3</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1079"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1104"/>
         <source>Select Set 4 One Way</source>
         <translation>单向选择设置4</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1084"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1109"/>
         <source>Select Set 4 Two Way</source>
         <translation>双向选择设置4</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1089"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1114"/>
         <source>Select Set 4 While Held</source>
         <translation>按下时选择设置4</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1094"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1119"/>
         <source>Select Set 5 One Way</source>
         <translation>单向选择设置5</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1099"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1124"/>
         <source>Select Set 5 Two Way</source>
         <translation>双向选择设置5</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1104"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1129"/>
         <source>Select Set 5 While Held</source>
         <translation>按下时选择设置5</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1109"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1134"/>
         <source>Select Set 6 One Way</source>
         <translation>单向选择设置6</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1114"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1139"/>
         <source>Select Set 6 Two Way</source>
         <translation>双向选择设置6</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1119"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1144"/>
         <source>Select Set 6 While Held</source>
         <translation>按下时选择设置6</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1124"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1149"/>
         <source>Select Set 7 One Way</source>
         <translation>单向选择设置7</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1129"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1154"/>
         <source>Select Set 7 Two Way</source>
         <translation>双向选择设置7</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1134"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1159"/>
         <source>Select Set 7 While Held</source>
         <translation>按下时选择设置7</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1139"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1164"/>
         <source>Select Set 8 One Way</source>
         <translation>单向选择设置8</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1144"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1169"/>
         <source>Select Set 8 Two Way</source>
         <translation>双向选择设置8</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="1149"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="1174"/>
         <source>Select Set 8 While Held</source>
         <translation>按下时选择设置8</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="229"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="236"/>
         <source>sec.</source>
         <translation>秒。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="230"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="237"/>
         <source>/sec.</source>
         <translation>/秒。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1151"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1164"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1272"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1316"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1285"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1329"/>
         <source>Select Set %1</source>
         <translation>选择设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1287"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1300"/>
         <source>One Way</source>
         <translation>单向</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1290"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1303"/>
         <source>Two Way</source>
         <translation>双向</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1293"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1306"/>
         <source>While Held</source>
         <translation>按下时</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1405"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1418"/>
         <source>Choose Executable</source>
         <translation>选择可执行文件</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1480"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1493"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
         <translation>“周期”动作之后的动作将在下一次按下相同按钮的时候被执行。可以添加多个“周期”动作来创建一个按键序列中不同的子序列。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1486"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1499"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
         <translation>根据指定时长延迟下个动作开始执行的时间。延迟之前处于活动状态的动作将在延迟结束后保持活动状态。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1493"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1506"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
         <translation>“距离”动作之后的动作只有在轴移出不灵敏区并超过指定距离之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1499"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1512"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
         <translation>插入一个“按下”动作。“按下”动作之后的动作只有在按钮被按下超过指定的时长之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1504"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1517"/>
         <source>Chose a profile to load when this slot is activated.</source>
         <translation>当该动作被执行时，载入所选配置文件。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1508"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1521"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
         <translation>“鼠标变速”动作被处理时，将根据指定的百分比改变所有鼠标速度。这可以用在狙击时减缓鼠标速度。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1519"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1532"/>
         <source>Specify the time that keys past this slot should be held down.</source>
         <translation>按钮被按下超过指定的时长将保持被按下的状态。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1524"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1537"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
         <translation>插入一个“释放”动作。“释放”动作之后的动作只有在按钮被按下超过指定时长并被释放之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1530"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1543"/>
         <source>Change to selected set once slot is activated.</source>
         <translation>该动作被执行时，切换到所选的设置。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1534"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1547"/>
         <source>Full string will be typed when a slot is activated.</source>
         <translation>当该动作被执行时，整个字符串将被键入。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1539"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1552"/>
         <source>Execute program when slot is activated.</source>
         <translation>当该动作被执行时，运行一个程序。</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="670"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1374"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1387"/>
         <source>Choose Profile</source>
         <translation>选择配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1375"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1388"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>配置文件 (*.amgp *.xml)</translation>
     </message>
@@ -2430,32 +2440,32 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <translation>按钮#%1-%2距离改变</translation>
     </message>
     <message>
+        <location filename="../../../src/joybutton.cpp" line="2291"/>
         <location filename="../../../src/joybutton.cpp" line="2299"/>
-        <location filename="../../../src/joybutton.cpp" line="2307"/>
-        <location filename="../../../src/joybutton.cpp" line="2313"/>
+        <location filename="../../../src/joybutton.cpp" line="2305"/>
         <source>Button</source>
         <translation>按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2352"/>
-        <location filename="../../../src/joybutton.cpp" line="2529"/>
-        <location filename="../../../src/joybutton.cpp" line="2646"/>
-        <location filename="../../../src/joybutton.cpp" line="5566"/>
+        <location filename="../../../src/joybutton.cpp" line="2344"/>
+        <location filename="../../../src/joybutton.cpp" line="2521"/>
+        <location filename="../../../src/joybutton.cpp" line="2638"/>
+        <location filename="../../../src/joybutton.cpp" line="5558"/>
         <source>[NO KEY]</source>
         <translation>[无按键]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2410"/>
+        <location filename="../../../src/joybutton.cpp" line="2402"/>
         <source>[Set %1 1W]</source>
         <translation>[单向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2418"/>
+        <location filename="../../../src/joybutton.cpp" line="2410"/>
         <source>[Set %1 2W]</source>
         <translation>[双向选择设置%1]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="2427"/>
+        <location filename="../../../src/joybutton.cpp" line="2419"/>
         <source>[Set %1 WH]</source>
         <translation>[按下时选择设置%1]</translation>
     </message>
@@ -2511,118 +2521,118 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="155"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="495"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="161"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="515"/>
         <source>Mouse</source>
         <translation>鼠标</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="158"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="164"/>
         <source>Up</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="162"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="168"/>
         <source>Down</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="166"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="172"/>
         <source>Left</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="170"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="176"/>
         <source>Right</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="499"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="519"/>
         <source>LB</source>
         <translation>鼠标左键</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="502"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="522"/>
         <source>MB</source>
         <translation>鼠标中键</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="505"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="525"/>
         <source>RB</source>
         <translation>鼠标右键</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="509"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="529"/>
         <source>B4</source>
         <translation>按钮4</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="512"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="532"/>
         <source>B5</source>
         <translation>按钮5</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="530"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="550"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="546"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="566"/>
         <source>Hold</source>
         <translation>按下</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="558"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="578"/>
         <source>Cycle</source>
         <translation>周期</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="562"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="582"/>
         <source>Distance</source>
         <translation>距离</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="572"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="592"/>
         <source>Release</source>
         <translation>释放</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="585"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="605"/>
         <source>Mouse Mod</source>
         <translation>鼠标变速</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="596"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="616"/>
         <source>Press Time</source>
         <translation>按下时间</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="615"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="635"/>
         <source>Delay</source>
         <translation>延迟</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="633"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="653"/>
         <source>Load %1</source>
         <translation>载入%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="639"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="659"/>
         <source>Set Change %1</source>
         <translation>设置改变%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="649"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="669"/>
         <source>[Text] %1</source>
         <translation>[文本]%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="660"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="680"/>
         <source>[Exec] %1</source>
         <translation>[运行]%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="665"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="685"/>
         <source>[NO KEY]</source>
         <translation>[无按键]</translation>
     </message>
@@ -4989,7 +4999,7 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>UInputEventHandler</name>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="255"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="294"/>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
@@ -4998,14 +5008,14 @@ lsmod | grep uinput</source>
 lsmod | grep uinput</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="268"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="304"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation>无法打开 uinput 设备文件
 请确认您有写入该设备的权限</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="413"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="492"/>
         <source>Using uinput device file %1</source>
         <translation>使用 uinput 设备文件%1</translation>
     </message>
