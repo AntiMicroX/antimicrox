@@ -155,6 +155,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         aboutDialog = 0;
     }
 
+    connect(ui->menuQuit, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
     connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -658,17 +659,25 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::mainMenuChange()
 {
-    if (QSystemTrayIcon::isSystemTrayAvailable())
+    QMenu *tempMenu = static_cast<QMenu*>(sender());
+
+    if (tempMenu == ui->menuQuit)
     {
-        ui->actionHide->setEnabled(true);
-    }
-    else
-    {
-        ui->actionHide->setEnabled(false);
+        if (showTrayIcon)
+        {
+            ui->actionHide->setEnabled(true);
+        }
+        else
+        {
+            ui->actionHide->setEnabled(false);
+        }
     }
 
 #ifndef USE_SDL_2
-    ui->actionGameController_Mapping->setVisible(false);
+    if (tempMenu == ui->menuOptions)
+    {
+        ui->actionGameController_Mapping->setVisible(false);
+    }
 #endif
 }
 
@@ -903,6 +912,8 @@ void MainWindow::joystickTrayShow()
 
 void MainWindow::showEvent(QShowEvent *event)
 {
+    bool propogate = true;
+
     // Check if hideEvent has been processed
     if (signalDisconnect && isVisible())
     {
@@ -911,7 +922,7 @@ void MainWindow::showEvent(QShowEvent *event)
         signalDisconnect = false;
 
         // Only needed if hidden with the system tray enabled
-        if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
+        if (showTrayIcon)
         {
             if (isMinimized())
             {
@@ -930,7 +941,10 @@ void MainWindow::showEvent(QShowEvent *event)
         }
     }
 
-    QMainWindow::showEvent(event);
+    if (propogate)
+    {
+        QMainWindow::showEvent(event);
+    }
 }
 
 void MainWindow::changeEvent(QEvent *event)
