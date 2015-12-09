@@ -62,7 +62,7 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValue
     pendingEvent = false;
     pendingValue = 0;
     pendingIgnoreSets = false;
-    pendingUpdateLastValues = true;
+    //pendingUpdateLastValues = true;
 
     if (this->stick)
     {
@@ -73,7 +73,7 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValue
         pendingEvent = true;
         pendingValue = value;
         pendingIgnoreSets = ignoresets;
-        pendingUpdateLastValues = updateLastValues;
+        //pendingUpdateLastValues = updateLastValues;
     }
 }
 
@@ -81,12 +81,12 @@ void JoyAxis::activatePendingEvent()
 {
     if (pendingEvent)
     {
-        joyEvent(pendingValue, pendingUpdateLastValues);
+        joyEvent(pendingValue, pendingIgnoreSets);
 
         pendingEvent = false;
         pendingValue = false;
         pendingIgnoreSets = false;
-        pendingUpdateLastValues = true;
+        //pendingUpdateLastValues = true;
     }
 }
 
@@ -595,7 +595,7 @@ void JoyAxis::reset()
     pendingEvent = false;
     pendingValue = currentRawValue;
     pendingIgnoreSets = false;
-    pendingUpdateLastValues = true;
+    //pendingUpdateLastValues = true;
 }
 
 void JoyAxis::reset(int index)

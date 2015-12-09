@@ -187,7 +187,8 @@ protected:
     int pendingValue;
     bool pendingEvent;
     bool pendingIgnoreSets;
-    bool pendingUpdateLastValues;
+    // TODO: CHECK IF PROPERTY IS NEEDED.
+    //bool pendingUpdateLastValues;
 
 signals:
     void active(int value);
