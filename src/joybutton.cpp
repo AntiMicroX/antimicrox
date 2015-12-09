@@ -1336,7 +1336,7 @@ void JoyButton::mouseEvent()
                         if ((getAccelerationDistance() - startingAccelerationDistance >= 0) != (getAccelerationDistance() >= 0))
                         {
                             // Travelling towards dead zone. Decrease acceleration and duration.
-                            intermediateTravel = intermediateTravel - fabs(getAccelerationDistance() - startingAccelerationDistance);
+                            intermediateTravel = qMax(intermediateTravel - fabs(getAccelerationDistance() - startingAccelerationDistance), mintravel);
                         }
 
                         // Linear case
