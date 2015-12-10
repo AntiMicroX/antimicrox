@@ -56,7 +56,6 @@
 #include "localantimicroserver.h"
 #include "antimicrosettings.h"
 #include "applaunchhelper.h"
-#include "firstrunwizard/firstrunwizard.h"
 
 #include "eventhandlerfactory.h"
 
@@ -690,9 +689,7 @@ int main(int argc, char *argv[])
     InputDaemon *joypad_worker = new InputDaemon(joysticks, settings);
     inputEventThread = new QThread();
 
-
     MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
-    FirstRunWizard *runWillard = 0;
 
     w->setAppTranslator(&qtTranslator);
     w->setTranslator(&myappTranslator);
@@ -743,25 +740,10 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    // Do not check if wizard should display if profile has been specified
-    // or if main window is set to hidden.
-    if (!cmdutility.hasProfile() && !cmdutility.hasProfileInOptions() &&
-        w->getGraphicalStatus() && FirstRunWizard::shouldDisplay(settings))
-    {
-        runWillard = new FirstRunWizard(settings, &qtTranslator, &myappTranslator);
-        QObject::connect(runWillard, SIGNAL(finished(int)), &mainAppHelper, SLOT(initRunMethods()));
-        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(fillButtons()));
-        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(alterConfigFromSettings()));
-        QObject::connect(runWillard, SIGNAL(finished(int)), w, SLOT(changeWindowStatus()));
-        runWillard->show();
-    }
-    else
-    {
-        mainAppHelper.initRunMethods();
-        QTimer::singleShot(0, w, SLOT(fillButtons()));
-        QTimer::singleShot(0, w, SLOT(alterConfigFromSettings()));
-        QTimer::singleShot(0, w, SLOT(changeWindowStatus()));
-    }
+    mainAppHelper.initRunMethods();
+    QTimer::singleShot(0, w, SLOT(fillButtons()));
+    QTimer::singleShot(0, w, SLOT(alterConfigFromSettings()));
+    QTimer::singleShot(0, w, SLOT(changeWindowStatus()));
 
     mainAppHelper.changeMouseThread(inputEventThread);
 
