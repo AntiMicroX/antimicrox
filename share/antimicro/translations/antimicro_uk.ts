@@ -1044,29 +1044,6 @@ of the all default profile option.</source>
     </message>
 </context>
 <context>
-    <name>AssociateProfilesPage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="12"/>
-        <source>Associate Profiles</source>
-        <translation type="unfinished">Прив&apos;язати профілі</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="13"/>
-        <source>Associate .amgp files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="16"/>
-        <source>Would you like to associate antimicro with .amgp files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="18"/>
-        <source>Associate</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AxisEditDialog</name>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="32"/>
@@ -1858,27 +1835,6 @@ to a diagonal zone.</source>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="58"/>
         <source>s</source>
         <translation>с</translation>
-    </message>
-</context>
-<context>
-    <name>FirstRunWelcomePage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/firstrunwelcomepage.cpp" line="28"/>
-        <source>Welcome</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/firstrunwelcomepage.cpp" line="32"/>
-        <source>Thank you for checking out antimicro. This wizard can be used to customize some of the program&apos;s behavior. More settings can be found from the main interface under Options &gt; Settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FirstRunWizard</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/firstrunwizard.cpp" line="39"/>
-        <source>App Settings Wizard</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3269,74 +3225,6 @@ to buttons or disable hiding empty buttons.</source>
     </message>
 </context>
 <context>
-    <name>LanguageSelectionPage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="39"/>
-        <source>Language</source>
-        <translation type="unfinished">Мова</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="40"/>
-        <source>Select a language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="45"/>
-        <source>antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="57"/>
-        <source>Default</source>
-        <translation type="unfinished">Типова</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="58"/>
-        <source>Brazilian Portuguese</source>
-        <translation type="unfinished">Brazilian Portuguese</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="59"/>
-        <source>English</source>
-        <translation type="unfinished">English</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="60"/>
-        <source>French</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="61"/>
-        <source>German</source>
-        <translation type="unfinished">German</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="62"/>
-        <source>Japanese</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="63"/>
-        <source>Russian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="64"/>
-        <source>Serbian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="65"/>
-        <source>Simplified Chinese</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="66"/>
-        <source>Ukrainian</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainSettingsDialog</name>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="23"/>
@@ -4426,62 +4314,6 @@ mouse position set by a non-relative spring.</source>
             <numerusform>%n кроки/с</numerusform>
             <numerusform>%n кроків/с</numerusform>
         </translation>
-    </message>
-</context>
-<context>
-    <name>MouseSettingsPage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="37"/>
-        <source>Mouse Settings</source>
-        <translation type="unfinished">Параметри мишки</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="38"/>
-        <source>Customize settings used for mouse emulation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="43"/>
-        <source>Disable Enhance Pointer Precision</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="44"/>
-        <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicro to be more
-precise.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="53"/>
-        <source>Smoothing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="63"/>
-        <source>History Buffer:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="76"/>
-        <source>Weight Modifier:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="92"/>
-        <source>Refresh Rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="106"/>
-        <source>The refresh rate is the amount of time that will elapse
-in between mouse events. Please be cautious when
-editing this setting as it will cause the program to use
-more CPU power. Setting this value too low can cause
-system instability. Please test the setting before using
-it unattended.</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
