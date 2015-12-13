@@ -394,22 +394,22 @@ of the all default profile option.</source>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1146"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細設定</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="71"/>
         <source>Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>割り当て</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="76"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>トグル</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>連射</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="86"/>
@@ -449,7 +449,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="298"/>
         <source>Delete</source>
-        <translation type="unfinished">削除</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="313"/>
@@ -464,12 +464,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="413"/>
         <source>0.01s</source>
-        <translation type="unfinished">0.01s</translation>
+        <translation>0.01 秒</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="485"/>
         <source>0s</source>
-        <translation type="unfinished">0s</translation>
+        <translation>0 秒</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1515"/>
@@ -505,7 +505,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="428"/>
         <source>0m</source>
-        <translation type="unfinished">0m</translation>
+        <translation>0 分</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="567"/>
@@ -600,7 +600,7 @@ of the all default profile option.</source>
         <location filename="../../../src/advancebuttondialog.ui" line="788"/>
         <location filename="../../../src/advancebuttondialog.ui" line="1015"/>
         <source>Enabled</source>
-        <translation type="unfinished">有効</translation>
+        <translation>有効</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="812"/>
@@ -635,7 +635,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="915"/>
         <source>0.10s</source>
-        <translation type="unfinished">0.10s</translation>
+        <translation>0.10 秒</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="985"/>
@@ -786,7 +786,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1151"/>
         <source>Set %1</source>
-        <translation type="unfinished">セット %1</translation>
+        <translation>セット %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1272"/>
@@ -966,7 +966,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished">注: このウィンドウは、バージョン 2.0 より前の antimicro で作成したプロファイルとの後方互換性を確保するために使用します。バージョン 2.0 以降では「ゲームコントローラーマッピング」ウィンドウの使用を推奨します。</translation>
+        <translation>注: このウィンドウは、バージョン 2.0 より前の antimicro で作成したプロファイルとの後方互換性を確保するために使用します。バージョン 2.0 以降では「ゲームコントローラーマッピング」ウィンドウの使用を推奨します。</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="477"/>
@@ -1156,7 +1156,7 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="475"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名前:</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="485"/>
@@ -1166,7 +1166,7 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="494"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">マウスの設定</translation>
+        <translation>マウスの設定</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="209"/>
@@ -1193,7 +1193,7 @@ worn out analog stick.</source>
         <location filename="../../../src/axiseditdialog.ui" line="338"/>
         <location filename="../../../src/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[割り当てなし]</translation>
+        <translation>[割り当てなし]</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="345"/>
@@ -1252,7 +1252,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="44"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished"></translation>
+        <translation>割り当てを新規作成するには、キーボードのキーを押すか、「キーボード」あるいは「マウス」タブのいずれかのボタンをクリックしてください</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="70"/>
@@ -1262,7 +1262,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="99"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>トグル</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="96"/>
@@ -1277,12 +1277,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>連射</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="160"/>
         <source>Current:</source>
-        <translation type="unfinished"></translation>
+        <translation>現在の割り当て:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="167"/>
@@ -1292,7 +1292,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="197"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished"></translation>
+        <translation>名前(&amp;M):</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="207"/>
@@ -1302,7 +1302,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="224"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>アクション:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="234"/>
@@ -1313,7 +1313,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="261"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細設定</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="434"/>
@@ -1658,7 +1658,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="149"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">マウスの設定</translation>
+        <translation>マウスの設定</translation>
     </message>
 </context>
 <context>
@@ -2291,7 +2291,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybutton.cpp" line="2646"/>
         <location filename="../../../src/joybutton.cpp" line="5565"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[割り当てなし]</translation>
+        <translation>[割り当てなし]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="2410"/>
@@ -2473,7 +2473,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="665"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[割り当てなし]</translation>
+        <translation>[割り当てなし]</translation>
     </message>
 </context>
 <context>
@@ -2493,28 +2493,28 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="69"/>
         <source>Up</source>
-        <translation type="unfinished">↑</translation>
+        <translation>↑</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="49"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <source>Down</source>
-        <translation type="unfinished">↓</translation>
+        <translation>↓</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="53"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <source>Left</source>
-        <translation type="unfinished">←</translation>
+        <translation>←</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="69"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <source>Right</source>
-        <translation type="unfinished">→</translation>
+        <translation>→</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="89"/>
@@ -2589,7 +2589,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="146"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">マウスの設定</translation>
+        <translation>マウスの設定</translation>
     </message>
 </context>
 <context>
@@ -2856,28 +2856,28 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="53"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="61"/>
         <source>Up</source>
-        <translation type="unfinished">↑</translation>
+        <translation>↑</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="41"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="65"/>
         <source>Down</source>
-        <translation type="unfinished">↓</translation>
+        <translation>↓</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="45"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="53"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="57"/>
         <source>Left</source>
-        <translation type="unfinished">←</translation>
+        <translation>←</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="49"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="65"/>
         <source>Right</source>
-        <translation type="unfinished">→</translation>
+        <translation>→</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="88"/>
@@ -3177,7 +3177,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="64"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名前:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="71"/>
@@ -3271,7 +3271,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="40"/>
         <source>Select a language</source>
-        <translation type="unfinished"></translation>
+        <translation>言語を選択</translation>
     </message>
     <message>
         <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="45"/>
@@ -3306,7 +3306,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="62"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation>日本語</translation>
     </message>
     <message>
         <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="63"/>
@@ -3339,7 +3339,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="62"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>全般</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="67"/>
@@ -3480,7 +3480,7 @@ first launches.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="296"/>
         <source>Associate Profiles</source>
-        <translation type="unfinished">プロファイルを関連付け</translation>
+        <translation>プロファイルを関連付け</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="322"/>
@@ -3718,7 +3718,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="1888"/>
         <source>Default</source>
-        <translation type="unfinished">デフォルト</translation>
+        <translation>デフォルト</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="602"/>
@@ -4034,7 +4034,7 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="27"/>
         <source>Mouse Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>マウスモード:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="34"/>
@@ -4063,7 +4063,7 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="75"/>
         <source>Acceleration:</source>
-        <translation type="unfinished"></translation>
+        <translation>加速:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="108"/>
@@ -4126,7 +4126,7 @@ boxes at the same time.</source>
         <location filename="../../../src/mousesettingsdialog.ui" line="219"/>
         <source>Horizontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>水平速度:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="248"/>
@@ -4138,7 +4138,7 @@ Speed:</source>
         <location filename="../../../src/mousesettingsdialog.ui" line="267"/>
         <source>Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直速度:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="322"/>
@@ -4195,7 +4195,7 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="559"/>
         <source>x</source>
-        <translation type="unfinished">x</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="579"/>
@@ -4323,7 +4323,7 @@ Speed:</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="414"/>
         <source>Sensitivity:</source>
-        <translation type="unfinished"></translation>
+        <translation>感度:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="469"/>
@@ -5199,22 +5199,22 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
         <source>Up</source>
-        <translation type="unfinished">↑</translation>
+        <translation>↑</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="233"/>
         <source>Left</source>
-        <translation type="unfinished">←</translation>
+        <translation>←</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="234"/>
         <source>Down</source>
-        <translation type="unfinished">↓</translation>
+        <translation>↓</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="235"/>
         <source>Right</source>
-        <translation type="unfinished">→</translation>
+        <translation>→</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
@@ -5447,7 +5447,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="128"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>スペース</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="129"/>
@@ -5687,22 +5687,22 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="179"/>
         <source>Up</source>
-        <translation type="unfinished">↑</translation>
+        <translation>↑</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="180"/>
         <source>Down</source>
-        <translation type="unfinished">↓</translation>
+        <translation>↓</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="181"/>
         <source>Left</source>
-        <translation type="unfinished">←</translation>
+        <translation>←</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="182"/>
         <source>Right</source>
-        <translation type="unfinished">→</translation>
+        <translation>→</translation>
     </message>
 </context>
 <context>
@@ -5728,13 +5728,13 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="326"/>
         <source>Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">←</translation>
+        <translation>←</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="337"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">↑</translation>
+        <translation>↑</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="345"/>
@@ -5782,77 +5782,77 @@ R</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="378"/>
         <source>Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">↓</translation>
+        <translation>↓</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="394"/>
         <source>Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">→</translation>
+        <translation>→</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="406"/>
         <source>Button 4</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>ボタン 4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="408"/>
         <source>Mouse 8</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>マウス 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="414"/>
         <source>Button 5</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>ボタン 5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="416"/>
         <source>Mouse 9</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>マウス 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="513"/>
         <source>NONE</source>
-        <translation type="unfinished"></translation>
+        <translation>割り当てなし</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="738"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーション</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="744"/>
         <source>Browser Back</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: 戻る</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="749"/>
         <source>Browser Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: お気に入り</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="754"/>
         <source>Browser Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: 進む</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="759"/>
         <source>Browser Home</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: ホーム</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="764"/>
         <source>Browser Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: 更新</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="769"/>
         <source>Browser Search</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: 検索</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="774"/>
@@ -5867,52 +5867,52 @@ R</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="784"/>
         <source>Email</source>
-        <translation type="unfinished"></translation>
+        <translation>Eメール</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="789"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>メディア</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="794"/>
         <source>Media Next</source>
-        <translation type="unfinished"></translation>
+        <translation>メディア: 次へ</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="799"/>
         <source>Media Play</source>
-        <translation type="unfinished"></translation>
+        <translation>メディア: 再生</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="804"/>
         <source>Media Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>メディア: 前へ</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="809"/>
         <source>Media Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>メディア: 停止</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="814"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>検索</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="819"/>
         <source>Volume Down</source>
-        <translation type="unfinished"></translation>
+        <translation>音量: 下げる</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="824"/>
         <source>Volume Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>音量: ミュート</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="829"/>
         <source>Volume Up</source>
-        <translation type="unfinished"></translation>
+        <translation>音量: 上げる</translation>
     </message>
 </context>
 <context>
@@ -5957,7 +5957,7 @@ R</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="50"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[割り当てなし]</translation>
+        <translation>[割り当てなし]</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="313"/>
@@ -5980,7 +5980,7 @@ R</source>
     <message>
         <location filename="../../../src/x11extras.cpp" line="200"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>スペース</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="201"/>
