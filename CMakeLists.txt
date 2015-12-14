@@ -192,10 +192,6 @@ set(antimicro_SOURCES src/main.cpp
     src/inputdevicebitarraystatus.cpp
     src/applaunchhelper.cpp
     src/slotitemlistwidget.cpp
-    src/firstrunwizard/firstrunwizard.cpp
-    src/firstrunwizard/mousesettingspage.cpp
-    src/firstrunwizard/firstrunwelcomepage.cpp
-    src/firstrunwizard/languageselectionpage.cpp
     src/eventhandlers/baseeventhandler.cpp
     src/eventhandlerfactory.cpp
     src/uihelpers/advancebuttondialoghelper.cpp
@@ -290,10 +286,6 @@ set(antimicro_HEADERS src/mainwindow.h
     src/inputdevicebitarraystatus.h
     src/applaunchhelper.h
     src/slotitemlistwidget.h
-    src/firstrunwizard/firstrunwizard.h
-    src/firstrunwizard/mousesettingspage.h
-    src/firstrunwizard/firstrunwelcomepage.h
-    src/firstrunwizard/languageselectionpage.h
     src/eventhandlers/baseeventhandler.h
     src/eventhandlerfactory.h
     src/uihelpers/advancebuttondialoghelper.h
@@ -392,7 +384,6 @@ elseif(WIN32)
          src/winappprofiletimerdialog.cpp
          src/autoprofilewatcher.cpp
          src/capturedwindowinfodialog.cpp
-         src/firstrunwizard/associateprofilespage.cpp
          src/eventhandlers/winsendinputeventhandler.cpp
          src/joykeyrepeathelper.cpp
     )
@@ -401,7 +392,6 @@ elseif(WIN32)
         src/winappprofiletimerdialog.h
         src/autoprofilewatcher.h
         src/capturedwindowinfodialog.h
-        src/firstrunwizard/associateprofilespage.h
         src/eventhandlers/winsendinputeventhandler.h
         src/joykeyrepeathelper.h
     )

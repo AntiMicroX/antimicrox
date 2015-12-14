@@ -1194,29 +1194,6 @@ of the all default profile option.</source>
     </message>
 </context>
 <context>
-    <name>AssociateProfilesPage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="12"/>
-        <source>Associate Profiles</source>
-        <translation>关联配置文件</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="13"/>
-        <source>Associate .amgp files</source>
-        <translation>关联 .amgp 文件</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="16"/>
-        <source>Would you like to associate antimicro with .amgp files?</source>
-        <translation>您想让 antimicro 关联 .amgp 文件吗？</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/associateprofilespage.cpp" line="18"/>
-        <source>Associate</source>
-        <translation>关联</translation>
-    </message>
-</context>
-<context>
     <name>AxisEditDialog</name>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="32"/>
@@ -2011,27 +1988,6 @@ to a diagonal zone.</source>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="58"/>
         <source>s</source>
         <translation>秒</translation>
-    </message>
-</context>
-<context>
-    <name>FirstRunWelcomePage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/firstrunwelcomepage.cpp" line="28"/>
-        <source>Welcome</source>
-        <translation>欢迎</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/firstrunwelcomepage.cpp" line="32"/>
-        <source>Thank you for checking out antimicro. This wizard can be used to customize some of the program&apos;s behavior. More settings can be found from the main interface under Options &gt; Settings.</source>
-        <translation>感谢您使用 antimicro。您可以使用此向导自定义本程序的一些行为。更多选项请在主界面上点击“选项”&gt;“设置”。</translation>
-    </message>
-</context>
-<context>
-    <name>FirstRunWizard</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/firstrunwizard.cpp" line="39"/>
-        <source>App Settings Wizard</source>
-        <translation>程序设置向导</translation>
     </message>
 </context>
 <context>
@@ -3427,74 +3383,6 @@ to buttons or disable hiding empty buttons.</source>
     </message>
 </context>
 <context>
-    <name>LanguageSelectionPage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="39"/>
-        <source>Language</source>
-        <translation>语言</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="40"/>
-        <source>Select a language</source>
-        <translation>选择语言</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="45"/>
-        <source>antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.</source>
-        <translation>antimicro 已被贡献者翻译为多种语言。默认情况下，本程序将根据您系统的区域设置选择相应的语言。然而，您也可以让 antimicro 加载以下列表中的任意语言。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="57"/>
-        <source>Default</source>
-        <translation>默认</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="58"/>
-        <source>Brazilian Portuguese</source>
-        <translation>巴西葡萄牙语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="59"/>
-        <source>English</source>
-        <translation>英语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="60"/>
-        <source>French</source>
-        <translation>法语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="61"/>
-        <source>German</source>
-        <translation>德语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="62"/>
-        <source>Japanese</source>
-        <translation>日语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="63"/>
-        <source>Russian</source>
-        <translation>俄语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="64"/>
-        <source>Serbian</source>
-        <translation>塞尔维亚语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="65"/>
-        <source>Simplified Chinese</source>
-        <translation>简体中文</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/languageselectionpage.cpp" line="66"/>
-        <source>Ukrainian</source>
-        <translation>乌克兰语</translation>
-    </message>
-</context>
-<context>
     <name>MainSettingsDialog</name>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="23"/>
@@ -4586,64 +4474,6 @@ of your screen.</source>
         <translation>
             <numerusform>%n凹槽/秒</numerusform>
         </translation>
-    </message>
-</context>
-<context>
-    <name>MouseSettingsPage</name>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="37"/>
-        <source>Mouse Settings</source>
-        <translation>鼠标设置</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="38"/>
-        <source>Customize settings used for mouse emulation</source>
-        <translation>自定义鼠标模拟设置</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="43"/>
-        <source>Disable Enhance Pointer Precision</source>
-        <translation>禁用提高指针精确度</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="44"/>
-        <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicro to be more
-precise.</source>
-        <translation>在 antimicro 运行时禁用 Windows “提高指针精确度”设置。
-禁用“提高指针精确度”可使鼠标在开启 antimicro 的情况下移动更精准。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="53"/>
-        <source>Smoothing</source>
-        <translation>平滑</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="63"/>
-        <source>History Buffer:</source>
-        <translation>历史缓冲：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="76"/>
-        <source>Weight Modifier:</source>
-        <translation>权重修饰因数：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="92"/>
-        <source>Refresh Rate:</source>
-        <translation>刷新率：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/firstrunwizard/mousesettingspage.cpp" line="106"/>
-        <source>The refresh rate is the amount of time that will elapse
-in between mouse events. Please be cautious when
-editing this setting as it will cause the program to use
-more CPU power. Setting this value too low can cause
-system instability. Please test the setting before using
-it unattended.</source>
-        <translation>刷新率是鼠标事件之间间隔的时间。请小心修改此选项，因为它可能会使本程序使用更多的处理器资源。
-此选项的值过低可能会导致系统不稳定。请在以无人值守方式使用前测试此选项。</translation>
     </message>
 </context>
 <context>
