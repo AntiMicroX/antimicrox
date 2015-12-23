@@ -586,11 +586,14 @@ void JoyTabWidget::saveConfigFile()
 {
     int index = configBox->currentIndex();
 
+    settings->getLock()->lock();
+
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
+        settings->getLock()->unlock();
         QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
@@ -607,6 +610,7 @@ void JoyTabWidget::saveConfigFile()
     }
     else
     {
+        settings->getLock()->unlock();
         filename = configBox->itemData(index).toString();
     }
 
@@ -765,11 +769,15 @@ void JoyTabWidget::saveAsConfig()
 {
     int index = configBox->currentIndex();
 
+    settings->getLock()->lock();
+
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString filename;
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
+        settings->getLock()->unlock();
+
         QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
@@ -778,6 +786,8 @@ void JoyTabWidget::saveAsConfig()
     }
     else
     {
+        settings->getLock()->unlock();
+
         QString configPath = configBox->itemData(index).toString();
         QFileInfo temp(configPath);
         QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
