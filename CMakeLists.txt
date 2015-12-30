@@ -570,12 +570,12 @@ endif(UNIX)
 
 if(UNIX)
     if(WITH_X11)
-        LIST(APPEND LIBS X11)
-        LIST(APPEND LIBS Xi)
+        LIST(APPEND LIBS ${X11_X11_LIB})
+        LIST(APPEND LIBS ${X11_Xi_LIB})
     endif(WITH_X11)
 
     if(WITH_XTEST)
-        LIST(APPEND LIBS Xtst)
+        LIST(APPEND LIBS ${X11_XTest_LIB})
     endif(WITH_XTEST)
 
     if(USE_SDL_2)
