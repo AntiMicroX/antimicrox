@@ -608,7 +608,7 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(updateJoy);
     trayIconMenu->addAction(closeAction);
 
-    QIcon icon = QIcon(":/images/antimicro_trayicon.png");
+    QIcon icon = QIcon::fromTheme("antimicro", QIcon(":/images/antimicro_trayicon.png"));
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 }
