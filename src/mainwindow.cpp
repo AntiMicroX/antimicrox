@@ -141,8 +141,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         setEnabled(false);
     }
 
-    //fillButtons(joysticks);
-
     resize(settings->value("WindowSize", size()).toSize());
     move(settings->value("WindowPosition", pos()).toPoint());
 
@@ -166,7 +164,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
 #ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
-    //connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(updateMenuOptions()));
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))

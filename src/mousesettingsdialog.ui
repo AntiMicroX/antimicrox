@@ -216,7 +216,7 @@ boxes at the same time.</string>
                 <item>
                  <widget class="QLabel" name="label_5">
                   <property name="text">
-                   <string>Horizontal
+                   <string>&amp;Horizontal
 Speed:</string>
                   </property>
                   <property name="buddy">
@@ -264,7 +264,7 @@ Speed:</string>
                 <item>
                  <widget class="QLabel" name="label_7">
                   <property name="text">
-                   <string>Vertical
+                   <string>&amp;Vertical
 Speed:</string>
                   </property>
                   <property name="buddy">
@@ -411,7 +411,7 @@ according to number of simulated notches per second.</string>
             <item>
              <widget class="QLabel" name="sensLabel">
               <property name="text">
-               <string>Sensitivity:</string>
+               <string>Sensitivit&amp;y:</string>
               </property>
               <property name="buddy">
                <cstring>sensitivityDoubleSpinBox</cstring>
@@ -524,7 +524,7 @@ the issues of the very limited input range available using
 typical gamepad analog sticks.</string>
          </property>
          <property name="title">
-          <string>Extra Acceleration</string>
+          <string>Delta Acceleration</string>
          </property>
          <property name="flat">
           <bool>false</bool>
@@ -543,7 +543,7 @@ typical gamepad analog sticks.</string>
               <item>
                <widget class="QLabel" name="extraAccelMultiLabel">
                 <property name="text">
-                 <string>Multiplier:</string>
+                 <string>&amp;Multiplier:</string>
                 </property>
                 <property name="buddy">
                  <cstring>extraAccelDoubleSpinBox</cstring>
@@ -680,7 +680,7 @@ Threshold:</string>
             <item>
              <widget class="QLabel" name="label_11">
               <property name="text">
-               <string>Extra Duration:</string>
+               <string>E&amp;xtra Duration:</string>
               </property>
               <property name="buddy">
                <cstring>accelExtraDurationDoubleSpinBox</cstring>
