@@ -39,7 +39,7 @@ static QString findWinSystemConfigPath()
 {
     QString temp;
     temp = (!qgetenv("LocalAppData").isEmpty()) ?
-                QString(qgetenv("LocalAppData")) + "/antimicro" :
+                QString::fromUtf8(qgetenv("LocalAppData")) + "/antimicro" :
                 QDir::homePath() + "/.antimicro";
     return temp;
 }
@@ -94,7 +94,7 @@ namespace PadderCommon
     const QString configPath = findWinSystemConfigPath();
 #else
     const QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
-                QString(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
+                QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
                 QDir::homePath() + "/.config/antimicro";
 
 #endif
