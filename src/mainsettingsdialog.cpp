@@ -33,12 +33,16 @@
 #include <QList>
 #include <QListWidget>
 
+#ifdef Q_OS_WIN
+  #include <QSysInfo>
+#endif
+
 #ifdef Q_OS_UNIX
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#include <QApplication>
+  #include <QApplication>
     #endif
 
-#include "eventhandlerfactory.h"
+  #include "eventhandlerfactory.h"
 
 #endif
 
@@ -56,8 +60,11 @@
   #include "x11extras.h"
 #endif
 
-static const QString RUNATSTARTUPKEY(
+static const QString RUNATSTARTUPREGKEY(
         "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
+static const QString RUNATSTARTUPLOCATION(
+        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicro.lnk")
+        .arg(QString::fromUtf8(qgetenv("AppData"))));
 
 MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
                                        QList<InputDevice *> *devices,
@@ -153,11 +160,24 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 #ifdef Q_OS_WIN
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-    QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
-    QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
-    if (!autoRunEntry.isEmpty())
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
     {
-        ui->launchAtWinStartupCheckBox->setChecked(true);
+        // Handle Windows Vista and later
+        QFile tempFile(RUNATSTARTUPLOCATION);
+        if (tempFile.exists())
+        {
+            ui->launchAtWinStartupCheckBox->setChecked(true);
+        }
+    }
+    else
+    {
+        // Handle Windows XP
+        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
+        QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
+        if (!autoRunEntry.isEmpty())
+        {
+            ui->launchAtWinStartupCheckBox->setChecked(true);
+        }
     }
 
     if (handler && handler->getIdentifier() == "sendinput")
@@ -183,7 +203,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
     else
     {
-        ui->launchAtWinStartupCheckBox->setVisible(false);
+        //ui->launchAtWinStartupCheckBox->setVisible(false);
         ui->keyRepeatGroupBox->setVisible(false);
     }
 
@@ -591,17 +611,39 @@ void MainSettingsDialog::saveNewSettings()
 
     settings->getLock()->lock();
 #ifdef Q_OS_WIN
-    QSettings autoRunReg(RUNATSTARTUPKEY, QSettings::NativeFormat);
-    QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+    {
+        // Handle Windows Vista and later
+        QFile tempFile(RUNATSTARTUPLOCATION);
 
-    if (ui->launchAtWinStartupCheckBox->isChecked())
-    {
-        QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
-        autoRunReg.setValue("antimicro", nativeFilePath);
+        if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
+        {
+            if (tempFile.open(QFile::WriteOnly))
+            {
+                QFile currentAppLocation(qApp->applicationFilePath());
+                currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
+            }
+        }
+        else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
+        {
+            tempFile.remove();
+        }
     }
-    else if (!autoRunEntry.isEmpty())
+    else
     {
-        autoRunReg.remove("antimicro");
+        // Handle Windows XP
+        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
+        QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
+
+        if (ui->launchAtWinStartupCheckBox->isChecked())
+        {
+            QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
+            autoRunReg.setValue("antimicro", nativeFilePath);
+        }
+        else if (!autoRunEntry.isEmpty())
+        {
+            autoRunReg.remove("antimicro");
+        }
     }
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
