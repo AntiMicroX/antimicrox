@@ -1202,7 +1202,7 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.36;
+                                difference = difference * 0.4;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1211,11 +1211,11 @@ void JoyButton::mouseEvent()
                                     buttonslot->getEasingTime()->restart();
                                 }
                             }
-                            else if (temp <= 0.8)
+                            else if (temp <= 0.75)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.256;
+                                difference = difference - 0.24;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1224,7 +1224,7 @@ void JoyButton::mouseEvent()
                                     buttonslot->getEasingTime()->restart();
                                 }
                             }
-                            else if (temp > 0.8)
+                            else if (temp > 0.75)
                             {
                                 // Gradually increase the mouse speed until the specified elapsed duration
                                 // time has passed.
@@ -1262,8 +1262,8 @@ void JoyButton::mouseEvent()
 
                                 // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
-                                 // Range 0.545 - 1.5
-                                difference = difference * 1.365714286 - 0.548571429;
+                                 // Range 0.51 - 1.5
+                                difference = difference * 1.32 - 0.48;
                             }
                             break;
                         }
