@@ -216,7 +216,7 @@ boxes at the same time.</string>
                 <item>
                  <widget class="QLabel" name="label_5">
                   <property name="text">
-                   <string>&amp;Horizontal
+                   <string>Hori&amp;zontal
 Speed:</string>
                   </property>
                   <property name="buddy">
@@ -517,11 +517,12 @@ after reaching the high end of an axis.</string>
           <bool>true</bool>
          </property>
          <property name="toolTip">
-          <string>Options for adding extra acceleration to the mouse
+          <string>Options for adding more acceleration to the mouse
 movement beyond what the acceleration curve would
-produce. This is meant to help work around some of
-the issues of the very limited input range available using
-typical gamepad analog sticks.</string>
+produce. Acceleration is added based on how quickly an axis is
+moved in one gamepad poll. This is meant to help work around
+some of the issues of the very limited input range available
+using typical gamepad analog sticks.</string>
          </property>
          <property name="title">
           <string>Delta Acceleration</string>
@@ -616,7 +617,7 @@ typical gamepad analog sticks.</string>
               <item>
                <widget class="QLabel" name="minThresholdLabel">
                 <property name="text">
-                 <string>Min
+                 <string>Mi&amp;n
 Threshold:</string>
                 </property>
                 <property name="buddy">
