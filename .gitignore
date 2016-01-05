@@ -13,7 +13,9 @@ moc_*
 qrc_resources.cpp
 ui_*.h
 *.*~
+SDL2-2.0.3/
 SDL2-2.0.4/
+vmulti/
 windows/*.msi
 windows/*.wix*
 build/
