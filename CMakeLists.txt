@@ -588,13 +588,13 @@ elseif (WIN32)
         # Perform extra voodoo to get proper library paths and include
         # proper headers.
         if(TARGET_ARCH STREQUAL "x86_64")
-            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/lib")
+            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/lib")
             list(APPEND LIBS ${SDL2_LIBRARY})
-            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/include")
+            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/include")
         else()
-            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/lib")
+            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/lib")
             list(APPEND LIBS ${SDL2_LIBRARY})
-            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/include")
+            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/include")
         endif(TARGET_ARCH STREQUAL "x86_64")
 
         add_definitions(-DUNICODE -D_UNICODE)
@@ -699,12 +699,12 @@ if(WIN32)
     if(TARGET_ARCH STREQUAL "x86_64")
         # Copy SDL2.dll to find installation directory.
         add_custom_target(copy_sdl_dll
-            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
         )
     else()
         # Copy SDL2.dll to find installation directory.
         add_custom_target(copy_sdl_dll
-            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
 
@@ -728,14 +728,14 @@ if(WIN32)
             "${QTCORE_DLL_LOCATION}/icuuc54.dll"
             "${QTCORE_DLL_LOCATION}/libgcc_s_sjlj-1.dll"
             "${QTCORE_DLL_LOCATION}/libGLESv2.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/x86_64-w64-mingw32/bin/SDL2.dll"
+            "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll"
         )
     else()
         list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt53.dll"
             "${QTCORE_DLL_LOCATION}/icuin53.dll"
             "${QTCORE_DLL_LOCATION}/icuuc53.dll"
             "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.3/i686-w64-mingw32/bin/SDL2.dll"
+            "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll"
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
 
