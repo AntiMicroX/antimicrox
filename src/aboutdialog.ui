@@ -366,7 +366,7 @@ Once the Steam controller is finally released to the public, the need for this p
    <item>
     <widget class="QLabel" name="copyrightLabel">
      <property name="text">
-      <string>Copyright: 2013 - 2015</string>
+      <string>Copyright: 2013 - 2016</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
