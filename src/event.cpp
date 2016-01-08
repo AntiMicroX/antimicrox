@@ -94,6 +94,10 @@ void sendevent(int code1, int code2)
     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
 }
 
+// TODO: Change to only use this routine when using a relative mouse
+// pointer to fake absolute mouse moves. Otherwise, don't worry about
+// current position of the mouse and just send an absolute mouse pointer
+// event.
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                      PadderCommon::springModeInfo *relativeSpring,
                      int* const mousePosX, int* const mousePosY)
