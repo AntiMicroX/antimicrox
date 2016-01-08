@@ -13,7 +13,7 @@ translation files from source.
 
     -DUSE_SDL_2
 
-Default: OFF. Compile the program with SDL 2 instead of SDL 1.2.
+Default: ON. Compile the program with SDL 2 instead of SDL 1.2.
 
 ## Linux Options
 
