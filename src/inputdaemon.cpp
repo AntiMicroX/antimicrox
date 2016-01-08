@@ -505,8 +505,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (button)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
-                        temp->changeButtonStatus(event.jbutton.button, event.type == SDL_JOYBUTTONUP);
+                        //InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        //temp->changeButtonStatus(event.jbutton.button, event.type == SDL_JOYBUTTONUP);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeButtonStatus(event.jbutton.button,
@@ -568,8 +568,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (dpad)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
-                        temp->changeHatStatus(event.jhat.hat, event.jhat.value == 0);
+                        //InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        //temp->changeHatStatus(event.jhat.hat, event.jhat.value == 0);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeHatStatus(event.jhat.hat, event.jhat.value != 0 ? true : false);
@@ -626,8 +626,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     if (button)
                     {
-                        InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
-                        temp->changeButtonStatus(event.cbutton.button, event.type == SDL_CONTROLLERBUTTONUP);
+                        //InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                        //temp->changeButtonStatus(event.cbutton.button, event.type == SDL_CONTROLLERBUTTONUP);
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
                         pending->changeButtonStatus(event.cbutton.button,
@@ -669,7 +669,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
         unsigned int bitArraySize = tempBitArray.size();
         //qDebug() << "ARRAY SIZE: " << bitArraySize;
 
-        if (bitArraySize > 0 && tempBitArray.count(true) == bitArraySize)
+        if (bitArraySize > 0 && tempBitArray.count(true) == device->getNumberAxes())
         {
             if (pendingEventValues.contains(device))
             {
