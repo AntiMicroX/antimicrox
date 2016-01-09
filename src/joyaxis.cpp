@@ -466,8 +466,8 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("maxZone", QString::number(maxZoneValue));
         }
 
-        if (throttle != DEFAULTTHROTTLE)
-        {
+        //if (throttle != DEFAULTTHROTTLE)
+        //{
             xml->writeStartElement("throttle");
 
             if (throttle == JoyAxis::NegativeHalfThrottle)
@@ -492,7 +492,7 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
             }
 
             xml->writeEndElement();
-        }
+        //}
 
         naxisbutton->writeConfig(xml);
         paxisbutton->writeConfig(xml);
@@ -543,6 +543,13 @@ bool JoyAxis::readMainConfig(QXmlStreamReader *xml)
         else if (temptext == "positivehalf")
         {
             this->setThrottle(JoyAxis::PositiveHalfThrottle);
+        }
+
+        InputDevice *device = parentSet->getInputDevice();
+        if (!device->hasCalibrationThrottle(index))
+        {
+            device->setCalibrationStatus(index,
+                                         static_cast<JoyAxis::ThrottleTypes>(throttle));
         }
 
         setCurrentRawValue(currentThrottledDeadValue);
@@ -759,7 +766,7 @@ bool JoyAxis::isDefault()
     bool value = true;
     value = value && (deadZone == getDefaultDeadZone());
     value = value && (maxZoneValue == getDefaultMaxZone());
-    value = value && (throttle == getDefaultThrottle());
+    //value = value && (throttle == getDefaultThrottle());
     value = value && (paxisbutton->isDefault());
     value = value && (naxisbutton->isDefault());
     return value;

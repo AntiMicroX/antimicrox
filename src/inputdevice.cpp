@@ -81,6 +81,10 @@ void InputDevice::reset()
     resetButtonDownCount();
     deviceEdited = false;
     profileName = "";
+    //cali.clear();
+    buttonstates.clear();
+    axesstates.clear();
+    dpadstates.clear();
 
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
@@ -1970,6 +1974,22 @@ void InputDevice::setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes thr
         }
 
         cali.insert(axisNum, throttle);
+    }
+}
+
+void InputDevice::setCalibrationStatus(int axisNum, JoyAxis::ThrottleTypes throttle)
+{
+    if (!cali.contains(axisNum))
+    {
+        cali.insert(axisNum, throttle);
+    }
+}
+
+void InputDevice::removeCalibrationStatus(int axisNum)
+{
+    if (cali.contains(axisNum))
+    {
+        cali.remove(axisNum);
     }
 }
 

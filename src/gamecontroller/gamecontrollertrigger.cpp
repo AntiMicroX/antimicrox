@@ -83,13 +83,15 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
                 if (index == 1)
                 {
                     found = true;
-                    GameControllerTriggerButton *triggerButton = static_cast<GameControllerTriggerButton*>(naxisbutton);
+                    GameControllerTriggerButton *triggerButton =
+                            static_cast<GameControllerTriggerButton*>(naxisbutton);
                     triggerButton->readJoystickConfig(xml);
                 }
                 else if (index == 2)
                 {
                     found = true;
-                    GameControllerTriggerButton *triggerButton = static_cast<GameControllerTriggerButton*>(paxisbutton);
+                    GameControllerTriggerButton *triggerButton =
+                            static_cast<GameControllerTriggerButton*>(paxisbutton);
                     triggerButton->readJoystickConfig(xml);
                 }
             }
@@ -140,8 +142,8 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("maxZone", QString::number(maxZoneValue));
         }
 
-        if (throttle != DEFAULTTHROTTLE)
-        {
+        //if (throttle != DEFAULTTHROTTLE)
+        //{
             xml->writeStartElement("throttle");
 
             if (throttle == JoyAxis::NegativeHalfThrottle)
@@ -166,7 +168,7 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
             }
 
             xml->writeEndElement();
-        }
+        //}
 
         naxisbutton->writeConfig(xml);
         paxisbutton->writeConfig(xml);

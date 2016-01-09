@@ -108,6 +108,8 @@ public:
     bool hasCalibrationThrottle(int axisNum);
     JoyAxis::ThrottleTypes getCalibrationThrottle(int axisNum);
     void setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
+    void setCalibrationStatus(int axisNum, JoyAxis::ThrottleTypes throttle);
+    void removeCalibrationStatus(int axisNum);
 
     void sendLoadProfileRequest(QString location);
     AntiMicroSettings *getSettings();
