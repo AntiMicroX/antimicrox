@@ -1175,19 +1175,19 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.4;
+                                difference = difference * 0.38;
                             }
                             else if (temp <= 0.75)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.24;
+                                difference = difference - 0.248;
                             }
                             else if (temp > 0.75)
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
-                                difference = (difference * 1.96) - 0.96;
+                                difference = (difference * 1.992) - 0.992;
                             }
 
                             break;
@@ -1202,7 +1202,7 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.4;
+                                difference = difference * 0.38;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1215,7 +1215,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.24;
+                                difference = difference - 0.248;
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
