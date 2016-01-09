@@ -451,11 +451,13 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
 
 void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 {
-    if (!isDefault())
-    {
-        xml->writeStartElement(getXmlName());
-        xml->writeAttribute("index", QString::number(index+1));
+    bool currentlyDefault = isDefault();
 
+    xml->writeStartElement(getXmlName());
+    xml->writeAttribute("index", QString::number(index+1));
+
+    if (!currentlyDefault)
+    {
         if (deadZone != AXISDEADZONE)
         {
             xml->writeTextElement("deadZone", QString::number(deadZone));
@@ -465,40 +467,44 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
         {
             xml->writeTextElement("maxZone", QString::number(maxZoneValue));
         }
+    }
 
-        //if (throttle != DEFAULTTHROTTLE)
-        //{
-            xml->writeStartElement("throttle");
 
-            if (throttle == JoyAxis::NegativeHalfThrottle)
-            {
-                xml->writeCharacters("negativehalf");
-            }
-            else if (throttle == JoyAxis::NegativeThrottle)
-            {
-                xml->writeCharacters("negative");
-            }
-            else if (throttle == JoyAxis::NormalThrottle)
-            {
-                xml->writeCharacters("normal");
-            }
-            else if (throttle == JoyAxis::PositiveThrottle)
-            {
-                xml->writeCharacters("positive");
-            }
-            else if (throttle == JoyAxis::PositiveHalfThrottle)
-            {
-                xml->writeCharacters("positivehalf");
-            }
+    //if (throttle != DEFAULTTHROTTLE)
+    //{
+        xml->writeStartElement("throttle");
 
-            xml->writeEndElement();
-        //}
-
-        naxisbutton->writeConfig(xml);
-        paxisbutton->writeConfig(xml);
+        if (throttle == JoyAxis::NegativeHalfThrottle)
+        {
+            xml->writeCharacters("negativehalf");
+        }
+        else if (throttle == JoyAxis::NegativeThrottle)
+        {
+            xml->writeCharacters("negative");
+        }
+        else if (throttle == JoyAxis::NormalThrottle)
+        {
+            xml->writeCharacters("normal");
+        }
+        else if (throttle == JoyAxis::PositiveThrottle)
+        {
+            xml->writeCharacters("positive");
+        }
+        else if (throttle == JoyAxis::PositiveHalfThrottle)
+        {
+            xml->writeCharacters("positivehalf");
+        }
 
         xml->writeEndElement();
+    //}
+
+    if (!currentlyDefault)
+    {
+        naxisbutton->writeConfig(xml);
+        paxisbutton->writeConfig(xml);
     }
+
+    xml->writeEndElement();
 }
 
 
