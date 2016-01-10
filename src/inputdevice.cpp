@@ -82,9 +82,9 @@ void InputDevice::reset()
     deviceEdited = false;
     profileName = "";
     //cali.clear();
-    buttonstates.clear();
-    axesstates.clear();
-    dpadstates.clear();
+    //buttonstates.clear();
+    //axesstates.clear();
+    //dpadstates.clear();
 
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
