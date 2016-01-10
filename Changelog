@@ -1,3 +1,34 @@
+2016-01-10 Travis Nickles <nickles.travis@gmail.com>
+
+Version 2.21
+
+* Changed unplug routine slightly. The old behavior was slightly wrong anyway
+but the old behavior did not work with SDL 2.0.4.
+
+* Custom Qt builds are being used for the 64 bit Windows build and noSSE
+Windows build.
+
+* Updated Windows build to use Qt 5.5.1.
+
+* Updated Windows build to use SDL 2.0.4. This should clear up a couple
+of problems for people running Windows 10.
+
+* Changes to some acceleration curves. Both the output values and the input
+offsets were changed to make mouse movement looser.
+
+* Removed First Run Wizard from program. In the end, that wizard was causing
+more problems for other users than it was worth.
+
+* Add arguments property for Execute slots.
+
+* Allow a real absolute mouse to be used with uinput support. Previously,
+relative mouse movement was being used to fake an absolute position for the
+mouse pointer. The WiimoteGlue project provided a way to allow uinput to
+send absolute mouse pointer events when using uinput.
+
+* Fixed set changing with analog triggers.
+
+
 2015-10-19 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.20.2
