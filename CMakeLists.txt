@@ -726,8 +726,7 @@ if(WIN32)
         list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
             "${QTCORE_DLL_LOCATION}/icuin54.dll"
             "${QTCORE_DLL_LOCATION}/icuuc54.dll"
-            "${QTCORE_DLL_LOCATION}/libgcc_s_sjlj-1.dll"
-            "${QTCORE_DLL_LOCATION}/libGLESv2.dll"
+            "${QTCORE_DLL_LOCATION}/libgcc_s_seh-1.dll"
             "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll"
         )
     else()

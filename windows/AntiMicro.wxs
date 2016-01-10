@@ -13,14 +13,14 @@
                             <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="AntiMicro" WorkingDirectory="ANTIMICRO" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
                         </File>
                     </Component>
-                    <Component Id="ICUDT53.DLL" Guid="E1D9A8BF-6C31-470B-8333-ECFE5DECB701">
-                        <File Source="..\antimicro\icudt53.dll" />
+                    <Component Id="ICUDT54.DLL" Guid="A4B01CC1-D806-4CB6-BEF5-86D9ADFC9BF0">
+                        <File Source="..\antimicro\icudt54.dll" />
                     </Component>
-                    <Component Id="ICUIN53.DLL" Guid="B4E3E010-C40B-4250-A6DD-2144081633EE">
-                        <File Source="..\antimicro\icuin53.dll" />
+                    <Component Id="ICUIN54.DLL" Guid="9FA82D25-C536-455B-8EAE-06064F520A10">
+                        <File Source="..\antimicro\icuin54.dll" />
                     </Component>
-                    <Component Id="ICUUC53.DLL" Guid="C68F7C85-14B0-4F54-8B70-7CE65101ACE6">
-                        <File Source="..\antimicro\icuuc53.dll" />
+                    <Component Id="ICUUC54.DLL" Guid="B0A94FD9-AA0A-4CA7-8A02-6A5207CD3EA5">
+                        <File Source="..\antimicro\icuuc54.dll" />
                     </Component>
                     <Component Id="LIBGCC_S_DW2_1.DLL" Guid="497DCE36-CFB9-4380-888A-E62BB6C064CA">
                         <File Id="LIBGCC_S_DW2_1.DLL" Source="..\antimicro\libgcc_s_dw2-1.dll" />
@@ -175,9 +175,9 @@
         </Directory>
         <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
             <ComponentRef Id="ANTIMICRO.EXE" />
-            <ComponentRef Id="ICUDT53.DLL" />
-            <ComponentRef Id="ICUIN53.DLL" />
-            <ComponentRef Id="ICUUC53.DLL" />
+            <ComponentRef Id="ICUDT54.DLL" />
+            <ComponentRef Id="ICUIN54.DLL" />
+            <ComponentRef Id="ICUUC54.DLL" />
             <ComponentRef Id="LIBGCC_S_DW2_1.DLL" />
             <ComponentRef Id="LIBSTDC___6.DLL" />
             <ComponentRef Id="LIBWINPTHREAD_1.DLL" />

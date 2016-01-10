@@ -22,8 +22,8 @@
                     <Component Id="ICUUC54.DLL" Guid="C68F7C85-14B0-4F54-8B70-7CE65101ACE6">
                         <File Source="..\antimicro\icuuc54.dll" />
                     </Component>
-                    <Component Id="LIBGCC_S_SJLJ_1.DLL" Guid="497DCE36-CFB9-4380-888A-E62BB6C064CA">
-                        <File Id="LIBGCC_S_SJLJ_1.DLL" Source="..\antimicro\libgcc_s_sjlj-1.dll" />
+                    <Component Id="LIBGCC_S_SEH_1.DLL" Guid="C34C6656-54EF-48EF-8581-3DF8676D2936">
+                        <File Id="LIBGCC_S_SEH_1.DLL" Source="..\antimicro\libgcc_s_seh-1.dll" />
                     </Component>
                     <Component Id="LIBSTDC___6.DLL" Guid="56890D38-86FD-4476-A9EE-D555DA49203B">
                         <File Id="LIBSTDC___6.DLL" Source="..\antimicro\libstdc++-6.dll" />
@@ -42,9 +42,6 @@
                     </Component>
                     <Component Id="QT5WIDGETS.DLL" Guid="A9D83DBB-D9CD-4347-9B89-F29794E92048">
                         <File Source="..\antimicro\Qt5Widgets.dll" />
-                    </Component>
-                    <Component Id="LIBGLESV2.DLL" Guid="47986280-F5A4-4350-A66D-7937482E2E19">
-                        <File Source="..\antimicro\libGLESv2.dll" />
                     </Component>
                     <Component Id="SDL2.DLL" Guid="89898F34-8345-414E-9210-85B53FD34D53">
                         <File Source="..\antimicro\SDL2.dll" />
@@ -181,14 +178,13 @@
             <ComponentRef Id="ICUDT54.DLL" />
             <ComponentRef Id="ICUIN54.DLL" />
             <ComponentRef Id="ICUUC54.DLL" />
-            <ComponentRef Id="LIBGCC_S_SJLJ_1.DLL" />
+            <ComponentRef Id="LIBGCC_S_SEH_1.DLL" />
             <ComponentRef Id="LIBSTDC___6.DLL" />
             <ComponentRef Id="LIBWINPTHREAD_1.DLL" />
             <ComponentRef Id="QT5CORE.DLL" />
             <ComponentRef Id="QT5GUI.DLL" />
             <ComponentRef Id="QT5NETWORK.DLL" />
             <ComponentRef Id="QT5WIDGETS.DLL" />
-            <ComponentRef Id="LIBGLESV2.DLL" />
             <ComponentRef Id="SDL2.DLL" />
             <ComponentRef Id="QWINDOWS.DLL" />
             <ComponentRef Id="README.MD" />
