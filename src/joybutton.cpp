@@ -1262,8 +1262,8 @@ void JoyButton::mouseEvent()
 
                                 // Allow gradient control on the high end of an axis.
                                 difference = elapsedDiff * difference;
-                                 // Range 0.51 - 1.5
-                                difference = difference * 1.32 - 0.48;
+                                 // Range 0.502 - 1.5
+                                difference = difference * 1.33067 - 0.496005;
                             }
                             break;
                         }
