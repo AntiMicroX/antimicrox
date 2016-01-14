@@ -1801,7 +1801,7 @@ void MainSettingsDialog::addNewAutoProfile()
     {
         if (info->isCurrentDefault())
         {
-            if (!info->getGUID().isEmpty() && !info->getProfileLocation().isEmpty())
+            if (!info->getGUID().isEmpty() && !info->getExe().isEmpty())
             {
                 defaultAutoProfiles.insert(info->getGUID(), info);
                 defaultList.append(info);
@@ -1810,7 +1810,7 @@ void MainSettingsDialog::addNewAutoProfile()
         else
         {
             if (!info->getGUID().isEmpty() &&
-                !info->getProfileLocation().isEmpty())
+                !info->getExe().isEmpty())
             {
                 //QList<AutoProfileInfo*> templist;
                 //templist.append(info);
