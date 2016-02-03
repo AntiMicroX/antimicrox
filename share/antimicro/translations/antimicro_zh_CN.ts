@@ -47,8 +47,8 @@ Once the Steam controller is finally released to the public, the need for this p
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="369"/>
-        <source>Copyright: 2013 - 2015</source>
-        <translation>版权：2013 - 2015</translation>
+        <source>Copyright: 2013 - 2016</source>
+        <translation>版权：2013 - 2016</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="121"/>
@@ -2261,9 +2261,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="960"/>
-        <location filename="../../../src/joyaxis.cpp" line="969"/>
-        <location filename="../../../src/joyaxis.cpp" line="975"/>
+        <location filename="../../../src/joyaxis.cpp" line="973"/>
+        <location filename="../../../src/joyaxis.cpp" line="982"/>
+        <location filename="../../../src/joyaxis.cpp" line="988"/>
         <source>Axis</source>
         <translation>轴</translation>
     </message>
@@ -3012,65 +3012,65 @@ functionality to an analog stick.</source>
     <name>JoyTabWidget</name>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="63"/>
-        <location filename="../../../src/joytabwidget.cpp" line="751"/>
-        <location filename="../../../src/joytabwidget.cpp" line="889"/>
-        <location filename="../../../src/joytabwidget.cpp" line="933"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1081"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2308"/>
+        <location filename="../../../src/joytabwidget.cpp" line="755"/>
+        <location filename="../../../src/joytabwidget.cpp" line="899"/>
+        <location filename="../../../src/joytabwidget.cpp" line="943"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1091"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2318"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;新&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="71"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1531"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="73"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1532"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1542"/>
         <source>Remove configuration from recent list.</source>
         <translation>从最近使用列表中移除配置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="79"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1534"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
         <source>Load</source>
         <translation>载入</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="81"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1535"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
         <source>Load configuration file.</source>
         <translation>载入配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="87"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1537"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="89"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1538"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
         <source>Save changes to configuration file.</source>
         <translation>保存更改到配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="96"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1540"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="98"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
         <source>Save changes to a new configuration file.</source>
         <translation>保存更改到新的配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="293"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1553"/>
         <source>Sets</source>
         <translation>设置</translation>
     </message>
@@ -3086,104 +3086,104 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="304"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1554"/>
         <source>Set 1</source>
         <translation>设置1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="308"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1555"/>
         <source>Set 2</source>
         <translation>设置2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="312"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1556"/>
         <source>Set 3</source>
         <translation>设置3</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="316"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
         <source>Set 4</source>
         <translation>设置4</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="320"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
         <source>Set 5</source>
         <translation>设置5</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="324"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1549"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
         <source>Set 6</source>
         <translation>设置6</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="328"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1560"/>
         <source>Set 7</source>
         <translation>设置7</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="332"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1561"/>
         <source>Set 8</source>
         <translation>设置8</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="398"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1567"/>
         <source>Stick/Pad Assign</source>
         <translation>摇杆/十字键分配</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="404"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1556"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1566"/>
         <source>Controller Mapping</source>
         <translation>游戏控制器映射</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="411"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
         <source>Quick Set</source>
         <translation>快速设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="419"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1561"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1571"/>
         <source>Names</source>
         <translation>名称</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="421"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1562"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1572"/>
         <source>Toggle button name displaying.</source>
         <translation>开关按钮名称显示。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="426"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1564"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1574"/>
         <source>Pref</source>
         <translation>偏好设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="428"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1565"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1575"/>
         <source>Change global profile settings.</source>
         <translation>改变全局配置文件设置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="432"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1567"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1569"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1577"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="434"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1578"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>还原设置的更改。重新加载配置文件。</translation>
     </message>
@@ -3198,79 +3198,79 @@ functionality to an analog stick.</source>
         <translation>配置文件 (*.amgp *.xml)</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="594"/>
-        <location filename="../../../src/joytabwidget.cpp" line="773"/>
-        <location filename="../../../src/joytabwidget.cpp" line="783"/>
+        <location filename="../../../src/joytabwidget.cpp" line="597"/>
+        <location filename="../../../src/joytabwidget.cpp" line="781"/>
+        <location filename="../../../src/joytabwidget.cpp" line="793"/>
         <source>Config File (*.%1.amgp)</source>
         <translation>配置文件 (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1586"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1639"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1596"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1649"/>
         <source>Save Profile Changes?</source>
         <translation>保存配置文件更改？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1589"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1643"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1599"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1653"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>新配置文件的更改尚未保存。您想保存还是放弃修改当前的配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1593"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1647"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1603"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1657"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>配置文件“%1”的更改尚未保存。您想保存还是放弃修改此配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1895"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1905"/>
         <source>Sticks</source>
         <translation>摇杆</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1963"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2014"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1973"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2024"/>
         <source>DPads</source>
         <translation>十字键</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2154"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2164"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>按钮未被分配。请使用“快速设置”来将按键分配到按钮，或取消隐藏空白按钮。</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2344"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2369"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2354"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2379"/>
         <source>Set %1: %2</source>
         <translation>设置%1：%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2348"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2373"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2358"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2383"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2381"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2391"/>
         <source>Copy Set Assignments</source>
         <translation>复制设置分配信息</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2382"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2392"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>您确定要从 %1 复制分配信息和设备属性吗？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="594"/>
-        <location filename="../../../src/joytabwidget.cpp" line="773"/>
-        <location filename="../../../src/joytabwidget.cpp" line="783"/>
+        <location filename="../../../src/joytabwidget.cpp" line="597"/>
+        <location filename="../../../src/joytabwidget.cpp" line="781"/>
+        <location filename="../../../src/joytabwidget.cpp" line="793"/>
         <source>Save Config</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1499"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1506"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1509"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1516"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
@@ -3727,7 +3727,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1888"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1930"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
@@ -3784,7 +3784,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="692"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1112"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1154"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
@@ -3843,19 +3843,19 @@ is to use all available screens.</source>
 在 Windows 系统上，默认使用所有可用屏幕。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="288"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="308"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
         <translation>另外，对于希望使用较低值的 Windows 用户，如果您未禁用 Windows 的“提高指针精确度”选项，请勾选本程序中的“禁用提高指针精确度”复选框。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="744"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="786"/>
         <source>Select Default Profile Directory</source>
         <translation>选择默认配置文件目录</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1492"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1534"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>您确认要删除这个配置文件吗？</translation>
     </message>
@@ -3896,7 +3896,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="228"/>
-        <location filename="../../../src/mainwindow.cpp" line="597"/>
+        <location filename="../../../src/mainwindow.cpp" line="595"/>
         <source>&amp;Quit</source>
         <translation>退出 (&amp;Q)</translation>
     </message>
@@ -3907,7 +3907,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="244"/>
-        <location filename="../../../src/mainwindow.cpp" line="601"/>
+        <location filename="../../../src/mainwindow.cpp" line="599"/>
         <source>&amp;Update Joysticks</source>
         <translation>更新摇杆 (&amp;U)</translation>
     </message>
@@ -3918,7 +3918,7 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="257"/>
-        <location filename="../../../src/mainwindow.cpp" line="589"/>
+        <location filename="../../../src/mainwindow.cpp" line="587"/>
         <source>&amp;Hide</source>
         <translation>隐藏 (&amp;H)</translation>
     </message>
@@ -3983,39 +3983,39 @@ the option in Windows.</source>
         <translation>维基页面</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="322"/>
+        <location filename="../../../src/mainwindow.cpp" line="320"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
         <translation>无法找到合适的游戏控制器标识符。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="365"/>
-        <location filename="../../../src/mainwindow.cpp" line="414"/>
-        <location filename="../../../src/mainwindow.cpp" line="484"/>
-        <location filename="../../../src/mainwindow.cpp" line="1461"/>
-        <location filename="../../../src/mainwindow.cpp" line="1507"/>
-        <location filename="../../../src/mainwindow.cpp" line="1529"/>
-        <location filename="../../../src/mainwindow.cpp" line="1542"/>
+        <location filename="../../../src/mainwindow.cpp" line="363"/>
+        <location filename="../../../src/mainwindow.cpp" line="412"/>
+        <location filename="../../../src/mainwindow.cpp" line="482"/>
+        <location filename="../../../src/mainwindow.cpp" line="1472"/>
+        <location filename="../../../src/mainwindow.cpp" line="1518"/>
+        <location filename="../../../src/mainwindow.cpp" line="1540"/>
+        <location filename="../../../src/mainwindow.cpp" line="1553"/>
         <source>(%1)</source>
         <translation>（%1）</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="541"/>
-        <location filename="../../../src/mainwindow.cpp" line="545"/>
+        <location filename="../../../src/mainwindow.cpp" line="539"/>
+        <location filename="../../../src/mainwindow.cpp" line="543"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="593"/>
+        <location filename="../../../src/mainwindow.cpp" line="591"/>
         <source>&amp;Restore</source>
         <translation>还原 (&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1376"/>
+        <location filename="../../../src/mainwindow.cpp" line="1387"/>
         <source>Run as Administrator?</source>
         <translation>以管理员权限运行？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1377"/>
+        <location filename="../../../src/mainwindow.cpp" line="1388"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4023,17 +4023,17 @@ Some games run as Administrator which will cause events generated by antimicro t
 有些以管理员权限运行的游戏无法识别 antimicro 生成的事件，除非 antimicro 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制 (UAC) 导致的权限问题。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1402"/>
+        <location filename="../../../src/mainwindow.cpp" line="1413"/>
         <source>Failed to elevate program</source>
         <translation>无法提升本程序权限</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1403"/>
+        <location filename="../../../src/mainwindow.cpp" line="1414"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>无法以管理员权限重新运行本程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainwindow.cpp" line="1439"/>
+        <location filename="../../../src/mainwindow.cpp" line="1450"/>
         <source>Could not find controller. Exiting.</source>
         <translation>无法找到游戏控制器。正在退出。</translation>
     </message>
@@ -4168,7 +4168,7 @@ a period of time using a Cubic curve.</source>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="113"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="731"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="732"/>
         <source>Linear</source>
         <translation>线性</translation>
     </message>
@@ -4219,22 +4219,43 @@ boxes at the same time.</source>
         <translation>同时更改</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="219"/>
-        <source>Horizontal
-Speed:</source>
-        <translation>水平速度：</translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="520"/>
+        <source>Options for adding more acceleration to the mouse
+movement beyond what the acceleration curve would
+produce. Acceleration is added based on how quickly an axis is
+moved in one gamepad poll. This is meant to help work around
+some of the issues of the very limited input range available
+using typical gamepad analog sticks.</source>
+        <translation>在加速曲线之上为鼠标移动增添额外加速。
+加速度基于手柄在一次采样时间内轴移动的速度。
+这些选项是为了绕过某些由于手柄模拟摇杆的输入范围有限所带来的问题。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="528"/>
+        <source>Delta Acceleration</source>
+        <translation>额外加速</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="547"/>
+        <source>&amp;Multiplier:</source>
+        <translation>倍数 (&amp;M)：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="620"/>
+        <source>Mi&amp;n
+Threshold:</source>
+        <translation>最小阈值 (&amp;N)：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="684"/>
+        <source>E&amp;xtra Duration:</source>
+        <translation>额外加速时长 (&amp;X)：</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="248"/>
         <location filename="../../../src/mousesettingsdialog.ui" line="296"/>
         <source>1 = 20 pps</source>
         <translation>1级=20像素/秒</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="267"/>
-        <source>Vertical
-Speed:</source>
-        <translation>垂直速度：</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="322"/>
@@ -4253,6 +4274,11 @@ according to number of simulated notches per second.</source>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
         <translation>根据每秒模拟滚动凹槽数设置鼠标滚轮垂直滚动速度。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="414"/>
+        <source>Sensitivit&amp;y:</source>
+        <translation>灵敏度 (&amp;Y)：</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="427"/>
@@ -4277,77 +4303,56 @@ after reaching the high end of an axis.</source>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="474"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="698"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="699"/>
         <source> s</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="527"/>
-        <source>Extra Acceleration</source>
-        <translation>额外加速</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="546"/>
-        <source>Multiplier:</source>
-        <translation>倍数：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="556"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="557"/>
         <source>Highest value to accelerate mouse movement by</source>
         <translation>鼠标速度的最大加速值</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="559"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="560"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="579"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="580"/>
         <source>Start %:</source>
         <translation>起始百分比：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="589"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="590"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
         <translation>加速以基础倍数的此百分比速率开始</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="592"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="633"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="664"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="850"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="593"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="634"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="665"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="851"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="619"/>
-        <source>Min
-Threshold:</source>
-        <translation>最小阈值：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="630"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="631"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
         <translation>轴的移动幅度大于此最小阈值之后加速才开始</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="650"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="651"/>
         <source>Max
 Threshold:</source>
         <translation>最大阈值：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="661"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="662"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
         <translation>轴的移动幅度达到此最大阈值时加速达到上述倍数值</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="683"/>
-        <source>Extra Duration:</source>
-        <translation>额外加速时长：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="693"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="694"/>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
@@ -4355,59 +4360,59 @@ actual time that extra acceleration will be applied.</source>
 轴的移动幅度考虑在内。缓慢的轴移动将减小实际的额外加速生效时间。</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="718"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="719"/>
         <source>Curve:</source>
         <translation>曲线：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="736"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="737"/>
         <source>Ease Out Sine</source>
         <translation>正弦滑出缓动</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="741"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="742"/>
         <source>Ease Out Quad</source>
         <translation>平方滑出缓动</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="746"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="747"/>
         <source>Ease Out Cubic</source>
         <translation>立方滑出缓动</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="834"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="835"/>
         <source>Release Radius:</source>
         <translation>释放半径：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="867"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="868"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
         <translation>弹簧区域将相对于鼠标指针的位置。鼠标指针的位置可由其它非弹簧模式指定。</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="871"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="872"/>
         <source>Relative</source>
         <translation>相对</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="894"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="895"/>
         <source>Mouse Status</source>
         <translation>鼠标状态</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="902"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="903"/>
         <source>X:</source>
         <translation>X轴：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="909"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="927"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="910"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="928"/>
         <source>0 (0 pps)</source>
         <translation>0（0像素/秒）</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="920"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="921"/>
         <source>Y:</source>
         <translation>Y轴：</translation>
     </message>
@@ -4418,50 +4423,47 @@ mouse position set by a non-relative spring.</source>
         <translation>1级=1凹槽/秒</translation>
     </message>
     <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="219"/>
+        <source>Hori&amp;zontal
+Speed:</source>
+        <translation>水平速度 (&amp;Z)：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="267"/>
+        <source>&amp;Vertical
+Speed:</source>
+        <translation>垂直速度 (&amp;V)：</translation>
+    </message>
+    <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="374"/>
         <source>Wheel Vert.
 Speed:</source>
         <translation>滚轮垂直速度：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="414"/>
-        <source>Sensitivity:</source>
-        <translation>灵敏度：</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="520"/>
-        <source>Options for adding extra acceleration to the mouse
-movement beyond what the acceleration curve would
-produce. This is meant to help work around some of
-the issues of the very limited input range available using
-typical gamepad analog sticks.</source>
-        <translation>在加速曲线之上为鼠标移动增添额外加速。
-这些选项是为了绕过某些由于手柄模拟摇杆的输入范围有限所带来的问题。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="766"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="767"/>
         <source>Spring Settings</source>
         <translation>弹簧设置</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="776"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="777"/>
         <source>Spring Width:</source>
         <translation>弹簧区域宽度：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="789"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="790"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
         <translation>设置鼠标以弹簧模式移动的区域的宽度。设为0时将使用您整个屏幕的宽度。</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="805"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="806"/>
         <source>Spring Height:</source>
         <translation>弹簧区域高度：</translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="818"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="819"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
@@ -4589,38 +4591,38 @@ of your screen.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="252"/>
+        <location filename="../../../src/main.cpp" line="251"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="260"/>
+        <location filename="../../../src/main.cpp" line="259"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="271"/>
+        <location filename="../../../src/main.cpp" line="270"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="298"/>
-        <location filename="../../../src/main.cpp" line="401"/>
+        <location filename="../../../src/main.cpp" line="297"/>
+        <location filename="../../../src/main.cpp" line="400"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="328"/>
+        <location filename="../../../src/main.cpp" line="327"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="355"/>
+        <location filename="../../../src/main.cpp" line="354"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="779"/>
+        <location filename="../../../src/main.cpp" line="761"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
@@ -4690,22 +4692,22 @@ of your screen.</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="623"/>
+        <location filename="../../../src/main.cpp" line="622"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="650"/>
+        <location filename="../../../src/main.cpp" line="649"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="685"/>
+        <location filename="../../../src/main.cpp" line="684"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="742"/>
+        <location filename="../../../src/main.cpp" line="739"/>
         <source>Could not raise process priority.</source>
         <translation>无法提升进程优先级。</translation>
     </message>
