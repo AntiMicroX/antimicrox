@@ -23,6 +23,8 @@
 #include <QHBoxLayout>
 #include <QDoubleSpinBox>
 #include <QLineEdit>
+#include <QComboBox>
+#include <QLabel>
 #include <cmath>
 
 #include "advancebuttondialog.h"
@@ -163,6 +165,11 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     if (this->button->isPartRealAxis() && this->button->isUsingTurbo())
     {
         ui->turboModeComboBox->setEnabled(true);
+    }
+    else if (!this->button->isPartRealAxis())
+    {
+        ui->turboModeComboBox->setVisible(false);
+        ui->turboModeLabel->setVisible(false);
     }
 
     findTurboModeComboIndex();
