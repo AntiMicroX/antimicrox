@@ -39,11 +39,13 @@ void BaseEventHandler::printPostMessages()
  * @brief Do nothing by default. Useful for child classes to define behavior.
  * @param Displacement of X coordinate
  * @param Displacement of Y coordinate
+ * @param Screen number or -1 to use default
  */
-void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis)
+void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
+    Q_UNUSED(screen);
 }
 
 /**
@@ -60,6 +62,16 @@ void BaseEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis
     Q_UNUSED(yDis);
     Q_UNUSED(width);
     Q_UNUSED(height);
+}
+
+/**
+ * @brief Do nothing by default. Useful for child classes to define behavior.
+ * @param Displacement of X coordinate
+ * @param Displacement of Y coordinate
+ */
+void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
+{
+
 }
 
 void BaseEventHandler::sendTextEntryEvent(QString maintext)

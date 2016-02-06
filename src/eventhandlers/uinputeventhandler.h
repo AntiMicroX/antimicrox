@@ -36,8 +36,12 @@ public:
     virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
+    virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
+
     virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
                                       unsigned int width, unsigned int height);
+    virtual void sendMouseSpringEvent(int xDis, int yDis);
+
     virtual QString getName();
     virtual QString getIdentifier();
     virtual void printPostMessages();

@@ -54,6 +54,75 @@
 
 #endif
 
+// TODO: Implement function for determining final mouse pointer position
+// based around a fixed bounding box resolution.
+void fakeAbsMouseCoordinates(double springX, double springY,
+                             unsigned int width, unsigned int height,
+                             unsigned int &finalx, unsigned int &finaly, int screen=-1)
+{
+    //Q_UNUSED(finalx);
+    //Q_UNUSED(finaly);
+    //Q_UNUSED(width);
+    //Q_UNUSED(height);
+
+    int screenWidth = 0;
+    int screenHeight = 0;
+    int screenMidwidth = 0;
+    int screenMidheight = 0;
+
+    int destSpringWidth = 0;
+    int destSpringHeight = 0;
+    int destMidWidth = 0;
+    int destMidHeight = 0;
+    //int currentMouseX = 0;
+    //int currentMouseY = 0;
+
+    QRect deskRect = PadderCommon::mouseHelperObj.getDesktopWidget()
+            ->screenGeometry(screen);
+
+    screenWidth = deskRect.width();
+    screenHeight = deskRect.height();
+
+    screenMidwidth = screenWidth / 2;
+    screenMidheight = screenHeight / 2;
+
+    if (width >= 2 && height >= 2)
+    {
+        destSpringWidth = qMin(static_cast<int>(width), screenWidth);
+        destSpringHeight = qMin(static_cast<int>(height), screenHeight);
+    }
+    else
+    {
+        destSpringWidth = screenWidth;
+        destSpringHeight = screenHeight;
+    }
+
+/*#if defined(Q_OS_UNIX) && defined(WITH_X11)
+    QPoint currentPoint;
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    if (QApplication::platformName() == QStringLiteral("xcb"))
+    {
+  #endif
+        currentPoint = X11Extras::getInstance()->getPos();
+  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    }
+    else
+    {
+        currentPoint = QCursor::pos();
+    }
+  #endif
+
+#else
+    QPoint currentPoint = QCursor::pos();
+#endif
+*/
+
+    destMidWidth = destSpringWidth / 2;
+    destMidHeight = destSpringHeight / 2;
+
+    finalx = (screenMidwidth + (springX * destMidWidth) + deskRect.x());
+    finaly = (screenMidheight + (springY * destMidHeight) + deskRect.y());
+}
 
 // Create the event used by the operating system.
 void sendevent(JoyButtonSlot *slot, bool pressed)
@@ -89,9 +158,133 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     }
 }
 
+// Create the relative mouse event used by the operating system.
 void sendevent(int code1, int code2)
 {
     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
+}
+
+// TODO: Re-implement spring event generation to simplify the process
+// and reduce overhead. Refactor old function to only be used when an absmouse
+// position must be faked.
+void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
+                     PadderCommon::springModeInfo *relativeSpring,
+                     int* const mousePosX, int* const mousePosY)
+{
+    Q_UNUSED(relativeSpring);
+    Q_UNUSED(mousePosX);
+    Q_UNUSED(mousePosY);
+
+    PadderCommon::mouseHelperObj.mouseTimer.stop();
+
+    if (fullSpring)
+    {
+        unsigned int xmovecoor = 0;
+        unsigned int ymovecoor = 0;
+        int width = 0;
+        int height = 0;
+        int midwidth = 0;
+        int midheight = 0;
+        int destSpringWidth = 0;
+        int destSpringHeight = 0;
+        int destMidWidth = 0;
+        int destMidHeight = 0;
+        int currentMouseX = 0;
+        int currentMouseY = 0;
+
+        double displacementX = 0.0;
+        double displacementY = 0.0;
+        bool useFullScreen = true;
+
+        PadderCommon::mouseHelperObj.mouseTimer.stop();
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
+        if (fullSpring->screen >= -1 &&
+            fullSpring->screen >= PadderCommon::mouseHelperObj.getDesktopWidget()->screenCount())
+        {
+            fullSpring->screen = -1;
+        }
+
+        int springWidth = fullSpring->width;
+        int springHeight = fullSpring->height;
+
+        if (springWidth >= 2 && springHeight >= 2)
+        {
+            useFullScreen = false;
+            displacementX = fullSpring->displacementX;
+            displacementY = fullSpring->displacementY;
+        }
+        else
+        {
+            useFullScreen = true;
+            displacementX = fullSpring->displacementX;
+            displacementY = fullSpring->displacementY;
+        }
+
+        unsigned int pivotX = 0;
+        unsigned int pivotY = 0;
+        if (relativeSpring && relativeSpring->width >= 2 && relativeSpring->height >= 2)
+        {
+            if (PadderCommon::mouseHelperObj.pivotPoint[0] != -1)
+            {
+                pivotX = PadderCommon::mouseHelperObj.pivotPoint[0];
+            }
+
+            if (PadderCommon::mouseHelperObj.pivotPoint[1] != -1)
+            {
+                pivotY = PadderCommon::mouseHelperObj.pivotPoint[1];
+            }
+
+            if (pivotX >= 0 && pivotY >= 0)
+            {
+                // Find a use for this routine in this context.
+                int destRelativeWidth = relativeSpring->width;
+                int destRelativeHeight = relativeSpring->height;
+
+                int xRelativeMoovCoor = 0;
+                if (relativeSpring->displacementX >= -1.0)
+                {
+                    xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
+                }
+
+                int yRelativeMoovCoor = 0;
+                if (relativeSpring->displacementY >= -1.0)
+                {
+                    yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
+                }
+
+                xmovecoor += xRelativeMoovCoor;
+                ymovecoor += yRelativeMoovCoor;
+            }
+        }
+
+        if (handler->getIdentifier() == "xtest")
+        {
+            fakeAbsMouseCoordinates(displacementX, displacementY,
+                                    springWidth, springHeight, xmovecoor, ymovecoor,
+                                    fullSpring->screen);
+
+            //EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
+            //                                                                 ymovecoor);
+        }
+        else if (handler->getIdentifier() == "uinput")
+        {
+            //EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(displacementX,
+            //                                                                 displacementY);
+
+            fakeAbsMouseCoordinates(displacementX, displacementY,
+                                    springWidth, springHeight, xmovecoor, ymovecoor,
+                                    fullSpring->screen);
+            //EventHandlerFactory::getInstance()->handler()
+            //        ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+        }
+    }
+    else
+    {
+        PadderCommon::mouseHelperObj.springMouseMoving = false;
+        PadderCommon::mouseHelperObj.pivotPoint[0] = -1;
+        PadderCommon::mouseHelperObj.pivotPoint[1] = -1;
+    }
 }
 
 // TODO: Change to only use this routine when using a relative mouse
@@ -123,14 +316,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         int currentMouseY = 0;
 
         //QDesktopWidget deskWid;
-        if (fullSpring->screen >= PadderCommon::mouseHelperObj.getDesktopWidget()->screenCount())
+        if (fullSpring->screen >= -1 &&
+            fullSpring->screen >= PadderCommon::mouseHelperObj.getDesktopWidget()->screenCount())
         {
             fullSpring->screen = -1;
         }
 
-        QRect deskRect = PadderCommon::mouseHelperObj.getDesktopWidget()->screenGeometry(fullSpring->screen);
+        QRect deskRect = PadderCommon::mouseHelperObj.getDesktopWidget()
+                ->screenGeometry(fullSpring->screen);
+
         width = deskRect.width();
         height = deskRect.height();
+
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
         QPoint currentPoint;
   #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -148,6 +345,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #else
         QPoint currentPoint = QCursor::pos();
 #endif
+
         currentMouseX = currentPoint.x();
         currentMouseY = currentPoint.y();
 
@@ -223,7 +421,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             ymovecoor += yRelativeMoovCoor;
         }
 
-
         if (mousePosX)
         {
             *mousePosX = xmovecoor;
@@ -249,12 +446,14 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                     if (handler->getIdentifier() == "xtest")
                     {
                         EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                         ymovecoor);
+                                                                                         ymovecoor,
+                                                                                         -1);
                     }
                     else if (handler->getIdentifier() == "uinput")
                     {
                         EventHandlerFactory::getInstance()->handler()
-                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                       width + deskRect.x(), height + deskRect.y());
                     }
                 }
                 else
@@ -267,7 +466,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                   width + deskRect.x(), height + deskRect.y());
                 }
                 else
                 {
@@ -288,25 +488,28 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                     if (handler->getIdentifier() == "xtest")
                     {
                         EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                         ymovecoor);
+                                                                                         ymovecoor,
+                                                                                         -1);
                     }
                     else if (handler->getIdentifier() == "uinput")
                     {
                         EventHandlerFactory::getInstance()->handler()
-                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                       width + deskRect.x(), height + deskRect.y());
                     }
                 }
                 else
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                                  ymovecoor - currentMouseY);
+                    EventHandlerFactory::getInstance()->handler()
+                            ->sendMouseEvent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 
 #elif defined(Q_OS_WIN)
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                   width + deskRect.x(), height + deskRect.y());
                 }
                 else
                 {
@@ -317,7 +520,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                             qMax(JoyButton::getMouseRefreshRate(),
                                  JoyButton::getGamepadRefreshRate()) + 1);
             }
-            else if (!PadderCommon::mouseHelperObj.springMouseMoving && (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
+            else if (!PadderCommon::mouseHelperObj.springMouseMoving &&
+                     (diffx >= destSpringWidth*.013 || diffy >= destSpringHeight*.013))
             {
                 PadderCommon::mouseHelperObj.springMouseMoving = true;
 #if defined(Q_OS_UNIX)
@@ -328,18 +532,21 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                     if (handler->getIdentifier() == "xtest")
                     {
                         EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                         ymovecoor);
+                                                                                         ymovecoor,
+                                                                                         -1);
                     }
                     else if (handler->getIdentifier() == "uinput")
                     {
                         EventHandlerFactory::getInstance()->handler()
-                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                       width + deskRect.x(), height + deskRect.y());
                     }
                 }
                 else
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                                  ymovecoor - currentMouseY);
+                    EventHandlerFactory::getInstance()->handler()
+                            ->sendMouseEvent(xmovecoor - currentMouseX,
+                                             ymovecoor - currentMouseY);
                 }
 
 
@@ -347,7 +554,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                   width + deskRect.x(), height + deskRect.y());
                 }
                 else
                 {
@@ -374,25 +582,29 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                     if (handler->getIdentifier() == "xtest")
                     {
                         EventHandlerFactory::getInstance()->handler()->sendMouseAbsEvent(xmovecoor,
-                                                                                         ymovecoor);
+                                                                                         ymovecoor,
+                                                                                         -1);
                     }
                     else if (handler->getIdentifier() == "uinput")
                     {
                         EventHandlerFactory::getInstance()->handler()
-                                ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                                ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                       width + deskRect.x(), height + deskRect.y());
                     }
                 }
                 else
                 {
-                    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
-                                                                                  ymovecoor - currentMouseY);
+                    EventHandlerFactory::getInstance()->handler()
+                            ->sendMouseEvent(xmovecoor - currentMouseX,
+                                             ymovecoor - currentMouseY);
                 }
 
 #elif defined(Q_OS_WIN)
                 if (fullSpring->screen <= -1)
                 {
                     EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor, width, height);
+                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
+                                                   width + deskRect.x(), height + deskRect.y());
                 }
                 else
                 {

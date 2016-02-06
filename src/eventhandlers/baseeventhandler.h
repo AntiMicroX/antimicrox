@@ -32,17 +32,23 @@ public:
 
     virtual bool init() = 0;
     virtual bool cleanup() = 0;
+
     virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed) = 0;
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed) = 0;
     virtual void sendMouseEvent(int xDis, int yDis) = 0;
+    virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
+
+    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
+                                      unsigned int width, unsigned int height);
+    virtual void sendMouseSpringEvent(int xDis, int yDis);
+
+    virtual void sendTextEntryEvent(QString maintext);
+
     virtual QString getName() = 0;
     virtual QString getIdentifier() = 0;
     virtual void printPostMessages();
     QString getErrorString();
-    virtual void sendMouseAbsEvent(int xDis, int yDis);
-    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                      unsigned int width, unsigned int height);
-    virtual void sendTextEntryEvent(QString maintext);
+
 
 protected:
     QString lastErrorString;

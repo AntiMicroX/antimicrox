@@ -251,6 +251,14 @@ void UInputEventHandler::sendMouseEvent(int xDis, int yDis)
     write_uinput_event(mouseFileHandler, EV_REL, REL_Y, yDis);
 }
 
+void UInputEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
+{
+    Q_UNUSED(screen);
+
+    write_uinput_event(springMouseFileHandler, EV_ABS, ABS_X, xDis, false);
+    write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, yDis);
+}
+
 void UInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
                                               unsigned int width, unsigned int height)
 {
@@ -261,9 +269,20 @@ void UInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yD
 
         int fx = ceil(32767 * ((xDis - midwidth) / midwidth));
         int fy = ceil(32767 * ((yDis - midheight) / midheight));
+        sendMouseAbsEvent(fx, fy, -1);
+        //write_uinput_event(springMouseFileHandler, EV_ABS, ABS_X, fx, false);
+        //write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, fy);
+    }
+}
 
-        write_uinput_event(springMouseFileHandler, EV_ABS, ABS_X, fx, false);
-        write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, fy);
+void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis)
+{
+    if (xDis >= -1.0 && xDis <= 1.0 &&
+        yDis >= -1.0 && yDis <= 1.0)
+    {
+        int fx = ceil(32767 * xDis);
+        int fy = ceil(32767 * yDis);
+        sendMouseAbsEvent(fx, fy, -1);
     }
 }
 

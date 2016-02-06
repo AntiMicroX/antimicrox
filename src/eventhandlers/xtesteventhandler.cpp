@@ -84,10 +84,10 @@ void XTestEventHandler::sendMouseEvent(int xDis, int yDis)
     XFlush(display);
 }
 
-void XTestEventHandler::sendMouseAbsEvent(int xDis, int yDis)
+void XTestEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
     Display* display = X11Extras::getInstance()->display();
-    XTestFakeMotionEvent(display, -1, xDis, yDis, 0);
+    XTestFakeMotionEvent(display, screen, xDis, yDis, 0);
     XFlush(display);
 }
 

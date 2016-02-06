@@ -365,12 +365,14 @@ void WinVMultiEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int
     {
         int fx = ceil(xDis * (32767.0/static_cast<double>(width)));
         int fy = ceil(yDis * (32767.0/static_cast<double>(height)));
-        sendMouseAbsEvent(fx, fy);
+        sendMouseAbsEvent(fx, fy, -1);
     }
 }
 
-void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis)
+void WinVMultiEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
+    Q_UNUSED(screen);
+
     vmulti_update_mouse(vmulti, mouseButtons, xDis, yDis, 0);//, 0);
 }
 
