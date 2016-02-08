@@ -1183,7 +1183,10 @@ QHash<int, JoyDPadButton*> JoyDPad::getDirectionButtons(JoyDPadButton::JoyDPadDi
     }
     else if (currentMode == EightWayMode)
     {
-        temphash.insert(direction, buttons.value(direction));
+        if (direction != JoyDPadButton::DpadCentered)
+        {
+            temphash.insert(direction, buttons.value(direction));
+        }
     }
     else if (currentMode == FourWayCardinal)
     {
@@ -1216,7 +1219,10 @@ void JoyDPad::setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections dire
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setUpdateInitAccel(state);
+        if (button)
+        {
+            button->setUpdateInitAccel(state);
+        }
     }
 }
 
@@ -1227,7 +1233,7 @@ void JoyDPad::copyLastDistanceValues(JoyDPad *srcDPad)
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        if (button->getButtonState())
+        if (button && button->getButtonState())
         {
             this->buttons.value(iter.key())->copyLastAccelerationDistance(button);
             this->buttons.value(iter.key())->copyLastMouseDistanceFromDeadZone(button);
