@@ -78,7 +78,7 @@ QString JoyAxisButton::getXmlName()
     return this->xmlName;
 }
 
-void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
     SetChangeCondition oldCondition = setSelectionCondition;
 
@@ -109,12 +109,11 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
 
     if (setSelectionCondition != oldCondition)
     {
-        emit propertyUpdated();
-    }
+        if (updateActiveString)
+        {
+            buildActiveZoneSummaryString();
+        }
 
-    if (setSelectionCondition != oldCondition)
-    {
-        buildActiveZoneSummaryString();
         emit propertyUpdated();
     }
 }

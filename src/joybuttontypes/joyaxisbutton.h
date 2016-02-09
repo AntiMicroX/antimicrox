@@ -37,7 +37,8 @@ public:
     virtual double getMouseDistanceFromDeadZone();
     virtual double getLastMouseDistanceFromDeadZone();
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false,
+                                       bool updateActiveString=true);
     JoyAxis* getAxis();
     virtual void setVDPad(VDPad *vdpad);
     virtual void setTurboMode(TurboMode mode);
