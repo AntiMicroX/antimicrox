@@ -174,38 +174,45 @@ void InputDaemon::refreshJoysticks()
 #ifdef USE_SDL_2
 
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
-
-        QString temp;
-        SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joystick);
-        char guidString[65] = {'0'};
-        SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
-        temp = QString(guidString);
-
-        bool disableGameController = settings->value(QString("%1Disable").arg(temp), false).toBool();
-
-        if (SDL_IsGameController(i) && !disableGameController)
+        if (joystick)
         {
-            SDL_GameController *controller = SDL_GameControllerOpen(i);
-            GameController *damncontroller = new GameController(controller, i, settings, this);
-            connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
-            SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
-            SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
-            joysticks->insert(joystickID, damncontroller);
-            trackcontrollers.insert(joystickID, damncontroller);
+            QString temp;
+            SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joystick);
+            char guidString[65] = {'0'};
+            SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
+            temp = QString(guidString);
+
+            bool disableGameController = settings->value(QString("%1Disable").arg(temp), false).toBool();
+
+            if (SDL_IsGameController(i) && !disableGameController)
+            {
+                SDL_GameController *controller = SDL_GameControllerOpen(i);
+                GameController *damncontroller = new GameController(controller, i, settings, this);
+                connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
+                SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
+                joysticks->insert(joystickID, damncontroller);
+                trackcontrollers.insert(joystickID, damncontroller);
+            }
+            else
+            {
+                Joystick *curJoystick = new Joystick(joystick, i, settings, this);
+                connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
+                joysticks->insert(joystickID, curJoystick);
+                trackjoysticks.insert(joystickID, curJoystick);
+            }
         }
-        else
+
+#else
+        SDL_Joystick *joystick = SDL_JoystickOpen(i);
+        if (joystick)
         {
             Joystick *curJoystick = new Joystick(joystick, i, settings, this);
             connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
-            SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
-            joysticks->insert(joystickID, curJoystick);
-            trackjoysticks.insert(joystickID, curJoystick);
+            joysticks->insert(i, curJoystick);
         }
-#else
-        SDL_Joystick *joystick = SDL_JoystickOpen(i);
-        Joystick *curJoystick = new Joystick(joystick, i, settings, this);
-        connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
-        joysticks->insert(i, curJoystick);
+
 #endif
     }
 
