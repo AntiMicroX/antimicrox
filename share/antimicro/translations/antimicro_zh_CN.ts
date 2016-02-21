@@ -36,14 +36,14 @@ The need for this program came from me using similar programs on Windows to play
 
 Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
 
-Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</source>
+Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.</source>
         <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
 
 对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
 
 从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
 
-等到 Steam 手柄向公众发布的时候，对这个程序的需求可能就消失了。相对于使用这个程序进行键鼠模拟而言，Steam 手柄单单在概念上就有如此之多的优势。</translation>
+开发这个程序对我来说已经不像以往那样高优先级了。这主要是因为相比较 Xbox 360 手柄来说，Steam 手柄可以很好地进行 PC 游戏。然而，这个程序似乎仍然有理由再存在一段时间。</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="369"/>
@@ -536,7 +536,7 @@ of the all default profile option.</source>
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1159"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1166"/>
         <source>Advanced</source>
         <translation>高级选项</translation>
     </message>
@@ -616,7 +616,7 @@ of the all default profile option.</source>
         <translation>0秒</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1528"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1535"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>在按键间插入暂停。</translation>
     </message>
@@ -627,7 +627,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="280"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1489"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1496"/>
         <source>Insert a new blank slot.</source>
         <translation>插入新动作。</translation>
     </message>
@@ -803,7 +803,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1054"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1277"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1284"/>
         <source>Disabled</source>
         <translation>禁用</translation>
     </message>
@@ -928,109 +928,109 @@ of the all default profile option.</source>
         <translation>按下时选择设置8</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="236"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="243"/>
         <source>sec.</source>
         <translation>秒。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="237"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="244"/>
         <source>/sec.</source>
         <translation>/秒。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1164"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1171"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1285"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1329"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1292"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1336"/>
         <source>Select Set %1</source>
         <translation>选择设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1300"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1307"/>
         <source>One Way</source>
         <translation>单向</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1303"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1310"/>
         <source>Two Way</source>
         <translation>双向</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1306"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1313"/>
         <source>While Held</source>
         <translation>按下时</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1418"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1425"/>
         <source>Choose Executable</source>
         <translation>选择可执行文件</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1493"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1500"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
         <translation>“周期”动作之后的动作将在下一次按下相同按钮的时候被执行。可以添加多个“周期”动作来创建一个按键序列中不同的子序列。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1499"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1506"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
         <translation>根据指定时长延迟下个动作开始执行的时间。延迟之前处于活动状态的动作将在延迟结束后保持活动状态。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1506"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1513"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
         <translation>“距离”动作之后的动作只有在轴移出不灵敏区并超过指定距离之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1512"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1519"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
         <translation>插入一个“按下”动作。“按下”动作之后的动作只有在按钮被按下超过指定的时长之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1517"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1524"/>
         <source>Chose a profile to load when this slot is activated.</source>
         <translation>当该动作被执行时，载入所选配置文件。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1521"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1528"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
         <translation>“鼠标变速”动作被处理时，将根据指定的百分比改变所有鼠标速度。这可以用在狙击时减缓鼠标速度。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1532"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1539"/>
         <source>Specify the time that keys past this slot should be held down.</source>
         <translation>按钮被按下超过指定的时长将保持被按下的状态。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1537"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1544"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
         <translation>插入一个“释放”动作。“释放”动作之后的动作只有在按钮被按下超过指定时长并被释放之后才会被执行。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1543"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1550"/>
         <source>Change to selected set once slot is activated.</source>
         <translation>该动作被执行时，切换到所选的设置。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1547"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1554"/>
         <source>Full string will be typed when a slot is activated.</source>
         <translation>当该动作被执行时，整个字符串将被键入。</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1552"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1559"/>
         <source>Execute program when slot is activated.</source>
         <translation>当该动作被执行时，运行一个程序。</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="670"/>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1387"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1394"/>
         <source>Choose Profile</source>
         <translation>选择配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1388"/>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1395"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>配置文件 (*.amgp *.xml)</translation>
     </message>
@@ -4831,7 +4831,7 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>UInputEventHandler</name>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="294"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="313"/>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
@@ -4840,14 +4840,14 @@ lsmod | grep uinput</source>
 lsmod | grep uinput</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="304"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="323"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation>无法打开 uinput 设备文件
 请确认您有写入该设备的权限</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="492"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="511"/>
         <source>Using uinput device file %1</source>
         <translation>使用 uinput 设备文件%1</translation>
     </message>
