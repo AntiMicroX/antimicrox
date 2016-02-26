@@ -59,6 +59,7 @@ protected:
 #ifdef USE_SDL_2
     void modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue);
     QBitArray createUnplugEventBitArray(InputDevice *device);
+    Joystick* openJoystickDevice(int index);
 #endif
 
     void clearBitArrayStatusInstances();

@@ -173,7 +173,99 @@ void InputDaemon::refreshJoysticks()
     {
 #ifdef USE_SDL_2
 
-        SDL_Joystick *joystick = SDL_JoystickOpen(i);
+        int index = i;
+
+        // Check if device is considered a Game Controller at the start.
+        if (SDL_IsGameController(index))
+        {
+            SDL_GameController *controller = SDL_GameControllerOpen(index);
+            if (controller)
+            {
+                SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
+                SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(sdlStick);
+
+                // Check if device has already been grabbed.
+                if (!joysticks->contains(tempJoystickID))
+                {
+                    settings->getLock()->lock();
+                    settings->beginGroup("Mappings");
+
+                    QString temp;
+                    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
+                    char guidString[65] = {'0'};
+                    SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
+                    temp = QString(guidString);
+
+                    bool disableGameController = settings->value(QString("%1Disable").arg(temp), false).toBool();
+
+                    settings->endGroup();
+                    settings->getLock()->unlock();
+
+                    // Check if user has designated device Joystick mode.
+                    if (!disableGameController)
+                    {
+                        GameController *damncontroller = new GameController(controller, index, settings, this);
+                        connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                        joysticks->insert(tempJoystickID, damncontroller);
+                        trackcontrollers.insert(tempJoystickID, damncontroller);
+
+                        emit deviceAdded(damncontroller);
+                    }
+                    else
+                    {
+                        // Check if joystick is considered connected.
+                        /*SDL_Joystick *joystick = SDL_JoystickOpen(index);
+                        if (joystick)
+                        {
+                            SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
+
+                            Joystick *curJoystick = new Joystick(joystick, index, settings, this);
+                            joysticks->insert(tempJoystickID, curJoystick);
+                            trackjoysticks.insert(tempJoystickID, curJoystick);
+
+                            emit deviceAdded(curJoystick);
+                        }
+                        */
+                        Joystick *joystick = openJoystickDevice(index);
+                        if (joystick)
+                        {
+                            emit deviceAdded(joystick);
+                        }
+
+                    }
+                }
+                else
+                {
+                    // Make sure to decrement reference count
+                    SDL_GameControllerClose(controller);
+                }
+            }
+        }
+        else
+        {
+            // Check if joystick is considered connected.
+            /*SDL_Joystick *joystick = SDL_JoystickOpen(index);
+            if (joystick)
+            {
+                SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
+
+                Joystick *curJoystick = new Joystick(joystick, index, settings, this);
+                joysticks->insert(tempJoystickID, curJoystick);
+                trackjoysticks.insert(tempJoystickID, curJoystick);
+
+                emit deviceAdded(curJoystick);
+            }
+            */
+            Joystick *joystick = openJoystickDevice(index);
+            if (joystick)
+            {
+                emit deviceAdded(joystick);
+            }
+        }
+
+
+
+        /*SDL_Joystick *joystick = SDL_JoystickOpen(i);
         if (joystick)
         {
             QString temp;
@@ -203,6 +295,7 @@ void InputDaemon::refreshJoysticks()
                 trackjoysticks.insert(joystickID, curJoystick);
             }
         }
+        */
 
 #else
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
@@ -401,7 +494,107 @@ void InputDaemon::refreshIndexes()
 
 void InputDaemon::addInputDevice(int index)
 {
-    SDL_Joystick *joystick = SDL_JoystickOpen(index);
+    // Check if device is considered a Game Controller at the start.
+    if (SDL_IsGameController(index))
+    {
+        SDL_GameController *controller = SDL_GameControllerOpen(index);
+        if (controller)
+        {
+            SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
+            SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(sdlStick);
+
+            // Check if device has already been grabbed.
+            if (!joysticks->contains(tempJoystickID))
+            {
+                settings->getLock()->lock();
+                settings->beginGroup("Mappings");
+
+                QString temp;
+                SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
+                char guidString[65] = {'0'};
+                SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
+                temp = QString(guidString);
+
+                bool disableGameController = settings->value(QString("%1Disable").arg(temp), false).toBool();
+
+                settings->endGroup();
+                settings->getLock()->unlock();
+
+                // Check if user has designated device Joystick mode.
+                if (!disableGameController)
+                {
+                    GameController *damncontroller = new GameController(controller, index, settings, this);
+                    connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                    joysticks->insert(tempJoystickID, damncontroller);
+                    trackcontrollers.insert(tempJoystickID, damncontroller);
+
+                    Logger::LogInfo(QString("New game controller found - #%1 [%2]")
+                                    .arg(index+1)
+                                    .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+
+                    emit deviceAdded(damncontroller);
+                }
+                else
+                {
+                    // Check if joystick is considered connected.
+                    /*SDL_Joystick *joystick = SDL_JoystickOpen(index);
+                    if (joystick)
+                    {
+                        SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
+
+                        Joystick *curJoystick = new Joystick(joystick, index, settings, this);
+                        joysticks->insert(tempJoystickID, curJoystick);
+                        trackjoysticks.insert(tempJoystickID, curJoystick);
+
+                        emit deviceAdded(curJoystick);
+                    }
+                    */
+                    Joystick *joystick = openJoystickDevice(index);
+                    if (joystick)
+                    {
+                        Logger::LogInfo(QString("New joystick found - #%1 [%2]")
+                                        .arg(index+1)
+                                        .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+
+                        emit deviceAdded(joystick);
+                    }
+
+                }
+            }
+            else
+            {
+                // Make sure to decrement reference count
+                SDL_GameControllerClose(controller);
+            }
+        }
+    }
+    else
+    {
+        // Check if joystick is considered connected.
+        /*SDL_Joystick *joystick = SDL_JoystickOpen(index);
+        if (joystick)
+        {
+            SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
+
+            Joystick *curJoystick = new Joystick(joystick, index, settings, this);
+            joysticks->insert(tempJoystickID, curJoystick);
+            trackjoysticks.insert(tempJoystickID, curJoystick);
+
+            emit deviceAdded(curJoystick);
+        }
+        */
+        Joystick *joystick = openJoystickDevice(index);
+        if (joystick)
+        {
+            Logger::LogInfo(QString("New joystick found - #%1 [%2]")
+                            .arg(index+1)
+                            .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+
+            emit deviceAdded(joystick);
+        }
+    }
+
+    /*SDL_Joystick *joystick = SDL_JoystickOpen(index);
     if (joystick)
     {
         SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
@@ -466,6 +659,25 @@ void InputDaemon::addInputDevice(int index)
             SDL_JoystickClose(joystick);
         }
     }
+    */
+}
+
+Joystick *InputDaemon::openJoystickDevice(int index)
+{
+    // Check if joystick is considered connected.
+    SDL_Joystick *joystick = SDL_JoystickOpen(index);
+    Joystick *curJoystick = 0;
+    if (joystick)
+    {
+        SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
+
+        curJoystick = new Joystick(joystick, index, settings, this);
+        joysticks->insert(tempJoystickID, curJoystick);
+        trackjoysticks.insert(tempJoystickID, curJoystick);
+
+    }
+
+    return curJoystick;
 }
 
 #endif
@@ -987,9 +1199,6 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
             case SDL_JOYDEVICEADDED:
             {
-                Logger::LogInfo(QString("New joystick found - #%1 [%2]")
-                                .arg(event.jdevice.which+1)
-                                .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
                 addInputDevice(event.jdevice.which);
                 break;
             }
