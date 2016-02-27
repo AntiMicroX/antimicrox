@@ -162,9 +162,7 @@ void InputDaemon::refreshJoysticks()
 #ifdef USE_SDL_2
     trackjoysticks.clear();
     trackcontrollers.clear();
-#endif
 
-#ifdef USE_SDL_2
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
 #endif
@@ -187,8 +185,8 @@ void InputDaemon::refreshJoysticks()
                 // Check if device has already been grabbed.
                 if (!joysticks->contains(tempJoystickID))
                 {
-                    settings->getLock()->lock();
-                    settings->beginGroup("Mappings");
+                    //settings->getLock()->lock();
+                    //settings->beginGroup("Mappings");
 
                     QString temp;
                     SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
@@ -198,8 +196,8 @@ void InputDaemon::refreshJoysticks()
 
                     bool disableGameController = settings->value(QString("%1Disable").arg(temp), false).toBool();
 
-                    settings->endGroup();
-                    settings->getLock()->unlock();
+                    //settings->endGroup();
+                    //settings->getLock()->unlock();
 
                     // Check if user has designated device Joystick mode.
                     if (!disableGameController)
