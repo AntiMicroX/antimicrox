@@ -48,7 +48,7 @@ option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
-    option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
+    #ption(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
     option(WITH_VMULTI "Compile with support for vmulti." OFF)
     option(PERFORM_SIGNING "Sign final executable." OFF)
 
@@ -66,13 +66,20 @@ if(WIN32)
         install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/profiles" DESTINATION ${CMAKE_INSTALL_PREFIX})
     endif(PORTABLE_PACKAGE)
 
-    if(TARGET_ARCH)
-        set(ARCH_OPTIONS "x86" "x86_64")
-        list(FIND ARCH_OPTIONS ${TARGET_ARCH} ARCH_INDEX)
-        if(ARCH_INDEX EQUAL -1)
-            message(FATAL_ERROR "No valid architecture choice used. Exiting.")
-        endif(ARCH_INDEX EQUAL -1)
-    endif(TARGET_ARCH)
+    # Find target architecture based on the compiler.
+    if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(TARGET_ARCH "x86_64")
+    else()
+        set(TARGET_ARCH "x86")
+    endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+
+    #if(TARGET_ARCH)
+    #    set(ARCH_OPTIONS "x86" "x86_64")
+    #    list(FIND ARCH_OPTIONS ${TARGET_ARCH} ARCH_INDEX)
+    #    if(ARCH_INDEX EQUAL -1)
+    #        message(FATAL_ERROR "No valid architecture choice used. Exiting.")
+    #    endif(ARCH_INDEX EQUAL -1)
+    #endif(TARGET_ARCH)
 
     if(WITH_VMULTI)
         add_definitions(-DWITH_VMULTI)

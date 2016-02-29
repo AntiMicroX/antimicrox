@@ -41,11 +41,6 @@ Default: ON. Compile the program with XTest support.
 Default: OFF. Compile the program with extra changes used for containing the
 final program to a single directory.
 
-    -DTARGET_ARCH
-
-Default: x86. Options: {x86, x86_64}. Choose which version of some libraries to 
-use; mainly concerned with Qt and SDL libs.
-
     -DWITH_VMULTI
 
 Default: OFF. Compile the program with support for the vmulti driver.
