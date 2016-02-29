@@ -48,7 +48,7 @@ option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
-    #ption(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
+    #option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
     option(WITH_VMULTI "Compile with support for vmulti." OFF)
     option(PERFORM_SIGNING "Sign final executable." OFF)
 
@@ -89,7 +89,7 @@ endif(WIN32)
 # Use pkg-config to find SDL library.
 if(UNIX)
     find_package(PkgConfig REQUIRED)
-    include(FindPkgConfig)
+    #include(FindPkgConfig)
 
     if(USE_SDL_2)
         pkg_check_modules(SDL2 REQUIRED sdl2)
@@ -592,17 +592,54 @@ if(UNIX)
     endif(USE_SDL_2)
 elseif (WIN32)
     if(USE_SDL_2)
-        # Perform extra voodoo to get proper library paths and include
-        # proper headers.
-        if(TARGET_ARCH STREQUAL "x86_64")
-            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/lib")
-            list(APPEND LIBS ${SDL2_LIBRARY})
-            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/include")
-        else()
-            find_library(SDL2_LIBRARY SDL2 "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/lib")
-            list(APPEND LIBS ${SDL2_LIBRARY})
-            include_directories("${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/include")
-        endif(TARGET_ARCH STREQUAL "x86_64")
+        set(SDL2_LIBRARY "")
+        set(SDL2_LIBRARY_DIR "")
+        set(SDL2_INCLUDE_DIR "")
+        set(SDL2_DLL_LOCATION_DIR "")
+
+        if (MSYS OR MINGW)
+            find_package(PkgConfig QUIET)
+            if(PKG_CONFIG_FOUND)
+                #include(FindPkgConfig)
+
+                pkg_check_modules(SDL2 QUIET sdl2)
+                if(SDL2_FOUND)
+                    #find_path(SDL2_INCLUDE_DIR "SDL2/SDL.h" HINTS ${SDL2_INCLUDE_DIRS})
+
+                    set(SDL2_LIBRARY ${SDL2_LIBRARIES})
+                    set(SDL2_LIBRARY_DIR ${SDL2_LIBRARY_DIRS})
+                    set(SDL2_INCLUDE_DIR ${SDL2_INCLUDE_DIRS})
+                    set(SDL2_DLL_LOCATION_DIR "${SDL2_LIBRARY_DIRS}/../bin")
+
+                    list(APPEND LIBS ${SDL2_LIBRARIES})
+                endif(SDL2_FOUND)
+            endif(PKG_CONFIG_FOUND)
+
+        endif(MSYS OR MINGW)
+
+        if (NOT SDL2_LIBRARY AND EXISTS "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/")
+            # Perform extra voodoo to get proper library paths and include
+            # proper headers.
+            unset(SDL2_LIBRARY)
+
+            if(TARGET_ARCH STREQUAL "x86_64")
+                set(SDL2_LIBRARY_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/lib")
+                set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/include")
+                set(SDL2_DLL_LOCATION_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin")
+
+                find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
+                list(APPEND LIBS ${SDL2_LIBRARY})
+                include_directories(${SDL2_INCLUDE_DIR})
+            else()
+                set(SDL2_LIBRARY_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/lib")
+                set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/include")
+                set(SDL2_DLL_LOCATION_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin")
+
+                find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
+                list(APPEND LIBS ${SDL2_LIBRARY})
+                include_directories(${SDL2_INCLUDE_DIR})
+            endif(TARGET_ARCH STREQUAL "x86_64")
+        endif(NOT SDL2_LIBRARY)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
@@ -703,17 +740,21 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOUR
 install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E remove \"${PROJECT_SOURCE_DIR}/src/Changelog\")")
 
 if(WIN32)
-    if(TARGET_ARCH STREQUAL "x86_64")
-        # Copy SDL2.dll to find installation directory.
-        add_custom_target(copy_sdl_dll
-            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
-        )
-    else()
-        # Copy SDL2.dll to find installation directory.
-        add_custom_target(copy_sdl_dll
-            COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
-        )
-    endif(TARGET_ARCH STREQUAL "x86_64")
+    #if(TARGET_ARCH STREQUAL "x86_64")
+    #    # Copy SDL2.dll to find installation directory.
+    #    add_custom_target(copy_sdl_dll
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #    )
+    #else()
+    #    # Copy SDL2.dll to find installation directory.
+    #    add_custom_target(copy_sdl_dll
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #    )
+    #endif(TARGET_ARCH STREQUAL "x86_64")
+
+    add_custom_target(copy_sdl_dll
+        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_DLL_LOCATION_DIR}/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    )
 
 
     # Obtain location of Qt5 DLL files and assign them to a list.
