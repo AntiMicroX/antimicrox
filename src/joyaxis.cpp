@@ -1165,3 +1165,9 @@ void JoyAxis::copyThrottledValues(JoyAxis *srcAxis)
     this->lastKnownThottledValue = srcAxis->lastKnownThottledValue;
     this->currentThrottledValue = srcAxis->currentThrottledValue;
 }
+
+void JoyAxis::eventReset()
+{
+    naxisbutton->eventReset();
+    paxisbutton->eventReset();
+}

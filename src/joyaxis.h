@@ -139,6 +139,8 @@ public:
     void setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
+    virtual void eventReset();
+
     // Define default values for many properties.
     static const int AXISMIN;
     static const int AXISMAX;

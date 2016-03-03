@@ -1240,3 +1240,14 @@ void JoyDPad::copyLastDistanceValues(JoyDPad *srcDPad)
         }
     }
 }
+
+void JoyDPad::eventReset()
+{
+    QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
+    QHashIterator<int, JoyDPadButton*> iter(temphash);
+    while (iter.hasNext())
+    {
+        JoyDPadButton *button = iter.next().value();
+        button->eventReset();
+    }
+}

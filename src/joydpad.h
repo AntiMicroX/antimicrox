@@ -110,6 +110,8 @@ public:
     void setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections direction, bool state);
     void copyLastDistanceValues(JoyDPad *srcDPad);
 
+    virtual void eventReset();
+
     static const QString xmlName;
     static const unsigned int DEFAULTDPADDELAY;
 

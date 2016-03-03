@@ -293,6 +293,8 @@ void SetJoystick::release()
         JoyAxis *axis = iterAxes.next().value();
         axis->clearPendingEvent();
         axis->joyEvent(axis->getCurrentThrottledDeadValue(), true);
+        axis->eventReset();
+
     }
 
     QHashIterator<int, JoyDPad*> iterDPads(hats);
@@ -301,6 +303,7 @@ void SetJoystick::release()
         JoyDPad *dpad = iterDPads.next().value();
         dpad->clearPendingEvent();
         dpad->joyEvent(0, true);
+        dpad->eventReset();
     }
 
     QHashIterator<int, JoyButton*> iterButtons(buttons);
@@ -309,6 +312,7 @@ void SetJoystick::release()
         JoyButton *button = iterButtons.next().value();
         button->clearPendingEvent();
         button->joyEvent(false, true);
+        button->eventReset();
     }
 }
 
