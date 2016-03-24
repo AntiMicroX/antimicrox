@@ -848,11 +848,17 @@ if(WIN32)
 
     set(WIXOBJ "${MSIFOLDER}/antimicro.wixobj")
 
+    # Use version number in output file name.
+    set(MSIFILENAME "${ANTIMICRO_MAJOR_VERSION}.${ANTIMICRO_MINOR_VERSION}")
+    if(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
+        set(MSIFILENAME "${MSIFILENAME}.${ANTIMICRO_PATCH_VERSION}")
+    endif(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
+
     # Change output file depending on the target architecture.
     if(TARGET_ARCH STREQUAL "x86_64")
-        set(WIXMSI "${MSIFOLDER}/antimicro_64.msi")
+        set(WIXMSI "${MSIFOLDER}/antimicro-${MSIFILENAME}-win64.msi")
     else()
-        set(WIXMSI "${MSIFOLDER}/antimicro.msi")
+        set(WIXMSI "${MSIFOLDER}/antimicro-${MSIFILENAME}-win32.msi")
     endif(TARGET_ARCH STREQUAL "x86_64")
 
     if(NOT WIXENV)
