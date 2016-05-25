@@ -1,11 +1,21 @@
 # antimicro
 
-[![Join the chat at https://gitter.im/Ryochan7/antimicro](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryochan7/antimicro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## We've Moved!
 
-## Lower Priority Development
+As of May 24, 2016, antimicro has moved from
+[https://github.com/Ryochan7/antimicro](https://github.com/Ryochan7/antimicro) to
+[https://github.com/AntiMicro/antimicro](https://github.com/AntiMicro/antimicro).
+Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro
+organization due to Travis having other interests and priorities.
 
-As of June 04, 2015, development of antimicro has resumed but updates will be
-less frequent than in the past. Other tasks will take priority.
+So, thank you for your patience as we settle in. And a special thank you to the
+following GitHub users who have helped us make the transition:
+7185
+DarkStarSword
+est31
+ProfessorKaos64
+WAZAAAAA0
+zzpxyx
 
 ## Description
 
@@ -40,7 +50,7 @@ Download links are currently available from the antimicro Releases section on
 GitHub. Currently, the Windows archive, Debian Jessie deb files, and source code
 archives can be found in the Releases section.
 
-[https://github.com/Ryochan7/antimicro/releases](https://github.com/Ryochan7/antimicro/releases)
+[https://github.com/AntiMicro/antimicro/releases](https://github.com/AntiMicro/antimicro/releases)
 
 For Ubuntu users, there is now a PPA available that you can use to have your
 package manager grab the latest antimicro updates automatically. For more details,
@@ -88,12 +98,12 @@ really convenient. In order to use those pre-made profiles, you have to be
 running at least antimicro version 2.0 and antimicro must have been compiled
 with SDL 2 support.
 
-[https://github.com/Ryochan7/antimicro-profiles](https://github.com/Ryochan7/antimicro-profiles)
+[https://github.com/AntiMicro/antimicro-profiles](https://github.com/AntiMicro/antimicro-profiles)
 
 ## Wiki
 
 An effort is now being done to utilize the Wiki section on GitHub more.
-Please check out the Wiki at [https://github.com/Ryochan7/antimicro/wiki](https://github.com/Ryochan7/antimicro/wiki)
+Please check out the Wiki at [https://github.com/AntiMicro/antimicro/wiki](https://github.com/AntiMicro/antimicro/wiki)
 to read various help pages that have been created. The Wiki is currently
 open to all GitHub users so feel free to add a new page or modify an
 existing page.
@@ -280,7 +290,7 @@ In order to obtain support, you can post an issue on the antimicro GitHub page
 or you can email me at nickles.travis@gmail.com. Please include **antimicro**
 somewhere in the subject line of the email message or it might be skipped.
 
-[https://github.com/Ryochan7/antimicro](https://github.com/Ryochan7/antimicro)
+[https://github.com/AntiMicro/antimicro](https://github.com/AntiMicro/antimicro)
 
 ## Ideas For Future Features
 
