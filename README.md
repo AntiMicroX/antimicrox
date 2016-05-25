@@ -10,12 +10,12 @@ organization due to Travis having other interests and priorities.
 
 So, thank you for your patience as we settle in. And a special thank you to the
 following GitHub users who have helped us make the transition:
-7185
-DarkStarSword
-est31
-ProfessorKaos64
-WAZAAAAA0
-zzpxyx
+* 7185
+* DarkStarSword
+* est31
+* ProfessorKaos64
+* WAZAAAAA0
+* zzpxyx
 
 ## Description
 
@@ -287,7 +287,7 @@ devices behave a bit differently between the two systems.
 ## Support
 
 In order to obtain support, you can post an issue on the antimicro GitHub page
-or you can email me at nickles.travis@gmail.com. Please include **antimicro**
+or you can email me at jeff@jsbackus.com. Please include **antimicro**
 somewhere in the subject line of the email message or it might be skipped.
 
 [https://github.com/AntiMicro/antimicro](https://github.com/AntiMicro/antimicro)
@@ -321,7 +321,7 @@ for this program mostly resembles QJoyPad.
 
 ## Credits
 
-### Main Developer
+### Original Developer
 Travis Nickles <nickles.travis@gmail.com>
 
 ### Contributors
@@ -344,11 +344,3 @@ Dmitriy Koshel <form.eater@gmail.com> - Russian
 Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
 burunduk - Ukrainian
 
-## Donate
-
-If you would like to help fund future development of this project,
-please send a donation via PayPal to ryoohki7@yahoo.com
-([PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L6MHH9R4WUGY6)).
-Any financial help would be greatly appreciated. As a disclaimer, I should
-mention that any donations received might go towards buying games to test
-against. Some donations might just go towards groceries so that I can eat.
