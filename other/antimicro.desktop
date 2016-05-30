@@ -15,3 +15,4 @@ Terminal=false
 Type=Application
 Categories=Qt;Utility;
 MimeType=application/x-amgp;
+Keywords=game;controller;keyboard;joystick;mouse;
