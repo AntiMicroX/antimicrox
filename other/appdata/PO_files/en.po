@@ -71,7 +71,7 @@ msgstr ""
 
 #. (itstool) path: component/url
 #: antimicro.appdata.xml.in:31
-msgid "https://github.com/Ryochan7/antimicro"
+msgid "https://github.com/AntiMicro/antimicro"
 msgstr ""
 
 #. (itstool) path: component/updatecontact
