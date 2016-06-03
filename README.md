@@ -14,6 +14,7 @@ following GitHub users who have helped us make the transition:
 * DarkStarSword
 * est31
 * ProfessorKaos64
+* qwerty12
 * WAZAAAAA0
 * zzpxyx
 
@@ -309,6 +310,23 @@ program. The mind map will include extra notes that are not available in
 this README. Opening the mind map will require the use of the program
 FreeMind which can be downloaded from
 [http://freemind.sourceforge.net/wiki/index.php/Main_Page](http://freemind.sourceforge.net/wiki/index.php/Main_Page).
+
+## Translating
+
+New translations as well as updates to current translations are always welcome.
+It is highly recommended that you use 
+[Qt Linguist](http://doc.qt.io/qt-5/qtlinguist-index.html) to manage the
+translation. To add a new translation, simply copy
+`share/antimicro/translations/antimicro.ts` to
+`share/antimicro/translations/antimicro_<LANG>.ts`, where <LANG> is the
+[ISO 639](https://en.wikipedia.org/wiki/ISO_639) abbreviation for the
+language (i.e. es = Spanish) and optional
+[ISO 3166](https://en.wikipedia.org/wiki/ISO_3166) 
+country/region abbreviation (i.e. zh_CN). For more information, please refer
+to Qt Linguist's documentation for
+[translators](https://doc.qt.io/qt-5/linguist-translators.html), send us
+an [e-mail](mailto:jeff@jsbackus.com), or start a
+[conversation](https://github.com/AntiMicro/antimicro/issues).
 
 ## Shoutout
 
