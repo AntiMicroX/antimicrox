@@ -326,7 +326,8 @@ country/region abbreviation (i.e. zh_CN). For more information, please refer
 to Qt Linguist's documentation for
 [translators](https://doc.qt.io/qt-5/linguist-translators.html), send us
 an [e-mail](mailto:jeff@jsbackus.com), or start a
-[conversation](https://github.com/AntiMicro/antimicro/issues).
+[conversation](https://github.com/AntiMicro/antimicro/issues). Once complete,
+simply send us a pull request!
 
 ## Shoutout
 
