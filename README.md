@@ -111,7 +111,7 @@ existing page.
 
 ## Build Dependencies
 
-This program is written in C++ using the [Qt](http://qt-project.org/)
+This program is written in C++ using the [Qt](https://www.qt.io/)
 framework. A C++ compiler and a proper C++ build environment will need to be
 installed on your system prior to building this program. Under Debian and
 Debian-based distributions like Ubuntu, the
@@ -167,8 +167,8 @@ Modified by Travis Nickles.**
 
 * Download and install CMake: http://www.cmake.org/cmake/resources/software.html
 
-* You will need Qt with MinGW support: http://qt-project.org/downloads. The
-current version of Qt that is being used to create builds is 5.4.0.
+* You will need Qt with MinGW support: https://www.qt.io/download-open-source/. The
+current version of Qt that is being used to create builds is 5.6.0.
 
 * download SDL development package : http://www.libsdl.org/release/SDL2-devel-2.0.3-mingw.tar.gz
 
@@ -184,7 +184,7 @@ under the root antimicro folder and choose that for the build location.
 ```-DCMAKE_PREFIX_PATH=<Path to MinGW Qt install>```
 -DCMAKE_BUILD_TYPE=Release. Replace "```<Path to MinGW Qt install>```"
 with the actual path to your Qt installation. The default path for version
-Qt 5.4.0 is C:\Qt\Qt5.4.0\5.4\mingw491_32\.
+Qt 5.6.0 is C:\Qt\Qt5.6.0\5.6\mingw49_32\.
 
 * Choose "MinGW Generator" for the Generator option in the Run CMake section
 
