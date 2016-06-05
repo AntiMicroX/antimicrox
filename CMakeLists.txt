@@ -45,6 +45,7 @@ if(UNIX)
 endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
+option(TRANS_KEEP_OBSOLETE "Do not specify -no-obsolete when calling lupdate." OFF)
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)

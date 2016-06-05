@@ -11,6 +11,12 @@ options and describe their use in the project.
 Default: OFF. Set updateqm target to call lupdate in order to update 
 translation files from source.
 
+    -DTRANS_KEEP_OBSOLETE
+
+Default: OFF. When UPDATE_TRANSLATIONS=ON, this option keeps obsolete
+translations in the output. Useful for dealing with minor changes in
+long strings.
+
     -DUSE_SDL_2
 
 Default: ON. Compile the program with SDL 2 instead of SDL 1.2.
