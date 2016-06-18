@@ -1,3 +1,28 @@
+2016-06-18 Jeff Backus <jeff@jsbackus.com>
+
+Version 2.22
+
+* Fixed issues with SDL 2.0.4 on Windows.
+
+* Updated documentation and URLs in code to note transition in
+management.
+
+* Updated translations
+
+* Added code to revert all virtual buttons to beginning of slot list
+before a set switch.
+
+* Build system updates
+
+* Fixed a bug where invalid joystick was inserted into device list.
+
+* Modified to hide turbo mode combobox for regular buttons
+
+* Changed to allow blank config for auto profile entries again.
+
+* Fixed matching by process filename in AutoProfileWatcher
+
+
 2016-01-10 Travis Nickles <nickles.travis@gmail.com>
 
 Version 2.21
