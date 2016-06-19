@@ -314,20 +314,8 @@ FreeMind which can be downloaded from
 ## Translating
 
 New translations as well as updates to current translations are always welcome.
-It is highly recommended that you use 
-[Qt Linguist](http://doc.qt.io/qt-5/qtlinguist-index.html) to manage the
-translation. To add a new translation, simply copy
-`share/antimicro/translations/antimicro.ts` to
-`share/antimicro/translations/antimicro_<LANG>.ts`, where <LANG> is the
-[ISO 639](https://en.wikipedia.org/wiki/ISO_639) abbreviation for the
-language (i.e. es = Spanish) and optional
-[ISO 3166](https://en.wikipedia.org/wiki/ISO_3166) 
-country/region abbreviation (i.e. zh_CN). For more information, please refer
-to Qt Linguist's documentation for
-[translators](https://doc.qt.io/qt-5/linguist-translators.html), send us
-an [e-mail](mailto:jeff@jsbackus.com), or start a
-[conversation](https://github.com/AntiMicro/antimicro/issues). Once complete,
-simply send us a pull request!
+Please refer to
+[https://github.com/AntiMicro/antimicro/wiki/Translating-AntiMicro](https://github.com/AntiMicro/antimicro/wiki/Translating-AntiMicro)
 
 ## Shoutout
 
