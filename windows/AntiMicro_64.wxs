@@ -96,6 +96,12 @@
                                 <Component Id="ANTIMICRO_ZH_CN.QM" Guid="B7A4696B-05F0-40C5-9F8C-88CC06B94030">
                                     <File Source="..\antimicro\share\antimicro\translations\antimicro_zh_CN.qm" />
                                 </Component>
+                                <Component Id="ANTIMICRO_ES.QM" Guid="*">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_es.qm" />
+                                </Component>
+                                <Component Id="ANTIMICRO_IT.QM" Guid="*">
+                                    <File Source="..\antimicro\share\antimicro\translations\antimicro_it.qm" />
+                                </Component>
                             </Directory>
                         </Directory>
                         <Directory Id="QT" Name="qt">
@@ -201,6 +207,8 @@
             <ComponentRef Id="ANTIMICRO_SR.QM" />
             <ComponentRef Id="ANTIMICRO_UK.QM" />
             <ComponentRef Id="ANTIMICRO_ZH_CN.QM" />
+            <ComponentRef Id="ANTIMICRO_ES.QM" />
+            <ComponentRef Id="ANTIMICRO_IT.QM" />
             <ComponentRef Id="QT_AR.QM" />
             <ComponentRef Id="QT_CA.QM" />
             <ComponentRef Id="QT_CS.QM" />
