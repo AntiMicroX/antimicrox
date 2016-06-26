@@ -19,6 +19,43 @@
         <translation>版本</translation>
     </message>
     <message>
+        <location filename="../../../src/aboutdialog.ui" line="179"/>
+        <source>Info</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="334"/>
+        <source>Changelog</source>
+        <translation>更新日志</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="359"/>
+        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+
+The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
+
+Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
+
+Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.</source>
+        <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
+
+对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
+
+从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
+
+开发这个程序对我来说已经不像以往那样高优先级了。这主要是因为相比较 Xbox 360 手柄来说，Steam 手柄可以很好地进行 PC 游戏。然而，这个程序似乎仍然有理由再存在一段时间。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="378"/>
+        <source>Copyright: 2013 - 2016</source>
+        <translation>版权：2013 - 2016</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="121"/>
+        <source>Credits</source>
+        <translation>致谢</translation>
+    </message>
+    <message>
         <location filename="../../../src/aboutdialog.ui" line="136"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -51,6 +88,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - Ukrainian&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - Spanish&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -83,47 +121,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - 塞尔维亚语&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - 乌克兰语&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - 西班牙语&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - 意大利语&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="178"/>
-        <source>Info</source>
-        <translation>信息</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="333"/>
-        <source>Changelog</source>
-        <translation>更新日志</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="358"/>
-        <source>Since December 30, 2012, I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
-
-The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
-
-Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
-
-Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.</source>
-        <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
-
-对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
-
-从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
-
-开发这个程序对我来说已经不像以往那样高优先级了。这主要是因为相比较 Xbox 360 手柄来说，Steam 手柄可以很好地进行 PC 游戏。然而，这个程序似乎仍然有理由再存在一段时间。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="377"/>
-        <source>Copyright: 2013 - 2016</source>
-        <translation>版权：2013 - 2016</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="121"/>
-        <source>Credits</source>
-        <translation>致谢</translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="203"/>
+        <location filename="../../../src/aboutdialog.ui" line="204"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -354,12 +356,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="347"/>
+        <location filename="../../../src/aboutdialog.ui" line="348"/>
         <source>About Development</source>
         <translation>关于开发</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="188"/>
+        <location filename="../../../src/aboutdialog.ui" line="189"/>
         <source>License</source>
         <translation>许可</translation>
     </message>
@@ -3558,32 +3560,37 @@ option is enabled.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="332"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="897"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="902"/>
         <source>Enable</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="637"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="622"/>
+        <source>Italian</source>
+        <translation>意大利语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="642"/>
         <source>Simplified Chinese</source>
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="766"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="771"/>
         <source>Class</source>
         <translation>类</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="771"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="776"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="776"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="781"/>
         <source>Program</source>
         <translation>程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="869"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="874"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
@@ -3592,22 +3599,22 @@ precise.</source>
 禁用“提高指针精确度”可使鼠标在开启 antimicro 的情况下更精准地移动。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="875"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="880"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation>禁用提高指针精确度</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="885"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="890"/>
         <source>Smoothing</source>
         <translation>平滑</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="965"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="970"/>
         <source>Refresh Rate:</source>
         <translation>刷新率：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="972"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="977"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
@@ -3620,29 +3627,29 @@ it unattended.</source>
 请在以无人值守方式使用前测试此选项。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1044"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1049"/>
         <source>Accel Numerator:</source>
         <translation>加速度分子：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1057"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1088"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1119"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1062"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1093"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1124"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1081"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1086"/>
         <source>Accel Denominator:</source>
         <translation>加速度分母：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1112"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1117"/>
         <source>Accel Threshold:</source>
         <translation>加速度阈值：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1156"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1161"/>
         <source>If the acceleration values for the virtual mouse have been
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
@@ -3650,7 +3657,7 @@ values used by the virtual mouse.</source>
         <translation>如果虚拟鼠标的加速度值被另一个进程改变，尤其是在退出老游戏的时候，您可能需要重置虚拟鼠标使用的加速度值。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1162"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1167"/>
         <source>Reset Acceleration</source>
         <translation>重置加速度</translation>
     </message>
@@ -3727,7 +3734,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="534"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="845"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="850"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -3743,7 +3750,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1930"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1938"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
@@ -3768,89 +3775,89 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <translation>德语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="622"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="627"/>
         <source>Japanese</source>
         <translation>日语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="627"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="632"/>
         <source>Russian</source>
         <translation>俄语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="632"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="637"/>
         <source>Serbian</source>
         <translation>塞尔维亚语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="642"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="647"/>
         <source>Ukrainian</source>
         <translation>乌克兰语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="659"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="751"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="664"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="756"/>
         <source>Active</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="684"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="689"/>
         <source>Devices:</source>
         <translation>设备：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="692"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1154"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="697"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1158"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="756"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="761"/>
         <source>Device</source>
         <translation>设备</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="761"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="766"/>
         <source>Profile</source>
         <translation>配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="781"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="786"/>
         <source>Default?</source>
         <translation>默认？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="815"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="820"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="830"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="835"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="906"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="911"/>
         <source>Histor&amp;y Size:</source>
         <translation>历史缓冲大小 (&amp;y)：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="932"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="937"/>
         <source>Weight &amp;Modifier:</source>
         <translation>权重修饰因数 (&amp;M)：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="986"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="991"/>
         <source>Spring</source>
         <translation>弹簧</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1000"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1005"/>
         <source>Screen:</source>
         <translation>屏幕：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1010"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1015"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
@@ -3871,7 +3878,7 @@ the option in Windows.</source>
         <translation>选择默认配置文件目录</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1534"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1538"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>您确认要删除这个配置文件吗？</translation>
     </message>
