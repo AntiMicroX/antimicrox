@@ -825,21 +825,25 @@ void MainSettingsDialog::checkLocaleChange()
         }
         else if (row == 5)
         {
-            newLocale = "ja";
+            newLocale = "it";
         }
         else if (row == 6)
         {
-            newLocale = "ru";
+            newLocale = "ja";
         }
         else if (row == 7)
         {
-            newLocale = "sr";
+            newLocale = "ru";
         }
         else if (row == 8)
         {
-            newLocale = "zh_CN";
+            newLocale = "sr";
         }
         else if (row == 9)
+        {
+            newLocale = "zh_CN";
+        }
+        else if (row == 10)
         {
             newLocale = "uk";
         }
@@ -1893,25 +1897,29 @@ void MainSettingsDialog::changePresetLanguage()
         {
             ui->localeListWidget->setCurrentRow(4);
         }
-        else if (targetLang == "ja")
+        else if (targetLang == "it")
         {
             ui->localeListWidget->setCurrentRow(5);
         }
-        else if (targetLang == "ru")
+        else if (targetLang == "ja")
         {
             ui->localeListWidget->setCurrentRow(6);
         }
-        else if (targetLang == "sr")
+        else if (targetLang == "ru")
         {
             ui->localeListWidget->setCurrentRow(7);
         }
-        else if (targetLang == "zh_CN")
+        else if (targetLang == "sr")
         {
             ui->localeListWidget->setCurrentRow(8);
         }
-        else if (targetLang == "uk")
+        else if (targetLang == "zh_CN")
         {
             ui->localeListWidget->setCurrentRow(9);
+        }
+        else if (targetLang == "uk")
+        {
+            ui->localeListWidget->setCurrentRow(10);
         }
         else
         {
