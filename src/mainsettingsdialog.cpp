@@ -845,6 +845,10 @@ void MainSettingsDialog::checkLocaleChange()
         }
         else if (row == 10)
         {
+            newLocale = "es";
+        }
+        else if (row == 11)
+        {
             newLocale = "uk";
         }
 
@@ -1917,9 +1921,13 @@ void MainSettingsDialog::changePresetLanguage()
         {
             ui->localeListWidget->setCurrentRow(9);
         }
-        else if (targetLang == "uk")
+        else if (targetLang == "es")
         {
             ui->localeListWidget->setCurrentRow(10);
+        }
+        else if (targetLang == "uk")
+        {
+            ui->localeListWidget->setCurrentRow(11);
         }
         else
         {

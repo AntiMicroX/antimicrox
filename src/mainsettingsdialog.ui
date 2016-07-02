@@ -644,6 +644,11 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            </item>
            <item>
             <property name="text">
+             <string>Spanish</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Ukrainian</string>
             </property>
            </item>
