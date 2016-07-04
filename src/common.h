@@ -116,10 +116,10 @@ namespace PadderCommon
     const QString githubProjectPage = "https://github.com/AntiMicro/antimicro";
     const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);
 
-    extern QString mouseDeviceName;
-    extern QString keyboardDeviceName;
-    extern QString springMouseDeviceName;
-
+    const QString mouseDeviceName("antimicro Mouse Emulation");
+    const QString keyboardDeviceName("antimicro Keyboard Emulation");
+    const QString springMouseDeviceName("antimicro Abs Mouse Emulation");
+    
     const int ANTIMICRO_MAJOR_VERSION = PROJECT_MAJOR_VERSION;
     const int ANTIMICRO_MINOR_VERSION = PROJECT_MINOR_VERSION;
     const int ANTIMICRO_PATCH_VERSION = PROJECT_PATCH_VERSION;
