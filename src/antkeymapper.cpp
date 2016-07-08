@@ -41,6 +41,9 @@ static QStringList buildEventGeneratorList()
   #ifdef WITH_UINPUT
     temp.append("uinput");
   #endif
+  #ifdef WITH_COCOA
+    temp.append("cocoa");
+  #endif
 
 #endif
     return temp;
@@ -71,6 +74,14 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "xtest")
     {
         internalMapper = &x11Mapper;
+        nativeKeyMapper = 0;
+    }
+    #endif
+
+    #ifdef WITH_COCOA
+    if (handler == "cocoa")
+    {
+        internalMapper = &cocoaMapper;
         nativeKeyMapper = 0;
     }
     #endif

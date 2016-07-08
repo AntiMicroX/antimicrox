@@ -39,6 +39,10 @@
 #include <QApplication>
     #endif
 
+    #ifdef WITH_COCOA
+#include "capturedwindowinfodialog.h"
+    #endif
+
 #elif defined(Q_OS_WIN)
 #include "winappprofiletimerdialog.h"
 #include "capturedwindowinfodialog.h"

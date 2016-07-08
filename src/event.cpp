@@ -48,6 +48,10 @@
 #include "uinputhelper.h"
     #endif
 
+    #if defined(WITH_COCOA)
+#include "cocoahelper.h"
+    #endif
+
 #elif defined (Q_OS_WIN)
 #include <qt_windows.h>
 #include "winextras.h"
@@ -671,6 +675,13 @@ int X11KeySymToKeycode(QString key)
             tempcode = UInputHelper::getInstance()->getVirtualKey(key);
         }
 #endif
+
+#ifdef WITH_COCOA
+        if (handler->getIdentifier() == "cocoa")
+        {
+            tempcode = CocoaHelper::getInstance()->getVirtualKey(key);
+        }
+#endif
     }
 
 #elif defined (Q_OS_WIN)
@@ -706,7 +717,7 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
 #if defined (Q_OS_UNIX)
     Q_UNUSED(alias);
 
-    if (keycode <= 0)
+    if (keycode < 0)
     {
         newkey = "[NO KEY]";
     }
@@ -766,6 +777,22 @@ QString keycodeToKeyString(int keycode, unsigned int alias)
             }
         }
 #endif
+
+#ifdef WITH_COCOA
+        if (handler->getIdentifier() == "cocoa")
+        {
+            QString tempalias = CocoaHelper::getInstance()->getDisplayString(keycode);
+            if (!tempalias.isEmpty())
+            {
+                newkey = tempalias;
+            }
+            else
+            {
+                newkey = QString("0x%1").arg(keycode, 0, 16);
+            }
+        }
+#endif
+
     }
 
 #elif defined (Q_OS_WIN)
@@ -825,7 +852,7 @@ QString keysymToKeyString(int keysym, unsigned int alias)
 {
     QString newkey;
 
-#if defined (Q_OS_UNIX)
+#if defined (Q_OS_UNIX) && defined(WITH_XTEST)
     Q_UNUSED(alias);
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();

@@ -35,6 +35,10 @@
   #if defined(WITH_UINPUT)
     #include "qtuinputkeymapper.h"
   #endif
+
+  #if defined(WITH_COCOA)
+    #include "qtcocoakeymapper.h"
+  #endif
 #endif
 
 class AntKeyMapper : public QObject
@@ -72,6 +76,10 @@ protected:
 
   #if defined(WITH_UINPUT)
     QtUInputKeyMapper uinputMapper;
+  #endif
+
+  #if defined(WITH_COCOA)
+    QtCocoaKeyMapper cocoaMapper;
   #endif
 
 #endif

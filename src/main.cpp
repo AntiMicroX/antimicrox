@@ -43,7 +43,11 @@
 #include <QStyle>
 #include <QStyleFactory>
 #include "winextras.h"
+#endif
 
+#ifdef WITH_COCOA
+#include <QStyle>
+#include <QStyleFactory>
 #endif
 
 #include "inputdevice.h"
@@ -136,7 +140,7 @@ int main(int argc, char *argv[])
     // If running Win version, check if an explicit style
     // was defined on the command-line. If so, make a note
     // of it.
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(WITH_COCOA)
     bool styleChangeFound = false;
     for (int i=0; i < argc && !styleChangeFound; i++)
     {
@@ -432,7 +436,7 @@ int main(int argc, char *argv[])
     // If running Win version and no explicit style was
     // defined, use the style Fusion by default. I find the
     // windowsvista style a tad ugly
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(WITH_COCOA)
     if (!styleChangeFound)
     {
         qApp->setStyle(QStyleFactory::create("Fusion"));

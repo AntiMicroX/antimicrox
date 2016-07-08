@@ -41,6 +41,10 @@ if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." OFF)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
+    if(APPLE)
+        message("Using cocoa.")
+        option(WITH_COCOA "Compile with support for Cocoa." ON)
+    endif(APPLE)
     option(APPDATA "Build project with AppData file support." OFF)
 endif(UNIX)
 
@@ -115,9 +119,9 @@ if(UNIX)
         message("uinput support allowed for simulating events.")
     endif(WITH_UINPUT)
 
-    if(NOT WITH_XTEST AND NOT WITH_UINPUT)
+    if(NOT WITH_XTEST AND NOT WITH_UINPUT AND NOT WITH_COCOA)
         message(FATAL_ERROR "No system is defined for simulating events.")
-    endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
+    endif(NOT WITH_XTEST AND NOT WITH_UINPUT AND NOT WITH_COCOA)
 endif(UNIX)
 
 set(antimicro_SOURCES src/main.cpp
@@ -375,6 +379,19 @@ if(UNIX)
         endif(WITH_XTEST)
     endif(WITH_X11)
 
+    if(WITH_COCOA)
+        LIST(APPEND antimicro_SOURCES src/qtcocoakeymapper.cpp
+             src/cocoahelper.cpp
+             src/eventhandlers/cocoaeventhandler.mm
+             src/capturedwindowinfodialog.cpp
+        )
+        LIST(APPEND antimicro_HEADERS src/qtcocoakeymapper.h
+             src/cocoahelper.h
+             src/eventhandlers/cocoaeventhandler.h
+             src/capturedwindowinfodialog.h
+        )
+    endif(WITH_COCOA)
+
     if(WITH_UINPUT)
         LIST(APPEND antimicro_SOURCES src/qtuinputkeymapper.cpp
              src/uinputhelper.cpp
@@ -484,6 +501,10 @@ if(UNIX)
     if(WITH_UINPUT)
         add_definitions(-DWITH_UINPUT)
     endif(WITH_UINPUT)
+
+    if(WITH_COCOA)
+        add_definitions(-DWITH_COCOA)
+    endif(WITH_COCOA)
 endif(UNIX)
 
 if (UNIX)
@@ -577,6 +598,11 @@ elseif(WIN32)
 endif(UNIX)
 
 if(UNIX)
+    if(WITH_COCOA)
+        FIND_LIBRARY(COCOA_LIBRARY Cocoa)
+        LIST(APPEND LIBS ${COCOA_LIBRARY})
+    endif(WITH_COCOA)
+
     if(WITH_X11)
         LIST(APPEND LIBS ${X11_X11_LIB})
         LIST(APPEND LIBS ${X11_Xi_LIB})
@@ -588,6 +614,7 @@ if(UNIX)
 
     if(USE_SDL_2)
         list(APPEND LIBS ${SDL2_LIBRARIES})
+        link_directories(${SDL2_LIBRARY_DIRS})
     else()
         list(APPEND LIBS ${SDL_LIBRARIES})
     endif(USE_SDL_2)
@@ -664,10 +691,25 @@ endif(UNIX)
 
 if(USE_QT5)
     if(UNIX)
-        add_executable(antimicro ${antimicro_SOURCES}
-            ${antimicro_FORMS_HEADERS}
-            ${antimicro_RESOURCES_RCC}
-        )
+        if(APPLE)
+
+            set (ICON_NAME antimicro.icns)
+            set (ICON_PATH ${PROJECT_SOURCE_DIR}/src/images/${ICON_NAME})
+            set (BUILD_FLAGS MACOSX_BUNDLE)
+            set (MACOSX_BUNDLE_ICON_FILE ${ICON_NAME})
+            set_source_files_properties (${ICON_PATH} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+            add_executable(antimicro ${BUILD_FLAGS}
+                ${antimicro_SOURCES}
+                ${antimicro_FORMS_HEADERS}
+                ${antimicro_RESOURCES_RCC}
+                ${ICON_PATH}
+            )
+        else()
+            add_executable(antimicro ${antimicro_SOURCES}
+                ${antimicro_FORMS_HEADERS}
+                ${antimicro_RESOURCES_RCC}
+            )
+        endif(APPLE)
     elseif(WIN32)
         # The WIN32 is required to specify a GUI application.
         add_executable(antimicro WIN32 ${antimicro_SOURCES}
@@ -692,9 +734,11 @@ target_link_libraries(antimicro ${LIBS})
 
 # Specify out directory for final executable.
 if(UNIX)
-	install(TARGETS antimicro RUNTIME DESTINATION "bin")
+    if(NOT APPLE)
+        install(TARGETS antimicro RUNTIME DESTINATION "bin")
+    endif(NOT APPLE)
 elseif(WIN32)
-	install(TARGETS antimicro RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+        install(TARGETS antimicro RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(UNIX)
 
 if(UNIX)

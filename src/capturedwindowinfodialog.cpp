@@ -39,7 +39,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
 
     selectedMatch = WindowNone;
 
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
     X11Extras *info = X11Extras::getInstance();
     ui->winPathChoiceComboBox->setVisible(false);
 #endif
@@ -51,7 +51,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
     ui->winClassCheckBox->setVisible(false);
     ui->winClassLabel->setVisible(false);
     ui->winClassHeadLabel->setVisible(false);
-#else
+#elif defined(Q_OS_UNIX) && defined(WITH_X11)
     winClass = info->getWindowClass(window);
     ui->winClassLabel->setText(winClass);
     if (winClass.isEmpty())
@@ -71,7 +71,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
 
 #ifdef Q_OS_WIN
     winName = WinExtras::getCurrentWindowText();
-#else
+#elif defined(Q_OS_UNIX) && defined(WITH_X11)
     winName = info->getWindowTitle(window);
 #endif
 

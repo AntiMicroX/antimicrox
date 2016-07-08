@@ -1960,7 +1960,7 @@ void MainSettingsDialog::refreshExtraMouseInfo()
     {
     #endif
         struct X11Extras::ptrInformation temp;
-        if (handler == "uinput")
+        if (handler == "uinput" || handler == "cocoa")
         {
             temp = X11Extras::getInstance()->getPointInformation();
         }

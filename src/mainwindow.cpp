@@ -113,6 +113,11 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     showTrayIcon = !cmdutility->isTrayHidden() && graphical &&
                    !cmdutility->shouldListControllers() && !cmdutility->shouldMapController();
 
+#ifdef WITH_COCOA
+    showTrayIcon = 0;
+    ui->menuBar->removeAction(ui->menuQuit->menuAction());
+#endif
+
     this->joysticks = joysticks;
 
     if (showTrayIcon)

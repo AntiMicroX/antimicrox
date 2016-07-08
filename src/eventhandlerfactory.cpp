@@ -30,6 +30,7 @@ static QHash<QString, QString> buildDisplayNames()
 #else
     temp.insert("xtest", "Xtest");
     temp.insert("uinput", "uinput");
+    temp.insert("cocoa", "Cocoa");
 #endif
     return temp;
 }
@@ -53,6 +54,13 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
     if (handler == "xtest")
     {
         eventHandler = new XTestEventHandler(this);
+    }
+    #endif
+
+    #ifdef WITH_COCOA
+    if (handler == "cocoa")
+    {
+        eventHandler = new CocoaEventHandler(this);
     }
     #endif
 #elif defined(Q_OS_WIN)
@@ -118,6 +126,8 @@ QString EventHandlerFactory::fallBackIdentifier()
     temp = "xtest";
   #elif defined(WITH_UINPUT)
     temp = "uinput";
+  #elif defined(WITH_COCOA)
+    temp = "cocoa";
   #else
     temp = "xtest";
   #endif
@@ -140,6 +150,9 @@ QStringList EventHandlerFactory::buildEventGeneratorList()
 #else
     temp.append("xtest");
     temp.append("uinput");
+  #ifdef WITH_COCOA
+    temp.append("cocoa");
+  #endif
 #endif
     return temp;
 }

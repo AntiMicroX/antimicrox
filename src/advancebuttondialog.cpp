@@ -227,6 +227,12 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->turboModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setButtonTurboMode(int)));
     connect(ui->loadProfilePushButton, SIGNAL(clicked()), this, SLOT(showSelectProfileWindow()));
     connect(ui->execToolButton, SIGNAL(clicked(bool)), this, SLOT(showFindExecutableWindow(bool)));
+
+#ifdef WITH_COCOA
+    // Not inplemented
+    ui->slotTypeComboBox->removeItem(TextEntry);
+#endif
+
 }
 
 AdvanceButtonDialog::~AdvanceButtonDialog()

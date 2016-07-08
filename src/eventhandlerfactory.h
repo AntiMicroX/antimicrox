@@ -29,6 +29,12 @@
   #ifdef WITH_XTEST
     #include "eventhandlers/xtesteventhandler.h"
   #endif
+
+  #ifdef WITH_COCOA
+    #include "eventhandlers/cocoaeventhandler.h"
+  #endif
+
+
 #elif defined(Q_OS_WIN)
   #include "eventhandlers/winsendinputeventhandler.h"
 

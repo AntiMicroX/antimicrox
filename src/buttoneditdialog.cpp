@@ -207,6 +207,10 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
           checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
       }
 
+#elif defined(WITH_COCOA)
+        int finalvirtual = 0;
+        int checkalias = 0;
+        virtualactual = event->key();
 #else
 
     #if defined(WITH_X11)
