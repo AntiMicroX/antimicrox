@@ -25,6 +25,9 @@
 #include "logger.h"
 #include "common.h"
 
+//#define USE_NEW_ADD
+#define USE_NEW_REFRESH
+
 const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
@@ -170,7 +173,7 @@ void InputDaemon::refreshJoysticks()
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
 #ifdef USE_SDL_2
-
+#ifdef USE_NEW_REFRESH
         int index = i;
 
         // Check if device is considered a Game Controller at the start.
@@ -262,8 +265,8 @@ void InputDaemon::refreshJoysticks()
         }
 
 
-
-        /*SDL_Joystick *joystick = SDL_JoystickOpen(i);
+#else
+        SDL_Joystick *joystick = SDL_JoystickOpen(i);
         if (joystick)
         {
             QString temp;
@@ -293,7 +296,7 @@ void InputDaemon::refreshJoysticks()
                 trackjoysticks.insert(joystickID, curJoystick);
             }
         }
-        */
+#endif
 
 #else
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
@@ -492,6 +495,7 @@ void InputDaemon::refreshIndexes()
 
 void InputDaemon::addInputDevice(int index)
 {
+  #ifdef USE_NEW_ADD
     // Check if device is considered a Game Controller at the start.
     if (SDL_IsGameController(index))
     {
@@ -591,8 +595,8 @@ void InputDaemon::addInputDevice(int index)
             emit deviceAdded(joystick);
         }
     }
-
-    /*SDL_Joystick *joystick = SDL_JoystickOpen(index);
+#else
+    SDL_Joystick *joystick = SDL_JoystickOpen(index);
     if (joystick)
     {
         SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(joystick);
@@ -657,7 +661,7 @@ void InputDaemon::addInputDevice(int index)
             SDL_JoystickClose(joystick);
         }
     }
-    */
+#endif
 }
 
 Joystick *InputDaemon::openJoystickDevice(int index)
