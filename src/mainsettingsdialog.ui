@@ -599,7 +599,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            </item>
            <item>
             <property name="text">
-             <string>Brazilian Portuguese</string>
+             <string>Português do Brasil</string>
             </property>
            </item>
            <item>
@@ -609,47 +609,47 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            </item>
            <item>
             <property name="text">
-             <string>French</string>
+             <string>Français</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>German</string>
+             <string>Deutsch</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Italian</string>
+             <string>Italiano</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Japanese</string>
+             <string>日本語</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Russian</string>
+             <string>Русский</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Serbian</string>
+             <string>српски / srpski</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Simplified Chinese</string>
+             <string>简化字</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Spanish</string>
+             <string>Español</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Ukrainian</string>
+             <string>українська</string>
             </property>
            </item>
           </widget>
