@@ -61,9 +61,11 @@ generously hosted by ProfessorKaos64:
 
 [http://packages.libregeek.org/](http://packages.libregeek.org/)
 
-AntiMicro is currently available for SlackWare via SlackBuilds, thanks to slacknk:
+AntiMicro is currently available for Slackware via SlackBuilds, thanks to NK and Klaatu:
 
-[https://slackbuilds.org/](https://slackbuilds.org/)
+[https://slackbuilds.org/result/?search=antimicro&sv=](https://slackbuilds.org/result/?search=antimicro&sv=)
+
+`# sbopkg -i antimicro`
 
 Ubuntu users may also check the antimicro page on Launchpad:
 
