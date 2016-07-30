@@ -47,15 +47,21 @@ The license can also be found online at
 [http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
 
 ## Download
-Download links are currently available from the antimicro Releases section on
-GitHub. Currently, the Windows archive, Debian Jessie deb files, and source code
-archives can be found in the Releases section.
+Source code archives and Windows binaries are available from the antimicro
+Releases section on GitHub:
 
 [https://github.com/AntiMicro/antimicro/releases](https://github.com/AntiMicro/antimicro/releases)
 
-For Ubuntu users, there is now a PPA available that you can use to have your
-package manager grab the latest antimicro updates automatically. For more details,
-check out the antimicro page on Launchpad.
+AntiMicro is currently in the official Fedora repository and can be installed with
+
+`dnf install antimicro`
+
+For Debian and Debian-based distributions, such as Mint and Ubuntu, please check the LibreGeek Repositories
+generously hosted by ProfessorKaos64:
+
+[http://packages.libregeek.org/](http://packages.libregeek.org/)
+
+Ubuntu users may also check the antimicro page on Launchpad:
 
 [https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro](https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro)
 
