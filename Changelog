@@ -1,13 +1,15 @@
-2016-06-18 Jeff Backus <jeff@jsbackus.com>
+2016-07-30 Jeff Backus <jeff@jsbackus.com>
 
 Version 2.22
+
+* Fixed a segfault on startup issue affecting some Linux distributions
 
 * Fixed issues with SDL 2.0.4 on Windows.
 
 * Updated documentation and URLs in code to note transition in
 management.
 
-* Updated translations
+* Updated translations and added new ones.
 
 * Added code to revert all virtual buttons to beginning of slot list
 before a set switch.
