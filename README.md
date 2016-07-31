@@ -54,18 +54,16 @@ Releases section on GitHub:
 
 AntiMicro is currently in the official Fedora repository and can be installed with
 
-`sudo dnf install antimicro`
+`$ sudo dnf install antimicro`
 
-For Debian and Debian-based distributions, such as Mint and Ubuntu, please check the LibreGeek Repositories
-generously hosted by ProfessorKaos64:
+For Debian and Debian-based distributions, such as Mint, Ubuntu, and Steam OS, please check the LibreGeek
+Repositories generously hosted by ProfessorKaos64:
 
 [http://packages.libregeek.org/](http://packages.libregeek.org/)
 
 AntiMicro is currently available for Slackware via SlackBuilds, thanks to NK and Klaatu:
 
 [https://slackbuilds.org/result/?search=antimicro&sv=](https://slackbuilds.org/result/?search=antimicro&sv=)
-
-`# sbopkg -i antimicro`
 
 Ubuntu users may also check the antimicro page on Launchpad:
 
