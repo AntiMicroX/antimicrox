@@ -128,6 +128,9 @@ void AutoProfileWatcher::runAppCheck()
         currentAppWindowTitle = nowWindowName;
         //currentApplication = appLocation;
 
+	Logger::LogDebug(QObject::tr("Active window now \"%1\" (\"%2\").").
+			 arg(currentAppWindowTitle, currentApplication));
+
         QSet<AutoProfileInfo*> fullSet;
 
         if (!appLocation.isEmpty() && appProfileAssignments.contains(appLocation))
