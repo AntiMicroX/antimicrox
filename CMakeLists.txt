@@ -761,28 +761,55 @@ if(WIN32)
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
     string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
-        "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
-        "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
-        "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
-        "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
-        "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
-    )
+#    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
+#        "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
+#        "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
+#        "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
+#        "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
+#        "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
+#    )
 
+    find_library(EXTRA_DLLS_QTCORE NAMES "Qt5Core.dll" )
+    find_library(EXTRA_DLLS_QTGUI NAMES "Qt5Gui.dll" )
+    find_library(EXTRA_DLLS_QTNET NAMES "Qt5Network.dll" )
+    find_library(EXTRA_DLLS_QTWIDGET NAMES "Qt5Widgets.dll" )
+
+    find_library(EXTRA_DLLS_PTHREAD NAMES "libwinpthread-1.dll" )
+    find_library(EXTRA_DLLS_LIBCPP NAMES "libstdc++-6.dll" )
+
+    # Don't think find_library will handle versioned DLLS, so we'll try each one until we find something
+    foreach( ICU_VER 51 52 53 54 55 56 57 58 59 )
+      find_library(ICU_DT_DLL NAMES "icudt${ICU_VER}.dll")
+      find_library(ICU_IN_DLL NAMES "icuin${ICU_VER}.dll")
+      find_library(ICU_UC_DLL NAMES "icuuc${ICU_VER}.dll")
+    endforeach( ICU_VER )
+
+    list(APPEND EXTRA_DLL_FILES
+      ${EXTRA_DLLS_QTCORE}
+      ${EXTRA_DLLS_QTGUI}
+      ${EXTRA_DLLS_QTNET}
+      ${EXTRA_DLLS_QTWIDGET}
+      ${EXTRA_DLLS_PTHREAD}
+      ${EXTRA_DLLS_LIBCPP}
+      ${ICU_DT_DLL}
+      ${ICU_IN_DLL}
+      ${ICU_UC_DLL}
+      )
+     
     # Copy relevant DLL files depending on the chosen architecture.
     if(TARGET_ARCH STREQUAL "x86_64")
-        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
-            "${QTCORE_DLL_LOCATION}/icuin54.dll"
-            "${QTCORE_DLL_LOCATION}/icuuc54.dll"
-            "${QTCORE_DLL_LOCATION}/libgcc_s_seh-1.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll"
+      find_library( GCC_DLL "libgcc_s_seh-1.dll" )
+      
+      list(APPEND EXTRA_DLL_FILES
+        ${GCC_DLL}
+        "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll"
         )
     else()
-        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
-            "${QTCORE_DLL_LOCATION}/icuin54.dll"
-            "${QTCORE_DLL_LOCATION}/icuuc54.dll"
-            "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll"
+      find_library( GCC_DLL "libgcc_s_dw2-1.dll" )
+      
+      list(APPEND EXTRA_DLL_FILES
+	${GCC_DLL}
+        "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll"
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
 
@@ -816,11 +843,13 @@ if(WIN32)
     )
 
     # Copy bundled Qt translation files.
-    file(GLOB QT_TRANSLATION_FILES "${CMAKE_PREFIX_PATH}/translations/qt_[^help]*.qm")
+    #file(GLOB QT_TRANSLATION_FILES "${CMAKE_PREFIX_PATH}/translations/qt_[^help]*.qm")
+    SET(QT_TRANSLATION_PATH "${QTCORE_DLL_LOCATION}/../translations/" )
+    file(GLOB QT_TRANSLATION_FILES "${QT_TRANSLATION_PATH}qt_[^help]*.qm")
     add_custom_target(copy_qt_translations)
     foreach(CURRENT_QM_FILE ${QT_TRANSLATION_FILES})
         set(CURRENT_QM_FILENAME "")
-        string(REPLACE "${CMAKE_PREFIX_PATH}/translations/" "" CURRENT_QM_FILENAME ${CURRENT_QM_FILE})
+        string(REPLACE ${QT_TRANSLATION_PATH} "" CURRENT_QM_FILENAME ${CURRENT_QM_FILE})
         add_custom_command(TARGET copy_qt_translations PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy "${CURRENT_QM_FILE}"
             "${CMAKE_INSTALL_PREFIX}/share/qt/translations/${CURRENT_QM_FILENAME}"
