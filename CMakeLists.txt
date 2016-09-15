@@ -761,13 +761,6 @@ if(WIN32)
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
     string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-#    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
-#        "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
-#        "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
-#        "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
-#        "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
-#        "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
-#    )
 
     find_library(EXTRA_DLLS_QTCORE NAMES "Qt5Core.dll" )
     find_library(EXTRA_DLLS_QTGUI NAMES "Qt5Gui.dll" )
@@ -843,7 +836,6 @@ if(WIN32)
     )
 
     # Copy bundled Qt translation files.
-    #file(GLOB QT_TRANSLATION_FILES "${CMAKE_PREFIX_PATH}/translations/qt_[^help]*.qm")
     SET(QT_TRANSLATION_PATH "${QTCORE_DLL_LOCATION}/../translations/" )
     file(GLOB QT_TRANSLATION_FILES "${QT_TRANSLATION_PATH}qt_[^help]*.qm")
     add_custom_target(copy_qt_translations)
