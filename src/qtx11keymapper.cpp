@@ -289,6 +289,11 @@ void QtX11KeyMapper::populateMappingHashes()
             qtKeyToVirtualKey[AntKey_KP_0 + i] = XK_KP_0 + i;
         }
 
+	// Map extended keyboard characters
+	for( int i=0; i <= (XK_ydiaeresis - XK_nobreakspace); i++) {
+	  qtKeyToVirtualKey[ Qt::Key_nobreakspace + i ] = XK_nobreakspace + i;
+	}
+
         QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
         {
