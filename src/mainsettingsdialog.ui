@@ -82,6 +82,11 @@
          <string>Mouse</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Advanced</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
