@@ -44,6 +44,7 @@ QRegExp CommandLineUtility::gamepadListRegexp = QRegExp("(-l|--list)");
 QRegExp CommandLineUtility::mappingRegexp = QRegExp("--map");
 QRegExp CommandLineUtility::qtStyleRegexp = QRegExp("-style");
 QRegExp CommandLineUtility::logLevelRegexp = QRegExp("--log-level");
+QRegExp CommandLineUtility::logFileRegexp = QRegExp("--log-file");
 QRegExp CommandLineUtility::eventgenRegexp = QRegExp("--eventgen");
 QRegExp CommandLineUtility::nextRegexp = QRegExp("--next");
 
@@ -411,9 +412,16 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 }
                 */
             }
+	}
+        else if (logFileRegexp.exactMatch(temp))
+        {
+            if (iter.hasNext())
+            {
+	      currentLogFile = iter.next();
+            }
             else
             {
-                setErrorMessage(tr("No log level specified."));
+                setErrorMessage(tr("No log file specified."));
                 //errorsteam << tr("No log level specified.") << endl;
                 //encounteredError = true;
             }
@@ -742,6 +750,10 @@ QString CommandLineUtility::getDisplayString()
 Logger::LogLevel CommandLineUtility::getCurrentLogLevel()
 {
     return currentLogLevel;
+}
+
+QString CommandLineUtility::getCurrentLogFile() {
+  return currentLogFile;
 }
 
 QString CommandLineUtility::getErrorText()

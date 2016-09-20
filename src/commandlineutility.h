@@ -163,6 +163,7 @@ public:
 
     bool hasError();
     Logger::LogLevel getCurrentLogLevel();
+    QString getCurrentLogFile();
     QString getErrorText();
 
 protected:
@@ -191,6 +192,7 @@ protected:
     QString eventGenerator;
     QString errorText;
     Logger::LogLevel currentLogLevel;
+    QString currentLogFile;
     unsigned int currentListsIndex;
     QList<ControllerOptionsInfo> controllerOptionsList;
 
@@ -207,6 +209,7 @@ protected:
     static QRegExp mappingRegexp;
     static QRegExp qtStyleRegexp;
     static QRegExp logLevelRegexp;
+    static QRegExp logFileRegexp;
     static QRegExp eventgenRegexp;
     static QRegExp nextRegexp;
     static QStringList eventGeneratorsList;
