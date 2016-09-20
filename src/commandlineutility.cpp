@@ -75,7 +75,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
     displayString = "";
     listControllers = false;
     mappingController = false;
-    currentLogLevel = Logger::LOG_INFO;
+    currentLogLevel = Logger::LOG_NONE;
 
     currentListsIndex = 0;
     ControllerOptionsInfo tempInfo;
