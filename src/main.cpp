@@ -130,6 +130,9 @@ int main(int argc, char *argv[])
     #endif
 #endif
 
+    QFile logFile;
+    QTextStream logFileStream;
+    
     QTextStream outstream(stdout);
     QTextStream errorstream(stderr);
 
@@ -175,6 +178,14 @@ int main(int argc, char *argv[])
     if (cmdutility.getCurrentLogLevel() != appLogger.getCurrentLogLevel())
     {
         appLogger.setLogLevel(cmdutility.getCurrentLogLevel());
+    }
+
+    if( !cmdutility.getCurrentLogFile().isEmpty() ) {
+      logFile.setFileName( cmdutility.getCurrentLogFile() );
+      logFile.open( QIODevice::WriteOnly | QIODevice::Append );
+      logFileStream.setDevice( &logFile );
+      appLogger.setCurrentStream( &logFileStream );
+      appLogger.LogInfo(QObject::tr("Logging started"), true, true);
     }
 
     Q_INIT_RESOURCE(resources);
