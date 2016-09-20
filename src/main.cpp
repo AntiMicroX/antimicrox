@@ -175,17 +175,17 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    if (cmdutility.getCurrentLogLevel() != appLogger.getCurrentLogLevel())
+    // If a log level wasn't specified at the command-line, then use a default.
+    if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE ) {
+      appLogger.setLogLevel( Logger::LOG_WARNING );
+    } else if (cmdutility.getCurrentLogLevel() != appLogger.getCurrentLogLevel())
     {
         appLogger.setLogLevel(cmdutility.getCurrentLogLevel());
     }
 
     if( !cmdutility.getCurrentLogFile().isEmpty() ) {
-      logFile.setFileName( cmdutility.getCurrentLogFile() );
-      logFile.open( QIODevice::WriteOnly | QIODevice::Append );
-      logFileStream.setDevice( &logFile );
-      appLogger.setCurrentStream( &logFileStream );
-      appLogger.LogInfo(QObject::tr("Logging started"), true, true);
+      appLogger.setCurrentLogFile( cmdutility.getCurrentLogFile() );
+      appLogger.setCurrentErrorStream(NULL);
     }
 
     Q_INIT_RESOURCE(resources);
@@ -212,6 +212,18 @@ int main(int argc, char *argv[])
         // Save app config and exit.
         QApplication a(argc, argv);
         AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+	
+	// Update log info based on config values
+	if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
+	    settings.contains("LogLevel")) {
+	  appLogger.setLogLevel( (Logger::LogLevel) settings.value("LogLevel").toInt() );
+	}
+	if( cmdutility.getCurrentLogFile().isEmpty() &&
+	    settings.contains("LogFile")) {
+	  appLogger.setCurrentLogFile( settings.value("LogFile").toString() );
+	  appLogger.setCurrentErrorStream(NULL);
+	}
+
         InputDaemon *joypad_worker = new InputDaemon(joysticks, &settings, false);
         MainWindow w(joysticks, &cmdutility, &settings, false);
         w.fillButtons();
@@ -455,6 +467,17 @@ int main(int argc, char *argv[])
     AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath,
                                                         QSettings::IniFormat);
     settings->importFromCommandLine(cmdutility);
+
+    // Update log info based on config values
+    if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
+	settings->contains("LogLevel")) {
+      appLogger.setLogLevel( (Logger::LogLevel)settings->value("LogLevel").toInt() );
+    }
+    if( cmdutility.getCurrentLogFile().isEmpty() &&
+	settings->contains("LogFile")) {
+      appLogger.setCurrentLogFile( settings->value("LogFile").toString() );
+      appLogger.setCurrentErrorStream(NULL);
+    }
 
     QString targetLang = QLocale::system().name();
     if (settings->contains("Language"))
