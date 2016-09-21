@@ -289,9 +289,12 @@ void QtX11KeyMapper::populateMappingHashes()
             qtKeyToVirtualKey[AntKey_KP_0 + i] = XK_KP_0 + i;
         }
 
-	// Map extended keyboard characters
-	for( int i=0; i <= (XK_ydiaeresis - XK_nobreakspace); i++) {
-	  qtKeyToVirtualKey[ Qt::Key_nobreakspace + i ] = XK_nobreakspace + i;
+	// Map lower-case latin characters to their capital equivalents
+	for( int i=0; i <= (XK_odiaeresis - XK_agrave); i++) {
+	  qtKeyToVirtualKey[ Qt::Key_Agrave + i ] = XK_agrave + i;
+	}
+	for( int i=0; i <= (XK_thorn - XK_oslash); i++) {
+	  qtKeyToVirtualKey[ Qt::Key_Ooblique + i ] = XK_oslash + i;
 	}
 
         QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
