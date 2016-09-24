@@ -24,6 +24,7 @@
 #include <QMutexLocker>
 #include <QTextStream>
 #include <QTimer>
+#include <QFile>
 
 class Logger : public QObject
 {
@@ -32,6 +33,7 @@ public:
     enum LogLevel
     {
         LOG_NONE = 0, LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG,
+	LOG_MAX = LOG_DEBUG
     };
 
     typedef struct {
@@ -48,9 +50,11 @@ public:
     LogLevel getCurrentLogLevel();
 
     static void setCurrentStream(QTextStream *stream);
+    static void setCurrentLogFile(QString filename);
     static QTextStream* getCurrentStream();
 
     static void setCurrentErrorStream(QTextStream *stream);
+    static void setCurrentErrorLogFile(QString filename);
     static QTextStream* getCurrentErrorStream();
 
     QTimer* getLogTimer();
@@ -125,9 +129,15 @@ public:
 
 protected:
     void closeLogger(bool closeStream=true);
+    void closeErrorLogger(bool closeStream=true);
     void logMessage(LogMessage msg);
 
+    QFile outputFile;
+    QTextStream outFileStream;
     QTextStream *outputStream;
+    
+    QFile errorFile;
+    QTextStream outErrorFileStream;
     QTextStream *errorStream;
     LogLevel outputLevel;
     QMutex logMutex;

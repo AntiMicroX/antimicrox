@@ -82,6 +82,11 @@
          <string>Mouse</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Advanced</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -535,8 +540,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              </property>
              <property name="icon">
               <iconset theme="edit-table-delete-row">
-               <normaloff/>
-              </iconset>
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -547,8 +551,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              </property>
              <property name="icon">
               <iconset theme="edit-table-insert-row-below">
-               <normaloff/>
-              </iconset>
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -826,8 +829,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              </property>
              <property name="icon">
               <iconset theme="edit-table-insert-row-below">
-               <normaloff/>
-              </iconset>
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -841,8 +843,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              </property>
              <property name="icon">
               <iconset theme="document-edit">
-               <normaloff/>
-              </iconset>
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -856,8 +857,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              </property>
              <property name="icon">
               <iconset theme="edit-table-delete-row">
-               <normaloff/>
-              </iconset>
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -1192,6 +1192,97 @@ values used by the virtual mouse.</string>
           </spacer>
          </item>
         </layout>
+       </widget>
+       <widget class="QWidget" name="Advanced">
+        <widget class="QWidget" name="horizontalLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>9</y>
+           <width>481</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Log File:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="logFilePathEdit"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="logFilePushButton"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="horizontalLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>69</y>
+           <width>481</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Log Level:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="logLevelComboBox">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Error</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Warning</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Info</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Debug</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </widget>
      </item>
