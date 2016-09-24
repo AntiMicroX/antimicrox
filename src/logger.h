@@ -33,6 +33,7 @@ public:
     enum LogLevel
     {
         LOG_NONE = 0, LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG,
+	LOG_MAX = LOG_DEBUG
     };
 
     typedef struct {
