@@ -1215,11 +1215,7 @@ values used by the virtual mouse.</string>
            <widget class="QLineEdit" name="logFilePathEdit"/>
           </item>
           <item>
-           <widget class="QPushButton" name="logFilePushButton">
-            <property name="text">
-             <string>Browse</string>
-            </property>
-           </widget>
+           <widget class="QPushButton" name="logFilePushButton"/>
           </item>
          </layout>
         </widget>
@@ -1245,6 +1241,11 @@ values used by the virtual mouse.</string>
           </item>
           <item>
            <widget class="QComboBox" name="logLevelComboBox">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
             <item>
              <property name="text">
               <string>Error</string>
