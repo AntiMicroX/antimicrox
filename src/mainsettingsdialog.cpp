@@ -78,6 +78,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document-open-folder",
                                                            QIcon(":/icons/16x16/actions/document-open-folder.png")));
 
+    ui->logFilePushButton->setIcon(QIcon::fromTheme("document-open-folder",
+						    QIcon(":/icons/16x16/actions/document-open-folder.png")));
+    
     this->settings = settings;
     this->allDefaultProfile = 0;
     this->connectedDevices = devices;
@@ -341,6 +344,17 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui->extraInfoFrame->hide();
 #endif
 
+    // Begin Advanced Tab
+    QString curLogFile = settings->value("LogFile", "").toString();
+    int logLevel = settings->value("LogLevel", Logger::LOG_NONE).toInt();
+
+    if( !curLogFile.isEmpty() ) {
+      ui->logFilePathEdit->setText(curLogFile);
+    }
+
+    ui->logLevelComboBox->setCurrentIndex( logLevel );
+    // End Advanced Tab
+
     settings->getLock()->unlock();
 
     connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
@@ -368,6 +382,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     connect(ui->smoothingEnableCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkSmoothingWidgetStatus(bool)));
     connect(ui->resetAccelPushButton, SIGNAL(clicked(bool)), this, SLOT(resetMouseAcceleration()));
+
+    // Advanced Tab
+    connect(ui->logFilePushButton, SIGNAL(clicked()), this, SLOT(selectLogFile()));
 }
 
 MainSettingsDialog::~MainSettingsDialog()
@@ -773,6 +790,18 @@ void MainSettingsDialog::saveNewSettings()
         JoyButton::setGamepadRefreshRate(gamepadPollRate);
         settings->setValue("GamepadPollRate", QString::number(gamepadPollRate));
     }
+
+    // Advanced Tab
+    settings->setValue("LogFile", ui->logFilePathEdit->text());
+    int logLevel = ui->logLevelComboBox->currentIndex();
+    if( logLevel < 0 ) {
+      logLevel = 0;
+    }
+    if( Logger::LOG_MAX < logLevel ) {
+      logLevel = Logger::LOG_MAX;
+    }
+    settings->setValue("LogLevel", logLevel);
+    // End Advanced Tab
 
     PadderCommon::unlockInputDevices();
 
@@ -2003,4 +2032,12 @@ void MainSettingsDialog::resetMouseAcceleration()
     }
   #endif
 #endif
+}
+
+void MainSettingsDialog::selectLogFile() {
+    QString oldLogFile = settings->value("LogFile", "").toString();
+    QString newLogFile =
+      QFileDialog::getSaveFileName(this, tr("Save Log File As"), oldLogFile,
+				   tr("Log Files (*.log)"));
+    ui->profileDefaultDirLineEdit->setText(newLogFile);
 }
