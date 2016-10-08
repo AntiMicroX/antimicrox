@@ -47,7 +47,6 @@ static QString findWinSystemConfigPath()
 
 static QString findWinLocalConfigPath()
 {
-  //QString temp = QDir::currentPath();
   QString temp = QCoreApplication::applicationDirPath();
   return temp;
 }
