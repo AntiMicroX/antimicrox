@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
     // If in portable mode, make sure the current directory is the same as the
     // config directory. This is to ensure that all relative paths resolve
     // correctly when loading on startup.
-    if( QDir::setCurrent( PadderCommon::configPath() );
+    QDir::setCurrent( PadderCommon::configPath() );
 #endif
 
     QDir configDir(PadderCommon::configPath());
