@@ -192,6 +192,13 @@ int main(int argc, char *argv[])
 
     QApplication *a = new QApplication(argc, argv);
 
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+    // If in portable mode, make sure the current directory is the same as the
+    // config directory. This is to ensure that all relative paths resolve
+    // correctly when loading on startup.
+    if( QDir::setCurrent( PadderCommon::configPath() );
+#endif
+
     QDir configDir(PadderCommon::configPath());
     if (!configDir.exists())
     {
