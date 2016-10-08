@@ -190,6 +190,8 @@ int main(int argc, char *argv[])
 
     Q_INIT_RESOURCE(resources);
 
+    QApplication *a = new QApplication(argc, argv);
+
     QDir configDir(PadderCommon::configPath());
     if (!configDir.exists())
     {
@@ -259,7 +261,7 @@ int main(int argc, char *argv[])
     }
 
     LocalAntiMicroServer *localServer = 0;
-    QApplication *a = 0;
+    //QApplication *a = 0;
 
 #ifndef Q_OS_WIN
     if (cmdutility.launchAsDaemon())
@@ -273,7 +275,7 @@ int main(int argc, char *argv[])
         {
             appLogger.LogInfo(QObject::tr("Daemon launched"), true, true);
 
-            a = new QApplication(argc, argv);
+            //a = new QApplication(argc, argv);
             localServer = new LocalAntiMicroServer();
             localServer->startLocalServer();
         }
