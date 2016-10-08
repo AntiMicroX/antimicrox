@@ -28,6 +28,7 @@
 #include <QMutex>
 #include <QReadWriteLock>
 #include <QThread>
+#include <QCoreApplication>
 
 #include "config.h"
 #include "antimicrosettings.h"
@@ -46,8 +47,9 @@ static QString findWinSystemConfigPath()
 
 static QString findWinLocalConfigPath()
 {
-    QString temp = QDir::currentPath();
-    return temp;
+  //QString temp = QDir::currentPath();
+  QString temp = QCoreApplication::applicationDirPath();
+  return temp;
 }
 
 static QString findWinDefaultConfigPath()
