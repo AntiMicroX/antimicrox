@@ -88,26 +88,29 @@ static QString findWinConfigPath(QString configFileName)
 
 namespace PadderCommon
 {
+  inline QString configPath() {
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-    const QString configPath = findWinLocalConfigPath();
+    return findWinLocalConfigPath();
 #elif defined(Q_OS_WIN)
-    const QString configPath = findWinSystemConfigPath();
+    return findWinSystemConfigPath();
 #else
-    const QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
-                QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
-                QDir::homePath() + "/.config/antimicro";
-
+    return  (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
+      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
+      QDir::homePath() + "/.config/antimicro";
 #endif
+  }
 
-    const QString configFileName = "antimicro_settings.ini";
+  const QString configFileName = "antimicro_settings.ini";
+  inline QString configFilePath() {
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+    return QString(configPath()).append("/").append(configFileName);
 #elif defined(Q_OS_WIN)
-    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+    return QString(configPath()).append("/").append(configFileName);
 #else
-    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+    return QString(configPath()).append("/").append(configFileName);
 #endif
-
+  }
+  
     const int LATESTCONFIGFILEVERSION = 19;
     // Specify the last known profile version that requires a migration
     // to be performed in order to be compatible with the latest version.

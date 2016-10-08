@@ -190,10 +190,10 @@ int main(int argc, char *argv[])
 
     Q_INIT_RESOURCE(resources);
 
-    QDir configDir(PadderCommon::configPath);
+    QDir configDir(PadderCommon::configPath());
     if (!configDir.exists())
     {
-        configDir.mkpath(PadderCommon::configPath);
+      configDir.mkpath(PadderCommon::configPath());
     }
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks = new QMap<SDL_JoystickID, InputDevice*>();
@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
         // An instance of this program is already running.
         // Save app config and exit.
         QApplication a(argc, argv);
-        AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+        AntiMicroSettings settings(PadderCommon::configFilePath(), QSettings::IniFormat);
 	
 	// Update log info based on config values
 	if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
@@ -464,7 +464,7 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("/");
 #endif
 
-    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath,
+    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(),
                                                         QSettings::IniFormat);
     settings->importFromCommandLine(cmdutility);
 
