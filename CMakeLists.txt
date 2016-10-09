@@ -761,11 +761,12 @@ if(WIN32)
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
     string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-
-    find_library(EXTRA_DLLS_QTCORE NAMES "Qt5Core.dll" )
-    find_library(EXTRA_DLLS_QTGUI NAMES "Qt5Gui.dll" )
-    find_library(EXTRA_DLLS_QTNET NAMES "Qt5Network.dll" )
-    find_library(EXTRA_DLLS_QTWIDGET NAMES "Qt5Widgets.dll" )
+    set(EXTRA_QT_DLL_FILES
+        "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
+        "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
+        "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
+        "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
+    )
 
     find_library(EXTRA_DLLS_PTHREAD NAMES "libwinpthread-1.dll" )
     find_library(EXTRA_DLLS_LIBCPP NAMES "libstdc++-6.dll" )
@@ -778,10 +779,7 @@ if(WIN32)
     endforeach( ICU_VER )
 
     list(APPEND EXTRA_DLL_FILES
-      ${EXTRA_DLLS_QTCORE}
-      ${EXTRA_DLLS_QTGUI}
-      ${EXTRA_DLLS_QTNET}
-      ${EXTRA_DLLS_QTWIDGET}
+      ${EXTRA_QT_DLL_FILES}
       ${EXTRA_DLLS_PTHREAD}
       ${EXTRA_DLLS_LIBCPP}
       ${ICU_DT_DLL}
