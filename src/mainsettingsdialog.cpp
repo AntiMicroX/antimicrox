@@ -2039,5 +2039,7 @@ void MainSettingsDialog::selectLogFile() {
     QString newLogFile =
       QFileDialog::getSaveFileName(this, tr("Save Log File As"), oldLogFile,
 				   tr("Log Files (*.log)"));
-    ui->profileDefaultDirLineEdit->setText(newLogFile);
+    if( !newLogFile.isEmpty() ) {
+      ui->logFilePathEdit->setText(newLogFile);
+    }
 }
