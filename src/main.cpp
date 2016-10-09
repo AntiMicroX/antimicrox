@@ -190,10 +190,19 @@ int main(int argc, char *argv[])
 
     Q_INIT_RESOURCE(resources);
 
-    QDir configDir(PadderCommon::configPath);
+    QApplication a(argc, argv);
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+    // If in portable mode, make sure the current directory is the same as the
+    // config directory. This is to ensure that all relative paths resolve
+    // correctly when loading on startup.
+    QDir::setCurrent( PadderCommon::configPath() );
+#endif
+
+    QDir configDir(PadderCommon::configPath());
     if (!configDir.exists())
     {
-        configDir.mkpath(PadderCommon::configPath);
+      configDir.mkpath(PadderCommon::configPath());
     }
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks = new QMap<SDL_JoystickID, InputDevice*>();
@@ -210,8 +219,7 @@ int main(int argc, char *argv[])
     {
         // An instance of this program is already running.
         // Save app config and exit.
-        QApplication a(argc, argv);
-        AntiMicroSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
+        AntiMicroSettings settings(PadderCommon::configFilePath(), QSettings::IniFormat);
 	
 	// Update log info based on config values
 	if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
@@ -259,7 +267,6 @@ int main(int argc, char *argv[])
     }
 
     LocalAntiMicroServer *localServer = 0;
-    QApplication *a = 0;
 
 #ifndef Q_OS_WIN
     if (cmdutility.launchAsDaemon())
@@ -273,7 +280,6 @@ int main(int argc, char *argv[])
         {
             appLogger.LogInfo(QObject::tr("Daemon launched"), true, true);
 
-            a = new QApplication(argc, argv);
             localServer = new LocalAntiMicroServer();
             localServer->startLocalServer();
         }
@@ -405,7 +411,6 @@ int main(int argc, char *argv[])
     }
     else
     {
-        a = new QApplication(argc, argv);
         localServer = new LocalAntiMicroServer();
         localServer->startLocalServer();
 
@@ -443,12 +448,11 @@ int main(int argc, char *argv[])
     }
 
 #else
-    a = new QApplication (argc, argv);
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
 #endif
 
-    a->setQuitOnLastWindowClosed(false);
+    a.setQuitOnLastWindowClosed(false);
 
     //QString defaultStyleName = qApp->style()->objectName();
 
@@ -464,7 +468,7 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("/");
 #endif
 
-    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath,
+    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(),
                                                         QSettings::IniFormat);
     settings->importFromCommandLine(cmdutility);
 
@@ -496,7 +500,7 @@ int main(int argc, char *argv[])
                       QApplication::applicationDirPath().append("\\share\\qt\\translations"));
   #endif
 #endif
-    a->installTranslator(&qtTranslator);
+    a.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 #if defined(Q_OS_UNIX)
@@ -504,7 +508,7 @@ int main(int argc, char *argv[])
 #elif defined(Q_OS_WIN)
     myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
 #endif
-    a->installTranslator(&myappTranslator);
+    a.installTranslator(&myappTranslator);
 
 #ifndef Q_OS_WIN
     // Have program handle SIGTERM
@@ -554,9 +558,6 @@ int main(int argc, char *argv[])
         #endif
     #endif
 
-        delete a;
-        a = 0;
-
         return 0;
     }
 
@@ -570,13 +571,13 @@ int main(int argc, char *argv[])
 
         MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
 
-        QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
-        QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
-        QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker,
+        QObject::connect(&a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
+        QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+        QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker,
                          SLOT(deleteJoysticks()), Qt::BlockingQueuedConnection);
-        QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj,
+        QObject::connect(&a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj,
                          SLOT(deleteDeskWid()), Qt::DirectConnection);
-        QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),
+        QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),
                          Qt::BlockingQueuedConnection);
 
         //JoyButton::establishMouseTimerConnections();
@@ -589,7 +590,7 @@ int main(int argc, char *argv[])
         PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
         inputEventThread->start(QThread::HighPriority);
 
-        int app_result = a->exec();
+        int app_result = a.exec();
 
         // Log any remaining messages if they exist.
         appLogger.Log();
@@ -622,9 +623,6 @@ int main(int argc, char *argv[])
 
         delete w;
         w = 0;
-
-        delete a;
-        a = 0;
 
         return app_result;
     }
@@ -708,9 +706,6 @@ int main(int argc, char *argv[])
   #endif
 #endif
 
-        delete a;
-        a = 0;
-
         return EXIT_FAILURE;
     }
     else
@@ -737,18 +732,18 @@ int main(int argc, char *argv[])
                      SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
                      w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
 
-    QObject::connect(a, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(revertMouseThread()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()));
-    QObject::connect(a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()),
+    QObject::connect(&a, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(revertMouseThread()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()),
                      Qt::DirectConnection);
 
 #ifdef Q_OS_WIN
-    QObject::connect(a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
+    QObject::connect(&a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
 #endif
     QObject::connect(localServer, SIGNAL(clientdisconnect()), w, SLOT(handleInstanceDisconnect()));
 
@@ -787,7 +782,7 @@ int main(int argc, char *argv[])
     PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
     inputEventThread->start(QThread::HighPriority);
 
-    int app_result = a->exec();
+    int app_result = a.exec();
 
     // Log any remaining messages if they exist.
     appLogger.Log();
@@ -829,9 +824,6 @@ int main(int argc, char *argv[])
 
     delete settings;
     settings = 0;
-
-    delete a;
-    a = 0;
 
     return app_result;
 }
