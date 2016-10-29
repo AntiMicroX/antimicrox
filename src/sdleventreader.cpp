@@ -205,7 +205,17 @@ int SDLEventReader::CheckForEvents()
             exit = true;
             break;
         }
-        case 1:
+        case 0:
+        {
+            if (!pollRateTimer.isActive())
+            {
+                pollRateTimer.start();
+            }
+            //exit = true;
+            //SDL_Delay(10);
+            break;
+        }
+        default:
         {
             /*Logger::LogInfo(
                         QString("Gamepad Poll %1").arg(
@@ -215,16 +225,6 @@ int SDLEventReader::CheckForEvents()
 
             result = 1;
             exit = true;
-            break;
-        }
-        case 0:
-        {
-            if (!pollRateTimer.isActive())
-            {
-                pollRateTimer.start();
-            }
-            //exit = true;
-            //SDL_Delay(10);
             break;
         }
     }
