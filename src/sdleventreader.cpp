@@ -201,6 +201,9 @@ int SDLEventReader::CheckForEvents()
     {
         case -1:
         {
+	  Logger::LogError(QString("SDL Error: %1").
+			   arg(QString(SDL_GetError())),
+			   true, true);
             result = 0;
             exit = true;
             break;
