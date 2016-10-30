@@ -650,7 +650,7 @@ QString JoyButtonSlot::getSlotString()
             {
                 QFileInfo profileInfo(textData);
                 QString temp;
-                temp.append(tr("Load %1").arg(profileInfo.completeBaseName()));
+                temp.append(tr("Load %1").arg(PadderCommon::getProfileName(profileInfo)));
                 newlabel.append(temp);
             }
         }
