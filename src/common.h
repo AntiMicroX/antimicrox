@@ -149,6 +149,15 @@ namespace PadderCommon
                             QString language);
     void lockInputDevices();
     void unlockInputDevices();
+
+    /*!
+     * \brief Returns the "human-readable" name of the given profile.
+     */
+    inline QString getProfileName(QFileInfo& profile) {
+      QString retVal = profile.completeBaseName() + QString(".del me");
+
+      return retVal;
+    }
 }
 
 Q_DECLARE_METATYPE(QThread*)
