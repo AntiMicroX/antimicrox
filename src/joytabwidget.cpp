@@ -913,7 +913,6 @@ void JoyTabWidget::changeJoyConfig(int index)
                 oldProfileName = profile.completeBaseName();
                 profileName = oldProfileName;
             }
-Logger::LogDebug(QString("Switching to profile %1 (%2)").arg(profileName, filename), true, true);
             configBox->setItemText(index, profileName);
         }
         else if (reader->hasError() && this->window()->isEnabled())
