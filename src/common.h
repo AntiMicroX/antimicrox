@@ -154,7 +154,7 @@ namespace PadderCommon
      * \brief Returns the "human-readable" name of the given profile.
      */
     inline QString getProfileName(QFileInfo& profile) {
-      QString retVal = profile.completeBaseName() + QString(".del me");
+      QString retVal = profile.completeBaseName();
 
       return retVal;
     }
