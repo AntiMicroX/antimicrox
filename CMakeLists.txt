@@ -619,29 +619,33 @@ elseif (WIN32)
             endif(PKG_CONFIG_FOUND)
         endif(MSYS OR MINGW)
 
-        if (NOT SDL2_LIBRARY AND EXISTS "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/")
+        if (NOT SDL2_LIBRARY)
             # Perform extra voodoo to get proper library paths and include
             # proper headers.
-            unset(SDL2_LIBRARY)
+	    file(GLOB SDL2_BASE_DIR "${PROJECT_SOURCE_DIR}/SDL2-*.*.*/")
 
-            if(TARGET_ARCH STREQUAL "x86_64")
-                set(SDL2_LIBRARY_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/lib")
-                set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/include")
-                set(SDL2_DLL_LOCATION_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin")
+	    if (SDL2_BASE_DIR)
+                unset(SDL2_LIBRARY)
 
-                find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                list(APPEND LIBS ${SDL2_LIBRARY})
-                include_directories(${SDL2_INCLUDE_DIR})
-            else()
-                set(SDL2_LIBRARY_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/lib")
-                set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/include")
-                set(SDL2_DLL_LOCATION_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin")
+                if(TARGET_ARCH STREQUAL "x86_64")
+                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/lib")
+                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/include")
+                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin")
 
-                find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                list(APPEND LIBS ${SDL2_LIBRARY})
-                include_directories(${SDL2_INCLUDE_DIR})
-            endif(TARGET_ARCH STREQUAL "x86_64")
-        endif(NOT SDL2_LIBRARY AND EXISTS "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/")
+                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
+                    list(APPEND LIBS ${SDL2_LIBRARY})
+                    include_directories(${SDL2_INCLUDE_DIR})
+                else()
+                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/lib")
+                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/include")
+                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/bin")
+
+                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
+                    list(APPEND LIBS ${SDL2_LIBRARY})
+                    include_directories(${SDL2_INCLUDE_DIR})
+                endif(TARGET_ARCH STREQUAL "x86_64")
+	    endif(SDL2_BASE_DIR)  
+        endif(NOT SDL2_LIBRARY)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
@@ -743,12 +747,12 @@ if(WIN32)
     #if(TARGET_ARCH STREQUAL "x86_64")
     #    # Copy SDL2.dll to find installation directory.
     #    add_custom_target(copy_sdl_dll
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
     #    )
     #else()
     #    # Copy SDL2.dll to find installation directory.
     #    add_custom_target(copy_sdl_dll
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
     #    )
     #endif(TARGET_ARCH STREQUAL "x86_64")
 
@@ -793,16 +797,19 @@ if(WIN32)
       
       list(APPEND EXTRA_DLL_FILES
         ${GCC_DLL}
-        "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll"
+        "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll"
         )
     else()
       find_library( GCC_DLL "libgcc_s_dw2-1.dll" )
       
       list(APPEND EXTRA_DLL_FILES
 	${GCC_DLL}
-        "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll"
+        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll"
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
+    
+    # Not a DLL file, but needs to travel with SDL2.DLL
+    list(APPEND EXTRA_DLL_FILES "${SDL2_BASE_DIR}/README-SDL.txt")
 
     # Target to copy Qt DLL files.
     add_custom_target(install_extra_dlls)
