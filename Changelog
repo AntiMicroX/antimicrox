@@ -1,3 +1,28 @@
+2016-11-05 Jeff Backus <jeff@jsbackus.com>
+
+Version 2.23
+
+* Fixed portable version. (issue #37)
+
+* Added ability to specify logging level and file in config dialog. (issue #50)
+
+* Updated build system to find libraries on Windows systems instead of using
+  explicit paths. (issue #43)
+
+* Added relevant window information to debug messages related to auto profiles.
+  (issue #46)
+
+* Fixed issue with anything in profile name after first period being truncated.
+  (issue #70)
+
+* Fixed issues with SDL 2.0.5 on all platforms. (issue #71)
+
+* Added support for additional small-case Latin characters when using Xtest.
+  (issue #49)
+
+* Added inclusion of README-SDL.txt when building Windows distributables.
+
+
 2016-07-30 Jeff Backus <jeff@jsbackus.com>
 
 Version 2.22
