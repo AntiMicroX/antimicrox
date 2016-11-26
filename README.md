@@ -67,6 +67,10 @@ AntiMicro is currently available for Slackware via SlackBuilds, thanks to NK and
 
 Ubuntu users may also check the antimicro page on Launchpad:
 
+Latest:  
+https://launchpad.net/~mdeguzis/+archive/ubuntu/libregeek
+
+Deprecated:  
 [https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro](https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro)
 
 ## Command line
