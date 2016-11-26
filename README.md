@@ -3,8 +3,8 @@
 ## We've Moved!
 
 As of May 24, 2016, antimicro has moved from
-[https://github.com/Ryochan7/antimicro](https://github.com/Ryochan7/antimicro) to
-[https://github.com/AntiMicro/antimicro](https://github.com/AntiMicro/antimicro).
+https://github.com/Ryochan7/antimicro to
+https://github.com/AntiMicro/antimicro.
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro
 organization due to Travis having other interests and priorities.
 
@@ -37,20 +37,20 @@ with Windows XP.
 Also, FreeBSD support will be minimal for now. I don't use BSD on
 a daily basis so the main support for FreeBSD is being offered by Anton. He
 has graciously made a port of antimicro for FreeBSD that you can find
-at the following URL: [http://www.freshports.org/x11/antimicro/](http://www.freshports.org/x11/antimicro/).
+at the following URL: http://www.freshports.org/x11/antimicro/.
 
 ## License
 
 This program is licensed under the GPL v.3. Please read the gpl.txt text document
 included with the source code if you would like to read the terms of the license.
 The license can also be found online at
-[http://www.gnu.org/licenses/gpl.txt](http://www.gnu.org/licenses/gpl.txt).
+http://www.gnu.org/licenses/gpl.txt
 
 ## Download
 Source code archives and Windows binaries are available from the antimicro
 Releases section on GitHub:
 
-[https://github.com/AntiMicro/antimicro/releases](https://github.com/AntiMicro/antimicro/releases)
+https://github.com/AntiMicro/antimicro/releases
 
 AntiMicro is currently in the official Fedora repository and can be installed with
 
@@ -59,11 +59,11 @@ AntiMicro is currently in the official Fedora repository and can be installed wi
 For Debian and Debian-based distributions, such as Mint, Ubuntu, and Steam OS, please check the LibreGeek
 Repositories generously hosted by ProfessorKaos64:
 
-[http://packages.libregeek.org/](http://packages.libregeek.org/)
+http://packages.libregeek.org/
 
 AntiMicro is currently available for Slackware via SlackBuilds, thanks to NK and Klaatu:
 
-[https://slackbuilds.org/result/?search=antimicro&sv=](https://slackbuilds.org/result/?search=antimicro&sv=)
+https://slackbuilds.org/result/?search=antimicro&sv=
 
 Ubuntu users may also check the antimicro page on Launchpad:
 
@@ -71,7 +71,7 @@ Latest:
 https://launchpad.net/~mdeguzis/+archive/ubuntu/libregeek
 
 Deprecated:  
-[https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro](https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro)
+https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro
 
 ## Command line
 
@@ -113,12 +113,12 @@ really convenient. In order to use those pre-made profiles, you have to be
 running at least antimicro version 2.0 and antimicro must have been compiled
 with SDL 2 support.
 
-[https://github.com/AntiMicro/antimicro-profiles](https://github.com/AntiMicro/antimicro-profiles)
+https://github.com/AntiMicro/antimicro-profiles
 
 ## Wiki
 
 An effort is now being done to utilize the Wiki section on GitHub more.
-Please check out the Wiki at [https://github.com/AntiMicro/antimicro/wiki](https://github.com/AntiMicro/antimicro/wiki)
+Please check out the Wiki at https://github.com/AntiMicro/antimicro/wiki
 to read various help pages that have been created. The Wiki is currently
 open to all GitHub users so feel free to add a new page or modify an
 existing page.
@@ -323,18 +323,18 @@ write ideas for future development into the repository for this
 program. The mind map will include extra notes that are not available in
 this README. Opening the mind map will require the use of the program
 FreeMind which can be downloaded from
-[http://freemind.sourceforge.net/wiki/index.php/Main_Page](http://freemind.sourceforge.net/wiki/index.php/Main_Page).
+http://freemind.sourceforge.net/wiki/index.php/Main_Page.
 
 ## Translating
 
 New translations as well as updates to current translations are always welcome.
 Please refer to
-[https://github.com/AntiMicro/antimicro/wiki/Translating-AntiMicro](https://github.com/AntiMicro/antimicro/wiki/Translating-AntiMicro)
+https://github.com/AntiMicro/antimicro/wiki/Translating-AntiMicro
 
 ## Shoutout
 
 A big inspiration for this program was the program QJoyPad
-([http://qjoypad.sourceforge.net/](http://qjoypad.sourceforge.net/)).
+(http://qjoypad.sourceforge.net/).
 I was a user of the program for years and it is unfortunate that the
 program is no longer being maintained. The source code for QJoyPad was an
 invaluable resource when I made the first version of this program and the UI
