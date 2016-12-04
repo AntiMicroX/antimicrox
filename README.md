@@ -301,7 +301,7 @@ programs for testing gamepads outside of antimicro are **sdl-jstest**
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems.
 
-[https://github.com/Grumbel/sdl-jstest/](https://github.com/Grumbel/sdl-jstest/)
+https://github.com/Grumbel/sdl-jstest/
 
 ## Support
 
@@ -309,7 +309,7 @@ In order to obtain support, you can post an issue on the antimicro GitHub page
 or you can email me at jeff@jsbackus.com. Please include **antimicro**
 somewhere in the subject line of the email message or it might be skipped.
 
-[https://github.com/AntiMicro/antimicro](https://github.com/AntiMicro/antimicro)
+https://github.com/AntiMicro/antimicro
 
 ## Ideas For Future Features
 
