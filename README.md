@@ -133,7 +133,7 @@ installed on your system in order to build this program:
 * cmake
 * libqt4-dev (Qt 4 support) or qttools5-dev and qttools5-dev-tools (Qt 5
 support)
-* libsdl1.2-dev (SDL 1.2) or libsdl2-dev (SDL 2)
+* libsdl2-dev (SDL 2) or libsdl1.2-dev (SDL 1.2)
 * libxi-dev (optional. Needed to compile with X11 and uinput support)
 * libxtst-dev (optional. Needed to compile with XTest support)
 * libX11-dev (optional when compiled with Qt 5 support)
