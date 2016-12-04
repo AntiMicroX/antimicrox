@@ -52,6 +52,10 @@ Releases section on GitHub:
 
 https://github.com/AntiMicro/antimicro/releases
 
+As well as on BinTray:
+
+https://bintray.com/antimicro/antimicro/antimicro
+
 AntiMicro is currently in the official Fedora repository and can be installed with
 
 `$ sudo dnf install antimicro`
