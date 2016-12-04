@@ -13,7 +13,7 @@ following GitHub users who have helped us make the transition:
 * 7185
 * DarkStarSword
 * est31
-* ProfessorKaos64
+* mtdeguzis
 * qwerty12
 * WAZAAAAA0
 * zzpxyx
@@ -57,7 +57,7 @@ AntiMicro is currently in the official Fedora repository and can be installed wi
 `$ sudo dnf install antimicro`
 
 For Debian and Debian-based distributions, such as Mint, Ubuntu, and Steam OS, please check the LibreGeek
-Repositories generously hosted by ProfessorKaos64:
+Repositories generously hosted by mtdeguzis:
 
 http://packages.libregeek.org/
 
