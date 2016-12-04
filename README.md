@@ -356,6 +356,7 @@ aybe
 Jeff Backus <jeff@jsbackus.com>  
 Arthur Moore  
 Anton Tornqvist <antont@inbox.lv>
+mtdeguzis
 
 ### Translators
 
