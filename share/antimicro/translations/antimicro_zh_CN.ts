@@ -36,17 +36,26 @@ The need for this program came from me using similar programs on Windows to play
 
 Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
 
-Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.</source>
+Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.
+
+---
+
+As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
+</source>
         <translation>自2012年12月30日以来，我利用业余时间编写 antimicro。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
 
 对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
 
 从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicro 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
 
-开发这个程序对我来说已经不像以往那样高优先级了。这主要是因为相比较 Xbox 360 手柄来说，Steam 手柄可以很好地进行 PC 游戏。然而，这个程序似乎仍然有理由再存在一段时间。</translation>
+开发这个程序对我来说已经不像以往那样高优先级了。这主要是因为相比较 Xbox 360 手柄来说，Steam 手柄可以很好地进行 PC 游戏。然而，这个程序似乎仍然有理由再存在一段时间。
+
+---
+
+截止至2016年5月24日，这个项目已经被移动到了 https://github.com/AntiMicro/antimicro。此外，由于 Travis 希望将更多精力放到其它兴趣和事务上，项目管理已经从 Travis (Ryochan7) 移交到了 AntiMicro 项目组。</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="378"/>
+        <location filename="../../../src/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2016</source>
         <translation>版权：2013 - 2016</translation>
     </message>
@@ -1545,199 +1554,199 @@ this button is being used.</source>
 <context>
     <name>CommandLineUtility</name>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="120"/>
-        <location filename="../../../src/commandlineutility.cpp" line="449"/>
+        <location filename="../../../src/commandlineutility.cpp" line="121"/>
+        <location filename="../../../src/commandlineutility.cpp" line="457"/>
         <source>Profile location %1 is not an XML file.</source>
         <translation>配置文件 %1 不是一个 XML 文件。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="132"/>
-        <location filename="../../../src/commandlineutility.cpp" line="465"/>
+        <location filename="../../../src/commandlineutility.cpp" line="133"/>
+        <location filename="../../../src/commandlineutility.cpp" line="473"/>
         <source>Profile location %1 does not exist.</source>
         <translation>配置文件 %1 不存在。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="242"/>
+        <location filename="../../../src/commandlineutility.cpp" line="243"/>
         <source>An invalid set number &apos;%1&apos; was specified.</source>
         <translation>指定的设置编号 &quot;%1&quot; 无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="267"/>
+        <location filename="../../../src/commandlineutility.cpp" line="268"/>
         <source>Controller identifier &apos;%s&apos;&apos; is not a valid value.</source>
         <translation>游戏控制器标识符 &quot;%s&quot; 无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="340"/>
+        <location filename="../../../src/commandlineutility.cpp" line="341"/>
         <source>No display string was specified.</source>
         <translation>未指定显示字符串。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="168"/>
-        <location filename="../../../src/commandlineutility.cpp" line="209"/>
-        <location filename="../../../src/commandlineutility.cpp" line="316"/>
+        <location filename="../../../src/commandlineutility.cpp" line="169"/>
+        <location filename="../../../src/commandlineutility.cpp" line="210"/>
+        <location filename="../../../src/commandlineutility.cpp" line="317"/>
         <source>Controller identifier is not a valid value.</source>
         <translation>游戏控制器标识符无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="280"/>
+        <location filename="../../../src/commandlineutility.cpp" line="281"/>
         <source>No set number was specified.</source>
         <translation>未指定设置编号。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="321"/>
+        <location filename="../../../src/commandlineutility.cpp" line="322"/>
         <source>No controller was specified.</source>
         <translation>未指定游戏控制器。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="359"/>
+        <location filename="../../../src/commandlineutility.cpp" line="360"/>
         <source>An invalid event generator was specified.</source>
         <translation>指定的事件发生器无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="370"/>
+        <location filename="../../../src/commandlineutility.cpp" line="371"/>
         <source>No event generator string was specified.</source>
         <translation>未指定事件发生器字符串。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="386"/>
+        <location filename="../../../src/commandlineutility.cpp" line="387"/>
         <source>Qt style flag was detected but no style was specified.</source>
         <translation>检测到 Qt 样式标识，但未指定样式。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="416"/>
-        <source>No log level specified.</source>
-        <translation>未指定日志级别。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="479"/>
-        <location filename="../../../src/commandlineutility.cpp" line="550"/>
-        <location filename="../../../src/commandlineutility.cpp" line="630"/>
-        <location filename="../../../src/commandlineutility.cpp" line="637"/>
-        <source>antimicro version</source>
-        <translation>antimicro 版本</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="480"/>
-        <location filename="../../../src/commandlineutility.cpp" line="551"/>
-        <source>Usage: antimicro [options...] [profile]</source>
-        <translation>用法：antimicro [选项] [配置文件]</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="482"/>
-        <location filename="../../../src/commandlineutility.cpp" line="553"/>
-        <source>Options</source>
-        <translation>选项</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="483"/>
-        <location filename="../../../src/commandlineutility.cpp" line="554"/>
-        <source>Print help text.</source>
-        <translation>打印帮助文本。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="484"/>
-        <location filename="../../../src/commandlineutility.cpp" line="555"/>
-        <source>Print version information.</source>
-        <translation>打印版本信息。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="485"/>
-        <location filename="../../../src/commandlineutility.cpp" line="556"/>
-        <source>Launch program in system tray only.</source>
-        <translation>启动后最小化到系统托盘。</translation>
-    </message>
-    <message>
-        <location filename="../../../src/commandlineutility.cpp" line="486"/>
-        <location filename="../../../src/commandlineutility.cpp" line="557"/>
-        <source>Launch program with the tray menu disabled.</source>
-        <translation>启动后禁用系统托盘菜单。</translation>
+        <location filename="../../../src/commandlineutility.cpp" line="424"/>
+        <source>No log file specified.</source>
+        <translation>未指定日志文件。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="487"/>
         <location filename="../../../src/commandlineutility.cpp" line="558"/>
+        <location filename="../../../src/commandlineutility.cpp" line="638"/>
+        <location filename="../../../src/commandlineutility.cpp" line="645"/>
+        <source>antimicro version</source>
+        <translation>antimicro 版本</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="488"/>
+        <location filename="../../../src/commandlineutility.cpp" line="559"/>
+        <source>Usage: antimicro [options...] [profile]</source>
+        <translation>用法：antimicro [选项] [配置文件]</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="490"/>
+        <location filename="../../../src/commandlineutility.cpp" line="561"/>
+        <source>Options</source>
+        <translation>选项</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="491"/>
+        <location filename="../../../src/commandlineutility.cpp" line="562"/>
+        <source>Print help text.</source>
+        <translation>打印帮助文本。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="492"/>
+        <location filename="../../../src/commandlineutility.cpp" line="563"/>
+        <source>Print version information.</source>
+        <translation>打印版本信息。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="493"/>
+        <location filename="../../../src/commandlineutility.cpp" line="564"/>
+        <source>Launch program in system tray only.</source>
+        <translation>启动后最小化到系统托盘。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="494"/>
+        <location filename="../../../src/commandlineutility.cpp" line="565"/>
+        <source>Launch program with the tray menu disabled.</source>
+        <translation>启动后禁用系统托盘菜单。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/commandlineutility.cpp" line="495"/>
+        <location filename="../../../src/commandlineutility.cpp" line="566"/>
         <source>Launch program without the main window
                                displayed.</source>
         <translation>启动后不显示主窗口。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="489"/>
-        <location filename="../../../src/commandlineutility.cpp" line="560"/>
+        <location filename="../../../src/commandlineutility.cpp" line="497"/>
+        <location filename="../../../src/commandlineutility.cpp" line="568"/>
         <source>Launch program with the configuration file
                                selected as the default for selected
                                controllers. Defaults to all controllers.</source>
         <translation>启动后将指定的配置文件作为默认配置文件。默认应用到所有游戏控制器。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="492"/>
-        <location filename="../../../src/commandlineutility.cpp" line="563"/>
+        <location filename="../../../src/commandlineutility.cpp" line="500"/>
+        <location filename="../../../src/commandlineutility.cpp" line="571"/>
         <source>Apply configuration file to a specific
                                controller. Value can be a
                                controller index, name, or GUID.</source>
         <translation>应用配置文件到指定的游戏控制器。值可以是编号、名称或全局唯一标识符。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="494"/>
-        <location filename="../../../src/commandlineutility.cpp" line="565"/>
+        <location filename="../../../src/commandlineutility.cpp" line="502"/>
+        <location filename="../../../src/commandlineutility.cpp" line="573"/>
         <source>Unload currently enabled profile(s). 
                                Value can be a controller index, name, or GUID.</source>
         <translation>卸载当前生效的配置文件。值可以是控制器编号、名称或全局唯一标识符。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="496"/>
-        <location filename="../../../src/commandlineutility.cpp" line="567"/>
+        <location filename="../../../src/commandlineutility.cpp" line="504"/>
+        <location filename="../../../src/commandlineutility.cpp" line="575"/>
         <source>Start joysticks on a specific set.   
                                Value can be a controller index, name, or GUID.</source>
         <translation>为摇杆指定设置编号。值可以是控制器编号、名称或全局唯一标识符。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="498"/>
-        <location filename="../../../src/commandlineutility.cpp" line="569"/>
+        <location filename="../../../src/commandlineutility.cpp" line="506"/>
+        <location filename="../../../src/commandlineutility.cpp" line="577"/>
         <source>Advance profile loading set options.</source>
         <translation>切换到下一个配置文件载入选项。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="503"/>
-        <location filename="../../../src/commandlineutility.cpp" line="574"/>
+        <location filename="../../../src/commandlineutility.cpp" line="511"/>
+        <location filename="../../../src/commandlineutility.cpp" line="582"/>
         <source>Launch program as a daemon.</source>
         <translation>以后台服务方式启动程序。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="504"/>
-        <location filename="../../../src/commandlineutility.cpp" line="575"/>
+        <location filename="../../../src/commandlineutility.cpp" line="512"/>
+        <location filename="../../../src/commandlineutility.cpp" line="583"/>
         <source>Enable logging.</source>
         <translation>开启日志。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="512"/>
-        <location filename="../../../src/commandlineutility.cpp" line="582"/>
+        <location filename="../../../src/commandlineutility.cpp" line="520"/>
+        <location filename="../../../src/commandlineutility.cpp" line="590"/>
         <source>Use specified display for X11 calls.
                                Useful for ssh.</source>
         <translation>为 X11 调用指定显示设备。对 ssh 尤其有用。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="523"/>
-        <location filename="../../../src/commandlineutility.cpp" line="593"/>
+        <location filename="../../../src/commandlineutility.cpp" line="531"/>
+        <location filename="../../../src/commandlineutility.cpp" line="601"/>
         <source>Choose between using XTest support and uinput
                                support for event generation. Default: xtest.</source>
         <translation>为事件发生器选择 XTest 支持或 uinput 支持。默认：XTest。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="528"/>
-        <location filename="../../../src/commandlineutility.cpp" line="598"/>
+        <location filename="../../../src/commandlineutility.cpp" line="536"/>
+        <location filename="../../../src/commandlineutility.cpp" line="606"/>
         <source>Choose between using SendInput and vmulti
                            support for event generation. Default: sendinput.</source>
         <translation>为事件发生器选择使用 SendInput 或 vmulti 支持。默认：SendInput。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="535"/>
-        <location filename="../../../src/commandlineutility.cpp" line="605"/>
+        <location filename="../../../src/commandlineutility.cpp" line="543"/>
+        <location filename="../../../src/commandlineutility.cpp" line="613"/>
         <source>Print information about joysticks detected by 
                                SDL.</source>
         <translation>打印 SDL 检测到的摇杆。</translation>
     </message>
     <message>
-        <location filename="../../../src/commandlineutility.cpp" line="538"/>
-        <location filename="../../../src/commandlineutility.cpp" line="608"/>
+        <location filename="../../../src/commandlineutility.cpp" line="546"/>
+        <location filename="../../../src/commandlineutility.cpp" line="616"/>
         <source>Open game controller mapping window of selected
                                controller. Value can be a controller index or
                                GUID.</source>
@@ -3032,63 +3041,63 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joytabwidget.cpp" line="63"/>
         <location filename="../../../src/joytabwidget.cpp" line="755"/>
         <location filename="../../../src/joytabwidget.cpp" line="899"/>
-        <location filename="../../../src/joytabwidget.cpp" line="943"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1091"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2318"/>
+        <location filename="../../../src/joytabwidget.cpp" line="942"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1090"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2317"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;新&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="71"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1540"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="73"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1542"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1541"/>
         <source>Remove configuration from recent list.</source>
         <translation>从最近使用列表中移除配置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="79"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1543"/>
         <source>Load</source>
         <translation>载入</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="81"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1545"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1544"/>
         <source>Load configuration file.</source>
         <translation>载入配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="87"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1546"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="89"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1548"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1547"/>
         <source>Save changes to configuration file.</source>
         <translation>保存更改到配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="96"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1549"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="98"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1551"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1550"/>
         <source>Save changes to a new configuration file.</source>
         <translation>保存更改到新的配置文件。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="293"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1553"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1552"/>
         <source>Sets</source>
         <translation>设置</translation>
     </message>
@@ -3104,104 +3113,104 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="304"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1554"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1553"/>
         <source>Set 1</source>
         <translation>设置1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="308"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1555"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1554"/>
         <source>Set 2</source>
         <translation>设置2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="312"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1556"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1555"/>
         <source>Set 3</source>
         <translation>设置3</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="316"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1556"/>
         <source>Set 4</source>
         <translation>设置4</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="320"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1557"/>
         <source>Set 5</source>
         <translation>设置5</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="324"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1558"/>
         <source>Set 6</source>
         <translation>设置6</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="328"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1560"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1559"/>
         <source>Set 7</source>
         <translation>设置7</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="332"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1561"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1560"/>
         <source>Set 8</source>
         <translation>设置8</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="398"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1567"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1566"/>
         <source>Stick/Pad Assign</source>
         <translation>摇杆/十字键分配</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="404"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1566"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1565"/>
         <source>Controller Mapping</source>
         <translation>游戏控制器映射</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="411"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1567"/>
         <source>Quick Set</source>
         <translation>快速设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="419"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1571"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1570"/>
         <source>Names</source>
         <translation>名称</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="421"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1572"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1571"/>
         <source>Toggle button name displaying.</source>
         <translation>开关按钮名称显示。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="426"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1574"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1573"/>
         <source>Pref</source>
         <translation>偏好设置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="428"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1575"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1574"/>
         <source>Change global profile settings.</source>
         <translation>改变全局配置文件设置。</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="432"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1569"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1577"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1568"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1576"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="434"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1578"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1577"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>还原设置的更改。重新加载配置文件。</translation>
     </message>
@@ -3223,59 +3232,59 @@ functionality to an analog stick.</source>
         <translation>配置文件 (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1596"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1649"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1595"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1648"/>
         <source>Save Profile Changes?</source>
         <translation>保存配置文件更改？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1599"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1653"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1598"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1652"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>新配置文件的更改尚未保存。您想保存还是放弃修改当前的配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1603"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1657"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1602"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1656"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>配置文件“%1”的更改尚未保存。您想保存还是放弃修改此配置文件？</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1905"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1904"/>
         <source>Sticks</source>
         <translation>摇杆</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1973"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2024"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1972"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2023"/>
         <source>DPads</source>
         <translation>十字键</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2164"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2163"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>按钮未被分配。请使用“快速设置”来将按键分配到按钮，或取消隐藏空白按钮。</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2354"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2379"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2353"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2378"/>
         <source>Set %1: %2</source>
         <translation>设置%1：%2</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2358"/>
-        <location filename="../../../src/joytabwidget.cpp" line="2383"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2357"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2382"/>
         <source>Set %1</source>
         <translation>设置%1</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2391"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2390"/>
         <source>Copy Set Assignments</source>
         <translation>复制设置分配信息</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="2392"/>
+        <location filename="../../../src/joytabwidget.cpp" line="2391"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>您确定要从 %1 复制分配信息和设备属性吗？</translation>
     </message>
@@ -3287,8 +3296,8 @@ to buttons or disable hiding empty buttons.</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1509"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1516"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1508"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1515"/>
         <source>Set</source>
         <translation>设置</translation>
     </message>
@@ -3433,27 +3442,32 @@ to buttons or disable hiding empty buttons.</source>
         <translation>鼠标</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="118"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="87"/>
+        <source>Advanced</source>
+        <translation>高级选项</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the default directory that the program should use in file dialogs when loading a profile or saving a new profile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;指定本程序在加载或保存一个配置文件时，文件对话框中默认使用的路径。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="145"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="150"/>
         <source>Recent Profile Count:</source>
         <translation>最近使用的配置文件数：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="152"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="157"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of profiles that can be placed in recent profile list. 0 will result in the program not enforcing a limit on the number of profiles displayed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最近使用的配置文件列表中配置文件的数量。设为0将显示所有最近使用的配置文件。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="188"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="193"/>
         <source>Gamepad Poll Rate:</source>
         <translation>手柄轮询速率：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="195"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="200"/>
         <source>Change the poll rate that the program uses to discover new
 events from gamepads. Defaults to 10 ms.
 
@@ -3464,23 +3478,23 @@ before using antimicro unattended.</source>
 降低轮询速率可能会导致本程序使用更多的处理器资源。请在以无人值守方式使用前测试此选项。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="209"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="214"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
         <translation>点击关闭按钮时，最小化主窗口到系统托盘而不是退出程序。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="213"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="218"/>
         <source>Close To Tray</source>
         <translation>关闭时最小化到系统托盘</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="223"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="228"/>
         <source>Launch At Windows Startup</source>
         <translation>Windows 开机自启动</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="230"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="235"/>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
@@ -3488,12 +3502,12 @@ to using sub-menus.</source>
 默认是使用子菜单。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="235"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="240"/>
         <source>Single Profile List in Tray</source>
         <translation>系统托盘菜单中使用单一配置文件列表</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="242"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="247"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
@@ -3501,12 +3515,12 @@ tray if available.</source>
 如果可能，默认情况下本程序将最小化到系统托盘。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="247"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="252"/>
         <source>Minimize to Taskbar</source>
         <translation>最小化到任务栏</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="254"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="259"/>
         <source>This option will cause the program to hide all
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
@@ -3515,82 +3529,157 @@ to bring up the edit dialog for gamepad buttons.</source>
 您需要使用“快速设置”对话框来打开手柄按钮的编辑对话框。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="260"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="265"/>
         <source>Hide Empty Buttons</source>
         <translation>隐藏空白按钮</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="267"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="272"/>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
         <translation>本程序启动时，打开上次使用的配置文件。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="272"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="277"/>
         <source>Auto Load Last Opened Profile</source>
         <translation>自动加载上次打开的配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="282"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="287"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
         <translation>首次启动本程序时只显示系统托盘。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="286"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="291"/>
         <source>Launch in Tray</source>
         <translation>启动时最小化到系统托盘</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="296"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="301"/>
         <source>Associate Profiles</source>
         <translation>关联配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="322"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="327"/>
         <source>Key Repeat</source>
         <translation>键重复</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="328"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="333"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
         <translation>此选项启用后，处于活动状态的按键将一直被重复按下。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="332"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="902"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="337"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="907"/>
         <source>Enable</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="622"/>
-        <source>Italian</source>
+        <location filename="../../../src/mainsettingsdialog.ui" line="605"/>
+        <source>Português do Brasil</source>
+        <translation>巴西葡萄牙语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="615"/>
+        <source>Français</source>
+        <translation>法语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="620"/>
+        <source>Deutsch</source>
+        <translation>德语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="625"/>
+        <source>Italiano</source>
         <translation>意大利语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="642"/>
-        <source>Simplified Chinese</source>
+        <location filename="../../../src/mainsettingsdialog.ui" line="630"/>
+        <source>日本語</source>
+        <translation>日本语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="635"/>
+        <source>Русский</source>
+        <translation>俄语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="640"/>
+        <source>српски / srpski</source>
+        <translation>塞尔维亚语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="645"/>
+        <source>简化字</source>
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="771"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="650"/>
+        <source>Español</source>
+        <translation>西班牙语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="655"/>
+        <source>українська</source>
+        <translation>乌克兰语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1210"/>
+        <source>Log File:</source>
+        <translation>日志文件：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1238"/>
+        <source>Log Level:</source>
+        <translation>日志级别：</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1246"/>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1251"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1256"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1261"/>
+        <source>Info</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1266"/>
+        <source>Debug</source>
+        <translation>调试</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="779"/>
         <source>Class</source>
         <translation>类</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="776"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="784"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="781"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="789"/>
         <source>Program</source>
         <translation>程序</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="874"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="879"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
@@ -3599,22 +3688,22 @@ precise.</source>
 禁用“提高指针精确度”可使鼠标在开启 antimicro 的情况下更精准地移动。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="880"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="885"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation>禁用提高指针精确度</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="890"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="895"/>
         <source>Smoothing</source>
         <translation>平滑</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="970"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="975"/>
         <source>Refresh Rate:</source>
         <translation>刷新率：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="977"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="982"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
@@ -3627,29 +3716,29 @@ it unattended.</source>
 请在以无人值守方式使用前测试此选项。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1049"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1054"/>
         <source>Accel Numerator:</source>
         <translation>加速度分子：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1062"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1093"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1124"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1067"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1098"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1129"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1086"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1091"/>
         <source>Accel Denominator:</source>
         <translation>加速度分母：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1117"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1122"/>
         <source>Accel Threshold:</source>
         <translation>加速度阈值：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1161"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1166"/>
         <source>If the acceleration values for the virtual mouse have been
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
@@ -3657,59 +3746,59 @@ values used by the virtual mouse.</source>
         <translation>如果虚拟鼠标的加速度值被另一个进程改变，尤其是在退出老游戏的时候，您可能需要重置虚拟鼠标使用的加速度值。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1167"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1172"/>
         <source>Reset Acceleration</source>
         <translation>重置加速度</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="341"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="346"/>
         <source>Delay:</source>
         <translation>延迟：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="108"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="113"/>
         <source>Profi&amp;le Directory:</source>
         <translation>配置文件目录 (&amp;l)：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="220"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="225"/>
         <source>Have Windows start antimicro at system startup.</source>
         <translation>在 Windows 启动时运行本程序。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="293"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="298"/>
         <source>Associate .amgp files with antimicro in Windows Explorer.</source>
         <translation>在 Windows 资源管理器中将 .amgp 文件关联到 antimicro。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="351"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="356"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
         <translation>指定开始键重复之前的延迟时间。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="383"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="388"/>
         <source> ms</source>
         <translation>毫秒</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="406"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="411"/>
         <source>Rate:</source>
         <translation>频率：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="416"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="421"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
         <translation>指定每秒按键多少次。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="442"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="447"/>
         <source> times/s</source>
         <translation>次/秒</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="489"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="494"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
@@ -3718,146 +3807,111 @@ Settings will not take affect until you either refresh all joysticks or unplug t
 设置仅在您刷新所有摇杆或者拔出那个被禁用的摇杆之后生效。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="514"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="519"/>
         <source>GUID</source>
         <translation>全局唯一标识符</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="519"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="524"/>
         <source>Mapping String</source>
         <translation>映射字符串</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="524"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="529"/>
         <source>Disable?</source>
         <translation>禁用？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="534"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="850"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="539"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="856"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="546"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="550"/>
         <source>Insert</source>
         <translation>插入</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="567"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="570"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro 已被贡献者翻译为多种语言。默认情况下，本程序将根据您系统的区域设置选择相应的语言。然而，您也可以让 antimicro 加载以下列表中的任意语言。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="597"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1938"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="600"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1975"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="602"/>
-        <source>Brazilian Portuguese</source>
-        <translation>巴西葡萄牙语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="607"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="610"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="612"/>
-        <source>French</source>
-        <translation>法语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="617"/>
-        <source>German</source>
-        <translation>德语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="627"/>
-        <source>Japanese</source>
-        <translation>日语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="632"/>
-        <source>Russian</source>
-        <translation>俄语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="637"/>
-        <source>Serbian</source>
-        <translation>塞尔维亚语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="647"/>
-        <source>Ukrainian</source>
-        <translation>乌克兰语</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="664"/>
-        <location filename="../../../src/mainsettingsdialog.ui" line="756"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="672"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="764"/>
         <source>Active</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="689"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="697"/>
         <source>Devices:</source>
         <translation>设备：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="697"/>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1158"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="705"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1191"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="761"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="769"/>
         <source>Device</source>
         <translation>设备</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="766"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="774"/>
         <source>Profile</source>
         <translation>配置文件</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="786"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="794"/>
         <source>Default?</source>
         <translation>默认？</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="820"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="828"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="835"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="842"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="911"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="916"/>
         <source>Histor&amp;y Size:</source>
         <translation>历史缓冲大小 (&amp;y)：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="937"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="942"/>
         <source>Weight &amp;Modifier:</source>
         <translation>权重修饰因数 (&amp;M)：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="991"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="996"/>
         <source>Spring</source>
         <translation>弹簧</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1005"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1010"/>
         <source>Screen:</source>
         <translation>屏幕：</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="1015"/>
+        <location filename="../../../src/mainsettingsdialog.ui" line="1020"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
@@ -3866,21 +3920,31 @@ is to use all available screens.</source>
 在 Windows 系统上，默认使用所有可用屏幕。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="308"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="311"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
         <translation>另外，对于希望使用较低值的 Windows 用户，如果您未禁用 Windows 的“提高指针精确度”选项，请勾选本程序中的“禁用提高指针精确度”复选框。</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="786"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="815"/>
         <source>Select Default Profile Directory</source>
         <translation>选择默认配置文件目录</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.cpp" line="1538"/>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="1571"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>您确认要删除这个配置文件吗？</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="2040"/>
+        <source>Save Log File As</source>
+        <translation>日志文件另存为</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.cpp" line="2041"/>
+        <source>Log Files (*.log)</source>
+        <translation>日志文件 (*.log)</translation>
     </message>
 </context>
 <context>
@@ -3899,8 +3963,8 @@ the option in Windows.</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="165"/>
-        <source>If events are not seen by a game, please click here to run this application as the Adminstrator.</source>
-        <translation>如果游戏无法识别事件，请点击这里以管理员权限运行本程序。</translation>
+        <source>If events are not seen by a game, please click here to run this application as Administrator.</source>
+        <translation>如果游戏无法检测到事件，请单击这里以管理员身份运行。</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="191"/>
@@ -4614,38 +4678,38 @@ of your screen.</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="251"/>
+        <location filename="../../../src/main.cpp" line="281"/>
         <source>Daemon launched</source>
         <translation>后台服务已启动</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="259"/>
+        <location filename="../../../src/main.cpp" line="288"/>
         <source>Failed to launch daemon</source>
         <translation>无法启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="270"/>
+        <location filename="../../../src/main.cpp" line="299"/>
         <source>Launching daemon</source>
         <translation>正在启动后台服务</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="297"/>
-        <location filename="../../../src/main.cpp" line="400"/>
+        <location filename="../../../src/main.cpp" line="326"/>
+        <location filename="../../../src/main.cpp" line="428"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
         <translation>显示字符串“%1”无效。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="327"/>
+        <location filename="../../../src/main.cpp" line="356"/>
         <source>Failed to set a signature id for the daemon</source>
         <translation>无法为后台服务设置签名ID</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="354"/>
+        <location filename="../../../src/main.cpp" line="383"/>
         <source>Failed to change working directory to /</source>
         <translation>无法切换工作路径到根目录</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="761"/>
+        <location filename="../../../src/main.cpp" line="790"/>
         <source>Quitting Program</source>
         <translation>正在退出程序</translation>
     </message>
@@ -4715,24 +4779,44 @@ of your screen.</source>
         <translation>帽子开关数：%1</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="622"/>
+        <location filename="../../../src/main.cpp" line="654"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>尝试为事件生成使用后备选项 %1。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="649"/>
+        <location filename="../../../src/main.cpp" line="681"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>无法打开事件发生器。正在退出。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="684"/>
+        <location filename="../../../src/main.cpp" line="713"/>
         <source>Using %1 as the event generator.</source>
         <translation>使用 %1 作为事件发生器。</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="739"/>
+        <location filename="../../../src/main.cpp" line="768"/>
         <source>Could not raise process priority.</source>
         <translation>无法提升进程优先级。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.cpp" line="1574"/>
+        <source>Auto-switching to profile &quot;%1&quot;.</source>
+        <translation>自动切换到配置文件“%1”。</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainwindow.cpp" line="1577"/>
+        <source>Auto-switching to NULL profile!</source>
+        <translation>自动切换到空配置文件！</translation>
+    </message>
+    <message>
+        <location filename="../../../src/logger.cpp" line="377"/>
+        <source>Logging started</source>
+        <translation>日志记录已开始</translation>
+    </message>
+    <message>
+        <location filename="../../../src/autoprofilewatcher.cpp" line="131"/>
+        <source>Active window changed to: Title = &quot;%1&quot;, Class = &quot;%2&quot;, Program = &quot;%3&quot; or &quot;%4&quot;.</source>
+        <translation>活动窗口已更改至：标题 = “%1”，类 = “%2”，程序 = “%3”或“%4”。</translation>
     </message>
 </context>
 <context>
