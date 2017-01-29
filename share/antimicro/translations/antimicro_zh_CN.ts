@@ -3614,11 +3614,6 @@ option is enabled.</source>
         <translation>塞尔维亚语</translation>
     </message>
     <message>
-        <location filename="../../../src/mainsettingsdialog.ui" line="645"/>
-        <source>简化字</source>
-        <translation>简体中文</translation>
-    </message>
-    <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="650"/>
         <source>Español</source>
         <translation>西班牙语</translation>
@@ -3847,6 +3842,11 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <location filename="../../../src/mainsettingsdialog.ui" line="610"/>
         <source>English</source>
         <translation>英语</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mainsettingsdialog.ui" line="645"/>
+        <source>简体中文</source>
+        <translation>简体中文</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="672"/>
