@@ -21,19 +21,17 @@
 #include <QObject>
 #include <QList>
 
-#include "inputdevice.h"
+class InputDevice;
 
 class GameControllerMappingDialogHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit GameControllerMappingDialogHelper(InputDevice *device, QObject *parent = 0);
+    explicit GameControllerMappingDialogHelper(InputDevice *device, QObject *parent = nullptr);
 
 protected:
     InputDevice *device;
     QList<int> originalAxesDeadZones;
-
-signals:
 
 public slots:
     void raiseDeadZones();

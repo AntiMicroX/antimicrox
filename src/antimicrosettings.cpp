@@ -17,14 +17,17 @@
 
 #include "antimicrosettings.h"
 
+#include <QDebug>
+
 const bool AntiMicroSettings::defaultDisabledWinEnhanced = false;
 const bool AntiMicroSettings::defaultAssociateProfiles = true;
 const int AntiMicroSettings::defaultSpringScreen = -1;
-const unsigned int AntiMicroSettings::defaultSDLGamepadPollRate = 10;
+const int AntiMicroSettings::defaultSDLGamepadPollRate = 10; // unsigned
 
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent) :
     QSettings(fileName, format, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 /**
@@ -36,6 +39,8 @@ AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QOb
  */
 QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &defaultValue) const
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QVariant settingValue;
     QString inGroup = group();
     QString fullKey = QString(inGroup).append("/").append(key);
@@ -60,6 +65,8 @@ QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &def
  */
 void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     cmdSettings.clear();
 
     if (cmdutility.isLaunchInTrayEnabled())
@@ -74,5 +81,7 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
 
 QMutex* AntiMicroSettings::getLock()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &lock;
 }

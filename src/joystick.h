@@ -19,14 +19,15 @@
 #define JOYSTICK_H
 
 #include <QObject>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 
 #include "inputdevice.h"
+
+class AntiMicroSettings;
 
 class Joystick : public InputDevice
 {
     Q_OBJECT
+
 public:
     explicit Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *settings, QObject *parent=0);
 
@@ -47,10 +48,6 @@ public:
 
 protected:
     SDL_Joystick *joyhandle;
-
-signals:
-
-public slots:
 
 };
 

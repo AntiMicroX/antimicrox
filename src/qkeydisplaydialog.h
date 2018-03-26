@@ -19,7 +19,10 @@
 #define QKEYDISPLAYDIALOG_H
 
 #include <QDialog>
-#include <QKeyEvent>
+
+
+class QKeyEvent;
+class QWidget;
 
 namespace Ui {
 class QKeyDisplayDialog;
@@ -30,7 +33,7 @@ class QKeyDisplayDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QKeyDisplayDialog(QWidget *parent = 0);
+    explicit QKeyDisplayDialog(QWidget *parent = nullptr);
     ~QKeyDisplayDialog();
 
 protected:

@@ -521,13 +521,6 @@ interpret an axis hold or release.</string>
     </widget>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>line</zorder>
-  <zorder></zorder>
-  <zorder>axisstatusBox</zorder>
-  <zorder>verticalSpacer</zorder>
-  <zorder>mouseSettingsPushButton</zorder>
-  <zorder>verticalSpacer_2</zorder>
  </widget>
  <customwidgets>
   <customwidget>

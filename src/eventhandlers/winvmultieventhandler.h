@@ -33,9 +33,9 @@
 
 class WinVMultiEventHandler : public BaseEventHandler
 {
-    Q_OBJECT
+
 public:
-    explicit WinVMultiEventHandler(QObject *parent = 0);
+    explicit WinVMultiEventHandler(QObject *parent = nullptr);
     ~WinVMultiEventHandler();
 
     virtual bool init();
@@ -44,8 +44,8 @@ public:
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
-    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                      unsigned int width, unsigned int height);
+    virtual void sendMouseSpringEvent(int xDis, int yDis,
+                                      int width, int height); // unsigned, unsigned, unsigned, unsigned
 
     // TODO: Implement text event using information from QtWinKeyMapper.
     virtual void sendTextEntryEvent(QString maintext);
@@ -62,11 +62,6 @@ protected:
     QVector<BYTE> keyboardKeys;
     WinSendInputEventHandler sendInputHandler;
     QtKeyMapperBase *nativeKeyMapper;
-
-
-signals:
-
-public slots:
 
 };
 

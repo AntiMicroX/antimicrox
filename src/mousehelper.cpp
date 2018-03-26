@@ -17,9 +17,14 @@
 
 #include "mousehelper.h"
 
+#include <QDesktopWidget>
+#include <QDebug>
+
 MouseHelper::MouseHelper(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     springMouseMoving = false;
     previousCursorLocation[0] = 0;
     previousCursorLocation[1] = 0;
@@ -32,11 +37,15 @@ MouseHelper::MouseHelper(QObject *parent) :
 
 void MouseHelper::resetSpringMouseMoving()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     springMouseMoving = false;
 }
 
 void MouseHelper::initDeskWid()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!deskWid)
     {
         deskWid = new QDesktopWidget;
@@ -45,14 +54,18 @@ void MouseHelper::initDeskWid()
 
 void MouseHelper::deleteDeskWid()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (deskWid)
     {
         delete deskWid;
-        deskWid = 0;
+        deskWid = nullptr;
     }
 }
 
 QDesktopWidget* MouseHelper::getDesktopWidget()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return deskWid;
 }

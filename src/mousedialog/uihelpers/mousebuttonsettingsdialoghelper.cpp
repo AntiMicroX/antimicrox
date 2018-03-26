@@ -16,10 +16,16 @@
  */
 
 #include "mousebuttonsettingsdialoghelper.h"
+#include "joybutton.h"
+#include "joybuttonslot.h"
+
+#include <QDebug>
 
 MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(button);
 
     this->button = button;
@@ -27,40 +33,56 @@ MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *butt
 
 void MouseButtonSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setExtraAccelerationStatus(checked);
 }
 
 void MouseButtonSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setExtraAccelerationMultiplier(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateStartMultiPercentage(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setStartAccelMultiplier(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateMinAccelThreshold(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setMinAccelThreshold(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateMaxAccelThreshold(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setMaxAccelThreshold(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateAccelExtraDuration(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setAccelExtraDuration(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setSpringDeadCircleMultiplier(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setSpringRelativeStatus(value);
 }

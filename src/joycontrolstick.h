@@ -18,25 +18,27 @@
 #ifndef JOYCONTROLSTICK_H
 #define JOYCONTROLSTICK_H
 
+#include "joybutton.h"
+#include "joycontrolstickdirectionstype.h"
+
 #include <QObject>
 #include <QHash>
 #include <QList>
 #include <QTimer>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 
-#include "joyaxis.h"
-#include "joybutton.h"
-#include "joycontrolstickdirectionstype.h"
-#include "joybuttontypes/joycontrolstickbutton.h"
-#include "joybuttontypes/joycontrolstickmodifierbutton.h"
+
+class JoyAxis;
+class JoyControlStickButton;
+class JoyControlStickModifierButton;
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 class JoyControlStick : public QObject, public JoyStickDirectionsType
 {
     Q_OBJECT
 public:
     explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY,
-                             int index, int originset = 0, QObject *parent = 0);
+                             int index, int originset = 0, QObject *parent = nullptr);
     ~JoyControlStick();
 
     enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
@@ -163,7 +165,7 @@ public:
     void copyAssignments(JoyControlStick *destStick);
 
     double getCircleAdjust();
-    unsigned int getStickDelay();
+    int getStickDelay();
 
     double getButtonsEasingDuration();
 
@@ -187,7 +189,7 @@ public:
     static const int DEFAULTDIAGONALRANGE;
     static const JoyMode DEFAULTMODE;
     static const double DEFAULTCIRCLE;
-    static const unsigned int DEFAULTSTICKDELAY;
+    static const int DEFAULTSTICKDELAY; // unsigned
 
 
 protected:
@@ -258,7 +260,7 @@ protected:
     QString defaultStickName;
     double circle;
     QTimer directionDelayTimer;
-    unsigned int stickDelay;
+    int stickDelay; // unsigned int
     bool pendingStickEvent;
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;

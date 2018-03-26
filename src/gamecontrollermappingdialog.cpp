@@ -15,7 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "gamecontrollermappingdialog.h"
+#include "ui_gamecontrollermappingdialog.h"
+#include "inputdevice.h"
+
+#include "antimicrosettings.h"
+#include "common.h"
+
+#include <QDebug>
 #include <QList>
 #include <QListIterator>
 #include <QTableWidgetItem>
@@ -25,12 +32,14 @@
 #include <QStringList>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QAbstractButton>
+#include <QWidget>
 
-#include "gamecontrollermappingdialog.h"
-#include "ui_gamecontrollermappingdialog.h"
 
 static QHash<int, QString> initAliases()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, QString> temp;
     temp.insert(0, "a");
     temp.insert(1, "b");
@@ -58,6 +67,8 @@ static QHash<int, QString> initAliases()
 
 static QHash<SDL_GameControllerButton, int> initButtonPlacement()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<SDL_GameControllerButton, int> temp;
     temp.insert(SDL_CONTROLLER_BUTTON_A, 0);
     temp.insert(SDL_CONTROLLER_BUTTON_B, 1);
@@ -79,6 +90,8 @@ static QHash<SDL_GameControllerButton, int> initButtonPlacement()
 
 static QHash<SDL_GameControllerAxis, int> initAxisPlacement()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<SDL_GameControllerAxis, int> temp;
     temp.insert(SDL_CONTROLLER_AXIS_LEFTX, 11);
     temp.insert(SDL_CONTROLLER_AXIS_LEFTY, 12);
@@ -102,6 +115,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
     helper(device)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     setAttribute(Qt::WA_DeleteOnClose);
 
     buttonGrabs = 0;
@@ -118,14 +133,14 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
     QMetaObject::invokeMethod(&helper, "setupDeadZones", Qt::BlockingQueuedConnection);
 
     GameController *controller = qobject_cast<GameController*>(device);
-    if (controller)
+    if (controller != nullptr)
     {
         usingGameController = true;
         populateGameControllerBindings(controller);
         ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
     }
 
-    QString tempWindowTitle = QString(tr("Game Controller Mapping (%1) (#%2)")).arg(device->getSDLName())
+    QString tempWindowTitle = QString(trUtf8("Game Controller Mapping (%1) (#%2)")).arg(device->getSDLName())
                                      .arg(device->getRealJoyNumber());
     setWindowTitle(tempWindowTitle);
 
@@ -155,11 +170,15 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
 
 GameControllerMappingDialog::~GameControllerMappingDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void GameControllerMappingDialog::buttonAssign(int buttonindex)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     // Only perform assignment if no other control is currently active.
     if (ui->buttonMappingTableWidget->currentRow() > -1)
     {
@@ -168,7 +187,7 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
         int column = ui->buttonMappingTableWidget->currentColumn();
         int row = ui->buttonMappingTableWidget->currentRow();
 
-        if (!item)
+        if (item == nullptr)
         {
             item = new QTableWidgetItem(QString("Button %1").arg(buttonindex+1));
             ui->buttonMappingTableWidget->setItem(row, column, item);
@@ -179,9 +198,10 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
         templist.append(QVariant(buttonindex));
         QAbstractItemModel *model = ui->buttonMappingTableWidget->model();
         QModelIndexList matchlist = model->match(model->index(0,0), Qt::UserRole, templist, 1, Qt::MatchExactly);
+
         foreach (const QModelIndex &index, matchlist) {
             QTableWidgetItem *existingItem = ui->buttonMappingTableWidget->item(index.row(), index.column());
-            if (existingItem)
+            if (existingItem != nullptr)
             {
                 existingItem->setText("");
                 existingItem->setData(Qt::UserRole, QVariant());
@@ -195,9 +215,9 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
         item->setData(Qt::UserRole, tempvalue);
         item->setText(QString("Button %1").arg(buttonindex+1));
 
-        if (row < ui->buttonMappingTableWidget->rowCount()-1)
+        if (row < (ui->buttonMappingTableWidget->rowCount() - 1))
         {
-            ui->buttonMappingTableWidget->setCurrentCell(row+1, column);
+            ui->buttonMappingTableWidget->setCurrentCell(row + 1, column);
         }
 
         ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
@@ -206,34 +226,38 @@ void GameControllerMappingDialog::buttonAssign(int buttonindex)
 
 void GameControllerMappingDialog::axisAssign(int axis, int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool skip = false;
-    bool change = true;
+    //bool change = true;
 
     if (usingGameController)
     {
-        if (eventTriggerAxes.contains(axis) && value < -currentDeadZoneValue)
+        if (eventTriggerAxes.contains(axis) && (value < (-currentDeadZoneValue)))
         {
             skip = true;
             eventTriggerAxes.removeAll(axis);
         }
     }
 
-    if (!skip && ui->buttonMappingTableWidget->currentRow() > -1)
+    if (!skip && (ui->buttonMappingTableWidget->currentRow() > -1))
     {
         QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
         int column = ui->buttonMappingTableWidget->currentColumn();
         int row = ui->buttonMappingTableWidget->currentRow();
 
-        if (row < 17)
-        {
+       // if (row < 17)
+       // {
             if (usingGameController)
             {
-                bool considerTrigger = (row == 15 || row == 16);
-                if (considerTrigger && value > currentDeadZoneValue && !eventTriggerAxes.contains(axis))
+                //bool considerTrigger = ((row == 15) || (row == 16));
+                // considerTrigger &&
+                if ((value > currentDeadZoneValue) && !eventTriggerAxes.contains(axis))
                 {
                     eventTriggerAxes.append(axis);
                 }
-                else if (considerTrigger && value < currentDeadZoneValue)
+                // considerTrigger && (
+                else if (value < currentDeadZoneValue)
                 {
                     skip = true;
                 }
@@ -241,7 +265,7 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
             if (!skip)
             {
-                if (!item)
+                if (item == nullptr)
                 {
                     item = new QTableWidgetItem(QString("Axis %1").arg(axis+1));
                     ui->buttonMappingTableWidget->setItem(row, column, item);
@@ -252,9 +276,10 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
                 templist.append(QVariant(0));
                 QAbstractItemModel *model = ui->buttonMappingTableWidget->model();
                 QModelIndexList matchlist = model->match(model->index(0,0), Qt::UserRole, templist, 1, Qt::MatchExactly);
+
                 foreach (const QModelIndex &index, matchlist) {
                     QTableWidgetItem *existingItem = ui->buttonMappingTableWidget->item(index.row(), index.column());
-                    if (existingItem)
+                    if (existingItem != nullptr)
                     {
                         existingItem->setText("");
                         existingItem->setData(Qt::UserRole, QVariant());
@@ -268,18 +293,18 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
                 item->setData(Qt::UserRole, tempvalue);
                 item->setText(QString("Axis %1").arg(axis+1));
 
-                if (row < ui->buttonMappingTableWidget->rowCount()-1)
+                if (row < (ui->buttonMappingTableWidget->rowCount()-1))
                 {
                     ui->buttonMappingTableWidget->setCurrentCell(row+1, column);
                 }
 
                 ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
             }
-        }
+        //}
 
         else
         {
-            change = false;
+            //change = false;
             skip = true;
         }
     }
@@ -287,18 +312,20 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
 void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (ui->buttonMappingTableWidget->currentRow() > -1)
     {
-        if (buttonindex == 1 || buttonindex == 2 ||
-            buttonindex == 4 || buttonindex == 8)
-        {
+       // if ((buttonindex == 1) || (buttonindex == 2) ||
+       //     (buttonindex == 4) || (buttonindex == 8))
+       // {
             QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
             int column = ui->buttonMappingTableWidget->currentColumn();
             int row = ui->buttonMappingTableWidget->currentRow();
 
-            if (row <= 10 || row >= 17)
-            {
-                if (!item)
+           // if ((row <= 10) || (row >= 17))
+           // {
+                if (item == nullptr)
                 {
                     item = new QTableWidgetItem(QString("Hat %1.%2").arg(dpad+1).arg(buttonindex));
                     ui->buttonMappingTableWidget->setItem(row, column, item);
@@ -309,9 +336,10 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
                 templist.append(QVariant(buttonindex));
                 QAbstractItemModel *model = ui->buttonMappingTableWidget->model();
                 QModelIndexList matchlist = model->match(model->index(0,0), Qt::UserRole, templist, 1, Qt::MatchExactly);
+
                 foreach (const QModelIndex &index, matchlist) {
                     QTableWidgetItem *existingItem = ui->buttonMappingTableWidget->item(index.row(), index.column());
-                    if (existingItem)
+                    if (existingItem != nullptr)
                     {
                         existingItem->setText("");
                         existingItem->setData(Qt::UserRole, QVariant());
@@ -324,20 +352,22 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 
                 item->setData(Qt::UserRole, tempvalue);
                 item->setText(QString("Hat %1.%2").arg(dpad+1).arg(buttonindex));
-            }
+           // }
 
-            if (row < ui->buttonMappingTableWidget->rowCount()-1)
+            if (row < (ui->buttonMappingTableWidget->rowCount() - 1))
             {
-                ui->buttonMappingTableWidget->setCurrentCell(row+1, column);
+                ui->buttonMappingTableWidget->setCurrentCell(row + 1, column);
             }
 
             ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
-        }
+      //  }
     }
 }
 
 void GameControllerMappingDialog::saveChanges()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString mappingString = generateSDLMappingString();
 
     settings->getLock()->lock();
@@ -360,13 +390,18 @@ void GameControllerMappingDialog::saveChanges()
 
 void GameControllerMappingDialog::populateGameControllerBindings(GameController *controller)
 {
-    if (controller)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (controller != nullptr)
     {
+        qDebug() << "Controller has " << controller->getNumberButtons() << " buttons";
         for (int i = 0; i < controller->getNumberButtons(); i++)
         {
             int associatedRow = buttonPlacement.value((SDL_GameControllerButton)i);
             SDL_GameControllerButtonBind bind = controller->getBindForButton(i);
             QString temptext = bindingString(bind);
+            qDebug() << "Button " << (i + 1) << ": " << temptext;
+
             if (!temptext.isEmpty())
             {
                 QList<QVariant> tempvariant = bindingValues(bind);
@@ -377,11 +412,16 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
             }
         }
 
+        qDebug() << "Controller has " << controller->getNumberAxes() << " axes";
+
         for (int i = 0; i < controller->getNumberAxes(); i++)
         {
+
             int associatedRow = axisPlacement.value((SDL_GameControllerAxis)i);
             SDL_GameControllerButtonBind bind = controller->getBindForAxis(i);
             QString temptext = bindingString(bind);
+            qDebug() << "Ax " << (i + 1) << ": " << temptext;
+
             if (!temptext.isEmpty())
             {
                 QList<QVariant> tempvariant = bindingValues(bind);
@@ -396,7 +436,9 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
 
 QString GameControllerMappingDialog::bindingString(SDL_GameControllerButtonBind bind)
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
 
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
@@ -420,6 +462,8 @@ QString GameControllerMappingDialog::bindingString(SDL_GameControllerButtonBind 
 
 QList<QVariant> GameControllerMappingDialog::bindingValues(SDL_GameControllerButtonBind bind)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<QVariant> temp;
 
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
@@ -446,13 +490,15 @@ QList<QVariant> GameControllerMappingDialog::bindingValues(SDL_GameControllerBut
 
 void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disableDeviceConnections();
     QDialogButtonBox::ButtonRole currentRole = ui->buttonBox->buttonRole(button);
     if (currentRole == QDialogButtonBox::DestructiveRole)
     {
         QMessageBox msgBox;
-        msgBox.setWindowTitle(tr("Discard Controller Mapping?"));
-        msgBox.setText(tr("Discard mapping for this controller?\n\nIf discarded, the controller will be reverted to a joystick once you refresh all joysticks."));
+        msgBox.setWindowTitle(trUtf8("Discard Controller Mapping?"));
+        msgBox.setText(trUtf8("Discard mapping for this controller?\n\nIf discarded, the controller will be reverted to a joystick once you refresh all joysticks."));
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
 
         int status = msgBox.exec();
@@ -470,6 +516,8 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
 
 void GameControllerMappingDialog::removeControllerMapping()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->getLock()->lock();
 
     settings->beginGroup("Mappings");
@@ -483,6 +531,8 @@ void GameControllerMappingDialog::removeControllerMapping()
 
 void GameControllerMappingDialog::enableDeviceConnections()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
     connect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
     connect(device, SIGNAL(rawAxisMoved(int,int)), this, SLOT(updateLastAxisLineEditRaw(int,int)));
@@ -494,6 +544,8 @@ void GameControllerMappingDialog::enableDeviceConnections()
 
 void GameControllerMappingDialog::disableDeviceConnections()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(device, SIGNAL(rawButtonClick(int)), this, 0);
     disconnect(device, SIGNAL(rawButtonRelease(int)), this, 0);
     disconnect(device, SIGNAL(rawAxisMoved(int,int)), this, 0);
@@ -505,14 +557,21 @@ void GameControllerMappingDialog::disableDeviceConnections()
 
 void GameControllerMappingDialog::enableButtonEvents(int code)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(code);
 
-    QMetaObject::invokeMethod(&helper, "restoreDeviceDeadZones", Qt::BlockingQueuedConnection);
+    bool invoked = QMetaObject::invokeMethod(&helper, "restoreDeviceDeadZones", Qt::BlockingQueuedConnection);
+
+    if (invoked) qDebug() << "the member restoreDeviceDeadZones could be invoked";
+    else qDebug() << "the member restoreDeviceDeadZones could not be invoked";
 }
 
 QString GameControllerMappingDialog::generateSDLMappingString()
 {
-    QStringList templist;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QStringList templist = QStringList();
     templist.append(device->getGUIDString());
     templist.append(device->getSDLName());
     templist.append(QString("platform:").append(device->getSDLPlatform()));
@@ -520,9 +579,9 @@ QString GameControllerMappingDialog::generateSDLMappingString()
     for (int i=0; i < ui->buttonMappingTableWidget->rowCount(); i++)
     {
         QTableWidgetItem *item = ui->buttonMappingTableWidget->item(i, 0);
-        if (item)
+        if (item != nullptr)
         {
-            QString mapNative;
+            QString mapNative = QString();
             QList<QVariant> tempassociation = item->data(Qt::UserRole).toList();
             if (tempassociation.size() == 2)
             {
@@ -559,11 +618,14 @@ QString GameControllerMappingDialog::generateSDLMappingString()
 
 void GameControllerMappingDialog::obliterate()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->done(QDialogButtonBox::DestructiveRole);
 }
 
 void GameControllerMappingDialog::changeButtonDisplay()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     ui->gameControllerDisplayWidget->setActiveButton(ui->buttonMappingTableWidget->currentRow());
 }
@@ -576,6 +638,8 @@ void GameControllerMappingDialog::changeButtonDisplay()
  */
 void GameControllerMappingDialog::axisRelease(int axis, int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(axis);
     Q_UNUSED(value);
 }
@@ -587,6 +651,8 @@ void GameControllerMappingDialog::axisRelease(int axis, int value)
  */
 void GameControllerMappingDialog::buttonRelease(int buttonindex)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(buttonindex);
 }
 
@@ -598,23 +664,29 @@ void GameControllerMappingDialog::buttonRelease(int buttonindex)
  */
 void GameControllerMappingDialog::dpadRelease(int dpad, int buttonindex)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(dpad);
     Q_UNUSED(buttonindex);
 }
 
 void GameControllerMappingDialog::populateAxisDeadZoneComboBox()
 {
-    for (int i=0; i < 28; i++)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    for (int i = 0; i < 28; i++)
     {
-        unsigned int temp = (i * 1000) + 5000;
+        int temp = (i * 1000) + 5000;
         ui->axisDeadZoneComboBox->addItem(QString::number(temp), temp);
     }
 }
 
 void GameControllerMappingDialog::changeAxisDeadZone(int index)
 {
-    unsigned int value = ui->axisDeadZoneComboBox->itemData(index).toInt();
-    if (value >= 5000 && value <= 32000)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    int value = ui->axisDeadZoneComboBox->itemData(index).toInt();
+    if ((value >= 5000) && (value <= 32000))
     {
         QMetaObject::invokeMethod(&helper, "raiseDeadZones", Qt::BlockingQueuedConnection,
                                   Q_ARG(int, value));
@@ -624,14 +696,16 @@ void GameControllerMappingDialog::changeAxisDeadZone(int index)
 
 void GameControllerMappingDialog::updateLastAxisLineEdit(int value)
 {
-    if (abs(value) >= 5000)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (abs(value) >= 2000)
     {
-        JoyAxis *tempAxis = static_cast<JoyAxis*>(sender());
-        QString temp;
+        JoyAxis *tempAxis = qobject_cast<JoyAxis*>(sender()); // static_cast
+        QString temp = QString();
         if (device->isGameController())
         {
-            GameController *controller = static_cast<GameController*>(device);
-            temp = QString("%1: %2").arg(controller->getBindStringForAxis(tempAxis->getIndex(), false))
+            GameController *controller = qobject_cast<GameController*>(device); // static_cast
+            temp = QString("%1: %2").arg(controller->getBindStringForAxis(tempAxis->getIndex(), true))
                                     .arg(value);
         }
         else
@@ -646,10 +720,12 @@ void GameControllerMappingDialog::updateLastAxisLineEdit(int value)
 
 void GameControllerMappingDialog::updateLastAxisLineEditRaw(int index, int value)
 {
-    if (abs(value) >= 5000)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (abs(value) >= 2000)
     {
-        QString temp;
-        temp = QString("Axis %1: %2").arg(index)
+        QString temp = QString();
+        temp = QString("Axis %1: %2").arg(index+1)
                                      .arg(value);
 
         ui->lastAxisEventLineEdit->setText(temp);

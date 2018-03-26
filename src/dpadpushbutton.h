@@ -21,14 +21,17 @@
 #include <QPoint>
 
 #include "flashbuttonwidget.h"
-#include "joydpad.h"
+
+
+class JoyDPad;
+class QWidget;
 
 class DPadPushButton : public FlashButtonWidget
 {
     Q_OBJECT
 
 public:
-    explicit DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent = 0);
+    explicit DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent = nullptr);
 
     JoyDPad* getDPad();
     void tryFlash();

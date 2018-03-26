@@ -20,19 +20,16 @@
 
 #include <QObject>
 
-#include "joybutton.h"
-#include "joybuttonslot.h"
+class JoyButton;
 
 class MouseButtonSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent = 0);
+    explicit MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent = nullptr);
 
 protected:
     JoyButton *button;
-
-signals:
 
 public slots:
     void updateExtraAccelerationStatus(bool checked);

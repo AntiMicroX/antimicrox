@@ -16,24 +16,32 @@
  */
 
 #include "gamecontrollerdpad.h"
+#include "setjoystick.h"
+#include "joybutton.h"
+
+#include <QXmlStreamReader>
+#include <QDebug>
 
 const QString GameControllerDPad::xmlName = "dpad";
+
 
 GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
                                        int index, int originset, SetJoystick *parentSet, QObject *parent) :
     VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 {
-    QString label;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    QString label = QString();
 
     if (!dpadName.isEmpty() && displayName)
     {
         if (forceFullFormat)
         {
-            label.append(tr("DPad")).append(" ");
+            label.append(trUtf8("DPad")).append(" ");
         }
 
         label.append(dpadName);
@@ -42,14 +50,14 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
     {
         if (forceFullFormat)
         {
-            label.append(tr("DPad")).append(" ");
+            label.append(trUtf8("DPad")).append(" ");
         }
 
         label.append(defaultDPadName);
     }
     else
     {
-        label.append(tr("DPad")).append(" ");
+        label.append(trUtf8("DPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
     }
 
@@ -58,12 +66,14 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 
 QString GameControllerDPad::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     return this->xmlName;
 }
 
 void GameControllerDPad::readJoystickConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && xml->name() == VDPad::xmlName)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    if (xml->isStartElement() && (xml->name() == VDPad::xmlName))
     {
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != VDPad::xmlName))

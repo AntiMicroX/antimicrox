@@ -115,7 +115,16 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
         </sizepolicy>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -183,7 +192,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>21</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">
@@ -209,6 +218,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <string>&amp;Help</string>
     </property>
     <addaction name="actionGitHubPage"/>
+    <addaction name="actionIssues"/>
     <addaction name="actionWiki"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
@@ -221,8 +231,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionQuit">
    <property name="icon">
     <iconset theme="application-exit">
-     <normaloff/>
-    </iconset>
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -237,8 +246,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
    </property>
    <property name="icon">
     <iconset theme="view-refresh">
-     <normaloff/>
-    </iconset>
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>&amp;Update Joysticks</string>
@@ -250,8 +258,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionHide">
    <property name="icon">
     <iconset theme="view-restore">
-     <normaloff/>
-    </iconset>
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>&amp;Hide</string>
@@ -263,8 +270,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionAbout">
    <property name="icon">
     <iconset theme="help-about">
-     <normaloff/>
-    </iconset>
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>&amp;About</string>
@@ -275,17 +281,17 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionAbout_Qt">
    <property name="text">
-    <string>About Qt</string>
+    <string>About &amp;Qt</string>
    </property>
   </action>
   <action name="actionProperties">
    <property name="text">
-    <string>Properties</string>
+    <string>&amp;Properties</string>
    </property>
   </action>
   <action name="actionKeyValue">
    <property name="text">
-    <string>Key Checker</string>
+    <string>&amp;Key Checker</string>
    </property>
   </action>
   <action name="actionHomePage">
@@ -295,27 +301,32 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionGitHubPage">
    <property name="text">
-    <string>GitHub Page</string>
+    <string>&amp;GitHub Page</string>
    </property>
   </action>
   <action name="actionGameController_Mapping">
    <property name="text">
-    <string>Game Controller Mapping</string>
+    <string>&amp;Game Controller Mapping</string>
    </property>
   </action>
   <action name="actionOptions">
    <property name="text">
-    <string>Settings</string>
+    <string>S&amp;ettings</string>
    </property>
   </action>
   <action name="actionStick_Pad_Assign">
    <property name="text">
-    <string>Stick/Pad Assign</string>
+    <string>&amp;Stick/Pad Assign</string>
    </property>
   </action>
   <action name="actionWiki">
    <property name="text">
-    <string>Wiki</string>
+    <string>&amp;Wiki</string>
+   </property>
+  </action>
+  <action name="actionIssues">
+   <property name="text">
+    <string>Issues</string>
    </property>
   </action>
  </widget>

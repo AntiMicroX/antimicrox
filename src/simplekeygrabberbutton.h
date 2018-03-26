@@ -18,20 +18,24 @@
 #ifndef SIMPLEKEYGRABBERBUTTON_H
 #define SIMPLEKEYGRABBERBUTTON_H
 
-#include <QPushButton>
-#include <QKeyEvent>
-#include <QMouseEvent>
-#include <QMetaType>
-
 #include "joybuttonslot.h"
+
+#include <QPushButton>
+
+
+
+class QKeyEvent;
+class QEvent;
+class QWidget;
 
 class SimpleKeyGrabberButton : public QPushButton
 {
     Q_OBJECT
-public:
-    explicit SimpleKeyGrabberButton(QWidget *parent = 0);
 
-    void setValue(int value, unsigned int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+public:
+    explicit SimpleKeyGrabberButton(QWidget *parent = nullptr);
+
+    void setValue(int value, int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
     void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyLoadProfile);
     JoyButtonSlot* getValue();
@@ -52,8 +56,6 @@ signals:
     
 public slots:
     void refreshButtonLabel();
-
-protected slots:
 
 };
 

@@ -20,9 +20,10 @@
 
 #include <QDialog>
 
-#include "joyaxis.h"
-#include "axisvaluebox.h"
-#include "setaxisthrottledialog.h"
+
+class JoyAxis;
+class SetAxisThrottleDialog;
+class QWidget;
 
 namespace Ui {
 class AxisEditDialog;

@@ -19,18 +19,20 @@
 #define JOYBUTTONMOUSEHELPER_H
 
 #include <QObject>
-#include <QThread>
+
+
+class QThread;
 
 class JoyButtonMouseHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyButtonMouseHelper(QObject *parent = 0);
+    explicit JoyButtonMouseHelper(QObject *parent = nullptr);
     void resetButtonMouseDistances();
     void setFirstSpringStatus(bool status);
     bool getFirstSpringStatus();
-    void carryGamePollRateUpdate(unsigned int pollRate);
-    void carryMouseRefreshRateUpdate(unsigned int refreshRate);
+    void carryGamePollRateUpdate(int pollRate); // unsigned
+    void carryMouseRefreshRateUpdate(int refreshRate); // unsigned
 
 protected:
     bool firstSpringEvent;
@@ -38,8 +40,8 @@ protected:
 signals:
     void mouseCursorMoved(int mouseX, int mouseY, int elapsed);
     void mouseSpringMoved(int mouseX, int mouseY);
-    void gamepadRefreshRateUpdated(unsigned int pollRate);
-    void mouseRefreshRateUpdated(unsigned int refreshRate);
+    void gamepadRefreshRateUpdated(int pollRate); // unsigned
+    void mouseRefreshRateUpdated(int refreshRate); // unsigned
 
 public slots:
     void moveMouseCursor();

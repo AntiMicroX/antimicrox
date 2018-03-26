@@ -15,15 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QCoreApplication>
-#include <QLayoutItem>
-#include <QGroupBox>
-#include <QMessageBox>
-#include <QTextStream>
-#include <QStringListIterator>
-#include <QMenu>
-
 #include "joytabwidget.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
@@ -36,17 +27,48 @@
 #include "setnamesdialog.h"
 #include "stickpushbuttongroup.h"
 #include "dpadpushbuttongroup.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
+#include "joycontrolstick.h"
+#include "joybuttontypes/joydpadbutton.h"
+#include "joydpad.h"
+#include "vdpad.h"
 #include "common.h"
+#include "joystick.h"
+#include "axiseditdialog.h"
+#include "inputdevice.h"
+#include "antimicrosettings.h"
 
 #ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
 #include "gamecontrollermappingdialog.h"
 #endif
 
+#include <QDebug>
+#include <QCoreApplication>
+#include <QLayoutItem>
+#include <QGroupBox>
+#include <QMessageBox>
+#include <QTextStream>
+#include <QStringListIterator>
+#include <QMenu>
+#include <QAction>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QComboBox>
+#include <QSpacerItem>
+#include <QStackedWidget>
+#include <QLabel>
+
+
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent) :
     QWidget(parent),
     tabHelper(joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->joystick = joystick;
     this->settings = settings;
 
@@ -60,7 +82,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     configHorizontalLayout = new QHBoxLayout();
     configBox = new QComboBox(this);
-    configBox->addItem(tr("<New>"), "");
+    configBox->addItem(trUtf8("<New>"), "");
 
     configBox->setObjectName(QString::fromUtf8("configBox"));
     configBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -68,34 +90,34 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     spacer1 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     configHorizontalLayout->addItem(spacer1);
 
-    removeButton = new QPushButton(tr("Remove"), this);
+    removeButton = new QPushButton(trUtf8("Remove"), this);
     removeButton->setObjectName(QString::fromUtf8("removeButton"));
-    removeButton->setToolTip(tr("Remove configuration from recent list."));
+    removeButton->setToolTip(trUtf8("Remove configuration from recent list."));
     //removeButton->setFixedWidth(100);
     removeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     removeButton->setIcon(QIcon::fromTheme("edit-clear-list"));
     configHorizontalLayout->addWidget(removeButton);
 
-    loadButton = new QPushButton(tr("Load"), this);
+    loadButton = new QPushButton(trUtf8("Load"), this);
     loadButton->setObjectName(QString::fromUtf8("loadButton"));
-    loadButton->setToolTip(tr("Load configuration file."));
+    loadButton->setToolTip(trUtf8("Load configuration file."));
     //loadButton->setFixedWidth(100);
     loadButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     loadButton->setIcon(QIcon::fromTheme("document-open"));
     configHorizontalLayout->addWidget(loadButton);
 
-    saveButton = new QPushButton(tr("Save"), this);
+    saveButton = new QPushButton(trUtf8("Save"), this);
     saveButton->setObjectName(QString::fromUtf8("saveButton"));
-    saveButton->setToolTip(tr("Save changes to configuration file."));
+    saveButton->setToolTip(trUtf8("Save changes to configuration file."));
     //saveButton->setFixedWidth(100);
     saveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     saveButton->setIcon(QIcon::fromTheme("document-save"));
     configHorizontalLayout->addWidget(saveButton);
     //configHorizontalLayout->setSpacing(-1);
 
-    saveAsButton = new QPushButton(tr("Save As"), this);
+    saveAsButton = new QPushButton(trUtf8("Save As"), this);
     saveAsButton->setObjectName(QString::fromUtf8("saveAsButton"));
-    saveAsButton->setToolTip(tr("Save changes to a new configuration file."));
+    saveAsButton->setToolTip(trUtf8("Save changes to a new configuration file."));
     //saveAsButton->setFixedWidth(100);
     saveAsButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     saveAsButton->setIcon(QIcon::fromTheme("document-save-as"));
@@ -290,10 +312,10 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     horizontalLayout_2->setSpacing(6);
     horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
 
-    setsMenuButton = new QPushButton(tr("Sets"), this);
+    setsMenuButton = new QPushButton(trUtf8("Sets"), this);
     QMenu *setMenu = new QMenu(setsMenuButton);
-    copySetMenu = new QMenu(tr("Copy from Set"), setMenu);
-    QAction *setSettingsAction = new QAction(tr("Settings"), setMenu);
+    copySetMenu = new QMenu(trUtf8("Copy from Set"), setMenu);
+    QAction *setSettingsAction = new QAction(trUtf8("Settings"), setMenu);
     connect(setSettingsAction, SIGNAL(triggered()), this, SLOT(showSetNamesDialog()));
     setMenu->addAction(setSettingsAction);
     setMenu->addMenu(copySetMenu);
@@ -301,35 +323,35 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     refreshCopySetActions();
 
-    setAction1 = new QAction(tr("Set 1"), setMenu);
+    setAction1 = new QAction(trUtf8("Set 1"), setMenu);
     connect(setAction1, SIGNAL(triggered()), this, SLOT(changeSetOne()));
     setMenu->addAction(setAction1);
 
-    setAction2 = new QAction(tr("Set 2"), setMenu);
+    setAction2 = new QAction(trUtf8("Set 2"), setMenu);
     connect(setAction2, SIGNAL(triggered()), this, SLOT(changeSetTwo()));
     setMenu->addAction(setAction2);
 
-    setAction3 = new QAction(tr("Set 3"), setMenu);
+    setAction3 = new QAction(trUtf8("Set 3"), setMenu);
     connect(setAction3, SIGNAL(triggered()), this, SLOT(changeSetThree()));
     setMenu->addAction(setAction3);
 
-    setAction4 = new QAction(tr("Set 4"), setMenu);
+    setAction4 = new QAction(trUtf8("Set 4"), setMenu);
     connect(setAction4, SIGNAL(triggered()), this, SLOT(changeSetFour()));
     setMenu->addAction(setAction4);
 
-    setAction5 = new QAction(tr("Set 5"), setMenu);
+    setAction5 = new QAction(trUtf8("Set 5"), setMenu);
     connect(setAction5, SIGNAL(triggered()), this, SLOT(changeSetFive()));
     setMenu->addAction(setAction5);
 
-    setAction6 = new QAction(tr("Set 6"), setMenu);
+    setAction6 = new QAction(trUtf8("Set 6"), setMenu);
     connect(setAction6, SIGNAL(triggered()), this, SLOT(changeSetSix()));
     setMenu->addAction(setAction6);
 
-    setAction7 = new QAction(tr("Set 7"), setMenu);
+    setAction7 = new QAction(trUtf8("Set 7"), setMenu);
     connect(setAction7, SIGNAL(triggered()), this, SLOT(changeSetSeven()));
     setMenu->addAction(setAction7);
 
-    setAction8 = new QAction(tr("Set 8"), setMenu);
+    setAction8 = new QAction(trUtf8("Set 8"), setMenu);
     connect(setAction8, SIGNAL(triggered()), this, SLOT(changeSetEight()));
     setMenu->addAction(setAction8);
 
@@ -395,20 +417,20 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     horizontalLayout_3->setSpacing(6);
     horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
 
-    stickAssignPushButton = new QPushButton(tr("Stick/Pad Assign"), this);
+    stickAssignPushButton = new QPushButton(trUtf8("Stick/Pad Assign"), this);
     stickAssignPushButton->setObjectName(QString::fromUtf8("stickAssignPushButton"));
     QIcon icon7(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     stickAssignPushButton->setIcon(icon7);
     horizontalLayout_3->addWidget(stickAssignPushButton);
 
-    gameControllerMappingPushButton = new QPushButton(tr("Controller Mapping"), this);
+    gameControllerMappingPushButton = new QPushButton(trUtf8("Controller Mapping"), this);
     gameControllerMappingPushButton->setObjectName(QString::fromUtf8("gameControllerMappingPushButton"));
     gameControllerMappingPushButton->setIcon(QIcon::fromTheme("games-config-options"));
     gameControllerMappingPushButton->setEnabled(false);
     gameControllerMappingPushButton->setVisible(false);
     horizontalLayout_3->addWidget(gameControllerMappingPushButton);
 
-    quickSetPushButton = new QPushButton(tr("Quick Set"), this);
+    quickSetPushButton = new QPushButton(trUtf8("Quick Set"), this);
     quickSetPushButton->setObjectName(QString::fromUtf8("quickSetPushButton"));
     horizontalLayout_3->addWidget(quickSetPushButton);
 
@@ -416,22 +438,22 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     horizontalLayout_3->addItem(horizontalSpacer_2);
 
-    namesPushButton = new QPushButton(tr("Names"), this);
+    namesPushButton = new QPushButton(trUtf8("Names"), this);
     namesPushButton->setObjectName(QString::fromUtf8("namesPushButton"));
-    namesPushButton->setToolTip(tr("Toggle button name displaying."));
+    namesPushButton->setToolTip(trUtf8("Toggle button name displaying."));
     namesPushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     namesPushButton->setIcon(QIcon::fromTheme("text-field"));
     horizontalLayout_3->addWidget(namesPushButton);
 
-    delayButton = new QPushButton(tr("Pref"), this);
+    delayButton = new QPushButton(trUtf8("Pref"), this);
     delayButton->setObjectName(QString::fromUtf8("delayButton"));
-    delayButton->setToolTip(tr("Change global profile settings."));
+    delayButton->setToolTip(trUtf8("Change global profile settings."));
     delayButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     horizontalLayout_3->addWidget(delayButton);
 
-    resetButton = new QPushButton(tr("Reset"), this);
+    resetButton = new QPushButton(trUtf8("Reset"), this);
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
-    resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
+    resetButton->setToolTip(trUtf8("Revert changes to the configuration. Reload configuration file."));
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     resetButton->setIcon(QIcon::fromTheme("document-revert"));
     //verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
@@ -491,12 +513,14 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
 void JoyTabWidget::openConfigFileDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->getLock()->lock();
 
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
 
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, tr("Config Files (*.amgp *.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), lookupDir, trUtf8("Config Files (*.amgp *.xml)"));
 
     settings->getLock()->unlock();
 
@@ -506,7 +530,7 @@ void JoyTabWidget::openConfigFileDialog()
         int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
         if (searchIndex == -1)
         {
-            if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles + 1)
+            if ((numberRecentProfiles > 0) && (configBox->count() == (numberRecentProfiles + 1)))
             {
                 configBox->removeItem(numberRecentProfiles);
             }
@@ -552,6 +576,8 @@ void JoyTabWidget::openConfigFileDialog()
  */
 void JoyTabWidget::fillButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     joystick->establishPropertyUpdatedConnection();
     connect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)), Qt::QueuedConnection);
 
@@ -566,16 +592,20 @@ void JoyTabWidget::fillButtons()
 
 void JoyTabWidget::showButtonDialog()
 {
-    JoyButtonWidget *buttonWidget = static_cast<JoyButtonWidget*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(button, this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(button, joystick, this);
     dialog->show();
 }
 
 void JoyTabWidget::showAxisDialog()
 {
-    JoyAxisWidget *axisWidget = static_cast<JoyAxisWidget*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyAxisWidget *axisWidget = qobject_cast<JoyAxisWidget*>(sender()); // static_cast
     JoyAxis *axis = axisWidget->getAxis();
 
     axisDialog = new AxisEditDialog (axis, this);
@@ -584,17 +614,19 @@ void JoyTabWidget::showAxisDialog()
 
 void JoyTabWidget::saveConfigFile()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int index = configBox->currentIndex();
 
     settings->getLock()->lock();
 
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
-    QString filename;
+    QString filename = QString();
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
         settings->getLock()->unlock();
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, trUtf8("Save Config"), lookupDir, trUtf8("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -602,7 +634,7 @@ void JoyTabWidget::saveConfigFile()
             QFileInfo fileinfo(filename);
             QString deviceTypeName = joystick->getXmlName();
             QString fileSuffix = deviceTypeName.append(".amgp");
-            if (fileinfo.suffix() != "xml" && fileinfo.suffix() != "amgp")
+            if ((fileinfo.suffix() != "xml") && (fileinfo.suffix() != "amgp"))
             {
                 filename = filename.append(".").append(fileSuffix);
             }
@@ -652,7 +684,7 @@ void JoyTabWidget::saveConfigFile()
             {
                 //PadderCommon::inputDaemonMutex.lock();
 
-                if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
+                if ((numberRecentProfiles > 0) && (configBox->count() == (numberRecentProfiles + 1)))
                 {
                     configBox->removeItem(numberRecentProfiles);
                 }
@@ -703,6 +735,8 @@ void JoyTabWidget::saveConfigFile()
 
 void JoyTabWidget::resetJoystick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
     {
@@ -722,7 +756,7 @@ void JoyTabWidget::resetJoystick()
         {
             configBox->setItemIcon(currentIndex, QIcon());
 
-            QString tempProfileName;
+            QString tempProfileName = QString();
             if (!joystick->getProfileName().isEmpty())
             {
                 tempProfileName = joystick->getProfileName();
@@ -752,7 +786,7 @@ void JoyTabWidget::resetJoystick()
     }
     else
     {
-        configBox->setItemText(0, tr("<New>"));
+        configBox->setItemText(0, trUtf8("<New>"));
         configBox->setItemIcon(0, QIcon());
 
         removeCurrentButtons();
@@ -767,18 +801,20 @@ void JoyTabWidget::resetJoystick()
 
 void JoyTabWidget::saveAsConfig()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int index = configBox->currentIndex();
 
     settings->getLock()->lock();
 
     int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
-    QString filename;
+    QString filename = QString();
     if (index == 0)
     {
         QString lookupDir = PadderCommon::preferredProfileDir(settings);
         settings->getLock()->unlock();
 
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), lookupDir, tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, trUtf8("Save Config"), lookupDir, trUtf8("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -790,7 +826,7 @@ void JoyTabWidget::saveAsConfig()
 
         QString configPath = configBox->itemData(index).toString();
         QFileInfo temp(configPath);
-        QString tempfilename = QFileDialog::getSaveFileName(this, tr("Save Config"), temp.absoluteDir().absolutePath(), tr("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
+        QString tempfilename = QFileDialog::getSaveFileName(this, trUtf8("Save Config"), temp.absoluteDir().absolutePath(), trUtf8("Config File (*.%1.amgp)").arg(joystick->getXmlName()));
         if (!tempfilename.isEmpty())
         {
             filename = tempfilename;
@@ -802,7 +838,7 @@ void JoyTabWidget::saveAsConfig()
         QFileInfo fileinfo(filename);
         QString deviceTypeName = joystick->getXmlName();
         QString fileSuffix = deviceTypeName.append(".amgp");
-        if (fileinfo.suffix() != "xml" && fileinfo.suffix() != "amgp")
+        if ((fileinfo.suffix() != "xml") && (fileinfo.suffix() != "amgp"))
         {
             filename = filename.append(".").append(fileSuffix);
         }
@@ -837,7 +873,7 @@ void JoyTabWidget::saveAsConfig()
                 disconnectCheckUnsavedEvent();
                 disconnectMainComboBoxEvents();
 
-                if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
+                if ((numberRecentProfiles > 0) && (configBox->count() == (numberRecentProfiles + 1)))
                 {
                     configBox->removeItem(numberRecentProfiles);
                 }
@@ -877,9 +913,11 @@ void JoyTabWidget::saveAsConfig()
 
 void JoyTabWidget::changeJoyConfig(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
-    QString filename;
+    QString filename = QString();
     if (index > 0)
     {
         filename = configBox->itemData(index).toString();
@@ -896,12 +934,12 @@ void JoyTabWidget::changeJoyConfig(int index)
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
-        configBox->setItemText(0, tr("<New>"));
+        configBox->setItemText(0, trUtf8("<New>"));
         XMLConfigReader *reader = tabHelper.getReader();
 
         if (!reader->hasError())
         {
-            QString profileName;
+            QString profileName = QString();
             if (!joystick->getProfileName().isEmpty())
             {
                 profileName = joystick->getProfileName();
@@ -939,7 +977,7 @@ void JoyTabWidget::changeJoyConfig(int index)
         fillButtons();
         refreshSetButtons();
         refreshCopySetActions();
-        configBox->setItemText(0, tr("<New>"));
+        configBox->setItemText(0, trUtf8("<New>"));
         oldProfileName = "";
     }
 
@@ -950,6 +988,8 @@ void JoyTabWidget::changeJoyConfig(int index)
 
 void JoyTabWidget::saveSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString filename = "";
     QString lastfile = "";
 
@@ -1080,6 +1120,8 @@ void JoyTabWidget::saveSettings()
 
 void JoyTabWidget::loadSettings(bool forceRefresh)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
 
     settings->getLock()->lock();
@@ -1087,7 +1129,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     if (configBox->count() > 1)
     {
         configBox->clear();
-        configBox->addItem(tr("<New>"), "");
+        configBox->addItem(trUtf8("<New>"), "");
         configBox->setCurrentIndex(-1);
     }
     else if (forceRefresh)
@@ -1113,7 +1155,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     bool finished = false;
     for (int i=1; !finished; i++)
     {
-        QString tempfilepath;
+        QString tempfilepath = QString();
 
         if (!joystick->getStringIdentifier().isEmpty())
         {
@@ -1124,7 +1166,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         {
             QFileInfo fileInfo(tempfilepath);
 
-            if (fileInfo.exists() && configBox->findData(fileInfo.absoluteFilePath()) == -1)
+            if (fileInfo.exists() && (configBox->findData(fileInfo.absoluteFilePath()) == -1))
             {
                 QString profileName = settings->value(controlEntryProfileName.arg(i), "").toString();
                 profileName = !profileName.isEmpty() ? profileName : PadderCommon::getProfileName(fileInfo);
@@ -1136,7 +1178,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             finished = true;
         }
 
-        if (numberRecentProfiles > 0 && (i == numberRecentProfiles))
+        if ((numberRecentProfiles > 0) && (i == numberRecentProfiles))
         {
             finished = true;
         }
@@ -1144,7 +1186,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
 
-    QString lastfile;
+    QString lastfile = QString();
 
     if (!joystick->getStringIdentifier().isEmpty() && autoOpenLastProfile)
     {
@@ -1184,6 +1226,8 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
 QHash<int, QString>* JoyTabWidget::recentConfigs()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, QString> *temp = new QHash<int, QString>();
     for (int i=1; i < configBox->count(); i++)
     {
@@ -1196,8 +1240,10 @@ QHash<int, QString>* JoyTabWidget::recentConfigs()
 
 void JoyTabWidget::setCurrentConfig(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     // Allow 0 to select new/'null' config and therefore disable any mapping
-    if (index >= 0 && index < configBox->count())
+    if ((index >= 0) && (index < configBox->count()))
     {
         configBox->setCurrentIndex(index);
     }
@@ -1205,24 +1251,31 @@ void JoyTabWidget::setCurrentConfig(int index)
 
 int JoyTabWidget::getCurrentConfigIndex()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return configBox->currentIndex();
 }
 
 QString JoyTabWidget::getCurrentConfigName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return configBox->currentText();
 }
 
 QString JoyTabWidget::getConfigName(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return configBox->itemText(index);
 }
 
 void JoyTabWidget::changeCurrentSet(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     int currentPage = stackedWidget_2->currentIndex();
-    QPushButton *oldSetButton = 0;
-    QPushButton *activeSetButton = 0;
+    QPushButton *oldSetButton = nullptr;
+    QPushButton *activeSetButton = nullptr;
 
     switch (currentPage)
     {
@@ -1237,7 +1290,7 @@ void JoyTabWidget::changeCurrentSet(int index)
         default: break;
     }
 
-    if (oldSetButton)
+    if (oldSetButton != nullptr)
     {
         oldSetButton->setProperty("setActive", false);
         oldSetButton->style()->unpolish(oldSetButton);
@@ -1260,7 +1313,7 @@ void JoyTabWidget::changeCurrentSet(int index)
         default: break;
     }
 
-    if (activeSetButton)
+    if (activeSetButton != nullptr)
     {
         activeSetButton->setProperty("setActive", true);
         activeSetButton->style()->unpolish(activeSetButton);
@@ -1270,47 +1323,65 @@ void JoyTabWidget::changeCurrentSet(int index)
 
 void JoyTabWidget::changeSetOne()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(0);
 }
 
 void JoyTabWidget::changeSetTwo()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(1);
 }
 
 void JoyTabWidget::changeSetThree()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(2);
 }
 
 void JoyTabWidget::changeSetFour()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(3);
 }
 
 void JoyTabWidget::changeSetFive()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(4);
 }
 
 void JoyTabWidget::changeSetSix()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(5);
 }
 
 void JoyTabWidget::changeSetSeven()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(6);
 }
 
 void JoyTabWidget::changeSetEight()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     changeCurrentSet(7);
 }
 
 void JoyTabWidget::showStickAssignmentDialog()
 {
-    Joystick *temp = static_cast<Joystick*>(joystick);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Joystick *temp = qobject_cast<Joystick*>(joystick);  // static_cast
     AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(temp, this);
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
     dialog->show();
@@ -1318,13 +1389,15 @@ void JoyTabWidget::showStickAssignmentDialog()
 
 void JoyTabWidget::loadConfigFile(QString fileLocation)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     checkForUnsavedProfile(-1);
 
     if (!joystick->isDeviceEdited())
     {
         int numberRecentProfiles = settings->value("NumberRecentProfiles", DEFAULTNUMBERPROFILES).toInt();
         QFileInfo fileinfo(fileLocation);
-        if (fileinfo.exists() && (fileinfo.suffix() == "xml" || fileinfo.suffix() == "amgp"))
+        if (fileinfo.exists() && ((fileinfo.suffix() == "xml") || (fileinfo.suffix() == "amgp")))
         {
             int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
             if (searchIndex == -1)
@@ -1332,7 +1405,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
                 disconnectCheckUnsavedEvent();
                 disconnectMainComboBoxEvents();
 
-                if (numberRecentProfiles > 0 && configBox->count() == numberRecentProfiles+1)
+                if ((numberRecentProfiles > 0) && (configBox->count() == (numberRecentProfiles + 1)))
                 {
                     configBox->removeItem(numberRecentProfiles-1);
                     //configBox->removeItem(5);
@@ -1356,19 +1429,29 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
 
 void JoyTabWidget::showQuickSetDialog()
 {
-    QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+   // QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
+   // connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
+   // dialog->show();
+
+    ButtonEditDialog *dialog = new ButtonEditDialog(joystick, this);
     connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
     dialog->show();
 }
 
 void JoyTabWidget::showKeyDelayDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ExtraProfileSettingsDialog *dialog = new ExtraProfileSettingsDialog(joystick, this);
     dialog->show();
 }
 
 void JoyTabWidget::showSetNamesDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     SetNamesDialog *dialog = new SetNamesDialog(joystick, this);
     connect(dialog, SIGNAL(accepted()), this, SLOT(refreshSetButtons()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(refreshCopySetActions()));
@@ -1377,6 +1460,8 @@ void JoyTabWidget::showSetNamesDialog()
 
 void JoyTabWidget::removeCurrentButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     joystick->disconnectPropertyUpdatedConnection();
     disconnect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)));
 
@@ -1389,11 +1474,15 @@ void JoyTabWidget::removeCurrentButtons()
 
 InputDevice *JoyTabWidget::getJoystick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return joystick;
 }
 
 void JoyTabWidget::removeConfig()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int currentIndex = configBox->currentIndex();
     if (currentIndex > 0)
     {
@@ -1405,6 +1494,8 @@ void JoyTabWidget::removeConfig()
 
 void JoyTabWidget::toggleNames()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     displayingNames = !displayingNames;
     namesPushButton->setProperty("isDisplayingNames", displayingNames);
     namesPushButton->style()->unpolish(namesPushButton);
@@ -1414,11 +1505,15 @@ void JoyTabWidget::toggleNames()
 
 void JoyTabWidget::unloadConfig()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     configBox->setCurrentIndex(0);
 }
 
 void JoyTabWidget::saveDeviceSettings(bool sync)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->getLock()->lock();
     settings->beginGroup("Controllers");
     settings->getLock()->unlock();
@@ -1436,6 +1531,8 @@ void JoyTabWidget::saveDeviceSettings(bool sync)
 
 void JoyTabWidget::loadDeviceSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     //settings.beginGroup("Controllers");
     loadSettings();
     //settings.endGroup();
@@ -1443,6 +1540,8 @@ void JoyTabWidget::loadDeviceSettings()
 
 bool JoyTabWidget::isDisplayingNames()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return displayingNames;
 }
 
@@ -1456,10 +1555,12 @@ void JoyTabWidget::changeNameDisplay(bool displayNames)
 
 void JoyTabWidget::refreshSetButtons()
 {
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
     {
-        QPushButton *tempSetButton = 0;
-        QAction *tempSetAction = 0;
+        QPushButton *tempSetButton = nullptr;
+        QAction *tempSetAction = nullptr;
         SetJoystick *tempSet = joystick->getSetJoystick(i);
         switch (i)
         {
@@ -1505,20 +1606,22 @@ void JoyTabWidget::refreshSetButtons()
             tempSetButton->setText(tempNameEscaped);
             tempSetButton->setToolTip(tempName);
 
-            tempSetAction->setText(tr("Set").append(" %1: %2").arg(i+1).arg(tempNameEscaped));
+            tempSetAction->setText(trUtf8("Set").append(" %1: %2").arg(i+1).arg(tempNameEscaped));
         }
         else
         {
             tempSetButton->setText(QString::number(i+1));
             tempSetButton->setToolTip("");
 
-            tempSetAction->setText(tr("Set").append(" %1").arg(i+1));
+            tempSetAction->setText(trUtf8("Set").append(" %1").arg(i+1));
         }
     }
 }
 
 void JoyTabWidget::displayProfileEditNotification()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int currentIndex = configBox->currentIndex();
     configBox->setItemIcon(currentIndex, QIcon::fromTheme("document-save-as",
                                          QIcon(":/icons/16x16/actions/document-save.png")));
@@ -1526,6 +1629,8 @@ void JoyTabWidget::displayProfileEditNotification()
 
 void JoyTabWidget::removeProfileEditNotification()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < configBox->count(); i++)
     {
         if (!configBox->itemIcon(i).isNull())
@@ -1537,49 +1642,53 @@ void JoyTabWidget::removeProfileEditNotification()
 
 void JoyTabWidget::retranslateUi()
 {
-    removeButton->setText(tr("Remove"));
-    removeButton->setToolTip(tr("Remove configuration from recent list."));
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    loadButton->setText(tr("Load"));
-    loadButton->setToolTip(tr("Load configuration file."));
+    removeButton->setText(trUtf8("Remove"));
+    removeButton->setToolTip(trUtf8("Remove configuration from recent list."));
 
-    saveButton->setText(tr("Save"));
-    saveButton->setToolTip(tr("Save changes to configuration file."));
+    loadButton->setText(trUtf8("Load"));
+    loadButton->setToolTip(trUtf8("Load configuration file."));
 
-    saveAsButton->setText(tr("Save As"));
-    saveAsButton->setToolTip(tr("Save changes to a new configuration file."));
+    saveButton->setText(trUtf8("Save"));
+    saveButton->setToolTip(trUtf8("Save changes to configuration file."));
 
-    setsMenuButton->setText(tr("Sets"));
-    setAction1->setText(tr("Set 1"));
-    setAction2->setText(tr("Set 2"));
-    setAction3->setText(tr("Set 3"));
-    setAction4->setText(tr("Set 4"));
-    setAction5->setText(tr("Set 5"));
-    setAction6->setText(tr("Set 6"));
-    setAction7->setText(tr("Set 7"));
-    setAction8->setText(tr("Set 8"));
+    saveAsButton->setText(trUtf8("Save As"));
+    saveAsButton->setToolTip(trUtf8("Save changes to a new configuration file."));
+
+    setsMenuButton->setText(trUtf8("Sets"));
+    setAction1->setText(trUtf8("Set 1"));
+    setAction2->setText(trUtf8("Set 2"));
+    setAction3->setText(trUtf8("Set 3"));
+    setAction4->setText(trUtf8("Set 4"));
+    setAction5->setText(trUtf8("Set 5"));
+    setAction6->setText(trUtf8("Set 6"));
+    setAction7->setText(trUtf8("Set 7"));
+    setAction8->setText(trUtf8("Set 8"));
 
     refreshSetButtons();
     refreshCopySetActions();
 
-    gameControllerMappingPushButton->setText(tr("Controller Mapping"));
-    stickAssignPushButton->setText(tr("Stick/Pad Assign"));
-    quickSetPushButton->setText(tr("Quick Set"));
-    resetButton->setText(tr("Reset"));
+    gameControllerMappingPushButton->setText(trUtf8("Controller Mapping"));
+    stickAssignPushButton->setText(trUtf8("Stick/Pad Assign"));
+    quickSetPushButton->setText(trUtf8("Quick Set"));
+    resetButton->setText(trUtf8("Reset"));
 
-    namesPushButton->setText(tr("Names"));
-    namesPushButton->setToolTip(tr("Toggle button name displaying."));
+    namesPushButton->setText(trUtf8("Names"));
+    namesPushButton->setToolTip(trUtf8("Toggle button name displaying."));
 
-    delayButton->setText(tr("Pref"));
-    delayButton->setToolTip(tr("Change global profile settings."));
+    delayButton->setText(trUtf8("Pref"));
+    delayButton->setToolTip(trUtf8("Change global profile settings."));
 
-    resetButton->setText(tr("Reset"));
-    resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
+    resetButton->setText(trUtf8("Reset"));
+    resetButton->setToolTip(trUtf8("Revert changes to the configuration. Reload configuration file."));
     refreshButtons();
 }
 
 void JoyTabWidget::checkForUnsavedProfile(int newindex)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (joystick->isDeviceEdited())
     {
         disconnectCheckUnsavedEvent();
@@ -1592,14 +1701,14 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
 
         QMessageBox msg;
         msg.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-        msg.setWindowTitle(tr("Save Profile Changes?"));
+        msg.setWindowTitle(trUtf8("Save Profile Changes?"));
         if (comboBoxIndex == 0)
         {
-            msg.setText(tr("Changes to the new profile have not been saved. Would you like to save or discard the current profile?"));
+            msg.setText(trUtf8("Changes to the new profile have not been saved. Would you like to save or discard the current profile?"));
         }
         else
         {
-            msg.setText(tr("Changes to the profile \"%1\" have not been saved. Would you like to save or discard changes to the current profile?")
+            msg.setText(trUtf8("Changes to the profile \"%1\" have not been saved. Would you like to save or discard changes to the current profile?")
                         .arg(configBox->currentText()));
         }
 
@@ -1637,6 +1746,8 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
 
 bool JoyTabWidget::discardUnsavedProfileChanges()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool discarded = true;
 
     if (joystick->isDeviceEdited())
@@ -1645,15 +1756,15 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
 
         QMessageBox msg;
         msg.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-        msg.setWindowTitle(tr("Save Profile Changes?"));
+        msg.setWindowTitle(trUtf8("Save Profile Changes?"));
         int currentIndex = configBox->currentIndex();
         if (currentIndex == 0)
         {
-            msg.setText(tr("Changes to the new profile have not been saved. Would you like to save or discard the current profile?"));
+            msg.setText(trUtf8("Changes to the new profile have not been saved. Would you like to save or discard the current profile?"));
         }
         else
         {
-            msg.setText(tr("Changes to the profile \"%1\" have not been saved. Would you like to save or discard changes to the current profile?")
+            msg.setText(trUtf8("Changes to the profile \"%1\" have not been saved. Would you like to save or discard changes to the current profile?")
                         .arg(configBox->currentText()));
         }
 
@@ -1661,7 +1772,7 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
         if (status == QMessageBox::Save)
         {
             saveConfigFile();
-            if (currentIndex == 0 && currentIndex == configBox->currentIndex())
+            if ((currentIndex == 0) && (currentIndex == configBox->currentIndex()))
             {
                 discarded = false;
             }
@@ -1687,6 +1798,8 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
 
 void JoyTabWidget::disconnectMainComboBoxEvents()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
     disconnect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
@@ -1694,6 +1807,8 @@ void JoyTabWidget::disconnectMainComboBoxEvents()
 
 void JoyTabWidget::reconnectMainComboBoxEvents()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()), Qt::QueuedConnection);
     connect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
@@ -1701,25 +1816,33 @@ void JoyTabWidget::reconnectMainComboBoxEvents()
 
 void JoyTabWidget::disconnectCheckUnsavedEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
 }
 
 void JoyTabWidget::reconnectCheckUnsavedEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
 }
 
 void JoyTabWidget::refreshButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     removeCurrentButtons();
     fillButtons();
 }
 
 void JoyTabWidget::checkStickDisplay()
 {
-    JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyControlStickButton *button = qobject_cast<JoyControlStickButton*>(sender()); // static_cast
     JoyControlStick *stick = button->getStick();
-    if (stick && stick->hasSlotsAssigned())
+    if ((stick != nullptr) && stick->hasSlotsAssigned())
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
         removeSetButtons(currentSet);
@@ -1729,9 +1852,11 @@ void JoyTabWidget::checkStickDisplay()
 
 void JoyTabWidget::checkDPadButtonDisplay()
 {
-    JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender()); // static_cast
     JoyDPad *dpad = button->getDPad();
-    if (dpad && dpad->hasSlotsAssigned())
+    if ((dpad != nullptr) && dpad->hasSlotsAssigned())
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
         removeSetButtons(currentSet);
@@ -1741,7 +1866,9 @@ void JoyTabWidget::checkDPadButtonDisplay()
 
 void JoyTabWidget::checkAxisButtonDisplay()
 {
-    JoyAxisButton *button = static_cast<JoyAxisButton*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() > 0)
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
@@ -1752,7 +1879,9 @@ void JoyTabWidget::checkAxisButtonDisplay()
 
 void JoyTabWidget::checkButtonDisplay()
 {
-    JoyButton *button = static_cast<JoyButton*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyButton *button = qobject_cast<JoyButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() > 0)
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
@@ -1763,11 +1892,13 @@ void JoyTabWidget::checkButtonDisplay()
 
 void JoyTabWidget::checkStickEmptyDisplay()
 {
-    StickPushButtonGroup *group = static_cast<StickPushButtonGroup*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    StickPushButtonGroup *group = qobject_cast<StickPushButtonGroup*>(sender()); // static_cast
     JoyControlStick *stick = group->getStick();
     //JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
     //JoyControlStick *stick = button->getStick();
-    if (stick && !stick->hasSlotsAssigned())
+    if ((stick != nullptr) && !stick->hasSlotsAssigned())
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
         removeSetButtons(currentSet);
@@ -1777,11 +1908,13 @@ void JoyTabWidget::checkStickEmptyDisplay()
 
 void JoyTabWidget::checkDPadButtonEmptyDisplay()
 {
-    DPadPushButtonGroup *group = static_cast<DPadPushButtonGroup*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    DPadPushButtonGroup *group = qobject_cast<DPadPushButtonGroup*>(sender()); // static_cast
     JoyDPad *dpad = group->getDPad();
     //JoyDPadButton *button = static_cast<JoyDPadButton*>(sender());
     //JoyDPad *dpad = button->getDPad();
-    if (dpad && !dpad->hasSlotsAssigned())
+    if ((dpad != nullptr) && !dpad->hasSlotsAssigned())
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
         removeSetButtons(currentSet);
@@ -1791,7 +1924,9 @@ void JoyTabWidget::checkDPadButtonEmptyDisplay()
 
 void JoyTabWidget::checkAxisButtonEmptyDisplay()
 {
-    JoyAxisButton *button = static_cast<JoyAxisButton*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() == 0)
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
@@ -1802,7 +1937,9 @@ void JoyTabWidget::checkAxisButtonEmptyDisplay()
 
 void JoyTabWidget::checkButtonEmptyDisplay()
 {
-    JoyButton *button = static_cast<JoyButton*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyButton *button = qobject_cast<JoyButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() == 0)
     {
         SetJoystick *currentSet = joystick->getActiveSetJoystick();
@@ -1813,6 +1950,8 @@ void JoyTabWidget::checkButtonEmptyDisplay()
 
 void JoyTabWidget::checkHideEmptyOption()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool currentHideEmptyButtons = settings->value("HideEmptyButtons", false).toBool();
     if (currentHideEmptyButtons != hideEmptyButtons)
     {
@@ -1823,11 +1962,13 @@ void JoyTabWidget::checkHideEmptyOption()
 
 void JoyTabWidget::fillSetButtons(SetJoystick *set)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int row = 0;
     int column = 0;
 
     //QWidget *child = 0;
-    QGridLayout *current_layout = 0;
+    QGridLayout *current_layout = nullptr;
     switch (set->getIndex())
     {
         case 0:
@@ -1886,8 +2027,8 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
     SetJoystick *currentSet = set;
     currentSet->establishPropertyUpdatedConnection();
 
-    QGridLayout *stickGrid = 0;
-    QGroupBox *stickGroup = 0;
+    QGridLayout *stickGrid = nullptr;
+    QGroupBox *stickGroup = nullptr;
     int stickGridColumn = 0;
     int stickGridRow = 0;
 
@@ -1899,12 +2040,12 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
         if (!hideEmptyButtons || stick->hasSlotsAssigned())
         {
-            if (!stickGroup)
+            if (stickGroup == nullptr)
             {
-                stickGroup = new QGroupBox(tr("Sticks"), this);
+                stickGroup = new QGroupBox(trUtf8("Sticks"), this);
             }
 
-            if (!stickGrid)
+            if (stickGrid == nullptr)
             {
                 stickGrid = new QGridLayout();
                 stickGridColumn = 0;
@@ -1942,7 +2083,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
         }
     }
 
-    if (stickGroup)
+    if (stickGroup != nullptr)
     {
         QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
         QVBoxLayout *tempvbox = new QVBoxLayout;
@@ -1955,11 +2096,11 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
     column = 0;
 
-    QGridLayout *hatGrid = 0;
-    QGroupBox *hatGroup = 0;
+    QGridLayout *hatGrid = nullptr;
+    QGroupBox *hatGroup = nullptr;
     int hatGridColumn = 0;
     int hatGridRow = 0;
-    for (int j=0; j < joystick->getNumberHats(); j++)
+    for (int j = 0; j < joystick->getNumberHats(); j++)
     {
         JoyDPad *dpad = currentSet->getJoyDPad(j);
         dpad->establishPropertyUpdatedConnection();
@@ -1967,12 +2108,12 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
         if (!hideEmptyButtons || dpad->hasSlotsAssigned())
         {
-            if (!hatGroup)
+            if (hatGroup == nullptr)
             {
-                hatGroup = new QGroupBox(tr("DPads"), this);
+                hatGroup = new QGroupBox(trUtf8("DPads"), this);
             }
 
-            if (!hatGrid)
+            if (hatGrid == nullptr)
             {
                 hatGrid = new QGridLayout();
                 hatGridColumn = 0;
@@ -2010,7 +2151,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
         }
     }
 
-    for (int j=0; j < joystick->getNumberVDPads(); j++)
+    for (int j = 0; j < joystick->getNumberVDPads(); j++)
     {
         VDPad *vdpad = currentSet->getVDPad(j);
         vdpad->establishPropertyUpdatedConnection();
@@ -2018,12 +2159,12 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
         if (!hideEmptyButtons || vdpad->hasSlotsAssigned())
         {
-            if (!hatGroup)
+            if (hatGroup == nullptr)
             {
-                hatGroup = new QGroupBox(tr("DPads"), this);
+                hatGroup = new QGroupBox(trUtf8("DPads"), this);
             }
 
-            if (!hatGrid)
+            if (hatGrid == nullptr)
             {
                 hatGrid = new QGridLayout();
                 hatGridColumn = 0;
@@ -2062,7 +2203,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
         }
     }
 
-    if (hatGroup)
+    if (hatGroup != nullptr)
     {
         QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
         QVBoxLayout *tempvbox = new QVBoxLayout;
@@ -2075,7 +2216,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
     column = 0;
 
-    for (int j=0; j < joystick->getNumberAxes(); j++)
+    for (int j = 0; j < joystick->getNumberAxes(); j++)
     {
         JoyAxis *axis = currentSet->getJoyAxis(j);
 
@@ -2085,8 +2226,8 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             JoyAxisButton *naxisbutton = axis->getNAxisButton();
 
             if (!hideEmptyButtons ||
-               (paxisbutton->getAssignedSlots()->count() > 0 ||
-                naxisbutton->getAssignedSlots()->count() > 0))
+               ((paxisbutton->getAssignedSlots()->count() > 0) ||
+                (naxisbutton->getAssignedSlots()->count() > 0)))
             {
                 JoyAxisWidget *axisWidget = new JoyAxisWidget(axis, displayingNames, this);
                 axisWidget->setText(axis->getName());
@@ -2120,10 +2261,10 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
         }
     }
 
-    for (int j=0; j < joystick->getNumberButtons(); j++)
+    for (int j = 0; j < joystick->getNumberButtons(); j++)
     {
         JoyButton *button = currentSet->getJoyButton(j);
-        if (button && !button->isPartVDPad())
+        if ((button != nullptr) && !button->isPartVDPad())
         {
             button->establishPropertyUpdatedConnections();
 
@@ -2160,18 +2301,20 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
     if (current_layout->count() == 0)
     {
-        QLabel *newlabel = new QLabel(tr("No buttons have been assigned. Please use Quick Set to assign keys\nto buttons or disable hiding empty buttons."));
+        QLabel *newlabel = new QLabel(trUtf8("No buttons have been assigned. Please use Quick Set to assign keys\nto buttons or disable hiding empty buttons."));
         current_layout->addWidget(newlabel, 0, 0, Qt::AlignCenter);
     }
 }
 
 void JoyTabWidget::removeSetButtons(SetJoystick *set)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     SetJoystick *currentSet = set;
     currentSet->disconnectPropertyUpdatedConnection();
 
-    QLayoutItem *child = 0;
-    QGridLayout *current_layout = 0;
+    QLayoutItem *child = nullptr;
+    QGridLayout *current_layout = nullptr;
     switch (currentSet->getIndex())
     {
         case 0:
@@ -2216,12 +2359,12 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
         }
     }
 
-    while (current_layout && (child = current_layout->takeAt(0)) != 0)
+    while (current_layout && ((child = current_layout->takeAt(0)) != 0))
     {
         current_layout->removeWidget(child->widget());
         delete child->widget();
         delete child;
-        child = 0;
+        child = nullptr;
     }
 
     for (int j=0; j < joystick->getNumberSticks(); j++)
@@ -2294,7 +2437,7 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
     for (int j=0; j < joystick->getNumberButtons(); j++)
     {
         JoyButton *button = currentSet->getJoyButton(j);
-        if (button && !button->isPartVDPad())
+        if ((button != nullptr) && !button->isPartVDPad())
         {
             button->disconnectPropertyUpdatedConnections();
             disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonDisplay()));
@@ -2305,6 +2448,8 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
 
 void JoyTabWidget::editCurrentProfileItemText(QString text)
 {
+   qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int currentIndex = configBox->currentIndex();
     if (currentIndex >= 0)
     {
@@ -2314,7 +2459,7 @@ void JoyTabWidget::editCurrentProfileItemText(QString text)
         }
         else if (currentIndex == 0)
         {
-            configBox->setItemText(currentIndex, tr("<New>"));
+            configBox->setItemText(currentIndex, trUtf8("<New>"));
         }
         else if (currentIndex > 0)
         {
@@ -2327,6 +2472,8 @@ void JoyTabWidget::editCurrentProfileItemText(QString text)
 #ifdef Q_OS_WIN
 void JoyTabWidget::deviceKeyRepeatSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool keyRepeatActive = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
     int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
     int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
@@ -2339,22 +2486,24 @@ void JoyTabWidget::deviceKeyRepeatSettings()
 
 void JoyTabWidget::refreshCopySetActions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     copySetMenu->clear();
 
     for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *tempSet = joystick->getSetJoystick(i);
-        QAction *newaction = 0;
+        QAction *newaction = nullptr;
         if (!tempSet->getName().isEmpty())
         {
             QString tempName = tempSet->getName();
             QString tempNameEscaped = tempName;
             tempNameEscaped.replace("&", "&&");
-            newaction = new QAction(tr("Set %1: %2").arg(i+1).arg(tempNameEscaped), copySetMenu);
+            newaction = new QAction(trUtf8("Set %1: %2").arg(i+1).arg(tempNameEscaped), copySetMenu);
         }
         else
         {
-            newaction = new QAction(tr("Set %1").arg(i+1), copySetMenu);
+            newaction = new QAction(trUtf8("Set %1").arg(i+1), copySetMenu);
         }
 
         newaction->setData(i);
@@ -2367,28 +2516,30 @@ void JoyTabWidget::refreshCopySetActions()
 
 void JoyTabWidget::performSetCopy()
 {
-    QAction *action = static_cast<QAction*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int sourceSetIndex = action->data().toInt();
     SetJoystick *sourceSet = joystick->getSetJoystick(sourceSetIndex);
-    QString sourceName;
+    QString sourceName = QString();
     if (!sourceSet->getName().isEmpty())
     {
         QString tempNameEscaped = sourceSet->getName();
         tempNameEscaped.replace("&", "&&");
-        sourceName = tr("Set %1: %2").arg(sourceSetIndex+1).arg(tempNameEscaped);
+        sourceName = trUtf8("Set %1: %2").arg(sourceSetIndex+1).arg(tempNameEscaped);
     }
     else
     {
-        sourceName = tr("Set %1").arg(sourceSetIndex+1);
+        sourceName = trUtf8("Set %1").arg(sourceSetIndex+1);
     }
 
     SetJoystick *destSet = joystick->getActiveSetJoystick();
-    if (sourceSet && destSet)
+    if ((sourceSet != nullptr) && (destSet != nullptr))
     {
         QMessageBox msgBox;
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        msgBox.setWindowTitle(tr("Copy Set Assignments"));
-        msgBox.setText(tr("Are you sure you want to copy the assignments and device properties from %1?").arg(sourceName));
+        msgBox.setWindowTitle(trUtf8("Copy Set Assignments"));
+        msgBox.setText(trUtf8("Are you sure you want to copy the assignments and device properties from %1?").arg(sourceName));
         int status = msgBox.exec();
         if (status == QMessageBox::Yes)
         {
@@ -2409,8 +2560,10 @@ void JoyTabWidget::performSetCopy()
 
 void JoyTabWidget::disableCopyCurrentSet()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     SetJoystick *activeSet = joystick->getActiveSetJoystick();
-    QMenu *menu = static_cast<QMenu*>(sender());
+    QMenu *menu = qobject_cast<QMenu*>(sender()); // static_cast
     QList<QAction*> actions = menu->actions();
     QListIterator<QAction*> iter(actions);
     while (iter.hasNext())
@@ -2430,6 +2583,8 @@ void JoyTabWidget::disableCopyCurrentSet()
 #ifdef USE_SDL_2
 void JoyTabWidget::openGameControllerMappingWindow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
     dialog->show();
     connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
@@ -2437,6 +2592,8 @@ void JoyTabWidget::openGameControllerMappingWindow()
 
 void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit mappingUpdated(mapping, device);
 }
 
@@ -2444,11 +2601,15 @@ void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 
 void JoyTabWidget::refreshHelperThread()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     tabHelper.moveToThread(joystick->thread());
 }
 
 void JoyTabWidget::changeEvent(QEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (event->type() == QEvent::LanguageChange)
     {
         retranslateUi();

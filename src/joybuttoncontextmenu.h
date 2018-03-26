@@ -19,13 +19,16 @@
 #define JOYBUTTONCONTEXTMENU_H
 
 #include <QMenu>
-#include "joybutton.h"
+
+
+class JoyButton;
+class QWidget;
 
 class JoyButtonContextMenu : public QMenu
 {
     Q_OBJECT
 public:
-    explicit JoyButtonContextMenu(JoyButton *button, QWidget *parent = 0);
+    explicit JoyButtonContextMenu(JoyButton *button, QWidget *parent = nullptr);
     void buildMenu();
 
 protected:

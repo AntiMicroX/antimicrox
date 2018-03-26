@@ -18,17 +18,6 @@
 #ifndef JOYBUTTON_H
 #define JOYBUTTON_H
 
-#include <QObject>
-#include <QTimer>
-#include <QElapsedTimer>
-#include <QTime>
-#include <QList>
-#include <QListIterator>
-#include <QHash>
-#include <QQueue>
-#include <QReadWriteLock>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 
 #include "joybuttonslot.h"
 #include "springmousemoveinfo.h"
@@ -38,8 +27,21 @@
   #include "joykeyrepeathelper.h"
 #endif
 
+#include <QObject>
+#include <QTimer>
+#include <QElapsedTimer>
+#include <QTime>
+#include <QList>
+#include <QListIterator>
+#include <QHash>
+#include <QQueue>
+#include <QReadWriteLock>
+
 class VDPad;
 class SetJoystick;
+class QXmlStreamReader;
+class QXmlStreamWriter;
+class QThread;
 
 class JoyButton : public QObject
 {
@@ -151,8 +153,8 @@ public:
 
     SetJoystick* getParentSet();
 
-    void setCycleResetTime(unsigned int interval);
-    unsigned int getCycleResetTime();
+    void setCycleResetTime(int interval); // .., unsigned
+    int getCycleResetTime(); // unsigned
 
     void setCycleResetStatus(bool enabled);
     bool isCycleResetActive();
@@ -238,8 +240,8 @@ public:
     // Define default values for many properties.
     static const int ENABLEDTURBODEFAULT;
     static const double DEFAULTMOUSESPEEDMOD;
-    static const unsigned int DEFAULTKEYREPEATDELAY;
-    static const unsigned int DEFAULTKEYREPEATRATE;
+    static const int DEFAULTKEYREPEATDELAY; // unsigned
+    static const int DEFAULTKEYREPEATRATE; // unsigned
     static const JoyMouseCurve DEFAULTMOUSECURVE;
     static const bool DEFAULTTOGGLE;
     static const int DEFAULTTURBOINTERVAL;
@@ -272,8 +274,8 @@ public:
     static const int DEFAULTIDLEMOUSEREFRESHRATE;
     static int IDLEMOUSEREFRESHRATE;
 
-    static const unsigned int MINCYCLERESETTIME;
-    static const unsigned int MAXCYCLERESETTIME;
+    static const int MINCYCLERESETTIME; // unsigned
+    static const int MAXCYCLERESETTIME; // unsigned
 
     static const double DEFAULTEXTRACCELVALUE;
     static const double DEFAULTMINACCELTHRESHOLD;
@@ -301,7 +303,7 @@ protected:
     bool checkForDelaySequence();
     void checkForPressedSetChange();
     bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true);
-    unsigned int getPreferredKeyPressTime();
+    int getPreferredKeyPressTime(); // unsigned
     void checkTurboCondition(JoyButtonSlot *slot);
     static bool hasFutureSpringEvents();
     virtual double getCurrentSpringDeadCircle();
@@ -458,7 +460,7 @@ protected:
     SetJoystick *parentSet; // Pointer to set that button is assigned to.
 
     bool cycleResetActive;
-    unsigned int cycleResetInterval;
+    int cycleResetInterval; // unsigned
     QTime cycleResetHold;
 
     bool relativeSpring;
@@ -493,8 +495,8 @@ protected:
 
     static QList<JoyButton*> pendingMouseButtons;
 
-    static QHash<unsigned int, int> activeKeys;
-    static QHash<unsigned int, int> activeMouseButtons;
+    static QHash<int, int> activeKeys; // QHash<unsigned int, int
+    static QHash<int, int> activeMouseButtons; // QHash<unsigned int, int
 #ifdef Q_OS_WIN
     static JoyKeyRepeatHelper repeatHelper;
 #endif
@@ -552,19 +554,19 @@ public slots:
     virtual void clearSlotsEventReset(bool clearSignalEmit=true);
     virtual void eventReset();
 
-    bool setAssignedSlot(int code, unsigned int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(int code, int alias, int index,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // .., .., unsigned, .., ..
 
     bool setAssignedSlot(int code,
                          JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
 
-    bool setAssignedSlot(int code, unsigned int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool setAssignedSlot(int code, int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // .., .., unsigned, ..
 
     bool setAssignedSlot(JoyButtonSlot *otherSlot, int index);
 
-    bool insertAssignedSlot(int code, unsigned int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    bool insertAssignedSlot(int code, int alias, int index,
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // .., .., unsigned, .., ..
 
     void removeAssignedSlot(int index);
 

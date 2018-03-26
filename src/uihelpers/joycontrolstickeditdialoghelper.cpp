@@ -16,10 +16,16 @@
  */
 
 #include "joycontrolstickeditdialoghelper.h"
+#include "joybuttonslot.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
+
+#include <QDebug>
 
 JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(stick);
 
     this->stick = stick;
@@ -28,6 +34,8 @@ JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick
 void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections,
                                                       JoyButtonSlot *> *tempSlots)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingSlots.clear();
 
     QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot*> iter(*tempSlots);
@@ -43,11 +51,15 @@ void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::Joy
 
 void JoyControlStickEditDialogHelper::clearPendingSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingSlots.clear();
 }
 
 void JoyControlStickEditDialogHelper::setFromPendingSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!pendingSlots.isEmpty())
     {
         QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot*> iter(pendingSlots);
@@ -75,6 +87,8 @@ void JoyControlStickEditDialogHelper::setFromPendingSlots()
 
 void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = stick->getButtons();
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*buttons);
     while (iter.hasNext())
@@ -89,6 +103,8 @@ void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 
 void JoyControlStickEditDialogHelper::updateControlStickDelay(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int temp = value * 10;
     if (stick->getStickDelay() != temp)
     {

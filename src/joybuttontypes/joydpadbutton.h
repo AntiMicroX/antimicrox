@@ -21,6 +21,7 @@
 #include "joybutton.h"
 
 class JoyDPad;
+class SetJoystick;
 
 class JoyDPadButton : public JoyButton
 {

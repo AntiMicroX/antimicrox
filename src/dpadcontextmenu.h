@@ -18,17 +18,18 @@
 #ifndef DPADCONTEXTMENU_H
 #define DPADCONTEXTMENU_H
 
+#include "uihelpers/dpadcontextmenuhelper.h"
+
 #include <QMenu>
 
-#include "joydpad.h"
-
-#include "uihelpers/dpadcontextmenuhelper.h"
+class JoyDPad;
+class QWidget;
 
 class DPadContextMenu : public QMenu
 {
     Q_OBJECT
 public:
-    explicit DPadContextMenu(JoyDPad *dpad, QWidget *parent = 0);
+    explicit DPadContextMenu(JoyDPad *dpad, QWidget *parent = nullptr);
     void buildMenu();
 
 protected:

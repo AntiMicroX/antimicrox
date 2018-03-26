@@ -18,14 +18,16 @@
 #ifndef JOYDPAD_H
 #define JOYDPAD_H
 
+
+#include "joybuttontypes/joydpadbutton.h"
+
 #include <QObject>
 #include <QHash>
 #include <QString>
 #include <QTimer>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 
-#include "joybuttontypes/joydpadbutton.h"
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 class JoyDPad : public QObject
 {
@@ -96,7 +98,7 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyDPad *destDPad);
 
-    unsigned int getDPadDelay();
+    int getDPadDelay(); // unsigned
     double getButtonsEasingDuration();
 
     void setButtonsSpringDeadCircleMultiplier(int value);
@@ -113,7 +115,7 @@ public:
     virtual void eventReset();
 
     static const QString xmlName;
-    static const unsigned int DEFAULTDPADDELAY;
+    static const int DEFAULTDPADDELAY; // unsigned
 
 protected:
     void populateButtons();
@@ -132,7 +134,7 @@ protected:
     QString defaultDPadName;
     SetJoystick *parentSet;
     QTimer directionDelayTimer;
-    unsigned int dpadDelay;
+    int dpadDelay; // unsigned
 
     bool pendingEvent;
     int pendingEventDirection;

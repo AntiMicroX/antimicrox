@@ -15,21 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QHashIterator>
-
 #include "joydpad.h"
 #include "inputdevice.h"
 
+#include <QDebug>
+#include <QHashIterator>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
+
+
 const QString JoyDPad::xmlName = "dpad";
-const unsigned int JoyDPad::DEFAULTDPADDELAY = 0;
+const int JoyDPad::DEFAULTDPADDELAY = 0;
 
 JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->index = index;
     buttons = QHash<int, JoyDPadButton*> ();
-    activeDiagonalButton = 0;
+    activeDiagonalButton = nullptr;
     prevDirection = JoyDPadButton::DpadCentered;
     pendingDirection = prevDirection;
     this->originset = originset;
@@ -49,12 +54,14 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
 
 JoyDPad::~JoyDPad()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
         delete button;
-        button = 0;
+        button = nullptr;
     }
 
     buttons.clear();
@@ -62,11 +69,15 @@ JoyDPad::~JoyDPad()
 
 JoyDPadButton *JoyDPad::getJoyButton(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return buttons.value(index);
 }
 
 void JoyDPad::populateButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, originset, this, parentSet, this);
     buttons.insert(JoyDPadButton::DpadUp, button);
 
@@ -94,13 +105,15 @@ void JoyDPad::populateButtons()
 
 QString JoyDPad::getName(bool fullForceFormat, bool displayNames)
 {
-    QString label;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString label = QString();
 
     if (!dpadName.isEmpty() && displayNames)
     {
         if (fullForceFormat)
         {
-            label.append(tr("DPad")).append(" ");
+            label.append(trUtf8("DPad")).append(" ");
         }
 
         label.append(dpadName);
@@ -109,13 +122,13 @@ QString JoyDPad::getName(bool fullForceFormat, bool displayNames)
     {
         if (fullForceFormat)
         {
-            label.append(tr("DPad")).append(" ");
+            label.append(trUtf8("DPad")).append(" ");
         }
         label.append(defaultDPadName);
     }
     else
     {
-        label.append(tr("DPad")).append(" ");
+        label.append(trUtf8("DPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
     }
 
@@ -124,30 +137,40 @@ QString JoyDPad::getName(bool fullForceFormat, bool displayNames)
 
 int JoyDPad::getJoyNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index;
 }
 
 int JoyDPad::getIndex()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index;
 }
 
 int JoyDPad::getRealJoyNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index + 1;
 }
 
 QString JoyDPad::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
 void JoyDPad::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && xml->name() == getXmlName())
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (xml->isStartElement() && (xml->name() == getXmlName()))
     {
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != getXmlName())))
         {
             bool found = readMainConfig(xml);
             if (!found)
@@ -162,14 +185,16 @@ void JoyDPad::readConfig(QXmlStreamReader *xml)
 
 bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
 
-    if (xml->name() == "dpadbutton" && xml->isStartElement())
+    if ((xml->name() == "dpadbutton") && xml->isStartElement())
     {
         found = true;
         int index = xml->attributes().value("index").toString().toInt();
         JoyDPadButton* button = this->getJoyButton(index);
-        if (button)
+        if (button != nullptr)
         {
             button->readConfig(xml);
         }
@@ -178,7 +203,7 @@ bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
             xml->skipCurrentElement();
         }
     }
-    else if (xml->name() == "mode" && xml->isStartElement())
+    else if ((xml->name() == "mode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -195,7 +220,7 @@ bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
             this->setJoyMode(FourWayDiagonal);
         }
     }
-    else if (xml->name() == "dpadDelay" && xml->isStartElement())
+    else if ((xml->name() == "dpadDelay") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -208,6 +233,8 @@ bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
 
 void JoyDPad::writeConfig(QXmlStreamWriter *xml)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!isDefault())
     {
         xml->writeStartElement(getXmlName());
@@ -243,6 +270,8 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
 
 void JoyDPad::queuePendingEvent(int value, bool ignoresets)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingEvent = true;
     pendingEventDirection = value;
     pendingIgnoreSets = ignoresets;
@@ -250,6 +279,8 @@ void JoyDPad::queuePendingEvent(int value, bool ignoresets)
 
 void JoyDPad::activatePendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (pendingEvent)
     {
         joyEvent(pendingEventDirection, pendingIgnoreSets);
@@ -262,11 +293,15 @@ void JoyDPad::activatePendingEvent()
 
 bool JoyDPad::hasPendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return pendingEvent;
 }
 
 void JoyDPad::clearPendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingEvent = false;
     pendingEventDirection = static_cast<int>(JoyDPadButton::DpadCentered);
     pendingIgnoreSets = false;
@@ -274,9 +309,11 @@ void JoyDPad::clearPendingEvent()
 
 void JoyDPad::joyEvent(int value, bool ignoresets)
 {
-    if (value != (int)pendingDirection)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (value != static_cast<int>(pendingDirection))
     {
-        if (value != (int)JoyDPadButton::DpadCentered)
+        if (value != static_cast<int>(JoyDPadButton::DpadCentered))
         {
             if (prevDirection == JoyDPadButton::DpadCentered)
             {
@@ -285,7 +322,7 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
 
             pendingDirection = (JoyDPadButton::JoyDPadDirections)value;
 
-            if (ignoresets || dpadDelay == 0)
+            if (ignoresets || (dpadDelay == 0))
             {
                 if (directionDelayTimer.isActive())
                 {
@@ -338,16 +375,22 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
 
 QHash<int, JoyDPadButton*>* JoyDPad::getJoyButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &buttons;
 }
 
 int JoyDPad::getCurrentDirection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return prevDirection;
 }
 
 void JoyDPad::setJoyMode(JoyMode mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     currentMode = mode;
     emit joyModeChanged();
     emit propertyUpdated();
@@ -355,11 +398,15 @@ void JoyDPad::setJoyMode(JoyMode mode)
 
 JoyDPad::JoyMode JoyDPad::getJoyMode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return currentMode;
 }
 
 void JoyDPad::releaseButtonEvents()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -370,11 +417,15 @@ void JoyDPad::releaseButtonEvents()
 
 QHash<int, JoyDPadButton*>* JoyDPad::getButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &buttons;
 }
 
 bool JoyDPad::isDefault()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool value = true;
     value = value && (currentMode == StandardMode);
     value = value && (dpadDelay == DEFAULTDPADDELAY);
@@ -390,6 +441,8 @@ bool JoyDPad::isDefault()
 
 void JoyDPad::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -400,6 +453,8 @@ void JoyDPad::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)
 
 bool JoyDPad::hasSameButtonsMouseMode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = true;
 
     JoyButton::JoyMouseMovementMode initialMode = JoyButton::MouseCursor;
@@ -430,6 +485,8 @@ bool JoyDPad::hasSameButtonsMouseMode()
 
 JoyButton::JoyMouseMovementMode JoyDPad::getButtonsPresetMouseMode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyMouseMovementMode resultMode = JoyButton::MouseCursor;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -458,6 +515,8 @@ JoyButton::JoyMouseMovementMode JoyDPad::getButtonsPresetMouseMode()
 
 void JoyDPad::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -468,6 +527,8 @@ void JoyDPad::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
 
 bool JoyDPad::hasSameButtonsMouseCurve()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = true;
 
     JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
@@ -498,6 +559,8 @@ bool JoyDPad::hasSameButtonsMouseCurve()
 
 JoyButton::JoyMouseCurve JoyDPad::getButtonsPresetMouseCurve()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -526,6 +589,8 @@ JoyButton::JoyMouseCurve JoyDPad::getButtonsPresetMouseCurve()
 
 void JoyDPad::setButtonsSpringWidth(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -536,6 +601,8 @@ void JoyDPad::setButtonsSpringWidth(int value)
 
 void JoyDPad::setButtonsSpringHeight(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -546,6 +613,8 @@ void JoyDPad::setButtonsSpringHeight(int value)
 
 int JoyDPad::getButtonsPresetSpringWidth()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int presetSpringWidth = 0;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -574,6 +643,8 @@ int JoyDPad::getButtonsPresetSpringWidth()
 
 int JoyDPad::getButtonsPresetSpringHeight()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int presetSpringHeight = 0;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -602,6 +673,8 @@ int JoyDPad::getButtonsPresetSpringHeight()
 
 void JoyDPad::setButtonsSensitivity(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -612,6 +685,8 @@ void JoyDPad::setButtonsSensitivity(double value)
 
 double JoyDPad::getButtonsPresetSensitivity()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double presetSensitivity = 1.0;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -640,10 +715,12 @@ double JoyDPad::getButtonsPresetSensitivity()
 
 QHash<int, JoyDPadButton*> JoyDPad::getApplicableButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> temphash;
 
-    if (currentMode == StandardMode || currentMode == EightWayMode ||
-        currentMode == FourWayCardinal)
+    if ((currentMode == StandardMode) || (currentMode == EightWayMode) ||
+        (currentMode == FourWayCardinal))
     {
         temphash.insert(JoyDPadButton::DpadUp, buttons.value(JoyDPadButton::DpadUp));
         temphash.insert(JoyDPadButton::DpadDown, buttons.value(JoyDPadButton::DpadDown));
@@ -651,7 +728,7 @@ QHash<int, JoyDPadButton*> JoyDPad::getApplicableButtons()
         temphash.insert(JoyDPadButton::DpadRight, buttons.value(JoyDPadButton::DpadRight));
     }
 
-    if (currentMode == EightWayMode || currentMode == FourWayDiagonal)
+    if ((currentMode == EightWayMode) || (currentMode == FourWayDiagonal))
     {
         temphash.insert(JoyDPadButton::DpadLeftUp, buttons.value(JoyDPadButton::DpadLeftUp));
         temphash.insert(JoyDPadButton::DpadRightUp, buttons.value(JoyDPadButton::DpadRightUp));
@@ -664,7 +741,9 @@ QHash<int, JoyDPadButton*> JoyDPad::getApplicableButtons()
 
 void JoyDPad::setDPadName(QString tempName)
 {
-    if (tempName.length() <= 20 && tempName != dpadName)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((tempName.length() <= 20) && (tempName != dpadName))
     {
         dpadName = tempName;
         emit dpadNameChanged();
@@ -674,11 +753,15 @@ void JoyDPad::setDPadName(QString tempName)
 
 QString JoyDPad::getDpadName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return dpadName;
 }
 
 void JoyDPad::setButtonsWheelSpeedX(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -689,6 +772,8 @@ void JoyDPad::setButtonsWheelSpeedX(int value)
 
 void JoyDPad::setButtonsWheelSpeedY(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -699,32 +784,44 @@ void JoyDPad::setButtonsWheelSpeedY(int value)
 
 void JoyDPad::setDefaultDPadName(QString tempname)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     defaultDPadName = tempname;
     emit dpadNameChanged();
 }
 
 QString JoyDPad::getDefaultDPadName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return defaultDPadName;
 }
 
 SetJoystick* JoyDPad::getParentSet()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return parentSet;
 }
 
 void JoyDPad::establishPropertyUpdatedConnection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }
 
 void JoyDPad::disconnectPropertyUpdatedConnection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
 }
 
 bool JoyDPad::hasSlotsAssigned()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool hasSlots = false;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -732,7 +829,7 @@ bool JoyDPad::hasSlotsAssigned()
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        if (button)
+        if (button != nullptr)
         {
             if (button->getAssignedSlots()->count() > 0)
             {
@@ -747,6 +844,8 @@ bool JoyDPad::hasSlotsAssigned()
 
 void JoyDPad::setButtonsSpringRelativeStatus(bool value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
     {
@@ -757,6 +856,8 @@ void JoyDPad::setButtonsSpringRelativeStatus(bool value)
 
 bool JoyDPad::isRelativeSpring()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool relative = false;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -785,6 +886,8 @@ bool JoyDPad::isRelativeSpring()
 
 void JoyDPad::copyAssignments(JoyDPad *destDPad)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     destDPad->activeDiagonalButton = activeDiagonalButton;
     destDPad->prevDirection = prevDirection;
     destDPad->currentMode = currentMode;
@@ -794,10 +897,10 @@ void JoyDPad::copyAssignments(JoyDPad *destDPad)
     while (iter.hasNext())
     {
         JoyDPadButton *destButton = iter.next().value();
-        if (destButton)
+        if (destButton != nullptr)
         {
             JoyDPadButton *sourceButton = buttons.value(destButton->getDirection());
-            if (sourceButton)
+            if (sourceButton != nullptr)
             {
                 sourceButton->copyAssignments(destButton);
             }
@@ -812,16 +915,18 @@ void JoyDPad::copyAssignments(JoyDPad *destDPad)
 
 void JoyDPad::createDeskEvent(bool ignoresets)
 {
-    JoyDPadButton *curButton = 0;
-    JoyDPadButton *prevButton = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyDPadButton *curButton = nullptr;
+    JoyDPadButton *prevButton = nullptr;
     JoyDPadButton::JoyDPadDirections value = pendingDirection;
 
     if (pendingDirection != prevDirection)
     {
-        if (activeDiagonalButton)
+        if (activeDiagonalButton != nullptr)
         {
             activeDiagonalButton->joyEvent(false, ignoresets);
-            activeDiagonalButton = 0;
+            activeDiagonalButton = nullptr;
         }
         else {
             if (currentMode == StandardMode)
@@ -850,45 +955,45 @@ void JoyDPad::createDeskEvent(bool ignoresets)
                     prevButton->joyEvent(false, ignoresets);
                 }
             }
-            else if (currentMode == EightWayMode && prevDirection)
+            else if ((currentMode == EightWayMode) && prevDirection)
             {
                 prevButton = buttons.value(prevDirection);
                 prevButton->joyEvent(false, ignoresets);
             }
-            else if (currentMode == FourWayCardinal && prevDirection)
+            else if ((currentMode == FourWayCardinal) && prevDirection)
             {
-                if ((prevDirection == JoyDPadButton::DpadUp ||
-                    prevDirection == JoyDPadButton::DpadRightUp) &&
-                    (value != JoyDPadButton::DpadUp && value != JoyDPadButton::DpadRightUp))
+                if (((prevDirection == JoyDPadButton::DpadUp) ||
+                    (prevDirection == JoyDPadButton::DpadRightUp)) &&
+                    ((value != JoyDPadButton::DpadUp) && (value != JoyDPadButton::DpadRightUp)))
                 {
                     prevButton = buttons.value(JoyDPadButton::DpadUp);
                 }
-                else if ((prevDirection == JoyDPadButton::DpadDown ||
-                         prevDirection == JoyDPadButton::DpadLeftDown) &&
-                         (value != JoyDPadButton::DpadDown && value != JoyDPadButton::DpadLeftDown))
+                else if (((prevDirection == JoyDPadButton::DpadDown) ||
+                         (prevDirection == JoyDPadButton::DpadLeftDown)) &&
+                         ((value != JoyDPadButton::DpadDown) && (value != JoyDPadButton::DpadLeftDown)))
                 {
                     prevButton = buttons.value(JoyDPadButton::DpadDown);
                 }
-                else if ((prevDirection == JoyDPadButton::DpadLeft ||
-                         prevDirection == JoyDPadButton::DpadLeftUp) &&
-                         (value != JoyDPadButton::DpadLeft && value != JoyDPadButton::DpadLeftUp))
+                else if (((prevDirection == JoyDPadButton::DpadLeft) ||
+                         (prevDirection == JoyDPadButton::DpadLeftUp)) &&
+                         ((value != JoyDPadButton::DpadLeft) && (value != JoyDPadButton::DpadLeftUp)))
                 {
                     prevButton = buttons.value(JoyDPadButton::DpadLeft);
                 }
-                else if ((prevDirection == JoyDPadButton::DpadRight ||
-                         prevDirection == JoyDPadButton::DpadRightDown) &&
-                         (value != JoyDPadButton::DpadRight && value != JoyDPadButton::DpadRightDown))
+                else if (((prevDirection == JoyDPadButton::DpadRight) ||
+                         (prevDirection == JoyDPadButton::DpadRightDown)) &&
+                         ((value != JoyDPadButton::DpadRight) && (value != JoyDPadButton::DpadRightDown)))
                 {
                     prevButton = buttons.value(JoyDPadButton::DpadRight);
                 }
 
-                if (prevButton)
+                if (prevButton != nullptr)
                 {
                     prevButton->joyEvent(false, ignoresets);
                 }
 
             }
-            else if (currentMode == FourWayDiagonal && prevDirection)
+            else if ((currentMode == FourWayDiagonal) && prevDirection)
             {
                 prevButton = buttons.value(prevDirection);
                 prevButton->joyEvent(false, ignoresets);
@@ -966,26 +1071,26 @@ void JoyDPad::createDeskEvent(bool ignoresets)
         }
         else if (currentMode == FourWayCardinal)
         {
-            if (value == JoyDPadButton::DpadUp ||
-                value == JoyDPadButton::DpadRightUp)
+            if ((value == JoyDPadButton::DpadUp) ||
+                (value == JoyDPadButton::DpadRightUp))
             {
                 curButton = buttons.value(JoyDPadButton::DpadUp);
                 curButton->joyEvent(true, ignoresets);
             }
-            else if (value == JoyDPadButton::DpadDown ||
-                     value == JoyDPadButton::DpadLeftDown)
+            else if ((value == JoyDPadButton::DpadDown) ||
+                     (value == JoyDPadButton::DpadLeftDown))
             {
                 curButton = buttons.value(JoyDPadButton::DpadDown);
                 curButton->joyEvent(true, ignoresets);
             }
-            else if (value == JoyDPadButton::DpadLeft ||
-                     value == JoyDPadButton::DpadLeftUp)
+            else if ((value == JoyDPadButton::DpadLeft) ||
+                     (value == JoyDPadButton::DpadLeftUp))
             {
                 curButton = buttons.value(JoyDPadButton::DpadLeft);
                 curButton->joyEvent(true, ignoresets);
             }
-            else if (value == JoyDPadButton::DpadRight ||
-                     value == JoyDPadButton::DpadRightDown)
+            else if ((value == JoyDPadButton::DpadRight) ||
+                     (value == JoyDPadButton::DpadRightDown))
             {
                 curButton = buttons.value(JoyDPadButton::DpadRight);
                 curButton->joyEvent(true, ignoresets);
@@ -1021,12 +1126,16 @@ void JoyDPad::createDeskEvent(bool ignoresets)
 
 void JoyDPad::dpadDirectionChangeEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     createDeskEvent();
 }
 
 void JoyDPad::setDPadDelay(int value)
 {
-    if ((value >= 10 && value <= 1000) || (value == 0))
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (((value >= 10) && (value <= 1000)) || (value == 0))
     {
         this->dpadDelay = value;
         emit dpadDelayChanged(value);
@@ -1034,13 +1143,17 @@ void JoyDPad::setDPadDelay(int value)
     }
 }
 
-unsigned int JoyDPad::getDPadDelay()
+int JoyDPad::getDPadDelay()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return dpadDelay;
 }
 
 void JoyDPad::setButtonsEasingDuration(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(temphash);
     while (iter.hasNext())
@@ -1052,6 +1165,8 @@ void JoyDPad::setButtonsEasingDuration(double value)
 
 double JoyDPad::getButtonsEasingDuration()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double result = JoyButton::DEFAULTEASINGDURATION;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -1080,6 +1195,8 @@ double JoyDPad::getButtonsEasingDuration()
 
 void JoyDPad::setButtonsSpringDeadCircleMultiplier(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(temphash);
     while (iter.hasNext())
@@ -1091,6 +1208,8 @@ void JoyDPad::setButtonsSpringDeadCircleMultiplier(int value)
 
 int JoyDPad::getButtonsSpringDeadCircleMultiplier()
 {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     int result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -1119,6 +1238,8 @@ int JoyDPad::getButtonsSpringDeadCircleMultiplier()
 
 void JoyDPad::setButtonsExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(temphash);
     while (iter.hasNext())
@@ -1130,6 +1251,8 @@ void JoyDPad::setButtonsExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCu
 
 JoyButton::JoyExtraAccelerationCurve JoyDPad::getButtonsExtraAccelerationCurve()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
@@ -1158,6 +1281,8 @@ JoyButton::JoyExtraAccelerationCurve JoyDPad::getButtonsExtraAccelerationCurve()
 
 QHash<int, JoyDPadButton*> JoyDPad::getDirectionButtons(JoyDPadButton::JoyDPadDirections direction)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> temphash;
     if (currentMode == StandardMode)
     {
@@ -1190,20 +1315,20 @@ QHash<int, JoyDPadButton*> JoyDPad::getDirectionButtons(JoyDPadButton::JoyDPadDi
     }
     else if (currentMode == FourWayCardinal)
     {
-        if (direction == JoyDPadButton::DpadUp ||
-            direction == JoyDPadButton::DpadDown ||
-            direction == JoyDPadButton::DpadLeft ||
-            direction == JoyDPadButton::DpadRight)
+        if ((direction == JoyDPadButton::DpadUp) ||
+            (direction == JoyDPadButton::DpadDown) ||
+            (direction == JoyDPadButton::DpadLeft) ||
+            (direction == JoyDPadButton::DpadRight))
         {
             temphash.insert(direction, buttons.value(direction));
         }
     }
     else if (currentMode == FourWayDiagonal)
     {
-        if (direction == JoyDPadButton::DpadRightUp ||
-            direction == JoyDPadButton::DpadRightDown ||
-            direction == JoyDPadButton::DpadLeftDown ||
-            direction == JoyDPadButton::DpadLeftUp)
+        if ((direction == JoyDPadButton::DpadRightUp) ||
+            (direction == JoyDPadButton::DpadRightDown) ||
+            (direction == JoyDPadButton::DpadLeftDown) ||
+            (direction == JoyDPadButton::DpadLeftUp))
         {
             temphash.insert(direction, buttons.value(direction));
         }
@@ -1214,12 +1339,14 @@ QHash<int, JoyDPadButton*> JoyDPad::getDirectionButtons(JoyDPadButton::JoyDPadDi
 
 void JoyDPad::setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections direction, bool state)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> apphash = getDirectionButtons(direction);
     QHashIterator<int, JoyDPadButton*> iter(apphash);
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        if (button)
+        if (button != nullptr)
         {
             button->setUpdateInitAccel(state);
         }
@@ -1228,12 +1355,14 @@ void JoyDPad::setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections dire
 
 void JoyDPad::copyLastDistanceValues(JoyDPad *srcDPad)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> apphash = srcDPad->getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(apphash);
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        if (button && button->getButtonState())
+        if ((button != nullptr) && button->getButtonState())
         {
             this->buttons.value(iter.key())->copyLastAccelerationDistance(button);
             this->buttons.value(iter.key())->copyLastMouseDistanceFromDeadZone(button);
@@ -1243,6 +1372,8 @@ void JoyDPad::copyLastDistanceValues(JoyDPad *srcDPad)
 
 void JoyDPad::eventReset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(temphash);
     while (iter.hasNext())

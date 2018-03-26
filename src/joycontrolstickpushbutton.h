@@ -18,17 +18,20 @@
 #ifndef JOYCONTROLSTICKPUSHBUTTON_H
 #define JOYCONTROLSTICKPUSHBUTTON_H
 
-#include <QPoint>
 
 #include "flashbuttonwidget.h"
-#include "joycontrolstick.h"
+
+#include <QPoint>
+
+class JoyControlStick;
+class QWidget;
 
 class JoyControlStickPushButton : public FlashButtonWidget
 {
     Q_OBJECT
 
 public:
-    explicit JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent = 0);
+    explicit JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent = nullptr);
 
     JoyControlStick* getStick();
     void tryFlash();

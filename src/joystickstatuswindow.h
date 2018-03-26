@@ -20,7 +20,8 @@
 
 #include <QDialog>
 
-#include "inputdevice.h"
+class InputDevice;
+class QWidget;
 
 namespace Ui {
 class JoystickStatusWindow;
@@ -31,7 +32,7 @@ class JoystickStatusWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit JoystickStatusWindow(InputDevice *joystick, QWidget *parent = 0);
+    explicit JoystickStatusWindow(InputDevice *joystick, QWidget *parent = nullptr);
     ~JoystickStatusWindow();
 
 protected:

@@ -749,13 +749,6 @@
           </spacer>
          </item>
         </layout>
-        <zorder>verticalSpacer_5</zorder>
-        <zorder>slotListWidget</zorder>
-        <zorder></zorder>
-        <zorder>verticalSpacer_6</zorder>
-        <zorder>slotControlsStackedWidget</zorder>
-        <zorder>slotTypeHelpLabel</zorder>
-        <zorder>verticalSpacer_2</zorder>
        </widget>
        <widget class="QWidget" name="page_2">
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1021,11 +1014,6 @@
           </layout>
          </item>
         </layout>
-        <zorder>turboSlider</zorder>
-        <zorder></zorder>
-        <zorder>verticalSpacer</zorder>
-        <zorder></zorder>
-        <zorder>verticalSpacer_4</zorder>
        </widget>
        <widget class="QWidget" name="page_4">
         <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1215,9 +1203,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>line</zorder>
-  <zorder></zorder>
  </widget>
  <customwidgets>
   <customwidget>

@@ -20,15 +20,17 @@
 
 #include <QGridLayout>
 
-#include "joydpad.h"
-#include "joydpadbuttonwidget.h"
-#include "dpadpushbutton.h"
+class JoyDPad;
+class QWidget;
+class JoyDPadButtonWidget;
+class DPadPushButton;
+
 
 class DPadPushButtonGroup : public QGridLayout
 {
     Q_OBJECT
 public:
-    explicit DPadPushButtonGroup(JoyDPad *dpad, bool displayNames = false, QWidget *parent = 0);
+    explicit DPadPushButtonGroup(JoyDPad *dpad, bool displayNames = false, QWidget *parent = nullptr);
 
     JoyDPad *getDPad();
 

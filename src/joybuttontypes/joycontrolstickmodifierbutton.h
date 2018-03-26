@@ -21,12 +21,13 @@
 #include "joybuttontypes/joygradientbutton.h"
 
 class JoyControlStick;
+class SetJoystick;
 
 class JoyControlStickModifierButton : public JoyGradientButton
 {
-    Q_OBJECT
+
 public:
-    explicit JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
     //virtual int getRealJoyNumber();
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);

@@ -20,21 +20,27 @@
 #define XK_KOREAN
 #define XK_XKB_KEYS
 
-//#include <QDebug>
+#include "qtx11keymapper.h"
+
+#include <QDebug>
 #include <QApplication>
 #include <QHashIterator>
+#include <QHash>
+#include <QChar>
 
 #include <X11/keysymdef.h>
 #include <X11/XF86keysym.h>
 #include <X11/XKBlib.h>
 #include <X11/Xutil.h>
 
-#include "qtx11keymapper.h"
 #include "x11extras.h"
+
 
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     identifier = "xtest";
     populateMappingHashes();
     populateCharKeyInformation();
@@ -48,6 +54,8 @@ QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
  */
 void QtX11KeyMapper::populateMappingHashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (qtKeyToVirtualKey.isEmpty())
     {
         // misc keys
@@ -297,7 +305,7 @@ void QtX11KeyMapper::populateMappingHashes()
 	  qtKeyToVirtualKey[ Qt::Key_Ooblique + i ] = XK_oslash + i;
 	}
 
-        QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
+        QHashIterator<int, int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
         {
             iter.next();
@@ -308,10 +316,12 @@ void QtX11KeyMapper::populateMappingHashes()
 
 void QtX11KeyMapper::populateCharKeyInformation()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     virtualkeyToCharKeyInformation.clear();
     Display* display = X11Extras::getInstance()->display();
 
-    unsigned int total = 0;
+    int total = 0;
     for (int i=8; i <= 255; i++)
     {
         for (int j=0; j <= 3; j++)
@@ -322,12 +332,12 @@ void QtX11KeyMapper::populateCharKeyInformation()
                 dicis |= Qt::MetaModifier;
             }
 
-            if (j == 1 || j == 3)
+            if ((j == 1) || (j == 3))
             {
                 dicis |= Qt::ShiftModifier;
             }
 
-            unsigned int testsym = XkbKeycodeToKeysym(display, i,
+            int testsym = XkbKeycodeToKeysym(display, i,
                                                       dicis & Qt::MetaModifier ? 1 : 0,
                                                       dicis & Qt::ShiftModifier ? 1 : 0);
             if (testsym != NoSymbol)
@@ -384,7 +394,7 @@ void QtX11KeyMapper::populateCharKeyInformation()
     QChar tempa('*');
     if (virtualkeyToCharKeyInformation.contains(tempa.unicode()))
     {
-        charKeyInformation projects = virtualkeyToCharKeyInformation.value(tempa.unicode());
+        //charKeyInformation projects = virtualkeyToCharKeyInformation.value(tempa.unicode());
     }
 }
 

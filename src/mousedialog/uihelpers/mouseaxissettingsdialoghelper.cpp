@@ -16,10 +16,15 @@
  */
 
 #include "mouseaxissettingsdialoghelper.h"
+#include "joyaxis.h"
+
+#include <QDebug>
 
 MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(axis);
 
     this->axis = axis;
@@ -27,42 +32,56 @@ MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObj
 
 void MouseAxisSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setExtraAccelerationStatus(checked);
     axis->getNAxisButton()->setExtraAccelerationStatus(checked);
 }
 
 void MouseAxisSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setExtraAccelerationMultiplier(value);
     axis->getNAxisButton()->setExtraAccelerationMultiplier(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateStartMultiPercentage(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setStartAccelMultiplier(value);
     axis->getNAxisButton()->setStartAccelMultiplier(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateMinAccelThreshold(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setMinAccelThreshold(value);
     axis->getNAxisButton()->setMinAccelThreshold(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateMaxAccelThreshold(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setMaxAccelThreshold(value);
     axis->getNAxisButton()->setMaxAccelThreshold(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateAccelExtraDuration(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setAccelExtraDuration(value);
     axis->getNAxisButton()->setAccelExtraDuration(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     axis->getPAxisButton()->setSpringDeadCircleMultiplier(value);
     axis->getNAxisButton()->setSpringDeadCircleMultiplier(value);
 }

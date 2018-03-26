@@ -18,10 +18,13 @@
 #ifndef DPADEDITDIALOG_H
 #define DPADEDITDIALOG_H
 
+
+#include "uihelpers/dpadeditdialoghelper.h"
+
 #include <QDialog>
 
-#include "joydpad.h"
-#include "uihelpers/dpadeditdialoghelper.h"
+class JoyDPad;
+class QWidget;
 
 namespace Ui {
 class DPadEditDialog;
@@ -32,7 +35,7 @@ class DPadEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit DPadEditDialog(JoyDPad *dpad, QWidget *parent = 0);
+    explicit DPadEditDialog(JoyDPad *dpad, QWidget *parent = nullptr);
     ~DPadEditDialog();
 
 protected:

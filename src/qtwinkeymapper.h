@@ -26,19 +26,15 @@
 
 class QtWinKeyMapper : public QtKeyMapperBase
 {
-    Q_OBJECT
-public:
-    explicit QtWinKeyMapper(QObject *parent = 0);
 
-    virtual unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
+public:
+    explicit QtWinKeyMapper(QObject *parent = nullptr);
+
+    virtual int returnQtKey(int key, int scancode=0); // unsigned (unsigned, unsigned)
 
 protected:
     void populateMappingHashes();
     void populateCharKeyInformation();
-
-signals:
-
-public slots:
 
 };
 

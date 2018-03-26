@@ -20,18 +20,17 @@
 
 #include <QObject>
 
-#include "joycontrolstick.h"
+class JoyControlStick;
+
 
 class MouseControlStickSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit MouseControlStickSettingsDialogHelper(JoyControlStick *stick, QObject *parent = 0);
+    explicit MouseControlStickSettingsDialogHelper(JoyControlStick *stick, QObject *parent = nullptr);
 
 protected:
     JoyControlStick *stick;
-
-signals:
 
 public slots:
     void updateExtraAccelerationStatus(bool checked);

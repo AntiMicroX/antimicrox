@@ -15,13 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QStyle>
-
 #include "joybuttonstatusbox.h"
+#include "joybutton.h"
+
+#include <QWidget>
+#include <QStyle>
+#include <QDebug>
 
 JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
     QPushButton(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->button = button;
     isflashing = false;
 
@@ -33,16 +38,22 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
 
 JoyButton* JoyButtonStatusBox::getJoyButton()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return button;
 }
 
 bool JoyButtonStatusBox::isButtonFlashing()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return isflashing;
 }
 
 void JoyButtonStatusBox::flash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     isflashing = true;
 
     this->style()->unpolish(this);
@@ -53,6 +64,8 @@ void JoyButtonStatusBox::flash()
 
 void JoyButtonStatusBox::unflash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     isflashing = false;
 
     this->style()->unpolish(this);

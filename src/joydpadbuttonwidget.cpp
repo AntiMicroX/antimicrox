@@ -16,10 +16,16 @@
  */
 
 #include "joydpadbuttonwidget.h"
+#include "joybutton.h"
+
+#include <QWidget>
+#include <QDebug>
 
 JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     JoyButtonWidget(button, displayNames, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     // Ensure that JoyDPadButtonWidget::generateLabel is called.
     refreshLabel();
 }
@@ -30,7 +36,9 @@ JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, Q
  */
 QString JoyDPadButtonWidget::generateLabel()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     if (!button->getActionName().isEmpty() && displayNames)
     {
         temp = button->getActionName();
@@ -40,5 +48,7 @@ QString JoyDPadButtonWidget::generateLabel()
         temp = button->getCalculatedActiveZoneSummary();
     }
     temp.replace("&", "&&");
+
+    qDebug() << "Name of joy dpad button is: " << temp;
     return temp;
 }

@@ -68,9 +68,12 @@
   #define BACKEND_ELSE_IF if
 #endif
 
+class BaseEventHandler;
+
+
 class EventHandlerFactory : public QObject
 {
-    Q_OBJECT
+
 public:
     static EventHandlerFactory* getInstance(QString handler = "");
     void deleteInstance();
@@ -80,15 +83,11 @@ public:
     static QString handlerDisplayName(QString handler);
 
 protected:
-    explicit EventHandlerFactory(QString handler, QObject *parent = 0);
+    explicit EventHandlerFactory(QString handler, QObject *parent = nullptr);
     ~EventHandlerFactory();
 
     BaseEventHandler *eventHandler;
     static EventHandlerFactory *instance;
-
-signals:
-
-public slots:
 
 };
 

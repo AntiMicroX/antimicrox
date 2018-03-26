@@ -23,25 +23,25 @@
 
 class QtKeyMapperBase : public QObject
 {
-    Q_OBJECT
+
 public:
-    explicit QtKeyMapperBase(QObject *parent = 0);
+    explicit QtKeyMapperBase(QObject *parent = nullptr);
 
     typedef struct _charKeyInformation
     {
         Qt::KeyboardModifiers modifiers;
-        unsigned int virtualkey;
+        int virtualkey; // unsigned
     } charKeyInformation;
 
-    virtual unsigned int returnVirtualKey(unsigned int qkey);
-    virtual unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
-    virtual bool isModifier(unsigned int qkey);
+    virtual int returnVirtualKey(int qkey); // unsigned (unsigned)
+    virtual int returnQtKey(int key, int scancode=0); // unsigned (unsigned, unsigned)
+    virtual bool isModifier(int qkey); // .. (unsigned)
     charKeyInformation getCharKeyInformation(QChar value);
     QString getIdentifier();
 
-    static const unsigned int customQtKeyPrefix = 0x10000000;
-    static const unsigned int customKeyPrefix = 0x20000000;
-    static const unsigned int nativeKeyPrefix = 0x60000000;
+    static const int customQtKeyPrefix = 0x10000000; // unsigned
+    static const int customKeyPrefix = 0x20000000; // unsigned
+    static const int nativeKeyPrefix = 0x60000000; // unsigned
 
     enum {
         AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
@@ -81,15 +81,11 @@ protected:
     virtual void populateMappingHashes() = 0;
     virtual void populateCharKeyInformation() = 0;
 
-    QHash<unsigned int, unsigned int> qtKeyToVirtualKey;
-    QHash<unsigned int, unsigned int> virtualKeyToQtKey;
+    QHash<int, int> qtKeyToVirtualKey; // unsigned, unsigned
+    QHash<int, int> virtualKeyToQtKey; // unsigned, unsigned
     // Unicode representation -> VK+Modifier information
-    QHash<unsigned int, charKeyInformation> virtualkeyToCharKeyInformation;
+    QHash<int, charKeyInformation> virtualkeyToCharKeyInformation; // unsigned, ..
     QString identifier;
-
-signals:
-
-public slots:
 
 };
 

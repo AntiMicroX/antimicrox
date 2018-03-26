@@ -17,10 +17,15 @@
 
 #include "joycontrolstickpushbutton.h"
 #include "joycontrolstickcontextmenu.h"
+#include "joycontrolstick.h"
+
+#include <QDebug>
 
 JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
 
     refreshLabel();
@@ -37,6 +42,8 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
 
 JoyControlStick* JoyControlStickPushButton::getStick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick;
 }
 
@@ -46,7 +53,9 @@ JoyControlStick* JoyControlStickPushButton::getStick()
  */
 QString JoyControlStickPushButton::generateLabel()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     if (!stick->getStickName().isEmpty() && displayNames)
     {
         temp.append(stick->getPartialName(false, true));
@@ -56,11 +65,14 @@ QString JoyControlStickPushButton::generateLabel()
         temp.append(stick->getPartialName(false));
     }
 
+    qDebug() << "Name of joy control stick push button: " << temp;
     return temp;
 }
 
 void JoyControlStickPushButton::disableFlashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
     disconnect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
     this->unflash();
@@ -68,12 +80,16 @@ void JoyControlStickPushButton::disableFlashes()
 
 void JoyControlStickPushButton::enableFlashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }
 
 void JoyControlStickPushButton::showContextMenu(const QPoint &point)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPoint globalPos = this->mapToGlobal(point);
     JoyControlStickContextMenu *contextMenu = new JoyControlStickContextMenu(stick, this);
     contextMenu->buildMenu();
@@ -82,6 +98,8 @@ void JoyControlStickPushButton::showContextMenu(const QPoint &point)
 
 void JoyControlStickPushButton::tryFlash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (stick->getCurrentDirection() != JoyControlStick::StickCentered)
     {
         flash();

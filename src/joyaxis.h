@@ -22,12 +22,15 @@
 #include <QTimer>
 #include <QTime>
 #include <QList>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 
 #include "joybuttontypes/joyaxisbutton.h"
 
 class JoyControlStick;
+class SetJoystick;
+class JoyAxisButton;
+class QXmlStreamReader;
+class QXmlStreamWriter;
+class JoyAxis;
 
 class JoyAxis : public QObject
 {

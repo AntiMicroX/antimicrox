@@ -15,62 +15,72 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <cmath>
-#include <QStringList>
-
 #include "joycontrolstickbutton.h"
 #include "joycontrolstick.h"
+#include "joycontrolstickmodifierbutton.h"
+#include "setjoystick.h"
 #include "event.h"
+
+#include <cmath>
+
+#include <QStringList>
+#include <QDebug>
+
 
 const QString JoyControlStickButton::xmlName = "stickbutton";
 
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyGradientButton(index, originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
 }
 
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent) :
-    JoyGradientButton((int)index, originset, parentSet, parent)
+    JoyGradientButton(static_cast<int>(index), originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
 }
 
 QString JoyControlStickButton::getDirectionName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString label = QString();
     if (index == JoyControlStick::StickUp)
     {
-        label.append(tr("Up"));
+        label.append(trUtf8("Up"));
     }
     else if (index == JoyControlStick::StickDown)
     {
-        label.append(tr("Down"));
+        label.append(trUtf8("Down"));
     }
     else if (index == JoyControlStick::StickLeft)
     {
-        label.append(tr("Left"));
+        label.append(trUtf8("Left"));
     }
     else if (index == JoyControlStick::StickRight)
     {
-        label.append(tr("Right"));
+        label.append(trUtf8("Right"));
     }
     else if (index == JoyControlStick::StickLeftUp)
     {
-        label.append(tr("Up")).append("+").append(tr("Left"));
+        label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
     }
     else if (index == JoyControlStick::StickLeftDown)
     {
-        label.append(tr("Down")).append("+").append(tr("Left"));
+        label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
     }
     else if (index == JoyControlStick::StickRightUp)
     {
-        label.append(tr("Up")).append("+").append(tr("Right"));
+        label.append(trUtf8("Up")).append("+").append(trUtf8("Right"));
     }
     else if (index == JoyControlStick::StickRightDown)
     {
-        label.append(tr("Down")).append("+").append(tr("Right"));
+        label.append(trUtf8("Down")).append("+").append(trUtf8("Right"));
     }
 
     return label;
@@ -78,6 +88,8 @@ QString JoyControlStickButton::getDirectionName()
 
 QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString temp = stick->getPartialName(forceFullFormat, displayNames);
 
     temp.append(": ");
@@ -86,7 +98,7 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Button")).append(" ");
+            temp.append(trUtf8("Button")).append(" ");
         }
 
         temp.append(buttonName);
@@ -95,14 +107,14 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Button")).append(" ");
+            temp.append(trUtf8("Button")).append(" ");
         }
 
         temp.append(defaultButtonName);
     }
     else
     {
-        temp.append(tr("Button")).append(" ");
+        temp.append(trUtf8("Button")).append(" ");
         temp.append(getDirectionName());
     }
     return temp;
@@ -110,6 +122,8 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
 
 QString JoyControlStickButton::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
@@ -120,6 +134,8 @@ QString JoyControlStickButton::getXmlName()
  */
 double JoyControlStickButton::getDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick->calculateDirectionalDistance();
 }
 
@@ -129,21 +145,25 @@ double JoyControlStickButton::getDistanceFromDeadZone()
  */
 double JoyControlStickButton::getMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick->calculateMouseDirectionalDistance(this);
 }
 
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     SetChangeCondition oldCondition = setSelectionCondition;
 
-    if (condition != setSelectionCondition && !passive)
+    if ((condition != setSelectionCondition) && !passive)
     {
-        if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
+        if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
             emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, condition);
         }
-        else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
+        else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
             emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, SetChangeDisabled);
@@ -170,16 +190,22 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
 
 int JoyControlStickButton::getRealJoyNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index;
 }
 
 JoyControlStick* JoyControlStickButton::getStick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick;
 }
 
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return static_cast<JoyStickDirectionsType::JoyStickDirections>(index);
 }
 
@@ -189,6 +215,8 @@ JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
  */
 void JoyControlStickButton::setTurboMode(TurboMode mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (isPartRealAxis())
     {
         currentTurboMode = mode;
@@ -203,17 +231,23 @@ void JoyControlStickButton::setTurboMode(TurboMode mode)
  */
 bool JoyControlStickButton::isPartRealAxis()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return true;
 }
 
 double JoyControlStickButton::getLastAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double temp = stick->calculateLastAccelerationButtonDistance(this);
     return temp;
 }
 
 double JoyControlStickButton::getAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double temp = stick->calculateAccelerationDistance(this);
     return temp;
 }
@@ -225,8 +259,10 @@ double JoyControlStickButton::getAccelerationDistance()
  */
 QString JoyControlStickButton::getActiveZoneSummary()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<JoyButtonSlot*> tempList;
-    JoyControlStickModifierButton *tempButton = stick->getModifierButton();
+    //JoyControlStickModifierButton *tempButton = stick->getModifierButton();
     /*if (tempButton && tempButton->getButtonState() &&
           tempButton->hasActiveSlots() && getButtonState())
     {
@@ -242,40 +278,48 @@ QString JoyControlStickButton::getActiveZoneSummary()
 
 QString JoyControlStickButton::getCalculatedActiveZoneSummary()
 {
-    JoyControlStickModifierButton *tempButton = stick->getModifierButton();
-    QString temp;
-    QStringList stringlist;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (tempButton && tempButton->getButtonState() &&
+    JoyControlStickModifierButton *tempButton = stick->getModifierButton();
+    QString temp = QString();
+    QStringList stringlist = QStringList();
+
+    if ((tempButton != nullptr) && tempButton->getButtonState() &&
         tempButton->hasActiveSlots() && getButtonState())
     {
+        qDebug() << "Calculated Active Zone Summary: " << tempButton->getCalculatedActiveZoneSummary();
         stringlist.append(tempButton->getCalculatedActiveZoneSummary());
     }
 
     stringlist.append(JoyButton::getCalculatedActiveZoneSummary());
     temp = stringlist.join(", ");
 
+    qDebug() << "Returned joined zone: " << temp;
     return temp;
 }
 
 double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick->calculateLastMouseDirectionalDistance(this);
 }
 
 double JoyControlStickButton::getCurrentSpringDeadCircle()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double result = (springDeadCircleMultiplier * 0.01);
-    if (index == JoyControlStick::StickLeft || index == JoyControlStick::StickRight)
+    if ((index == JoyControlStick::StickLeft) || (index == JoyControlStick::StickRight))
     {
         result = stick->getSpringDeadCircleX() * (springDeadCircleMultiplier * 0.01);
     }
-    else if (index == JoyControlStick::StickUp || index == JoyControlStick::StickDown)
+    else if ((index == JoyControlStick::StickUp) || (index == JoyControlStick::StickDown))
     {
         result = stick->getSpringDeadCircleY() * (springDeadCircleMultiplier * 0.01);
     }
-    else if (index == JoyControlStick::StickRightUp || index == JoyControlStick::StickRightDown ||
-             index == JoyControlStick::StickLeftDown || index == JoyControlStick::StickLeftUp)
+    else if ((index == JoyControlStick::StickRightUp) || (index == JoyControlStick::StickRightDown) ||
+             (index == JoyControlStick::StickLeftDown) || (index == JoyControlStick::StickLeftUp))
     {
         result = 0.0;
     }

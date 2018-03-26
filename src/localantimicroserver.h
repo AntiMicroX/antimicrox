@@ -19,13 +19,15 @@
 #define LOCALANTIMICROSERVER_H
 
 #include <QObject>
-#include <QLocalServer>
+
+
+class QLocalServer;
 
 class LocalAntiMicroServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit LocalAntiMicroServer(QObject *parent = 0);
+    explicit LocalAntiMicroServer(QObject *parent = nullptr);
 
 protected:
     QLocalServer *localServer;

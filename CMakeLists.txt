@@ -17,8 +17,27 @@
 
 # Debian Wheezy has a package for version 2.8.9 so
 # that will be the minimum supported version.
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 3.6)
 project(antimicro)
+
+if(POLICY CMP0071)
+  cmake_policy(SET CMP0071 NEW)
+endif()
+
+find_package(ECM 5.43.0 REQUIRED CONFIG)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+
+if (UNIX AND NOT APPLE)
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "force cmake prefix to be set for /usr" FORCE)
+endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+endif(UNIX AND NOT APPLE)
+
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -Werror -Wall -Wextra -Wno-unused-parameter -pedantic -Wno-reorder -std=c++0x")
 
 if(WIN32)
     # Cause cmake to fail if Qt location is not specified.
@@ -120,7 +139,11 @@ if(UNIX)
     endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
 endif(UNIX)
 
-set(antimicro_SOURCES src/main.cpp
+set(antimicro_MAIN
+    src/main.cpp
+    )
+
+set(antimicro_SOURCES
     src/mainwindow.cpp
     src/joybuttonwidget.cpp
     src/joystick.cpp
@@ -419,31 +442,19 @@ elseif(WIN32)
 endif(UNIX)
 
 set(USE_QT5 OFF)
-set(USE_QT4 OFF)
 
 if(UNIX)
-    # Check if Qt 4 or 5 was specified using an environment variable
+    # Check if Qt 5 was specified using an environment variable
     # or by specifying -DQT_QMAKE_EXECUTABLE.
     # Otherwise, check for Qt libraries.
     if("$ENV{QT_SELECT}" EQUAL 5)
         set(USE_QT5 ON)
     elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt5")
         set(USE_QT5 ON)
-    elseif ("$ENV{QT_SELECT}" EQUAL 4)
-        set(USE_QT4 ON)
-    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt4")
-        set(USE_QT4 ON)
     else()
         find_package(Qt5Core QUIET)
         if(Qt5Core_FOUND)
             set(USE_QT5 ON)
-        else()
-            find_package(Qt4 QUIET)
-            if(QT_FOUND)
-                set(USE_QT4 ON)
-            else()
-                message(FATAL_ERROR "No Qt libraries could be found.")
-            endif(QT_FOUND)
         endif(Qt5Core_FOUND)
     endif("$ENV{QT_SELECT}" EQUAL 5)
 elseif(WIN32)
@@ -452,12 +463,7 @@ elseif(WIN32)
 endif(UNIX)
 
 if(USE_QT5)
-    message("Compiling with Qt5 support")
-elseif(USE_QT4)
-    message("Compiling with Qt4 support")
-    if(NOT WITH_X11)
-        message(FATAL_ERROR "Cannot build application using Qt4 without X11 support.")
-    endif(NOT WITH_X11)
+    message("Qt5 has been found")
 else()
     message(FATAL_ERROR "No Qt version was specified.")
 endif(USE_QT5)
@@ -488,10 +494,6 @@ endif(UNIX)
 
 if (UNIX)
     if (USE_QT5)
-        # Find includes in corresponding build directories
-        #set(CMAKE_INCLUDE_CURRENT_DIR ON)
-        # Instruct CMake to run moc automatically when needed.
-        set(CMAKE_AUTOMOC ON)
 
         find_package(Qt5Widgets REQUIRED)
         find_package(Qt5Core REQUIRED)
@@ -504,45 +506,11 @@ if (UNIX)
         QT5_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
         add_subdirectory("share/antimicro/translations")
 
-        include_directories(${Qt5Widgets_INCLUDE_DIRS})
-        add_definitions(${Qt5Widgets_DEFINITIONS})
-        include_directories(${Qt5Core_INCLUDE_DIRS})
-        add_definitions(${Qt5Core_DEFINITIONS})
-        include_directories(${Qt5Gui_INCLUDE_DIRS})
-        add_definitions(${Qt5Gui_DEFINITIONS})
-        include_directories(${Qt5Network_INCLUDE_DIRS})
-        add_definitions(${Qt5Network_DEFINITIONS})
-
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-        # Add compiler flags for building executables (-fPIE)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-
-        LIST(APPEND LIBS ${Qt5Widgets_LIBRARIES}
-            ${Qt5Core_LIBRARIES}
-            ${Qt5Gui_LIBRARIES}
-            ${Qt5Network_LIBRARIES}
-        )
-    else()
-        find_package(Qt4 REQUIRED)
-        set(QT_USE_QTNETWORK TRUE)
-
-        QT4_WRAP_CPP(antimicro_HEADERS_MOC ${antimicro_HEADERS})
-        QT4_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
-        QT4_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
-
-        add_subdirectory("share/antimicro/translations")
-
-        include(${QT_USE_FILE})
-        add_definitions(${QT_DEFINITIONS})
-        list(APPEND LIBS ${QT_LIBRARIES})
     endif(USE_QT5)
 
 elseif(WIN32)
-    # Find includes in corresponding build directories
-    #set(CMAKE_INCLUDE_CURRENT_DIR ON)
-    # Instruct CMake to run moc automatically when needed.
-    set(CMAKE_AUTOMOC ON)
 
     find_package(Qt5Widgets REQUIRED)
     find_package(Qt5Core REQUIRED)
@@ -555,25 +523,8 @@ elseif(WIN32)
     QT5_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
     add_subdirectory("share/antimicro/translations")
 
-    include_directories(${Qt5Widgets_INCLUDE_DIRS})
-    add_definitions(${Qt5Widgets_DEFINITIONS})
-    include_directories(${Qt5Core_INCLUDE_DIRS})
-    add_definitions(${Qt5Core_DEFINITIONS})
-    include_directories(${Qt5Gui_INCLUDE_DIRS})
-    add_definitions(${Qt5Gui_DEFINITIONS})
-    include_directories(${Qt5Network_INCLUDE_DIRS})
-    add_definitions(${Qt5Network_DEFINITIONS})
-
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-    # Add compiler flags for building executables (-fPIE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-
-    LIST(APPEND LIBS ${Qt5Widgets_LIBRARIES}
-        ${Qt5Core_LIBRARIES}
-        ${Qt5Gui_LIBRARIES}
-        ${Qt5Network_LIBRARIES}
-    )
 endif(UNIX)
 
 if(UNIX)
@@ -658,36 +609,30 @@ elseif (WIN32)
     endif(WITH_VMULTI)
 endif (UNIX)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories("${PROJECT_SOURCE_DIR}/src")
+
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    "${CMAKE_CURRENT_BINARY_DIR}/src"
+    ${PROJECT_SOURCE_DIR}
+    "${PROJECT_SOURCE_DIR}/src"
+    )
+
 
 if(UNIX)
     # Store executable in a bin subdir. Needed here so translations can be loaded.
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
+
 if(USE_QT5)
     if(UNIX)
-        add_executable(antimicro ${antimicro_SOURCES}
-            ${antimicro_FORMS_HEADERS}
-            ${antimicro_RESOURCES_RCC}
-        )
+        add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC})
+        target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
     elseif(WIN32)
         # The WIN32 is required to specify a GUI application.
-        add_executable(antimicro WIN32 ${antimicro_SOURCES}
-            ${antimicro_FORMS_HEADERS}
-            ${antimicro_RESOURCES_RCC}
-            src/antimicro.rc
-        )
+        add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC} src/antimicro.rc)
+        target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
     endif(UNIX)
-
-else()
-    add_executable(antimicro ${antimicro_SOURCES}
-        ${antimicro_HEADERS_MOC}
-        ${antimicro_FORMS_HEADERS}
-        ${antimicro_RESOURCES_RCC}
-    )
-
 endif(USE_QT5)
 
 # Add link libraries.

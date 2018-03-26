@@ -20,11 +20,13 @@
 
 #include <QWidget>
 
+class QPaintEvent;
+
 class SpringModeRegionPreview : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SpringModeRegionPreview(int width = 0, int height = 0, QWidget *parent = 0);
+    explicit SpringModeRegionPreview(int width = 0, int height = 0, QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event);

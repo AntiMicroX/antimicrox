@@ -18,6 +18,10 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include "config.h"
+#include "antimicrosettings.h"
+#include "mousehelper.h"
+
 #include <QtGlobal>
 #include <QString>
 #include <QDir>
@@ -30,9 +34,7 @@
 #include <QThread>
 #include <QCoreApplication>
 
-#include "config.h"
-#include "antimicrosettings.h"
-#include "mousehelper.h"
+
 
 #ifdef Q_OS_WIN
 
@@ -117,7 +119,8 @@ namespace PadderCommon
     // to be performed in order to be compatible with the latest version.
     const int LATESTCONFIGMIGRATIONVERSION = 5;
     const QString localSocketKey = "antimicroSignalListener";
-    const QString githubProjectPage = "https://github.com/AntiMicro/antimicro";
+    const QString githubProjectPage = "https://github.com/juliagoda/antimicro";
+    const QString githubIssuesPage = "https://github.com/juliagoda/antimicro/issues";
     const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);
 
     const QString mouseDeviceName("antimicro Mouse Emulation");

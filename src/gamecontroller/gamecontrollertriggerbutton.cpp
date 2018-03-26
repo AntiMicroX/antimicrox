@@ -15,26 +15,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <setjoystick.h>
-#include <inputdevice.h>
-
 #include "gamecontrollertriggerbutton.h"
+
+#include "setjoystick.h"
+#include "joyaxis.h"
+#include "inputdevice.h"
+
+#include <QXmlStreamReader>
+#include <QDebug>
 
 const QString GameControllerTriggerButton::xmlName = "triggerbutton";
 
 GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyAxisButton(axis, index, originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 QString GameControllerTriggerButton::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     return this->xmlName;
 }
 
 void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && xml->name() == JoyAxisButton::xmlName)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (xml->isStartElement() && (xml->name() == JoyAxisButton::xmlName))
     {
         disconnect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
 

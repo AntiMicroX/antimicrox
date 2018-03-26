@@ -15,16 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-
 #include "setaxisthrottledialog.h"
 #include "ui_setaxisthrottledialog.h"
+#include "joyaxis.h"
+
+#include <QDebug>
+#include <QWidget>
 
 SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SetAxisThrottleDialog)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     this->axis = axis;
 
@@ -38,10 +42,14 @@ SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent) :
 
 SetAxisThrottleDialog::~SetAxisThrottleDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void SetAxisThrottleDialog::propogateThrottleChange()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit initiateSetAxisThrottleChange();
 }

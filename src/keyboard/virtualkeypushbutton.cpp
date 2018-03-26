@@ -15,19 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QPainter>
-
 #include "virtualkeypushbutton.h"
-#include <event.h>
-#include <antkeymapper.h>
-#include <eventhandlerfactory.h>
+#include "joybutton.h"
+#include "event.h"
+#include "antkeymapper.h"
+#include "eventhandlerfactory.h"
+
+#include <QDebug>
+#include <QPainter>
+#include <QFont>
+#include <QFontMetrics>
+
 
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
 
-VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestring, QWidget *parent) :
+VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent) :
     QPushButton(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     populateKnownAliases();
 
     //qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
@@ -38,7 +44,6 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
     this->displayString = "";
     this->currentlyActive = false;
     this->onCurrentButton = false;
-    this->button = button;
 
     int temp = 0;
     if (!xcodestring.isEmpty())
@@ -95,12 +100,16 @@ VirtualKeyPushButton::VirtualKeyPushButton(JoyButton *button, QString xcodestrin
 
 void VirtualKeyPushButton::processSingleSelection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit keycodeObtained(keycode, qkeyalias);
 }
 
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     if (knownAliases.contains(xcodestring))
     {
         temp = knownAliases.value(xcodestring);
@@ -123,68 +132,72 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 // virtual keyboard.
 void VirtualKeyPushButton::populateKnownAliases()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (knownAliases.isEmpty())
     {
-        knownAliases.insert("space", tr("Space"));
-        knownAliases.insert("Tab", tr("Tab"));
-        knownAliases.insert("Shift_L", tr("Shift (L)"));
-        knownAliases.insert("Shift_R", tr("Shift (R)"));
-        knownAliases.insert("Control_L", tr("Ctrl (L)"));
-        knownAliases.insert("Control_R", tr("Ctrl (R)"));
-        knownAliases.insert("Alt_L", tr("Alt (L)"));
-        knownAliases.insert("Alt_R", tr("Alt (R)"));
-        knownAliases.insert("Multi_key", tr("Alt (R)"));
-        knownAliases.insert("grave", tr("`"));
-        knownAliases.insert("asciitilde", tr("~"));
-        knownAliases.insert("minus", tr("-"));
-        knownAliases.insert("equal", tr("="));
-        knownAliases.insert("bracketleft", tr("["));
-        knownAliases.insert("bracketright", tr("]"));
-        knownAliases.insert("backslash", tr("\\"));
-        knownAliases.insert("Caps_Lock", tr("Caps"));
-        knownAliases.insert("semicolon", tr(";"));
-        knownAliases.insert("apostrophe", tr("'"));
-        knownAliases.insert("comma", tr(","));
-        knownAliases.insert("period", tr("."));
-        knownAliases.insert("slash", tr("/"));
-        knownAliases.insert("Escape", tr("ESC"));
-        knownAliases.insert("Print", tr("PRTSC"));
-        knownAliases.insert("Scroll_Lock", tr("SCLK"));
-        knownAliases.insert("Insert", tr("INS"));
-        knownAliases.insert("Prior", tr("PGUP"));
-        knownAliases.insert("Delete", tr("DEL"));
-        knownAliases.insert("Next", tr("PGDN"));
-        knownAliases.insert("KP_1", tr("1"));
-        knownAliases.insert("KP_2", tr("2"));
-        knownAliases.insert("KP_3", tr("3"));
-        knownAliases.insert("KP_4", tr("4"));
-        knownAliases.insert("KP_5", tr("5"));
-        knownAliases.insert("KP_6", tr("6"));
-        knownAliases.insert("KP_7", tr("7"));
-        knownAliases.insert("KP_8", tr("8"));
-        knownAliases.insert("KP_9", tr("9"));
-        knownAliases.insert("KP_0", tr("0"));
-        knownAliases.insert("Num_Lock", tr("NUM\nLK"));
-        knownAliases.insert("KP_Divide", tr("/"));
-        knownAliases.insert("KP_Multiply", tr("*"));
-        knownAliases.insert("KP_Subtract", tr("-"));
-        knownAliases.insert("KP_Add", tr("+"));
-        knownAliases.insert("KP_Enter", tr("E\nN\nT\nE\nR"));
-        knownAliases.insert("KP_Decimal", tr("."));
-        knownAliases.insert("asterisk", tr("*"));
-        knownAliases.insert("less", tr("<"));
-        knownAliases.insert("colon", tr(":"));
-        knownAliases.insert("Super_L", tr("Super (L)"));
-        knownAliases.insert("Menu", tr("Menu"));
-        knownAliases.insert("Up", tr("Up"));
-        knownAliases.insert("Down", tr("Down"));
-        knownAliases.insert("Left", tr("Left"));
-        knownAliases.insert("Right", tr("Right"));
+        knownAliases.insert("space", trUtf8("Space"));
+        knownAliases.insert("Tab", trUtf8("Tab"));
+        knownAliases.insert("Shift_L", trUtf8("Shift (L)"));
+        knownAliases.insert("Shift_R", trUtf8("Shift (R)"));
+        knownAliases.insert("Control_L", trUtf8("Ctrl (L)"));
+        knownAliases.insert("Control_R", trUtf8("Ctrl (R)"));
+        knownAliases.insert("Alt_L", trUtf8("Alt (L)"));
+        knownAliases.insert("Alt_R", trUtf8("Alt (R)"));
+        knownAliases.insert("Multi_key", trUtf8("Alt (R)"));
+        knownAliases.insert("grave", trUtf8("`"));
+        knownAliases.insert("asciitilde", trUtf8("~"));
+        knownAliases.insert("minus", trUtf8("-"));
+        knownAliases.insert("equal", trUtf8("="));
+        knownAliases.insert("bracketleft", trUtf8("["));
+        knownAliases.insert("bracketright", trUtf8("]"));
+        knownAliases.insert("backslash", trUtf8("\\"));
+        knownAliases.insert("Caps_Lock", trUtf8("Caps"));
+        knownAliases.insert("semicolon", trUtf8(";"));
+        knownAliases.insert("apostrophe", trUtf8("'"));
+        knownAliases.insert("comma", trUtf8(","));
+        knownAliases.insert("period", trUtf8("."));
+        knownAliases.insert("slash", trUtf8("/"));
+        knownAliases.insert("Escape", trUtf8("ESC"));
+        knownAliases.insert("Print", trUtf8("PRTSC"));
+        knownAliases.insert("Scroll_Lock", trUtf8("SCLK"));
+        knownAliases.insert("Insert", trUtf8("INS"));
+        knownAliases.insert("Prior", trUtf8("PGUP"));
+        knownAliases.insert("Delete", trUtf8("DEL"));
+        knownAliases.insert("Next", trUtf8("PGDN"));
+        knownAliases.insert("KP_1", trUtf8("1"));
+        knownAliases.insert("KP_2", trUtf8("2"));
+        knownAliases.insert("KP_3", trUtf8("3"));
+        knownAliases.insert("KP_4", trUtf8("4"));
+        knownAliases.insert("KP_5", trUtf8("5"));
+        knownAliases.insert("KP_6", trUtf8("6"));
+        knownAliases.insert("KP_7", trUtf8("7"));
+        knownAliases.insert("KP_8", trUtf8("8"));
+        knownAliases.insert("KP_9", trUtf8("9"));
+        knownAliases.insert("KP_0", trUtf8("0"));
+        knownAliases.insert("Num_Lock", trUtf8("NUM\nLK"));
+        knownAliases.insert("KP_Divide", trUtf8("/"));
+        knownAliases.insert("KP_Multiply", trUtf8("*"));
+        knownAliases.insert("KP_Subtract", trUtf8("-"));
+        knownAliases.insert("KP_Add", trUtf8("+"));
+        knownAliases.insert("KP_Enter", trUtf8("E\nN\nT\nE\nR"));
+        knownAliases.insert("KP_Decimal", trUtf8("."));
+        knownAliases.insert("asterisk", trUtf8("*"));
+        knownAliases.insert("less", trUtf8("<"));
+        knownAliases.insert("colon", trUtf8(":"));
+        knownAliases.insert("Super_L", trUtf8("Super (L)"));
+        knownAliases.insert("Menu", trUtf8("Menu"));
+        knownAliases.insert("Up", trUtf8("Up"));
+        knownAliases.insert("Down", trUtf8("Down"));
+        knownAliases.insert("Left", trUtf8("Left"));
+        knownAliases.insert("Right", trUtf8("Right"));
     }
 }
 
 int VirtualKeyPushButton::calculateFontSize()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QFont tempScaledFont(this->font());
     tempScaledFont.setPointSize(10);
     QFontMetrics fm(tempScaledFont);

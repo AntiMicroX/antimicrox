@@ -15,9 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-
 #include "joystick.h"
+#include "antimicrosettings.h"
+
+#include <QDebug>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
 const QString Joystick::xmlName = "joystick";
 
@@ -25,6 +28,8 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
                    AntiMicroSettings *settings, QObject *parent) :
     InputDevice(deviceIndex, settings, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->joyhandle = joyhandle;
 #ifdef USE_SDL_2
     joystickID = SDL_JoystickInstanceID(joyhandle);
@@ -32,7 +37,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     joyNumber = SDL_JoystickIndex(joyhandle);
 #endif
 
-    for (int i=0; i < NUMBER_JOYSETS; i++)
+    for (int i = 0; i < NUMBER_JOYSETS; i++)
     {
         SetJoystick *setstick = new SetJoystick(this, i, this);
         joystick_sets.insert(i, setstick);
@@ -42,14 +47,18 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
 
 QString Joystick::getName()
 {
-    return QString(tr("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return QString(trUtf8("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 QString Joystick::getSDLName()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
 #ifdef USE_SDL_2
-    if (joyhandle)
+    if (joyhandle != nullptr)
     {
         temp = SDL_JoystickName(joyhandle);
     }
@@ -61,7 +70,9 @@ QString Joystick::getSDLName()
 
 QString Joystick::getGUIDString()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
 
 #ifdef USE_SDL_2
     SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joyhandle);
@@ -76,18 +87,22 @@ QString Joystick::getGUIDString()
 
 QString Joystick::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
 void Joystick::closeSDLDevice()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #ifdef USE_SDL_2
-    if (joyhandle && SDL_JoystickGetAttached(joyhandle))
+    if ((joyhandle != nullptr) && SDL_JoystickGetAttached(joyhandle))
     {
         SDL_JoystickClose(joyhandle);
     }
 #else
-    if (joyhandle && SDL_JoystickOpened(joyNumber))
+    if ((joyhandle != nullptr) && SDL_JoystickOpened(joyNumber))
     {
         SDL_JoystickClose(joyhandle);
     }
@@ -96,18 +111,24 @@ void Joystick::closeSDLDevice()
 
 int Joystick::getNumberRawButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int numbuttons = SDL_JoystickNumButtons(joyhandle);
     return numbuttons;
 }
 
 int Joystick::getNumberRawAxes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int numaxes = SDL_JoystickNumAxes(joyhandle);
     return numaxes;
 }
 
 int Joystick::getNumberRawHats()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int numhats = SDL_JoystickNumHats(joyhandle);
     return numhats;
 }
@@ -115,6 +136,8 @@ int Joystick::getNumberRawHats()
 #ifdef USE_SDL_2
 SDL_JoystickID Joystick::getSDLJoystickID()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return joystickID;
 }
 #endif

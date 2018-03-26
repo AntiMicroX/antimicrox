@@ -21,6 +21,8 @@
 #include <QDialog>
 #include <QString>
 
+class QWidget;
+
 namespace Ui {
 class CapturedWindowInfoDialog;
 }
@@ -32,9 +34,9 @@ class CapturedWindowInfoDialog : public QDialog
 public:
 
 #ifdef Q_OS_WIN
-    explicit CapturedWindowInfoDialog(QWidget *parent = 0);
+    explicit CapturedWindowInfoDialog(QWidget *parent = nullptr);
 #else
-    explicit CapturedWindowInfoDialog(unsigned long window, QWidget *parent = 0);
+    explicit CapturedWindowInfoDialog(long window, QWidget *parent = nullptr);
 #endif
 
     ~CapturedWindowInfoDialog();
@@ -45,7 +47,7 @@ public:
         WindowName = (1 << 1),
         WindowPath = (1 << 2),
     };
-    typedef unsigned int CapturedWindowOption;
+    typedef int CapturedWindowOption; // typedef unsigned int
 
     QString getWindowClass();
     QString getWindowName();

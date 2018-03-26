@@ -18,17 +18,20 @@
 #ifndef MOUSEDPADSETTINGSDIALOG_H
 #define MOUSEDPADSETTINGSDIALOG_H
 
-#include "mousesettingsdialog.h"
-#include "springmoderegionpreview.h"
+#include "ui_mousesettingsdialog.h"
 
-#include <joydpad.h>
+#include "mousesettingsdialog.h"
 #include "uihelpers/mousedpadsettingsdialoghelper.h"
+
+
+class JoyDPad;
+class SpringModeRegionPreview;
 
 class MouseDPadSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 public:
-    explicit MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent = 0);
+    explicit MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent = nullptr);
 
 protected:
     void selectCurrentMouseModePreset();

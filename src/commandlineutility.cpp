@@ -15,21 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "commandlineutility.h"
+#include "common.h"
+#include "eventhandlerfactory.h"
+
+#include <QDebug>
 #include <QStringListIterator>
 #include <QFileInfo>
 #include <QTextStream>
 
 #ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QApplication>
-    #endif
 #endif
 
-#include "commandlineutility.h"
-#include "common.h"
 
-#include "eventhandlerfactory.h"
 
 QRegExp CommandLineUtility::trayRegexp = QRegExp("--tray");
 QRegExp CommandLineUtility::helpRegexp = QRegExp("(-h|--help)");
@@ -61,6 +60,8 @@ QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::build
 CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     launchInTray = false;
     helpRequest = false;
     versionRequest = false;
@@ -86,6 +87,8 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
 
 void CommandLineUtility::parseArguments(QStringList &arguments)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QStringListIterator iter(arguments);
     while (iter.hasNext() && !encounteredError)
     {
@@ -116,9 +119,9 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 QFileInfo fileInfo(temp);
                 if (fileInfo.exists())
                 {
-                    if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
+                    if ((fileInfo.suffix() != "amgp") && (fileInfo.suffix() != "xml"))
                     {
-                        setErrorMessage(tr("Profile location %1 is not an XML file.").arg(temp));
+                        setErrorMessage(trUtf8("Profile location %1 is not an XML file.").arg(temp));
                     }
                     else
                     {
@@ -130,7 +133,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 }
                 else
                 {
-                    setErrorMessage(tr("Profile location %1 does not exist.").arg(temp));
+                    setErrorMessage(trUtf8("Profile location %1 does not exist.").arg(temp));
                 }
             }
         }
@@ -166,7 +169,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 }
                 else
                 {
-                    setErrorMessage(tr("Controller identifier is not a valid value."));
+                    setErrorMessage(trUtf8("Controller identifier is not a valid value."));
                 }
             }
         }
@@ -207,7 +210,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                     }
                     else
                     {
-                        setErrorMessage(tr("Controller identifier is not a valid value."));
+                        setErrorMessage(trUtf8("Controller identifier is not a valid value."));
                     }
                 }
                 else
@@ -231,7 +234,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
 
                 bool validNumber = false;
                 int tempNumber = temp.toInt(&validNumber);
-                if (validNumber && tempNumber >= 1 && tempNumber <= 8)
+                if (validNumber && (tempNumber >= 1) && (tempNumber <= 8))
                 {
                     startSetNumber = tempNumber;
                     ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
@@ -240,7 +243,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 }
                 else if (validNumber)
                 {
-                    setErrorMessage(tr("An invalid set number '%1' was specified.").arg(tempNumber));
+                    setErrorMessage(trUtf8("An invalid set number '%1' was specified.").arg(tempNumber));
                 }
 
                 if (iter.hasNext())
@@ -265,7 +268,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                         }
                         else
                         {
-                            setErrorMessage(tr("Controller identifier '%s'' is not a valid value.").arg(temp));
+                            setErrorMessage(trUtf8("Controller identifier '%s'' is not a valid value.").arg(temp));
                         }
                     }
                     else
@@ -278,7 +281,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             }
             else
             {
-                setErrorMessage(tr("No set number was specified."));
+                setErrorMessage(trUtf8("No set number was specified."));
             }
         }
         else if (nextRegexp.exactMatch(temp))
@@ -314,12 +317,12 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 }
                 else
                 {
-                    setErrorMessage(tr("Controller identifier is not a valid value."));
+                    setErrorMessage(trUtf8("Controller identifier is not a valid value."));
                 }
             }
             else
             {
-                setErrorMessage(tr("No controller was specified."));
+                setErrorMessage(trUtf8("No controller was specified."));
             }
         }
 #endif
@@ -338,8 +341,8 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             }
             else
             {
-                setErrorMessage(tr("No display string was specified."));
-                //errorsteam << tr("No display string was specified.") << endl;
+                setErrorMessage(trUtf8("No display string was specified."));
+                //errorsteam << trUtf8("No display string was specified.") << endl;
                 //encounteredError = true;
             }
         }
@@ -357,8 +360,8 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 if (!eventGeneratorsList.contains(temp))
                 {
                     eventGenerator = "";
-                    setErrorMessage(tr("An invalid event generator was specified."));
-                    //errorsteam << tr("An invalid event generator was specified.") << endl;
+                    setErrorMessage(trUtf8("An invalid event generator was specified."));
+                    //errorsteam << trUtf8("An invalid event generator was specified.") << endl;
                     //encounteredError = true;
                 }
                 else
@@ -368,8 +371,8 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             }
             else
             {
-                setErrorMessage(tr("No event generator string was specified."));
-                //errorsteam << tr("No event generator string was specified.") << endl;
+                setErrorMessage(trUtf8("No event generator string was specified."));
+                //errorsteam << trUtf8("No event generator string was specified.") << endl;
                 //encounteredError = true;
             }
         }
@@ -384,8 +387,8 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             }
             else
             {
-                setErrorMessage(tr("Qt style flag was detected but no style was specified."));
-                //errorsteam << tr("Qt style flag was detected but no style was specified.") << endl;
+                setErrorMessage(trUtf8("Qt style flag was detected but no style was specified."));
+                //errorsteam << trUtf8("Qt style flag was detected but no style was specified.") << endl;
                 //encounteredError = true;
             }
         }
@@ -421,8 +424,8 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             }
             else
             {
-                setErrorMessage(tr("No log file specified."));
-                //errorsteam << tr("No log level specified.") << endl;
+                setErrorMessage(trUtf8("No log file specified."));
+                //errorsteam << trUtf8("No log level specified.") << endl;
                 //encounteredError = true;
             }
 
@@ -452,9 +455,9 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             QFileInfo fileInfo(temp);
             if (fileInfo.exists())
             {
-                if (fileInfo.suffix() != "amgp" && fileInfo.suffix() != "xml")
+                if ((fileInfo.suffix() != "amgp") && (fileInfo.suffix() != "xml"))
                 {
-                    setErrorMessage(tr("Profile location %1 is not an XML file.").arg(temp));
+                    setErrorMessage(trUtf8("Profile location %1 is not an XML file.").arg(temp));
                 }
                 else
                 {
@@ -470,7 +473,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             }
             else
             {
-                setErrorMessage(tr("Profile location %1 does not exist.").arg(temp));
+                setErrorMessage(trUtf8("Profile location %1 does not exist.").arg(temp));
             }
         }
     }
@@ -478,72 +481,72 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
 
 bool CommandLineUtility::isLaunchInTrayEnabled()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return launchInTray;
 }
 
 void CommandLineUtility::printHelp()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QTextStream out(stdout);
-    out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
-    out << tr("Usage: antimicro [options...] [profile]") << endl;
+    out << trUtf8("antimicro version") << " " << PadderCommon::programVersion << endl;
+    out << trUtf8("Usage: antimicro [options...] [profile]") << endl;
     out << endl;
-    out << tr("Options") << ":" << endl;
-    out << "-h, --help                    " << " " << tr("Print help text.") << endl;
-    out << "-v, --version                 " << " " << tr("Print version information.") << endl;
-    out << "--tray                        " << " " << tr("Launch program in system tray only.") << endl;
-    out << "--no-tray                     " << " " << tr("Launch program with the tray menu disabled.") << endl;
-    out << "--hidden                      " << " " << tr("Launch program without the main window\n                               displayed.") << endl;
+    out << trUtf8("Options") << ":" << endl;
+    out << "-h, --help                    " << " " << trUtf8("Print help text.") << endl;
+    out << "-v, --version                 " << " " << trUtf8("Print version information.") << endl;
+    out << "--tray                        " << " " << trUtf8("Launch program in system tray only.") << endl;
+    out << "--no-tray                     " << " " << trUtf8("Launch program with the tray menu disabled.") << endl;
+    out << "--hidden                      " << " " << trUtf8("Launch program without the main window\n                               displayed.") << endl;
     out << "--profile <location>          " << " " <<
-           tr("Launch program with the configuration file\n                               selected as the default for selected\n                               controllers. Defaults to all controllers.")
+           trUtf8("Launch program with the configuration file\n                               selected as the default for selected\n                               controllers. Defaults to all controllers.")
         << endl;
     out << "--profile-controller <value>  " << " "
-        << tr("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
+        << trUtf8("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
         << endl;
-    out << "--unload [<value>]            " << " " << tr("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
+    out << "--unload [<value>]            " << " " << trUtf8("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
         << endl;
-    out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
+    out << "--startSet <number> [<value>] " << " " << trUtf8("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
         << endl;
-    out << "--next                        " << " " << tr("Advance profile loading set options.")
+    out << "--next                        " << " " << trUtf8("Advance profile loading set options.")
         << endl;
 
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
-        << tr("Launch program as a daemon.") << endl;
-    out << "--log-level {debug,info}      " << " " << tr("Enable logging.") << endl;
+        << trUtf8("Launch program as a daemon.") << endl;
+    out << "--log-level {debug,info}      " << " " << trUtf8("Enable logging.") << endl;
 
     #ifdef WITH_X11
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
     out << "--display <value>             " << " "
-        << tr("Use specified display for X11 calls.\n"
+        << trUtf8("Use specified display for X11 calls.\n"
               "                               Useful for ssh.")
         << endl;
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
-        #endif
     #endif
 #endif
 
 #if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
     out << "--eventgen {xtest,uinput}     " << " "
-        << tr("Choose between using XTest support and uinput\n"
+        << trUtf8("Choose between using XTest support and uinput\n"
            "                               support for event generation. Default: xtest.")
         << endl;
 #elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
     out << "--eventgen {sendinput,vmulti} " << " "
-        << tr("Choose between using SendInput and vmulti\n"
+        << trUtf8("Choose between using SendInput and vmulti\n"
            "                           support for event generation. Default: sendinput.")
         << endl;
 #endif
 
 #ifdef USE_SDL_2
     out << "-l, --list                    " << " "
-        << tr("Print information about joysticks detected by \n"
+        << trUtf8("Print information about joysticks detected by \n"
               "                               SDL.") << endl;
     out << "--map <value>                 " << " "
-        << tr("Open game controller mapping window of selected\n"
+        << trUtf8("Open game controller mapping window of selected\n"
               "                               controller. Value can be a controller index or\n"
               "                               GUID.")
         << endl;
@@ -553,67 +556,65 @@ void CommandLineUtility::printHelp()
 
 QString CommandLineUtility::generateHelpString()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     QTextStream out(&temp);
-    out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
-    out << tr("Usage: antimicro [options...] [profile]") << endl;
+    out << trUtf8("antimicro version") << " " << PadderCommon::programVersion << endl;
+    out << trUtf8("Usage: antimicro [options...] [profile]") << endl;
     out << endl;
-    out << tr("Options") << ":" << endl;
-    out << "-h, --help                    " << " " << tr("Print help text.") << endl;
-    out << "-v, --version                 " << " " << tr("Print version information.") << endl;
-    out << "--tray                        " << " " << tr("Launch program in system tray only.") << endl;
-    out << "--no-tray                     " << " " << tr("Launch program with the tray menu disabled.") << endl;
-    out << "--hidden                      " << " " << tr("Launch program without the main window\n                               displayed.") << endl;
+    out << trUtf8("Options") << ":" << endl;
+    out << "-h, --help                    " << " " << trUtf8("Print help text.") << endl;
+    out << "-v, --version                 " << " " << trUtf8("Print version information.") << endl;
+    out << "--tray                        " << " " << trUtf8("Launch program in system tray only.") << endl;
+    out << "--no-tray                     " << " " << trUtf8("Launch program with the tray menu disabled.") << endl;
+    out << "--hidden                      " << " " << trUtf8("Launch program without the main window\n                               displayed.") << endl;
     out << "--profile <location>          " << " " <<
-           tr("Launch program with the configuration file\n                               selected as the default for selected\n                               controllers. Defaults to all controllers.")
+           trUtf8("Launch program with the configuration file\n                               selected as the default for selected\n                               controllers. Defaults to all controllers.")
         << endl;
     out << "--profile-controller <value>  " << " "
-        << tr("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
+        << trUtf8("Apply configuration file to a specific\n                               controller. Value can be a\n                               controller index, name, or GUID.")
         << endl;
-    out << "--unload [<value>]            " << " " << tr("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
+    out << "--unload [<value>]            " << " " << trUtf8("Unload currently enabled profile(s). \n                               Value can be a controller index, name, or GUID.")
         << endl;
-    out << "--startSet <number> [<value>] " << " " << tr("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
+    out << "--startSet <number> [<value>] " << " " << trUtf8("Start joysticks on a specific set.   \n                               Value can be a controller index, name, or GUID.")
         << endl;
-    out << "--next                        " << " " << tr("Advance profile loading set options.")
+    out << "--next                        " << " " << trUtf8("Advance profile loading set options.")
         << endl;
 
 #ifdef Q_OS_UNIX
     out << "-d, --daemon                  " << " "
-        << tr("Launch program as a daemon.") << endl;
-    out << "--log-level {debug,info}      " << " " << tr("Enable logging.") << endl;
+        << trUtf8("Launch program as a daemon.") << endl;
+    out << "--log-level {debug,info}      " << " " << trUtf8("Enable logging.") << endl;
     #ifdef WITH_X11
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
     out << "--display <value>             " << " "
-        << tr("Use specified display for X11 calls.\n"
+        << trUtf8("Use specified display for X11 calls.\n"
               "                               Useful for ssh.")
         << endl;
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
-        #endif
     #endif
 #endif
 
 #if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
     out << "--eventgen {xtest,uinput}     " << " "
-        << tr("Choose between using XTest support and uinput\n"
+        << trUtf8("Choose between using XTest support and uinput\n"
            "                               support for event generation. Default: xtest.")
         << endl;
 #elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
     out << "--eventgen {sendinput,vmulti} " << " "
-        << tr("Choose between using SendInput and vmulti\n"
+        << trUtf8("Choose between using SendInput and vmulti\n"
            "                           support for event generation. Default: sendinput.")
         << endl;
 #endif
 
 #ifdef USE_SDL_2
     out << "-l, --list                    " << " "
-        << tr("Print information about joysticks detected by \n"
+        << trUtf8("Print information about joysticks detected by \n"
               "                               SDL.") << endl;
     out << "--map <value>                 " << " "
-        << tr("Open game controller mapping window of selected\n"
+        << trUtf8("Open game controller mapping window of selected\n"
               "                               controller. Value can be a controller index or\n"
               "                               GUID.")
         << endl;
@@ -624,91 +625,125 @@ QString CommandLineUtility::generateHelpString()
 
 bool CommandLineUtility::isHelpRequested()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return helpRequest;
 }
 
 bool CommandLineUtility::isVersionRequested()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return versionRequest;
 }
 
 void CommandLineUtility::printVersionString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QTextStream out(stdout);
-    out << tr("antimicro version") << " " << PadderCommon::programVersion << endl;
+    out << trUtf8("antimicro version") << " " << PadderCommon::programVersion << endl;
 }
 
 QString CommandLineUtility::generateVersionString()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     QTextStream out(&temp);
-    out << tr("antimicro version") << " " << PadderCommon::programVersion;
+    out << trUtf8("antimicro version") << " " << PadderCommon::programVersion;
 
     return temp;
 }
 
 bool CommandLineUtility::isTrayHidden()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return hideTrayIcon;
 }
 
 bool CommandLineUtility::hasProfile()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return !profileLocation.isEmpty();
 }
 
 bool CommandLineUtility::hasControllerNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return (controllerNumber > 0);
 }
 
 QString CommandLineUtility::getProfileLocation()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return profileLocation;
 }
 
-unsigned int CommandLineUtility::getControllerNumber()
+int CommandLineUtility::getControllerNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return controllerNumber;
 }
 
 bool CommandLineUtility::hasError()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return encounteredError;
 }
 
 bool CommandLineUtility::isHiddenRequested()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return hiddenRequest;
 }
 
 bool CommandLineUtility::hasControllerID()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return !controllerIDString.isEmpty();
 }
 
 QString CommandLineUtility::getControllerID()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return controllerIDString;
 }
 
 bool CommandLineUtility::isUnloadRequested()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return unloadProfile;
 }
 
-unsigned int CommandLineUtility::getStartSetNumber()
+int CommandLineUtility::getStartSetNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return startSetNumber;
 }
 
-unsigned int CommandLineUtility::getJoyStartSetNumber()
+int CommandLineUtility::getJoyStartSetNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return startSetNumber - 1;
 }
 
 bool CommandLineUtility::isPossibleCommand(QString temp)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
 
     if (temp.startsWith("--") || temp.startsWith("-"))
@@ -721,27 +756,37 @@ bool CommandLineUtility::isPossibleCommand(QString temp)
 
 bool CommandLineUtility::shouldListControllers()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return listControllers;
 }
 
 bool CommandLineUtility::shouldMapController()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mappingController;
 }
 
 QString CommandLineUtility::getEventGenerator()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return eventGenerator;
 }
 
 #ifdef Q_OS_UNIX
 bool CommandLineUtility::launchAsDaemon()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return daemonMode;
 }
 
 QString CommandLineUtility::getDisplayString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return displayString;
 }
 
@@ -749,31 +794,42 @@ QString CommandLineUtility::getDisplayString()
 
 Logger::LogLevel CommandLineUtility::getCurrentLogLevel()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return currentLogLevel;
 }
 
 QString CommandLineUtility::getCurrentLogFile() {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
   return currentLogFile;
 }
 
-QString CommandLineUtility::getErrorText()
-{
+QString CommandLineUtility::getErrorText() {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     return errorText;
 }
 
 void CommandLineUtility::setErrorMessage(QString temp)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     errorText = temp;
     encounteredError = true;
 }
 
 QList<ControllerOptionsInfo>* CommandLineUtility::getControllerOptionsList()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &controllerOptionsList;
 }
 
 bool CommandLineUtility::hasProfileInOptions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
 
     QListIterator<ControllerOptionsInfo> iter(controllerOptionsList);

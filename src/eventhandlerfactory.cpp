@@ -15,12 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QHash>
-
 #include "eventhandlerfactory.h"
+#include "eventhandlers/baseeventhandler.h"
+
+#include <QHash>
+#include <QDebug>
+
 
 static QHash<QString, QString> buildDisplayNames()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<QString, QString> temp;
 #ifdef Q_OS_WIN
     temp.insert("sendinput", "SendInput");
@@ -36,11 +41,13 @@ static QHash<QString, QString> buildDisplayNames()
 
 QHash<QString, QString> handlerDisplayNames = buildDisplayNames();
 
-EventHandlerFactory* EventHandlerFactory::instance = 0;
+EventHandlerFactory* EventHandlerFactory::instance = nullptr;
 
 EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #ifdef Q_OS_UNIX
     #ifdef WITH_UINPUT
     if (handler == "uinput")
@@ -71,16 +78,20 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
 
 EventHandlerFactory::~EventHandlerFactory()
 {
-    if (eventHandler)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (eventHandler != nullptr)
     {
         delete eventHandler;
-        eventHandler = 0;
+        eventHandler = nullptr;
     }
 }
 
 EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
 {
-    if (!instance)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (instance == nullptr)
     {
         QStringList temp = buildEventGeneratorList();
         if (!handler.isEmpty() && temp.contains(handler))
@@ -98,21 +109,27 @@ EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
 
 void EventHandlerFactory::deleteInstance()
 {
-    if (instance)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (instance != nullptr)
     {
         delete instance;
-        instance = 0;
+        instance = nullptr;
     }
 }
 
 BaseEventHandler* EventHandlerFactory::handler()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return eventHandler;
 }
 
 QString EventHandlerFactory::fallBackIdentifier()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
 #ifdef Q_OS_UNIX
   #if defined(WITH_XTEST)
     temp = "xtest";
@@ -130,7 +147,9 @@ QString EventHandlerFactory::fallBackIdentifier()
 
 QStringList EventHandlerFactory::buildEventGeneratorList()
 {
-    QStringList temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QStringList temp = QStringList();
 
 #ifdef Q_OS_WIN
     temp.append("sendinput");
@@ -146,7 +165,9 @@ QStringList EventHandlerFactory::buildEventGeneratorList()
 
 QString EventHandlerFactory::handlerDisplayName(QString handler)
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     if (handlerDisplayNames.contains(handler))
     {
         temp = handlerDisplayNames.value(handler);

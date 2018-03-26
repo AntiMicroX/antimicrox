@@ -18,10 +18,12 @@
 #ifndef JOYBUTTONWIDGET_H
 #define JOYBUTTONWIDGET_H
 
+#include "flashbuttonwidget.h"
+
 #include <QPoint>
 
-#include "flashbuttonwidget.h"
-#include "joybutton.h"
+class JoyButton;
+class QWidget;
 
 class JoyButtonWidget : public FlashButtonWidget
 {

@@ -27,7 +27,7 @@ class JoyKeyRepeatHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyKeyRepeatHelper(QObject *parent = 0);
+    explicit JoyKeyRepeatHelper(QObject *parent = nullptr);
     QTimer* getRepeatTimer();
 
     void setLastActiveKey(JoyButtonSlot *slot);
@@ -36,14 +36,14 @@ public:
     //void setKeyRepeatDelay(unsigned int repeatDelay);
     //unsigned int getKeyRepeatDelay();
 
-    void setKeyRepeatRate(unsigned int repeatRate);
-    unsigned int getKeyRepeatRate();
+    void setKeyRepeatRate(int repeatRate); // (unsigned)
+    int getKeyRepeatRate(); // unsigned
 
 protected:
     QTimer keyRepeatTimer;
     JoyButtonSlot *lastActiveKey;
-    unsigned int keyRepeatDelay;
-    unsigned int keyRepeatRate;
+    int keyRepeatDelay; // unsigned
+    int keyRepeatRate; // unsigned
 
 signals:
 

@@ -25,9 +25,9 @@ class VDPad : public JoyDPad
 {
     Q_OBJECT
 public:
-    explicit VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
     explicit VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
-                   int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+                   int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
     ~VDPad();
 
     void joyEvent(bool pressed, bool ignoresets=false);
@@ -51,8 +51,6 @@ protected:
     JoyButton *leftButton;
     JoyButton *rightButton;
     bool pendingVDPadEvent;
-
-signals:
 
 public slots:
     void activatePendingEvent();

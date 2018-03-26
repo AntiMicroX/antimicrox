@@ -8,15 +8,15 @@
 
 class WinExtras : public QObject
 {
-    Q_OBJECT
-public:
-    static QString getDisplayString(unsigned int virtualkey);
-    static unsigned int getVirtualKey(QString codestring);
-    static unsigned int correctVirtualKey(unsigned int scancode,
-                                          unsigned int virtualkey);
-    static unsigned int scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias=0);
 
-    static const unsigned int EXTENDED_FLAG;
+public:
+    static QString getDisplayString(int virtualkey); // (unsigned)
+    static int getVirtualKey(QString codestring); // unsigned
+    static int correctVirtualKey(int scancode,
+                                          int virtualkey); // unsigned (unsigned, unsigned)
+    static int scancodeFromVirtualKey(int virtualkey, int alias=0); // unsigned (unsigned, unsigned)
+
+    static const int EXTENDED_FLAG; // unsigned
     static QString getForegroundWindowExePath();
     static bool containsFileAssociationinRegistry();
     static void writeFileAssocationToRegistry();
@@ -32,17 +32,13 @@ public:
     static QPoint getCursorPos();
 
 protected:
-    explicit WinExtras(QObject *parent = 0);
+    explicit WinExtras(QObject *parent = nullptr);
     void populateKnownAliases();
 
     static WinExtras _instance;
-    QHash<QString, unsigned int> knownAliasesX11SymVK;
-    QHash<unsigned int, QString> knownAliasesVKStrings;
+    QHash<QString, int> knownAliasesX11SymVK; // <.., unsigned>
+    QHash<int, QString> knownAliasesVKStrings; // <unsigned, ..>
     static int originalMouseAccel;
-
-signals:
-
-public slots:
 
 };
 

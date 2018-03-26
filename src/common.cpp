@@ -15,21 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "common.h"
+
+#include <QDebug>
 #include <QApplication>
 #include <QLibraryInfo>
 #ifdef Q_OS_WIN
 #include <QStandardPaths>
 #endif
 
-#include "common.h"
 
 namespace PadderCommon
 {
     QString preferredProfileDir(AntiMicroSettings *settings)
     {
+        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
         QString lastProfileDir = settings->value("LastProfileDir", "").toString();
         QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
-        QString lookupDir;
+        QString lookupDir = QString();
 
         if (!defaultProfileDir.isEmpty())
         {
@@ -76,7 +80,9 @@ namespace PadderCommon
 
     QStringList arguments(int &argc, char **argv)
     {
-        QStringList list;
+        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+        QStringList list = QStringList();
 
         for (int a = 0; a < argc; ++a) {
             list << QString::fromLocal8Bit(argv[a]);
@@ -87,9 +93,11 @@ namespace PadderCommon
 
     QStringList parseArgumentsString(QString tempString)
     {
+        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
         bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
         QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
-        QStringList finalList;
+        QStringList finalList = QStringList();
         QStringListIterator iter(tempList);
         while (iter.hasNext())
         {
@@ -119,6 +127,8 @@ namespace PadderCommon
                            QTranslator *appTranslator,
                            QString language)
     {
+        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
         // Remove application specific translation strings
         qApp->removeTranslator(translator);
 
@@ -150,6 +160,8 @@ namespace PadderCommon
 
     void lockInputDevices()
     {
+        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
         sdlWaitMutex.lock();
         /*editingLock.lockForWrite();
         editingBindings = true;
@@ -163,6 +175,8 @@ namespace PadderCommon
 
     void unlockInputDevices()
     {
+        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
         sdlWaitMutex.unlock();
         /*editingLock.lockForWrite();
         editingBindings = false;

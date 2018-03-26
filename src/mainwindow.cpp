@@ -15,24 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QHash>
-#include <QHashIterator>
-#include <QMapIterator>
-#include <QLocalSocket>
-#include <QTextStream>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QMessageBox>
-#include <QLibraryInfo>
-
-#ifdef Q_OS_WIN
-#include <QSysInfo>
-#endif
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "inputdevice.h"
+#include "aboutdialog.h"
+#include "commandlineutility.h"
+#include "antimicrosettings.h"
+#include "autoprofilewatcher.h"
+#include "joystick.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
 #include "joycontrolstickpushbutton.h"
@@ -60,10 +51,31 @@
 #endif
 
 #ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #include <QApplication>
-    #endif
 #endif
+
+#include <QHideEvent>
+#include <QShowEvent>
+#include <QCloseEvent>
+#include <QLocalServer>
+#include <QTranslator>
+#include <QAction>
+#include <QDebug>
+#include <QHash>
+#include <QHashIterator>
+#include <QMapIterator>
+#include <QLocalSocket>
+#include <QTextStream>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QMessageBox>
+#include <QLibraryInfo>
+
+#ifdef Q_OS_WIN
+#include <QSysInfo>
+#endif
+
+
 
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                        CommandLineUtility *cmdutility, AntiMicroSettings *settings,
@@ -72,10 +84,12 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     ui->stackedWidget->setCurrentIndex(0);
 
-    this->translator = 0;
-    this->appTranslator = 0;
+    this->translator = nullptr;
+    this->appTranslator = nullptr;
     this->cmdutility = cmdutility;
     this->graphical = graphical;
     this->settings = settings;
@@ -88,25 +102,21 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
-        this->appWatcher = 0;
+        this->appWatcher = nullptr;
     }
-        #endif
     #endif
 #elif defined(Q_OS_WIN)
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
 #else
-    this->appWatcher = 0;
+    this->appWatcher = nullptr;
 #endif
 
     signalDisconnect = false;
@@ -150,7 +160,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     }
     else
     {
-        aboutDialog = 0;
+        aboutDialog = nullptr;
     }
 
     connect(ui->menuQuit, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
@@ -159,6 +169,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
     connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
+    connect(ui->actionIssues, SIGNAL(triggered()), this, SLOT(openIssuesPage()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
     connect(ui->actionWiki, SIGNAL(triggered()), this, SLOT(openWikiPage()));
 
@@ -166,14 +177,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
     connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
-        #endif
     #elif defined(Q_OS_WIN)
         connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
     #endif
@@ -206,11 +213,15 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
 MainWindow::~MainWindow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void MainWindow::alterConfigFromSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (cmdutility->shouldListControllers())
     {
         graphical = false;
@@ -297,6 +308,8 @@ void MainWindow::alterConfigFromSettings()
 #ifdef USE_SDL_2
 void MainWindow::controllerMapOpening()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (cmdutility->shouldMapController())
     {
         graphical = false;
@@ -307,7 +320,7 @@ void MainWindow::controllerMapOpening()
 
         if (temp.hasControllerNumber())
         {
-            unsigned int joypadIndex = cmdutility->getControllerNumber();
+            int joypadIndex = cmdutility->getControllerNumber();
             selectControllerJoyTab(joypadIndex);
             openGameControllerMappingWindow(true);
         }
@@ -319,7 +332,7 @@ void MainWindow::controllerMapOpening()
         }
         else
         {
-            Logger::LogInfo(tr("Could not find a proper controller identifier. "
+            Logger::LogInfo(trUtf8("Could not find a proper controller identifier. "
                                "Exiting."));
             qApp->quit();
         }
@@ -329,11 +342,15 @@ void MainWindow::controllerMapOpening()
 
 void MainWindow::fillButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     fillButtons(joysticks);
 }
 
 void MainWindow::makeJoystickTabs()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
@@ -362,11 +379,11 @@ void MainWindow::makeJoystickTabs()
         InputDevice *joystick = iter.value();
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, settings, this);
         QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
+        joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
     }
 
-    if (joysticks > 0)
+    if (joysticks != nullptr)
     {
         ui->tabWidget->setCurrentIndex(0);
         ui->stackedWidget->setCurrentIndex(1);
@@ -375,13 +392,17 @@ void MainWindow::makeJoystickTabs()
 
 void MainWindow::fillButtons(InputDevice *joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int joyindex = joystick->getJoyNumber();
-    JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
+    JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));  // static_cast
     tabwidget->refreshButtons();
 }
 
 void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
@@ -411,7 +432,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, settings, this);
         QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
+        joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
         connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
@@ -448,6 +469,8 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 // Intermediate slot to be used in Form Designer
 void MainWindow::startJoystickRefresh()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->stackedWidget->setCurrentIndex(0);
     ui->actionUpdate_Joysticks->setEnabled(false);
     ui->actionHide->setEnabled(false);
@@ -459,17 +482,19 @@ void MainWindow::startJoystickRefresh()
 
 void MainWindow::populateTrayIcon()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
 
     trayIconMenu->clear();
     profileActions.clear();
-    unsigned int joystickCount = joysticks->size();
+    int joystickCount = joysticks->size();
 
     if (joystickCount > 0)
     {
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
         bool useSingleList = settings->value("TrayProfileList", false).toBool();
-        if (!useSingleList && joystickCount == 1)
+        if (!useSingleList && (joystickCount == 1))
         {
             useSingleList = true;
         }
@@ -481,16 +506,16 @@ void MainWindow::populateTrayIcon()
             InputDevice *current = iter.value();
 
             QString joytabName = current->getSDLName();
-            joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
-            QMenu *joysticksubMenu = 0;
+            joytabName.append(" ").append(trUtf8("(%1)").arg(current->getName()));
+            QMenu *joysticksubMenu = nullptr;
 
             if (!useSingleList)
             {
                 joysticksubMenu = trayIconMenu->addMenu(joytabName);
             }
 
-            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-            if (widget)
+            JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+            if (widget != nullptr)
             {
                 QHash<int, QString> *configs = widget->recentConfigs();
                 QHashIterator<int, QString> configIter(*configs);
@@ -498,8 +523,8 @@ void MainWindow::populateTrayIcon()
                 while (configIter.hasNext())
                 {
                     configIter.next();
-                    QAction *newaction = 0;
-                    if (joysticksubMenu)
+                    QAction *newaction = nullptr;
+                    if (joysticksubMenu != nullptr)
                     {
                         newaction = new QAction(configIter.value(), joysticksubMenu);
                     }
@@ -533,16 +558,16 @@ void MainWindow::populateTrayIcon()
                 }
 
                 delete configs;
-                configs = 0;
+                configs = nullptr;
 
-                QAction *newaction = 0;
-                if (joysticksubMenu)
+                QAction *newaction = nullptr;
+                if (joysticksubMenu != nullptr)
                 {
-                    newaction = new QAction(tr("Open File"), joysticksubMenu);
+                    newaction = new QAction(trUtf8("Open File"), joysticksubMenu);
                 }
                 else
                 {
-                    newaction = new QAction(tr("Open File"), trayIconMenu);
+                    newaction = new QAction(trUtf8("Open File"), trayIconMenu);
                 }
 
                 newaction->setIcon(QIcon::fromTheme("document-open"));
@@ -586,19 +611,19 @@ void MainWindow::populateTrayIcon()
         trayIconMenu->addSeparator();
     }
 
-    hideAction = new QAction(tr("&Hide"), trayIconMenu);
+    hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
     hideAction->setIcon(QIcon::fromTheme("view-restore"));
     connect(hideAction, SIGNAL(triggered()), this, SLOT(hideWindow()));
 
-    restoreAction = new QAction(tr("&Restore"), trayIconMenu);
+    restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
     restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
 
-    closeAction = new QAction(tr("&Quit"), trayIconMenu);
+    closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
     closeAction->setIcon(QIcon::fromTheme("application-exit"));
     connect(closeAction, SIGNAL(triggered()), this, SLOT(quitProgram()));
 
-    updateJoy = new QAction(tr("&Update Joysticks"), trayIconMenu);
+    updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
     updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
     connect(updateJoy, SIGNAL(triggered()), this, SLOT(startJoystickRefresh()));
 
@@ -614,10 +639,12 @@ void MainWindow::populateTrayIcon()
 
 void MainWindow::quitProgram()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool discard = true;
     for (int i=0; i < ui->tabWidget->count() && discard; i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         discard = tab->discardUnsavedProfileChanges();
     }
 
@@ -629,6 +656,8 @@ void MainWindow::quitProgram()
 
 void MainWindow::refreshTrayIconMenu()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (this->isHidden())
     {
         hideAction->setEnabled(false);
@@ -643,6 +672,8 @@ void MainWindow::refreshTrayIconMenu()
 
 void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (reason == QSystemTrayIcon::Trigger)
     {
         if (this->isHidden())
@@ -658,7 +689,9 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::mainMenuChange()
 {
-    QMenu *tempMenu = static_cast<QMenu*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QMenu *tempMenu = qobject_cast<QMenu*>(sender()); // static_cast
 
     if (tempMenu == ui->menuQuit)
     {
@@ -682,20 +715,22 @@ void MainWindow::mainMenuChange()
 
 void MainWindow::saveAppConfig()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (joysticks->size() > 0)
     {
-        JoyTabWidget *temptabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(0));
+        JoyTabWidget *temptabwidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(0)); // static_cast
         settings->setValue("DisplayNames",
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
         settings->beginGroup("Controllers");
-        QStringList tempIdentifierHolder;
+        QStringList tempIdentifierHolder = QStringList();
 
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
             bool prepareSave = true;
 
-            JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+            JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
             InputDevice *device = tabwidget->getJoystick();
 
             // Do not allow multi-controller adapters to overwrite each
@@ -729,15 +764,19 @@ void MainWindow::saveAppConfig()
 
 void MainWindow::loadAppConfig(bool forceRefresh)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         tabwidget->loadSettings(forceRefresh);
     }
 }
 
 void MainWindow::disableFlashActions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
         QList<JoyButtonWidget*> list = ui->tabWidget->widget(i)->findChildren<JoyButtonWidget*>();
@@ -788,13 +827,15 @@ void MainWindow::disableFlashActions()
             dpadWidget->disableFlashes();
         }
 
-        JoyTabWidget *tabWidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        JoyTabWidget *tabWidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         ui->tabWidget->disableFlashes(tabWidget->getJoystick());
     }
 }
 
 void MainWindow::enableFlashActions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
         QList<JoyButtonWidget*> list = ui->tabWidget->widget(i)->findChildren<JoyButtonWidget*>();
@@ -851,7 +892,7 @@ void MainWindow::enableFlashActions()
             dpadWidget->tryFlash();
         }
 
-        JoyTabWidget *tabWidget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        JoyTabWidget *tabWidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         ui->tabWidget->enableFlashes(tabWidget->getJoystick());
     }
 }
@@ -859,6 +900,8 @@ void MainWindow::enableFlashActions()
 // Intermediate slot used in Design mode
 void MainWindow::hideWindow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disableFlashActions();
     signalDisconnect = true;
     hide();
@@ -866,7 +909,9 @@ void MainWindow::hideWindow()
 
 void MainWindow::joystickTrayShow()
 {
-    QMenu *tempmenu = static_cast<QMenu*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QMenu *tempmenu = qobject_cast<QMenu*>(sender()); // static_cast
     QList<QAction*> menuactions = tempmenu->actions();
     QListIterator<QAction*> listiter (menuactions);
     while (listiter.hasNext())
@@ -881,7 +926,7 @@ void MainWindow::joystickTrayShow()
             iter.next();
             int joyindex = iter.key().toInt();
             int configindex = iter.value().toInt();
-            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
+            JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex)); // static_cast
 
             if (configindex == widget->getCurrentConfigIndex())
             {
@@ -911,6 +956,8 @@ void MainWindow::joystickTrayShow()
 
 void MainWindow::showEvent(QShowEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool propogate = true;
 
     // Check if hideEvent has been processed
@@ -948,6 +995,8 @@ void MainWindow::showEvent(QShowEvent *event)
 
 void MainWindow::changeEvent(QEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (event->type() == QEvent::WindowStateChange)
     {
         QWindowStateChangeEvent *e = static_cast<QWindowStateChangeEvent*>(event);
@@ -975,15 +1024,19 @@ void MainWindow::changeEvent(QEvent *event)
 
 void MainWindow::openAboutDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     aboutDialog->show();
 }
 
 void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 {
-    if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((joystickIndex > 0) && joysticks->contains(joystickIndex - 1))
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex-1));
-        if (widget)
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex-1)); // static_cast
+        if (widget != nullptr)
         {
             widget->loadConfigFile(fileLocation);
         }
@@ -992,8 +1045,8 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
     {
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
-            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-            if (widget)
+            JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
+            if (widget != nullptr)
             {
                 widget->loadConfigFile(fileLocation);
             }
@@ -1003,13 +1056,15 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 
 void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!controllerID.isEmpty())
     {
         QListIterator<JoyTabWidget*> iter(ui->tabWidget->findChildren<JoyTabWidget*>());
         while (iter.hasNext())
         {
             JoyTabWidget *tab = iter.next();
-            if (tab)
+            if (tab != nullptr)
             {
                 InputDevice *tempdevice = tab->getJoystick();
                 if (controllerID == tempdevice->getStringIdentifier())
@@ -1023,13 +1078,15 @@ void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
 
 void MainWindow::removeJoyTabs()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int oldtabcount = ui->tabWidget->count();
 
     for (int i = oldtabcount-1; i >= 0; i--)
     {
         QWidget *tab = ui->tabWidget->widget(i);
         delete tab;
-        tab = 0;
+        tab = nullptr;
     }
 
     ui->tabWidget->clear();
@@ -1037,18 +1094,22 @@ void MainWindow::removeJoyTabs()
 
 void MainWindow::handleInstanceDisconnect()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->sync();
     loadAppConfig(true);
 }
 
 void MainWindow::openJoystickStatusWindow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
-        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        JoyTabWidget *joyTab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(index)); // static_cast
         InputDevice *joystick = joyTab->getJoystick();
-        if (joystick)
+        if (joystick != nullptr)
         {
             JoystickStatusWindow *dialog = new JoystickStatusWindow(joystick, this);
             dialog->show();
@@ -1058,26 +1119,41 @@ void MainWindow::openJoystickStatusWindow()
 
 void MainWindow::openKeyCheckerDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QKeyDisplayDialog *dialog = new QKeyDisplayDialog(this);
     dialog->show();
 }
 
 void MainWindow::openGitHubPage()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage));
+}
+
+void MainWindow::openIssuesPage()
+{
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QDesktopServices::openUrl(QUrl(PadderCommon::githubIssuesPage));
 }
 
 void MainWindow::openWikiPage()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QDesktopServices::openUrl(QUrl(PadderCommon::wikiPage));
 }
 
 void MainWindow::unloadCurrentConfig(int joystickIndex)
 {
-    if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((joystickIndex > 0) && joysticks->contains(joystickIndex - 1))
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(joystickIndex-1));
-        if (widget)
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(joystickIndex - 1)); // static_cast
+        if (widget != nullptr)
         {
             widget->unloadConfig();
         }
@@ -1086,8 +1162,8 @@ void MainWindow::unloadCurrentConfig(int joystickIndex)
     {
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
-            JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(i));
-            if (widget)
+            JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(i));  // static_cast
+            if (widget != nullptr)
             {
                 widget->unloadConfig();
             }
@@ -1097,13 +1173,15 @@ void MainWindow::unloadCurrentConfig(int joystickIndex)
 
 void MainWindow::unloadCurrentConfig(QString controllerID)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!controllerID.isEmpty())
     {
         QListIterator<JoyTabWidget*> iter(ui->tabWidget->findChildren<JoyTabWidget*>());
         while (iter.hasNext())
         {
             JoyTabWidget *tab = iter.next();
-            if (tab)
+            if (tab != nullptr)
             {
                 InputDevice *tempdevice = tab->getJoystick();
                 if (controllerID == tempdevice->getStringIdentifier())
@@ -1117,11 +1195,13 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
 
 void MainWindow::propogateNameDisplayStatus(bool displayNames)
 {
-    JoyTabWidget *tabwidget = static_cast<JoyTabWidget*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget*>(sender());  // static_cast
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (tab && tab != tabwidget)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+        if ((tab != nullptr) && (tab != tabwidget))
         {
             if (tab->isDisplayingNames() != displayNames)
             {
@@ -1131,15 +1211,17 @@ void MainWindow::propogateNameDisplayStatus(bool displayNames)
     }
 }
 
-void MainWindow::changeStartSetNumber(unsigned int startSetNumber, QString controllerID)
+void MainWindow::changeStartSetNumber(int startSetNumber, QString controllerID)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!controllerID.isEmpty())
     {
         QListIterator<JoyTabWidget*> iter(ui->tabWidget->findChildren<JoyTabWidget*>());
         while (iter.hasNext())
         {
             JoyTabWidget *tab = iter.next();
-            if (tab)
+            if (tab != nullptr)
             {
                 InputDevice *tempdevice = tab->getJoystick();
                 if (controllerID == tempdevice->getStringIdentifier())
@@ -1151,12 +1233,14 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, QString contr
     }
 }
 
-void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex)
+void MainWindow::changeStartSetNumber(int startSetNumber, int joystickIndex)
 {
-    if (joystickIndex > 0 && joysticks->contains(joystickIndex-1))
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((joystickIndex > 0) && joysticks->contains(joystickIndex - 1))
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex-1));
-        if (widget)
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex - 1));  // static_cast
+        if (widget != nullptr)
         {
             widget->changeCurrentSet(startSetNumber);
         }
@@ -1165,8 +1249,8 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int 
     {
         for (int i=0; i < ui->tabWidget->count(); i++)
         {
-            JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-            if (widget)
+            JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+            if (widget != nullptr)
             {
                 widget->changeCurrentSet(startSetNumber);
             }
@@ -1180,24 +1264,22 @@ void MainWindow::changeStartSetNumber(unsigned int startSetNumber, unsigned int 
  */
 void MainWindow::openMainSettingsDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
     MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
     connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
 
-    if (appWatcher)
+    if (appWatcher != nullptr)
     {
 #if defined(USE_SDL_2) && defined(Q_OS_UNIX) && defined(WITH_X11)
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
     connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
     connect(dialog, SIGNAL(rejected()), this, SLOT(checkAutoProfileWatcherTimer()));
     appWatcher->stopTimer();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
-    #endif
 
 #elif defined(USE_SDL_2) && defined(Q_OS_WIN)
     connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
@@ -1224,6 +1306,8 @@ void MainWindow::openMainSettingsDialog()
  */
 void MainWindow::changeLanguage(QString language)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (translator && appTranslator)
     {
         PadderCommon::reloadTranslations(translator, appTranslator, language);
@@ -1237,6 +1321,8 @@ void MainWindow::changeLanguage(QString language)
  */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool closeToTray = settings->value("CloseToTray", false).toBool();
     if (closeToTray && QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
     {
@@ -1257,11 +1343,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
  */
 void MainWindow::showStickAssignmentDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
-        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
-        Joystick *joystick = static_cast<Joystick*>(joyTab->getJoystick());
+        JoyTabWidget *joyTab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(index)); // static_cast
+        Joystick *joystick = qobject_cast<Joystick*>(joyTab->getJoystick()); // static_cast
 
         AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
         connect(dialog, SIGNAL(finished(int)), joyTab, SLOT(fillButtons()));
@@ -1275,6 +1363,8 @@ void MainWindow::showStickAssignmentDialog()
  */
 void MainWindow::singleTrayProfileMenuShow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!profileActions.isEmpty())
     {
         QMapIterator<int, QList<QAction*> > mapIter(profileActions);
@@ -1295,7 +1385,7 @@ void MainWindow::singleTrayProfileMenuShow()
                     iter.next();
                     int joyindex = iter.key().toInt();
                     int configindex = iter.value().toInt();
-                    JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
+                    JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex)); // static_cast
 
                     if (configindex == widget->getCurrentConfigIndex())
                     {
@@ -1328,8 +1418,10 @@ void MainWindow::singleTrayProfileMenuShow()
 
 void MainWindow::profileTrayActionTriggered(bool checked)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     // Obtaining the selected config
-    QAction *action = static_cast<QAction*>(sender());
+    QAction *action = qobject_cast<QAction*>(sender());  // static_cast
     QHash<QString, QVariant> tempmap = action->data().toHash();
     QHashIterator<QString, QVariant> iter(tempmap);
     while (iter.hasNext())
@@ -1339,7 +1431,7 @@ void MainWindow::profileTrayActionTriggered(bool checked)
         // Fetching indicies and tab associated with the current joypad
         int joyindex = iter.key().toInt();
         int configindex = iter.value().toInt();
-        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex));
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joyindex)); // static_cast
 
         // Checking if the selected config has been disabled by the change (action->isChecked() represents the state of the checkbox AFTER the click)
         if (!checked)
@@ -1357,10 +1449,12 @@ void MainWindow::profileTrayActionTriggered(bool checked)
 
 void MainWindow::checkHideEmptyOption()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (tab)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
+        if (tab != nullptr)
         {
             tab->checkHideEmptyOption();
         }
@@ -1371,9 +1465,11 @@ void MainWindow::checkHideEmptyOption()
 #ifdef Q_OS_WIN
 void MainWindow::checkKeyRepeatOptions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         tab->deviceKeyRepeatSettings();
     }
 }
@@ -1384,10 +1480,12 @@ void MainWindow::checkKeyRepeatOptions()
  */
 void MainWindow::restartAsElevated()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QMessageBox msg;
     msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msg.setWindowTitle(tr("Run as Administrator?"));
-    msg.setText(tr("Are you sure that you want to run this program as Adminstrator?"
+    msg.setWindowTitle(trUtf8("Run as Administrator?"));
+    msg.setText(trUtf8("Are you sure that you want to run this program as Adminstrator?"
                    "\n\n"
                    "Some games run as Administrator which will cause events generated by antimicro "
                    "to not be used by those games unless antimicro is also run "
@@ -1412,8 +1510,8 @@ void MainWindow::restartAsElevated()
         else
         {
             msg.setStandardButtons(QMessageBox::Close);
-            msg.setWindowTitle(tr("Failed to elevate program"));
-            msg.setText(tr("Failed to restart this program as the Administrator"));
+            msg.setWindowTitle(trUtf8("Failed to elevate program"));
+            msg.setText(trUtf8("Failed to restart this program as the Administrator"));
             msg.exec();
         }
     }
@@ -1424,12 +1522,14 @@ void MainWindow::restartAsElevated()
 #ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow(bool openAsMain)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
-        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        JoyTabWidget *joyTab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(index)); // static_cast
         InputDevice *joystick = joyTab->getJoystick();
-        if (joystick)
+        if (joystick != nullptr)
         {
             GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
 
@@ -1449,29 +1549,33 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
     }
     else if (openAsMain)
     {
-        Logger::LogInfo(tr("Could not find controller. Exiting."));
+        Logger::LogInfo(trUtf8("Could not find controller. Exiting."));
         qApp->quit();
     }
 }
 
 void MainWindow::propogateMappingUpdate(QString mapping, InputDevice *device)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit mappingUpdated(mapping, device);
 }
 
 void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QWidget *tab = ui->tabWidget->widget(index);
-    if (tab)
+    if (tab != nullptr)
     {
         ui->tabWidget->removeTab(index);
         delete tab;
-        tab = 0;
+        tab = nullptr;
     }
 
     JoyTabWidget *tabwidget = new JoyTabWidget(device, settings, this);
     QString joytabName = device->getSDLName();
-    joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+    joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
     ui->tabWidget->insertTab(index, tabwidget, joytabName);
     tabwidget->refreshButtons();
     ui->tabWidget->setCurrentIndex(index);
@@ -1489,11 +1593,13 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
 
 void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
-    for (int i=0; i < ui->tabWidget->count() && !found; i++)
+    for (int i=0; (i < ui->tabWidget->count()) && !found; i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (tab && deviceID == tab->getJoystick()->getSDLJoystickID())
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
+        if ((tab != nullptr) && (deviceID == tab->getJoystick()->getSDLJoystickID()))
         {
             // Save most recent profile list to settings before removing tab.
             tab->saveDeviceSettings();
@@ -1504,7 +1610,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
             ui->tabWidget->removeTab(i);
             QMetaObject::invokeMethod(tab->getJoystick(), "finalRemoval");
             delete tab;
-            tab = 0;
+            tab = nullptr;
             found = true;
         }
     }
@@ -1512,12 +1618,12 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
     // Refresh tab text to reflect new index values.
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (tab)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+        if (tab != nullptr)
         {
             InputDevice *device = tab->getJoystick();
             QString joytabName = device->getSDLName();
-            joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+            joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
             ui->tabWidget->setTabText(i, joytabName);
         }
     }
@@ -1537,9 +1643,11 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 
 void MainWindow::addJoyTab(InputDevice *device)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyTabWidget *tabwidget = new JoyTabWidget(device, settings, this);
     QString joytabName = device->getSDLName();
-    joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+    joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
     ui->tabWidget->addTab(tabwidget, joytabName);
     tabwidget->loadDeviceSettings();
     tabwidget->refreshButtons();
@@ -1547,12 +1655,12 @@ void MainWindow::addJoyTab(InputDevice *device)
     // Refresh tab text to reflect new index values.
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (tab)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
+        if (tab != nullptr)
         {
             InputDevice *device = tab->getJoystick();
             QString joytabName = device->getSDLName();
-            joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
+            joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
             ui->tabWidget->setTabText(i, joytabName);
         }
     }
@@ -1572,22 +1680,24 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
   if( info != NULL ) {
-    Logger::LogDebug(QObject::tr("Auto-switching to profile \"%1\".").
+    Logger::LogDebug(QObject::trUtf8("Auto-switching to profile \"%1\".").
 		     arg(info->getProfileLocation()));
   } else {
-    Logger::LogError(QObject::tr("Auto-switching to NULL profile!"));    
+    Logger::LogError(QObject::trUtf8("Auto-switching to NULL profile!"));    
   }
   
 #if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
-    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #if defined(Q_OS_UNIX)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (widget)
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+        if (widget != nullptr)
         {
             if (info->getGUID() == "all")
             {
@@ -1610,7 +1720,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 }
 
                 delete customs;
-                customs = 0;
+                customs = nullptr;
 
                 // Check if profile has already been switched for a particular
                 // controller.
@@ -1650,7 +1760,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
             }
         }
     }
-    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #if defined(Q_OS_UNIX)
     }
     #endif
 #endif
@@ -1658,8 +1768,10 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
 void MainWindow::checkAutoProfileWatcherTimer()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
-    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #if defined(Q_OS_UNIX)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
@@ -1672,7 +1784,7 @@ void MainWindow::checkAutoProfileWatcherTimer()
     {
         appWatcher->stopTimer();
     }
-    #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    #if defined(Q_OS_UNIX)
     }
     #endif
 #endif
@@ -1683,13 +1795,15 @@ void MainWindow::checkAutoProfileWatcherTimer()
  */
 void MainWindow::updateMenuOptions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
-        JoyTabWidget *joyTab = static_cast<JoyTabWidget*>(ui->tabWidget->widget(index));
+        JoyTabWidget *joyTab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(index));  // static_cast
         InputDevice *joystick = joyTab->getJoystick();
 
-        if (qobject_cast<GameController*>(joystick) != 0)
+        if (qobject_cast<GameController*>(joystick) != nullptr)
         {
             ui->actionStick_Pad_Assign->setEnabled(false);
         }
@@ -1704,14 +1818,16 @@ void MainWindow::updateMenuOptions()
  * @brief Select appropriate tab with the specified index.
  * @param Index of appropriate tab.
  */
-void MainWindow::selectControllerJoyTab(unsigned int index)
+void MainWindow::selectControllerJoyTab(int index)
 {
-    if (index > 0 && joysticks->contains(index-1))
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((index > 0) && joysticks->contains(index - 1))
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*> (ui->tabWidget->widget(index-1));
-        if (widget)
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(index - 1));  // static_cast
+        if (widget != nullptr)
         {
-            ui->tabWidget->setCurrentIndex(index-1);
+            ui->tabWidget->setCurrentIndex(index - 1);
         }
     }
 }
@@ -1722,22 +1838,24 @@ void MainWindow::selectControllerJoyTab(unsigned int index)
  */
 void MainWindow::selectControllerJoyTab(QString GUID)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!GUID.isEmpty())
     {
-        InputDevice *device = 0;
+        InputDevice *device = nullptr;
         QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*joysticks);
         while (deviceIter.hasNext())
         {
             deviceIter.next();
             InputDevice *tempDevice = deviceIter.value();
-            if (tempDevice && GUID == tempDevice->getStringIdentifier())
+            if (tempDevice && (GUID == tempDevice->getStringIdentifier()))
             {
                 device = tempDevice;
                 deviceIter.toBack();
             }
         }
 
-        if (device)
+        if (device != nullptr)
         {
             ui->tabWidget->setCurrentIndex(device->getJoyNumber());
         }
@@ -1748,6 +1866,8 @@ void MainWindow::selectControllerJoyTab(QString GUID)
 
 void MainWindow::changeWindowStatus()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     // Check flags to see if user requested for the main window and the tray icon
     // to not be displayed.
     if (graphical)
@@ -1777,40 +1897,54 @@ void MainWindow::changeWindowStatus()
 
 bool MainWindow::getGraphicalStatus()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return graphical;
 }
 
 void MainWindow::setTranslator(QTranslator *translator)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->translator = translator;
 }
 
 QTranslator* MainWindow::getTranslator()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return translator;
 }
 
 void MainWindow::setAppTranslator(QTranslator *translator)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->appTranslator = translator;
 }
 
 QTranslator* MainWindow::getAppTranslator()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return appTranslator;
 }
 
 void MainWindow::retranslateUi()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->retranslateUi(this);
 }
 
 void MainWindow::refreshTabHelperThreads()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *widget = static_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
-        if (widget)
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+        if (widget != nullptr)
         {
             widget->refreshHelperThread();
         }

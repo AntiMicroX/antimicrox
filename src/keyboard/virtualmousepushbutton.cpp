@@ -17,10 +17,14 @@
 
 #include "virtualmousepushbutton.h"
 
+#include <QDebug>
+
 VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent) :
     QPushButton(parent)
 {
-    if (mode == JoyButtonSlot::JoyMouseButton || mode == JoyButtonSlot::JoyMouseMovement)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((mode == JoyButtonSlot::JoyMouseButton) || (mode == JoyButtonSlot::JoyMouseMovement))
     {
         this->setText(displayText);
 
@@ -51,7 +55,7 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
     }
     else
     {
-        this->setText(tr("INVALID"));
+        this->setText(trUtf8("INVALID"));
         this->code = 0;
         this->mode = JoyButtonSlot::JoyMouseButton;
     }
@@ -59,18 +63,24 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
     connect(this, SIGNAL(clicked()), this, SLOT(createTempSlot()));
 }
 
-unsigned int VirtualMousePushButton::getMouseCode()
+int VirtualMousePushButton::getMouseCode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return code;
 }
 
 JoyButtonSlot::JoySlotInputAction VirtualMousePushButton::getMouseMode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mode;
 }
 
 void VirtualMousePushButton::createTempSlot()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButtonSlot *tempslot = new JoyButtonSlot(this->code, this->mode, this);
     emit mouseSlotCreated(tempslot);
 }

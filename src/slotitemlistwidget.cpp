@@ -15,22 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QListWidgetItem>
-
 #include "slotitemlistwidget.h"
 #include "simplekeygrabberbutton.h"
+
+#include <QListWidgetItem>
+#include <QKeyEvent>
+#include <QWidget>
+#include <QDebug>
 
 SlotItemListWidget::SlotItemListWidget(QWidget *parent) :
     QListWidget(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 }
 
 void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool propogate = true;
 
     QListWidgetItem *currentItem = this->item(this->currentRow());
-    SimpleKeyGrabberButton *tempbutton = 0;
+    SimpleKeyGrabberButton *tempbutton = nullptr;
     if (currentItem)
     {
         tempbutton = currentItem->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();

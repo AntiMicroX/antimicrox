@@ -15,15 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QHash>
-
 #include "dpadpushbuttongroup.h"
+#include "joydpad.h"
+#include "joydpadbuttonwidget.h"
+#include "dpadpushbutton.h"
 #include "buttoneditdialog.h"
 #include "dpadeditdialog.h"
+#include "inputdevice.h"
+
+#include <QHash>
+#include <QWidget>
+#include <QDebug>
 
 DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->dpad = dpad;
     this->displayNames = displayNames;
 
@@ -35,10 +43,12 @@ DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidg
 
 void DPadPushButtonGroup::generateButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
 
-    JoyDPadButton *button = 0;
-    JoyDPadButtonWidget *pushbutton = 0;
+    JoyDPadButton *button = nullptr;
+    JoyDPadButtonWidget *pushbutton = nullptr;
 
     button = buttons->value(JoyDPadButton::DpadLeftUp);
     upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
@@ -127,9 +137,11 @@ void DPadPushButtonGroup::generateButtons()
 
 void DPadPushButtonGroup::changeButtonLayout()
 {
-    if (dpad->getJoyMode() == JoyDPad::StandardMode ||
-        dpad->getJoyMode() == JoyDPad::EightWayMode ||
-        dpad->getJoyMode() == JoyDPad::FourWayCardinal)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((dpad->getJoyMode() == JoyDPad::StandardMode) ||
+        (dpad->getJoyMode() == JoyDPad::EightWayMode) ||
+        (dpad->getJoyMode() == JoyDPad::FourWayCardinal))
     {
         upButton->setVisible(true);
         downButton->setVisible(true);
@@ -144,8 +156,8 @@ void DPadPushButtonGroup::changeButtonLayout()
         rightButton->setVisible(false);
     }
 
-    if (dpad->getJoyMode() == JoyDPad::EightWayMode ||
-        dpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+    if ((dpad->getJoyMode() == JoyDPad::EightWayMode) ||
+        (dpad->getJoyMode() == JoyDPad::FourWayDiagonal))
     {
         upLeftButton->setVisible(true);
         upRightButton->setVisible(true);
@@ -163,31 +175,41 @@ void DPadPushButtonGroup::changeButtonLayout()
 
 void DPadPushButtonGroup::propogateSlotsChanged()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit buttonSlotChanged();
 }
 
 JoyDPad* DPadPushButtonGroup::getDPad()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return dpad;
 }
 
 void DPadPushButtonGroup::openDPadButtonDialog()
 {
-    JoyButtonWidget *buttonWidget = static_cast<JoyButtonWidget*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(button, parentWidget());
+    ButtonEditDialog *dialog = new ButtonEditDialog(button, dpad->getParentSet()->getInputDevice(), parentWidget());
     dialog->show();
 }
 
 void DPadPushButtonGroup::showDPadDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     DPadEditDialog *dialog = new DPadEditDialog(dpad, parentWidget());
     dialog->show();
 }
 
 void DPadPushButtonGroup::toggleNameDisplay()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     displayNames = !displayNames;
 
     upButton->toggleNameDisplay();

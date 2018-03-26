@@ -18,9 +18,7 @@
 #ifndef SDLEVENTREADER_H
 #define SDLEVENTREADER_H
 
-#include <QObject>
-#include <QMap>
-#include <QTimer>
+
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL.h>
@@ -29,8 +27,15 @@
 #endif
 
 #include "joystick.h"
-#include "inputdevice.h"
-#include "antimicrosettings.h"
+
+#include <QObject>
+#include <QMap>
+#include <QTimer>
+
+
+class InputDevice;
+class AntiMicroSettings;
+
 
 class SDLEventReader : public QObject
 {
@@ -38,7 +43,7 @@ class SDLEventReader : public QObject
 public:
     explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                             AntiMicroSettings *settings,
-                            QObject *parent = 0);
+                            QObject *parent = nullptr);
     ~SDLEventReader();
 
     bool isSDLOpen();
@@ -52,7 +57,7 @@ protected:
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
     bool sdlIsOpen;
     AntiMicroSettings *settings;
-    unsigned int pollRate;
+    int pollRate; // unsigned
     QTimer pollRateTimer;
 
 signals:
@@ -65,7 +70,7 @@ public slots:
     void performWork();
     void stop();
     void refresh();
-    void updatePollRate(unsigned int tempPollRate);
+    void updatePollRate(int tempPollRate); // (unsigned)
     void resetJoystickMap();
     void quit();
     void closeDevices();

@@ -18,10 +18,13 @@
 #ifndef JOYCONTROLSTICKEDITDIALOG_H
 #define JOYCONTROLSTICKEDITDIALOG_H
 
+
+#include "uihelpers/joycontrolstickeditdialoghelper.h"
+
 #include <QDialog>
 
-#include "joycontrolstick.h"
-#include "uihelpers/joycontrolstickeditdialoghelper.h"
+class JoyControlStick;
+class QWidget;
 
 namespace Ui {
 class JoyControlStickEditDialog;
@@ -32,7 +35,7 @@ class JoyControlStickEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent = 0);
+    explicit JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent = nullptr);
     ~JoyControlStickEditDialog();
     
 protected:

@@ -24,15 +24,14 @@
 #include <QList>
 #include <QSet>
 
-#include "autoprofileinfo.h"
-#include "antimicrosettings.h"
-
+class AntiMicroSettings;
+class AutoProfileInfo;
 
 class AutoProfileWatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent = 0);
+    explicit AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent = nullptr);
     void startTimer();
     void stopTimer();
     QList<AutoProfileInfo*>* getCustomDefaults();

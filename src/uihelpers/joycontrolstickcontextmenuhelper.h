@@ -18,24 +18,27 @@
 #ifndef JOYCONTROLSTICKCONTEXTMENUHELPER_H
 #define JOYCONTROLSTICKCONTEXTMENUHELPER_H
 
+#include "joycontrolstick.h"
+
 #include <QObject>
 #include <QHash>
 
-#include "joycontrolstick.h"
+
+
+class JoyButtonSlot;
+
 
 class JoyControlStickContextMenuHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent = 0);
+    explicit JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> *tempSlots);
     void clearPendingSlots();
 
 protected:
     JoyControlStick *stick;
     QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> pendingSlots;
-
-signals:
 
 public slots:
     void setFromPendingSlots();

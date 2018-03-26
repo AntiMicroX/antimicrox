@@ -27,7 +27,7 @@ class QtUInputKeyMapper : public QtKeyMapperBase
 {
     Q_OBJECT
 public:
-    explicit QtUInputKeyMapper(QObject *parent = 0);
+    explicit QtUInputKeyMapper(QObject *parent = nullptr);
 
 protected:
     void populateMappingHashes();

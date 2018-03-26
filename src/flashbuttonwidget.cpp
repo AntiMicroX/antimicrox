@@ -15,16 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "flashbuttonwidget.h"
+
+#include <QDebug>
 #include <QStyle>
 #include <QFontMetrics>
 #include <QPainter>
+#include <QPaintEvent>
+#include <QWidget>
 
-#include "flashbuttonwidget.h"
 
 FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
     QPushButton(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     isflashing = false;
     displayNames = false;
     leftAlignText = false;
@@ -33,6 +38,8 @@ FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
 FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
     QPushButton(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     isflashing = false;
     this->displayNames = displayNames;
     leftAlignText = false;
@@ -40,6 +47,8 @@ FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
 
 void FlashButtonWidget::flash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     isflashing = true;
 
     this->style()->unpolish(this);
@@ -50,6 +59,8 @@ void FlashButtonWidget::flash()
 
 void FlashButtonWidget::unflash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     isflashing = false;
 
     this->style()->unpolish(this);
@@ -60,32 +71,46 @@ void FlashButtonWidget::unflash()
 
 void FlashButtonWidget::refreshLabel()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     setText(generateLabel());
+
+    qDebug() << "label has been set: " << generateLabel();
 }
 
 bool FlashButtonWidget::isButtonFlashing()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return isflashing;
 }
 
 void FlashButtonWidget::toggleNameDisplay()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     displayNames = !displayNames;
     refreshLabel();
 }
 
 void FlashButtonWidget::setDisplayNames(bool display)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     displayNames = display;
 }
 
 bool FlashButtonWidget::isDisplayingNames()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return displayNames;
 }
 
 void FlashButtonWidget::paintEvent(QPaintEvent *event)
 {
+   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPainter painter(this);
 
     QFont tempScaledFont = painter.font();
@@ -128,5 +153,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
 
 void FlashButtonWidget::retranslateUi()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     refreshLabel();
 }

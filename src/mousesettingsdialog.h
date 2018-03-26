@@ -32,7 +32,7 @@ class MouseSettingsDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit MouseSettingsDialog(QWidget *parent = 0);
+    explicit MouseSettingsDialog(QWidget *parent = nullptr);
     ~MouseSettingsDialog();
     
 protected:

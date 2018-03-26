@@ -18,20 +18,20 @@
 #ifndef SETJOYSTICK_H
 #define SETJOYSTICK_H
 
+#include "joyaxis.h"
+
 #include <QObject>
 #include <QHash>
 #include <QList>
 #include <QTimer>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
-
-#include "joyaxis.h"
-#include "joycontrolstick.h"
-#include "joydpad.h"
-#include "joybutton.h"
-#include "vdpad.h"
 
 class InputDevice;
+class JoyButton;
+class JoyDPad;
+class JoyControlStick;
+class VDPad;
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 class SetJoystick : public QObject
 {
@@ -54,7 +54,7 @@ public:
     int getNumberVDPads();
 
     int getIndex();
-    unsigned int getRealIndex();
+    int getRealIndex(); // unsigned
     virtual void refreshButtons ();
     virtual void refreshAxes();
     virtual void refreshHats();

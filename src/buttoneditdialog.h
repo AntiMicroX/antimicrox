@@ -20,11 +20,14 @@
 
 #include <QDialog>
 
-#include "joybutton.h"
-#include "keyboard/virtualkeyboardmousewidget.h"
-#include "advancebuttondialog.h"
 #include "uihelpers/buttoneditdialoghelper.h"
 
+class JoyButton;
+class JoyButtonSlot;
+class QWidget;
+class QKeyEvent;
+class InputDevice;
+class QuickSetDialog;
 
 namespace Ui {
 class ButtonEditDialog;
@@ -35,19 +38,33 @@ class ButtonEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit ButtonEditDialog(JoyButton *button, QWidget *parent = 0);
+    explicit ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWidget *parent = nullptr);
+    explicit ButtonEditDialog(InputDevice* joystick, QWidget *parent = nullptr);
     ~ButtonEditDialog();
+
+    static ButtonEditDialog* getInstance();
+    JoyButton* getLastJoyButton();
+    void setUpLastJoyButton(JoyButton*);
+    void refreshForLastBtn();
     
 protected:
-    JoyButton *button;
+    InputDevice *joystick;
+    QuickSetDialog *currentQuickDialog;
     bool ignoreRelease;
+    JoyButton* lastJoyButton;
     ButtonEditDialogHelper helper;
+    static ButtonEditDialog *instance;
 
     virtual void keyReleaseEvent(QKeyEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
 
+
+
 private:
     Ui::ButtonEditDialog *ui;
+
+
+
 
 signals:
     void advancedDialogOpened();
@@ -55,14 +72,16 @@ signals:
     void keyGrabbed(JoyButtonSlot *tempslot);
     void selectionCleared();
     void selectionFinished();
+    void buttonDialogClosed();
 
 private slots:
+    void nullifyDialogPointer();
     void refreshSlotSummaryLabel();
     void changeToggleSetting();
     void changeTurboSetting();
     void openAdvancedDialog();
     void closedAdvancedDialog();
-    void createTempSlot(int keycode, unsigned int alias);
+    void createTempSlot(int keycode, int alias); // .., .., unsigned
 
     void checkTurboSetting(bool state);
     void setTurboButtonEnabled(bool state);

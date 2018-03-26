@@ -15,13 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QListIterator>
-
 #include "dpadcontextmenuhelper.h"
+#include "joybuttonslot.h"
+
+#include <QListIterator>
+#include <QHashIterator>
+#include <QDebug>
 
 DPadContextMenuHelper::DPadContextMenuHelper(JoyDPad *dpad, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(dpad);
 
     this->dpad = dpad;
@@ -29,6 +34,8 @@ DPadContextMenuHelper::DPadContextMenuHelper(JoyDPad *dpad, QObject *parent) :
 
 void DPadContextMenuHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingSlots.clear();
 
     QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> iter(*tempSlots);
@@ -44,11 +51,15 @@ void DPadContextMenuHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirectio
 
 void DPadContextMenuHelper::clearPendingSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingSlots.clear();
 }
 
 void DPadContextMenuHelper::setFromPendingSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!pendingSlots.isEmpty())
     {
         QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> iter(pendingSlots);
@@ -72,6 +83,8 @@ void DPadContextMenuHelper::setFromPendingSlots()
 
 void DPadContextMenuHelper::clearButtonsSlotsEventReset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<int, JoyDPadButton*> *buttons = dpad->getButtons();
     QHashIterator<int, JoyDPadButton*> iter(*buttons);
     while (iter.hasNext())

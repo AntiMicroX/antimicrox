@@ -16,29 +16,40 @@
  */
 
 #include "gamecontrollermappingdialoghelper.h"
+#include "inputdevice.h"
+
+#include <QDebug>
 
 GameControllerMappingDialogHelper::GameControllerMappingDialogHelper(InputDevice *device,
                                                                      QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->device = device;
 }
 
 
 void GameControllerMappingDialogHelper::raiseDeadZones()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     device->setRawAxisDeadZone(InputDevice::RAISEDDEADZONE);
     device->getActiveSetJoystick()->raiseAxesDeadZones();
 }
 
 void GameControllerMappingDialogHelper::raiseDeadZones(int deadZone)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     device->getActiveSetJoystick()->raiseAxesDeadZones(deadZone);
     device->setRawAxisDeadZone(deadZone);
 }
 
 void GameControllerMappingDialogHelper::setupDeadZones()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     device->getActiveSetJoystick()->setIgnoreEventState(true);
     device->getActiveSetJoystick()->release();
 
@@ -50,6 +61,8 @@ void GameControllerMappingDialogHelper::setupDeadZones()
 
 void GameControllerMappingDialogHelper::restoreDeviceDeadZones()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     device->getActiveSetJoystick()->setIgnoreEventState(false);
     device->getActiveSetJoystick()->release();
     device->getActiveSetJoystick()->setAxesDeadZones(&originalAxesDeadZones);

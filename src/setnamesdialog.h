@@ -20,7 +20,8 @@
 
 #include <QDialog>
 
-#include "inputdevice.h"
+class InputDevice;
+class QWidget;
 
 namespace Ui {
 class SetNamesDialog;
@@ -31,7 +32,7 @@ class SetNamesDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SetNamesDialog(InputDevice *device, QWidget *parent = 0);
+    explicit SetNamesDialog(InputDevice *device, QWidget *parent = nullptr);
     ~SetNamesDialog();
 
 protected:

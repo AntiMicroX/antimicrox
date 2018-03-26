@@ -15,23 +15,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <cmath>
-
 #include "joyaxisbutton.h"
 #include "joyaxis.h"
+#include "joybutton.h"
+#include "setjoystick.h"
+#include "vdpad.h"
 #include "event.h"
+
+#include <cmath>
+
+#include <QDebug>
 
 const QString JoyAxisButton::xmlName = "axisbutton";
 
 JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyGradientButton(index, originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     this->axis = axis;
 }
 
 QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString temp = QString(axis->getPartialName(forceFullFormat, displayNames));
     temp.append(": ");
 
@@ -39,7 +46,7 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Button")).append(" ");
+            temp.append(trUtf8("Button")).append(" ");
         }
         temp.append(buttonName);
     }
@@ -47,27 +54,27 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Button")).append(" ");
+            temp.append(trUtf8("Button")).append(" ");
         }
         temp.append(defaultButtonName);
     }
     else
     {
-        QString buttontype;
+        QString buttontype = QString();
         if (index == 0)
         {
-            buttontype = tr("Negative");
+            buttontype = trUtf8("Negative");
         }
         else if (index == 1)
         {
-            buttontype = tr("Positive");
+            buttontype = trUtf8("Positive");
         }
         else
         {
-            buttontype = tr("Unknown");
+            buttontype = trUtf8("Unknown");
         }
 
-        temp.append(tr("Button")).append(" ").append(buttontype);
+        temp.append(trUtf8("Button")).append(" ").append(buttontype);
     }
 
     return temp;
@@ -75,21 +82,25 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
 
 QString JoyAxisButton::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
 void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     SetChangeCondition oldCondition = setSelectionCondition;
 
-    if (condition != setSelectionCondition && !passive)
+    if ((condition != setSelectionCondition) && !passive)
     {
-        if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
+        if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
             emit setAssignmentChanged(index, this->axis->getIndex(), setSelection, condition);
         }
-        else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
+        else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
             emit setAssignmentChanged(index, this->axis->getIndex(), setSelection, SetChangeDisabled);
@@ -125,6 +136,8 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
  */
 double JoyAxisButton::getDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return axis->getDistanceFromDeadZone();
 }
 
@@ -134,11 +147,15 @@ double JoyAxisButton::getDistanceFromDeadZone()
  */
 double JoyAxisButton::getMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->getDistanceFromDeadZone();
 }
 
 void JoyAxisButton::setVDPad(VDPad *vdpad)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (axis->isPartControlStick())
     {
         axis->removeControlStick();
@@ -149,6 +166,8 @@ void JoyAxisButton::setVDPad(VDPad *vdpad)
 
 JoyAxis* JoyAxisButton::getAxis()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->axis;
 }
 
@@ -158,6 +177,8 @@ JoyAxis* JoyAxisButton::getAxis()
  */
 void JoyAxisButton::setTurboMode(TurboMode mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (isPartRealAxis())
     {
         currentTurboMode = mode;
@@ -172,11 +193,15 @@ void JoyAxisButton::setTurboMode(TurboMode mode)
  */
 bool JoyAxisButton::isPartRealAxis()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return true;
 }
 
 double JoyAxisButton::getAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double distance = 0.0;
     distance = axis->getRawDistance(axis->getCurrentThrottledValue());
     return distance;
@@ -184,6 +209,8 @@ double JoyAxisButton::getAccelerationDistance()
 
 double JoyAxisButton::getLastAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double distance = 0.0;
     distance = axis->getRawDistance(axis->getLastKnownThrottleValue());
     /*if (axis->getAxisButtonByValue(axis->getLastKnownThrottleValue()) == this)
@@ -197,6 +224,8 @@ double JoyAxisButton::getLastAccelerationDistance()
 
 double JoyAxisButton::getLastMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double distance = 0.0;
     if (axis->getAxisButtonByValue(axis->getLastKnownThrottleValue()) == this)
     {

@@ -17,15 +17,19 @@
 
 #include "vdpad.h"
 
+#include <QDebug>
+
 const QString VDPad::xmlName = "vdpad";
 
 VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyDPad(index, originset, parentSet, parent)
 {
-    this->upButton = 0;
-    this->downButton = 0;
-    this->leftButton = 0;
-    this->rightButton = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    this->upButton = nullptr;
+    this->downButton = nullptr;
+    this->leftButton = nullptr;
+    this->rightButton = nullptr;
 
     pendingVDPadEvent = false;
 }
@@ -34,6 +38,8 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
              int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyDPad(index, originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->upButton = upButton;
     upButton->setVDPad(this);
 
@@ -51,45 +57,51 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
 
 VDPad::~VDPad()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (upButton)
     {
         upButton->removeVDPad();
-        upButton = 0;
+        upButton = nullptr;
     }
 
     if (downButton)
     {
         downButton->removeVDPad();
-        downButton = 0;
+        downButton = nullptr;
     }
 
     if (leftButton)
     {
         leftButton->removeVDPad();
-        leftButton = 0;
+        leftButton = nullptr;
     }
 
     if (rightButton)
     {
         rightButton->removeVDPad();
-        rightButton = 0;
+        rightButton = nullptr;
     }
 }
 
 QString VDPad::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
 QString VDPad::getName(bool forceFullFormat, bool displayName)
 {
-    QString label;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString label = QString();
 
     if (!dpadName.isEmpty() && displayName)
     {
         if (forceFullFormat)
         {
-            label.append(tr("VDPad")).append(" ");
+            label.append(trUtf8("VDPad")).append(" ");
         }
 
         label.append(dpadName);
@@ -98,13 +110,13 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
     {
         if (forceFullFormat)
         {
-            label.append(tr("VDPad")).append(" ");
+            label.append(trUtf8("VDPad")).append(" ");
         }
         label.append(defaultDPadName);
     }
     else
     {
-        label.append(tr("VDPad")).append(" ");
+        label.append(trUtf8("VDPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
     }
 
@@ -113,6 +125,8 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
 
 void VDPad::joyEvent(bool pressed, bool ignoresets)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(pressed);
 
     int tempDirection = static_cast<int>(JoyDPadButton::DpadCentered);
@@ -147,6 +161,8 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
 
 void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (direction == JoyDPadButton::DpadUp)
     {
         if (upButton)
@@ -187,54 +203,60 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 
 void VDPad::removeVButton(JoyDPadButton::JoyDPadDirections direction)
 {
-    if (direction == JoyDPadButton::DpadUp && upButton)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((direction == JoyDPadButton::DpadUp) && upButton)
     {
         upButton->removeVDPad();
-        upButton = 0;
+        upButton = nullptr;
     }
-    else if (direction == JoyDPadButton::DpadDown && downButton)
+    else if ((direction == JoyDPadButton::DpadDown) && downButton)
     {
         downButton->removeVDPad();
-        downButton = 0;
+        downButton = nullptr;
     }
-    else if (direction == JoyDPadButton::DpadLeft && leftButton)
+    else if ((direction == JoyDPadButton::DpadLeft) && leftButton)
     {
         leftButton->removeVDPad();
-        leftButton = 0;
+        leftButton = nullptr;
     }
-    else if (direction == JoyDPadButton::DpadRight && rightButton)
+    else if ((direction == JoyDPadButton::DpadRight) && rightButton)
     {
         rightButton->removeVDPad();
-        rightButton = 0;
+        rightButton = nullptr;
     }
 }
 
 void VDPad::removeVButton(JoyButton *button)
 {
-    if (button && button == upButton)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (button && (button == upButton))
     {
         upButton->removeVDPad();
-        upButton = 0;
+        upButton = nullptr;
     }
-    else if (button && button == downButton)
+    else if (button && (button == downButton))
     {
         downButton->removeVDPad();
-        downButton = 0;
+        downButton = nullptr;
     }
-    else if (button && button == leftButton)
+    else if (button && (button == leftButton))
     {
         leftButton->removeVDPad();
-        leftButton = 0;
+        leftButton = nullptr;
     }
-    else if (button && button == rightButton)
+    else if (button && (button == rightButton))
     {
         rightButton->removeVDPad();
-        rightButton = 0;
+        rightButton = nullptr;
     }
 }
 
 bool VDPad::isEmpty()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool empty = true;
 
     if (upButton || downButton || leftButton || rightButton)
@@ -247,7 +269,9 @@ bool VDPad::isEmpty()
 
 JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
 {
-    JoyButton *button = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyButton *button = nullptr;
     if (direction == JoyDPadButton::DpadUp)
     {
         button = upButton;
@@ -270,11 +294,15 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
 
 bool VDPad::hasPendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return pendingVDPadEvent;
 }
 
 void VDPad::queueJoyEvent(bool ignoresets)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(ignoresets);
 
     pendingVDPadEvent = true;
@@ -282,6 +310,8 @@ void VDPad::queueJoyEvent(bool ignoresets)
 
 void VDPad::activatePendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (pendingVDPadEvent)
     {
         // Always use true. The proper direction value will be determined
@@ -295,5 +325,7 @@ void VDPad::activatePendingEvent()
 
 void VDPad::clearPendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingVDPadEvent = false;
 }

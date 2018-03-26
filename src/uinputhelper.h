@@ -24,27 +24,24 @@
 
 class UInputHelper : public QObject
 {
-    Q_OBJECT
+
+
 public:
     static UInputHelper* getInstance();
     void deleteInstance();
 
-    QString getDisplayString(unsigned int virtualkey);
-    unsigned int getVirtualKey(QString codestring);
+    QString getDisplayString(int virtualkey); // unsigned
+    int getVirtualKey(QString codestring); // unsigned
 
 protected:
-    explicit UInputHelper(QObject *parent = 0);
+    explicit UInputHelper(QObject *parent = nullptr);
     ~UInputHelper();
 
     void populateKnownAliases();
 
     static UInputHelper *_instance;
-    QHash<QString, unsigned int> knownAliasesX11SymVK;
-    QHash<unsigned int, QString> knownAliasesVKStrings;
-
-signals:
-
-public slots:
+    QHash<QString, int> knownAliasesX11SymVK; // <.., unsigned>
+    QHash<int, QString> knownAliasesVKStrings; // <unsigned, ..>
 
 };
 

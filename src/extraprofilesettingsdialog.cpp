@@ -15,26 +15,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-
 #include "extraprofilesettingsdialog.h"
 #include "ui_extraprofilesettingsdialog.h"
+#include "inputdevice.h"
+
+#include <QDebug>
+
 
 ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ExtraProfileSettingsDialog)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
 
-    ui->pressValueLabel->setText(QString::number(0.10, 'g', 3).append("").append(tr("s")));
+    ui->pressValueLabel->setText(QString::number(0.10, 'g', 3).append("").append(trUtf8("s")));
     if (device->getDeviceKeyPressTime() > 0)
     {
         int temppress = device->getDeviceKeyPressTime();
         ui->keyPressHorizontalSlider->setValue(device->getDeviceKeyPressTime() / 10);
-        ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
+        ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(trUtf8("s")));
     }
 
     if (!device->getProfileName().isEmpty())
@@ -48,12 +52,16 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
 
 ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int temppress = value * 10;
     device->setDeviceKeyPressTime(temppress);
-    ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
+    ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(trUtf8("s")));
 }

@@ -16,11 +16,16 @@
  */
 
 #include "mousecontrolsticksettingsdialoghelper.h"
+#include "joycontrolstick.h"
+
+#include <QDebug>
 
 MouseControlStickSettingsDialogHelper::MouseControlStickSettingsDialogHelper(JoyControlStick *stick,
                                                                              QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(stick);
 
     this->stick = stick;
@@ -28,35 +33,49 @@ MouseControlStickSettingsDialogHelper::MouseControlStickSettingsDialogHelper(Joy
 
 void MouseControlStickSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsExtraAccelerationStatus(checked);
 }
 
 void MouseControlStickSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsExtraAccelerationMultiplier(value);
 }
 
 void MouseControlStickSettingsDialogHelper::updateStartMultiPercentage(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsStartAccelerationMultiplier(value);
 }
 
 void MouseControlStickSettingsDialogHelper::updateMinAccelThreshold(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsMinAccelerationThreshold(value);
 }
 
 void MouseControlStickSettingsDialogHelper::updateMaxAccelThreshold(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsMaxAccelerationThreshold(value);
 }
 
 void MouseControlStickSettingsDialogHelper::updateAccelExtraDuration(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsAccelerationExtraDuration(value);
 }
 
 void MouseControlStickSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsSpringDeadCircleMultiplier(value);
 }

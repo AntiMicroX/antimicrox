@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include <QtGlobal>
-#include <QResource>
-#include <QTextStream>
+#include "aboutdialog.h"
+#include "ui_aboutdialog.h"
+#include "common.h"
+#include "eventhandlerfactory.h"
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_version.h>
@@ -25,11 +25,13 @@
 #include <SDL/SDL_version.h>
 #endif
 
-#include "aboutdialog.h"
-#include "ui_aboutdialog.h"
-#include "common.h"
-
-#include "eventhandlerfactory.h"
+#include <QtGlobal>
+#include <QResource>
+#include <QTextStream>
+#include <QEvent>
+#include <QFile>
+#include <QStringList>
+#include <QDebug>
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
@@ -37,21 +39,27 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->versionLabel->setText(PadderCommon::programVersion);
     fillInfoTextBrowser();
 }
 
 AboutDialog::~AboutDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void AboutDialog::fillInfoTextBrowser()
 {
-    QStringList finalInfoText;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
-    finalInfoText.append(tr("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
+    QStringList finalInfoText = QStringList();
+
+    finalInfoText.append(trUtf8("Program Version %1").arg(PadderCommon::programVersion));
+    finalInfoText.append(trUtf8("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");
@@ -66,23 +74,23 @@ void AboutDialog::fillInfoTextBrowser()
 #endif
 
     sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
-    finalInfoText.append(tr("Built Against SDL %1").arg(sdlCompiledVersionNumber));
+    finalInfoText.append(trUtf8("Built Against SDL %1").arg(sdlCompiledVersionNumber));
 
     sdlLinkedVersionNumber = sdlLinkedVersionNumber.arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
-    finalInfoText.append(tr("Running With SDL %1").arg(sdlLinkedVersionNumber));
+    finalInfoText.append(trUtf8("Running With SDL %1").arg(sdlLinkedVersionNumber));
 
-    finalInfoText.append(tr("Using Qt %1").arg(qVersion()));
+    finalInfoText.append(trUtf8("Using Qt %1").arg(qVersion()));
 
-    BaseEventHandler *handler = 0;
+    BaseEventHandler *handler = nullptr;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance();
-    if (factory)
+    if (factory != nullptr)
     {
         handler = factory->handler();
     }
 
-    if (handler)
+    if (handler != nullptr)
     {
-        finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
+        finalInfoText.append(trUtf8("Using Event Handler: %1").arg(handler->getName()));
     }
 
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
@@ -99,6 +107,8 @@ void AboutDialog::fillInfoTextBrowser()
 
 void AboutDialog::changeEvent(QEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (event->type() == QEvent::LanguageChange)
     {
         retranslateUi();
@@ -109,6 +119,8 @@ void AboutDialog::changeEvent(QEvent *event)
 
 void AboutDialog::retranslateUi()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->retranslateUi(this);
 
     ui->versionLabel->setText(PadderCommon::programVersion);

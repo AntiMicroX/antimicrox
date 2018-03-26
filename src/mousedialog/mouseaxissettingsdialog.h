@@ -18,17 +18,22 @@
 #ifndef MOUSEAXISSETTINGSDIALOG_H
 #define MOUSEAXISSETTINGSDIALOG_H
 
-#include "mousesettingsdialog.h"
-#include "springmoderegionpreview.h"
+#include "ui_mousesettingsdialog.h"
 
-#include <joyaxis.h>
+#include "mousesettingsdialog.h"
 #include "uihelpers/mouseaxissettingsdialoghelper.h"
+
+#include <QWidget>
+
+
+class JoyAxis;
+class SpringModeRegionPreview;
 
 class MouseAxisSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 public:
-    explicit MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent = 0);
+    explicit MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent = nullptr);
 
 protected:
     void selectCurrentMouseModePreset();

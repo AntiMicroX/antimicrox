@@ -15,20 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QTextStream>
-#include <QLocalSocket>
-
 #include "localantimicroserver.h"
 #include "common.h"
+
+#include <QTextStream>
+#include <QLocalSocket>
+#include <QLocalServer>
+#include <QDebug>
 
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     localServer = new QLocalServer(this);
 }
 
 void LocalAntiMicroServer::startLocalServer()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QLocalServer::removeServer(PadderCommon::localSocketKey);
     localServer->setMaxPendingConnections(1);
     if (!localServer->listen(PadderCommon::localSocketKey))
@@ -36,7 +42,7 @@ void LocalAntiMicroServer::startLocalServer()
         QTextStream errorstream(stderr);
         QString message("Could not start signal server. Profiles cannot be reloaded\n");
         message.append("from command-line");
-        errorstream << tr(message.toStdString().c_str()) << endl;
+        errorstream << trUtf8(message.toStdString().c_str()) << endl;
     }
     else
     {
@@ -46,8 +52,10 @@ void LocalAntiMicroServer::startLocalServer()
 
 void LocalAntiMicroServer::handleOutsideConnection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QLocalSocket *socket = localServer->nextPendingConnection();
-    if (socket)
+    if (socket != nullptr)
     {
         connect(socket, SIGNAL(disconnected()), this, SLOT(handleSocketDisconnect()));
         connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
@@ -56,10 +64,14 @@ void LocalAntiMicroServer::handleOutsideConnection()
 
 void LocalAntiMicroServer::handleSocketDisconnect()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit clientdisconnect();
 }
 
 void LocalAntiMicroServer::close()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     localServer->close();
 }

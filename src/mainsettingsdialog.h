@@ -19,15 +19,16 @@
 #define MAINSETTINGSDIALOG_H
 
 #include <QDialog>
-#include <QTableWidgetItem>
 #include <QHash>
 #include <QList>
 #include <QSettings>
 #include <QMap>
 
-#include "autoprofileinfo.h"
-#include "inputdevice.h"
-#include "antimicrosettings.h"
+class AntiMicroSettings;
+class InputDevice;
+class QWidget;
+class AutoProfileInfo;
+class QTableWidgetItem;
 
 namespace Ui {
 class MainSettingsDialog;
@@ -38,7 +39,7 @@ class MainSettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice*> *devices, QWidget *parent = 0);
+    explicit MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice*> *devices, QWidget *parent = nullptr);
     ~MainSettingsDialog();
 
 protected:

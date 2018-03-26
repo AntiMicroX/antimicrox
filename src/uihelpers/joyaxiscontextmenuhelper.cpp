@@ -16,26 +16,35 @@
  */
 
 #include "joyaxiscontextmenuhelper.h"
+#include "joyaxis.h"
+
+#include <QDebug>
 
 JoyAxisContextMenuHelper::JoyAxisContextMenuHelper(JoyAxis *axis, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(axis);
 
     this->axis = axis;
 }
 
-void JoyAxisContextMenuHelper::setNAssignedSlot(int code, unsigned int alias,
+void JoyAxisContextMenuHelper::setNAssignedSlot(int code, int alias,
                                                JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton *button = axis->getNAxisButton();
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, mode);
 }
 
-void JoyAxisContextMenuHelper::setPAssignedSlot(int code, unsigned int alias,
+void JoyAxisContextMenuHelper::setPAssignedSlot(int code, int alias,
                                                JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton *button = axis->getPAxisButton();
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, mode);
@@ -43,6 +52,8 @@ void JoyAxisContextMenuHelper::setPAssignedSlot(int code, unsigned int alias,
 
 void JoyAxisContextMenuHelper::clearAndResetAxisButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyAxisButton *nbutton = axis->getNAxisButton();
     JoyAxisButton *pbutton = axis->getPAxisButton();
     nbutton->clearSlotsEventReset();

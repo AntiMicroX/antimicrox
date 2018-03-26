@@ -26,11 +26,11 @@
 
 class QtVMultiKeyMapper : public QtKeyMapperBase
 {
-    Q_OBJECT
-public:
-    explicit QtVMultiKeyMapper(QObject *parent = 0);
 
-    static const unsigned int consumerUsagePagePrefix = 0x12000;
+public:
+    explicit QtVMultiKeyMapper(QObject *parent = nullptr);
+
+    static const int consumerUsagePagePrefix = 0x12000; // unsigned
 
 protected:
     void populateMappingHashes();
@@ -38,9 +38,6 @@ protected:
 
     //static QtWinKeyMapper nativeKeyMapper;
 
-signals:
-
-public slots:
 };
 
 #endif // QTVMULTIKEYMAPPER_H

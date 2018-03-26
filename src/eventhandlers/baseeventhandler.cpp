@@ -16,14 +16,26 @@
  */
 
 #include "baseeventhandler.h"
+#include "joybuttonslot.h"
+
+#include <QDebug>
+
 
 BaseEventHandler::BaseEventHandler(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+}
+
+
+BaseEventHandler::~BaseEventHandler()
+{
+qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 QString BaseEventHandler::getErrorString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     return lastErrorString;
 }
 
@@ -33,6 +45,7 @@ QString BaseEventHandler::getErrorString()
  */
 void BaseEventHandler::printPostMessages()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 /**
@@ -43,6 +56,7 @@ void BaseEventHandler::printPostMessages()
  */
 void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(screen);
@@ -55,9 +69,10 @@ void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
  * @param Bounding box width
  * @param Bounding box height
  */
-void BaseEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                            unsigned int width, unsigned int height)
+void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
+                                            int width, int height)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(width);
@@ -71,10 +86,13 @@ void BaseEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis
  */
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
-
+qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 void BaseEventHandler::sendTextEntryEvent(QString maintext)
 {
-
+qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
+
+
+

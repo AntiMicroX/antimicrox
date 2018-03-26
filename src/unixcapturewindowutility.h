@@ -24,15 +24,15 @@ class UnixCaptureWindowUtility : public QObject
 {
     Q_OBJECT
 public:
-    explicit UnixCaptureWindowUtility(QObject *parent = 0);
+    explicit UnixCaptureWindowUtility(QObject *parent = nullptr);
     QString getTargetPath();
     bool hasFailed();
-    unsigned long getTargetWindow();
+    long getTargetWindow();
 
 protected:
     QString targetPath;
     bool failed;
-    unsigned long targetWindow;
+    long targetWindow;
 
 signals:
     void captureFinished();

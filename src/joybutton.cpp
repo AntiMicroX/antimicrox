@@ -15,14 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QThread>
-#include <QStringList>
-#include <cmath>
-
+#include "joybutton.h"
 #include "setjoystick.h"
 #include "inputdevice.h"
-#include "joybutton.h"
 #include "vdpad.h"
 #include "event.h"
 #include "logger.h"
@@ -31,14 +26,23 @@
   #include "eventhandlerfactory.h"
 #endif
 
+#include <cmath>
+
+#include <QDebug>
+#include <QThread>
+#include <QStringList>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
+
+
 const QString JoyButton::xmlName = "button";
 
 // Set default values for many properties.
 const int JoyButton::ENABLEDTURBODEFAULT = 100;
 const double JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double JoyButton::mouseSpeedModifier = JoyButton::DEFAULTMOUSESPEEDMOD;
-const unsigned int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
-const unsigned int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
+const int JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
+const int JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
 const bool JoyButton::DEFAULTTOGGLE = false;
 const int JoyButton::DEFAULTTURBOINTERVAL = 0;
@@ -60,8 +64,8 @@ const JoyButton::TurboMode JoyButton::DEFAULTTURBOMODE = JoyButton::NormalTurbo;
 const double JoyButton::DEFAULTEASINGDURATION = 0.5;
 const double JoyButton::MINIMUMEASINGDURATION = 0.2;
 const double JoyButton::MAXIMUMEASINGDURATION = 5.0;
-const unsigned int JoyButton::MINCYCLERESETTIME = 10;
-const unsigned int JoyButton::MAXCYCLERESETTIME = 60000;
+const int JoyButton::MINCYCLERESETTIME = 10;
+const int JoyButton::MAXCYCLERESETTIME = 60000;
 
 const int JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
 const double JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
@@ -81,9 +85,9 @@ JoyButton::DEFAULTEXTRAACCELCURVE = JoyButton::LinearAccelCurve;
 const int JoyButton::DEFAULTSPRINGRELEASERADIUS = 0;
 
 // Keep references to active keys and mouse buttons.
-QHash<unsigned int, int> JoyButton::activeKeys;
-QHash<unsigned int, int> JoyButton::activeMouseButtons;
-JoyButtonSlot* JoyButton::lastActiveKey = 0;
+QHash<int, int> JoyButton::activeKeys;
+QHash<int, int> JoyButton::activeMouseButtons;
+JoyButtonSlot* JoyButton::lastActiveKey = nullptr;
 
 // Keep track of active Mouse Speed Mod slots.
 QList<JoyButtonSlot*> JoyButton::mouseSpeedModList;
@@ -133,6 +137,9 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
                      QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    qDebug() << "Thread in Joybutton";
     vdpad = 0;
     slotiter = 0;
 
@@ -184,11 +191,15 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
 
 JoyButton::~JoyButton()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     reset();
 }
 
 void JoyButton::queuePendingEvent(bool pressed, bool ignoresets)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingEvent = false;
     pendingPress = false;
     pendingIgnoreSets = false;
@@ -207,6 +218,8 @@ void JoyButton::queuePendingEvent(bool pressed, bool ignoresets)
 
 void JoyButton::activatePendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (pendingEvent)
     {
         joyEvent(pendingPress, pendingIgnoreSets);
@@ -219,11 +232,15 @@ void JoyButton::activatePendingEvent()
 
 bool JoyButton::hasPendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return pendingEvent;
 }
 
 void JoyButton::clearPendingEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pendingEvent = false;
     pendingPress = false;
     pendingIgnoreSets = false;
@@ -231,7 +248,9 @@ void JoyButton::clearPendingEvent()
 
 void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
 {
-    if (this->vdpad && pressed != isButtonPressed)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (this->vdpad && (pressed != isButtonPressed))
     {
         isButtonPressed = pressed;
         if (isButtonPressed)
@@ -256,6 +275,8 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (this->vdpad && !pendingEvent)
     {
         vdpadPassEvent(pressed, ignoresets);
@@ -341,7 +362,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 if (isButtonPressed && activePress && !turboTimer.isActive())
                 {
                     if (cycleResetActive &&
-                        cycleResetHold.elapsed() >= cycleResetInterval && slotiter)
+                        (cycleResetHold.elapsed() >= cycleResetInterval) && slotiter)
                     {
                         slotiter->toFront();
                         currentCycle = 0;
@@ -361,7 +382,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                     }
                     currentAccelerationDistance = getAccelerationDistance();
 
-                    Logger::LogDebug(tr("Processing turbo for #%1 - %2")
+                    Logger::LogDebug(trUtf8("Processing turbo for #%1 - %2")
                                     .arg(parentSet->getInputDevice()->getRealJoyNumber())
                                     .arg(getPartialName()));
 
@@ -370,7 +391,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 else if (!isButtonPressed && !activePress && turboTimer.isActive())
                 {
                     turboTimer.stop();
-                    Logger::LogDebug(tr("Finishing turbo for button #%1 - %2")
+                    Logger::LogDebug(trUtf8("Finishing turbo for button #%1 - %2")
                                     .arg(parentSet->getInputDevice()->getRealJoyNumber())
                                     .arg(getPartialName()));
 
@@ -408,7 +429,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             else if (isButtonPressed && activePress)
             {
                 if (cycleResetActive &&
-                    cycleResetHold.elapsed() >= cycleResetInterval && slotiter)
+                    (cycleResetHold.elapsed() >= cycleResetInterval) && slotiter)
                 {
                     slotiter->toFront();
                     currentCycle = 0;
@@ -430,7 +451,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 
                 currentAccelerationDistance = getAccelerationDistance();
 
-                Logger::LogDebug(tr("Processing press for button #%1 - %2")
+                Logger::LogDebug(trUtf8("Processing press for button #%1 - %2")
                                 .arg(parentSet->getInputDevice()->getRealJoyNumber())
                                 .arg(getPartialName()));
 
@@ -447,7 +468,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else if (!isButtonPressed && !activePress)
             {
-                Logger::LogDebug(tr("Processing release for button #%1 - %2")
+                Logger::LogDebug(trUtf8("Processing release for button #%1 - %2")
                                 .arg(parentSet->getInputDevice()->getRealJoyNumber())
                                 .arg(getPartialName()));
 
@@ -472,7 +493,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 bool releasedCalled = distanceEvent();
                 if (releasedCalled)
                 {
-                    Logger::LogDebug(tr("Distance change for button #%1 - %2")
+                    Logger::LogDebug(trUtf8("Distance change for button #%1 - %2")
                                     .arg(parentSet->getInputDevice()->getRealJoyNumber())
                                     .arg(getPartialName()));
 
@@ -500,6 +521,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
  */
 int JoyButton::getJoyNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index;
 }
 
@@ -509,16 +532,22 @@ int JoyButton::getJoyNumber()
  */
 int JoyButton::getRealJoyNumber()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index + 1;
 }
 
 void JoyButton::setJoyNumber(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->index = index;
 }
 
 void JoyButton::setToggle(bool toggle)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (toggle != this->toggle)
     {
         this->toggle = toggle;
@@ -529,13 +558,15 @@ void JoyButton::setToggle(bool toggle)
 
 void JoyButton::setTurboInterval(int interval)
 {
-    if (interval >= 10 && interval != this->turboInterval)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((interval >= 10) && (interval != this->turboInterval))
     {
         this->turboInterval = interval;
         emit turboIntervalChanged(interval);
         emit propertyUpdated();
     }
-    else if (interval < 10 && interval != this->turboInterval)
+    else if ((interval < 10) && (interval != this->turboInterval))
     {
         interval = 0;
         this->setUseTurbo(false);
@@ -547,6 +578,8 @@ void JoyButton::setTurboInterval(int interval)
 
 void JoyButton::reset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnectPropertyUpdatedConnections();
 
     turboTimer.stop();
@@ -586,22 +619,30 @@ void JoyButton::reset()
 
 void JoyButton::reset(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::reset();
     this->index = index;
 }
 
 bool JoyButton::getToggleState()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return toggle;
 }
 
 int JoyButton::getTurboInterval()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return turboInterval;
 }
 
 void JoyButton::turboEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!isKeyPressed)
     {
         if (!isButtonPressedQueue.isEmpty())
@@ -650,6 +691,8 @@ void JoyButton::turboEvent()
 
 bool JoyButton::distanceEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool released = false;
 
     if (slotiter)
@@ -675,7 +718,7 @@ bool JoyButton::distanceEvent()
                 int tempcode = slot->getSlotCode();
                 if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
                 {
-                    tempDistance += tempcode / 100.0;
+                    tempDistance += (tempcode / 100.0);
 
                     if (currentDistance < tempDistance)
                     {
@@ -756,6 +799,8 @@ bool JoyButton::distanceEvent()
 
 void JoyButton::createDeskEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     quitEvent = false;
 
     if (!slotiter)
@@ -792,6 +837,8 @@ void JoyButton::createDeskEvent()
 
 void JoyButton::activateSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (slotiter)
     {
         QWriteLocker tempLocker(&activeZoneLock);
@@ -799,7 +846,7 @@ void JoyButton::activateSlots()
         bool exit = false;
         //bool delaySequence = checkForDelaySequence();
         bool delaySequence = false;
-        bool changeRepeatState = false;
+       // bool changeRepeatState = false;
 
         while (slotiter->hasNext() && !exit)
         {
@@ -816,18 +863,18 @@ void JoyButton::activateSlots()
                 if (!slot->isModifierKey())
                 {
                     lastActiveKey = slot;
-                    changeRepeatState = true;
+                   // changeRepeatState = true;
                 }
                 else
                 {
                     lastActiveKey = 0;
-                    changeRepeatState = true;
+                   // changeRepeatState = true;
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
-                if (tempcode == JoyButtonSlot::MouseWheelUp ||
-                    tempcode == JoyButtonSlot::MouseWheelDown)
+                if ((tempcode == JoyButtonSlot::MouseWheelUp) ||
+                    (tempcode == JoyButtonSlot::MouseWheelDown))
                 {
                     slot->getMouseInterval()->restart();
                     wheelVerticalTime.restart();
@@ -836,8 +883,8 @@ void JoyButton::activateSlots()
                     wheelEventVertical();
                     currentWheelVerticalEvent = 0;
                 }
-                else if (tempcode == JoyButtonSlot::MouseWheelLeft ||
-                         tempcode == JoyButtonSlot::MouseWheelRight)
+                else if ((tempcode == JoyButtonSlot::MouseWheelLeft) ||
+                         (tempcode == JoyButtonSlot::MouseWheelRight))
                 {
                     slot->getMouseInterval()->restart();
                     wheelHorizontalTime.restart();
@@ -872,9 +919,9 @@ void JoyButton::activateSlots()
 
                 // Temporarily lower timer interval. Helps improve mouse control
                 // precision on the lower end of an axis.
-                if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() != 0)
+                if (!staticMouseEventTimer.isActive() || (staticMouseEventTimer.interval() != 0))
                 {
-                    if (!staticMouseEventTimer.isActive() || staticMouseEventTimer.interval() == IDLEMOUSEREFRESHRATE)
+                    if (!staticMouseEventTimer.isActive() || (staticMouseEventTimer.interval() == IDLEMOUSEREFRESHRATE))
                     {
                         int tempRate = qBound(0, mouseRefreshRate - gamepadRefreshRate, MAXIMUMMOUSEREFRESHRATE);
                         //Logger::LogInfo(QString("STARTING OVER: %1 %2").arg(QTime::currentTime().toString("hh:mm:ss.zzz")).arg(tempRate));
@@ -1016,7 +1063,7 @@ void JoyButton::activateSlots()
         }
 
 #ifdef Q_OS_WIN
-        else if (handler && handler->getIdentifier() == "sendinput" &&
+        else if (handler && (handler->getIdentifier() == "sendinput") &&
                  changeRepeatState && !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
@@ -1044,10 +1091,12 @@ void JoyButton::activateSlots()
 
 void JoyButton::slotSetChange()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (currentSetChangeSlot)
     {
         // Get set change slot and then remove reference.
-        unsigned int setChangeIndex = currentSetChangeSlot->getSlotCode();
+        int setChangeIndex = currentSetChangeSlot->getSlotCode();
         currentSetChangeSlot = 0;
 
         // Ensure that a change to the current set is not attempted.
@@ -1065,15 +1114,17 @@ void JoyButton::slotSetChange()
  */
 void JoyButton::mouseEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButtonSlot *buttonslot = 0;
     bool singleShot = false;
-    if (currentMouseEvent)
+    if (currentMouseEvent != nullptr)
     {
         buttonslot = currentMouseEvent;
         singleShot = true;
     }
 
-    if (buttonslot || !mouseEventQueue.isEmpty())
+    if ((buttonslot != nullptr) || !mouseEventQueue.isEmpty())
     {
         updateLastMouseDistance = true;
         updateStartingMouseDistance = true;
@@ -1081,25 +1132,25 @@ void JoyButton::mouseEvent()
 
         QQueue<JoyButtonSlot*> tempQueue;
 
-        if (!buttonslot)
+        if (buttonslot == nullptr)
         {
             buttonslot = mouseEventQueue.dequeue();
         }
 
-        //unsigned int timeElapsed = lastMouseTime.elapsed();
-        unsigned int timeElapsed = testOldMouseTime.elapsed();
-        //unsigned int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
+        //int timeElapsed = lastMouseTime.elapsed();
+        int timeElapsed = testOldMouseTime.elapsed();
+        //int nanoTimeElapsed = lastMouseTime.nsecsElapsed();
 
         // Presumed initial mouse movement. Use full duration rather than
         // partial.
         if (staticMouseEventTimer.interval() < mouseRefreshRate)
         {
-            //unsigned int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
+            //int nanoRemainder = nanoTimeElapsed - (timeElapsed * 1000000);
             timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
             //nanoTimeElapsed = (timeElapsed * 1000000) + (nanoRemainder);
         }
 
-        while (buttonslot)
+        while (buttonslot != nullptr)
         {
             QElapsedTimer* mouseInterval = buttonslot->getMouseInterval();
 
@@ -1175,13 +1226,13 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.37;
+                                difference = (difference * 0.37);
                             }
                             else if (temp <= 0.75)
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.252;
+                                difference = (difference - 0.252);
                             }
                             else if (temp > 0.75)
                             {
@@ -1202,7 +1253,7 @@ void JoyButton::mouseEvent()
                             if (temp <= 0.4)
                             {
                                 // Low slope value for really slow acceleration
-                                difference = difference * 0.38;
+                                difference = (difference * 0.38);
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1215,7 +1266,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Perform Linear accleration with an appropriate
                                 // offset.
-                                difference = difference - 0.248;
+                                difference = (difference - 0.248);
 
                                 // Out of high end. Reset easing status.
                                 if (buttonslot->isEasingActive())
@@ -1228,7 +1279,7 @@ void JoyButton::mouseEvent()
                             {
                                 // Gradually increase the mouse speed until the specified elapsed duration
                                 // time has passed.
-                                unsigned int easingElapsed = buttonslot->getEasingTime()->elapsed();
+                                int easingElapsed = buttonslot->getEasingTime()->elapsed();
                                 double easingDuration = this->easingDuration; // Time in seconds
                                 if (!buttonslot->isEasingActive())
                                 {
@@ -1240,7 +1291,7 @@ void JoyButton::mouseEvent()
                                 // Determine the multiplier to use for the current maximum mouse speed
                                 // based on how much time has passed.
                                 double elapsedDiff = 1.0;
-                                if (easingDuration > 0.0 && (easingElapsed * .001) < easingDuration)
+                                if ((easingDuration > 0.0) && ((easingElapsed * .001) < easingDuration))
                                 {
                                     elapsedDiff = ((easingElapsed * .001) / easingDuration);
                                     if (currentCurve == EasingQuadraticCurve)
@@ -1261,9 +1312,9 @@ void JoyButton::mouseEvent()
                                 }
 
                                 // Allow gradient control on the high end of an axis.
-                                difference = elapsedDiff * difference;
+                                difference = (elapsedDiff * difference);
                                  // Range 0.502 - 1.5
-                                difference = difference * 1.33067 - 0.496005;
+                                difference = (difference * 1.33067 - 0.496005);
                             }
                             break;
                         }
@@ -1278,8 +1329,8 @@ void JoyButton::mouseEvent()
 
                     // Last check ensures that acceleration is only applied for the same direction.
                     if (extraAccelerationEnabled && isPartRealAxis() &&
-                        fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel &&
-                        (getAccelerationDistance() - lastAccelerationDistance >= 0) == (getAccelerationDistance() >= 0))
+                        (fabs(getAccelerationDistance() - lastAccelerationDistance) >= mintravel) &&
+                        (((getAccelerationDistance() - lastAccelerationDistance) >= 0) == (getAccelerationDistance() >= 0)))
                     {
                         double magfactor = extraAccelerationMultiplier;
                         double minfactor = qMax((DEFAULTSTARTACCELMULTIPLIER * 0.001) + 1.0, magfactor * (startAccelMultiplier * 0.01));
@@ -1288,7 +1339,7 @@ void JoyButton::mouseEvent()
                         double intercept = minfactor - (slope * mintravel);
 
                         double intermediateTravel = qMin(maxtravel, fabs(getAccelerationDistance() - lastAccelerationDistance));
-                        if (currentAccelMulti > 1.0 && oldAccelMulti == 0.0)
+                        if ((currentAccelMulti > 1.0) && (oldAccelMulti == 0.0))
                         {
                             intermediateTravel = qMin(maxtravel, intermediateTravel + mintravel);
                         }
@@ -1316,9 +1367,9 @@ void JoyButton::mouseEvent()
                         accelTravel = intermediateTravel;
                         accelExtraDurationTime.restart();
                     }
-                    else if (extraAccelerationEnabled && isPartRealAxis() && accelDuration > 0.0 &&
-                             currentAccelMulti > 0.0 &&
-                             fabs(getAccelerationDistance() - startingAccelerationDistance) < minstop)
+                    else if (extraAccelerationEnabled && isPartRealAxis() && (accelDuration > 0.0) &&
+                             (currentAccelMulti > 0.0) &&
+                             (fabs(getAccelerationDistance() - startingAccelerationDistance) < minstop))
                     {
                         //qDebug() << "Keep Trying: " << fabs(getAccelerationDistance() - lastAccelerationDistance);
                         //qDebug() << "MIN TRAVEL: " << mintravel;
@@ -1330,10 +1381,10 @@ void JoyButton::mouseEvent()
                         double slope = (magfactor - minfactor)/(maxtravel - mintravel);
                         double intercept = minfactor - (slope * mintravel);
 
-                        unsigned int elapsedElapsed = accelExtraDurationTime.elapsed();
+                        int elapsedElapsed = accelExtraDurationTime.elapsed();
 
                         double intermediateTravel = accelTravel;
-                        if ((getAccelerationDistance() - startingAccelerationDistance >= 0) != (getAccelerationDistance() >= 0))
+                        if (((getAccelerationDistance() - startingAccelerationDistance) >= 0) != (getAccelerationDistance() >= 0))
                         {
                             // Travelling towards dead zone. Decrease acceleration and duration.
                             intermediateTravel = qMax(intermediateTravel - fabs(getAccelerationDistance() - startingAccelerationDistance), mintravel);
@@ -1368,7 +1419,7 @@ void JoyButton::mouseEvent()
 
                         double tempAccel = currentAccelMultiTemp;
                         double elapsedDiff = 1.0;
-                        if (elapsedDuration > 0.0 && (elapsedElapsed * 0.001) < elapsedDuration)
+                        if ((elapsedDuration > 0.0) && ((elapsedElapsed * 0.001) < elapsedDuration))
                         {
                             elapsedDiff = ((elapsedElapsed * 0.001) / elapsedDuration);
                             elapsedDiff = (1.0 - tempAccel) * (elapsedDiff * elapsedDiff * elapsedDiff) + tempAccel;
@@ -1522,13 +1573,15 @@ void JoyButton::mouseEvent()
 
 void JoyButton::wheelEventVertical()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButtonSlot *buttonslot = 0;
     if (currentWheelVerticalEvent)
     {
         buttonslot = currentWheelVerticalEvent;
     }
 
-    if (buttonslot && wheelSpeedY != 0)
+    if (buttonslot && (wheelSpeedY != 0))
     {
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
@@ -1543,7 +1596,7 @@ void JoyButton::wheelEventVertical()
             mouseWheelVerticalEventTimer.stop();
         }
     }
-    else if (!mouseWheelVerticalEventQueue.isEmpty() && wheelSpeedY != 0)
+    else if (!mouseWheelVerticalEventQueue.isEmpty() && (wheelSpeedY != 0))
     {
         QQueue<JoyButtonSlot*> tempQueue;
         while (!mouseWheelVerticalEventQueue.isEmpty())
@@ -1576,13 +1629,15 @@ void JoyButton::wheelEventVertical()
 
 void JoyButton::wheelEventHorizontal()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButtonSlot *buttonslot = 0;
     if (currentWheelHorizontalEvent)
     {
         buttonslot = currentWheelHorizontalEvent;
     }
 
-    if (buttonslot && wheelSpeedX != 0)
+    if (buttonslot && (wheelSpeedX != 0))
     {
         bool isActive = activeSlots.contains(buttonslot);
         if (isActive)
@@ -1597,7 +1652,7 @@ void JoyButton::wheelEventHorizontal()
             mouseWheelHorizontalEventTimer.stop();
         }
     }
-    else if (!mouseWheelHorizontalEventQueue.isEmpty() && wheelSpeedX != 0)
+    else if (!mouseWheelHorizontalEventQueue.isEmpty() && (wheelSpeedX != 0))
     {
         QQueue<JoyButtonSlot*> tempQueue;
         while (!mouseWheelHorizontalEventQueue.isEmpty())
@@ -1630,6 +1685,8 @@ void JoyButton::wheelEventHorizontal()
 
 void JoyButton::setUseTurbo(bool useTurbo)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool initialState = this->useTurbo;
 
     if (useTurbo != this->useTurbo)
@@ -1648,7 +1705,7 @@ void JoyButton::setUseTurbo(bool useTurbo)
             emit turboChanged(this->useTurbo);
             emit propertyUpdated();
 
-            if (this->useTurbo && this->turboInterval == 0)
+            if (this->useTurbo && (this->turboInterval == 0))
             {
                 this->setTurboInterval(ENABLEDTURBODEFAULT);
             }
@@ -1658,20 +1715,26 @@ void JoyButton::setUseTurbo(bool useTurbo)
 
 bool JoyButton::isUsingTurbo()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return useTurbo;
 }
 
 QString JoyButton::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
 void JoyButton::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && xml->name() == getXmlName())
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (xml->isStartElement() && (xml->name() == getXmlName()))
     {
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != getXmlName()))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != getXmlName())))
         {
             bool found = readButtonConfig(xml);
             if (!found)
@@ -1690,6 +1753,9 @@ void JoyButton::readConfig(QXmlStreamReader *xml)
 
 void JoyButton::writeConfig(QXmlStreamWriter *xml)
 {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!isDefault())
     {
         xml->writeStartElement(getXmlName());
@@ -1800,7 +1866,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
             {
                 xml->writeTextElement("setselect", QString::number(setSelection+1));
 
-                QString temptext;
+                QString temptext = QString();
                 if (setSelectionCondition == SetChangeOneWay)
                 {
                     temptext = "one-way";
@@ -1879,7 +1945,7 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 
         if (extraAccelCurve != DEFAULTEXTRAACCELCURVE)
         {
-            QString temp;
+            QString temp = QString();
             if (extraAccelCurve == LinearAccelCurve)
             {
                 temp = "linear";
@@ -1923,9 +1989,11 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 
 bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
 
-    if (xml->name() == "toggle" && xml->isStartElement())
+    if ((xml->name() == "toggle") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -1934,14 +2002,14 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             this->setToggle(true);
         }
     }
-    else if (xml->name() == "turbointerval" && xml->isStartElement())
+    else if ((xml->name() == "turbointerval") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         this->setTurboInterval(tempchoice);
     }
-    else if (xml->name() == "turbomode" && xml->isStartElement())
+    else if ((xml->name() == "turbomode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -1958,7 +2026,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             this->setTurboMode(PulseTurbo);
         }
     }
-    else if (xml->name() == "useturbo" && xml->isStartElement())
+    else if ((xml->name() == "useturbo") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -1967,21 +2035,21 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             this->setUseTurbo(true);
         }
     }
-    else if (xml->name() == "mousespeedx" && xml->isStartElement())
+    else if ((xml->name() == "mousespeedx") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         this->setMouseSpeedX(tempchoice);
     }
-    else if (xml->name() == "mousespeedy" && xml->isStartElement())
+    else if ((xml->name() == "mousespeedy") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         this->setMouseSpeedY(tempchoice);
     }
-    else if (xml->name() == "cycleresetactive" && xml->isStartElement())
+    else if ((xml->name() == "cycleresetactive") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -1990,23 +2058,23 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             this->setCycleResetStatus(true);
         }
     }
-    else if (xml->name() == "cycleresetinterval" && xml->isStartElement())
+    else if ((xml->name() == "cycleresetinterval") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
-        unsigned int tempchoice = temptext.toInt();
+        int tempchoice = temptext.toInt();
         if (tempchoice >= MINCYCLERESETTIME)
         {
             this->setCycleResetTime(tempchoice);
         }
     }
-    else if (xml->name() == "slots" && xml->isStartElement())
+    else if ((xml->name() == "slots") && xml->isStartElement())
     {
         found = true;
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "slots"))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "slots")))
         {
-            if (xml->name() == "slot" && xml->isStartElement())
+            if ((xml->name() == "slot") && xml->isStartElement())
             {
                 JoyButtonSlot *buttonslot = new JoyButtonSlot(this);
                 buttonslot->readConfig(xml);
@@ -2034,20 +2102,20 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             xml->readNextStartElement();
         }
     }
-    else if (xml->name() == "setselect" && xml->isStartElement())
+    else if ((xml->name() == "setselect") && xml->isStartElement())
     {
         if (!isModifierButton())
         {
             found = true;
             QString temptext = xml->readElementText();
             int tempchoice = temptext.toInt();
-            if (tempchoice >= 0 && tempchoice <= InputDevice::NUMBER_JOYSETS)
+            if ((tempchoice >= 0) && (tempchoice <= InputDevice::NUMBER_JOYSETS))
             {
                 this->setChangeSetSelection(tempchoice - 1, false);
             }
         }
     }
-    else if (xml->name() == "setselectcondition" && xml->isStartElement())
+    else if ((xml->name() == "setselectcondition") && xml->isStartElement())
     {
         if (!isModifierButton())
         {
@@ -2073,7 +2141,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             }
         }
     }
-    else if (xml->name() == "mousemode" && xml->isStartElement())
+    else if ((xml->name() == "mousemode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -2086,7 +2154,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             setMouseMode(MouseSpring);
         }
     }
-    else if (xml->name() == "mouseacceleration" && xml->isStartElement())
+    else if ((xml->name() == "mouseacceleration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -2123,28 +2191,28 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             setMouseCurve(EasingCubicCurve);
         }
     }
-    else if (xml->name() == "mousespringwidth" && xml->isStartElement())
+    else if ((xml->name() == "mousespringwidth") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         setSpringWidth(tempchoice);
     }
-    else if (xml->name() == "mousespringheight" && xml->isStartElement())
+    else if ((xml->name() == "mousespringheight") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         setSpringHeight(tempchoice);
     }
-    else if (xml->name() == "mousesensitivity" && xml->isStartElement())
+    else if ((xml->name() == "mousesensitivity") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setSensitivity(tempchoice);
     }
-    else if (xml->name() == "actionname" && xml->isStartElement())
+    else if ((xml->name() == "actionname") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -2153,21 +2221,21 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             setActionName(temptext);
         }
     }
-    else if (xml->name() == "wheelspeedx" && xml->isStartElement())
+    else if ((xml->name() == "wheelspeedx") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         setWheelSpeedX(tempchoice);
     }
-    else if (xml->name() == "wheelspeedy" && xml->isStartElement())
+    else if ((xml->name() == "wheelspeedy") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         setWheelSpeedY(tempchoice);
     }
-    else if (xml->name() == "relativespring" && xml->isStartElement())
+    else if ((xml->name() == "relativespring") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -2176,14 +2244,14 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             this->setSpringRelativeStatus(true);
         }
     }
-    else if (xml->name() == "easingduration" && xml->isStartElement())
+    else if ((xml->name() == "easingduration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setEasingDuration(tempchoice);
     }
-    else if (xml->name() == "extraacceleration" && xml->isStartElement())
+    else if ((xml->name() == "extraacceleration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -2192,42 +2260,42 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
             setExtraAccelerationStatus(true);
         }
     }
-    else if (xml->name() == "accelerationmultiplier" && xml->isStartElement())
+    else if ((xml->name() == "accelerationmultiplier") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setExtraAccelerationMultiplier(tempchoice);
     }
-    else if (xml->name() == "startaccelmultiplier" && xml->isStartElement())
+    else if ((xml->name() == "startaccelmultiplier") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setStartAccelMultiplier(tempchoice);
     }
-    else if (xml->name() == "minaccelthreshold" && xml->isStartElement())
+    else if ((xml->name() == "minaccelthreshold") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setMinAccelThreshold(tempchoice);
     }
-    else if (xml->name() == "maxaccelthreshold" && xml->isStartElement())
+    else if ((xml->name() == "maxaccelthreshold") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setMaxAccelThreshold(tempchoice);
     }
-    else if (xml->name() == "accelextraduration" && xml->isStartElement())
+    else if ((xml->name() == "accelextraduration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         setAccelExtraDuration(tempchoice);
     }
-    else if (xml->name() == "extraaccelerationcurve" && xml->isStartElement())
+    else if ((xml->name() == "extraaccelerationcurve") && xml->isStartElement())
     {
         found = true;
 
@@ -2252,7 +2320,7 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
 
         setExtraAccelerationCurve(tempcurve);
     }
-    else if (xml->name() == "springreleaseradius" && xml->isStartElement())
+    else if ((xml->name() == "springreleaseradius") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -2268,6 +2336,8 @@ bool JoyButton::readButtonConfig(QXmlStreamReader *xml)
 
 QString JoyButton::getName(bool forceFullFormat, bool displayNames)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString newlabel = getPartialName(forceFullFormat, displayNames);
     newlabel.append(": ");
     if (!actionName.isEmpty() && displayNames)
@@ -2283,12 +2353,14 @@ QString JoyButton::getName(bool forceFullFormat, bool displayNames)
 
 QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Button")).append(" ");
+            temp.append(trUtf8("Button")).append(" ");
         }
         temp.append(buttonName);
     }
@@ -2296,13 +2368,13 @@ QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Button")).append(" ");
+            temp.append(trUtf8("Button")).append(" ");
         }
         temp.append(defaultButtonName);
     }
     else
     {
-        temp.append(tr("Button")).append(" ").append(QString::number(getRealJoyNumber()));
+        temp.append(trUtf8("Button")).append(" ").append(QString::number(getRealJoyNumber()));
     }
 
     return temp;
@@ -2315,13 +2387,15 @@ QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
  */
 QString JoyButton::getSlotsSummary()
 {
-    QString newlabel;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString newlabel = QString();
     int slotCount = assignments.size();
 
     if (slotCount > 0)
     {
         QListIterator<JoyButtonSlot*> iter(assignments);
-        QStringList stringlist;
+        QStringList stringlist = QStringList();
 
         int i = 0;
         while (iter.hasNext())
@@ -2330,7 +2404,7 @@ QString JoyButton::getSlotsSummary()
             stringlist.append(slot->getSlotString());
             i++;
 
-            if (i > 4 && iter.hasNext())
+            if ((i > 4) && iter.hasNext())
             {
                 stringlist.append(" ...");
                 iter.toBack();
@@ -2341,7 +2415,7 @@ QString JoyButton::getSlotsSummary()
     }
     else
     {
-        newlabel = newlabel.append(tr("[NO KEY]"));
+        newlabel = newlabel.append(trUtf8("[NO KEY]"));
     }
 
     return newlabel;
@@ -2354,6 +2428,8 @@ QString JoyButton::getSlotsSummary()
  */
 QString JoyButton::getActiveZoneSummary()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<JoyButtonSlot*> tempList = getActiveZoneList();
     QString temp = buildActiveZoneSummary(tempList);
     return temp;
@@ -2361,6 +2437,8 @@ QString JoyButton::getActiveZoneSummary()
 
 QString JoyButton::getCalculatedActiveZoneSummary()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     activeZoneStringLock.lockForRead();
     QString temp = this->activeZoneString;
     activeZoneStringLock.unlock();
@@ -2372,6 +2450,8 @@ QString JoyButton::getCalculatedActiveZoneSummary()
  */
 void JoyButton::buildActiveZoneSummaryString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     activeZoneStringLock.lockForWrite();
     this->activeZoneString = getActiveZoneSummary();
     activeZoneStringLock.unlock();
@@ -2384,6 +2464,8 @@ void JoyButton::buildActiveZoneSummaryString()
  */
 void JoyButton::localBuildActiveZoneSummaryString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     activeZoneStringLock.lockForWrite();
     this->activeZoneString = getActiveZoneSummary();
     activeZoneStringLock.unlock();
@@ -2391,15 +2473,17 @@ void JoyButton::localBuildActiveZoneSummaryString()
 
 QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 {
-    QString newlabel;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString newlabel = QString();
     QListIterator<JoyButtonSlot*> iter(tempList);
-    QStringList stringlist;
+    QStringList stringlist = QStringList();
     int i = 0;
     bool slotsActive = !activeSlots.isEmpty();
 
     if (setSelectionCondition == SetChangeOneWay)
     {
-        newlabel.append(tr("[Set %1 1W]").arg(setSelection+1));
+        newlabel.append(trUtf8("[Set %1 1W]").arg(setSelection+1));
         if (iter.hasNext())
         {
             newlabel.append(" ");
@@ -2407,7 +2491,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
     }
     else if (setSelectionCondition == SetChangeTwoWay)
     {
-        newlabel = newlabel.append(tr("[Set %1 2W]").arg(setSelection+1));
+        newlabel = newlabel.append(trUtf8("[Set %1 2W]").arg(setSelection+1));
         if (iter.hasNext())
         {
            newlabel.append(" ");
@@ -2416,7 +2500,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 
     if (setSelectionCondition == SetChangeWhileHeld)
     {
-        newlabel.append(tr("[Set %1 WH]").arg(setSelection+1));
+        newlabel.append(trUtf8("[Set %1 WH]").arg(setSelection+1));
     }
     else if (iter.hasNext())
     {
@@ -2449,7 +2533,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                 }
                 case JoyButtonSlot::JoyHold:
                 {
-                    if (!slotsActive && i == 0)
+                    if (!slotsActive && (i == 0))
                     {
                         // If button is not active and first slot is a hold,
                         // keep processing slots but take note of the hold.
@@ -2479,22 +2563,22 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     i++;
                     break;
                 }
-                /*case JoyButtonSlot::JoyRelease:
+                case JoyButtonSlot::JoyRelease:
                 {
                     if (!currentRelease)
                     {
-                        findReleaseEventIterEnd(iter);
+                        findReleaseEventIterEnd(&iter);
                     }
 
                     break;
                 }
-                */
-                /*case JoyButtonSlot::JoyDistance:
+
+                case JoyButtonSlot::JoyDistance:
                 {
-                    iter->toBack();
+                    iter.toBack();
                     break;
                 }
-                */
+
                 case JoyButtonSlot::JoyDelay:
                 {
                     iter.toBack();
@@ -2505,9 +2589,12 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     iter.toBack();
                     break;
                 }
+                default:
+
+                break;
             }
 
-            if (i > 4 && iter.hasNext())
+            if ((i > 4) && iter.hasNext())
             {
                 stringlist.append(" ...");
                 iter.toBack();
@@ -2518,7 +2605,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
     }
     else if (setSelectionCondition == SetChangeDisabled)
     {
-        newlabel.append(tr("[NO KEY]"));
+        newlabel.append(trUtf8("[NO KEY]"));
     }
 
     return newlabel;
@@ -2526,6 +2613,8 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 
 QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
     QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
 
@@ -2560,7 +2649,7 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
 
     QList<JoyButtonSlot*> tempSlotList;
 
-    if (setSelectionCondition != SetChangeWhileHeld && iter->hasNext())
+    if ((setSelectionCondition != SetChangeWhileHeld) && iter->hasNext())
     {
         while (iter->hasNext())
         {
@@ -2604,6 +2693,22 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
                     iter->toBack();
                     break;
                 }
+            case JoyButtonSlot::JoyPause:
+            {
+
+                break;
+            }
+            case JoyButtonSlot::JoyMouseSpeedMod:
+            {
+
+                break;
+            }
+            case JoyButtonSlot::JoyDelay:
+            {
+
+                break;
+            }
+
             }
         }
     }
@@ -2618,12 +2723,15 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
  */
 QString JoyButton::getSlotsString()
 {
-    QString label;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString label = QString();
 
     if (assignments.size() > 0)
     {
+        qDebug() << "There is more assignments than 0 in getSlotsString(): " << assignments.count();
         QListIterator<JoyButtonSlot*> iter(assignments);
-        QStringList stringlist;
+        QStringList stringlist = QStringList();
 
         while (iter.hasNext())
         {
@@ -2635,19 +2743,26 @@ QString JoyButton::getSlotsString()
     }
     else
     {
-        label = label.append(tr("[NO KEY]"));
+        qDebug() << "There is no assignments for button in getSlotsString()";
+
+        label = label.append(trUtf8("[NO KEY]"));
     }
 
     return label;
 }
 
+
 void JoyButton::setCustomName(QString name)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     customName = name;
 }
 
 QString JoyButton::getCustomName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return customName;
 }
 
@@ -2660,11 +2775,13 @@ QString JoyButton::getCustomName()
  */
 bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool slotInserted = false;
     JoyButtonSlot *slot = new JoyButtonSlot(code, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
+        if ((slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
         {
             double tempDistance = getTotalSlotDistance(slot);
             if (tempDistance <= 1.0)
@@ -2713,14 +2830,17 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
  * @param Mode of the slot.
  * @return Whether the new slot was successfully added to the assignment list.
  */
-bool JoyButton::setAssignedSlot(int code, unsigned int alias,
+bool JoyButton::setAssignedSlot(int code, int alias,
                                 JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool slotInserted = false;
     JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
+
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
+        if ((slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
         {
             double tempDistance = getTotalSlotDistance(slot);
             if (tempDistance <= 1.0)
@@ -2751,10 +2871,10 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias,
     }
     else
     {
-        if (slot)
+        if (slot != nullptr)
         {
             delete slot;
-            slot = 0;
+            slot = nullptr;
         }
     }
 
@@ -2770,15 +2890,17 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias,
  * @param Mode of the slot.
  * @return Whether the new slot was successfully added to the assignment list.
  */
-bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index,
+bool JoyButton::setAssignedSlot(int code, int alias, int index,
                                 JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool permitSlot = true;
 
     JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
+        if ((slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
         {
             double tempDistance = getTotalSlotDistance(slot);
             if (tempDistance > 1.0)
@@ -2800,7 +2922,7 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index,
     {
         assignmentsLock.lockForWrite();
 
-        if (index >= 0 && index < assignments.count())
+        if ((index >= 0) && (index < assignments.count()))
         {
             // Insert slot and move existing slots.
             JoyButtonSlot *temp = assignments.at(index);
@@ -2846,15 +2968,17 @@ bool JoyButton::setAssignedSlot(int code, unsigned int alias, int index,
  * @param Mode of the slot.
  * @return Whether the new slot was successfully added to the assignment list.
  */
-bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
+bool JoyButton::insertAssignedSlot(int code, int alias, int index,
                                    JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool permitSlot = true;
 
     JoyButtonSlot *slot = new JoyButtonSlot(code, alias, mode, this);
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        if (slot->getSlotCode() >= 1 && slot->getSlotCode() <= 100)
+        if ((slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
         {
             double tempDistance = getTotalSlotDistance(slot);
             if (tempDistance > 1.0)
@@ -2876,7 +3000,7 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
     {
         assignmentsLock.lockForWrite();
 
-        if (index >= 0 && index < assignments.count())
+        if ((index >= 0) && (index < assignments.count()))
         {
             // Insert new slot into list. Move old slots if needed.
             assignments.insert(index, slot);
@@ -2886,6 +3010,8 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
             // Append new slot into list.
             assignments.append(slot);
         }
+
+        qDebug() << "assignments variable in joybutton has now: " << assignments.count() << " input slots";
 
         checkTurboCondition(slot);
         assignmentsLock.unlock();
@@ -2908,11 +3034,13 @@ bool JoyButton::insertAssignedSlot(int code, unsigned int alias, int index,
 
 bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool permitSlot = false;
 
     if (newSlot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        if (newSlot->getSlotCode() >= 1 && newSlot->getSlotCode() <= 100)
+        if ((newSlot->getSlotCode() >= 1) && (newSlot->getSlotCode() <= 100))
         {
             double tempDistance = getTotalSlotDistance(newSlot);
             if (tempDistance <= 1.0)
@@ -2959,14 +3087,17 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveStri
     return permitSlot;
 }
 
+
 bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool permitSlot = false;
     JoyButtonSlot *newslot = new JoyButtonSlot(otherSlot, this);
 
     if (newslot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
-        if (newslot->getSlotCode() >= 1 && newslot->getSlotCode() <= 100)
+        if ((newslot->getSlotCode() >= 1) && (newslot->getSlotCode() <= 100))
         {
             double tempDistance = getTotalSlotDistance(newslot);
             if (tempDistance <= 1.0)
@@ -2979,12 +3110,12 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
     {
         permitSlot = true;
     }
-    else if (newslot->getSlotMode() == JoyButtonSlot::JoyTextEntry &&
+    else if ((newslot->getSlotMode() == JoyButtonSlot::JoyTextEntry) &&
              !newslot->getTextData().isEmpty())
     {
         permitSlot = true;
     }
-    else if (newslot->getSlotMode() == JoyButtonSlot::JoyExecute &&
+    else if ((newslot->getSlotMode() == JoyButtonSlot::JoyExecute) &&
              !newslot->getTextData().isEmpty())
     {
         permitSlot = true;
@@ -3000,7 +3131,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
         checkTurboCondition(newslot);
 
-        if (index >= 0 && index < assignments.count())
+        if ((index >= 0) && (index < assignments.count()))
         {
             // Slot already exists. Override code and place into desired slot
             JoyButtonSlot *temp = assignments.at(index);
@@ -3034,43 +3165,60 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
     return permitSlot;
 }
 
+
 QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<JoyButtonSlot*> *newassign = &assignments;
     return newassign;
 }
 
+
 void JoyButton::setMouseSpeedX(int speed)
 {
-    if (speed >= 1 && speed <= 300)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((speed >= 1) && (speed <= 300))
     {
         mouseSpeedX = speed;
         emit propertyUpdated();
     }
 }
 
+
 int JoyButton::getMouseSpeedX()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mouseSpeedX;
 }
 
 void JoyButton::setMouseSpeedY(int speed)
 {
-    if (speed >= 1 && speed <= 300)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((speed >= 1) && (speed <= 300))
     {
         mouseSpeedY = speed;
         emit propertyUpdated();
     }
 }
 
+
 int JoyButton::getMouseSpeedY()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mouseSpeedY;
 }
 
+
 void JoyButton::setChangeSetSelection(int index, bool updateActiveString)
 {
-    if (index >= -1 && index <= 7)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((index >= -1) && (index <= 7))
     {
         setSelection = index;
 
@@ -3085,22 +3233,26 @@ void JoyButton::setChangeSetSelection(int index, bool updateActiveString)
 
 int JoyButton::getSetSelection()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return setSelection;
 }
 
 void JoyButton::setChangeSetCondition(SetChangeCondition condition,
                                       bool passive, bool updateActiveString)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     SetChangeCondition oldCondition = setSelectionCondition;
 
-    if (condition != setSelectionCondition && !passive)
+    if ((condition != setSelectionCondition) && !passive)
     {
-        if (condition == SetChangeWhileHeld || condition == SetChangeTwoWay)
+        if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
             emit setAssignmentChanged(index, setSelection, condition);
         }
-        else if (setSelectionCondition == SetChangeWhileHeld || setSelectionCondition == SetChangeTwoWay)
+        else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
             emit setAssignmentChanged(index, setSelection, SetChangeDisabled);
@@ -3131,21 +3283,29 @@ void JoyButton::setChangeSetCondition(SetChangeCondition condition,
 
 JoyButton::SetChangeCondition JoyButton::getChangeSetCondition()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return setSelectionCondition;
 }
 
 bool JoyButton::getButtonState()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return isButtonPressed;
 }
 
 int JoyButton::getOriginSet()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return originset;
 }
 
 void JoyButton::pauseWaitEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (currentPause)
     {
         if (!isButtonPressedQueue.isEmpty() && createDeskTimer.isActive())
@@ -3226,6 +3386,8 @@ void JoyButton::pauseWaitEvent()
 
 void JoyButton::checkForSetChange()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!ignoreSetQueue.isEmpty() && !isButtonPressedQueue.isEmpty())
     {
         bool tempFinalState = isButtonPressedQueue.last();
@@ -3233,7 +3395,7 @@ void JoyButton::checkForSetChange()
 
         if (!tempFinalIgnoreSetsState)
         {
-            if (!tempFinalState && setSelectionCondition == SetChangeOneWay && setSelection > -1)
+            if (!tempFinalState && (setSelectionCondition == SetChangeOneWay) && (setSelection > -1))
             {
                 // If either timer is currently active,
                 // stop the timer
@@ -3253,7 +3415,7 @@ void JoyButton::checkForSetChange()
                 emit released(index);
                 emit setChangeActivated(setSelection);
             }
-            else if (!tempFinalState && setSelectionCondition == SetChangeTwoWay && setSelection > -1)
+            else if (!tempFinalState && (setSelectionCondition == SetChangeTwoWay) && (setSelection > -1))
             {
                 // If either timer is currently active,
                 // stop the timer
@@ -3273,7 +3435,7 @@ void JoyButton::checkForSetChange()
                 emit released(index);
                 emit setChangeActivated(setSelection);
             }
-            else if (setSelectionCondition == SetChangeWhileHeld && setSelection > -1)
+            else if ((setSelectionCondition == SetChangeWhileHeld) && (setSelection > -1))
             {
                 if (tempFinalState)
                 {
@@ -3329,6 +3491,8 @@ void JoyButton::checkForSetChange()
 
 void JoyButton::waitForDeskEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (quitEvent && !isButtonPressedQueue.isEmpty() && isButtonPressedQueue.last())
     {
         if (createDeskTimer.isActive())
@@ -3371,6 +3535,8 @@ void JoyButton::waitForDeskEvent()
 
 void JoyButton::waitForReleaseDeskEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (quitEvent && !keyPressTimer.isActive())
     {
         if (releaseDeskTimer.isActive())
@@ -3399,6 +3565,8 @@ void JoyButton::waitForReleaseDeskEvent()
 
 bool JoyButton::containsSequence()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
 
     assignmentsLock.lockForRead();
@@ -3407,9 +3575,9 @@ bool JoyButton::containsSequence()
     {
         JoyButtonSlot *slot = tempiter.next();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-        if (mode == JoyButtonSlot::JoyPause ||
-            mode == JoyButtonSlot::JoyHold ||
-            mode == JoyButtonSlot::JoyDistance
+        if ((mode == JoyButtonSlot::JoyPause) ||
+            (mode == JoyButtonSlot::JoyHold) ||
+            (mode == JoyButtonSlot::JoyDistance)
            )
         {
             result = true;
@@ -3423,6 +3591,8 @@ bool JoyButton::containsSequence()
 
 void JoyButton::holdEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (currentHold)
     {
         bool currentlyPressed = false;
@@ -3432,7 +3602,7 @@ void JoyButton::holdEvent()
         }
 
         // Activate hold event
-        if (currentlyPressed && buttonHold.elapsed() > currentHold->getSlotCode())
+        if (currentlyPressed && (buttonHold.elapsed() > currentHold->getSlotCode()))
         {
             releaseActiveSlots();
             currentHold = 0;
@@ -3443,9 +3613,9 @@ void JoyButton::holdEvent()
         // Elapsed time has not occurred
         else if (currentlyPressed)
         {
-            unsigned int holdTime = currentHold->getSlotCode();
+            int holdTime = currentHold->getSlotCode();
             int proposedInterval = holdTime - buttonHold.elapsed();
-            proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
+            proposedInterval = (proposedInterval > 0) ? proposedInterval : 0;
             int newTimerInterval = qMin(10, proposedInterval);
             holdTimer.start(newTimerInterval);
         }
@@ -3470,6 +3640,8 @@ void JoyButton::holdEvent()
 
 void JoyButton::delayEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (currentDelay)
     {
         bool currentlyPressed = false;
@@ -3479,7 +3651,7 @@ void JoyButton::delayEvent()
         }
 
         // Delay time has elapsed. Continue processing slots.
-        if (currentDelay && buttonDelay.elapsed() > currentDelay->getSlotCode())
+        if (currentDelay && (buttonDelay.elapsed() > currentDelay->getSlotCode()))
         {
             currentDelay = 0;
             delayTimer.stop();
@@ -3489,9 +3661,9 @@ void JoyButton::delayEvent()
         // Elapsed time has not occurred
         else if (currentlyPressed)
         {
-            unsigned int delayTime = currentDelay->getSlotCode();
+            int delayTime = currentDelay->getSlotCode();
             int proposedInterval = delayTime - buttonDelay.elapsed();
-            proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
+            proposedInterval = (proposedInterval > 0) ? proposedInterval : 0;
             int newTimerInterval = qMin(10, proposedInterval);
             delayTimer.start(newTimerInterval);
         }
@@ -3510,6 +3682,8 @@ void JoyButton::delayEvent()
 
 void JoyButton::releaseDeskEvent(bool skipsetchange)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     quitEvent = false;
 
     pauseWaitTimer.stop();
@@ -3532,7 +3706,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         currentRelease = 0;
     }
 
-    if (!skipsetchange && setSelectionCondition != SetChangeDisabled &&
+    if (!skipsetchange && (setSelectionCondition != SetChangeDisabled) &&
         !isButtonPressedQueue.isEmpty() && !currentRelease)
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
@@ -3540,7 +3714,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
         if (!tempButtonPressed && !tempFinalIgnoreSetsState)
         {
-            if (setSelectionCondition == SetChangeWhileHeld && whileHeldStatus)
+            if ((setSelectionCondition == SetChangeWhileHeld) && whileHeldStatus)
             {
                 setChangeTimer.start(0);
             }
@@ -3677,6 +3851,8 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
  */
 double JoyButton::getDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double distance = 0.0;
     if (isButtonPressed)
     {
@@ -3688,6 +3864,8 @@ double JoyButton::getDistanceFromDeadZone()
 
 double JoyButton::getAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->getDistanceFromDeadZone();
 }
 
@@ -3697,11 +3875,15 @@ double JoyButton::getAccelerationDistance()
  */
 double JoyButton::getMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->getDistanceFromDeadZone();
 }
 
 double JoyButton::getTotalSlotDistance(JoyButtonSlot *slot)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double tempDistance = 0.0;
 
     QListIterator<JoyButtonSlot*> iter(assignments);
@@ -3732,6 +3914,8 @@ double JoyButton::getTotalSlotDistance(JoyButtonSlot *slot)
 
 bool JoyButton::containsDistanceSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
     QListIterator<JoyButtonSlot*> iter(assignments);
     while (iter.hasNext())
@@ -3749,18 +3933,21 @@ bool JoyButton::containsDistanceSlots()
 
 void JoyButton::clearAssignedSlots(bool signalEmit)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QListIterator<JoyButtonSlot*> iter(assignments);
     while (iter.hasNext())
     {
         JoyButtonSlot *slot = iter.next();
-        if (slot)
+        if (slot != nullptr)
         {
             delete slot;
-            slot = 0;
+            slot = nullptr;
         }
     }
 
     assignments.clear();
+
     if (signalEmit)
     {
         emit slotsChanged();
@@ -3769,9 +3956,11 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
 
 void JoyButton::removeAssignedSlot(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
-    if (index >= 0 && index < assignments.size())
+    if ((index >= 0) && (index < assignments.size()))
     {
         JoyButtonSlot *slot = assignments.takeAt(index);
         if (slot)
@@ -3789,6 +3978,8 @@ void JoyButton::removeAssignedSlot(int index)
 
 void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     turboTimer.stop();
@@ -3802,6 +3993,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     keyPressTimer.stop();
     delayTimer.stop();
     activeZoneTimer.stop();
+
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
@@ -3839,10 +4031,14 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     //buildActiveZoneSummaryString();
     activeZoneTimer.start();
     quitEvent = true;
+
+
 }
 
 void JoyButton::eventReset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     turboTimer.stop();
@@ -3894,11 +4090,13 @@ void JoyButton::eventReset()
 
 void JoyButton::releaseActiveSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!activeSlots.isEmpty())
     {
         QWriteLocker tempLocker(&activeZoneLock);
 
-        bool changeRepeatState = false;
+        //bool changeRepeatState = false;
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
         iter.toBack();
@@ -3915,26 +4113,26 @@ void JoyButton::releaseActiveSlots()
                 {
                     sendevent(slot, false);
                     activeKeys.remove(tempcode);
-                    changeRepeatState = true;
+                    //changeRepeatState = true;
                 }
                 else
                 {
                     activeKeys.insert(tempcode, referencecount);
                 }
 
-                if (lastActiveKey == slot && referencecount <= 0)
+                if ((lastActiveKey == slot) && (referencecount <= 0))
                 {
                     lastActiveKey = 0;
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
-                if (tempcode != JoyButtonSlot::MouseWheelUp &&
-                    tempcode != JoyButtonSlot::MouseWheelDown &&
-                    tempcode != JoyButtonSlot::MouseWheelLeft &&
-                    tempcode != JoyButtonSlot::MouseWheelRight)
+                if ((tempcode != JoyButtonSlot::MouseWheelUp) &&
+                    (tempcode != JoyButtonSlot::MouseWheelDown) &&
+                    (tempcode != JoyButtonSlot::MouseWheelLeft) &&
+                    (tempcode != JoyButtonSlot::MouseWheelRight))
                 {
-                    int referencecount = activeMouseButtons.value(tempcode, 1) - 1;
+                    int referencecount = (activeMouseButtons.value(tempcode, 1) - 1);
                     if (referencecount <= 0)
                     {
                         sendevent(slot, false);
@@ -3945,13 +4143,13 @@ void JoyButton::releaseActiveSlots()
                         activeMouseButtons.insert(tempcode, referencecount);
                     }
                 }
-                else if (tempcode == JoyButtonSlot::MouseWheelUp ||
-                         tempcode == JoyButtonSlot::MouseWheelDown)
+                else if ((tempcode == JoyButtonSlot::MouseWheelUp) ||
+                         (tempcode == JoyButtonSlot::MouseWheelDown))
                 {
                     mouseWheelVerticalEventQueue.removeAll(slot);
                 }
-                else if (tempcode == JoyButtonSlot::MouseWheelLeft ||
-                         tempcode == JoyButtonSlot::MouseWheelRight)
+                else if ((tempcode == JoyButtonSlot::MouseWheelLeft) ||
+                         (tempcode == JoyButtonSlot::MouseWheelRight))
                 {
                     mouseWheelHorizontalEventQueue.removeAll(slot);
                 }
@@ -3965,7 +4163,7 @@ void JoyButton::releaseActiveSlots()
                 if (mousemode == MouseCursor)
                 {
                     QListIterator<mouseCursorInfo> iterX(cursorXSpeeds);
-                    unsigned int i = cursorXSpeeds.length();
+                    int i = cursorXSpeeds.length();
 
                     QList<int> indexesToRemove;
                     while (iterX.hasNext())
@@ -4155,8 +4353,8 @@ void JoyButton::releaseActiveSlots()
         // Check if mouse remainder should be zero.
         // Only need to check one list from cursor speeds and spring speeds
         // since the correspond Y lists will be the same size.
-        if (pendingMouseButtons.length() == 0 && cursorXSpeeds.length() == 0 &&
-            springXSpeeds.length() == 0)
+        if ((pendingMouseButtons.length() == 0) && (cursorXSpeeds.length() == 0) &&
+            (springXSpeeds.length() == 0))
         {
             //staticMouseEventTimer.setInterval(IDLEMOUSEREFRESHRATE);
             cursorRemainderX = 0;
@@ -4169,7 +4367,7 @@ void JoyButton::releaseActiveSlots()
 #ifdef Q_OS_WIN
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-        if (handler && handler->getIdentifier() == "sendinput" &&
+        if (handler && (handler->getIdentifier() == "sendinput") &&
             changeRepeatState && lastActiveKey && !useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
@@ -4195,6 +4393,8 @@ void JoyButton::releaseActiveSlots()
 
 bool JoyButton::containsReleaseSlots()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
     QListIterator<JoyButtonSlot*> iter(assignments);
     while (iter.hasNext())
@@ -4212,6 +4412,8 @@ bool JoyButton::containsReleaseSlots()
 
 void JoyButton::releaseSlotEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButtonSlot *temp = 0;
 
     int timeElapsed = buttonHeldRelease.elapsed();
@@ -4278,6 +4480,8 @@ void JoyButton::releaseSlotEvent()
 
 void JoyButton::findReleaseEventEnd()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
     while (!found && slotiter->hasNext())
     {
@@ -4306,6 +4510,8 @@ void JoyButton::findReleaseEventEnd()
 
 void JoyButton::findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
     if (tempiter)
     {
@@ -4337,6 +4543,8 @@ void JoyButton::findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter)
 
 void JoyButton::findHoldEventEnd()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
 
     while (!found && slotiter->hasNext())
@@ -4366,6 +4574,8 @@ void JoyButton::findHoldEventEnd()
 
 void JoyButton::setVDPad(VDPad *vdpad)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     joyEvent(false, true);
     this->vdpad = vdpad;
     emit propertyUpdated();
@@ -4373,16 +4583,22 @@ void JoyButton::setVDPad(VDPad *vdpad)
 
 bool JoyButton::isPartVDPad()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return (this->vdpad != 0);
 }
 
 VDPad* JoyButton::getVDPad()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->vdpad;
 }
 
 void JoyButton::removeVDPad()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->vdpad = 0;
     emit propertyUpdated();
 }
@@ -4393,6 +4609,8 @@ void JoyButton::removeVDPad()
  */
 bool JoyButton::isDefault()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool value = true;
     value = value && (toggle == DEFAULTTOGGLE);
     value = value && (turboInterval == DEFAULTTURBOINTERVAL);
@@ -4430,38 +4648,52 @@ bool JoyButton::isDefault()
 
 void JoyButton::setIgnoreEventState(bool ignore)
 {
+   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ignoreEvents = ignore;
 }
 
 bool JoyButton::getIgnoreEventState()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return ignoreEvents;
 }
 
 void JoyButton::setMouseMode(JoyMouseMovementMode mousemode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->mouseMode = mousemode;
     emit propertyUpdated();
 }
 
 JoyButton::JoyMouseMovementMode JoyButton::getMouseMode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mouseMode;
 }
 
 void JoyButton::setMouseCurve(JoyMouseCurve selectedCurve)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     mouseCurve = selectedCurve;
     emit propertyUpdated();
 }
 
 JoyButton::JoyMouseCurve JoyButton::getMouseCurve()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mouseCurve;
 }
 
 void JoyButton::setSpringWidth(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (value >= 0)
     {
         springWidth = value;
@@ -4471,11 +4703,15 @@ void JoyButton::setSpringWidth(int value)
 
 int JoyButton::getSpringWidth()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return springWidth;
 }
 
 void JoyButton::setSpringHeight(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (springHeight >= 0)
     {
         springHeight = value;
@@ -4485,12 +4721,16 @@ void JoyButton::setSpringHeight(int value)
 
 int JoyButton::getSpringHeight()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return springHeight;
 }
 
 void JoyButton::setSensitivity(double value)
 {
-    if (value >= 0.001 && value <= 1000)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 0.001) && (value <= 1000))
     {
         sensitivity = value;
         emit propertyUpdated();
@@ -4499,22 +4739,30 @@ void JoyButton::setSensitivity(double value)
 
 double JoyButton::getSensitivity()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return sensitivity;
 }
 
 bool JoyButton::getWhileHeldStatus()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return whileHeldStatus;
 }
 
 void JoyButton::setWhileHeldStatus(bool status)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     whileHeldStatus = status;
 }
 
 void JoyButton::setActionName(QString tempName)
 {
-    if (tempName.length() <= 50 && tempName != actionName)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((tempName.length() <= 50) && (tempName != actionName))
     {
         actionName = tempName;
         emit actionNameChanged();
@@ -4524,12 +4772,18 @@ void JoyButton::setActionName(QString tempName)
 
 QString JoyButton::getActionName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    qDebug() << "Action name is: " << actionName;
+
     return actionName;
 }
 
 void JoyButton::setButtonName(QString tempName)
 {
-    if (tempName.length() <= 20 && tempName != buttonName)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((tempName.length() <= 20) && (tempName != buttonName))
     {
         buttonName = tempName;
         emit buttonNameChanged();
@@ -4539,12 +4793,16 @@ void JoyButton::setButtonName(QString tempName)
 
 QString JoyButton::getButtonName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return buttonName;
 }
 
 void JoyButton::setWheelSpeedX(int speed)
 {
-    if (speed >= 1 && speed <= 100)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((speed >= 1) && (speed <= 100))
     {
         wheelSpeedX = speed;
         emit propertyUpdated();
@@ -4553,7 +4811,9 @@ void JoyButton::setWheelSpeedX(int speed)
 
 void JoyButton::setWheelSpeedY(int speed)
 {
-    if (speed >= 1 && speed <= 100)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((speed >= 1) && (speed <= 100))
     {
         wheelSpeedY = speed;
         emit propertyUpdated();
@@ -4562,21 +4822,29 @@ void JoyButton::setWheelSpeedY(int speed)
 
 int JoyButton::getWheelSpeedX()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return wheelSpeedX;
 }
 
 int JoyButton::getWheelSpeedY()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return wheelSpeedY;
 }
 
 void JoyButton::setDefaultButtonName(QString tempname)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     defaultButtonName = tempname;
 }
 
 QString JoyButton::getDefaultButtonName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return defaultButtonName;
 }
 
@@ -4586,6 +4854,8 @@ QString JoyButton::getDefaultButtonName()
  */
 void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 {
+   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     movedX = 0;
     movedY = 0;
     double finalx = 0.0;
@@ -4615,8 +4885,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
      * The mouse smoothing technique used is an interpretation of the method
      * outlined at http://flipcode.net/archives/Smooth_Mouse_Filtering.shtml.
      */
-    if (cursorXSpeeds.length() == cursorYSpeeds.length() &&
-        cursorXSpeeds.length() > 0)
+    if ((cursorXSpeeds.length() == cursorYSpeeds.length()) &&
+        (cursorXSpeeds.length() > 0))
     {
         int queueLength = cursorXSpeeds.length();
         for (int i=0; i < queueLength; i++)
@@ -4690,12 +4960,12 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         if (fabs(adjustedX) > 0)
         {
-            adjustedX = adjustedX / static_cast<double>(finalWeight);
+            adjustedX = adjustedX / finalWeight;
 
             if (adjustedX > 0)
             {
                 double oldX = adjustedX;
-                adjustedX = static_cast<int>(floor(adjustedX));
+                adjustedX = floor(adjustedX);
                 //adjustedX = (int)floor(adjustedX + 0.5); // Old rounding behavior
                 cursorRemainderX = oldX - adjustedX;
             }
@@ -4723,18 +4993,18 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         if (fabs(adjustedY) > 0)
         {
-            adjustedY = adjustedY / static_cast<double>(finalWeight);
+            adjustedY = adjustedY / finalWeight;
             if (adjustedY > 0)
             {
                 double oldY = adjustedY;
-                adjustedY = static_cast<int>(floor(adjustedY));
+                adjustedY = floor(adjustedY);
                 //adjustedY = (int)floor(adjustedY + 0.5); // Old rounding behavior
                 cursorRemainderY = oldY - adjustedY;
             }
             else
             {
                 double oldY = adjustedY;
-                adjustedY = static_cast<int>(ceil(adjustedY));
+                adjustedY = ceil(adjustedY);
                 //adjustedY = (int)ceil(adjustedY - 0.5); // Old rounding behavior
                 cursorRemainderY = oldY - adjustedY;
             }
@@ -4742,7 +5012,7 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         // This check is more of a precaution than anything. No need to cause
         // a sync to happen when not needed.
-        if (adjustedX != 0 || adjustedY != 0)
+        if ((adjustedX != 0) || (adjustedY != 0))
         {
             sendevent(adjustedX, adjustedY);
         }
@@ -4805,6 +5075,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
  */
 void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     PadderCommon::springModeInfo fullSpring = {
         -2.0, -2.0, 0, 0, false, springModeScreen, 0.0, 0.0
     };
@@ -4816,8 +5088,8 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
     int realMouseY = movedY = 0;
     hasMoved = false;
 
-    if (springXSpeeds.length() == springYSpeeds.length() &&
-        springXSpeeds.length() > 0)
+    if ((springXSpeeds.length() == springYSpeeds.length()) &&
+        (springXSpeeds.length() > 0))
     {
         int queueLength = springXSpeeds.length();
         bool complete = false;
@@ -4900,13 +5172,13 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
                 fullSpring.height = qMax(infoX.height, fullSpring.height);
             }
 
-            if ((relativeSpring.displacementX != -2.0 && relativeSpring.displacementY != -2.0) &&
-                (fullSpring.displacementX != -2.0 && fullSpring.displacementY != -2.0))
+            if (((relativeSpring.displacementX != -2.0) && (relativeSpring.displacementY != -2.0)) &&
+                ((fullSpring.displacementX != -2.0) && (fullSpring.displacementY != -2.0)))
             {
                 complete = true;
             }
-            else if ((relativeSpring.springDeadX != 0.0 && relativeSpring.springDeadY != 0.0) &&
-                     (fullSpring.springDeadX != 0.0 && fullSpring.springDeadY != 0.0))
+            else if (((relativeSpring.springDeadX != 0.0) && (relativeSpring.springDeadY != 0.0)) &&
+                     ((fullSpring.springDeadX != 0.0) && (fullSpring.springDeadY != 0.0)))
             {
                 complete = true;
             }
@@ -4969,8 +5241,10 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
 
 void JoyButton::keyPressEvent()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     //qDebug() << "RADIO EDIT: " << keyDelayHold.elapsed();
-    if (keyPressTimer.isActive() && keyPressHold.elapsed() >= getPreferredKeyPressTime())
+    if (keyPressTimer.isActive() && (keyPressHold.elapsed() >= getPreferredKeyPressTime()))
     {
         currentKeyPress = 0;
 
@@ -4997,7 +5271,7 @@ void JoyButton::keyPressEvent()
         createDeskTimer.stop();
         //releaseDeskTimer.stop();
 
-        unsigned int preferredDelay = getPreferredKeyPressTime();
+        int preferredDelay = getPreferredKeyPressTime();
         int proposedInterval = preferredDelay - keyPressHold.elapsed();
         proposedInterval = proposedInterval > 0 ? proposedInterval : 0;
         int newTimerInterval = qMin(10, proposedInterval);
@@ -5018,6 +5292,8 @@ void JoyButton::keyPressEvent()
  */
 bool JoyButton::checkForDelaySequence()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
 
     QListIterator<JoyButtonSlot*> tempiter(assignments);
@@ -5032,7 +5308,7 @@ bool JoyButton::checkForDelaySequence()
     {
         JoyButtonSlot *slot = tempiter.next();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-        if (mode == JoyButtonSlot::JoyPause || mode == JoyButtonSlot::JoyRelease)
+        if ((mode == JoyButtonSlot::JoyPause) || (mode == JoyButtonSlot::JoyRelease))
         {
             result = true;
             tempiter.toBack();
@@ -5049,11 +5325,15 @@ bool JoyButton::checkForDelaySequence()
 
 SetJoystick* JoyButton::getParentSet()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return parentSet;
 }
 
 void JoyButton::checkForPressedSetChange()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!isButtonPressedQueue.isEmpty())
     {
         bool tempButtonPressed = isButtonPressedQueue.last();
@@ -5062,7 +5342,7 @@ void JoyButton::checkForPressedSetChange()
         if (!whileHeldStatus)
         {
             if (tempButtonPressed && !tempFinalIgnoreSetsState &&
-                setSelectionCondition == SetChangeWhileHeld && !currentRelease)
+                (setSelectionCondition == SetChangeWhileHeld) && !currentRelease)
             {
                 setChangeTimer.start(0);
                 quitEvent = true;
@@ -5077,12 +5357,14 @@ void JoyButton::checkForPressedSetChange()
  *     profile value -> program default value.
  * @return Appropriate key press time for current event.
  */
-unsigned int JoyButton::getPreferredKeyPressTime()
+int JoyButton::getPreferredKeyPressTime()
 {
-    unsigned int tempPressTime = InputDevice::DEFAULTKEYPRESSTIME;
-    if (currentKeyPress && currentKeyPress->getSlotCode() > 0)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    int tempPressTime = InputDevice::DEFAULTKEYPRESSTIME;
+    if (currentKeyPress && (currentKeyPress->getSlotCode() > 0))
     {
-        tempPressTime = static_cast<unsigned int>(currentKeyPress->getSlotCode());
+        tempPressTime = currentKeyPress->getSlotCode();
     }
     else if (parentSet->getInputDevice()->getDeviceKeyPressTime() > 0)
     {
@@ -5092,12 +5374,14 @@ unsigned int JoyButton::getPreferredKeyPressTime()
     return tempPressTime;
 }
 
-void JoyButton::setCycleResetTime(unsigned int interval)
+void JoyButton::setCycleResetTime(int interval)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (interval >= MINCYCLERESETTIME)
     {
-        unsigned int ceiling = MAXCYCLERESETTIME;
-        unsigned int temp = qBound(MINCYCLERESETTIME, interval, ceiling);
+        int ceiling = MAXCYCLERESETTIME;
+        int temp = qBound(MINCYCLERESETTIME, interval, ceiling);
         cycleResetInterval = temp;
         emit propertyUpdated();
     }
@@ -5109,30 +5393,40 @@ void JoyButton::setCycleResetTime(unsigned int interval)
     }
 }
 
-unsigned int JoyButton::getCycleResetTime()
+int JoyButton::getCycleResetTime()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return cycleResetInterval;
 }
 
 void JoyButton::setCycleResetStatus(bool enabled)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     cycleResetActive = enabled;
     emit propertyUpdated();
 }
 
 bool JoyButton::isCycleResetActive()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return cycleResetActive;
 }
 
 void JoyButton::establishPropertyUpdatedConnections()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
     connect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
 
 void JoyButton::disconnectPropertyUpdatedConnections()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(this, SIGNAL(slotsChanged()), 0, 0);
     disconnect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
 }
@@ -5143,12 +5437,12 @@ void JoyButton::disconnectPropertyUpdatedConnections()
  */
 void JoyButton::establishMouseTimerConnections()
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (staticMouseEventTimer.timerType() != Qt::PreciseTimer)
     {
         staticMouseEventTimer.setTimerType(Qt::PreciseTimer);
     }
-#endif
 
     // Only one connection will be made for each.
     connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
@@ -5169,6 +5463,8 @@ void JoyButton::establishMouseTimerConnections()
 
 void JoyButton::setSpringRelativeStatus(bool value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (value != relativeSpring)
     {
         if (value)
@@ -5183,6 +5479,8 @@ void JoyButton::setSpringRelativeStatus(bool value)
 
 bool JoyButton::isRelativeSpring()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return relativeSpring;
 }
 
@@ -5193,6 +5491,8 @@ bool JoyButton::isRelativeSpring()
  */
 void JoyButton::copyAssignments(JoyButton *destButton)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     destButton->eventReset();
     destButton->assignmentsLock.lockForWrite();
     destButton->assignments.clear();
@@ -5250,6 +5550,8 @@ void JoyButton::copyAssignments(JoyButton *destButton)
  */
 void JoyButton::setTurboMode(TurboMode mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     currentTurboMode = mode;
 }
 
@@ -5259,6 +5561,8 @@ void JoyButton::setTurboMode(TurboMode mode)
  */
 JoyButton::TurboMode JoyButton::getTurboMode()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return currentTurboMode;
 }
 
@@ -5270,6 +5574,8 @@ JoyButton::TurboMode JoyButton::getTurboMode()
  */
 bool JoyButton::isPartRealAxis()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return false;
 }
 
@@ -5281,6 +5587,8 @@ bool JoyButton::isPartRealAxis()
  */
 int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int result = JoyAxis::JOYSPEED * value;
     switch (curve)
     {
@@ -5291,6 +5599,26 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
             result *= 1.5;
             break;
         }
+    case LinearCurve:
+    {
+        break;
+    }
+    case QuadraticCurve:
+    {
+        break;
+    }
+    case CubicCurve:
+    {
+        break;
+    }
+    case PowerCurve:
+    {
+        break;
+    }
+    default:
+    {
+        break;
+    }
     }
 
     return result;
@@ -5298,8 +5626,10 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
 
 void JoyButton::setEasingDuration(double value)
 {
-    if (value >= MINIMUMEASINGDURATION && value <= MAXIMUMEASINGDURATION &&
-        value != easingDuration)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= MINIMUMEASINGDURATION) && (value <= MAXIMUMEASINGDURATION) &&
+        (value != easingDuration))
     {
         easingDuration = value;
         emit propertyUpdated();
@@ -5308,11 +5638,15 @@ void JoyButton::setEasingDuration(double value)
 
 double JoyButton::getEasingDuration()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return easingDuration;
 }
 
 JoyButtonMouseHelper* JoyButton::getMouseHelper()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &mouseHelper;
 }
 
@@ -5322,16 +5656,22 @@ JoyButtonMouseHelper* JoyButton::getMouseHelper()
  */
 QList<JoyButton*>* JoyButton::getPendingMouseButtons()
 {
+   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &pendingMouseButtons;
 }
 
 bool JoyButton::hasCursorEvents()
 {
+  //  qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return (cursorXSpeeds.length() != 0) || (cursorYSpeeds.length() != 0);
 }
 
 bool JoyButton::hasSpringEvents()
 {
+   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return (springXSpeeds.length() != 0) || (springYSpeeds.length() != 0);
 }
 
@@ -5341,6 +5681,8 @@ bool JoyButton::hasSpringEvents()
  */
 double JoyButton::getWeightModifier()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return weightModifier;
 }
 
@@ -5350,7 +5692,9 @@ double JoyButton::getWeightModifier()
  */
 void JoyButton::setWeightModifier(double modifier)
 {
-    if (modifier >= 0.0 && modifier <= MAXIMUMWEIGHTMODIFIER)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((modifier >= 0.0) && (modifier <= MAXIMUMWEIGHTMODIFIER))
     {
         weightModifier = modifier;
     }
@@ -5362,6 +5706,8 @@ void JoyButton::setWeightModifier(double modifier)
  */
 int JoyButton::getMouseHistorySize()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mouseHistorySize;
 }
 
@@ -5371,7 +5717,9 @@ int JoyButton::getMouseHistorySize()
  */
 void JoyButton::setMouseHistorySize(int size)
 {
-    if (size >= 1 && size <= MAXIMUMMOUSEHISTORYSIZE)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((size >= 1) && (size <= MAXIMUMMOUSEHISTORYSIZE))
     {
         mouseHistoryX.clear();
         mouseHistoryY.clear();
@@ -5386,6 +5734,8 @@ void JoyButton::setMouseHistorySize(int size)
  */
 int JoyButton::getMouseRefreshRate()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return mouseRefreshRate;
 }
 
@@ -5395,7 +5745,9 @@ int JoyButton::getMouseRefreshRate()
  */
 void JoyButton::setMouseRefreshRate(int refresh)
 {
-    if (refresh >= 1 && refresh <= 16)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((refresh >= 1) && (refresh <= 16))
     {
         mouseRefreshRate = refresh;
         int temp = IDLEMOUSEREFRESHRATE;
@@ -5439,6 +5791,8 @@ void JoyButton::setMouseRefreshRate(int refresh)
  */
 int JoyButton::getGamepadRefreshRate()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return gamepadRefreshRate;
 }
 
@@ -5448,7 +5802,9 @@ int JoyButton::getGamepadRefreshRate()
  */
 void JoyButton::setGamepadRefreshRate(int refresh)
 {
-    if (refresh >= 1 && refresh <= 16)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((refresh >= 1) && (refresh <= 16))
     {
         gamepadRefreshRate = refresh;
         mouseHelper.carryGamePollRateUpdate(gamepadRefreshRate);
@@ -5461,6 +5817,8 @@ void JoyButton::setGamepadRefreshRate(int refresh)
  */
 void JoyButton::checkTurboCondition(JoyButtonSlot *slot)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
     switch (mode)
     {
@@ -5474,24 +5832,62 @@ void JoyButton::checkTurboCondition(JoyButtonSlot *slot)
             setUseTurbo(false);
             break;
         }
+    case JoyButtonSlot::JoyMouseButton:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyMouseMovement:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyCycle:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyMouseSpeedMod:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyKeyPress:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyDelay:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyTextEntry:
+    {
+        break;
+    }
+    case JoyButtonSlot::JoyExecute:
+    {
+        break;
+    }
+       default:
+    {
+        break;
+    }
     }
 }
 
 void JoyButton::resetProperties()
 {
-    currentCycle = 0;
-    previousCycle = 0;
-    currentPause = 0;
-    currentHold = 0;
-    currentDistance = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    currentCycle = nullptr;
+    previousCycle = nullptr;
+    currentPause = nullptr;
+    currentHold = nullptr;
+    currentDistance = nullptr;
     currentRawValue = 0;
-    currentMouseEvent = 0;
-    currentRelease = 0;
-    currentWheelVerticalEvent = 0;
-    currentWheelHorizontalEvent = 0;
-    currentKeyPress = 0;
-    currentDelay = 0;
-    currentSetChangeSlot = 0;
+    currentMouseEvent = nullptr;
+    currentRelease = nullptr;
+    currentWheelVerticalEvent = nullptr;
+    currentWheelHorizontalEvent = nullptr;
+    currentKeyPress = nullptr;
+    currentDelay = nullptr;
+    currentSetChangeSlot = nullptr;
 
     isKeyPressed = isButtonPressed = false;
     quitEvent = true;
@@ -5555,22 +5951,28 @@ void JoyButton::resetProperties()
     extraAccelCurve = LinearAccelCurve;
 
     activeZoneStringLock.lockForWrite();
-    activeZoneString = tr("[NO KEY]");
+    activeZoneString = trUtf8("[NO KEY]");
     activeZoneStringLock.unlock();
 }
 
 bool JoyButton::isModifierButton()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return false;
 }
 
 void JoyButton::resetActiveButtonMouseDistances()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     mouseHelper.resetButtonMouseDistances();
 }
 
 void JoyButton::resetAccelerationDistances()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (updateLastMouseDistance)
     {
         lastAccelerationDistance = currentAccelerationDistance;
@@ -5596,6 +5998,8 @@ void JoyButton::resetAccelerationDistances()
 
 void JoyButton::initializeDistanceValues()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     lastAccelerationDistance = getLastAccelerationDistance();
     currentAccelerationDistance = getAccelerationDistance();
     startingAccelerationDistance = lastAccelerationDistance;
@@ -5606,36 +6010,50 @@ void JoyButton::initializeDistanceValues()
 
 double JoyButton::getLastMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return lastMouseDistance;
 }
 
 double JoyButton::getLastAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return lastAccelerationDistance;
 }
 
 void JoyButton::copyLastMouseDistanceFromDeadZone(JoyButton *srcButton)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->lastMouseDistance = srcButton->lastMouseDistance;
 }
 
 void JoyButton::copyLastAccelerationDistance(JoyButton *srcButton)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->lastAccelerationDistance = srcButton->lastAccelerationDistance;
 }
 
 bool JoyButton::isExtraAccelerationEnabled()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return extraAccelerationEnabled;
 }
 
 double JoyButton::getExtraAccelerationMultiplier()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return extraAccelerationMultiplier;
 }
 
 void JoyButton::setExtraAccelerationStatus(bool status)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (isPartRealAxis())
     {
         extraAccelerationEnabled = status;
@@ -5649,7 +6067,9 @@ void JoyButton::setExtraAccelerationStatus(bool status)
 
 void JoyButton::setExtraAccelerationMultiplier(double value)
 {
-    if (value >= 1.0 && value <= 200.0)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 1.0) && (value <= 200.0))
     {
         extraAccelerationMultiplier = value;
         emit propertyUpdated();
@@ -5658,7 +6078,9 @@ void JoyButton::setExtraAccelerationMultiplier(double value)
 
 void JoyButton::setMinAccelThreshold(double value)
 {
-    if (value >= 1.0 && value <= 100.0 && value <= maxMouseDistanceAccelThreshold)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 1.0) && (value <= 100.0) && (value <= maxMouseDistanceAccelThreshold))
     {
         minMouseDistanceAccelThreshold = value;
         emit propertyUpdated();
@@ -5667,12 +6089,16 @@ void JoyButton::setMinAccelThreshold(double value)
 
 double JoyButton::getMinAccelThreshold()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return minMouseDistanceAccelThreshold;
 }
 
 void JoyButton::setMaxAccelThreshold(double value)
 {
-    if (value >= 1.0 && value <= 100.0 && value >= minMouseDistanceAccelThreshold)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 1.0) && (value <= 100.0) && (value >= minMouseDistanceAccelThreshold))
     {
         maxMouseDistanceAccelThreshold = value;
         emit propertyUpdated();
@@ -5681,12 +6107,16 @@ void JoyButton::setMaxAccelThreshold(double value)
 
 double JoyButton::getMaxAccelThreshold()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return maxMouseDistanceAccelThreshold;
 }
 
 void JoyButton::setStartAccelMultiplier(double value)
 {
-    if (value >= 0.0 && value <= 100.0)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 0.0) && (value <= 100.0))
     {
         startAccelMultiplier = value;
         emit propertyUpdated();
@@ -5695,16 +6125,22 @@ void JoyButton::setStartAccelMultiplier(double value)
 
 double JoyButton::getStartAccelMultiplier()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return startAccelMultiplier;
 }
 
 int JoyButton::getSpringModeScreen()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return springModeScreen;
 }
 
 void JoyButton::setSpringModeScreen(int screen)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (screen >= -1)
     {
         springModeScreen = screen;
@@ -5713,7 +6149,9 @@ void JoyButton::setSpringModeScreen(int screen)
 
 void JoyButton::setAccelExtraDuration(double value)
 {
-    if (value >= 0.0 && value <= 5.0)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 0.0) && (value <= 5.0))
     {
         accelDuration = value;
         emit propertyUpdated();
@@ -5722,11 +6160,15 @@ void JoyButton::setAccelExtraDuration(double value)
 
 double JoyButton::getAccelExtraDuration()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return accelDuration;
 }
 
 bool JoyButton::hasFutureSpringEvents()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
     QListIterator<JoyButton*> iter(pendingMouseButtons);
     while (iter.hasNext())
@@ -5744,7 +6186,9 @@ bool JoyButton::hasFutureSpringEvents()
 
 void JoyButton::setSpringDeadCircleMultiplier(int value)
 {
-    if (value >= 0 && value <= 100)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((value >= 0) && (value <= 100))
     {
         springDeadCircleMultiplier = value;
         emit propertyUpdated();
@@ -5803,7 +6247,7 @@ bool JoyButton::shouldInvokeMouseEvents()
 {
     bool result = false;
 
-    if (pendingMouseButtons.size() > 0 && staticMouseEventTimer.isActive())
+    if ((pendingMouseButtons.size() > 0) && staticMouseEventTimer.isActive())
     {
         int timerInterval = staticMouseEventTimer.interval();
         if (timerInterval == 0)

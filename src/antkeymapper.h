@@ -39,20 +39,20 @@
 
 class AntKeyMapper : public QObject
 {
-    Q_OBJECT
+
 public:
     static AntKeyMapper* getInstance(QString handler = "");
     void deleteInstance();
 
-    unsigned int returnVirtualKey(unsigned int qkey);
-    unsigned int returnQtKey(unsigned int key, unsigned int scancode=0);
-    bool isModifierKey(unsigned int qkey);
+    int returnVirtualKey(int qkey); // unsigned, unsigned
+    int returnQtKey(int key, int scancode=0); // unsigned, unsigned, unsigned
+    bool isModifierKey(int qkey); // .., unsigned
     QtKeyMapperBase* getNativeKeyMapper();
     QtKeyMapperBase* getKeyMapper();
     bool hasNativeKeyMapper();
 
 protected:
-    explicit AntKeyMapper(QString handler = "", QObject *parent = 0);
+    explicit AntKeyMapper(QString handler = "", QObject *parent = nullptr);
 
     static AntKeyMapper *_instance;
     QtKeyMapperBase *internalMapper;
@@ -75,10 +75,6 @@ protected:
   #endif
 
 #endif
-
-signals:
-
-public slots:
 
 };
 

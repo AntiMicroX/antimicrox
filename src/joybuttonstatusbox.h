@@ -20,7 +20,8 @@
 
 #include <QPushButton>
 
-#include "joybutton.h"
+class JoyButton;
+class QWidget;
 
 class JoyButtonStatusBox : public QPushButton
 {
@@ -28,7 +29,7 @@ class JoyButtonStatusBox : public QPushButton
     Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
 public:
-    explicit JoyButtonStatusBox(JoyButton *button, QWidget *parent = 0);
+    explicit JoyButtonStatusBox(JoyButton *button, QWidget *parent = nullptr);
     JoyButton* getJoyButton();
     bool isButtonFlashing();
 

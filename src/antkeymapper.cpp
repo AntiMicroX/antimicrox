@@ -15,18 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QtGlobal>
-#include <QStringList>
-
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
 
-AntKeyMapper* AntKeyMapper::_instance = 0;
+#include <QDebug>
+#include <QtGlobal>
+#include <QStringList>
+
+
+AntKeyMapper* AntKeyMapper::_instance = nullptr;
 
 static QStringList buildEventGeneratorList()
 {
-    QStringList temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QStringList temp = QStringList();
 
 #ifdef Q_OS_WIN
     temp.append("sendinput");
@@ -49,7 +52,9 @@ static QStringList buildEventGeneratorList()
 AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     QObject(parent)
 {
-    internalMapper = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    internalMapper = nullptr;
 
 #ifdef Q_OS_WIN
   #ifdef WITH_VMULTI
@@ -63,7 +68,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     BACKEND_ELSE_IF (handler == "sendinput")
     {
         internalMapper = &winMapper;
-        nativeKeyMapper = 0;
+        nativeKeyMapper = nullptr;
     }
 
 #else
@@ -71,7 +76,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "xtest")
     {
         internalMapper = &x11Mapper;
-        nativeKeyMapper = 0;
+        nativeKeyMapper = nullptr;
     }
     #endif
 
@@ -82,7 +87,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
 #ifdef WITH_XTEST
         nativeKeyMapper = &x11Mapper;
 #else
-        nativeKeyMapper = 0;
+        nativeKeyMapper = nullptr;
 #endif
     }
     #endif
@@ -92,7 +97,9 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
 
 AntKeyMapper* AntKeyMapper::getInstance(QString handler)
 {
-    if (!_instance)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (_instance == nullptr)
     {
         Q_ASSERT(!handler.isEmpty());
         QStringList temp = buildEventGeneratorList();
@@ -105,40 +112,54 @@ AntKeyMapper* AntKeyMapper::getInstance(QString handler)
 
 void AntKeyMapper::deleteInstance()
 {
-    if (_instance)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (_instance != nullptr)
     {
         delete _instance;
-        _instance = 0;
+        _instance = nullptr;
     }
 }
 
-unsigned int AntKeyMapper::returnQtKey(unsigned int key, unsigned int scancode)
+int AntKeyMapper::returnQtKey(int key, int scancode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return internalMapper->returnQtKey(key, scancode);
 }
 
-unsigned int AntKeyMapper::returnVirtualKey(unsigned int qkey)
+int AntKeyMapper::returnVirtualKey(int qkey)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return internalMapper->returnVirtualKey(qkey);
 }
 
-bool AntKeyMapper::isModifierKey(unsigned int qkey)
+bool AntKeyMapper::isModifierKey(int qkey)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return internalMapper->isModifier(qkey);
 }
 
 QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return nativeKeyMapper;
 }
 
 QtKeyMapperBase* AntKeyMapper::getKeyMapper()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return internalMapper;
 }
 
 bool AntKeyMapper::hasNativeKeyMapper()
 {
-    bool result = nativeKeyMapper != 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    bool result = (nativeKeyMapper != nullptr);
     return result;
 }

@@ -15,11 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QTime>
 
 #include "logger.h"
 
-Logger* Logger::instance = 0;
+#include <QTime>
+#include <QDebug>
+
+Logger* Logger::instance = nullptr;
 
 /**
  * @brief Outputs log messages to a given text stream. Client code
@@ -32,10 +34,12 @@ Logger* Logger::instance = 0;
 Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     instance = this;
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
-    instance->errorStream = 0;
+    instance->errorStream = nullptr;
     instance->pendingTimer.setInterval(1);
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
@@ -57,6 +61,8 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
                LogLevel outputLevel, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     instance = this;
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
@@ -74,6 +80,8 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
  */
 Logger::~Logger()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     closeLogger();
     closeErrorLogger();
 }
@@ -85,7 +93,9 @@ Logger::~Logger()
  */
 void Logger::setLogLevel(LogLevel level)
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
     Q_UNUSED(locker);
@@ -99,14 +109,18 @@ void Logger::setLogLevel(LogLevel level)
  */
 Logger::LogLevel Logger::getCurrentLogLevel()
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     return instance->outputLevel;
 }
 
 void Logger::setCurrentStream(QTextStream *stream)
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
     Q_UNUSED(locker);
@@ -117,14 +131,18 @@ void Logger::setCurrentStream(QTextStream *stream)
 
 QTextStream* Logger::getCurrentStream()
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     return instance->outputStream;
 }
 
 void Logger::setCurrentErrorStream(QTextStream *stream)
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
     Q_UNUSED(locker);
@@ -139,7 +157,9 @@ void Logger::setCurrentErrorStream(QTextStream *stream)
 
 QTextStream* Logger::getCurrentErrorStream()
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     return instance->errorStream;
 }
@@ -154,6 +174,8 @@ QTextStream* Logger::getCurrentErrorStream()
  */
 void Logger::Log()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QMutexLocker locker(&logMutex);
     Q_UNUSED(locker);
 
@@ -174,11 +196,13 @@ void Logger::Log()
  */
 void Logger::closeLogger(bool closeStream)
 {
-    if (outputStream)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (outputStream != nullptr)
     {
         outputStream->flush();
 
-        if (closeStream && outputStream->device() != 0)
+        if (closeStream && (outputStream->device() != nullptr))
         {
             QIODevice *device = outputStream->device();
             if (device->isOpen())
@@ -195,11 +219,13 @@ void Logger::closeLogger(bool closeStream)
  */
 void Logger::closeErrorLogger(bool closeStream)
 {
-    if (errorStream)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (errorStream != nullptr)
     {
         errorStream->flush();
 
-        if (closeStream && errorStream->device() != 0)
+        if (closeStream && (errorStream->device() != nullptr))
         {
             QIODevice *device = errorStream->device();
             if (device->isOpen())
@@ -210,7 +236,7 @@ void Logger::closeErrorLogger(bool closeStream)
     }
 
     instance->pendingTimer.stop();
-    instance = 0;
+    instance = nullptr;
 }
 
 /**
@@ -223,7 +249,9 @@ void Logger::closeErrorLogger(bool closeStream)
  */
 void Logger::appendLog(LogLevel level, const QString &message, bool newline)
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
     Q_UNUSED(locker);
@@ -252,7 +280,9 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
  */
 void Logger::directLog(LogLevel level, const QString &message, bool newline)
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
     Q_UNUSED(locker);
@@ -271,23 +301,25 @@ void Logger::directLog(LogLevel level, const QString &message, bool newline)
  */
 void Logger::logMessage(LogMessage msg)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     LogLevel level = msg.level;
     QString message = msg.message;
     bool newline = msg.newline;
 
-    if (outputLevel != LOG_NONE && level <= outputLevel)
+    if ((outputLevel != LOG_NONE) && (level <= outputLevel))
     {
         QString displayTime = "";
         QString initialPrefix = "";
-        QString finalMessage;
-        if (outputLevel > LOG_INFO || writeTime)
+        QString finalMessage = QString();
+        if ((outputLevel > LOG_INFO) || writeTime)
         {
             displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
             initialPrefix = displayTime;
         }
 
         QTextStream *writeStream = outputStream;
-        if (level < LOG_INFO && errorStream)
+        if ((level < LOG_INFO) && errorStream)
         {
             writeStream = errorStream;
         }
@@ -313,6 +345,8 @@ void Logger::logMessage(LogMessage msg)
  */
 QTimer* Logger::getLogTimer()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return &pendingTimer;
 }
 
@@ -321,6 +355,8 @@ QTimer* Logger::getLogTimer()
  */
 void Logger::stopLogTimer()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (pendingTimer.isActive())
     {
         pendingTimer.stop();
@@ -334,7 +370,9 @@ void Logger::stopLogTimer()
  */
 void Logger::setWriteTime(bool status)
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
     Q_UNUSED(locker);
@@ -349,14 +387,18 @@ void Logger::setWriteTime(bool status)
  */
 bool Logger::getWriteTime()
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     return writeTime;
 }
 
 void Logger::startPendingTimer()
 {
-    Q_ASSERT(instance != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    Q_ASSERT(instance != nullptr);
 
     if (!instance->pendingTimer.isActive())
     {
@@ -365,7 +407,10 @@ void Logger::startPendingTimer()
 }
 
 void Logger::setCurrentLogFile(QString filename) {
-  Q_ASSERT(instance != 0);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+  Q_ASSERT(instance != nullptr);
   
   if( instance->outputFile.isOpen() ) {
     instance->closeLogger(true);
@@ -374,11 +419,14 @@ void Logger::setCurrentLogFile(QString filename) {
   instance->outputFile.open( QIODevice::WriteOnly | QIODevice::Append );
   instance->outFileStream.setDevice( &instance->outputFile );
   instance->setCurrentStream( &instance->outFileStream );
-  instance->LogInfo(QObject::tr("Logging started"), true, true);
+  instance->LogInfo(QObject::trUtf8("Logging started"), true, true);
 }
 
 void Logger::setCurrentErrorLogFile(QString filename) {
-  Q_ASSERT(instance != 0);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+  Q_ASSERT(instance != nullptr);
 
   if( instance->errorFile.isOpen() ) {
     instance->closeErrorLogger(true);

@@ -16,12 +16,16 @@
  */
 
 #include "joyaxiswidget.h"
-
 #include "joyaxiscontextmenu.h"
+#include "joyaxis.h"
+
+#include <QDebug>
 
 JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->axis = axis;
 
     refreshLabel();
@@ -52,11 +56,15 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
 
 JoyAxis* JoyAxisWidget::getAxis()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return axis;
 }
 
 void JoyAxisWidget::disableFlashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(axis, SIGNAL(active(int)), this, SLOT(flash()));
     disconnect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
     this->unflash();
@@ -64,6 +72,8 @@ void JoyAxisWidget::disableFlashes()
 
 void JoyAxisWidget::enableFlashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(axis, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }
@@ -74,13 +84,19 @@ void JoyAxisWidget::enableFlashes()
  */
 QString JoyAxisWidget::generateLabel()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     temp = axis->getName(false, displayNames).replace("&", "&&");
+
+    qDebug() << "Name of joy axis is: " << temp;
     return temp;
 }
 
 void JoyAxisWidget::showContextMenu(const QPoint &point)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPoint globalPos = this->mapToGlobal(point);
     JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(axis, this);
     contextMenu->buildMenu();
@@ -89,6 +105,8 @@ void JoyAxisWidget::showContextMenu(const QPoint &point)
 
 void JoyAxisWidget::tryFlash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 

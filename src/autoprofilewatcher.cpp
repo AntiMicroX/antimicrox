@@ -15,7 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "autoprofilewatcher.h"
+#include "autoprofileinfo.h"
+#include "antimicrosettings.h"
+
+#include <QDebug>
 #include <QListIterator>
 #include <QStringListIterator>
 #include <QSetIterator>
@@ -23,8 +27,6 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QApplication>
-
-#include "autoprofilewatcher.h"
 
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
 #include "x11extras.h"
@@ -34,33 +36,46 @@
 
 #endif
 
+
+
+
+
 AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->settings = settings;
-    allDefaultInfo = 0;
+    allDefaultInfo = nullptr;
     currentApplication = "";
 
     syncProfileAssignment();
 
-    connect(&appTimer, SIGNAL(timeout()), this, SLOT(runAppCheck()));
+    //connect(&appTimer, SIGNAL(timeout()), this, SLOT(runAppCheck()));
+
+    runAppCheck();
 }
 
 void AutoProfileWatcher::startTimer()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     appTimer.start(CHECKTIME);
 }
 
 void AutoProfileWatcher::stopTimer()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     appTimer.stop();
 }
 
 void AutoProfileWatcher::runAppCheck()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     //qDebug() << qApp->applicationFilePath();
-    QString appLocation;
-    QString baseAppFileName;
+    QString appLocation = QString();
+    QString baseAppFileName = QString();
     guidSet.clear();
 
     // Check whether program path needs to be parsed. Removes processing time
@@ -83,17 +98,17 @@ void AutoProfileWatcher::runAppCheck()
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
 
-    QString nowWindow;
-    QString nowWindowClass;
-    QString nowWindowName;
+    QString nowWindow = QString();
+    QString nowWindowClass = QString();
+    QString nowWindowName = QString();
 
 #ifdef Q_OS_WIN
     nowWindowName = WinExtras::getCurrentWindowText();
 #else
-    unsigned long currentWindow = X11Extras::getInstance()->getWindowInFocus();
+    long currentWindow = X11Extras::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
     {
-        unsigned long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
+        long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
         if (tempWindow > 0)
         {
             currentWindow = tempWindow;
@@ -109,12 +124,12 @@ void AutoProfileWatcher::runAppCheck()
     bool checkForTitleChange = windowNameProfileAssignments.size() > 0;
 
 #ifdef Q_OS_WIN
-    if (!focusedWidget && ((!appLocation.isEmpty() && appLocation != currentApplication) ||
-        (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
+    if (!focusedWidget && ((!appLocation.isEmpty() && (appLocation != currentApplication)) ||
+        (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
 
 #else
-    if (!focusedWidget && ((!nowWindow.isEmpty() && nowWindow != currentApplication) ||
-        (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
+    if (!focusedWidget && ((!nowWindow.isEmpty() && (nowWindow != currentApplication)) ||
+        (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
 
 #endif
     {
@@ -128,7 +143,7 @@ void AutoProfileWatcher::runAppCheck()
         currentAppWindowTitle = nowWindowName;
         //currentApplication = appLocation;
 
-	Logger::LogDebug(QObject::tr("Active window changed to: Title = \"%1\", "
+    Logger::LogDebug(QObject::trUtf8("Active window changed to: Title = \"%1\", "
 				     "Class = \"%2\", Program = \"%3\" or \"%4\".").
 			 arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName));
 
@@ -215,7 +230,7 @@ void AutoProfileWatcher::runAppCheck()
         if ((!defaultProfileAssignments.isEmpty() || allDefaultInfo) && !focusedWidget)
              //antiProgramLocation != appLocation)
         {
-            if (allDefaultInfo)
+            if (allDefaultInfo != nullptr)
             {
                 if (allDefaultInfo->isActive() && !guidSet.contains("all"))
                 {
@@ -239,6 +254,8 @@ void AutoProfileWatcher::runAppCheck()
 
 void AutoProfileWatcher::syncProfileAssignment()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     clearProfileAssignments();
 
     currentApplication = "";
@@ -248,12 +265,12 @@ void AutoProfileWatcher::syncProfileAssignment()
 
     settings->getLock()->lock();
     settings->beginGroup("DefaultAutoProfiles");
-    QString exe;
-    QString guid;
-    QString profile;
-    QString active;
-    QString windowClass;
-    QString windowName;
+    QString exe = QString();
+    QString guid = QString();
+    QString profile = QString();
+    QString active = QString();
+    QString windowClass = QString();
+    QString windowName = QString();
 
     QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
     //QStringList defaultkeys = settings->allKeys();
@@ -384,6 +401,8 @@ void AutoProfileWatcher::syncProfileAssignment()
 
 void AutoProfileWatcher::clearProfileAssignments()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QSet<AutoProfileInfo*> terminateProfiles;
 
     QListIterator<QList<AutoProfileInfo*> > iterDelete(appProfileAssignments.values());
@@ -417,7 +436,7 @@ void AutoProfileWatcher::clearProfileAssignments()
         if (info)
         {
             delete info;
-            info = 0;
+            info = nullptr;
         }
     }
 
@@ -428,18 +447,20 @@ void AutoProfileWatcher::clearProfileAssignments()
         if (info)
         {
             delete info;
-            info = 0;
+            info = nullptr;
         }
     }
     defaultProfileAssignments.clear();
 
-    allDefaultInfo = 0;
+    allDefaultInfo = nullptr;
     guidSet.clear();
 }
 
 QString AutoProfileWatcher::findAppLocation()
 {
-    QString exepath;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString exepath = QString();
 
 #if defined(Q_OS_LINUX)
     #ifdef WITH_X11
@@ -468,6 +489,8 @@ QString AutoProfileWatcher::findAppLocation()
 
 QList<AutoProfileInfo*>* AutoProfileWatcher::getCustomDefaults()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<AutoProfileInfo*> *temp = new QList<AutoProfileInfo*>();
     QHashIterator<QString, AutoProfileInfo*> iter(defaultProfileAssignments);
     while (iter.hasNext())
@@ -480,10 +503,14 @@ QList<AutoProfileInfo*>* AutoProfileWatcher::getCustomDefaults()
 
 AutoProfileInfo* AutoProfileWatcher::getDefaultAllProfile()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return allDefaultInfo;
 }
 
 bool AutoProfileWatcher::isGUIDLocked(QString guid)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return guidSet.contains(guid);
 }

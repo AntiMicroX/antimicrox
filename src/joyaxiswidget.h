@@ -18,10 +18,14 @@
 #ifndef JOYAXISWIDGET_H
 #define JOYAXISWIDGET_H
 
-#include <QPoint>
+
 
 #include "flashbuttonwidget.h"
-#include "joyaxis.h"
+
+#include <QPoint>
+
+class JoyAxis;
+class QWidget;
 
 class JoyAxisWidget : public FlashButtonWidget
 {

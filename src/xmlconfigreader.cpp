@@ -15,27 +15,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QDir>
-#include <QStringList>
-
 #include "xmlconfigreader.h"
+#include "inputdevice.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
 #include "common.h"
+#include "joystick.h"
+
+#ifdef USE_SDL_2
+#include "gamecontroller/gamecontroller.h"
+#endif
+
+#include "common.h"
+
+#include <QDebug>
+#include <QDir>
+#include <QStringList>
+#include <QXmlStreamReader>
+#include <QFile>
+
 
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     xml = new QXmlStreamReader();
-    configFile = 0;
-    joystick = 0;
+    configFile = nullptr;
+    joystick = nullptr;
     initDeviceTypes();
 }
 
 XMLConfigReader::~XMLConfigReader()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (configFile)
     {
         if (configFile->isOpen())
@@ -50,17 +65,21 @@ XMLConfigReader::~XMLConfigReader()
     if (xml)
     {
         delete xml;
-        xml = 0;
+        xml = nullptr;
     }
 }
 
 void XMLConfigReader::setJoystick(InputDevice *joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->joystick = joystick;
 }
 
 void XMLConfigReader::setFileName(QString filename)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QFile *temp = new QFile(filename);
     if (temp->exists())
     {
@@ -69,18 +88,22 @@ void XMLConfigReader::setFileName(QString filename)
     else
     {
         delete temp;
-        temp = 0;
+        temp = nullptr;
     }
 }
 
 void XMLConfigReader::configJoystick(InputDevice *joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->joystick = joystick;
     read();
 }
 
 bool XMLConfigReader::read()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool error = false;
 
     if (configFile && configFile->exists() && joystick)
@@ -124,7 +147,7 @@ bool XMLConfigReader::read()
                     }
                     else
                     {
-                        xml->raiseError(tr("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
+                        xml->raiseError(trUtf8("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
                     }
                 }
             }
@@ -150,11 +173,11 @@ bool XMLConfigReader::read()
             configFile->close();
         }
 
-        if (xml->hasError() && xml->error() != QXmlStreamReader::PrematureEndOfDocumentError)
+        if (xml->hasError() && (xml->error() != QXmlStreamReader::PrematureEndOfDocumentError))
         {
             error = true;
         }
-        else if (xml->hasError() && xml->error() == QXmlStreamReader::PrematureEndOfDocumentError)
+        else if (xml->hasError() && (xml->error() == QXmlStreamReader::PrematureEndOfDocumentError))
         {
             xml->clear();
         }
@@ -165,7 +188,9 @@ bool XMLConfigReader::read()
 
 QString XMLConfigReader::getErrorString()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     if (xml->hasError())
     {
         temp = xml->errorString();
@@ -176,11 +201,15 @@ QString XMLConfigReader::getErrorString()
 
 bool XMLConfigReader::hasError()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return xml->hasError();
 }
 
 void XMLConfigReader::initDeviceTypes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     deviceTypes.clear();
 
     deviceTypes.append(Joystick::xmlName);

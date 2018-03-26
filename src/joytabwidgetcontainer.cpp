@@ -16,22 +16,34 @@
  */
 
 #include "joytabwidgetcontainer.h"
+#include "joystick.h"
+#include "joytabwidget.h"
+
+#include <QWidget>
+#include <QTabBar>
+#include <QDebug>
 
 JoyTabWidgetContainer::JoyTabWidgetContainer(QWidget *parent) :
     QTabWidget(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 }
 
 int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return QTabWidget::addTab(widget, string);
 }
 
 int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     InputDevice *joystick = widget->getJoystick();
 
-    if (joystick)
+    if (joystick != nullptr)
     {
         enableFlashes(joystick);
         connect(widget, SIGNAL(forceTabUnflash(JoyTabWidget*)), this, SLOT(unflashTab(JoyTabWidget*)));
@@ -42,13 +54,15 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 
 void JoyTabWidgetContainer::flash()
 {
-    InputDevice *joystick = static_cast<InputDevice*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    InputDevice *joystick = qobject_cast<InputDevice*>(sender()); // static_cast
 
     bool found = false;
-    for (int i = 0; i < tabBar()->count() && !found; i++)
+    for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
-        if (tab && tab->getJoystick() == joystick)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        if ((tab != nullptr) && (tab->getJoystick() == joystick))
         {
             tabBar()->setTabTextColor(i, Qt::red);
             found = true;
@@ -58,13 +72,15 @@ void JoyTabWidgetContainer::flash()
 
 void JoyTabWidgetContainer::unflash()
 {
-    InputDevice *joystick = static_cast<InputDevice*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    InputDevice *joystick = qobject_cast<InputDevice*>(sender()); // static_cast
 
     bool found = false;
-    for (int i = 0; i < tabBar()->count() && !found; i++)
+    for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
-        if (tab && tab->getJoystick() == joystick)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        if ((tab != nullptr) && (tab->getJoystick() == joystick))
         {
             tabBar()->setTabTextColor(i, Qt::black);
             found = true;
@@ -74,11 +90,13 @@ void JoyTabWidgetContainer::unflash()
 
 void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool found = false;
 
-    for (int i=0; i < tabBar()->count() && !found; i++)
+    for (int i=0; (i < tabBar()->count()) && !found; i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
         if (tab == tabWidget)
         {
             tabBar()->setTabTextColor(i, Qt::black);
@@ -88,10 +106,12 @@ void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 
 void JoyTabWidgetContainer::unflashAll()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i = 0; i < tabBar()->count(); i++)
     {
-        JoyTabWidget *tab = static_cast<JoyTabWidget*>(widget(i));
-        if (tab)
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        if (tab != nullptr)
         {
             tabBar()->setTabTextColor(i, Qt::black);
         }
@@ -100,6 +120,8 @@ void JoyTabWidgetContainer::unflashAll()
 
 void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     unflashAll();
 
     disconnect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
@@ -108,6 +130,8 @@ void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 
 void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(joystick, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }

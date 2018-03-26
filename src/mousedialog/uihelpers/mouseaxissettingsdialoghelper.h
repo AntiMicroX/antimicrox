@@ -20,18 +20,16 @@
 
 #include <QObject>
 
-#include "joyaxis.h"
+class JoyAxis;
 
 class MouseAxisSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent = 0);
+    explicit MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent = nullptr);
 
 protected:
     JoyAxis *axis;
-
-signals:
 
 public slots:
     void updateExtraAccelerationStatus(bool checked);

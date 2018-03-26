@@ -15,15 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QPainter>
-#include <qdrawutil.h>
-
 #include "axisvaluebox.h"
 #include "joyaxis.h"
+
+#include <qdrawutil.h>
+
+#include <QPainter>
+#include <QPaintEvent>
+#include <QResizeEvent>
+#include <QDebug>
+
 
 AxisValueBox::AxisValueBox(QWidget *parent) :
     QWidget(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     deadZone = 0;
     maxZone = 0;
     joyValue = 0;
@@ -36,8 +43,12 @@ AxisValueBox::AxisValueBox(QWidget *parent) :
 
 void AxisValueBox::setThrottle(int throttle)
 {
-    if (throttle <= JoyAxis::PositiveHalfThrottle && throttle >= JoyAxis::NegativeHalfThrottle)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qDebug() << "throttle value at start of function setThrottle: " << throttle;
+
+    if ((throttle <= static_cast<int>(JoyAxis::PositiveHalfThrottle)) && (throttle >= static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
+        qDebug() << "throttle variable has been set in setThrottle with: " << throttle;
         this->throttle = throttle;
         setValue(joyValue);
     }
@@ -46,27 +57,34 @@ void AxisValueBox::setThrottle(int throttle)
 
 void AxisValueBox::setValue(int value)
 {
-    if (value >= JoyAxis::AXISMIN && value <= JoyAxis::AXISMAX)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    qDebug() << "Value for axis from value box at start is: " << value;
+    qDebug() << "throttle variable has value: " << throttle;
+
+    if ((value >= JoyAxis::AXISMIN) && (value <= JoyAxis::AXISMAX))
     {
-        if (throttle == JoyAxis::NormalThrottle)
+        qDebug() << "Value for axis from value box is between : " << JoyAxis::AXISMIN << " and " << JoyAxis::AXISMAX;
+
+        if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
         {
             this->joyValue = value;
         }
-        else if (throttle == JoyAxis::NegativeThrottle)
+        else if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
         {
-            this->joyValue = (value + JoyAxis::AXISMIN) / 2;
+            this->joyValue = ((value + JoyAxis::AXISMIN) / 2);
         }
-        else if (throttle == JoyAxis::PositiveThrottle)
+        else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
         {
             this->joyValue = (value + JoyAxis::AXISMAX) / 2;
         }
-        else if (throttle == JoyAxis::NegativeHalfThrottle)
+        else if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
         {
-            this->joyValue = value <= 0 ? value : -value;
+            this->joyValue = (value <= 0) ? value : (-value);
         }
-        else if (throttle == JoyAxis::PositiveHalfThrottle)
+        else if (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle))
         {
-            this->joyValue = value >= 0 ? value : -value;
+            this->joyValue = (value >= 0) ? value : (-value);
         }
     }
     update();
@@ -74,7 +92,9 @@ void AxisValueBox::setValue(int value)
 
 void AxisValueBox::setDeadZone(int deadZone)
 {
-    if (deadZone >= JoyAxis::AXISMIN && deadZone <= JoyAxis::AXISMAX)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((deadZone >= JoyAxis::AXISMIN) && (deadZone <= JoyAxis::AXISMAX))
     {
         this->deadZone = deadZone;
     }
@@ -83,12 +103,16 @@ void AxisValueBox::setDeadZone(int deadZone)
 
 int AxisValueBox::getDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return deadZone;
 }
 
 void AxisValueBox::setMaxZone(int maxZone)
 {
-    if (maxZone >= JoyAxis::AXISMIN && maxZone <= JoyAxis::AXISMAX)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((maxZone >= JoyAxis::AXISMIN) && (maxZone <= JoyAxis::AXISMAX))
     {
         this->maxZone = maxZone;
     }
@@ -97,21 +121,29 @@ void AxisValueBox::setMaxZone(int maxZone)
 
 int AxisValueBox::getMaxZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return maxZone;
 }
 
 int AxisValueBox::getJoyValue()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return joyValue;
 }
 
 int AxisValueBox::getThrottle()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return throttle;
 }
 
 void AxisValueBox::resizeEvent(QResizeEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(event);
 
     boxwidth = (this->width() / 2) - 5;
@@ -129,6 +161,8 @@ void AxisValueBox::resizeEvent(QResizeEvent *event)
 
 void AxisValueBox::paintEvent(QPaintEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(event);
 
     QPainter paint (this);
@@ -183,7 +217,7 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     brush.setColor(Qt::blue);
     QBrush maxBrush(Qt::red);
 
-    if (throttle == JoyAxis::NormalThrottle)
+    if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
     {
         qDrawPlainRect(&paint, rboxstart + 2 + deadLine, 2, 4, boxheight + 2, Qt::black, 1, &brush);
         qDrawPlainRect(&paint, lboxend - deadLine - 2, 2, 4, boxheight + 2, Qt::black, 1, &brush);
@@ -192,14 +226,14 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
         qDrawPlainRect(&paint, rboxstart + 2 + maxLine, 2, 4, boxheight + 2, Qt::black, 1, &maxBrush);
         qDrawPlainRect(&paint, lboxend - maxLine - 2, 2, 4, boxheight + 2, Qt::black, 1, &maxBrush);
     }
-    else if (throttle == JoyAxis::PositiveThrottle || JoyAxis::PositiveHalfThrottle)
+    else if ((throttle == static_cast<int>(JoyAxis::PositiveThrottle)) || (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
         qDrawPlainRect(&paint, lboxstart + deadLine - 2, 2, 4, boxheight + 2, Qt::black, 1, &brush);
         paint.setPen(Qt::red);
         qDrawPlainRect(&paint, lboxstart + maxLine, 2, 4, boxheight + 2, Qt::black, 1, &maxBrush);
     }
 
-    else if (throttle == JoyAxis::NegativeThrottle || throttle == JoyAxis::NegativeHalfThrottle)
+    else if ((throttle == static_cast<int>(JoyAxis::NegativeThrottle)) || (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
         qDrawPlainRect(&paint, singleend - deadLine - 2, 2, 4, boxheight + 2, Qt::black, 1, &brush);
         paint.setPen(Qt::red);

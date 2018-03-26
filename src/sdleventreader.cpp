@@ -15,19 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "sdleventreader.h"
+#include "inputdevice.h"
+#include "antimicrosettings.h"
+#include "common.h"
+//#include "logger.h"
+
+#include <QDebug>
 #include <QStringListIterator>
 #include <QVariant>
 #include <QSettings>
 #include <QMapIterator>
 
-//#include "logger.h"
-#include "sdleventreader.h"
+
+
 
 SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
                                AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->joysticks = joysticks;
     this->settings = settings;
     settings->getLock()->lock();
@@ -36,9 +44,8 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
     settings->getLock()->unlock();
 
     pollRateTimer.setParent(this);
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     pollRateTimer.setTimerType(Qt::PreciseTimer);
-#endif
+
 
     initSDL();
 
@@ -47,6 +54,8 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
 
 SDLEventReader::~SDLEventReader()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         closeSDL();
@@ -55,6 +64,8 @@ SDLEventReader::~SDLEventReader()
 
 void SDLEventReader::initSDL()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #ifdef USE_SDL_2
     // SDL_INIT_GAMECONTROLLER should automatically initialize SDL_INIT_JOYSTICK
     // but it doesn't seem to be the case with v2.0.4
@@ -101,6 +112,8 @@ void SDLEventReader::initSDL()
 
 void SDLEventReader::closeSDL()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     pollRateTimer.stop();
 
     SDL_Event event;
@@ -120,6 +133,7 @@ void SDLEventReader::closeSDL()
 
 void SDLEventReader::performWork()
 {
+
     if (sdlIsOpen)
     {
         //int status = SDL_WaitEvent(NULL);
@@ -135,6 +149,8 @@ void SDLEventReader::performWork()
 
 void SDLEventReader::stop()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         SDL_Event event;
@@ -147,6 +163,8 @@ void SDLEventReader::stop()
 
 void SDLEventReader::refresh()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         stop();
@@ -157,6 +175,8 @@ void SDLEventReader::refresh()
 
 void SDLEventReader::secondaryRefresh()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         closeSDL();
@@ -167,6 +187,8 @@ void SDLEventReader::secondaryRefresh()
 
 void SDLEventReader::clearEvents()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         SDL_Event event;
@@ -178,13 +200,16 @@ void SDLEventReader::clearEvents()
 
 bool SDLEventReader::isSDLOpen()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return sdlIsOpen;
 }
 
 int SDLEventReader::CheckForEvents()
 {
+
     int result = 0;
-    bool exit = false;
+    //bool exit = false;
 
     /*Logger::LogInfo(
                                 QString("Gamepad Poll %1").arg(
@@ -205,7 +230,7 @@ int SDLEventReader::CheckForEvents()
 			   arg(QString(SDL_GetError())),
 			   true, true);
             result = 0;
-            exit = true;
+            //exit = true;
             break;
         }
         case 0:
@@ -227,7 +252,7 @@ int SDLEventReader::CheckForEvents()
             */
 
             result = 1;
-            exit = true;
+           // exit = true;
             break;
         }
     }
@@ -235,9 +260,11 @@ int SDLEventReader::CheckForEvents()
     return result;
 }
 
-void SDLEventReader::updatePollRate(unsigned int tempPollRate)
+void SDLEventReader::updatePollRate(int tempPollRate)
 {
-    if (tempPollRate >= 1 && tempPollRate <= 16)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((tempPollRate >= 1) && (tempPollRate <= 16))
     {
         bool wasActive = pollRateTimer.isActive();
         pollRateTimer.stop();
@@ -254,20 +281,26 @@ void SDLEventReader::updatePollRate(unsigned int tempPollRate)
 
 void SDLEventReader::resetJoystickMap()
 {
-    joysticks = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    joysticks = nullptr;
 }
 
 void SDLEventReader::quit()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         closeSDL();
-        joysticks = 0;
+        joysticks = nullptr;
     }
 }
 
 void SDLEventReader::closeDevices()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (sdlIsOpen)
     {
         if (joysticks)
@@ -289,6 +322,8 @@ void SDLEventReader::closeDevices()
  */
 void SDLEventReader::haltServices()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     PadderCommon::lockInputDevices();
     PadderCommon::unlockInputDevices();
 }

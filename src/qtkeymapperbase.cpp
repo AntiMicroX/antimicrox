@@ -17,31 +17,40 @@
 
 #include "qtkeymapperbase.h"
 
-const unsigned int QtKeyMapperBase::customQtKeyPrefix;
-const unsigned int QtKeyMapperBase::customKeyPrefix;
-const unsigned int QtKeyMapperBase::nativeKeyPrefix;
+#include <QDebug>
+
+const int QtKeyMapperBase::customQtKeyPrefix;
+const int QtKeyMapperBase::customKeyPrefix;
+const int QtKeyMapperBase::nativeKeyPrefix;
 
 QtKeyMapperBase::QtKeyMapperBase(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
-unsigned int QtKeyMapperBase::returnQtKey(unsigned int key, unsigned int scancode)
+int QtKeyMapperBase::returnQtKey(int key, int scancode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(scancode);
 
     return virtualKeyToQtKey.value(key);
 }
 
-unsigned int QtKeyMapperBase::returnVirtualKey(unsigned int qkey)
+int QtKeyMapperBase::returnVirtualKey(int qkey)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return qtKeyToVirtualKey.value(qkey);
 }
 
-bool QtKeyMapperBase::isModifier(unsigned int qkey)
+bool QtKeyMapperBase::isModifier(int qkey)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool modifier = false;
-    unsigned int qtKeyValue = qkey & 0x0FFFFFFF;
+    int qtKeyValue = qkey & 0x0FFFFFFF;
 
     if (qtKeyValue == Qt::Key_Shift)
     {
@@ -65,6 +74,8 @@ bool QtKeyMapperBase::isModifier(unsigned int qkey)
 
 QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     charKeyInformation temp;
     temp.virtualkey = 0;
     temp.modifiers = Qt::NoModifier;
@@ -83,5 +94,7 @@ QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar
  */
 QString QtKeyMapperBase::getIdentifier()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return identifier;
 }

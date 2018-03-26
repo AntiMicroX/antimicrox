@@ -15,13 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "editalldefaultautoprofiledialog.h"
+#include "ui_editalldefaultautoprofiledialog.h"
+#include "autoprofileinfo.h"
+#include "antimicrosettings.h"
+#include "common.h"
+
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMessageBox>
-
-#include "editalldefaultautoprofiledialog.h"
-#include "ui_editalldefaultautoprofiledialog.h"
-#include "common.h"
+#include <QWidget>
+#include <QDebug>
 
 EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
                                                                  QWidget *parent) :
@@ -29,6 +33,8 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
     ui(new Ui::EditAllDefaultAutoProfileDialog)
 {
     ui->setupUi(this);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->info = info;
@@ -45,13 +51,17 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
 
 EditAllDefaultAutoProfileDialog::~EditAllDefaultAutoProfileDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
     if (!filename.isNull() && !filename.isEmpty())
     {
         ui->profileLineEdit->setText(filename);
@@ -60,6 +70,8 @@ void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 
 void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     info->setGUID("all");
     info->setProfileLocation(ui->profileLineEdit->text());
     info->setActive(true);
@@ -67,13 +79,17 @@ void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
 
 AutoProfileInfo* EditAllDefaultAutoProfileDialog::getAutoProfile()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return info;
 }
 
 void EditAllDefaultAutoProfileDialog::accept()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool validForm = true;
-    QString errorString;
+    QString errorString = QString();
     if (ui->profileLineEdit->text().length() > 0)
     {
         QString profileFilename = ui->profileLineEdit->text();
@@ -81,7 +97,7 @@ void EditAllDefaultAutoProfileDialog::accept()
         if (!info.exists())
         {
             validForm = false;
-            errorString = tr("Profile file path is invalid.");
+            errorString = trUtf8("Profile file path is invalid.");
         }
     }
 

@@ -15,7 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "mainsettingsdialog.h"
+#include "ui_mainsettingsdialog.h"
+
+#include "addeditautoprofiledialog.h"
+#include "editalldefaultautoprofiledialog.h"
+#include "common.h"
+#include "autoprofileinfo.h"
+#include "inputdevice.h"
+#include "antimicrosettings.h"
+
+#ifdef Q_OS_WIN
+  #include "eventhandlerfactory.h"
+  #include "winextras.h"
+#elif defined(Q_OS_UNIX)
+  #include "x11extras.h"
+#endif
+
+#include <QTableWidgetItem>
+#include <QDebug>
 #include <QDir>
 #include <QFileDialog>
 #include <QLocale>
@@ -32,33 +50,20 @@
 #include <QLabel>
 #include <QList>
 #include <QListWidget>
+#include <QWidget>
 
 #ifdef Q_OS_WIN
   #include <QSysInfo>
 #endif
 
 #ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
   #include <QApplication>
-    #endif
-
   #include "eventhandlerfactory.h"
 
 #endif
 
-#include "mainsettingsdialog.h"
-#include "ui_mainsettingsdialog.h"
 
-#include "addeditautoprofiledialog.h"
-#include "editalldefaultautoprofiledialog.h"
-#include "common.h"
-
-#ifdef Q_OS_WIN
-  #include "eventhandlerfactory.h"
-  #include "winextras.h"
-#elif defined(Q_OS_UNIX)
-  #include "x11extras.h"
-#endif
 
 static const QString RUNATSTARTUPREGKEY(
         "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
@@ -73,6 +78,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui(new Ui::MainSettingsDialog)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     setAttribute(Qt::WA_DeleteOnClose);
 
     ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document-open-folder",
@@ -82,7 +89,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 						    QIcon(":/icons/16x16/actions/document-open-folder.png")));
     
     this->settings = settings;
-    this->allDefaultProfile = 0;
+    this->allDefaultProfile = nullptr;
     this->connectedDevices = devices;
 
 #ifdef USE_SDL_2
@@ -121,21 +128,17 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
         delete ui->categoriesListWidget->item(2);
         ui->stackedWidget->removeWidget(ui->page_2);
     }
-        #endif
     #elif defined(USE_SDL_2) && !defined(WITH_X11)
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page_2);
@@ -183,7 +186,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         }
     }
 
-    if (handler && handler->getIdentifier() == "sendinput")
+    if ((handler != nullptr) && (handler->getIdentifier() == "sendinput"))
     {
         bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
         if (keyRepeatEnabled)
@@ -283,13 +286,13 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
 
     int historySize = settings->value("Mouse/HistorySize", 0).toInt();
-    if (historySize > 0 && historySize <= JoyButton::MAXIMUMMOUSEHISTORYSIZE)
+    if ((historySize > 0) && (historySize <= JoyButton::MAXIMUMMOUSEHISTORYSIZE))
     {
         ui->historySizeSpinBox->setValue(historySize);
     }
 
     double weightModifier = settings->value("Mouse/WeightModifier", 0).toDouble();
-    if (weightModifier > 0.0 && weightModifier <= JoyButton::MAXIMUMWEIGHTMODIFIER)
+    if ((weightModifier > 0.0) && (weightModifier <= JoyButton::MAXIMUMWEIGHTMODIFIER))
     {
         ui->weightModifierDoubleSpinBox->setValue(weightModifier);
     }
@@ -308,7 +311,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 #ifdef Q_OS_WIN
     QString tempTooltip = ui->mouseRefreshRateComboBox->toolTip();
     tempTooltip.append("\n\n");
-    tempTooltip.append(tr("Also, Windows users who want to use a low value should also check the\n"
+    tempTooltip.append(trUtf8("Also, Windows users who want to use a low value should also check the\n"
                           "\"Disable Enhance Pointer Precision\" checkbox if you haven't disabled\n"
                           "the option in Windows."));
     ui->mouseRefreshRateComboBox->setToolTip(tempTooltip);
@@ -328,18 +331,14 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
 
 #ifdef Q_OS_UNIX
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
         refreshExtraMouseInfo();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
     else
     {
         ui->extraInfoFrame->hide();
     }
-    #endif
 #else
     ui->extraInfoFrame->hide();
 #endif
@@ -389,16 +388,20 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
 MainSettingsDialog::~MainSettingsDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
-    if (connectedDevices)
+    if (connectedDevices != nullptr)
     {
         delete connectedDevices;
-        connectedDevices = 0;
+        connectedDevices = nullptr;
     }
 }
 
 void MainSettingsDialog::fillControllerMappingsTable()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     /*QList<QVariant> tempvariant = bindingValues(bind);
     QTableWidgetItem* item = new QTableWidgetItem();
     ui->buttonMappingTableWidget->setItem(associatedRow, 0, item);
@@ -406,11 +409,8 @@ void MainSettingsDialog::fillControllerMappingsTable()
     item->setData(Qt::UserRole, tempvariant);
     */
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
     ui->controllerMappingsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-#else
-    ui->controllerMappingsTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-#endif
 
     QHash<QString, QList<QVariant> > tempHash;
 
@@ -422,7 +422,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
     while (iter.hasNext())
     {
         QString tempkey = iter.next();
-        QString tempGUID;
+        QString tempGUID = QString();
 
         if (tempkey.contains("Disable"))
         {
@@ -487,6 +487,8 @@ void MainSettingsDialog::fillControllerMappingsTable()
 
 void MainSettingsDialog::insertTempControllerMapping(QHash<QString, QList<QVariant> > &hash, QString newGUID)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!newGUID.isEmpty() && !hash.contains(newGUID))
     {
         QList<QVariant> templist;
@@ -500,13 +502,15 @@ void MainSettingsDialog::insertTempControllerMapping(QHash<QString, QList<QVaria
 
 void MainSettingsDialog::mappingsTableItemChanged(QTableWidgetItem *item)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int column = item->column();
     int row = item->row();
 
-    if (column == 0 && !item->text().isEmpty())
+    if ((column == 0) && !item->text().isEmpty())
     {
         QTableWidgetItem *disableitem = ui->controllerMappingsTableWidget->item(row, column);
-        if (disableitem)
+        if (disableitem != nullptr)
         {
             disableitem->setData(Qt::UserRole, item->text());
         }
@@ -517,6 +521,8 @@ void MainSettingsDialog::mappingsTableItemChanged(QTableWidgetItem *item)
 
 void MainSettingsDialog::insertMappingRow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int insertRowIndex = ui->controllerMappingsTableWidget->rowCount();
     ui->controllerMappingsTableWidget->insertRow(insertRowIndex);
 
@@ -537,6 +543,8 @@ void MainSettingsDialog::insertMappingRow()
 
 void MainSettingsDialog::deleteMappingRow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int row = ui->controllerMappingsTableWidget->currentRow();
 
     if (row >= 0)
@@ -547,6 +555,8 @@ void MainSettingsDialog::deleteMappingRow()
 
 void MainSettingsDialog::syncMappingSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->getLock()->lock();
 
     settings->beginGroup("Mappings");
@@ -558,10 +568,10 @@ void MainSettingsDialog::syncMappingSettings()
         QTableWidgetItem *itemMapping = ui->controllerMappingsTableWidget->item(i, 1);
         QTableWidgetItem *itemDisable = ui->controllerMappingsTableWidget->item(i, 2);
 
-        if (itemGUID && !itemGUID->text().isEmpty() && itemDisable)
+        if ((itemGUID != nullptr) && !itemGUID->text().isEmpty() && (itemDisable != nullptr))
         {
-            QString disableController = itemDisable->checkState() == Qt::Checked ? "1" : "0";
-            if (itemMapping && !itemMapping->text().isEmpty())
+            QString disableController = (itemDisable->checkState() == Qt::Checked) ? "1" : "0";
+            if ((itemMapping != nullptr) && !itemMapping->text().isEmpty())
             {
                 settings->setValue(itemGUID->text(), itemMapping->text());
             }
@@ -576,6 +586,8 @@ void MainSettingsDialog::syncMappingSettings()
 
 void MainSettingsDialog::saveNewSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #if defined(USE_SDL_2)
     syncMappingSettings();
 #endif
@@ -613,14 +625,14 @@ void MainSettingsDialog::saveNewSettings()
     checkLocaleChange();
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        #endif
+
     saveAutoProfileSettings();
-        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
     }
-        #endif
+
     #endif
 #else
     saveAutoProfileSettings();
@@ -665,7 +677,7 @@ void MainSettingsDialog::saveNewSettings()
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-    if (handler && handler->getIdentifier() == "sendinput")
+    if ((handler != nullptr) && (handler->getIdentifier() == "sendinput"))
     {
         settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatEnableCheckBox->isChecked() ? "1" : "0");
         settings->setValue("KeyRepeat/KeyRepeatDelay", ui->keyDelaySpinBox->value());
@@ -784,7 +796,7 @@ void MainSettingsDialog::saveNewSettings()
     settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
 
     int pollIndex = ui->gamepadPollRateComboBox->currentIndex();
-    unsigned int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toUInt();
+    int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toUInt();
     if (gamepadPollRate != JoyButton::getGamepadRefreshRate())
     {
         JoyButton::setGamepadRefreshRate(gamepadPollRate);
@@ -811,8 +823,10 @@ void MainSettingsDialog::saveNewSettings()
 
 void MainSettingsDialog::selectDefaultProfileDir()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString directory = QFileDialog::getExistingDirectory(this, tr("Select Default Profile Directory"), lookupDir);
+    QString directory = QFileDialog::getExistingDirectory(this, trUtf8("Select Default Profile Directory"), lookupDir);
     if (!directory.isEmpty() && QFileInfo(directory).exists())
     {
         ui->profileDefaultDirLineEdit->setText(directory);
@@ -821,6 +835,8 @@ void MainSettingsDialog::selectDefaultProfileDir()
 
 void MainSettingsDialog::checkLocaleChange()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->getLock()->lock();
     int row = ui->localeListWidget->currentRow();
     if (row == 0)
@@ -890,6 +906,8 @@ void MainSettingsDialog::checkLocaleChange()
 
 void MainSettingsDialog::populateAutoProfiles()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     exeAutoProfiles.clear();
     defaultAutoProfiles.clear();
 
@@ -944,7 +962,7 @@ void MainSettingsDialog::populateAutoProfiles()
 #ifdef Q_OS_UNIX
         QString windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
 #else
-        QString windowClass;
+        QString windowClass = QString();
 #endif
 
         QString guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
@@ -1034,30 +1052,29 @@ void MainSettingsDialog::populateAutoProfiles()
 
 void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     //ui->autoProfileTableWidget->clear();
     for (int i = ui->autoProfileTableWidget->rowCount()-1; i >= 0; i--)
     {
         ui->autoProfileTableWidget->removeRow(i);
     }
 
-    //QStringList tableHeader;
-    //tableHeader << tr("Active") << tr("GUID") << tr("Profile") << tr("Application") << tr("Default?")
-    //            << tr("Instance");
+    //QStringList tableHeader = QStringList();
+    //tableHeader << trUtf8("Active") << trUtf8("GUID") << trUtf8("Profile") << trUtf8("Application") << trUtf8("Default?")
+    //            << trUtf8("Instance");
     //ui->autoProfileTableWidget->setHorizontalHeaderLabels(tableHeader);
     //ui->autoProfileTableWidget->horizontalHeader()->setVisible(true);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
     ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-#else
-    ui->autoProfileTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-#endif
 
     if (defaultAutoProfiles.contains(guid) ||
         deviceAutoProfiles.contains(guid))
     {
         int i = 0;
 
-        AutoProfileInfo *defaultForGUID = 0;
+        AutoProfileInfo *defaultForGUID = nullptr;
         if (defaultAutoProfiles.contains(guid))
         {
             AutoProfileInfo *info = defaultAutoProfiles.value(guid);
@@ -1182,13 +1199,15 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 
 void MainSettingsDialog::clearAutoProfileData()
 {
-
+qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 void MainSettingsDialog::fillGUIDComboBox()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->devicesComboBox->clear();
-    ui->devicesComboBox->addItem(tr("All"), QVariant("all"));
+    ui->devicesComboBox->addItem(trUtf8("All"), QVariant("all"));
     QList<QString> guids = deviceAutoProfiles.keys();
     QListIterator<QString> iter(guids);
     while (iter.hasNext())
@@ -1216,6 +1235,8 @@ void MainSettingsDialog::fillGUIDComboBox()
 
 void MainSettingsDialog::changeDeviceForProfileTable(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
 
     if (index == 0)
@@ -1233,6 +1254,8 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
 
 void MainSettingsDialog::saveAutoProfileSettings()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     settings->getLock()->lock();
     settings->beginGroup("DefaultAutoProfiles");
     QStringList defaultkeys = settings->allKeys();
@@ -1270,7 +1293,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
     }
 
     QMapIterator<QString, AutoProfileInfo*> iter(defaultAutoProfiles);
-    QStringList registeredGUIDs;
+    QStringList registeredGUIDs = QStringList();
     while (iter.hasNext())
     {
         iter.next();
@@ -1327,23 +1350,20 @@ void MainSettingsDialog::saveAutoProfileSettings()
 
 void MainSettingsDialog::fillAllAutoProfilesTable()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i = ui->autoProfileTableWidget->rowCount()-1; i >= 0; i--)
     {
         ui->autoProfileTableWidget->removeRow(i);
     }
 
-    //QStringList tableHeader;
-    //tableHeader << tr("Active") << tr("GUID") << tr("Profile") << tr("Application") << tr("Default?")
-    //            << tr("Instance");
+    //QStringList tableHeader = QStringList();
+    //tableHeader << trUtf8("Active") << trUtf8("GUID") << trUtf8("Profile") << trUtf8("Application") << trUtf8("Default?")
+    //            << trUtf8("Instance");
     //ui->autoProfileTableWidget->setHorizontalHeaderLabels(tableHeader);
 
     ui->autoProfileTableWidget->horizontalHeader()->setVisible(true);
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-#else
-    ui->autoProfileTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-#endif
 
     ui->autoProfileTableWidget->hideColumn(7);
 
@@ -1507,7 +1527,9 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
 
 void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
 {
-    if (item && item->column() == 0)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (item && (item->column() == 0))
     {
         QTableWidgetItem *infoitem = ui->autoProfileTableWidget->item(item->row(), 7);
         AutoProfileInfo *info = infoitem->data(Qt::UserRole).value<AutoProfileInfo*>();
@@ -1525,6 +1547,8 @@ void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
 
 void MainSettingsDialog::openAddAutoProfileDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
     AutoProfileInfo *info = new AutoProfileInfo(this);
     AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
@@ -1535,6 +1559,8 @@ void MainSettingsDialog::openAddAutoProfileDialog()
 
 void MainSettingsDialog::openEditAutoProfileDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int selectedRow = ui->autoProfileTableWidget->currentRow();
     if (selectedRow >= 0)
     {
@@ -1567,8 +1593,10 @@ void MainSettingsDialog::openEditAutoProfileDialog()
 
 void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QMessageBox msgBox;
-    msgBox.setText(tr("Are you sure you want to delete the profile?"));
+    msgBox.setText(trUtf8("Are you sure you want to delete the profile?"));
     msgBox.setStandardButtons(QMessageBox::Discard | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();
@@ -1585,14 +1613,14 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
                 if (info->getGUID() == "all")
                 {
                     delete allDefaultProfile;
-                    allDefaultProfile = 0;
+                    allDefaultProfile = nullptr;
                 }
                 else if (defaultAutoProfiles.contains(info->getGUID()))
                 {
                     defaultAutoProfiles.remove(info->getGUID());
                     defaultList.removeAll(info);
                     delete info;
-                    info = 0;
+                    info = nullptr;
                 }
             }
             else
@@ -1615,7 +1643,7 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
                 profileList.removeAll(info);
 
                 delete info;
-                info = 0;
+                info = nullptr;
             }
         }
         ui->autoProfileTableWidget->removeRow(selectedRow);
@@ -1624,6 +1652,8 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
 
 void MainSettingsDialog::changeAutoProfileButtonsState()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int selectedRow = ui->autoProfileTableWidget->currentRow();
     if (selectedRow >= 0)
     {
@@ -1654,7 +1684,9 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
 
 void MainSettingsDialog::transferAllProfileEditToCurrentTableRow()
 {
-    EditAllDefaultAutoProfileDialog *dialog = static_cast<EditAllDefaultAutoProfileDialog*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    EditAllDefaultAutoProfileDialog *dialog = qobject_cast<EditAllDefaultAutoProfileDialog*>(sender()); // static_cast
     AutoProfileInfo *info = dialog->getAutoProfile();
     allDefaultProfile = info;
     changeDeviceForProfileTable(0);
@@ -1662,7 +1694,9 @@ void MainSettingsDialog::transferAllProfileEditToCurrentTableRow()
 
 void MainSettingsDialog::transferEditsToCurrentTableRow()
 {
-    AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    AddEditAutoProfileDialog *dialog = qobject_cast<AddEditAutoProfileDialog*>(sender()); // static_cast
     AutoProfileInfo *info = dialog->getAutoProfile();
 
     // Delete pointers to object that might be misplaced
@@ -1682,7 +1716,7 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
         }
     }
 
-    if (oldGUID != info->getGUID() && deviceAutoProfiles.contains(oldGUID))
+    if ((oldGUID != info->getGUID()) && deviceAutoProfiles.contains(oldGUID))
     {
         QList<AutoProfileInfo*> temp = deviceAutoProfiles.value(oldGUID);
         temp.removeAll(info);
@@ -1711,7 +1745,7 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
             deviceAutoProfiles.insert(info->getGUID(), temp2);
         }
     }
-    else if (oldGUID != info->getGUID() && info->getGUID().toLower() != "all")
+    else if ((oldGUID != info->getGUID()) && (info->getGUID().toLower() != "all"))
     {
         QList<AutoProfileInfo*> temp;
         temp.append(info);
@@ -1801,7 +1835,9 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
 
 void MainSettingsDialog::addNewAutoProfile()
 {
-    AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    AddEditAutoProfileDialog *dialog = qobject_cast<AddEditAutoProfileDialog*>(sender()); // static_cast
     AutoProfileInfo *info = dialog->getAutoProfile();
 
     bool found = false;
@@ -1824,8 +1860,8 @@ void MainSettingsDialog::addNewAutoProfile()
         while (iterProfiles.hasNext())
         {
             AutoProfileInfo *oldinfo = iterProfiles.next();
-            if (info->getExe() == oldinfo->getExe() &&
-                info->getGUID() == oldinfo->getGUID())
+            if ((info->getExe() == oldinfo->getExe()) &&
+                (info->getGUID() == oldinfo->getGUID()))
             {
                 found = true;
                 iterProfiles.toBack();
@@ -1875,6 +1911,8 @@ void MainSettingsDialog::addNewAutoProfile()
 
 void MainSettingsDialog::autoProfileButtonsActiveState(bool enabled)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (enabled)
     {
         changeAutoProfileButtonsState();
@@ -1889,6 +1927,8 @@ void MainSettingsDialog::autoProfileButtonsActiveState(bool enabled)
 
 void MainSettingsDialog::changeKeyRepeatWidgetsStatus(bool enabled)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->keyDelayHorizontalSlider->setEnabled(enabled);
     ui->keyDelaySpinBox->setEnabled(enabled);
     ui->keyRateHorizontalSlider->setEnabled(enabled);
@@ -1897,6 +1937,8 @@ void MainSettingsDialog::changeKeyRepeatWidgetsStatus(bool enabled)
 
 void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (enabled)
     {
         ui->historySizeSpinBox->setEnabled(true);
@@ -1911,6 +1953,8 @@ void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
 
 void MainSettingsDialog::changePresetLanguage()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (settings->contains("Language"))
     {
         QString targetLang = settings->value("Language").toString();
@@ -1971,8 +2015,10 @@ void MainSettingsDialog::changePresetLanguage()
 
 void MainSettingsDialog::fillSpringScreenPresets()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->springScreenComboBox->clear();
-    ui->springScreenComboBox->addItem(tr("Default"),
+    ui->springScreenComboBox->addItem(trUtf8("Default"),
                                       QVariant(AntiMicroSettings::defaultSpringScreen));
 
     QDesktopWidget deskWid;
@@ -1990,12 +2036,12 @@ void MainSettingsDialog::fillSpringScreenPresets()
 
 void MainSettingsDialog::refreshExtraMouseInfo()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
     QString handler = EventHandlerFactory::getInstance()->handler()->getIdentifier();
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
         struct X11Extras::ptrInformation temp;
         if (handler == "uinput")
         {
@@ -2012,33 +2058,32 @@ void MainSettingsDialog::refreshExtraMouseInfo()
             ui->accelDenomLabel->setText(QString::number(temp.accelDenom));
             ui->accelThresLabel->setText(QString::number(temp.threshold));
         }
-
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
-    #endif
+
 #endif
 }
 
 void MainSettingsDialog::resetMouseAcceleration()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
-  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-  #endif
     X11Extras::getInstance()->x11ResetMouseAccelerationChange();
     refreshExtraMouseInfo();
-  #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     }
-  #endif
 #endif
 }
 
 void MainSettingsDialog::selectLogFile() {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString oldLogFile = settings->value("LogFile", "").toString();
     QString newLogFile =
-      QFileDialog::getSaveFileName(this, tr("Save Log File As"), oldLogFile,
-				   tr("Log Files (*.log)"));
+      QFileDialog::getSaveFileName(this, trUtf8("Save Log File As"), oldLogFile,
+				   trUtf8("Log Files (*.log)"));
     if( !newLogFile.isEmpty() ) {
       ui->logFilePathEdit->setText(newLogFile);
     }

@@ -20,9 +20,9 @@
 
 #include <QDialog>
 
-#include "autoprofileinfo.h"
-#include "inputdevice.h"
-#include "antimicrosettings.h"
+class AutoProfileInfo;
+class AntiMicroSettings;
+class InputDevice;
 
 namespace Ui {
 class AddEditAutoProfileDialog;
@@ -35,7 +35,7 @@ class AddEditAutoProfileDialog : public QDialog
 public:
     explicit AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings, QList<InputDevice*> *devices,
                                       QList<QString> &reservedGUIDS,
-                                      bool edit=false, QWidget *parent = 0);
+                                      bool edit=false, QWidget *parent = nullptr);
     ~AddEditAutoProfileDialog();
 
     AutoProfileInfo* getAutoProfile();

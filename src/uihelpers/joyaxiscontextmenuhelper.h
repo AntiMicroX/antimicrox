@@ -18,27 +18,28 @@
 #ifndef JOYAXISCONTEXTMENUHELPER_H
 #define JOYAXISCONTEXTMENUHELPER_H
 
+#include "joybuttonslot.h"
+
 #include <QObject>
 
-#include "joyaxis.h"
-#include "joybuttonslot.h"
+
+
+class JoyAxis;
 
 class JoyAxisContextMenuHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyAxisContextMenuHelper(JoyAxis *axis, QObject *parent = 0);
+    explicit JoyAxisContextMenuHelper(JoyAxis *axis, QObject *parent = nullptr);
 
 protected:
     JoyAxis *axis;
 
-signals:
-
 public slots:
-    void setNAssignedSlot(int code, unsigned int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    void setPAssignedSlot(int code, unsigned int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void setNAssignedSlot(int code, int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
+    void setPAssignedSlot(int code, int alias,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
     void clearAndResetAxisButtons();
 };
 

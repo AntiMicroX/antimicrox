@@ -157,7 +157,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Current:</string>
+          <string>Last keyboard/mouse button:</string>
          </property>
         </widget>
        </item>
@@ -262,8 +262,7 @@ this button is being used.</string>
        </property>
        <property name="icon">
         <iconset theme="games-config-options">
-         <normaloff/>
-        </iconset>
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>

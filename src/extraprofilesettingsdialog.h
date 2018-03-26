@@ -20,7 +20,8 @@
 
 #include <QDialog>
 
-#include "inputdevice.h"
+class InputDevice;
+class QWidget;
 
 namespace Ui {
 class ExtraProfileSettingsDialog;
@@ -31,7 +32,7 @@ class ExtraProfileSettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent = 0);
+    explicit ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent = nullptr);
     ~ExtraProfileSettingsDialog();
 
 protected:

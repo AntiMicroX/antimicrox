@@ -15,20 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "xmlconfigmigration.h"
 #include "event.h"
 #include "antkeymapper.h"
+#include "common.h"
 
 #ifdef Q_OS_UNIX
 #include "eventhandlerfactory.h"
 #endif
 
-
-#include "xmlconfigmigration.h"
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
+#include <QDebug>
 
 
 XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->reader = reader;
     if (reader->device() && reader->device()->isOpen())
     {
@@ -42,12 +47,14 @@ XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent
 
 bool XMLConfigMigration::requiresMigration()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool toMigrate = false;
     if (fileVersion == 0)
     {
         toMigrate = false;
     }
-    else if (fileVersion >= 2 && fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION)
+    else if ((fileVersion >= 2) && (fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION))
     {
         toMigrate = true;
     }
@@ -57,7 +64,9 @@ bool XMLConfigMigration::requiresMigration()
 
 QString XMLConfigMigration::migrate()
 {
-    QString tempXmlString;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString tempXmlString = QString();
     if (requiresMigration())
     {
         int tempFileVersion = fileVersion;
@@ -65,7 +74,7 @@ QString XMLConfigMigration::migrate()
         reader->clear();
         reader->addData(initialData);
 
-        if (tempFileVersion >= 2 && tempFileVersion <= 5)
+        if ((tempFileVersion >= 2) && (tempFileVersion <= 5))
         {
             tempXmlString = version0006Migration();
             tempFileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
@@ -77,7 +86,9 @@ QString XMLConfigMigration::migrate()
 
 QString XMLConfigMigration::readConfigToString()
 {
-    QString tempXmlString;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
     writer.setAutoFormatting(true);
     while (!reader->atEnd())
@@ -91,7 +102,9 @@ QString XMLConfigMigration::readConfigToString()
 
 QString XMLConfigMigration::version0006Migration()
 {
-    QString tempXmlString;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
     writer.setAutoFormatting(true);
     reader->readNextStartElement();
@@ -104,22 +117,22 @@ QString XMLConfigMigration::version0006Migration()
 
     while (!reader->atEnd())
     {
-        if (reader->name() == "slot" && reader->isStartElement())
+        if ((reader->name() == "slot") && reader->isStartElement())
         {
-            unsigned int slotcode = 0;
-            QString slotmode;
+            int slotcode = 0;
+            QString slotmode = QString();
             writer.writeCurrentToken(*reader);
             reader->readNext();
 
             // Grab current slot code and slot mode
-            while (!reader->atEnd() && (!reader->isEndElement() && reader->name() != "slot"))
+            while (!reader->atEnd() && (!reader->isEndElement() && (reader->name() != "slot")))
             {
-                if (reader->name() == "code" && reader->isStartElement())
+                if ((reader->name() == "code") && reader->isStartElement())
                 {
                     QString tempcode = reader->readElementText();
                     slotcode = tempcode.toInt();
                 }
-                else if (reader->name() == "mode" && reader->isStartElement())
+                else if ((reader->name() == "mode") && reader->isStartElement())
                 {
                     slotmode = reader->readElementText();
                 }
@@ -136,7 +149,7 @@ QString XMLConfigMigration::version0006Migration()
             {
                 if (slotmode == "keyboard")
                 {
-                    unsigned int tempcode = slotcode;
+                    int tempcode = slotcode;
 #ifdef Q_OS_WIN
                     slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
 #else

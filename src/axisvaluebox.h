@@ -20,11 +20,14 @@
 
 #include <QWidget>
 
+class QResizeEvent;
+class QPaintEvent;
+
 class AxisValueBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AxisValueBox(QWidget *parent = 0);
+    explicit AxisValueBox(QWidget *parent = nullptr);
 
     int getDeadZone();
     int getMaxZone();

@@ -18,11 +18,15 @@
 #ifndef MOUSECONTROLSTICKSETTINGSDIALOG_H
 #define MOUSECONTROLSTICKSETTINGSDIALOG_H
 
-#include "mousesettingsdialog.h"
-#include "springmoderegionpreview.h"
+#include "ui_mousesettingsdialog.h"
 
-#include <joycontrolstick.h>
+#include "mousesettingsdialog.h"
 #include "uihelpers/mousecontrolsticksettingsdialoghelper.h"
+
+#include <QWidget>
+
+class JoyControlStick;
+class SpringModeRegionPreview;
 
 class MouseControlStickSettingsDialog : public MouseSettingsDialog
 {

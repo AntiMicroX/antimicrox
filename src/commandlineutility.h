@@ -54,12 +54,12 @@ public:
         return (controllerNumber > 0);
     }
 
-    unsigned int getControllerNumber()
+    int getControllerNumber() // unsigned
     {
         return controllerNumber;
     }
 
-    void setControllerNumber(unsigned int temp)
+    void setControllerNumber(int temp) // .., unsigned
     {
         controllerNumber = temp;
     }
@@ -89,19 +89,19 @@ public:
         unloadProfile = status;
     }
 
-    unsigned int getStartSetNumber()
+    int getStartSetNumber() // unsigned
     {
         return startSetNumber;
     }
 
-    unsigned int getJoyStartSetNumber()
+    int getJoyStartSetNumber() // unsigned
     {
         return startSetNumber - 1;
     }
 
-    void setStartSetNumber(unsigned int temp)
+    void setStartSetNumber(int temp) //.., unsigned
     {
-        if (temp >= 1 && temp <= 8)
+        if ((temp >= 1) && (temp <= 8))
         {
             startSetNumber = temp;
         }
@@ -109,17 +109,18 @@ public:
 
 protected:
     QString profileLocation;
-    unsigned int controllerNumber;
+    int controllerNumber; // unsigned
     QString controllerIDString;
-    unsigned int startSetNumber;
+    int startSetNumber; // unsigned
     bool unloadProfile;
 };
 
 class CommandLineUtility : public QObject
 {
-    Q_OBJECT
+
+
 public:
-    explicit CommandLineUtility(QObject *parent = 0);
+    explicit CommandLineUtility(QObject *parent = nullptr);
 
     void parseArguments(QStringList &arguments);
     bool isLaunchInTrayEnabled();
@@ -132,7 +133,7 @@ public:
 
     QString getProfileLocation();
 
-    unsigned int getControllerNumber();
+    int getControllerNumber(); // unsigned
 
     QString getControllerID();
 
@@ -141,9 +142,9 @@ public:
     bool shouldListControllers();
     bool shouldMapController();
 
-    unsigned int getStartSetNumber();
-    unsigned int getJoyStartSetNumber();
-    QList<unsigned int>* getJoyStartSetNumberList();
+    int getStartSetNumber(); // unsigned
+    int getJoyStartSetNumber(); // unsigned
+    QList<int>* getJoyStartSetNumberList(); // unsigned
 
     QList<ControllerOptionsInfo>* getControllerOptionsList();
     bool hasProfileInOptions();
@@ -176,14 +177,14 @@ protected:
     bool hideTrayIcon;
 
     QString profileLocation;
-    unsigned int controllerNumber;
+    int controllerNumber; // unsigned
     QString controllerIDString;
 
     bool encounteredError;
     bool hiddenRequest;
     bool unloadProfile;
 
-    unsigned int startSetNumber;
+    int startSetNumber; // unsigned
 
     bool daemonMode;
     QString displayString;
@@ -193,7 +194,7 @@ protected:
     QString errorText;
     Logger::LogLevel currentLogLevel;
     QString currentLogFile;
-    unsigned int currentListsIndex;
+    int currentListsIndex; // unsigned
     QList<ControllerOptionsInfo> controllerOptionsList;
 
     static QRegExp trayRegexp;
@@ -218,10 +219,6 @@ protected:
     static QRegExp daemonRegexp;
     static QRegExp displayRegexp;
 #endif
-    
-signals:
-    
-public slots:
     
 };
 

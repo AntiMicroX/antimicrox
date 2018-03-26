@@ -18,10 +18,13 @@
 #ifndef JOYAXISBUTTON_H
 #define JOYAXISBUTTON_H
 
-#include <QString>
 
 #include "joybuttontypes/joygradientbutton.h"
 
+#include <QString>
+
+class VDPad;
+class SetJoystick;
 class JoyAxis;
 
 class JoyAxisButton : public JoyGradientButton

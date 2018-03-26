@@ -20,8 +20,9 @@
 
 #include <QDialog>
 
-#include "autoprofileinfo.h"
-#include "antimicrosettings.h"
+class AutoProfileInfo;
+class AntiMicroSettings;
+class QWidget;
 
 namespace Ui {
 class EditAllDefaultAutoProfileDialog;
@@ -33,7 +34,7 @@ class EditAllDefaultAutoProfileDialog : public QDialog
 
 public:
     explicit EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
-                                             QWidget *parent = 0);
+                                             QWidget *parent = nullptr);
     ~EditAllDefaultAutoProfileDialog();
 
     AutoProfileInfo* getAutoProfile();

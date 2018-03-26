@@ -19,19 +19,19 @@
 #define GAMECONTROLLER_H
 
 #include <SDL2/SDL_gamecontroller.h>
-
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
-
 #include <inputdevice.h>
-#include "gamecontrollerdpad.h"
-#include "gamecontrollerset.h"
+
+
+class QXmlStreamReader;
+class QXmlStreamWriter;
+class AntiMicroSettings;
+
 
 class GameController : public InputDevice
 {
     Q_OBJECT
 public:
-    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, QObject *parent = 0);
+    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
 
     virtual QString getName();
     virtual QString getSDLName();

@@ -1,22 +1,18 @@
-# antimicro
+# antimicro 2.23
 
-## We've Moved!
+1. [Description](#description)  
+2. [License](#license)  
+3. [Command line](#command-line)  
+4. [Build Dependencies](#build-dependencies)  
+    a. [Building under Linux](#building-under-linux)  
+    b. [Building under Windows](#building-under-windows)  
+5. [Testing under Linux](#testing-under-linux)  
+6. [Support](#support)  
+7. [Bugs](#bugs)  
+8. [Shoutout](#shoutout)  
+9. [Credits](#credits)  
 
-As of May 24, 2016, antimicro has moved from
-https://github.com/Ryochan7/antimicro to
-https://github.com/AntiMicro/antimicro.
-Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro
-organization due to Travis having other interests and priorities.
 
-So, thank you for your patience as we settle in. And a special thank you to the
-following GitHub users who have helped us make the transition:
-* 7185
-* DarkStarSword
-* est31
-* mtdeguzis
-* qwerty12
-* WAZAAAAA0
-* zzpxyx
 
 ## Description
 
@@ -28,16 +24,15 @@ means that your system has to be running an X environment in order to run
 this program.
 
 This program is currently supported under various Linux
-distributions, Windows (Vista and later), and FreeBSD. At the time of writing
-this, antimicro works in Windows XP but, since Windows XP is no longer
-supported, running the program in Windows XP will not be officially supported.
-However, efforts will be made to not intentionally break compatibility
-with Windows XP.
+distributions, Windows (Vista and later), and FreeBSD. However work of application
+has been tested only on Linux (Arch Linux), on next systems will be tested in the future.
 
-Also, FreeBSD support will be minimal for now. I don't use BSD on
-a daily basis so the main support for FreeBSD is being offered by Anton. He
-has graciously made a port of antimicro for FreeBSD that you can find
-at the following URL: http://www.freshports.org/x11/antimicro/.
+Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
+application. Their versions are here:
+
+https://github.com/AntiMicro/antimicro
+https://github.com/Ryochan7/antimicro
+
 
 ## License
 
@@ -46,36 +41,7 @@ included with the source code if you would like to read the terms of the license
 The license can also be found online at
 http://www.gnu.org/licenses/gpl.txt
 
-## Download
-Source code archives and Windows binaries are available from the antimicro
-Releases section on GitHub:
 
-https://github.com/AntiMicro/antimicro/releases
-
-As well as on BinTray:
-
-https://bintray.com/antimicro/antimicro/antimicro
-
-AntiMicro is currently in the official Fedora repository and can be installed with
-
-`$ sudo dnf install antimicro`
-
-For Debian and Debian-based distributions, such as Mint, Ubuntu, and Steam OS, please check the LibreGeek
-Repositories generously hosted by mtdeguzis:
-
-http://packages.libregeek.org/
-
-AntiMicro is currently available for Slackware via SlackBuilds, thanks to NK and Klaatu:
-
-https://slackbuilds.org/result/?search=antimicro&sv=
-
-Ubuntu users may also check the antimicro page on Launchpad:
-
-Latest:  
-https://launchpad.net/~mdeguzis/+archive/ubuntu/libregeek
-
-Deprecated:  
-https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro
 
 ## Command line
 
@@ -108,24 +74,7 @@ https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro
                                    controller. Value can be a controller index or
                                    GUID.
 
-## Pre-made Profiles
 
-There is a repository for pre-made antimicro profiles. Using a pre-made
-profile, you can have a controller layout that is suitable for playing a
-game without having to map everything yourself. It makes using antimicro
-really convenient. In order to use those pre-made profiles, you have to be
-running at least antimicro version 2.0 and antimicro must have been compiled
-with SDL 2 support.
-
-https://github.com/AntiMicro/antimicro-profiles
-
-## Wiki
-
-An effort is now being done to utilize the Wiki section on GitHub more.
-Please check out the Wiki at https://github.com/AntiMicro/antimicro/wiki
-to read various help pages that have been created. The Wiki is currently
-open to all GitHub users so feel free to add a new page or modify an
-existing page.
 
 ## Build Dependencies
 
@@ -139,14 +88,14 @@ installed on your system in order to build this program:
 
 * g++
 * cmake
-* libqt4-dev (Qt 4 support) or qttools5-dev and qttools5-dev-tools (Qt 5
-support)
-* libsdl2-dev (SDL 2) or libsdl1.2-dev (SDL 1.2)
-* libxi-dev (optional. Needed to compile with X11 and uinput support)
-* libxtst-dev (optional. Needed to compile with XTest support)
-* libX11-dev (optional when compiled with Qt 5 support)
+* qttools5-dev and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt 5 support)
+* libsdl2-dev (SDL 2) or libsdl1.2-dev (sdl2 on distros based on Arch Linux) (SDL 1.2)
+* libxi-dev (libxi on distros based on Arch Linux) (optional. Needed to compile with X11 and uinput support)
+* libxtst-dev (libxtst on distros based on Arch Linux) (optional. Needed to compile with XTest support)
+* libX11-dev (libx11 on distros based on Arch Linux) (optional when compiled with Qt 5 support)
 
-## Building under Linux
+
+### Building under Linux
 
 In order to build this program, open a terminal and cd into the antimicro
 directory. Enter the following commands in order to build the program:
@@ -156,14 +105,6 @@ directory. Enter the following commands in order to build the program:
     cmake ..
     make
     sudo make install
-
-The installation path of antimicro can be customized by specifying the
-CMAKE_INSTALL_PREFIX variable while running cmake.
-
-    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-
-This will install the antimicro executable to /usr/bin/antimicro.
-By default, the executable will be installed to /usr/local/bin/antimicro.
 
 The cmake step will use pkg-config to attempt to find any SDL
 libraries that you have installed. The project is set up to
@@ -178,7 +119,7 @@ with SDL 2 support when you run qmake.
 
     cmake -DUSE_SDL_2=ON ..
 
-## Building under Windows
+### Building under Windows
 
 **Instructions provided by aybe @ https://github.com/aybe.
 Modified by Travis Nickles.**
@@ -301,55 +242,30 @@ programs for testing gamepads outside of antimicro are **sdl-jstest**
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems.
 
-https://github.com/Grumbel/sdl-jstest/
-
 ## Support
 
-In order to obtain support, you can post an issue on the antimicro GitHub page
-or you can email me at jeff@jsbackus.com. Please include **antimicro**
-somewhere in the subject line of the email message or it might be skipped.
+In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicro/issues)
 
-https://github.com/AntiMicro/antimicro
+## Bugs
 
-## Ideas For Future Features
+Bugs fo the application will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or asks of users. 
 
-This section is where some of the ideas for future features
-for this program will be written.
-
-* Allow buttons to be bound to actions.
-* Use uinput by default and fallback to XTest if necessary. (MOSTLY DONE)
-* Move simulated event generation to a new thread.
-* ~~Allow logging as long as it doesn't cause button lag.~~
-* Allow notes to be added to a profile in various places.
-
-Along with this, I will put the simple mind map that I am using to
-write ideas for future development into the repository for this
-program. The mind map will include extra notes that are not available in
-this README. Opening the mind map will require the use of the program
-FreeMind which can be downloaded from
-http://freemind.sourceforge.net/wiki/index.php/Main_Page.
-
-## Translating
-
-New translations as well as updates to current translations are always welcome.
-Please refer to
-https://github.com/AntiMicro/antimicro/wiki/Translating-AntiMicro
 
 ## Shoutout
 
-A big inspiration for this program was the program QJoyPad
-(http://qjoypad.sourceforge.net/).
-I was a user of the program for years and it is unfortunate that the
-program is no longer being maintained. The source code for QJoyPad was an
-invaluable resource when I made the first version of this program and the UI
-for this program mostly resembles QJoyPad.
+A big, original inspiration for this program was the program QJoyPad
+
 
 ## Credits
+
+### Contributors
+
+juliagoda
 
 ### Original Developer
 Travis Nickles <nickles.travis@gmail.com>
 
-### Contributors
+### Old Contributors
 
 Zerro Alvein  
 aybe  

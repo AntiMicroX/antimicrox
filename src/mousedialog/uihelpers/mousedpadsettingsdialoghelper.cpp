@@ -16,10 +16,16 @@
  */
 
 #include "mousedpadsettingsdialoghelper.h"
+#include "joydpad.h"
+#include "joydpadbuttonwidget.h"
+
+#include <QDebug>
 
 MouseDpadSettingsDialogHelper::MouseDpadSettingsDialogHelper(JoyDPad *dpad, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(dpad);
 
     this->dpad = dpad;

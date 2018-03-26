@@ -15,14 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QFileInfo>
-
 #include "autoprofileinfo.h"
+
+#include <QFileInfo>
+#include <QDebug>
+
 
 AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
                                  QString exe, bool active, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     setGUID(guid);
     setProfileLocation(profileLocation);
     setExe(exe);
@@ -34,6 +38,8 @@ AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
                                  bool active, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     setGUID(guid);
     setProfileLocation(profileLocation);
     setActive(active);
@@ -43,28 +49,37 @@ AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
 AutoProfileInfo::AutoProfileInfo(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     setActive(true);
     setDefaultState(false);
 }
 
 AutoProfileInfo::~AutoProfileInfo()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 
 void AutoProfileInfo::setGUID(QString guid)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->guid = guid;
 }
 
 QString AutoProfileInfo::getGUID()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return guid;
 }
 
 void AutoProfileInfo::setProfileLocation(QString profileLocation)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QFileInfo info(profileLocation);
-    if (profileLocation != this->profileLocation &&
+    if ((profileLocation != this->profileLocation) &&
         info.exists() && info.isReadable())
     {
         this->profileLocation = profileLocation;
@@ -77,20 +92,24 @@ void AutoProfileInfo::setProfileLocation(QString profileLocation)
 
 QString AutoProfileInfo::getProfileLocation()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return profileLocation;
 }
 
 void AutoProfileInfo::setExe(QString exe)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (!exe.isEmpty())
     {
         QFileInfo info(exe);
-        if (exe != this->exe && info.exists() && info.isExecutable())
+        if ((exe != this->exe) && info.exists() && info.isExecutable())
         {
             this->exe = exe;
         }
 #ifdef Q_OS_WIN
-        else if (exe != this->exe && info.suffix() == "exe")
+        else if ((exe != this->exe) && (info.suffix() == "exe"))
         {
             this->exe = exe;
         }
@@ -104,55 +123,77 @@ void AutoProfileInfo::setExe(QString exe)
 
 QString AutoProfileInfo::getExe()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return exe;
 }
 
 void AutoProfileInfo::setWindowClass(QString windowClass)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->windowClass = windowClass;
 }
 
 QString AutoProfileInfo::getWindowClass()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return windowClass;
 }
 
 void AutoProfileInfo::setWindowName(QString winName)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->windowName = winName;
 }
 
 QString AutoProfileInfo::getWindowName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return windowName;
 }
 
 void AutoProfileInfo::setActive(bool active)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->active = active;
 }
 
 bool AutoProfileInfo::isActive()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return active;
 }
 
 void AutoProfileInfo::setDefaultState(bool value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->defaultState = value;
 }
 
 bool AutoProfileInfo::isCurrentDefault()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return defaultState;
 }
 
 void AutoProfileInfo::setDeviceName(QString name)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->deviceName = name;
 }
 
 QString AutoProfileInfo::getDeviceName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return deviceName;
 }

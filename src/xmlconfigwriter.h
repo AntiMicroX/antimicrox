@@ -19,17 +19,17 @@
 #define XMLCONFIGWRITER_H
 
 #include <QObject>
-#include <QFile>
-#include <QXmlStreamWriter>
 
-#include "inputdevice.h"
-#include "common.h"
+
+class InputDevice;
+class QXmlStreamWriter;
+class QFile;
 
 class XMLConfigWriter : public QObject
 {
     Q_OBJECT
 public:
-    explicit XMLConfigWriter(QObject *parent = 0);
+    explicit XMLConfigWriter(QObject *parent = nullptr);
     ~XMLConfigWriter();
     void setFileName(QString filename);
     bool hasError();
@@ -42,8 +42,6 @@ protected:
     InputDevice* joystick;
     bool writerError;
     QString writerErrorString;
-
-signals:
     
 public slots:
     void write(InputDevice* joystick);

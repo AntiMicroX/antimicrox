@@ -16,21 +16,22 @@
  */
 
 #ifndef JOYCONTROLSTICKBUTTON_H
-#define JOYCONTROLSTICKBUTTON_H\
-
-#include <QString>
+#define JOYCONTROLSTICKBUTTON_H
 
 #include "joybuttontypes/joygradientbutton.h"
 #include "joycontrolstickdirectionstype.h"
 
+#include <QString>
+
 class JoyControlStick;
+class SetJoystick;
 
 class JoyControlStickButton : public JoyGradientButton
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
-    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
+    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
     virtual int getRealJoyNumber();
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);

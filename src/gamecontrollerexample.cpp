@@ -15,11 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gamecontrollerexample.h"
+
 #include <QPainter>
 #include <QPixmap>
 #include <QTransform>
+#include <QPaintEvent>
+#include <QDebug>
 
-#include "gamecontrollerexample.h"
 
 struct ButtonImagePlacement {
     int x;
@@ -57,6 +60,8 @@ static ButtonImagePlacement buttonLocations[] = {
 GameControllerExample::GameControllerExample(QWidget *parent) :
     QWidget(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     controllerimage = QImage(":/images/controllermap.png");
     buttonimage = QImage(":/images/button.png");
     axisimage = QImage(":/images/axis.png");
@@ -71,6 +76,8 @@ GameControllerExample::GameControllerExample(QWidget *parent) :
 
 void GameControllerExample::paintEvent(QPaintEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(event);
 
     QPainter paint(this);
@@ -96,7 +103,9 @@ void GameControllerExample::paintEvent(QPaintEvent *event)
 
 void GameControllerExample::setActiveButton(int button)
 {
-    if (button >= 0 && button <= MAXBUTTONINDEX)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (button <= MAXBUTTONINDEX)
     {
         currentIndex = button;
         emit indexUpdated(button);

@@ -18,15 +18,20 @@
 #ifndef GAMECONTROLLERMAPPINGDIALOG_H
 #define GAMECONTROLLERMAPPINGDIALOG_H
 
+
+#include "uihelpers/gamecontrollermappingdialoghelper.h"
+#include "gamecontroller/gamecontroller.h"
+
 #include <QDialog>
 #include <QHash>
 #include <QList>
-#include <QAbstractButton>
+#include <QString>
 
-#include "uihelpers/gamecontrollermappingdialoghelper.h"
-#include "inputdevice.h"
-#include "gamecontroller/gamecontroller.h"
-#include "antimicrosettings.h"
+
+class InputDevice;
+class AntiMicroSettings;
+class QWidget;
+class QAbstractButton;
 
 namespace Ui {
 class GameControllerMappingDialog;
@@ -37,7 +42,7 @@ class GameControllerMappingDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit GameControllerMappingDialog(InputDevice *device, AntiMicroSettings *settings, QWidget *parent = 0);
+    explicit GameControllerMappingDialog(InputDevice *device, AntiMicroSettings *settings, QWidget *parent = nullptr);
     ~GameControllerMappingDialog();
 
     static QHash<int, QString> tempaliases;
@@ -57,7 +62,7 @@ protected:
 
     InputDevice *device;
     AntiMicroSettings *settings;
-    unsigned int buttonGrabs;
+    int buttonGrabs; // unsigned
     QList<int> eventTriggerAxes;
     QList<int> originalAxesDeadZones;
     GameControllerMappingDialogHelper helper;

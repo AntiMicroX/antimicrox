@@ -20,15 +20,16 @@
 
 #include <QGridLayout>
 
-#include "joycontrolstick.h"
-#include "joycontrolstickpushbutton.h"
-#include "joycontrolstickbuttonpushbutton.h"
+class JoyControlStick;
+class QWidget;
+class JoyControlStickButtonPushButton;
+class JoyControlStickPushButton;
 
 class StickPushButtonGroup : public QGridLayout
 {
     Q_OBJECT
 public:
-    explicit StickPushButtonGroup(JoyControlStick *stick, bool displayNames = false, QWidget *parent = 0);
+    explicit StickPushButtonGroup(JoyControlStick *stick, bool displayNames = false, QWidget *parent = nullptr);
     JoyControlStick *getStick();
 
 protected:

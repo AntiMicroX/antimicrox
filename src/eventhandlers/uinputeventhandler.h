@@ -28,7 +28,7 @@ class UInputEventHandler : public BaseEventHandler
 {
     Q_OBJECT
 public:
-    explicit UInputEventHandler(QObject *parent = 0);
+    explicit UInputEventHandler(QObject *parent = nullptr);
     ~UInputEventHandler();
 
     virtual bool init();
@@ -38,8 +38,8 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
 
-    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                      unsigned int width, unsigned int height);
+    virtual void sendMouseSpringEvent(int xDis, int yDis,
+                                      int width, int height); // unsigned, unsigned, unsigned, unsigned
     virtual void sendMouseSpringEvent(int xDis, int yDis);
 
     virtual QString getName();
@@ -58,8 +58,8 @@ protected:
     void createUInputMouseDevice(int filehandle);
     void createUInputSpringMouseDevice(int filehandle);
     void closeUInputDevice(int filehandle);
-    void write_uinput_event(int filehandle, unsigned int type,
-                            unsigned int code, int value, bool syn=true);
+    void write_uinput_event(int filehandle, int type,
+                            int code, int value, bool syn=true); // .., .., unsigned, unsigned, .., ..
 
     int keyboardFileHandler;
     int mouseFileHandler;

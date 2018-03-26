@@ -20,15 +20,18 @@
 
 #include <QObject>
 #include <QMetaType>
+#include <QString>
 
 class AutoProfileInfo : public QObject
 {
+
     Q_OBJECT
+
 public:
     explicit AutoProfileInfo(QString guid, QString profileLocation,
-                             bool active, QObject *parent = 0);
+                             bool active, QObject *parent = nullptr);
     explicit AutoProfileInfo(QString guid, QString profileLocation,
-                             QString exe, bool active, QObject *parent = 0);
+                             QString exe, bool active, QObject *parent = nullptr);
     explicit AutoProfileInfo(QObject *parent=0);
     ~AutoProfileInfo();
 
@@ -65,10 +68,6 @@ protected:
     QString windowName;
     bool active;
     bool defaultState;
-
-signals:
-
-public slots:
 
 };
 

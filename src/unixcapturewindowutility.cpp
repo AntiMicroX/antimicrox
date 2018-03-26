@@ -15,18 +15,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
+#include "unixcapturewindowutility.h"
+#include "qtx11keymapper.h"
+
+#include <QDebug>
 #include <QDataStream>
 
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h> // for XGrabPointer
+
 #include "x11extras.h"
-#include "qtx11keymapper.h"
-#include "unixcapturewindowutility.h"
+
+
 
 UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     targetPath = "";
     failed = false;
     targetWindow = None;
@@ -37,6 +43,8 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
  */
 void UnixCaptureWindowUtility::attemptWindowCapture()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     // Only create instance when needed.
     static QtX11KeyMapper x11KeyMapper;
 
@@ -49,7 +57,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     Cursor cursor;
     Window target_window = None;
     int status = 0;
-    Display *display = 0;
+    Display *display = nullptr;
 
     QString potentialXDisplayString = X11Extras::getInstance()->getXDisplayString();
     if (!potentialXDisplayString.isEmpty())
@@ -120,6 +128,8 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
  */
 QString UnixCaptureWindowUtility::getTargetPath()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return targetPath;
 }
 
@@ -129,10 +139,14 @@ QString UnixCaptureWindowUtility::getTargetPath()
  */
 bool UnixCaptureWindowUtility::hasFailed()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return failed;
 }
 
-unsigned long UnixCaptureWindowUtility::getTargetWindow()
+long UnixCaptureWindowUtility::getTargetWindow()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return targetWindow;
 }

@@ -18,12 +18,14 @@
 #ifndef ADVANCEBUTTONDIALOG_H
 #define ADVANCEBUTTONDIALOG_H
 
-#include <QDialog>
-#include <QListWidgetItem>
 
-#include "joybutton.h"
-#include "simplekeygrabberbutton.h"
 #include "uihelpers/advancebuttondialoghelper.h"
+
+#include <QDialog>
+
+class JoyButton;
+class SimpleKeyGrabberButton;
+class QListWidgetItem;
 
 namespace Ui {
 class AdvanceButtonDialog;

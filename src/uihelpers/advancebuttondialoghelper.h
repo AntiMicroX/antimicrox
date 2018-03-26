@@ -18,29 +18,30 @@
 #ifndef ADVANCEBUTTONDIALOGHELPER_H
 #define ADVANCEBUTTONDIALOGHELPER_H
 
+#include "joybuttonslot.h"
+
 #include <QObject>
 
-#include "joybutton.h"
-#include "joybuttonslot.h"
+
+class JoyButton;
 
 class AdvanceButtonDialogHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AdvanceButtonDialogHelper(JoyButton *button,
-                                       QObject *parent = 0);
+                                       QObject *parent = nullptr);
 
 protected:
     JoyButton *button;
 
-signals:
-
 public slots:
     void setAssignedSlot(JoyButtonSlot *otherSlot, int index);
-    void setAssignedSlot(int code, unsigned int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    void insertAssignedSlot(int code, unsigned int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void setAssignedSlot(int code, int alias, int index,
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
+    void insertAssignedSlot(int code, int alias, int index,
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
     void removeAssignedSlot(int index);
 };
 

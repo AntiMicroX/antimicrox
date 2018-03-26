@@ -16,65 +16,90 @@
  */
 
 #include "joytabwidgethelper.h"
+#include "inputdevice.h"
+#include "joybutton.h"
+#include "joybuttonslot.h"
+#include "xmlconfigreader.h"
+#include "xmlconfigwriter.h"
+
+#include <QDebug>
 
 JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(device);
 
     this->device = device;
-    this->reader = 0;
-    this->writer = 0;
+    this->reader = nullptr;
+    this->writer = nullptr;
     this->errorOccurred = false;
 }
 
 JoyTabWidgetHelper::~JoyTabWidgetHelper()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (this->reader)
     {
         delete this->reader;
-        this->reader = 0;
+        this->reader = nullptr;
     }
 
     if (this->writer)
     {
         delete this->writer;
-        this->writer = 0;
+        this->writer = nullptr;
     }
 }
 
 bool JoyTabWidgetHelper::hasReader()
 {
-    return (this->reader != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return (this->reader != nullptr);
 }
 
 XMLConfigReader* JoyTabWidgetHelper::getReader()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->reader;
 }
 
 bool JoyTabWidgetHelper::hasWriter()
 {
-    return (this->writer != 0);
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return (this->writer != nullptr);
 }
 
 XMLConfigWriter* JoyTabWidgetHelper::getWriter()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->writer;
 }
 
 bool JoyTabWidgetHelper::hasError()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return errorOccurred;
 }
 
 QString JoyTabWidgetHelper::getErrorString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return lastErrorString;
 }
 
 bool JoyTabWidgetHelper::readConfigFile(QString filepath)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
     device->disconnectPropertyUpdatedConnection();
 
@@ -87,7 +112,7 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
     if (this->reader)
     {
         this->reader->deleteLater();
-        this->reader = 0;
+        this->reader = nullptr;
     }
 
     this->reader = new XMLConfigReader;
@@ -102,6 +127,8 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
 
 bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
     device->revertProfileEdited();
 
@@ -112,12 +139,14 @@ bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
 
 bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool result = false;
 
     if (this->writer)
     {
         this->writer->deleteLater();
-        this->writer = 0;
+        this->writer = nullptr;
     }
 
     this->writer = new XMLConfigWriter;
@@ -130,6 +159,8 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
 void JoyTabWidgetHelper::reInitDevice()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     device->disconnectPropertyUpdatedConnection();
 
     if (device->getActiveSetNumber() != 0)
@@ -147,6 +178,8 @@ void JoyTabWidgetHelper::reInitDevice()
 
 void JoyTabWidgetHelper::reInitDeviceWithRevert()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     device->revertProfileEdited();
     reInitDevice();
 }

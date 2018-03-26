@@ -18,32 +18,35 @@
 #ifndef JOYTABWIDGET_H
 #define JOYTABWIDGET_H
 
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QPushButton>
-#include <QComboBox>
-#include <QSpacerItem>
-#include <QFileDialog>
-#include <QHash>
-#include <QStackedWidget>
-#include <QScrollArea>
-#include <QIcon>
 
 #include "uihelpers/joytabwidgethelper.h"
 
-#include "joystick.h"
-#include "axiseditdialog.h"
-#include "inputdevice.h"
-#include "antimicrosettings.h"
+#include <QFileDialog>
+#include <QHash>
+#include <QScrollArea>
+#include <QIcon>
 
+
+class InputDevice;
+class AntiMicroSettings;
+class QEvent;
+class SetJoystick;
+class QVBoxLayout;
+class QHBoxLayout;
+class QGridLayout;
+class QPushButton;
+class QComboBox;
+class QSpacerItem;
+class AxisEditDialog;
+class QAction;
+class QMenu;
+class QStackedWidget;
 
 class JoyTabWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = 0);
+    explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = nullptr);
 
     void saveSettings();
     void loadSettings(bool forceRefresh=false);

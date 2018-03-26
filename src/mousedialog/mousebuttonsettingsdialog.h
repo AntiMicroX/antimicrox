@@ -18,17 +18,22 @@
 #ifndef MOUSEBUTTONSETTINGSDIALOG_H
 #define MOUSEBUTTONSETTINGSDIALOG_H
 
-#include "mousesettingsdialog.h"
-#include "springmoderegionpreview.h"
+#include "ui_mousesettingsdialog.h"
 
-#include <joybutton.h>
+#include "mousesettingsdialog.h"
 #include "uihelpers/mousebuttonsettingsdialoghelper.h"
+
+
+#include <QWidget>
+
+class JoyButton;
+class SpringModeRegionPreview;
 
 class MouseButtonSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 public:
-    explicit MouseButtonSettingsDialog(JoyButton *button, QWidget *parent = 0);
+    explicit MouseButtonSettingsDialog(JoyButton *button, QWidget *parent = nullptr);
     
 protected:
     void selectCurrentMouseModePreset();

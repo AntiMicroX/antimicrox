@@ -20,7 +20,9 @@
 
 #include <QDialog>
 
-#include "joystick.h"
+class Joystick;
+
+
 
 namespace Ui {
 class AdvanceStickAssignmentDialog;
@@ -31,7 +33,7 @@ class AdvanceStickAssignmentDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit AdvanceStickAssignmentDialog(Joystick *joystick, QWidget *parent = 0);
+    explicit AdvanceStickAssignmentDialog(Joystick *joystick, QWidget *parent = nullptr);
     ~AdvanceStickAssignmentDialog();
     
 protected:

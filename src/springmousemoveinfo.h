@@ -27,8 +27,8 @@ namespace PadderCommon {
         double displacementY;
 
         // Width and height of the spring mode box
-        unsigned int width;
-        unsigned int height;
+        int width; // unsigned
+        int height; // unsigned
         // Should the cursor not move around the center
         // of the screen.
         bool relative;

@@ -20,15 +20,17 @@
 
 #include <QObject>
 #include <QMap>
-#include <QThread>
 
-#include "inputdevice.h"
-#include "joybutton.h"
-#include "antimicrosettings.h"
+#include <SDL2/SDL_joystick.h>
+
+class AntiMicroSettings;
+class InputDevice;
+class QThread;
 
 class AppLaunchHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AppLaunchHelper(AntiMicroSettings *settings, bool graphical=false,
                              QObject *parent=0);
@@ -41,14 +43,13 @@ protected:
     void changeMouseRefreshRate();
     void changeSpringModeScreen();
     void changeGamepadPollRate();
+
 #ifdef Q_OS_WIN
     void checkPointerPrecision();
 #endif
 
     AntiMicroSettings *settings;
     bool graphical;
-
-signals:
 
 public slots:
 #ifdef Q_OS_WIN

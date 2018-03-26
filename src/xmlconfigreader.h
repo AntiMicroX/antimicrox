@@ -19,23 +19,18 @@
 #define XMLCONFIGREADER_H
 
 #include <QObject>
-#include <QXmlStreamReader>
-#include <QFile>
 
-#include "inputdevice.h"
-#include "joystick.h"
 
-#ifdef USE_SDL_2
-#include "gamecontroller/gamecontroller.h"
-#endif
 
-#include "common.h"
+class InputDevice;
+class QXmlStreamReader;
+class QFile;
 
 class XMLConfigReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit XMLConfigReader(QObject *parent = 0);
+    explicit XMLConfigReader(QObject *parent = nullptr);
     ~XMLConfigReader();
     void setJoystick(InputDevice *joystick);
     void setFileName(QString filename);
@@ -51,8 +46,6 @@ protected:
     QFile *configFile;
     InputDevice* joystick;
     QStringList deviceTypes;
-
-signals:
     
 public slots:
     void configJoystick(InputDevice *joystick);

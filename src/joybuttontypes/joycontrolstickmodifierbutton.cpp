@@ -15,23 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QString>
+#include "joycontrolstickmodifierbutton.h"
+#include "joycontrolstick.h"
+#include "setjoystick.h"
+
 #include <cmath>
 
-#include "joycontrolstick.h"
-#include "joycontrolstickmodifierbutton.h"
+#include <QDebug>
+#include <QString>
 
 const QString JoyControlStickModifierButton::xmlName = "stickmodifierbutton";
 
 JoyControlStickModifierButton::JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyGradientButton(0, originset, parentSet, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
 }
 
 QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QString temp = stick->getPartialName(forceFullFormat, displayNames);
 
     temp.append(": ");
@@ -40,7 +46,7 @@ QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Modifier")).append(" ");
+            temp.append(trUtf8("Modifier")).append(" ");
         }
 
         temp.append(buttonName);
@@ -49,20 +55,22 @@ QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool
     {
         if (forceFullFormat)
         {
-            temp.append(tr("Modifier")).append(" ");
+            temp.append(trUtf8("Modifier")).append(" ");
         }
 
         temp.append(defaultButtonName);
     }
     else
     {
-        temp.append(tr("Modifier"));
+        temp.append(trUtf8("Modifier"));
     }
     return temp;
 }
 
 QString JoyControlStickModifierButton::getXmlName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return this->xmlName;
 }
 
@@ -73,6 +81,8 @@ QString JoyControlStickModifierButton::getXmlName()
  */
 double JoyControlStickModifierButton::getDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick->calculateDirectionalDistance();
 }
 
@@ -82,23 +92,31 @@ double JoyControlStickModifierButton::getDistanceFromDeadZone()
  */
 double JoyControlStickModifierButton::getMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return getDistanceFromDeadZone();
 }
 
 void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(condition);
     Q_UNUSED(passive);
 }
 
 /*int JoyControlStickModifierButton::getRealJoyNumber()
 {
+qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return index;
 }
 */
 
 JoyControlStick* JoyControlStickModifierButton::getStick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick;
 }
 
@@ -108,6 +126,8 @@ JoyControlStick* JoyControlStickModifierButton::getStick()
  */
 void JoyControlStickModifierButton::setTurboMode(TurboMode mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (isPartRealAxis())
     {
         currentTurboMode = mode;
@@ -122,27 +142,37 @@ void JoyControlStickModifierButton::setTurboMode(TurboMode mode)
  */
 bool JoyControlStickModifierButton::isPartRealAxis()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return true;
 }
 
 bool JoyControlStickModifierButton::isModifierButton()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return true;
 }
 
 double JoyControlStickModifierButton::getAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double temp = stick->getAbsoluteRawDistance();
     return temp;
 }
 
 double JoyControlStickModifierButton::getLastAccelerationDistance()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     double temp = stick->calculateLastAccelerationDirectionalDistance();
     return temp;
 }
 
 double JoyControlStickModifierButton::getLastMouseDistanceFromDeadZone()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick->calculateLastDirectionalDistance();
 }

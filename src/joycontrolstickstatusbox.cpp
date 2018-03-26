@@ -15,25 +15,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-#include <QPainter>
+#include "joycontrolstickstatusbox.h"
+#include "joycontrolstick.h"
+#include "joyaxis.h"
+#include "common.h"
+
 #include <qdrawutil.h>
+
+#include <QDebug>
+#include <QPainter>
 #include <QSizePolicy>
 #include <QList>
 #include <QLinearGradient>
+#include <QPaintEvent>
 
-#include "joycontrolstickstatusbox.h"
-#include "common.h"
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     QWidget(parent)
 {
-    this->stick = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    this->stick = nullptr;
 }
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent) :
     QWidget(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
 
     connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
@@ -46,7 +55,9 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidg
 
 void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 {
-    if (stick)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if (stick != nullptr)
     {
         disconnect(stick, SIGNAL(deadZoneChanged(int)), this, 0);
         disconnect(stick, SIGNAL(moved(int,int)), this, 0);
@@ -65,27 +76,35 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 
 JoyControlStick* JoyControlStickStatusBox::getStick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick;
 }
 
 int JoyControlStickStatusBox::heightForWidth(int width) const
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return width;
 }
 
 QSize JoyControlStickStatusBox::sizeHint() const
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return QSize(-1, -1);
 }
 
 void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_UNUSED(event);
 
     PadderCommon::inputDaemonMutex.lock();
 
-    if (stick->getJoyMode() == JoyControlStick::StandardMode ||
-        stick->getJoyMode() == JoyControlStick::EightWayMode)
+    if ((stick->getJoyMode() == JoyControlStick::StandardMode) ||
+        (stick->getJoyMode() == JoyControlStick::EightWayMode))
     {
         drawEightWayBox();
     }
@@ -103,6 +122,8 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 
 void JoyControlStickStatusBox::drawEightWayBox()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPainter paint (this);
     paint.setRenderHint(QPainter::Antialiasing, true);
 
@@ -249,6 +270,8 @@ void JoyControlStickStatusBox::drawEightWayBox()
 
 void JoyControlStickStatusBox::drawFourWayCardinalBox()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
 
@@ -386,6 +409,8 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
 
 void JoyControlStickStatusBox::drawFourWayDiagonalBox()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
 

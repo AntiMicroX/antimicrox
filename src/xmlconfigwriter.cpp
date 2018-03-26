@@ -15,22 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDir>
-
 #include "xmlconfigwriter.h"
+#include "inputdevice.h"
+#include "common.h"
+
+#include <QDir>
+#include <QFile>
+#include <QXmlStreamWriter>
+#include <QDebug>
+
+
 
 XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     xml = new QXmlStreamWriter();
     xml->setAutoFormatting(true);
-    configFile = 0;
-    joystick = 0;
+    configFile = nullptr;
+    joystick = nullptr;
     writerError = false;
 }
 
 XMLConfigWriter::~XMLConfigWriter()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (configFile)
     {
         if (configFile->isOpen())
@@ -39,18 +50,20 @@ XMLConfigWriter::~XMLConfigWriter()
         }
 
         delete configFile;
-        configFile = 0;
+        configFile = nullptr;
     }
 
     if (xml)
     {
         delete xml;
-        xml = 0;
+        xml = nullptr;
     }
 }
 
 void XMLConfigWriter::write(InputDevice *joystick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     writerError = false;
 
     if (!configFile->isOpen())
@@ -61,7 +74,7 @@ void XMLConfigWriter::write(InputDevice *joystick)
     else
     {
         writerError = true;
-        writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
+        writerErrorString = trUtf8("Could not write to profile at %1.").arg(configFile->fileName());
     }
 
     if (!writerError)
@@ -79,6 +92,8 @@ void XMLConfigWriter::write(InputDevice *joystick)
 
 void XMLConfigWriter::setFileName(QString filename)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QFile *temp = new QFile(filename);
     fileName = filename;
     configFile = temp;
@@ -86,10 +101,14 @@ void XMLConfigWriter::setFileName(QString filename)
 
 bool XMLConfigWriter::hasError()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return writerError;
 }
 
 QString XMLConfigWriter::getErrorString()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return writerErrorString;
 }

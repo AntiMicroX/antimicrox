@@ -20,6 +20,8 @@
 
 #include "joybutton.h"
 
+class SetJoystick;
+
 class JoyGradientButton : public JoyButton
 {
     Q_OBJECT

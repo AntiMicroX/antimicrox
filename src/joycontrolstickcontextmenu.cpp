@@ -15,19 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QList>
 
 #include "joycontrolstickcontextmenu.h"
-
+#include "joycontrolstick.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
 #include "antkeymapper.h"
 #include "inputdevice.h"
 #include "common.h"
+
+#include <QList>
+#include <QWidget>
+#include <QDebug>
 
 JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, QWidget *parent) :
     QMenu(parent),
     helper(stick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
     helper.moveToThread(stick->thread());
 
@@ -36,13 +42,15 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
 
 void JoyControlStickContextMenu::buildMenu()
 {
-    QAction *action = 0;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QAction *action = nullptr;
 
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getPresetIndex();
 
-    action = this->addAction(tr("Mouse (Normal)"));
+    action = this->addAction(trUtf8("Mouse (Normal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -50,7 +58,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("Mouse (Inverted Horizontal)"));
+    action = this->addAction(trUtf8("Mouse (Inverted Horizontal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -58,7 +66,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("Mouse (Inverted Vertical)"));
+    action = this->addAction(trUtf8("Mouse (Inverted Vertical)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -66,7 +74,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("Mouse (Inverted Horizontal + Vertical)"));
+    action = this->addAction(trUtf8("Mouse (Inverted Horizontal + Vertical)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -74,7 +82,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("Arrows"));
+    action = this->addAction(trUtf8("Arrows"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -82,7 +90,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("Keys: W | A | S | D"));
+    action = this->addAction(trUtf8("Keys: W | A | S | D"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -90,7 +98,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("NumPad"));
+    action = this->addAction(trUtf8("NumPad"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -98,7 +106,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(tr("None"));
+    action = this->addAction(trUtf8("None"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -110,14 +118,14 @@ void JoyControlStickContextMenu::buildMenu()
     QActionGroup *modesGroup = new QActionGroup(this);
     int mode = static_cast<int>(JoyControlStick::StandardMode);
 
-    action = this->addAction(tr("Standard"));
+    action = this->addAction(trUtf8("Standard"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::StandardMode);
     action->setData(QVariant(mode));
     connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
     modesGroup->addAction(action);
 
-    action = this->addAction(tr("Eight Way"));
+    action = this->addAction(trUtf8("Eight Way"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::EightWayMode);
     mode = static_cast<int>(JoyControlStick::EightWayMode);
@@ -125,7 +133,7 @@ void JoyControlStickContextMenu::buildMenu()
     connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
     modesGroup->addAction(action);
 
-    action = this->addAction(tr("4 Way Cardinal"));
+    action = this->addAction(trUtf8("4 Way Cardinal"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayCardinal);
     mode = static_cast<int>(JoyControlStick::FourWayCardinal);
@@ -133,7 +141,7 @@ void JoyControlStickContextMenu::buildMenu()
     connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
     modesGroup->addAction(action);
 
-    action = this->addAction(tr("4 Way Diagonal"));
+    action = this->addAction(trUtf8("4 Way Diagonal"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayDiagonal);
     mode = static_cast<int>(JoyControlStick::FourWayDiagonal);
@@ -143,31 +151,35 @@ void JoyControlStickContextMenu::buildMenu()
 
     this->addSeparator();
 
-    action = this->addAction(tr("Mouse Settings"));
+    action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
     connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
 }
 
 void JoyControlStickContextMenu::setStickMode()
 {
-    QAction *action = static_cast<QAction*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
     stick->setJoyMode(static_cast<JoyControlStick::JoyMode>(item));
 }
 
 void JoyControlStickContextMenu::setStickPreset()
 {
-    QAction *action = static_cast<QAction*>(sender());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
-    JoyButtonSlot *upButtonSlot = 0;
-    JoyButtonSlot *downButtonSlot = 0;
-    JoyButtonSlot *leftButtonSlot = 0;
-    JoyButtonSlot *rightButtonSlot = 0;
-    JoyButtonSlot *upLeftButtonSlot = 0;
-    JoyButtonSlot *upRightButtonSlot = 0;
-    JoyButtonSlot *downLeftButtonSlot = 0;
-    JoyButtonSlot *downRightButtonSlot = 0;
+    JoyButtonSlot *upButtonSlot = nullptr;
+    JoyButtonSlot *downButtonSlot = nullptr;
+    JoyButtonSlot *leftButtonSlot = nullptr;
+    JoyButtonSlot *rightButtonSlot = nullptr;
+    JoyButtonSlot *upLeftButtonSlot = nullptr;
+    JoyButtonSlot *upRightButtonSlot = nullptr;
+    JoyButtonSlot *downLeftButtonSlot = nullptr;
+    JoyButtonSlot *downRightButtonSlot = nullptr;
 
     if (item == 0)
     {
@@ -257,8 +269,8 @@ void JoyControlStickContextMenu::setStickPreset()
     {
         PadderCommon::inputDaemonMutex.lock();
 
-        if (stick->getJoyMode() == JoyControlStick::StandardMode ||
-            stick->getJoyMode() == JoyControlStick::FourWayCardinal)
+        if ((stick->getJoyMode() == JoyControlStick::StandardMode) ||
+            (stick->getJoyMode() == JoyControlStick::FourWayCardinal))
         {
             upButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_8), QtKeyMapperBase::AntKey_KP_8, JoyButtonSlot::JoyKeyboard, this);
             downButtonSlot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_2), QtKeyMapperBase::AntKey_KP_2, JoyButtonSlot::JoyKeyboard, this);
@@ -311,6 +323,8 @@ void JoyControlStickContextMenu::setStickPreset()
 
 int JoyControlStickContextMenu::getPresetIndex()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int result = 0;
 
     PadderCommon::inputDaemonMutex.lock();
@@ -324,65 +338,65 @@ int JoyControlStickContextMenu::getPresetIndex()
     JoyControlStickButton *rightButton = stick->getDirectionButton(JoyControlStick::StickRight);
     QList<JoyButtonSlot*> *rightslots = rightButton->getAssignedSlots();
 
-    if (upslots->length() == 1 && downslots->length() == 1 && leftslots->length() == 1 && rightslots->length() == 1)
+    if ((upslots->length() == 1) && (downslots->length() == 1) && (leftslots->length() == 1) && (rightslots->length() == 1))
     {
         JoyButtonSlot *upslot = upslots->at(0);
         JoyButtonSlot *downslot = downslots->at(0);
         JoyButtonSlot *leftslot = leftslots->at(0);
         JoyButtonSlot *rightslot = rightslots->at(0);
 
-        if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseUp &&
-            downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseDown &&
-            leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseLeft &&
-            rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseRight)
+        if ((upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (upslot->getSlotCode() == JoyButtonSlot::MouseUp) &&
+            (downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (downslot->getSlotCode() == JoyButtonSlot::MouseDown) &&
+            (leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (leftslot->getSlotCode() == JoyButtonSlot::MouseLeft) &&
+            (rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (rightslot->getSlotCode() == JoyButtonSlot::MouseRight))
         {
             result = 1;
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseUp &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseDown &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseRight &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseLeft)
+        else if ((upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (upslot->getSlotCode() == JoyButtonSlot::MouseUp) &&
+                 (downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (downslot->getSlotCode() == JoyButtonSlot::MouseDown) &&
+                 (leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (leftslot->getSlotCode() == JoyButtonSlot::MouseRight) &&
+                 (rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (rightslot->getSlotCode() == JoyButtonSlot::MouseLeft))
         {
             result = 2;
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseDown &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseUp &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseLeft &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseRight)
+        else if ((upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (upslot->getSlotCode() == JoyButtonSlot::MouseDown) &&
+                 (downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (downslot->getSlotCode() == JoyButtonSlot::MouseUp) &&
+                 (leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (leftslot->getSlotCode() == JoyButtonSlot::MouseLeft) &&
+                 (rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (rightslot->getSlotCode() == JoyButtonSlot::MouseRight))
         {
             result = 3;
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && upslot->getSlotCode() == JoyButtonSlot::MouseDown &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && downslot->getSlotCode() == JoyButtonSlot::MouseUp &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && leftslot->getSlotCode() == JoyButtonSlot::MouseRight &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement && rightslot->getSlotCode() == JoyButtonSlot::MouseLeft)
+        else if ((upslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (upslot->getSlotCode() == JoyButtonSlot::MouseDown) &&
+                 (downslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (downslot->getSlotCode() == JoyButtonSlot::MouseUp) &&
+                 (leftslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (leftslot->getSlotCode() == JoyButtonSlot::MouseRight) &&
+                 (rightslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (rightslot->getSlotCode() == JoyButtonSlot::MouseLeft))
         {
             result = 4;
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(upslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Up) &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(downslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Down) &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(leftslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Left) &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(rightslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Right))
+        else if ((upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (upslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Up)) &&
+                 (downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (downslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Down)) &&
+                 (leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (leftslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Left)) &&
+                 (rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (rightslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Right)))
         {
             result = 5;
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(upslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_W) &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(downslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_S) &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(leftslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_A) &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(rightslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_D))
+        else if ((upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (upslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_W)) &&
+                 (downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (downslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_S)) &&
+                 (leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (leftslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_A)) &&
+                 (rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (rightslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_D)))
         {
             result = 6;
         }
-        else if (upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(upslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_8) &&
-                 downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(downslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_2) &&
-                 leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(leftslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_4) &&
-                 rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard && static_cast<unsigned int>(rightslot->getSlotCode()) == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_6))
+        else if ((upslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (upslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_8)) &&
+                 (downslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (downslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_2)) &&
+                 (leftslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (leftslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_4)) &&
+                 (rightslot->getSlotMode() == JoyButtonSlot::JoyKeyboard) && (rightslot->getSlotCode() == AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_6)))
         {
             result = 7;
         }
     }
-    else if (upslots->length() == 0 && downslots->length() == 0 &&
-             leftslots->length() == 0 && rightslots->length() == 0)
+    else if ((upslots->length() == 0) && (downslots->length() == 0) &&
+             (leftslots->length() == 0) && (rightslots->length() == 0))
     {
         result = 8;
     }
@@ -394,6 +408,8 @@ int JoyControlStickContextMenu::getPresetIndex()
 
 void JoyControlStickContextMenu::openMouseSettingsDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, parentWidget());
     dialog->show();
 }

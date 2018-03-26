@@ -18,24 +18,24 @@
 #ifndef JOYCONTROLSTICKEDITDIALOGHELPER_H
 #define JOYCONTROLSTICKEDITDIALOGHELPER_H
 
+#include "joycontrolstick.h"
+
 #include <QObject>
 #include <QHash>
 
-#include "joycontrolstick.h"
+class JoyButtonSlot;
 
 class JoyControlStickEditDialogHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent = 0);
+    explicit JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> *tempSlots);
     void clearPendingSlots();
 
 protected:
     JoyControlStick *stick;
     QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> pendingSlots;
-
-signals:
 
 public slots:
     void setFromPendingSlots();

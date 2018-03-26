@@ -18,11 +18,7 @@
 #ifndef INPUTDEVICE_H
 #define INPUTDEVICE_H
 
-#include <QObject>
-#include <QList>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
-#include <QRegExp>
+#include "setjoystick.h"
 
 #ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
@@ -32,15 +28,23 @@
 typedef Sint32 SDL_JoystickID;
 #endif
 
-#include "setjoystick.h"
-#include "common.h"
-#include "antimicrosettings.h"
+#include <QObject>
+#include <QList>
+#include <QRegExp>
+
+
+
+class AntiMicroSettings;
+class SetJoystick;
+class QXmlStreamReader;
+class QXmlStreamWriter;
+
 
 class InputDevice : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent = 0);
+    explicit InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
     virtual ~InputDevice();
 
     virtual int getNumberButtons();
@@ -90,7 +94,7 @@ public:
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
 
-    unsigned int getDeviceKeyPressTime();
+    int getDeviceKeyPressTime(); // unsigned
 
     void setIndex(int index);
     bool isDeviceEdited();
@@ -130,8 +134,8 @@ public:
 
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
-    static const unsigned int DEFAULTKEYREPEATDELAY;
-    static const unsigned int DEFAULTKEYREPEATRATE;
+    static const int DEFAULTKEYREPEATDELAY; // unsigned
+    static const int DEFAULTKEYREPEATRATE; // unsigned
     static const int RAISEDDEADZONE;
 
 protected:
@@ -146,7 +150,7 @@ protected:
     int joyNumber;
     int buttonDownCount;
     SDL_JoystickID joystickID;
-    unsigned int keyPressTime;
+    int keyPressTime; // unsigned
     bool deviceEdited;
 
     bool keyRepeatEnabled;
@@ -194,7 +198,7 @@ public slots:
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
     void changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
-    void setDeviceKeyPressTime(unsigned int newPressTime);
+    void setDeviceKeyPressTime(int newPressTime); // .., unsigned
     void profileEdited();
     void setProfileName(QString value);
     void haltServices();

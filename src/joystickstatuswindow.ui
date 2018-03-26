@@ -299,8 +299,8 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>338</width>
-               <height>142</height>
+               <width>346</width>
+               <height>130</height>
               </rect>
              </property>
             </widget>
@@ -362,8 +362,8 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>338</width>
-               <height>141</height>
+               <width>346</width>
+               <height>130</height>
               </rect>
              </property>
             </widget>

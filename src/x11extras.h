@@ -59,8 +59,8 @@ public:
     static QString getXDisplayString();
     QString getWindowTitle(Window window);
     QString getWindowClass(Window window);
-    unsigned long getWindowInFocus();
-    unsigned int getGroup1KeySym(unsigned int virtualkey);
+    unsigned long getWindowInFocus(); // unsigned
+    int getGroup1KeySym(int virtualkey); // unsigned (unsigned)
 
     void x11ResetMouseAccelerationChange();
     void x11ResetMouseAccelerationChange(QString pointerName);
@@ -78,7 +78,7 @@ public:
 
 
 protected:
-    explicit X11Extras(QObject *parent = 0);
+    explicit X11Extras(QObject *parent = nullptr);
 
     void populateKnownAliases();
     bool windowHasProperty(Display *display, Window window, Atom atom);
@@ -89,8 +89,6 @@ protected:
     static X11Extras *_instance;
     QHash<QString, QString> knownAliases;
     static QString _customDisplayString;
-
-signals:
     
 public slots:
     QPoint getPos();

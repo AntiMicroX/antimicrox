@@ -15,14 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QMenu>
-
 #include "joybuttonwidget.h"
 #include "joybuttoncontextmenu.h"
+#include "joybutton.h"
+
+#include <QMenu>
+#include <QDebug>
 
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->button = button;
 
     refreshLabel();
@@ -40,11 +44,15 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
 
 JoyButton* JoyButtonWidget::getJoyButton()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return button;
 }
 
 void JoyButtonWidget::disableFlashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     disconnect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
     disconnect(button, SIGNAL(released(int)), this, SLOT(unflash()));
     this->unflash();
@@ -52,19 +60,27 @@ void JoyButtonWidget::disableFlashes()
 
 void JoyButtonWidget::enableFlashes()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
 }
 
 QString JoyButtonWidget::generateLabel()
 {
-    QString temp;
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString();
     temp = button->getName(false, displayNames).replace("&", "&&");
+
+    qDebug() << "Name of joy button is: " << temp;
     return temp;
 }
 
 void JoyButtonWidget::showContextMenu(const QPoint &point)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QPoint globalPos = this->mapToGlobal(point);
     JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
     contextMenu->buildMenu();
@@ -73,6 +89,8 @@ void JoyButtonWidget::showContextMenu(const QPoint &point)
 
 void JoyButtonWidget::tryFlash()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (button->getButtonState())
     {
         flash();

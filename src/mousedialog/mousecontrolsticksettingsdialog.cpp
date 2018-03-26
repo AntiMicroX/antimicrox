@@ -15,21 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QHashIterator>
 
 #include "mousecontrolsticksettingsdialog.h"
-#include "ui_mousesettingsdialog.h"
+#include "springmoderegionpreview.h"
+#include "joycontrolstick.h"
+#include "inputdevice.h"
+#include "setjoystick.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
+#include "common.h"
 
 #include <QSpinBox>
 #include <QComboBox>
+#include <QHashIterator>
+#include <QDebug>
 
-#include <inputdevice.h>
-#include <setjoystick.h>
 
 MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent) :
     MouseSettingsDialog(parent),
     helper(stick)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->stick = stick;
@@ -115,6 +121,8 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
 
 void MouseControlStickSettingsDialog::changeMouseMode(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (index == 1)
     {
         stick->setButtonsMouseMode(JoyButton::MouseCursor);
@@ -137,12 +145,16 @@ void MouseControlStickSettingsDialog::changeMouseMode(int index)
 
 void MouseControlStickSettingsDialog::changeMouseCurve(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
     stick->setButtonsMouseCurve(temp);
 }
 
 void MouseControlStickSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
     while (iter.hasNext())
     {
@@ -153,6 +165,8 @@ void MouseControlStickSettingsDialog::updateConfigHorizontalSpeed(int value)
 
 void MouseControlStickSettingsDialog::updateConfigVerticalSpeed(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
     while (iter.hasNext())
     {
@@ -163,16 +177,22 @@ void MouseControlStickSettingsDialog::updateConfigVerticalSpeed(int value)
 
 void MouseControlStickSettingsDialog::updateSpringWidth(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsSpringWidth(value);
 }
 
 void MouseControlStickSettingsDialog::updateSpringHeight(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsSpringHeight(value);
 }
 
 void MouseControlStickSettingsDialog::selectCurrentMouseModePreset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     bool presetDefined = stick->hasSameButtonsMouseMode();
     if (presetDefined)
     {
@@ -194,6 +214,8 @@ void MouseControlStickSettingsDialog::selectCurrentMouseModePreset()
 
 void MouseControlStickSettingsDialog::calculateSpringPreset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     int tempWidth = stick->getButtonsPresetSpringWidth();
     int tempHeight = stick->getButtonsPresetSpringHeight();
 
@@ -210,6 +232,8 @@ void MouseControlStickSettingsDialog::calculateSpringPreset()
 
 void MouseControlStickSettingsDialog::calculateMouseSpeedPreset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
     int tempMouseSpeedX = 0;
     while (iter.hasNext())
@@ -232,17 +256,23 @@ void MouseControlStickSettingsDialog::calculateMouseSpeedPreset()
 
 void MouseControlStickSettingsDialog::updateSensitivity(double value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsSensitivity(value);
 }
 
 void MouseControlStickSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyMouseCurve temp = stick->getButtonsPresetMouseCurve();
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseControlStickSettingsDialog::calculateWheelSpeedPreset()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stick->getButtons());
     int tempWheelSpeedX = 0;
     int tempWheelSpeedY = 0;
@@ -259,22 +289,30 @@ void MouseControlStickSettingsDialog::calculateWheelSpeedPreset()
 
 void MouseControlStickSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsWheelSpeedX(value);
 }
 
 void MouseControlStickSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsWheelSpeedY(value);
 }
 
 void MouseControlStickSettingsDialog::updateSpringRelativeStatus(bool value)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     stick->setButtonsSpringRelativeStatus(value);
 }
 
 void MouseControlStickSettingsDialog::updateWindowTitleStickName()
 {
-    QString temp = QString(tr("Mouse Settings")).append(" - ");
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    QString temp = QString(trUtf8("Mouse Settings")).append(" - ");
 
     if (!stick->getStickName().isEmpty())
     {
@@ -287,8 +325,8 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
 
     if (stick->getParentSet()->getIndex() != 0)
     {
-        unsigned int setIndex = stick->getParentSet()->getRealIndex();
-        temp.append(" [").append(tr("Set %1").arg(setIndex));
+        int setIndex = stick->getParentSet()->getRealIndex();
+        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
 
         QString setName = stick->getParentSet()->getName();
         if (!setName.isEmpty())
@@ -305,6 +343,8 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
 
 void MouseControlStickSettingsDialog::calculateExtraAccelrationStatus()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (stick->getButtonsExtraAccelerationStatus())
     {
         ui->extraAccelerationGroupBox->setChecked(true);
@@ -313,42 +353,58 @@ void MouseControlStickSettingsDialog::calculateExtraAccelrationStatus()
 
 void MouseControlStickSettingsDialog::calculateExtraAccelerationMultiplier()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->extraAccelDoubleSpinBox->setValue(stick->getButtonsExtraAccelerationMultiplier());
 }
 
 void MouseControlStickSettingsDialog::calculateStartAccelerationMultiplier()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->minMultiDoubleSpinBox->setValue(stick->getButtonsStartAccelerationMultiplier());
 }
 
 void MouseControlStickSettingsDialog::calculateMinAccelerationThreshold()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->minThresholdDoubleSpinBox->setValue(stick->getButtonsMinAccelerationThreshold());
 }
 
 void MouseControlStickSettingsDialog::calculateMaxAccelerationThreshold()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->maxThresholdDoubleSpinBox->setValue(stick->getButtonsMaxAccelerationThreshold());
 }
 
 void MouseControlStickSettingsDialog::calculateAccelExtraDuration()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->accelExtraDurationDoubleSpinBox->setValue(stick->getButtonsAccelerationEasingDuration());
 }
 
 void MouseControlStickSettingsDialog::calculateReleaseSpringRadius()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     ui->releaseSpringRadiusspinBox->setValue(stick->getButtonsSpringDeadCircleMultiplier());
 }
 
 void MouseControlStickSettingsDialog::calculateExtraAccelerationCurve()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyExtraAccelerationCurve curve = stick->getButtonsExtraAccelerationCurve();
     updateExtraAccelerationCurvePresetComboBox(curve);
 }
 
 void MouseControlStickSettingsDialog::updateExtraAccelerationCurve(int index)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
     if (index > 0)
     {

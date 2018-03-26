@@ -15,10 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QPushButton>
-
 #include "capturedwindowinfodialog.h"
 #include "ui_capturedwindowinfodialog.h"
+
+#include <QPushButton>
+#include <QWidget>
+#include <QDebug>
 
 #ifdef Q_OS_WIN
 #include "winextras.h"
@@ -26,15 +28,19 @@
 #include "x11extras.h"
 #endif
 
+
+
 #ifdef Q_OS_WIN
 CapturedWindowInfoDialog::CapturedWindowInfoDialog(QWidget *parent) :
 #else
-CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget *parent) :
+CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent) :
 #endif
     QDialog(parent),
     ui(new Ui::CapturedWindowInfoDialog)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     setAttribute(Qt::WA_DeleteOnClose);
 
     selectedMatch = WindowNone;
@@ -144,11 +150,15 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(unsigned long window, QWidget
 
 CapturedWindowInfoDialog::~CapturedWindowInfoDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void CapturedWindowInfoDialog::populateOption()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     if (ui->winClassCheckBox->isChecked())
     {
         selectedMatch = selectedMatch | WindowClass;
@@ -176,25 +186,35 @@ void CapturedWindowInfoDialog::populateOption()
 
 CapturedWindowInfoDialog::CapturedWindowOption CapturedWindowInfoDialog::getSelectedOptions()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return selectedMatch;
 }
 
 QString CapturedWindowInfoDialog::getWindowClass()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return winClass;
 }
 
 QString CapturedWindowInfoDialog::getWindowName()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return winName;
 }
 
 QString CapturedWindowInfoDialog::getWindowPath()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return winPath;
 }
 
 bool CapturedWindowInfoDialog::useFullWindowPath()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return fullWinPath;
 }

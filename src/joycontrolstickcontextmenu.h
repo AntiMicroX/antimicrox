@@ -18,16 +18,19 @@
 #ifndef JOYCONTROLSTICKCONTEXTMENU_H
 #define JOYCONTROLSTICKCONTEXTMENU_H
 
+
+#include "uihelpers/joycontrolstickcontextmenuhelper.h"
+
 #include <QMenu>
 
-#include "joycontrolstick.h"
-#include "uihelpers/joycontrolstickcontextmenuhelper.h"
+class JoyControlStick;
+class QWidget;
 
 class JoyControlStickContextMenu : public QMenu
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickContextMenu(JoyControlStick *stick, QWidget *parent = 0);
+    explicit JoyControlStickContextMenu(JoyControlStick *stick, QWidget *parent = nullptr);
     void buildMenu();
 
 protected:

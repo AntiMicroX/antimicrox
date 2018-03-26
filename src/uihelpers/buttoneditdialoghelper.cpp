@@ -16,23 +16,69 @@
  */
 
 #include "buttoneditdialoghelper.h"
+#include "joybutton.h"
+
+#include <QDebug>
+#include <QMessageBox>
 
 ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     Q_ASSERT(button);
 
     this->button = button;
 }
 
-void ButtonEditDialogHelper::setAssignedSlot(int code, unsigned int alias,
+ButtonEditDialogHelper::ButtonEditDialogHelper(QObject *parent) :
+    QObject(parent)
+{
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+}
+
+void ButtonEditDialogHelper::setAssignedSlot(int code,
                                              JoyButtonSlot::JoySlotInputAction mode)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    button->clearSlotsEventReset(false);
+    button->setAssignedSlot(code, mode);
+
+}
+
+void ButtonEditDialogHelper::setAssignedSlot(int code, int alias,
+                                             JoyButtonSlot::JoySlotInputAction mode)
+{
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, mode);
+
+}
+
+void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, int index,
+                                             JoyButtonSlot::JoySlotInputAction mode)
+{
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    button->clearSlotsEventReset(false);
+    button->setAssignedSlot(code, alias, index, mode);
+
 }
 
 void ButtonEditDialogHelper::setUseTurbo(bool useTurbo)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     button->setUseTurbo(useTurbo);
+}
+
+
+void ButtonEditDialogHelper::setThisButton(JoyButton *btn) {
+
+    Q_ASSERT(btn);
+
+    button = btn;
 }

@@ -18,9 +18,15 @@
 #ifndef QUICKSETDIALOG_H
 #define QUICKSETDIALOG_H
 
+#include "joybuttonslot.h"
+
+#include "uihelpers/buttoneditdialoghelper.h"
 #include <QDialog>
 
-#include "inputdevice.h"
+
+class InputDevice;
+class QWidget;
+class JoyButton;
 
 namespace Ui {
 class QuickSetDialog;
@@ -31,26 +37,34 @@ class QuickSetDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QuickSetDialog(InputDevice *joystick, QWidget *parent = 0);
+
+    explicit QuickSetDialog(InputDevice *joystick, QWidget *parent = nullptr);
+    QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, QWidget *parent = nullptr);
     ~QuickSetDialog();
+
+    JoyButton* getLastPressedButton();
 
 protected:
     InputDevice *joystick;
     QDialog *currentButtonDialog;
+    const char* invokeString;
+    ButtonEditDialogHelper* helper;
+    int code;
+    int alias;
+    int index;
+    JoyButtonSlot::JoySlotInputAction mode;
+    bool withClear;
+    bool withTrue;
+    JoyButton* lastButton;
 
 private:
     Ui::QuickSetDialog *ui;
-
-signals:
-    void buttonDialogClosed();
 
 private slots:
     void showAxisButtonDialog();
     void showButtonDialog();
     void showStickButtonDialog();
     void showDPadButtonDialog();
-
-    void nullifyDialogPointer();
     void restoreButtonStates();
 };
 

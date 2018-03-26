@@ -18,23 +18,28 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <SDL2/SDL_joystick.h>
+
 #include <QMainWindow>
 #include <QMap>
 #include <QIcon>
 #include <QSystemTrayIcon>
-#include <QAction>
 #include <QFileDialog>
-#include <QHideEvent>
-#include <QShowEvent>
-#include <QCloseEvent>
-#include <QLocalServer>
-#include <QTranslator>
 
-#include "inputdevice.h"
-#include "aboutdialog.h"
-#include "commandlineutility.h"
-#include "antimicrosettings.h"
-#include "autoprofilewatcher.h"
+class InputDevice;
+class CommandLineUtility;
+class AntiMicroSettings;
+class QWidget;
+class QTranslator;
+class AutoProfileInfo;
+class AutoProfileWatcher;
+class QLocalServer;
+class AboutDialog;
+class QAction;
+class QMenu;
+class QShowEvent;
+class QEvent;
+class QCloseEvent;
 
 namespace Ui {
 class MainWindow;
@@ -42,13 +47,14 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
+
     Q_OBJECT
     
 public:
     MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                CommandLineUtility *cmdutility,
                AntiMicroSettings *settings,
-               bool graphical=true, QWidget *parent = 0);
+               bool graphical=true, QWidget *parent = nullptr);
     ~MainWindow();
 
     bool getGraphicalStatus();
@@ -68,8 +74,8 @@ protected:
     void loadConfigFile(QString fileLocation, QString controllerID);
     void unloadCurrentConfig(int joystickIndex=0);
     void unloadCurrentConfig(QString controllerID);
-    void changeStartSetNumber(unsigned int startSetNumber, QString controllerID);
-    void changeStartSetNumber(unsigned int startSetNumber, unsigned int joystickIndex=0);
+    void changeStartSetNumber(int startSetNumber, QString controllerID); // (unsigned, ..)
+    void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // (unsigned, unsigned)
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
 
@@ -123,7 +129,7 @@ public slots:
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
-    void selectControllerJoyTab(unsigned int index);
+    void selectControllerJoyTab(int index); // (unsigned)
 #endif
 
 private slots:
@@ -143,6 +149,7 @@ private slots:
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
     void openGitHubPage();
+    void openIssuesPage();
     void openWikiPage();
     void propogateNameDisplayStatus(bool displayNames);
     void changeLanguage(QString language);

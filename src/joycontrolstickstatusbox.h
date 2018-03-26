@@ -18,18 +18,20 @@
 #ifndef JOYCONTROLSTICKSTATUSBOX_H
 #define JOYCONTROLSTICKSTATUSBOX_H
 
-#include <QWidget>
-#include <QSize>
 
-#include "joycontrolstick.h"
-#include "joyaxis.h"
+#include <QSize>
+#include <QWidget>
+
+class JoyControlStick;
+class QPaintEvent;
+
 
 class JoyControlStickStatusBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit JoyControlStickStatusBox(QWidget *parent = 0);
-    explicit JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent = 0);
+    explicit JoyControlStickStatusBox(QWidget *parent = nullptr);
+    explicit JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent = nullptr);
 
     void setStick(JoyControlStick *stick);
 

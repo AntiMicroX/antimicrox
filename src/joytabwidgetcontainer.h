@@ -20,14 +20,16 @@
 
 #include <QTabWidget>
 
-#include "joystick.h"
-#include "joytabwidget.h"
+
+class QWidget;
+class JoyTabWidget;
+class InputDevice;
 
 class JoyTabWidgetContainer : public QTabWidget
 {
     Q_OBJECT
 public:
-    explicit JoyTabWidgetContainer(QWidget *parent = 0);
+    explicit JoyTabWidgetContainer(QWidget *parent = nullptr);
 
     int addTab(QWidget *widget, const QString &string);
     int addTab(JoyTabWidget *widget, const QString &string);

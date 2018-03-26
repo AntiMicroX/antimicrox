@@ -15,15 +15,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QHash>
-
 #include "stickpushbuttongroup.h"
 #include "buttoneditdialog.h"
 #include "joycontrolstickeditdialog.h"
+#include "joycontrolstick.h"
+#include "joybuttontypes/joycontrolstickbutton.h"
+#include "joycontrolstickpushbutton.h"
+#include "joycontrolstickbuttonpushbutton.h"
+#include "inputdevice.h"
+
+#include <QHash>
+#include <QWidget>
+#include <QDebug>
 
 StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     this->stick = stick;
     this->displayNames = displayNames;
 
@@ -35,10 +44,12 @@ StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool displayN
 
 void StickPushButtonGroup::generateButtons()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
 
-    JoyControlStickButton *button = 0;
-    JoyControlStickButtonPushButton *pushbutton = 0;
+    JoyControlStickButton *button = nullptr;
+    JoyControlStickButtonPushButton *pushbutton = nullptr;
 
     button = stickButtons->value(JoyControlStick::StickLeftUp);
     upLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
@@ -122,9 +133,11 @@ void StickPushButtonGroup::generateButtons()
 
 void StickPushButtonGroup::changeButtonLayout()
 {
-    if (stick->getJoyMode() == JoyControlStick::StandardMode ||
-        stick->getJoyMode() == JoyControlStick::EightWayMode ||
-        stick->getJoyMode() == JoyControlStick::FourWayCardinal)
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    if ((stick->getJoyMode() == JoyControlStick::StandardMode) ||
+        (stick->getJoyMode() == JoyControlStick::EightWayMode) ||
+        (stick->getJoyMode() == JoyControlStick::FourWayCardinal))
     {
         upButton->setVisible(true);
         downButton->setVisible(true);
@@ -139,8 +152,8 @@ void StickPushButtonGroup::changeButtonLayout()
         rightButton->setVisible(false);
     }
 
-    if (stick->getJoyMode() == JoyControlStick::EightWayMode ||
-        stick->getJoyMode() == JoyControlStick::FourWayDiagonal)
+    if ((stick->getJoyMode() == JoyControlStick::EightWayMode) ||
+        (stick->getJoyMode() == JoyControlStick::FourWayDiagonal))
     {
         upLeftButton->setVisible(true);
         upRightButton->setVisible(true);
@@ -158,29 +171,39 @@ void StickPushButtonGroup::changeButtonLayout()
 
 void StickPushButtonGroup::propogateSlotsChanged()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     emit buttonSlotChanged();
 }
 
 JoyControlStick* StickPushButtonGroup::getStick()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     return stick;
 }
 
 void StickPushButtonGroup::openStickButtonDialog()
 {
-    JoyControlStickButtonPushButton *pushbutton = static_cast<JoyControlStickButtonPushButton*>(sender());
-    ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), parentWidget());
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    JoyControlStickButtonPushButton *pushbutton = qobject_cast<JoyControlStickButtonPushButton*>(sender()); // static_cast
+    ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), stick->getParentSet()->getInputDevice(), parentWidget());
     dialog->show();
 }
 
 void StickPushButtonGroup::showStickDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog(stick, parentWidget());
     dialog->show();
 }
 
 void StickPushButtonGroup::toggleNameDisplay()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     displayNames = !displayNames;
 
     upButton->toggleNameDisplay();

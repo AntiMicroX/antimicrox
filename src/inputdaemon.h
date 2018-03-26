@@ -18,15 +18,13 @@
 #ifndef INPUTDAEMONTHREAD_H
 #define INPUTDAEMONTHREAD_H
 
-#include <QHash>
-#include <QMap>
-#include <QThread>
-#include <QQueue>
+
 
 #ifdef USE_SDL_2
+#include "gamecontroller/gamecontroller.h"
 #include <SDL2/SDL_joystick.h>
 #include <SDL2/SDL_events.h>
-#include "gamecontroller/gamecontroller.h"
+
 
 #else
 #include <SDL/SDL_joystick.h>
@@ -34,11 +32,19 @@
 
 #endif
 
-#include "joystick.h"
-#include "sdleventreader.h"
-#include "antimicrosettings.h"
-#include "inputdevicebitarraystatus.h"
+#include <QHash>
+#include <QMap>
+#include <QQueue>
 
+
+
+class InputDevice;
+class AntiMicroSettings;
+class InputDeviceBitArrayStatus;
+class Joystick;
+class GameController;
+class SDLEventReader;
+class QThread;
 
 class InputDaemon : public QObject
 {
@@ -117,7 +123,7 @@ public slots:
 private slots:
     void stop();
     void resetActiveButtonMouseDistances();
-    void updatePollResetRate(unsigned int tempPollRate);
+    void updatePollResetRate(int tempPollRate); //.., unsigned
 };
 
 #endif // INPUTDAEMONTHREAD_H

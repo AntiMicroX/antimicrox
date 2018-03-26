@@ -30,7 +30,7 @@ class UnixWindowInfoDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit UnixWindowInfoDialog(unsigned long window, QWidget *parent = 0);
+    explicit UnixWindowInfoDialog(long window, QWidget *parent = nullptr);
     ~UnixWindowInfoDialog();
 
     enum {
@@ -38,7 +38,7 @@ public:
         WindowName = (1 << 1),
         WindowPath = (1 << 2)
     };
-    typedef unsigned int DialogWindowOption;
+    typedef int DialogWindowOption; // unsigned
 
     QString getWindowClass();
     QString getWindowName();

@@ -18,16 +18,20 @@
 #ifndef JOYAXISCONTEXTMENU_H
 #define JOYAXISCONTEXTMENU_H
 
+
+
+#include "uihelpers/joyaxiscontextmenuhelper.h"
+
 #include <QMenu>
 
-#include "joyaxis.h"
-#include "uihelpers/joyaxiscontextmenuhelper.h"
+class JoyAxis;
+class QWidget;
 
 class JoyAxisContextMenu : public QMenu
 {
     Q_OBJECT
 public:
-    explicit JoyAxisContextMenu(JoyAxis *axis, QWidget *parent = 0);
+    explicit JoyAxisContextMenu(JoyAxis *axis, QWidget *parent = nullptr);
     void buildMenu();
     void buildAxisMenu();
     void buildTriggerMenu();

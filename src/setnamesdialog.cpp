@@ -15,17 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QTableWidgetItem>
-
 #include "setnamesdialog.h"
 #include "ui_setnamesdialog.h"
+#include "inputdevice.h"
 
+#include <QTableWidgetItem>
+#include <QWidget>
+#include <QDebug>
 
 SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SetNamesDialog)
 {
     ui->setupUi(this);
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
@@ -41,11 +45,15 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
 
 SetNamesDialog::~SetNamesDialog()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     delete ui;
 }
 
 void SetNamesDialog::saveSetNameChanges()
 {
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
     for (int i=0; i < ui->setNamesTableWidget->rowCount(); i++)
     {
         QTableWidgetItem *setNameItem = ui->setNamesTableWidget->item(i, 0);
