@@ -155,7 +155,7 @@ void JoyButtonContextMenu::switchSetMode()
     int item = action->data().toInt();
     int setSelection = item / 3;
     int setChangeCondition = item % 3;
-    JoyButton::SetChangeCondition temp;
+    JoyButton::SetChangeCondition temp = JoyButton::SetChangeOneWay;
 
     if (setChangeCondition == 0)
     {
