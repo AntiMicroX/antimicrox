@@ -241,7 +241,7 @@ programs for testing gamepads outside of antimicro are **sdl-jstest**
 (**sdl2-jstest**) and **evtest**. SDL 2 utilizes evdev on Linux so performing
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. It exists another method too, 
-which can be found [here](#https://github.com/juliagoda/SDL_JoystickButtonNames).
+which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
 ## Support
 
