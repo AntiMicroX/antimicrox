@@ -58,13 +58,14 @@ option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
-    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." OFF)
+    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
-    option(APPDATA "Build project with AppData file support." OFF)
+    option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
 
-option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
+option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." ON)
 option(TRANS_KEEP_OBSOLETE "Do not specify -no-obsolete when calling lupdate." OFF)
+
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)

@@ -43,6 +43,7 @@ public:
     explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog = nullptr, QWidget *parent = nullptr);
     explicit VirtualKeyboardMouseWidget(QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
+    bool is_numlock_activated();
 
 protected:
     void setupVirtualKeyboardLayout();

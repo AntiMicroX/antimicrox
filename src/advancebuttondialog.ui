@@ -284,8 +284,7 @@
                </property>
                <property name="icon">
                 <iconset theme="archive-insert">
-                 <normaloff/>
-                </iconset>
+                 <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
              </item>
@@ -299,8 +298,7 @@
                </property>
                <property name="icon">
                 <iconset theme="edit-delete">
-                 <normaloff/>
-                </iconset>
+                 <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
              </item>
@@ -314,8 +312,7 @@
                </property>
                <property name="icon">
                 <iconset theme="edit-clear">
-                 <normaloff/>
-                </iconset>
+                 <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
              </item>
@@ -352,7 +349,7 @@
          <item>
           <widget class="QStackedWidget" name="slotControlsStackedWidget">
            <property name="currentIndex">
-            <number>0</number>
+            <number>8</number>
            </property>
            <widget class="QWidget" name="timePage">
             <layout class="QVBoxLayout" name="verticalLayout_12">

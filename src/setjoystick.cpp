@@ -27,6 +27,7 @@
 #include <QHashIterator>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QtAlgorithms>
 
 
 const int SetJoystick::MAXNAMELENGTH = 30;
@@ -39,6 +40,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
 
     this->device = device;
     this->index = index;
+
     reset();
 }
 
@@ -64,6 +66,8 @@ SetJoystick::~SetJoystick()
     deleteButtons();
     deleteAxes();
     deleteHats();
+
+    removeAllBtnFromQueue();
 }
 
 JoyButton* SetJoystick::getJoyButton(int index)
@@ -168,6 +172,7 @@ void SetJoystick::deleteButtons()
 
     buttons.clear();
 }
+
 
 void SetJoystick::deleteAxes()
 {
@@ -702,14 +707,41 @@ void SetJoystick::propogateSetButtonClick(int button)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    JoyButton *jButton = qobject_cast<JoyButton*>(sender()); // static_cast
-    if (jButton)
+    //JoyButton *jButton = qobject_cast<JoyButton*>(sender()); // static_cast
+    JoyButton* jButton = qobject_cast<JoyButton*>(sender());
+    if (jButton != nullptr)
     {
         if (!jButton->getIgnoreEventState())
         {
             emit setButtonClick(index, button);
+            lastClickedButtons.append(jButton);
+            qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
+            qDebug() << "List has " << lastClickedButtons.count() << " buttons";
         }
     }
+}
+
+QList<JoyButton*> SetJoystick::getLastClickedButtons() {
+
+    return lastClickedButtons;
+}
+
+void SetJoystick::removeAllBtnFromQueue() {
+
+    if (!lastClickedButtons.isEmpty())
+        lastClickedButtons.clear();
+
+}
+
+int SetJoystick::getCountBtnInList(QString partialName) {
+
+    int count = 0;
+
+    foreach(JoyButton* joyBtn, lastClickedButtons) {
+        if (joyBtn->getPartialName(false, true) == partialName) count++;
+    }
+
+    return count;
 }
 
 void SetJoystick::propogateSetButtonRelease(int button)

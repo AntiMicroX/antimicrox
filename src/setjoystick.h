@@ -75,6 +75,9 @@ public:
     void currentAxesDeadZones(QList<int> *axesDeadZones);
     void setAxesDeadZones(QList<int> *axesDeadZones);
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
+    QList<JoyButton*> getLastClickedButtons();
+    void removeAllBtnFromQueue();
+    int getCountBtnInList(QString partialName);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
@@ -99,6 +102,8 @@ protected:
     QHash<int, JoyDPad*> hats;
     QHash<int, JoyControlStick*> sticks;
     QHash<int, VDPad*> vdpads;
+
+    QList<JoyButton*> lastClickedButtons;
 
     int index;
     InputDevice *device;

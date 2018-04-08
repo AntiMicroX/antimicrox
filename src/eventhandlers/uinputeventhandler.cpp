@@ -259,8 +259,8 @@ void UInputEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
     write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, yDis);
 }
 
-void UInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                              unsigned int width, unsigned int height)
+void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
+                                              int width, int height)
 {
     if (width > 0 && height > 0)
     {
@@ -336,57 +336,56 @@ int UInputEventHandler::openUInputHandle()
 
 void UInputEventHandler::setKeyboardEvents(int filehandle)
 {
-    int result = 0;
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
+    ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
+    ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
 }
 
 void UInputEventHandler::setRelMouseEvents(int filehandle)
 {
-    int result = 0;
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_REL);
 
-    result = ioctl(filehandle, UI_SET_RELBIT, REL_X);
-    result = ioctl(filehandle, UI_SET_RELBIT, REL_Y);
-    result = ioctl(filehandle, UI_SET_RELBIT, REL_WHEEL);
-    result = ioctl(filehandle, UI_SET_RELBIT, REL_HWHEEL);
+    ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
+    ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
+    ioctl(filehandle, UI_SET_EVBIT, EV_REL);
 
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_LEFT);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_RIGHT);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_SIDE);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
+    ioctl(filehandle, UI_SET_RELBIT, REL_X);
+    ioctl(filehandle, UI_SET_RELBIT, REL_Y);
+    ioctl(filehandle, UI_SET_RELBIT, REL_WHEEL);
+    ioctl(filehandle, UI_SET_RELBIT, REL_HWHEEL);
+
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_LEFT);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_RIGHT);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_SIDE);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
 }
 
 void UInputEventHandler::setSpringMouseEvents(int filehandle)
 {
-    int result = 0;
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
 
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_LEFT);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_RIGHT);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_SIDE);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
+    ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
+    ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
 
-    result = ioctl(filehandle, UI_SET_EVBIT, EV_ABS);
-    result = ioctl(filehandle, UI_SET_ABSBIT, ABS_X);
-    result = ioctl(filehandle, UI_SET_ABSBIT, ABS_Y);
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_TOUCH);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_LEFT);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_RIGHT);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_MIDDLE);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_SIDE);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
+
+    ioctl(filehandle, UI_SET_EVBIT, EV_ABS);
+    ioctl(filehandle, UI_SET_ABSBIT, ABS_X);
+    ioctl(filehandle, UI_SET_ABSBIT, ABS_Y);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_TOUCH);
     // BTN_TOOL_PEN is required for the mouse to be seen as an
     // absolute mouse as opposed to a relative mouse.
-    result = ioctl(filehandle, UI_SET_KEYBIT, BTN_TOOL_PEN);
+    ioctl(filehandle, UI_SET_KEYBIT, BTN_TOOL_PEN);
 }
 
 void UInputEventHandler::populateKeyCodes(int filehandle)
 {
-    int result = 0;
+
     for (unsigned int i=KEY_ESC; i <= KEY_MICMUTE; i++)
     {
-        result = ioctl(filehandle, UI_SET_KEYBIT, i);
+        ioctl(filehandle, UI_SET_KEYBIT, i);
     }
 }
 
@@ -402,9 +401,9 @@ void UInputEventHandler::createUInputKeyboardDevice(int filehandle)
     uidev.id.product = 0x0;
     uidev.id.version = 1;
 
-    int result = 0;
-    result = write(filehandle, &uidev, sizeof(uidev));
-    result = ioctl(filehandle, UI_DEV_CREATE);
+
+    write(filehandle, &uidev, sizeof(uidev));
+    ioctl(filehandle, UI_DEV_CREATE);
 }
 
 void UInputEventHandler::createUInputMouseDevice(int filehandle)
@@ -419,9 +418,9 @@ void UInputEventHandler::createUInputMouseDevice(int filehandle)
     uidev.id.product = 0x0;
     uidev.id.version = 1;
 
-    int result = 0;
-    result = write(filehandle, &uidev, sizeof(uidev));
-    result = ioctl(filehandle, UI_DEV_CREATE);
+
+    write(filehandle, &uidev, sizeof(uidev));
+    ioctl(filehandle, UI_DEV_CREATE);
 }
 
 void UInputEventHandler::createUInputSpringMouseDevice(int filehandle)
@@ -444,21 +443,21 @@ void UInputEventHandler::createUInputSpringMouseDevice(int filehandle)
     uidev.absmax[ABS_Y] = 32767;
     uidev.absflat[ABS_Y] = 0;
 
-    int result = 0;
-    result = write(filehandle, &uidev, sizeof(uidev));
-    result = ioctl(filehandle, UI_DEV_CREATE);
+
+    write(filehandle, &uidev, sizeof(uidev));
+    ioctl(filehandle, UI_DEV_CREATE);
 }
 
 void UInputEventHandler::closeUInputDevice(int filehandle)
 {
-    int result = 0;
-    result = ioctl(filehandle, UI_DEV_DESTROY);
-    result = close(filehandle);
+
+    ioctl(filehandle, UI_DEV_DESTROY);
+    close(filehandle);
 }
 
 
-void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type,
-                                            unsigned int code, int value, bool syn)
+void UInputEventHandler::write_uinput_event(int filehandle, int type,
+                                            int code, int value, bool syn)
 {
     struct input_event ev;
     struct input_event ev2;
@@ -469,8 +468,7 @@ void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type,
     ev.code = code;
     ev.value = value;
 
-    int result = 0;
-    result = write(filehandle, &ev, sizeof(struct input_event));
+    write(filehandle, &ev, sizeof(struct input_event));
 
     if (syn)
     {
@@ -480,7 +478,7 @@ void UInputEventHandler::write_uinput_event(int filehandle, unsigned int type,
         ev2.code = SYN_REPORT;
         ev2.value = 0;
 
-        result = write(filehandle, &ev2, sizeof(struct input_event));
+        write(filehandle, &ev2, sizeof(struct input_event));
     }
 }
 

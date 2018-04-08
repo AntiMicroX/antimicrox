@@ -56,7 +56,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     sdlWorkerThread = nullptr;
     if (graphical)
     {
-        sdlWorkerThread = new QThread();
+        sdlWorkerThread = new QThread;
         eventWorker->moveToThread(sdlWorkerThread);
     }
 

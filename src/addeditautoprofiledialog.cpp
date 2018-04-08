@@ -326,7 +326,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     box->show();
 
     UnixCaptureWindowUtility *util = new UnixCaptureWindowUtility();
-    QThread *thread = new QThread(this);
+    QThread *thread = new QThread; // QTHREAD(this)
     util->moveToThread(thread);
 
     connect(thread, SIGNAL(started()), util, SLOT(attemptWindowCapture()));

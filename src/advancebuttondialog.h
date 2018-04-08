@@ -45,7 +45,7 @@ private:
     enum SlotTypeComboIndex {
         KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, ExecuteSlot,
         HoldSlot, LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot,
-        ReleaseSlot, SetChangeSlot, TextEntry,
+        ReleaseSlot, SetChangeSlot, TextEntry
     };
 
 protected:

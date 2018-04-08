@@ -293,7 +293,7 @@ void UInputHelper::deleteInstance()
     }
 }
 
-QString UInputHelper::getDisplayString(unsigned int virtualkey)
+QString UInputHelper::getDisplayString(int virtualkey)
 {
     QString temp;
     if (virtualkey <= 0)
@@ -308,7 +308,7 @@ QString UInputHelper::getDisplayString(unsigned int virtualkey)
     return temp;
 }
 
-unsigned int UInputHelper::getVirtualKey(QString codestring)
+int UInputHelper::getVirtualKey(QString codestring)
 {
     int temp = 0;
     if (knownAliasesX11SymVK.contains(codestring))

@@ -21,6 +21,7 @@
 #include "vdpad.h"
 #include "event.h"
 #include "logger.h"
+#include "SDL2/SDL_events.h"
 
 #ifdef Q_OS_WIN
   #include "eventhandlerfactory.h"
@@ -33,7 +34,7 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-
+#include <QSharedPointer>
 
 const QString JoyButton::xmlName = "button";
 
@@ -709,6 +710,7 @@ bool JoyButton::distanceEvent()
             QListIterator<JoyButtonSlot*> iter(assignments);
             if (previousCycle)
             {
+                qDebug() << "find previous Cycle in next steps in assignments and skip to it";
                 iter.findNext(previousCycle);
             }
 
@@ -779,9 +781,12 @@ bool JoyButton::distanceEvent()
                     currentPause = currentHold = 0;
                     //quitEvent = true;
 
+                    qDebug() << "Deactive slots in previous range and activate new slots";
+
                     slotiter->toFront();
                     if (previousCycle)
                     {
+                        qDebug() << "Find previous Cycle in slotiter starting from beginning";
                         slotiter->findNext(previousCycle);
                     }
 
@@ -819,6 +824,7 @@ void JoyButton::createDeskEvent()
     {
         currentCycle = 0;
         distanceEvent();
+
     }
 
     assignmentsLock.lockForRead();
@@ -839,7 +845,7 @@ void JoyButton::activateSlots()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (slotiter)
+    if (slotiter != nullptr)
     {
         QWriteLocker tempLocker(&activeZoneLock);
 
@@ -848,6 +854,7 @@ void JoyButton::activateSlots()
         bool delaySequence = false;
        // bool changeRepeatState = false;
 
+        int i = 0;
         while (slotiter->hasNext() && !exit)
         {
             JoyButtonSlot *slot = slotiter->next();
@@ -856,23 +863,29 @@ void JoyButton::activateSlots()
 
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
+                i++;
+                qDebug() << i << ": It's a JoyKeyboard with code: " << tempcode << " and name: " << slot->getSlotString();
                 sendevent(slot, true);
                 activeSlots.append(slot);
                 int oldvalue = activeKeys.value(tempcode, 0) + 1;
                 activeKeys.insert(tempcode, oldvalue);
                 if (!slot->isModifierKey())
                 {
+                    qDebug() << "There has been assigned a lastActiveKey";
                     lastActiveKey = slot;
                    // changeRepeatState = true;
                 }
                 else
                 {
+                    qDebug() << "It's not modifier key. lastActiveKey is null pointer";
                     lastActiveKey = 0;
                    // changeRepeatState = true;
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
             {
+                i++;
+                qDebug() << i << ": It's a JoyMouseButton with code: " << tempcode << " and name: " << slot->getSlotString();
                 if ((tempcode == JoyButtonSlot::MouseWheelUp) ||
                     (tempcode == JoyButtonSlot::MouseWheelDown))
                 {
@@ -903,6 +916,8 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseMovement)
             {
+                i++;
+                qDebug() << i << ": It's a JoyMouseMovement with code: " << tempcode << " and name: " << slot->getSlotString();
                 slot->getMouseInterval()->restart();
                 //currentMouseEvent = slot;
                 activeSlots.append(slot);
@@ -935,10 +950,14 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyPause)
             {
+                i++;
+                qDebug() << i << ": It's a JoyPause with code: " << tempcode << " and name: " << slot->getSlotString();
                 if (!activeSlots.isEmpty())
                 {
+                    qDebug() << "active slots QHash is not empty";
                     if (slotiter->hasPrevious())
                     {
+                        i--;
                         slotiter->previous();
                     }
                     delaySequence = true;
@@ -947,6 +966,7 @@ void JoyButton::activateSlots()
                 // Segment can be ignored on a 0 interval pause
                 else if (tempcode > 0)
                 {
+                    qDebug() << "active slots QHash is empty";
                     currentPause = slot;
                     pauseHold.restart();
                     inpauseHold.restart();
@@ -956,12 +976,16 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyHold)
             {
+                i++;
+                qDebug() << i << ": It's a JoyHold with code: " << tempcode << " and name: " << slot->getSlotString();
                 currentHold = slot;
                 holdTimer.start(0);
                 exit = true;
             }
             else if (mode == JoyButtonSlot::JoyDelay)
             {
+                i++;
+                qDebug() << i << ": It's a JoyDelay with code: " << tempcode << " and name: " << slot->getSlotString();
                 currentDelay = slot;
                 buttonDelay.restart();
                 delayTimer.start(0);
@@ -969,15 +993,21 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyCycle)
             {
+                i++;
+                qDebug() << i << ": It's a JoyCycle with code: " << tempcode << " and name: " << slot->getSlotString();
                 currentCycle = slot;
                 exit = true;
             }
             else if (mode == JoyButtonSlot::JoyDistance)
             {
+                i++;
+                qDebug() << i << ": It's a JoyDistance with code: " << tempcode << " and name: " << slot->getSlotString();
                 exit = true;
             }
             else if (mode == JoyButtonSlot::JoyRelease)
             {
+                i++;
+                qDebug() << i << ": It's a JoyRelease with code: " << tempcode << " and name: " << slot->getSlotString();
                 if (!currentRelease)
                 {
                     findReleaseEventEnd();
@@ -990,13 +1020,17 @@ void JoyButton::activateSlots()
 
                 else if (currentRelease && activeSlots.isEmpty())
                 {
+                    qDebug() << "current is release but activeSlots is empty";
                     //currentRelease = 0;
                     exit = true;
                 }
                 else if (currentRelease && !activeSlots.isEmpty())
                 {
+                    qDebug() << "current is release and activeSlots is not empty";
                     if (slotiter->hasPrevious())
                     {
+                        qDebug() << "Back to previous slotiter from release";
+                        i--;
                         slotiter->previous();
                     }
                     delaySequence = true;
@@ -1005,21 +1039,29 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
             {
+                i++;
+                qDebug() << i << ": It's a JoyMouseSpeedMod with code: " << tempcode << " and name: " << slot->getSlotString();
                 mouseSpeedModifier = tempcode * 0.01;
                 mouseSpeedModList.append(slot);
                 activeSlots.append(slot);
             }
             else if (mode == JoyButtonSlot::JoyKeyPress)
             {
+                i++;
+                qDebug() << i << ": It's a JoyKeyPress with code: " << tempcode << " and name: " << slot->getSlotString();
                 if (activeSlots.isEmpty())
                 {
+                    qDebug() << "activeSlots is empty. It's a true delaySequence and assigned currentKeyPress";
                     delaySequence = true;
                     currentKeyPress = slot;
                 }
                 else
                 {
+                    qDebug() << "activeSlots is not empty. It's a true delaySequence and exit";
                     if (slotiter->hasPrevious())
                     {
+                        qDebug() << "Back to previous slotiter from JoyKeyPress";
+                        i--;
                         slotiter->previous();
                     }
                     delaySequence = true;
@@ -1028,6 +1070,8 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoyLoadProfile)
             {
+                i++;
+                qDebug() << i << ": It's a JoyLoadProfile with code: " << tempcode << " and name: " << slot->getSlotString();
                 releaseActiveSlots();
                 slotiter->toBack();
                 exit = true;
@@ -1040,14 +1084,20 @@ void JoyButton::activateSlots()
             }
             else if (mode == JoyButtonSlot::JoySetChange)
             {
+                i++;
+                qDebug() << i << ": It's a JoySetChange with code: " << tempcode << " and name: " << slot->getSlotString();
                 activeSlots.append(slot);
             }
             else if (mode == JoyButtonSlot::JoyTextEntry)
             {
+                i++;
+                qDebug() << i << ": It's a JoyTextEntry with code: " << tempcode << " and name: " << slot->getSlotString();
                 sendevent(slot, true);
             }
             else if (mode == JoyButtonSlot::JoyExecute)
             {
+                i++;
+                qDebug() << i << ": It's a JoyExecute with code: " << tempcode << " and name: " << slot->getSlotString();
                 sendevent(slot, true);
             }
         }
@@ -2643,6 +2693,7 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
     {
         if (previousCycle)
         {
+            qDebug() << "if there exists previous Cycle, find it in activeSlots";
             iter->findNext(previousCycle);
         }
     }
@@ -3604,6 +3655,8 @@ void JoyButton::holdEvent()
         // Activate hold event
         if (currentlyPressed && (buttonHold.elapsed() > currentHold->getSlotCode()))
         {
+            qDebug() << buttonHold.elapsed() << " > " << currentHold->getSlotCode();
+            qDebug() << "Activate hold event";
             releaseActiveSlots();
             currentHold = 0;
             holdTimer.stop();
@@ -3613,6 +3666,7 @@ void JoyButton::holdEvent()
         // Elapsed time has not occurred
         else if (currentlyPressed)
         {
+            qDebug() << "Elapsed time has not occurred, because buttonHold: " << buttonHold.elapsed() << " is not greater than currentHoldCode: " << currentHold->getSlotCode();
             int holdTime = currentHold->getSlotCode();
             int proposedInterval = holdTime - buttonHold.elapsed();
             proposedInterval = (proposedInterval > 0) ? proposedInterval : 0;
@@ -3622,11 +3676,13 @@ void JoyButton::holdEvent()
         // Pre-emptive release
         else
         {
+            qDebug() << "Hold button is not pressed";
             currentHold = 0;
             holdTimer.stop();
 
             if (slotiter)
             {
+                qDebug() << "slotiter exists";
                 findHoldEventEnd();
                 createDeskEvent();
             }
@@ -3637,6 +3693,7 @@ void JoyButton::holdEvent()
         holdTimer.stop();
     }
 }
+
 
 void JoyButton::delayEvent()
 {
@@ -3788,6 +3845,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         if (slotiter && !slotiter->hasNext())
         {
             // At the end of the list of assignments.
+            qDebug() << "There is end of slotiter. Set currentCycle and previousCycle as null pointers";
             currentCycle = 0;
             previousCycle = 0;
             slotiter->toFront();
@@ -3795,6 +3853,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
         else if (slotiter && slotiter->hasNext() && currentCycle)
         {
             // Cycle at the end of a segment.
+            qDebug() << "There exists next element in slotiter and exists currentCycle. Skip to currentCycle in slotiter starting from beginning";
             slotiter->toFront();
             slotiter->findNext(currentCycle);
         }
@@ -3803,6 +3862,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
             // Check if there is a cycle action slot after
             // current slot. Useful after dealing with pause
             // actions.
+            qDebug() << "There exists next element and previous element in slotiter but doesn't exists currentCycle. From current point in slotiter find JoyButtonSlot::JoyCycle as slotMode and assign to currentCycle";
             JoyButtonSlot *tempslot = 0;
             bool exit = false;
             while (slotiter->hasNext() && !exit)
@@ -3819,6 +3879,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
             // to the front.
             if (!currentCycle)
             {
+                qDebug() << "Didn't find any cycle. Back to start of slotiter";
                 slotiter->toFront();
                 previousCycle = 0;
             }
@@ -3826,11 +3887,13 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
 
         if (currentCycle)
         {
+            qDebug() << "currentCycle exists and previousCycle will be current but current will be null pointer";
             previousCycle = currentCycle;
             currentCycle = 0;
         }
         else if (slotiter && slotiter->hasNext() && containsReleaseSlots())
         {
+            qDebug() << "Slotiter has next element on the list. In assignments exists JoyButtonSlot::JoyRelease starting from current point. CurrentCycle and previousCycle are set null pointers now";
             currentCycle = 0;
             previousCycle = 0;
             slotiter->toFront();
@@ -4013,6 +4076,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     mouseWheelVerticalEventQueue.clear();
     mouseWheelHorizontalEventQueue.clear();
 
+    qDebug() << "all current slots and previous slots ale cleared";
     currentCycle = 0;
     previousCycle = 0;
     currentPause = 0;
@@ -4052,6 +4116,7 @@ void JoyButton::eventReset()
     keyPressTimer.stop();
     delayTimer.stop();
     activeZoneTimer.stop();
+
 #ifdef Q_OS_WIN
     repeatHelper.getRepeatTimer()->stop();
 #endif
@@ -4068,6 +4133,7 @@ void JoyButton::eventReset()
     mouseWheelVerticalEventQueue.clear();
     mouseWheelHorizontalEventQueue.clear();
 
+    qDebug() << "all current slots and previous slots ale cleared";
     currentCycle = 0;
     previousCycle = 0;
     currentPause = 0;
@@ -4485,6 +4551,7 @@ void JoyButton::findReleaseEventEnd()
     bool found = false;
     while (!found && slotiter->hasNext())
     {
+        qDebug() << "slotiter has next element";
         JoyButtonSlot *currentSlot = slotiter->next();
         JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
 
@@ -4504,6 +4571,7 @@ void JoyButton::findReleaseEventEnd()
 
     if (found && slotiter->hasPrevious())
     {
+        qDebug() << "There has been found end release. Back to previous slotiter element";
         slotiter->previous();
     }
 }
@@ -4549,6 +4617,7 @@ void JoyButton::findHoldEventEnd()
 
     while (!found && slotiter->hasNext())
     {
+        qDebug() << "There is next element in slotiter";
         JoyButtonSlot *currentSlot = slotiter->next();
         JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
 
@@ -4569,6 +4638,8 @@ void JoyButton::findHoldEventEnd()
     if (found && slotiter->hasPrevious())
     {
         slotiter->previous();
+    } else {
+        qDebug() << "There wasn't end for hold";
     }
 }
 
@@ -5875,6 +5946,7 @@ void JoyButton::resetProperties()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
+    qDebug() << "all current slots and previous slots ale cleared";
     currentCycle = nullptr;
     previousCycle = nullptr;
     currentPause = nullptr;

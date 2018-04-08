@@ -2268,7 +2268,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
         {
             button->establishPropertyUpdatedConnections();
 
-            if (!hideEmptyButtons || button->getAssignedSlots()->count() > 0)
+            if (!hideEmptyButtons || (button->getAssignedSlots()->count() > 0))
             {
                 JoyButtonWidget *buttonWidget = new JoyButtonWidget (button, displayingNames, this);
                 buttonWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);

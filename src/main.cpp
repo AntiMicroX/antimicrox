@@ -558,7 +558,7 @@ int main(int argc, char *argv[])
     {
         PadderCommon::mouseHelperObj.initDeskWid();
         InputDaemon *joypad_worker = new InputDaemon(joysticks, settings);
-        inputEventThread = new QThread();
+        inputEventThread = new QThread;
 
 
         MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);

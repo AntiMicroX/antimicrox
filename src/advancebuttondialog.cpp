@@ -1140,6 +1140,7 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
             updateSlotsScrollArea(actionTime);
         }
     }
+
 }
 
 void AdvanceButtonDialog::checkSlotMouseModUpdate()
@@ -1381,7 +1382,7 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     ui->setSelectionComboBox->insertItem(0, trUtf8("Disabled"));
 
     int currentIndex = 1;
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
     {
         if (this->button->getOriginSet() != i)
         {

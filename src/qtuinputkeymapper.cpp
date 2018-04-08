@@ -216,7 +216,7 @@ void QtUInputKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_LaunchMedia] = KEY_MEDIA;
 
         // Map 0-9 keys
-        for (unsigned int i=0; i <= (KEY_9 - KEY_1); i++)
+        for (int i=0; i <= (KEY_9 - KEY_1); i++)
         {
             qtKeyToVirtualKey[Qt::Key_1 + i] = KEY_1 + i;
         }
@@ -325,7 +325,7 @@ void QtUInputKeyMapper::populateMappingHashes()
 
         // Populate other hash. Flip key and value so mapping
         // goes VK -> Qt Key.
-        QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
+        QHashIterator<int, int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
         {
             iter.next();
@@ -364,15 +364,15 @@ void QtUInputKeyMapper::populateCharKeyInformation()
 {
     virtualkeyToCharKeyInformation.clear();
 
-    unsigned int unicodeTempValue = 0;
-    unsigned int listIndex = 0;
+    int unicodeTempValue = 0;
+    int listIndex = 0;
 
     charKeyInformation temp;
     temp.modifiers = Qt::NoModifier;
     temp.virtualkey = 0;
 
     // Map 0-9 keys
-    for (unsigned int i=QChar('1').unicode(); i <= QChar('9').unicode(); i++)
+    for (int i=QChar('1').unicode(); i <= QChar('9').unicode(); i++)
     {
         temp.virtualkey = KEY_1 + i;
         virtualkeyToCharKeyInformation.insert(i, temp);
@@ -387,7 +387,7 @@ void QtUInputKeyMapper::populateCharKeyInformation()
     temp.virtualkey = KEY_EQUAL;
     virtualkeyToCharKeyInformation.insert(QChar('=').unicode(), temp);
 
-    QList<unsigned int> tempKeys;
+    QList<int> tempKeys;
     tempKeys.append(KEY_A);
     tempKeys.append(KEY_B);
     tempKeys.append(KEY_C);
@@ -416,7 +416,7 @@ void QtUInputKeyMapper::populateCharKeyInformation()
     tempKeys.append(KEY_Z);
 
     unicodeTempValue = QChar('a').unicode();
-    QListIterator<unsigned int> tempIter(tempKeys);
+    QListIterator<int> tempIter(tempKeys);
     while (tempIter.hasNext())
     {
         temp.virtualkey = tempIter.next();
@@ -451,7 +451,7 @@ void QtUInputKeyMapper::populateCharKeyInformation()
     tempKeys.append(QChar('_').unicode());
     tempKeys.append(QChar('+').unicode());
 
-    tempIter = QListIterator<unsigned int>(tempKeys);
+    tempIter = QListIterator<int>(tempKeys);
     listIndex = 0;
     while (tempIter.hasNext())
     {

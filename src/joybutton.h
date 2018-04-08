@@ -292,6 +292,7 @@ public:
     static double cursorRemainderX;
     static double cursorRemainderY;
 
+
 protected:
     double getTotalSlotDistance(JoyButtonSlot *slot);
     bool distanceEvent();
@@ -347,6 +348,7 @@ protected:
     bool isDown;
     bool toggleActiveState;
     bool useTurbo;
+    bool lastUnlessInList;
     QList<JoyButtonSlot*> assignments;
     QList<JoyButtonSlot*> activeSlots;
     QString customName;

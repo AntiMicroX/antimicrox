@@ -27,6 +27,9 @@
 #include "quicksetdialog.h"
 #include "buttoneditdialog.h"
 
+#include "x11extras.h"
+#include <X11/Xlib.h>
+
 #include <QFont>
 #include <QSizePolicy>
 #include <QSpacerItem>
@@ -102,6 +105,24 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
 
 }
 
+
+bool VirtualKeyboardMouseWidget::is_numlock_activated()
+{
+#ifdef Q_OS_WIN
+    short status = GetKeyState(VK_NUMLOCK);
+    return status == 1;
+#endif
+
+#ifdef Q_OS_UNIX
+    Display *dpy = XOpenDisplay(":0"); // X11Extras::getInstance()->display();
+    XKeyboardState x;
+    XGetKeyboardControl(dpy, &x);
+    XCloseDisplay(dpy);
+    return x.led_mask & 2;
+#endif
+}
+
+
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -110,7 +131,21 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 
     QVBoxLayout *tempMainKeyLayout = setupMainKeyboardLayout();
     QVBoxLayout *tempAuxKeyLayout = setupAuxKeyboardLayout();
-    QVBoxLayout *tempNumKeyPadLayout = setupKeyboardNumPadLayout();
+    QVBoxLayout *tempNumKeyPadLayout = new QVBoxLayout();
+
+    if (is_numlock_activated())
+    tempNumKeyPadLayout = setupKeyboardNumPadLayout();
+    else {
+
+        QPushButton *othersKeysButton = createOtherKeysMenu();
+
+        tempNumKeyPadLayout->addWidget(noneButton);
+        tempNumKeyPadLayout->addWidget(othersKeysButton);
+        tempNumKeyPadLayout->setStretchFactor(noneButton, 1);
+        tempNumKeyPadLayout->setStretchFactor(othersKeysButton, 1);
+        tempNumKeyPadLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
+    }
+
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
 
     tempHBoxLayout->addLayout(tempMainKeyLayout);
@@ -153,6 +188,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     tempHBoxLayout->addWidget(createNewKey("grave"));
+
     for (int i=1; i <= 9; i++)
     {
         tempHBoxLayout->addWidget(createNewKey(QString::number(i)));

@@ -387,6 +387,8 @@ void QuickSetDialog::showAxisButtonDialog()
 
     helper->setThisButton(lastButton);
 
+    helper->moveToThread(lastButton->thread());
+
     qDebug() << "Thread in QuickSetDialog";
 
     if (withClear) {
@@ -436,6 +438,8 @@ void QuickSetDialog::showButtonDialog()
     }
 
     helper->setThisButton(lastButton);
+
+    helper->moveToThread(lastButton->thread());
 
 
     qDebug() << "Thread in QuickSetDialog";
@@ -491,6 +495,8 @@ void QuickSetDialog::showStickButtonDialog()
 
     helper->setThisButton(lastButton);
 
+    helper->moveToThread(lastButton->thread());
+
     qDebug() << "Thread in QuickSetDialog";
 
     if (withClear) {
@@ -543,6 +549,8 @@ void QuickSetDialog::showDPadButtonDialog()
     }
 
     helper->setThisButton(lastButton);
+
+    helper->moveToThread(lastButton->thread());
 
 
     qDebug() << "Thread in QuickSetDialog";
