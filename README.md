@@ -30,8 +30,8 @@ has been tested only on Linux (Arch Linux), on next systems will be tested in th
 Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
 application. Their versions are here:
 
-https://github.com/AntiMicro/antimicro
-https://github.com/Ryochan7/antimicro
+https://github.com/AntiMicro/antimicro  
+https://github.com/Ryochan7/antimicro  
 
 
 ## License
@@ -249,7 +249,7 @@ In order to obtain support, you can post an issue [here](https://github.com/juli
 
 ## Bugs
 
-Bugs fo the application will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or asks of users. 
+Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or asks of users. 
 
 
 ## Shoutout
