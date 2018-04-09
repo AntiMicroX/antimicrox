@@ -29,6 +29,7 @@ class VirtualKeyPushButton : public QPushButton
 public:
     explicit VirtualKeyPushButton(QString xcodestring, QWidget *parent = nullptr);
     int calculateFontSize();
+    int getKeycode();
     
 protected:
     int keycode;

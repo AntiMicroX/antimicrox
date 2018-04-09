@@ -274,7 +274,15 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("Super_L"));
     tempHBoxLayout->addWidget(createNewKey("Alt_L"));
     tempHBoxLayout->addWidget(createNewKey("space"));
-    tempHBoxLayout->addWidget(createNewKey("Alt_R"));
+
+    VirtualKeyPushButton* altR = createNewKey("Alt_R");
+
+    if (altR->getKeycode() <= 0) {
+        tempHBoxLayout->addWidget(createNewKey("ISO_Level3_Shift"));
+        delete altR;
+    } else
+        tempHBoxLayout->addWidget(altR);
+
     tempHBoxLayout->addWidget(createNewKey("Menu"));
     tempHBoxLayout->addWidget(createNewKey("Control_R"));
     tempVBoxLayout->addLayout(tempHBoxLayout);
@@ -513,6 +521,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestring)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qDebug() << "parameter 1: " << xcodestring;
 
     int width = 30;
     int height = 30;
@@ -524,7 +533,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 
     if (xcodestring == "space")
     {
-        width = 100;
+        width = 150;
     }
     else if (xcodestring == "Tab")
     {

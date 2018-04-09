@@ -705,6 +705,7 @@ int X11KeySymToKeycode(QString key)
     return tempcode;
 }
 
+//HERE!!!
 QString keycodeToKeyString(int keycode, int alias)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;

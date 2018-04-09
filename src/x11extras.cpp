@@ -232,6 +232,7 @@ void X11Extras::populateKnownAliases()
         knownAliases.insert("Return", trUtf8("Return"));
         knownAliases.insert("KP_Enter", trUtf8("KP_Enter"));
         knownAliases.insert("BackSpace", trUtf8("Backspace"));
+        knownAliases.insert("ISO_Level3_Shift", trUtf8("Alt Gr"));
     }
 }
 

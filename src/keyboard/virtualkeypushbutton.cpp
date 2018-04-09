@@ -112,6 +112,11 @@ void VirtualKeyPushButton::processSingleSelection()
     emit keycodeObtained(keycode, qkeyalias);
 }
 
+int VirtualKeyPushButton::getKeycode() {
+
+    return keycode;
+}
+
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -151,6 +156,7 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("Control_R", trUtf8("Ctrl (R)"));
         knownAliases.insert("Alt_L", trUtf8("Alt (L)"));
         knownAliases.insert("Alt_R", trUtf8("Alt (R)"));
+        knownAliases.insert("ISO_Level3_Shift", trUtf8("Alt Gr"));
         knownAliases.insert("Multi_key", trUtf8("Alt (R)"));
         knownAliases.insert("grave", trUtf8("`"));
         knownAliases.insert("asciitilde", trUtf8("~"));
