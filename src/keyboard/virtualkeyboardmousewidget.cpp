@@ -28,6 +28,7 @@
 #include "buttoneditdialog.h"
 
 #include "x11extras.h"
+#include <SDL2/SDL_power.h>
 #include <X11/Xlib.h>
 
 #include <QFont>
@@ -61,6 +62,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
     currentQuickDialog = quickSetDialog;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
+    isLaptopDevice = isLaptop();
     noneButton = createNoneKey();
 
     populateTopRowKeys();
@@ -87,6 +89,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
 
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
+    isLaptopDevice = isLaptop();
     noneButton = createNoneKey();
 
     populateTopRowKeys();
@@ -122,6 +125,15 @@ bool VirtualKeyboardMouseWidget::is_numlock_activated()
 #endif
 }
 
+bool VirtualKeyboardMouseWidget::isLaptop() {
+
+    int secs, pct;
+    if (SDL_GetPowerInfo(&secs, &pct) == SDL_POWERSTATE_UNKNOWN)
+        return false;
+    else
+        return true;
+}
+
 
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 {
@@ -130,26 +142,30 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout(keyboardTab);
 
     QVBoxLayout *tempMainKeyLayout = setupMainKeyboardLayout();
-    QVBoxLayout *tempAuxKeyLayout = setupAuxKeyboardLayout();
+    QVBoxLayout *tempAuxKeyLayout = new QVBoxLayout();
     QVBoxLayout *tempNumKeyPadLayout = new QVBoxLayout();
 
     if (is_numlock_activated())
-    tempNumKeyPadLayout = setupKeyboardNumPadLayout();
+        tempNumKeyPadLayout = setupKeyboardNumPadLayout();
     else {
 
         QPushButton *othersKeysButton = createOtherKeysMenu();
 
         tempNumKeyPadLayout->addWidget(noneButton);
         tempNumKeyPadLayout->addWidget(othersKeysButton);
-        tempNumKeyPadLayout->setStretchFactor(noneButton, 1);
-        tempNumKeyPadLayout->setStretchFactor(othersKeysButton, 1);
         tempNumKeyPadLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
     }
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
 
     tempHBoxLayout->addLayout(tempMainKeyLayout);
-    tempHBoxLayout->addLayout(tempAuxKeyLayout);
+
+    if (!isLaptopDevice) {
+        tempAuxKeyLayout = setupAuxKeyboardLayout();
+        tempHBoxLayout->addLayout(tempAuxKeyLayout);
+    } else
+        delete tempAuxKeyLayout;
+
     tempHBoxLayout->addLayout(tempNumKeyPadLayout);
 
     finalVBoxLayout->addLayout(tempHBoxLayout);
@@ -162,28 +178,36 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout();
+    if (isLaptopDevice) tempVBoxLayout->setSpacing(0);
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout();
+    if (isLaptopDevice) finalVBoxLayout->setSpacing(0);
 
     tempHBoxLayout->addWidget(createNewKey("Escape"));
-    tempHBoxLayout->addSpacerItem(new QSpacerItem(40, 10, QSizePolicy::Expanding));
+    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
     tempHBoxLayout->addWidget(createNewKey("F1"));
     tempHBoxLayout->addWidget(createNewKey("F2"));
     tempHBoxLayout->addWidget(createNewKey("F3"));
     tempHBoxLayout->addWidget(createNewKey("F4"));
-    tempHBoxLayout->addSpacerItem(new QSpacerItem(40, 10, QSizePolicy::Expanding));
+    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
     tempHBoxLayout->addWidget(createNewKey("F5"));
     tempHBoxLayout->addWidget(createNewKey("F6"));
     tempHBoxLayout->addWidget(createNewKey("F7"));
     tempHBoxLayout->addWidget(createNewKey("F8"));
-    tempHBoxLayout->addSpacerItem(new QSpacerItem(40, 10, QSizePolicy::Expanding));
-
+    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
     tempHBoxLayout->addWidget(createNewKey("F9"));
     tempHBoxLayout->addWidget(createNewKey("F10"));
     tempHBoxLayout->addWidget(createNewKey("F11"));
     tempHBoxLayout->addWidget(createNewKey("F12"));
+
+    if (isLaptopDevice) {
+        tempHBoxLayout->addWidget(createNewKey("Print"));
+        tempHBoxLayout->addWidget(createNewKey("Pause"));
+        tempHBoxLayout->addWidget(createNewKey("Delete"));
+    }
+
     finalVBoxLayout->addLayout(tempHBoxLayout);
 
-    finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed));
+    if (!isLaptopDevice) finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
@@ -197,6 +221,11 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("minus"));
     tempHBoxLayout->addWidget(createNewKey("equal"));
     tempHBoxLayout->addWidget(createNewKey("BackSpace"));
+
+    if (isLaptopDevice) {
+        tempHBoxLayout->addWidget(createNewKey("Home"));
+    }
+
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     QVBoxLayout *tempMiddleVLayout = new QVBoxLayout();
@@ -204,7 +233,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     tempHBoxLayout->addWidget(createNewKey("Tab"));
-    tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 30, QSizePolicy::Fixed));
+    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 30, QSizePolicy::Fixed));
     tempHBoxLayout->addWidget(createNewKey("q"));
     tempHBoxLayout->addWidget(createNewKey("w"));
     tempHBoxLayout->addWidget(createNewKey("e"));
@@ -217,12 +246,19 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("p"));
     tempHBoxLayout->addWidget(createNewKey("bracketleft"));
     tempHBoxLayout->addWidget(createNewKey("bracketright"));
+
     if ((QLocale::system().language() != QLocale::French) &&
         (QLocale::system().language() != QLocale::German))
     {
         tempHBoxLayout->addWidget(createNewKey("backslash"));
     }
-    tempMiddleVLayout->addLayout(tempHBoxLayout);
+
+    if (isLaptopDevice) {
+        tempHBoxLayout->addWidget(createNewKey("Prior"));
+        tempVBoxLayout->addLayout(tempHBoxLayout);
+    } else
+        tempMiddleVLayout->addLayout(tempHBoxLayout);
+
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
@@ -238,23 +274,40 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("l"));
     tempHBoxLayout->addWidget(createNewKey("semicolon"));
     tempHBoxLayout->addWidget(createNewKey("apostrophe"));
+
     if ((QLocale::system().language() == QLocale::French) ||
         (QLocale::system().language() == QLocale::German))
     {
         tempHBoxLayout->addWidget(createNewKey("asterisk"));
     }
-    tempMiddleVLayout->addLayout(tempHBoxLayout);
-    tempMiddleHLayout->addLayout(tempMiddleVLayout);
-    tempMiddleHLayout->addWidget(createNewKey("Return"));
-    tempVBoxLayout->addLayout(tempMiddleHLayout);
+
+    if (!isLaptopDevice) {
+
+        tempMiddleVLayout->addLayout(tempHBoxLayout);
+        tempMiddleHLayout->addLayout(tempMiddleVLayout);
+        tempMiddleHLayout->addWidget(createNewKey("Return"));
+
+        tempVBoxLayout->addLayout(tempMiddleHLayout);
+
+    } else {
+
+        tempHBoxLayout->addWidget(createNewKey("Return"));
+        tempHBoxLayout->addWidget(createNewKey("Next"));
+
+        tempVBoxLayout->addLayout(tempHBoxLayout);
+        delete tempMiddleHLayout;
+        delete tempMiddleVLayout;
+    }
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
     tempHBoxLayout->addWidget(createNewKey("Shift_L"));
+
     if (QLocale::system().language() == QLocale::French)
     {
         tempHBoxLayout->addWidget(createNewKey("less"));
     }
+
     tempHBoxLayout->addWidget(createNewKey("z"));
     tempHBoxLayout->addWidget(createNewKey("x"));
     tempHBoxLayout->addWidget(createNewKey("c"));
@@ -266,6 +319,12 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("period"));
     tempHBoxLayout->addWidget(createNewKey("slash"));
     tempHBoxLayout->addWidget(createNewKey("Shift_R"));
+
+    if (isLaptopDevice) {
+        tempHBoxLayout->addWidget(createNewKey("Up"));
+        tempHBoxLayout->addWidget(createNewKey("End"));
+    }
+
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
     tempHBoxLayout = new QHBoxLayout();
@@ -285,17 +344,30 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
 
     tempHBoxLayout->addWidget(createNewKey("Menu"));
     tempHBoxLayout->addWidget(createNewKey("Control_R"));
+
+    if (isLaptopDevice) {
+        tempHBoxLayout->addWidget(createNewKey("Left"));
+        tempHBoxLayout->addWidget(createNewKey("Down"));
+        tempHBoxLayout->addWidget(createNewKey("Right"));
+    }
+
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
+    if (!isLaptopDevice) {
     tempVBoxLayout->setStretch(0, 1);
     tempVBoxLayout->setStretch(1, 2);
     tempVBoxLayout->setStretch(2, 1);
     tempVBoxLayout->setStretch(3, 1);
+    }
 
     finalVBoxLayout->addLayout(tempVBoxLayout);
+
+    if (!isLaptopDevice) {
     finalVBoxLayout->setStretch(0, 1);
     finalVBoxLayout->setStretch(1, 0);
     finalVBoxLayout->setStretch(2, 2);
+    }
+
     return finalVBoxLayout;
 }
 
@@ -342,9 +414,13 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
+    tempHBoxLayout->setSpacing(0);
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout();
+    tempVBoxLayout->setSpacing(0);
     QGridLayout *tempGridLayout = new QGridLayout();
+    tempGridLayout->setSpacing(0);
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout();
+    finalVBoxLayout->setSpacing(0);
 
     QPushButton *othersKeysButton = createOtherKeysMenu();
 
@@ -531,6 +607,9 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 
     VirtualKeyPushButton *pushButton = new VirtualKeyPushButton(xcodestring, this);
 
+    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton->setSizePolicy(sizePolicy);
+
     if (xcodestring == "space")
     {
         width = 150;
@@ -550,7 +629,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     else if (xcodestring == "Return")
     {
         width = 60;
-        height = 60;
+        if (!isLaptopDevice) height = 60;
         pushButton->setMaximumWidth(100);
     }
     else if (xcodestring == "BackSpace")
@@ -572,8 +651,9 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     }
     else if ((xcodestring == "KP_Add") || (xcodestring == "KP_Enter"))
     {
+        height = 60;
         width = 34;
-        font1.setPointSize(6);
+        font1.setPointSize(5);
     }
     else if (xcodestring == "Num_Lock")
     {
@@ -584,11 +664,18 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
         width = 36;
         height = 32;
     }
+    else if ((xcodestring.startsWith("F") && (xcodestring.count() > 1)) || (xcodestring == "Print") || (xcodestring == "Escape") || (xcodestring == "Pause") || (xcodestring == "Delete")) {
+
+        if (isLaptopDevice) {
+            QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+            pushButton->setSizePolicy(sizePolicy2);
+            pushButton->setFixedHeight(32);
+        }
+    }
+
 
     pushButton->setObjectName(xcodestring);
     pushButton->setMinimumSize(width, height);
-    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    pushButton->setSizePolicy(sizePolicy);
     pushButton->setFont(font1);
 
     return pushButton;
@@ -696,8 +783,10 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
         connect(temp, SIGNAL(triggered(bool)), this, SLOT(otherKeysActionSingle(bool)));
     }
 
-    disconnect(noneButton, SIGNAL(clicked()), 0, 0);
-    connect(noneButton, SIGNAL(clicked()), this, SLOT(clearButtonSlotsFinish()));
+
+        disconnect(noneButton, SIGNAL(clicked()), 0, 0);
+        connect(noneButton, SIGNAL(clicked()), this, SLOT(clearButtonSlotsFinish()));
+
     //qDebug() << "COUNT: " << newlist.count();
 }
 

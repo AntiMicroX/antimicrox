@@ -44,6 +44,7 @@ public:
     explicit VirtualKeyboardMouseWidget(QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
     bool is_numlock_activated();
+    bool isLaptop();
 
 protected:
     void setupVirtualKeyboardLayout();
@@ -59,6 +60,7 @@ protected:
 
     virtual void resizeEvent(QResizeEvent *event);
 
+    bool isLaptopDevice;
     InputDevice *joystick;
     ButtonEditDialogHelper* helper;
     QWidget *keyboardTab;

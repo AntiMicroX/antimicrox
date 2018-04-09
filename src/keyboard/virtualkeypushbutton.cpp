@@ -193,7 +193,7 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("KP_Multiply", trUtf8("*"));
         knownAliases.insert("KP_Subtract", trUtf8("-"));
         knownAliases.insert("KP_Add", trUtf8("+"));
-        knownAliases.insert("KP_Enter", trUtf8("E\nN\nT\nE\nR"));
+        knownAliases.insert("KP_Enter", trUtf8("Enter"));
         knownAliases.insert("KP_Decimal", trUtf8("."));
         knownAliases.insert("asterisk", trUtf8("*"));
         knownAliases.insert("less", trUtf8("<"));
