@@ -92,7 +92,7 @@ installed on your system in order to build this program:
 * libsdl2-dev (SDL 2) or libsdl1.2-dev (sdl2 on distros based on Arch Linux) (SDL 1.2)
 * libxi-dev (libxi on distros based on Arch Linux) (optional. Needed to compile with X11 and uinput support)
 * libxtst-dev (libxtst on distros based on Arch Linux) (optional. Needed to compile with XTest support)
-* libX11-dev (libx11 on distros based on Arch Linux) (optional when compiled with Qt 5 support)
+* libx11-dev (libx11 on distros based on Arch Linux) (optional. Needed to compile with Qt 5 support)
 
 
 ### Building under Linux
