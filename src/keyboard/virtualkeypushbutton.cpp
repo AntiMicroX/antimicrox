@@ -87,11 +87,18 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
         this->keycode = temp;
         //this->keycode = X11KeyCodeToX11KeySym(temp);
         this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
+
         //this->keycode = temp;
 #endif
         this->xcodestring = xcodestring;
         this->displayString = setDisplayString(xcodestring);
+
     }
+
+    qDebug() << "qkeyalias after returnQtKey: " << this->qkeyalias;
+    qDebug() << "keycode: " << this->keycode;
+    qDebug() << "xcodestring: " << this->xcodestring;
+    qDebug() << "displayString: " << this->displayString;
 
     this->setText(this->displayString.replace("&", "&&"));
 

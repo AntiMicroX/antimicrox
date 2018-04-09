@@ -66,7 +66,6 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Return] = XK_Return;
         qtKeyToVirtualKey[Qt::Key_Insert] = XK_Insert;
         qtKeyToVirtualKey[Qt::Key_Delete] = XK_Delete;
-        qtKeyToVirtualKey[Qt::Key_Delete] = XK_Delete;
         //qtKeyToX11KeySym[Qt::Key_Delete] = XK_Clear;
         qtKeyToVirtualKey[Qt::Key_Pause] = XK_Pause;
         qtKeyToVirtualKey[Qt::Key_Print] = XK_Print;

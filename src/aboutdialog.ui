@@ -111,7 +111,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>4</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <widget class="QPlainTextEdit" name="plainTextEdit">
            <property name="plainText">
-            <string>&quot;juliagoda&quot; (since March, 2018) I have decided to rescue the project because of poor choices of such applications on the internet, which map keyboard keys and mouse buttons to connected gamepad on Linux. I have found this project as newest and the most proper, but It didn't compile properly. I wanted only to play my favourite old games, that don't support gamepads. However when I have finished my work enough, to enjoy playing games I thought about sharing this code with others. Of course all informations about old programmers will be still hold.
+            <string>&quot;juliagoda&quot; (since March, 2018) Wanting only to play my favourite old games that din't support gamepads, I found this project (which map keyboard keys and mouse buttons to connected gamepads on Linux) as most proper and recent. But because of poor choices of such application on the internet and since it didn't compile properly, I decided to rescue the project. However, once I finished my work (enough to enjoy playing games) I thought about sharing this code with others. Of course all informations about past programmers will be held.
 
 &quot;Ryochan7&quot; (since December 30, 2012 until 2017), I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
 
@@ -423,9 +423,6 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
     </layout>
    </item>
   </layout>
-  <zorder>versionLabel</zorder>
-  <zorder>copyrightLabel</zorder>
-  <zorder>tabWidget</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>
