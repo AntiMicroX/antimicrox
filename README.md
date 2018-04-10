@@ -89,7 +89,7 @@ installed on your system in order to build this program:
 * g++
 * cmake
 * qttools5-dev and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt 5 support)
-* libsdl2-dev (SDL 2) or libsdl1.2-dev (sdl2 on distros based on Arch Linux) (SDL 1.2)
+* libsdl2-dev (sdl2 on distros based on Arch Linux) (SDL 2)
 * libxi-dev (libxi on distros based on Arch Linux) (optional. Needed to compile with X11 and uinput support)
 * libxtst-dev (libxtst on distros based on Arch Linux) (optional. Needed to compile with XTest support)
 * libx11-dev (libx11 on distros based on Arch Linux) (optional. Needed to compile with Qt 5 support)
@@ -106,18 +106,14 @@ directory. Enter the following commands in order to build the program:
     make
     sudo make install
 
-The cmake step will use pkg-config to attempt to find any SDL
+The cmake step will use pkg-config to attempt to find SDL
 libraries that you have installed. The project is set up to
-look for a copy of SDL 2 followed by SDL 1.2. This behavior should work
+look for a copy of SDL 2. This behavior should work
 fine for most people. You can override this behavior by using the -DUSE_SDL_2
 option when you run cmake. Using -DUSE_SDL_2=ON when you run cmake will mean
-that you want antimicro compiled with SDL 2 support. Using -DUSE_SDL_2=OFF when
-you run cmake will mean that you want antimicro compiled with SDL 1.2 support.
+that you want antimicro compiled with SDL 2 support. However you don't have to do that,
+because the option is set as default in CMakeLists.txt.
 
-Here is an example of how to specify that you want antimicro to be compiled
-with SDL 2 support when you run qmake.
-
-    cmake -DUSE_SDL_2=ON ..
 
 ### Building under Windows
 
