@@ -73,6 +73,7 @@ class BaseEventHandler;
 
 class EventHandlerFactory : public QObject
 {
+    Q_OBJECT
 
 public:
     static EventHandlerFactory* getInstance(QString handler = "");

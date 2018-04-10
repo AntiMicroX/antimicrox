@@ -8,6 +8,7 @@
 
 class WinExtras : public QObject
 {
+    Q_OBJECT
 
 public:
     static QString getDisplayString(int virtualkey); // (unsigned)

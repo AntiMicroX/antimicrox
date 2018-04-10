@@ -39,6 +39,7 @@
 
 class AntKeyMapper : public QObject
 {
+    Q_OBJECT
 
 public:
     static AntKeyMapper* getInstance(QString handler = "");

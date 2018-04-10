@@ -831,7 +831,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
         int ximajor = 2, ximinor = 0;
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
-            Logger::LogInfo(trUtf8("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            Logger::LogInfo(QObject::trUtf8("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
             result = false;
         }
     }

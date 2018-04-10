@@ -7,6 +7,7 @@ file(GLOB_RECURSE antimicro_BASE_FORMS ${PROJECT_SOURCE_DIR}/src/*.ui)
 
 if(USE_QT5)
     if(UPDATE_TRANSLATIONS)
+            message("Update translations - lupdate ON")
             QT5_CREATE_TRANSLATION(antimicro_QMFILES ${antimicro_BASE_SOURCES}
                 ${antimicro_BASE_FORMS} ${antimicro_TRANSLATIONS})
     else()

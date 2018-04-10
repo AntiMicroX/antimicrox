@@ -23,6 +23,7 @@
 
 class QtKeyMapperBase : public QObject
 {
+    Q_OBJECT
 
 public:
     explicit QtKeyMapperBase(QObject *parent = nullptr);

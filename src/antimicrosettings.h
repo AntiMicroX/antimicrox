@@ -27,6 +27,7 @@
 
 class AntiMicroSettings : public QSettings
 {
+    Q_OBJECT
 
 public:
     explicit AntiMicroSettings(const QString &fileName, Format format, QObject *parent = nullptr);

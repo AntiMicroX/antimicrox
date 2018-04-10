@@ -27,6 +27,7 @@ class InputDevice;
 
 class InputDeviceBitArrayStatus : public QObject
 {
+    Q_OBJECT
 
 public:
     explicit InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent = true, QObject *parent = nullptr);

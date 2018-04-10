@@ -29,6 +29,7 @@ class QXmlStreamWriter;
 
 class JoyButtonSlot : public QObject
 {
+    Q_OBJECT
 
 public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,

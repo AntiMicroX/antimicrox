@@ -27,6 +27,7 @@
 class X11Extras : public QObject
 {
     Q_OBJECT
+
 public:
     struct ptrInformation {
         long id;

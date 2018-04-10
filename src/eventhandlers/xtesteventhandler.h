@@ -25,7 +25,7 @@ class JoyButtonSlot;
 
 class XTestEventHandler : public BaseEventHandler
 {
-
+    Q_OBJECT
 
 public:
     explicit XTestEventHandler(QObject *parent = nullptr);

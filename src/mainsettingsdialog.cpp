@@ -831,6 +831,7 @@ void MainSettingsDialog::selectDefaultProfileDir()
     }
 }
 
+//HERE!!!
 void MainSettingsDialog::checkLocaleChange()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -1949,6 +1950,7 @@ void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
     }
 }
 
+//HERE!!!
 void MainSettingsDialog::changePresetLanguage()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;

@@ -26,6 +26,7 @@ class QXmlStreamReader;
 
 class XMLConfigMigration : public QObject
 {
+    Q_OBJECT
 
 public:
     explicit XMLConfigMigration(QXmlStreamReader *reader, QObject *parent = nullptr);

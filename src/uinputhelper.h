@@ -24,7 +24,7 @@
 
 class UInputHelper : public QObject
 {
-
+    Q_OBJECT
 
 public:
     static UInputHelper* getInstance();
