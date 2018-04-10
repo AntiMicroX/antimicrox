@@ -38,10 +38,8 @@
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 
-#ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
 #include "gamecontrollermappingdialog.h"
-#endif
 
 #include <QDebug>
 #include <QCoreApplication>
@@ -463,14 +461,12 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     displayingNames = false;
 
-#ifdef USE_SDL_2
     stickAssignPushButton->setEnabled(false);
     stickAssignPushButton->setVisible(false);
 
     gameControllerMappingPushButton->setEnabled(true);
     gameControllerMappingPushButton->setVisible(true);
 
-#endif
 
 #ifdef Q_OS_WIN
     deviceKeyRepeatSettings();
@@ -496,9 +492,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
 
     connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
-#ifdef USE_SDL_2
     connect(gameControllerMappingPushButton, SIGNAL(clicked()), this, SLOT(openGameControllerMappingWindow()));
-#endif
 
     connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
     connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
@@ -2580,7 +2574,6 @@ void JoyTabWidget::disableCopyCurrentSet()
     }
 }
 
-#ifdef USE_SDL_2
 void JoyTabWidget::openGameControllerMappingWindow()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -2597,7 +2590,6 @@ void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
     emit mappingUpdated(mapping, device);
 }
 
-#endif
 
 void JoyTabWidget::refreshHelperThread()
 {

@@ -103,10 +103,8 @@ private:
 signals:
     void joystickRefreshRequested();
     void readConfig(int index);
-
-#ifdef USE_SDL_2
     void mappingUpdated(QString mapping, InputDevice *device);
-#endif
+
 
 public slots:
     void fillButtons();
@@ -122,15 +120,13 @@ public slots:
     void quitProgram();
     void changeWindowStatus();
     void refreshTabHelperThreads();
-
-#ifdef USE_SDL_2
     void controllerMapOpening();
     void testMappingUpdateNow(int index, InputDevice *device);
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
     void selectControllerJoyTab(int index); // (unsigned)
-#endif
+
 
 private slots:
     void refreshTrayIconMenu();
@@ -162,13 +158,12 @@ private slots:
     void restartAsElevated();
 #endif
 
-#ifdef USE_SDL_2
     void openGameControllerMappingWindow(bool openAsMain=false);
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(AutoProfileInfo *info);
     void checkAutoProfileWatcherTimer();
     void updateMenuOptions();
-#endif
+
 };
 
 #endif // MAINWINDOW_H

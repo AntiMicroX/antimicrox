@@ -291,8 +291,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             ControllerOptionsInfo tempInfo;
             controllerOptionsList.append(tempInfo);
         }
-
-#ifdef USE_SDL_2
         else if (gamepadListRegexp.exactMatch(temp))
         {
             listControllers = true;
@@ -325,7 +323,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 setErrorMessage(trUtf8("No controller was specified."));
             }
         }
-#endif
 
 #ifdef Q_OS_UNIX
         else if (daemonRegexp.exactMatch(temp))
@@ -541,7 +538,6 @@ void CommandLineUtility::printHelp()
         << endl;
 #endif
 
-#ifdef USE_SDL_2
     out << "-l, --list                    " << " "
         << trUtf8("Print information about joysticks detected by \n"
               "                               SDL.") << endl;
@@ -550,7 +546,6 @@ void CommandLineUtility::printHelp()
               "                               controller. Value can be a controller index or\n"
               "                               GUID.")
         << endl;
-#endif
 
 }
 
@@ -609,7 +604,6 @@ QString CommandLineUtility::generateHelpString()
         << endl;
 #endif
 
-#ifdef USE_SDL_2
     out << "-l, --list                    " << " "
         << trUtf8("Print information about joysticks detected by \n"
               "                               SDL.") << endl;
@@ -618,7 +612,6 @@ QString CommandLineUtility::generateHelpString()
               "                               controller. Value can be a controller index or\n"
               "                               GUID.")
         << endl;
-#endif
 
     return temp;
 }

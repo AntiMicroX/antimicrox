@@ -22,10 +22,7 @@
 #include "common.h"
 #include "joystick.h"
 
-#ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
-#endif
-
 #include "common.h"
 
 #include <QDebug>
@@ -211,9 +208,7 @@ void XMLConfigReader::initDeviceTypes()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     deviceTypes.clear();
-
     deviceTypes.append(Joystick::xmlName);
-#ifdef USE_SDL_2
     deviceTypes.append(GameController::xmlName);
-#endif
+
 }

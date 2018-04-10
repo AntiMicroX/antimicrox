@@ -31,11 +31,8 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     this->joyhandle = joyhandle;
-#ifdef USE_SDL_2
+
     joystickID = SDL_JoystickInstanceID(joyhandle);
-#else
-    joyNumber = SDL_JoystickIndex(joyhandle);
-#endif
 
     for (int i = 0; i < NUMBER_JOYSETS; i++)
     {
@@ -57,14 +54,12 @@ QString Joystick::getSDLName()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString temp = QString();
-#ifdef USE_SDL_2
+
     if (joyhandle != nullptr)
     {
         temp = SDL_JoystickName(joyhandle);
     }
-#else
-    temp = SDL_JoystickName(joyNumber);
-#endif
+
     return temp;
 }
 
@@ -74,12 +69,10 @@ QString Joystick::getGUIDString()
 
     QString temp = QString();
 
-#ifdef USE_SDL_2
     SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joyhandle);
     char guidString[65] = {'0'};
     SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
     temp = QString(guidString);
-#endif
 
     // Not available on SDL 1.2. Return empty string in that case.
     return temp;
@@ -96,17 +89,10 @@ void Joystick::closeSDLDevice()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-#ifdef USE_SDL_2
     if ((joyhandle != nullptr) && SDL_JoystickGetAttached(joyhandle))
     {
         SDL_JoystickClose(joyhandle);
     }
-#else
-    if ((joyhandle != nullptr) && SDL_JoystickOpened(joyNumber))
-    {
-        SDL_JoystickClose(joyhandle);
-    }
-#endif
 }
 
 int Joystick::getNumberRawButtons()
@@ -133,11 +119,9 @@ int Joystick::getNumberRawHats()
     return numhats;
 }
 
-#ifdef USE_SDL_2
 SDL_JoystickID Joystick::getSDLJoystickID()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return joystickID;
 }
-#endif

@@ -1040,10 +1040,8 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeComment("The SDL name for a joystick is included for informational purposes only.");
     xml->writeTextElement("sdlname", getSDLName());
-#ifdef USE_SDL_2
     xml->writeComment("The GUID for a joystick is included for informational purposes only.");
     xml->writeTextElement("guid", getGUIDString());
-#endif
 
     if (!profileName.isEmpty())
     {
@@ -2099,7 +2097,6 @@ int InputDevice::getButtonDownCount()
     return buttonDownCount;
 }
 
-#ifdef USE_SDL_2
 QString InputDevice::getSDLPlatform()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -2108,7 +2105,6 @@ QString InputDevice::getSDLPlatform()
     return temp;
 }
 
-#endif
 
 /**
  * @brief Check if device is using the SDL Game Controller API

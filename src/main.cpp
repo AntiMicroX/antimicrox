@@ -63,14 +63,9 @@
 #endif
 
 #ifdef Q_OS_WIN
-  #ifdef USE_SDL_2
   #include <SDL2/SDL.h>
-  #else
-  #include <SDL/SDL.h>
-  #endif
   #undef main
 #endif
-
 
 
 #ifdef Q_OS_WIN
@@ -552,8 +547,6 @@ int main(int argc, char *argv[])
 
         return 0;
     }
-
-#ifdef USE_SDL_2
     else if (cmdutility.shouldMapController())
     {
         PadderCommon::mouseHelperObj.initDeskWid();
@@ -616,7 +609,6 @@ int main(int argc, char *argv[])
 
         return app_result;
     }
-#endif
 
     bool status = true;
     QString eventGeneratorIdentifier = QString();
@@ -733,8 +725,6 @@ int main(int argc, char *argv[])
     QObject::connect(&a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
 #endif
     QObject::connect(localServer, SIGNAL(clientdisconnect()), w, SLOT(handleInstanceDisconnect()));
-
-#ifdef USE_SDL_2
     QObject::connect(w, SIGNAL(mappingUpdated(QString,InputDevice*)),
                      joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
     QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)),
@@ -744,7 +734,6 @@ int main(int argc, char *argv[])
                      w, SLOT(removeJoyTab(SDL_JoystickID)));
     QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)),
                      w, SLOT(addJoyTab(InputDevice*)));
-#endif
 
 #ifdef Q_OS_WIN
     // Raise process priority. Helps reduce timer delays caused by

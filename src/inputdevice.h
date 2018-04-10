@@ -20,19 +20,12 @@
 
 #include "setjoystick.h"
 
-#ifdef USE_SDL_2
 #include <SDL2/SDL_joystick.h>
 #include <SDL2/SDL_platform.h>
-#else
-#include <SDL/SDL_joystick.h>
-typedef Sint32 SDL_JoystickID;
-#endif
 
 #include <QObject>
 #include <QList>
 #include <QRegExp>
-
-
 
 class AntiMicroSettings;
 class SetJoystick;
@@ -72,10 +65,8 @@ public:
     virtual QString getStringIdentifier();
     virtual QString getXmlName() = 0;
     virtual void closeSDLDevice() = 0;
-#ifdef USE_SDL_2
     virtual SDL_JoystickID getSDLJoystickID() = 0;
     QString getSDLPlatform();
-#endif
     virtual bool isGameController();
     virtual bool isKnownController();
 

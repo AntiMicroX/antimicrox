@@ -18,14 +18,7 @@
 #ifndef SDLEVENTREADER_H
 #define SDLEVENTREADER_H
 
-
-
-#ifdef USE_SDL_2
 #include <SDL2/SDL.h>
-#else
-#include <SDL/SDL.h>
-#endif
-
 #include "joystick.h"
 
 #include <QObject>

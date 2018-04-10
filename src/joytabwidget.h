@@ -156,9 +156,7 @@ signals:
     void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);
     void forceTabUnflash(JoyTabWidget *tabWidget);
-#ifdef USE_SDL_2
     void mappingUpdated(QString mapping, InputDevice *device);
-#endif
 
 public slots:
     void openConfigFileDialog();
@@ -210,11 +208,9 @@ private slots:
     void performSetCopy();
     void disableCopyCurrentSet();
     void refreshSetButtons();
-
-#ifdef USE_SDL_2
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);
-#endif
+
 };
 
 #endif // JOYTABWIDGET_H

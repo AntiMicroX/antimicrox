@@ -92,9 +92,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     this->allDefaultProfile = nullptr;
     this->connectedDevices = devices;
 
-#ifdef USE_SDL_2
     fillControllerMappingsTable();
-#endif
 
     settings->getLock()->lock();
 

@@ -36,9 +36,7 @@ public:
     virtual QString getGUIDString(); // GUID available on SDL 2.
     virtual QString getXmlName();
     virtual void closeSDLDevice();
-#ifdef USE_SDL_2
     virtual SDL_JoystickID getSDLJoystickID();
-#endif
 
     virtual int getNumberRawButtons();
     virtual int getNumberRawAxes();

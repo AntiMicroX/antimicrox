@@ -36,14 +36,10 @@
 #include "mainsettingsdialog.h"
 #include "advancestickassignmentdialog.h"
 #include "common.h"
-
-#ifdef USE_SDL_2
 #include "gamecontrollermappingdialog.h"
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
 #include "autoprofileinfo.h"
-#endif
-
 #endif
 
 #ifdef Q_OS_WIN
@@ -95,10 +91,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     this->settings = settings;
 
     ui->actionStick_Pad_Assign->setVisible(false);
-
-#ifndef USE_SDL_2
-    ui->actionGameController_Mapping->setVisible(false);
-#endif
 
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
@@ -172,8 +164,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionIssues, SIGNAL(triggered()), this, SLOT(openIssuesPage()));
     connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
     connect(ui->actionWiki, SIGNAL(triggered()), this, SLOT(openWikiPage()));
-
-#ifdef USE_SDL_2
     connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
@@ -184,8 +174,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     #elif defined(Q_OS_WIN)
         connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
     #endif
-
-#endif
 
 #ifdef Q_OS_WIN
     if (graphical)
@@ -305,7 +293,6 @@ void MainWindow::alterConfigFromSettings()
     }
 }
 
-#ifdef USE_SDL_2
 void MainWindow::controllerMapOpening()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -338,7 +325,7 @@ void MainWindow::controllerMapOpening()
         }
     }
 }
-#endif
+
 
 void MainWindow::fillButtons()
 {
@@ -354,7 +341,6 @@ void MainWindow::makeJoystickTabs()
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
-#ifdef USE_SDL_2
     // Make temporary QMap with devices inserted using the device index as the
     // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
@@ -368,9 +354,6 @@ void MainWindow::makeJoystickTabs()
     }
 
     QMapIterator<SDL_JoystickID, InputDevice*> iter(temp);
-#else
-    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#endif
 
     while (iter.hasNext())
     {
@@ -406,7 +389,6 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
-#ifdef USE_SDL_2
     // Make temporary QMap with devices inserted using the device index as the
     // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
@@ -420,9 +402,6 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     }
 
     QMapIterator<SDL_JoystickID, InputDevice*> iter(temp);
-#else
-    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-#endif
 
     while (iter.hasNext())
     {
@@ -436,9 +415,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
         connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
-#ifdef USE_SDL_2
         connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
-#endif
 
         if (showTrayIcon)
         {
@@ -704,13 +681,6 @@ void MainWindow::mainMenuChange()
             ui->actionHide->setEnabled(false);
         }
     }
-
-#ifndef USE_SDL_2
-    if (tempMenu == ui->menuOptions)
-    {
-        ui->actionGameController_Mapping->setVisible(false);
-    }
-#endif
 }
 
 void MainWindow::saveAppConfig()
@@ -1519,7 +1489,6 @@ void MainWindow::restartAsElevated()
 
 #endif
 
-#ifdef USE_SDL_2
 void MainWindow::openGameControllerMappingWindow(bool openAsMain)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -1861,8 +1830,6 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         }
     }
 }
-
-#endif
 
 void MainWindow::changeWindowStatus()
 {

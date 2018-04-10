@@ -54,7 +54,7 @@ set(ANTIMICRO_MAJOR_VERSION 2)
 set(ANTIMICRO_MINOR_VERSION 23)
 set(ANTIMICRO_PATCH_VERSION 0)
 
-option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
+option(USE_SDL_2 "Use SDL 2 libraries." ON)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
@@ -63,13 +63,12 @@ if(UNIX)
     option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
 
-option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." ON)
+option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_KEEP_OBSOLETE "Do not specify -no-obsolete when calling lupdate." OFF)
 
 
 if(WIN32)
     option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
-    #option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
     option(WITH_VMULTI "Compile with support for vmulti." OFF)
     option(PERFORM_SIGNING "Sign final executable." OFF)
 
@@ -94,14 +93,6 @@ if(WIN32)
         set(TARGET_ARCH "x86")
     endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
-    #if(TARGET_ARCH)
-    #    set(ARCH_OPTIONS "x86" "x86_64")
-    #    list(FIND ARCH_OPTIONS ${TARGET_ARCH} ARCH_INDEX)
-    #    if(ARCH_INDEX EQUAL -1)
-    #        message(FATAL_ERROR "No valid architecture choice used. Exiting.")
-    #    endif(ARCH_INDEX EQUAL -1)
-    #endif(TARGET_ARCH)
-
     if(WITH_VMULTI)
         add_definitions(-DWITH_VMULTI)
     endif(WITH_VMULTI)
@@ -114,8 +105,6 @@ if(UNIX)
 
     if(USE_SDL_2)
         pkg_check_modules(SDL2 REQUIRED sdl2)
-    elseif(NOT USE_SDL_2)
-        pkg_check_modules(SDL REQUIRED sdl)
     endif(USE_SDL_2)
 
     if(WITH_X11)
@@ -540,8 +529,6 @@ if(UNIX)
 
     if(USE_SDL_2)
         list(APPEND LIBS ${SDL2_LIBRARIES})
-    else()
-        list(APPEND LIBS ${SDL_LIBRARIES})
     endif(USE_SDL_2)
 elseif (WIN32)
     if(USE_SDL_2)
@@ -690,18 +677,6 @@ configure_file(
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
 if(WIN32)
-    #if(TARGET_ARCH STREQUAL "x86_64")
-    #    # Copy SDL2.dll to find installation directory.
-    #    add_custom_target(copy_sdl_dll
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
-    #    )
-    #else()
-    #    # Copy SDL2.dll to find installation directory.
-    #    add_custom_target(copy_sdl_dll
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
-    #    )
-    #endif(TARGET_ARCH STREQUAL "x86_64")
-
     add_custom_target(copy_sdl_dll
         COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_DLL_LOCATION_DIR}/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
     )

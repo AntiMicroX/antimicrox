@@ -18,25 +18,13 @@
 #ifndef INPUTDAEMONTHREAD_H
 #define INPUTDAEMONTHREAD_H
 
-
-
-#ifdef USE_SDL_2
 #include "gamecontroller/gamecontroller.h"
 #include <SDL2/SDL_joystick.h>
 #include <SDL2/SDL_events.h>
 
-
-#else
-#include <SDL/SDL_joystick.h>
-#include <SDL/SDL_events.h>
-
-#endif
-
 #include <QHash>
 #include <QMap>
 #include <QQueue>
-
-
 
 class InputDevice;
 class AntiMicroSettings;
@@ -62,21 +50,15 @@ protected:
 
     void firstInputPass(QQueue<SDL_Event> *sdlEventQueue);
     void secondInputPass(QQueue<SDL_Event> *sdlEventQueue);
-#ifdef USE_SDL_2
     void modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue);
     QBitArray createUnplugEventBitArray(InputDevice *device);
     Joystick* openJoystickDevice(int index);
-#endif
 
     void clearBitArrayStatusInstances();
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
-
-#ifdef USE_SDL_2
     QHash<SDL_JoystickID, Joystick*> trackjoysticks;
     QHash<SDL_JoystickID, GameController*> trackcontrollers;
-
-#endif
 
     QHash<InputDevice*, InputDeviceBitArrayStatus*> releaseEventsGenerated;
     QHash<InputDevice*, InputDeviceBitArrayStatus*> pendingEventValues;
@@ -97,11 +79,10 @@ signals:
     void complete(InputDevice *joystick);
     void complete();
 
-#ifdef USE_SDL_2
     void deviceUpdated(int index, InputDevice *device);
     void deviceRemoved(SDL_JoystickID deviceID);
     void deviceAdded(InputDevice *device);
-#endif
+
 
 public slots:
     void run();
@@ -111,14 +92,11 @@ public slots:
     void refreshJoysticks();
     void deleteJoysticks();
     void startWorker();
-
-#ifdef USE_SDL_2
     void refreshMapping(QString mapping, InputDevice *device);
     void removeDevice(InputDevice *device);
     void addInputDevice(int index);
     void refreshIndexes();
 
-#endif
 
 private slots:
     void stop();

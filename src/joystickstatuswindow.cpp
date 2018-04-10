@@ -162,7 +162,6 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
         ui->guidLabel->hide();
     }
 
-#ifdef USE_SDL_2
     QString usingGameController = trUtf8("No");
     if (joystick->isGameController())
     {
@@ -170,10 +169,6 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     }
 
     ui->sdlGameControllerLabel->setText(usingGameController);
-#else
-    ui->sdlcontrollerHeaderLabel->setVisible(false);
-    ui->sdlGameControllerLabel->setVisible(false);
-#endif
 
     PadderCommon::inputDaemonMutex.unlock();
 

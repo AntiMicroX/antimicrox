@@ -135,9 +135,7 @@ void InputDaemon::run ()
 
         firstInputPass(&sdlEventQueue);
 
-#ifdef USE_SDL_2
         modifyUnplugEvents(&sdlEventQueue);
-#endif
 
         secondInputPass(&sdlEventQueue);
 
@@ -179,17 +177,14 @@ void InputDaemon::refreshJoysticks()
     }
 
     joysticks->clear();
-#ifdef USE_SDL_2
     trackjoysticks.clear();
     trackcontrollers.clear();
 
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
-#endif
 
     for (int i=0; i < SDL_NumJoysticks(); i++)
     {
-#ifdef USE_SDL_2
 #ifdef USE_NEW_REFRESH
         int index = i;
 
@@ -314,23 +309,10 @@ void InputDaemon::refreshJoysticks()
             }
         }
 #endif
-
-#else
-        SDL_Joystick *joystick = SDL_JoystickOpen(i);
-        if (joystick != nullptr)
-        {
-            Joystick *curJoystick = new Joystick(joystick, i, settings, this);
-            connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
-            joysticks->insert(i, curJoystick);
-        }
-
-#endif
     }
 
-#ifdef USE_SDL_2
     settings->endGroup();
     settings->getLock()->unlock();
-#endif
 
     emit joysticksRefreshed(joysticks);
 }
@@ -352,10 +334,9 @@ void InputDaemon::deleteJoysticks()
     }
 
     joysticks->clear();
-#ifdef USE_SDL_2
     trackjoysticks.clear();
     trackcontrollers.clear();
-#endif
+
 }
 
 void InputDaemon::stop()
@@ -436,7 +417,7 @@ void InputDaemon::quit()
     eventWorker = nullptr;
 }
 
-#ifdef USE_SDL_2
+
 void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -719,7 +700,7 @@ Joystick *InputDaemon::openJoystickDevice(int index)
     return curJoystick;
 }
 
-#endif
+
 
 InputDeviceBitArrayStatus*
 InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArrayStatus *> *statusHash,
@@ -755,11 +736,9 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
             case SDL_JOYBUTTONDOWN:
             case SDL_JOYBUTTONUP:
             {
-#ifdef USE_SDL_2
+
                 InputDevice *joy = trackjoysticks.value(event.jbutton.which);
-#else
-                InputDevice *joy = joysticks->value(event.jbutton.which);
-#endif
+
                 if (joy != nullptr)
                 {
                     SetJoystick* set = joy->getActiveSetJoystick();
@@ -776,22 +755,17 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         sdlEventQueue->append(event);
                     }
                 }
-#ifdef USE_SDL_2
                 else
                 {
                     sdlEventQueue->append(event);
                 }
-#endif
 
                 break;
             }
             case SDL_JOYAXISMOTION:
             {
-#ifdef USE_SDL_2
                 InputDevice *joy = trackjoysticks.value(event.jaxis.which);
-#else
-                InputDevice *joy = joysticks->value(event.jaxis.which);
-#endif
+
                 if (joy != nullptr)
                 {
                     SetJoystick* set = joy->getActiveSetJoystick();
@@ -807,22 +781,17 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         sdlEventQueue->append(event);
                     }
                 }
-#ifdef USE_SDL_2
                 else
                 {
                     sdlEventQueue->append(event);
                 }
-#endif
 
                 break;
             }
             case SDL_JOYHATMOTION:
             {
-#ifdef USE_SDL_2
                 InputDevice *joy = trackjoysticks.value(event.jhat.which);
-#else
-                InputDevice *joy = joysticks->value(event.jhat.which);
-#endif
+
                 if (joy != nullptr)
                 {
                     SetJoystick* set = joy->getActiveSetJoystick();
@@ -838,17 +807,14 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         sdlEventQueue->append(event);
                     }
                 }
-#ifdef USE_SDL_2
                 else
                 {
                     sdlEventQueue->append(event);
                 }
-#endif
 
                 break;
             }
 
-#ifdef USE_SDL_2
             case SDL_CONTROLLERAXISMOTION:
             {
                 InputDevice *joy = trackcontrollers.value(event.caxis.which);
@@ -906,7 +872,6 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                 sdlEventQueue->append(event);
                 break;
             }
-#endif
             case SDL_QUIT:
             {
                 sdlEventQueue->append(event);
@@ -916,7 +881,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
     }
 }
 
-#ifdef USE_SDL_2
+
 void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -1043,9 +1008,9 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
         }
     }
 }
-#endif
 
-#ifdef USE_SDL_2
+
+
 QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -1064,7 +1029,7 @@ QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
     QBitArray unplugBitArray = tempStatus.generateFinalBitArray();
     return unplugBitArray;
 }
-#endif
+
 
 void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
@@ -1082,11 +1047,9 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             case SDL_JOYBUTTONDOWN:
             case SDL_JOYBUTTONUP:
             {
-#ifdef USE_SDL_2
+
                 InputDevice *joy = trackjoysticks.value(event.jbutton.which);
-#else
-                InputDevice *joy = joysticks->value(event.jbutton.which);
-#endif
+
                 if (joy != nullptr)
                 {
                     SetJoystick* set = joy->getActiveSetJoystick();
@@ -1103,24 +1066,20 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                     }
                 }
-#ifdef USE_SDL_2
                 else if (trackcontrollers.contains(event.jbutton.which))
                 {
                     GameController *gamepad = trackcontrollers.value(event.jbutton.which);
                     gamepad->rawButtonEvent(event.jbutton.button, event.type == SDL_JOYBUTTONDOWN ? true : false);
                 }
-#endif
 
                 break;
             }
 
             case SDL_JOYAXISMOTION:
             {
-#ifdef USE_SDL_2
+
                 InputDevice *joy = trackjoysticks.value(event.jaxis.which);
-#else
-                InputDevice *joy = joysticks->value(event.jaxis.which);
-#endif
+
                 if (joy != nullptr)
                 {
                     SetJoystick* set = joy->getActiveSetJoystick();
@@ -1138,24 +1097,19 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
                     joy->rawAxisEvent(event.jaxis.which, event.jaxis.value);
                 }
-#ifdef USE_SDL_2
                 else if (trackcontrollers.contains(event.jaxis.which))
                 {
                     GameController *gamepad = trackcontrollers.value(event.jaxis.which);
                     gamepad->rawAxisEvent(event.jaxis.axis, event.jaxis.value);
                 }
-#endif
 
                 break;
             }
 
             case SDL_JOYHATMOTION:
             {
-#ifdef USE_SDL_2
                 InputDevice *joy = trackjoysticks.value(event.jhat.which);
-#else
-                InputDevice *joy = joysticks->value(event.jhat.which);
-#endif
+
                 if (joy != nullptr)
                 {
                     SetJoystick* set = joy->getActiveSetJoystick();
@@ -1171,18 +1125,15 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                     }
                 }
-#ifdef USE_SDL_2
                 else if (trackcontrollers.contains(event.jhat.which))
                 {
                     GameController *gamepad = trackcontrollers.value(event.jaxis.which);
                     gamepad->rawDPadEvent(event.jhat.hat, event.jhat.value);
                 }
-#endif
 
                 break;
             }
 
-#ifdef USE_SDL_2
             case SDL_CONTROLLERAXISMOTION:
             {
                 InputDevice *joy = trackcontrollers.value(event.caxis.which);
@@ -1251,7 +1202,6 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
                 addInputDevice(event.jdevice.which);
                 break;
             }
-#endif
 
             case SDL_QUIT:
             {

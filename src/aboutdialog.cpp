@@ -19,11 +19,7 @@
 #include "common.h"
 #include "eventhandlerfactory.h"
 
-#ifdef USE_SDL_2
 #include <SDL2/SDL_version.h>
-#else
-#include <SDL/SDL_version.h>
-#endif
 
 #include <QtGlobal>
 #include <QResource>
@@ -67,11 +63,7 @@ void AboutDialog::fillInfoTextBrowser()
     SDL_version compiledver;
     SDL_version linkedver;
     SDL_VERSION(&compiledver);
-#ifdef USE_SDL_2
     SDL_GetVersion(&linkedver);
-#else
-    linkedver = *(SDL_Linked_Version());
-#endif
 
     sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
     finalInfoText.append(trUtf8("Built Against SDL %1").arg(sdlCompiledVersionNumber));
