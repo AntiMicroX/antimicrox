@@ -123,11 +123,11 @@ Modified by Travis Nickles.**
 * Download and install CMake: http://www.cmake.org/cmake/resources/software.html
 
 * You will need Qt with MinGW support: https://www.qt.io/download-open-source/. The
-current version of Qt that is being used to create builds is 5.6.0.
+current stable version of Qt that is being used to create builds is 5.10.0.
 
-* download SDL development package : http://www.libsdl.org/release/SDL2-devel-2.0.3-mingw.tar.gz
+* download SDL development package : https://www.libsdl.org/release/SDL2-2.0.8.zip
 
-* open the archive and drop the 'SDL2-2.0.3' folder in the 'antimicro' folder
+* open the archive and drop the 'SDL2-2.0.8' folder in the 'antimicro' folder
 
 * open the project (CMakeLists.txt) in Qt Creator The CMake Wizard will appear
 the first time you open the project in Qt Creator.
@@ -139,7 +139,7 @@ under the root antimicro folder and choose that for the build location.
 ```-DCMAKE_PREFIX_PATH=<Path to MinGW Qt install>```
 -DCMAKE_BUILD_TYPE=Release. Replace "```<Path to MinGW Qt install>```"
 with the actual path to your Qt installation. The default path for version
-Qt 5.6.0 is C:\Qt\Qt5.6.0\5.6\mingw49_32\.
+Qt 5.10.0 is C:\Qt\Qt5.10.0\5.10.0\mingw53_32.
 
 * Choose "MinGW Generator" for the Generator option in the Run CMake section
 
@@ -173,9 +173,9 @@ into the final location that will be ready for distribution.
 ### 64 bit build
 
 * Some additional steps are required in order to compile a 64 bit version of
-antimicro. The first step is to download a packaged version of Qt and MinGW
-compiled for 64 bit from the Qt-x64 project @
-http://sourceforge.net/projects/qtx64/.
+antimicro. The first step is to download a packaged version of Qt, MSYS shell environment,
+the MinGW 64 C++ compiler, and a series of libraries @
+https://github.com/iat-cener/tonatiuh/wiki/Installing-MinGW-For-Windows64
 
 * You will have to manually create a new Kit in Qt Creator. In the main Qt
 Creator window, click the "Projects" button in the sidebar to bring up the
