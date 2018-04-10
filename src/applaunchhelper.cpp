@@ -21,7 +21,7 @@
 #include "antimicrosettings.h"
 
 #ifdef Q_OS_WIN
-#include <winextras.h>
+    #include "winextras.h"
 #endif
 
 #include <QTextStream>
@@ -156,7 +156,6 @@ void AppLaunchHelper::changeSpringModeScreen()
 
     JoyButton::setSpringModeScreen(springScreen);
 }
-
 #ifdef Q_OS_WIN
 void AppLaunchHelper::checkPointerPrecision()
 {

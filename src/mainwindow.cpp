@@ -43,7 +43,7 @@
 #endif
 
 #ifdef Q_OS_WIN
-#include "winextras.h"
+    #include "winextras.h"
 #endif
 
 #ifdef Q_OS_UNIX
@@ -70,8 +70,6 @@
 #ifdef Q_OS_WIN
 #include <QSysInfo>
 #endif
-
-
 
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                        CommandLineUtility *cmdutility, AntiMicroSettings *settings,

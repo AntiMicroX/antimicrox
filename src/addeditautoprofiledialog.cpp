@@ -147,9 +147,6 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 
     ui->winClassLineEdit->setVisible(false);
     ui->winClassLabel->setVisible(false);
-
-    //ui->winNameLineEdit->setVisible(false);
-    //ui->winNameLabel->setVisible(false);
 #endif
 
     connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));
@@ -545,8 +542,8 @@ void AddEditAutoProfileDialog::accept()
         }
 #ifdef Q_OS_WIN
         else if (!info.isAbsolute() &&
-                 (info.fileName() != exeFileName ||
-                  info.suffix() != "exe"))
+                 ((info.fileName() != exeFileName) ||
+                  (info.suffix() != "exe")))
         {
             validForm = false;
             errorString = trUtf8("File is not an .exe file.");
@@ -591,12 +588,6 @@ void AddEditAutoProfileDialog::captureWindowsApplicationPath()
     connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
     dialog->show();
 
-    /*QString temp = WinExtras::getForegroundWindowExePath();
-    if (!temp.isEmpty())
-    {
-        ui->applicationLineEdit->setText(temp);
-    }
-    */
 }
 
 #endif

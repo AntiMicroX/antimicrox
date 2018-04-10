@@ -101,10 +101,10 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-#ifdef Q_OS_WIN
         int finalvirtual = 0;
         int checkalias = 0;
 
+#ifdef Q_OS_WIN
   #ifdef WITH_VMULTI
         if (handler->getIdentifier() == "vmulti")
         {
@@ -142,9 +142,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 #else
 
     #if defined(WITH_X11)
-        int finalvirtual = 0;
-        int checkalias = 0;
-
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
@@ -180,8 +177,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
 
     #else
-        int finalvirtual = 0;
-        int checkalias = 0;
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
         finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(keyEve->key());
@@ -195,7 +190,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
 
     #endif
-
 #endif
 
         controlcode = tempcode;
