@@ -191,7 +191,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         }
     }
 
-#else
+#elif defined(Q_OS_UNIX)
     ui->uacPushButton->setVisible(false);
 #endif
 

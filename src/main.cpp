@@ -49,7 +49,7 @@
 #include <QDebug>
 
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_UNIX
 #include <signal.h>
 #include <unistd.h>
 
@@ -273,7 +273,7 @@ int main(int argc, char *argv[])
 
     LocalAntiMicroServer *localServer = nullptr;
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_UNIX
     if (cmdutility.launchAsDaemon())
     {
         pid_t pid, sid;
@@ -436,7 +436,7 @@ int main(int argc, char *argv[])
     #endif
     }
 
-#else
+#elif defined(Q_OS_WIN)
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
 #endif

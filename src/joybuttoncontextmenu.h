@@ -34,8 +34,6 @@ public:
 protected:
     JoyButton *button;
 
-signals:
-
 private slots:
     void switchToggle();
     void switchTurbo();

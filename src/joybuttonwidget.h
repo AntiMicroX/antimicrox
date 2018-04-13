@@ -40,8 +40,6 @@ protected:
 
     JoyButton* button;
 
-signals:
-
 public slots:
     void disableFlashes();
     void enableFlashes();

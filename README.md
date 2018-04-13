@@ -125,7 +125,7 @@ Modified by Travis Nickles.**
 * You will need Qt with MinGW support: https://www.qt.io/download-open-source/. The
 current stable version of Qt that is being used to create builds is 5.10.0.
 
-* download SDL development package : https://www.libsdl.org/release/SDL2-2.0.8.zip
+* download SDL development package : https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz
 
 * open the archive and drop the 'SDL2-2.0.8' folder in the 'antimicro' folder
 
@@ -139,7 +139,7 @@ under the root antimicro folder and choose that for the build location.
 ```-DCMAKE_PREFIX_PATH=<Path to MinGW Qt install>```
 -DCMAKE_BUILD_TYPE=Release. Replace "```<Path to MinGW Qt install>```"
 with the actual path to your Qt installation. The default path for version
-Qt 5.10.0 is C:\Qt\Qt5.10.0\5.10.0\mingw53_32.
+Qt 5.10.0 is C:\Qt\Qt5.10.0\mingw53_32.
 
 * Choose "MinGW Generator" for the Generator option in the Run CMake section
 

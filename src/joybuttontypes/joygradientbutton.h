@@ -28,8 +28,6 @@ class JoyGradientButton : public JoyButton
 public:
     explicit JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
 
-signals:
-
 protected slots:
     virtual void turboEvent();
     virtual void wheelEventVertical();

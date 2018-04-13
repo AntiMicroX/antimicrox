@@ -117,7 +117,7 @@ protected:
 
 class CommandLineUtility : public QObject
 {
-
+    Q_OBJECT
 
 public:
     explicit CommandLineUtility(QObject *parent = nullptr);

@@ -41,8 +41,6 @@ protected:
 
     JoyDPad *dpad;
 
-signals:
-
 public slots:
     void disableFlashes();
     void enableFlashes();

@@ -27,6 +27,7 @@
 
 class WinSendInputEventHandler : public BaseEventHandler
 {
+    Q_OBJECT
 
 public:
     explicit WinSendInputEventHandler(QObject *parent = nullptr);

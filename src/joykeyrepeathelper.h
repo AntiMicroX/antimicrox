@@ -45,8 +45,6 @@ protected:
     int keyRepeatDelay; // unsigned
     int keyRepeatRate; // unsigned
 
-signals:
-
 private slots:
     void repeatKeysEvent();
 };

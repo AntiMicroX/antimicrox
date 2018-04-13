@@ -26,6 +26,7 @@
 
 class QtWinKeyMapper : public QtKeyMapperBase
 {
+    Q_OBJECT
 
 public:
     explicit QtWinKeyMapper(QObject *parent = nullptr);

@@ -55,8 +55,6 @@ protected:
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
     MouseControlStickSettingsDialogHelper helper;
-
-signals:
     
 public slots:
     void changeMouseMode(int index);

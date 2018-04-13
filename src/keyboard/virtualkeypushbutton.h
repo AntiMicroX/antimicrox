@@ -46,8 +46,6 @@ protected:
 signals:
     void keycodeObtained(int code, int alias); // (.., unsigned)
 
-public slots:
-
 private slots:
     void processSingleSelection();
 };

@@ -40,8 +40,6 @@ protected:
 signals:
     void mouseSlotCreated(JoyButtonSlot *tempslot);
 
-public slots:
-
 private slots:
     void createTempSlot();
 };

@@ -83,7 +83,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
         {
             this->qkeyalias = Qt::Key_Enter;
         }
-#else
+#elif defined(Q_OS_UNIX)
         this->keycode = temp;
         //this->keycode = X11KeyCodeToX11KeySym(temp);
         this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);

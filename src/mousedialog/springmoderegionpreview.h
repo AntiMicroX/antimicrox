@@ -34,8 +34,6 @@ protected:
     int adjustSpringSizeWidth(int width);
     int adjustSpringSizeHeight(int height);
 
-signals:
-
 public slots:
     void setSpringWidth(int width);
     void setSpringHeight(int height);

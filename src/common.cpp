@@ -70,7 +70,7 @@ namespace PadderCommon
     #else
             lookupDir =  QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     #endif
-#else
+#elif defined(Q_OS_UNIX)
             lookupDir = QDir::homePath();
 #endif
         }

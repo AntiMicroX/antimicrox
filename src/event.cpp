@@ -346,7 +346,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         {
             currentPoint = QCursor::pos();
         }
-#else
+#elif defined(Q_OS_WIN)
         QPoint currentPoint = QCursor::pos();
 #endif
 
@@ -657,7 +657,7 @@ int X11KeySymToKeycode(QString key)
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     int tempcode = 0;
-#if defined (Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
@@ -679,7 +679,7 @@ int X11KeySymToKeycode(QString key)
 #endif
     }
 
-#elif defined (Q_OS_WIN)
+#elif defined(Q_OS_WIN)
     if (key.length() > 0)
     {
         tempcode = WinExtras::getVirtualKey(key);
@@ -819,7 +819,7 @@ int X11KeyCodeToX11KeySym(int keycode)
 #ifdef Q_OS_WIN
     Q_UNUSED(keycode);
     return 0;
-#else
+#elif defined(Q_OS_UNIX)
     #ifdef WITH_X11
     Display* display = X11Extras::getInstance()->display();
     int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
@@ -858,7 +858,7 @@ QString keysymToKeyString(int keysym, int alias)
         newkey = keycodeToKeyString(keysym);
     }
 
-#else
+#elif defined(Q_OS_WIN)
     newkey = keycodeToKeyString(keysym, alias);
 #endif
     return newkey;

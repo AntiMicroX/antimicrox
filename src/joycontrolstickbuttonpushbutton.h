@@ -41,8 +41,6 @@ protected:
     virtual QString generateLabel();
 
     JoyControlStickButton *button;
-    
-signals:
 
 public slots:
     void disableFlashes();

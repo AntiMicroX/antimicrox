@@ -19,9 +19,6 @@ public:
 protected:
     QTimer appTimer;
 
-//slots:
-//    void
-
 private:
     Ui::WinAppProfileTimerDialog *ui;
 

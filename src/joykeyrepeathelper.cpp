@@ -72,7 +72,7 @@ unsigned int JoyKeyRepeatHelper::getKeyRepeatDelay()
 }
 */
 
-void JoyKeyRepeatHelper::setKeyRepeatRate(unsigned int repeatRate)
+void JoyKeyRepeatHelper::setKeyRepeatRate(int repeatRate)
 {
     if (repeatRate > 0)
     {
@@ -80,7 +80,7 @@ void JoyKeyRepeatHelper::setKeyRepeatRate(unsigned int repeatRate)
     }
 }
 
-unsigned int JoyKeyRepeatHelper::getKeyRepeatRate()
+int JoyKeyRepeatHelper::getKeyRepeatRate()
 {
     return keyRepeatRate;
 }

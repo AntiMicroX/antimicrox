@@ -66,10 +66,6 @@ protected:
     int springMouseFileHandler;
     QString uinputDeviceLocation;
 
-signals:
-
-public slots:
-
 private slots:
 #ifdef WITH_X11
     void x11ResetMouseAccelerationChange();

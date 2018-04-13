@@ -52,7 +52,7 @@ InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *
     deviceEdited = false;
 #ifdef Q_OS_WIN
     keyRepeatEnabled = true;
-#else
+#elif defined(Q_OS_UNIX)
     keyRepeatEnabled = false;
 #endif
 

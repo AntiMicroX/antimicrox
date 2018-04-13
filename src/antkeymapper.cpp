@@ -37,7 +37,7 @@ static QStringList buildEventGeneratorList()
     temp.append("vmulti");
   #endif
 
-#else
+#elif defined(Q_OS_UNIX)
   #ifdef WITH_XTEST
     temp.append("xtest");
   #endif
@@ -71,7 +71,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
         nativeKeyMapper = nullptr;
     }
 
-#else
+#elif defined(Q_OS_UNIX)
     #ifdef WITH_XTEST
     if (handler == "xtest")
     {

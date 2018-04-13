@@ -38,10 +38,6 @@ protected:
     JoyDPad *dpad;
     DPadContextMenuHelper helper;
 
-signals:
-
-public slots:
-
 private slots:
     void setDPadPreset();
     void setDPadMode();

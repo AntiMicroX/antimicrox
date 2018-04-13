@@ -45,8 +45,6 @@ protected:
     JoyButton *button;
     SpringModeRegionPreview *springPreviewWidget;
     MouseButtonSettingsDialogHelper helper;
-
-signals:
     
 public slots:
     void changeMouseMode(int index);

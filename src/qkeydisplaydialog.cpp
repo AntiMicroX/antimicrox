@@ -130,7 +130,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
         }
     }
   #endif
-#else
+#elif defined(Q_OS_UNIX)
 
     int finalvirtual = 0;
 
@@ -180,7 +180,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 
 #ifdef Q_OS_WIN
     QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(tempvirtual, scancode), 0, 16);
-#else
+#elif defined(Q_OS_UNIX)
     QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(finalvirtual), 0, 16);
 #endif
 

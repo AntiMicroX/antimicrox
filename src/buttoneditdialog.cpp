@@ -34,7 +34,7 @@
 #include <qt_windows.h>
 #include "winextras.h"
 
-#else
+#elif defined(Q_OS_UNIX)
 #include <QApplication>
 #endif
 
@@ -279,7 +279,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
           checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
       }
 
-#else
+#elif defined(Q_OS_UNIX)
 
     #if defined(WITH_X11)
         int finalvirtual = 0;

@@ -33,10 +33,6 @@ public:
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
 
-signals:
-
-public slots:
-
 };
 
 #endif // SLOTITEMLISTWIDGET_H

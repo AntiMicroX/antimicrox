@@ -312,7 +312,7 @@ void QtWinKeyMapper::populateMappingHashes()
 
         // Populate other hash. Flip key and value so mapping
         // goes VK -> Qt Key.
-        QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
+        QHashIterator<int, int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
         {
             iter.next();
@@ -330,9 +330,9 @@ void QtWinKeyMapper::populateMappingHashes()
     }
 }
 
-unsigned int QtWinKeyMapper::returnQtKey(unsigned int key, unsigned int scancode)
+int QtWinKeyMapper::returnQtKey(int key, int scancode)
 {
-    unsigned int tempkey = virtualKeyToQtKey.value(key);
+    int tempkey = virtualKeyToQtKey.value(key);
     int extended = scancode & WinExtras::EXTENDED_FLAG;
     if (key == VK_RETURN && extended)
     {

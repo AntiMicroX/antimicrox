@@ -22,7 +22,9 @@
 #include <QString>
 #include <QHash>
 #include <QPoint>
+
 #include <X11/Xlib.h>
+
 
 class X11Extras : public QObject
 {

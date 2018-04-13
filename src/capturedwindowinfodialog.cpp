@@ -24,7 +24,7 @@
 
 #ifdef Q_OS_WIN
 #include "winextras.h"
-#else
+#elif defined(Q_OS_UNIX)
 #include "x11extras.h"
 #endif
 
@@ -32,7 +32,7 @@
 
 #ifdef Q_OS_WIN
 CapturedWindowInfoDialog::CapturedWindowInfoDialog(QWidget *parent) :
-#else
+#elif defined(Q_OS_UNIX)
 CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent) :
 #endif
     QDialog(parent),
@@ -57,7 +57,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     ui->winClassCheckBox->setVisible(false);
     ui->winClassLabel->setVisible(false);
     ui->winClassHeadLabel->setVisible(false);
-#else
+#elif defined(Q_OS_UNIX)
     winClass = info->getWindowClass(window);
     ui->winClassLabel->setText(winClass);
     if (winClass.isEmpty())
@@ -77,7 +77,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 
 #ifdef Q_OS_WIN
     winName = WinExtras::getCurrentWindowText();
-#else
+#elif defined(Q_OS_UNIX)
     winName = info->getWindowTitle(window);
 #endif
 
@@ -110,7 +110,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
         setRadioDefault = true;
     }
 
-#elif defined(Q_OS_LINUX)
+#elif defined(Q_OS_UNIX)
     int pid = info->getApplicationPid(window);
     if (pid > 0)
     {

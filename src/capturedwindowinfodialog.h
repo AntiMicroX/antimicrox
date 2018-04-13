@@ -35,7 +35,7 @@ public:
 
 #ifdef Q_OS_WIN
     explicit CapturedWindowInfoDialog(QWidget *parent = nullptr);
-#else
+#elif defined(Q_OS_UNIX)
     explicit CapturedWindowInfoDialog(long window, QWidget *parent = nullptr);
 #endif
 

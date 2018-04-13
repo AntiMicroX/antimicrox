@@ -592,12 +592,12 @@ QString CommandLineUtility::generateHelpString()
     #endif
 #endif
 
-#if defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)
+#if (defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST))
     out << "--eventgen {xtest,uinput}     " << " "
         << QObject::trUtf8("Choose between using XTest support and uinput\n"
            "                               support for event generation. Default: xtest.")
         << endl;
-#elif defined(Q_OS_WIN) && defined(WITH_VMULTI)
+#elif (defined(Q_OS_WIN) && defined(WITH_VMULTI))
     out << "--eventgen {sendinput,vmulti} " << " "
         << QObject::trUtf8("Choose between using SendInput and vmulti\n"
            "                           support for event generation. Default: sendinput.")

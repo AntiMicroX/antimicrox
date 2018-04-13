@@ -34,10 +34,6 @@ public:
     int addTab(QWidget *widget, const QString &string);
     int addTab(JoyTabWidget *widget, const QString &string);
 
-protected:
-
-signals:
-
 public slots:
     void disableFlashes(InputDevice *joystick);
     void enableFlashes(InputDevice *joystick);

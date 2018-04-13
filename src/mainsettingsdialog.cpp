@@ -147,7 +147,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
     ui->stackedWidget->removeWidget(ui->page_2);
     #endif
-#else
+#elif defined(Q_OS_WIN)
     populateAutoProfiles();
     fillAllAutoProfilesTable();
     fillGUIDComboBox();
@@ -211,7 +211,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->keyRepeatGroupBox->setVisible(false);
     }
 
-#else
+#elif defined(Q_OS_UNIX)
     ui->launchAtWinStartupCheckBox->setVisible(false);
     ui->keyRepeatGroupBox->setVisible(false);
 
@@ -261,7 +261,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     {
         ui->associateProfilesCheckBox->setChecked(false);
     }
-#else
+#elif defined(Q_OS_UNIX)
     ui->associateProfilesCheckBox->setVisible(false);
 #endif
 
@@ -271,7 +271,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     {
         ui->disableWindowsEnhancedPointCheckBox->setChecked(true);
     }
-#else
+#elif defined(Q_OS_UNIX)
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
 #endif
 
@@ -632,7 +632,7 @@ void MainSettingsDialog::saveNewSettings()
     }
 
     #endif
-#else
+#elif defined(Q_OS_WIN)
     saveAutoProfileSettings();
 #endif
 

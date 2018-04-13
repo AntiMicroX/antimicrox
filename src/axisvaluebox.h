@@ -50,8 +50,6 @@ protected:
     int rboxend;
     int singlewidth;
     int singleend;
-
-signals:
     
 public slots:
     void setThrottle(int throttle);

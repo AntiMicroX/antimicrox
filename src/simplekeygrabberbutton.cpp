@@ -139,7 +139,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, tempcode);
         }
 
-#else
+#elif defined(Q_OS_UNIX)
 
     #if defined(WITH_X11)
 

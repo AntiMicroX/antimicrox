@@ -152,7 +152,7 @@ QString XMLConfigMigration::version0006Migration()
                     int tempcode = slotcode;
 #ifdef Q_OS_WIN
                     slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
-#else
+#elif defined(Q_OS_UNIX)
                     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
                     if (handler->getIdentifier() == "xtest")
                     {

@@ -38,10 +38,6 @@ protected:
     void populateNumPadHashes();
     void populateSpecialCharHashes();
 
-signals:
-
-public slots:
-
 };
 
 #endif // QTUINPUTKEYMAPPER_H

@@ -46,7 +46,8 @@
   #endif
 
   #define NUM_BACKENDS (ADD_SENDINPUT + ADD_VMULTI)
-#else
+
+#elif defined(Q_OS_UNIX)
   #ifdef WITH_XTEST
     #define ADD_XTEST 1
   #else

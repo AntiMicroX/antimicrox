@@ -27,7 +27,7 @@ static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
 }
 */
 
-const unsigned int WinExtras::EXTENDED_FLAG = 0x100;
+const int WinExtras::EXTENDED_FLAG = 0x100;
 int WinExtras::originalMouseAccel = 0;
 
 static const QString ROOTASSOCIATIONKEY("HKEY_CURRENT_USER\\Software\\Classes");
@@ -42,7 +42,7 @@ WinExtras::WinExtras(QObject *parent) :
     populateKnownAliases();
 }
 
-QString WinExtras::getDisplayString(unsigned int virtualkey)
+QString WinExtras::getDisplayString(int virtualkey)
 {
     QString temp;
     if (virtualkey <= 0)
@@ -57,7 +57,7 @@ QString WinExtras::getDisplayString(unsigned int virtualkey)
     return temp;
 }
 
-unsigned int WinExtras::getVirtualKey(QString codestring)
+int WinExtras::getVirtualKey(QString codestring)
 {
     int temp = 0;
     if (_instance.knownAliasesX11SymVK.contains(codestring))
@@ -164,12 +164,12 @@ void WinExtras::populateKnownAliases()
 }
 
 /**
- * @brief Obtain a more specific virtual key (unsigned int) for a key grab event.
+ * @brief Obtain a more specific virtual key (int) for a key grab event.
  * @param Scan code obtained from a key grab event
  * @param Virtual key obtained from a key grab event
- * @return Corrected virtual key as an unsigned int
+ * @return Corrected virtual key as an int
  */
-unsigned int WinExtras::correctVirtualKey(unsigned int scancode, unsigned int virtualkey)
+int WinExtras::correctVirtualKey(int scancode, int virtualkey)
 {
     int mapvirtual = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
     int extended = (scancode & EXTENDED_FLAG) != 0;
@@ -201,9 +201,9 @@ unsigned int WinExtras::correctVirtualKey(unsigned int scancode, unsigned int vi
  * @brief Convert a virtual key into the corresponding keyboard scan code.
  * @param Windows virtual key
  * @param Qt key alias
- * @return Keyboard scan code as an unsigned int
+ * @return Keyboard scan code as an int
  */
-unsigned int WinExtras::scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias)
+int WinExtras::scancodeFromVirtualKey(int virtualkey, int alias)
 {
     int scancode = 0;
     if (virtualkey == VK_PAUSE)

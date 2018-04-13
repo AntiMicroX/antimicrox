@@ -26,7 +26,7 @@
   #ifdef WITH_VMULTI
     #include "qtvmultikeymapper.h"
   #endif
-#else
+#elif defined(Q_OS_UNIX)
 
   #if defined(WITH_XTEST)
     #include "qtx11keymapper.h"
@@ -66,7 +66,7 @@ protected:
     QtVMultiKeyMapper vmultiMapper;
   #endif
 
-#else
+#elif defined(Q_OS_UNIX)
   #if defined(WITH_XTEST)
     QtX11KeyMapper x11Mapper;
   #endif

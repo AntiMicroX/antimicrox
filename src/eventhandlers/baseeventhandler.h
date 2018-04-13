@@ -56,13 +56,6 @@ public:
 protected:
     QString lastErrorString;
 
-
-signals:
-
-
-public slots:
-
-
 };
 
 #endif // BASEEVENTHANDLER_H

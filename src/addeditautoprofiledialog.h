@@ -20,6 +20,8 @@
 
 #include <QDialog>
 
+#include <QtGlobal>
+
 class AutoProfileInfo;
 class AntiMicroSettings;
 class InputDevice;
@@ -75,7 +77,7 @@ private slots:
 #ifdef Q_OS_WIN
     void openWinAppProfileDialog();
     void captureWindowsApplicationPath();
-#else
+#elif defined(Q_OS_UNIX)
     void showCaptureHelpWindow();
     void checkForGrabbedWindow();
 #endif

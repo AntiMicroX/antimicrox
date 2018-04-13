@@ -58,13 +58,8 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
 
-
-
 private:
     Ui::ButtonEditDialog *ui;
-
-
-
 
 signals:
     void advancedDialogOpened();

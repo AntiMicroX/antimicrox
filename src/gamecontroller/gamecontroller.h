@@ -71,9 +71,6 @@ protected:
 
     SDL_GameController *controller;
 
-signals:
-
-
 public slots:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);

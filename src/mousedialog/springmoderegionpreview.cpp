@@ -27,7 +27,7 @@
 SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent) :
     #if defined(Q_OS_WIN)
         QWidget(parent, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
-    #else
+    #elif defined(Q_OS_UNIX)
         QWidget(parent, Qt::FramelessWindowHint)
     #endif
 {

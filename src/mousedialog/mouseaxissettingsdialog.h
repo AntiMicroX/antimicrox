@@ -55,8 +55,6 @@ protected:
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
     MouseAxisSettingsDialogHelper helper;
-
-signals:
     
 public slots:
     void changeMouseMode(int index);

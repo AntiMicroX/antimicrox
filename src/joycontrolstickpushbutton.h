@@ -41,8 +41,6 @@ protected:
 
     JoyControlStick *stick;
 
-signals:
-
 public slots:
     void disableFlashes();
     void enableFlashes();

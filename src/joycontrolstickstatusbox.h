@@ -47,10 +47,6 @@ protected:
     void drawFourWayDiagonalBox();
 
     JoyControlStick *stick;
-
-signals:
-    
-public slots:
     
 };
 

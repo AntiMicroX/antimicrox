@@ -852,7 +852,9 @@ void JoyButton::activateSlots()
         bool exit = false;
         //bool delaySequence = checkForDelaySequence();
         bool delaySequence = false;
-       // bool changeRepeatState = false;
+        #ifdef Q_OS_WIN
+            bool changeRepeatState = false;
+        #endif
 
         int i = 0;
         while (slotiter->hasNext() && !exit)
@@ -873,13 +875,17 @@ void JoyButton::activateSlots()
                 {
                     qDebug() << "There has been assigned a lastActiveKey";
                     lastActiveKey = slot;
-                   // changeRepeatState = true;
+                    #ifdef Q_OS_WIN
+                        changeRepeatState = true;
+                    #endif
                 }
                 else
                 {
                     qDebug() << "It's not modifier key. lastActiveKey is null pointer";
                     lastActiveKey = 0;
-                   // changeRepeatState = true;
+                    #ifdef Q_OS_WIN
+                        changeRepeatState = true;
+                     #endif
                 }
             }
             else if (mode == JoyButtonSlot::JoyMouseButton)
@@ -4162,7 +4168,9 @@ void JoyButton::releaseActiveSlots()
     {
         QWriteLocker tempLocker(&activeZoneLock);
 
-        //bool changeRepeatState = false;
+        #ifdef Q_OS_WIN
+            bool changeRepeatState = false;
+        #endif
         QListIterator<JoyButtonSlot*> iter(activeSlots);
 
         iter.toBack();
@@ -4179,7 +4187,9 @@ void JoyButton::releaseActiveSlots()
                 {
                     sendevent(slot, false);
                     activeKeys.remove(tempcode);
-                    //changeRepeatState = true;
+                    #ifdef Q_OS_WIN
+                        changeRepeatState = true;
+                    #endif
                 }
                 else
                 {

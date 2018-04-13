@@ -25,3 +25,4 @@ other/antimicro.1.gz
 other/license-template.txt
 doc/
 src/Changelog
+SDL2_*

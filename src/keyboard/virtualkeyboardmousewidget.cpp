@@ -27,9 +27,18 @@
 #include "quicksetdialog.h"
 #include "buttoneditdialog.h"
 
+#ifdef Q_OS_UNIX
 #include "x11extras.h"
-#include <SDL2/SDL_power.h>
 #include <X11/Xlib.h>
+#elif defined(Q_OS_WIN)
+#include "winextras.h"
+#include <windows.h>
+#endif
+
+#include <SDL2/SDL_power.h>
+
+
+
 
 #include <QFont>
 #include <QSizePolicy>
@@ -563,7 +572,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout->setSpacing(20);
 #ifdef Q_OS_WIN
     pushButton = new VirtualMousePushButton(trUtf8("Button 4", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
-#else
+#elif defined(Q_OS_UNIX)
     pushButton = new VirtualMousePushButton(trUtf8("Mouse 8", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
 #endif
 
@@ -571,7 +580,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout->addWidget(pushButton);
 #ifdef Q_OS_WIN
     pushButton = new VirtualMousePushButton(trUtf8("Button 5", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
-#else
+#elif defined(Q_OS_UNIX)
     pushButton = new VirtualMousePushButton(trUtf8("Mouse 9", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
 #endif
 

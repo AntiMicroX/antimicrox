@@ -43,10 +43,6 @@ protected:
     JoyAxis *axis;
     JoyAxisContextMenuHelper helper;
 
-signals:
-
-public slots:
-
 private slots:
     void setAxisPreset();
     void setTriggerPreset();

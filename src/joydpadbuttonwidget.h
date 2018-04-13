@@ -32,9 +32,6 @@ public:
 protected:
     virtual QString generateLabel();
 
-signals:
-    
-public slots:
 };
 
 #endif // JOYDPADBUTTONWIDGET_H

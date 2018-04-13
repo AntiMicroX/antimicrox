@@ -39,10 +39,6 @@ protected:
     JoyControlStick *stick;
     JoyControlStickContextMenuHelper helper;
 
-signals:
-
-public slots:
-
 private slots:
     void setStickPreset();
     void setStickMode();

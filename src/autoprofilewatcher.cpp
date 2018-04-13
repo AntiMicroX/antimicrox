@@ -30,14 +30,9 @@
 
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
 #include "x11extras.h"
-
 #elif defined(Q_OS_WIN)
 #include "winextras.h"
-
 #endif
-
-
-
 
 
 AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent) :
@@ -104,7 +99,7 @@ void AutoProfileWatcher::runAppCheck()
 
 #ifdef Q_OS_WIN
     nowWindowName = WinExtras::getCurrentWindowText();
-#else
+#elif defined(Q_OS_UNIX)
     long currentWindow = X11Extras::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
     {
@@ -127,7 +122,7 @@ void AutoProfileWatcher::runAppCheck()
     if (!focusedWidget && ((!appLocation.isEmpty() && (appLocation != currentApplication)) ||
         (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
 
-#else
+#elif defined(Q_OS_UNIX)
     if (!focusedWidget && ((!nowWindow.isEmpty() && (nowWindow != currentApplication)) ||
         (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
 
@@ -136,7 +131,7 @@ void AutoProfileWatcher::runAppCheck()
 
 #ifdef Q_OS_WIN
         currentApplication = appLocation;
-#else
+#elif defined(Q_OS_UNIX)
         currentApplication = nowWindow;
 #endif
 
@@ -462,7 +457,7 @@ QString AutoProfileWatcher::findAppLocation()
 
     QString exepath = QString();
 
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_UNIX)
     #ifdef WITH_X11
     Window currentWindow = 0;
     int pid = 0;

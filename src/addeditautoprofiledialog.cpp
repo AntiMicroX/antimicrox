@@ -197,7 +197,7 @@ void AddEditAutoProfileDialog::openApplicationBrowseDialog()
     }*/
 #ifdef Q_OS_WIN
     QString filename = QFileDialog::getOpenFileName(this, trUtf8("Select Program"), QDir::homePath(), trUtf8("Programs (*.exe)"));
-#else
+#elif defined(Q_OS_LINUX)
     QString filename = QFileDialog::getOpenFileName(this, trUtf8("Select Program"), QDir::homePath(), QString());
 #endif
     if (!filename.isNull() && !filename.isEmpty())

@@ -45,8 +45,6 @@ public:
 protected:
     void populateSticksDPad();
 
-signals:
-
 public slots:
     virtual void reset();
 };

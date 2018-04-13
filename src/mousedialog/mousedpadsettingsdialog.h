@@ -45,8 +45,6 @@ protected:
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
     MouseDpadSettingsDialogHelper helper;
-
-signals:
     
 public slots:
     void changeMouseMode(int index);

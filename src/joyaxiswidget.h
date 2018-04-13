@@ -42,8 +42,6 @@ protected:
 
     JoyAxis *axis;
 
-signals:
-
 public slots:
     void disableFlashes();
     void enableFlashes();

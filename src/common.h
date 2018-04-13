@@ -96,7 +96,7 @@ namespace PadderCommon
     return findWinLocalConfigPath();
 #elif defined(Q_OS_WIN)
     return findWinSystemConfigPath();
-#else
+#elif defined(Q_OS_UNIX)
     return  (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
       QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
       QDir::homePath() + "/.config/antimicro";
@@ -109,7 +109,7 @@ namespace PadderCommon
     return QString(configPath()).append("/").append(configFileName);
 #elif defined(Q_OS_WIN)
     return QString(configPath()).append("/").append(configFileName);
-#else
+#elif defined(Q_OS_UNIX)
     return QString(configPath()).append("/").append(configFileName);
 #endif
   }

@@ -32,7 +32,7 @@ static QHash<QString, QString> buildDisplayNames()
   #ifdef WITH_VMULTI
     temp.insert("vmulti", "Vmulti");
   #endif
-#else
+#elif defined(Q_OS_UNIX)
     temp.insert("xtest", "Xtest");
     temp.insert("uinput", "uinput");
 #endif
@@ -156,7 +156,7 @@ QStringList EventHandlerFactory::buildEventGeneratorList()
   #ifdef WITH_VMULTI
     temp.append("vmulti");
   #endif
-#else
+#elif defined(Q_OS_UNIX)
     temp.append("xtest");
     temp.append("uinput");
 #endif
