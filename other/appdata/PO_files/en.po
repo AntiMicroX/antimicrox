@@ -41,7 +41,7 @@ msgstr ""
 
 #. (itstool) path: screenshot/image
 #: antimicro.appdata.xml.in:19
-msgid "https://raw.githubusercontent.com/AntiMicro/antimicro/appdata/other/appdata/screenshots/controller_configure01.png"
+msgid "https://raw.githubusercontent.com/juliagoda/antimicro/master/other/appdata/screenshots/controller_main_window_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
@@ -51,17 +51,17 @@ msgstr ""
 
 #. (itstool) path: screenshot/image
 #: antimicro.appdata.xml.in:23
-msgid "https://raw.githubusercontent.com/AntiMicro/antimicro/appdata/other/appdata/screenshots/controller_configure02.png"
+msgid "https://raw.githubusercontent.com/juliagoda/antimicro/master/other/appdata/screenshots/controller_configure_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
 #: antimicro.appdata.xml.in:24
-msgid "Key Assignment Dialog"
+msgid "Analog Stick Configuration Dialog"
 msgstr ""
 
 #. (itstool) path: screenshot/image
 #: antimicro.appdata.xml.in:27
-msgid "https://raw.githubusercontent.com/AntiMicro/antimicro/appdata/other/appdata/screenshots/controller_mapping01.png"
+msgid "https://raw.githubusercontent.com/juliagoda/antimicro/master/other/appdata/screenshots/controller_mapping_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
@@ -71,11 +71,11 @@ msgstr ""
 
 #. (itstool) path: component/url
 #: antimicro.appdata.xml.in:31
-msgid "https://github.com/AntiMicro/antimicro"
+msgid "https://github.com/juliagoda/antimicro"
 msgstr ""
 
 #. (itstool) path: component/updatecontact
 #: antimicro.appdata.xml.in:32
-msgid "jeff.backus_at_gmail.com"
+msgid "juliagoda.pl_AT_protonmail.com"
 msgstr ""
 
