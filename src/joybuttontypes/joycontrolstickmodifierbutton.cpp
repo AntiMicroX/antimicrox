@@ -113,7 +113,7 @@ qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 }
 */
 
-JoyControlStick* JoyControlStickModifierButton::getStick()
+JoyControlStick* JoyControlStickModifierButton::getStick() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

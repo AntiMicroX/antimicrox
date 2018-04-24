@@ -28,13 +28,41 @@ class JoyControlStickPushButton;
 class StickPushButtonGroup : public QGridLayout
 {
     Q_OBJECT
+
 public:
     explicit StickPushButtonGroup(JoyControlStick *stick, bool displayNames = false, QWidget *parent = nullptr);
-    JoyControlStick *getStick();
+    JoyControlStick *getStick() const;
+
+    bool ifDisplayNames() const;
+
+    JoyControlStickButtonPushButton *getUpButton() const;
+    JoyControlStickButtonPushButton *getDownButton() const;
+    JoyControlStickButtonPushButton *getLeftButton() const;
+    JoyControlStickButtonPushButton *getRightButton() const;
+
+    JoyControlStickButtonPushButton *getUpLeftButton() const;
+    JoyControlStickButtonPushButton *getUpRightButton() const;
+    JoyControlStickButtonPushButton *getDownLeftButton() const;
+    JoyControlStickButtonPushButton *getDownRightButton() const;
+
+    JoyControlStickPushButton *getStickWidget() const;
 
 protected:
     void generateButtons();
 
+signals:
+    void buttonSlotChanged();
+
+public slots:
+    void changeButtonLayout();
+    void toggleNameDisplay();
+
+private slots:
+    void propogateSlotsChanged();
+    void openStickButtonDialog();
+    void showStickDialog();
+
+private:
     JoyControlStick *stick;
     bool displayNames;
 
@@ -49,18 +77,6 @@ protected:
     JoyControlStickButtonPushButton *downRightButton;
 
     JoyControlStickPushButton *stickWidget;
-
-signals:
-    void buttonSlotChanged();
-
-public slots:
-    void changeButtonLayout();
-    void toggleNameDisplay();
-
-private slots:
-    void propogateSlotsChanged();
-    void openStickButtonDialog();
-    void showStickDialog();
 };
 
 #endif // STICKPUSHBUTTONGROUP_H

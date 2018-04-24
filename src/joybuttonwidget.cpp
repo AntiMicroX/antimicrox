@@ -42,7 +42,7 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
 }
 
-JoyButton* JoyButtonWidget::getJoyButton()
+JoyButton* JoyButtonWidget::getJoyButton() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

@@ -176,7 +176,7 @@ void StickPushButtonGroup::propogateSlotsChanged()
     emit buttonSlotChanged();
 }
 
-JoyControlStick* StickPushButtonGroup::getStick()
+JoyControlStick* StickPushButtonGroup::getStick() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -217,4 +217,54 @@ void StickPushButtonGroup::toggleNameDisplay()
     downRightButton->toggleNameDisplay();
 
     stickWidget->toggleNameDisplay();
+}
+
+bool StickPushButtonGroup::ifDisplayNames() const {
+
+    return displayNames;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getUpButton() const {
+
+    return upButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getDownButton() const {
+
+    return downButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getLeftButton() const {
+
+    return leftButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getRightButton() const {
+
+    return rightButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getUpLeftButton() const {
+
+    return upLeftButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getUpRightButton() const {
+
+    return upRightButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getDownLeftButton() const {
+
+    return downLeftButton;
+}
+
+JoyControlStickButtonPushButton *StickPushButtonGroup::getDownRightButton() const {
+
+    return downRightButton;
+}
+
+JoyControlStickPushButton *StickPushButtonGroup::getStickWidget() const {
+
+    return stickWidget;
 }

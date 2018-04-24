@@ -67,7 +67,7 @@ void AutoProfileInfo::setGUID(QString guid)
     this->guid = guid;
 }
 
-QString AutoProfileInfo::getGUID()
+QString AutoProfileInfo::getGUID() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -90,7 +90,7 @@ void AutoProfileInfo::setProfileLocation(QString profileLocation)
     }
 }
 
-QString AutoProfileInfo::getProfileLocation()
+QString AutoProfileInfo::getProfileLocation() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -121,7 +121,7 @@ void AutoProfileInfo::setExe(QString exe)
     }
 }
 
-QString AutoProfileInfo::getExe()
+QString AutoProfileInfo::getExe() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -135,7 +135,7 @@ void AutoProfileInfo::setWindowClass(QString windowClass)
     this->windowClass = windowClass;
 }
 
-QString AutoProfileInfo::getWindowClass()
+QString AutoProfileInfo::getWindowClass() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -149,7 +149,7 @@ void AutoProfileInfo::setWindowName(QString winName)
     this->windowName = winName;
 }
 
-QString AutoProfileInfo::getWindowName()
+QString AutoProfileInfo::getWindowName() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -191,7 +191,7 @@ void AutoProfileInfo::setDeviceName(QString name)
     this->deviceName = name;
 }
 
-QString AutoProfileInfo::getDeviceName()
+QString AutoProfileInfo::getDeviceName() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

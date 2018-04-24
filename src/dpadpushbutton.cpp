@@ -39,7 +39,7 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(refreshLabel()));
 }
 
-JoyDPad* DPadPushButton::getDPad()
+JoyDPad* DPadPushButton::getDPad() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

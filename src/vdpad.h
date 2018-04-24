@@ -43,17 +43,24 @@ public:
     bool hasPendingEvent();
     void clearPendingEvent();
 
+    JoyButton *getUpButton() const;
+    JoyButton *getDownButton() const;
+    JoyButton *getLeftButton() const;
+    JoyButton *getRightButton() const;
+    bool getPendingVDPadEvent() const;
+
     static const QString xmlName;
 
-protected:
+public slots:
+    void activatePendingEvent();
+
+private:
     JoyButton *upButton;
     JoyButton *downButton;
     JoyButton *leftButton;
     JoyButton *rightButton;
     bool pendingVDPadEvent;
 
-public slots:
-    void activatePendingEvent();
 };
 
 #endif // VDPAD_H

@@ -599,3 +599,26 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
         }
     }
 }
+
+int UInputEventHandler::getKeyboardFileHandler() {
+
+    return keyboardFileHandler;
+}
+
+
+int UInputEventHandler::getMouseFileHandler() {
+
+    return mouseFileHandler;
+}
+
+
+int UInputEventHandler::getSpringMouseFileHandler() {
+
+    return springMouseFileHandler;
+}
+
+
+const QString UInputEventHandler::getUinputDeviceLocation() {
+
+    return uinputDeviceLocation;
+}

@@ -40,28 +40,21 @@ public:
                                       bool edit=false, QWidget *parent = nullptr);
     ~AddEditAutoProfileDialog();
 
-    AutoProfileInfo* getAutoProfile();
-    QString getOriginalGUID();
-    QString getOriginalExe();
-    QString getOriginalWindowClass();
-    QString getOriginalWindowName();
+    AutoProfileInfo* getAutoProfile() const;
+    QString getOriginalGUID() const;
+    QString getOriginalExe() const;
+    QString getOriginalWindowClass() const;
+    QString getOriginalWindowName() const;
+
+    QList<InputDevice*> *getDevices() const;
+    AntiMicroSettings *getSettings() const;
+    bool getEditForm() const;
+    bool getDefaultInfo() const;
+    QList<QString> const& getReservedGUIDs();
+
 
 protected:
     virtual void accept();
-
-    AutoProfileInfo *info;
-    QList<InputDevice*> *devices;
-    AntiMicroSettings *settings;
-    bool editForm;
-    bool defaultInfo;
-    QList<QString> reservedGUIDs;
-    QString originalGUID;
-    QString originalExe;
-    QString originalWindowClass;
-    QString originalWindowName;
-
-private:
-    Ui::AddEditAutoProfileDialog *ui;
 
 signals:
     void captureFinished();
@@ -81,6 +74,21 @@ private slots:
     void showCaptureHelpWindow();
     void checkForGrabbedWindow();
 #endif
+
+private:
+    Ui::AddEditAutoProfileDialog *ui;
+
+    AutoProfileInfo *info;
+    QList<InputDevice*> *devices;
+    AntiMicroSettings *settings;
+    bool editForm;
+    bool defaultInfo;
+    QList<QString> reservedGUIDs;
+    QString originalGUID;
+    QString originalExe;
+    QString originalWindowClass;
+    QString originalWindowName;
+
 };
 
 #endif // ADDEDITAUTOPROFILEDIALOG_H

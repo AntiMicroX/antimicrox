@@ -85,3 +85,10 @@ QMutex* AntiMicroSettings::getLock()
 
     return &lock;
 }
+
+QSettings const& AntiMicroSettings::getCmdSettings() {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return cmdSettings;
+}

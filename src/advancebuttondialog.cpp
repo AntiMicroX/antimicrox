@@ -1671,3 +1671,18 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
         ui->slotTypeHelpLabel->setText(trUtf8("Execute program when slot is activated."));
     }
 }
+
+int AdvanceButtonDialog::getOldRow() const {
+
+    return oldRow;
+}
+
+JoyButton *AdvanceButtonDialog::getButton() const {
+
+    return button;
+}
+
+AdvanceButtonDialogHelper const& AdvanceButtonDialog::getHelper() {
+
+    return helper;
+}

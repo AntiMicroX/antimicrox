@@ -23,7 +23,6 @@
 #include <QPushButton>
 
 
-
 class QKeyEvent;
 class QEvent;
 class QWidget;
@@ -46,16 +45,17 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
-    bool grabNextAction;
-    bool grabbingWheel;
-    bool edited;
-    JoyButtonSlot buttonslot;
-
 signals:
     void buttonCodeChanged(int value);
     
 public slots:
     void refreshButtonLabel();
+
+private:
+    bool grabNextAction;
+    bool grabbingWheel;
+    bool edited;
+    JoyButtonSlot buttonslot;
 
 };
 

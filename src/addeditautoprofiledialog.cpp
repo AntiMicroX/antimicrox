@@ -210,7 +210,7 @@ void AddEditAutoProfileDialog::openApplicationBrowseDialog()
     }
 }
 
-AutoProfileInfo* AddEditAutoProfileDialog::getAutoProfile()
+AutoProfileInfo* AddEditAutoProfileDialog::getAutoProfile() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -276,28 +276,28 @@ void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
     }
 }
 
-QString AddEditAutoProfileDialog::getOriginalGUID()
+QString AddEditAutoProfileDialog::getOriginalGUID() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return originalGUID;
 }
 
-QString AddEditAutoProfileDialog::getOriginalExe()
+QString AddEditAutoProfileDialog::getOriginalExe() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return originalExe;
 }
 
-QString AddEditAutoProfileDialog::getOriginalWindowClass()
+QString AddEditAutoProfileDialog::getOriginalWindowClass() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return originalWindowClass;
 }
 
-QString AddEditAutoProfileDialog::getOriginalWindowName()
+QString AddEditAutoProfileDialog::getOriginalWindowName() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -591,3 +591,28 @@ void AddEditAutoProfileDialog::captureWindowsApplicationPath()
 }
 
 #endif
+
+QList<InputDevice*> *AddEditAutoProfileDialog::getDevices() const {
+
+    return devices;
+}
+
+AntiMicroSettings *AddEditAutoProfileDialog::getSettings() const {
+
+    return settings;
+}
+
+bool AddEditAutoProfileDialog::getEditForm() const {
+
+    return editForm;
+}
+
+bool AddEditAutoProfileDialog::getDefaultInfo() const {
+
+    return defaultInfo;
+}
+
+QList<QString> const& AddEditAutoProfileDialog::getReservedGUIDs() {
+
+    return reservedGUIDs;
+}

@@ -86,3 +86,8 @@ void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value)
 
     button->setSpringRelativeStatus(value);
 }
+
+JoyButton *MouseButtonSettingsDialogHelper::getButton() const {
+
+    return button;
+}

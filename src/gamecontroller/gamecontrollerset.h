@@ -31,6 +31,7 @@ class InputDevice;
 class GameControllerSet : public SetJoystick
 {
     Q_OBJECT
+
 public:
     explicit GameControllerSet(InputDevice *device, int index, QObject *parent = nullptr);
 

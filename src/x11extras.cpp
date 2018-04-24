@@ -927,3 +927,13 @@ QPoint X11Extras::getPos()
     QPoint currentPoint(mouseEvent.xbutton.x_root, mouseEvent.xbutton.y_root);
     return currentPoint;
 }
+
+QHash<QString, QString> const& X11Extras::getKnownAliases() {
+
+    return knownAliases;
+}
+
+Display* X11Extras::get_Display() const {
+
+    return _display;
+}

@@ -126,7 +126,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
  * @brief Get the saved path for a window
  * @return Program path
  */
-QString UnixCaptureWindowUtility::getTargetPath()
+QString UnixCaptureWindowUtility::getTargetPath() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -137,14 +137,14 @@ QString UnixCaptureWindowUtility::getTargetPath()
  * @brief Check if attemptWindowCapture failed to obtain an application
  * @return Error status
  */
-bool UnixCaptureWindowUtility::hasFailed()
+bool UnixCaptureWindowUtility::hasFailed() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return failed;
 }
 
-long UnixCaptureWindowUtility::getTargetWindow()
+long UnixCaptureWindowUtility::getTargetWindow() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

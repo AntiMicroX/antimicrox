@@ -106,9 +106,29 @@ bool XMLConfigWriter::hasError()
     return writerError;
 }
 
-QString XMLConfigWriter::getErrorString()
+QString XMLConfigWriter::getErrorString() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return writerErrorString;
+}
+
+QXmlStreamWriter *XMLConfigWriter::getXml() const {
+
+    return xml;
+}
+
+QString const& XMLConfigWriter::getFileName() {
+
+    return fileName;
+}
+
+QFile *XMLConfigWriter::getConfigFile() const {
+
+    return configFile;
+}
+
+InputDevice* XMLConfigWriter::getJoystick() const {
+
+    return joystick;
 }

@@ -125,3 +125,8 @@ SDL_JoystickID Joystick::getSDLJoystickID()
 
     return joystickID;
 }
+
+SDL_Joystick* Joystick::getJoyhandle() const {
+
+    return joyhandle;
+}

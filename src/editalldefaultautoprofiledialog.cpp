@@ -77,7 +77,7 @@ void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
     info->setActive(true);
 }
 
-AutoProfileInfo* EditAllDefaultAutoProfileDialog::getAutoProfile()
+AutoProfileInfo* EditAllDefaultAutoProfileDialog::getAutoProfile() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -112,4 +112,9 @@ void EditAllDefaultAutoProfileDialog::accept()
         msgBox.setStandardButtons(QMessageBox::Close);
         msgBox.exec();
     }
+}
+
+AntiMicroSettings* EditAllDefaultAutoProfileDialog::getSettings() const {
+
+    return settings;
 }

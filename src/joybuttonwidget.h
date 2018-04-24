@@ -32,13 +32,11 @@ class JoyButtonWidget : public FlashButtonWidget
 public:
     explicit JoyButtonWidget(JoyButton* button, bool displayNames, QWidget *parent=0);
 
-    JoyButton* getJoyButton();
+    JoyButton* getJoyButton() const;
     void tryFlash();
 
 protected:
     virtual QString generateLabel();
-
-    JoyButton* button;
 
 public slots:
     void disableFlashes();
@@ -46,6 +44,9 @@ public slots:
 
 private slots:
     void showContextMenu(const QPoint &point);
+
+private:
+    JoyButton* button;
 };
 
 #endif // JOYBUTTONWIDGET_H

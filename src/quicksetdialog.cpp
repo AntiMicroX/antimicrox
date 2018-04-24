@@ -692,3 +692,28 @@ JoyButton* QuickSetDialog::getLastPressedButton() {
 
     return lastButton;
 }
+
+InputDevice *QuickSetDialog::getJoystick() const {
+
+    return joystick;
+}
+
+QDialog *QuickSetDialog::getCurrentButtonDialog() const {
+
+    return currentButtonDialog;
+}
+
+const char* QuickSetDialog::getInvokeString() const {
+
+    return invokeString;
+}
+
+ButtonEditDialogHelper* QuickSetDialog::getHelper() const {
+
+    return helper;
+}
+
+JoyButtonSlot::JoySlotInputAction QuickSetDialog::getMode() const {
+
+    return mode;
+}

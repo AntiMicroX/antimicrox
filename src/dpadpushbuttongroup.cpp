@@ -180,7 +180,7 @@ void DPadPushButtonGroup::propogateSlotsChanged()
     emit buttonSlotChanged();
 }
 
-JoyDPad* DPadPushButtonGroup::getDPad()
+JoyDPad* DPadPushButtonGroup::getDPad() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

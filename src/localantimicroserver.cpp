@@ -75,3 +75,8 @@ void LocalAntiMicroServer::close()
 
     localServer->close();
 }
+
+QLocalServer* LocalAntiMicroServer::getLocalServer() const {
+
+    return localServer;
+}

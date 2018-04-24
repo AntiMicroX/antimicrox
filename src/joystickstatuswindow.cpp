@@ -204,3 +204,8 @@ void JoystickStatusWindow::obliterate()
 
     this->done(QDialogButtonBox::DestructiveRole);
 }
+
+InputDevice* JoystickStatusWindow::getJoystick() const {
+
+    return joystick;
+}

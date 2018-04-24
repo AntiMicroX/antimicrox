@@ -37,6 +37,9 @@ public:
 
     void printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks);
 
+    AntiMicroSettings *getSettings() const;
+
+
 protected:
     void enablePossibleMouseSmoothing();
     void establishMouseTimerConnections();
@@ -48,9 +51,6 @@ protected:
     void checkPointerPrecision();
 #endif
 
-    AntiMicroSettings *settings;
-    bool graphical;
-
 public slots:
 #ifdef Q_OS_WIN
     void appQuitPointerPrecision();
@@ -59,6 +59,11 @@ public slots:
     void initRunMethods();
     void revertMouseThread();
     void changeMouseThread(QThread *thread);
+
+private:
+    AntiMicroSettings *settings;
+    bool graphical;
+
 };
 
 #endif // APPLAUNCHHELPER_H

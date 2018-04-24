@@ -420,3 +420,19 @@ void MouseControlStickSettingsDialog::updateExtraAccelerationCurve(int index)
         //PadderCommon::unlockInputDevices();
     }
 }
+
+
+JoyControlStick* MouseControlStickSettingsDialog::getStick() const {
+
+    return stick;
+}
+
+SpringModeRegionPreview* MouseControlStickSettingsDialog::getSpringPreviewWidget() const {
+
+    return springPreviewWidget;
+}
+
+MouseControlStickSettingsDialogHelper const& MouseControlStickSettingsDialog::getHelper() {
+
+    return helper;
+}

@@ -46,7 +46,7 @@ void GameControllerSet::populateSticksDPad()
     // Left Stick Assignment
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
-    JoyControlStick *stick1 = new JoyControlStick(axisX, axisY, 0, index, this);
+    JoyControlStick *stick1 = new JoyControlStick(axisX, axisY, 0, getIndex(), this);
     //stick1->setStickDelay(10);
     stick1->setDefaultStickName("L Stick");
     addControlStick(0, stick1);
@@ -54,7 +54,7 @@ void GameControllerSet::populateSticksDPad()
     // Right Stick Assignment
     axisX = getJoyAxis(SDL_CONTROLLER_AXIS_RIGHTX);
     axisY = getJoyAxis(SDL_CONTROLLER_AXIS_RIGHTY);
-    JoyControlStick *stick2 = new JoyControlStick(axisX, axisY, 1, index, this);
+    JoyControlStick *stick2 = new JoyControlStick(axisX, axisY, 1, getIndex(), this);
     stick2->setDefaultStickName("R Stick");
     addControlStick(1, stick2);
 
@@ -64,7 +64,7 @@ void GameControllerSet::populateSticksDPad()
     JoyButton *buttonDown = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_DOWN);
     JoyButton *buttonLeft = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_LEFT);
     JoyButton *buttonRight = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
-    GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, index, this, this);
+    GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, getIndex(), this, this);
     controllerDPad->setDefaultDPadName("DPad");
     //controllerDPad->setDPadDelay(10);
     addVDPad(0, controllerDPad);
@@ -344,19 +344,19 @@ void GameControllerSet::refreshAxes()
 
     deleteAxes();
 
-    for (int i=0; i < device->getNumberRawAxes(); i++)
+    for (int i=0; i < getInputDevice()->getNumberRawAxes(); i++)
     {
         if ((i == SDL_CONTROLLER_AXIS_TRIGGERLEFT) ||
             (i == SDL_CONTROLLER_AXIS_TRIGGERRIGHT))
         {
-            GameControllerTrigger *trigger = new GameControllerTrigger(i, index, this, this);
-            axes.insert(i, trigger);
+            GameControllerTrigger *trigger = new GameControllerTrigger(i, getIndex(), this, this);
+            getAxes()->insert(i, trigger);
             enableAxisConnections(trigger);
         }
         else
         {
-            JoyAxis *axis = new JoyAxis(i, index, this, this);
-            axes.insert(i, axis);
+            JoyAxis *axis = new JoyAxis(i, getIndex(), this, this);
+            getAxes()->insert(i, axis);
             enableAxisConnections(axis);
         }
     }

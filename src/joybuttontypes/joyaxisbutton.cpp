@@ -164,13 +164,6 @@ void JoyAxisButton::setVDPad(VDPad *vdpad)
     JoyButton::setVDPad(vdpad);
 }
 
-JoyAxis* JoyAxisButton::getAxis()
-{
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    return this->axis;
-}
-
 /**
  * @brief Set the turbo mode that the button should use
  * @param Mode that should be used
@@ -233,4 +226,10 @@ double JoyAxisButton::getLastMouseDistanceFromDeadZone()
     }
 
     return distance;
+}
+
+
+JoyAxis* JoyAxisButton::getAxis() const {
+
+    return axis;
 }

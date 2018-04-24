@@ -1874,7 +1874,7 @@ void MainWindow::setTranslator(QTranslator *translator)
     this->translator = translator;
 }
 
-QTranslator* MainWindow::getTranslator()
+QTranslator* MainWindow::getTranslator() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -1888,7 +1888,7 @@ void MainWindow::setAppTranslator(QTranslator *translator)
     this->appTranslator = translator;
 }
 
-QTranslator* MainWindow::getAppTranslator()
+QTranslator* MainWindow::getAppTranslator() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -1914,4 +1914,69 @@ void MainWindow::refreshTabHelperThreads()
             widget->refreshHelperThread();
         }
     }
+}
+
+QMap<SDL_JoystickID, InputDevice*> *MainWindow::getJoysticks() const {
+
+    return joysticks;
+}
+
+QSystemTrayIcon *MainWindow::getTrayIcon() const {
+
+    return trayIcon;
+}
+
+QAction *MainWindow::getHideAction() const {
+
+    return hideAction;
+}
+
+QAction *MainWindow::getRestoreAction() const {
+
+    return restoreAction;
+}
+
+QAction *MainWindow::getCloseAction() const {
+
+    return closeAction;
+}
+
+QAction *MainWindow::getUpdateJoy() const {
+
+    return updateJoy;
+}
+
+QMenu *MainWindow::getTrayIconMenu() const {
+
+    return trayIconMenu;
+}
+
+QMap<int, QList<QAction*> >* MainWindow::getProfileActions() {
+
+    return &profileActions;
+}
+
+AboutDialog *MainWindow::getAboutDialog() const {
+
+    return aboutDialog;
+}
+
+QLocalServer *MainWindow::getLocalServer() const {
+
+    return localServer;
+}
+
+CommandLineUtility *MainWindow::getCmdutility() const {
+
+    return cmdutility;
+}
+
+AntiMicroSettings *MainWindow::getSettings() const {
+
+    return settings;
+}
+
+AutoProfileWatcher *MainWindow::getAppWatcher() const {
+
+    return appWatcher;
 }

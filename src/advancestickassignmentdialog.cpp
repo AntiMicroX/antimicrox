@@ -1428,3 +1428,8 @@ void AdvanceStickAssignmentDialog::quickAssignVDPadRight()
         }
     }
 }
+
+Joystick *AdvanceStickAssignmentDialog::getJoystick() const {
+
+    return joystick;
+}

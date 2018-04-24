@@ -374,3 +374,18 @@ void MouseDPadSettingsDialog::updateExtraAccelerationCurve(int index)
         PadderCommon::unlockInputDevices();
     }
 }
+
+JoyDPad *MouseDPadSettingsDialog::getDPad() const {
+
+    return dpad;
+}
+
+SpringModeRegionPreview *MouseDPadSettingsDialog::getSpringPreviewWidget() const {
+
+    return springPreviewWidget;
+}
+
+MouseDpadSettingsDialogHelper const& MouseDPadSettingsDialog::getHelper() {
+
+    return helper;
+}

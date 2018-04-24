@@ -316,3 +316,19 @@ void SDLEventReader::haltServices()
     PadderCommon::lockInputDevices();
     PadderCommon::unlockInputDevices();
 }
+
+
+QMap<SDL_JoystickID, InputDevice*> *SDLEventReader::getJoysticks() const {
+
+    return joysticks;
+}
+
+AntiMicroSettings *SDLEventReader::getSettings() const {
+
+    return settings;
+}
+
+QTimer const& SDLEventReader::getPollRateTimer() {
+
+    return pollRateTimer;
+}

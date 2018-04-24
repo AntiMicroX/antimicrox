@@ -29,13 +29,11 @@ class MouseHelper : public QObject
 
 public:
     explicit MouseHelper(QObject *parent = nullptr);
-    QDesktopWidget* getDesktopWidget();
-
+    QDesktopWidget* getDesktopWidget() const;
     bool springMouseMoving;
     int previousCursorLocation[2];
     int pivotPoint[2];
     QTimer mouseTimer;
-    QDesktopWidget *deskWid;
 
 public slots:
     void deleteDeskWid();
@@ -43,6 +41,9 @@ public slots:
     
 private slots:
     void resetSpringMouseMoving();
+
+private:
+    QDesktopWidget *deskWid;
 };
 
 #endif // MOUSEHELPER_H

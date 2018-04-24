@@ -192,3 +192,13 @@ QString XMLConfigMigration::version0006Migration()
 
     return tempXmlString;
 }
+
+QXmlStreamReader* XMLConfigMigration::getReader() const {
+
+    return reader;
+}
+
+int XMLConfigMigration::getFileVersion() const {
+
+    return fileVersion;
+}

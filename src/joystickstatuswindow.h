@@ -35,11 +35,12 @@ public:
     explicit JoystickStatusWindow(InputDevice *joystick, QWidget *parent = nullptr);
     ~JoystickStatusWindow();
 
-protected:
-    InputDevice *joystick;
+    InputDevice* getJoystick() const;
 
 private:
     Ui::JoystickStatusWindow *ui;
+
+    InputDevice *joystick;
 
 private slots:
     void restoreButtonStates(int code);

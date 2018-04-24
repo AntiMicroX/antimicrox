@@ -36,25 +36,26 @@ class QXmlStreamWriter;
 class SetJoystick : public QObject
 {
     Q_OBJECT
+
 public:
     explicit SetJoystick(InputDevice *device, int index, QObject *parent=0);
     explicit SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent=0);
     ~SetJoystick();
 
-    JoyAxis* getJoyAxis(int index);
-    JoyButton* getJoyButton(int index);
-    JoyDPad* getJoyDPad(int index);
-    JoyControlStick* getJoyStick(int index);
-    VDPad *getVDPad(int index);
+    JoyAxis* getJoyAxis(int index) const;
+    JoyButton* getJoyButton(int index) const;
+    JoyDPad* getJoyDPad(int index) const;
+    JoyControlStick* getJoyStick(int index) const;
+    VDPad *getVDPad(int index) const;
 
-    int getNumberButtons ();
-    int getNumberAxes();
-    int getNumberHats();
-    int getNumberSticks();
-    int getNumberVDPads();
+    int getNumberButtons() const;
+    int getNumberAxes() const;
+    int getNumberHats() const;
+    int getNumberSticks() const;
+    int getNumberVDPads() const;
 
-    int getIndex();
-    int getRealIndex(); // unsigned
+    int getIndex() const;
+    int getRealIndex() const; // unsigned
     virtual void refreshButtons ();
     virtual void refreshAxes();
     virtual void refreshHats();
@@ -65,17 +66,17 @@ public:
     void removeVDPad(int index);
     void setIgnoreEventState(bool ignore);
 
-    InputDevice* getInputDevice();
+    InputDevice* getInputDevice() const;
 
     void setName(QString name);
-    QString getName();
+    QString getName() const;
     QString getSetLabel();
 
     void raiseAxesDeadZones(int deadZone=0);
     void currentAxesDeadZones(QList<int> *axesDeadZones);
     void setAxesDeadZones(QList<int> *axesDeadZones);
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
-    QList<JoyButton*> getLastClickedButtons();
+    QList<JoyButton*> getLastClickedButtons() const;
     void removeAllBtnFromQueue();
     int getCountBtnInList(QString partialName);
 
@@ -93,21 +94,11 @@ protected:
     void deleteSticks();
     void deleteVDpads();
 
+    QHash<int, JoyAxis*>* getAxes();
+
     void enableButtonConnections(JoyButton *button);
     void enableAxisConnections(JoyAxis *axis);
     void enableHatConnections(JoyDPad *dpad);
-
-    QHash<int, JoyButton*> buttons;
-    QHash<int, JoyAxis*> axes;
-    QHash<int, JoyDPad*> hats;
-    QHash<int, JoyControlStick*> sticks;
-    QHash<int, VDPad*> vdpads;
-
-    QList<JoyButton*> lastClickedButtons;
-
-    int index;
-    InputDevice *device;
-    QString name;
 
 signals:
     void setChangeActivated(int index);
@@ -175,6 +166,19 @@ protected slots:
     void propogateSetStickNameChange();
     void propogateSetDPadNameChange();
     void propogateSetVDPadNameChange();
+
+private:
+    QHash<int, JoyButton*> buttons;
+    QHash<int, JoyAxis*> axes;
+    QHash<int, JoyDPad*> hats;
+    QHash<int, JoyControlStick*> sticks;
+    QHash<int, VDPad*> vdpads;
+
+    QList<JoyButton*> lastClickedButtons;
+
+    int index;
+    InputDevice *device;
+    QString name;
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

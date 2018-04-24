@@ -26,22 +26,22 @@
 class VirtualMousePushButton : public QPushButton
 {
     Q_OBJECT
+
 public:
     explicit VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent = nullptr);
 
-    int getMouseCode(); // unsigned
-    JoyButtonSlot::JoySlotInputAction getMouseMode();
-
-
-protected:
-    int code; // unsigned
-    JoyButtonSlot::JoySlotInputAction mode;
+    int getMouseCode() const; // unsigned
+    JoyButtonSlot::JoySlotInputAction getMouseMode() const;
 
 signals:
     void mouseSlotCreated(JoyButtonSlot *tempslot);
 
 private slots:
     void createTempSlot();
+
+private:
+    int code; // unsigned
+    JoyButtonSlot::JoySlotInputAction mode;
 };
 
 #endif // VIRTUALMOUSEPUSHBUTTON_H

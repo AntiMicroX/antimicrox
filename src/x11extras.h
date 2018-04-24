@@ -75,6 +75,9 @@ public:
     static X11Extras* getInstance();
     static void deleteInstance();
 
+    QHash<QString, QString> const& getKnownAliases();
+    Display *get_Display() const;
+
     static const QString mouseDeviceName;
     static const QString keyboardDeviceName;
     static const QString xtestMouseDeviceName;
@@ -88,13 +91,15 @@ protected:
     bool windowIsViewable(Display *display, Window window);
     bool isWindowRelevant(Display *display, Window window);
 
-    Display *_display;
-    static X11Extras *_instance;
-    QHash<QString, QString> knownAliases;
+    static X11Extras *_instance;  
     static QString _customDisplayString;
     
 public slots:
     QPoint getPos();
+
+private:
+    QHash<QString, QString> knownAliases;
+    Display *_display;
 };
 
 #endif // X11EXTRAS_H

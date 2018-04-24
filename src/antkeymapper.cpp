@@ -142,14 +142,14 @@ bool AntKeyMapper::isModifierKey(int qkey)
     return internalMapper->isModifier(qkey);
 }
 
-QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper()
+QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return nativeKeyMapper;
 }
 
-QtKeyMapperBase* AntKeyMapper::getKeyMapper()
+QtKeyMapperBase* AntKeyMapper::getKeyMapper() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

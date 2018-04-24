@@ -30,6 +30,7 @@ class JoyAxis;
 class JoyAxisButton : public JoyGradientButton
 {
     Q_OBJECT
+
 public:
     explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent=0);
 
@@ -42,7 +43,6 @@ public:
 
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false,
                                        bool updateActiveString=true);
-    JoyAxis* getAxis();
     virtual void setVDPad(VDPad *vdpad);
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
@@ -50,14 +50,15 @@ public:
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
+    JoyAxis* getAxis() const;
     static const QString xmlName;
 
-protected:
-    JoyAxis *axis;
 
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
 
+private:
+    JoyAxis *axis;
 };
 
 #endif // JOYAXISBUTTON_H

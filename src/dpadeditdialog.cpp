@@ -421,3 +421,13 @@ void DPadEditDialog::updateWindowTitleDPadName()
 
     setWindowTitle(temp);
 }
+
+JoyDPad* DPadEditDialog::getDPad() const {
+
+    return dpad;
+}
+
+DPadEditDialogHelper const& DPadEditDialog::getHelper() {
+
+    return helper;
+}

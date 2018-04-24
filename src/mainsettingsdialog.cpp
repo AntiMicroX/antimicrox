@@ -2088,3 +2088,43 @@ void MainSettingsDialog::selectLogFile() {
       ui->logFilePathEdit->setText(newLogFile);
     }
 }
+
+AntiMicroSettings *MainSettingsDialog::getSettings() const {
+
+    return settings;
+}
+
+QMap<QString, AutoProfileInfo*>* MainSettingsDialog::getDefaultAutoProfiles() {
+
+    return &defaultAutoProfiles;
+}
+
+QMap<QString, QList<AutoProfileInfo*> >* MainSettingsDialog::getDeviceAutoProfiles() {
+
+    return &deviceAutoProfiles;
+}
+
+QMap<QString, QList<AutoProfileInfo*> >* MainSettingsDialog::getExeAutoProfiles() {
+
+    return &exeAutoProfiles;
+}
+
+QList<AutoProfileInfo*>* MainSettingsDialog::getDefaultList() {
+
+    return &defaultList;
+}
+
+QList<AutoProfileInfo*>* MainSettingsDialog::getProfileList() {
+
+    return &profileList;
+}
+
+AutoProfileInfo* MainSettingsDialog::getAllDefaultProfile() const {
+
+    return allDefaultProfile;
+}
+
+QList<InputDevice*>* MainSettingsDialog::getConnectedDevices() const {
+
+    return connectedDevices;
+}

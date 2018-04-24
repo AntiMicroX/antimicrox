@@ -204,3 +204,8 @@ void AppLaunchHelper::establishMouseTimerConnections()
 
     JoyButton::establishMouseTimerConnections();
 }
+
+AntiMicroSettings *AppLaunchHelper::getSettings() const {
+
+    return settings;
+}

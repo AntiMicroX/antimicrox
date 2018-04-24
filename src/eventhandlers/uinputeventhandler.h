@@ -27,6 +27,7 @@
 class UInputEventHandler : public BaseEventHandler
 {
     Q_OBJECT
+
 public:
     explicit UInputEventHandler(QObject *parent = nullptr);
     ~UInputEventHandler();
@@ -48,6 +49,11 @@ public:
 
     virtual void sendTextEntryEvent(QString maintext);
 
+    int getKeyboardFileHandler();
+    int getMouseFileHandler();
+    int getSpringMouseFileHandler();
+    const QString getUinputDeviceLocation();
+
 protected:
     int openUInputHandle();
     void setKeyboardEvents(int filehandle);
@@ -61,15 +67,17 @@ protected:
     void write_uinput_event(int filehandle, int type,
                             int code, int value, bool syn=true); // .., .., unsigned, unsigned, .., ..
 
+private slots:
+#ifdef WITH_X11
+    void x11ResetMouseAccelerationChange();
+#endif
+
+private:
     int keyboardFileHandler;
     int mouseFileHandler;
     int springMouseFileHandler;
     QString uinputDeviceLocation;
 
-private slots:
-#ifdef WITH_X11
-    void x11ResetMouseAccelerationChange();
-#endif
 };
 
 #endif // UINPUTEVENTHANDLER_H

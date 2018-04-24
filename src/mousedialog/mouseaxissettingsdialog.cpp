@@ -445,3 +445,18 @@ void MouseAxisSettingsDialog::calculateExtraAccelerationCurve()
         updateExtraAccelerationCurvePresetComboBox(temp);
     }
 }
+
+JoyAxis* MouseAxisSettingsDialog::getAxis() const {
+
+    return axis;
+}
+
+SpringModeRegionPreview* MouseAxisSettingsDialog::getSpringPreviewWidget() const {
+
+    return springPreviewWidget;
+}
+
+MouseAxisSettingsDialogHelper const& MouseAxisSettingsDialog::getHelper() {
+
+    return helper;
+}

@@ -35,17 +35,18 @@ public:
     explicit SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent = nullptr);
     ~SetAxisThrottleDialog();
     
-private:
-    Ui::SetAxisThrottleDialog *ui;
-
-protected:
-    JoyAxis *axis;
+    JoyAxis* getAxis() const;
 
 signals:
     void initiateSetAxisThrottleChange();
 
 private slots:
     void propogateThrottleChange();
+
+private:
+    Ui::SetAxisThrottleDialog *ui;
+
+    JoyAxis *axis;
 
 };
 

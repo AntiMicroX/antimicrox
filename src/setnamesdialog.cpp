@@ -65,3 +65,8 @@ void SetNamesDialog::saveSetNameChanges()
         }
     }
 }
+
+InputDevice* SetNamesDialog::getDevice() const {
+
+    return device;
+}

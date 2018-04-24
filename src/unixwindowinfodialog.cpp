@@ -113,22 +113,22 @@ void UnixWindowInfoDialog::populateOption()
     }
 }
 
-UnixWindowInfoDialog::DialogWindowOption UnixWindowInfoDialog::getSelectedOptions()
+UnixWindowInfoDialog::DialogWindowOption UnixWindowInfoDialog::getSelectedOptions() const
 {
     return selectedMatch;
 }
 
-QString UnixWindowInfoDialog::getWindowClass()
+QString UnixWindowInfoDialog::getWindowClass() const
 {
     return winClass;
 }
 
-QString UnixWindowInfoDialog::getWindowName()
+QString UnixWindowInfoDialog::getWindowName() const
 {
     return winName;
 }
 
-QString UnixWindowInfoDialog::getWindowPath()
+QString UnixWindowInfoDialog::getWindowPath() const
 {
     return winPath;
 }

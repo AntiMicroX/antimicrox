@@ -212,3 +212,28 @@ void XMLConfigReader::initDeviceTypes()
     deviceTypes.append(GameController::xmlName);
 
 }
+
+QXmlStreamReader* XMLConfigReader::getXml() const {
+
+    return xml;
+}
+
+QString const& XMLConfigReader::getFileName() {
+
+    return fileName;
+}
+
+QFile* XMLConfigReader::getConfigFile() const {
+
+    return configFile;
+}
+
+InputDevice* XMLConfigReader::getJoystick() const {
+
+    return joystick;
+}
+
+QStringList const& XMLConfigReader::getDeviceTypes() {
+
+    return deviceTypes;
+}

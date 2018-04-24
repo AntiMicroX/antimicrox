@@ -33,18 +33,23 @@ public:
     ~XMLConfigWriter();
     void setFileName(QString filename);
     bool hasError();
-    QString getErrorString();
+    QString getErrorString() const;
 
-protected:
+    QXmlStreamWriter *getXml() const;
+    QString const& getFileName();
+    QFile *getConfigFile() const;
+    InputDevice* getJoystick() const;
+    
+public slots:
+    void write(InputDevice* joystick);
+
+private:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
     InputDevice* joystick;
     bool writerError;
     QString writerErrorString;
-    
-public slots:
-    void write(InputDevice* joystick);
 
 };
 

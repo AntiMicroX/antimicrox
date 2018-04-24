@@ -53,3 +53,8 @@ void SetAxisThrottleDialog::propogateThrottleChange()
 
     emit initiateSetAxisThrottleChange();
 }
+
+JoyAxis* SetAxisThrottleDialog::getAxis() const {
+
+    return axis;
+}

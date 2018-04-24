@@ -63,14 +63,14 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
     connect(this, SIGNAL(clicked()), this, SLOT(createTempSlot()));
 }
 
-int VirtualMousePushButton::getMouseCode()
+int VirtualMousePushButton::getMouseCode() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return code;
 }
 
-JoyButtonSlot::JoySlotInputAction VirtualMousePushButton::getMouseMode()
+JoyButtonSlot::JoySlotInputAction VirtualMousePushButton::getMouseMode() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

@@ -63,7 +63,7 @@ void MouseHelper::deleteDeskWid()
     }
 }
 
-QDesktopWidget* MouseHelper::getDesktopWidget()
+QDesktopWidget* MouseHelper::getDesktopWidget() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

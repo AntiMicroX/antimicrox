@@ -35,9 +35,9 @@ class AdvanceStickAssignmentDialog : public QDialog
 public:
     explicit AdvanceStickAssignmentDialog(Joystick *joystick, QWidget *parent = nullptr);
     ~AdvanceStickAssignmentDialog();
-    
-protected:
-    Joystick *joystick;
+
+    Joystick *getJoystick() const;
+       
 
 signals:
     void stickConfigurationChanged();
@@ -87,6 +87,10 @@ private slots:
     void quickAssignVDPadRight();
 
     void reenableButtonEvents();
+
+private:
+    Joystick *joystick;
+
 };
 
 #endif // ADVANCESTICKASSIGNMENTDIALOG_H

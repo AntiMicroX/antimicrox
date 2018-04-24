@@ -32,8 +32,13 @@ class SpringModeRegionPreview;
 class MouseAxisSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
+
 public:
     explicit MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent = nullptr);
+
+    JoyAxis* getAxis() const;
+    SpringModeRegionPreview* getSpringPreviewWidget() const;
+    MouseAxisSettingsDialogHelper const& getHelper();
 
 protected:
     void selectCurrentMouseModePreset();
@@ -51,10 +56,6 @@ protected:
     void calculateAccelExtraDuration();
     void calculateReleaseSpringRadius();
     void calculateExtraAccelerationCurve();
-
-    JoyAxis *axis;
-    SpringModeRegionPreview *springPreviewWidget;
-    MouseAxisSettingsDialogHelper helper;
     
 public slots:
     void changeMouseMode(int index);
@@ -73,6 +74,12 @@ public slots:
 
 private slots:
     void updateExtraAccelerationCurve(int index);
+
+private:
+    JoyAxis *axis;
+    SpringModeRegionPreview *springPreviewWidget;
+    MouseAxisSettingsDialogHelper helper;
+
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

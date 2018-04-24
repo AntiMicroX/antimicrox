@@ -37,16 +37,19 @@ public:
                                              QWidget *parent = nullptr);
     ~EditAllDefaultAutoProfileDialog();
 
-    AutoProfileInfo* getAutoProfile();
+    AutoProfileInfo* getAutoProfile() const;
+    AntiMicroSettings* getSettings() const;
+
 
 protected:
     virtual void accept();
 
-    AutoProfileInfo *info;
-    AntiMicroSettings *settings;
 
 private:
     Ui::EditAllDefaultAutoProfileDialog *ui;
+
+    AutoProfileInfo *info;
+    AntiMicroSettings *settings;
 
 private slots:
     void openProfileBrowseDialog();

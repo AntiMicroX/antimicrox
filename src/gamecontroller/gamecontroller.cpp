@@ -1008,3 +1008,24 @@ void GameController::rawDPadEvent(int index, int value)
         emit rawDPadButtonRelease(index, value);
     }
 }
+
+
+QHash<int, bool> GameController::getRawbuttons() const  {
+
+    return rawbuttons;
+}
+
+QHash<int, int> GameController::getAxisvalues() const  {
+
+    return axisvalues;
+}
+
+QHash<int, int> GameController::getDpadvalues() const  {
+
+    return dpadvalues;
+}
+
+SDL_GameController* GameController::getController() const  {
+
+    return controller;
+}

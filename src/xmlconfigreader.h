@@ -20,8 +20,6 @@
 
 #include <QObject>
 
-
-
 class InputDevice;
 class QXmlStreamReader;
 class QFile;
@@ -29,6 +27,7 @@ class QFile;
 class XMLConfigReader : public QObject
 {
     Q_OBJECT
+
 public:
     explicit XMLConfigReader(QObject *parent = nullptr);
     ~XMLConfigReader();
@@ -38,17 +37,24 @@ public:
     bool hasError();
     bool read();
 
+    QXmlStreamReader *getXml() const;
+    QString const& getFileName();
+    QFile* getConfigFile() const;
+    InputDevice* getJoystick() const;
+    QStringList const& getDeviceTypes();
+
 protected:
     void initDeviceTypes();
+    
+public slots:
+    void configJoystick(InputDevice *joystick);
 
+private:
     QXmlStreamReader *xml;
     QString fileName;
     QFile *configFile;
     InputDevice* joystick;
     QStringList deviceTypes;
-    
-public slots:
-    void configJoystick(InputDevice *joystick);
 
 };
 

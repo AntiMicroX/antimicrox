@@ -70,35 +70,35 @@ SetJoystick::~SetJoystick()
     removeAllBtnFromQueue();
 }
 
-JoyButton* SetJoystick::getJoyButton(int index)
+JoyButton* SetJoystick::getJoyButton(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return buttons.value(index);
 }
 
-JoyAxis* SetJoystick::getJoyAxis(int index)
+JoyAxis* SetJoystick::getJoyAxis(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return axes.value(index);
 }
 
-JoyDPad* SetJoystick::getJoyDPad(int index)
+JoyDPad* SetJoystick::getJoyDPad(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return hats.value(index);
 }
 
-VDPad* SetJoystick::getVDPad(int index)
+VDPad* SetJoystick::getVDPad(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return vdpads.value(index);
 }
 
-JoyControlStick* SetJoystick::getJoyStick(int index)
+JoyControlStick* SetJoystick::getJoyStick(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -247,35 +247,35 @@ void SetJoystick::deleteHats()
     hats.clear();
 }
 
-int SetJoystick::getNumberButtons()
+int SetJoystick::getNumberButtons() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return buttons.count();
 }
 
-int SetJoystick::getNumberAxes()
+int SetJoystick::getNumberAxes() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return axes.count();
 }
 
-int SetJoystick::getNumberHats()
+int SetJoystick::getNumberHats() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return hats.count();
 }
 
-int SetJoystick::getNumberSticks()
+int SetJoystick::getNumberSticks() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return sticks.size();
 }
 
-int SetJoystick::getNumberVDPads()
+int SetJoystick::getNumberVDPads() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -689,14 +689,14 @@ void SetJoystick::removeVDPad(int index)
     }
 }
 
-int SetJoystick::getIndex()
+int SetJoystick::getIndex() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return index;
 }
 
-int SetJoystick::getRealIndex()
+int SetJoystick::getRealIndex() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -721,7 +721,7 @@ void SetJoystick::propogateSetButtonClick(int button)
     }
 }
 
-QList<JoyButton*> SetJoystick::getLastClickedButtons() {
+QList<JoyButton*> SetJoystick::getLastClickedButtons() const {
 
     return lastClickedButtons;
 }
@@ -1097,7 +1097,7 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
     }
 }
 
-InputDevice* SetJoystick::getInputDevice()
+InputDevice* SetJoystick::getInputDevice() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -1122,7 +1122,7 @@ void SetJoystick::setName(QString name)
     }
 }
 
-QString SetJoystick::getName()
+QString SetJoystick::getName() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -1287,4 +1287,9 @@ void SetJoystick::setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle)
         JoyAxis *temp = axes.value(axisNum);
         temp->setInitialThrottle(throttle);
     }
+}
+
+QHash<int, JoyAxis*>* SetJoystick::getAxes() {
+
+    return &axes;
 }

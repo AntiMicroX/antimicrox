@@ -39,13 +39,13 @@ QString JoyDPadButtonWidget::generateLabel()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString temp = QString();
-    if (!button->getActionName().isEmpty() && displayNames)
+    if (!getJoyButton()->getActionName().isEmpty() && displayNames)
     {
-        temp = button->getActionName();
+        temp = getJoyButton()->getActionName();
     }
     else
     {
-        temp = button->getCalculatedActiveZoneSummary();
+        temp = getJoyButton()->getCalculatedActiveZoneSummary();
     }
     temp.replace("&", "&&");
 

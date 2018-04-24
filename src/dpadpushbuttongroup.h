@@ -29,14 +29,28 @@ class DPadPushButton;
 class DPadPushButtonGroup : public QGridLayout
 {
     Q_OBJECT
+
 public:
     explicit DPadPushButtonGroup(JoyDPad *dpad, bool displayNames = false, QWidget *parent = nullptr);
 
-    JoyDPad *getDPad();
+    JoyDPad *getDPad() const;
 
 protected:
     void generateButtons();
 
+signals:
+    void buttonSlotChanged();
+
+public slots:
+    void changeButtonLayout();
+    void toggleNameDisplay();
+
+private slots:
+    void propogateSlotsChanged();
+    void openDPadButtonDialog();
+    void showDPadDialog();
+
+private:
     JoyDPad *dpad;
     bool displayNames;
 
@@ -51,18 +65,6 @@ protected:
     JoyDPadButtonWidget *downRightButton;
 
     DPadPushButton *dpadWidget;
-
-signals:
-    void buttonSlotChanged();
-
-public slots:
-    void changeButtonLayout();
-    void toggleNameDisplay();
-
-private slots:
-    void propogateSlotsChanged();
-    void openDPadButtonDialog();
-    void showDPadDialog();
 };
 
 #endif // DPADPUSHBUTTONGROUP_H

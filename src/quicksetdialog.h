@@ -43,8 +43,23 @@ public:
     ~QuickSetDialog();
 
     JoyButton* getLastPressedButton();
+    InputDevice *getJoystick() const;
+    QDialog *getCurrentButtonDialog() const;
+    const char* getInvokeString() const;
+    ButtonEditDialogHelper* getHelper() const;
+    JoyButtonSlot::JoySlotInputAction getMode() const;
 
-protected:
+
+private slots:
+    void showAxisButtonDialog();
+    void showButtonDialog();
+    void showStickButtonDialog();
+    void showDPadButtonDialog();
+    void restoreButtonStates();
+
+private:
+    Ui::QuickSetDialog *ui;
+
     InputDevice *joystick;
     QDialog *currentButtonDialog;
     const char* invokeString;
@@ -57,15 +72,6 @@ protected:
     bool withTrue;
     JoyButton* lastButton;
 
-private:
-    Ui::QuickSetDialog *ui;
-
-private slots:
-    void showAxisButtonDialog();
-    void showButtonDialog();
-    void showStickButtonDialog();
-    void showDPadButtonDialog();
-    void restoreButtonStates();
 };
 
 #endif // QUICKSETDIALOG_H

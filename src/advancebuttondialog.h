@@ -39,14 +39,12 @@ public:
     explicit AdvanceButtonDialog(JoyButton *button, QWidget *parent=0);
     ~AdvanceButtonDialog();
 
-private:
-    Ui::AdvanceButtonDialog *ui;
+    int getOldRow() const;
+    JoyButton *getButton() const;
+    AdvanceButtonDialogHelper const& getHelper();
 
-    enum SlotTypeComboIndex {
-        KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, ExecuteSlot,
-        HoldSlot, LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot,
-        ReleaseSlot, SetChangeSlot, TextEntry
-    };
+    static const int MINIMUMTURBO;
+
 
 protected:
     void connectButtonEvents(SimpleKeyGrabberButton *button);
@@ -64,10 +62,7 @@ protected:
     void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();
 
-    int oldRow;
-    JoyButton *button;
-    AdvanceButtonDialogHelper helper;
-    static const int MINIMUMTURBO;
+
 
 signals:
     void toggleChanged(bool state);
@@ -121,6 +116,21 @@ private slots:
 
     void changeSlotTypeDisplay(int index);
     void changeSlotHelpText(int index);
+
+private:
+
+    Ui::AdvanceButtonDialog *ui;
+
+    enum SlotTypeComboIndex {
+        KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, ExecuteSlot,
+        HoldSlot, LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot,
+        ReleaseSlot, SetChangeSlot, TextEntry
+    };
+
+    int oldRow;
+    JoyButton *button;
+    AdvanceButtonDialogHelper helper;
+
 };
 
 #endif // ADVANCEBUTTONDIALOG_H

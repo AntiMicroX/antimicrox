@@ -34,7 +34,7 @@ JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoy
     this->dpad = dpad;
 }
 
-QString JoyDPadButton::getDirectionName()
+QString JoyDPadButton::getDirectionName() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -172,14 +172,14 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     }
 }
 
-JoyDPad* JoyDPadButton::getDPad()
+JoyDPad* JoyDPadButton::getDPad() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return dpad;
 }
 
-int JoyDPadButton::getDirection()
+int JoyDPadButton::getDirection() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

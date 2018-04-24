@@ -112,11 +112,6 @@ void VirtualKeyPushButton::processSingleSelection()
     emit keycodeObtained(keycode, qkeyalias);
 }
 
-int VirtualKeyPushButton::getKeycode() {
-
-    return keycode;
-}
-
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -222,4 +217,34 @@ int VirtualKeyPushButton::calculateFontSize()
     }
 
     return tempScaledFont.pointSize();
+}
+
+int VirtualKeyPushButton::getKeycode() const {
+
+    return keycode;
+}
+
+int VirtualKeyPushButton::getQkeyalias() const {
+
+    return qkeyalias;
+}
+
+QString VirtualKeyPushButton::getXcodestring() const {
+
+    return xcodestring;
+}
+
+QString VirtualKeyPushButton::getDisplayString() const {
+
+    return displayString;
+}
+
+bool VirtualKeyPushButton::getCurrentlyActive() const {
+
+    return currentlyActive;
+}
+
+bool VirtualKeyPushButton::getOnCurrentButton() const {
+
+    return onCurrentButton;
 }

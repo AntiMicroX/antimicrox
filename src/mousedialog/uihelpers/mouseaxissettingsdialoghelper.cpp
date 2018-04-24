@@ -86,3 +86,8 @@ void MouseAxisSettingsDialogHelper::updateReleaseSpringRadius(int value)
     axis->getNAxisButton()->setSpringDeadCircleMultiplier(value);
 }
 
+JoyAxis* MouseAxisSettingsDialogHelper::getAxis() const {
+
+    return axis;
+}
+

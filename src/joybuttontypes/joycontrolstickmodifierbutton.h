@@ -38,7 +38,7 @@ public:
     virtual double getLastMouseDistanceFromDeadZone();
 
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
-    JoyControlStick *getStick();
+
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
@@ -46,9 +46,11 @@ public:
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
+    JoyControlStick *getStick() const;
+
     static const QString xmlName;
 
-protected:
+private:
     JoyControlStick *stick;
 
 };

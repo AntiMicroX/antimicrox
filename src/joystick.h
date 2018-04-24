@@ -42,9 +42,11 @@ public:
     virtual int getNumberRawAxes();
     virtual int getNumberRawHats();
 
+    SDL_Joystick* getJoyhandle() const;
+
     static const QString xmlName;
 
-protected:
+private:
     SDL_Joystick *joyhandle;
 
 };

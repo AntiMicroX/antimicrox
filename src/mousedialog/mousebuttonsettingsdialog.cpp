@@ -308,3 +308,18 @@ void MouseButtonSettingsDialog::updateExtraAccelerationCurve(int index)
         PadderCommon::inputDaemonMutex.unlock();
     }
 }
+
+JoyButton *MouseButtonSettingsDialog::getButton() const {
+
+    return button;
+}
+
+SpringModeRegionPreview *MouseButtonSettingsDialog::getSpringPreviewWidget() const {
+
+    return springPreviewWidget;
+}
+
+MouseButtonSettingsDialogHelper const& MouseButtonSettingsDialog::getHelper() {
+
+    return helper;
+}

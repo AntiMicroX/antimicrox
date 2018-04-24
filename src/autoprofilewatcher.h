@@ -44,22 +44,6 @@ protected:
     QString findAppLocation();
     void clearProfileAssignments();
 
-    QTimer appTimer;
-    AntiMicroSettings *settings;
-    // Path, QList<AutoProfileInfo*>
-    QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
-    // WM_CLASS, QList<AutoProfileInfo*>
-    QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;
-    // WM_NAME, QList<AutoProfileInfo*>
-    QHash<QString, QList<AutoProfileInfo*> > windowNameProfileAssignments;
-    // GUID, AutoProfileInfo*
-    QHash<QString, AutoProfileInfo*> defaultProfileAssignments;
-    //QList<AutoProfileInfo*> *customDefaults;
-    AutoProfileInfo *allDefaultInfo;
-    QString currentApplication;
-    QString currentAppWindowTitle;
-    QSet<QString> guidSet;
-
 signals:
     void foundApplicableProfile(AutoProfileInfo *info);
 
@@ -68,6 +52,18 @@ public slots:
 
 private slots:
     void runAppCheck();
+
+private:
+    QTimer appTimer;
+    AntiMicroSettings *settings;
+    QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
+    QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;
+    QHash<QString, QList<AutoProfileInfo*> > windowNameProfileAssignments;
+    QHash<QString, AutoProfileInfo*> defaultProfileAssignments;
+    AutoProfileInfo *allDefaultInfo;
+    QString currentApplication;
+    QString currentAppWindowTitle;
+    QSet<QString> guidSet;
 };
 
 #endif // AUTOPROFILEWATCHER_H

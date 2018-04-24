@@ -45,7 +45,7 @@ JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDir
     this->stick = stick;
 }
 
-QString JoyControlStickButton::getDirectionName()
+QString JoyControlStickButton::getDirectionName() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -195,14 +195,7 @@ int JoyControlStickButton::getRealJoyNumber()
     return index;
 }
 
-JoyControlStick* JoyControlStickButton::getStick()
-{
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    return stick;
-}
-
-JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
+JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -325,4 +318,12 @@ double JoyControlStickButton::getCurrentSpringDeadCircle()
     }
 
     return result;
+}
+
+
+JoyControlStick* JoyControlStickButton::getStick() const {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return stick;
 }
