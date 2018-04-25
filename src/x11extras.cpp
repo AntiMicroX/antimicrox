@@ -291,7 +291,6 @@ int X11Extras::getApplicationPid(Window window)
     unsigned long nitems = 0;
     unsigned long bytes_after = 0;
     unsigned char *prop = 0;
-    int status = 0;
     int pid = 0;
     Window finalwindow = 0;
 
@@ -355,6 +354,8 @@ int X11Extras::getApplicationPid(Window window)
 
     if (finalwindow)
     {
+        int status = 0;
+
         status = XGetWindowProperty(display, finalwindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
         if ((status == 0) && prop)
         {

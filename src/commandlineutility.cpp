@@ -126,7 +126,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                     else
                     {
                         QString tempProfileLocation = fileInfo.absoluteFilePath();
-                        ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                        ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
                         tempInfo.setProfileLocation(tempProfileLocation);
                         controllerOptionsList.replace(currentListsIndex, tempInfo);
                     }
@@ -152,7 +152,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                         controllerNumber = tempNumber;
                     }
 
-                    ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                    ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
                     tempInfo.setControllerNumber(tempNumber);
                     controllerOptionsList.replace(currentListsIndex, tempInfo);
                 }
@@ -163,7 +163,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                         controllerIDString = temp;
                     }
 
-                    ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                    ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
                     tempInfo.setControllerID(temp);
                     controllerOptionsList.replace(currentListsIndex, tempInfo);
                 }
@@ -179,7 +179,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
         }
         else if (unloadRegexp.exactMatch(temp))
         {
-            ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
             tempInfo.setProfileLocation("");
             tempInfo.setUnloadRequest(true);
             controllerOptionsList.replace(currentListsIndex, tempInfo);
@@ -197,14 +197,14 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                     if (validNumber)
                     {
                         controllerNumber = tempNumber;
-                        tempInfo = controllerOptionsList.at(currentListsIndex);
+                        tempInfo = getControllerOptionsList().at(currentListsIndex);
                         tempInfo.setControllerNumber(controllerNumber);
                         controllerOptionsList.replace(currentListsIndex, tempInfo);
                     }
                     else if (!temp.isEmpty())
                     {
                         controllerIDString = temp;
-                        tempInfo = controllerOptionsList.at(currentListsIndex);
+                        tempInfo = getControllerOptionsList().at(currentListsIndex);
                         tempInfo.setControllerID(controllerIDString);
                         controllerOptionsList.replace(currentListsIndex, tempInfo);
                     }
@@ -237,7 +237,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 if (validNumber && (tempNumber >= 1) && (tempNumber <= 8))
                 {
                     startSetNumber = tempNumber;
-                    ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                    ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
                     tempInfo.setStartSetNumber(startSetNumber);
                     controllerOptionsList.replace(currentListsIndex, tempInfo);
                 }
@@ -255,14 +255,14 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                         if (validNumber)
                         {
                             controllerNumber = tempNumber;
-                            ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
                             tempInfo.setControllerNumber(controllerNumber);
                             controllerOptionsList.replace(currentListsIndex, tempInfo);
                         }
                         else if (!temp.isEmpty())
                         {
                             controllerIDString = temp;
-                            ControllerOptionsInfo tempInfo = controllerOptionsList.at(currentListsIndex);
+                            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
                             tempInfo.setControllerID(controllerIDString);
                             controllerOptionsList.replace(currentListsIndex, tempInfo);
                         }
@@ -802,11 +802,11 @@ void CommandLineUtility::setErrorMessage(QString temp)
     encounteredError = true;
 }
 
-QList<ControllerOptionsInfo>* CommandLineUtility::getControllerOptionsList()
+QList<ControllerOptionsInfo> const& CommandLineUtility::getControllerOptionsList()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return &controllerOptionsList;
+    return controllerOptionsList;
 }
 
 bool CommandLineUtility::hasProfileInOptions()
@@ -815,7 +815,7 @@ bool CommandLineUtility::hasProfileInOptions()
 
     bool result = false;
 
-    QListIterator<ControllerOptionsInfo> iter(controllerOptionsList);
+    QListIterator<ControllerOptionsInfo> iter(getControllerOptionsList());
     while (iter.hasNext())
     {
         ControllerOptionsInfo temp = iter.next();

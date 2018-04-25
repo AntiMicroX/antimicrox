@@ -782,12 +782,12 @@ void AdvanceButtonDialog::updateSetSelection()
 
     PadderCommon::inputDaemonMutex.lock();
 
-    int condition_choice = 0;
     int chosen_set = -1;
     JoyButton::SetChangeCondition set_selection_condition = JoyButton::SetChangeDisabled;
 
     if (ui->setSelectionComboBox->currentIndex() > 0)
     {
+        int condition_choice = 0;
         condition_choice = (ui->setSelectionComboBox->currentIndex() + 2) % 3;
         chosen_set = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
 
@@ -1197,10 +1197,11 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *buttonslot = tempbutton->getValue();
-    int tempDistance = 0;
 
     if (buttonslot->getSlotMode() == JoyButtonSlot::JoyDistance)
     {
+        int tempDistance = 0;
+
         for (int i = 0; i < ui->slotListWidget->count(); i++)
         {
             SimpleKeyGrabberButton *button = ui->slotListWidget->item(i)

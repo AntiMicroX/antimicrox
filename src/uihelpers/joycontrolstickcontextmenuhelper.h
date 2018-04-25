@@ -31,18 +31,20 @@ class JoyButtonSlot;
 class JoyControlStickContextMenuHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> *tempSlots);
     void clearPendingSlots();
-
-protected:
-    JoyControlStick *stick;
-    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> pendingSlots;
+    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> const& getPendingSlots();
 
 public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
+
+private:
+    JoyControlStick *stick;
+    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> pendingSlots;
 };
 
 #endif // JOYCONTROLSTICKCONTEXTMENUHELPER_H

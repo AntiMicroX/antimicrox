@@ -61,9 +61,9 @@ void JoyControlStickContextMenuHelper::setFromPendingSlots()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (!pendingSlots.isEmpty())
+    if (!getPendingSlots().isEmpty())
     {
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot*> iter(pendingSlots);
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot*> iter(getPendingSlots());
         while (iter.hasNext())
         {
             iter.next();
@@ -100,4 +100,9 @@ void JoyControlStickContextMenuHelper::clearButtonsSlotsEventReset()
             button->clearSlotsEventReset();
         }
     }
+}
+
+QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> const& JoyControlStickContextMenuHelper::getPendingSlots() {
+
+    return pendingSlots;
 }

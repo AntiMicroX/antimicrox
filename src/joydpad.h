@@ -117,6 +117,26 @@ public:
     static const QString xmlName;
     static const int DEFAULTDPADDELAY; // unsigned
 
+signals:
+    void active(int value);
+    void released(int value);
+    void dpadNameChanged();
+    void dpadDelayChanged(int value);
+    void joyModeChanged();
+    void propertyUpdated();
+
+public slots:
+    void setDPadName(QString tempName);
+    void setButtonsSpringRelativeStatus(bool value);
+    void setDPadDelay(int value);
+    void setButtonsEasingDuration(double value);
+
+    void establishPropertyUpdatedConnection();
+    void disconnectPropertyUpdatedConnection();
+
+private slots:
+    void dpadDirectionChangeEvent();
+
 protected:
     void populateButtons();
     void createDeskEvent(bool ignoresets = false);
@@ -140,25 +160,6 @@ protected:
     int pendingEventDirection;
     bool pendingIgnoreSets;
 
-signals:
-    void active(int value);
-    void released(int value);
-    void dpadNameChanged();
-    void dpadDelayChanged(int value);
-    void joyModeChanged();
-    void propertyUpdated();
-
-public slots:
-    void setDPadName(QString tempName);
-    void setButtonsSpringRelativeStatus(bool value);
-    void setDPadDelay(int value);
-    void setButtonsEasingDuration(double value);
-
-    void establishPropertyUpdatedConnection();
-    void disconnectPropertyUpdatedConnection();
-
-private slots:
-    void dpadDirectionChangeEvent();
 };
 
 #endif // JOYDPAD_H

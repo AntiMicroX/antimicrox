@@ -714,19 +714,19 @@ void SetJoystick::propogateSetButtonClick(int button)
             emit setButtonClick(index, button);
             lastClickedButtons.append(jButton);
             qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
-            qDebug() << "List has " << lastClickedButtons.count() << " buttons";
+            qDebug() << "List has " << getLastClickedButtons().count() << " buttons";
         }
     }
 }
 
-QList<JoyButton*> SetJoystick::getLastClickedButtons() const {
+QList<JoyButton*> const& SetJoystick::getLastClickedButtons() const {
 
     return lastClickedButtons;
 }
 
 void SetJoystick::removeAllBtnFromQueue() {
 
-    if (!lastClickedButtons.isEmpty())
+    if (!getLastClickedButtons().isEmpty())
         lastClickedButtons.clear();
 
 }
@@ -735,7 +735,7 @@ int SetJoystick::getCountBtnInList(QString partialName) {
 
     int count = 0;
 
-    foreach(JoyButton* joyBtn, lastClickedButtons) {
+    foreach(const JoyButton* joyBtn, getLastClickedButtons()) {
         if (joyBtn->getPartialName(false, true) == partialName) count++;
     }
 

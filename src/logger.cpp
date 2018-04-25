@@ -179,7 +179,7 @@ void Logger::Log()
     QMutexLocker locker(&logMutex);
     Q_UNUSED(locker);
 
-    QListIterator<LogMessage> iter(pendingMessages);
+    QListIterator<LogMessage> iter(getPendingMessages());
     while (iter.hasNext())
     {
         LogMessage pendingMessage = iter.next();
@@ -428,5 +428,10 @@ void Logger::setCurrentErrorLogFile(QString filename) {
   instance->errorFile.open( QIODevice::WriteOnly | QIODevice::Append );
   instance->outErrorFileStream.setDevice( &instance->errorFile );
   instance->setCurrentErrorStream( &instance->outErrorFileStream );
+}
+
+QList<Logger::LogMessage> const& Logger::getPendingMessages() {
+
+    return pendingMessages;
 }
 

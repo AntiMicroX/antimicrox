@@ -59,9 +59,9 @@ void DPadEditDialogHelper::setFromPendingSlots()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (!pendingSlots.isEmpty())
+    if (!getPendingSlots().isEmpty())
     {
-        QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> iter(pendingSlots);
+        QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> iter(getPendingSlots());
         while (iter.hasNext())
         {
             iter.next();
@@ -102,4 +102,10 @@ void DPadEditDialogHelper::updateJoyDPadDelay(int value)
     {
         dpad->setDPadDelay(temp);
     }
+}
+
+
+QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> const& DPadEditDialogHelper::getPendingSlots() {
+
+    return pendingSlots;
 }

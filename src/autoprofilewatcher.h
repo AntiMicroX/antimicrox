@@ -30,6 +30,7 @@ class AutoProfileInfo;
 class AutoProfileWatcher : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent = nullptr);
     void startTimer();
@@ -37,6 +38,10 @@ public:
     QList<AutoProfileInfo*>* getCustomDefaults();
     AutoProfileInfo* getDefaultAllProfile();
     bool isGUIDLocked(QString guid);
+    QHash<QString, QList<AutoProfileInfo*> > const& getAppProfileAssignments();
+    QHash<QString, QList<AutoProfileInfo*> > const& getWindowClassProfileAssignments();
+    QHash<QString, QList<AutoProfileInfo*> > const& getWindowNameProfileAssignments();
+    QHash<QString, AutoProfileInfo*> const& getDefaultProfileAssignments();
 
     static const int CHECKTIME = 1000; // time in ms
 

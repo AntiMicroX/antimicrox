@@ -75,7 +75,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     while (iterGUIDs.hasNext())
     {
         QString guid = iterGUIDs.next();
-        if (!this->reservedGUIDs.contains(guid))
+        if (!getReservedGUIDs().contains(guid))
         {
             this->reservedGUIDs.append(guid);
         }
@@ -84,7 +84,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     bool allowDefault = false;
     if ((info->getGUID() != "all") &&
         (info->getGUID() != "") &&
-        !this->reservedGUIDs.contains(info->getGUID()))
+        !getReservedGUIDs().contains(info->getGUID()))
     {
         allowDefault = true;
     }
@@ -250,7 +250,7 @@ void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
     else if (!data.isNull())
     {
         InputDevice *device = data.value<InputDevice*>();
-        if (reservedGUIDs.contains(device->getGUIDString()))
+        if (getReservedGUIDs().contains(device->getGUIDString()))
         {
             ui->asDefaultCheckBox->setChecked(false);
             ui->asDefaultCheckBox->setEnabled(false);

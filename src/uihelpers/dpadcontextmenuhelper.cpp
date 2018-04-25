@@ -60,9 +60,9 @@ void DPadContextMenuHelper::setFromPendingSlots()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (!pendingSlots.isEmpty())
+    if (!getPendingSlots().isEmpty())
     {
-        QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> iter(pendingSlots);
+        QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> iter(getPendingSlots());
         while (iter.hasNext())
         {
             iter.next();
@@ -92,4 +92,9 @@ void DPadContextMenuHelper::clearButtonsSlotsEventReset()
         JoyDPadButton *button = iter.next().value();
         button->clearSlotsEventReset();
     }
+}
+
+QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> const& DPadContextMenuHelper::getPendingSlots() {
+
+    return pendingSlots;
 }

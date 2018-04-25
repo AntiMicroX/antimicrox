@@ -29,15 +29,16 @@ class GameControllerMappingDialogHelper : public QObject
 public:
     explicit GameControllerMappingDialogHelper(InputDevice *device, QObject *parent = nullptr);
 
-protected:
-    InputDevice *device;
-    QList<int> originalAxesDeadZones;
-
 public slots:
     void raiseDeadZones();
     void raiseDeadZones(int deadZone);
     void setupDeadZones();
     void restoreDeviceDeadZones();
+
+private:
+    InputDevice *device;
+    QList<int> originalAxesDeadZones;
+
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOGHELPER_H

@@ -48,6 +48,7 @@ public:
 
     static void setLogLevel(LogLevel level);
     LogLevel getCurrentLogLevel();
+    QList<LogMessage> const& getPendingMessages();
 
     static void setCurrentStream(QTextStream *stream);
     static void setCurrentLogFile(QString filename);

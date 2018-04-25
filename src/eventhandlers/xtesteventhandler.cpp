@@ -129,12 +129,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     AntKeyMapper *mapper = AntKeyMapper::getInstance();
 
-    // Populated as needed.
-    int shiftcode = 0;
-    int controlcode = 0;
-    int metacode = 0;
-    int altcode = 0;
-
     if ((mapper != nullptr) && mapper->getKeyMapper())
     {
         Display* display = X11Extras::getInstance()->display();
@@ -152,6 +146,8 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 {
                     if (temp.modifiers.testFlag(Qt::ShiftModifier))
                     {
+                        int shiftcode = 0;
+
                         if (shiftcode == 0)
                         {
                             shiftcode = XKeysymToKeycode(display, XK_Shift_L);
@@ -164,6 +160,8 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                     if (temp.modifiers.testFlag(Qt::ControlModifier))
                     {
+                        int controlcode = 0;
+
                         if (controlcode == 0)
                         {
                             controlcode = XKeysymToKeycode(display, XK_Control_L);
@@ -176,6 +174,8 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                     if (temp.modifiers.testFlag(Qt::AltModifier))
                     {
+                        int altcode = 0;
+
                         if (altcode == 0)
                         {
                             altcode = XKeysymToKeycode(display, XK_Alt_L);
@@ -188,6 +188,8 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                     if (temp.modifiers.testFlag(Qt::MetaModifier))
                     {
+                        int metacode = 0;
+
                         if (metacode == 0)
                         {
                             metacode = XKeysymToKeycode(display, XK_Meta_L);

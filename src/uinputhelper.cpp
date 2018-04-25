@@ -37,7 +37,7 @@ UInputHelper::~UInputHelper()
 
 void UInputHelper::populateKnownAliases()
 {
-    if (knownAliasesX11SymVK.isEmpty())
+    if (getKnownAliasesX11SymVK().isEmpty())
     {
         knownAliasesX11SymVK.insert("a", KEY_A);
         knownAliasesX11SymVK.insert("b", KEY_B);
@@ -151,7 +151,7 @@ void UInputHelper::populateKnownAliases()
         knownAliasesX11SymVK.insert("Multi_key", KEY_RIGHTALT);
     }
 
-    if (knownAliasesVKStrings.isEmpty())
+    if (getKnownAliasesVKStrings().isEmpty())
     {
         knownAliasesVKStrings.insert(KEY_A, tr("a"));
         knownAliasesVKStrings.insert(KEY_B, tr("b"));
@@ -300,9 +300,9 @@ QString UInputHelper::getDisplayString(int virtualkey)
     {
         temp = tr("[NO KEY]");
     }
-    else if (knownAliasesVKStrings.contains(virtualkey))
+    else if (getKnownAliasesVKStrings().contains(virtualkey))
     {
-        temp = knownAliasesVKStrings.value(virtualkey);
+        temp = getKnownAliasesVKStrings().value(virtualkey);
     }
 
     return temp;
@@ -311,10 +311,20 @@ QString UInputHelper::getDisplayString(int virtualkey)
 int UInputHelper::getVirtualKey(QString codestring)
 {
     int temp = 0;
-    if (knownAliasesX11SymVK.contains(codestring))
+    if (getKnownAliasesX11SymVK().contains(codestring))
     {
-        temp = knownAliasesX11SymVK.value(codestring);
+        temp = getKnownAliasesX11SymVK().value(codestring);
     }
 
     return temp;
+}
+
+QHash<QString, int> const& UInputHelper::getKnownAliasesX11SymVK() {
+
+    return knownAliasesX11SymVK;
+}
+
+QHash<int, QString> const& UInputHelper::getKnownAliasesVKStrings() {
+
+    return knownAliasesVKStrings;
 }

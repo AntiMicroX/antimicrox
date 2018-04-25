@@ -294,7 +294,7 @@ void JoyGradientButton::wheelEventVertical()
 
     if (buttonslot && (wheelSpeedY != 0))
     {
-        bool isActive = activeSlots.contains(buttonslot);
+        bool isActive = getActiveSlots().contains(buttonslot);
         if (isActive && activateEvent)
         {
             sendevent(buttonslot, true);
@@ -327,7 +327,7 @@ void JoyGradientButton::wheelEventVertical()
         while (!mouseWheelVerticalEventQueue.isEmpty())
         {
             buttonslot = mouseWheelVerticalEventQueue.dequeue();
-            bool isActive = activeSlots.contains(buttonslot);
+            bool isActive = getActiveSlots().contains(buttonslot);
             if (isActive && activateEvent)
             {
                 sendevent(buttonslot, true);
@@ -448,7 +448,7 @@ void JoyGradientButton::wheelEventHorizontal()
 
     if (buttonslot && (wheelSpeedX != 0))
     {
-        bool isActive = activeSlots.contains(buttonslot);
+        bool isActive = getActiveSlots().contains(buttonslot);
         if (isActive && activateEvent)
         {
             sendevent(buttonslot, true);
@@ -482,7 +482,7 @@ void JoyGradientButton::wheelEventHorizontal()
         while (!mouseWheelHorizontalEventQueue.isEmpty())
         {
             buttonslot = mouseWheelHorizontalEventQueue.dequeue();
-            bool isActive = activeSlots.contains(buttonslot);
+            bool isActive = getActiveSlots().contains(buttonslot);
             if (isActive)
             {
                 sendevent(buttonslot, true);

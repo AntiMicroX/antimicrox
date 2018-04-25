@@ -33,15 +33,17 @@ public:
     explicit DPadEditDialogHelper(JoyDPad *dpad, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> *tempSlots);
     void clearPendingSlots();
-
-protected:
-    JoyDPad *dpad;
-    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> pendingSlots;
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> const& getPendingSlots();
 
 public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
     void updateJoyDPadDelay(int value);
+
+private:
+    JoyDPad *dpad;
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> pendingSlots;
+
 };
 
 #endif // DPADEDITDIALOGHELPER_H

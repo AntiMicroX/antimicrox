@@ -65,20 +65,7 @@ public:
     void setAppTranslator(QTranslator *translator);
     QTranslator* getAppTranslator() const;
 
-    QMap<SDL_JoystickID, InputDevice*> *getJoysticks() const;
-
-    QSystemTrayIcon *getTrayIcon() const;
-    QAction *getHideAction() const;
-    QAction *getRestoreAction() const;
-    QAction *getCloseAction() const;
-    QAction *getUpdateJoy() const;
-    QMenu *getTrayIconMenu() const;
-    QMap<int, QList<QAction*> >* getProfileActions();
-    AboutDialog *getAboutDialog() const;
-    QLocalServer *getLocalServer() const;
-    CommandLineUtility *getCmdutility() const;
-    AntiMicroSettings *getSettings() const;
-    AutoProfileWatcher *getAppWatcher() const;
+    QMap<int, QList<QAction*> > const& getProfileActions();
 
 protected:
     virtual void showEvent(QShowEvent *event);

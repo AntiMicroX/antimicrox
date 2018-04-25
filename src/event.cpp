@@ -192,10 +192,11 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
             displacementY = fullSpring->displacementY;
         }
 
-        int pivotX = 0;
-        int pivotY = 0;
         if (relativeSpring && (relativeSpring->width >= 2) && (relativeSpring->height >= 2))
         {
+            int pivotX = 0;
+            int pivotY = 0;
+
             if (PadderCommon::mouseHelperObj.pivotPoint[0] != -1)
             {
                 pivotX = PadderCommon::mouseHelperObj.pivotPoint[0];

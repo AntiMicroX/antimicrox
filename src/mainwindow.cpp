@@ -231,10 +231,10 @@ void MainWindow::alterConfigFromSettings()
         }
     }
 
-    QList<ControllerOptionsInfo> *tempList = cmdutility->getControllerOptionsList();
+    const QList<ControllerOptionsInfo> tempList = cmdutility->getControllerOptionsList();
     //unsigned int optionListSize = tempList->size();
 
-    QListIterator<ControllerOptionsInfo> optionIter(*tempList);
+    QListIterator<ControllerOptionsInfo> optionIter(tempList);
     while (optionIter.hasNext())
     {
         ControllerOptionsInfo temp = optionIter.next();
@@ -300,8 +300,8 @@ void MainWindow::controllerMapOpening()
         graphical = false;
         this->graphical = graphical;
 
-        QList<ControllerOptionsInfo> *tempList = cmdutility->getControllerOptionsList();
-        ControllerOptionsInfo temp = tempList->at(0);
+        const QList<ControllerOptionsInfo> tempList = cmdutility->getControllerOptionsList();
+        ControllerOptionsInfo temp = tempList.at(0);
 
         if (temp.hasControllerNumber())
         {
@@ -1333,9 +1333,9 @@ void MainWindow::singleTrayProfileMenuShow()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (!profileActions.isEmpty())
+    if (!getProfileActions().isEmpty())
     {
-        QMapIterator<int, QList<QAction*> > mapIter(profileActions);
+        QMapIterator<int, QList<QAction*> > mapIter(getProfileActions());
         while (mapIter.hasNext())
         {
             mapIter.next();
@@ -1916,67 +1916,7 @@ void MainWindow::refreshTabHelperThreads()
     }
 }
 
-QMap<SDL_JoystickID, InputDevice*> *MainWindow::getJoysticks() const {
+QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
 
-    return joysticks;
-}
-
-QSystemTrayIcon *MainWindow::getTrayIcon() const {
-
-    return trayIcon;
-}
-
-QAction *MainWindow::getHideAction() const {
-
-    return hideAction;
-}
-
-QAction *MainWindow::getRestoreAction() const {
-
-    return restoreAction;
-}
-
-QAction *MainWindow::getCloseAction() const {
-
-    return closeAction;
-}
-
-QAction *MainWindow::getUpdateJoy() const {
-
-    return updateJoy;
-}
-
-QMenu *MainWindow::getTrayIconMenu() const {
-
-    return trayIconMenu;
-}
-
-QMap<int, QList<QAction*> >* MainWindow::getProfileActions() {
-
-    return &profileActions;
-}
-
-AboutDialog *MainWindow::getAboutDialog() const {
-
-    return aboutDialog;
-}
-
-QLocalServer *MainWindow::getLocalServer() const {
-
-    return localServer;
-}
-
-CommandLineUtility *MainWindow::getCmdutility() const {
-
-    return cmdutility;
-}
-
-AntiMicroSettings *MainWindow::getSettings() const {
-
-    return settings;
-}
-
-AutoProfileWatcher *MainWindow::getAppWatcher() const {
-
-    return appWatcher;
+    return profileActions;
 }

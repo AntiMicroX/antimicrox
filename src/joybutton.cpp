@@ -527,7 +527,7 @@ int JoyButton::getJoyNumber()
  * @brief Get a 1 indexed number of button
  * @return 1 indexed button index number
  */
-int JoyButton::getRealJoyNumber()
+int JoyButton::getRealJoyNumber() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -703,7 +703,7 @@ bool JoyButton::distanceEvent()
             double currentDistance = getDistanceFromDeadZone();
             double tempDistance = 0.0;
             JoyButtonSlot *previousDistanceSlot = 0;
-            QListIterator<JoyButtonSlot*> iter(assignments);
+            QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
             if (previousCycle)
             {
                 qDebug() << "find previous Cycle in next steps in assignments and skip to it";
@@ -805,7 +805,7 @@ void JoyButton::createDeskEvent()
     if (!slotiter)
     {
         assignmentsLock.lockForRead();
-        slotiter = new QListIterator<JoyButtonSlot*>(assignments);
+        slotiter = new QListIterator<JoyButtonSlot*>(*getAssignedSlots());
         assignmentsLock.unlock();
 
         distanceEvent();
@@ -946,7 +946,7 @@ void JoyButton::activateSlots()
             {
                 i++;
                 qDebug() << i << ": It's a JoyPause with code: " << tempcode << " and name: " << slot->getSlotString();
-                if (!activeSlots.isEmpty())
+                if (!getActiveSlots().isEmpty())
                 {
                     qDebug() << "active slots QHash is not empty";
                     if (slotiter->hasPrevious())
@@ -1006,12 +1006,12 @@ void JoyButton::activateSlots()
                 {
                     findReleaseEventEnd();
                 }
-                else if (currentRelease && activeSlots.isEmpty())
+                else if (currentRelease && getActiveSlots().isEmpty())
                 {
                     qDebug() << "current is release but activeSlots is empty";
                     exit = true;
                 }
-                else if (currentRelease && !activeSlots.isEmpty())
+                else if (currentRelease && !getActiveSlots().isEmpty())
                 {
                     qDebug() << "current is release and activeSlots is not empty";
                     if (slotiter->hasPrevious())
@@ -1036,7 +1036,7 @@ void JoyButton::activateSlots()
             {
                 i++;
                 qDebug() << i << ": It's a JoyKeyPress with code: " << tempcode << " and name: " << slot->getSlotString();
-                if (activeSlots.isEmpty())
+                if (getActiveSlots().isEmpty())
                 {
                     qDebug() << "activeSlots is empty. It's a true delaySequence and assigned currentKeyPress";
                     delaySequence = true;
@@ -1093,7 +1093,7 @@ void JoyButton::activateSlots()
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 #endif
 
-        if (delaySequence && !activeSlots.isEmpty())
+        if (delaySequence && !getActiveSlots().isEmpty())
         {
             keyPressHold.restart();
             keyPressEvent();
@@ -1188,11 +1188,12 @@ void JoyButton::mouseEvent()
 
             int mousedirection = buttonslot->getSlotCode();
             JoyButton::JoyMouseMovementMode mousemode = getMouseMode();
-            int mousespeed = 0;
 
-            bool isActive = activeSlots.contains(buttonslot);
+            bool isActive = getActiveSlots().contains(buttonslot);
             if (isActive)
             {
+                int mousespeed = 0;
+
                 if (mousemode == JoyButton::MouseCursor)
                 {
                     if (mousedirection == JoyButtonSlot::MouseRight)
@@ -1611,7 +1612,7 @@ void JoyButton::wheelEventVertical()
 
     if (buttonslot && (wheelSpeedY != 0))
     {
-        bool isActive = activeSlots.contains(buttonslot);
+        bool isActive = getActiveSlots().contains(buttonslot);
         if (isActive)
         {
             sendevent(buttonslot, true);
@@ -1630,7 +1631,7 @@ void JoyButton::wheelEventVertical()
         while (!mouseWheelVerticalEventQueue.isEmpty())
         {
             buttonslot = mouseWheelVerticalEventQueue.dequeue();
-            bool isActive = activeSlots.contains(buttonslot);
+            bool isActive = getActiveSlots().contains(buttonslot);
             if (isActive)
             {
                 sendevent(buttonslot, true);
@@ -1667,7 +1668,7 @@ void JoyButton::wheelEventHorizontal()
 
     if (buttonslot && (wheelSpeedX != 0))
     {
-        bool isActive = activeSlots.contains(buttonslot);
+        bool isActive = getActiveSlots().contains(buttonslot);
         if (isActive)
         {
             sendevent(buttonslot, true);
@@ -1686,7 +1687,7 @@ void JoyButton::wheelEventHorizontal()
         while (!mouseWheelHorizontalEventQueue.isEmpty())
         {
             buttonslot = mouseWheelHorizontalEventQueue.dequeue();
-            bool isActive = activeSlots.contains(buttonslot);
+            bool isActive = getActiveSlots().contains(buttonslot);
             if (isActive)
             {
                 sendevent(buttonslot, true);
@@ -1998,10 +1999,10 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         }
 
         // Write information about assigned slots.
-        if (!assignments.isEmpty())
+        if (!getAssignedSlots()->isEmpty())
         {
             xml->writeStartElement("slots");
-            QListIterator<JoyButtonSlot*> iter(assignments);
+            QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
             while (iter.hasNext())
             {
                 JoyButtonSlot *buttonslot = iter.next();
@@ -2379,7 +2380,7 @@ QString JoyButton::getName(bool forceFullFormat, bool displayNames)
     return newlabel;
 }
 
-QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames)
+QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -2418,11 +2419,11 @@ QString JoyButton::getSlotsSummary()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString newlabel = QString();
-    int slotCount = assignments.size();
+    int slotCount = getAssignedSlots()->size();
 
     if (slotCount > 0)
     {
-        QListIterator<JoyButtonSlot*> iter(assignments);
+        QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
         QStringList stringlist = QStringList();
 
         int i = 0;
@@ -2507,7 +2508,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
     QListIterator<JoyButtonSlot*> iter(tempList);
     QStringList stringlist = QStringList();
     int i = 0;
-    bool slotsActive = !activeSlots.isEmpty();
+    bool slotsActive = !getActiveSlots().isEmpty();
 
     if (setSelectionCondition == SetChangeOneWay)
     {
@@ -2643,14 +2644,14 @@ QList<JoyButtonSlot*> JoyButton::getActiveZoneList()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QListIterator<JoyButtonSlot*> activeSlotsIter(activeSlots);
-    QListIterator<JoyButtonSlot*> assignmentsIter(assignments);
+    QListIterator<JoyButtonSlot*> activeSlotsIter(getActiveSlots());
+    QListIterator<JoyButtonSlot*> assignmentsIter(*getAssignedSlots());
 
     QListIterator<JoyButtonSlot*> *iter = 0;
     QReadWriteLock *tempLock = 0;
 
     activeZoneLock.lockForRead();
-    int numActiveSlots = activeSlots.size();
+    int numActiveSlots = getActiveSlots().size();
     activeZoneLock.unlock();
 
     if (numActiveSlots > 0)
@@ -2756,10 +2757,10 @@ QString JoyButton::getSlotsString()
 
     QString label = QString();
 
-    if (assignments.size() > 0)
+    if (getAssignedSlots()->size() > 0)
     {
-        qDebug() << "There is more assignments than 0 in getSlotsString(): " << assignments.count();
-        QListIterator<JoyButtonSlot*> iter(assignments);
+        qDebug() << "There is more assignments than 0 in getSlotsString(): " << getAssignedSlots()->count();
+        QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
         QStringList stringlist = QStringList();
 
         while (iter.hasNext())
@@ -2951,10 +2952,10 @@ bool JoyButton::setAssignedSlot(int code, int alias, int index,
     {
         assignmentsLock.lockForWrite();
 
-        if ((index >= 0) && (index < assignments.count()))
+        if ((index >= 0) && (index < getAssignedSlots()->count()))
         {
             // Insert slot and move existing slots.
-            JoyButtonSlot *temp = assignments.at(index);
+            JoyButtonSlot *temp = getAssignedSlots()->at(index);
             if (temp)
             {
                 delete temp;
@@ -3029,18 +3030,18 @@ bool JoyButton::insertAssignedSlot(int code, int alias, int index,
     {
         assignmentsLock.lockForWrite();
 
-        if ((index >= 0) && (index < assignments.count()))
+        if ((index >= 0) && (index < getAssignedSlots()->count()))
         {
             // Insert new slot into list. Move old slots if needed.
             assignments.insert(index, slot);
         }
-        else if (index >= assignments.count())
+        else if (index >= getAssignedSlots()->count())
         {
             // Append new slot into list.
             assignments.append(slot);
         }
 
-        qDebug() << "assignments variable in joybutton has now: " << assignments.count() << " input slots";
+        qDebug() << "assignments variable in joybutton has now: " << getAssignedSlots()->count() << " input slots";
 
         checkTurboCondition(slot);
         assignmentsLock.unlock();
@@ -3160,10 +3161,10 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
         checkTurboCondition(newslot);
 
-        if ((index >= 0) && (index < assignments.count()))
+        if ((index >= 0) && (index < getAssignedSlots()->count()))
         {
             // Slot already exists. Override code and place into desired slot
-            JoyButtonSlot *temp = assignments.at(index);
+            JoyButtonSlot *temp = getAssignedSlots()->at(index);
             if (temp)
             {
                 delete temp;
@@ -3198,8 +3199,15 @@ QList<JoyButtonSlot*>* JoyButton::getAssignedSlots()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QList<JoyButtonSlot*> *newassign = &assignments;
-    return newassign;
+    QList<JoyButtonSlot*>* assigns = &assignments;
+    return assigns;
+}
+
+QList<JoyButtonSlot*> const& JoyButton::getActiveSlots() {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return activeSlots;
 }
 
 
@@ -3583,7 +3591,7 @@ bool JoyButton::containsSequence()
     bool result = false;
 
     assignmentsLock.lockForRead();
-    QListIterator<JoyButtonSlot*> tempiter(assignments);
+    QListIterator<JoyButtonSlot*> tempiter(*getAssignedSlots());
     while (tempiter.hasNext())
     {
         JoyButtonSlot *slot = tempiter.next();
@@ -3911,7 +3919,7 @@ double JoyButton::getTotalSlotDistance(JoyButtonSlot *slot)
 
     double tempDistance = 0.0;
 
-    QListIterator<JoyButtonSlot*> iter(assignments);
+    QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
     while (iter.hasNext())
     {
         JoyButtonSlot *currentSlot = iter.next();
@@ -3942,7 +3950,7 @@ bool JoyButton::containsDistanceSlots()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     bool result = false;
-    QListIterator<JoyButtonSlot*> iter(assignments);
+    QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
     while (iter.hasNext())
     {
         JoyButtonSlot *slot = iter.next();
@@ -3960,7 +3968,7 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QListIterator<JoyButtonSlot*> iter(assignments);
+    QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
     while (iter.hasNext())
     {
         JoyButtonSlot *slot = iter.next();
@@ -3985,9 +3993,9 @@ void JoyButton::removeAssignedSlot(int index)
 
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
-    if ((index >= 0) && (index < assignments.size()))
+    if ((index >= 0) && (index < getAssignedSlots()->size()))
     {
-        JoyButtonSlot *slot = assignments.takeAt(index);
+        JoyButtonSlot *slot = getAssignedSlots()->takeAt(index);
         if (slot)
         {
             delete slot;
@@ -4119,14 +4127,14 @@ void JoyButton::releaseActiveSlots()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (!activeSlots.isEmpty())
+    if (!getActiveSlots().isEmpty())
     {
         QWriteLocker tempLocker(&activeZoneLock);
 
         #ifdef Q_OS_WIN
             bool changeRepeatState = false;
         #endif
-        QListIterator<JoyButtonSlot*> iter(activeSlots);
+        QListIterator<JoyButtonSlot*> iter(getActiveSlots());
 
         iter.toBack();
         while (iter.hasPrevious())
@@ -4425,7 +4433,7 @@ bool JoyButton::containsReleaseSlots()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     bool result = false;
-    QListIterator<JoyButtonSlot*> iter(assignments);
+    QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
     while (iter.hasNext())
     {
         JoyButtonSlot *slot = iter.next();
@@ -4446,11 +4454,10 @@ void JoyButton::releaseSlotEvent()
     JoyButtonSlot *temp = 0;
 
     int timeElapsed = buttonHeldRelease.elapsed();
-    int tempElapsed = 0;
 
     if (containsReleaseSlots())
     {
-        QListIterator<JoyButtonSlot*> iter(assignments);
+        QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
         if (previousCycle)
         {
             iter.findNext(previousCycle);
@@ -4463,6 +4470,8 @@ void JoyButton::releaseSlotEvent()
             JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
             if (mode == JoyButtonSlot::JoyRelease)
             {
+                int tempElapsed = 0;
+
                 tempElapsed += tempcode;
                 if (tempElapsed <= timeElapsed)
                 {
@@ -4543,9 +4552,10 @@ void JoyButton::findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    bool found = false;
     if (tempiter)
     {
+        bool found = false;
+
         while (!found && tempiter->hasNext())
         {
             JoyButtonSlot *currentSlot = tempiter->next();
@@ -4654,7 +4664,7 @@ bool JoyButton::isDefault()
     value = value && (mouseSpeedY == DEFAULTMOUSESPEEDY);
     value = value && (setSelection == DEFAULTSETSELECTION);
     value = value && (setSelectionCondition == DEFAULTSETCONDITION);
-    value = value && (assignments.isEmpty());
+    value = value && (getAssignedSlots()->isEmpty());
     value = value && (mouseMode == DEFAULTMOUSEMODE);
     value = value && (mouseCurve == DEFAULTMOUSECURVE);
     value = value && (springWidth == DEFAULTSPRINGWIDTH);
@@ -4891,8 +4901,6 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
     movedX = 0;
     movedY = 0;
-    double finalx = 0.0;
-    double finaly = 0.0;
     int elapsedTime = testOldMouseTime.elapsed();
 
     movedElapsed = elapsedTime;
@@ -4922,6 +4930,9 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
         (cursorXSpeeds.length() > 0))
     {
         int queueLength = cursorXSpeeds.length();
+        double finalx = 0.0;
+        double finaly = 0.0;
+
         for (int i=0; i < queueLength; i++)
         {
             mouseCursorInfo infoX = cursorXSpeeds.takeFirst();
@@ -5315,7 +5326,7 @@ bool JoyButton::checkForDelaySequence()
 
     bool result = false;
 
-    QListIterator<JoyButtonSlot*> tempiter(assignments);
+    QListIterator<JoyButtonSlot*> tempiter(*getAssignedSlots());
 
     // Move iterator to start of cycle.
     if (previousCycle)
@@ -5511,7 +5522,7 @@ void JoyButton::copyAssignments(JoyButton *destButton)
     destButton->assignmentsLock.unlock();
 
     assignmentsLock.lockForWrite();
-    QListIterator<JoyButtonSlot*> iter(assignments);
+    QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
     while (iter.hasNext())
     {
         JoyButtonSlot *slot = iter.next();
@@ -6277,7 +6288,7 @@ void JoyButton::invokeMouseEvents()
 
 bool JoyButton::hasActiveSlots()
 {
-    return !activeSlots.isEmpty();
+    return !getActiveSlots().isEmpty();
 }
 
 void JoyButton::setExtraAccelerationCurve(JoyExtraAccelerationCurve curve)

@@ -76,7 +76,7 @@ public:
     void currentAxesDeadZones(QList<int> *axesDeadZones);
     void setAxesDeadZones(QList<int> *axesDeadZones);
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
-    QList<JoyButton*> getLastClickedButtons() const;
+    QList<JoyButton*> const& getLastClickedButtons() const;
     void removeAllBtnFromQueue();
     int getCountBtnInList(QString partialName);
 

@@ -68,7 +68,7 @@ public:
     void clearPendingEvent();
 
     int getJoyNumber();
-    virtual int getRealJoyNumber();
+    virtual int getRealJoyNumber() const;
     void setJoyNumber(int index);
 
     bool getToggleState();
@@ -77,12 +77,13 @@ public:
     void setCustomName(QString name);
     QString getCustomName();
 
-    QList<JoyButtonSlot*> *getAssignedSlots();
+    QList<JoyButtonSlot*>* getAssignedSlots();
+    QList<JoyButtonSlot*> const& getActiveSlots();
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const;
     virtual QString getSlotsSummary();
     virtual QString getSlotsString();
     virtual QList<JoyButtonSlot*> getActiveZoneList();
