@@ -36,8 +36,8 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
 
     populateKnownAliases();
 
-    qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
-    qDebug() << "Question: " << X11KeySymToKeycode(79) << endl;
+    //qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
+    //qDebug() << "Question: " << X11KeySymToKeycode(79) << endl;
     this->keycode = 0;
     this->qkeyalias = 0;
     this->xcodestring = "";

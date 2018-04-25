@@ -971,7 +971,6 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
         switch (event.type)
         {
-            qDebug() << QTime::currentTime() << " :";
             case SDL_JOYBUTTONDOWN:
             case SDL_JOYBUTTONUP:
             {
