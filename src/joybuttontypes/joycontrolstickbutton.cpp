@@ -255,14 +255,6 @@ QString JoyControlStickButton::getActiveZoneSummary()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QList<JoyButtonSlot*> tempList;
-    //JoyControlStickModifierButton *tempButton = stick->getModifierButton();
-    /*if (tempButton && tempButton->getButtonState() &&
-          tempButton->hasActiveSlots() && getButtonState())
-    {
-        QList<JoyButtonSlot*> activeModifierSlots = tempButton->getActiveZoneList();
-        tempList.append(activeModifierSlots);
-    }
-    */
 
     tempList.append(getActiveZoneList());
     QString temp = buildActiveZoneSummary(tempList);

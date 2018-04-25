@@ -207,7 +207,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
     else
     {
-        //ui->launchAtWinStartupCheckBox->setVisible(false);
         ui->keyRepeatGroupBox->setVisible(false);
     }
 
@@ -358,12 +357,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
     connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
     connect(ui->mappngInsertPushButton, SIGNAL(clicked()), this, SLOT(insertMappingRow()));
-    //connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(syncMappingSettings()));
     connect(this, SIGNAL(accepted()), this, SLOT(saveNewSettings()));
     connect(ui->profileOpenDirPushButton, SIGNAL(clicked()), this, SLOT(selectDefaultProfileDir()));
     connect(ui->activeCheckBox, SIGNAL(toggled(bool)), ui->autoProfileTableWidget, SLOT(setEnabled(bool)));
     connect(ui->activeCheckBox, SIGNAL(toggled(bool)), this, SLOT(autoProfileButtonsActiveState(bool)));
-    //connect(ui->activeCheckBox, SIGNAL(toggled(bool)), ui->devicesComboBox, SLOT(setEnabled(bool)));
     connect(ui->devicesComboBox, SIGNAL(activated(int)), this, SLOT(changeDeviceForProfileTable(int)));
     connect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
     connect(ui->autoProfileAddPushButton, SIGNAL(clicked()), this, SLOT(openAddAutoProfileDialog()));
@@ -399,14 +396,6 @@ MainSettingsDialog::~MainSettingsDialog()
 void MainSettingsDialog::fillControllerMappingsTable()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    /*QList<QVariant> tempvariant = bindingValues(bind);
-    QTableWidgetItem* item = new QTableWidgetItem();
-    ui->buttonMappingTableWidget->setItem(associatedRow, 0, item);
-    item->setText(temptext);
-    item->setData(Qt::UserRole, tempvariant);
-    */
-
 
     ui->controllerMappingsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -470,7 +459,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
         item = new QTableWidgetItem(templist.at(1).toString());
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         item->setData(Qt::UserRole, iter2.key());
-        //item->setToolTip(templist.at(1).toString());
+
         ui->controllerMappingsTableWidget->setItem(i, 1, item);
 
         bool disableController = templist.at(2).toBool();
@@ -525,13 +514,12 @@ void MainSettingsDialog::insertMappingRow()
     ui->controllerMappingsTableWidget->insertRow(insertRowIndex);
 
     QTableWidgetItem* item = new QTableWidgetItem();
-    //item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-    //item->setData(Qt::UserRole, iter2.key());
+
     ui->controllerMappingsTableWidget->setItem(insertRowIndex, 0, item);
 
     item = new QTableWidgetItem();
     item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-    //item->setData(Qt::UserRole, iter2.key());
+;
     ui->controllerMappingsTableWidget->setItem(insertRowIndex, 1, item);
 
     item = new QTableWidgetItem();
@@ -831,7 +819,6 @@ void MainSettingsDialog::selectDefaultProfileDir()
     }
 }
 
-//HERE!!!
 void MainSettingsDialog::checkLocaleChange()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -912,7 +899,7 @@ void MainSettingsDialog::populateAutoProfiles()
 
     settings->beginGroup("DefaultAutoProfiles");
     QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
-    //QStringList defaultkeys = settings->allKeys();
+
     settings->endGroup();
 
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
@@ -953,7 +940,6 @@ void MainSettingsDialog::populateAutoProfiles()
     settings->beginGroup("AutoProfiles");
     bool quitSearch = false;
 
-    //QHash<QString, QList<QString> > tempAssociation;
     for (int i = 1; !quitSearch; i++)
     {
         QString exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
@@ -999,47 +985,6 @@ void MainSettingsDialog::populateAutoProfiles()
                 deviceAutoProfiles.insert(guid, templist);
             }
         }
-        /*if (!exe.isEmpty() && !guid.isEmpty())
-        {
-            bool profileActive = active == "1" ? true : false;
-            QList<AutoProfileInfo*> templist;
-            if (exeAutoProfiles.contains(exe))
-            {
-                templist = exeAutoProfiles.value(exe);
-            }
-
-            QList<QString> tempguids;
-            if (tempAssociation.contains(exe))
-            {
-                tempguids = tempAssociation.value(exe);
-            }
-
-            if (!tempguids.contains(guid))
-            {
-                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, exe, profileActive, this);
-                if (!deviceName.isEmpty())
-                {
-                    info->setDeviceName(deviceName);
-                }
-
-                tempguids.append(guid);
-                tempAssociation.insert(exe, tempguids);
-                templist.append(info);
-                exeAutoProfiles.insert(exe, templist);
-                profileList.append(info);
-                QList<AutoProfileInfo*> templist;
-                if (guid != "all")
-                {
-                    if (deviceAutoProfiles.contains(guid))
-                    {
-                        templist = deviceAutoProfiles.value(guid);
-                    }
-                    templist.append(info);
-                    deviceAutoProfiles.insert(guid, templist);
-                }
-            }
-        }
-        */
         else
         {
             quitSearch = true;
@@ -1053,18 +998,10 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    //ui->autoProfileTableWidget->clear();
     for (int i = ui->autoProfileTableWidget->rowCount()-1; i >= 0; i--)
     {
         ui->autoProfileTableWidget->removeRow(i);
     }
-
-    //QStringList tableHeader = QStringList();
-    //tableHeader << trUtf8("Active") << trUtf8("GUID") << trUtf8("Profile") << trUtf8("Application") << trUtf8("Default?")
-    //            << trUtf8("Instance");
-    //ui->autoProfileTableWidget->setHorizontalHeaderLabels(tableHeader);
-    //ui->autoProfileTableWidget->horizontalHeader()->setVisible(true);
-
 
     ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -1356,11 +1293,6 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
         ui->autoProfileTableWidget->removeRow(i);
     }
 
-    //QStringList tableHeader = QStringList();
-    //tableHeader << trUtf8("Active") << trUtf8("GUID") << trUtf8("Profile") << trUtf8("Application") << trUtf8("Default?")
-    //            << trUtf8("Instance");
-    //ui->autoProfileTableWidget->setHorizontalHeaderLabels(tableHeader);
-
     ui->autoProfileTableWidget->horizontalHeader()->setVisible(true);
     ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -1442,15 +1374,6 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
         item->setData(Qt::UserRole, info->getProfileLocation());
         item->setToolTip(info->getProfileLocation());
         ui->autoProfileTableWidget->setItem(i, 2, item);
-
-        /*
-        QFileInfo exeInfo(info->getExe());
-        item = new QTableWidgetItem(exeInfo.fileName());
-        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-        item->setData(Qt::UserRole, info->getExe());
-        item->setToolTip(info->getExe());
-        ui->autoProfileTableWidget->setItem(i, 3, item);
-        */
 
         item = new QTableWidgetItem("Default");
         item->setData(Qt::UserRole, "default");
@@ -1564,7 +1487,7 @@ void MainSettingsDialog::openEditAutoProfileDialog()
     if (selectedRow >= 0)
     {
         QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
-        //QTableWidgetItem *itemDefault = ui->autoProfileTableWidget->item(selectedRow, 4);
+
         AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo*>();
         if (info != allDefaultProfile)
         {
@@ -1605,7 +1528,6 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
         if (selectedRow >= 0)
         {
             QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
-            //QTableWidgetItem *itemDefault = ui->autoProfileTableWidget->item(selectedRow, 4);
             AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo*>();
             if (info->isCurrentDefault())
             {
@@ -1631,14 +1553,6 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
                     deviceAutoProfiles.insert(info->getGUID(), temp);
                 }
 
-                /*if (exeAutoProfiles.contains(info->getExe()))
-                {
-                    QList<AutoProfileInfo*> temp = exeAutoProfiles.value(info->getExe());
-                    temp.removeAll(info);
-                    exeAutoProfiles.insert(info->getExe(), temp);
-                }
-                */
-
                 profileList.removeAll(info);
 
                 delete info;
@@ -1657,7 +1571,7 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
     if (selectedRow >= 0)
     {
         QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
-        //QTableWidgetItem *itemDefault = ui->autoProfileTableWidget->item(selectedRow, 4);
+
         AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo*>();
 
         if (info == allDefaultProfile)
@@ -1701,7 +1615,7 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
     // Delete pointers to object that might be misplaced
     // due to an association change.
     QString oldGUID = dialog->getOriginalGUID();
-    //QString originalExe = dialog->getOriginalExe();
+
     if (oldGUID != info->getGUID())
     {
         if (defaultAutoProfiles.value(oldGUID) == info)
@@ -1786,47 +1700,6 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
         deviceAutoProfiles.insert(info->getGUID(), temp2);
     }
 
-    /*if (originalExe != info->getExe() &&
-        exeAutoProfiles.contains(originalExe))
-    {
-        QList<AutoProfileInfo*> temp = exeAutoProfiles.value(originalExe);
-        temp.removeAll(info);
-        exeAutoProfiles.insert(originalExe, temp);
-
-        if (exeAutoProfiles.contains(info->getExe()))
-        {
-            QList<AutoProfileInfo*> temp2 = exeAutoProfiles.value(info->getExe());
-            if (!temp2.contains(info))
-            {
-                temp2.append(info);
-                exeAutoProfiles.insert(info->getExe(), temp2);
-            }
-        }
-        else
-        {
-            QList<AutoProfileInfo*> temp2;
-            temp2.append(info);
-            exeAutoProfiles.insert(info->getExe(), temp2);
-        }
-
-        if (deviceAutoProfiles.contains(info->getGUID()))
-        {
-            QList<AutoProfileInfo*> temp2 = deviceAutoProfiles.value(info->getGUID());
-            if (!temp2.contains(info))
-            {
-                temp2.append(info);
-                deviceAutoProfiles.insert(info->getGUID(), temp2);
-            }
-        }
-        else
-        {
-            QList<AutoProfileInfo*> temp2;
-            temp2.append(info);
-            deviceAutoProfiles.insert(info->getGUID(), temp2);
-        }
-    }
-    */
-
     fillGUIDComboBox();
     int currentIndex = ui->devicesComboBox->currentIndex();
     changeDeviceForProfileTable(currentIndex);
@@ -1847,27 +1720,6 @@ void MainSettingsDialog::addNewAutoProfile()
             found = true;
         }
     }
-    /*else
-    {
-        QList<AutoProfileInfo*> templist;
-        if (exeAutoProfiles.contains(info->getExe()))
-        {
-            templist = exeAutoProfiles.value(info->getExe());
-        }
-
-        QListIterator<AutoProfileInfo*> iterProfiles(templist);
-        while (iterProfiles.hasNext())
-        {
-            AutoProfileInfo *oldinfo = iterProfiles.next();
-            if ((info->getExe() == oldinfo->getExe()) &&
-                (info->getGUID() == oldinfo->getGUID()))
-            {
-                found = true;
-                iterProfiles.toBack();
-            }
-        }
-    }
-    */
 
     if (!found)
     {
@@ -1884,9 +1736,6 @@ void MainSettingsDialog::addNewAutoProfile()
             if (!info->getGUID().isEmpty() &&
                 !info->getExe().isEmpty())
             {
-                //QList<AutoProfileInfo*> templist;
-                //templist.append(info);
-                //exeAutoProfiles.insert(info->getExe(), templist);
                 profileList.append(info);
 
                 if (info->getGUID() != "all")
@@ -1950,7 +1799,7 @@ void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
     }
 }
 
-//HERE!!!
+
 void MainSettingsDialog::changePresetLanguage()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;

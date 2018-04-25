@@ -44,10 +44,10 @@ void JoyGradientButton::turboEvent()
     else if ((currentTurboMode == GradientTurbo) || (currentTurboMode == PulseTurbo))
     {
         double diff = fabs(getMouseDistanceFromDeadZone() - lastDistance);
-        //qDebug() << "DIFF: " << QString::number(diff);
+        qDebug() << "DIFF: " << QString::number(diff);
 
         bool changeState = false;
-        //int checkmate = 0;
+
         if (!turboTimer.isActive() && !isButtonPressed)
         {
             changeState = true;
@@ -125,18 +125,13 @@ void JoyGradientButton::turboEvent()
                 turboHold.restart();
                 changeState = false;
                 lastDistance = getMouseDistanceFromDeadZone();
-                //qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
-                //qDebug() << "diff timer press: " << QString::number(timerInterval);
+                qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
+                qDebug() << "diff timer press: " << QString::number(timerInterval);
             }
             else
             {
-                // Elapsed time is greater than new interval. Change state.
-                //if (isKeyPressed)
-                //{
-                //    checkmate = turboHold.elapsed();
-                //}
                 changeState = true;
-                //qDebug() << "YOU GOT CHANGE";
+                qDebug() << "YOU GOT CHANGE";
             }
         }
 
@@ -168,8 +163,8 @@ void JoyGradientButton::turboEvent()
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
-                    //qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
-                    //qDebug() << "timer press: " << QString::number(timerInterval);
+                    qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
+                    qDebug() << "timer press: " << QString::number(timerInterval);
                     if (turboTimer.interval() != timerInterval)
                     {
                         turboTimer.start(timerInterval);
@@ -209,8 +204,8 @@ void JoyGradientButton::turboEvent()
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
-                    //qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
-                    //qDebug() << "timer release: " << QString::number(timerInterval);
+                    qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
+                    qDebug() << "timer release: " << QString::number(timerInterval);
                     if (turboTimer.interval() != timerInterval)
                     {
                         turboTimer.start(timerInterval);
@@ -223,8 +218,6 @@ void JoyGradientButton::turboEvent()
 
             lastDistance = getMouseDistanceFromDeadZone();
         }
-
-        //checkmate = 0;
     }
 }
 

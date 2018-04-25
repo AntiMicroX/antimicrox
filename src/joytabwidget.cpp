@@ -91,7 +91,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     removeButton = new QPushButton(trUtf8("Remove"), this);
     removeButton->setObjectName(QString::fromUtf8("removeButton"));
     removeButton->setToolTip(trUtf8("Remove configuration from recent list."));
-    //removeButton->setFixedWidth(100);
     removeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     removeButton->setIcon(QIcon::fromTheme("edit-clear-list"));
     configHorizontalLayout->addWidget(removeButton);
@@ -99,7 +98,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     loadButton = new QPushButton(trUtf8("Load"), this);
     loadButton->setObjectName(QString::fromUtf8("loadButton"));
     loadButton->setToolTip(trUtf8("Load configuration file."));
-    //loadButton->setFixedWidth(100);
     loadButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     loadButton->setIcon(QIcon::fromTheme("document-open"));
     configHorizontalLayout->addWidget(loadButton);
@@ -107,16 +105,13 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     saveButton = new QPushButton(trUtf8("Save"), this);
     saveButton->setObjectName(QString::fromUtf8("saveButton"));
     saveButton->setToolTip(trUtf8("Save changes to configuration file."));
-    //saveButton->setFixedWidth(100);
     saveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     saveButton->setIcon(QIcon::fromTheme("document-save"));
     configHorizontalLayout->addWidget(saveButton);
-    //configHorizontalLayout->setSpacing(-1);
 
     saveAsButton = new QPushButton(trUtf8("Save As"), this);
     saveAsButton->setObjectName(QString::fromUtf8("saveAsButton"));
     saveAsButton->setToolTip(trUtf8("Save changes to a new configuration file."));
-    //saveAsButton->setFixedWidth(100);
     saveAsButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     saveAsButton->setIcon(QIcon::fromTheme("document-save-as"));
     configHorizontalLayout->addWidget(saveAsButton);
@@ -142,8 +137,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     QScrollArea *scrollArea = new QScrollArea();
     scrollArea->setObjectName(QString::fromUtf8("scrollArea1"));
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    //sizePolicy.setHorizontalStretch(0);
-    //sizePolicy.setVerticalStretch(0);
     scrollArea->setSizePolicy(sizePolicy);
     scrollArea->setWidgetResizable(true);
 
@@ -454,7 +447,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     resetButton->setToolTip(trUtf8("Revert changes to the configuration. Reload configuration file."));
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     resetButton->setIcon(QIcon::fromTheme("document-revert"));
-    //verticalLayout->addWidget(resetButton, 0, Qt::AlignRight);
     horizontalLayout_3->addWidget(resetButton);
 
     verticalLayout->addLayout(horizontalLayout_3);
@@ -642,20 +634,11 @@ void JoyTabWidget::saveConfigFile()
 
     if (!filename.isEmpty())
     {
-        //PadderCommon::inputDaemonMutex.lock();
-
         QFileInfo fileinfo(filename);
 
         QMetaObject::invokeMethod(&tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, fileinfo.absoluteFilePath()));
         XMLConfigWriter *writer = tabHelper.getWriter();
-
-        /*XMLConfigWriter writer;
-        writer.setFileName(fileinfo.absoluteFilePath());
-        writer.write(joystick);
-        */
-
-        //PadderCommon::inputDaemonMutex.unlock();
 
         if (writer->hasError() && this->window()->isEnabled())
         {
@@ -676,8 +659,6 @@ void JoyTabWidget::saveConfigFile()
 
             if (existingIndex == -1)
             {
-                //PadderCommon::inputDaemonMutex.lock();
-
                 if ((numberRecentProfiles > 0) && (configBox->count() == (numberRecentProfiles + 1)))
                 {
                     configBox->removeItem(numberRecentProfiles);
@@ -702,14 +683,10 @@ void JoyTabWidget::saveConfigFile()
                 configBox->setCurrentIndex(1);
                 saveDeviceSettings(true);
 
-                //PadderCommon::inputDaemonMutex.unlock();
-
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
             else
             {
-                //PadderCommon::inputDaemonMutex.lock();
-
                 joystick->revertProfileEdited();
                 if (!joystick->getProfileName().isEmpty())
                 {
@@ -718,8 +695,6 @@ void JoyTabWidget::saveConfigFile()
 
                 configBox->setItemIcon(existingIndex, QIcon());
                 saveDeviceSettings(true);
-
-                //PadderCommon::inputDaemonMutex.unlock();
 
                 emit joystickConfigChanged(joystick->getJoyNumber());
             }
@@ -838,10 +813,6 @@ void JoyTabWidget::saveAsConfig()
         }
         fileinfo.setFile(filename);
 
-        /*XMLConfigWriter writer;
-        writer.setFileName(fileinfo.absoluteFilePath());
-        writer.write(joystick);
-        */
         QMetaObject::invokeMethod(&tabHelper, "writeConfigFile", Qt::BlockingQueuedConnection,
                                   Q_ARG(QString, fileinfo.absoluteFilePath()));
         XMLConfigWriter *writer = tabHelper.getWriter();
@@ -2008,15 +1979,6 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
         default:
             break;
     }
-
-    /*while (current_layout && current_layout->count() > 0)
-    {
-        child = current_layout->takeAt(0)->widget();
-        current_layout->removeWidget (child);
-        delete child;
-        child = 0;
-    }
-    */
 
     SetJoystick *currentSet = set;
     currentSet->establishPropertyUpdatedConnection();

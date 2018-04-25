@@ -73,7 +73,6 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValue
     pendingEvent = false;
     pendingValue = 0;
     pendingIgnoreSets = false;
-    //pendingUpdateLastValues = true;
 
     if (this->stick != nullptr)
     {
@@ -84,7 +83,6 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValue
         pendingEvent = true;
         pendingValue = value;
         pendingIgnoreSets = ignoresets;
-        //pendingUpdateLastValues = updateLastValues;
     }
 }
 
@@ -99,7 +97,6 @@ void JoyAxis::activatePendingEvent()
         pendingEvent = false;
         pendingValue = false;
         pendingIgnoreSets = false;
-        //pendingUpdateLastValues = true;
     }
 }
 
@@ -132,7 +129,7 @@ void JoyAxis::stickPassEvent(int value, bool ignoresets, bool updateLastValues)
         }
 
         setCurrentRawValue(value);
-        //currentRawValue = value;
+
         bool safezone = !inDeadZone(currentRawValue);
         currentThrottledValue = calculateThrottledValue(value);
 
@@ -177,7 +174,7 @@ void JoyAxis::joyEvent(int value, bool ignoresets, bool updateLastValues)
         }
 
         setCurrentRawValue(value);
-        //currentRawValue = value;
+
         bool safezone = !inDeadZone(currentRawValue);
         currentThrottledValue = calculateThrottledValue(value);
 
@@ -495,7 +492,6 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
 
     if (xml->isStartElement() && (xml->name() == getXmlName()))
     {
-        //reset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != getXmlName())))
@@ -541,8 +537,6 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
     }
 
 
-    //if (throttle != DEFAULTTHROTTLE)
-    //{
         xml->writeStartElement("throttle");
 
         if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
@@ -567,7 +561,6 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
         }
 
         xml->writeEndElement();
-    //}
 
     if (!currentlyDefault)
     {
@@ -636,7 +629,6 @@ bool JoyAxis::readMainConfig(QXmlStreamReader *xml)
         }
 
         setCurrentRawValue(currentThrottledDeadValue);
-        //currentRawValue = currentThrottledDeadValue;
         currentThrottledValue = calculateThrottledValue(currentRawValue);
     }
 
@@ -689,7 +681,6 @@ void JoyAxis::reset()
     pendingEvent = false;
     pendingValue = currentRawValue;
     pendingIgnoreSets = false;
-    //pendingUpdateLastValues = true;
 }
 
 void JoyAxis::reset(int index)
@@ -888,7 +879,6 @@ bool JoyAxis::isDefault()
     bool value = true;
     value = value && (deadZone == getDefaultDeadZone());
     value = value && (maxZoneValue == getDefaultMaxZone());
-    //value = value && (throttle == getDefaultThrottle());
     value = value && (paxisbutton->isDefault());
     value = value && (naxisbutton->isDefault());
     return value;
@@ -1248,10 +1238,6 @@ void JoyAxis::performCalibration(int value)
         device->setCalibrationThrottle(index,
                                        static_cast<JoyAxis::ThrottleTypes>(throttle));
     }
-    //else if ((value >= -15000) && (value <= 15000))
-    //{
-    //    device->setCalibrationThrottle(index, static_cast<int>(NormalThrottle));
-    //}
 }
 
 void JoyAxis::copyAssignments(JoyAxis *destAxis)

@@ -241,7 +241,6 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempMiddleVLayout->setSpacing(0);
     QHBoxLayout *tempMiddleHLayout = new QHBoxLayout();
     tempHBoxLayout = new QHBoxLayout();
-    //tempHBoxLayout->setSpacing(0);
     tempHBoxLayout->addWidget(createNewKey("Tab"));
     if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 30, QSizePolicy::Fixed));
     tempHBoxLayout->addWidget(createNewKey("q"));
@@ -719,79 +718,6 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 }
 
 
-/*VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestring)
-{
-    int width = 30;
-    int height = 30;
-    QFont font1;
-    font1.setPointSize(8);
-    font1.setBold(true);
-
-    VirtualKeyPushButton *pushButton = new VirtualKeyPushButton(xcodestring, this);
-
-    if (xcodestring == "space")
-    {
-        width = 100;
-    }
-    else if (xcodestring == "Tab")
-    {
-        width = 40;
-    }
-    else if (xcodestring == "Shift_L" || xcodestring == "Shift_R")
-    {
-        width = 84;
-    }
-    else if (xcodestring == "Control_L")
-    {
-        width = 70;
-    }
-    else if (xcodestring == "Return")
-    {
-        width = 60;
-        height = 60;
-        pushButton->setMaximumWidth(100);
-    }
-    else if (xcodestring == "BackSpace")
-    {
-        width = 72;
-    }
-    else if (topRowKeys.contains(xcodestring))
-    {
-        width = 30;
-        height = 36;
-        pushButton->setMaximumSize(100, 100);
-    }
-    else if (xcodestring == "Print" || xcodestring == "Scroll_Lock" || xcodestring == "Pause")
-    {
-        width = 40;
-        height = 36;
-        pushButton->setMaximumSize(100, 100);
-        font1.setPointSize(6);
-    }
-    else if (xcodestring == "KP_Add" || xcodestring == "KP_Enter")
-    {
-        width = 34;
-        font1.setPointSize(6);
-    }
-    else if (xcodestring == "Num_Lock")
-    {
-        font1.setPointSize(6);
-    }
-    else if (xcodestring.startsWith("KP_"))
-    {
-        width = 36;
-        height = 32;
-    }
-
-    pushButton->setObjectName(xcodestring);
-    pushButton->setMinimumSize(width, height);
-    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    pushButton->setSizePolicy(sizePolicy);
-    pushButton->setFont(font1);
-
-    return pushButton;
-}*/
-
 QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
@@ -818,8 +744,6 @@ void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode, int
     connect(currentQuickDialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
 
     }
-
-  //  emit selectionFinished();
 }
 
 void VirtualKeyboardMouseWidget::processAdvancedKeyboardSelection(int keycode, int alias)
@@ -840,8 +764,6 @@ void VirtualKeyboardMouseWidget::processSingleMouseSelection(JoyButtonSlot *temp
     connect(currentQuickDialog, SIGNAL(finished(int)), this, SLOT(nullifyDialogPointer()));
 
     }
-
-   // emit selectionFinished();
 }
 
 void VirtualKeyboardMouseWidget::processAdvancedMouseSelection(JoyButtonSlot *tempslot)
@@ -898,7 +820,7 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
         disconnect(noneButton, SIGNAL(clicked()), 0, 0);
         connect(noneButton, SIGNAL(clicked()), this, SLOT(clearButtonSlotsFinish()));
 
-    //qDebug() << "COUNT: " << newlist.count();
+    qDebug() << "COUNT: " << newlist.count();
 }
 
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections()
@@ -1055,7 +977,6 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 
     QPushButton *otherKeysPushbutton = new QPushButton("Others", this);
     otherKeysPushbutton->setMinimumSize(0, 25);
-    //fuckMotherFuck->setMaximumHeight(100); // <- and some idiot
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     otherKeysPushbutton->setSizePolicy(sizePolicy);
     QFont font1;

@@ -111,7 +111,6 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     int scancode = event->nativeScanCode();
     int virtualkey = event->nativeVirtualKey();
 
-    //BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 #ifdef Q_OS_WIN
     int finalvirtual = WinExtras::correctVirtualKey(scancode, virtualkey);
     int tempvirtual = finalvirtual;

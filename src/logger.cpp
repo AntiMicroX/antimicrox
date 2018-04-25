@@ -263,11 +263,6 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
 
     instance->pendingMessages.append(temp);
 
-    /*if (!instance->pendingTimer.isActive())
-    {
-        instance->pendingTimer.start();
-    }
-    */
     emit instance->pendingMessage();
 }
 
@@ -326,11 +321,9 @@ void Logger::logMessage(LogMessage msg)
 
         finalMessage.append(initialPrefix).append(message);
 
-        //*writeStream << initialPrefix << message;
         if (newline)
         {
             finalMessage.append("\n");
-            //*writeStream << endl;
         }
 
         *writeStream << finalMessage;

@@ -206,11 +206,6 @@ double JoyAxisButton::getLastAccelerationDistance()
 
     double distance = 0.0;
     distance = axis->getRawDistance(axis->getLastKnownThrottleValue());
-    /*if (axis->getAxisButtonByValue(axis->getLastKnownThrottleValue()) == this)
-    {
-        distance = axis->getRawDistance(axis->getLastKnownThrottleValue());
-    }
-    */
 
     return distance;
 }

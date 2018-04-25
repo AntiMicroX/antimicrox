@@ -366,9 +366,6 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
                     directionDelayTimer.start(dpadDelay);
                 }
             }
-
-            //directionDelayTimer.stop();
-            //createDeskEvent(ignoresets);
         }
     }
 }

@@ -102,9 +102,6 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
         ui->asDefaultCheckBox->setToolTip(trUtf8("A different profile is already selected as the default for this device."));
     }
 
-    //if (!edit)
-    //{
-
         ui->devicesComboBox->addItem("all");
         QListIterator<InputDevice*> iter(*devices);
         int found = -1;
@@ -132,7 +129,6 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
                 ui->devicesComboBox->setCurrentIndex(ui->devicesComboBox->count()-1);
             }
         }
-    //}
 
     ui->profileLineEdit->setText(info->getProfileLocation());
     ui->applicationLineEdit->setText(info->getExe());
@@ -188,13 +184,6 @@ void AddEditAutoProfileDialog::openApplicationBrowseDialog()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    /*QString filename = QString();
-    QFileDialog dialog(this, trUtf8("Select Program"), QDir::homePath());
-    dialog.setFilter(QDir::Files | QDir::Executable);
-    if (dialog.exec())
-    {
-        filename = dialog.selectedFiles().first();
-    }*/
 #ifdef Q_OS_WIN
     QString filename = QFileDialog::getOpenFileName(this, trUtf8("Select Program"), QDir::homePath(), trUtf8("Programs (*.exe)"));
 #elif defined(Q_OS_LINUX)
@@ -245,7 +234,6 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
     info->setWindowClass(ui->winClassLineEdit->text());
     info->setWindowName(ui->winNameLineEdit->text());
     info->setDefaultState(ui->asDefaultCheckBox->isChecked());
-    //info->setActive(true);
 }
 
 void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
@@ -360,13 +348,13 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
     {
         // Attempt to find the appropriate window below the root window
         // that was clicked.
-        //qDebug() << "ORIGINAL: " << QString::number(targetWindow, 16);
+        qDebug() << "ORIGINAL: " << QString::number(targetWindow, 16);
         long tempWindow = X11Extras::getInstance()->findClientWindow(targetWindow);
         if (tempWindow > 0)
         {
             targetWindow = tempWindow;
         }
-        //qDebug() << "ADJUSTED: " << QString::number(targetWindow, 16);
+        qDebug() << "ADJUSTED: " << QString::number(targetWindow, 16);
     }
 
     if (targetWindow != None)
@@ -374,37 +362,12 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
         CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(targetWindow, this);
         connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
         dialog->show();
-
-        /*QString ham = X11Info::getInstance()->getWindowTitle(targetWindow);
-        int pid = X11Info::getInstance()->getApplicationPid(targetWindow);
-        if (pid > 0)
-        {
-            //qDebug() << "THIS ID: " << pid;
-            QString exepath = X11Info::getInstance()->getApplicationLocation(pid);
-
-            if (!exepath.isEmpty())
-            {
-                path = exepath;
-            }
-            else if (!failed)
-            {
-                failed = true;
-            }
-        }
-        else if (!failed)
-        {
-            failed = true;
-        }*/
     }
     else if (!escaped)
     {
         failed = true;
     }
 
-    /*if (!path.isEmpty())
-    {
-        ui->applicationLineEdit->setText(path);
-    }*/
     // Ensure that the operation was not cancelled (Escape wasn't pressed).
     if (failed)
     {

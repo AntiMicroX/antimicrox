@@ -223,8 +223,6 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
     setWindowModality(Qt::WindowModal);
 
     SetJoystick *currentset = joystick->getActiveSetJoystick();
-   // currentset->release();
-   // joystick->resetButtonDownCount();
 
     QString temp = ui->joystickDialogLabel->text();
     temp = temp.arg(joystick->getSDLName()).arg(joystick->getName());

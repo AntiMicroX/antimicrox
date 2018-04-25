@@ -326,8 +326,6 @@ void MouseAxisSettingsDialog::calculateExtraAccelrationStatus()
         (axis->getNAxisButton()->isExtraAccelerationEnabled()))
     {
         ui->extraAccelerationGroupBox->setChecked(true);
-        //ui->extraAccelCheckBox->setChecked(true);
-        //ui->extraAccelDoubleSpinBox->setEnabled(true);
     }
     else
     {
@@ -418,19 +416,12 @@ void MouseAxisSettingsDialog::updateExtraAccelerationCurve(int index)
 
     if (index > 0)
     {
-        //InputDevice *device = axis->getParentSet()->getInputDevice();
-
-        //PadderCommon::lockInputDevices();
-        //QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
-
         PadderCommon::inputDaemonMutex.lock();
 
         axis->getPAxisButton()->setExtraAccelerationCurve(temp);
         axis->getNAxisButton()->setExtraAccelerationCurve(temp);
 
         PadderCommon::inputDaemonMutex.unlock();
-
-        //PadderCommon::unlockInputDevices();
     }
 }
 

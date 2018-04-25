@@ -93,7 +93,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                     target_window = event.xbutton.window;
                 }
 
-                //qDebug() << QString::number(target_window, 16);
+                qDebug() << QString::number(target_window, 16);
                 break;
 
             case (KeyPress):

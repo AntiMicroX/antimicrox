@@ -105,14 +105,6 @@ void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition con
     Q_UNUSED(passive);
 }
 
-/*int JoyControlStickModifierButton::getRealJoyNumber()
-{
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    return index;
-}
-*/
-
 JoyControlStick* JoyControlStickModifierButton::getStick() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;

@@ -41,9 +41,6 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
 
     connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
-
-    //connect(nAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    //connect(pAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(pAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
     connect(nAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));

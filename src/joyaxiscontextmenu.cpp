@@ -246,11 +246,6 @@ void JoyAxisContextMenu::setAxisPreset()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    //PadderCommon::lockInputDevices();
-
-    //InputDevice *tempDevice = axis->getParentSet()->getInputDevice();
-    //QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
-
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
@@ -319,16 +314,6 @@ void JoyAxisContextMenu::setAxisPreset()
                                   Q_ARG(int, nbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
 
-        //JoyAxisButton *button = axis->getNAxisButton();
-        //QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-        //                          Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
-        /*QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, nbuttonslot->getSlotCode()),
-                                  Q_ARG(int, nbuttonslot->getSlotCodeAlias()),
-                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
-        */
-        //button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
         nbuttonslot->deleteLater();
     }
 
@@ -338,20 +323,9 @@ void JoyAxisContextMenu::setAxisPreset()
                                   Q_ARG(int, nbuttonslot->getSlotCode()),
                                   Q_ARG(int, nbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
-        //JoyAxisButton *button = axis->getPAxisButton();
-        //QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-        //                          Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
-        /*QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, pbuttonslot->getSlotCode()),
-                                  Q_ARG(int, pbuttonslot->getSlotCodeAlias()),
-                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
-        */
-        //button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+
         pbuttonslot->deleteLater();
     }
-
-    //PadderCommon::unlockInputDevices();
 }
 
 void JoyAxisContextMenu::openMouseSettingsDialog()
@@ -467,16 +441,6 @@ void JoyAxisContextMenu::setTriggerPreset()
                                   Q_ARG(int, pbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
 
-        //JoyAxisButton *button = axis->getPAxisButton();
-        //QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-        //                          Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
-        /*QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, pbuttonslot->getSlotCode()),
-                                  Q_ARG(int, pbuttonslot->getSlotCodeAlias()),
-                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
-        */
-        //button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         pbuttonslot->deleteLater();
     }
 }

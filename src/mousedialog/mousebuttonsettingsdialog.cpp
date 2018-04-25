@@ -36,7 +36,6 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     setAttribute(Qt::WA_DeleteOnClose);
     resize(size().width(), 450);
-    //setGeometry(geometry().x(), geometry().y(), size().width(), 450);
 
     this->button = button;
     helper.moveToThread(button->thread());
@@ -250,14 +249,6 @@ void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
     JoyButton::JoyMouseCurve temp = button->getMouseCurve();
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
-
-/*void MouseButtonSettingsDialog::updateSpringRelativeStatus(bool value)
-{
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    button->setSpringRelativeStatus(value);
-}
-*/
 
 void MouseButtonSettingsDialog::updateWindowTitleButtonName()
 {

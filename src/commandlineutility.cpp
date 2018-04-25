@@ -339,8 +339,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             else
             {
                 setErrorMessage(QObject::trUtf8("No display string was specified."));
-                //errorsteam << QObject::trUtf8("No display string was specified.") << endl;
-                //encounteredError = true;
             }
         }
   #endif
@@ -358,8 +356,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 {
                     eventGenerator = "";
                     setErrorMessage(QObject::trUtf8("An invalid event generator was specified."));
-                    //errorsteam << QObject::trUtf8("An invalid event generator was specified.") << endl;
-                    //encounteredError = true;
                 }
                 else
                 {
@@ -369,8 +365,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             else
             {
                 setErrorMessage(QObject::trUtf8("No event generator string was specified."));
-                //errorsteam << QObject::trUtf8("No event generator string was specified.") << endl;
-                //encounteredError = true;
             }
         }
 #endif
@@ -385,8 +379,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             else
             {
                 setErrorMessage(QObject::trUtf8("Qt style flag was detected but no style was specified."));
-                //errorsteam << QObject::trUtf8("Qt style flag was detected but no style was specified.") << endl;
-                //encounteredError = true;
             }
         }
         else if (logLevelRegexp.exactMatch(temp))
@@ -402,7 +394,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 {
                     currentLogLevel = Logger::LOG_INFO;
                 }
-                /*else if (temp == "warn")
+                else if (temp == "warn")
                 {
                     currentLogLevel = Logger::LOG_WARNING;
                 }
@@ -410,7 +402,7 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
                 {
                     currentLogLevel = Logger::LOG_ERROR;
                 }
-                */
+
             }
 	}
         else if (logFileRegexp.exactMatch(temp))
@@ -422,8 +414,6 @@ void CommandLineUtility::parseArguments(QStringList &arguments)
             else
             {
                 setErrorMessage(QObject::trUtf8("No log file specified."));
-                //errorsteam << QObject::trUtf8("No log level specified.") << endl;
-                //encounteredError = true;
             }
 
         }

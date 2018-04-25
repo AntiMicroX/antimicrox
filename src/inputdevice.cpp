@@ -102,10 +102,6 @@ void InputDevice::reset()
     resetButtonDownCount();
     deviceEdited = false;
     profileName = "";
-    //cali.clear();
-    //buttonstates.clear();
-    //axesstates.clear();
-    //dpadstates.clear();
 
     for (int i = 0; i < NUMBER_JOYSETS; i++)
     {
@@ -155,7 +151,6 @@ void InputDevice::reInitButtons()
     {
         bool value = buttonstates.at(i);
         JoyButton *button = current_set->getJoyButton(i);
-        //button->joyEvent(value);
         button->queuePendingEvent(value);
     }
 
@@ -163,7 +158,6 @@ void InputDevice::reInitButtons()
     {
         int value = axesstates.at(i);
         JoyAxis *axis = current_set->getJoyAxis(i);
-        //axis->joyEvent(value);
         axis->queuePendingEvent(value);
     }
 
@@ -171,7 +165,6 @@ void InputDevice::reInitButtons()
     {
         int value = dpadstates.at(i);
         JoyDPad *dpad = current_set->getJoyDPad(i);
-        //dpad->joyEvent(value);
         dpad->queuePendingEvent(value);
     }
 
@@ -264,8 +257,6 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i=0; i < current_set->getNumberSticks(); i++)
         {
             JoyControlStick::JoyStickDirections value = stickstates.at(i);
-            //bool tempignore = true;
-            //bool tempignore = false;
             QList<JoyControlStickButton*> buttonList;
             QList<JoyControlStickButton*> oldButtonList;
             JoyControlStick *stick = current_set->getJoyStick(i);
@@ -360,8 +351,6 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberVDPads(); i++)
         {
             int value = vdpadstates.at(i);
-            //bool tempignore = true;
-            //bool tempignore = false;
             JoyDPad *dpad = current_set->getVDPad(i);
             QList<JoyDPadButton*> buttonList;
             QList<JoyDPadButton*> oldButtonList;
@@ -463,7 +452,6 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberButtons(); i++)
         {
             bool value = buttonstates.at(i);
-            //bool tempignore = true;
             bool tempignore = false;
             JoyButton *button = current_set->getJoyButton(i);
             JoyButton *oldButton = old_set->getJoyButton(i);
@@ -488,11 +476,9 @@ void InputDevice::setActiveSetNumber(int index)
                 {
                     // Ensure that set change events are performed if needed.
                     button->setWhileHeldStatus(false);
-                    //tempignore = false;
                 }
             }
 
-            //button->joyEvent(value, tempignore);
             button->queuePendingEvent(value, tempignore);
         }
 
@@ -500,7 +486,6 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberAxes(); i++)
         {
             int value = axesstates.at(i);
-            //bool tempignore = true;
             bool tempignore = false;
             JoyAxis *axis = current_set->getJoyAxis(i);
             JoyAxisButton *oldButton = old_set->getJoyAxis(i)->getAxisButtonByValue(value);
@@ -531,7 +516,6 @@ void InputDevice::setActiveSetNumber(int index)
                 axis->getNAxisButton()->setWhileHeldStatus(false);
             }
 
-            //axis->joyEvent(value, tempignore);
             axis->queuePendingEvent(value, tempignore, false);
         }
 
@@ -539,7 +523,6 @@ void InputDevice::setActiveSetNumber(int index)
         for (int i = 0; i < current_set->getNumberHats(); i++)
         {
             int value = dpadstates.at(i);
-            //bool tempignore = true;
             bool tempignore = false;
             JoyDPad *dpad = current_set->getJoyDPad(i);
             QList<JoyDPadButton*> buttonList;
@@ -639,7 +622,6 @@ void InputDevice::setActiveSetNumber(int index)
                 }
             }
 
-            //dpad->joyEvent(value, tempignore);
             dpad->queuePendingEvent(value, tempignore);
         }
 
@@ -648,12 +630,6 @@ void InputDevice::setActiveSetNumber(int index)
         activatePossibleDPadEvents();
         activatePossibleVDPadEvents();
         activatePossibleButtonEvents();
-        /*if (JoyButton::shouldInvokeMouseEvents())
-        {
-            // Run mouse events early if needed.
-            JoyButton::invokeMouseEvents();
-        }
-        */
     }
 }
 
@@ -736,7 +712,6 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
 
     if (xml->isStartElement() && (xml->name() == getXmlName()))
     {
-        //reset();
         transferReset();
 
         xml->readNextStartElement();

@@ -394,7 +394,6 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
 
     if (xml->isStartElement() && (xml->name() == "set"))
     {
-        //reset();
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "set")))
@@ -707,7 +706,6 @@ void SetJoystick::propogateSetButtonClick(int button)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    //JoyButton *jButton = qobject_cast<JoyButton*>(sender()); // static_cast
     JoyButton* jButton = qobject_cast<JoyButton*>(sender());
     if (jButton != nullptr)
     {

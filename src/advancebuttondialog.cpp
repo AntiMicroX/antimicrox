@@ -293,7 +293,6 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 
     connect(button, SIGNAL(clicked()), this, SLOT(changeSelectedSlot()));
     connect(button, SIGNAL(buttonCodeChanged(int)), this, SLOT(updateSelectedSlot(int)));
-    //connect(button, SIGNAL(buttonCodeChanged(int)), this, SLOT(updateSlotsScrollArea(int)));
 }
 
 void AdvanceButtonDialog::updateSelectedSlot(int value)
@@ -803,7 +802,7 @@ void AdvanceButtonDialog::updateSetSelection()
             chosen_set = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
         }
 
-        //qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
+        qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
         if (condition_choice == 0)
         {
             set_selection_condition = JoyButton::SetChangeOneWay;
@@ -816,7 +815,8 @@ void AdvanceButtonDialog::updateSetSelection()
         {
             set_selection_condition = JoyButton::SetChangeWhileHeld;
         }
-        //qDebug() << "CHOSEN SET: " << chosen_set << endl;
+
+        qDebug() << "CHOSEN SET: " << chosen_set << endl;
     }
     else
     {
@@ -938,8 +938,6 @@ void AdvanceButtonDialog::insertDelaySlot()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    //PadderCommon::lockInputDevices();
-
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -1031,7 +1029,7 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     else if (slot->getSlotMode() == JoyButtonSlot::JoyDelay)
     {
         ui->slotTypeComboBox->setCurrentIndex(DelaySlot);
-        //changeSlotTypeDisplay(DelaySlot);
+
         refreshTimeComboBoxes(slot);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyDistance)
@@ -1105,11 +1103,6 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
         ui->execLineEdit->setText(slot->getTextData());
         ui->execArgumentsLineEdit->setText(slot->getExtraData().toString());
     }
-    /*else
-    {
-        ui->slotTypeComboBox->setCurrentIndex(KBMouseSlot);
-    }
-    */
 }
 
 void AdvanceButtonDialog::checkSlotTimeUpdate()

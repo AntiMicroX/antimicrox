@@ -522,18 +522,16 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
 
     int axis1Value = axisXValue;
     int axis2Value = axisYValue;
-    //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
     double angle2 = atan2(axis1Value, -axis2Value);
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
     int deadY = abs(floor(deadZone * ang_cos + 0.5));
-    //int axis2ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5);
+
     double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
-    //double circleToSquareTest = axis2Value * squareStickFullPhi;
 
     double adjustedAxis2Value = (circleStickFull > 1.0) ? (axis2Value / circleStickFull) : axis2Value;
     double adjustedDeadYZone = (circleStickFull > 1.0) ? (deadY / circleStickFull) : deadY;
@@ -546,7 +544,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
         if ((direction == StickRightUp) || (direction == StickUp))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
-            //double maxangle = tempangles.at(3);
+
             double minangle = tempangles.at(1);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadY = fabs(square_dist * sin(minangle * PI / 180.0));
@@ -563,7 +561,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
         else if ((direction == StickRightDown) || (direction == StickRight))
         {
             QList<double> tempfuck = getDiagonalZoneAngles();
-            //double maxangle = tempfuck.at(5);
+
             double minangle = tempfuck.at(4);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadY = fabs(square_dist * sin((minangle - 90.0) * PI / 180.0));
@@ -580,7 +578,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
         else if ((direction == StickLeftDown) || (direction == StickDown))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
-            //double maxangle = tempangles.at(7);
+
             double minangle = tempangles.at(6);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadY = fabs(square_dist * sin((minangle - 180.0) * PI / 180.0));
@@ -597,7 +595,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
         else if ((direction == StickLeftUp) || (direction == StickLeft))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
-            //double maxangle = tempangles.at(1);
+
             double minangle = tempangles.at(8);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadY = fabs(square_dist * sin((minangle - 270.0) * PI / 180.0));
@@ -672,18 +670,15 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
 
     int axis1Value = axisXValue;
     int axis2Value = axisYValue;
-    //unsigned int square_dist = (unsigned int)(axis1Value*axis1Value) + (unsigned int)(axis2Value*axis2Value);
 
     double angle2 = atan2(axis1Value, -axis2Value);
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
     int deadX = abs(static_cast<int>(floor(deadZone * ang_sin + 0.5)));
-    //int axis1ValueCircleFull = (int)floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5);
     double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
-    //double alternateStickFullValue = circleStickFull * abs(axis1ValueCircleFull);
 
     double adjustedAxis1Value = (circleStickFull > 1.0) ? (axis1Value / circleStickFull) : axis1Value;
     double adjustedDeadXZone = (circleStickFull > 1.0) ? (deadX / circleStickFull) : deadX;
@@ -696,8 +691,8 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
         if ((direction == StickRightUp) || (direction == StickRight))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(3);
-            //double minangle = tempangles.at(1);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadX = fabs(square_dist * cos(maxangle * PI / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
@@ -713,8 +708,8 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
         else if ((direction == StickRightDown) || (direction == StickDown))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(5);
-            //double minangle = tempangles.at(4);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadX = fabs(square_dist * cos((maxangle - 90.0) * PI / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
@@ -730,8 +725,8 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
         else if ((direction == StickLeftDown) || (direction == StickLeft))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(7);
-            //double minangle = tempangles.at(6);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadX = fabs(square_dist * cos((maxangle - 180.0) * PI / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
@@ -747,8 +742,8 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
         else if ((direction == StickLeftUp) || (direction == StickUp))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(1);
-            //double minangle = tempangles.at(8);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
             double mindeadX = fabs(square_dist * cos((maxangle - 270.0) * PI / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
@@ -1027,19 +1022,6 @@ void JoyControlStick::reset()
     diagonalRange = 45;
     isActive = false;
     pendingStickEvent = false;
-
-    /*if (activeButton1)
-    {
-        activeButton1->reset();
-    }
-    activeButton1 = 0;
-
-    if (activeButton2)
-    {
-        activeButton2->reset();
-    }
-
-    activeButton2 = 0;*/
 
     activeButton1 = nullptr;
     activeButton2 = nullptr;
@@ -1940,13 +1922,10 @@ int JoyControlStick::calculateCircleXValue(int axisXValue, int axisYValue)
         double ang_sin = sin(angle2);
         double ang_cos = cos(angle2);
 
-        //int axisXValueCircleFull = static_cast<int>(floor(JoyAxis::AXISMAX * fabs(ang_sin) + 0.5));
         double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
         double circle = this->circle;
         double circleStickFull = (squareStickFull - 1) * circle + 1;
-        //double alternateStickFullValue = circleStickFull * abs(axisXValueCircleFull);
 
-        //value = circleStickFull > 1.0 ? static_cast<int>(floor((axisXValue / alternateStickFullValue) * abs(axisXValueCircleFull) + 0.5)) : value;
         value = (circleStickFull > 1.0) ? static_cast<int>(floor((axisXValue / circleStickFull) + 0.5)) : value;
     }
 
@@ -1967,13 +1946,10 @@ int JoyControlStick::calculateCircleYValue(int axisXValue, int axisYValue)
         double ang_sin = sin(angle2);
         double ang_cos = cos(angle2);
 
-        //int axisYValueCircleFull = static_cast<int>(floor(JoyAxis::AXISMAX * fabs(ang_cos) + 0.5));
         double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
         double circle = this->circle;
         double circleStickFull = (squareStickFull - 1) * circle + 1;
-        //double alternateStickFullValue = circleStickFull * abs(axisYValueCircleFull);
 
-        //value = circleStickFull > 1.0 ? static_cast<int>(floor((axisYValue / alternateStickFullValue) * abs(axisYValueCircleFull) + 0.5)) : value;
         value = (circleStickFull > 1.0) ? static_cast<int>(floor((axisYValue / circleStickFull) + 0.5)) : value;
     }
 
@@ -1992,12 +1968,6 @@ QList<double> JoyControlStick::getDiagonalZoneAngles()
 
     double initialLeft = 360 - ((cardinalAngle) / 2.0);
     double initialRight = ((cardinalAngle)/ 2.0);
-    /*if ((int)(cardinalAngle - 1) % 2 != 0)
-    {
-        initialLeft = 360 - (cardinalAngle / 2.0);
-        initialRight = (cardinalAngle / 2.0) - 1;
-    }
-    */
 
     double upRightInitial = initialRight;
     double rightInitial = upRightInitial + diagonalAngle;
@@ -2590,7 +2560,6 @@ void JoyControlStick::determineStandardModeEvent(JoyControlStickButton *&eventbu
     double leftInitial = anglesList.value(7);
     double upLeftInitial = anglesList.value(8);
 
-    //bearing = floor(bearing + 0.5);
     if ((bearing <= initialRight) || (bearing >= initialLeft))
     {
         currentDirection = StickUp;
@@ -2661,7 +2630,6 @@ void JoyControlStick::determineEightWayModeEvent(JoyControlStickButton *&eventbu
     double leftInitial = anglesList.value(7);
     double upLeftInitial = anglesList.value(8);
 
-    //bearing = floor(bearing + 0.5);
     if ((bearing <= initialRight) || (bearing >= initialLeft))
     {
         currentDirection = StickUp;
@@ -2722,7 +2690,6 @@ void JoyControlStick::determineFourWayCardinalEvent(JoyControlStickButton *&even
     int leftInitial = anglesList.value(2);
     int upInitial = anglesList.value(3);
 
-    //bearing = floor(bearing + 0.5);
     if ((bearing < rightInitial) || (bearing >= upInitial))
     {
         currentDirection = StickUp;
@@ -2762,7 +2729,6 @@ void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&even
     int downLeftInitial = anglesList.value(2);
     int upLeftInitial = anglesList.value(3);
 
-    //bearing = floor(bearing + 0.5);
     if ((bearing >= upRightInitial) && (bearing < downRightInitial))
     {
         currentDirection = StickRightUp;
@@ -2805,7 +2771,6 @@ JoyControlStick::determineStandardModeDirection(int axisXValue, int axisYValue)
     JoyStickDirections result = StickCentered;
 
     double bearing = calculateBearing(axisXValue, axisYValue);
-    //bearing = floor(bearing + 0.5);
 
     QList<double> anglesList = getDiagonalZoneAngles();
     int initialLeft = anglesList.value(0);
@@ -2897,7 +2862,6 @@ JoyControlStick::determineFourWayCardinalDirection(int axisXValue, int axisYValu
     JoyStickDirections result = StickCentered;
 
     double bearing = calculateBearing(axisXValue, axisYValue);
-    //bearing = floor(bearing + 0.5);
 
     QList<int> anglesList = getFourWayCardinalZoneAngles();
     int rightInitial = anglesList.value(0);
@@ -2947,7 +2911,6 @@ JoyControlStick::determineFourWayDiagonalDirection(int axisXValue, int axisYValu
     JoyStickDirections result = StickCentered;
 
     double bearing = calculateBearing(axisXValue, axisYValue);
-    //bearing = floor(bearing + 0.5);
 
     QList<int> anglesList = getFourWayDiagonalZoneAngles();
     int upRightInitial = anglesList.value(0);
@@ -4050,7 +4013,7 @@ double JoyControlStick::calculateXAxisDistance(int axisXValue)
         distance = 1.0;
     }
 
-    //qDebug() << "DISTANCE: " << distance;
+    qDebug() << "DISTANCE: " << distance;
 
     return distance;
 }
@@ -4132,47 +4095,39 @@ double JoyControlStick::calculateXDiagonalDeadZone(int axisXValue, int axisYValu
 
     double diagonalDeadZone = 0.0;
     JoyStickDirections direction = calculateStickDirection(axisXValue, axisYValue);
-    //double angle2 = atan2(axisXValue, -axisYValue);
-    //double ang_sin = sin(angle2);
-    //double ang_cos = cos(angle2);
-    //int deadX = abs((int)floor(deadZone * ang_sin + 0.5));
 
     if (diagonalRange < 90)
     {
         if ((direction == StickRightUp) || (direction == StickRight))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(3);
-            //double minangle = tempangles.at(1);
             double mindeadX = fabs(deadZone * cos(maxangle * PI / 180.0));
-            //double currentDeadX = qMax(mindeadX, static_cast<double>(deadX));
             diagonalDeadZone = mindeadX;
         }
         else if ((direction == StickRightDown) || (direction == StickDown))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(5);
-            //double minangle = tempangles.at(4);
             double mindeadX = fabs(deadZone * cos((maxangle - 90.0) * PI / 180.0));
-            //double currentDeadX = qMax(mindeadX, static_cast<double>(deadX));
             diagonalDeadZone = mindeadX;
         }
         else if ((direction == StickLeftDown) || (direction == StickLeft))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(7);
-            //double minangle = tempangles.at(6);
             double mindeadX = fabs(deadZone * cos((maxangle - 180.0) * PI / 180.0));
-            //double currentDeadX = qMax(mindeadX, static_cast<double>(deadX));
             diagonalDeadZone = mindeadX;
         }
         else if ((direction == StickLeftUp) || (direction == StickUp))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
+
             double maxangle = tempangles.at(1);
-            //double minangle = tempangles.at(8);
             double mindeadX = fabs(deadZone * cos((maxangle - 270.0) * PI / 180.0));
-            //double currentDeadX = qMax(mindeadX, static_cast<double>(deadX));
             diagonalDeadZone = mindeadX;
         }
         else
@@ -4194,47 +4149,39 @@ double JoyControlStick::calculateYDiagonalDeadZone(int axisXValue, int axisYValu
 
     double diagonalDeadZone = 0.0;
     JoyStickDirections direction = calculateStickDirection(axisXValue, axisYValue);
-    //double angle2 = atan2(axisXValue, -axisYValue);
-    //double ang_sin = sin(angle2);
-    //double ang_cos = cos(angle2);
-    //int deadY = abs(floor(deadZone * ang_cos + 0.5));
 
     if (diagonalRange < 90)
     {
         if ((direction == StickRightUp) || (direction == StickUp))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
-            //double maxangle = tempangles.at(3);
+
             double minangle = tempangles.at(1);
             double mindeadY = fabs(deadZone * sin(minangle * PI / 180.0));
-            //double currentDeadY = qMax(static_cast<double>(deadY), mindeadY);
             diagonalDeadZone = mindeadY;
         }
         else if ((direction == StickRightDown) || (direction == StickRight))
         {
             QList<double> tempfuck = getDiagonalZoneAngles();
-            //double maxangle = tempfuck.at(5);
+
             double minangle = tempfuck.at(4);
             double mindeadY = fabs(deadZone * sin((minangle - 90.0) * PI / 180.0));
-            //double currentDeadY = qMax(static_cast<double>(deadY), mindeadY);
             diagonalDeadZone = mindeadY;
         }
         else if ((direction == StickLeftDown) || (direction == StickDown))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
-            //double maxangle = tempangles.at(7);
+
             double minangle = tempangles.at(6);
             double mindeadY = fabs(deadZone * sin((minangle - 180.0) * PI / 180.0));
-            //double currentDeadY = qMax(static_cast<double>(deadY), mindeadY);
             diagonalDeadZone = mindeadY;
         }
         else if ((direction == StickLeftUp) || (direction == StickLeft))
         {
             QList<double> tempangles = getDiagonalZoneAngles();
-            //double maxangle = tempangles.at(1);
+
             double minangle = tempangles.at(8);
             double mindeadY = fabs(deadZone * sin((minangle - 270.0) * PI / 180.0));
-            //double currentDeadY = qMax(static_cast<double>(deadY), mindeadY);
             diagonalDeadZone = mindeadY;
         }
         else
@@ -4287,7 +4234,6 @@ double JoyControlStick::getSpringDeadCircleX()
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
     double adjustedDeadXZone = circleStickFull > 1.0 ? (deadX / circleStickFull) : deadX;
-    //result = adjustedDeadXZone / static_cast<double>(deadZone);
     double finalDeadZoneX = adjustedDeadXZone - diagonalDeadX;
     double maxRange = static_cast<double>(deadZone) - diagonalDeadX;
 
@@ -4336,7 +4282,6 @@ double JoyControlStick::getSpringDeadCircleY()
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
     double adjustedDeadYZone = (circleStickFull > 1.0) ? (deadY / circleStickFull) : deadY;
-    //result = adjustedDeadYZone / static_cast<double>(deadZone);
     double finalDeadZoneY = adjustedDeadYZone - diagonalDeadY;
     double maxRange = static_cast<double>(deadZone) - diagonalDeadY;
 

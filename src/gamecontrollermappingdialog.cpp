@@ -229,7 +229,6 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     bool skip = false;
-    //bool change = true;
 
     if (usingGameController)
     {
@@ -246,17 +245,12 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
         int column = ui->buttonMappingTableWidget->currentColumn();
         int row = ui->buttonMappingTableWidget->currentRow();
 
-       // if (row < 17)
-       // {
             if (usingGameController)
             {
-                //bool considerTrigger = ((row == 15) || (row == 16));
-                // considerTrigger &&
                 if ((value > currentDeadZoneValue) && !eventTriggerAxes.contains(axis))
                 {
                     eventTriggerAxes.append(axis);
                 }
-                // considerTrigger && (
                 else if (value < currentDeadZoneValue)
                 {
                     skip = true;
@@ -300,11 +294,9 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
                 ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
             }
-        //}
 
         else
         {
-            //change = false;
             skip = true;
         }
     }
@@ -316,15 +308,10 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 
     if (ui->buttonMappingTableWidget->currentRow() > -1)
     {
-       // if ((buttonindex == 1) || (buttonindex == 2) ||
-       //     (buttonindex == 4) || (buttonindex == 8))
-       // {
             QTableWidgetItem* item = ui->buttonMappingTableWidget->currentItem();
             int column = ui->buttonMappingTableWidget->currentColumn();
             int row = ui->buttonMappingTableWidget->currentRow();
 
-           // if ((row <= 10) || (row >= 17))
-           // {
                 if (item == nullptr)
                 {
                     item = new QTableWidgetItem(QString("Hat %1.%2").arg(dpad+1).arg(buttonindex));
@@ -352,7 +339,6 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 
                 item->setData(Qt::UserRole, tempvalue);
                 item->setText(QString("Hat %1.%2").arg(dpad+1).arg(buttonindex));
-           // }
 
             if (row < (ui->buttonMappingTableWidget->rowCount() - 1))
             {
@@ -360,7 +346,6 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
             }
 
             ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
-      //  }
     }
 }
 

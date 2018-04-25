@@ -21,7 +21,7 @@
 #include <linux/uinput.h>
 #include <cmath>
 
-//#include <QDebug>
+#include <QDebug>
 #include <QStringList>
 #include <QStringListIterator>
 #include <QFileInfo>
@@ -270,8 +270,6 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
         int fx = ceil(32767 * ((xDis - midwidth) / midwidth));
         int fy = ceil(32767 * ((yDis - midheight) / midheight));
         sendMouseAbsEvent(fx, fy, -1);
-        //write_uinput_event(springMouseFileHandler, EV_ABS, ABS_X, fx, false);
-        //write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, fy);
     }
 }
 
@@ -497,8 +495,6 @@ QString UInputEventHandler::getIdentifier()
  */
 void UInputEventHandler::printPostMessages()
 {
-    //QTextStream out(stdout);
-
     if (!lastErrorString.isEmpty())
     {
         Logger::LogInfo(lastErrorString);

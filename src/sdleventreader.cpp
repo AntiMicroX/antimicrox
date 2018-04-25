@@ -73,7 +73,6 @@ void SDLEventReader::initSDL()
     SDL_JoystickEventState(SDL_ENABLE);
     sdlIsOpen = true;
 
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
     QStringList mappings = settings->allKeys();
@@ -93,12 +92,8 @@ void SDLEventReader::initSDL()
     settings->endGroup();
     settings->getLock()->unlock();
 
-    //SDL_GameControllerAddMapping("03000000100800000100000010010000,Twin USB Joystick,a:b2,b:b1,x:b3,y:b0,back:b8,start:b9,leftshoulder:b6,rightshoulder:b7,leftstick:b10,rightstick:b11,leftx:a0,lefty:a1,rightx:a3,righty:a2,lefttrigger:b4,righttrigger:b5,dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2");
-
     pollRateTimer.stop();
     pollRateTimer.setInterval(pollRate);
-    //pollRateTimer.start();
-    //pollRateTimer.setSingleShot(true);
 
     emit sdlStarted();
 }
@@ -129,7 +124,6 @@ void SDLEventReader::performWork()
 
     if (sdlIsOpen)
     {
-        //int status = SDL_WaitEvent(NULL);
         int status = CheckForEvents();
 
         if (status)
@@ -200,15 +194,7 @@ bool SDLEventReader::isSDLOpen()
 
 int SDLEventReader::CheckForEvents()
 {
-
     int result = 0;
-    //bool exit = false;
-
-    /*Logger::LogInfo(
-                                QString("Gamepad Poll %1").arg(
-                                    QTime::currentTime().toString("hh:mm:ss.zzz")),
-                                true, true);
-    */
 
     SDL_PumpEvents();
     switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
@@ -219,7 +205,7 @@ int SDLEventReader::CheckForEvents()
 			   arg(QString(SDL_GetError())),
 			   true, true);
             result = 0;
-            //exit = true;
+
             break;
         }
         case 0:
@@ -228,20 +214,12 @@ int SDLEventReader::CheckForEvents()
             {
                 pollRateTimer.start();
             }
-            //exit = true;
-            //SDL_Delay(10);
+
             break;
         }
         default:
         {
-            /*Logger::LogInfo(
-                        QString("Gamepad Poll %1").arg(
-                            QTime::currentTime().toString("hh:mm:ss.zzz")),
-                        true, true);
-            */
-
             result = 1;
-           // exit = true;
             break;
         }
     }

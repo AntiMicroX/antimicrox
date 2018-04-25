@@ -90,7 +90,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     }
 
     int currentThrottle = axis->getThrottle();
-    //ui->comboBox_2->setCurrentIndex(currentThrottle+1);
+
     if ((currentThrottle == static_cast<int>(JoyAxis::NegativeThrottle)) || (currentThrottle == static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
         int tempindex = (currentThrottle == static_cast<int>(JoyAxis::NegativeHalfThrottle)) ? 0 : 1;
@@ -384,14 +384,6 @@ void AxisEditDialog::refreshNButtonLabel()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    /*if (!axis->getNAxisButton()->getActionName().isEmpty())
-    {
-        ui->nPushButton->setText(axis->getNAxisButton()->getActionName());
-    }
-    else
-    {
-        ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
-    }*/
     ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
 }
 
@@ -399,14 +391,6 @@ void AxisEditDialog::refreshPButtonLabel()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    /*if (!axis->getPAxisButton()->getActionName().isEmpty())
-    {
-        ui->pPushButton->setText(axis->getPAxisButton()->getActionName());
-    }
-    else
-    {
-        ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
-    }*/
     ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
 
 }

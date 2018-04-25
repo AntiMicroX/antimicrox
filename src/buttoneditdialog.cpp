@@ -250,7 +250,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
           finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
           checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
 
-          //unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
           QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
           int tempQtKey = 0;
           if (nativeWinKeyMapper != nullptr)
@@ -295,7 +294,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         if (handler->getIdentifier() == "uinput")
         {
             // Find Qt Key corresponding to X11 KeySym.
-            //checkalias = x11KeyMapper.returnQtKey(finalvirtual);
             Q_ASSERT(AntKeyMapper::getInstance()->hasNativeKeyMapper());
             QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
             Q_ASSERT(x11KeyMapper != NULL);
@@ -420,13 +418,9 @@ void ButtonEditDialog::openAdvancedDialog()
 
     ui->advancedPushButton->setEnabled(false);
 
-    // get
-   // QPointer<JoyButton> button = nullptr; // I'm not sure for this kind of button
     if (lastJoyButton != nullptr) {
     AdvanceButtonDialog *dialog = new AdvanceButtonDialog(lastJoyButton, this);
     dialog->show();
-
-   // if (button.isNull()) button.clear();
 
     // Disconnect event to allow for placing slot to AdvanceButtonDialog
     disconnect(this, SIGNAL(keyGrabbed(JoyButtonSlot*)), 0, 0);
@@ -503,8 +497,6 @@ void ButtonEditDialog::closedAdvancedDialog()
     connect(this, SIGNAL(keyGrabbed(JoyButtonSlot*)), this, SLOT(processSlotAssignment(JoyButtonSlot*)));
     connect(this, SIGNAL(selectionCleared()), this, SLOT(clearButtonSlots()));
     connect(this, SIGNAL(selectionCleared()), this, SLOT(sendSelectionFinished()));
-  //  connect(this, SIGNAL(selectionFinished()), this, SLOT(close()));
-
 
 }
 

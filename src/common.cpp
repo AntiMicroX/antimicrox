@@ -163,14 +163,6 @@ namespace PadderCommon
         qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
         sdlWaitMutex.lock();
-        /*editingLock.lockForWrite();
-        editingBindings = true;
-        editingLock.unlock();
-
-        waitMutex.lock();
-        //editingBindings = true;
-        waitThisOut.wait(&waitMutex);
-        */
     }
 
     void unlockInputDevices()
@@ -178,12 +170,6 @@ namespace PadderCommon
         qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
         sdlWaitMutex.unlock();
-        /*editingLock.lockForWrite();
-        editingBindings = false;
-        editingLock.unlock();
-
-        waitMutex.unlock();
-        */
     }
 
     QWaitCondition waitThisOut;

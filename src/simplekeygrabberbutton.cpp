@@ -81,8 +81,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             controlcode = mouseEve->button();
         }
 
-        //setText(QString(trUtf8("Mouse")).append(" ").append(QString::number(controlcode)));
-
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
         refreshButtonLabel();
@@ -117,7 +115,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
                 tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
             }
 
-            //unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
             if (tempQtKey > 0)
             {
                 finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
@@ -152,7 +149,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         if (handler->getIdentifier() == "uinput")
         {
             // Find Qt Key corresponding to X11 KeySym.
-            //checkalias = x11KeyMapper.returnQtKey(finalvirtual);
             QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
             checkalias = x11KeyMapper->returnQtKey(finalvirtual);
             // Find corresponding Linux input key for the Qt key.

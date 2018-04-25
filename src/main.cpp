@@ -565,7 +565,6 @@ int main(int argc, char *argv[])
         QObject::connect(&a, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),
                          Qt::BlockingQueuedConnection);
 
-        //JoyButton::establishMouseTimerConnections();
         w->makeJoystickTabs();
         QTimer::singleShot(0, w, SLOT(controllerMapOpening()));
 

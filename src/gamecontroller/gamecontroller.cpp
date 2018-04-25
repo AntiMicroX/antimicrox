@@ -73,17 +73,6 @@ QString GameController::getGUIDString()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     QString temp = getRawGUIDString();
-#ifdef Q_OS_WIN
-    // On Windows, if device is seen as a game controller by SDL
-    // and the device has an empty GUID, assume that it is an XInput
-    // compatible device. Send back xinput as the GUID since SDL uses it
-    // internally anyway.
-    /*if (!temp.isEmpty() && temp.contains(emptyGUID))
-    {
-        temp = "xinput";
-    }
-    */
-#endif
 
     return temp;
 }
@@ -147,7 +136,6 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     if (xml->isStartElement() && (xml->name() == "joystick"))
     {
-        //reset();
         transferReset();
 
         QHash<int, SDL_GameControllerButton> buttons;
@@ -166,7 +154,6 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
             }
         }
 
-// (int)SDL_CONTROLLER_BUTTON_MAX
         for (int i = 0; i < SDL_JoystickNumButtons(this->joyhandle); i++)
         {
             qDebug() << "Button " << (i + 1);
@@ -177,7 +164,6 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                 buttons.insert(bound.value.button, currentButton);
             }
         }
-        //(int)SDL_CONTROLLER_AXIS_MAX;
 
         for (int i = 0; i < SDL_JoystickNumAxes(this->joyhandle); i++)
         {
@@ -496,7 +482,6 @@ void GameController::readConfig(QXmlStreamReader *xml)
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     if (xml->isStartElement() && (xml->name() == getXmlName()))
     {
-        //reset();
         transferReset();
 
         xml->readNextStartElement();
@@ -806,7 +791,6 @@ QString GameController::getBindStringForAxis(int index, bool)
         }
         else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
         {
-            //int offset = trueIndex ? 0 : 1;
             temp.append(QString("Axis %1").arg(bind.value.axis + 1));
         }
     }

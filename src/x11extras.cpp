@@ -49,7 +49,6 @@ X11Extras::X11Extras(QObject *parent) :
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    //knownAliases = QHash<QString, QString> ();
     _display = XOpenDisplay(NULL);
     populateKnownAliases();
 }
@@ -65,7 +64,6 @@ X11Extras::~X11Extras()
     {
         XCloseDisplay(display());
         _display = nullptr;
-        //_customDisplayString = "";
     }
 }
 
@@ -73,13 +71,6 @@ X11Extras *X11Extras::getInstance()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    /*if (!_instance)
-    {
-        _instance = new X11Extras();
-    }
-
-    return _instance;
-    */
     X11Extras *temp = nullptr;
     if (!displays.hasLocalData())
     {
@@ -98,12 +89,6 @@ void X11Extras::deleteInstance()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    /*if (_instance)
-    {
-        delete _instance;
-        _instance = 0;
-    }
-    */
     if (displays.hasLocalData())
     {
         X11Extras *temp = displays.localData();
@@ -142,7 +127,6 @@ void X11Extras::closeDisplay()
     {
         XCloseDisplay(display());
         _display = nullptr;
-        //_customDisplayString = "";
     }
 }
 
@@ -154,7 +138,6 @@ void X11Extras::syncDisplay()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     _display = XOpenDisplay(NULL);
-    //_customDisplayString = "";
 }
 
 /**
@@ -168,15 +151,6 @@ void X11Extras::syncDisplay(QString displayString)
 
     QByteArray tempByteArray = displayString.toLocal8Bit();
     _display = XOpenDisplay(tempByteArray.constData());
-    /*if (_display)
-    {
-        _customDisplayString = displayString;
-    }
-    else
-    {
-        _customDisplayString = "";
-    }
-    */
 }
 
 void X11Extras::setCustomDisplay(QString displayString)
@@ -263,7 +237,7 @@ Window X11Extras::findParentClient(Window window)
             {
                 if (children)
                 {
-                    // must test for NULL
+                    // must be a test for NULL
                     XFree(children);
                 }
 
@@ -343,7 +317,7 @@ int X11Extras::getApplicationPid(Window window)
             {
                 if (children)
                 {
-                    // must test for NULL
+                    // must be a test for NULL
                     XFree(children);
                 }
 
@@ -579,7 +553,7 @@ QString X11Extras::getWindowTitle(Window window)
     unsigned char *prop = 0;
     int status = 0;
 
-    //qDebug() << "WIN: 0x" << QString::number(window, 16);
+    qDebug() << "WIN: 0x" << QString::number(window, 16);
 
     Display *display = this->display();
     Atom wm_name = XInternAtom(display, "WM_NAME", True);
@@ -608,7 +582,7 @@ QString X11Extras::getWindowTitle(Window window)
     {
         char *tempprop = (char*)prop;
         temp.append(QString::fromUtf8(tempprop));
-        //qDebug() << temp;
+        qDebug() << temp;
     }
 
     if (prop)
@@ -641,7 +615,7 @@ QString X11Extras::getWindowClass(Window window)
 
     if ((status == Success) && prop)
     {
-        //qDebug() << nitems;
+        qDebug() << nitems;
         char *null_char = strchr((char*)prop, '\0');
         if ((((char*)prop) + nitems - 1) > null_char)
         {
@@ -650,8 +624,8 @@ QString X11Extras::getWindowClass(Window window)
 
         char *tempprop = (char*)prop;
         temp.append(QString::fromUtf8(tempprop));
-        //qDebug() << temp;
-        //qDebug() << (char*)prop;
+        qDebug() << temp;
+        qDebug() << (char*)prop;
     }
 
     if (prop)

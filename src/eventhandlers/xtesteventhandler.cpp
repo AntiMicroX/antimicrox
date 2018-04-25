@@ -137,8 +137,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
     if ((mapper != nullptr) && mapper->getKeyMapper())
     {
-        //Qt::KeyboardModifiers originalModifiers = Qt::KeyboardModifiers(QApplication::keyboardModifiers());
-        //Qt::KeyboardModifiers currentModifiers = Qt::KeyboardModifiers(QApplication::keyboardModifiers());
         Display* display = X11Extras::getInstance()->display();
         QtX11KeyMapper *keymapper = qobject_cast<QtX11KeyMapper*>(mapper->getKeyMapper()); // static_cast
 
@@ -161,7 +159,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                         int modifiercode = shiftcode;
                         XTestFakeKeyEvent(display, modifiercode, 1, 0);
-                        //currentModifiers |= Qt::ShiftModifier;
                         tempList.append(modifiercode);
                     }
 
@@ -174,7 +171,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                         int modifiercode = controlcode;
                         XTestFakeKeyEvent(display, modifiercode, 1, 0);
-                        //currentModifiers |= Qt::ControlModifier;
                         tempList.append(modifiercode);
                     }
 
@@ -187,7 +183,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                         int modifiercode = altcode;
                         XTestFakeKeyEvent(display, modifiercode, 1, 0);
-                        //currentModifiers |= Qt::AltModifier;
                         tempList.append(modifiercode);
                     }
 
@@ -200,7 +195,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
                         int modifiercode = metacode;
                         XTestFakeKeyEvent(display, modifiercode, 1, 0);
-                        //currentModifiers |= Qt::MetaModifier;
                         tempList.append(modifiercode);
                     }
                 }
@@ -224,16 +218,6 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 }
             }
         }
-
-        // Perform a flush at the end.
-        //XFlush(display);
-
-        // Restore modifiers in place
-        /*if (originalModifiers != currentModifiers)
-        {
-
-        }
-        */
     }
 }
 

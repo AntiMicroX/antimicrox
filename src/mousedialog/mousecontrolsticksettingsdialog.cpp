@@ -408,16 +408,9 @@ void MouseControlStickSettingsDialog::updateExtraAccelerationCurve(int index)
     JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
     if (index > 0)
     {
-        //PadderCommon::lockInputDevices();
-
-        //InputDevice *device = stick->getParentSet()->getInputDevice();
-        //QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
-
         PadderCommon::inputDaemonMutex.lock();
         stick->setButtonsExtraAccelCurve(temp);
         PadderCommon::inputDaemonMutex.unlock();
-
-        //PadderCommon::unlockInputDevices();
     }
 }
 

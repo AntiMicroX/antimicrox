@@ -166,8 +166,6 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
         }
     }
 
-    //if (throttle != DEFAULTTHROTTLE)
-    //{
         xml->writeStartElement("throttle");
 
         if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
@@ -192,7 +190,6 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
         }
 
         xml->writeEndElement();
-    //}
 
     if (!currentlyDefault)
     {
