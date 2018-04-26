@@ -43,9 +43,6 @@ signals:
     void stickConfigurationChanged();
     void vdpadConfigurationChanged();
 
-private:
-    Ui::AdvanceStickAssignmentDialog *ui;
-
 private slots:
     void refreshStickConfiguration();
     void refreshVDPadConfiguration();
@@ -89,6 +86,8 @@ private slots:
     void reenableButtonEvents();
 
 private:
+    Ui::AdvanceStickAssignmentDialog *ui;
+
     Joystick *joystick;
 
 };

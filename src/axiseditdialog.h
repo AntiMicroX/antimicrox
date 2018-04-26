@@ -44,12 +44,12 @@ protected:
     void buildTriggerPresetsMenu();
     void buildAxisPresetsMenu();
 
+private:
+    Ui::AxisEditDialog *ui;
+
     JoyAxis *axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
     int initialThrottleState;
-
-private:
-    Ui::AxisEditDialog *ui;
 
 private slots:
     void implementAxisPresets(int index);

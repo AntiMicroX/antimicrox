@@ -37,7 +37,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     for (int i = 0; i < NUMBER_JOYSETS; i++)
     {
         SetJoystick *setstick = new SetJoystick(this, i, this);
-        joystick_sets.insert(i, setstick);
+        getJoystick_sets().insert(i, setstick);
         enableSetConnections(setstick);
     }
 }

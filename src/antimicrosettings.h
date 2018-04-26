@@ -35,17 +35,16 @@ public:
     QVariant runtimeValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void importFromCommandLine(CommandLineUtility &cmdutility);
     QMutex* getLock();
-    QSettings const& getCmdSettings();
+    QSettings& getCmdSettings();
 
     static const bool defaultDisabledWinEnhanced;
     static const bool defaultAssociateProfiles;
     static const int defaultSpringScreen;
     static const int defaultSDLGamepadPollRate; // unsigned
 
-private:
+protected:
     QSettings cmdSettings;
     QMutex lock;
-
 
 };
 

@@ -76,7 +76,6 @@ public:
     static void deleteInstance();
 
     QHash<QString, QString> const& getKnownAliases();
-    Display *get_Display() const;
 
     static const QString mouseDeviceName;
     static const QString keyboardDeviceName;

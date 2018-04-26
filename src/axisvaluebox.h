@@ -37,7 +37,14 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent *event);
     virtual void paintEvent(QPaintEvent *event);
+    
+public slots:
+    void setThrottle(int throttle);
+    void setValue(int value);
+    void setDeadZone(int deadZone);
+    void setMaxZone(int maxZone);
 
+private:
     int deadZone;
     int maxZone;
     int joyValue;
@@ -50,12 +57,6 @@ protected:
     int rboxend;
     int singlewidth;
     int singleend;
-    
-public slots:
-    void setThrottle(int throttle);
-    void setValue(int value);
-    void setDeadZone(int deadZone);
-    void setMaxZone(int maxZone);
 
 };
 

@@ -38,7 +38,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     resize(size().width(), 450);
 
     this->button = button;
-    helper.moveToThread(button->thread());
+    getHelperLocal().moveToThread(button->thread());
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
@@ -314,3 +314,9 @@ MouseButtonSettingsDialogHelper const& MouseButtonSettingsDialog::getHelper() {
 
     return helper;
 }
+
+MouseButtonSettingsDialogHelper& MouseButtonSettingsDialog::getHelperLocal() {
+
+    return helper;
+}
+

@@ -52,7 +52,6 @@ public slots:
     void updateHorizontalSpeedConvertLabel(int value);
     void updateVerticalSpeedConvertLabel(int value);
     void moveSpeedsTogether(int value);
-    //void changeSmoothingStatus(int index);
     void updateWheelVerticalSpeedLabel(int value);
     void updateWheelHorizontalSpeedLabel(int value);
     void changeSensitivityStatusForMouseMode(int index);

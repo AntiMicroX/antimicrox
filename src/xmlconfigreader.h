@@ -33,14 +33,14 @@ public:
     ~XMLConfigReader();
     void setJoystick(InputDevice *joystick);
     void setFileName(QString filename);
-    QString getErrorString();
+    const QString getErrorString();
     bool hasError();
     bool read();
 
-    QXmlStreamReader *getXml() const;
+    const QXmlStreamReader *getXml();
     QString const& getFileName();
-    QFile* getConfigFile() const;
-    InputDevice* getJoystick() const;
+    const QFile* getConfigFile();
+    const InputDevice* getJoystick();
     QStringList const& getDeviceTypes();
 
 protected:

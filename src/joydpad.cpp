@@ -748,11 +748,18 @@ void JoyDPad::setDPadName(QString tempName)
     }
 }
 
-QString JoyDPad::getDpadName()
+const QString JoyDPad::getDpadName()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     return dpadName;
+}
+
+const QString JoyDPad::getDefaultDpadName() {
+
+    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+
+    return defaultDPadName;
 }
 
 void JoyDPad::setButtonsWheelSpeedX(int value)
@@ -957,7 +964,7 @@ void JoyDPad::createDeskEvent(bool ignoresets)
                 prevButton = buttons.value(prevDirection);
                 prevButton->joyEvent(false, ignoresets);
             }
-            else if ((currentMode == FourWayCardinal) && prevDirection)
+            else if ((currentMode == FourWayCardinal) && (static_cast<int>(prevDirection) != 0))
             {
                 if (((prevDirection == JoyDPadButton::DpadUp) ||
                     (prevDirection == JoyDPadButton::DpadRightUp)) &&
@@ -990,7 +997,7 @@ void JoyDPad::createDeskEvent(bool ignoresets)
                 }
 
             }
-            else if ((currentMode == FourWayDiagonal) && prevDirection)
+            else if ((currentMode == FourWayDiagonal) && (static_cast<int>(prevDirection) != 0))
             {
                 prevButton = buttons.value(prevDirection);
                 prevButton->joyEvent(false, ignoresets);

@@ -53,7 +53,7 @@ QString DPadPushButton::generateLabel()
     QString temp = QString();
     if (!dpad->getDpadName().isEmpty())
     {
-        temp.append(dpad->getName(false, displayNames));
+        temp.append(dpad->getName(false, ifDisplayNames()));
     }
     else
     {

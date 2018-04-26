@@ -1276,7 +1276,7 @@ void MainWindow::changeLanguage(QString language)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (translator && appTranslator)
+    if ((translator != nullptr) && (appTranslator != nullptr))
     {
         PadderCommon::reloadTranslations(translator, appTranslator, language);
     }

@@ -56,12 +56,13 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    //void updateSpringRelativeStatus(bool value);
 
 private slots:
     void updateExtraAccelerationCurve(int index);
 
 private:
+    MouseButtonSettingsDialogHelper& getHelperLocal();
+
     JoyButton *button;
     SpringModeRegionPreview *springPreviewWidget;
     MouseButtonSettingsDialogHelper helper;

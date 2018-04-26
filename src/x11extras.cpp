@@ -60,7 +60,7 @@ X11Extras::~X11Extras()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (_display)
+    if (_display != nullptr)
     {
         XCloseDisplay(display());
         _display = nullptr;
@@ -123,7 +123,7 @@ void X11Extras::closeDisplay()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (_display)
+    if (_display != nullptr)
     {
         XCloseDisplay(display());
         _display = nullptr;
@@ -906,9 +906,4 @@ QPoint X11Extras::getPos()
 QHash<QString, QString> const& X11Extras::getKnownAliases() {
 
     return knownAliases;
-}
-
-Display* X11Extras::get_Display() const {
-
-    return _display;
 }

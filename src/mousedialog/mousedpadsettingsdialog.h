@@ -47,7 +47,6 @@ protected:
     void calculateReleaseSpringRadius();
     void calculateExtraAccelerationCurve();
 
-    
 public slots:
     void changeMouseMode(int index);
     void changeMouseCurve(int index);
@@ -66,6 +65,8 @@ private slots:
     void updateExtraAccelerationCurve(int index);
 
 private:
+    MouseDpadSettingsDialogHelper& getHelperLocal();
+
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
     MouseDpadSettingsDialogHelper helper;

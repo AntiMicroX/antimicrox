@@ -32,7 +32,7 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     this->axis = axis;
-    helper.moveToThread(axis->thread());
+    getHelperLocal().moveToThread(axis->thread());
 
     connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
@@ -443,4 +443,9 @@ void JoyAxisContextMenu::setTriggerPreset()
 
         pbuttonslot->deleteLater();
     }
+}
+
+JoyAxisContextMenuHelper& JoyAxisContextMenu::getHelperLocal() {
+
+    return helper;
 }

@@ -42,7 +42,7 @@ public:
     QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, QWidget *parent = nullptr);
     ~QuickSetDialog();
 
-    JoyButton* getLastPressedButton();
+    JoyButton* getLastPressedButton() const;
     InputDevice *getJoystick() const;
     QDialog *getCurrentButtonDialog() const;
     const char* getInvokeString() const;
@@ -62,15 +62,19 @@ private:
 
     InputDevice *joystick;
     QDialog *currentButtonDialog;
-    const char* invokeString;
     ButtonEditDialogHelper* helper;
+    JoyButton* lastButton;
+
+    const char* invokeString;
+
     int code;
     int alias;
     int index;
+
     JoyButtonSlot::JoySlotInputAction mode;
+
     bool withClear;
     bool withTrue;
-    JoyButton* lastButton;
 
 };
 

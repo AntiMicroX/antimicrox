@@ -46,7 +46,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->stick = stick;
-    helper.moveToThread(stick->thread());
+    getHelperLocal().moveToThread(stick->thread());
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -306,7 +306,7 @@ void JoyControlStickEditDialog::implementPresets(int index)
     tempHash.insert(JoyControlStick::StickLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyControlStick::StickRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelperLocal().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
@@ -582,4 +582,9 @@ void JoyControlStickEditDialog::changeModifierSummary()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
+}
+
+JoyControlStickEditDialogHelper& JoyControlStickEditDialog::getHelperLocal() {
+
+    return helper;
 }

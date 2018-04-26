@@ -75,6 +75,8 @@ private slots:
     void updateExtraAccelerationCurve(int index);
 
 private:
+    MouseControlStickSettingsDialogHelper& getHelperLocal();
+
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;
     MouseControlStickSettingsDialogHelper helper;

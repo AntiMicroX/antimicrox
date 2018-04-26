@@ -67,15 +67,15 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    cmdSettings.clear();
+    getCmdSettings().clear();
 
     if (cmdutility.isLaunchInTrayEnabled())
     {
-        cmdSettings.setValue("LaunchInTray", 1);
+        getCmdSettings().setValue("LaunchInTray", 1);
     }
     if (cmdutility.shouldMapController())
     {
-        cmdSettings.setValue("DisplaySDLMapping", 1);
+        getCmdSettings().setValue("DisplaySDLMapping", 1);
     }
 }
 
@@ -86,7 +86,7 @@ QMutex* AntiMicroSettings::getLock()
     return &lock;
 }
 
-QSettings const& AntiMicroSettings::getCmdSettings() {
+QSettings& AntiMicroSettings::getCmdSettings() {
 
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

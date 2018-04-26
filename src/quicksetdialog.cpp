@@ -69,10 +69,10 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
 
             if (stick->getJoyMode() != JoyControlStick::EightWayMode)
             {
-                if ((stickbutton->getJoyNumber() != JoyControlStick::StickLeftUp) &&
-                    (stickbutton->getJoyNumber() != JoyControlStick::StickRightUp) &&
-                    (stickbutton->getJoyNumber() != JoyControlStick::StickLeftDown) &&
-                    (stickbutton->getJoyNumber() != JoyControlStick::StickRightDown))
+                if ((stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftUp)) &&
+                    (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightUp)) &&
+                    (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
+                    (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
                     connect(stickbutton, SIGNAL(clicked(int)), this, SLOT(showStickButtonDialog()));
                 }
@@ -239,10 +239,10 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
 
             if (stick->getJoyMode() != JoyControlStick::EightWayMode)
             {
-                if ((stickbutton->getJoyNumber() != JoyControlStick::StickLeftUp) &&
-                    (stickbutton->getJoyNumber() != JoyControlStick::StickRightUp) &&
-                    (stickbutton->getJoyNumber() != JoyControlStick::StickLeftDown) &&
-                    (stickbutton->getJoyNumber() != JoyControlStick::StickRightDown))
+                if ((stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftUp)) &&
+                    (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightUp)) &&
+                    (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
+                    (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
                     connect(stickbutton, SIGNAL(clicked(int)), this, SLOT(showStickButtonDialog()));
                 }
@@ -686,7 +686,7 @@ void QuickSetDialog::restoreButtonStates()
 }
 
 
-JoyButton* QuickSetDialog::getLastPressedButton() {
+JoyButton* QuickSetDialog::getLastPressedButton() const {
 
     return lastButton;
 }

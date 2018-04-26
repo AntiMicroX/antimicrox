@@ -630,7 +630,7 @@ void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
                     SetJoystick *currentset = joystick->getSetJoystick(i);
                     VDPad *vdpad = currentset->getVDPad(0);
                     JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
-                    JoyButton *currentbutton = 0;
+                    JoyButton *currentbutton = nullptr;
                     if (button == 0)
                     {
                         currentbutton = currentaxis->getNAxisButton();
@@ -704,7 +704,7 @@ void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
                     SetJoystick *currentset = joystick->getSetJoystick(i);
                     VDPad *vdpad = currentset->getVDPad(0);
                     JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
-                    JoyButton *currentbutton = 0;
+                    JoyButton *currentbutton = nullptr;
                     if (button == 0)
                     {
                         currentbutton = currentaxis->getNAxisButton();
@@ -778,7 +778,7 @@ void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
                     SetJoystick *currentset = joystick->getSetJoystick(i);
                     VDPad *vdpad = currentset->getVDPad(0);
                     JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
-                    JoyButton *currentbutton = 0;
+                    JoyButton *currentbutton = nullptr;
                     if (button == 0)
                     {
                         currentbutton = currentaxis->getNAxisButton();
@@ -852,7 +852,7 @@ void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
                     SetJoystick *currentset = joystick->getSetJoystick(i);
                     VDPad *vdpad = currentset->getVDPad(0);
                     JoyAxis *currentaxis = currentset->getJoyAxis(axis-1);
-                    JoyButton *currentbutton = 0;
+                    JoyButton *currentbutton = nullptr;
                     if (button == 0)
                     {
                         currentbutton = currentaxis->getNAxisButton();

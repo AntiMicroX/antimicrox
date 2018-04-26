@@ -70,7 +70,7 @@ QString JoyButtonWidget::generateLabel()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString temp = QString();
-    temp = button->getName(false, displayNames).replace("&", "&&");
+    temp = button->getName(false, ifDisplayNames()).replace("&", "&&");
 
     qDebug() << "Name of joy button is: " << temp;
     return temp;

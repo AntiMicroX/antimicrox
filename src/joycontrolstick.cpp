@@ -1354,15 +1354,15 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
     }
     else if (currentDirection == StickRightUp)
     {
-        if (activeButton1 && (activeButton1 == button))
+        if ((activeButton1 != nullptr) && (activeButton1 == button))
         {
             finalDistance = calculateXDistanceFromDeadZone(true);
         }
-        else if (activeButton2 && (activeButton2 == button))
+        else if ((activeButton2 != nullptr) && (activeButton2 == button))
         {
             finalDistance = calculateYDistanceFromDeadZone(true);
         }
-        else if (activeButton3 && (activeButton3 == button))
+        else if ((activeButton3 != nullptr) && (activeButton3 == button))
         {
             finalDistance = calculateEightWayDiagonalDistanceFromDeadZone();
         }
@@ -1373,15 +1373,15 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
     }
     else if (currentDirection  == StickRightDown)
     {
-        if (activeButton1 && (activeButton1 == button))
+        if ((activeButton1 != nullptr) && (activeButton1 == button))
         {
             finalDistance = calculateXDistanceFromDeadZone(true);
         }
-        else if (activeButton2 && (activeButton2 == button))
+        else if ((activeButton2 != nullptr) && (activeButton2 == button))
         {
             finalDistance = calculateYDistanceFromDeadZone(true);
         }
-        else if (activeButton3 && (activeButton3 == button))
+        else if ((activeButton3 != nullptr) && (activeButton3 == button))
         {
             finalDistance = calculateEightWayDiagonalDistanceFromDeadZone();
         }
@@ -1392,15 +1392,15 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
     }
     else if (currentDirection == StickLeftDown)
     {
-        if (activeButton1 && (activeButton1 == button))
+        if ((activeButton1 != nullptr) && (activeButton1 == button))
         {
             finalDistance = calculateXDistanceFromDeadZone(true);
         }
-        else if (activeButton2 && (activeButton2 == button))
+        else if ((activeButton2 != nullptr) && (activeButton2 == button))
         {
             finalDistance = calculateYDistanceFromDeadZone(true);
         }
-        else if (activeButton3 && (activeButton3 == button))
+        else if ((activeButton3 != nullptr) && (activeButton3 == button))
         {
             finalDistance = calculateEightWayDiagonalDistanceFromDeadZone();
         }
@@ -1411,15 +1411,15 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
     }
     else if (currentDirection == StickLeftUp)
     {
-        if (activeButton1 && (activeButton1 == button))
+        if ((activeButton1 != nullptr) && (activeButton1 == button))
         {
             finalDistance = calculateXDistanceFromDeadZone(true);
         }
-        else if (activeButton2 && (activeButton2 == button))
+        else if ((activeButton2 != nullptr) && (activeButton2 == button))
         {
             finalDistance = calculateYDistanceFromDeadZone(true);
         }
-        else if (activeButton3 && (activeButton3 == button))
+        else if ((activeButton3 != nullptr) && (activeButton3 == button))
         {
             finalDistance = calculateEightWayDiagonalDistanceFromDeadZone();
         }
@@ -1437,7 +1437,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
 
     JoyStickDirections direction = calculateStickDirection(axisX->getLastKnownThrottleValue(),
                                                            axisY->getLastKnownThrottleValue());
-    if ((direction == StickUp) && (button->getJoyNumber() == StickUp))
+    if ((direction == StickUp) && (button->getJoyNumber() == static_cast<int>(StickUp)))
     {
         if (axisY->getLastKnownThrottleValue() >= 0)
         {
@@ -1452,7 +1452,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
     }
     else if (direction == StickRightUp)
     {
-        if (button->getJoyNumber() == StickRight)
+        if (button->getJoyNumber() == static_cast<int>(StickRight))
         {
             if (axisX->getLastKnownThrottleValue() < 0)
             {
@@ -1465,7 +1465,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickUp))
         {
             if (axisY->getLastKnownThrottleValue() >= 0)
             {
@@ -1478,7 +1478,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickRightUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickRightUp))
         {
             if ((axisX->getLastKnownThrottleValue() <= 0) || (axisY->getLastKnownThrottleValue() >= 0))
             {
@@ -1491,7 +1491,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
             }
         }
     }
-    else if ((direction == StickRight) && (button->getJoyNumber() == StickRight))
+    else if ((direction == StickRight) && (button->getJoyNumber() == static_cast<int>(StickRight)))
     {
         if (axisX->getLastKnownThrottleValue() < 0)
         {
@@ -1506,7 +1506,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
     }
     else if (direction  == StickRightDown)
     {
-        if (button->getJoyNumber() == StickRight)
+        if (button->getJoyNumber() == static_cast<int>(StickRight))
         {
             if (axisX->getLastKnownThrottleValue() < 0)
             {
@@ -1519,7 +1519,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickDown))
         {
             if (axisY->getLastKnownThrottleValue() < 0)
             {
@@ -1532,7 +1532,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickRightDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickRightDown))
         {
             if ((axisX->getLastKnownThrottleValue() <= 0) || (axisY->getLastKnownThrottleValue() >= 0))
             {
@@ -1545,7 +1545,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
             }
         }
     }
-    else if (direction == StickDown && (button->getJoyNumber() == StickDown))
+    else if (direction == StickDown && (button->getJoyNumber() == static_cast<int>(StickDown)))
     {
         if (axisY->getLastKnownThrottleValue() >= 0)
         {
@@ -1560,7 +1560,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
     }
     else if (direction == StickLeftDown)
     {
-        if (button->getJoyNumber() == StickLeft)
+        if (button->getJoyNumber() == static_cast<int>(StickLeft))
         {
             if (axisX->getLastKnownThrottleValue() >= 0)
             {
@@ -1573,7 +1573,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickDown))
         {
             if (axisY->getLastKnownThrottleValue() < 0)
             {
@@ -1586,7 +1586,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickLeftDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickLeftDown))
         {
             if ((axisX->getLastKnownThrottleValue() >= 0) || (axisY->getLastKnownThrottleValue() <= 0))
             {
@@ -1599,7 +1599,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
             }
         }
     }
-    else if ((direction == StickLeft) && (button->getJoyNumber() == StickLeft))
+    else if ((direction == StickLeft) && (button->getJoyNumber() == static_cast<int>(StickLeft)))
     {
         if (axisX->getLastKnownThrottleValue() >= 0)
         {
@@ -1614,7 +1614,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
     }
     else if (direction == StickLeftUp)
     {
-        if (button->getJoyNumber() == StickLeft)
+        if (button->getJoyNumber() == static_cast<int>(StickLeft))
         {
             if (axisX->getLastKnownThrottleValue() >= 0)
             {
@@ -1627,7 +1627,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickUp))
         {
             if (axisY->getLastKnownThrottleValue() >= 0)
             {
@@ -1640,7 +1640,7 @@ double JoyControlStick::calculateLastMouseDirectionalDistance(JoyControlStickBut
                                                                true);
             }
         }
-        else if (button->getJoyNumber() == StickLeftUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickLeftUp))
         {
             if ((axisX->getLastKnownThrottleValue() >= 0) || (axisY->getLastKnownThrottleValue() >= 0))
             {
@@ -3616,7 +3616,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
     }
     else if (currentDirection == StickRightUp)
     {
-        if (button->getJoyNumber() == StickRight)
+        if (button->getJoyNumber() == static_cast<int>(StickRight))
         {
             if (axisX->getCurrentRawValue() < 0)
             {
@@ -3628,7 +3628,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
             }
 
         }
-        else if (button->getJoyNumber() == StickUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickUp))
         {
             if (axisY->getCurrentRawValue() >= 0)
             {
@@ -3639,7 +3639,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateYAxisDistance(axisY->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickRightUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickRightUp))
         {
             if ((axisX->getCurrentRawValue() <= 0) || (axisY->getCurrentRawValue() >= 0))
             {
@@ -3664,7 +3664,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
     }
     else if (currentDirection  == StickRightDown)
     {
-        if (button->getJoyNumber() == StickRight)
+        if (button->getJoyNumber() == static_cast<int>(StickRight))
         {
             if (axisX->getCurrentRawValue() < 0)
             {
@@ -3675,7 +3675,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateXAxisDistance(axisX->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickDown))
         {
             if (axisY->getCurrentRawValue() < 0)
             {
@@ -3686,7 +3686,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateYAxisDistance(axisY->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickRightDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickRightDown))
         {
             if ((axisX->getCurrentRawValue() <= 0) || (axisY->getCurrentRawValue() <= 0))
             {
@@ -3711,7 +3711,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
     }
     else if (currentDirection == StickLeftDown)
     {
-        if (button->getJoyNumber() == StickLeft)
+        if (button->getJoyNumber() == static_cast<int>(StickLeft))
         {
             if (axisX->getCurrentRawValue() >= 0)
             {
@@ -3722,7 +3722,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateXAxisDistance(axisX->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickDown))
         {
             if (axisY->getCurrentRawValue() < 0)
             {
@@ -3733,7 +3733,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateYAxisDistance(axisY->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickLeftDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickLeftDown))
         {
             if ((axisX->getCurrentRawValue() >= 0) || (axisY->getCurrentRawValue() <= 0))
             {
@@ -3758,7 +3758,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
     }
     else if (currentDirection == StickLeftUp)
     {
-        if (button->getJoyNumber() == StickLeft)
+        if (button->getJoyNumber() == static_cast<int>(StickLeft))
         {
             if (axisX->getCurrentRawValue() >= 0)
             {
@@ -3769,7 +3769,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateXAxisDistance(axisX->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickUp))
         {
             if (axisY->getCurrentRawValue() >= 0)
             {
@@ -3780,7 +3780,7 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
                 finalDistance = calculateYAxisDistance(axisY->getCurrentRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickLeftUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickLeftUp))
         {
             if ((axisX->getCurrentRawValue() >= 0) || (axisY->getCurrentRawValue() >= 0))
             {
@@ -3816,7 +3816,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
     }
     else if (currentDirection == StickRightUp)
     {
-        if (button->getJoyNumber() == StickRight)
+        if (button->getJoyNumber() == static_cast<int>(StickRight))
         {
             if (axisX->getLastKnownRawValue() <= 0)
             {
@@ -3828,7 +3828,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
             }
 
         }
-        else if (button->getJoyNumber() == StickUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickUp))
         {
             if (axisY->getLastKnownRawValue() >= 0)
             {
@@ -3839,7 +3839,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateYAxisDistance(axisY->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickRightUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickRightUp))
         {
             if ((axisX->getLastKnownRawValue() <= 0) || (axisY->getLastKnownRawValue() >= 0))
             {
@@ -3851,7 +3851,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
             }
         }
     }
-    else if (currentDirection == StickRight)
+    else if (currentDirection == static_cast<int>(StickRight))
     {
         if (axisX->getLastKnownRawValue() <= 0)
         {
@@ -3864,7 +3864,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
     }
     else if (currentDirection  == StickRightDown)
     {
-        if (button->getJoyNumber() == StickRight)
+        if (button->getJoyNumber() == static_cast<int>(StickRight))
         {
             if (axisX->getLastKnownRawValue() <= 0)
             {
@@ -3875,7 +3875,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateXAxisDistance(axisX->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickDown))
         {
             if (axisY->getLastKnownRawValue() <= 0)
             {
@@ -3886,7 +3886,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateYAxisDistance(axisY->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickRightDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickRightDown))
         {
             if ((axisX->getLastKnownRawValue() <= 0) || (axisY->getLastKnownRawValue() <= 0))
             {
@@ -3911,7 +3911,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
     }
     else if (currentDirection == StickLeftDown)
     {
-        if (button->getJoyNumber() == StickLeft)
+        if (button->getJoyNumber() == static_cast<int>(StickLeft))
         {
             if (axisX->getLastKnownRawValue() >= 0)
             {
@@ -3922,7 +3922,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateXAxisDistance(axisX->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickDown))
         {
             if (axisY->getLastKnownRawValue() <= 0)
             {
@@ -3933,7 +3933,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateYAxisDistance(axisY->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickLeftDown)
+        else if (button->getJoyNumber() == static_cast<int>(StickLeftDown))
         {
             if ((axisX->getLastKnownRawValue() >= 0) || (axisY->getLastKnownRawValue() <= 0))
             {
@@ -3958,7 +3958,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
     }
     else if (currentDirection == StickLeftUp)
     {
-        if (button->getJoyNumber() == StickLeft)
+        if (button->getJoyNumber() == static_cast<int>(StickLeft))
         {
             if (axisX->getLastKnownRawValue() >= 0)
             {
@@ -3969,7 +3969,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateXAxisDistance(axisX->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickUp))
         {
             if (axisY->getLastKnownRawValue() >= 0)
             {
@@ -3980,7 +3980,7 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
                 finalDistance = calculateYAxisDistance(axisY->getLastKnownRawValue());
             }
         }
-        else if (button->getJoyNumber() == StickLeftUp)
+        else if (button->getJoyNumber() == static_cast<int>(StickLeftUp))
         {
             if ((axisX->getLastKnownRawValue() >= 0) || (axisY->getLastKnownRawValue() >= 0))
             {

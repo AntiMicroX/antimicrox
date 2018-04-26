@@ -121,6 +121,8 @@ private:
 
     Ui::AdvanceButtonDialog *ui;
 
+    AdvanceButtonDialogHelper& getHelperLocal();
+
     enum SlotTypeComboIndex {
         KBMouseSlot = 0, CycleSlot, DelaySlot, DistanceSlot, ExecuteSlot,
         HoldSlot, LoadSlot, MouseModSlot, PauseSlot, PressTimeSlot,

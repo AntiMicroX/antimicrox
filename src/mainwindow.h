@@ -71,6 +71,7 @@ protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
+
     void retranslateUi();
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
     void loadConfigFile(QString fileLocation, QString controllerID);
@@ -147,24 +148,25 @@ private:
     Ui::MainWindow *ui;
 
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<int, QList<QAction*> > profileActions;
 
     QSystemTrayIcon *trayIcon;
-    QAction *hideAction;
-    QAction *restoreAction;
-    QAction *closeAction;
-    QAction *updateJoy;
     QMenu *trayIconMenu;
-    QMap<int, QList<QAction*> > profileActions;
     AboutDialog *aboutDialog;
-    bool signalDisconnect;
-    bool showTrayIcon;
-    bool graphical;
-    QLocalServer *localServer;
     CommandLineUtility *cmdutility;
     AntiMicroSettings *settings;
     QTranslator *translator;
     QTranslator *appTranslator;
     AutoProfileWatcher *appWatcher;
+
+    QAction *hideAction;
+    QAction *restoreAction;
+    QAction *closeAction;
+    QAction *updateJoy;
+
+    bool signalDisconnect;
+    bool showTrayIcon;
+    bool graphical;
 
 };
 

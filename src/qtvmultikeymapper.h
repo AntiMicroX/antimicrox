@@ -36,8 +36,6 @@ protected:
     void populateMappingHashes();
     void populateCharKeyInformation();
 
-    //static QtWinKeyMapper nativeKeyMapper;
-
 };
 
 #endif // QTVMULTIKEYMAPPER_H

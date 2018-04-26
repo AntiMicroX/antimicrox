@@ -39,7 +39,9 @@ public:
     QBitArray generateFinalBitArray();
     void clearStatusValues();
 
-protected:
+private:
+    QBitArray& getButtonStatusLocal();
+
     QList<bool> axesStatus;
     QList<bool> hatButtonStatus;
     QBitArray buttonStatus;

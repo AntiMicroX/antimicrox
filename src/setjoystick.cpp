@@ -74,7 +74,7 @@ JoyButton* SetJoystick::getJoyButton(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return buttons.value(index);
+    return getButtons().value(index);
 }
 
 JoyAxis* SetJoystick::getJoyAxis(int index) const
@@ -88,21 +88,21 @@ JoyDPad* SetJoystick::getJoyDPad(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return hats.value(index);
+    return getHats().value(index);
 }
 
 VDPad* SetJoystick::getVDPad(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return vdpads.value(index);
+    return getVdpads().value(index);
 }
 
 JoyControlStick* SetJoystick::getJoyStick(int index) const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return sticks.value(index);
+    return getSticks().value(index);
 }
 
 void SetJoystick::refreshButtons()
@@ -159,7 +159,7 @@ void SetJoystick::deleteButtons()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<int, JoyButton*> iter(buttons);
+    QHashIterator<int, JoyButton*> iter(getButtons());
     while (iter.hasNext())
     {
         JoyButton *button = iter.next().value();
@@ -196,7 +196,7 @@ void SetJoystick::deleteSticks()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<int, JoyControlStick*> iter(sticks);
+    QHashIterator<int, JoyControlStick*> iter(getSticks());
     while (iter.hasNext())
     {
         JoyControlStick *stick = iter.next().value();
@@ -214,7 +214,7 @@ void SetJoystick::deleteVDpads()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<int, VDPad*> iter(vdpads);
+    QHashIterator<int, VDPad*> iter(getVdpads());
     while (iter.hasNext())
     {
         VDPad *dpad = iter.next().value();
@@ -233,7 +233,7 @@ void SetJoystick::deleteHats()
 
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<int, JoyDPad*> iter(hats);
+    QHashIterator<int, JoyDPad*> iter(getHats());
     while (iter.hasNext())
     {
         JoyDPad *dpad = iter.next().value();
@@ -251,7 +251,7 @@ int SetJoystick::getNumberButtons() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return buttons.count();
+    return getButtons().count();
 }
 
 int SetJoystick::getNumberAxes() const
@@ -265,21 +265,21 @@ int SetJoystick::getNumberHats() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return hats.count();
+    return getHats().count();
 }
 
 int SetJoystick::getNumberSticks() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return sticks.size();
+    return getSticks().size();
 }
 
 int SetJoystick::getNumberVDPads() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return vdpads.size();
+    return getVdpads().size();
 }
 
 void SetJoystick::reset()
@@ -369,7 +369,7 @@ void SetJoystick::release()
 
     }
 
-    QHashIterator<int, JoyDPad*> iterDPads(hats);
+    QHashIterator<int, JoyDPad*> iterDPads(getHats());
     while (iterDPads.hasNext())
     {
         JoyDPad *dpad = iterDPads.next().value();
@@ -378,7 +378,7 @@ void SetJoystick::release()
         dpad->eventReset();
     }
 
-    QHashIterator<int, JoyButton*> iterButtons(buttons);
+    QHashIterator<int, JoyButton*> iterButtons(getButtons());
     while (iterButtons.hasNext())
     {
         JoyButton *button = iterButtons.next().value();
@@ -554,7 +554,7 @@ bool SetJoystick::isSetEmpty()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     bool result = true;
-    QHashIterator<int, JoyButton*> iter(buttons);
+    QHashIterator<int, JoyButton*> iter(getButtons());
     while (iter.hasNext() && result)
     {
         JoyButton *button = iter.next().value();
@@ -574,7 +574,7 @@ bool SetJoystick::isSetEmpty()
         }
     }
 
-    QHashIterator<int, JoyDPad*> iter3(hats);
+    QHashIterator<int, JoyDPad*> iter3(getHats());
     while (iter3.hasNext() && result)
     {
         JoyDPad *dpad = iter3.next().value();
@@ -584,7 +584,7 @@ bool SetJoystick::isSetEmpty()
         }
     }
 
-    QHashIterator<int, JoyControlStick*> iter4(sticks);
+    QHashIterator<int, JoyControlStick*> iter4(getSticks());
     while (iter4.hasNext() && result)
     {
         JoyControlStick *stick = iter4.next().value();
@@ -594,7 +594,7 @@ bool SetJoystick::isSetEmpty()
         }
     }
 
-    QHashIterator<int, VDPad*> iter5(vdpads);
+    QHashIterator<int, VDPad*> iter5(getVdpads());
     while (iter5.hasNext() && result)
     {
         VDPad *vdpad = iter5.next().value();
@@ -644,9 +644,9 @@ void SetJoystick::removeControlStick(int index)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (sticks.contains(index))
+    if (getSticks().contains(index))
     {
-        JoyControlStick *stick = sticks.value(index);
+        JoyControlStick *stick = getSticks().value(index);
         sticks.remove(index);
         delete stick;
         stick = nullptr;
@@ -679,9 +679,9 @@ void SetJoystick::removeVDPad(int index)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (vdpads.contains(index))
+    if (getVdpads().contains(index))
     {
-        VDPad *vdpad = vdpads.value(index);
+        VDPad *vdpad = getVdpads().value(index);
         vdpads.remove(index);
         delete vdpad;
         vdpad = nullptr;
@@ -942,7 +942,7 @@ void SetJoystick::setIgnoreEventState(bool ignore)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<int, JoyButton*> iter(buttons);
+    QHashIterator<int, JoyButton*> iter(getButtons());
     while (iter.hasNext())
     {
         JoyButton *button = iter.next().value();
@@ -966,7 +966,7 @@ void SetJoystick::setIgnoreEventState(bool ignore)
         }
     }
 
-    QHashIterator<int, JoyDPad*> iter3(hats);
+    QHashIterator<int, JoyDPad*> iter3(getHats());
     while (iter3.hasNext())
     {
         JoyDPad *dpad = iter3.next().value();
@@ -986,7 +986,7 @@ void SetJoystick::setIgnoreEventState(bool ignore)
         }
     }
 
-    QHashIterator<int, JoyControlStick*> iter4(sticks);
+    QHashIterator<int, JoyControlStick*> iter4(getSticks());
     while (iter4.hasNext())
     {
         JoyControlStick *stick = iter4.next().value();
@@ -1002,7 +1002,7 @@ void SetJoystick::setIgnoreEventState(bool ignore)
         }
     }
 
-    QHashIterator<int, VDPad*> iter5(vdpads);
+    QHashIterator<int, VDPad*> iter5(getVdpads());
     while (iter5.hasNext())
     {
         VDPad *vdpad = iter5.next().value();
@@ -1141,13 +1141,13 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
         }
     }
 
-    QHashIterator<int, JoyControlStick*> stickIter(sticks);
+    QHashIterator<int, JoyControlStick*> stickIter(getSticks());
     while (stickIter.hasNext())
     {
         stickIter.next();
         int index = stickIter.key();
         JoyControlStick *sourceStick = stickIter.value();
-        JoyControlStick *destStick = destSet->sticks.value(index);
+        JoyControlStick *destStick = destSet->getSticks().value(index);
         if (sourceStick && destStick)
         {
             sourceStick->copyAssignments(destStick);
@@ -1156,21 +1156,21 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
 
     for (int i=0; i < device->getNumberHats(); i++)
     {
-        JoyDPad *sourceDPad = hats.value(i);
-        JoyDPad *destDPad = destSet->hats.value(i);
+        JoyDPad *sourceDPad = getHats().value(i);
+        JoyDPad *destDPad = destSet->getHats().value(i);
         if (sourceDPad && destDPad)
         {
             sourceDPad->copyAssignments(destDPad);
         }
     }
 
-    QHashIterator<int, VDPad*> vdpadIter(vdpads);
+    QHashIterator<int, VDPad*> vdpadIter(getVdpads());
     while (vdpadIter.hasNext())
     {
         vdpadIter.next();
         int index = vdpadIter.key();
         VDPad *sourceVDpad = vdpadIter.value();
-        VDPad *destVDPad = destSet->vdpads.value(index);
+        VDPad *destVDPad = destSet->getVdpads().value(index);
         if (sourceVDpad && destVDPad)
         {
             sourceVDpad->copyAssignments(destVDPad);
@@ -1179,8 +1179,8 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
 
     for (int i=0; i < device->getNumberButtons(); i++)
     {
-        JoyButton *sourceButton = buttons.value(i);
-        JoyButton *destButton = destSet->buttons.value(i);
+        JoyButton *sourceButton = getButtons().value(i);
+        JoyButton *destButton = destSet->getButtons().value(i);
         if (sourceButton && destButton)
         {
             sourceButton->copyAssignments(destButton);
@@ -1290,4 +1290,24 @@ void SetJoystick::setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle)
 QHash<int, JoyAxis*>* SetJoystick::getAxes() {
 
     return &axes;
+}
+
+QHash<int, JoyButton*> const& SetJoystick::getButtons() const {
+
+    return buttons;
+}
+
+QHash<int, JoyDPad*> const& SetJoystick::getHats() const {
+
+    return hats;
+}
+
+QHash<int, JoyControlStick*> const& SetJoystick::getSticks() const {
+
+    return sticks;
+}
+
+QHash<int, VDPad*> const& SetJoystick::getVdpads() const {
+
+    return vdpads;
 }

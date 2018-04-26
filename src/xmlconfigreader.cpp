@@ -48,7 +48,7 @@ XMLConfigReader::~XMLConfigReader()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (configFile)
+    if (configFile != nullptr)
     {
         if (configFile->isOpen())
         {
@@ -56,10 +56,10 @@ XMLConfigReader::~XMLConfigReader()
         }
 
         delete configFile;
-        configFile = 0;
+        configFile = nullptr;
     }
 
-    if (xml)
+    if (xml != nullptr)
     {
         delete xml;
         xml = nullptr;
@@ -103,7 +103,7 @@ bool XMLConfigReader::read()
 
     bool error = false;
 
-    if (configFile && configFile->exists() && joystick)
+    if ((configFile != nullptr) && configFile->exists() && (joystick != nullptr))
     {
         xml->clear();
 
@@ -183,7 +183,7 @@ bool XMLConfigReader::read()
     return error;
 }
 
-QString XMLConfigReader::getErrorString()
+const QString XMLConfigReader::getErrorString()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -213,7 +213,7 @@ void XMLConfigReader::initDeviceTypes()
 
 }
 
-QXmlStreamReader* XMLConfigReader::getXml() const {
+const QXmlStreamReader* XMLConfigReader::getXml() {
 
     return xml;
 }
@@ -223,12 +223,12 @@ QString const& XMLConfigReader::getFileName() {
     return fileName;
 }
 
-QFile* XMLConfigReader::getConfigFile() const {
+const QFile* XMLConfigReader::getConfigFile() {
 
     return configFile;
 }
 
-InputDevice* XMLConfigReader::getJoystick() const {
+const InputDevice* XMLConfigReader::getJoystick() {
 
     return joystick;
 }

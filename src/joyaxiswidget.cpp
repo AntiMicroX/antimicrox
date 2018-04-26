@@ -51,7 +51,7 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     pAxisButton->establishPropertyUpdatedConnections();
 }
 
-JoyAxis* JoyAxisWidget::getAxis()
+JoyAxis* JoyAxisWidget::getAxis() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -84,7 +84,7 @@ QString JoyAxisWidget::generateLabel()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString temp = QString();
-    temp = axis->getName(false, displayNames).replace("&", "&&");
+    temp = axis->getName(false, ifDisplayNames()).replace("&", "&&");
 
     qDebug() << "Name of joy axis is: " << temp;
     return temp;

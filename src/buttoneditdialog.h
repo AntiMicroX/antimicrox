@@ -48,18 +48,19 @@ public:
     void refreshForLastBtn();
     
 protected:
+    virtual void keyReleaseEvent(QKeyEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event);
+
+private:
+    Ui::ButtonEditDialog *ui;
+    ButtonEditDialogHelper& getHelperLocal();
+
     InputDevice *joystick;
     QuickSetDialog *currentQuickDialog;
     bool ignoreRelease;
     JoyButton* lastJoyButton;
     ButtonEditDialogHelper helper;
     static ButtonEditDialog *instance;
-
-    virtual void keyReleaseEvent(QKeyEvent *event);
-    virtual void keyPressEvent(QKeyEvent *event);
-
-private:
-    Ui::ButtonEditDialog *ui;
 
 signals:
     void advancedDialogOpened();

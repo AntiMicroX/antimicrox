@@ -37,23 +37,23 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
     QString label = QString();
 
-    if (!dpadName.isEmpty() && displayName)
+    if (!getDpadName().isEmpty() && displayName)
     {
         if (forceFullFormat)
         {
             label.append(trUtf8("DPad")).append(" ");
         }
 
-        label.append(dpadName);
+        label.append(getDpadName());
     }
-    else if (!defaultDPadName.isEmpty())
+    else if (!getDefaultDpadName().isEmpty())
     {
         if (forceFullFormat)
         {
             label.append(trUtf8("DPad")).append(" ");
         }
 
-        label.append(defaultDPadName);
+        label.append(getDefaultDpadName());
     }
     else
     {

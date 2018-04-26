@@ -58,13 +58,13 @@ public:
 private:
     Ui::CapturedWindowInfoDialog *ui;
 
-protected:
     CapturedWindowOption selectedMatch;
 
     QString winClass;
     QString winName;
     QString winPath;
     bool fullWinPath;
+
 
 private slots:
     void populateOption();

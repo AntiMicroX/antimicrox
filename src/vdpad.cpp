@@ -59,25 +59,25 @@ VDPad::~VDPad()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (upButton)
+    if (upButton != nullptr)
     {
         upButton->removeVDPad();
         upButton = nullptr;
     }
 
-    if (downButton)
+    if (downButton != nullptr)
     {
         downButton->removeVDPad();
         downButton = nullptr;
     }
 
-    if (leftButton)
+    if (leftButton != nullptr)
     {
         leftButton->removeVDPad();
         leftButton = nullptr;
     }
 
-    if (rightButton)
+    if (rightButton != nullptr)
     {
         rightButton->removeVDPad();
         rightButton = nullptr;
@@ -97,22 +97,22 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
 
     QString label = QString();
 
-    if (!dpadName.isEmpty() && displayName)
+    if (!getDpadName().isEmpty() && displayName)
     {
         if (forceFullFormat)
         {
             label.append(trUtf8("VDPad")).append(" ");
         }
 
-        label.append(dpadName);
+        label.append(getDpadName());
     }
-    else if (!defaultDPadName.isEmpty())
+    else if (!getDefaultDpadName().isEmpty())
     {
         if (forceFullFormat)
         {
             label.append(trUtf8("VDPad")).append(" ");
         }
-        label.append(defaultDPadName);
+        label.append(getDefaultDpadName());
     }
     else
     {
@@ -134,7 +134,7 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
     /*
      * Check which buttons are currently active
      */
-    if (upButton && upButton->getButtonState())
+    if ((upButton != nullptr) && upButton->getButtonState())
     {
         tempDirection |= JoyDPadButton::DpadUp;
     }
@@ -165,7 +165,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 
     if (direction == JoyDPadButton::DpadUp)
     {
-        if (upButton)
+        if (upButton != nullptr)
         {
             upButton->removeVDPad();
         }
@@ -174,7 +174,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
     }
     else if (direction == JoyDPadButton::DpadDown)
     {
-        if (downButton)
+        if (downButton != nullptr)
         {
             downButton->removeVDPad();
         }
@@ -183,7 +183,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
     }
     else if (direction == JoyDPadButton::DpadLeft)
     {
-        if (leftButton)
+        if (leftButton != nullptr)
         {
             leftButton->removeVDPad();
         }
@@ -192,7 +192,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
     }
     else if (direction == JoyDPadButton::DpadRight)
     {
-        if (rightButton)
+        if (rightButton != nullptr)
         {
             rightButton->removeVDPad();
         }
@@ -205,22 +205,22 @@ void VDPad::removeVButton(JoyDPadButton::JoyDPadDirections direction)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if ((direction == JoyDPadButton::DpadUp) && upButton)
+    if ((direction == JoyDPadButton::DpadUp) && (upButton != nullptr))
     {
         upButton->removeVDPad();
         upButton = nullptr;
     }
-    else if ((direction == JoyDPadButton::DpadDown) && downButton)
+    else if ((direction == JoyDPadButton::DpadDown) && (downButton != nullptr))
     {
         downButton->removeVDPad();
         downButton = nullptr;
     }
-    else if ((direction == JoyDPadButton::DpadLeft) && leftButton)
+    else if ((direction == JoyDPadButton::DpadLeft) && (leftButton != nullptr))
     {
         leftButton->removeVDPad();
         leftButton = nullptr;
     }
-    else if ((direction == JoyDPadButton::DpadRight) && rightButton)
+    else if ((direction == JoyDPadButton::DpadRight) && (rightButton != nullptr))
     {
         rightButton->removeVDPad();
         rightButton = nullptr;
@@ -231,22 +231,22 @@ void VDPad::removeVButton(JoyButton *button)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (button && (button == upButton))
+    if ((button != nullptr) && (button == upButton))
     {
         upButton->removeVDPad();
         upButton = nullptr;
     }
-    else if (button && (button == downButton))
+    else if ((button != nullptr) && (button == downButton))
     {
         downButton->removeVDPad();
         downButton = nullptr;
     }
-    else if (button && (button == leftButton))
+    else if ((button != nullptr) && (button == leftButton))
     {
         leftButton->removeVDPad();
         leftButton = nullptr;
     }
-    else if (button && (button == rightButton))
+    else if ((button != nullptr) && (button == rightButton))
     {
         rightButton->removeVDPad();
         rightButton = nullptr;
@@ -259,7 +259,7 @@ bool VDPad::isEmpty()
 
     bool empty = true;
 
-    if (upButton || downButton || leftButton || rightButton)
+    if ((upButton != nullptr) || (downButton != nullptr) || (leftButton != nullptr) || (rightButton != nullptr))
     {
         empty = false;
     }

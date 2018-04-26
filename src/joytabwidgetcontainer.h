@@ -28,6 +28,7 @@ class InputDevice;
 class JoyTabWidgetContainer : public QTabWidget
 {
     Q_OBJECT
+
 public:
     explicit JoyTabWidgetContainer(QWidget *parent = nullptr);
 

@@ -42,7 +42,7 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 if (NOT WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -Werror -Wall -Wextra -Wno-unused-parameter -pedantic -Wno-reorder -std=c++0x")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -Werror -Wall -Wextra -Wno-unused-parameter -Wunused-function -Wunused-label -Wunused-value -Wunused-variable -Wunused-but-set-parameter -pedantic -Wno-reorder -std=c++0x")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 endif()

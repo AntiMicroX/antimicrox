@@ -28,6 +28,7 @@ class QWidget;
 class DPadContextMenu : public QMenu
 {
     Q_OBJECT
+
 public:
     explicit DPadContextMenu(JoyDPad *dpad, QWidget *parent = nullptr);
     void buildMenu();
@@ -35,13 +36,16 @@ public:
 protected:
     int getPresetIndex();
 
-    JoyDPad *dpad;
-    DPadContextMenuHelper helper;
-
 private slots:
     void setDPadPreset();
     void setDPadMode();
     void openMouseSettingsDialog();
+
+private:
+    DPadContextMenuHelper& getHelper();
+
+    JoyDPad *dpad;
+    DPadContextMenuHelper helper;
 };
 
 #endif // DPADCONTEXTMENU_H

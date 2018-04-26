@@ -69,7 +69,7 @@ void AutoProfileWatcher::runAppCheck()
     qDebug() << qApp->applicationFilePath();
     QString appLocation = QString();
     QString baseAppFileName = QString();
-    guidSet.clear();
+    getGuidSetLocal().clear();
 
     // Check whether program path needs to be parsed. Removes processing time
     // and need to run Linux specific code searching /proc.
@@ -215,7 +215,7 @@ void AutoProfileWatcher::runAppCheck()
         while (highIter.hasNext())
         {
             AutoProfileInfo *info = highIter.next().value();
-            guidSet.insert(info->getGUID());
+            getGuidSetLocal().insert(info->getGUID());
             emit foundApplicableProfile(info);
         }
 
@@ -223,7 +223,7 @@ void AutoProfileWatcher::runAppCheck()
         {
             if (allDefaultInfo != nullptr)
             {
-                if (allDefaultInfo->isActive() && !guidSet.contains("all"))
+                if (allDefaultInfo->isActive() && !getGuidSetLocal().contains("all"))
                 {
                     emit foundApplicableProfile(allDefaultInfo);
                 }
@@ -234,7 +234,7 @@ void AutoProfileWatcher::runAppCheck()
             {
                 iter.next();
                 AutoProfileInfo *info = iter.value();
-                if (info->isActive() && !guidSet.contains(info->getGUID()))
+                if (info->isActive() && !getGuidSetLocal().contains(info->getGUID()))
                 {
                     emit foundApplicableProfile(info);
                 }
@@ -440,7 +440,7 @@ void AutoProfileWatcher::clearProfileAssignments()
     defaultProfileAssignments.clear();
 
     allDefaultInfo = nullptr;
-    guidSet.clear();
+    getGuidSetLocal().clear();
 }
 
 QString AutoProfileWatcher::findAppLocation()
@@ -499,7 +499,7 @@ bool AutoProfileWatcher::isGUIDLocked(QString guid)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    return guidSet.contains(guid);
+    return getGuidSetLocal().contains(guid);
 }
 
 QHash<QString, QList<AutoProfileInfo*> > const& AutoProfileWatcher::getAppProfileAssignments() {
@@ -520,4 +520,9 @@ QHash<QString, QList<AutoProfileInfo*> > const& AutoProfileWatcher::getWindowNam
 QHash<QString, AutoProfileInfo*> const& AutoProfileWatcher::getDefaultProfileAssignments() {
 
     return defaultProfileAssignments;
+}
+
+QSet<QString>& AutoProfileWatcher::getGuidSetLocal() {
+
+    return guidSet;
 }

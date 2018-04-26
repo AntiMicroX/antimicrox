@@ -42,7 +42,7 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->dpad = dpad;
-    helper.moveToThread(dpad->thread());
+    getHelperLocal().moveToThread(dpad->thread());
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -235,7 +235,7 @@ void DPadEditDialog::implementPresets(int index)
     tempHash.insert(JoyDPadButton::DpadLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyDPadButton::DpadRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelperLocal().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
@@ -428,6 +428,11 @@ JoyDPad* DPadEditDialog::getDPad() const {
 }
 
 DPadEditDialogHelper const& DPadEditDialog::getHelper() {
+
+    return helper;
+}
+
+DPadEditDialogHelper& DPadEditDialog::getHelperLocal() {
 
     return helper;
 }

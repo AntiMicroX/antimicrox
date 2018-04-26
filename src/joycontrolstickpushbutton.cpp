@@ -40,7 +40,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
     connect(stick, SIGNAL(stickNameChanged()), this, SLOT(refreshLabel()));
 }
 
-JoyControlStick* JoyControlStickPushButton::getStick()
+JoyControlStick* JoyControlStickPushButton::getStick() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
@@ -56,7 +56,7 @@ QString JoyControlStickPushButton::generateLabel()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString temp = QString();
-    if (!stick->getStickName().isEmpty() && displayNames)
+    if (!stick->getStickName().isEmpty() && ifDisplayNames())
     {
         temp.append(stick->getPartialName(false, true));
     }

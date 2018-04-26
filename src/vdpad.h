@@ -24,6 +24,7 @@
 class VDPad : public JoyDPad
 {
     Q_OBJECT
+
 public:
     explicit VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
     explicit VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,

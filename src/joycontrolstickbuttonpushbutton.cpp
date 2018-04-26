@@ -106,7 +106,7 @@ QString JoyControlStickButtonPushButton::generateLabel()
     QString temp = QString();
     if (button != nullptr)
     {
-        if (!button->getActionName().isEmpty() && displayNames)
+        if (!button->getActionName().isEmpty() && ifDisplayNames())
         {
             qDebug() << "Action name was not empty";
 

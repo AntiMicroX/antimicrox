@@ -39,7 +39,7 @@ MouseControlStickSettingsDialog::MouseControlStickSettingsDialog(JoyControlStick
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->stick = stick;
-    helper.moveToThread(stick->thread());
+    getHelperLocal().moveToThread(stick->thread());
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
@@ -426,6 +426,11 @@ SpringModeRegionPreview* MouseControlStickSettingsDialog::getSpringPreviewWidget
 }
 
 MouseControlStickSettingsDialogHelper const& MouseControlStickSettingsDialog::getHelper() {
+
+    return helper;
+}
+
+MouseControlStickSettingsDialogHelper& MouseControlStickSettingsDialog::getHelperLocal() {
 
     return helper;
 }

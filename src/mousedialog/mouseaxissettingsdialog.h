@@ -44,7 +44,6 @@ protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
-    //void selectSmoothingPreset();
     void calculateWheelSpeedPreset();
     void updateWindowTitleAxisName();
 
@@ -66,8 +65,6 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    //void updateSmoothingSetting(bool clicked);
-
     void updateWheelSpeedHorizontalSpeed(int value);
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
@@ -76,6 +73,8 @@ private slots:
     void updateExtraAccelerationCurve(int index);
 
 private:
+    MouseAxisSettingsDialogHelper& getHelperLocal();
+
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
     MouseAxisSettingsDialogHelper helper;

@@ -34,13 +34,11 @@ class JoyAxisWidget : public FlashButtonWidget
 public:
     explicit JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent=0);
 
-    JoyAxis* getAxis();
+    JoyAxis* getAxis() const;
     void tryFlash();
 
 protected:
     virtual QString generateLabel();
-
-    JoyAxis *axis;
 
 public slots:
     void disableFlashes();
@@ -48,6 +46,9 @@ public slots:
 
 private slots:
     void showContextMenu(const QPoint &point);
+
+private:
+    JoyAxis *axis;
 };
 
 #endif // JOYAXISWIDGET_H

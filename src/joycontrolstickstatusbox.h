@@ -29,13 +29,14 @@ class QPaintEvent;
 class JoyControlStickStatusBox : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit JoyControlStickStatusBox(QWidget *parent = nullptr);
     explicit JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent = nullptr);
 
     void setStick(JoyControlStick *stick);
 
-    JoyControlStick* getStick();
+    JoyControlStick* getStick() const;
 
     virtual int heightForWidth(int width) const;
     QSize sizeHint() const;
@@ -46,6 +47,7 @@ protected:
     void drawFourWayCardinalBox();
     void drawFourWayDiagonalBox();
 
+private:
     JoyControlStick *stick;
     
 };

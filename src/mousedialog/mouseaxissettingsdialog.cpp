@@ -36,7 +36,7 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->axis = axis;
-    helper.moveToThread(axis->thread());
+    getHelperLocal().moveToThread(axis->thread());
 
     calculateMouseSpeedPreset();
     selectCurrentMouseModePreset();
@@ -448,6 +448,11 @@ SpringModeRegionPreview* MouseAxisSettingsDialog::getSpringPreviewWidget() const
 }
 
 MouseAxisSettingsDialogHelper const& MouseAxisSettingsDialog::getHelper() {
+
+    return helper;
+}
+
+MouseAxisSettingsDialogHelper& MouseAxisSettingsDialog::getHelperLocal() {
 
     return helper;
 }

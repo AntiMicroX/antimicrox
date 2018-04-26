@@ -36,7 +36,7 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
     connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
 }
 
-JoyButton* JoyButtonStatusBox::getJoyButton()
+JoyButton* JoyButtonStatusBox::getJoyButton() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

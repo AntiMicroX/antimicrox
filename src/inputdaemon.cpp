@@ -170,7 +170,7 @@ void InputDaemon::refreshJoysticks()
     }
 
     joysticks->clear();
-    trackjoysticks.clear();
+    getTrackjoysticksLocal().clear();
     trackcontrollers.clear();
 
     settings->getLock()->lock();
@@ -296,7 +296,7 @@ void InputDaemon::deleteJoysticks()
     }
 
     joysticks->clear();
-    trackjoysticks.clear();
+    getTrackjoysticksLocal().clear();
     trackcontrollers.clear();
 
 }
@@ -411,7 +411,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
                 if (SDL_IsGameController(i))
                 {
                     device->closeSDLDevice();
-                    trackjoysticks.remove(joystickID);
+                    getTrackjoysticksLocal().remove(joystickID);
                     joysticks->remove(joystickID);
 
                     SDL_GameController *controller = SDL_GameControllerOpen(i);
@@ -440,7 +440,7 @@ void InputDaemon::removeDevice(InputDevice *device)
         SDL_JoystickID deviceID = device->getSDLJoystickID();
 
         joysticks->remove(deviceID);
-        trackjoysticks.remove(deviceID);
+        getTrackjoysticksLocal().remove(deviceID);
         trackcontrollers.remove(deviceID);
 
         refreshIndexes();
@@ -600,7 +600,7 @@ void InputDaemon::addInputDevice(int index)
             {
                 Joystick *curJoystick = new Joystick(joystick, index, settings, this);
                 joysticks->insert(tempJoystickID, curJoystick);
-                trackjoysticks.insert(tempJoystickID, curJoystick);
+                getTrackjoysticksLocal().insert(tempJoystickID, curJoystick);
 
                 settings->endGroup();
                 settings->getLock()->unlock();
@@ -630,7 +630,7 @@ Joystick *InputDaemon::openJoystickDevice(int index)
 
         curJoystick = new Joystick(joystick, index, settings, this);
         joysticks->insert(tempJoystickID, curJoystick);
-        trackjoysticks.insert(tempJoystickID, curJoystick);
+        getTrackjoysticksLocal().insert(tempJoystickID, curJoystick);
 
     }
 
@@ -674,7 +674,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
             case SDL_JOYBUTTONUP:
             {
 
-                InputDevice *joy = trackjoysticks.value(event.jbutton.which);
+                InputDevice *joy = getTrackjoysticksLocal().value(event.jbutton.which);
 
                 if (joy != nullptr)
                 {
@@ -698,7 +698,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
             }
             case SDL_JOYAXISMOTION:
             {
-                InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+                InputDevice *joy = getTrackjoysticksLocal().value(event.jaxis.which);
 
                 if (joy != nullptr)
                 {
@@ -724,7 +724,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
             }
             case SDL_JOYHATMOTION:
             {
-                InputDevice *joy = trackjoysticks.value(event.jhat.which);
+                InputDevice *joy = getTrackjoysticksLocal().value(event.jhat.which);
 
                 if (joy != nullptr)
                 {
@@ -814,7 +814,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(getReleaseEventsGeneratedLocal());
     while (genIter.hasNext())
     {
         genIter.next();
@@ -828,9 +828,9 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 
         if ((bitArraySize > 0) && (tempBitArray.count(true) == device->getNumberAxes()))
         {
-            if (pendingEventValues.contains(device))
+            if (getPendingEventValuesLocal().contains(device))
             {
-                InputDeviceBitArrayStatus *pendingTemp = pendingEventValues.value(device);
+                InputDeviceBitArrayStatus *pendingTemp = getPendingEventValuesLocal().value(device);
                 QBitArray pendingBitArray = pendingTemp->generateFinalBitArray();
                 QBitArray unplugBitArray = createUnplugEventBitArray(device);
                 int pendingBitArraySize = pendingBitArray.size();
@@ -858,7 +858,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                 }
                                 else
                                 {
-                                    InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+                                    InputDevice *joy = getTrackjoysticksLocal().value(event.jaxis.which);
 
                                     if (joy != nullptr)
                                     {
@@ -975,7 +975,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             case SDL_JOYBUTTONUP:
             {
 
-                InputDevice *joy = trackjoysticks.value(event.jbutton.which);
+                InputDevice *joy = getTrackjoysticksLocal().value(event.jbutton.which);
 
                 if (joy != nullptr)
                 {
@@ -1004,7 +1004,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             case SDL_JOYAXISMOTION:
             {
 
-                InputDevice *joy = trackjoysticks.value(event.jaxis.which);
+                InputDevice *joy = getTrackjoysticksLocal().value(event.jaxis.which);
 
                 if (joy != nullptr)
                 {
@@ -1033,7 +1033,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
             case SDL_JOYHATMOTION:
             {
-                InputDevice *joy = trackjoysticks.value(event.jhat.which);
+                InputDevice *joy = getTrackjoysticksLocal().value(event.jhat.which);
 
                 if (joy != nullptr)
                 {
@@ -1156,7 +1156,7 @@ void InputDaemon::clearBitArrayStatusInstances()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(releaseEventsGenerated);
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(getReleaseEventsGeneratedLocal());
     while (genIter.hasNext())
     {
         InputDeviceBitArrayStatus *temp = genIter.next().value();
@@ -1167,9 +1167,9 @@ void InputDaemon::clearBitArrayStatusInstances()
         }
     }
 
-    releaseEventsGenerated.clear();
+    getReleaseEventsGeneratedLocal().clear();
 
-    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> pendIter(pendingEventValues);
+    QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> pendIter(getPendingEventValuesLocal());
     while (pendIter.hasNext())
     {
         InputDeviceBitArrayStatus *temp = pendIter.next().value();
@@ -1180,7 +1180,7 @@ void InputDaemon::clearBitArrayStatusInstances()
         }
     }
 
-    pendingEventValues.clear();
+    getPendingEventValuesLocal().clear();
 }
 
 void InputDaemon::resetActiveButtonMouseDistances()
@@ -1210,4 +1210,19 @@ void InputDaemon::updatePollResetRate(int tempPollRate)
     {
         pollResetTimer.start();
     }
+}
+
+QHash<SDL_JoystickID, Joystick*>& InputDaemon::getTrackjoysticksLocal() {
+
+    return trackjoysticks;
+}
+
+QHash<InputDevice*, InputDeviceBitArrayStatus*>& InputDaemon::getReleaseEventsGeneratedLocal() {
+
+    return releaseEventsGenerated;
+}
+
+QHash<InputDevice*, InputDeviceBitArrayStatus*>& InputDaemon::getPendingEventValuesLocal() {
+
+    return pendingEventValues;
 }

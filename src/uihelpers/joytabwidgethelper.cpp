@@ -129,12 +129,10 @@ bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    bool result = false;
     device->revertProfileEdited();
 
-    result = readConfigFile(filepath);
+    return readConfigFile(filepath);
 
-    return result;
 }
 
 bool JoyTabWidgetHelper::writeConfigFile(QString filepath)

@@ -21,7 +21,6 @@
 #include <QObject>
 #include <QString>
 
-
 class JoyButtonSlot;
 
 

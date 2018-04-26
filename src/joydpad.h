@@ -32,6 +32,7 @@ class QXmlStreamWriter;
 class JoyDPad : public QObject
 {
     Q_OBJECT
+
 public:
     explicit JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyDPad();
@@ -78,7 +79,8 @@ public:
     void setButtonsWheelSpeedX(int value);
     void setButtonsWheelSpeedY(int value);
 
-    QString getDpadName();
+    const QString getDpadName();
+    const QString getDefaultDpadName();
 
     virtual bool isDefault();
 
@@ -130,7 +132,6 @@ public slots:
     void setButtonsSpringRelativeStatus(bool value);
     void setDPadDelay(int value);
     void setButtonsEasingDuration(double value);
-
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
@@ -143,21 +144,26 @@ protected:
     QHash<int, JoyDPadButton*> getApplicableButtons();
     bool readMainConfig(QXmlStreamReader *xml);
 
+private:
     QHash<int, JoyDPadButton*> buttons;
-    int index;
+
     JoyDPadButton::JoyDPadDirections prevDirection;
     JoyDPadButton::JoyDPadDirections pendingDirection;
     JoyDPadButton *activeDiagonalButton;
-    int originset;
-    JoyMode currentMode;
+
     QString dpadName;
     QString defaultDPadName;
+
     SetJoystick *parentSet;
     QTimer directionDelayTimer;
+    JoyMode currentMode;
+
+    int index;
+    int originset;
     int dpadDelay; // unsigned
+    int pendingEventDirection;
 
     bool pendingEvent;
-    int pendingEventDirection;
     bool pendingIgnoreSets;
 
 };

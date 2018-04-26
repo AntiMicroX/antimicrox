@@ -314,7 +314,7 @@ void Logger::logMessage(LogMessage msg)
         }
 
         QTextStream *writeStream = outputStream;
-        if ((level < LOG_INFO) && errorStream)
+        if ((level < LOG_INFO) && (errorStream != nullptr))
         {
             writeStream = errorStream;
         }

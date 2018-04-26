@@ -388,3 +388,8 @@ MouseDpadSettingsDialogHelper const& MouseDPadSettingsDialog::getHelper() {
 
     return helper;
 }
+
+MouseDpadSettingsDialogHelper& MouseDPadSettingsDialog::getHelperLocal() {
+
+    return helper;
+}

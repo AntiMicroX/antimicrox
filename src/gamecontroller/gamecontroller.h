@@ -61,9 +61,9 @@ public:
     void rawAxisEvent(int index, int value);
     void rawDPadEvent(int index, int value);
 
-    QHash<int, bool> getRawbuttons() const;
-    QHash<int, int> getAxisvalues() const;
-    QHash<int, int> getDpadvalues() const;
+    QHash<int, bool> const& getRawbuttons();
+    QHash<int, int> const& getAxisvalues();
+    QHash<int, int> const& getDpadvalues();
 
     SDL_GameController *getController() const;
 
@@ -86,6 +86,7 @@ private:
     QHash<int, int> axisvalues;
     QHash<int, int> dpadvalues;
 
+    SDL_JoystickID joystickID;
     SDL_GameController *controller;
 
 };

@@ -27,6 +27,7 @@ class QWidget;
 class JoyButtonContextMenu : public QMenu
 {
     Q_OBJECT
+
 public:
     explicit JoyButtonContextMenu(JoyButton *button, QWidget *parent = nullptr);
     void buildMenu();

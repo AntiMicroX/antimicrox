@@ -46,7 +46,7 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex,
     for (int i=0; i < NUMBER_JOYSETS; i++)
     {
         GameControllerSet *controllerset = new GameControllerSet(this, i, this);
-        joystick_sets.insert(i, controllerset);
+        getJoystick_sets().insert(i, controllerset);
         enableSetConnections(controllerset);
     }
 }
@@ -189,9 +189,9 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                     {
                         int index = xml->attributes().value("index").toString().toInt();
                         index = index - 1;
-                        if ((index >= 0) && (index < joystick_sets.size()))
+                        if ((index >= 0) && (index < getJoystick_sets().size()))
                         {
-                            GameControllerSet *currentSet = qobject_cast<GameControllerSet*>(joystick_sets.value(index)); // static_cast
+                            GameControllerSet *currentSet = qobject_cast<GameControllerSet*>(getJoystick_sets().value(index)); // static_cast
                             currentSet->readJoystickConfig(xml, buttons, axes, hatButtons);
                         }
                     }
@@ -497,9 +497,9 @@ void GameController::readConfig(QXmlStreamReader *xml)
                     {
                         int index = xml->attributes().value("index").toString().toInt();
                         index = index - 1;
-                        if ((index >= 0) && (index < joystick_sets.size()))
+                        if ((index >= 0) && (index < getJoystick_sets().size()))
                         {
-                            joystick_sets.value(index)->readConfig(xml);
+                            getJoystick_sets().value(index)->readConfig(xml);
                         }
                     }
                     else
@@ -766,9 +766,9 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
     }
 
     xml->writeStartElement("sets");
-    for (int i=0; i < joystick_sets.size(); i++)
+    for (int i=0; i < getJoystick_sets().size(); i++)
     {
-        joystick_sets.value(i)->writeConfig(xml);
+        getJoystick_sets().value(i)->writeConfig(xml);
     }
     xml->writeEndElement();
 
@@ -945,7 +945,7 @@ bool GameController::isRelevantGUID(QString tempGUID)
 void GameController::rawButtonEvent(int index, bool pressed)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-    bool knownbutton = rawbuttons.contains(index);
+    bool knownbutton = getRawbuttons().contains(index);
     if (!knownbutton && pressed)
     {
         rawbuttons.insert(index, pressed);
@@ -961,7 +961,7 @@ void GameController::rawButtonEvent(int index, bool pressed)
 void GameController::rawAxisEvent(int index, int value)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-    bool knownaxis = axisvalues.contains(index);
+    bool knownaxis = getAxisvalues().contains(index);
 
     if (!knownaxis && (fabs(value) > rawAxisDeadZone))
     {
@@ -980,7 +980,7 @@ void GameController::rawAxisEvent(int index, int value)
 void GameController::rawDPadEvent(int index, int value)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-    bool knowndpad = dpadvalues.contains(index);
+    bool knowndpad = getDpadvalues().contains(index);
     if (!knowndpad && (value != 0))
     {
         dpadvalues.insert(index, value);
@@ -994,17 +994,17 @@ void GameController::rawDPadEvent(int index, int value)
 }
 
 
-QHash<int, bool> GameController::getRawbuttons() const  {
+QHash<int, bool> const& GameController::getRawbuttons()  {
 
     return rawbuttons;
 }
 
-QHash<int, int> GameController::getAxisvalues() const  {
+QHash<int, int> const& GameController::getAxisvalues()  {
 
     return axisvalues;
 }
 
-QHash<int, int> GameController::getDpadvalues() const  {
+QHash<int, int> const& GameController::getDpadvalues()  {
 
     return dpadvalues;
 }

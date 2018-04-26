@@ -40,14 +40,15 @@ public:
 protected:
     virtual QString generateLabel();
 
-    JoyControlStickButton *button;
-
 public slots:
     void disableFlashes();
     void enableFlashes();
 
 private slots:
     void showContextMenu(const QPoint &point);
+
+private:
+    JoyControlStickButton *button;
 };
 
 #endif // JOYCONTROLSTICKBUTTONPUSHBUTTON_H

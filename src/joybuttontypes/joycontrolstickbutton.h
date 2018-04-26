@@ -60,7 +60,6 @@ public:
 protected:
     virtual double getCurrentSpringDeadCircle();
 
-
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
 

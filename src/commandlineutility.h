@@ -107,7 +107,7 @@ public:
         }
     }
 
-protected:
+private:
     QString profileLocation;
     int controllerNumber; // unsigned
     QString controllerIDString;
@@ -171,6 +171,7 @@ protected:
     bool isPossibleCommand(QString temp);
     void setErrorMessage(QString temp);
 
+private:
     bool launchInTray;
     bool helpRequest;
     bool versionRequest;

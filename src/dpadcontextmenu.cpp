@@ -32,7 +32,7 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
     this->dpad = dpad;
 
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-    helper.moveToThread(dpad->thread());
+    getHelper().moveToThread(dpad->thread());
 
     connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
@@ -310,7 +310,7 @@ void DPadContextMenu::setDPadPreset()
     tempHash.insert(JoyDPadButton::DpadLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyDPadButton::DpadRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelper().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
@@ -417,4 +417,9 @@ void DPadContextMenu::openMouseSettingsDialog()
 
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, parentWidget());
     dialog->show();
+}
+
+DPadContextMenuHelper& DPadContextMenu::getHelper() {
+
+    return helper;
 }

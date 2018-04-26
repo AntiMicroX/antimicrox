@@ -54,6 +54,11 @@ public:
     int getNumberSticks() const;
     int getNumberVDPads() const;
 
+    QHash<int, JoyButton*> const& getButtons() const;
+    QHash<int, JoyDPad*> const& getHats() const;
+    QHash<int, JoyControlStick*> const& getSticks() const;
+    QHash<int, VDPad*> const& getVdpads() const;
+
     int getIndex() const;
     int getRealIndex() const; // unsigned
     virtual void refreshButtons ();

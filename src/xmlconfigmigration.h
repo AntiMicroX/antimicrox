@@ -34,7 +34,7 @@ public:
     bool requiresMigration();
     QString migrate();
 
-    QXmlStreamReader *getReader() const;
+    const QXmlStreamReader *getReader();
     int getFileVersion() const;
 
 private:

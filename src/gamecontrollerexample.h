@@ -27,6 +27,7 @@ class QPaintEvent;
 class GameControllerExample : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit GameControllerExample(QWidget *parent = nullptr);
 
@@ -39,17 +40,18 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent *event);
 
-    QImage controllerimage;
-    QImage buttonimage;
-    QImage axisimage;
-    QImage rotatedaxisimage;
-    int currentIndex;
-
 signals:
     void indexUpdated(int index);
 
 public slots:
     void setActiveButton(int button);
+
+private:
+    QImage controllerimage;
+    QImage buttonimage;
+    QImage axisimage;
+    QImage rotatedaxisimage;
+    int currentIndex;
 };
 
 #endif // GAMECONTROLLEREXAMPLE_H

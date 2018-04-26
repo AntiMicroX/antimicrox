@@ -125,7 +125,7 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
     this->device = device;
     this->settings = settings;
 
-    helper.moveToThread(device->thread());
+    getHelperLocal().moveToThread(device->thread());
 
     PadderCommon::lockInputDevices();
 
@@ -232,10 +232,10 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
     if (usingGameController)
     {
-        if (eventTriggerAxes.contains(axis) && (value < (-currentDeadZoneValue)))
+        if (getEventTriggerAxesLocal().contains(axis) && (value < (-currentDeadZoneValue)))
         {
             skip = true;
-            eventTriggerAxes.removeAll(axis);
+            getEventTriggerAxesLocal().removeAll(axis);
         }
     }
 
@@ -247,9 +247,9 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
             if (usingGameController)
             {
-                if ((value > currentDeadZoneValue) && !eventTriggerAxes.contains(axis))
+                if ((value > currentDeadZoneValue) && !getEventTriggerAxesLocal().contains(axis))
                 {
-                    eventTriggerAxes.append(axis);
+                    getEventTriggerAxesLocal().append(axis);
                 }
                 else if (value < currentDeadZoneValue)
                 {
@@ -715,4 +715,14 @@ void GameControllerMappingDialog::updateLastAxisLineEditRaw(int index, int value
 
         ui->lastAxisEventLineEdit->setText(temp);
     }
+}
+
+GameControllerMappingDialogHelper& GameControllerMappingDialog::getHelperLocal() {
+
+    return helper;
+}
+
+QList<int>& GameControllerMappingDialog::getEventTriggerAxesLocal() {
+
+    return eventTriggerAxes;
 }

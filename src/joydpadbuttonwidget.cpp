@@ -39,7 +39,7 @@ QString JoyDPadButtonWidget::generateLabel()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     QString temp = QString();
-    if (!getJoyButton()->getActionName().isEmpty() && displayNames)
+    if (!getJoyButton()->getActionName().isEmpty() && ifDisplayNames())
     {
         temp = getJoyButton()->getActionName();
     }

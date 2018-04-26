@@ -35,6 +35,7 @@ class JoyAxis;
 class JoyAxis : public QObject
 {
     Q_OBJECT
+
 public:
     explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyAxis();
@@ -166,32 +167,19 @@ protected:
     virtual bool readMainConfig(QXmlStreamReader *xml);
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
-    int index;
-    int deadZone;
-    int maxZoneValue;
-    bool isActive;
-
     JoyAxisButton *paxisbutton;
     JoyAxisButton *naxisbutton;
 
-    bool eventActive;
-    int currentThrottledValue;
-    int currentRawValue;
-    int throttle;
-    JoyAxisButton *activeButton;
-    int originset;
-
-    int currentThrottledDeadValue;
-    JoyControlStick *stick;
     QString axisName;
     QString defaultAxisName;
-    SetJoystick *parentSet;
-    int lastKnownThottledValue;
-    int lastKnownRawValue;
+    int throttle;
+    int deadZone;
+    int maxZoneValue;
+    int currentRawValue;
+    int currentThrottledValue;
+    int currentThrottledDeadValue;
+    int index;
 
-    int pendingValue;
-    bool pendingEvent;
-    bool pendingIgnoreSets;
     // TODO: CHECK IF PROPERTY IS NEEDED.
     //bool pendingUpdateLastValues;
 
@@ -217,6 +205,24 @@ public slots:
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
+
+private:
+    bool isActive;
+    bool eventActive;
+
+    JoyAxisButton *activeButton;
+    int originset;
+
+    JoyControlStick *stick;
+
+    SetJoystick *parentSet;
+    int lastKnownThottledValue;
+    int lastKnownRawValue;
+
+    int pendingValue;
+    bool pendingEvent;
+    bool pendingIgnoreSets;
+
 };
 
 #endif // JOYAXIS_H

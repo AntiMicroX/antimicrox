@@ -59,6 +59,8 @@ private slots:
     void runAppCheck();
 
 private:
+    QSet<QString>& getGuidSetLocal();
+
     QTimer appTimer;
     AntiMicroSettings *settings;
     QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;

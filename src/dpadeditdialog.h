@@ -55,6 +55,7 @@ private slots:
 
 private:
     Ui::DPadEditDialog *ui;
+    DPadEditDialogHelper& getHelperLocal();
 
     JoyDPad *dpad;
     DPadEditDialogHelper helper;

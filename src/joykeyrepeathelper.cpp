@@ -17,6 +17,7 @@
 
 #include "joykeyrepeathelper.h"
 #include "event.h"
+#include "joybuttonslot.h"
 
 JoyKeyRepeatHelper::JoyKeyRepeatHelper(QObject *parent) :
     QObject(parent)

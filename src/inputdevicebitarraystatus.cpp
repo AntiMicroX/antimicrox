@@ -58,8 +58,8 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
         }
     }
 
-    buttonStatus.resize(device->getNumberRawButtons());
-    buttonStatus.fill(0);
+    getButtonStatusLocal().resize(device->getNumberRawButtons());
+    getButtonStatusLocal().fill(0);
 
     for (int i=0; i < device->getNumberRawButtons(); i++)
     {
@@ -67,7 +67,7 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
         JoyButton *button = currentSet->getJoyButton(i);
         if ((button != nullptr) && readCurrent)
         {
-            buttonStatus.setBit(i, button->getButtonState());
+            getButtonStatusLocal().setBit(i, button->getButtonState());
         }
     }
 }
@@ -86,9 +86,9 @@ void InputDeviceBitArrayStatus::changeButtonStatus(int buttonIndex, bool value)
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if ((buttonIndex >= 0) && (buttonIndex <= buttonStatus.size()))
+    if ((buttonIndex >= 0) && (buttonIndex <= getButtonStatusLocal().size()))
     {
-        buttonStatus.setBit(buttonIndex, value);
+        getButtonStatusLocal().setBit(buttonIndex, value);
     }
 }
 
@@ -107,7 +107,7 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     int totalArraySize = 0;
-    totalArraySize = axesStatus.size() + hatButtonStatus.size() + buttonStatus.size();
+    totalArraySize = axesStatus.size() + hatButtonStatus.size() + getButtonStatusLocal().size();
 
     QBitArray aggregateBitArray(totalArraySize, false);
     int currentBit = 0;
@@ -124,9 +124,9 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
         currentBit++;
     }
 
-    for (int i=0; i < buttonStatus.size(); i++)
+    for (int i = 0; i < getButtonStatusLocal().size(); i++)
     {
-        aggregateBitArray.setBit(currentBit, buttonStatus.at(i));
+        aggregateBitArray.setBit(currentBit, getButtonStatusLocal().at(i));
         currentBit++;
     }
 
@@ -147,5 +147,10 @@ void InputDeviceBitArrayStatus::clearStatusValues()
         hatButtonStatus.replace(i, false);
     }
 
-    buttonStatus.fill(false);
+    getButtonStatusLocal().fill(false);
+}
+
+QBitArray& InputDeviceBitArrayStatus::getButtonStatusLocal() {
+
+    return buttonStatus;
 }

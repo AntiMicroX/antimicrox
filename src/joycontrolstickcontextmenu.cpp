@@ -35,7 +35,7 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
     this->stick = stick;
-    helper.moveToThread(stick->thread());
+    getHelperLocal().moveToThread(stick->thread());
 
     connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
 }
@@ -317,7 +317,7 @@ void JoyControlStickContextMenu::setStickPreset()
     tempHash.insert(JoyControlStick::StickLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyControlStick::StickRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelperLocal().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
@@ -412,4 +412,9 @@ void JoyControlStickContextMenu::openMouseSettingsDialog()
 
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, parentWidget());
     dialog->show();
+}
+
+JoyControlStickContextMenuHelper& JoyControlStickContextMenu::getHelperLocal() {
+
+    return helper;
 }

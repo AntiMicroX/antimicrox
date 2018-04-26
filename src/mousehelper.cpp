@@ -46,7 +46,7 @@ void MouseHelper::initDeskWid()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (!deskWid)
+    if (deskWid == nullptr)
     {
         deskWid = new QDesktopWidget;
     }
@@ -56,7 +56,7 @@ void MouseHelper::deleteDeskWid()
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 
-    if (deskWid)
+    if (deskWid != nullptr)
     {
         delete deskWid;
         deskWid = nullptr;

@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+﻿/* antimicro Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,6 @@ public:
 
     JoyAxis* getAxis() const;
     static const QString xmlName;
-
 
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);

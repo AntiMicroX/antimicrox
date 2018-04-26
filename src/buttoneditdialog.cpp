@@ -473,7 +473,7 @@ void ButtonEditDialog::checkTurboSetting(bool state)
         ui->turboCheckBox->setEnabled(true);
     }
 
-    helper.setUseTurbo(state);
+    getHelperLocal().setUseTurbo(state);
 
     }
 }
@@ -626,4 +626,9 @@ JoyButton* ButtonEditDialog::getLastJoyButton() {
 void ButtonEditDialog::setUpLastJoyButton(JoyButton * newButton) {
 
     lastJoyButton = newButton;
+}
+
+ButtonEditDialogHelper& ButtonEditDialog::getHelperLocal() {
+
+    return helper;
 }

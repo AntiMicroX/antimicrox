@@ -157,3 +157,8 @@ void FlashButtonWidget::retranslateUi()
 
     refreshLabel();
 }
+
+bool FlashButtonWidget::ifDisplayNames() {
+
+    return displayNames;
+}

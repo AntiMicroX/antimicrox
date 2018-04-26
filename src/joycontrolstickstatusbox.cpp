@@ -74,7 +74,7 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
     connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
 }
 
-JoyControlStick* JoyControlStickStatusBox::getStick()
+JoyControlStick* JoyControlStickStatusBox::getStick() const
 {
     qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
 

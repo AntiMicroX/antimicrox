@@ -48,6 +48,7 @@ public:
 
 private:
     SDL_Joystick *joyhandle;
+    SDL_JoystickID joystickID;
 
 };
 
