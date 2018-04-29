@@ -1,0 +1,24 @@
+[23:42:44.318] - Logging started
+[23:42:46.965] - Virtual pointer found with id=4.
+[23:42:46.966] - Changing mouse acceleration for device with id=4
+[23:42:46.966] - Using XTest as the event generator.
+[23:42:46.966] - Active window changed to: Title = "commandlineutility.cpp (src @ antimicro) [master] - Qt Creator", Class = "qtcreator QtCreator", Program = "" or "".
+[23:42:48.776] - Quitting Program
+[23:55:49.094] - Logging started
+[23:55:49.931] - Virtual pointer found with id=4.
+[23:55:49.931] - Changing mouse acceleration for device with id=4
+[23:55:49.931] - Using XTest as the event generator.
+[23:55:49.931] - Active window changed to: Title = "", Class = "krusader krusader", Program = "" or "".
+[23:56:15.786] - Quitting Program
+[00:05:51.790] - Logging started
+[00:05:52.614] - Virtual pointer found with id=4.
+[00:05:52.614] - Changing mouse acceleration for device with id=4
+[00:05:52.615] - Using XTest as the event generator.
+[00:05:52.615] - Active window changed to: Title = "", Class = "krusader krusader", Program = "" or "".
+[00:06:09.092] - Quitting Program
+[00:10:25.801] - Logging started
+[00:10:26.667] - Virtual pointer found with id=4.
+[00:10:26.667] - Changing mouse acceleration for device with id=4
+[00:10:26.667] - Using XTest as the event generator.
+[00:10:26.667] - Active window changed to: Title = "", Class = "krusader krusader", Program = "" or "".
+[00:10:35.008] - Quitting Program

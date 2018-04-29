@@ -139,7 +139,7 @@ void X11Extras::syncDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    _display = XOpenDisplay(NULL);
+    _display = XOpenDisplay(nullptr);
 }
 
 /**

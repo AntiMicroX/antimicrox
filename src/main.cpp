@@ -16,7 +16,6 @@
  */
 
 #include "mainwindow.h"
-#include "messagehandler.h"
 #include "inputdevice.h"
 #include "setjoystick.h"
 #include "simplekeygrabberbutton.h"
@@ -28,13 +27,17 @@
 #include "localantimicroserver.h"
 #include "antimicrosettings.h"
 #include "applaunchhelper.h"
+#include "antkeymapper.h"
 
 #include "eventhandlerfactory.h"
-#include "antkeymapper.h"
+#include "messagehandler.h"
 #include "logger.h"
 
-#include <QtGlobal>
+#ifdef Q_OS_UNIX
 #include <QApplication>
+#endif
+
+#include <QtGlobal>
 #include <QMainWindow>
 #include <QMap>
 #include <QMapIterator>
@@ -47,8 +50,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QCommandLineParser>
-#include <QtGlobal>
-
 
 #ifdef Q_OS_UNIX
 #include <signal.h>
@@ -204,6 +205,10 @@ int main(int argc, char *argv[])
                 "xtest"}, // default
             {{"list","l"},
                 QCoreApplication::translate("main", "Print information about joysticks detected by SDL")},
+           // {"display",
+           //     QCoreApplication::translate("main", "Use specified display for X11 calls")},
+           // {"next",
+           //     QCoreApplication::translate("main", "Advance profile loading set options")},
           //  {"map",
           //      QCoreApplication::translate("main", "Open game controller mapping window of selected controller. Value can be a controller index or GUID."),
           //      QCoreApplication::translate("main", "value")},
@@ -361,7 +366,7 @@ int main(int argc, char *argv[])
         {
             X11Extras::setCustomDisplay(cmdutility.getDisplayString());
             X11Extras::getInstance()->syncDisplay();
-            if (X11Extras::getInstance()->display() == NULL)
+            if (X11Extras::getInstance()->display() == nullptr)
             {
                 appLogger.LogError(QObject::trUtf8("Display string \"%1\" is not valid.")
                                    .arg(cmdutility.getDisplayString()), true, true);
@@ -450,7 +455,7 @@ int main(int argc, char *argv[])
         if (!cmdutility.getDisplayString().isEmpty())
         {
             X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
-            if (X11Extras::getInstance()->display() == NULL)
+            if (X11Extras::getInstance()->display() == nullptr)
             {
                 appLogger.LogError(QObject::trUtf8("Display string \"%1\" is not valid.")
                                    .arg(cmdutility.getDisplayString()), true, true);

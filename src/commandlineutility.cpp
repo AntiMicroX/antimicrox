@@ -240,6 +240,16 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
                 setErrorMessage(QObject::trUtf8("No set number was specified."));
             }
         }
+        else if (parser->isSet("next"))
+        {
+            currentListsIndex++;
+
+            ControllerOptionsInfo tempInfo;
+            controllerOptionsList.append(tempInfo);
+
+        }
+
+#ifdef USE_SDL_2
         else if (parser->isSet("list"))
         {
             listControllers = true;
@@ -273,6 +283,7 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             }
 
         }
+#endif
 
 #ifdef Q_OS_UNIX
         else if (parser->isSet("daemon"))
