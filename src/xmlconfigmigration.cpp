@@ -16,6 +16,8 @@
  */
 
 #include "xmlconfigmigration.h"
+
+#include "messagehandler.h"
 #include "event.h"
 #include "antkeymapper.h"
 #include "common.h"
@@ -32,7 +34,7 @@
 XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->reader = reader;
     if (reader->device() && reader->device()->isOpen())
@@ -47,7 +49,7 @@ XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent
 
 bool XMLConfigMigration::requiresMigration()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool toMigrate = false;
     if (fileVersion == 0)
@@ -64,7 +66,7 @@ bool XMLConfigMigration::requiresMigration()
 
 QString XMLConfigMigration::migrate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString tempXmlString = QString();
     if (requiresMigration())
@@ -86,7 +88,7 @@ QString XMLConfigMigration::migrate()
 
 QString XMLConfigMigration::readConfigToString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
@@ -102,7 +104,7 @@ QString XMLConfigMigration::readConfigToString()
 
 QString XMLConfigMigration::version0006Migration()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);

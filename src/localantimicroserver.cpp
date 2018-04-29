@@ -16,6 +16,8 @@
  */
 
 #include "localantimicroserver.h"
+
+#include "messagehandler.h"
 #include "common.h"
 
 #include <QTextStream>
@@ -26,14 +28,14 @@
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     localServer = new QLocalServer(this);
 }
 
 void LocalAntiMicroServer::startLocalServer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QLocalServer::removeServer(PadderCommon::localSocketKey);
     localServer->setMaxPendingConnections(1);
@@ -52,7 +54,7 @@ void LocalAntiMicroServer::startLocalServer()
 
 void LocalAntiMicroServer::handleOutsideConnection()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QLocalSocket *socket = localServer->nextPendingConnection();
     if (socket != nullptr)
@@ -64,14 +66,14 @@ void LocalAntiMicroServer::handleOutsideConnection()
 
 void LocalAntiMicroServer::handleSocketDisconnect()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit clientdisconnect();
 }
 
 void LocalAntiMicroServer::close()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     localServer->close();
 }

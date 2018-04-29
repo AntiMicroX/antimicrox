@@ -16,6 +16,8 @@
  */
 
 #include "setjoystick.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
@@ -36,7 +38,7 @@ const int SetJoystick::RAISEDDEADZONE = 20000;
 SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->device = device;
     this->index = index;
@@ -47,7 +49,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
 SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->device = device;
     this->index = index;
@@ -59,7 +61,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject 
 
 SetJoystick::~SetJoystick()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteSticks();
     deleteVDpads();
@@ -72,42 +74,42 @@ SetJoystick::~SetJoystick()
 
 JoyButton* SetJoystick::getJoyButton(int index) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getButtons().value(index);
 }
 
 JoyAxis* SetJoystick::getJoyAxis(int index) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return axes.value(index);
 }
 
 JoyDPad* SetJoystick::getJoyDPad(int index) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getHats().value(index);
 }
 
 VDPad* SetJoystick::getVDPad(int index) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getVdpads().value(index);
 }
 
 JoyControlStick* SetJoystick::getJoyStick(int index) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getSticks().value(index);
 }
 
 void SetJoystick::refreshButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteButtons();
 
@@ -121,7 +123,7 @@ void SetJoystick::refreshButtons()
 
 void SetJoystick::refreshAxes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteAxes();
 
@@ -143,7 +145,7 @@ void SetJoystick::refreshAxes()
 
 void SetJoystick::refreshHats()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteHats();
 
@@ -157,7 +159,7 @@ void SetJoystick::refreshHats()
 
 void SetJoystick::deleteButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyButton*> iter(getButtons());
     while (iter.hasNext())
@@ -176,7 +178,7 @@ void SetJoystick::deleteButtons()
 
 void SetJoystick::deleteAxes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyAxis*> iter(axes);
     while (iter.hasNext())
@@ -194,7 +196,7 @@ void SetJoystick::deleteAxes()
 
 void SetJoystick::deleteSticks()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyControlStick*> iter(getSticks());
     while (iter.hasNext())
@@ -212,7 +214,7 @@ void SetJoystick::deleteSticks()
 
 void SetJoystick::deleteVDpads()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, VDPad*> iter(getVdpads());
     while (iter.hasNext())
@@ -231,7 +233,7 @@ void SetJoystick::deleteVDpads()
 void SetJoystick::deleteHats()
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyDPad*> iter(getHats());
     while (iter.hasNext())
@@ -249,42 +251,42 @@ void SetJoystick::deleteHats()
 
 int SetJoystick::getNumberButtons() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getButtons().count();
 }
 
 int SetJoystick::getNumberAxes() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return axes.count();
 }
 
 int SetJoystick::getNumberHats() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getHats().count();
 }
 
 int SetJoystick::getNumberSticks() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getSticks().size();
 }
 
 int SetJoystick::getNumberVDPads() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getVdpads().size();
 }
 
 void SetJoystick::reset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteSticks();
     deleteVDpads();
@@ -296,14 +298,14 @@ void SetJoystick::reset()
 
 void SetJoystick::propogateSetChange(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit setChangeActivated(index);
 }
 
 void SetJoystick::propogateSetButtonAssociation(int button, int newset, int mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (newset != index)
     {
@@ -313,7 +315,7 @@ void SetJoystick::propogateSetButtonAssociation(int button, int newset, int mode
 
 void SetJoystick::propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (newset != index)
     {
@@ -323,7 +325,7 @@ void SetJoystick::propogateSetAxisButtonAssociation(int button, int axis, int ne
 
 void SetJoystick::propogateSetStickButtonAssociation(int button, int stick, int newset, int mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (newset != index)
     {
@@ -333,7 +335,7 @@ void SetJoystick::propogateSetStickButtonAssociation(int button, int stick, int 
 
 void SetJoystick::propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (newset != index)
     {
@@ -343,7 +345,7 @@ void SetJoystick::propogateSetDPadButtonAssociation(int button, int dpad, int ne
 
 void SetJoystick::propogateSetVDPadButtonAssociation(int button, int dpad, int newset, int mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (newset != index)
     {
@@ -357,7 +359,7 @@ void SetJoystick::propogateSetVDPadButtonAssociation(int button, int dpad, int n
  */
 void SetJoystick::release()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyAxis*> iterAxes(axes);
     while (iterAxes.hasNext())
@@ -390,7 +392,7 @@ void SetJoystick::release()
 
 void SetJoystick::readConfig(QXmlStreamReader *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == "set"))
     {
@@ -493,7 +495,7 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
 
 void SetJoystick::writeConfig(QXmlStreamWriter *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (!isSetEmpty())
     {
@@ -551,7 +553,7 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
 
 bool SetJoystick::isSetEmpty()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = true;
     QHashIterator<int, JoyButton*> iter(getButtons());
@@ -609,7 +611,7 @@ bool SetJoystick::isSetEmpty()
 
 void SetJoystick::propogateSetAxisThrottleSetting(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxis *axis = axes.value(index);
     if (axis)
@@ -620,7 +622,7 @@ void SetJoystick::propogateSetAxisThrottleSetting(int index)
 
 void SetJoystick::addControlStick(int index, JoyControlStick *stick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     sticks.insert(index, stick);
     connect(stick, SIGNAL(stickNameChanged()), this, SLOT(propogateSetStickNameChange()));
@@ -642,7 +644,7 @@ void SetJoystick::addControlStick(int index, JoyControlStick *stick)
 
 void SetJoystick::removeControlStick(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (getSticks().contains(index))
     {
@@ -655,7 +657,7 @@ void SetJoystick::removeControlStick(int index)
 
 void SetJoystick::addVDPad(int index, VDPad *vdpad)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     vdpads.insert(index, vdpad);
     connect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
@@ -677,7 +679,7 @@ void SetJoystick::addVDPad(int index, VDPad *vdpad)
 
 void SetJoystick::removeVDPad(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (getVdpads().contains(index))
     {
@@ -690,21 +692,21 @@ void SetJoystick::removeVDPad(int index)
 
 int SetJoystick::getIndex() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return index;
 }
 
 int SetJoystick::getRealIndex() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return index + 1;
 }
 
 void SetJoystick::propogateSetButtonClick(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton* jButton = qobject_cast<JoyButton*>(sender());
     if (jButton != nullptr)
@@ -713,8 +715,11 @@ void SetJoystick::propogateSetButtonClick(int button)
         {
             emit setButtonClick(index, button);
             lastClickedButtons.append(jButton);
+
+            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
             qDebug() << "List has " << getLastClickedButtons().count() << " buttons";
+            #endif
         }
     }
 }
@@ -744,7 +749,7 @@ int SetJoystick::getCountBtnInList(QString partialName) {
 
 void SetJoystick::propogateSetButtonRelease(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *jButton = qobject_cast<JoyButton*>(sender()); // static_cast
     if (jButton)
@@ -758,7 +763,7 @@ void SetJoystick::propogateSetButtonRelease(int button)
 
 void SetJoystick::propogateSetAxisButtonClick(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *axisButton = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     if (axisButton)
@@ -773,7 +778,7 @@ void SetJoystick::propogateSetAxisButtonClick(int button)
 
 void SetJoystick::propogateSetAxisButtonRelease(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *axisButton = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     if (axisButton)
@@ -788,7 +793,7 @@ void SetJoystick::propogateSetAxisButtonRelease(int button)
 
 void SetJoystick::propogateSetStickButtonClick(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickButton *stickButton = qobject_cast<JoyControlStickButton*>(sender()); // static_cast
     if (stickButton)
@@ -803,7 +808,7 @@ void SetJoystick::propogateSetStickButtonClick(int button)
 
 void SetJoystick::propogateSetStickButtonRelease(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickButton *stickButton = qobject_cast<JoyControlStickButton*>(sender()); // static_cast
     if (stickButton)
@@ -818,7 +823,7 @@ void SetJoystick::propogateSetStickButtonRelease(int button)
 
 void SetJoystick::propogateSetDPadButtonClick(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPadButton *dpadButton = qobject_cast<JoyDPadButton*>(sender()); // static_cast
     if (dpadButton)
@@ -834,7 +839,7 @@ void SetJoystick::propogateSetDPadButtonClick(int button)
 
 void SetJoystick::propogateSetDPadButtonRelease(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPadButton *dpadButton = qobject_cast<JoyDPadButton*>(sender()); // static_cast
     if (dpadButton)
@@ -850,7 +855,7 @@ void SetJoystick::propogateSetDPadButtonRelease(int button)
 
 void SetJoystick::propogateSetButtonNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *button = qobject_cast<JoyButton*>(sender()); // static_cast
     disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetButtonNameChange()));
@@ -860,7 +865,7 @@ void SetJoystick::propogateSetButtonNameChange()
 
 void SetJoystick::propogateSetAxisButtonNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetAxisButtonNameChange()));
@@ -870,7 +875,7 @@ void SetJoystick::propogateSetAxisButtonNameChange()
 
 void SetJoystick::propogateSetStickButtonNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickButton *button = qobject_cast<JoyControlStickButton*>(sender()); // static_cast
     disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetStickButtonNameChange()));
@@ -880,7 +885,7 @@ void SetJoystick::propogateSetStickButtonNameChange()
 
 void SetJoystick::propogateSetDPadButtonNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender()); // static_cast
     disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
@@ -890,7 +895,7 @@ void SetJoystick::propogateSetDPadButtonNameChange()
 
 void SetJoystick::propogateSetVDPadButtonNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender()); // static_cast
     disconnect(button, SIGNAL(buttonNameChanged()), this, SLOT(propogateSetVDPadButtonNameChange()));
@@ -900,7 +905,7 @@ void SetJoystick::propogateSetVDPadButtonNameChange()
 
 void SetJoystick::propogateSetAxisNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxis *axis = qobject_cast<JoyAxis*>(sender()); // static_cast
     disconnect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
@@ -910,7 +915,7 @@ void SetJoystick::propogateSetAxisNameChange()
 
 void SetJoystick::propogateSetStickNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStick *stick = qobject_cast<JoyControlStick*>(sender()); // static_cast
     disconnect(stick, SIGNAL(stickNameChanged()), this, SLOT(propogateSetStickNameChange()));
@@ -920,7 +925,7 @@ void SetJoystick::propogateSetStickNameChange()
 
 void SetJoystick::propogateSetDPadNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPad *dpad = qobject_cast<JoyDPad*>(sender()); // static_cast
     disconnect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadButtonNameChange()));
@@ -930,7 +935,7 @@ void SetJoystick::propogateSetDPadNameChange()
 
 void SetJoystick::propogateSetVDPadNameChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     VDPad *vdpad = qobject_cast<VDPad*>(sender()); // static_cast
     disconnect(vdpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetVDPadNameChange()));
@@ -940,7 +945,7 @@ void SetJoystick::propogateSetVDPadNameChange()
 
 void SetJoystick::setIgnoreEventState(bool ignore)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyButton*> iter(getButtons());
     while (iter.hasNext())
@@ -1022,7 +1027,7 @@ void SetJoystick::setIgnoreEventState(bool ignore)
 
 void SetJoystick::propogateSetAxisActivated(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxis *axis = qobject_cast<JoyAxis*>(sender()); // static_cast
     emit setAxisActivated(this->index, axis->getIndex(), value);
@@ -1030,7 +1035,7 @@ void SetJoystick::propogateSetAxisActivated(int value)
 
 void SetJoystick::propogateSetAxisReleased(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxis *axis = qobject_cast<JoyAxis*>(sender()); // static_cast
     emit setAxisReleased(this->index, axis->getIndex(), value);
@@ -1038,7 +1043,7 @@ void SetJoystick::propogateSetAxisReleased(int value)
 
 void SetJoystick::enableButtonConnections(JoyButton *button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(button, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
     connect(button, SIGNAL(setAssignmentChanged(int,int,int)), this, SLOT(propogateSetButtonAssociation(int,int,int)));
@@ -1051,7 +1056,7 @@ void SetJoystick::enableButtonConnections(JoyButton *button)
 
 void SetJoystick::enableAxisConnections(JoyAxis *axis)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(axis, SIGNAL(throttleChangePropogated(int)), this, SLOT(propogateSetAxisThrottleSetting(int)));
     connect(axis, SIGNAL(axisNameChanged()), this, SLOT(propogateSetAxisNameChange()));
@@ -1075,7 +1080,7 @@ void SetJoystick::enableAxisConnections(JoyAxis *axis)
 
 void SetJoystick::enableHatConnections(JoyDPad *dpad)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(propogateSetDPadNameChange()));
 
@@ -1097,14 +1102,14 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
 
 InputDevice* SetJoystick::getInputDevice() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return device;
 }
 
 void SetJoystick::setName(QString name)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (name.length() <= MAXNAMELENGTH)
     {
@@ -1122,14 +1127,14 @@ void SetJoystick::setName(QString name)
 
 QString SetJoystick::getName() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return name;
 }
 
 void SetJoystick::copyAssignments(SetJoystick *destSet)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < device->getNumberAxes(); i++)
     {
@@ -1190,7 +1195,7 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
 
 QString SetJoystick::getSetLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (!name.isEmpty())
@@ -1207,14 +1212,14 @@ QString SetJoystick::getSetLabel()
 
 void SetJoystick::establishPropertyUpdatedConnection()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(this, SIGNAL(propertyUpdated()), getInputDevice(), SLOT(profileEdited()));
 }
 
 void SetJoystick::disconnectPropertyUpdatedConnection()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(this, SIGNAL(propertyUpdated()), getInputDevice(), SLOT(profileEdited()));
 }
@@ -1225,7 +1230,7 @@ void SetJoystick::disconnectPropertyUpdatedConnection()
  */
 void SetJoystick::raiseAxesDeadZones(int deadZone)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempDeadZone = deadZone;
     if ((deadZone <= 0) || (deadZone > 32767))
@@ -1245,7 +1250,7 @@ void SetJoystick::raiseAxesDeadZones(int deadZone)
 
 void SetJoystick::currentAxesDeadZones(QList<int> *axesDeadZones)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyAxis*> axisIter(axes);
     while (axisIter.hasNext())
@@ -1257,7 +1262,7 @@ void SetJoystick::currentAxesDeadZones(QList<int> *axesDeadZones)
 
 void SetJoystick::setAxesDeadZones(QList<int> *axesDeadZones)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QListIterator<int> iter(*axesDeadZones);
     int axisNum = 0;
@@ -1278,7 +1283,7 @@ void SetJoystick::setAxesDeadZones(QList<int> *axesDeadZones)
 
 void SetJoystick::setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (axes.contains(axisNum))
     {

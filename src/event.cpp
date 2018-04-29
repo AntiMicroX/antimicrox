@@ -28,6 +28,8 @@
 #include <QDebug>
 
 #include "event.h"
+
+#include "messagehandler.h"
 #include "eventhandlerfactory.h"
 #include "joybutton.h"
 
@@ -63,7 +65,7 @@ void fakeAbsMouseCoordinates(double springX, double springY,
                              int &finalx, int &finaly, int screen=-1)
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int screenWidth = 0;
     int screenHeight = 0;
@@ -106,7 +108,7 @@ void fakeAbsMouseCoordinates(double springX, double springY,
 void sendevent(JoyButtonSlot *slot, bool pressed)
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
@@ -141,7 +143,7 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 // Create the relative mouse event used by the operating system.
 void sendevent(int code1, int code2)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
 }
@@ -157,7 +159,7 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
     Q_UNUSED(mousePosX);
     Q_UNUSED(mousePosY);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::mouseHelperObj.mouseTimer.stop();
 
@@ -260,7 +262,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                      int* const mousePosX, int* const mousePosY)
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::mouseHelperObj.mouseTimer.stop();
 
@@ -612,7 +614,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 
 int X11KeySymToKeycode(QString key)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempcode = 0;
 #if defined(Q_OS_UNIX)
@@ -643,7 +645,9 @@ int X11KeySymToKeycode(QString key)
         tempcode = WinExtras::getVirtualKey(key);
         if ((tempcode <= 0) && (key.length() == 1))
         {
+            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "KEY: " << key;
+            #endif
 
             int ordinal = QVariant(key.toUtf8().constData()[0]).toInt();
             tempcode = VkKeyScan(ordinal);
@@ -663,7 +667,7 @@ int X11KeySymToKeycode(QString key)
 
 QString keycodeToKeyString(int keycode, int alias)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString newkey = QString();
 
@@ -705,8 +709,11 @@ QString keycodeToKeyString(int keycode, int alias)
                 {
                     tempstring[numchars] = '\0';
                     newkey = QString::fromUtf8(tempstring);
+
+                    #ifndef QT_DEBUG_NO_OUTPUT
                     qDebug() << "NEWKEY:" << newkey << endl;
                     qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+                    #endif
                 }
                 else
                 {
@@ -769,7 +776,7 @@ QString keycodeToKeyString(int keycode, int alias)
 
 int X11KeyCodeToX11KeySym(int keycode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 #ifdef Q_OS_WIN
     Q_UNUSED(keycode);
@@ -789,7 +796,7 @@ int X11KeyCodeToX11KeySym(int keycode)
 
 QString keysymToKeyString(int keysym, int alias)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString newkey = QString();
 

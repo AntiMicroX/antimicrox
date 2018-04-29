@@ -17,6 +17,8 @@
 
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
+
+#include "messagehandler.h"
 #include "event.h"
 #include "inputdevice.h"
 #include "joybutton.h"
@@ -47,7 +49,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     PadderCommon::inputDaemonMutex.lock();
@@ -238,14 +240,14 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
 AdvanceButtonDialog::~AdvanceButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void AdvanceButtonDialog::changeTurboText(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (value >= MINIMUMTURBO)
     {
@@ -261,7 +263,7 @@ void AdvanceButtonDialog::changeTurboText(int value)
 
 void AdvanceButtonDialog::updateSlotsScrollArea(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     int itemcount = ui->slotListWidget->count();
@@ -289,7 +291,7 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
 
 void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(button, SIGNAL(clicked()), this, SLOT(changeSelectedSlot()));
     connect(button, SIGNAL(buttonCodeChanged(int)), this, SLOT(updateSelectedSlot(int)));
@@ -297,7 +299,7 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 
 void AdvanceButtonDialog::updateSelectedSlot(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SimpleKeyGrabberButton *grabbutton = qobject_cast<SimpleKeyGrabberButton*>(sender()); // static_cast
     JoyButtonSlot *tempbuttonslot = grabbutton->getValue();
@@ -314,7 +316,7 @@ void AdvanceButtonDialog::updateSelectedSlot(int value)
 
 void AdvanceButtonDialog::deleteSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     int itemcount = ui->slotListWidget->count();
@@ -342,7 +344,7 @@ void AdvanceButtonDialog::deleteSlot()
 
 void AdvanceButtonDialog::changeSelectedSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SimpleKeyGrabberButton *button = qobject_cast<SimpleKeyGrabberButton*>(sender()); // static_cast
 
@@ -364,7 +366,7 @@ void AdvanceButtonDialog::changeSelectedSlot()
 
 void AdvanceButtonDialog::appendBlankKeyGrabber()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
     QListWidgetItem *item = new QListWidgetItem(ui->slotListWidget);
@@ -386,7 +388,7 @@ void AdvanceButtonDialog::appendBlankKeyGrabber()
 
 void AdvanceButtonDialog::insertSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int current = ui->slotListWidget->currentRow();
     int count = ui->slotListWidget->count();
@@ -471,7 +473,7 @@ void AdvanceButtonDialog::insertSlot()
 
 void AdvanceButtonDialog::insertPauseSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -492,7 +494,7 @@ void AdvanceButtonDialog::insertPauseSlot()
 
 void AdvanceButtonDialog::insertReleaseSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -514,7 +516,7 @@ void AdvanceButtonDialog::insertReleaseSlot()
 
 void AdvanceButtonDialog::insertHoldSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -536,7 +538,7 @@ void AdvanceButtonDialog::insertHoldSlot()
 
 void AdvanceButtonDialog::insertSetChangeSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -560,7 +562,7 @@ void AdvanceButtonDialog::insertSetChangeSlot()
 
 int AdvanceButtonDialog::actionTimeConvert()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int minutesIndex = ui->actionMinutesComboBox->currentIndex();
     int secondsIndex = ui->actionSecondsComboBox->currentIndex();
@@ -576,7 +578,7 @@ int AdvanceButtonDialog::actionTimeConvert()
 
 void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnectTimeBoxesEvents();
 
@@ -597,7 +599,7 @@ void AdvanceButtonDialog::refreshTimeComboBoxes(JoyButtonSlot *slot)
 
 void AdvanceButtonDialog::updateActionTimeLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int actionTime = actionTimeConvert();
     int minutes = actionTime / 1000 / 60;
@@ -611,7 +613,7 @@ void AdvanceButtonDialog::updateActionTimeLabel()
 
 void AdvanceButtonDialog::clearAllSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->slotListWidget->clear();
     appendBlankKeyGrabber();
@@ -625,7 +627,7 @@ void AdvanceButtonDialog::clearAllSlots()
 
 void AdvanceButtonDialog::changeTurboForSequences()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool containsSequences = false;
     for (int i = 0; (i < ui->slotListWidget->count()) && !containsSequences; i++)
@@ -671,7 +673,7 @@ void AdvanceButtonDialog::changeTurboForSequences()
 
 void AdvanceButtonDialog::insertCycleSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -690,7 +692,7 @@ void AdvanceButtonDialog::insertCycleSlot()
 void AdvanceButtonDialog::insertDistanceSlot()
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
@@ -728,7 +730,7 @@ void AdvanceButtonDialog::insertDistanceSlot()
 
 void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -748,7 +750,7 @@ void AdvanceButtonDialog::placeNewSlot(JoyButtonSlot *slot)
 
 void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (value >= MINIMUMTURBO)
     {
@@ -758,7 +760,7 @@ void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 
 void AdvanceButtonDialog::checkTurboSetting(bool state)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->turboCheckbox->setChecked(state);
     ui->turboSlider->setEnabled(state);
@@ -778,7 +780,7 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
 
 void AdvanceButtonDialog::updateSetSelection()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -802,7 +804,10 @@ void AdvanceButtonDialog::updateSetSelection()
             chosen_set = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
         }
 
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
+        #endif
+
         if (condition_choice == 0)
         {
             set_selection_condition = JoyButton::SetChangeOneWay;
@@ -816,7 +821,9 @@ void AdvanceButtonDialog::updateSetSelection()
             set_selection_condition = JoyButton::SetChangeWhileHeld;
         }
 
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "CHOSEN SET: " << chosen_set << endl;
+        #endif
     }
     else
     {
@@ -843,7 +850,7 @@ void AdvanceButtonDialog::updateSetSelection()
 
 void AdvanceButtonDialog::checkTurboIntervalValue(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (value >= MINIMUMTURBO)
     {
@@ -858,7 +865,7 @@ void AdvanceButtonDialog::checkTurboIntervalValue(int value)
 
 void AdvanceButtonDialog::fillTimeComboBoxes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->actionMinutesComboBox->clear();
     ui->actionSecondsComboBox->clear();
@@ -892,7 +899,7 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
 
 void AdvanceButtonDialog::insertMouseSpeedModSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -914,7 +921,7 @@ void AdvanceButtonDialog::insertMouseSpeedModSlot()
 
 void AdvanceButtonDialog::insertKeyPressSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -936,7 +943,7 @@ void AdvanceButtonDialog::insertKeyPressSlot()
 
 void AdvanceButtonDialog::insertDelaySlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -958,7 +965,7 @@ void AdvanceButtonDialog::insertDelaySlot()
 
 void AdvanceButtonDialog::insertTextEntrySlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -978,7 +985,7 @@ void AdvanceButtonDialog::insertTextEntrySlot()
 
 void AdvanceButtonDialog::insertExecuteSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -1008,7 +1015,7 @@ void AdvanceButtonDialog::insertExecuteSlot()
 
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SimpleKeyGrabberButton *tempbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     JoyButtonSlot *slot = tempbutton->getValue();
@@ -1107,7 +1114,7 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
 
 void AdvanceButtonDialog::checkSlotTimeUpdate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -1138,7 +1145,7 @@ void AdvanceButtonDialog::checkSlotTimeUpdate()
 
 void AdvanceButtonDialog::checkSlotMouseModUpdate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -1163,7 +1170,7 @@ void AdvanceButtonDialog::checkSlotMouseModUpdate()
 
 void AdvanceButtonDialog::checkSlotSetChangeUpdate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -1191,7 +1198,7 @@ void AdvanceButtonDialog::checkSlotSetChangeUpdate()
 
 void AdvanceButtonDialog::checkSlotDistanceUpdate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
@@ -1236,7 +1243,7 @@ void AdvanceButtonDialog::checkSlotDistanceUpdate()
 
 void AdvanceButtonDialog::updateWindowTitleButtonName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     temp.append(trUtf8("Advanced").append(": ")).append(button->getPartialName(false, true));
@@ -1260,7 +1267,7 @@ void AdvanceButtonDialog::updateWindowTitleButtonName()
 
 void AdvanceButtonDialog::checkCycleResetWidgetStatus(bool enabled)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (enabled)
     {
@@ -1274,7 +1281,7 @@ void AdvanceButtonDialog::checkCycleResetWidgetStatus(bool enabled)
 
 void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int milliseconds = (static_cast<int>(value) * 1000) + (fmod(value, 1.0) * 1000);
     button->setCycleResetTime(milliseconds);
@@ -1282,7 +1289,7 @@ void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 
 void AdvanceButtonDialog::populateAutoResetInterval()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double seconds = button->getCycleResetTime() / 1000.0;
     ui->resetCycleDoubleSpinBox->setValue(seconds);
@@ -1290,7 +1297,7 @@ void AdvanceButtonDialog::populateAutoResetInterval()
 
 void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (enabled)
     {
@@ -1309,7 +1316,7 @@ void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
 
 void AdvanceButtonDialog::resetTimeBoxes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnectTimeBoxesEvents();
 
@@ -1324,7 +1331,7 @@ void AdvanceButtonDialog::resetTimeBoxes()
 
 void AdvanceButtonDialog::disconnectTimeBoxesEvents()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
                this, SLOT(updateActionTimeLabel()));
@@ -1347,7 +1354,7 @@ void AdvanceButtonDialog::disconnectTimeBoxesEvents()
 
 void AdvanceButtonDialog::connectTimeBoxesEvents()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(updateActionTimeLabel()));
@@ -1370,7 +1377,7 @@ void AdvanceButtonDialog::connectTimeBoxesEvents()
 
 void AdvanceButtonDialog::populateSetSelectionComboBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->setSelectionComboBox->clear();
     ui->setSelectionComboBox->insertItem(0, trUtf8("Disabled"));
@@ -1417,7 +1424,7 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
 
 void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->slotSetChangeComboBox->clear();
 
@@ -1449,7 +1456,7 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
 
 void AdvanceButtonDialog::findTurboModeComboIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::TurboMode currentTurboMode = this->button->getTurboMode();
     if (currentTurboMode == JoyButton::NormalTurbo)
@@ -1468,7 +1475,7 @@ void AdvanceButtonDialog::findTurboModeComboIndex()
 
 void AdvanceButtonDialog::setButtonTurboMode(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (value == 0)
     {
@@ -1486,7 +1493,7 @@ void AdvanceButtonDialog::setButtonTurboMode(int value)
 
 void AdvanceButtonDialog::showSelectProfileWindow()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     AntiMicroSettings *settings = this->button->getParentSet()->getInputDevice()->getSettings();
 
@@ -1511,7 +1518,7 @@ void AdvanceButtonDialog::showSelectProfileWindow()
 
 void AdvanceButtonDialog::showFindExecutableWindow(bool)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = ui->execLineEdit->text();
     QString lookupDir = QDir::homePath();
@@ -1537,7 +1544,7 @@ void AdvanceButtonDialog::showFindExecutableWindow(bool)
 
 void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (index == static_cast<int>(KBMouseSlot))
     {
@@ -1595,7 +1602,7 @@ void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
 
 void AdvanceButtonDialog::changeSlotHelpText(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (index == static_cast<int>(KBMouseSlot))
     {

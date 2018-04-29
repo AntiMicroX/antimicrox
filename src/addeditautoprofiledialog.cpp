@@ -17,6 +17,8 @@
 
 #include "addeditautoprofiledialog.h"
 #include "ui_addeditautoprofiledialog.h"
+
+#include "messagehandler.h"
 #include "autoprofileinfo.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
@@ -59,7 +61,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->info = info;
@@ -163,14 +165,14 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 
 AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void AddEditAutoProfileDialog::openProfileBrowseDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
     QString filename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
@@ -182,7 +184,7 @@ void AddEditAutoProfileDialog::openProfileBrowseDialog()
 
 void AddEditAutoProfileDialog::openApplicationBrowseDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 #ifdef Q_OS_WIN
     QString filename = QFileDialog::getOpenFileName(this, trUtf8("Select Program"), QDir::homePath(), trUtf8("Programs (*.exe)"));
@@ -201,14 +203,14 @@ void AddEditAutoProfileDialog::openApplicationBrowseDialog()
 
 AutoProfileInfo* AddEditAutoProfileDialog::getAutoProfile() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return info;
 }
 
 void AddEditAutoProfileDialog::saveAutoProfileInformation()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     info->setProfileLocation(ui->profileLineEdit->text());
     int deviceIndex = ui->devicesComboBox->currentIndex();
@@ -238,7 +240,7 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
 
 void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QVariant data = ui->devicesComboBox->itemData(index);
     if (index == 0)
@@ -266,28 +268,28 @@ void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
 
 QString AddEditAutoProfileDialog::getOriginalGUID() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return originalGUID;
 }
 
 QString AddEditAutoProfileDialog::getOriginalExe() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return originalExe;
 }
 
 QString AddEditAutoProfileDialog::getOriginalWindowClass() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return originalWindowClass;
 }
 
 QString AddEditAutoProfileDialog::getOriginalWindowName() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return originalWindowName;
 }
@@ -298,7 +300,7 @@ QString AddEditAutoProfileDialog::getOriginalWindowName() const
  */
 void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     #ifdef WITH_X11
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -333,7 +335,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
  */
 void AddEditAutoProfileDialog::checkForGrabbedWindow()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     #ifdef WITH_X11
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -348,13 +350,18 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
     {
         // Attempt to find the appropriate window below the root window
         // that was clicked.
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "ORIGINAL: " << QString::number(targetWindow, 16);
+        #endif
+
         long tempWindow = X11Extras::getInstance()->findClientWindow(targetWindow);
         if (tempWindow > 0)
         {
             targetWindow = tempWindow;
         }
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "ADJUSTED: " << QString::number(targetWindow, 16);
+        #endif
     }
 
     if (targetWindow != None)
@@ -389,7 +396,7 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
 
 void AddEditAutoProfileDialog::windowPropAssignment()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
     disconnect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
@@ -442,7 +449,7 @@ void AddEditAutoProfileDialog::windowPropAssignment()
 
 void AddEditAutoProfileDialog::checkForDefaultStatus()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool status = ui->applicationLineEdit->text().length() > 0;
     status = status ? status : ui->winClassLineEdit->text().length() > 0;
@@ -464,7 +471,7 @@ void AddEditAutoProfileDialog::checkForDefaultStatus()
  */
 void AddEditAutoProfileDialog::accept()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool validForm = true;
     bool propertyFound = false;
@@ -536,7 +543,7 @@ void AddEditAutoProfileDialog::accept()
 #ifdef Q_OS_WIN
 void AddEditAutoProfileDialog::openWinAppProfileDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     WinAppProfileTimerDialog *dialog = new WinAppProfileTimerDialog(this);
     connect(dialog, SIGNAL(accepted()), this, SLOT(captureWindowsApplicationPath()));
@@ -545,7 +552,7 @@ void AddEditAutoProfileDialog::openWinAppProfileDialog()
 
 void AddEditAutoProfileDialog::captureWindowsApplicationPath()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(this);
     connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));

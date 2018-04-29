@@ -16,6 +16,8 @@
  */
 
 #include "autoprofilewatcher.h"
+
+#include "messagehandler.h"
 #include "autoprofileinfo.h"
 #include "antimicrosettings.h"
 
@@ -38,7 +40,7 @@
 AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->settings = settings;
     allDefaultInfo = nullptr;
@@ -51,22 +53,26 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
 
 void AutoProfileWatcher::startTimer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     appTimer.start(CHECKTIME);
 }
 
 void AutoProfileWatcher::stopTimer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     appTimer.stop();
 }
 
 void AutoProfileWatcher::runAppCheck()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << qApp->applicationFilePath();
+    #endif
+
     QString appLocation = QString();
     QString baseAppFileName = QString();
     getGuidSetLocal().clear();
@@ -109,8 +115,11 @@ void AutoProfileWatcher::runAppCheck()
         nowWindow = QString::number(currentWindow);
         nowWindowClass = X11Extras::getInstance()->getWindowClass(currentWindow);
         nowWindowName = X11Extras::getInstance()->getWindowTitle(currentWindow);
+
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << nowWindowClass;
         qDebug() << nowWindowName;
+        #endif
     }
 #endif
 
@@ -245,7 +254,7 @@ void AutoProfileWatcher::runAppCheck()
 
 void AutoProfileWatcher::syncProfileAssignment()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     clearProfileAssignments();
 
@@ -388,7 +397,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 
 void AutoProfileWatcher::clearProfileAssignments()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QSet<AutoProfileInfo*> terminateProfiles;
 
@@ -445,7 +454,7 @@ void AutoProfileWatcher::clearProfileAssignments()
 
 QString AutoProfileWatcher::findAppLocation()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString exepath = QString();
 
@@ -468,7 +477,9 @@ QString AutoProfileWatcher::findAppLocation()
 
 #elif defined(Q_OS_WIN)
     exepath = WinExtras::getForegroundWindowExePath();
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << exepath;
+    #endif
 #endif
 
     return exepath;
@@ -476,7 +487,7 @@ QString AutoProfileWatcher::findAppLocation()
 
 QList<AutoProfileInfo*>* AutoProfileWatcher::getCustomDefaults()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<AutoProfileInfo*> *temp = new QList<AutoProfileInfo*>();
     QHashIterator<QString, AutoProfileInfo*> iter(getDefaultProfileAssignments());
@@ -490,14 +501,14 @@ QList<AutoProfileInfo*>* AutoProfileWatcher::getCustomDefaults()
 
 AutoProfileInfo* AutoProfileWatcher::getDefaultAllProfile()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return allDefaultInfo;
 }
 
 bool AutoProfileWatcher::isGUIDLocked(QString guid)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getGuidSetLocal().contains(guid);
 }

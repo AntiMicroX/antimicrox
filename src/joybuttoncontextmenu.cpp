@@ -16,6 +16,8 @@
  */
 
 #include "joybuttoncontextmenu.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "common.h"
 #include "joybutton.h"
@@ -28,7 +30,7 @@
 JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
     QMenu(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->button = button;
 
@@ -37,7 +39,7 @@ JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
 
 void JoyButtonContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -131,7 +133,7 @@ void JoyButtonContextMenu::buildMenu()
 
 void JoyButtonContextMenu::switchToggle()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->getToggleState());
@@ -140,7 +142,7 @@ void JoyButtonContextMenu::switchToggle()
 
 void JoyButtonContextMenu::switchTurbo()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->isUsingTurbo());
@@ -149,7 +151,7 @@ void JoyButtonContextMenu::switchTurbo()
 
 void JoyButtonContextMenu::switchSetMode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
@@ -181,7 +183,7 @@ void JoyButtonContextMenu::switchSetMode()
 
 void JoyButtonContextMenu::disableSetMode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
     button->setChangeSetCondition(JoyButton::SetChangeDisabled);
@@ -190,7 +192,7 @@ void JoyButtonContextMenu::disableSetMode()
 
 void JoyButtonContextMenu::clearButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMetaObject::invokeMethod(button, "clearSlotsEventReset");
 }

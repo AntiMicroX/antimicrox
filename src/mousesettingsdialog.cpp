@@ -18,6 +18,8 @@
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include "messagehandler.h"
+
 #include <QString>
 #include <QLabel>
 #include <QDoubleSpinBox>
@@ -33,7 +35,7 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
@@ -63,13 +65,13 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
 
 MouseSettingsDialog::~MouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     delete ui;
 }
 
 void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(index);
     int currentMouseMode = ui->mouseModeComboBox->currentIndex();
@@ -96,7 +98,7 @@ void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
 
 void MouseSettingsDialog::changeSpringSectionStatus(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (index == 2)
     {
@@ -117,7 +119,7 @@ void MouseSettingsDialog::changeSpringSectionStatus(int index)
 
 void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString (QString::number(value));
 
@@ -131,7 +133,7 @@ void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 
 void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString (QString::number(value));
 
@@ -145,7 +147,7 @@ void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 
 void MouseSettingsDialog::moveSpeedsTogether(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ui->changeMouseSpeedsTogetherCheckBox->isChecked())
     {
@@ -156,7 +158,7 @@ void MouseSettingsDialog::moveSpeedsTogether(int value)
 
 void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (index == 2)
     {
@@ -183,7 +185,7 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
 
 void MouseSettingsDialog::changeWheelSpeedBoxStatus(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (index == 2)
     {
@@ -199,7 +201,7 @@ void MouseSettingsDialog::changeWheelSpeedBoxStatus(int index)
 
 void MouseSettingsDialog::updateWheelVerticalSpeedLabel(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString(QString::number(value));
     label.append(" = ");
@@ -209,7 +211,7 @@ void MouseSettingsDialog::updateWheelVerticalSpeedLabel(int value)
 
 void MouseSettingsDialog::updateWheelHorizontalSpeedLabel(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString(QString::number(value));
     label.append(" = ");
@@ -219,7 +221,7 @@ void MouseSettingsDialog::updateWheelHorizontalSpeedLabel(int value)
 
 void MouseSettingsDialog::updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (mouseCurve == JoyButton::EnhancedPrecisionCurve)
     {
@@ -257,7 +259,7 @@ void MouseSettingsDialog::updateAccelerationCurvePresetComboBox(JoyButton::JoyMo
 
 JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::JoyMouseCurve temp = JoyButton::DEFAULTMOUSECURVE;
 
@@ -299,7 +301,7 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
 
 void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (index == 2)
     {
@@ -329,7 +331,7 @@ void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
  */
 void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((lastMouseStatUpdate.elapsed() >= 100) && (elapsed > 0))
     {
@@ -351,7 +353,7 @@ void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, 
  */
 void MouseSettingsDialog::updateMouseSpringStatusLabels(int coordX, int coordY)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastMouseStatUpdate.elapsed() >= 100)
     {
@@ -367,7 +369,7 @@ void MouseSettingsDialog::updateMouseSpringStatusLabels(int coordX, int coordY)
 
 void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(index);
 
@@ -377,14 +379,14 @@ void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
 
 void MouseSettingsDialog::disableReleaseSpringBox(bool enable)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->releaseSpringRadiusspinBox->setEnabled(!enable);
 }
 
 void MouseSettingsDialog::resetReleaseRadius(bool enabled)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (enabled && (ui->releaseSpringRadiusspinBox->value() > 0))
     {
@@ -394,7 +396,7 @@ void MouseSettingsDialog::resetReleaseRadius(bool enabled)
 
 JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForIndex(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
 
@@ -422,7 +424,7 @@ void
 MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
 (JoyButton::JoyExtraAccelerationCurve curve)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = 0;
 

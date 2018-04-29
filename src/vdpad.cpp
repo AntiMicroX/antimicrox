@@ -17,6 +17,8 @@
 
 #include "vdpad.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 
 const QString VDPad::xmlName = "vdpad";
@@ -24,7 +26,7 @@ const QString VDPad::xmlName = "vdpad";
 VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyDPad(index, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->upButton = nullptr;
     this->downButton = nullptr;
@@ -38,7 +40,7 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
              int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyDPad(index, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->upButton = upButton;
     upButton->setVDPad(this);
@@ -57,7 +59,7 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
 
 VDPad::~VDPad()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (upButton != nullptr)
     {
@@ -86,14 +88,14 @@ VDPad::~VDPad()
 
 QString VDPad::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->xmlName;
 }
 
 QString VDPad::getName(bool forceFullFormat, bool displayName)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString();
 
@@ -125,7 +127,7 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
 
 void VDPad::joyEvent(bool pressed, bool ignoresets)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(pressed);
 
@@ -161,7 +163,7 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
 
 void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (direction == JoyDPadButton::DpadUp)
     {
@@ -203,7 +205,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 
 void VDPad::removeVButton(JoyDPadButton::JoyDPadDirections direction)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((direction == JoyDPadButton::DpadUp) && (upButton != nullptr))
     {
@@ -229,7 +231,7 @@ void VDPad::removeVButton(JoyDPadButton::JoyDPadDirections direction)
 
 void VDPad::removeVButton(JoyButton *button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((button != nullptr) && (button == upButton))
     {
@@ -255,7 +257,7 @@ void VDPad::removeVButton(JoyButton *button)
 
 bool VDPad::isEmpty()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool empty = true;
 
@@ -269,7 +271,7 @@ bool VDPad::isEmpty()
 
 JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *button = nullptr;
     if (direction == JoyDPadButton::DpadUp)
@@ -294,14 +296,14 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
 
 bool VDPad::hasPendingEvent()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return pendingVDPadEvent;
 }
 
 void VDPad::queueJoyEvent(bool ignoresets)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(ignoresets);
 
@@ -310,7 +312,7 @@ void VDPad::queueJoyEvent(bool ignoresets)
 
 void VDPad::activatePendingEvent()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (pendingVDPadEvent)
     {
@@ -325,7 +327,7 @@ void VDPad::activatePendingEvent()
 
 void VDPad::clearPendingEvent()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingVDPadEvent = false;
 }

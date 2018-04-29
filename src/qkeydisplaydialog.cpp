@@ -18,6 +18,7 @@
 #include "qkeydisplaydialog.h"
 #include "ui_qkeydisplaydialog.h"
 
+#include "messagehandler.h"
 #include "eventhandlerfactory.h"
 #include "antkeymapper.h"
 
@@ -49,7 +50,7 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
 
@@ -84,13 +85,13 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
 
 QKeyDisplayDialog::~QKeyDisplayDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     delete ui;
 }
 
 void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     switch (event->key())
     {
@@ -106,7 +107,7 @@ void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 
 void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int scancode = event->nativeScanCode();
     int virtualkey = event->nativeVirtualKey();

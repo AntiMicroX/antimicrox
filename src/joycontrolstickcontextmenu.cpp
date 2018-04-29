@@ -17,6 +17,8 @@
 
 
 #include "joycontrolstickcontextmenu.h"
+
+#include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
@@ -32,7 +34,7 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
     QMenu(parent),
     helper(stick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
     getHelperLocal().moveToThread(stick->thread());
@@ -42,7 +44,7 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
 
 void JoyControlStickContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -158,7 +160,7 @@ void JoyControlStickContextMenu::buildMenu()
 
 void JoyControlStickContextMenu::setStickMode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
@@ -167,7 +169,7 @@ void JoyControlStickContextMenu::setStickMode()
 
 void JoyControlStickContextMenu::setStickPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
@@ -323,7 +325,7 @@ void JoyControlStickContextMenu::setStickPreset()
 
 int JoyControlStickContextMenu::getPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
 
@@ -408,7 +410,7 @@ int JoyControlStickContextMenu::getPresetIndex()
 
 void JoyControlStickContextMenu::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, parentWidget());
     dialog->show();

@@ -16,6 +16,8 @@
  */
 
 #include "dpadpushbuttongroup.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "joydpadbuttonwidget.h"
 #include "dpadpushbutton.h"
@@ -30,7 +32,7 @@
 DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->dpad = dpad;
     this->displayNames = displayNames;
@@ -43,7 +45,7 @@ DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidg
 
 void DPadPushButtonGroup::generateButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
 
@@ -137,7 +139,7 @@ void DPadPushButtonGroup::generateButtons()
 
 void DPadPushButtonGroup::changeButtonLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((dpad->getJoyMode() == JoyDPad::StandardMode) ||
         (dpad->getJoyMode() == JoyDPad::EightWayMode) ||
@@ -175,21 +177,21 @@ void DPadPushButtonGroup::changeButtonLayout()
 
 void DPadPushButtonGroup::propogateSlotsChanged()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit buttonSlotChanged();
 }
 
 JoyDPad* DPadPushButtonGroup::getDPad() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return dpad;
 }
 
 void DPadPushButtonGroup::openDPadButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
@@ -200,7 +202,7 @@ void DPadPushButtonGroup::openDPadButtonDialog()
 
 void DPadPushButtonGroup::showDPadDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     DPadEditDialog *dialog = new DPadEditDialog(dpad, parentWidget());
     dialog->show();
@@ -208,7 +210,7 @@ void DPadPushButtonGroup::showDPadDialog()
 
 void DPadPushButtonGroup::toggleNameDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     displayNames = !displayNames;
 

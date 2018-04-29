@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickmodifierbutton.h"
+
+#include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "setjoystick.h"
 
@@ -29,14 +31,14 @@ const QString JoyControlStickModifierButton::xmlName = "stickmodifierbutton";
 JoyControlStickModifierButton::JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyGradientButton(0, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
 }
 
 QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = stick->getPartialName(forceFullFormat, displayNames);
 
@@ -69,7 +71,7 @@ QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool
 
 QString JoyControlStickModifierButton::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->xmlName;
 }
@@ -81,7 +83,7 @@ QString JoyControlStickModifierButton::getXmlName()
  */
 double JoyControlStickModifierButton::getDistanceFromDeadZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick->calculateDirectionalDistance();
 }
@@ -92,14 +94,14 @@ double JoyControlStickModifierButton::getDistanceFromDeadZone()
  */
 double JoyControlStickModifierButton::getMouseDistanceFromDeadZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getDistanceFromDeadZone();
 }
 
 void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(condition);
     Q_UNUSED(passive);
@@ -107,7 +109,7 @@ void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition con
 
 JoyControlStick* JoyControlStickModifierButton::getStick() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick;
 }
@@ -118,7 +120,7 @@ JoyControlStick* JoyControlStickModifierButton::getStick() const
  */
 void JoyControlStickModifierButton::setTurboMode(TurboMode mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (isPartRealAxis())
     {
@@ -134,21 +136,21 @@ void JoyControlStickModifierButton::setTurboMode(TurboMode mode)
  */
 bool JoyControlStickModifierButton::isPartRealAxis()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return true;
 }
 
 bool JoyControlStickModifierButton::isModifierButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return true;
 }
 
 double JoyControlStickModifierButton::getAccelerationDistance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double temp = stick->getAbsoluteRawDistance();
     return temp;
@@ -156,7 +158,7 @@ double JoyControlStickModifierButton::getAccelerationDistance()
 
 double JoyControlStickModifierButton::getLastAccelerationDistance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double temp = stick->calculateLastAccelerationDirectionalDistance();
     return temp;
@@ -164,7 +166,7 @@ double JoyControlStickModifierButton::getLastAccelerationDistance()
 
 double JoyControlStickModifierButton::getLastMouseDistanceFromDeadZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick->calculateLastDirectionalDistance();
 }

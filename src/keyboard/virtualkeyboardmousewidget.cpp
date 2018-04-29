@@ -17,6 +17,8 @@
 
 
 #include "virtualkeyboardmousewidget.h"
+
+#include "messagehandler.h"
 #include "virtualkeypushbutton.h"
 #include "virtualmousepushbutton.h"
 #include "mousedialog/mousebuttonsettingsdialog.h"
@@ -64,7 +66,7 @@ QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, 
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog, QWidget *parent) :
     QTabWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joystick = joystick;
     this->helper = helper;
@@ -94,7 +96,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
     QTabWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__; 
+    qInstallMessageHandler(MessageHandler::myMessageOutput); 
 
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
@@ -146,7 +148,7 @@ bool VirtualKeyboardMouseWidget::isLaptop() {
 
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout(keyboardTab);
 
@@ -182,7 +184,7 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 
 QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
@@ -383,7 +385,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
 
 QVBoxLayout* VirtualKeyboardMouseWidget::setupAuxKeyboardLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout();
@@ -421,7 +423,7 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupAuxKeyboardLayout()
 
 QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
@@ -481,7 +483,7 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
 
 void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout();
@@ -606,8 +608,11 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
 VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestring)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "parameter 1: " << xcodestring;
+    #endif
 
     int width = 32;
     int height = 32;
@@ -720,7 +725,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 
 QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPushButton *pushButton = new QPushButton(trUtf8("NONE"), this);
     pushButton->setMinimumSize(0, 25);
@@ -735,7 +740,7 @@ QPushButton* VirtualKeyboardMouseWidget::createNoneKey()
 
 void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode, int alias)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (currentQuickDialog == nullptr) {
 
@@ -748,14 +753,14 @@ void VirtualKeyboardMouseWidget::processSingleKeyboardSelection(int keycode, int
 
 void VirtualKeyboardMouseWidget::processAdvancedKeyboardSelection(int keycode, int alias)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit selectionMade(keycode, alias);
 }
 
 void VirtualKeyboardMouseWidget::processSingleMouseSelection(JoyButtonSlot *tempslot)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (currentQuickDialog == nullptr) {
 
@@ -768,14 +773,14 @@ void VirtualKeyboardMouseWidget::processSingleMouseSelection(JoyButtonSlot *temp
 
 void VirtualKeyboardMouseWidget::processAdvancedMouseSelection(JoyButtonSlot *tempslot)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit selectionMade(tempslot);
 }
 
 void VirtualKeyboardMouseWidget::populateTopRowKeys()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (topRowKeys.isEmpty())
     {
@@ -797,7 +802,7 @@ void VirtualKeyboardMouseWidget::populateTopRowKeys()
 
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<VirtualKeyPushButton*> newlist = keyboardTab->findChildren<VirtualKeyPushButton*> ();
     QListIterator<VirtualKeyPushButton*> iter(newlist);
@@ -820,12 +825,14 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
         disconnect(noneButton, SIGNAL(clicked()), 0, 0);
         connect(noneButton, SIGNAL(clicked()), this, SLOT(clearButtonSlotsFinish()));
 
-    qDebug() << "COUNT: " << newlist.count();
+        #ifndef QT_DEBUG_NO_OUTPUT
+        qDebug() << "COUNT: " << newlist.count();
+        #endif
 }
 
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<VirtualKeyPushButton*> newlist = keyboardTab->findChildren<VirtualKeyPushButton*> ();
     QListIterator<VirtualKeyPushButton*> iter(newlist);
@@ -850,7 +857,7 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
 
 void VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<VirtualMousePushButton*> newlist = mouseTab->findChildren<VirtualMousePushButton*>();
     QListIterator<VirtualMousePushButton*> iter(newlist);
@@ -864,7 +871,7 @@ void VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections()
 
 void VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<VirtualMousePushButton*> newlist = mouseTab->findChildren<VirtualMousePushButton*>();
     QListIterator<VirtualMousePushButton*> iter(newlist);
@@ -878,7 +885,7 @@ void VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections(
 
 void VirtualKeyboardMouseWidget::clearButtonSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ButtonEditDialog::getInstance() != nullptr) {
     if (ButtonEditDialog::getInstance()->getLastJoyButton() != nullptr)
@@ -894,7 +901,7 @@ void VirtualKeyboardMouseWidget::clearButtonSlots()
 
 void VirtualKeyboardMouseWidget::clearButtonSlotsFinish()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ButtonEditDialog::getInstance() != nullptr) {
     if (ButtonEditDialog::getInstance()->getLastJoyButton() != nullptr)
@@ -910,14 +917,14 @@ void VirtualKeyboardMouseWidget::clearButtonSlotsFinish()
 
 bool VirtualKeyboardMouseWidget::isKeyboardTabVisible()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->keyboardTab->isVisible();
 }
 
 void VirtualKeyboardMouseWidget::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     mouseSettingsPushButton->setEnabled(false);
 
@@ -940,14 +947,14 @@ void VirtualKeyboardMouseWidget::openMouseSettingsDialog()
 
 void VirtualKeyboardMouseWidget::enableMouseSettingButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     mouseSettingsPushButton->setEnabled(true);
 }
 
 void VirtualKeyboardMouseWidget::resizeEvent(QResizeEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QTabWidget::resizeEvent(event);
     setButtonFontSizes();
@@ -957,7 +964,7 @@ void VirtualKeyboardMouseWidget::resizeEvent(QResizeEvent *event)
 // size of the buttons.
 void VirtualKeyboardMouseWidget::setButtonFontSizes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<VirtualKeyPushButton*> buttonList = this->findChildren<VirtualKeyPushButton*>();
     QListIterator<VirtualKeyPushButton*> iter(buttonList);
@@ -973,7 +980,7 @@ void VirtualKeyboardMouseWidget::setButtonFontSizes()
 
 QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPushButton *otherKeysPushbutton = new QPushButton("Others", this);
     otherKeysPushbutton->setMinimumSize(0, 25);
@@ -1091,7 +1098,7 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 
 void VirtualKeyboardMouseWidget::otherKeysActionSingle(bool triggered)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(triggered);
 
@@ -1102,7 +1109,7 @@ void VirtualKeyboardMouseWidget::otherKeysActionSingle(bool triggered)
 
 void VirtualKeyboardMouseWidget::otherKeysActionAdvanced(bool triggered)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(triggered);
 
@@ -1114,7 +1121,7 @@ void VirtualKeyboardMouseWidget::otherKeysActionAdvanced(bool triggered)
 
 void VirtualKeyboardMouseWidget::nullifyDialogPointer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (currentQuickDialog != nullptr)
     {

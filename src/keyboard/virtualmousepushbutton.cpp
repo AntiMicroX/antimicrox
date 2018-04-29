@@ -17,12 +17,14 @@
 
 #include "virtualmousepushbutton.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 
 VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent) :
     QPushButton(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((mode == JoyButtonSlot::JoyMouseButton) || (mode == JoyButtonSlot::JoyMouseMovement))
     {
@@ -65,21 +67,21 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
 
 int VirtualMousePushButton::getMouseCode() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return code;
 }
 
 JoyButtonSlot::JoySlotInputAction VirtualMousePushButton::getMouseMode() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return mode;
 }
 
 void VirtualMousePushButton::createTempSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *tempslot = new JoyButtonSlot(this->code, this->mode, this);
     emit mouseSlotCreated(tempslot);

@@ -16,6 +16,8 @@
  */
 
 #include "joyaxiscontextmenu.h"
+
+#include "messagehandler.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "antkeymapper.h"
 #include "inputdevice.h"
@@ -29,7 +31,7 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
     QMenu(parent),
     helper(axis)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->axis = axis;
     getHelperLocal().moveToThread(axis->thread());
@@ -39,7 +41,7 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
 
 void JoyAxisContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool actAsTrigger = false;
 
@@ -65,7 +67,7 @@ void JoyAxisContextMenu::buildMenu()
 
 void JoyAxisContextMenu::buildAxisMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -169,7 +171,7 @@ void JoyAxisContextMenu::buildAxisMenu()
 
 int JoyAxisContextMenu::getPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     int result = 0;
 
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
@@ -244,7 +246,7 @@ int JoyAxisContextMenu::getPresetIndex()
 
 void JoyAxisContextMenu::setAxisPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
@@ -330,7 +332,7 @@ void JoyAxisContextMenu::setAxisPreset()
 
 void JoyAxisContextMenu::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, parentWidget());
     dialog->show();
@@ -338,7 +340,7 @@ void JoyAxisContextMenu::openMouseSettingsDialog()
 
 void JoyAxisContextMenu::buildTriggerMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -378,7 +380,7 @@ void JoyAxisContextMenu::buildTriggerMenu()
 
 int JoyAxisContextMenu::getTriggerPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
 
@@ -413,7 +415,7 @@ int JoyAxisContextMenu::getTriggerPresetIndex()
 
 void JoyAxisContextMenu::setTriggerPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender());  // static_cast
     int item = action->data().toInt();

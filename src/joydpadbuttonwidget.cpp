@@ -16,6 +16,8 @@
  */
 
 #include "joydpadbuttonwidget.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 
 #include <QWidget>
@@ -24,7 +26,7 @@
 JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     JoyButtonWidget(button, displayNames, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Ensure that JoyDPadButtonWidget::generateLabel is called.
     refreshLabel();
@@ -36,7 +38,7 @@ JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, Q
  */
 QString JoyDPadButtonWidget::generateLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (!getJoyButton()->getActionName().isEmpty() && ifDisplayNames())
@@ -49,6 +51,9 @@ QString JoyDPadButtonWidget::generateLabel()
     }
     temp.replace("&", "&&");
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Name of joy dpad button is: " << temp;
+    #endif
+
     return temp;
 }

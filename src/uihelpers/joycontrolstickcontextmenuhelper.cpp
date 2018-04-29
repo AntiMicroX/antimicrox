@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickcontextmenuhelper.h"
+
+#include "messagehandler.h"
 #include "joybuttonslot.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 
@@ -25,7 +27,7 @@
 JoyControlStickContextMenuHelper::JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(stick);
 
@@ -35,7 +37,7 @@ JoyControlStickContextMenuHelper::JoyControlStickContextMenuHelper(JoyControlSti
 void JoyControlStickContextMenuHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections,
                                                       JoyButtonSlot *> *tempSlots)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 
@@ -52,14 +54,14 @@ void JoyControlStickContextMenuHelper::setPendingSlots(QHash<JoyControlStick::Jo
 
 void JoyControlStickContextMenuHelper::clearPendingSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 }
 
 void JoyControlStickContextMenuHelper::setFromPendingSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (!getPendingSlots().isEmpty())
     {
@@ -88,7 +90,7 @@ void JoyControlStickContextMenuHelper::setFromPendingSlots()
 
 void JoyControlStickContextMenuHelper::clearButtonsSlotsEventReset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = stick->getButtons();
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*buttons);

@@ -17,6 +17,8 @@
 
 #include "buttoneditdialog.h"
 #include "ui_buttoneditdialog.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 #include "keyboard/virtualkeyboardmousewidget.h"
 #include "advancebuttondialog.h"
@@ -63,7 +65,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
     update();
 
     instance = this;
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joystick = joystick;
     lastJoyButton = nullptr;
@@ -79,7 +81,9 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 
     ignoreRelease = false;
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Thread in ButtonEditDialog";
+    #endif
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -119,7 +123,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
     update();
 
     instance = this;
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     lastJoyButton = button;
     this->joystick = joystick;
@@ -169,7 +173,7 @@ ButtonEditDialog* ButtonEditDialog::getInstance()
 
 void ButtonEditDialog::checkForKeyboardWidgetFocus(QWidget *old, QWidget *now)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(old);
     Q_UNUSED(now);
@@ -187,7 +191,7 @@ void ButtonEditDialog::checkForKeyboardWidgetFocus(QWidget *old, QWidget *now)
 
 ButtonEditDialog::~ButtonEditDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (instance != nullptr) {
         instance = nullptr;
@@ -199,7 +203,7 @@ ButtonEditDialog::~ButtonEditDialog()
 
 void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool ignore = false;
     // Ignore the following keys that might
@@ -227,7 +231,7 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 
 void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ui->actionNameLineEdit->hasFocus() || ui->buttonNameLineEdit->hasFocus())
     {
@@ -390,7 +394,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 void ButtonEditDialog::refreshSlotSummaryLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         if (lastJoyButton != nullptr) ui->slotSummaryLabel->setText(lastJoyButton->getSlotsString().replace("&", "&&"));
         else ui->slotSummaryLabel->setText(trUtf8("No button"));
@@ -398,7 +402,7 @@ void ButtonEditDialog::refreshSlotSummaryLabel()
 
 void ButtonEditDialog::changeToggleSetting()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
        if (lastJoyButton != nullptr) lastJoyButton->setToggle(ui->toggleCheckBox->isChecked());
        else QMessageBox::information(this, trUtf8("Last button"), trUtf8("To change settings for last button, it must be at least one assignment from keyboard to gamepad"));
@@ -406,7 +410,7 @@ void ButtonEditDialog::changeToggleSetting()
 
 void ButtonEditDialog::changeTurboSetting()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         if (lastJoyButton != nullptr) lastJoyButton->setUseTurbo(ui->turboCheckBox->isChecked());
         else QMessageBox::information(this, trUtf8("Last button"), trUtf8("To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad"));
@@ -414,7 +418,7 @@ void ButtonEditDialog::changeTurboSetting()
 
 void ButtonEditDialog::openAdvancedDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->advancedPushButton->setEnabled(false);
 
@@ -450,7 +454,7 @@ void ButtonEditDialog::openAdvancedDialog()
 
 void ButtonEditDialog::createTempSlot(int keycode, int alias)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *slot = new JoyButtonSlot(keycode, alias,
                                             JoyButtonSlot::JoyKeyboard, this);
@@ -459,7 +463,7 @@ void ButtonEditDialog::createTempSlot(int keycode, int alias)
 
 void ButtonEditDialog::checkTurboSetting(bool state)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastJoyButton != nullptr) {
     if (lastJoyButton->containsSequence())
@@ -480,14 +484,14 @@ void ButtonEditDialog::checkTurboSetting(bool state)
 
 void ButtonEditDialog::setTurboButtonEnabled(bool state)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->turboCheckBox->setEnabled(state);
 }
 
 void ButtonEditDialog::closedAdvancedDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->advancedPushButton->setEnabled(true);
 
@@ -503,7 +507,7 @@ void ButtonEditDialog::closedAdvancedDialog()
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         if (currentQuickDialog == nullptr)
     {
@@ -519,7 +523,7 @@ void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 
 void ButtonEditDialog::clearButtonSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastJoyButton != nullptr)
         QMetaObject::invokeMethod(lastJoyButton, "clearSlotsEventReset", Q_ARG(bool, false));
@@ -530,14 +534,14 @@ void ButtonEditDialog::clearButtonSlots()
 
 void ButtonEditDialog::sendSelectionFinished()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit selectionFinished();
 }
 
 void ButtonEditDialog::updateWindowTitleButtonName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastJoyButton != nullptr) {
 
@@ -568,7 +572,7 @@ void ButtonEditDialog::updateWindowTitleButtonName()
 
 void ButtonEditDialog::nullifyDialogPointer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (currentQuickDialog != nullptr)
     {

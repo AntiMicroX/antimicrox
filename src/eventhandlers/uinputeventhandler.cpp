@@ -26,6 +26,8 @@
 #include <QStringListIterator>
 #include <QFileInfo>
 #include <QTimer>
+
+
 #include <antkeymapper.h>
 #include <logger.h>
 #include <common.h>
@@ -44,6 +46,7 @@ static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName
 #endif
 
 #include "uinputeventhandler.h"
+#include "messagehandler.h"
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)

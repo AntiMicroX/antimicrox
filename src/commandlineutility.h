@@ -18,15 +18,18 @@
 #ifndef COMMANDLINEPARSER_H
 #define COMMANDLINEPARSER_H
 
+class QCommandLineParser;
+
 #include <QObject>
 #include <QStringList>
-#include <QRegExp>
 #include <QList>
 
 #include "logger.h"
 
 class ControllerOptionsInfo {
+
 public:
+
     ControllerOptionsInfo()
     {
         controllerNumber = 0;
@@ -122,104 +125,69 @@ class CommandLineUtility : public QObject
 public:
     explicit CommandLineUtility(QObject *parent = nullptr);
 
-    void parseArguments(QStringList &arguments);
+    void parseArguments(QCommandLineParser* parser);
+
     bool isLaunchInTrayEnabled();
-    bool isHelpRequested();
-    bool isVersionRequested();
     bool isTrayHidden();
     bool hasProfile();
     bool hasControllerNumber();
     bool hasControllerID();
-
-    QString getProfileLocation();
-
-    int getControllerNumber(); // unsigned
-
-    QString getControllerID();
-
     bool isHiddenRequested();
     bool isUnloadRequested();
     bool shouldListControllers();
     bool shouldMapController();
+    bool hasProfileInOptions();
+    bool hasError();
 
+    int getControllerNumber(); // unsigned
     int getStartSetNumber(); // unsigned
     int getJoyStartSetNumber(); // unsigned
-    QList<int>* getJoyStartSetNumberList(); // unsigned
 
-    QList<ControllerOptionsInfo> const& getControllerOptionsList();
-    bool hasProfileInOptions();
-
+    QString getControllerID();
+    QString getProfileLocation();
     QString getEventGenerator();
+    QString getCurrentLogFile();
+    QString getErrorText();
+
+    QList<int>* getJoyStartSetNumberList(); // unsigned
+    QList<ControllerOptionsInfo> const& getControllerOptionsList();
 
 #ifdef Q_OS_UNIX
     bool launchAsDaemon();
     QString getDisplayString();
 #endif
 
-    void printHelp();
-    void printVersionString();
-
-    QString generateHelpString();
-    QString generateVersionString();
-
-    bool hasError();
     Logger::LogLevel getCurrentLogLevel();
-    QString getCurrentLogFile();
-    QString getErrorText();
 
 protected:
-    bool isPossibleCommand(QString temp);
     void setErrorMessage(QString temp);
 
 private:
     bool launchInTray;
-    bool helpRequest;
-    bool versionRequest;
     bool hideTrayIcon;
-
-    QString profileLocation;
-    int controllerNumber; // unsigned
-    QString controllerIDString;
-
     bool encounteredError;
     bool hiddenRequest;
     bool unloadProfile;
-
-    int startSetNumber; // unsigned
-
     bool daemonMode;
-    QString displayString;
     bool listControllers;
     bool mappingController;
+
+    int startSetNumber; // unsigned
+    int controllerNumber; // unsigned
+    int currentListsIndex; // unsigned
+
+    QString profileLocation;
+    QString controllerIDString;
+    QString displayString;
     QString eventGenerator;
     QString errorText;
-    Logger::LogLevel currentLogLevel;
     QString currentLogFile;
-    int currentListsIndex; // unsigned
+
+    Logger::LogLevel currentLogLevel;
+
     QList<ControllerOptionsInfo> controllerOptionsList;
 
-    static QRegExp trayRegexp;
-    static QRegExp helpRegexp;
-    static QRegExp versionRegexp;
-    static QRegExp noTrayRegexp;
-    static QRegExp loadProfileRegexp;
-    static QRegExp loadProfileForControllerRegexp;
-    static QRegExp hiddenRegexp;
-    static QRegExp unloadRegexp;
-    static QRegExp startSetRegexp;
-    static QRegExp gamepadListRegexp;
-    static QRegExp mappingRegexp;
-    static QRegExp qtStyleRegexp;
-    static QRegExp logLevelRegexp;
-    static QRegExp logFileRegexp;
-    static QRegExp eventgenRegexp;
-    static QRegExp nextRegexp;
     static QStringList eventGeneratorsList;
-
-#ifdef Q_OS_UNIX
-    static QRegExp daemonRegexp;
-    static QRegExp displayRegexp;
-#endif
     
 };
 

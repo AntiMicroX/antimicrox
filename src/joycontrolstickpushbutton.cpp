@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickpushbutton.h"
+
+#include "messagehandler.h"
 #include "joycontrolstickcontextmenu.h"
 #include "joycontrolstick.h"
 
@@ -24,7 +26,7 @@
 JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
 
@@ -42,7 +44,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
 
 JoyControlStick* JoyControlStickPushButton::getStick() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick;
 }
@@ -53,7 +55,7 @@ JoyControlStick* JoyControlStickPushButton::getStick() const
  */
 QString JoyControlStickPushButton::generateLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (!stick->getStickName().isEmpty() && ifDisplayNames())
@@ -65,13 +67,16 @@ QString JoyControlStickPushButton::generateLabel()
         temp.append(stick->getPartialName(false));
     }
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Name of joy control stick push button: " << temp;
+    #endif
+
     return temp;
 }
 
 void JoyControlStickPushButton::disableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
     disconnect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
@@ -80,7 +85,7 @@ void JoyControlStickPushButton::disableFlashes()
 
 void JoyControlStickPushButton::enableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
     connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
@@ -88,7 +93,7 @@ void JoyControlStickPushButton::enableFlashes()
 
 void JoyControlStickPushButton::showContextMenu(const QPoint &point)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
     JoyControlStickContextMenu *contextMenu = new JoyControlStickContextMenu(stick, this);
@@ -98,7 +103,7 @@ void JoyControlStickPushButton::showContextMenu(const QPoint &point)
 
 void JoyControlStickPushButton::tryFlash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (stick->getCurrentDirection() != JoyControlStick::StickCentered)
     {

@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickeditdialoghelper.h"
+
+#include "messagehandler.h"
 #include "joybuttonslot.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 
@@ -24,7 +26,7 @@
 JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(stick);
 
@@ -34,7 +36,7 @@ JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick
 void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections,
                                                       JoyButtonSlot *> *tempSlots)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 
@@ -51,14 +53,14 @@ void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::Joy
 
 void JoyControlStickEditDialogHelper::clearPendingSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 }
 
 void JoyControlStickEditDialogHelper::setFromPendingSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (!getPendingSlots().isEmpty())
     {
@@ -87,7 +89,7 @@ void JoyControlStickEditDialogHelper::setFromPendingSlots()
 
 void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = stick->getButtons();
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*buttons);
@@ -103,7 +105,7 @@ void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 
 void JoyControlStickEditDialogHelper::updateControlStickDelay(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value * 10;
     if (stick->getStickDelay() != temp)

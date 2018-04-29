@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickstatusbox.h"
+
+#include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "joyaxis.h"
 #include "common.h"
@@ -33,7 +35,7 @@
 JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     QWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = nullptr;
 }
@@ -41,7 +43,7 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
 JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent) :
     QWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
 
@@ -55,7 +57,7 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidg
 
 void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (stick != nullptr)
     {
@@ -76,28 +78,28 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 
 JoyControlStick* JoyControlStickStatusBox::getStick() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick;
 }
 
 int JoyControlStickStatusBox::heightForWidth(int width) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return width;
 }
 
 QSize JoyControlStickStatusBox::sizeHint() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return QSize(-1, -1);
 }
 
 void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(event);
 
@@ -122,7 +124,7 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 
 void JoyControlStickStatusBox::drawEightWayBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter paint (this);
     paint.setRenderHint(QPainter::Antialiasing, true);
@@ -260,7 +262,7 @@ void JoyControlStickStatusBox::drawEightWayBox()
 
 void JoyControlStickStatusBox::drawFourWayCardinalBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
@@ -399,7 +401,7 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
 
 void JoyControlStickStatusBox::drawFourWayDiagonalBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);

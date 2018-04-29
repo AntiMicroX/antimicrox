@@ -16,6 +16,8 @@
  */
 
 #include "gamecontrollerset.h"
+
+#include "messagehandler.h"
 #include "gamecontrollerdpad.h"
 #include "gamecontrollertrigger.h"
 #include "inputdevice.h"
@@ -27,20 +29,20 @@
 GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent) :
     SetJoystick(device, index, false, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     reset();
 }
 
 void GameControllerSet::reset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     SetJoystick::reset();
     populateSticksDPad();
 }
 
 void GameControllerSet::populateSticksDPad()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     // Left Stick Assignment
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
@@ -88,7 +90,7 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
                                            QHash<int, SDL_GameControllerAxis> &axes,
                                            QList<SDL_GameControllerButtonBind> &hatButtons)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == "set"))
     {
@@ -247,7 +249,7 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
 
 void GameControllerSet::readConfig(QXmlStreamReader *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == "set"))
     {
@@ -336,7 +338,7 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
 
 void GameControllerSet::refreshAxes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteAxes();
 

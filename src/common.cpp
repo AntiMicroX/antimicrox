@@ -17,6 +17,8 @@
 
 #include "common.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 #include <QApplication>
 #include <QLibraryInfo>
@@ -29,7 +31,7 @@ namespace PadderCommon
 {
     QString preferredProfileDir(AntiMicroSettings *settings)
     {
-        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+        qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         QString lastProfileDir = settings->value("LastProfileDir", "").toString();
         QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
@@ -80,7 +82,7 @@ namespace PadderCommon
 
     QStringList arguments(int &argc, char **argv)
     {
-        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+        qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         QStringList list = QStringList();
 
@@ -93,7 +95,7 @@ namespace PadderCommon
 
     QStringList parseArgumentsString(QString tempString)
     {
-        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+        qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
         QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
@@ -127,7 +129,7 @@ namespace PadderCommon
                            QTranslator *appTranslator,
                            QString language)
     {
-        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+        qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         // Remove application specific translation strings
         qApp->removeTranslator(translator);
@@ -160,14 +162,14 @@ namespace PadderCommon
 
     void lockInputDevices()
     {
-        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+        qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         sdlWaitMutex.lock();
     }
 
     void unlockInputDevices()
     {
-        qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+        qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         sdlWaitMutex.unlock();
     }

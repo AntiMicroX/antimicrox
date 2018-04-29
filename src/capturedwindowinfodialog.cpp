@@ -18,6 +18,8 @@
 #include "capturedwindowinfodialog.h"
 #include "ui_capturedwindowinfodialog.h"
 
+#include "messagehandler.h"
+
 #include <QPushButton>
 #include <QWidget>
 #include <QDebug>
@@ -40,7 +42,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     selectedMatch = WindowNone;
@@ -150,14 +152,14 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 
 CapturedWindowInfoDialog::~CapturedWindowInfoDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void CapturedWindowInfoDialog::populateOption()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ui->winClassCheckBox->isChecked())
     {
@@ -186,35 +188,35 @@ void CapturedWindowInfoDialog::populateOption()
 
 CapturedWindowInfoDialog::CapturedWindowOption CapturedWindowInfoDialog::getSelectedOptions()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return selectedMatch;
 }
 
 QString CapturedWindowInfoDialog::getWindowClass()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return winClass;
 }
 
 QString CapturedWindowInfoDialog::getWindowName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return winName;
 }
 
 QString CapturedWindowInfoDialog::getWindowPath()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return winPath;
 }
 
 bool CapturedWindowInfoDialog::useFullWindowPath()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return fullWinPath;
 }

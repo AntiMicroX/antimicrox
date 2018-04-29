@@ -15,8 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "joygradientbutton.h"
+
+#include "messagehandler.h"
 #include "setjoystick.h"
 #include "event.h"
 
@@ -27,7 +28,7 @@
 JoyGradientButton::JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyButton(index, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 /**
@@ -35,7 +36,7 @@ JoyGradientButton::JoyGradientButton(int index, int originset, SetJoystick *pare
  */
 void JoyGradientButton::turboEvent()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (getTurboMode() == NormalTurbo)
     {
@@ -44,7 +45,10 @@ void JoyGradientButton::turboEvent()
     else if ((getTurboMode() == GradientTurbo) || (getTurboMode() == PulseTurbo))
     {
         double diff = fabs(getMouseDistanceFromDeadZone() - lastDistance);
+
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "DIFF: " << QString::number(diff);
+        #endif
 
         bool changeState = false;
 
@@ -125,13 +129,19 @@ void JoyGradientButton::turboEvent()
                 turboHold.restart();
                 changeState = false;
                 lastDistance = getMouseDistanceFromDeadZone();
+
+                #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
                 qDebug() << "diff timer press: " << QString::number(timerInterval);
+                #endif
             }
             else
             {
                 changeState = true;
+
+                #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "YOU GOT CHANGE";
+                #endif
             }
         }
 
@@ -163,8 +173,12 @@ void JoyGradientButton::turboEvent()
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
+
+                    #ifndef QT_DEBUG_NO_OUTPUT
                     qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
                     qDebug() << "timer press: " << QString::number(timerInterval);
+                    #endif
+
                     if (turboTimer.interval() != timerInterval)
                     {
                         turboTimer.start(timerInterval);
@@ -204,8 +218,12 @@ void JoyGradientButton::turboEvent()
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
+
+                    #ifndef QT_DEBUG_NO_OUTPUT
                     qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
                     qDebug() << "timer release: " << QString::number(timerInterval);
+                    #endif
+
                     if (turboTimer.interval() != timerInterval)
                     {
                         turboTimer.start(timerInterval);
@@ -224,7 +242,7 @@ void JoyGradientButton::turboEvent()
 
 void JoyGradientButton::wheelEventVertical()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *buttonslot = nullptr;
     bool activateEvent = false;
@@ -378,7 +396,7 @@ void JoyGradientButton::wheelEventVertical()
 
 void JoyGradientButton::wheelEventHorizontal()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *buttonslot = nullptr;
     bool activateEvent = false;

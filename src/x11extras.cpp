@@ -17,6 +17,8 @@
 
 #include "common.h"
 
+#include "messagehandler.h"
+
 #include <unistd.h>
 #include <X11/Xatom.h>
 #include <X11/XKBlib.h>
@@ -47,7 +49,7 @@ X11Extras::X11Extras(QObject *parent) :
     QObject(parent),
     knownAliases()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     _display = XOpenDisplay(NULL);
     populateKnownAliases();
@@ -58,7 +60,7 @@ X11Extras::X11Extras(QObject *parent) :
  */
 X11Extras::~X11Extras()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (_display != nullptr)
     {
@@ -69,7 +71,7 @@ X11Extras::~X11Extras()
 
 X11Extras *X11Extras::getInstance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     X11Extras *temp = nullptr;
     if (!displays.hasLocalData())
@@ -87,7 +89,7 @@ X11Extras *X11Extras::getInstance()
 
 void X11Extras::deleteInstance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (displays.hasLocalData())
     {
@@ -103,14 +105,14 @@ void X11Extras::deleteInstance()
  */
 Display* X11Extras::display()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return _display;
 }
 
 bool X11Extras::hasValidDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = _display != NULL;
     return result;
@@ -121,7 +123,7 @@ bool X11Extras::hasValidDisplay()
  */
 void X11Extras::closeDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (_display != nullptr)
     {
@@ -135,7 +137,7 @@ void X11Extras::closeDisplay()
  */
 void X11Extras::syncDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     _display = XOpenDisplay(NULL);
 }
@@ -147,7 +149,7 @@ void X11Extras::syncDisplay()
  */
 void X11Extras::syncDisplay(QString displayString)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QByteArray tempByteArray = displayString.toLocal8Bit();
     _display = XOpenDisplay(tempByteArray.constData());
@@ -155,7 +157,7 @@ void X11Extras::syncDisplay(QString displayString)
 
 void X11Extras::setCustomDisplay(QString displayString)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     _customDisplayString = displayString;
 }
@@ -167,7 +169,7 @@ void X11Extras::setCustomDisplay(QString displayString)
  */
 unsigned long X11Extras::appRootWindow(int screen)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return (screen == -1) ? XDefaultRootWindow(display()) : XRootWindowOfScreen(XScreenOfDisplay(display(), screen));
 }
@@ -180,7 +182,7 @@ unsigned long X11Extras::appRootWindow(int screen)
  */
 QString X11Extras::getDisplayString(QString xcodestring)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (knownAliases.contains(xcodestring))
@@ -193,7 +195,7 @@ QString X11Extras::getDisplayString(QString xcodestring)
 
 void X11Extras::populateKnownAliases()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // These aliases are needed for xstrings that would
     // return empty space characters from XLookupString
@@ -212,7 +214,7 @@ void X11Extras::populateKnownAliases()
 
 Window X11Extras::findParentClient(Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Window parent = 0;
     Window root = 0;
@@ -284,7 +286,7 @@ Window X11Extras::findParentClient(Window window)
  */
 int X11Extras::getApplicationPid(Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Atom atom, actual_type;
     int actual_format = 0;
@@ -375,7 +377,7 @@ int X11Extras::getApplicationPid(Window window)
  */
 QString X11Extras::getApplicationLocation(int pid)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString exepath = QString();
     if (pid > 0)
@@ -416,7 +418,7 @@ QString X11Extras::getApplicationLocation(int pid)
  */
 Window X11Extras::findClientWindow(Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Window parent = 1;
     Window root = 0;
@@ -465,7 +467,7 @@ Window X11Extras::findClientWindow(Window window)
 
 bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
@@ -495,7 +497,7 @@ bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
 
 bool X11Extras::windowIsViewable(Display *display, Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
     XWindowAttributes xwa;
@@ -518,7 +520,7 @@ bool X11Extras::windowIsViewable(Display *display, Window window)
  */
 bool X11Extras::isWindowRelevant(Display *display, Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
@@ -543,7 +545,7 @@ bool X11Extras::isWindowRelevant(Display *display, Window window)
 
 QString X11Extras::getWindowTitle(Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
 
@@ -554,7 +556,9 @@ QString X11Extras::getWindowTitle(Window window)
     unsigned char *prop = 0;
     int status = 0;
 
+#ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "WIN: 0x" << QString::number(window, 16);
+#endif
 
     Display *display = this->display();
     Atom wm_name = XInternAtom(display, "WM_NAME", True);
@@ -583,7 +587,10 @@ QString X11Extras::getWindowTitle(Window window)
     {
         char *tempprop = (char*)prop;
         temp.append(QString::fromUtf8(tempprop));
+
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << temp;
+        #endif
     }
 
     if (prop)
@@ -597,7 +604,7 @@ QString X11Extras::getWindowTitle(Window window)
 
 QString X11Extras::getWindowClass(Window window)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
 
@@ -616,7 +623,10 @@ QString X11Extras::getWindowClass(Window window)
 
     if ((status == Success) && prop)
     {
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << nitems;
+        #endif
+
         char *null_char = strchr((char*)prop, '\0');
         if ((((char*)prop) + nitems - 1) > null_char)
         {
@@ -625,8 +635,11 @@ QString X11Extras::getWindowClass(Window window)
 
         char *tempprop = (char*)prop;
         temp.append(QString::fromUtf8(tempprop));
+
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << temp;
         qDebug() << (char*)prop;
+        #endif
     }
 
     if (prop)
@@ -640,7 +653,7 @@ QString X11Extras::getWindowClass(Window window)
 
 unsigned long X11Extras::getWindowInFocus()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     unsigned long result = 0;
 
@@ -664,14 +677,14 @@ unsigned long X11Extras::getWindowInFocus()
  */
 QString X11Extras::getXDisplayString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return _customDisplayString;
 }
 
 int X11Extras::getGroup1KeySym(int virtualkey)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
     Display *display = this->display();
@@ -684,7 +697,7 @@ int X11Extras::getGroup1KeySym(int virtualkey)
 
 void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
  {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int xi_opcode, event, error;
     xi_opcode = event = error = 0;
@@ -785,14 +798,14 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
 void X11Extras::x11ResetMouseAccelerationChange()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     x11ResetMouseAccelerationChange(mouseDeviceName);
 }
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerName)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     struct ptrInformation tempInfo;
 
@@ -879,14 +892,14 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getPointInformation(mouseDeviceName);
 }
 
 QPoint X11Extras::getPos()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     XEvent mouseEvent;
     Window wid = DefaultRootWindow(display());

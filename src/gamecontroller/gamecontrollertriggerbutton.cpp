@@ -17,6 +17,7 @@
 
 #include "gamecontrollertriggerbutton.h"
 
+#include "messagehandler.h"
 #include "setjoystick.h"
 #include "joyaxis.h"
 #include "inputdevice.h"
@@ -29,18 +30,18 @@ const QString GameControllerTriggerButton::xmlName = "triggerbutton";
 GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyAxisButton(axis, index, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 QString GameControllerTriggerButton::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     return this->xmlName;
 }
 
 void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == JoyAxisButton::xmlName))
     {

@@ -16,6 +16,8 @@
  */
 
 #include "gamecontrollerdpad.h"
+
+#include "messagehandler.h"
 #include "setjoystick.h"
 #include "joybutton.h"
 
@@ -29,12 +31,12 @@ GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButto
                                        int index, int originset, SetJoystick *parentSet, QObject *parent) :
     VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     QString label = QString();
 
     if (!getDpadName().isEmpty() && displayName)
@@ -66,13 +68,13 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 
 QString GameControllerDPad::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     return this->xmlName;
 }
 
 void GameControllerDPad::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     if (xml->isStartElement() && (xml->name() == VDPad::xmlName))
     {
         xml->readNextStartElement();

@@ -16,6 +16,8 @@
  */
 
 #include "stickpushbuttongroup.h"
+
+#include "messagehandler.h"
 #include "buttoneditdialog.h"
 #include "joycontrolstickeditdialog.h"
 #include "joycontrolstick.h"
@@ -31,7 +33,7 @@
 StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
     this->displayNames = displayNames;
@@ -44,7 +46,7 @@ StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool displayN
 
 void StickPushButtonGroup::generateButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
 
@@ -133,7 +135,7 @@ void StickPushButtonGroup::generateButtons()
 
 void StickPushButtonGroup::changeButtonLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((stick->getJoyMode() == JoyControlStick::StandardMode) ||
         (stick->getJoyMode() == JoyControlStick::EightWayMode) ||
@@ -171,21 +173,21 @@ void StickPushButtonGroup::changeButtonLayout()
 
 void StickPushButtonGroup::propogateSlotsChanged()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit buttonSlotChanged();
 }
 
 JoyControlStick* StickPushButtonGroup::getStick() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick;
 }
 
 void StickPushButtonGroup::openStickButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickButtonPushButton *pushbutton = qobject_cast<JoyControlStickButtonPushButton*>(sender()); // static_cast
     ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), stick->getParentSet()->getInputDevice(), parentWidget());
@@ -194,7 +196,7 @@ void StickPushButtonGroup::openStickButtonDialog()
 
 void StickPushButtonGroup::showStickDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog(stick, parentWidget());
     dialog->show();
@@ -202,7 +204,7 @@ void StickPushButtonGroup::showStickDialog()
 
 void StickPushButtonGroup::toggleNameDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     displayNames = !displayNames;
 

@@ -18,6 +18,7 @@
 #include "quicksetdialog.h"
 #include "ui_quicksetdialog.h"
 
+#include "messagehandler.h"
 #include "setjoystick.h"
 #include "buttoneditdialog.h"
 #include "uihelpers/buttoneditdialoghelper.h"
@@ -41,7 +42,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -368,14 +369,14 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
 
 QuickSetDialog::~QuickSetDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void QuickSetDialog::showAxisButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     lastButton = qobject_cast<JoyAxisButton*>(sender());
 
@@ -387,7 +388,9 @@ void QuickSetDialog::showAxisButtonDialog()
 
     helper->moveToThread(lastButton->thread());
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Thread in QuickSetDialog";
+    #endif
 
     if (withClear) {
 
@@ -427,7 +430,7 @@ void QuickSetDialog::showAxisButtonDialog()
 
 void QuickSetDialog::showButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     lastButton = qobject_cast<JoyButton*>(sender()); // static_cast
 
@@ -440,7 +443,9 @@ void QuickSetDialog::showButtonDialog()
     helper->moveToThread(lastButton->thread());
 
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Thread in QuickSetDialog";
+    #endif
 
 
     if (withClear) {
@@ -483,7 +488,7 @@ void QuickSetDialog::showButtonDialog()
 
 void QuickSetDialog::showStickButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     lastButton = qobject_cast<JoyControlStickButton*>(sender());
 
@@ -495,7 +500,9 @@ void QuickSetDialog::showStickButtonDialog()
 
     helper->moveToThread(lastButton->thread());
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Thread in QuickSetDialog";
+    #endif
 
     if (withClear) {
 
@@ -538,7 +545,7 @@ void QuickSetDialog::showStickButtonDialog()
 
 void QuickSetDialog::showDPadButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     lastButton = qobject_cast<JoyDPadButton*>(sender());
 
@@ -551,7 +558,9 @@ void QuickSetDialog::showDPadButtonDialog()
     helper->moveToThread(lastButton->thread());
 
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Thread in QuickSetDialog";
+    #endif
 
     if (withClear) {
 
@@ -592,7 +601,7 @@ void QuickSetDialog::showDPadButtonDialog()
 
 void QuickSetDialog::restoreButtonStates()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetJoystick *currentset = joystick->getActiveSetJoystick();
 

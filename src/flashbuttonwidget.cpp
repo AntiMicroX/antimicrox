@@ -17,6 +17,8 @@
 
 #include "flashbuttonwidget.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 #include <QStyle>
 #include <QFontMetrics>
@@ -28,7 +30,7 @@
 FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
     QPushButton(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = false;
     displayNames = false;
@@ -38,7 +40,7 @@ FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
 FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
     QPushButton(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = false;
     this->displayNames = displayNames;
@@ -47,7 +49,7 @@ FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
 
 void FlashButtonWidget::flash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = true;
 
@@ -59,7 +61,7 @@ void FlashButtonWidget::flash()
 
 void FlashButtonWidget::unflash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = false;
 
@@ -71,23 +73,25 @@ void FlashButtonWidget::unflash()
 
 void FlashButtonWidget::refreshLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setText(generateLabel());
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "label has been set: " << generateLabel();
+    #endif
 }
 
 bool FlashButtonWidget::isButtonFlashing()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return isflashing;
 }
 
 void FlashButtonWidget::toggleNameDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     displayNames = !displayNames;
     refreshLabel();
@@ -95,21 +99,21 @@ void FlashButtonWidget::toggleNameDisplay()
 
 void FlashButtonWidget::setDisplayNames(bool display)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     displayNames = display;
 }
 
 bool FlashButtonWidget::isDisplayingNames()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return displayNames;
 }
 
 void FlashButtonWidget::paintEvent(QPaintEvent *event)
 {
-   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+   // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter painter(this);
 
@@ -153,7 +157,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
 
 void FlashButtonWidget::retranslateUi()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     refreshLabel();
 }

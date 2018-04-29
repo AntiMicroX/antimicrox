@@ -17,6 +17,8 @@
 
 #include "dpadeditdialog.h"
 #include "ui_dpadeditdialog.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "event.h"
@@ -38,7 +40,7 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->dpad = dpad;
@@ -89,14 +91,14 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
 DPadEditDialog::~DPadEditDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void DPadEditDialog::implementPresets(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *upButtonSlot = nullptr;
     JoyButtonSlot *downButtonSlot = nullptr;
@@ -241,7 +243,7 @@ void DPadEditDialog::implementPresets(int index)
 
 void DPadEditDialog::implementModes(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -269,7 +271,7 @@ void DPadEditDialog::implementModes(int index)
 
 void DPadEditDialog::selectCurrentPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPadButton *upButton = dpad->getJoyButton(JoyDPadButton::DpadUp);
     QList<JoyButtonSlot*> *upslots = upButton->getAssignedSlots();
@@ -346,7 +348,7 @@ void DPadEditDialog::selectCurrentPreset()
 
 void DPadEditDialog::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->mouseSettingsPushButton->setEnabled(false);
 
@@ -358,7 +360,7 @@ void DPadEditDialog::openMouseSettingsDialog()
 
 void DPadEditDialog::enableMouseSettingButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->mouseSettingsPushButton->setEnabled(true);
 }
@@ -369,7 +371,7 @@ void DPadEditDialog::enableMouseSettingButton()
  */
 void DPadEditDialog::updateDPadDelaySpinBox(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double temp = (value * 0.001); // static_cast<double>
     ui->dpadDelayDoubleSpinBox->setValue(temp);
@@ -381,7 +383,7 @@ void DPadEditDialog::updateDPadDelaySpinBox(int value)
  */
 void DPadEditDialog::updateDPadDelaySlider(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = static_cast<int>(value) * 100;
     if (ui->dpadDelaySlider->value() != temp)
@@ -392,7 +394,7 @@ void DPadEditDialog::updateDPadDelaySlider(double value)
 
 void DPadEditDialog::updateWindowTitleDPadName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString(trUtf8("Set")).append(" ");
 

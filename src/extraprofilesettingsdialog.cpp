@@ -17,6 +17,8 @@
 
 #include "extraprofilesettingsdialog.h"
 #include "ui_extraprofilesettingsdialog.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 
 #include <QDebug>
@@ -28,7 +30,7 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
@@ -52,14 +54,14 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
 
 ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temppress = value * 10;
     device->setDeviceKeyPressTime(temppress);

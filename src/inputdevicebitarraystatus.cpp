@@ -16,6 +16,8 @@
  */
 
 #include "inputdevicebitarraystatus.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "setjoystick.h"
 #include "joystick.h"
@@ -27,7 +29,7 @@
 InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < device->getNumberRawAxes(); i++)
     {
@@ -74,7 +76,7 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
 
 void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((axisIndex >= 0) && (axisIndex <= axesStatus.size()))
     {
@@ -84,7 +86,7 @@ void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
 
 void InputDeviceBitArrayStatus::changeButtonStatus(int buttonIndex, bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((buttonIndex >= 0) && (buttonIndex <= getButtonStatusLocal().size()))
     {
@@ -94,7 +96,7 @@ void InputDeviceBitArrayStatus::changeButtonStatus(int buttonIndex, bool value)
 
 void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((hatIndex >= 0) && (hatIndex <= hatButtonStatus.size()))
     {
@@ -104,7 +106,7 @@ void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
 
 QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int totalArraySize = 0;
     totalArraySize = axesStatus.size() + hatButtonStatus.size() + getButtonStatusLocal().size();
@@ -135,7 +137,7 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 
 void InputDeviceBitArrayStatus::clearStatusValues()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < axesStatus.size(); i++)
     {

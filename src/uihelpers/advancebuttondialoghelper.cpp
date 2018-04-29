@@ -16,6 +16,8 @@
  */
 
 #include "advancebuttondialoghelper.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 
 #include <QDebug>
@@ -24,7 +26,7 @@ AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button,
                                                      QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(button);
 
@@ -34,7 +36,7 @@ AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button,
 void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int index,
                                                     JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->eventReset();
     button->insertAssignedSlot(code, alias, index, mode);
@@ -42,7 +44,7 @@ void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int inde
 
 void AdvanceButtonDialogHelper::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->eventReset();
     button->setAssignedSlot(otherSlot, index);
@@ -51,7 +53,7 @@ void AdvanceButtonDialogHelper::setAssignedSlot(JoyButtonSlot *otherSlot, int in
 void AdvanceButtonDialogHelper::setAssignedSlot(int code, int alias, int index,
                                                 JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->eventReset();
     button->setAssignedSlot(code, alias, index, mode);
@@ -59,7 +61,7 @@ void AdvanceButtonDialogHelper::setAssignedSlot(int code, int alias, int index,
 
 void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->eventReset();
     button->removeAssignedSlot(index);

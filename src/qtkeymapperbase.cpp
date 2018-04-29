@@ -17,6 +17,8 @@
 
 #include "qtkeymapperbase.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 
 const int QtKeyMapperBase::customQtKeyPrefix;
@@ -26,12 +28,12 @@ const int QtKeyMapperBase::nativeKeyPrefix;
 QtKeyMapperBase::QtKeyMapperBase(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 int QtKeyMapperBase::returnQtKey(int key, int scancode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(scancode);
 
@@ -40,14 +42,14 @@ int QtKeyMapperBase::returnQtKey(int key, int scancode)
 
 int QtKeyMapperBase::returnVirtualKey(int qkey)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return qtKeyToVirtualKey.value(qkey);
 }
 
 bool QtKeyMapperBase::isModifier(int qkey)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool modifier = false;
     int qtKeyValue = qkey & 0x0FFFFFFF;
@@ -74,7 +76,7 @@ bool QtKeyMapperBase::isModifier(int qkey)
 
 QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     charKeyInformation temp;
     temp.virtualkey = 0;
@@ -94,7 +96,7 @@ QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar
  */
 QString QtKeyMapperBase::getIdentifier()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return identifier;
 }

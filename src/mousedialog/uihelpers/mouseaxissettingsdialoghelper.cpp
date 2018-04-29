@@ -16,6 +16,8 @@
  */
 
 #include "mouseaxissettingsdialoghelper.h"
+
+#include "messagehandler.h"
 #include "joyaxis.h"
 
 #include <QDebug>
@@ -23,7 +25,7 @@
 MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(axis);
 
@@ -32,7 +34,7 @@ MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObj
 
 void MouseAxisSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setExtraAccelerationStatus(checked);
     axis->getNAxisButton()->setExtraAccelerationStatus(checked);
@@ -40,7 +42,7 @@ void MouseAxisSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 
 void MouseAxisSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setExtraAccelerationMultiplier(value);
     axis->getNAxisButton()->setExtraAccelerationMultiplier(value);
@@ -48,7 +50,7 @@ void MouseAxisSettingsDialogHelper::updateExtraAccelerationMultiplier(double val
 
 void MouseAxisSettingsDialogHelper::updateStartMultiPercentage(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setStartAccelMultiplier(value);
     axis->getNAxisButton()->setStartAccelMultiplier(value);
@@ -56,7 +58,7 @@ void MouseAxisSettingsDialogHelper::updateStartMultiPercentage(double value)
 
 void MouseAxisSettingsDialogHelper::updateMinAccelThreshold(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setMinAccelThreshold(value);
     axis->getNAxisButton()->setMinAccelThreshold(value);
@@ -64,7 +66,7 @@ void MouseAxisSettingsDialogHelper::updateMinAccelThreshold(double value)
 
 void MouseAxisSettingsDialogHelper::updateMaxAccelThreshold(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setMaxAccelThreshold(value);
     axis->getNAxisButton()->setMaxAccelThreshold(value);
@@ -72,7 +74,7 @@ void MouseAxisSettingsDialogHelper::updateMaxAccelThreshold(double value)
 
 void MouseAxisSettingsDialogHelper::updateAccelExtraDuration(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setAccelExtraDuration(value);
     axis->getNAxisButton()->setAccelExtraDuration(value);
@@ -80,7 +82,7 @@ void MouseAxisSettingsDialogHelper::updateAccelExtraDuration(double value)
 
 void MouseAxisSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     axis->getPAxisButton()->setSpringDeadCircleMultiplier(value);
     axis->getNAxisButton()->setSpringDeadCircleMultiplier(value);

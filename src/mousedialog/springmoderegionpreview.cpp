@@ -17,6 +17,8 @@
 
 #include "springmoderegionpreview.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
@@ -31,7 +33,7 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
         QWidget(parent, Qt::FramelessWindowHint)
     #endif
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);
@@ -59,7 +61,7 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
 void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(event);
 
@@ -75,7 +77,7 @@ void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
 
 int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempwidth = size().width();
     if (width >= 2)
@@ -92,7 +94,7 @@ int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
 
 int SpringModeRegionPreview::adjustSpringSizeHeight(int height)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempheight = size().height();
 
@@ -110,7 +112,7 @@ int SpringModeRegionPreview::adjustSpringSizeHeight(int height)
 
 void SpringModeRegionPreview::setSpringWidth(int width)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempwidth = adjustSpringSizeWidth(width);
 
@@ -143,7 +145,7 @@ void SpringModeRegionPreview::setSpringWidth(int width)
 
 void SpringModeRegionPreview::setSpringHeight(int height)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempheight = adjustSpringSizeHeight(height);
 
@@ -176,7 +178,7 @@ void SpringModeRegionPreview::setSpringHeight(int height)
 
 void SpringModeRegionPreview::setSpringSize(int width, int height)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);

@@ -16,6 +16,8 @@
  */
 
 #include "sdleventreader.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
@@ -34,7 +36,7 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
                                AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joysticks = joysticks;
     this->settings = settings;
@@ -54,7 +56,7 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
 
 SDLEventReader::~SDLEventReader()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -64,7 +66,7 @@ SDLEventReader::~SDLEventReader()
 
 void SDLEventReader::initSDL()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // SDL_INIT_GAMECONTROLLER should automatically initialize SDL_INIT_JOYSTICK
     // but it doesn't seem to be the case with v2.0.4
@@ -100,7 +102,7 @@ void SDLEventReader::initSDL()
 
 void SDLEventReader::closeSDL()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pollRateTimer.stop();
 
@@ -136,7 +138,7 @@ void SDLEventReader::performWork()
 
 void SDLEventReader::stop()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -150,7 +152,7 @@ void SDLEventReader::stop()
 
 void SDLEventReader::refresh()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -162,7 +164,7 @@ void SDLEventReader::refresh()
 
 void SDLEventReader::secondaryRefresh()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -174,7 +176,7 @@ void SDLEventReader::secondaryRefresh()
 
 void SDLEventReader::clearEvents()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -187,7 +189,7 @@ void SDLEventReader::clearEvents()
 
 bool SDLEventReader::isSDLOpen()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return sdlIsOpen;
 }
@@ -229,7 +231,7 @@ int SDLEventReader::CheckForEvents()
 
 void SDLEventReader::updatePollRate(int tempPollRate)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((tempPollRate >= 1) && (tempPollRate <= 16))
     {
@@ -248,14 +250,14 @@ void SDLEventReader::updatePollRate(int tempPollRate)
 
 void SDLEventReader::resetJoystickMap()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joysticks = nullptr;
 }
 
 void SDLEventReader::quit()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -266,7 +268,7 @@ void SDLEventReader::quit()
 
 void SDLEventReader::closeDevices()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -289,7 +291,7 @@ void SDLEventReader::closeDevices()
  */
 void SDLEventReader::haltServices()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::lockInputDevices();
     PadderCommon::unlockInputDevices();

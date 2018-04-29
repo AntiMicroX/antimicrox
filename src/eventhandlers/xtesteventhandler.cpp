@@ -16,8 +16,10 @@
  */
 
 #include "xtesteventhandler.h"
+
 #include "joybuttonslot.h"
 #include "antkeymapper.h"
+#include "messagehandler.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -36,19 +38,19 @@
 XTestEventHandler::XTestEventHandler(QObject *parent) :
     BaseEventHandler(parent)
 {
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 
 XTestEventHandler::~XTestEventHandler()
 {
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 
 bool XTestEventHandler::init()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     X11Extras *instance = X11Extras::getInstance();
     if (instance != nullptr)
     {
@@ -60,13 +62,13 @@ bool XTestEventHandler::init()
 
 bool XTestEventHandler::cleanup()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     return true;
 }
 
 void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Display* display = X11Extras::getInstance()->display();
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
     int code = slot->getSlotCode();
@@ -84,7 +86,7 @@ void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
 void XTestEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Display* display = X11Extras::getInstance()->display();
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
     int code = slot->getSlotCode();
@@ -98,7 +100,7 @@ void XTestEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 
 void XTestEventHandler::sendMouseEvent(int xDis, int yDis)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Display* display = X11Extras::getInstance()->display();
     XTestFakeRelativeMotionEvent(display, xDis, yDis, 0);
     XFlush(display);
@@ -106,7 +108,7 @@ void XTestEventHandler::sendMouseEvent(int xDis, int yDis)
 
 void XTestEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Display* display = X11Extras::getInstance()->display();
     XTestFakeMotionEvent(display, screen, xDis, yDis, 0);
     XFlush(display);
@@ -114,19 +116,19 @@ void XTestEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 
 QString XTestEventHandler::getName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     return QString("XTest");
 }
 
 QString XTestEventHandler::getIdentifier()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     return QString("xtest");
 }
 
 void XTestEventHandler::sendTextEntryEvent(QString maintext)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     AntKeyMapper *mapper = AntKeyMapper::getInstance();
 
     if ((mapper != nullptr) && mapper->getKeyMapper())
@@ -226,7 +228,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
 void XTestEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int height) {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(width);
@@ -236,14 +238,14 @@ void XTestEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int 
 
 void XTestEventHandler::sendMouseSpringEvent(int, int) {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 }
 
 
 void XTestEventHandler::printPostMessages() {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 }
 

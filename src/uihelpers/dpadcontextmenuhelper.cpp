@@ -16,6 +16,8 @@
  */
 
 #include "dpadcontextmenuhelper.h"
+
+#include "messagehandler.h"
 #include "joybuttonslot.h"
 
 #include <QListIterator>
@@ -25,7 +27,7 @@
 DPadContextMenuHelper::DPadContextMenuHelper(JoyDPad *dpad, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(dpad);
 
@@ -34,7 +36,7 @@ DPadContextMenuHelper::DPadContextMenuHelper(JoyDPad *dpad, QObject *parent) :
 
 void DPadContextMenuHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 
@@ -51,14 +53,14 @@ void DPadContextMenuHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirectio
 
 void DPadContextMenuHelper::clearPendingSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 }
 
 void DPadContextMenuHelper::setFromPendingSlots()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (!getPendingSlots().isEmpty())
     {
@@ -83,7 +85,7 @@ void DPadContextMenuHelper::setFromPendingSlots()
 
 void DPadContextMenuHelper::clearButtonsSlotsEventReset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<int, JoyDPadButton*> *buttons = dpad->getButtons();
     QHashIterator<int, JoyDPadButton*> iter(*buttons);

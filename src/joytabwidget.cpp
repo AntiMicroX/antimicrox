@@ -16,6 +16,8 @@
  */
 
 #include "joytabwidget.h"
+
+#include "messagehandler.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
 #include "xmlconfigreader.h"
@@ -65,7 +67,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     QWidget(parent),
     tabHelper(joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joystick = joystick;
     this->settings = settings;
@@ -499,7 +501,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
 void JoyTabWidget::openConfigFileDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     settings->getLock()->lock();
 
@@ -562,7 +564,7 @@ void JoyTabWidget::openConfigFileDialog()
  */
 void JoyTabWidget::fillButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joystick->establishPropertyUpdatedConnection();
     connect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)), Qt::QueuedConnection);
@@ -578,7 +580,7 @@ void JoyTabWidget::fillButtons()
 
 void JoyTabWidget::showButtonDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
@@ -589,7 +591,7 @@ void JoyTabWidget::showButtonDialog()
 
 void JoyTabWidget::showAxisDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisWidget *axisWidget = qobject_cast<JoyAxisWidget*>(sender()); // static_cast
     JoyAxis *axis = axisWidget->getAxis();
@@ -600,7 +602,7 @@ void JoyTabWidget::showAxisDialog()
 
 void JoyTabWidget::saveConfigFile()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = configBox->currentIndex();
 
@@ -704,7 +706,7 @@ void JoyTabWidget::saveConfigFile()
 
 void JoyTabWidget::resetJoystick()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int currentIndex = configBox->currentIndex();
     if (currentIndex != 0)
@@ -770,7 +772,7 @@ void JoyTabWidget::resetJoystick()
 
 void JoyTabWidget::saveAsConfig()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = configBox->currentIndex();
 
@@ -878,7 +880,7 @@ void JoyTabWidget::saveAsConfig()
 
 void JoyTabWidget::changeJoyConfig(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
 
@@ -953,7 +955,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
 void JoyTabWidget::saveSettings()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString filename = "";
     QString lastfile = "";
@@ -1085,7 +1087,7 @@ void JoyTabWidget::saveSettings()
 
 void JoyTabWidget::loadSettings(bool forceRefresh)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
 
@@ -1191,7 +1193,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
 QHash<int, QString>* JoyTabWidget::recentConfigs()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<int, QString> *temp = new QHash<int, QString>();
     for (int i=1; i < configBox->count(); i++)
@@ -1205,7 +1207,7 @@ QHash<int, QString>* JoyTabWidget::recentConfigs()
 
 void JoyTabWidget::setCurrentConfig(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Allow 0 to select new/'null' config and therefore disable any mapping
     if ((index >= 0) && (index < configBox->count()))
@@ -1216,28 +1218,28 @@ void JoyTabWidget::setCurrentConfig(int index)
 
 int JoyTabWidget::getCurrentConfigIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return configBox->currentIndex();
 }
 
 QString JoyTabWidget::getCurrentConfigName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return configBox->currentText();
 }
 
 QString JoyTabWidget::getConfigName(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return configBox->itemText(index);
 }
 
 void JoyTabWidget::changeCurrentSet(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     int currentPage = stackedWidget_2->currentIndex();
     QPushButton *oldSetButton = nullptr;
     QPushButton *activeSetButton = nullptr;
@@ -1288,63 +1290,63 @@ void JoyTabWidget::changeCurrentSet(int index)
 
 void JoyTabWidget::changeSetOne()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(0);
 }
 
 void JoyTabWidget::changeSetTwo()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(1);
 }
 
 void JoyTabWidget::changeSetThree()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(2);
 }
 
 void JoyTabWidget::changeSetFour()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(3);
 }
 
 void JoyTabWidget::changeSetFive()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(4);
 }
 
 void JoyTabWidget::changeSetSix()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(5);
 }
 
 void JoyTabWidget::changeSetSeven()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(6);
 }
 
 void JoyTabWidget::changeSetEight()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     changeCurrentSet(7);
 }
 
 void JoyTabWidget::showStickAssignmentDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Joystick *temp = qobject_cast<Joystick*>(joystick);  // static_cast
     AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(temp, this);
@@ -1354,7 +1356,7 @@ void JoyTabWidget::showStickAssignmentDialog()
 
 void JoyTabWidget::loadConfigFile(QString fileLocation)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     checkForUnsavedProfile(-1);
 
@@ -1394,7 +1396,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
 
 void JoyTabWidget::showQuickSetDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
    // QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
    // connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
@@ -1407,7 +1409,7 @@ void JoyTabWidget::showQuickSetDialog()
 
 void JoyTabWidget::showKeyDelayDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ExtraProfileSettingsDialog *dialog = new ExtraProfileSettingsDialog(joystick, this);
     dialog->show();
@@ -1415,7 +1417,7 @@ void JoyTabWidget::showKeyDelayDialog()
 
 void JoyTabWidget::showSetNamesDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetNamesDialog *dialog = new SetNamesDialog(joystick, this);
     connect(dialog, SIGNAL(accepted()), this, SLOT(refreshSetButtons()));
@@ -1425,7 +1427,7 @@ void JoyTabWidget::showSetNamesDialog()
 
 void JoyTabWidget::removeCurrentButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joystick->disconnectPropertyUpdatedConnection();
     disconnect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)));
@@ -1439,14 +1441,14 @@ void JoyTabWidget::removeCurrentButtons()
 
 InputDevice *JoyTabWidget::getJoystick()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return joystick;
 }
 
 void JoyTabWidget::removeConfig()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int currentIndex = configBox->currentIndex();
     if (currentIndex > 0)
@@ -1459,7 +1461,7 @@ void JoyTabWidget::removeConfig()
 
 void JoyTabWidget::toggleNames()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     displayingNames = !displayingNames;
     namesPushButton->setProperty("isDisplayingNames", displayingNames);
@@ -1470,14 +1472,14 @@ void JoyTabWidget::toggleNames()
 
 void JoyTabWidget::unloadConfig()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     configBox->setCurrentIndex(0);
 }
 
 void JoyTabWidget::saveDeviceSettings(bool sync)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     settings->getLock()->lock();
     settings->beginGroup("Controllers");
@@ -1496,7 +1498,7 @@ void JoyTabWidget::saveDeviceSettings(bool sync)
 
 void JoyTabWidget::loadDeviceSettings()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     //settings.beginGroup("Controllers");
     loadSettings();
@@ -1505,7 +1507,7 @@ void JoyTabWidget::loadDeviceSettings()
 
 bool JoyTabWidget::isDisplayingNames()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return displayingNames;
 }
@@ -1520,7 +1522,7 @@ void JoyTabWidget::changeNameDisplay(bool displayNames)
 
 void JoyTabWidget::refreshSetButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
     {
@@ -1585,7 +1587,7 @@ void JoyTabWidget::refreshSetButtons()
 
 void JoyTabWidget::displayProfileEditNotification()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int currentIndex = configBox->currentIndex();
     configBox->setItemIcon(currentIndex, QIcon::fromTheme("document-save-as",
@@ -1594,7 +1596,7 @@ void JoyTabWidget::displayProfileEditNotification()
 
 void JoyTabWidget::removeProfileEditNotification()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < configBox->count(); i++)
     {
@@ -1607,7 +1609,7 @@ void JoyTabWidget::removeProfileEditNotification()
 
 void JoyTabWidget::retranslateUi()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     removeButton->setText(trUtf8("Remove"));
     removeButton->setToolTip(trUtf8("Remove configuration from recent list."));
@@ -1652,7 +1654,7 @@ void JoyTabWidget::retranslateUi()
 
 void JoyTabWidget::checkForUnsavedProfile(int newindex)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (joystick->isDeviceEdited())
     {
@@ -1711,7 +1713,7 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
 
 bool JoyTabWidget::discardUnsavedProfileChanges()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool discarded = true;
 
@@ -1763,7 +1765,7 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
 
 void JoyTabWidget::disconnectMainComboBoxEvents()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
@@ -1772,7 +1774,7 @@ void JoyTabWidget::disconnectMainComboBoxEvents()
 
 void JoyTabWidget::reconnectMainComboBoxEvents()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()), Qt::QueuedConnection);
@@ -1781,21 +1783,21 @@ void JoyTabWidget::reconnectMainComboBoxEvents()
 
 void JoyTabWidget::disconnectCheckUnsavedEvent()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
 }
 
 void JoyTabWidget::reconnectCheckUnsavedEvent()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
 }
 
 void JoyTabWidget::refreshButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     removeCurrentButtons();
     fillButtons();
@@ -1803,7 +1805,7 @@ void JoyTabWidget::refreshButtons()
 
 void JoyTabWidget::checkStickDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickButton *button = qobject_cast<JoyControlStickButton*>(sender()); // static_cast
     JoyControlStick *stick = button->getStick();
@@ -1817,7 +1819,7 @@ void JoyTabWidget::checkStickDisplay()
 
 void JoyTabWidget::checkDPadButtonDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender()); // static_cast
     JoyDPad *dpad = button->getDPad();
@@ -1831,7 +1833,7 @@ void JoyTabWidget::checkDPadButtonDisplay()
 
 void JoyTabWidget::checkAxisButtonDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() > 0)
@@ -1844,7 +1846,7 @@ void JoyTabWidget::checkAxisButtonDisplay()
 
 void JoyTabWidget::checkButtonDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *button = qobject_cast<JoyButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() > 0)
@@ -1857,7 +1859,7 @@ void JoyTabWidget::checkButtonDisplay()
 
 void JoyTabWidget::checkStickEmptyDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     StickPushButtonGroup *group = qobject_cast<StickPushButtonGroup*>(sender()); // static_cast
     JoyControlStick *stick = group->getStick();
@@ -1873,7 +1875,7 @@ void JoyTabWidget::checkStickEmptyDisplay()
 
 void JoyTabWidget::checkDPadButtonEmptyDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     DPadPushButtonGroup *group = qobject_cast<DPadPushButtonGroup*>(sender()); // static_cast
     JoyDPad *dpad = group->getDPad();
@@ -1889,7 +1891,7 @@ void JoyTabWidget::checkDPadButtonEmptyDisplay()
 
 void JoyTabWidget::checkAxisButtonEmptyDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() == 0)
@@ -1902,7 +1904,7 @@ void JoyTabWidget::checkAxisButtonEmptyDisplay()
 
 void JoyTabWidget::checkButtonEmptyDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *button = qobject_cast<JoyButton*>(sender()); // static_cast
     if (button->getAssignedSlots()->count() == 0)
@@ -1915,7 +1917,7 @@ void JoyTabWidget::checkButtonEmptyDisplay()
 
 void JoyTabWidget::checkHideEmptyOption()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool currentHideEmptyButtons = settings->value("HideEmptyButtons", false).toBool();
     if (currentHideEmptyButtons != hideEmptyButtons)
@@ -1927,7 +1929,7 @@ void JoyTabWidget::checkHideEmptyOption()
 
 void JoyTabWidget::fillSetButtons(SetJoystick *set)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int row = 0;
     int column = 0;
@@ -2264,7 +2266,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
 void JoyTabWidget::removeSetButtons(SetJoystick *set)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetJoystick *currentSet = set;
     currentSet->disconnectPropertyUpdatedConnection();
@@ -2404,7 +2406,7 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
 
 void JoyTabWidget::editCurrentProfileItemText(QString text)
 {
-   qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+   qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int currentIndex = configBox->currentIndex();
     if (currentIndex >= 0)
@@ -2428,7 +2430,7 @@ void JoyTabWidget::editCurrentProfileItemText(QString text)
 #ifdef Q_OS_WIN
 void JoyTabWidget::deviceKeyRepeatSettings()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool keyRepeatActive = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
     int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
@@ -2442,7 +2444,7 @@ void JoyTabWidget::deviceKeyRepeatSettings()
 
 void JoyTabWidget::refreshCopySetActions()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     copySetMenu->clear();
 
@@ -2472,7 +2474,7 @@ void JoyTabWidget::refreshCopySetActions()
 
 void JoyTabWidget::performSetCopy()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int sourceSetIndex = action->data().toInt();
@@ -2516,7 +2518,7 @@ void JoyTabWidget::performSetCopy()
 
 void JoyTabWidget::disableCopyCurrentSet()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetJoystick *activeSet = joystick->getActiveSetJoystick();
     QMenu *menu = qobject_cast<QMenu*>(sender()); // static_cast
@@ -2538,7 +2540,7 @@ void JoyTabWidget::disableCopyCurrentSet()
 
 void JoyTabWidget::openGameControllerMappingWindow()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
     dialog->show();
@@ -2547,7 +2549,7 @@ void JoyTabWidget::openGameControllerMappingWindow()
 
 void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit mappingUpdated(mapping, device);
 }
@@ -2555,14 +2557,14 @@ void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)
 
 void JoyTabWidget::refreshHelperThread()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     tabHelper.moveToThread(joystick->thread());
 }
 
 void JoyTabWidget::changeEvent(QEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (event->type() == QEvent::LanguageChange)
     {

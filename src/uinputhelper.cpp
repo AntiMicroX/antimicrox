@@ -20,6 +20,7 @@
 #include <QCoreApplication>
 
 #include "uinputhelper.h"
+#include "messagehandler.h"
 
 UInputHelper* UInputHelper::_instance = 0;
 

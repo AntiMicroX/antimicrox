@@ -16,6 +16,8 @@
  */
 
 #include "dpadcontextmenu.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "antkeymapper.h"
@@ -31,7 +33,7 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
 {
     this->dpad = dpad;
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     getHelper().moveToThread(dpad->thread());
 
     connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
@@ -43,7 +45,7 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
  */
 void DPadContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -162,7 +164,7 @@ void DPadContextMenu::buildMenu()
  */
 void DPadContextMenu::setDPadMode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
@@ -175,7 +177,7 @@ void DPadContextMenu::setDPadMode()
  */
 void DPadContextMenu::setDPadPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
@@ -322,7 +324,7 @@ void DPadContextMenu::setDPadPreset()
  */
 int DPadContextMenu::getPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
 
@@ -413,7 +415,7 @@ int DPadContextMenu::getPresetIndex()
  */
 void DPadContextMenu::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, parentWidget());
     dialog->show();

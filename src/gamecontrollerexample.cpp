@@ -17,6 +17,8 @@
 
 #include "gamecontrollerexample.h"
 
+#include "messagehandler.h"
+
 #include <QPainter>
 #include <QPixmap>
 #include <QTransform>
@@ -60,7 +62,7 @@ static ButtonImagePlacement buttonLocations[] = {
 GameControllerExample::GameControllerExample(QWidget *parent) :
     QWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     controllerimage = QImage(":/images/controllermap.png");
     buttonimage = QImage(":/images/button.png");
@@ -76,7 +78,7 @@ GameControllerExample::GameControllerExample(QWidget *parent) :
 
 void GameControllerExample::paintEvent(QPaintEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(event);
 
@@ -103,7 +105,7 @@ void GameControllerExample::paintEvent(QPaintEvent *event)
 
 void GameControllerExample::setActiveButton(int button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (button <= MAXBUTTONINDEX)
     {

@@ -16,6 +16,8 @@
  */
 
 #include "virtualkeypushbutton.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 #include "event.h"
 #include "antkeymapper.h"
@@ -32,7 +34,7 @@ QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QStr
 VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent) :
     QPushButton(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     populateKnownAliases();
 
@@ -95,10 +97,12 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
 
     }
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "qkeyalias after returnQtKey: " << this->qkeyalias;
     qDebug() << "keycode: " << this->keycode;
     qDebug() << "xcodestring: " << this->xcodestring;
     qDebug() << "displayString: " << this->displayString;
+    #endif
 
     this->setText(this->displayString.replace("&", "&&"));
 
@@ -107,14 +111,14 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
 
 void VirtualKeyPushButton::processSingleSelection()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit keycodeObtained(keycode, qkeyalias);
 }
 
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (knownAliases.contains(xcodestring))
@@ -138,7 +142,7 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 // virtual keyboard.
 void VirtualKeyPushButton::populateKnownAliases()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (knownAliases.isEmpty())
     {
@@ -203,7 +207,7 @@ void VirtualKeyPushButton::populateKnownAliases()
 
 int VirtualKeyPushButton::calculateFontSize()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QFont tempScaledFont(this->font());
     tempScaledFont.setPointSize(10);

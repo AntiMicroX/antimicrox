@@ -16,6 +16,8 @@
  */
 
 #include "slotitemlistwidget.h"
+
+#include "messagehandler.h"
 #include "simplekeygrabberbutton.h"
 
 #include <QListWidgetItem>
@@ -26,13 +28,13 @@
 SlotItemListWidget::SlotItemListWidget(QWidget *parent) :
     QListWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 }
 
 void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool propogate = true;
 

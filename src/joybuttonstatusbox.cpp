@@ -16,6 +16,8 @@
  */
 
 #include "joybuttonstatusbox.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 
 #include <QWidget>
@@ -25,7 +27,7 @@
 JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
     QPushButton(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->button = button;
     isflashing = false;
@@ -38,21 +40,21 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
 
 JoyButton* JoyButtonStatusBox::getJoyButton() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return button;
 }
 
 bool JoyButtonStatusBox::isButtonFlashing()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return isflashing;
 }
 
 void JoyButtonStatusBox::flash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = true;
 
@@ -64,7 +66,7 @@ void JoyButtonStatusBox::flash()
 
 void JoyButtonStatusBox::unflash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = false;
 

@@ -16,6 +16,8 @@
  */
 
 #include "mousebuttonsettingsdialoghelper.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 #include "joybuttonslot.h"
 
@@ -24,7 +26,7 @@
 MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(button);
 
@@ -33,56 +35,56 @@ MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *butt
 
 void MouseButtonSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setExtraAccelerationStatus(checked);
 }
 
 void MouseButtonSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setExtraAccelerationMultiplier(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateStartMultiPercentage(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setStartAccelMultiplier(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateMinAccelThreshold(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setMinAccelThreshold(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateMaxAccelThreshold(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setMaxAccelThreshold(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateAccelExtraDuration(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setAccelExtraDuration(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setSpringDeadCircleMultiplier(value);
 }
 
 void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setSpringRelativeStatus(value);
 }

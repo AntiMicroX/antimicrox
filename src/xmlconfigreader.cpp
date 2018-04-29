@@ -16,6 +16,8 @@
  */
 
 #include "xmlconfigreader.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
@@ -36,7 +38,7 @@
 XMLConfigReader::XMLConfigReader(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     xml = new QXmlStreamReader();
     configFile = nullptr;
@@ -46,7 +48,7 @@ XMLConfigReader::XMLConfigReader(QObject *parent) :
 
 XMLConfigReader::~XMLConfigReader()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (configFile != nullptr)
     {
@@ -68,14 +70,14 @@ XMLConfigReader::~XMLConfigReader()
 
 void XMLConfigReader::setJoystick(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joystick = joystick;
 }
 
 void XMLConfigReader::setFileName(QString filename)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QFile *temp = new QFile(filename);
     if (temp->exists())
@@ -91,7 +93,7 @@ void XMLConfigReader::setFileName(QString filename)
 
 void XMLConfigReader::configJoystick(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joystick = joystick;
     read();
@@ -99,7 +101,7 @@ void XMLConfigReader::configJoystick(InputDevice *joystick)
 
 bool XMLConfigReader::read()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool error = false;
 
@@ -185,7 +187,7 @@ bool XMLConfigReader::read()
 
 const QString XMLConfigReader::getErrorString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (xml->hasError())
@@ -198,14 +200,14 @@ const QString XMLConfigReader::getErrorString()
 
 bool XMLConfigReader::hasError()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return xml->hasError();
 }
 
 void XMLConfigReader::initDeviceTypes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceTypes.clear();
     deviceTypes.append(Joystick::xmlName);

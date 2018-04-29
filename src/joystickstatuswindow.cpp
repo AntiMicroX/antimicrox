@@ -17,6 +17,8 @@
 
 #include "joystickstatuswindow.h"
 #include "ui_joystickstatuswindow.h"
+
+#include "messagehandler.h"
 #include "joybuttonstatusbox.h"
 #include "inputdevice.h"
 #include "common.h"
@@ -39,7 +41,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
@@ -178,14 +180,14 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
 JoystickStatusWindow::~JoystickStatusWindow()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void JoystickStatusWindow::restoreButtonStates(int code)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (code == QDialogButtonBox::AcceptRole)
     {
@@ -200,7 +202,7 @@ void JoystickStatusWindow::restoreButtonStates(int code)
 
 void JoystickStatusWindow::obliterate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->done(QDialogButtonBox::DestructiveRole);
 }

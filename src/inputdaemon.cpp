@@ -16,6 +16,8 @@
  */
 
 #include "inputdaemon.h"
+
+#include "messagehandler.h"
 #include "logger.h"
 #include "common.h"
 #include "joystick.h"
@@ -41,7 +43,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     QObject(parent),
     pollResetTimer(this)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joysticks = joysticks;
     this->stopped = false;
@@ -85,7 +87,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
 InputDaemon::~InputDaemon()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (eventWorker != nullptr)
     {
@@ -103,7 +105,7 @@ InputDaemon::~InputDaemon()
 
 void InputDaemon::startWorker()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (!sdlWorkerThread->isRunning())
     {
@@ -113,7 +115,7 @@ void InputDaemon::startWorker()
 
 void InputDaemon::run ()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -155,7 +157,7 @@ void InputDaemon::run ()
 
 void InputDaemon::refreshJoysticks()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
@@ -281,7 +283,7 @@ void InputDaemon::refreshJoysticks()
 
 void InputDaemon::deleteJoysticks()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
 
@@ -303,7 +305,7 @@ void InputDaemon::deleteJoysticks()
 
 void InputDaemon::stop()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     stopped = true;
     pollResetTimer.stop();
@@ -311,7 +313,7 @@ void InputDaemon::stop()
 
 void InputDaemon::refresh()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     stop();
 
@@ -344,7 +346,7 @@ void InputDaemon::refresh()
 
 void InputDaemon::refreshJoystick(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joystick->reset();
 
@@ -353,7 +355,7 @@ void InputDaemon::refreshJoystick(InputDevice *joystick)
 
 void InputDaemon::quit()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     stopped = true;
     pollResetTimer.stop();
@@ -381,7 +383,7 @@ void InputDaemon::quit()
 
 void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool found = false;
 
@@ -433,7 +435,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 
 void InputDaemon::removeDevice(InputDevice *device)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (device != nullptr)
     {
@@ -451,7 +453,7 @@ void InputDaemon::removeDevice(InputDevice *device)
 
 void InputDaemon::refreshIndexes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i = 0; i < SDL_NumJoysticks(); i++)
     {
@@ -470,7 +472,7 @@ void InputDaemon::refreshIndexes()
 
 void InputDaemon::addInputDevice(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
   #ifdef USE_NEW_ADD
     // Check if device is considered a Game Controller at the start.
@@ -619,7 +621,7 @@ void InputDaemon::addInputDevice(int index)
 
 Joystick *InputDaemon::openJoystickDevice(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Check if joystick is considered connected.
     SDL_Joystick *joystick = SDL_JoystickOpen(index);
@@ -643,7 +645,7 @@ InputDeviceBitArrayStatus*
 InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArrayStatus *> *statusHash,
                                         InputDevice *device, bool readCurrent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     InputDeviceBitArrayStatus *bitArrayStatus = nullptr;
 
@@ -662,7 +664,7 @@ InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArray
 
 void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SDL_Event event;
 
@@ -812,7 +814,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(getReleaseEventsGeneratedLocal());
     while (genIter.hasNext())
@@ -821,10 +823,16 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
         InputDevice *device = genIter.key();
         InputDeviceBitArrayStatus *generatedTemp = genIter.value();
         QBitArray tempBitArray = generatedTemp->generateFinalBitArray();
+
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "ARRAY: " << tempBitArray;
+        #endif
 
         int bitArraySize = tempBitArray.size();
+
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "ARRAY SIZE: " << bitArraySize;
+        #endif
 
         if ((bitArraySize > 0) && (tempBitArray.count(true) == device->getNumberAxes()))
         {
@@ -941,7 +949,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 
 QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     InputDeviceBitArrayStatus tempStatus(device, false);
 
@@ -961,7 +969,7 @@ QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 
 void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<SDL_JoystickID, InputDevice*> activeDevices;
 
@@ -1154,7 +1162,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::clearBitArrayStatusInstances()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<InputDevice*, InputDeviceBitArrayStatus*> genIter(getReleaseEventsGeneratedLocal());
     while (genIter.hasNext())
@@ -1185,7 +1193,7 @@ void InputDaemon::clearBitArrayStatusInstances()
 
 void InputDaemon::resetActiveButtonMouseDistances()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pollResetTimer.stop();
 
@@ -1194,7 +1202,7 @@ void InputDaemon::resetActiveButtonMouseDistances()
 
 void InputDaemon::updatePollResetRate(int tempPollRate)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(tempPollRate);
 

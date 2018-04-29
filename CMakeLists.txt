@@ -143,6 +143,7 @@ set(antimicro_MAIN
 
 set(antimicro_SOURCES
     src/mainwindow.cpp
+    src/messagehandler.cpp
     src/joybuttonwidget.cpp
     src/joystick.cpp
     src/joybutton.cpp
@@ -238,7 +239,9 @@ set(antimicro_SOURCES
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
 )
 
-set(antimicro_HEADERS src/mainwindow.h
+set(antimicro_HEADERS
+    src/mainwindow.h
+    src/messagehandler.h
     src/joybuttonwidget.h
     src/joystick.h
     src/joybutton.h
@@ -629,6 +632,8 @@ if(USE_QT5)
         add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC} src/antimicro.rc)
         target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
     endif(UNIX)
+
+    target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
 endif(USE_QT5)
 
 # Add link libraries.

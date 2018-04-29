@@ -16,6 +16,8 @@
  */
 
 #include "axisvaluebox.h"
+
+#include "messagehandler.h"
 #include "joyaxis.h"
 
 #include <qdrawutil.h>
@@ -29,7 +31,7 @@
 AxisValueBox::AxisValueBox(QWidget *parent) :
     QWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deadZone = 0;
     maxZone = 0;
@@ -43,12 +45,17 @@ AxisValueBox::AxisValueBox(QWidget *parent) :
 
 void AxisValueBox::setThrottle(int throttle)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "throttle value at start of function setThrottle: " << throttle;
+    #endif
 
     if ((throttle <= static_cast<int>(JoyAxis::PositiveHalfThrottle)) && (throttle >= static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "throttle variable has been set in setThrottle with: " << throttle;
+        #endif
         this->throttle = throttle;
         setValue(joyValue);
     }
@@ -57,14 +64,18 @@ void AxisValueBox::setThrottle(int throttle)
 
 void AxisValueBox::setValue(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Value for axis from value box at start is: " << value;
     qDebug() << "throttle variable has value: " << throttle;
+    #endif
 
     if ((value >= JoyAxis::AXISMIN) && (value <= JoyAxis::AXISMAX))
     {
+        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Value for axis from value box is between : " << JoyAxis::AXISMIN << " and " << JoyAxis::AXISMAX;
+        #endif
 
         if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
         {
@@ -92,7 +103,7 @@ void AxisValueBox::setValue(int value)
 
 void AxisValueBox::setDeadZone(int deadZone)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((deadZone >= JoyAxis::AXISMIN) && (deadZone <= JoyAxis::AXISMAX))
     {
@@ -103,14 +114,14 @@ void AxisValueBox::setDeadZone(int deadZone)
 
 int AxisValueBox::getDeadZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return deadZone;
 }
 
 void AxisValueBox::setMaxZone(int maxZone)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((maxZone >= JoyAxis::AXISMIN) && (maxZone <= JoyAxis::AXISMAX))
     {
@@ -121,28 +132,28 @@ void AxisValueBox::setMaxZone(int maxZone)
 
 int AxisValueBox::getMaxZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return maxZone;
 }
 
 int AxisValueBox::getJoyValue()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return joyValue;
 }
 
 int AxisValueBox::getThrottle()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return throttle;
 }
 
 void AxisValueBox::resizeEvent(QResizeEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(event);
 
@@ -161,7 +172,7 @@ void AxisValueBox::resizeEvent(QResizeEvent *event)
 
 void AxisValueBox::paintEvent(QPaintEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(event);
 
