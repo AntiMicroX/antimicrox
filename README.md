@@ -66,7 +66,7 @@ http://www.gnu.org/licenses/gpl.txt
                                    Value can be a controller index, name, or GUID.
     -d, --daemon                   Launch program as a daemon.
     --log-level (debug|info)       Enable logging. Default: debug.
-    --log_file <filename>          Choose a file for writing logs
+    --log-file <filename>          Choose a file for writing logs
     --eventgen (xtest|uinput)      Choose between using XTest support and uinput
                                    support for event generation. Default: xtest.
     -l, --list                     Print information about joysticks detected by
@@ -103,6 +103,14 @@ directory. Enter the following commands in order to build the program:
     cmake ..
     make
     sudo make install
+    
+If you are Arch Linux or Arch Linux based distribution user:
+
+```
+git clone https://github.com/archlinux-lucjan/archlinux-packages.git
+cd antimicro-git
+makepkg -sric
+```
 
 The cmake step will use pkg-config to attempt to find SDL
 libraries that you have installed. The project is set up to
