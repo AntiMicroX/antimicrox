@@ -704,7 +704,7 @@ QString keycodeToKeyString(int keycode, int alias)
                 char tempstring[256];
                 memset(tempstring, 0, sizeof(tempstring));
                 int bitestoreturn = sizeof(tempstring) - 1;
-                int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, NULL, NULL);
+                int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, nullptr, nullptr);
                 if (numchars > 0)
                 {
                     tempstring[numchars] = '\0';

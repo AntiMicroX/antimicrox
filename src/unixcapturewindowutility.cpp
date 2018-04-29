@@ -69,7 +69,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     }
     else
     {
-        display = XOpenDisplay(NULL);
+        display = XOpenDisplay(nullptr);
     }
 
     Window rootWin = XDefaultRootWindow(display);

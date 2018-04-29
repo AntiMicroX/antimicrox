@@ -199,7 +199,7 @@ int SDLEventReader::CheckForEvents()
     int result = 0;
 
     SDL_PumpEvents();
-    switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
+    switch (SDL_PeepEvents(nullptr, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
     {
         case -1:
         {

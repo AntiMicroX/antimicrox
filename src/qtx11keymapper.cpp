@@ -360,7 +360,7 @@ void QtX11KeyMapper::populateCharKeyInformation()
                 char returnstring[256];
                 memset(returnstring, 0, sizeof(returnstring));
                 int bitestoreturn = sizeof(returnstring) - 1;
-                int numchars = XLookupString(&tempevent, returnstring, bitestoreturn, NULL, NULL);
+                int numchars = XLookupString(&tempevent, returnstring, bitestoreturn, nullptr, nullptr);
                 if (numchars > 0)
                 {
                     returnstring[numchars] = '\0';

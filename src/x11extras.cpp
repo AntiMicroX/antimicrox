@@ -51,7 +51,7 @@ X11Extras::X11Extras(QObject *parent) :
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    _display = XOpenDisplay(NULL);
+    _display = XOpenDisplay(nullptr);
     populateKnownAliases();
 }
 
@@ -114,7 +114,7 @@ bool X11Extras::hasValidDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    bool result = _display != NULL;
+    bool result = (_display != nullptr);
     return result;
 }
 

@@ -1669,11 +1669,11 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-  if( info != NULL ) {
+  if( info != nullptr ) {
     Logger::LogDebug(QObject::trUtf8("Auto-switching to profile \"%1\".").
 		     arg(info->getProfileLocation()));
   } else {
-    Logger::LogError(QObject::trUtf8("Auto-switching to NULL profile!"));    
+    Logger::LogError(QObject::trUtf8("Auto-switching to nullptr profile!"));
   }
   
 #if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))

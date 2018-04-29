@@ -51,7 +51,7 @@ bool WinVMultiEventHandler::init()
 
     vmulti = vmulti_alloc();
 
-    if (vmulti == NULL)
+    if (vmulti == nullptr)
     {
         result = false;
     }

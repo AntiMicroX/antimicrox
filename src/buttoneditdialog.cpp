@@ -300,7 +300,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
             // Find Qt Key corresponding to X11 KeySym.
             Q_ASSERT(AntKeyMapper::getInstance()->hasNativeKeyMapper());
             QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-            Q_ASSERT(x11KeyMapper != NULL);
+            Q_ASSERT(x11KeyMapper != nullptr);
             checkalias = x11KeyMapper->returnQtKey(finalvirtual);
             // Find corresponding Linux input key for the Qt key.
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(checkalias);
