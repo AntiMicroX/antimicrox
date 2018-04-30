@@ -64,13 +64,17 @@ http://www.gnu.org/licenses/gpl.txt
                                    Value can be a controller index, name, or GUID.
     --startSet <number> [<value>]  Start joysticks on a specific set.
                                    Value can be a controller index, name, or GUID.
-    -d, --daemon                   Launch program as a daemon.
+    -d, --daemon                   Launch program as a daemon. Use only on Linux.
     --log-level (debug|info)       Enable logging. Default: debug.
     --log-file <filename>          Choose a file for writing logs
     --eventgen (xtest|uinput)      Choose between using XTest support and uinput
-                                   support for event generation. Default: xtest.
+                                   support for event generation. Use only if you have
+                                   enabled xtest and uinput options on Linux or vmulti
+                                   on Windows. Default: xtest.
     -l, --list                     Print information about joysticks detected by
-                                   SDL.
+                                   SDL. Use only if you have sdl library. You can 
+                                   check your controller index, name or 
+                                   even GUID.
 
 
 
