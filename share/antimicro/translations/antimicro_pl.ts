@@ -1256,7 +1256,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno dialogowe</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="44"/>
@@ -1506,57 +1506,57 @@ this button is being used.</source>
     <message>
         <location filename="dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno dialogowe</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="27"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Predefinicje:</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (standardowo)</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym poziomie)</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="56"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym pionie)</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="61"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym poziomie + pionie)</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="66"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Strzałki</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="71"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze: W | A | S | D</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawiatura numeryczna</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="81"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb pada kierunkowego:</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="106"/>
@@ -1572,68 +1572,81 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowo: Ośmiokierunkowy analog z dwoma aktywnymi 
+przyciskami nakierowującymi, gdy analog jest zwrócony w
+kierunku ukośnym.
+
+Ośmioosiowo: Ośmiokierunkowy analog z ośmioma przyciskami.
+Tylko jeden przycisk jest aktywny w tym samym czasie.
+Opcja jest przydatna w przypadku gier podobnych do Rogue.
+
+W 4 głównych kierunkach: Czterokierunkowy analog z kierunkami
+odwołującymi się do głównych kierunków świata. Opcja jest przydatna
+w przypadku menu
+
+W 4 głównych przekątnych: Czterokierunkowy analog z kierunkami
+odwołującymi się do stref przekątnych analogu.</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="121"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowo</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Ośmioosiowo</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="131"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>W 4 głównych kierunkach</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="136"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>W 4 głównych przekątnych</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opóźnienie pada kierunkowego:</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="173"/>
         <location filename="dpadeditdialog.ui" line="207"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Czas, który upłynął przed wykryciem zmiany kierunku.</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="213"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="255"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nazwa:</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ nazwę pada kierunkowego.</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.ui" line="274"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Ustawienia myszki</translation>
+        <translation>Ustawienia myszki</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.cpp" line="399"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw</translation>
     </message>
     <message>
         <location filename="dpadeditdialog.cpp" line="413"/>
         <source>Set %1</source>
-        <translation type="unfinished">Zestawienie %1</translation>
+        <translation>Zestawienie %1</translation>
     </message>
 </context>
 <context>
@@ -1717,189 +1730,191 @@ to a diagonal zone.</source>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapowanie kontrolera</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro używa dla działania temu &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt; interfejsowi kontrolerów gier&lt;/span&gt;&lt;/a&gt; świadczonemu przez bibliotekę SDL 2 w celu dopasowania przeróżnych gamepad&apos;ów do jednolitego stworzonego standardu. Podświetl komórkę tablki dla odpowiedniego przycisku w celu przypisania przycisku. Możesz nacisnąć przycisk lub poruszyć osią na gamepad&apos;zie, a wtedy w wybranej komórce zaktualizują się informacje według wciśniętego przycisku lub poruszonej osi. Pamiętaj, że narzucająć wykrycie osi, musisz poruszyć nią w dół lub w prawo, gdyż pod nimi kryją się wartości dodatnie. &lt;/p&gt;&lt;p&gt;antimicro użyje mapowania, które określisz podczas zapisywania w postaci odczytywanej przez bibliotekę.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>Left Shoulder</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>Right Shoulder</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Left Stick Click</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Right Stick Click</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation type="unfinished"></translation>
+        <translation>Left Stick X</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Left Stick Y</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation type="unfinished"></translation>
+        <translation>Right Stick X</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Right Stick Y</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Left Trigger</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Right Trigger</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad Up</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad Left</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad Down</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation type="unfinished"></translation>
+        <translation>DPad Right</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapowanie</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>Treść mapowania kontrolera według SDL 2</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="307"/>
         <source>Last Axis Event:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostatnie zdarzenie dla osi:</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="321"/>
         <source>Current Axis Detection Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualna martwa strefa podczas wykrywania ruchu osią:</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="329"/>
         <source>5000</source>
-        <translation type="unfinished">5000</translation>
+        <translation>5000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="334"/>
         <source>10000</source>
-        <translation type="unfinished">10000</translation>
+        <translation>10000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="339"/>
         <source>15000</source>
-        <translation type="unfinished">15000</translation>
+        <translation>15000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="344"/>
         <source>20000</source>
-        <translation type="unfinished">20000</translation>
+        <translation>20000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="349"/>
         <source>25000</source>
-        <translation type="unfinished">25000</translation>
+        <translation>25000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="354"/>
         <source>30000</source>
-        <translation type="unfinished">30000</translation>
+        <translation>30000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="359"/>
         <source>32000</source>
-        <translation type="unfinished">32000</translation>
+        <translation>32000</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.cpp" line="144"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapowanie kontrolera (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.cpp" line="497"/>
         <source>Discard Controller Mapping?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunąć mapowanie kontrolera?</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.cpp" line="498"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunąć mapowanie dla tego kontrolera?
+
+Jeśli zostanie usunięte, kontroler zostanie przywrócony do joysticka, gdy tylko zaktualizujesz wszystkie joysticki.</translation>
     </message>
 </context>
 <context>
@@ -1907,47 +1922,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="75"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="76"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="77"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="78"/>
         <source>LS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>LS Click</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="79"/>
         <source>RS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>RS Click</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="80"/>
         <source>L Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>L Shoulder</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="81"/>
         <source>R Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>R Shoulder</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="84"/>
         <source>L Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>L Trigger</translation>
     </message>
     <message>
         <location filename="gamecontroller/gamecontrollerset.cpp" line="85"/>
         <source>R Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>R Trigger</translation>
     </message>
 </context>
 <context>
@@ -2000,74 +2015,74 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="78"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (poziomo)</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="86"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym poziomie)</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="94"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (pionowo)</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="102"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym pionie)</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="110"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Strzałki: Góra | Dół</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="118"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Strzałki: Lewo | Prawo</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="126"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze: W | S</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="134"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze: A | D</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="142"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawiatura num: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="150"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawiatura num: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="158"/>
         <location filename="joyaxiscontextmenu.cpp" line="367"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="167"/>
         <location filename="joyaxiscontextmenu.cpp" line="376"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Ustawienia myszki</translation>
+        <translation>Ustawienia myszki</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="351"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="joyaxiscontextmenu.cpp" line="359"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawy przycisk myszy</translation>
     </message>
 </context>
 <context>
@@ -2416,12 +2431,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno dialogowe</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="112"/>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="125"/>
@@ -2430,77 +2445,77 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="joycontrolstickeditdialog.ui" line="215"/>
         <location filename="joycontrolstickeditdialog.ui" line="245"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="142"/>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="172"/>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odległość:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="202"/>
         <source>Bearing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Łożysko:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="232"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>% strefa bezpieczna:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="283"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Predefinicje:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="302"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (standardowo)</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="307"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym poziomie)</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="312"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym pionie)</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="317"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym poziomie + pionie)</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="322"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Strzałki</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="327"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze: W | A | S | D</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="332"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze numeryczne</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="337"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="349"/>
         <source>Stick Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb joysticka analogowego:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="362"/>
@@ -2516,97 +2531,111 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowo: Ośmiokierunkowy analog z dwoma aktywnymi 
+przyciskami nakierowującymi, gdy analog jest zwrócony w
+kierunku ukośnym.
+
+Ośmioosiowo: Ośmiokierunkowy analog z ośmioma przyciskami.
+Tylko jeden przycisk jest aktywny w tym samym czasie.
+Opcja jest przydatna w przypadku gier podobnych do Rogue.
+
+W 4 głównych kierunkach: Czterokierunkowy analog z kierunkami
+odwołującymi się do głównych kierunków świata. Opcja jest przydatna
+w przypadku menu
+
+W 4 głównych przekątnych: Czterokierunkowy analog z kierunkami
+odwołującymi się do stref przekątnych analogu.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="377"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowo</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="382"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Ośmioosiowo</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="387"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>W 4 głównych kierunkach</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="392"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>W 4 głównych przekątnych</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="427"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Martwa strefa:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="434"/>
         <location filename="joycontrolstickeditdialog.ui" line="459"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wartość martwej strefy dla zastosowania w joysticku analogowym.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="479"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna strefa:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="486"/>
         <location filename="joycontrolstickeditdialog.ui" line="511"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wartość określająca analog, którego kursor przekroczył 100%.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="531"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakres przekątnej:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="538"/>
         <location filename="joycontrolstickeditdialog.ui" line="554"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Powierzchnia (w stopniach), która zajmuje każdy przekątny kierunek.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="574"/>
         <source>Square Stick:</source>
-        <translation type="unfinished"></translation>
+        <translation>Czterokierunkowy analog:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="581"/>
         <location filename="joycontrolstickeditdialog.ui" line="609"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmiana współrzędnych czterokierunkowego analogu dla ograniczenia wartości do koła,
+określona w procentach</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="612"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="635"/>
         <source>Stick Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opóźnienie drążka:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="642"/>
         <location filename="joycontrolstickeditdialog.ui" line="676"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Czas, który upłynął przed wykryciem zmiany kierunku.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="682"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="705"/>
         <source>Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modyfikator:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="712"/>
@@ -2615,37 +2644,41 @@ to a diagonal zone of the stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk edycji, który jest aktywny w trakcie, gdy i drążek jest aktywny.
+
+Ten przycisk jest przydatny dla przypisywania stref z
+klawiszami modyfikatora, które mogą być użyte do 
+przypisania funkcji chodzenia/biegania do drążka analogowego.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="719"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="754"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="764"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ nazwę joysticka analogowego.</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="773"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Ustawienia myszki</translation>
+        <translation>Ustawienia myszki</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.cpp" line="512"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.cpp" line="526"/>
         <source>Set %1</source>
-        <translation type="unfinished">Zestawienie %1</translation>
+        <translation>Zestawienie %1</translation>
     </message>
 </context>
 <context>
@@ -3142,7 +3175,7 @@ do przycisków lub zablokuj ukrywanie pustych przycisków.</translation>
     <message>
         <location filename="mainsettingsdialog.ui" line="193"/>
         <source>Gamepad Poll Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szybkość wysyłania sygnałów gamepada:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="200"/>
@@ -3152,52 +3185,63 @@ events from gamepads. Defaults to 10 ms.
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using antimicro unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień szybkość wysyłania sygnałów, które program używa, by przechwytywać
+nowe zdarzenia z gamepada. Domyślnie wartość wynosi 10 ms.
+
+Zmniejszenie szybkośći wysyłania sygnałów mogłoby spowodować większe 
+zużycie mocy procesora. Wysoce rekomendowane jest przeprowadzenie
+testów ustawień przed użyciem antimicro.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="214"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj główne okno, a nie zamykaj, gdy wybierany 
+jest przycisk zamykania okna.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="218"/>
         <source>Close To Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij w tacce systemowej</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="225"/>
         <source>Have Windows start antimicro at system startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom antimicro przy uruchomieniu systemu.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="228"/>
         <source>Launch At Windows Startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom przy starcie Windows</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="235"/>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetl ostatnie profile dla wszystkich
+kontrolerów w postaci pojedynczej listy w
+menu zasobnika systemowego. Domyślnie
+dla użycia podmenu.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="240"/>
         <source>Single Profile List in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Pojedyncza lista profilu w tacce systemowej</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="247"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zminimalizuj program do paska zadań.
+Domyślnie program jest minimalizowany do
+tacki systemowej jeśli jest to możliwe.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="252"/>
         <source>Minimize to Taskbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zminimalziuj do paska zadań</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="259"/>
@@ -3205,250 +3249,262 @@ tray if available.</source>
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
 to bring up the edit dialog for gamepad buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta opcja spowoduje schowanie wszystkich 
+nieprzypisanych przycisków w aplikacji.
+Zajdzie potrzeba użycia okna szybkiego
+ustawiania, by pojawiło się okno edytowania
+dla przycisków gamepada.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="265"/>
         <source>Hide Empty Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj puste przyciski</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="272"/>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gdy program jest już uruchomiony, otwórz ostatni
+znany profil, który był otwierany podczas
+poprzedniej sesji.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="277"/>
         <source>Auto Load Last Opened Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatycznie ładuj ostatni otwarty profil</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="287"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj jedynie ikonę w tacce systemowej,
+gdy program się uruchamia.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="291"/>
         <source>Launch in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom w tacce systemowej</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="298"/>
         <source>Associate .amgp files with antimicro in Windows Explorer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skojarz pliki .amgp z antimicro w eksploratorze Windows.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="301"/>
         <source>Associate Profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Skojarz profile</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="327"/>
         <source>Key Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Powtarzanie klawisza</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="333"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywne klawisze będą wielokrotnie naciskane
+gdy ta opcja zostanie zaznaczona.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="337"/>
         <location filename="mainsettingsdialog.ui" line="907"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Odblokuj</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="346"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opóźnienie:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="356"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określa, ile czasu musi upłynąć, zanim nastąpi powtarzanie
+przycisku klawisza.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="388"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="411"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="421"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określa, ile razy na sekundę klawisz będzie naciskany
+automatycznie.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="447"/>
         <source> times/s</source>
-        <translation type="unfinished"></translation>
+        <translation> raz/y</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="494"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Poniżej znajduje się lista zapisanych mapowań. Możesz użyć podanej tabeli, by usunąć mapowania lub je tymczasowo zablokować. Możesz także zablokować mapowania, które są zawarte z biblioteką SDL; wystarczy wprowadzenie nowego rzędu z odpowiednim GUID joysticka i zaznaczenie blokady.
+
+Ustawienia nie będą miały wpływu o ile nie zostaną odświeżone wszystkie joysticki lub nie zostanie odpięty konkretny joystick.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="519"/>
         <source>GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>GUID</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="524"/>
         <source>Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapowanie sprężynowe</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="529"/>
         <source>Disable?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokować?</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="539"/>
         <location filename="mainsettingsdialog.ui" line="856"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="550"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="570"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro został przetłumaczony na wiele innych języków przez kilku woluntariuszy. Domyślnie program wybierze odpowiednie tłumaczenie oparte na ustawieniach lokalnych systemu. Jednakże możliwy jest wybór innego języka, który znajduje się na liście poniżej.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="600"/>
         <location filename="mainsettingsdialog.cpp" line="1871"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślny</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="605"/>
         <source>Português do Brasil</source>
-        <translation type="unfinished"></translation>
+        <translation>Português do Brasil</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="610"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>English</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="615"/>
         <source>Français</source>
-        <translation type="unfinished"></translation>
+        <translation>Français</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="620"/>
         <source>Deutsch</source>
-        <translation type="unfinished"></translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="625"/>
         <source>Italiano</source>
-        <translation type="unfinished"></translation>
+        <translation>Italiano</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="630"/>
         <source>日本語</source>
-        <translation type="unfinished"></translation>
+        <translation>日本語</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="635"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="640"/>
         <source>српски / srpski</source>
-        <translation type="unfinished"></translation>
+        <translation>српски / srpski</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="645"/>
         <source>简体中文</source>
-        <translation type="unfinished"></translation>
+        <translation>简体中文</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="650"/>
         <source>Español</source>
-        <translation type="unfinished"></translation>
+        <translation>Español</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="655"/>
         <source>українська</source>
-        <translation type="unfinished"></translation>
+        <translation>українська</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="672"/>
         <location filename="mainsettingsdialog.ui" line="764"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywny</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="697"/>
         <source>Devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenia:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="705"/>
         <location filename="mainsettingsdialog.cpp" line="1147"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystko</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="769"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenie</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="774"/>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="779"/>
         <source>Class</source>
-        <translation type="unfinished">Klasa</translation>
+        <translation>Klasa</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="784"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="789"/>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Program</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="794"/>
         <source>Default?</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślnie?</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="828"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="842"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="879"/>
@@ -3456,32 +3512,35 @@ Settings will not take affect until you either refresh all joysticks or unplug t
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
 precise.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokuj ustawienie &quot;Rozszerzona precyzja kursora&quot;, podczas
+gdy antimicro jest uruchomiony. Zablokowanie opcji
+&quot;Rozszerzona precyzja kursora&quot; pozwoli na bardziej precyzyjny
+ruch myszki wewnątrz antimicro.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="885"/>
         <source>Disable Enhance Pointer Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokuj rozszerzoną precyzję myszki</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="895"/>
         <source>Smoothing</source>
-        <translation type="unfinished"></translation>
+        <translation>Wygładzanie</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="916"/>
         <source>Histor&amp;y Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmia&amp;r historii:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="942"/>
         <source>Weight &amp;Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modyfikator &amp;wagi:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="975"/>
         <source>Refresh Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Częstotliwość odświeżania:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="982"/>
@@ -3491,46 +3550,53 @@ editing this setting as it will cause the program to use
 more CPU power. Setting this value too low can cause
 system instability. Please test the setting before using
 it unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>Częstotliwość odświeżania jest ilością czasu, jaka upłynie
+pomiędzy występowaniem zdarzeń myszki. Zaleca się
+ostrożnie stosować tę opcję, ponieważ może spowodować
+większe zużycie mocy procesora. Ustawienie wartości zbyt
+niskiej wywoła destabilizację systemu. Silnie zaleca się
+przetestowanie ustawienia przed jego użyciem.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="996"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprężyna</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1010"/>
         <source>Screen:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekran:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1020"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykorzystaj określony wyświetlacz dla trybu sprężynowego. Na Linux,
+domyślnie używany jest główny ekran. Na Windows, domyślnie
+używane są wszystkie dostępne ekrany.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1054"/>
         <source>Accel Numerator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Licznik przyspieszenia:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1067"/>
         <location filename="mainsettingsdialog.ui" line="1098"/>
         <location filename="mainsettingsdialog.ui" line="1129"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1091"/>
         <source>Accel Denominator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mianownik przyspieszenia:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1122"/>
         <source>Accel Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Granica przyspieszenia:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1166"/>
@@ -3538,74 +3604,79 @@ is to use all available screens.</source>
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
 values used by the virtual mouse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeżeli wartości przyspieszenia dla wirtualnej myszki nie
+zostały zmienione przez odmienny proces, szczególnie w trakcie
+wyłącznia starszej gry, to możesz chcieć zresetować wartości
+przyspieszenia stosowane przez wirtualną myszkę.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1172"/>
         <source>Reset Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetuj przyspieszenie</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1210"/>
         <source>Log File:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik z logami:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1238"/>
         <source>Log Level:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poziom logów:</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1246"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1251"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1256"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostrzeżenie</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1261"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacja</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1266"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Debugowanie</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.cpp" line="312"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>Również użytkownicy systemu Windows, którzy chcą zastosować niską
+wartość, powinni także sprawdzić opcję &quot;Zablokuj rozszerzoną precyzję
+myszki&quot;, jeżeli nie chcą mieć zablokowanej tej opcji w Windows.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.cpp" line="816"/>
         <source>Select Default Profile Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz domyślny katalog profilu</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.cpp" line="1522"/>
         <source>Are you sure you want to delete the profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno usunąć ten profil?</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.cpp" line="1935"/>
         <source>Save Log File As</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz plik z logami jako</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.cpp" line="1936"/>
         <source>Log Files (*.log)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki z logami (*.log)</translation>
     </message>
 </context>
 <context>
@@ -3698,7 +3769,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="mainwindow.ui" line="294"/>
         <source>&amp;Key Checker</source>
-        <translation>&amp;Sprawdzanie znaków</translation>
+        <translation>&amp;Sprawdzanie klawiszy</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="299"/>
@@ -3936,7 +4007,7 @@ Funkcja mocy: Pozwala na użycie bardziej tradycyjnej opcji krzywej.
     <message>
         <location filename="mousesettingsdialog.ui" line="108"/>
         <source>Enhanced Precision</source>
-        <translation>Poprawiona precyzja</translation>
+        <translation>Rozszerzona precyzja</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="113"/>
@@ -4752,13 +4823,17 @@ Czy nowe ustawienia przepustnicy mają zostać uwzględnione we wszystkich zesta
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
-        <translation>Nie można odnaleźć poprawnego pliku dla uinput. Sprawdź, czy moduł uinput został odpowiednio wczytany. Przykładowe polecenie sprawdzające: lsmod | grep uinput</translation>
+        <translation>Nie można odnaleźć poprawnego pliku dla uinput. 
+Sprawdź, czy moduł uinput został odpowiednio wczytany. 
+Przykładowe polecenie sprawdzające: 
+lsmod | grep uinput</translation>
     </message>
     <message>
         <location filename="eventhandlers/uinputeventhandler.cpp" line="325"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
-        <translation>Nie można otworzyć pliku dla uinput. Sprawdź uprawnienia zapisu dla pliku</translation>
+        <translation>Nie można otworzyć pliku dla uinput. 
+Sprawdź uprawnienia zapisu dla pliku</translation>
     </message>
     <message>
         <location filename="eventhandlers/uinputeventhandler.cpp" line="509"/>
