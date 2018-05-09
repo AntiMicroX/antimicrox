@@ -6,22 +6,22 @@
     <message>
         <location filename="aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O programie</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="75"/>
         <source>antimicro</source>
-        <translation type="unfinished"></translation>
+        <translation>antimicro</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="104"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="121"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisy</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="136"/>
@@ -64,17 +64,55 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - Spanish&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Początkowo rozwijane przez twórcę Travis Nickles&apos;a &amp;lt;nickles.travis@gmail.com&amp;gt;, następnie prowadzone przez grupę AntiMicro na stronie https://github.com/AntiMicro, natomiast aktualnie jest rozwijane przez użytkownika juliagoda na stronie https://github.com/juliagoda&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Deweloperzy:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Poprzedni deweloperzy:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Zerro Alvein&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;aybe&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;7185&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;DarkStarSword&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;est31&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;ProfessorKaos64&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;qwerty12&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA0&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Tłumacze:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - język portugalski (Brazylia)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx - język chiński&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - język francuski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - język niemiecki&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;phob - język niemiecki&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;tou omiya - język japoński&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - język rosyjski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - język serbski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;burunduk - język ukraiński&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - język hiszpański&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - język włoski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="185"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="195"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencja</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="210"/>
@@ -192,17 +230,130 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Version 3, 29 June 2007&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;http://fsf.org/&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Preamble&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Developers that use the GNU GPL protect your rights with two steps:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;(1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;For the developers&apos; and authors&apos; protection, the GPL clearly explains that there is no warranty for this free software. For both users&apos; and authors&apos; sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users&apos; freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The precise terms and conditions for copying, distribution and modification follow.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;0. Definitions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;&amp;quot;This License&amp;quot; refers to version 3 of the GNU General Public License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;&amp;quot;Copyright&amp;quot; also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;&amp;quot;The Program&amp;quot; refers to any copyrightable work licensed under this License. Each licensee is addressed as &amp;quot;you&amp;quot;. &amp;quot;Licensees&amp;quot; and &amp;quot;recipients&amp;quot; may be individuals or organizations.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;To &amp;quot;modify&amp;quot; a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a &amp;quot;modified version&amp;quot; of the earlier work or a work &amp;quot;based on&amp;quot; the earlier work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A &amp;quot;covered work&amp;quot; means either the unmodified Program or a work based on the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;To &amp;quot;propagate&amp;quot; a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;To &amp;quot;convey&amp;quot; a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;An interactive user interface displays &amp;quot;Appropriate Legal Notices&amp;quot; to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;1. Source Code.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The &amp;quot;source code&amp;quot; for a work means the preferred form of the work for making modifications to it. &amp;quot;Object code&amp;quot; means any non-source form of a work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A &amp;quot;Standard Interface&amp;quot; means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The &amp;quot;System Libraries&amp;quot; of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A &amp;quot;Major Component&amp;quot;, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The &amp;quot;Corresponding Source&amp;quot; for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work&apos;s System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The Corresponding Source for a work in source code form is that same work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;2. Basic Permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;3. Protecting Users&apos; Legal Rights From Anti-Circumvention Law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work&apos;s users, your or third parties&apos; legal rights to forbid circumvention of technological measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;4. Conveying Verbatim Copies.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may convey verbatim copies of the Program&apos;s source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;5. Conveying Modified Source Versions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;a) The work must carry prominent notices stating that you modified it, and giving a relevant date.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to &amp;quot;keep intact all notices&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an &amp;quot;aggregate&amp;quot; if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation&apos;s users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;6. Conveying Non-Source Forms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A &amp;quot;User Product&amp;quot; is either (1) a &amp;quot;consumer product&amp;quot;, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, &amp;quot;normally used&amp;quot; refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;&amp;quot;Installation Information&amp;quot; for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;7. Additional Terms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;&amp;quot;Additional permissions&amp;quot; are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;d) Limiting the use for publicity purposes of names of licensors or authors of the material; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;All other non-permissive additional terms are considered &amp;quot;further restrictions&amp;quot; within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;8. Termination.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;9. Acceptance Not Required for Having Copies.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;10. Automatic Licensing of Downstream Recipients.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;An &amp;quot;entity transaction&amp;quot; is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party&apos;s predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;11. Patents.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A &amp;quot;contributor&amp;quot; is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor&apos;s &amp;quot;contributor version&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A contributor&apos;s &amp;quot;essential patent claims&amp;quot; are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, &amp;quot;control&amp;quot; includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor&apos;s essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;In the following three paragraphs, a &amp;quot;patent license&amp;quot; is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To &amp;quot;grant&amp;quot; such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. &amp;quot;Knowingly relying&amp;quot; means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient&apos;s use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;A patent license is &amp;quot;discriminatory&amp;quot; if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;12. No Surrender of Others&apos; Freedom.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;13. Use with the GNU Affero General Public License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;14. Revised Versions of this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License &amp;quot;or any later version&amp;quot; applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy&apos;s public statement of acceptance of a version permanently authorizes you to choose that version for the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;15. Disclaimer of Warranty.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;16. Limitation of Liability.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="340"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dziennik zmian</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="354"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>O rozwoju</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="365"/>
@@ -220,42 +371,55 @@ Development of this program is not as high of a priority for me anymore. This is
 
 As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;juliagoda&quot; (od marca, 2018) Chcąc początkowo jedynie zagrać w ulubione stare gry, które nie posiadają wbudowanego wsparcia dla gamepad&apos;ów, znalazłam ten projekt (który mapuje znaki z klawiszy klawiatury i przyciski myszy do podłączonych urządzeń pod systemem Linux) jako najaktualniejszego ze wszystkich dostępnych w sieci. Z powodu niedużego wyboru takiego rodzaju aplikacji w internecie, postanowiłam spróbować naprawić projekt. Po zakończeniu prac (na poziomie wystarczającym do zastosowania w grach) zdecydowałam się na opublikowanie kodu. Wszystkie informacje na temat poprzednich programistów zostaną zachowane.
+
+&quot;Ryochan7&quot; (od 30 grudnia, od 2012 do 2017), Pracowałem nad antimicro w swoim wolnym czasie. Pierwotnie pierwsze wersje programu były forkiem aplikacji QJoyPad, a okazja do nauki programowania kierowanego zdarzeniami przerodziła się w coś o wiele większego, niż początkowo planowałem. Pomimo tego, że spędziłem nad nauką nowych technik programowania sporo czasu, dowiedzenie się czegoś więcej o dziedzinie emulacji KB+M i spędzenie wyczerpujących piątkowych wieczorów przyniosły sporo frajdy i wzbogaciły moją wiedzę.
+
+Powodem powstania tego programu była chęć używania takich programów pod systemem Linux, które dostępne są szeroko na systemie Windows, by móc grać w gry niewspierające kontrolerów gier natywnie. Chociaż istniało kilka alternatyw, nie zawierały one wystarczającej funkcjonalności, która zapewniałaby choćby odpowiednią emulację KB+M. QJoyPad był głównym programem, którego używałem w przeszłości. Jednak z biegiem lat wraz z zaprzestaniem jego rozwoju, zabrakło potrzebnych funkcji, a które uważałem za niezbędne. Jako, że z czasem program przestał być rozwijany, postanowiłem więc stworzyć własny.
+
+Od tamtej pory próbowałem zrozumieć, w jaki sposób działały inne programy, a następnie poprawiałem ich funkcjonalność u siebie. Odkryłem także ciekawe metody w miarę realizacji projektu oraz nauczyłem się tego, w jaki sposób natywne kontrolery są implementowane w niektórych grach. Bardzo chciałem się tego nauczyć. Chociaż istnieją pewne miejsca w kodzie, gdzie program można by było poprawić, uważam, że aktualnie ten program oferuje najlepsze przeżycie doświadczeń podczas grania w gry starsze jak i te nowsze.
+
+Rozwój tego programu nie jest już dla mnie największym priorytetem. Jest to głównie spowodowane tym, że Kontroler Steam działa bardzo dobrze w sposób porównywalny do jakości działania kontrolera Xbox 360. Jednakże wygląda wciąż na to, że nadal istnieje powód dla istnienia tej aplikacji.
+
+---
+
+Z dniem 24 maja, 2016, projekt został przeniesiony na stronę https://github.com/AntiMicro/antimicro. Poza tym, rozwój programu został przekazany grupie AntiMicro. Powodem przekazania projektu było zaprzestanie prac przez swojego twórcę.
+</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="391"/>
         <source>Copyright: 2013 - 2018</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawa autorskie: 2013 - 2018</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="59"/>
         <source>Program Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja programu %1</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="60"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Program skompilowany na %1 z pomocą %2</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="71"/>
         <source>Built Against SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbudowane z biblioteką SDL %1</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="74"/>
         <source>Running With SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchomione z biblioteką SDL %1</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="76"/>
         <source>Using Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Z użyciem Qt %1</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="87"/>
         <source>Using Event Handler: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Z użyciem procedury obsługi zdarzenia: %1</translation>
     </message>
 </context>
 <context>
@@ -263,23 +427,23 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
     <message>
         <location filename="addeditautoprofiledialog.ui" line="14"/>
         <source>Auto Profile Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno Autoprofilu</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="25"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil:</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="40"/>
         <location filename="addeditautoprofiledialog.ui" line="130"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="51"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno:</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="69"/>
@@ -287,37 +451,39 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz okno. Kliknij na odpowiednie okno aplikacji, a 
+ścieżka aplikacji zostanie automatycznie dodana do 
+rubryki.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykryj właściwości okna</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="83"/>
         <source>Class:</source>
-        <translation type="unfinished">Klasa:</translation>
+        <translation>Klasa:</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="100"/>
         <source>Title:  </source>
-        <translation type="unfinished"></translation>
+        <translation>Tytuł:  </translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="117"/>
         <source>Application:    </source>
-        <translation type="unfinished"></translation>
+        <translation>Aplikacja:    </translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="142"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="156"/>
         <source>Devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenia:</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="172"/>
@@ -325,89 +491,91 @@ in the form.</source>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz ten profil, by go domyślnie załadować 
+dla określonego urządzenia. Wybór zostanie użyty
+zamiast domyślnej opcji.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.ui" line="177"/>
         <source>Set as Default for Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw jako domyślny dla kontrolera</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="104"/>
         <location filename="addeditautoprofiledialog.cpp" line="259"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inny profil jest aktualnie zaznaczony jako domyślny dla tego urządzenia.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="130"/>
         <source>Current (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualny (%1)</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="178"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz konfigurację</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="190"/>
         <location filename="addeditautoprofiledialog.cpp" line="192"/>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz program</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="190"/>
         <source>Programs (*.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Programy (*.exe)</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="250"/>
         <source>Please use the main default profile selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaleca się użycie wyboru głównego domyślnego profilu.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="309"/>
         <source>Please select a window by using the mouse. Press Escape if you want to cancel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz okno za pomocą myszki. Wciśnij Escape, jeśli chcesz anulować.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="310"/>
         <source>Capture Application Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Przechwyć okno aplikacji</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="382"/>
         <source>Could not obtain information for the selected window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można uzyskać informacji dla zaznaczonego okna.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="383"/>
         <source>Application Capture Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Przechwytywanie okna zostało zakończone niepowodzeniem</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="487"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka profilu jest nieprawidłowa.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="497"/>
         <source>No window matching property was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie została określona żadna pasująca właściwość dla okna.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="511"/>
         <source>Program path is invalid or not executable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka programu jest nieprawidłowa lub nie jest wykonywalna.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="519"/>
         <source>File is not an .exe file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik nie jest plikiem .exe.</translation>
     </message>
     <message>
         <location filename="addeditautoprofiledialog.cpp" line="527"/>
         <source>No window matching property was selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie została zaznaczona żadna pasująca właściwość dla okna.</translation>
     </message>
 </context>
 <context>
@@ -416,501 +584,501 @@ of the all default profile option.</source>
         <location filename="advancebuttondialog.ui" line="29"/>
         <location filename="advancebuttondialog.cpp" line="1249"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaawansowane</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="71"/>
         <source>Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="76"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk przełączania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk turbo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="86"/>
         <source>Set Selector</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybiesz selektor</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="194"/>
         <source>Blank or KB/M</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusty lub KB/M</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="199"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>Cykl</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="204"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Opóźnienie</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="209"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Odległość</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="214"/>
         <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Wywołanie</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="219"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>Przytrzymanie</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="224"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Załadowanie</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="229"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>Moduł myszki</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="234"/>
         <source>Pause</source>
-        <translation type="unfinished">Pause</translation>
+        <translation>Przerwa</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="239"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Przytrzymanie okresowo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="244"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwolnienie</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="249"/>
         <source>Set Change</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmiana ustawienia</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="254"/>
         <source>Text Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadzenie tekstu</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="280"/>
         <location filename="advancebuttondialog.cpp" line="1609"/>
         <source>Insert a new blank slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nowy pusty slot.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="283"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="294"/>
         <source>Delete a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń slot.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="297"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="308"/>
         <source>Clear all currently assigned slots.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść wszystkie aktualnie przypisane sloty.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="311"/>
         <source>Clear All</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść wszystko</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="342"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastępstwo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="394"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ czas trwania wprowadzonego slotu &quot;Przerwa&quot; lub &quot;Przytrzymanie&quot;.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="397"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Czas:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="410"/>
         <source>0.01s</source>
-        <translation type="unfinished">0.01s</translation>
+        <translation>0.01s</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="425"/>
         <source>0m</source>
-        <translation type="unfinished">0m</translation>
+        <translation>0m</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="449"/>
         <location filename="advancebuttondialog.ui" line="473"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="482"/>
         <source>0s</source>
-        <translation type="unfinished">0s</translation>
+        <translation>0s</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="509"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Moduł prędkości myszki:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="525"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw wartość w procentach, o którą prędkość myszki zostanie zmieniona.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="528"/>
         <location filename="advancebuttondialog.ui" line="586"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="564"/>
         <location filename="advancebuttondialog.ui" line="583"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ przedział martwej strefy dla osi, w którym zostanie wywołana kolejność akcji.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="567"/>
         <source>Distance: </source>
-        <translation type="unfinished"></translation>
+        <translation>Odległość: </translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="622"/>
         <source>Auto Reset Cycle After</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatycznie resetuj cykl po</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="654"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>sekundy</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="667"/>
         <location filename="advancebuttondialog.cpp" line="1501"/>
         <source>Choose Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz profil</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="696"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonywalny:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="706"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="717"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumenty:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="760"/>
         <location filename="advancebuttondialog.ui" line="803"/>
         <location filename="advancebuttondialog.ui" line="1025"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Odblokowane</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="827"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="837"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Standardowo: Cyklicznie jest wciskany i zwalniany przycisk według wybranej prędkości.&lt;/p&gt;&lt;p&gt;Gradientowo: Zmienia opóźnienie wciśnięcia przycisku i jego zwolnienie według odległości pokonanej przez oś. Częstotliwość pozostaje niezmieniona.&lt;/p&gt;&lt;p&gt;Pulsowo: Zmienia częstotliwość naciskania i zwalniania przycisku na sekundę. Opoźnienie przycisku pozostaje niezmienione.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="841"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="846"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Gradientowo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="851"/>
         <source>Pulse</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulsowo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="905"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opoźnienie:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="930"/>
         <source>0.10s</source>
-        <translation type="unfinished">0.10s</translation>
+        <translation>0.10s</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1000"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo:</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1007"/>
         <source>10.0/s</source>
-        <translation type="unfinished"></translation>
+        <translation>10.0/s</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1039"/>
         <location filename="advancebuttondialog.cpp" line="1383"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokowany</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1044"/>
         <source>Select Set 1 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 1 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1049"/>
         <source>Select Set 1 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 1 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1054"/>
         <source>Select Set 1 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 1 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1059"/>
         <source>Select Set 2 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 2 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1064"/>
         <source>Select Set 2 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 2 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1069"/>
         <source>Select Set 2 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 2 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1074"/>
         <source>Select Set 3 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 3 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1079"/>
         <source>Select Set 3 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 3 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1084"/>
         <source>Select Set 3 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 3 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1089"/>
         <source>Select Set 4 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 4 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1094"/>
         <source>Select Set 4 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 4 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1099"/>
         <source>Select Set 4 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 4 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1104"/>
         <source>Select Set 5 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 5 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1109"/>
         <source>Select Set 5 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 5 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1114"/>
         <source>Select Set 5 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 5 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1119"/>
         <source>Select Set 6 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 6 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1124"/>
         <source>Select Set 6 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 6 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1129"/>
         <source>Select Set 6 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 6 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1134"/>
         <source>Select Set 7 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 6 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1139"/>
         <source>Select Set 7 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 7 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1144"/>
         <source>Select Set 7 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 7 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1149"/>
         <source>Select Set 8 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 8 jednokierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1154"/>
         <source>Select Set 8 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 8 dwukierunkowe</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1159"/>
         <source>Select Set 8 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz zestawienie 8 podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="256"/>
         <source>sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>sek.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="257"/>
         <source>/sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>/sek.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1254"/>
         <source>Set %1</source>
-        <translation type="unfinished">Zestawienie %1</translation>
+        <translation>Zestawienie %1</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1391"/>
         <location filename="advancebuttondialog.cpp" line="1437"/>
         <source>Select Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz zestawienie %1</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1406"/>
         <source>One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Jednokierunkowo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1409"/>
         <source>Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Dwukierunkowo</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1412"/>
         <source>While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>Podczas trzymania</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1502"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki konfiguracyjne (*.amgp *.xml)</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1534"/>
         <source>Choose Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik wykonywalny</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1613"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sloty za cyklem zostaną wywołane przy kolejnym naciśnięciu przycisku. Wielokrotne cykle mogą być dodane w kolejności, by tworzyć podziały w sekwencji.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1619"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Opóźnia czas trwania wywołania następnego slotu według określonego czasu. Sloty aktywowane przed wystąpieniem opóźnienia pozostaną aktywne po przeminięciu określonego czasu dla opóźnienia.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1626"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja odległości określa wywoływanie slotów, gdy oś jest przesuwana w określonym przedziale za wyznaczoną martwą strefą.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1632"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź akcję przytrzymania. Sloty po tej akcji zostaną wywołane, jeśli przycisk ten został trzymany przez określoną umowną ilość czasu.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1637"/>
         <source>Chose a profile to load when this slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz profil do załadowywania gdy slot jest aktywny.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1641"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja modułu myszki zmieni wszystkie ustawienia prędkości myszki według określonej liczby procentowej, podczas gdy wykonywana jest akcja. Opcja ta moze być użyteczna dla zwolnienia prędkosci myszki podczas strzelania.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1648"/>
         <source>Insert a pause that occurs in between key presses.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj przerwę, która występuje pomiędzy naciskanymi klawiszami.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1652"/>
         <source>Specify the time that keys past this slot should be held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ czas, przez który klawisze z tego slotu powinny być przytrzymywane.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1657"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź akcję zwalniania. Sloty po tej akcji zostaną wywołane po zwolnieniu przycisku, jeśli przycisk ten został trzymany przez określoną umowną ilość czasu.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1663"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień zaznaczone zestawienie gdy slot jest aktywowany.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1667"/>
         <source>Full string will be typed when a slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pełna treść zostania wpisana gdy slot zostanie aktywowany.</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.cpp" line="1672"/>
         <source>Execute program when slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonaj program gdy slot jest aktywny.</translation>
     </message>
 </context>
 <context>
@@ -918,40 +1086,40 @@ of the all default profile option.</source>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisanie do Joysticka/Gamepada</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation type="unfinished"></translation>
+        <translation>Joysticki</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation type="unfinished"></translation>
+        <translation>Pady kierunkowe</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Adnotacja: To okno zostało zachowane z myślą o kompatybilności wstecznej z profilami stworzonymi w wersji antimicro starszej niż 2.0. Rekomendowane jednak jest używanie nowszej wersji okna do mapowania kontrolera.</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="101"/>
         <location filename="advancestickassignmentdialog.ui" line="358"/>
         <source>%1 (Joystick %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Joystick %2)</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick 1</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="134"/>
         <location filename="advancestickassignmentdialog.ui" line="256"/>
         <location filename="advancestickassignmentdialog.ui" line="425"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Odblokowany</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="175"/>
@@ -961,54 +1129,54 @@ of the all default profile option.</source>
         <location filename="advancestickassignmentdialog.ui" line="535"/>
         <location filename="advancestickassignmentdialog.ui" line="545"/>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisz</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="186"/>
         <location filename="advancestickassignmentdialog.ui" line="308"/>
         <source>X Axis:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oś X:</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="204"/>
         <location filename="advancestickassignmentdialog.ui" line="326"/>
         <source>Y Axis:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oś Y:</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick 2</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba fizycznych padów kierunkowych: %1</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wirtualny pad kierunkowy 1</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="463"/>
         <source>Down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dół:</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="477"/>
         <source>Left:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lewo:</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="491"/>
         <source>Right:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawo:</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.ui" line="498"/>
         <source>Up:</source>
-        <translation type="unfinished"></translation>
+        <translation>Góra:</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="67"/>
@@ -1016,7 +1184,7 @@ of the all default profile option.</source>
         <location filename="advancestickassignmentdialog.cpp" line="70"/>
         <location filename="advancestickassignmentdialog.cpp" line="71"/>
         <source>Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Oś %1</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="575"/>
@@ -1024,7 +1192,7 @@ of the all default profile option.</source>
         <location filename="advancestickassignmentdialog.cpp" line="577"/>
         <location filename="advancestickassignmentdialog.cpp" line="578"/>
         <source>Axis %1 -</source>
-        <translation type="unfinished"></translation>
+        <translation>Oś  %1 -</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="583"/>
@@ -1032,7 +1200,7 @@ of the all default profile option.</source>
         <location filename="advancestickassignmentdialog.cpp" line="585"/>
         <location filename="advancestickassignmentdialog.cpp" line="586"/>
         <source>Axis %1 +</source>
-        <translation type="unfinished"></translation>
+        <translation>Oś %1 +</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="596"/>
@@ -1040,27 +1208,27 @@ of the all default profile option.</source>
         <location filename="advancestickassignmentdialog.cpp" line="598"/>
         <location filename="advancestickassignmentdialog.cpp" line="599"/>
         <source>Button %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk %1</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="924"/>
         <source>Move stick 1 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Porusz gałką 1 wzdłuż osi X</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="938"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Porusz gałką 1 wzdłuż osi Y</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="969"/>
         <source>Move stick 2 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Porusz gałką 2 wzdłuż osi X</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="984"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Porusz gałką 2 wzdłuż osi Y</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="1055"/>
@@ -1068,7 +1236,7 @@ of the all default profile option.</source>
         <location filename="advancestickassignmentdialog.cpp" line="1167"/>
         <location filename="advancestickassignmentdialog.cpp" line="1223"/>
         <source>Press a button or move an axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Wciśnij przycisk lub porusz gałką wzdłuż osi</translation>
     </message>
 </context>
 <context>
@@ -1076,179 +1244,181 @@ of the all default profile option.</source>
     <message>
         <location filename="axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Oś</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="52"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Predefinicje:</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="77"/>
         <location filename="axiseditdialog.cpp" line="642"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (poziomo)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="82"/>
         <location filename="axiseditdialog.cpp" line="643"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym poziomie)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="87"/>
         <location filename="axiseditdialog.cpp" line="644"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (pionowo)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="92"/>
         <location filename="axiseditdialog.cpp" line="645"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysz (w odwróconym pionie)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="97"/>
         <location filename="axiseditdialog.cpp" line="646"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Strzałki: Góra | Dół</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="102"/>
         <location filename="axiseditdialog.cpp" line="647"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Strzałki: Lewo | Prawo</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="107"/>
         <location filename="axiseditdialog.cpp" line="648"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze: W | S</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="112"/>
         <location filename="axiseditdialog.cpp" line="649"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze: A | D</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="117"/>
         <location filename="axiseditdialog.cpp" line="650"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze num: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="122"/>
         <location filename="axiseditdialog.cpp" line="651"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisze num: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="127"/>
         <location filename="axiseditdialog.cpp" line="652"/>
         <location filename="axiseditdialog.cpp" line="664"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="182"/>
         <location filename="axiseditdialog.ui" line="295"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw wartość limitu dla osi. Opcja jest przydatna dla
+zużytej gałki analogowej.</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="202"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Martwa strefa:</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="209"/>
         <location filename="axiseditdialog.ui" line="273"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw wartość martwej strefy dla osi.</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="327"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna strefa:</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="338"/>
         <location filename="axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[BRAK]</translation>
+        <translation>[BRAK]</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="345"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia przepustnicy, które determinują zachowanie
+sposobu interpretacji trzymania osi i jej zwalniania.</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="359"/>
         <source>Negative Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Ujemny zakres ruchu osi do połowy</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="364"/>
         <source>Negative Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Ujemny zakres ruchu osi</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="369"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowy</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="374"/>
         <source>Positive Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatni zakres ruchu osi</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="379"/>
         <source>Positive Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatni zakres ruchu osi do połowy</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="429"/>
         <source>Current Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualna wartość:</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="475"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa:</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="485"/>
         <source>Specify the name of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ nazwę osi.</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="494"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Ustawienia myszki</translation>
+        <translation>Ustawienia myszki</translation>
     </message>
     <message>
         <location filename="axiseditdialog.cpp" line="607"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw</translation>
     </message>
     <message>
         <location filename="axiseditdialog.cpp" line="621"/>
         <source>Set %1</source>
-        <translation type="unfinished">Zestawienie %1</translation>
+        <translation>Zestawienie %1</translation>
     </message>
     <message>
         <location filename="axiseditdialog.cpp" line="662"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="axiseditdialog.cpp" line="663"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawy przycisk myszy</translation>
     </message>
 </context>
 <context>
@@ -1261,73 +1431,74 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="buttoneditdialog.ui" line="44"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Wciśnij dowolny klawisz lub kliknij na przycisk myszy, by stworzyć nowe przypisanie</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="70"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastępstwo</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="96"/>
         <source>Enables a key press or release to only occur when a controller button is pressed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odblokowuje naciśnięcie klawisza lub zwolnienie go, gdy przycisk kontrolera jest wciśnięty.</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="99"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk przełączania</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="124"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odblokowuje szybsze naciskanie klawiszy i ch zwalnianie. Kontroler turbo.</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>Przycisk turbo</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="160"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostatni przycisk klawiatury/myszy:</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="167"/>
         <source>Slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Sloty</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="197"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naz&amp;wa:</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="207"/>
         <source>Specify the name of a button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ nazwę przycisku.</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="224"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja:</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="234"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Określ akcję, która będzie się wykonywała w grze, podczas
+gdy przycisk jest wciśnięty.</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="261"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaawansowany</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="400"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak przycisku</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="408"/>
@@ -1335,37 +1506,37 @@ this button is being used.</source>
         <location filename="buttoneditdialog.cpp" line="451"/>
         <location filename="buttoneditdialog.cpp" line="531"/>
         <source>Last button</source>
-        <translation type="unfinished">Ostatni przycisk</translation>
+        <translation>Ostatni przycisk</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="408"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Musi istnieć co najmniej jedno przypisanie z klawiatury do gamepad&apos;a, by zmienić ustawienia dla ostatniego przycisku</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="416"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Musi istnieć co najmniej jedno przypisanie z klawiatury do gamepad&apos;a, by zmienić ustawienia turbo dla ostatniego przycisku</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="451"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Potrzebne jest co najmniej jedno mapowanie z klawiatury do gamepad&apos;a, by móc otworzyć okno z zaawansowanymi ustawieniami</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="531"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished">Sloty dla wprowadzonych przycisków nie mogły zostać usunięte, ponieważ żadne dane nie zostały dotychczas wprowadzone z układu klawiatury do układu gamepad&apos;a. Stwórz mapowanie co najmniej jednego przycisku dla gamepad&apos;a</translation>
+        <translation>Sloty dla wprowadzonych przycisków nie mogły zostać usunięte, ponieważ żadne dane nie zostały dotychczas wprowadzone z układu klawiatury do układu gamepad&apos;a. Stwórz mapowanie co najmniej jednego przycisku dla gamepad&apos;a</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="548"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>Został ustawiony ostatni przycisk gamepad&apos;a</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.cpp" line="553"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeks %1</translation>
     </message>
 </context>
 <context>
@@ -3560,7 +3731,7 @@ przetestowanie ustawienia przed jego użyciem.</translation>
     <message>
         <location filename="mainsettingsdialog.ui" line="996"/>
         <source>Spring</source>
-        <translation>Sprężyna</translation>
+        <translation>Tekst</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="1010"/>
@@ -3572,7 +3743,7 @@ przetestowanie ustawienia przed jego użyciem.</translation>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation>Wykorzystaj określony wyświetlacz dla trybu sprężynowego. Na Linux,
+        <translation>Wykorzystaj określony wyświetlacz dla trybu tekstowego. Na Linux,
 domyślnie używany jest główny ekran. Na Windows, domyślnie
 używane są wszystkie dostępne ekrany.</translation>
     </message>
@@ -3944,7 +4115,7 @@ po ekranie w odniesieniu do jego aktualnej pozycji
 w zależności jak intensywnie poruszasz się po osi
 lub jak intensywnie naciskany jest przycisk.
 
-Tryb spring jest używany do poruszania kursorem myszki
+Tryb tekstowy jest używany do poruszania kursorem myszki
 od środka ekranu w zależności jak bardzo
 poruszasz nią wzdłuż osi. Kursor myszki
 będzie wracał na środek ekranu za każdym razem,
@@ -3959,7 +4130,7 @@ myszki przekroczy ustaloną granicę.</translation>
     <message>
         <location filename="mousesettingsdialog.ui" line="57"/>
         <source>Spring</source>
-        <translation>Sprężyna</translation>
+        <translation>Tekst</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="75"/>
@@ -4099,7 +4270,7 @@ według liczby symulowanych kroków na sekundę.</translation>
         <location filename="mousesettingsdialog.ui" line="358"/>
         <location filename="mousesettingsdialog.ui" line="401"/>
         <source>1 = 1 notch(es)/s</source>
-        <translation>1 = 1 krok(i)/ów</translation>
+        <translation>1 = 1 wcięcie(ć)/cia</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="374"/>
@@ -4265,12 +4436,12 @@ aktualny czas, by mogło zostać dodane dodatkowe przyspieszenie.</translation>
     <message>
         <location filename="mousesettingsdialog.ui" line="767"/>
         <source>Spring Settings</source>
-        <translation>Ustawienia sprężyny</translation>
+        <translation>Ustawienia tekstu</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="777"/>
         <source>Spring Width:</source>
-        <translation>Szerokość sprężyny:</translation>
+        <translation>Szerokość tekstu:</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="790"/>
@@ -4278,13 +4449,13 @@ aktualny czas, by mogło zostać dodane dodatkowe przyspieszenie.</translation>
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
         <translation>Zmienia szerokość regionu tak, aby kursor
-mógł poruszać się w trybie sprężyny. 0 będzie używało
+mógł poruszać się w trybie tekstowym. 0 będzie używało
 całej szerokości twojego ekranu.</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="806"/>
         <source>Spring Height:</source>
-        <translation>Wysokość sprężyny:</translation>
+        <translation>Wysokość tekstu:</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="819"/>
@@ -4304,8 +4475,8 @@ całej szerokości twojego ekranu.</translation>
         <location filename="mousesettingsdialog.ui" line="868"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation>Określa, czy pole sprężyny będzie zależne od
-pozycji kursora myszki, ustawionej przez niezależną sprężynę.</translation>
+        <translation>Określa, czy pole tekstowe będzie zależne od
+pozycji kursora myszki, ustawionej przez niezależny tekst.</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="872"/>
@@ -4338,9 +4509,9 @@ pozycji kursora myszki, ustawionej przez niezależną sprężynę.</translation>
         <location filename="mousesettingsdialog.cpp" line="218"/>
         <source>%n notch(es)/s</source>
         <translation>
-            <numerusform>%n krok</numerusform>
-            <numerusform>%n kroków</numerusform>
-            <numerusform>%n kroków</numerusform>
+            <numerusform>%n wcięcie</numerusform>
+            <numerusform>%n wcięcia</numerusform>
+            <numerusform>%n wcięcia</numerusform>
         </translation>
     </message>
 </context>
@@ -4813,7 +4984,7 @@ Czy nowe ustawienia przepustnicy mają zostać uwzględnione we wszystkich zesta
     <message>
         <location filename="mousedialog/springmoderegionpreview.cpp" line="45"/>
         <source>Spring Mode Preview</source>
-        <translation>Podgląd trybu sprężyny</translation>
+        <translation>Podgląd trybu tekstowego</translation>
     </message>
 </context>
 <context>
