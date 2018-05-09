@@ -294,3 +294,4 @@ Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian
 burunduk - Ukrainian  
 Flavio HR <flavio.hrx@gmail.com> - Spanish  
 WAZAAAAA - wazaaaaa00<@>gmail<.>com - Italian  
+juliagoda <juliagoda.pl@protonmail.com> - Polish
