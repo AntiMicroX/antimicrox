@@ -60,7 +60,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
     ui->setupUi(this);
 
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(QString("Choose your keyboard key"));
+    setWindowTitle(trUtf8("Choose your keyboard key"));
     ui->advancedPushButton->setEnabled(false);
     update();
 
@@ -118,7 +118,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
     ui->setupUi(this);
 
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(QString("Choose your keyboard key"));
+    setWindowTitle(trUtf8("Choose your keyboard key"));
     ui->advancedPushButton->setEnabled(false);
     update();
 
@@ -564,7 +564,7 @@ void ButtonEditDialog::updateWindowTitleButtonName()
 
     } else {
 
-        setWindowTitle(QString("Choose your keyboard key"));
+        setWindowTitle(trUtf8("Choose your keyboard key"));
     }
 
 }

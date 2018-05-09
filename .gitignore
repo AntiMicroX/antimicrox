@@ -24,5 +24,6 @@ CMakeLists.txt.user*
 other/antimicro.1.gz
 other/license-template.txt
 doc/
+zbudowane/
 src/Changelog
 SDL2_*

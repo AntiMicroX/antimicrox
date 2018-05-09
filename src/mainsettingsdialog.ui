@@ -655,6 +655,11 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              <string>українська</string>
             </property>
            </item>
+           <item>
+            <property name="text">
+             <string>Polski</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>

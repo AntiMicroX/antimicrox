@@ -982,7 +982,7 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QPushButton *otherKeysPushbutton = new QPushButton("Others", this);
+    QPushButton *otherKeysPushbutton = new QPushButton(trUtf8("Others"), this);
     otherKeysPushbutton->setMinimumSize(0, 25);
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     otherKeysPushbutton->setSizePolicy(sizePolicy);

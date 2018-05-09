@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/antimicro.png</file>
+        <file>images/antimicro_trayicon.png</file>
+        <file>images/controllermap.png</file>
+        <file>images/axis.png</file>
+        <file>images/button.png</file>
+        <file>Changelog</file>
+        <file>icons/16x16/actions/document-save.png</file>
+        <file>icons/16x16/actions/document-open-folder.png</file>
+    </qresource>
+</RCC>

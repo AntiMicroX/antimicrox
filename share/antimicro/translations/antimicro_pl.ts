@@ -773,7 +773,7 @@ zamiast domyślnej opcji.</translation>
     <message>
         <location filename="advancebuttondialog.ui" line="654"/>
         <source>seconds</source>
-        <translation>sekundy</translation>
+        <translation>sekundach</translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="667"/>
@@ -1496,6 +1496,13 @@ gdy przycisk jest wciśnięty.</translation>
         <translation>Zaawansowany</translation>
     </message>
     <message>
+        <location filename="buttoneditdialog.cpp" line="63"/>
+        <location filename="buttoneditdialog.cpp" line="121"/>
+        <location filename="buttoneditdialog.cpp" line="567"/>
+        <source>Choose your keyboard key</source>
+        <translation>Naciśnij dowolny klawisz</translation>
+    </message>
+    <message>
         <location filename="buttoneditdialog.cpp" line="400"/>
         <source>No button</source>
         <translation>Brak przycisku</translation>
@@ -1906,7 +1913,7 @@ odwołującymi się do stref przekątnych analogu.</translation>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro używa dla działania temu &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt; interfejsowi kontrolerów gier&lt;/span&gt;&lt;/a&gt; świadczonemu przez bibliotekę SDL 2 w celu dopasowania przeróżnych gamepad&apos;ów do jednolitego stworzonego standardu. Podświetl komórkę tablki dla odpowiedniego przycisku w celu przypisania przycisku. Możesz nacisnąć przycisk lub poruszyć osią na gamepad&apos;zie, a wtedy w wybranej komórce zaktualizują się informacje według wciśniętego przycisku lub poruszonej osi. Pamiętaj, że narzucająć wykrycie osi, musisz poruszyć nią w dół lub w prawo, gdyż pod nimi kryją się wartości dodatnie. &lt;/p&gt;&lt;p&gt;antimicro użyje mapowania, które określisz podczas zapisywania w postaci odczytywanej przez bibliotekę.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro używa dla działania tego &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt; interfejsu kontrolerów gier&lt;/span&gt;&lt;/a&gt; świadczonego przez bibliotekę SDL 2 w celu dopasowania przeróżnych gamepad&apos;ów do jednolitego stworzonego standardu. Podświetl komórkę tabelki dla odpowiedniego przycisku, aby go przypisać. Możesz nacisnąć przycisk lub poruszyć osią na gamepad&apos;zie, a wtedy w wybranej komórce zaktualizują się informacje według wciśniętego przycisku lub poruszonej osi. Pamiętaj, że narzucając wykrycie osi, musisz poruszyć nią w dół lub w prawo, gdyż pod nimi kryją się wartości dodatnie. &lt;/p&gt;&lt;p&gt;antimicro użyje mapowania, które określisz podczas zapisywania mapowania tekstowego w postaci odczytywanej przez bibliotekę SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="gamecontrollermappingdialog.ui" line="137"/>
@@ -3050,7 +3057,7 @@ przypisania funkcji chodzenia/biegania do drążka analogowego.</translation>
         <location filename="joytabwidget.cpp" line="426"/>
         <location filename="joytabwidget.cpp" line="1641"/>
         <source>Quick Set</source>
-        <translation>Szybkie zestawienie</translation>
+        <translation>Szybkie ustawienie</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="434"/>
@@ -3311,7 +3318,7 @@ do przycisków lub zablokuj ukrywanie pustych przycisków.</translation>
     <message>
         <location filename="mainsettingsdialog.ui" line="77"/>
         <source>Auto Profile</source>
-        <translation>profil automatyczny</translation>
+        <translation>Profil automatyczny</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="82"/>
@@ -3412,7 +3419,7 @@ tacki systemowej jeśli jest to możliwe.</translation>
     <message>
         <location filename="mainsettingsdialog.ui" line="252"/>
         <source>Minimize to Taskbar</source>
-        <translation>Zminimalziuj do paska zadań</translation>
+        <translation>Zminimalizuj do paska zadań</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="259"/>
@@ -3481,7 +3488,7 @@ gdy ta opcja zostanie zaznaczona.</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="337"/>
-        <location filename="mainsettingsdialog.ui" line="907"/>
+        <location filename="mainsettingsdialog.ui" line="912"/>
         <source>Enable</source>
         <translation>Odblokuj</translation>
     </message>
@@ -3536,7 +3543,7 @@ Ustawienia nie będą miały wpływu o ile nie zostaną odświeżone wszystkie j
     <message>
         <location filename="mainsettingsdialog.ui" line="524"/>
         <source>Mapping String</source>
-        <translation>Mapowanie sprężynowe</translation>
+        <translation>Mapowanie tekstowe</translation>
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="529"/>
@@ -3545,7 +3552,7 @@ Ustawienia nie będą miały wpływu o ile nie zostaną odświeżone wszystkie j
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="539"/>
-        <location filename="mainsettingsdialog.ui" line="856"/>
+        <location filename="mainsettingsdialog.ui" line="861"/>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
@@ -3561,7 +3568,7 @@ Ustawienia nie będą miały wpływu o ile nie zostaną odświeżone wszystkie j
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="600"/>
-        <location filename="mainsettingsdialog.cpp" line="1871"/>
+        <location filename="mainsettingsdialog.cpp" line="1879"/>
         <source>Default</source>
         <translation>Domyślny</translation>
     </message>
@@ -3621,64 +3628,69 @@ Ustawienia nie będą miały wpływu o ile nie zostaną odświeżone wszystkie j
         <translation>українська</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="672"/>
-        <location filename="mainsettingsdialog.ui" line="764"/>
+        <location filename="mainsettingsdialog.ui" line="660"/>
+        <source>Polski</source>
+        <translation>Polski</translation>
+    </message>
+    <message>
+        <location filename="mainsettingsdialog.ui" line="677"/>
+        <location filename="mainsettingsdialog.ui" line="769"/>
         <source>Active</source>
         <translation>Aktywny</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="697"/>
+        <location filename="mainsettingsdialog.ui" line="702"/>
         <source>Devices:</source>
         <translation>Urządzenia:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="705"/>
-        <location filename="mainsettingsdialog.cpp" line="1147"/>
+        <location filename="mainsettingsdialog.ui" line="710"/>
+        <location filename="mainsettingsdialog.cpp" line="1151"/>
         <source>All</source>
         <translation>Wszystko</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="769"/>
+        <location filename="mainsettingsdialog.ui" line="774"/>
         <source>Device</source>
         <translation>Urządzenie</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="774"/>
+        <location filename="mainsettingsdialog.ui" line="779"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="779"/>
+        <location filename="mainsettingsdialog.ui" line="784"/>
         <source>Class</source>
         <translation>Klasa</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="784"/>
+        <location filename="mainsettingsdialog.ui" line="789"/>
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="789"/>
+        <location filename="mainsettingsdialog.ui" line="794"/>
         <source>Program</source>
         <translation>Program</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="794"/>
+        <location filename="mainsettingsdialog.ui" line="799"/>
         <source>Default?</source>
         <translation>Domyślnie?</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="828"/>
+        <location filename="mainsettingsdialog.ui" line="833"/>
         <source>Add</source>
         <translation>Dodaj</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="842"/>
+        <location filename="mainsettingsdialog.ui" line="847"/>
         <source>Edit</source>
         <translation>Edytuj</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="879"/>
+        <location filename="mainsettingsdialog.ui" line="884"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within antimicro to be more
@@ -3689,32 +3701,32 @@ gdy antimicro jest uruchomiony. Zablokowanie opcji
 ruch myszki wewnątrz antimicro.</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="885"/>
+        <location filename="mainsettingsdialog.ui" line="890"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation>Zablokuj rozszerzoną precyzję myszki</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="895"/>
+        <location filename="mainsettingsdialog.ui" line="900"/>
         <source>Smoothing</source>
         <translation>Wygładzanie</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="916"/>
+        <location filename="mainsettingsdialog.ui" line="921"/>
         <source>Histor&amp;y Size:</source>
         <translation>Rozmia&amp;r historii:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="942"/>
+        <location filename="mainsettingsdialog.ui" line="947"/>
         <source>Weight &amp;Modifier:</source>
         <translation>Modyfikator &amp;wagi:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="975"/>
+        <location filename="mainsettingsdialog.ui" line="980"/>
         <source>Refresh Rate:</source>
         <translation>Częstotliwość odświeżania:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="982"/>
+        <location filename="mainsettingsdialog.ui" line="987"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
@@ -3729,17 +3741,17 @@ niskiej wywoła destabilizację systemu. Silnie zaleca się
 przetestowanie ustawienia przed jego użyciem.</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="996"/>
+        <location filename="mainsettingsdialog.ui" line="1001"/>
         <source>Spring</source>
         <translation>Tekst</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1010"/>
+        <location filename="mainsettingsdialog.ui" line="1015"/>
         <source>Screen:</source>
         <translation>Ekran:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1020"/>
+        <location filename="mainsettingsdialog.ui" line="1025"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
@@ -3748,29 +3760,29 @@ domyślnie używany jest główny ekran. Na Windows, domyślnie
 używane są wszystkie dostępne ekrany.</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1054"/>
+        <location filename="mainsettingsdialog.ui" line="1059"/>
         <source>Accel Numerator:</source>
         <translation>Licznik przyspieszenia:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1067"/>
-        <location filename="mainsettingsdialog.ui" line="1098"/>
-        <location filename="mainsettingsdialog.ui" line="1129"/>
+        <location filename="mainsettingsdialog.ui" line="1072"/>
+        <location filename="mainsettingsdialog.ui" line="1103"/>
+        <location filename="mainsettingsdialog.ui" line="1134"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1091"/>
+        <location filename="mainsettingsdialog.ui" line="1096"/>
         <source>Accel Denominator:</source>
         <translation>Mianownik przyspieszenia:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1122"/>
+        <location filename="mainsettingsdialog.ui" line="1127"/>
         <source>Accel Threshold:</source>
         <translation>Granica przyspieszenia:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1166"/>
+        <location filename="mainsettingsdialog.ui" line="1171"/>
         <source>If the acceleration values for the virtual mouse have been
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
@@ -3781,42 +3793,42 @@ wyłącznia starszej gry, to możesz chcieć zresetować wartości
 przyspieszenia stosowane przez wirtualną myszkę.</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1172"/>
+        <location filename="mainsettingsdialog.ui" line="1177"/>
         <source>Reset Acceleration</source>
         <translation>Resetuj przyspieszenie</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1210"/>
+        <location filename="mainsettingsdialog.ui" line="1215"/>
         <source>Log File:</source>
         <translation>Plik z logami:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1238"/>
+        <location filename="mainsettingsdialog.ui" line="1243"/>
         <source>Log Level:</source>
         <translation>Poziom logów:</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1246"/>
+        <location filename="mainsettingsdialog.ui" line="1251"/>
         <source>None</source>
         <translation>Brak</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1251"/>
+        <location filename="mainsettingsdialog.ui" line="1256"/>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1256"/>
+        <location filename="mainsettingsdialog.ui" line="1261"/>
         <source>Warning</source>
         <translation>Ostrzeżenie</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1261"/>
+        <location filename="mainsettingsdialog.ui" line="1266"/>
         <source>Info</source>
         <translation>Informacja</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.ui" line="1266"/>
+        <location filename="mainsettingsdialog.ui" line="1271"/>
         <source>Debug</source>
         <translation>Debugowanie</translation>
     </message>
@@ -3835,17 +3847,17 @@ myszki&quot;, jeżeli nie chcą mieć zablokowanej tej opcji w Windows.</transla
         <translation>Zaznacz domyślny katalog profilu</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.cpp" line="1522"/>
+        <location filename="mainsettingsdialog.cpp" line="1526"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>Czy na pewno usunąć ten profil?</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.cpp" line="1935"/>
+        <location filename="mainsettingsdialog.cpp" line="1943"/>
         <source>Save Log File As</source>
         <translation>Zapisz plik z logami jako</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.cpp" line="1936"/>
+        <location filename="mainsettingsdialog.cpp" line="1944"/>
         <source>Log Files (*.log)</source>
         <translation>Pliki z logami (*.log)</translation>
     </message>
@@ -4270,7 +4282,7 @@ według liczby symulowanych kroków na sekundę.</translation>
         <location filename="mousesettingsdialog.ui" line="358"/>
         <location filename="mousesettingsdialog.ui" line="401"/>
         <source>1 = 1 notch(es)/s</source>
-        <translation>1 = 1 wcięcie(ć)/cia</translation>
+        <translation>1 = 1 obrót(y)/ów</translation>
     </message>
     <message>
         <location filename="mousesettingsdialog.ui" line="374"/>
@@ -4509,9 +4521,9 @@ pozycji kursora myszki, ustawionej przez niezależny tekst.</translation>
         <location filename="mousesettingsdialog.cpp" line="218"/>
         <source>%n notch(es)/s</source>
         <translation>
-            <numerusform>%n wcięcie</numerusform>
-            <numerusform>%n wcięcia</numerusform>
-            <numerusform>%n wcięcia</numerusform>
+            <numerusform>%n obrót</numerusform>
+            <numerusform>%n obroty</numerusform>
+            <numerusform>%n obrotów</numerusform>
         </translation>
     </message>
 </context>
@@ -6027,6 +6039,11 @@ LK</source>
         <translation>Sloty dla wprowadzonych przycisków nie mogły zostać usunięte, ponieważ żadne dane nie zostały dotychczas wprowadzone z układu klawiatury do układu gamepad&apos;a. Stwórz mapowanie co najmniej jednego przycisku dla gamepad&apos;a</translation>
     </message>
     <message>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="985"/>
+        <source>Others</source>
+        <translation>Inne</translation>
+    </message>
+    <message>
         <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="999"/>
         <source>Applications</source>
         <translation>Aplikacje</translation>
@@ -6151,7 +6168,7 @@ LK</source>
     <message>
         <location filename="winappprofiletimerdialog.ui" line="55"/>
         <source>Seconds</source>
-        <translation>Sekundy</translation>
+        <translation>Sekund</translation>
     </message>
     <message>
         <location filename="winappprofiletimerdialog.ui" line="86"/>
