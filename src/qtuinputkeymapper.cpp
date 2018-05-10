@@ -150,7 +150,7 @@ void QtUInputKeyMapper::populateMappingHashes()
         //qtKeyToVirtualKey[Qt::Key_Search] = KEY_FIND;
         qtKeyToVirtualKey[Qt::Key_Cut] = KEY_CUT;
         qtKeyToVirtualKey[Qt::Key_Sleep] = KEY_SLEEP;
-        //qtKeyToVirtualKey[Qt::Key_Calculator] = KEY_CALC;
+        qtKeyToVirtualKey[Qt::Key_Calculator] = KEY_CALC;
         qtKeyToVirtualKey[Qt::Key_Launch0] = KEY_COMPUTER;
         qtKeyToVirtualKey[Qt::Key_Launch1] = KEY_CALC;
         qtKeyToVirtualKey[Qt::Key_Launch2] = KEY_PROG1;
@@ -254,45 +254,35 @@ void QtUInputKeyMapper::populateMappingHashes()
 
         // International input method support keys
 
-        // International & multi-key character composition
-        /*qtKeyToVirtualKey[Qt::Key_AltGr] = XK_ISO_Level3_Shift;
-        qtKeyToVirtualKey[Qt::Key_Multi_key] = XK_Multi_key;
-        qtKeyToVirtualKey[Qt::Key_Codeinput] = XK_Codeinput;
-        qtKeyToVirtualKey[Qt::Key_SingleCandidate] = XK_SingleCandidate;
-        qtKeyToVirtualKey[Qt::Key_MultipleCandidate] = XK_MultipleCandidate;
-        qtKeyToVirtualKey[Qt::Key_PreviousCandidate] = XK_PreviousCandidate;
-
         // Misc Functions
-        qtKeyToVirtualKey[Qt::Key_Mode_switch] = XK_Mode_switch;
-        //qtKeyToX11KeySym[Qt::Key_Mode_switch] = XK_script_switch;
+        qtKeyToVirtualKey[Qt::Key_Mode_switch] = KEY_SWITCHVIDEOMODE;
 
         // Japanese keyboard support
-        qtKeyToVirtualKey[Qt::Key_Kanji] = XK_Kanji;
-        qtKeyToVirtualKey[Qt::Key_Muhenkan] = XK_Muhenkan;
-        qtKeyToVirtualKey[Qt::Key_Henkan] = XK_Henkan_Mode;
-        //qtKeyToX11KeySym[Qt::Key_Henkan] = XK_Henkan;
-        qtKeyToVirtualKey[Qt::Key_Romaji] = XK_Romaji;
-        qtKeyToVirtualKey[Qt::Key_Hiragana] = XK_Hiragana;
-        qtKeyToVirtualKey[Qt::Key_Katakana] = XK_Katakana;
-        qtKeyToVirtualKey[Qt::Key_Hiragana_Katakana] = XK_Hiragana_Katakana;
-        qtKeyToVirtualKey[Qt::Key_Zenkaku] = XK_Zenkaku;
-        qtKeyToVirtualKey[Qt::Key_Hankaku] = XK_Hankaku;
-        qtKeyToVirtualKey[Qt::Key_Zenkaku_Hankaku] = XK_Zenkaku_Hankaku;
-        qtKeyToVirtualKey[Qt::Key_Touroku] = XK_Touroku;
+       // qtKeyToVirtualKey[Qt::Key_Kanji] = XK_Kanji;
+        qtKeyToVirtualKey[Qt::Key_Muhenkan] = KEY_MUHENKAN;
+        qtKeyToVirtualKey[Qt::Key_Henkan] = KEY_HENKAN;
+        qtKeyToVirtualKey[Qt::Key_Romaji] = KEY_RO;
+        qtKeyToVirtualKey[Qt::Key_Hiragana] = KEY_HIRAGANA;
+        qtKeyToVirtualKey[Qt::Key_Katakana] = KEY_KATAKANA;
+        qtKeyToVirtualKey[Qt::Key_Hiragana_Katakana] = KEY_KATAKANAHIRAGANA;
+       // qtKeyToVirtualKey[Qt::Key_Zenkaku] = XK_Zenkaku;
+       // qtKeyToVirtualKey[Qt::Key_Hankaku] = XK_Hankaku;
+        qtKeyToVirtualKey[Qt::Key_Zenkaku_Hankaku] = KEY_ZENKAKUHANKAKU;
+       /* qtKeyToVirtualKey[Qt::Key_Touroku] = XK_Touroku;
         qtKeyToVirtualKey[Qt::Key_Massyo] = XK_Massyo;
         qtKeyToVirtualKey[Qt::Key_Kana_Lock] = XK_Kana_Lock;
         qtKeyToVirtualKey[Qt::Key_Kana_Shift] = XK_Kana_Shift;
         qtKeyToVirtualKey[Qt::Key_Eisu_Shift] = XK_Eisu_Shift;
         qtKeyToVirtualKey[Qt::Key_Eisu_toggle] = XK_Eisu_toggle;
         qtKeyToVirtualKey[Qt::Key_Codeinput] = XK_Kanji_Bangou;
-        //qtKeyToX11KeySym[Qt::Key_MultipleCandidate] = XK_Zen_Koho;
-        //qtKeyToX11KeySym[Qt::Key_PreviousCandidate] = XK_Mae_Koho;
+        qtKeyToX11KeySym[Qt::Key_MultipleCandidate] = XK_Zen_Koho;
+        qtKeyToX11KeySym[Qt::Key_PreviousCandidate] = XK_Mae_Koho;*/
 
 #ifdef XK_KOREAN
-        qtKeyToVirtualKey[Qt::Key_Hangul] = XK_Hangul;
-        qtKeyToVirtualKey[Qt::Key_Hangul_Start] = XK_Hangul_Start;
+        qtKeyToVirtualKey[Qt::Key_Hangul] = KEY_HANGEUL;
+       /* qtKeyToVirtualKey[Qt::Key_Hangul_Start] = XK_Hangul_Start;
         qtKeyToVirtualKey[Qt::Key_Hangul_End] = XK_Hangul_End;
-        qtKeyToVirtualKey[Qt::Key_Hangul_Hanja] = XK_Hangul_Hanja;
+        qtKeyToVirtualKey[Qt::Key_Hangul_Hanja] = KEY_HANJA;
         qtKeyToVirtualKey[Qt::Key_Hangul_Jamo] = XK_Hangul_Jamo;
         qtKeyToVirtualKey[Qt::Key_Hangul_Romaja] = XK_Hangul_Romaja;
         //qtKeyToX11KeySym[Qt::Key_Codeinput] = XK_Hangul_Codeinput;
@@ -304,75 +294,11 @@ void QtUInputKeyMapper::populateMappingHashes()
         //qtKeyToX11KeySym[Qt::Key_MultipleCandidate] = XK_Hangul_MultipleCandidate;
         //qtKeyToX11KeySym[Qt::Key_PreviousCandidate] = XK_Hangul_PreviousCandidate;
         qtKeyToVirtualKey[Qt::Key_Hangul_Special] = XK_Hangul_Special;
-        //qtKeyToX11KeySym[Qt::Key_Mode_switch] = XK_Hangul_switch;
+        //qtKeyToX11KeySym[Qt::Key_Mode_switch] = XK_Hangul_switch;*/
 
 #endif // XK_KOREAN
 
-        // dead keys
-        qtKeyToVirtualKey[Qt::Key_Dead_Grave] = XK_dead_grave;
-        qtKeyToVirtualKey[Qt::Key_Dead_Acute] = XK_dead_acute;
-        qtKeyToVirtualKey[Qt::Key_Dead_Circumflex] = XK_dead_circumflex;
-        qtKeyToVirtualKey[Qt::Key_Dead_Tilde] = XK_dead_tilde;
-        qtKeyToVirtualKey[Qt::Key_Dead_Macron] = XK_dead_macron;
-        qtKeyToVirtualKey[Qt::Key_Dead_Breve] = XK_dead_breve;
-        qtKeyToVirtualKey[Qt::Key_Dead_Abovedot] = XK_dead_abovedot;
-        qtKeyToVirtualKey[Qt::Key_Dead_Diaeresis] = XK_dead_diaeresis;
-        qtKeyToVirtualKey[Qt::Key_Dead_Abovering] = XK_dead_abovering;
-        qtKeyToVirtualKey[Qt::Key_Dead_Doubleacute] = XK_dead_doubleacute;
-        qtKeyToVirtualKey[Qt::Key_Dead_Caron] = XK_dead_caron;
-        qtKeyToVirtualKey[Qt::Key_Dead_Cedilla] = XK_dead_cedilla;
-        qtKeyToVirtualKey[Qt::Key_Dead_Ogonek] = XK_dead_ogonek;
-        qtKeyToVirtualKey[Qt::Key_Dead_Iota] = XK_dead_iota;
-        qtKeyToVirtualKey[Qt::Key_Dead_Voiced_Sound] = XK_dead_voiced_sound;
-        qtKeyToVirtualKey[Qt::Key_Dead_Semivoiced_Sound] = XK_dead_semivoiced_sound;
-        qtKeyToVirtualKey[Qt::Key_Dead_Belowdot] = XK_dead_belowdot;
-        qtKeyToVirtualKey[Qt::Key_Dead_Hook] = XK_dead_hook;
-        qtKeyToVirtualKey[Qt::Key_Dead_Horn] = XK_dead_horn;
 
-        // Special multimedia keys
-        // currently only tested with MS internet keyboard
-
-        // browsing keys
-        qtKeyToVirtualKey[Qt::Key_Back] = XF86XK_Back;
-        qtKeyToVirtualKey[Qt::Key_Forward] = XF86XK_Forward;
-        qtKeyToVirtualKey[Qt::Key_Stop] = XF86XK_Stop;
-        qtKeyToVirtualKey[Qt::Key_Refresh] = XF86XK_Refresh;
-        qtKeyToVirtualKey[Qt::Key_Favorites] = XF86XK_Favorites;
-        qtKeyToVirtualKey[Qt::Key_LaunchMedia] = XF86XK_AudioMedia;
-        qtKeyToVirtualKey[Qt::Key_OpenUrl] = XF86XK_OpenURL;
-        qtKeyToVirtualKey[Qt::Key_HomePage] = XF86XK_HomePage;
-        qtKeyToVirtualKey[Qt::Key_Search] = XF86XK_Search;
-
-        // media keys
-        qtKeyToVirtualKey[Qt::Key_VolumeDown] = XF86XK_AudioLowerVolume;
-        qtKeyToVirtualKey[Qt::Key_VolumeMute] = XF86XK_AudioMute;
-        qtKeyToVirtualKey[Qt::Key_VolumeUp] = XF86XK_AudioRaiseVolume;
-        qtKeyToVirtualKey[Qt::Key_MediaPlay] = XF86XK_AudioPlay;
-        qtKeyToVirtualKey[Qt::Key_MediaStop] = XF86XK_AudioStop;
-        qtKeyToVirtualKey[Qt::Key_MediaPrevious] = XF86XK_AudioPrev;
-        qtKeyToVirtualKey[Qt::Key_MediaNext] = XF86XK_AudioNext;
-        qtKeyToVirtualKey[Qt::Key_MediaRecord] = XF86XK_AudioRecord;
-
-        // launch keys
-        qtKeyToVirtualKey[Qt::Key_LaunchMail] = XF86XK_Mail;
-        qtKeyToVirtualKey[Qt::Key_Launch0] = XF86XK_MyComputer;
-        qtKeyToVirtualKey[Qt::Key_Launch1] = XF86XK_Calculator;
-        qtKeyToVirtualKey[Qt::Key_Standby] = XF86XK_Standby;
-
-        qtKeyToVirtualKey[Qt::Key_Launch2] = XF86XK_Launch0;
-        qtKeyToVirtualKey[Qt::Key_Launch3] = XF86XK_Launch1;
-        qtKeyToVirtualKey[Qt::Key_Launch4] = XF86XK_Launch2;
-        qtKeyToVirtualKey[Qt::Key_Launch5] = XF86XK_Launch3;
-        qtKeyToVirtualKey[Qt::Key_Launch6] = XF86XK_Launch4;
-        qtKeyToVirtualKey[Qt::Key_Launch7] = XF86XK_Launch5;
-        qtKeyToVirtualKey[Qt::Key_Launch8] = XF86XK_Launch6;
-        qtKeyToVirtualKey[Qt::Key_Launch9] = XF86XK_Launch7;
-        qtKeyToVirtualKey[Qt::Key_LaunchA] = XF86XK_Launch8;
-        qtKeyToVirtualKey[Qt::Key_LaunchB] = XF86XK_Launch9;
-        qtKeyToVirtualKey[Qt::Key_LaunchC] = XF86XK_LaunchA;
-        qtKeyToVirtualKey[Qt::Key_LaunchD] = XF86XK_LaunchB;
-        qtKeyToVirtualKey[Qt::Key_LaunchE] = XF86XK_LaunchC;
-        qtKeyToVirtualKey[Qt::Key_LaunchF] = XF86XK_LaunchD;*/
 
         // Populate other hash. Flip key and value so mapping
         // goes VK -> Qt Key.
