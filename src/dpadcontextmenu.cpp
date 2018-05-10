@@ -36,7 +36,7 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     getHelper().moveToThread(dpad->thread());
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &DPadContextMenu::aboutToHide, this, &DPadContextMenu::deleteLater);
 }
 
 /**
@@ -57,7 +57,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -65,7 +65,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -73,7 +73,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -81,7 +81,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -89,7 +89,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -97,7 +97,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this,&DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -105,7 +105,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -113,7 +113,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -125,7 +125,7 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(dpad->getJoyMode() == JoyDPad::StandardMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("Eight Way"));
@@ -133,7 +133,7 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::EightWayMode);
     mode = static_cast<int>(JoyDPad::EightWayMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Cardinal"));
@@ -141,7 +141,7 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::FourWayCardinal);
     mode = static_cast<int>(JoyDPad::FourWayCardinal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Diagonal"));
@@ -149,14 +149,14 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::FourWayDiagonal);
     mode = static_cast<int>(JoyDPad::FourWayDiagonal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
     modesGroup->addAction(action);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::openMouseSettingsDialog);
 }
 
 /**

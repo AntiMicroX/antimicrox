@@ -36,9 +36,9 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+    connect(this, &DPadPushButton::customContextMenuRequested, this, &DPadPushButton::showContextMenu);
 
-    connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(refreshLabel()));
+    connect(dpad, &JoyDPad::dpadNameChanged, this, &DPadPushButton::refreshLabel);
 }
 
 JoyDPad* DPadPushButton::getDPad() const
@@ -73,8 +73,8 @@ void DPadPushButton::disableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(dpad, SIGNAL(active(int)), this, SLOT(flash()));
-    disconnect(dpad, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(dpad, &JoyDPad::active, this, &DPadPushButton::flash);
+    disconnect(dpad, &JoyDPad::released, this, &DPadPushButton::unflash);
     this->unflash();
 }
 
@@ -82,8 +82,8 @@ void DPadPushButton::enableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(dpad, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(dpad, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(dpad, &JoyDPad::active, this, &DPadPushButton::flash, Qt::QueuedConnection);
+    connect(dpad, &JoyDPad::released, this, &DPadPushButton::unflash, Qt::QueuedConnection);
 }
 
 void DPadPushButton::showContextMenu(const QPoint &point)

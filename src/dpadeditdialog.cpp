@@ -77,16 +77,16 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     PadderCommon::inputDaemonMutex.unlock();
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
-    connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
-    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
-    connect(ui->dpadNameLineEdit, SIGNAL(textEdited(QString)), dpad, SLOT(setDPadName(QString)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &DPadEditDialog::implementPresets);
+    connect(ui->joyModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &DPadEditDialog::implementModes);
+    connect(ui->mouseSettingsPushButton, &QPushButton::clicked, this, &DPadEditDialog::openMouseSettingsDialog);
+    connect(ui->dpadNameLineEdit, &QLineEdit::textEdited, dpad, &JoyDPad::setDPadName);
 
-    connect(ui->dpadDelaySlider, SIGNAL(valueChanged(int)), &helper, SLOT(updateJoyDPadDelay(int)));
-    connect(dpad, SIGNAL(dpadDelayChanged(int)), this, SLOT(updateDPadDelaySpinBox(int)));
-    connect(ui->dpadDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateDPadDelaySlider(double)));
+    connect(ui->dpadDelaySlider, static_cast<void (QSlider::*)(int)>(&QSlider::valueChanged), &helper, &DPadEditDialogHelper::updateJoyDPadDelay);
+    connect(dpad, &JoyDPad::dpadDelayChanged, this, &DPadEditDialog::updateDPadDelaySpinBox);
+    connect(ui->dpadDelayDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &DPadEditDialog::updateDPadDelaySlider);
 
-    connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(updateWindowTitleDPadName()));
+    connect(dpad, &JoyDPad::dpadNameChanged, this, &DPadEditDialog::updateWindowTitleDPadName);
 }
 
 DPadEditDialog::~DPadEditDialog()
@@ -354,8 +354,8 @@ void DPadEditDialog::openMouseSettingsDialog()
 
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(this->dpad, this);
     dialog->show();
-    connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+    connect(this, &DPadEditDialog::finished, dialog, &MouseDPadSettingsDialog::close);
+    connect(dialog, &MouseDPadSettingsDialog::finished, this, &DPadEditDialog::enableMouseSettingButton);
 }
 
 void DPadEditDialog::enableMouseSettingButton()

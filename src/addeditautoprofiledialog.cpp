@@ -147,20 +147,20 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     ui->winClassLabel->setVisible(false);
 #endif
 
-    connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));
-    connect(ui->applicationPushButton, SIGNAL(clicked()), this, SLOT(openApplicationBrowseDialog()));
-    connect(ui->devicesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForReservedGUIDs(int)));
-    connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
-    connect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
-    connect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    connect(ui->profileBrowsePushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::openProfileBrowseDialog);
+    connect(ui->applicationPushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::openApplicationBrowseDialog);
+    connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AddEditAutoProfileDialog::checkForReservedGUIDs);
+    connect(ui->applicationLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
+    connect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
+    connect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
 
 #if defined(Q_OS_UNIX)
-    connect(ui->detectWinPropsSelectWindowPushButton, SIGNAL(clicked()), this, SLOT(showCaptureHelpWindow()));
+    connect(ui->detectWinPropsSelectWindowPushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::showCaptureHelpWindow);
 #elif defined(Q_OS_WIN)
-    connect(ui->selectWindowPushButton, SIGNAL(clicked()), this, SLOT(openWinAppProfileDialog()));
+    connect(ui->selectWindowPushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::openWinAppProfileDialog);
 #endif
 
-    connect(this, SIGNAL(accepted()), this, SLOT(saveAutoProfileInformation()));
+    connect(this, &QDialog::accepted, this, &AddEditAutoProfileDialog::saveAutoProfileInformation);
 }
 
 AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
@@ -316,13 +316,13 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     QThread *thread = new QThread; // QTHREAD(this)
     util->moveToThread(thread);
 
-    connect(thread, SIGNAL(started()), util, SLOT(attemptWindowCapture()));
-    connect(util, SIGNAL(captureFinished()), thread, SLOT(quit()));
-    connect(util, SIGNAL(captureFinished()), box, SLOT(hide()));
-    connect(util, SIGNAL(captureFinished()), this, SLOT(checkForGrabbedWindow()), Qt::QueuedConnection);
+    connect(thread, &QThread::started, util, &UnixCaptureWindowUtility::attemptWindowCapture);
+    connect(util, &UnixCaptureWindowUtility::captureFinished, thread, &QThread::quit);
+    connect(util, &UnixCaptureWindowUtility::captureFinished, box, &QMessageBox::hide);
+    connect(util, &UnixCaptureWindowUtility::captureFinished, this, &AddEditAutoProfileDialog::checkForGrabbedWindow, Qt::QueuedConnection);
 
-    connect(thread, SIGNAL(finished()), box, SLOT(deleteLater()));
-    connect(util, SIGNAL(destroyed()), thread, SLOT(deleteLater()));
+    connect(thread, &QThread::finished, box, &QMessageBox::deleteLater);
+    connect(util, &UnixCaptureWindowUtility::destroyed, thread, &QThread::deleteLater);
     thread->start();
     }
 
@@ -367,7 +367,7 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
     if (targetWindow != None)
     {
         CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(targetWindow, this);
-        connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
+        connect(dialog, &CapturedWindowInfoDialog::accepted, this, &AddEditAutoProfileDialog::windowPropAssignment);
         dialog->show();
     }
     else if (!escaped)
@@ -398,9 +398,9 @@ void AddEditAutoProfileDialog::windowPropAssignment()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
-    disconnect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
-    disconnect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    disconnect(ui->applicationLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
+    disconnect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
+    disconnect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
 
     CapturedWindowInfoDialog *dialog = qobject_cast<CapturedWindowInfoDialog*>(sender()); // static_cast
     if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowPath)
@@ -441,9 +441,9 @@ void AddEditAutoProfileDialog::windowPropAssignment()
 
     checkForDefaultStatus();
 
-    connect(ui->applicationLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
-    connect(ui->winClassLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
-    connect(ui->winNameLineEdit, SIGNAL(textChanged(QString)), this, SLOT(checkForDefaultStatus()));
+    connect(ui->applicationLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
+    connect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
+    connect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
 }
 
 
@@ -546,7 +546,7 @@ void AddEditAutoProfileDialog::openWinAppProfileDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     WinAppProfileTimerDialog *dialog = new WinAppProfileTimerDialog(this);
-    connect(dialog, SIGNAL(accepted()), this, SLOT(captureWindowsApplicationPath()));
+    connect(dialog, &WinAppProfileTimerDialog::accepted, this, &AddEditAutoProfileDialog::captureWindowsApplicationPath);
     dialog->show();
 }
 
@@ -555,7 +555,7 @@ void AddEditAutoProfileDialog::captureWindowsApplicationPath()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(this);
-    connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
+    connect(dialog, &CapturedWindowInfoDialog::accepted, this, &AddEditAutoProfileDialog::windowPropAssignment);
     dialog->show();
 
 }

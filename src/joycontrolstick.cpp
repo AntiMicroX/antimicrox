@@ -63,7 +63,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2,
 
     directionDelayTimer.setSingleShot(true);
 
-    connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(stickDirectionChangeEvent()));
+    connect(&directionDelayTimer, &QTimer::timeout, this, &JoyControlStick::stickDirectionChangeEvent);
 }
 
 JoyControlStick::~JoyControlStick()
@@ -2985,14 +2985,14 @@ void JoyControlStick::establishPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+    connect(this, &JoyControlStick::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
 }
 
 void JoyControlStick::disconnectPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+    disconnect(this, &JoyControlStick::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
 }
 
 /**

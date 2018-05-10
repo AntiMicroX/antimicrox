@@ -34,8 +34,8 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
 
     setText(QString::number(button->getRealJoyNumber()));
 
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+    connect(button, &JoyButton::clicked, this, &JoyButtonStatusBox::flash);
+    connect(button, &JoyButton::released, this, &JoyButtonStatusBox::unflash);
 }
 
 JoyButton* JoyButtonStatusBox::getJoyButton() const

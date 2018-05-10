@@ -159,12 +159,12 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
         ui->axisDeadZoneComboBox->setCurrentIndex(index);
     }
 
-    connect(device, SIGNAL(destroyed()), this, SLOT(obliterate()));
-    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(saveChanges()));
-    connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(discardMapping(QAbstractButton*)));
-    connect(ui->buttonMappingTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeButtonDisplay()));
-    connect(ui->axisDeadZoneComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeAxisDeadZone(int)));
-    connect(this, SIGNAL(finished(int)), this, SLOT(enableButtonEvents(int)));
+    connect(device, &InputDevice::destroyed, this, &GameControllerMappingDialog::obliterate);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &GameControllerMappingDialog::saveChanges);
+    connect(ui->buttonBox, &QDialogButtonBox::clicked, this, &GameControllerMappingDialog::discardMapping);
+    connect(ui->buttonMappingTableWidget, &QTableWidget::itemSelectionChanged, this, &GameControllerMappingDialog::changeButtonDisplay);
+    connect(ui->axisDeadZoneComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &GameControllerMappingDialog::changeAxisDeadZone);
+    connect(this, &GameControllerMappingDialog::finished, this, &GameControllerMappingDialog::enableButtonEvents);
 
     PadderCommon::unlockInputDevices();
 }
@@ -530,26 +530,26 @@ void GameControllerMappingDialog::enableDeviceConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(device, SIGNAL(rawButtonClick(int)), this, SLOT(buttonAssign(int)));
-    connect(device, SIGNAL(rawButtonRelease(int)), this, SLOT(buttonRelease(int)));
-    connect(device, SIGNAL(rawAxisMoved(int,int)), this, SLOT(updateLastAxisLineEditRaw(int,int)));
-    connect(device, SIGNAL(rawAxisActivated(int,int)), this, SLOT(axisAssign(int,int)));
-    connect(device, SIGNAL(rawAxisReleased(int,int)), this, SLOT(axisRelease(int,int)));
-    connect(device, SIGNAL(rawDPadButtonClick(int,int)), this, SLOT(dpadAssign(int,int)));
-    connect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, SLOT(dpadRelease(int,int)));
+    connect(device, &InputDevice::rawButtonClick, this, &GameControllerMappingDialog::buttonAssign);
+    connect(device, &InputDevice::rawButtonRelease, this, &GameControllerMappingDialog::buttonRelease);
+    connect(device, &InputDevice::rawAxisMoved, this, &GameControllerMappingDialog::updateLastAxisLineEditRaw);
+    connect(device, &InputDevice::rawAxisActivated, this, &GameControllerMappingDialog::axisAssign);
+    connect(device, &InputDevice::rawAxisReleased, this, &GameControllerMappingDialog::axisRelease);
+    connect(device, &InputDevice::rawDPadButtonClick, this, &GameControllerMappingDialog::dpadAssign);
+    connect(device, &InputDevice::rawDPadButtonRelease, this, &GameControllerMappingDialog::dpadRelease);
 }
 
 void GameControllerMappingDialog::disableDeviceConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(device, SIGNAL(rawButtonClick(int)), this, 0);
-    disconnect(device, SIGNAL(rawButtonRelease(int)), this, 0);
-    disconnect(device, SIGNAL(rawAxisMoved(int,int)), this, 0);
-    disconnect(device, SIGNAL(rawAxisActivated(int,int)), this, 0);
-    disconnect(device, SIGNAL(rawAxisReleased(int,int)), this, 0);
-    disconnect(device, SIGNAL(rawDPadButtonClick(int,int)), this, 0);
-    disconnect(device, SIGNAL(rawDPadButtonRelease(int,int)), this, 0);
+    disconnect(device, &InputDevice::rawButtonClick, this, 0);
+    disconnect(device, &InputDevice::rawButtonRelease, this, 0);
+    disconnect(device, &InputDevice::rawAxisMoved, this, 0);
+    disconnect(device, &InputDevice::rawAxisActivated, this, 0);
+    disconnect(device, &InputDevice::rawAxisReleased, this, 0);
+    disconnect(device, &InputDevice::rawDPadButtonClick, this, 0);
+    disconnect(device, &InputDevice::rawDPadButtonRelease, this, 0);
 }
 
 void GameControllerMappingDialog::enableButtonEvents(int code)

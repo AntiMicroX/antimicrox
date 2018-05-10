@@ -1247,14 +1247,14 @@ void JoyAxis::establishPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+    connect(this, &JoyAxis::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
 }
 
 void JoyAxis::disconnectPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+    disconnect(this, &JoyAxis::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
 }
 
 void JoyAxis::setButtonsSpringRelativeStatus(bool value)

@@ -34,7 +34,7 @@ JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
 
     this->button = button;
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &JoyButtonContextMenu::aboutToHide, this, &JoyButtonContextMenu::deleteLater);
 }
 
 void JoyButtonContextMenu::buildMenu()
@@ -48,18 +48,18 @@ void JoyButtonContextMenu::buildMenu()
     action = this->addAction(trUtf8("Toggle"));
     action->setCheckable(true);
     action->setChecked(button->getToggleState());
-    connect(action, SIGNAL(triggered()), this, SLOT(switchToggle()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
 
     action = this->addAction(trUtf8("Turbo"));
     action->setCheckable(true);
     action->setChecked(button->isUsingTurbo());
-    connect(action, SIGNAL(triggered()), this, SLOT(switchToggle()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Clear"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(clearButton()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::clearButton);
 
     this->addSeparator();
 
@@ -71,7 +71,7 @@ void JoyButtonContextMenu::buildMenu()
         action->setCheckable(true);
         action->setChecked(true);
     }
-    connect(action, SIGNAL(triggered()), this, SLOT(disableSetMode()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::disableSetMode);
 
     setSectionMenu->addSeparator();
 
@@ -97,7 +97,7 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, SIGNAL(triggered()), this, SLOT(switchSetMode()));
+        connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchSetMode);
         tempGroup->addAction(action);
 
         action = tempSetMenu->addAction(trUtf8("Set %1 2W").arg(i+1));
@@ -108,7 +108,7 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, SIGNAL(triggered()), this, SLOT(switchSetMode()));
+        connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchSetMode);
         tempGroup->addAction(action);
 
         action = tempSetMenu->addAction(trUtf8("Set %1 WH").arg(i+1));
@@ -119,7 +119,7 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, SIGNAL(triggered()), this, SLOT(switchSetMode()));
+        connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchSetMode);
         tempGroup->addAction(action);
 
         if (i == button->getParentSet()->getIndex())

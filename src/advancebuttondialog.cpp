@@ -196,46 +196,46 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     ui->resetCycleDoubleSpinBox->setMaximum(JoyButton::MAXCYCLERESETTIME * 0.001); // static_cast<double>
 
-    connect(ui->turboCheckbox, SIGNAL(clicked(bool)), ui->turboSlider, SLOT(setEnabled(bool)));
-    connect(ui->turboSlider, SIGNAL(valueChanged(int)), this, SLOT(checkTurboIntervalValue(int)));
+    connect(ui->turboCheckbox, &QCheckBox::clicked, ui->turboSlider, &QSlider::setEnabled);
+    connect(ui->turboSlider, &QSlider::valueChanged, this, &AdvanceButtonDialog::checkTurboIntervalValue);
 
-    connect(ui->insertSlotButton, SIGNAL(clicked()), this, SLOT(insertSlot()));
-    connect(ui->deleteSlotButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
-    connect(ui->clearAllPushButton, SIGNAL(clicked()), this, SLOT(clearAllSlots()));
+    connect(ui->insertSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::insertSlot);
+    connect(ui->deleteSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::deleteSlot);
+    connect(ui->clearAllPushButton, &QPushButton::clicked, this, &AdvanceButtonDialog::clearAllSlots);
 
-    connect(ui->slotTypeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSlotTypeDisplay(int)));
-    connect(ui->slotTypeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeSlotHelpText(int)));
+    connect(ui->slotTypeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::changeSlotTypeDisplay);
+    connect(ui->slotTypeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::changeSlotHelpText);
 
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionHundredthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::updateActionTimeLabel);
+    connect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::updateActionTimeLabel);
+    connect(ui->actionMinutesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::updateActionTimeLabel);
+    connect(ui->actionTenthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::updateActionTimeLabel);
 
-    connect(ui->toggleCheckbox, SIGNAL(clicked(bool)), button, SLOT(setToggle(bool)));
-    connect(ui->turboCheckbox, SIGNAL(clicked(bool)), this, SLOT(checkTurboSetting(bool)));
+    connect(ui->toggleCheckbox, &QCheckBox::clicked, button, &JoyButton::setToggle);
+    connect(ui->turboCheckbox, &QCheckBox::clicked, this, &AdvanceButtonDialog::checkTurboSetting);
 
-    connect(ui->setSelectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateSetSelection()));
+    connect(ui->setSelectionComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::updateSetSelection);
 
-    connect(ui->slotListWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(performStatsWidgetRefresh(QListWidgetItem*)));
+    connect(ui->slotListWidget, &SlotItemListWidget::itemClicked, this, &AdvanceButtonDialog::performStatsWidgetRefresh);
 
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkSlotSetChangeUpdate()));
+    connect(ui->actionHundredthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->actionTenthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->actionMinutesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->slotSetChangeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::checkSlotSetChangeUpdate);
 
-    connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotDistanceUpdate()));
-    connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkSlotMouseModUpdate()));
+    connect(ui->distanceSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &AdvanceButtonDialog::checkSlotDistanceUpdate);
+    connect(ui->mouseSpeedModSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &AdvanceButtonDialog::checkSlotMouseModUpdate);
 
-    connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(checkCycleResetWidgetStatus(bool)));
-    connect(ui->autoResetCycleCheckBox, SIGNAL(clicked(bool)), this, SLOT(setButtonCycleReset(bool)));
-    connect(ui->resetCycleDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setButtonCycleResetInterval(double)));
+    connect(ui->autoResetCycleCheckBox, &QCheckBox::clicked, this, &AdvanceButtonDialog::checkCycleResetWidgetStatus);
+    connect(ui->autoResetCycleCheckBox, &QCheckBox::clicked, this, &AdvanceButtonDialog::setButtonCycleReset);
+    connect(ui->resetCycleDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &AdvanceButtonDialog::setButtonCycleResetInterval);
 
-    connect(button, SIGNAL(toggleChanged(bool)), ui->toggleCheckbox, SLOT(setChecked(bool)));
-    connect(button, SIGNAL(turboChanged(bool)), this, SLOT(checkTurboSetting(bool)));
-    connect(ui->turboModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setButtonTurboMode(int)));
-    connect(ui->loadProfilePushButton, SIGNAL(clicked()), this, SLOT(showSelectProfileWindow()));
-    connect(ui->execToolButton, SIGNAL(clicked(bool)), this, SLOT(showFindExecutableWindow(bool)));
+    connect(button, &JoyButton::toggleChanged, ui->toggleCheckbox, &QCheckBox::setChecked);
+    connect(button, &JoyButton::turboChanged, this, &AdvanceButtonDialog::checkTurboSetting);
+    connect(ui->turboModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AdvanceButtonDialog::setButtonTurboMode);
+    connect(ui->loadProfilePushButton, &QPushButton::clicked, this, &AdvanceButtonDialog::showSelectProfileWindow);
+    connect(ui->execToolButton, &QToolButton::clicked, this, &AdvanceButtonDialog::showFindExecutableWindow);
 }
 
 AdvanceButtonDialog::~AdvanceButtonDialog()
@@ -293,8 +293,8 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(button, SIGNAL(clicked()), this, SLOT(changeSelectedSlot()));
-    connect(button, SIGNAL(buttonCodeChanged(int)), this, SLOT(updateSelectedSlot(int)));
+    connect(button, &SimpleKeyGrabberButton::clicked, this, &AdvanceButtonDialog::changeSelectedSlot);
+    connect(button, &SimpleKeyGrabberButton::buttonCodeChanged, this, &AdvanceButtonDialog::updateSelectedSlot);
 }
 
 void AdvanceButtonDialog::updateSelectedSlot(int value)
@@ -1043,11 +1043,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     {
         ui->slotTypeComboBox->setCurrentIndex(static_cast<int>(DistanceSlot));
 
-        disconnect(ui->distanceSpinBox, SIGNAL(valueChanged(int)),
-                   this, SLOT(checkSlotDistanceUpdate()));
+        disconnect(ui->distanceSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+                   this, &AdvanceButtonDialog::checkSlotDistanceUpdate);
         ui->distanceSpinBox->setValue(slot->getSlotCode());
-        connect(ui->distanceSpinBox, SIGNAL(valueChanged(int)),
-                this, SLOT(checkSlotDistanceUpdate()));
+        connect(ui->distanceSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+                this, &AdvanceButtonDialog::checkSlotDistanceUpdate);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyHold)
     {
@@ -1061,11 +1061,11 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     else if (slot->getSlotMode() == JoyButtonSlot::JoyMouseSpeedMod)
     {
         ui->slotTypeComboBox->setCurrentIndex(static_cast<int>(MouseModSlot));
-        disconnect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)),
-                   this, SLOT(checkSlotMouseModUpdate()));
+        disconnect(ui->mouseSpeedModSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+                   this, &AdvanceButtonDialog::checkSlotMouseModUpdate);
         ui->mouseSpeedModSpinBox->setValue(slot->getSlotCode());
-        connect(ui->mouseSpeedModSpinBox, SIGNAL(valueChanged(int)),
-                this, SLOT(checkSlotMouseModUpdate()));
+        connect(ui->mouseSpeedModSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+                this, &AdvanceButtonDialog::checkSlotMouseModUpdate);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyPause)
     {
@@ -1084,8 +1084,8 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoySetChange)
     {
-        disconnect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)),
-                   this, SLOT(checkSlotSetChangeUpdate()));
+        disconnect(ui->slotSetChangeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+                   this, &AdvanceButtonDialog::checkSlotSetChangeUpdate);
 
         ui->slotTypeComboBox->setCurrentIndex(static_cast<int>(SetChangeSlot));
         int chooseIndex = slot->getSlotCode();
@@ -1096,8 +1096,8 @@ void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
             ui->slotSetChangeComboBox->setCurrentIndex(foundIndex);
         }
 
-        connect(ui->slotSetChangeComboBox, SIGNAL(currentIndexChanged(int)),
-                this, SLOT(checkSlotSetChangeUpdate()));
+        connect(ui->slotSetChangeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+                this, &AdvanceButtonDialog::checkSlotSetChangeUpdate);
     }
     else if (slot->getSlotMode() == JoyButtonSlot::JoyTextEntry)
     {
@@ -1333,46 +1333,46 @@ void AdvanceButtonDialog::disconnectTimeBoxesEvents()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(updateActionTimeLabel()));
-    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(updateActionTimeLabel()));
+    disconnect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::updateActionTimeLabel);
+    disconnect(ui->actionHundredthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::updateActionTimeLabel);
+    disconnect(ui->actionMinutesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::updateActionTimeLabel);
+    disconnect(ui->actionTenthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::updateActionTimeLabel);
 
-    disconnect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(checkSlotTimeUpdate()));
-    disconnect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
-               this, SLOT(checkSlotTimeUpdate()));
+    disconnect(ui->actionHundredthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    disconnect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    disconnect(ui->actionMinutesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    disconnect(ui->actionTenthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+               this, &AdvanceButtonDialog::checkSlotTimeUpdate);
 }
 
 void AdvanceButtonDialog::connectTimeBoxesEvents()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(updateActionTimeLabel()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(updateActionTimeLabel()));
+    connect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::updateActionTimeLabel);
+    connect(ui->actionHundredthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::updateActionTimeLabel);
+    connect(ui->actionMinutesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::updateActionTimeLabel);
+    connect(ui->actionTenthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::updateActionTimeLabel);
 
-    connect(ui->actionHundredthsComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionSecondsComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionMinutesComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(checkSlotTimeUpdate()));
-    connect(ui->actionTenthsComboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(checkSlotTimeUpdate()));
+    connect(ui->actionHundredthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->actionMinutesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::checkSlotTimeUpdate);
+    connect(ui->actionTenthsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &AdvanceButtonDialog::checkSlotTimeUpdate);
 }
 
 void AdvanceButtonDialog::populateSetSelectionComboBox()

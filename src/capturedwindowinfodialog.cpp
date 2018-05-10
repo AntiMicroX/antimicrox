@@ -147,7 +147,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
         button->setEnabled(false);
     }
 
-    connect(this, SIGNAL(accepted()), this, SLOT(populateOption()));
+    connect(this, &CapturedWindowInfoDialog::accepted, this, &CapturedWindowInfoDialog::populateOption);
 }
 
 CapturedWindowInfoDialog::~CapturedWindowInfoDialog()

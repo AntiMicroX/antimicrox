@@ -126,33 +126,35 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     ui->axisNameLineEdit->setText(axis->getAxisName());
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(updateDeadZoneBox(int)));
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setDeadZone(int)));
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), axis, SLOT(setDeadZone(int)));
 
-    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), this, SLOT(updateMaxZoneBox(int)));
-    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setMaxZone(int)));
-    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), axis, SLOT(setMaxZoneValue(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 
-    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(updateThrottleUi(int)));
-    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(presetForThrottleChange(int)));
+    connect(ui->horizontalSlider, &QSlider::valueChanged, this, &AxisEditDialog::updateDeadZoneBox);
+    connect(ui->horizontalSlider, &QSlider::valueChanged, ui->axisstatusBox, &AxisValueBox::setDeadZone);
+    connect(ui->horizontalSlider, &QSlider::valueChanged, axis, &JoyAxis::setDeadZone);
 
-    connect(axis, SIGNAL(moved(int)), ui->axisstatusBox, SLOT(setValue(int)));
-    connect(axis, SIGNAL(moved(int)), this, SLOT(updateJoyValue(int)));
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, &AxisEditDialog::updateMaxZoneBox);
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, ui->axisstatusBox, &AxisValueBox::setMaxZone);
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, axis, &JoyAxis::setMaxZoneValue);
 
-    connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(updateDeadZoneSlider(QString)));
-    connect(ui->lineEdit_2, SIGNAL(textEdited(QString)), this, SLOT(updateMaxZoneSlider(QString)));
+    connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::updateThrottleUi);
+    connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::presetForThrottleChange);
 
-    connect(ui->nPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedNDialog()));
-    connect(ui->pPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedPDialog()));
+    connect(axis, &JoyAxis::moved, ui->axisstatusBox, &AxisValueBox::setValue);
+    connect(axis, &JoyAxis::moved, this, &AxisEditDialog::updateJoyValue);
 
-    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
-    connect(ui->axisNameLineEdit, SIGNAL(textEdited(QString)), axis, SLOT(setAxisName(QString)));
+    connect(ui->lineEdit, &QLineEdit::textEdited, this, &AxisEditDialog::updateDeadZoneSlider);
+    connect(ui->lineEdit_2, &QLineEdit::textEdited, this, &AxisEditDialog::updateMaxZoneSlider);
 
-    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(updateWindowTitleAxisName()));
-    connect(this, SIGNAL(finished(int)), this, SLOT(checkFinalSettings()));
+    connect(ui->nPushButton, &QPushButton::clicked, this, &AxisEditDialog::openAdvancedNDialog);
+    connect(ui->pPushButton, &QPushButton::clicked, this, &AxisEditDialog::openAdvancedPDialog);
+
+    connect(ui->mouseSettingsPushButton, &QPushButton::clicked, this, &AxisEditDialog::openMouseSettingsDialog);
+    connect(ui->axisNameLineEdit, &QLineEdit::textEdited, axis, &JoyAxis::setAxisName);
+
+    connect(axis, &JoyAxis::axisNameChanged, this, &AxisEditDialog::updateWindowTitleAxisName);
+    connect(this, &AxisEditDialog::finished, this, &AxisEditDialog::checkFinalSettings);
 }
 
 AxisEditDialog::~AxisEditDialog()
@@ -367,8 +369,8 @@ void AxisEditDialog::openAdvancedPDialog()
     ButtonEditDialog *dialog = new ButtonEditDialog(axis->getPAxisButton(), axis->getControlStick()->getParentSet()->getInputDevice(),  this);
     dialog->show();
 
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPButtonLabel()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPreset()));
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPButtonLabel);
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPreset);
 }
 
 void AxisEditDialog::openAdvancedNDialog()
@@ -378,8 +380,8 @@ void AxisEditDialog::openAdvancedNDialog()
     ButtonEditDialog *dialog = new ButtonEditDialog(axis->getNAxisButton(), axis->getControlStick()->getParentSet()->getInputDevice(), this);
     dialog->show();
 
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshNButtonLabel()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPreset()));
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshNButtonLabel);
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPreset);
 }
 
 void AxisEditDialog::refreshNButtonLabel()
@@ -575,10 +577,10 @@ void AxisEditDialog::refreshPreset()
 
     // Disconnect event associated with presetsComboBox so a change in the index does not
     // alter the axis buttons
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    disconnect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
     selectAxisCurrentPreset();
     // Reconnect the event
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 }
 
 void AxisEditDialog::openMouseSettingsDialog()
@@ -589,8 +591,8 @@ void AxisEditDialog::openMouseSettingsDialog()
 
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, this);
     dialog->show();
-    connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+    connect(this, &AxisEditDialog::finished, dialog, &MouseAxisSettingsDialog::close);
+    connect(dialog, &MouseAxisSettingsDialog::finished, this, &AxisEditDialog::enableMouseSettingButton);
 }
 
 void AxisEditDialog::enableMouseSettingButton()
@@ -678,7 +680,7 @@ void AxisEditDialog::presetForThrottleChange(int index)
         actAsTrigger = true;
     }
 
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    disconnect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
     if (actAsTrigger)
     {
         buildTriggerPresetsMenu();
@@ -690,5 +692,5 @@ void AxisEditDialog::presetForThrottleChange(int index)
         selectAxisCurrentPreset();
     }
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 }

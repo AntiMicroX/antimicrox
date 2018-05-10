@@ -62,16 +62,16 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     if (graphical)
     {
-        connect(sdlWorkerThread, SIGNAL(started()), eventWorker, SLOT(performWork()));
-        connect(eventWorker, SIGNAL(eventRaised()), this, SLOT(run()));
+        connect(sdlWorkerThread, &QThread::started, eventWorker, &SDLEventReader::performWork);
+        connect(eventWorker, &SDLEventReader::eventRaised, this, &InputDaemon::run);
 
-        connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(int)),
-                eventWorker, SLOT(updatePollRate(int)));
+        connect(JoyButton::getMouseHelper(), &JoyButtonMouseHelper::gamepadRefreshRateUpdated,
+                eventWorker, &SDLEventReader::updatePollRate);
 
-        connect(JoyButton::getMouseHelper(), SIGNAL(gamepadRefreshRateUpdated(int)),
-                this, SLOT(updatePollResetRate(int)));
-        connect(JoyButton::getMouseHelper(), SIGNAL(mouseRefreshRateUpdated(int)),
-                this, SLOT(updatePollResetRate(int)));
+        connect(JoyButton::getMouseHelper(), &JoyButtonMouseHelper::gamepadRefreshRateUpdated,
+                this, &InputDaemon::updatePollResetRate);
+        connect(JoyButton::getMouseHelper(), &JoyButtonMouseHelper::mouseRefreshRateUpdated,
+                this, &InputDaemon::updatePollResetRate);
 
         // Timer in case SDL does not produce an axis event during a joystick
         // poll.
@@ -80,8 +80,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                     qMax(JoyButton::getMouseRefreshRate(),
                          JoyButton::getGamepadRefreshRate()) + 1);
 
-        connect(&pollResetTimer, SIGNAL(timeout()), this,
-                SLOT(resetActiveButtonMouseDistances()));
+        connect(&pollResetTimer, &QTimer::timeout, this,
+                &InputDaemon::resetActiveButtonMouseDistances);
     }
 }
 
@@ -208,7 +208,7 @@ void InputDaemon::refreshJoysticks()
                     if (!disableGameController)
                     {
                         GameController *damncontroller = new GameController(controller, index, settings, this);
-                        connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                        connect(damncontroller, &GameController::requestWait, eventWorker, &SDLEventReader::haltServices);
                         joysticks->insert(tempJoystickID, damncontroller);
                         trackcontrollers.insert(tempJoystickID, damncontroller);
 
@@ -257,7 +257,7 @@ void InputDaemon::refreshJoysticks()
             {
                 SDL_GameController *controller = SDL_GameControllerOpen(i);
                 GameController *damncontroller = new GameController(controller, i, settings, this);
-                connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                connect(damncontroller, &GameController::requestWait, eventWorker, &SDLEventReader::haltServices);
                 SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
                 SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
                 joysticks->insert(joystickID, damncontroller);
@@ -266,7 +266,7 @@ void InputDaemon::refreshJoysticks()
             else
             {
                 Joystick *curJoystick = new Joystick(joystick, i, settings, this);
-                connect(curJoystick, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                connect(curJoystick, &Joystick::requestWait, eventWorker, &SDLEventReader::haltServices);
                 SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
                 joysticks->insert(joystickID, curJoystick);
                 trackjoysticks.insert(joystickID, curJoystick);
@@ -320,7 +320,7 @@ void InputDaemon::refresh()
     Logger::LogInfo("Refreshing joystick list");
 
     QEventLoop q;
-    connect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
+    connect(eventWorker, &SDLEventReader::sdlStarted, &q, &QEventLoop::quit);
     QMetaObject::invokeMethod(eventWorker, "refresh", Qt::BlockingQueuedConnection);
 
     if (eventWorker->isSDLOpen())
@@ -328,13 +328,13 @@ void InputDaemon::refresh()
         q.exec();
     }
 
-    disconnect(eventWorker, SIGNAL(sdlStarted()), &q, SLOT(quit()));
+    disconnect(eventWorker, &SDLEventReader::sdlStarted, &q, &QEventLoop::quit);
 
     pollResetTimer.stop();
 
     // Put in an extra delay before refreshing the joysticks
     QTimer temp;
-    connect(&temp, SIGNAL(timeout()), &q, SLOT(quit()));
+    connect(&temp, &QTimer::timeout, &q, &QEventLoop::quit);
     temp.start(100);
     q.exec();
 
@@ -360,7 +360,7 @@ void InputDaemon::quit()
     stopped = true;
     pollResetTimer.stop();
 
-    disconnect(eventWorker, SIGNAL(eventRaised()), this, 0);
+    disconnect(eventWorker, &SDLEventReader::eventRaised, this, 0);
 
     // Wait for SDL to finish. Let worker destructor close SDL.
     // Let InputDaemon destructor close thread instance.
@@ -418,7 +418,7 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 
                     SDL_GameController *controller = SDL_GameControllerOpen(i);
                     GameController *damncontroller = new GameController(controller, i, settings, this);
-                    connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                    connect(damncontroller, &GameController::requestWait, eventWorker, &SDLEventReader::haltServices);
                     SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
                     joystickID = SDL_JoystickInstanceID(sdlStick);
                     joysticks->insert(joystickID, damncontroller);
@@ -505,7 +505,7 @@ void InputDaemon::addInputDevice(int index)
                 if (!disableGameController)
                 {
                     GameController *damncontroller = new GameController(controller, index, settings, this);
-                    connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                    connect(damncontroller, &GameController::requestWait, eventWorker, &SDLEventReader::haltServices);
                     joysticks->insert(tempJoystickID, damncontroller);
                     trackcontrollers.insert(tempJoystickID, damncontroller);
 
@@ -582,7 +582,7 @@ void InputDaemon::addInputDevice(int index)
                     if (!joysticks->contains(tempJoystickID))
                     {
                         GameController *damncontroller = new GameController(controller, index, settings, this);
-                        connect(damncontroller, SIGNAL(requestWait()), eventWorker, SLOT(haltServices()));
+                        connect(damncontroller, &GameController::requestWait, eventWorker, &SDLEventReader::haltServices);
                         joysticks->insert(tempJoystickID, damncontroller);
                         trackcontrollers.insert(tempJoystickID, damncontroller);
 

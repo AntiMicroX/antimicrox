@@ -47,8 +47,8 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
         ui->profileLineEdit->setText(info->getProfileLocation());
     }
 
-    connect(ui->profileBrowsePushButton, SIGNAL(clicked()), this, SLOT(openProfileBrowseDialog()));
-    connect(this, SIGNAL(accepted()), this, SLOT(saveAutoProfileInformation()));
+    connect(ui->profileBrowsePushButton, &QPushButton::clicked, this, &EditAllDefaultAutoProfileDialog::openProfileBrowseDialog);
+    connect(this, &EditAllDefaultAutoProfileDialog::accepted, this, &EditAllDefaultAutoProfileDialog::saveAutoProfileInformation);
 }
 
 EditAllDefaultAutoProfileDialog::~EditAllDefaultAutoProfileDialog()

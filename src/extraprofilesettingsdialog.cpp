@@ -48,8 +48,8 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
         ui->profileNameLineEdit->setText(device->getProfileName());
     }
 
-    connect(ui->keyPressHorizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeDeviceKeyPress(int)));
-    connect(ui->profileNameLineEdit, SIGNAL(textChanged(QString)), device, SLOT(setProfileName(QString)));
+    connect(ui->keyPressHorizontalSlider, &QSlider::valueChanged, this, &ExtraProfileSettingsDialog::changeDeviceKeyPress);
+    connect(ui->profileNameLineEdit, &QLineEdit::textChanged, device, &InputDevice::setProfileName);
 }
 
 ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog()
