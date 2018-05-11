@@ -122,34 +122,34 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 
     PadderCommon::inputDaemonMutex.unlock();
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
-    connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyControlStickEditDialog::implementPresets);
+    connect(ui->joyModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyControlStickEditDialog::implementModes);
 
-    connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
-    connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
-    connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
-    connect(ui->squareStickSlider, SIGNAL(valueChanged(int)), ui->squareStickSpinBox, SLOT(setValue(int)));
+    connect(ui->deadZoneSlider, &QSlider::valueChanged, ui->deadZoneSpinBox, &QSpinBox::setValue);
+    connect(ui->maxZoneSlider, &QSlider::valueChanged, ui->maxZoneSpinBox, &QSpinBox::setValue);
+    connect(ui->diagonalRangeSlider, &QSlider::valueChanged, ui->diagonalRangeSpinBox, &QSpinBox::setValue);
+    connect(ui->squareStickSlider, &QSlider::valueChanged, ui->squareStickSpinBox, &QSpinBox::setValue);
 
-    connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
-    connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), ui->maxZoneSlider, SLOT(setValue(int)));
-    connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
-    connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
-    connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), ui->squareStickSlider, SLOT(setValue(int)));
-    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), &helper, SLOT(updateControlStickDelay(int)));
+    connect(ui->deadZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->deadZoneSlider, &QSlider::setValue);
+    connect(ui->maxZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->maxZoneSlider, &QSlider::setValue);
+    connect(ui->maxZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &JoyControlStickEditDialog::checkMaxZone);
+    connect(ui->diagonalRangeSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->diagonalRangeSlider, &QSlider::setValue);
+    connect(ui->squareStickSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->squareStickSlider, &QSlider::setValue);
+    connect(ui->stickDelaySlider, &QSlider::valueChanged, &helper, &JoyControlStickEditDialogHelper::updateControlStickDelay);
 
-    connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
-    connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
-    connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeCircleAdjust(int)));
-    connect(stick, SIGNAL(stickDelayChanged(int)), this, SLOT(updateStickDelaySpinBox(int)));
-    connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
+    connect(ui->deadZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), stick, &JoyControlStick::setDeadZone);
+    connect(ui->diagonalRangeSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), stick, &JoyControlStick::setDiagonalRange);
+    connect(ui->squareStickSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &JoyControlStickEditDialog::changeCircleAdjust);
+    connect(stick, &JoyControlStick::stickDelayChanged, this, &JoyControlStickEditDialog::updateStickDelaySpinBox);
+    connect(ui->stickDelayDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &JoyControlStickEditDialog::updateStickDelaySlider);
 
-    connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
-    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
+    connect(stick, &JoyControlStick::moved, this, &JoyControlStickEditDialog::refreshStickStats);
+    connect(ui->mouseSettingsPushButton, &QPushButton::clicked, this, &JoyControlStickEditDialog::openMouseSettingsDialog);
 
-    connect(ui->stickNameLineEdit, SIGNAL(textEdited(QString)), stick, SLOT(setStickName(QString)));
-    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(updateWindowTitleStickName()));
-    connect(ui->modifierPushButton, SIGNAL(clicked()), this, SLOT(openModifierEditDialog()));
-    connect(stick->getModifierButton(), SIGNAL(slotsChanged()), this, SLOT(changeModifierSummary()));
+    connect(ui->stickNameLineEdit, &QLineEdit::textEdited, stick, &JoyControlStick::setStickName);
+    connect(stick, &JoyControlStick::stickNameChanged, this, &JoyControlStickEditDialog::updateWindowTitleStickName);
+    connect(ui->modifierPushButton, &QPushButton::clicked, this, &JoyControlStickEditDialog::openModifierEditDialog);
+    connect(stick->getModifierButton(), &JoyControlStickModifierButton::slotsChanged, this, &JoyControlStickEditDialog::changeModifierSummary);
 }
 
 JoyControlStickEditDialog::~JoyControlStickEditDialog()

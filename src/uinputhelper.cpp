@@ -17,7 +17,7 @@
 
 #include <linux/input.h>
 #include <linux/uinput.h>
-#include <QCoreApplication>
+#include <QApplication>
 
 #include "uinputhelper.h"
 #include "messagehandler.h"
@@ -28,7 +28,7 @@ UInputHelper::UInputHelper(QObject *parent) :
     QObject(parent)
 {
     populateKnownAliases();
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(deleteLater()));
+    connect(qApp, &QApplication::aboutToQuit, this, &UInputHelper::deleteLater);
 }
 
 UInputHelper::~UInputHelper()

@@ -39,7 +39,7 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
     this->stick = stick;
     getHelperLocal().moveToThread(stick->thread());
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &JoyControlStickContextMenu::aboutToHide, this, &JoyControlStickContextMenu::deleteLater);
 }
 
 void JoyControlStickContextMenu::buildMenu()
@@ -56,7 +56,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -64,7 +64,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -72,7 +72,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -80,7 +80,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -88,7 +88,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -96,7 +96,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -104,7 +104,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     presetMode++;
@@ -112,7 +112,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickPreset);
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -124,7 +124,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::StandardMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickMode);
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("Eight Way"));
@@ -132,7 +132,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setChecked(stick->getJoyMode() == JoyControlStick::EightWayMode);
     mode = static_cast<int>(JoyControlStick::EightWayMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickMode);
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Cardinal"));
@@ -140,7 +140,7 @@ void JoyControlStickContextMenu::buildMenu()
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayCardinal);
     mode = static_cast<int>(JoyControlStick::FourWayCardinal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickMode);
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Diagonal"));
@@ -148,14 +148,14 @@ void JoyControlStickContextMenu::buildMenu()
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayDiagonal);
     mode = static_cast<int>(JoyControlStick::FourWayDiagonal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::setStickMode);
     modesGroup->addAction(action);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::openMouseSettingsDialog);
 }
 
 void JoyControlStickContextMenu::setStickMode()

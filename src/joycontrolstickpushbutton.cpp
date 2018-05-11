@@ -35,11 +35,11 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+    connect(this, &JoyControlStickPushButton::customContextMenuRequested, this, &JoyControlStickPushButton::showContextMenu);
 
-    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
-    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(refreshLabel()));
+    connect(stick, &JoyControlStick::active, this, &JoyControlStickPushButton::flash, Qt::QueuedConnection);
+    connect(stick, &JoyControlStick::released, this, &JoyControlStickPushButton::unflash, Qt::QueuedConnection);
+    connect(stick, &JoyControlStick::stickNameChanged, this, &JoyControlStickPushButton::refreshLabel);
 }
 
 JoyControlStick* JoyControlStickPushButton::getStick() const
@@ -78,8 +78,8 @@ void JoyControlStickPushButton::disableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(stick, SIGNAL(active(int, int)), this, SLOT(flash()));
-    disconnect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()));
+    disconnect(stick, &JoyControlStick::active, this, &JoyControlStickPushButton::flash);
+    disconnect(stick, &JoyControlStick::released, this, &JoyControlStickPushButton::unflash);
     this->unflash();
 }
 
@@ -87,8 +87,8 @@ void JoyControlStickPushButton::enableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(stick, SIGNAL(active(int, int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(stick, SIGNAL(released(int, int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(stick, &JoyControlStick::active, this, &JoyControlStickPushButton::flash, Qt::QueuedConnection);
+    connect(stick, &JoyControlStick::released, this, &JoyControlStickPushButton::unflash, Qt::QueuedConnection);
 }
 
 void JoyControlStickPushButton::showContextMenu(const QPoint &point)

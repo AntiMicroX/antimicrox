@@ -34,7 +34,7 @@ MouseHelper::MouseHelper(QObject *parent) :
     pivotPoint[1] = -1;
     mouseTimer.setParent(this);
     mouseTimer.setSingleShot(true);
-    QObject::connect(&mouseTimer, SIGNAL(timeout()), this, SLOT(resetSpringMouseMoving()));
+    QObject::connect(&mouseTimer, &QTimer::timeout, this, &MouseHelper::resetSpringMouseMoving);
 }
 
 void MouseHelper::resetSpringMouseMoving()

@@ -75,12 +75,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
-                    connect(stickbutton, SIGNAL(clicked(int)), this, SLOT(showStickButtonDialog()));
+                    connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
                 }
             }
             else
             {
-                connect(stickbutton, SIGNAL(clicked(int)), this, SLOT(showStickButtonDialog()));
+                connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
             }
 
             if (!stickbutton->getIgnoreEventState())
@@ -99,8 +99,8 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
             JoyAxisButton *naxisbutton = axis->getNAxisButton();
             JoyAxisButton *paxisbutton = axis->getPAxisButton();
 
-            connect(naxisbutton, SIGNAL(clicked(int)), this, SLOT(showAxisButtonDialog()));
-            connect(paxisbutton, SIGNAL(clicked(int)), this, SLOT(showAxisButtonDialog()));
+            connect(naxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
+            connect(paxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
 
             if (!naxisbutton->getIgnoreEventState())
             {
@@ -130,12 +130,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                 {
-                    connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
                 }
             }
             else
             {
-                connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
             }
 
             if (!dpadbutton->getIgnoreEventState())
@@ -163,12 +163,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                     {
-                        connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                        connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
                     }
                 }
                 else
                 {
-                    connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
                 }
 
                 if (!dpadbutton->getIgnoreEventState())
@@ -184,7 +184,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
         JoyButton *button = currentset->getJoyButton(i);
         if ((button != nullptr) && !button->isPartVDPad())
         {
-            connect(button, SIGNAL(clicked(int)), this, SLOT(showButtonDialog()));
+            connect(button, &JoyButton::clicked, this, &QuickSetDialog::showButtonDialog);
             if (!button->getIgnoreEventState())
             {
                 button->setIgnoreEventState(true);
@@ -192,7 +192,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
         }
     }
 
-    connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates()));
+    connect(this, &QuickSetDialog::finished, this, &QuickSetDialog::restoreButtonStates);
 }
 
 
@@ -245,12 +245,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
-                    connect(stickbutton, SIGNAL(clicked(int)), this, SLOT(showStickButtonDialog()));
+                    connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
                 }
             }
             else
             {
-                connect(stickbutton, SIGNAL(clicked(int)), this, SLOT(showStickButtonDialog()));
+                connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
             }
 
             if (!stickbutton->getIgnoreEventState())
@@ -269,8 +269,8 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
             JoyAxisButton *naxisbutton = axis->getNAxisButton();
             JoyAxisButton *paxisbutton = axis->getPAxisButton();
 
-            connect(naxisbutton, SIGNAL(clicked(int)), this, SLOT(showAxisButtonDialog()));
-            connect(paxisbutton, SIGNAL(clicked(int)), this, SLOT(showAxisButtonDialog()));
+            connect(naxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
+            connect(paxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
 
             if (!naxisbutton->getIgnoreEventState())
             {
@@ -300,12 +300,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                 {
-                    connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
                 }
             }
             else
             {
-                connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
             }
 
             if (!dpadbutton->getIgnoreEventState())
@@ -333,12 +333,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                     {
-                        connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                        connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
                     }
                 }
                 else
                 {
-                    connect(dpadbutton, SIGNAL(clicked(int)), this, SLOT(showDPadButtonDialog()));
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
                 }
 
                 if (!dpadbutton->getIgnoreEventState())
@@ -354,7 +354,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
         JoyButton *button = currentset->getJoyButton(i);
         if ((button != nullptr) && !button->isPartVDPad())
         {
-            connect(button, SIGNAL(clicked(int)), this, SLOT(showButtonDialog()));
+            connect(button, &JoyButton::clicked, this, &QuickSetDialog::showButtonDialog);
             if (!button->getIgnoreEventState())
             {
                 button->setIgnoreEventState(true);
@@ -362,7 +362,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
         }
     }
 
-    connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates()));
+    connect(this, &QuickSetDialog::finished, this, &QuickSetDialog::restoreButtonStates);
 
 
 }
@@ -618,7 +618,7 @@ void QuickSetDialog::restoreButtonStates()
                 stickbutton->setIgnoreEventState(false);
             }
 
-            disconnect(stickbutton, SIGNAL(clicked(int)), this, 0);
+            disconnect(stickbutton, &JoyControlStickButton::clicked, this, 0);
         }
     }
 
@@ -638,8 +638,8 @@ void QuickSetDialog::restoreButtonStates()
             {
                 paxisbutton->setIgnoreEventState(false);
             }
-            disconnect(naxisbutton, SIGNAL(clicked(int)), this, 0);
-            disconnect(paxisbutton, SIGNAL(clicked(int)), this, 0);
+            disconnect(naxisbutton, &JoyAxisButton::clicked, this, 0);
+            disconnect(paxisbutton, &JoyAxisButton::clicked, this, 0);
         }
     }
 
@@ -655,7 +655,7 @@ void QuickSetDialog::restoreButtonStates()
             {
                 dpadbutton->setIgnoreEventState(false);
             }
-            disconnect(dpadbutton, SIGNAL(clicked(int)), this, 0);
+            disconnect(dpadbutton, &JoyDPadButton::clicked, this, 0);
         }
     }
 
@@ -673,7 +673,7 @@ void QuickSetDialog::restoreButtonStates()
                 {
                     dpadbutton->setIgnoreEventState(false);
                 }
-                disconnect(dpadbutton, SIGNAL(clicked(int)), this, 0);
+                disconnect(dpadbutton, &JoyDPadButton::clicked, this, 0);
             }
         }
     }
@@ -687,7 +687,7 @@ void QuickSetDialog::restoreButtonStates()
             {
                 button->setIgnoreEventState(false);
             }
-            disconnect(button, SIGNAL(clicked(int)), this, 0);
+            disconnect(button, &JoyButton::clicked, this, 0);
         }
     }
 

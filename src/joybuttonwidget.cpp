@@ -38,9 +38,9 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
-    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
+    connect(this, &JoyButtonWidget::customContextMenuRequested, this, &JoyButtonWidget::showContextMenu);
+    connect(button, &JoyButton::propertyUpdated, this, &JoyButtonWidget::refreshLabel);
+    connect(button, &JoyButton::activeZoneChanged, this, &JoyButtonWidget::refreshLabel);
 }
 
 JoyButton* JoyButtonWidget::getJoyButton() const
@@ -54,8 +54,8 @@ void JoyButtonWidget::disableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    disconnect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(button, &JoyButton::clicked, this, &JoyButtonWidget::flash);
+    disconnect(button, &JoyButton::released, this, &JoyButtonWidget::unflash);
     this->unflash();
 }
 
@@ -63,8 +63,8 @@ void JoyButtonWidget::enableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(button, &JoyButton::clicked, this, &JoyButtonWidget::flash, Qt::QueuedConnection);
+    connect(button, &JoyButton::released, this, &JoyButtonWidget::unflash, Qt::QueuedConnection);
 }
 
 QString JoyButtonWidget::generateLabel()

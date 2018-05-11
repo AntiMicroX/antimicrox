@@ -42,7 +42,7 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
         ui->setNamesTableWidget->setItem(i, 0, new QTableWidgetItem(tempSetName));
     }
 
-    connect(this, SIGNAL(accepted()), this, SLOT(saveSetNameChanges()));
+    connect(this, &SetNamesDialog::accepted, this, &SetNamesDialog::saveSetNameChanges);
 }
 
 SetNamesDialog::~SetNamesDialog()

@@ -61,11 +61,11 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 
     if (stick != nullptr)
     {
-        disconnect(stick, SIGNAL(deadZoneChanged(int)), this, 0);
-        disconnect(stick, SIGNAL(moved(int,int)), this, 0);
-        disconnect(stick, SIGNAL(diagonalRangeChanged(int)), this, 0);
-        disconnect(stick, SIGNAL(maxZoneChanged(int)), this, 0);
-        disconnect(stick, SIGNAL(joyModeChanged()), this, 0);
+        disconnect(stick, &JoyControlStick::deadZoneChanged, this, 0);
+        disconnect(stick, &JoyControlStick::moved, this, 0);
+        disconnect(stick, &JoyControlStick::diagonalRangeChanged, this, 0);
+        disconnect(stick, &JoyControlStick::maxZoneChanged, this, 0);
+        disconnect(stick, &JoyControlStick::joyModeChanged, this, 0);
     }
 
     this->stick = stick;

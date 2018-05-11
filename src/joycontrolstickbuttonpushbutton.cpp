@@ -40,11 +40,11 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
-    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
-    connect(button->getStick()->getModifierButton(), SIGNAL(activeZoneChanged()),
-            this, SLOT(refreshLabel()));
+    connect(this, &JoyControlStickButtonPushButton::customContextMenuRequested, this, &JoyControlStickButtonPushButton::showContextMenu);
+    connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button->getStick()->getModifierButton(), &JoyControlStickModifierButton::activeZoneChanged,
+            this, &JoyControlStickButtonPushButton::refreshLabel);
 }
 
 JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
@@ -61,16 +61,16 @@ void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
     disableFlashes();
     if (this->button != nullptr)
     {
-        disconnect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-        disconnect(this->button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
+        disconnect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
+        disconnect(this->button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel);
     }
 
     this->button = button;
     refreshLabel();
     enableFlashes();
 
-    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
+    connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel, Qt::QueuedConnection);
 }
 
 
@@ -80,8 +80,8 @@ void JoyControlStickButtonPushButton::disableFlashes()
 
     if (button != nullptr)
     {
-        disconnect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-        disconnect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+        disconnect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash);
+        disconnect(button, &JoyControlStickButton::released, this, &JoyControlStickButtonPushButton::unflash);
     }
     this->unflash();
 }
@@ -92,8 +92,8 @@ void JoyControlStickButtonPushButton::enableFlashes()
 
     if (button != nullptr)
     {
-        connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-        connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+        connect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash, Qt::QueuedConnection);
+        connect(button, &JoyControlStickButton::released, this, &JoyControlStickButtonPushButton::unflash, Qt::QueuedConnection);
     }
 }
 

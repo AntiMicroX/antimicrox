@@ -183,6 +183,10 @@ public slots:
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
+    virtual void buttonClickEvent(int buttonindex);
+    virtual void buttonReleaseEvent(int buttonindex);
+    virtual void dpadButtonClickEvent(int buttonindex);
+    virtual void dpadButtonReleaseEvent(int buttonindex);
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
@@ -194,14 +198,10 @@ protected slots:
     void buttonUpEvent(int setindex, int buttonindex);
     virtual void axisActivatedEvent(int setindex, int axisindex, int value);
     virtual void axisReleasedEvent(int setindex, int axisindex, int value);
-    virtual void buttonClickEvent(int buttonindex);
-    virtual void buttonReleaseEvent(int buttonindex);
     virtual void axisButtonDownEvent(int setindex, int axisindex, int buttonindex);
     virtual void axisButtonUpEvent(int setindex, int axisindex, int buttonindex);
     virtual void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex);
     virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);
-    virtual void dpadButtonClickEvent(int buttonindex);
-    virtual void dpadButtonReleaseEvent(int buttonindex);
     virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex);
     virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);
 

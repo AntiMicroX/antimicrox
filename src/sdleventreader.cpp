@@ -51,7 +51,7 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
 
     initSDL();
 
-    connect(&pollRateTimer, SIGNAL(timeout()), this, SLOT(performWork()));
+    connect(&pollRateTimer, &QTimer::timeout, this, &SDLEventReader::performWork);
 }
 
 SDLEventReader::~SDLEventReader()

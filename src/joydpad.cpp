@@ -51,7 +51,7 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
     pendingIgnoreSets = false;
 
     directionDelayTimer.setSingleShot(true);
-    connect(&directionDelayTimer, SIGNAL(timeout()), this, SLOT(dpadDirectionChangeEvent()));
+    connect(&directionDelayTimer, &QTimer::timeout, this, &JoyDPad::dpadDirectionChangeEvent);
 }
 
 JoyDPad::~JoyDPad()
@@ -814,14 +814,14 @@ void JoyDPad::establishPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+    connect(this, &JoyDPad::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
 }
 
 void JoyDPad::disconnectPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(this, SIGNAL(propertyUpdated()), getParentSet()->getInputDevice(), SLOT(profileEdited()));
+    disconnect(this, &JoyDPad::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
 }
 
 bool JoyDPad::hasSlotsAssigned()

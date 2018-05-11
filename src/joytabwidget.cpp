@@ -309,7 +309,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     QMenu *setMenu = new QMenu(setsMenuButton);
     copySetMenu = new QMenu(trUtf8("Copy from Set"), setMenu);
     QAction *setSettingsAction = new QAction(trUtf8("Settings"), setMenu);
-    connect(setSettingsAction, SIGNAL(triggered()), this, SLOT(showSetNamesDialog()));
+    connect(setSettingsAction, &QAction::triggered, this, &JoyTabWidget::showSetNamesDialog);
     setMenu->addAction(setSettingsAction);
     setMenu->addMenu(copySetMenu);
     setMenu->addSeparator();
@@ -317,35 +317,35 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     refreshCopySetActions();
 
     setAction1 = new QAction(trUtf8("Set 1"), setMenu);
-    connect(setAction1, SIGNAL(triggered()), this, SLOT(changeSetOne()));
+    connect(setAction1, &QAction::triggered, this, &JoyTabWidget::changeSetOne);
     setMenu->addAction(setAction1);
 
     setAction2 = new QAction(trUtf8("Set 2"), setMenu);
-    connect(setAction2, SIGNAL(triggered()), this, SLOT(changeSetTwo()));
+    connect(setAction2, &QAction::triggered, this, &JoyTabWidget::changeSetTwo);
     setMenu->addAction(setAction2);
 
     setAction3 = new QAction(trUtf8("Set 3"), setMenu);
-    connect(setAction3, SIGNAL(triggered()), this, SLOT(changeSetThree()));
+    connect(setAction3, &QAction::triggered, this, &JoyTabWidget::changeSetThree);
     setMenu->addAction(setAction3);
 
     setAction4 = new QAction(trUtf8("Set 4"), setMenu);
-    connect(setAction4, SIGNAL(triggered()), this, SLOT(changeSetFour()));
+    connect(setAction4, &QAction::triggered, this, &JoyTabWidget::changeSetFour);
     setMenu->addAction(setAction4);
 
     setAction5 = new QAction(trUtf8("Set 5"), setMenu);
-    connect(setAction5, SIGNAL(triggered()), this, SLOT(changeSetFive()));
+    connect(setAction5, &QAction::triggered, this, &JoyTabWidget::changeSetFive);
     setMenu->addAction(setAction5);
 
     setAction6 = new QAction(trUtf8("Set 6"), setMenu);
-    connect(setAction6, SIGNAL(triggered()), this, SLOT(changeSetSix()));
+    connect(setAction6, &QAction::triggered, this, &JoyTabWidget::changeSetSix);
     setMenu->addAction(setAction6);
 
     setAction7 = new QAction(trUtf8("Set 7"), setMenu);
-    connect(setAction7, SIGNAL(triggered()), this, SLOT(changeSetSeven()));
+    connect(setAction7, &QAction::triggered, this, &JoyTabWidget::changeSetSeven);
     setMenu->addAction(setAction7);
 
     setAction8 = new QAction(trUtf8("Set 8"), setMenu);
-    connect(setAction8, SIGNAL(triggered()), this, SLOT(changeSetEight()));
+    connect(setAction8, &QAction::triggered, this, &JoyTabWidget::changeSetEight);
     setMenu->addAction(setAction8);
 
     setsMenuButton->setMenu(setMenu);
@@ -468,32 +468,32 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     checkHideEmptyOption();
 
-    connect(loadButton, SIGNAL(clicked()), this, SLOT(openConfigFileDialog()));
-    connect(saveButton, SIGNAL(clicked()), this, SLOT(saveConfigFile()));
-    connect(resetButton, SIGNAL(clicked()), this, SLOT(resetJoystick()));
-    connect(namesPushButton, SIGNAL(clicked()), this, SLOT(toggleNames()));
+    connect(loadButton, &QPushButton::clicked, this, &JoyTabWidget::openConfigFileDialog);
+    connect(saveButton, &QPushButton::clicked, this, &JoyTabWidget::saveConfigFile);
+    connect(resetButton, &QPushButton::clicked, this, &JoyTabWidget::resetJoystick);
+    connect(namesPushButton, &QPushButton::clicked, this, &JoyTabWidget::toggleNames);
 
-    connect(saveAsButton, SIGNAL(clicked()), this, SLOT(saveAsConfig()));
-    connect(delayButton, SIGNAL(clicked()), this, SLOT(showKeyDelayDialog()));
-    connect(removeButton, SIGNAL(clicked()), this, SLOT(removeConfig()));
-    connect(setPushButton1, SIGNAL(clicked()), this, SLOT(changeSetOne()));
-    connect(setPushButton2, SIGNAL(clicked()), this, SLOT(changeSetTwo()));
-    connect(setPushButton3, SIGNAL(clicked()), this, SLOT(changeSetThree()));
-    connect(setPushButton4, SIGNAL(clicked()), this, SLOT(changeSetFour()));
-    connect(setPushButton5, SIGNAL(clicked()), this, SLOT(changeSetFive()));
-    connect(setPushButton6, SIGNAL(clicked()), this, SLOT(changeSetSix()));
-    connect(setPushButton7, SIGNAL(clicked()), this, SLOT(changeSetSeven()));
-    connect(setPushButton8, SIGNAL(clicked()), this, SLOT(changeSetEight()));
+    connect(saveAsButton, &QPushButton::clicked, this, &JoyTabWidget::saveAsConfig);
+    connect(delayButton, &QPushButton::clicked, this, &JoyTabWidget::showKeyDelayDialog);
+    connect(removeButton, &QPushButton::clicked, this, &JoyTabWidget::removeConfig);
+    connect(setPushButton1, &QPushButton::clicked, this, &JoyTabWidget::changeSetOne);
+    connect(setPushButton2, &QPushButton::clicked, this, &JoyTabWidget::changeSetTwo);
+    connect(setPushButton3, &QPushButton::clicked, this, &JoyTabWidget::changeSetThree);
+    connect(setPushButton4, &QPushButton::clicked, this, &JoyTabWidget::changeSetFour);
+    connect(setPushButton5, &QPushButton::clicked, this, &JoyTabWidget::changeSetFive);
+    connect(setPushButton6, &QPushButton::clicked, this, &JoyTabWidget::changeSetSix);
+    connect(setPushButton7, &QPushButton::clicked, this, &JoyTabWidget::changeSetSeven);
+    connect(setPushButton8, &QPushButton::clicked, this, &JoyTabWidget::changeSetEight);
 
-    connect(stickAssignPushButton, SIGNAL(clicked()), this, SLOT(showStickAssignmentDialog()));
-    connect(gameControllerMappingPushButton, SIGNAL(clicked()), this, SLOT(openGameControllerMappingWindow()));
+    connect(stickAssignPushButton, &QPushButton::clicked, this, &JoyTabWidget::showStickAssignmentDialog);
+    connect(gameControllerMappingPushButton, &QPushButton::clicked, this, &JoyTabWidget::openGameControllerMappingWindow);
 
-    connect(quickSetPushButton, SIGNAL(clicked()), this, SLOT(showQuickSetDialog()));
-    connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshSetButtons()));
-    connect(this, SIGNAL(joystickConfigChanged(int)), this, SLOT(refreshCopySetActions()));
-    connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
+    connect(quickSetPushButton, &QPushButton::clicked, this, &JoyTabWidget::showQuickSetDialog);
+    connect(this, &JoyTabWidget::joystickConfigChanged, this, &JoyTabWidget::refreshSetButtons);
+    connect(this, &JoyTabWidget::joystickConfigChanged, this, &JoyTabWidget::refreshCopySetActions);
+    connect(joystick, &InputDevice::profileUpdated, this, &JoyTabWidget::displayProfileEditNotification);
 
-    connect(joystick, SIGNAL(requestProfileLoad(QString)), this, SLOT(loadConfigFile(QString)), Qt::QueuedConnection);
+    connect(joystick, &InputDevice::requestProfileLoad, this, &JoyTabWidget::loadConfigFile, Qt::QueuedConnection);
 
     reconnectCheckUnsavedEvent();
     reconnectMainComboBoxEvents();
@@ -567,7 +567,7 @@ void JoyTabWidget::fillButtons()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joystick->establishPropertyUpdatedConnection();
-    connect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)), Qt::QueuedConnection);
+    connect(joystick, &InputDevice::setChangeActivated, this, &JoyTabWidget::changeCurrentSet, Qt::QueuedConnection);
 
     for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
     {
@@ -882,7 +882,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
+    disconnect(joystick, &InputDevice::profileUpdated, this, &JoyTabWidget::displayProfileEditNotification);
 
     QString filename = QString();
     if (index > 0)
@@ -950,7 +950,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
     comboBoxIndex = index;
 
-    connect(joystick, SIGNAL(profileUpdated()), this, SLOT(displayProfileEditNotification()));
+    connect(joystick, &InputDevice::profileUpdated, this, &JoyTabWidget::displayProfileEditNotification);
 }
 
 void JoyTabWidget::saveSettings()
@@ -1089,7 +1089,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
+    disconnect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::changeJoyConfig);
 
     settings->getLock()->lock();
 
@@ -1151,7 +1151,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         }
     }
 
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
+    connect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::changeJoyConfig, Qt::QueuedConnection);
 
     QString lastfile = QString();
 
@@ -1350,7 +1350,7 @@ void JoyTabWidget::showStickAssignmentDialog()
 
     Joystick *temp = qobject_cast<Joystick*>(joystick);  // static_cast
     AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(temp, this);
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
+    connect(dialog, &AdvanceStickAssignmentDialog::finished, this, &JoyTabWidget::refreshButtons);
     dialog->show();
 }
 
@@ -1399,11 +1399,11 @@ void JoyTabWidget::showQuickSetDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
    // QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
-   // connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
+   // connect(dialog, &QuickSetDialog::finished, this, &JoyTabWidget::refreshButtons);
    // dialog->show();
 
     ButtonEditDialog *dialog = new ButtonEditDialog(joystick, this);
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshButtons()));
+    connect(dialog, &ButtonEditDialog::finished, this, &JoyTabWidget::refreshButtons);
     dialog->show();
 }
 
@@ -1420,8 +1420,8 @@ void JoyTabWidget::showSetNamesDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetNamesDialog *dialog = new SetNamesDialog(joystick, this);
-    connect(dialog, SIGNAL(accepted()), this, SLOT(refreshSetButtons()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(refreshCopySetActions()));
+    connect(dialog, &SetNamesDialog::accepted, this, &JoyTabWidget::refreshSetButtons);
+    connect(dialog, &SetNamesDialog::accepted, this, &JoyTabWidget::refreshCopySetActions);
     dialog->show();
 }
 
@@ -1430,7 +1430,7 @@ void JoyTabWidget::removeCurrentButtons()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joystick->disconnectPropertyUpdatedConnection();
-    disconnect(joystick, SIGNAL(setChangeActivated(int)), this, SLOT(changeCurrentSet(int)));
+    disconnect(joystick, &InputDevice::setChangeActivated, this, &JoyTabWidget::changeCurrentSet);
 
     for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
     {
@@ -1767,32 +1767,32 @@ void JoyTabWidget::disconnectMainComboBoxEvents()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)));
-    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()));
-    disconnect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
+    disconnect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::changeJoyConfig);
+    disconnect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::removeProfileEditNotification);
+    disconnect(joystick, &InputDevice::profileNameEdited, this, &JoyTabWidget::editCurrentProfileItemText);
 }
 
 void JoyTabWidget::reconnectMainComboBoxEvents()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeJoyConfig(int)), Qt::QueuedConnection);
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(removeProfileEditNotification()), Qt::QueuedConnection);
-    connect(joystick, SIGNAL(profileNameEdited(QString)), this, SLOT(editCurrentProfileItemText(QString)));
+    connect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::changeJoyConfig, Qt::QueuedConnection);
+    connect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::removeProfileEditNotification, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::profileNameEdited, this, &JoyTabWidget::editCurrentProfileItemText);
 }
 
 void JoyTabWidget::disconnectCheckUnsavedEvent()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
+    disconnect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::checkForUnsavedProfile);
 }
 
 void JoyTabWidget::reconnectCheckUnsavedEvent()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(configBox, SIGNAL(currentIndexChanged(int)), this, SLOT(checkForUnsavedProfile(int)));
+    connect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyTabWidget::checkForUnsavedProfile);
 }
 
 void JoyTabWidget::refreshButtons()
@@ -2014,10 +2014,10 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             StickPushButtonGroup *stickButtonGroup = new StickPushButtonGroup(stick, displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
-                connect(stickButtonGroup, SIGNAL(buttonSlotChanged()), this, SLOT(checkStickEmptyDisplay()));
+                connect(stickButtonGroup, &StickPushButtonGroup::buttonSlotChanged, this, &JoyTabWidget::checkStickEmptyDisplay);
             }
 
-            connect(namesPushButton, SIGNAL(clicked()), stickButtonGroup, SLOT(toggleNameDisplay()));
+            connect(namesPushButton, &QPushButton::clicked, stickButtonGroup, &StickPushButtonGroup::toggleNameDisplay);
 
             if (stickGridColumn > 1)
             {
@@ -2036,7 +2036,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             {
                 JoyControlStickButton *button = tempiter.next().value();
                 button->establishPropertyUpdatedConnections();
-                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickDisplay()));
+                connect(button, &JoyControlStickButton::slotsChanged, this, &JoyTabWidget::checkStickDisplay);
             }
         }
     }
@@ -2082,10 +2082,10 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(dpad, displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
-                connect(dpadButtonGroup, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                connect(dpadButtonGroup, &DPadPushButtonGroup::buttonSlotChanged, this, &JoyTabWidget::checkDPadButtonEmptyDisplay);
             }
 
-            connect(namesPushButton, SIGNAL(clicked()), dpadButtonGroup, SLOT(toggleNameDisplay()));
+            connect(namesPushButton, &QPushButton::clicked, dpadButtonGroup, &DPadPushButtonGroup::toggleNameDisplay);
 
             if (hatGridColumn > 1)
             {
@@ -2104,7 +2104,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             {
                 JoyDPadButton *button = tempiter.next().value();
                 button->establishPropertyUpdatedConnections();
-                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
+                connect(button, &JoyDPadButton::slotsChanged, this, &JoyTabWidget::checkDPadButtonDisplay);
             }
         }
     }
@@ -2133,10 +2133,10 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(vdpad, displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
-                connect(dpadButtonGroup, SIGNAL(buttonSlotChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+                connect(dpadButtonGroup, &DPadPushButtonGroup::buttonSlotChanged, this, &JoyTabWidget::checkDPadButtonEmptyDisplay);
             }
 
-            connect(namesPushButton, SIGNAL(clicked()), dpadButtonGroup, SLOT(toggleNameDisplay()));
+            connect(namesPushButton, &QPushButton::clicked, dpadButtonGroup, &DPadPushButtonGroup::toggleNameDisplay);
 
             if (hatGridColumn > 1)
             {
@@ -2156,7 +2156,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             {
                 JoyDPadButton *button = tempiter.next().value();
                 button->establishPropertyUpdatedConnections();
-                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
+                connect(button, &JoyDPadButton::slotsChanged, this, &JoyTabWidget::checkDPadButtonDisplay);
             }
         }
     }
@@ -2192,12 +2192,12 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 axisWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
                 axisWidget->setMinimumSize(200, 24);
 
-                connect(axisWidget, SIGNAL(clicked()), this, SLOT(showAxisDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), axisWidget, SLOT(toggleNameDisplay()));
+                connect(axisWidget, &JoyAxisWidget::clicked, this, &JoyTabWidget::showAxisDialog);
+                connect(namesPushButton, &QPushButton::clicked, axisWidget, &JoyAxisWidget::toggleNameDisplay);
                 if (hideEmptyButtons)
                 {
-                    connect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
-                    connect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
+                    connect(paxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonEmptyDisplay);
+                    connect(naxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonEmptyDisplay);
                 }
 
                 if (column > 1)
@@ -2213,8 +2213,8 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 paxisbutton->establishPropertyUpdatedConnections();
                 naxisbutton->establishPropertyUpdatedConnections();
 
-                connect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
-                connect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
+                connect(paxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonDisplay);
+                connect(naxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonDisplay);
             }
         }
     }
@@ -2233,11 +2233,11 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
                 buttonWidget->setText(buttonWidget->text());
                 buttonWidget->setMinimumSize(200, 24);
 
-                connect(buttonWidget, SIGNAL(clicked()), this, SLOT(showButtonDialog()));
-                connect(namesPushButton, SIGNAL(clicked()), buttonWidget, SLOT(toggleNameDisplay()));
+                connect(buttonWidget, &JoyButtonWidget::clicked, this, &JoyTabWidget::showButtonDialog);
+                connect(namesPushButton, &QPushButton::clicked, buttonWidget, &JoyButtonWidget::toggleNameDisplay);
                 if (hideEmptyButtons)
                 {
-                    connect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonEmptyDisplay()));
+                    connect(button, &JoyButton::slotsChanged, this, &JoyTabWidget::checkButtonEmptyDisplay);
                 }
 
                 if (column > 1)
@@ -2252,7 +2252,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             else
             {
                 button->establishPropertyUpdatedConnections();
-                connect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonDisplay()));
+                connect(button, &JoyButton::slotsChanged, this, &JoyTabWidget::checkButtonDisplay);
             }
         }
     }
@@ -2336,8 +2336,8 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
         {
             JoyControlStickButton *button = tempiter.next().value();
             button->disconnectPropertyUpdatedConnections();
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickDisplay()));
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkStickEmptyDisplay()));
+            disconnect(button, &JoyControlStickButton::slotsChanged, this, &JoyTabWidget::checkStickDisplay);
+            disconnect(button, &JoyControlStickButton::slotsChanged, this, &JoyTabWidget::checkStickEmptyDisplay);
         }
     }
 
@@ -2352,8 +2352,8 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
         {
             JoyDPadButton *button = tempiter.next().value();
             button->disconnectPropertyUpdatedConnections();
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+            disconnect(button, &JoyDPadButton::slotsChanged, this, &JoyTabWidget::checkDPadButtonDisplay);
+            disconnect(button, &JoyDPadButton::slotsChanged, this, &JoyTabWidget::checkDPadButtonEmptyDisplay);
         }
     }
 
@@ -2368,8 +2368,8 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
         {
             JoyDPadButton *button = tempiter.next().value();
             button->disconnectPropertyUpdatedConnections();
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonDisplay()));
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkDPadButtonEmptyDisplay()));
+            disconnect(button, &JoyDPadButton::slotsChanged, this, &JoyTabWidget::checkDPadButtonDisplay);
+            disconnect(button, &JoyDPadButton::slotsChanged, this, &JoyTabWidget::checkDPadButtonEmptyDisplay);
         }
     }
 
@@ -2385,10 +2385,10 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
             paxisbutton->disconnectPropertyUpdatedConnections();
             naxisbutton->disconnectPropertyUpdatedConnections();
 
-            disconnect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
-            disconnect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonDisplay()));
-            disconnect(paxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
-            disconnect(naxisbutton, SIGNAL(slotsChanged()), this, SLOT(checkAxisButtonEmptyDisplay()));
+            disconnect(paxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonDisplay);
+            disconnect(naxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonDisplay);
+            disconnect(paxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonEmptyDisplay);
+            disconnect(naxisbutton, &JoyAxisButton::slotsChanged, this, &JoyTabWidget::checkAxisButtonEmptyDisplay);
         }
     }
 
@@ -2398,8 +2398,8 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
         if ((button != nullptr) && !button->isPartVDPad())
         {
             button->disconnectPropertyUpdatedConnections();
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonDisplay()));
-            disconnect(button, SIGNAL(slotsChanged()), this, SLOT(checkButtonEmptyDisplay()));
+            disconnect(button, &JoyButton::slotsChanged, this, &JoyTabWidget::checkButtonDisplay);
+            disconnect(button, &JoyButton::slotsChanged, this, &JoyTabWidget::checkButtonEmptyDisplay);
         }
     }
 }
@@ -2465,11 +2465,11 @@ void JoyTabWidget::refreshCopySetActions()
         }
 
         newaction->setData(i);
-        connect(newaction, SIGNAL(triggered()), this, SLOT(performSetCopy()));
+        connect(newaction, &QAction::triggered, this, &JoyTabWidget::performSetCopy);
         copySetMenu->addAction(newaction);
     }
 
-    connect(copySetMenu, SIGNAL(aboutToShow()), this, SLOT(disableCopyCurrentSet()));
+    connect(copySetMenu, &QMenu::aboutToShow, this, &JoyTabWidget::disableCopyCurrentSet);
 }
 
 void JoyTabWidget::performSetCopy()
@@ -2544,7 +2544,7 @@ void JoyTabWidget::openGameControllerMappingWindow()
 
     GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
     dialog->show();
-    connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+    connect(dialog, &GameControllerMappingDialog::mappingUpdate, this, &JoyTabWidget::propogateMappingUpdate);
 }
 
 void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device)

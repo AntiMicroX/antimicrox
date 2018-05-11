@@ -38,8 +38,8 @@ SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent) :
     currentText = currentText.arg(QString::number(axis->getRealJoyIndex()));
     ui->label->setText(currentText);
 
-    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(propogateThrottleChange()));
-    connect(this, SIGNAL(initiateSetAxisThrottleChange()), axis, SLOT(propogateThrottleChange()));
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SetAxisThrottleDialog::propogateThrottleChange);
+    connect(this, &SetAxisThrottleDialog::initiateSetAxisThrottleChange, axis, &JoyAxis::propogateThrottleChange);
 }
 
 SetAxisThrottleDialog::~SetAxisThrottleDialog()
