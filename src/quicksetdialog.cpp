@@ -492,9 +492,22 @@ void QuickSetDialog::showStickButtonDialog()
 
     lastButton = qobject_cast<JoyControlStickButton*>(sender());
 
+    // sometimes appears situation, when we want to map an axis of stick,
+    // it's detected some state between pressing stick button and moving axis.
+    // It chooses a function for pressing a stick, but later appears problem,
+    // because correct and prepared value is from the axis one, so static_cast
+    // for stick button is failing
+    // if lastButton is still null pointer, check, if correct value comes from axis
+    if (lastButton == nullptr) lastButton = qobject_cast<JoyAxisButton*>(sender());
+
     if (helper == nullptr) {
         helper = new ButtonEditDialogHelper();
     }
+
+    // however when it's still a problem
+    // skip it and try again soon
+    // should be ok then
+    if (lastButton != nullptr) {
 
     helper->setThisButton(lastButton);
 
@@ -538,6 +551,7 @@ void QuickSetDialog::showStickButtonDialog()
 
     }
 
+    }
 
     this->close();
 }

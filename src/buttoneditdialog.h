@@ -55,6 +55,7 @@ private:
     Ui::ButtonEditDialog *ui;
     ButtonEditDialogHelper& getHelperLocal();
 
+    QTime buttonEventInterval;
     InputDevice *joystick;
     QuickSetDialog *currentQuickDialog;
     bool ignoreRelease;
