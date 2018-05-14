@@ -295,8 +295,8 @@ int main(int argc, char *argv[])
         }
 
         w.removeJoyTabs();
-        QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
-        QTimer::singleShot(50, &antimicro, SLOT(quit()));
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::quit);
+        QTimer::singleShot(50, &antimicro, &QApplication::quit);
 
         int result = antimicro.exec();
 
@@ -598,17 +598,17 @@ int main(int argc, char *argv[])
 
         MainWindow *w = new MainWindow(joysticks, &cmdutility, settings);
 
-        QObject::connect(&antimicro, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
-        QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
-        QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker,
-                         SLOT(deleteJoysticks()), Qt::BlockingQueuedConnection);
-        QObject::connect(&antimicro, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj,
-                         SLOT(deleteDeskWid()), Qt::DirectConnection);
-        QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()),
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, w, &MainWindow::removeJoyTabs);
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::quit);
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker,
+                         &InputDaemon::deleteJoysticks, Qt::BlockingQueuedConnection);
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj,
+                         &MouseHelper::deleteDeskWid, Qt::DirectConnection);
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::deleteLater,
                          Qt::BlockingQueuedConnection);
 
         w->makeJoystickTabs();
-        QTimer::singleShot(0, w, SLOT(controllerMapOpening()));
+        QTimer::singleShot(0, w, &MainWindow::controllerMapOpening);
 
         joypad_worker->startWorker();
 
@@ -745,36 +745,37 @@ int main(int argc, char *argv[])
 
     AppLaunchHelper mainAppHelper(settings, w->getGraphicalStatus());
 
-    QObject::connect(w, SIGNAL(joystickRefreshRequested()), joypad_worker, SLOT(refresh()));
-    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)),
-                     w, SLOT(fillButtons(InputDevice*)));
-    QObject::connect(joypad_worker,
-                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
-                     w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
 
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), localServer, SLOT(close()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), w, SLOT(saveAppConfig()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), w, SLOT(removeJoyTabs()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(revertMouseThread()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker, SLOT(quit()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteJoysticks()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), joypad_worker, SLOT(deleteLater()));
-    QObject::connect(&antimicro, SIGNAL(aboutToQuit()), &PadderCommon::mouseHelperObj, SLOT(deleteDeskWid()),
+    QObject::connect(w, &MainWindow::joystickRefreshRequested, joypad_worker, &InputDaemon::refresh);
+    QObject::connect(joypad_worker, static_cast<void (InputDaemon::*)(InputDevice*)>(&InputDaemon::joystickRefreshed),
+                     [w](InputDevice* dev) { w->fillButtons(dev); });
+    QObject::connect(joypad_worker,
+                     static_cast<void (InputDaemon::*)(QMap<SDL_JoystickID, InputDevice*>*)>(&InputDaemon::joysticksRefreshed),
+                     [w](QMap<SDL_JoystickID, InputDevice*>* map) { w->fillButtons(map); });
+
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, w, &MainWindow::saveAppConfig);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, w, &MainWindow::removeJoyTabs);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::quit);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::deleteJoysticks);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::deleteLater);
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
 #ifdef Q_OS_WIN
-    QObject::connect(&a, SIGNAL(aboutToQuit()), &mainAppHelper, SLOT(appQuitPointerPrecision()));
+    QObject::connect(&antimicro, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::appQuitPointerPrecision);
 #endif
-    QObject::connect(localServer, SIGNAL(clientdisconnect()), w, SLOT(handleInstanceDisconnect()));
-    QObject::connect(w, SIGNAL(mappingUpdated(QString,InputDevice*)),
-                     joypad_worker, SLOT(refreshMapping(QString,InputDevice*)));
-    QObject::connect(joypad_worker, SIGNAL(deviceUpdated(int,InputDevice*)),
-                     w, SLOT(testMappingUpdateNow(int,InputDevice*)));
+    QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, w, &MainWindow::handleInstanceDisconnect);
+    QObject::connect(w, &MainWindow::mappingUpdated,
+                     joypad_worker, &InputDaemon::refreshMapping);
+    QObject::connect(joypad_worker, &InputDaemon::deviceUpdated,
+                     w, &MainWindow::testMappingUpdateNow);
 
-    QObject::connect(joypad_worker, SIGNAL(deviceRemoved(SDL_JoystickID)),
-                     w, SLOT(removeJoyTab(SDL_JoystickID)));
-    QObject::connect(joypad_worker, SIGNAL(deviceAdded(InputDevice*)),
-                     w, SLOT(addJoyTab(InputDevice*)));
+    QObject::connect(joypad_worker, &InputDaemon::deviceRemoved,
+                     w, &MainWindow::removeJoyTab);
+    QObject::connect(joypad_worker, &InputDaemon::deviceAdded,
+                     w, &MainWindow::addJoyTab);
 
 #ifdef Q_OS_WIN
     // Raise process priority. Helps reduce timer delays caused by
@@ -787,9 +788,9 @@ int main(int argc, char *argv[])
 #endif
 
     mainAppHelper.initRunMethods();
-    QTimer::singleShot(0, w, SLOT(fillButtons()));
-    QTimer::singleShot(0, w, SLOT(alterConfigFromSettings()));
-    QTimer::singleShot(0, w, SLOT(changeWindowStatus()));
+    QTimer::singleShot(0, [w]() { w->fillButtons(); });
+    QTimer::singleShot(0, w, &MainWindow::alterConfigFromSettings);
+    QTimer::singleShot(0, w, &MainWindow::changeWindowStatus);
 
     mainAppHelper.changeMouseThread(inputEventThread);
 

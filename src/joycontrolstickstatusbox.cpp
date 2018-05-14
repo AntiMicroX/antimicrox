@@ -47,12 +47,12 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidg
 
     this->stick = stick;
 
-    connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
-    connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
-    connect(stick, SIGNAL(circleAdjustChange(double)), this, SLOT(update()));
+    connect(stick, &JoyControlStick::deadZoneChanged, [this](int) { update(); });
+    connect(stick, &JoyControlStick::moved, [this](int, int) { update(); });
+    connect(stick, &JoyControlStick::diagonalRangeChanged, [this](int) { update(); });
+    connect(stick, &JoyControlStick::maxZoneChanged, [this](int) { update(); });
+    connect(stick, &JoyControlStick::joyModeChanged, this, [=]() { update(); });
+    connect(stick, &JoyControlStick::circleAdjustChange, this, [this](double) { update(); });
 }
 
 void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
@@ -69,11 +69,11 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
     }
 
     this->stick = stick;
-    connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
-    connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
+    connect(stick, &JoyControlStick::deadZoneChanged, [this](int) { update(); });
+    connect(stick, &JoyControlStick::moved, [this](int, int) { update(); });
+    connect(stick, &JoyControlStick::diagonalRangeChanged, [this](int) { update(); });
+    connect(stick, &JoyControlStick::maxZoneChanged, [this](int) { update(); });
+    connect(stick, &JoyControlStick::joyModeChanged, this, [=]() { update(); });
 }
 
 JoyControlStick* JoyControlStickStatusBox::getStick() const

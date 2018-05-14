@@ -46,8 +46,8 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
-    connect(instance, SIGNAL(pendingMessage()), instance, SLOT(startPendingTimer()));
-    connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
+    connect(instance, &Logger::pendingMessage, instance, &Logger::startPendingTimer);
+    connect(&(instance->pendingTimer), &QTimer::timeout, instance, &Logger::Log);
 }
 
 /**
@@ -73,8 +73,8 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
-    connect(instance, SIGNAL(pendingMessage()), instance, SLOT(startPendingTimer()));
-    connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
+    connect(instance, &Logger::pendingMessage, instance, &Logger::startPendingTimer);
+    connect(&(instance->pendingTimer), &QTimer::timeout, instance, &Logger::Log);
 }
 
 /**

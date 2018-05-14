@@ -1525,13 +1525,13 @@ void InputDevice::setButtonName(int index, QString tempName)
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setButtonNameChange(int)), this, SLOT(updateSetButtonNames(int)));
+        disconnect(tempSet, &SetJoystick::setButtonNameChange, this, &InputDevice::updateSetButtonNames);
         JoyButton *button = tempSet->getJoyButton(index);
         if (button != nullptr)
         {
             button->setButtonName(tempName);
         }
-        connect(tempSet, SIGNAL(setButtonNameChange(int)), this, SLOT(updateSetButtonNames(int)));
+        connect(tempSet, &SetJoystick::setButtonNameChange, this, &InputDevice::updateSetButtonNames);
     }
 }
 
@@ -1543,7 +1543,7 @@ void InputDevice::setAxisButtonName(int axisIndex, int buttonIndex, QString temp
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setAxisButtonNameChange(int,int)), this, SLOT(updateSetAxisButtonNames(int,int)));
+        disconnect(tempSet, &SetJoystick::setAxisButtonNameChange, this, &InputDevice::updateSetAxisButtonNames);
         JoyAxis *axis = tempSet->getJoyAxis(axisIndex);
         if (axis != nullptr)
         {
@@ -1562,7 +1562,7 @@ void InputDevice::setAxisButtonName(int axisIndex, int buttonIndex, QString temp
                 button->setButtonName(tempName);
             }
         }
-        connect(tempSet, SIGNAL(setAxisButtonNameChange(int,int)), this, SLOT(updateSetAxisButtonNames(int,int)));
+        connect(tempSet, &SetJoystick::setAxisButtonNameChange, this, &InputDevice::updateSetAxisButtonNames);
     }
 }
 
@@ -1574,7 +1574,7 @@ void InputDevice::setStickButtonName(int stickIndex, int buttonIndex, QString te
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setStickButtonNameChange(int,int)), this, SLOT(updateSetStickButtonNames(int,int)));
+        disconnect(tempSet, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
         JoyControlStick *stick = tempSet->getJoyStick(stickIndex);
         if (stick != nullptr)
         {
@@ -1584,7 +1584,7 @@ void InputDevice::setStickButtonName(int stickIndex, int buttonIndex, QString te
                 button->setButtonName(tempName);
             }
         }
-        connect(tempSet, SIGNAL(setStickButtonNameChange(int,int)), this, SLOT(updateSetStickButtonNames(int,int)));
+        connect(tempSet, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
     }
 }
 
@@ -1596,7 +1596,7 @@ void InputDevice::setDPadButtonName(int dpadIndex, int buttonIndex, QString temp
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setDPadButtonNameChange(int,int)), this, SLOT(updateSetDPadButtonNames(int,int)));
+        disconnect(tempSet, &SetJoystick::setDPadButtonNameChange, this, &InputDevice::updateSetDPadButtonNames);
         JoyDPad *dpad = tempSet->getJoyDPad(dpadIndex);
         if (dpad != nullptr)
         {
@@ -1606,7 +1606,7 @@ void InputDevice::setDPadButtonName(int dpadIndex, int buttonIndex, QString temp
                 button->setButtonName(tempName);
             }
         }
-        connect(tempSet, SIGNAL(setDPadButtonNameChange(int,int)), this, SLOT(updateSetDPadButtonNames(int,int)));
+        connect(tempSet, &SetJoystick::setDPadButtonNameChange, this, &InputDevice::updateSetDPadButtonNames);
     }
 }
 
@@ -1618,7 +1618,7 @@ void InputDevice::setVDPadButtonName(int vdpadIndex, int buttonIndex, QString te
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setVDPadButtonNameChange(int,int)), this, SLOT(updateSetVDPadButtonNames(int,int)));
+        disconnect(tempSet, &SetJoystick::setVDPadButtonNameChange, this, &InputDevice::updateSetVDPadButtonNames);
         VDPad *vdpad = tempSet->getVDPad(vdpadIndex);
         if (vdpad != nullptr)
         {
@@ -1628,7 +1628,7 @@ void InputDevice::setVDPadButtonName(int vdpadIndex, int buttonIndex, QString te
                 button->setButtonName(tempName);
             }
         }
-        connect(tempSet, SIGNAL(setVDPadButtonNameChange(int,int)), this, SLOT(updateSetVDPadButtonNames(int,int)));
+        connect(tempSet, &SetJoystick::setVDPadButtonNameChange, this, &InputDevice::updateSetVDPadButtonNames);
     }
 }
 
@@ -1640,13 +1640,13 @@ void InputDevice::setAxisName(int axisIndex, QString tempName)
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setAxisNameChange(int)), this, SLOT(updateSetAxisNames(int)));
+        disconnect(tempSet, &SetJoystick::setAxisNameChange, this, &InputDevice::updateSetAxisNames);
         JoyAxis *axis = tempSet->getJoyAxis(axisIndex);
         if (axis != nullptr)
         {
             axis->setAxisName(tempName);
         }
-        connect(tempSet, SIGNAL(setAxisNameChange(int)), this, SLOT(updateSetAxisNames(int)));
+        connect(tempSet, &SetJoystick::setAxisNameChange, this, &InputDevice::updateSetAxisNames);
     }
 }
 
@@ -1658,13 +1658,13 @@ void InputDevice::setStickName(int stickIndex, QString tempName)
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setStickNameChange(int)), this, SLOT(updateSetStickNames(int)));
+        disconnect(tempSet, &SetJoystick::setStickNameChange, this, &InputDevice::updateSetStickNames);
         JoyControlStick *stick = tempSet->getJoyStick(stickIndex);
         if (stick != nullptr)
         {
             stick->setStickName(tempName);
         }
-        connect(tempSet, SIGNAL(setStickNameChange(int)), this, SLOT(updateSetStickNames(int)));
+        connect(tempSet, &SetJoystick::setStickNameChange, this, &InputDevice::updateSetStickNames);
     }
 }
 
@@ -1676,13 +1676,13 @@ void InputDevice::setDPadName(int dpadIndex, QString tempName)
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setDPadNameChange(int)), this, SLOT(updateSetDPadNames(int)));
+        disconnect(tempSet, &SetJoystick::setDPadNameChange, this, &InputDevice::updateSetDPadNames);
         JoyDPad *dpad = tempSet->getJoyDPad(dpadIndex);
         if (dpad != nullptr)
         {
             dpad->setDPadName(tempName);
         }
-        connect(tempSet, SIGNAL(setDPadNameChange(int)), this, SLOT(updateSetDPadNames(int)));
+        connect(tempSet, &SetJoystick::setDPadNameChange, this, &InputDevice::updateSetDPadNames);
     }
 }
 
@@ -1694,13 +1694,13 @@ void InputDevice::setVDPadName(int vdpadIndex, QString tempName)
     while (iter.hasNext())
     {
         SetJoystick *tempSet = iter.next().value();
-        disconnect(tempSet, SIGNAL(setVDPadNameChange(int)), this, SLOT(updateSetVDPadNames(int)));
+        disconnect(tempSet, &SetJoystick::setVDPadNameChange, this, &InputDevice::updateSetVDPadNames);
         VDPad *vdpad = tempSet->getVDPad(vdpadIndex);
         if (vdpad != nullptr)
         {
             vdpad->setDPadName(tempName);
         }
-        connect(tempSet, SIGNAL(setVDPadNameChange(int)), this, SLOT(updateSetVDPadNames(int)));
+        connect(tempSet, &SetJoystick::setVDPadNameChange, this, &InputDevice::updateSetVDPadNames);
     }
 }
 
@@ -1841,42 +1841,42 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(resetButtonDownCount()));
-    connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(setActiveSetNumber(int)));
-    connect(setstick, SIGNAL(setChangeActivated(int)), this, SLOT(propogateSetChange(int)));
-    connect(setstick, SIGNAL(setAssignmentButtonChanged(int,int,int,int)), this, SLOT(changeSetButtonAssociation(int,int,int,int)));
+    connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::resetButtonDownCount);
+    connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::setActiveSetNumber);
+    connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::propogateSetChange);
+    connect(setstick, &SetJoystick::setAssignmentButtonChanged, this, &InputDevice::changeSetButtonAssociation);
 
-    connect(setstick, SIGNAL(setAssignmentAxisChanged(int,int,int,int,int)), this, SLOT(changeSetAxisButtonAssociation(int,int,int,int,int)));
-    connect(setstick, SIGNAL(setAssignmentDPadChanged(int,int,int,int,int)), this, SLOT(changeSetDPadButtonAssociation(int,int,int,int,int)));
-    connect(setstick, SIGNAL(setAssignmentVDPadChanged(int,int,int,int,int)), this, SLOT(changeSetVDPadButtonAssociation(int,int,int,int,int)));
-    connect(setstick, SIGNAL(setAssignmentStickChanged(int,int,int,int,int)), this, SLOT(changeSetStickButtonAssociation(int,int,int,int,int)));
-    connect(setstick, SIGNAL(setAssignmentAxisThrottleChanged(int,int)), this, SLOT(propogateSetAxisThrottleChange(int, int)));
+    connect(setstick, &SetJoystick::setAssignmentAxisChanged, this, &InputDevice::changeSetAxisButtonAssociation);
+    connect(setstick, &SetJoystick::setAssignmentDPadChanged, this, &InputDevice::changeSetDPadButtonAssociation);
+    connect(setstick, &SetJoystick::setAssignmentVDPadChanged, this, &InputDevice::changeSetVDPadButtonAssociation);
+    connect(setstick, &SetJoystick::setAssignmentStickChanged, this, &InputDevice::changeSetStickButtonAssociation);
+    connect(setstick, &SetJoystick::setAssignmentAxisThrottleChanged, this, &InputDevice::propogateSetAxisThrottleChange);
 
-    connect(setstick, SIGNAL(setButtonClick(int,int)), this, SLOT(buttonDownEvent(int,int)));
+    connect(setstick, &SetJoystick::setButtonClick, this, &InputDevice::buttonDownEvent);
 
-    connect(setstick, SIGNAL(setButtonRelease(int,int)), this, SLOT(buttonUpEvent(int,int)));
+    connect(setstick, &SetJoystick::setButtonRelease, this, &InputDevice::buttonUpEvent);
 
-    connect(setstick, SIGNAL(setAxisButtonClick(int,int,int)), this, SLOT(axisButtonDownEvent(int,int,int)));
-    connect(setstick, SIGNAL(setAxisButtonRelease(int,int,int)), this, SLOT(axisButtonUpEvent(int,int,int)));
-    connect(setstick, SIGNAL(setAxisActivated(int,int, int)), this, SLOT(axisActivatedEvent(int,int,int)));
-    connect(setstick, SIGNAL(setAxisReleased(int,int,int)), this, SLOT(axisReleasedEvent(int,int,int)));
+    connect(setstick, &SetJoystick::setAxisButtonClick, this, &InputDevice::axisButtonDownEvent);
+    connect(setstick, &SetJoystick::setAxisButtonRelease, this, &InputDevice::axisButtonUpEvent);
+    connect(setstick, &SetJoystick::setAxisActivated, this, &InputDevice::axisActivatedEvent);
+    connect(setstick, &SetJoystick::setAxisReleased, this, &InputDevice::axisReleasedEvent);
 
-    connect(setstick, SIGNAL(setDPadButtonClick(int,int,int)), this, SLOT(dpadButtonDownEvent(int,int,int)));
-    connect(setstick, SIGNAL(setDPadButtonRelease(int,int,int)), this, SLOT(dpadButtonUpEvent(int,int,int)));
+    connect(setstick, &SetJoystick::setDPadButtonClick, this, &InputDevice::dpadButtonDownEvent);
+    connect(setstick, &SetJoystick::setDPadButtonRelease, this, &InputDevice::dpadButtonUpEvent);
 
-    connect(setstick, SIGNAL(setStickButtonClick(int,int,int)), this, SLOT(stickButtonDownEvent(int,int,int)));
-    connect(setstick, SIGNAL(setStickButtonRelease(int,int,int)), this, SLOT(stickButtonUpEvent(int,int,int)));
+    connect(setstick, &SetJoystick::setStickButtonClick, this, &InputDevice::stickButtonDownEvent);
+    connect(setstick, &SetJoystick::setStickButtonRelease, this, &InputDevice::stickButtonUpEvent);
 
-    connect(setstick, SIGNAL(setButtonNameChange(int)), this, SLOT(updateSetButtonNames(int)));
-    connect(setstick, SIGNAL(setAxisButtonNameChange(int,int)), this, SLOT(updateSetAxisButtonNames(int,int)));
-    connect(setstick, SIGNAL(setStickButtonNameChange(int,int)), this, SLOT(updateSetStickButtonNames(int,int)));
-    connect(setstick, SIGNAL(setDPadButtonNameChange(int,int)), this, SLOT(updateSetDPadButtonNames(int,int)));
-    connect(setstick, SIGNAL(setVDPadButtonNameChange(int,int)), this, SLOT(updateSetVDPadButtonNames(int,int)));
+    connect(setstick, &SetJoystick::setButtonNameChange, this, &InputDevice::updateSetButtonNames);
+    connect(setstick, &SetJoystick::setAxisButtonNameChange, this, &InputDevice::updateSetAxisButtonNames);
+    connect(setstick, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
+    connect(setstick, &SetJoystick::setDPadButtonNameChange, this, &InputDevice::updateSetDPadButtonNames);
+    connect(setstick, &SetJoystick::setVDPadButtonNameChange, this, &InputDevice::updateSetVDPadButtonNames);
 
-    connect(setstick, SIGNAL(setAxisNameChange(int)), this, SLOT(updateSetAxisNames(int)));
-    connect(setstick, SIGNAL(setStickNameChange(int)), this, SLOT(updateSetStickNames(int)));
-    connect(setstick, SIGNAL(setDPadNameChange(int)), this, SLOT(updateSetDPadNames(int)));
-    connect(setstick, SIGNAL(setVDPadNameChange(int)), this, SLOT(updateSetVDPadNames(int)));
+    connect(setstick, &SetJoystick::setAxisNameChange, this, &InputDevice::updateSetAxisNames);
+    connect(setstick, &SetJoystick::setStickNameChange, this, &InputDevice::updateSetStickNames);
+    connect(setstick, &SetJoystick::setDPadNameChange, this, &InputDevice::updateSetDPadNames);
+    connect(setstick, &SetJoystick::setVDPadNameChange, this, &InputDevice::updateSetVDPadNames);
 }
 
 void InputDevice::axisActivatedEvent(int setindex, int axisindex, int value)
@@ -1974,14 +1974,14 @@ void InputDevice::establishPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(this, SIGNAL(propertyUpdated()), this, SLOT(profileEdited()));
+    connect(this, &InputDevice::propertyUpdated, this, &InputDevice::profileEdited);
 }
 
 void InputDevice::disconnectPropertyUpdatedConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(this, SIGNAL(propertyUpdated()), this, SLOT(profileEdited()));
+    disconnect(this, &InputDevice::propertyUpdated, this, &InputDevice::profileEdited);
 }
 
 void InputDevice::setKeyRepeatStatus(bool enabled)

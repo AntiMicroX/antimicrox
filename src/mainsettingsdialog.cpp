@@ -354,32 +354,32 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     settings->getLock()->unlock();
 
-    connect(ui->categoriesListWidget, SIGNAL(currentRowChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
-    connect(ui->controllerMappingsTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(mappingsTableItemChanged(QTableWidgetItem*)));
-    connect(ui->mappingDeletePushButton, SIGNAL(clicked()), this, SLOT(deleteMappingRow()));
-    connect(ui->mappngInsertPushButton, SIGNAL(clicked()), this, SLOT(insertMappingRow()));
-    connect(this, SIGNAL(accepted()), this, SLOT(saveNewSettings()));
-    connect(ui->profileOpenDirPushButton, SIGNAL(clicked()), this, SLOT(selectDefaultProfileDir()));
-    connect(ui->activeCheckBox, SIGNAL(toggled(bool)), ui->autoProfileTableWidget, SLOT(setEnabled(bool)));
-    connect(ui->activeCheckBox, SIGNAL(toggled(bool)), this, SLOT(autoProfileButtonsActiveState(bool)));
-    connect(ui->devicesComboBox, SIGNAL(activated(int)), this, SLOT(changeDeviceForProfileTable(int)));
-    connect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
-    connect(ui->autoProfileAddPushButton, SIGNAL(clicked()), this, SLOT(openAddAutoProfileDialog()));
-    connect(ui->autoProfileDeletePushButton, SIGNAL(clicked()), this, SLOT(openDeleteAutoProfileConfirmDialog()));
-    connect(ui->autoProfileEditPushButton, SIGNAL(clicked()), this, SLOT(openEditAutoProfileDialog()));
-    connect(ui->autoProfileTableWidget, SIGNAL(itemSelectionChanged()), this, SLOT(changeAutoProfileButtonsState()));
+    connect(ui->categoriesListWidget, &QListWidget::currentRowChanged, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
+    connect(ui->controllerMappingsTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::mappingsTableItemChanged);
+    connect(ui->mappingDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::deleteMappingRow);
+    connect(ui->mappngInsertPushButton, &QPushButton::clicked, this, &MainSettingsDialog::insertMappingRow);
+    connect(this, &MainSettingsDialog::accepted, this, &MainSettingsDialog::saveNewSettings);
+    connect(ui->profileOpenDirPushButton, &QPushButton::clicked, this, &MainSettingsDialog::selectDefaultProfileDir);
+    connect(ui->activeCheckBox, &QCheckBox::toggled, ui->autoProfileTableWidget, &QTableWidget::setEnabled);
+    connect(ui->activeCheckBox, &QCheckBox::toggled, this, &MainSettingsDialog::autoProfileButtonsActiveState);
+    connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &MainSettingsDialog::changeDeviceForProfileTable);
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+    connect(ui->autoProfileAddPushButton, &QPushButton::clicked, this, &MainSettingsDialog::openAddAutoProfileDialog);
+    connect(ui->autoProfileDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::openDeleteAutoProfileConfirmDialog);
+    connect(ui->autoProfileEditPushButton, &QPushButton::clicked, this, &MainSettingsDialog::openEditAutoProfileDialog);
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemSelectionChanged, this, &MainSettingsDialog::changeAutoProfileButtonsState);
 
-    connect(ui->keyRepeatEnableCheckBox, SIGNAL(clicked(bool)), this, SLOT(changeKeyRepeatWidgetsStatus(bool)));
-    connect(ui->keyDelayHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyDelaySpinBox, SLOT(setValue(int)));
-    connect(ui->keyDelaySpinBox, SIGNAL(valueChanged(int)), ui->keyDelayHorizontalSlider, SLOT(setValue(int)));
-    connect(ui->keyRateHorizontalSlider, SIGNAL(valueChanged(int)), ui->keyRateSpinBox, SLOT(setValue(int)));
-    connect(ui->keyRateSpinBox, SIGNAL(valueChanged(int)), ui->keyRateHorizontalSlider, SLOT(setValue(int)));
+    connect(ui->keyRepeatEnableCheckBox, &QCheckBox::clicked, this, &MainSettingsDialog::changeKeyRepeatWidgetsStatus);
+    connect(ui->keyDelayHorizontalSlider, &QSlider::valueChanged, ui->keyDelaySpinBox, &QSpinBox::setValue);
+    connect(ui->keyDelaySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->keyDelayHorizontalSlider, &QSlider::setValue);
+    connect(ui->keyRateHorizontalSlider, &QSlider::valueChanged, ui->keyRateSpinBox, &QSpinBox::setValue);
+    connect(ui->keyRateSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->keyRateHorizontalSlider, &QSlider::setValue);
 
-    connect(ui->smoothingEnableCheckBox, SIGNAL(toggled(bool)), this, SLOT(checkSmoothingWidgetStatus(bool)));
-    connect(ui->resetAccelPushButton, SIGNAL(clicked(bool)), this, SLOT(resetMouseAcceleration()));
+    connect(ui->smoothingEnableCheckBox, &QCheckBox::toggled, this, &MainSettingsDialog::checkSmoothingWidgetStatus);
+    connect(ui->resetAccelPushButton, &QPushButton::clicked, this, &MainSettingsDialog::resetMouseAcceleration);
 
     // Advanced Tab
-    connect(ui->logFilePushButton, SIGNAL(clicked()), this, SLOT(selectLogFile()));
+    connect(ui->logFilePushButton, &QPushButton::clicked, this, &MainSettingsDialog::selectLogFile);
 }
 
 MainSettingsDialog::~MainSettingsDialog()
@@ -1178,7 +1178,7 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
+    disconnect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
 
     if (index == 0)
     {
@@ -1190,7 +1190,7 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
         fillAutoProfilesTable(guid);
     }
 
-    connect(ui->autoProfileTableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(processAutoProfileActiveClick(QTableWidgetItem*)));
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
 }
 
 void MainSettingsDialog::saveAutoProfileSettings()
@@ -1479,8 +1479,8 @@ void MainSettingsDialog::openAddAutoProfileDialog()
     QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
     AutoProfileInfo *info = new AutoProfileInfo(this);
     AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
-    connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
-    connect(dialog, SIGNAL(rejected()), info, SLOT(deleteLater()));
+    connect(dialog, &AddEditAutoProfileDialog::accepted, this, &MainSettingsDialog::addNewAutoProfile);
+    connect(dialog, &AddEditAutoProfileDialog::rejected, info, &AutoProfileInfo::deleteLater);
     dialog->show();
 }
 
@@ -1506,14 +1506,14 @@ void MainSettingsDialog::openEditAutoProfileDialog()
                 }
             }
             AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, true, this);
-            connect(dialog, SIGNAL(accepted()), this, SLOT(transferEditsToCurrentTableRow()));
+            connect(dialog, &AddEditAutoProfileDialog::accepted, this, &MainSettingsDialog::transferEditsToCurrentTableRow);
             dialog->show();
         }
         else
         {
             EditAllDefaultAutoProfileDialog *dialog = new EditAllDefaultAutoProfileDialog(info, settings, this);
             dialog->show();
-            connect(dialog, SIGNAL(accepted()), this, SLOT(transferAllProfileEditToCurrentTableRow()));
+            connect(dialog, &EditAllDefaultAutoProfileDialog::accepted, this, &MainSettingsDialog::transferAllProfileEditToCurrentTableRow);
         }
     }
 }

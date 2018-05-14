@@ -62,7 +62,7 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
         this->mode = JoyButtonSlot::JoyMouseButton;
     }
 
-    connect(this, SIGNAL(clicked()), this, SLOT(createTempSlot()));
+    connect(this, &VirtualMousePushButton::clicked, this, &VirtualMousePushButton::createTempSlot);
 }
 
 int VirtualMousePushButton::getMouseCode() const

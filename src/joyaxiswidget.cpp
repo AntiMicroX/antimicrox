@@ -34,19 +34,19 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     enableFlashes();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+    connect(this, &JoyAxisWidget::customContextMenuRequested, this, &JoyAxisWidget::showContextMenu);
 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 
     tryFlash();
 
-    connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
-    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
-    connect(nAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(pAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(nAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
-    connect(pAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
+    connect(axis, &JoyAxis::throttleChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(axis, &JoyAxis::axisNameChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(nAxisButton, &JoyAxisButton::propertyUpdated, this, &JoyAxisWidget::refreshLabel);
+    connect(pAxisButton, &JoyAxisButton::propertyUpdated, this, &JoyAxisWidget::refreshLabel);
+    connect(nAxisButton, &JoyAxisButton::activeZoneChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(pAxisButton, &JoyAxisButton::activeZoneChanged, this, &JoyAxisWidget::refreshLabel);
 
     axis->establishPropertyUpdatedConnection();
     nAxisButton->establishPropertyUpdatedConnections();
@@ -64,8 +64,8 @@ void JoyAxisWidget::disableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(axis, SIGNAL(active(int)), this, SLOT(flash()));
-    disconnect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(axis, &JoyAxis::active, this, &JoyAxisWidget::flash);
+    disconnect(axis, &JoyAxis::released, this, &JoyAxisWidget::unflash);
     this->unflash();
 }
 
@@ -73,8 +73,8 @@ void JoyAxisWidget::enableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(axis, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(axis, &JoyAxis::active, this, &JoyAxisWidget::flash, Qt::QueuedConnection);
+    connect(axis, &JoyAxis::released, this, &JoyAxisWidget::unflash, Qt::QueuedConnection);
 }
 
 /**

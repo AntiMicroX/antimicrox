@@ -106,6 +106,7 @@ public slots:
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
     void selectControllerJoyTab(int index); // (unsigned)
+    void handleInstanceDisconnect();
 
 
 private slots:
@@ -121,7 +122,6 @@ private slots:
 
     void populateTrayIcon();
     void openAboutDialog();
-    void handleInstanceDisconnect();
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
     void openGitHubPage();

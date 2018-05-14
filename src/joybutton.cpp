@@ -165,18 +165,18 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
     slotSetChangeTimer.setSingleShot(true);
     this->parentSet = parentSet;
 
-    connect(&pauseWaitTimer, SIGNAL(timeout()), this, SLOT(pauseWaitEvent()));
-    connect(&keyPressTimer, SIGNAL(timeout()), this, SLOT(keyPressEvent()));
-    connect(&holdTimer, SIGNAL(timeout()), this, SLOT(holdEvent()));
-    connect(&delayTimer, SIGNAL(timeout()), this, SLOT(delayEvent()));
-    connect(&createDeskTimer, SIGNAL(timeout()), this, SLOT(waitForDeskEvent()));
-    connect(&releaseDeskTimer, SIGNAL(timeout()), this, SLOT(waitForReleaseDeskEvent()));
-    connect(&turboTimer, SIGNAL(timeout()), this, SLOT(turboEvent()));
-    connect(&mouseWheelVerticalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventVertical()));
-    connect(&mouseWheelHorizontalEventTimer, SIGNAL(timeout()), this, SLOT(wheelEventHorizontal()));
-    connect(&setChangeTimer, SIGNAL(timeout()), this, SLOT(checkForSetChange()));
-    connect(&slotSetChangeTimer, SIGNAL(timeout()), this, SLOT(slotSetChange()));
-    connect(&activeZoneTimer, SIGNAL(timeout()), this, SLOT(buildActiveZoneSummaryString()));
+    connect(&pauseWaitTimer, &QTimer::timeout, this, &JoyButton::pauseWaitEvent);
+    connect(&keyPressTimer, &QTimer::timeout, this, &JoyButton::keyPressEvent);
+    connect(&holdTimer, &QTimer::timeout, this, &JoyButton::holdEvent);
+    connect(&delayTimer, &QTimer::timeout, this, &JoyButton::delayEvent);
+    connect(&createDeskTimer, &QTimer::timeout, this, &JoyButton::waitForDeskEvent);
+    connect(&releaseDeskTimer, &QTimer::timeout, this, &JoyButton::waitForReleaseDeskEvent);
+    connect(&turboTimer, &QTimer::timeout, this, &JoyButton::turboEvent);
+    connect(&mouseWheelVerticalEventTimer, &QTimer::timeout, this, &JoyButton::wheelEventVertical);
+    connect(&mouseWheelHorizontalEventTimer, &QTimer::timeout, this, &JoyButton::wheelEventHorizontal);
+    connect(&setChangeTimer, &QTimer::timeout, this, &JoyButton::checkForSetChange);
+    connect(&slotSetChangeTimer, &QTimer::timeout, this, &JoyButton::slotSetChange);
+    connect(&activeZoneTimer, &QTimer::timeout, this, &JoyButton::buildActiveZoneSummaryString);
 
     activeZoneTimer.setInterval(0);
     activeZoneTimer.setSingleShot(true);
@@ -5619,16 +5619,16 @@ void JoyButton::establishPropertyUpdatedConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(this, SIGNAL(slotsChanged()), parentSet->getInputDevice(), SLOT(profileEdited()));
-    connect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
+    connect(this, &JoyButton::slotsChanged, parentSet->getInputDevice(), &InputDevice::profileEdited);
+    connect(this, &JoyButton::propertyUpdated, parentSet->getInputDevice(), &InputDevice::profileEdited);
 }
 
 void JoyButton::disconnectPropertyUpdatedConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(this, SIGNAL(slotsChanged()), 0, 0);
-    disconnect(this, SIGNAL(propertyUpdated()), parentSet->getInputDevice(), SLOT(profileEdited()));
+    disconnect(this, &JoyButton::slotsChanged, 0, 0);
+    disconnect(this, &JoyButton::propertyUpdated, parentSet->getInputDevice(), &InputDevice::profileEdited);
 }
 
 /**
@@ -5645,8 +5645,8 @@ void JoyButton::establishMouseTimerConnections()
     }
 
     // Only one connection will be made for each.
-    connect(&staticMouseEventTimer, SIGNAL(timeout()), &mouseHelper,
-            SLOT(mouseEvent()), Qt::UniqueConnection);
+    connect(&staticMouseEventTimer, &QTimer::timeout, &mouseHelper,
+            &JoyButtonMouseHelper::mouseEvent, Qt::UniqueConnection);
 
     if (staticMouseEventTimer.interval() != IDLEMOUSEREFRESHRATE)
     {

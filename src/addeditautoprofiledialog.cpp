@@ -160,7 +160,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     connect(ui->selectWindowPushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::openWinAppProfileDialog);
 #endif
 
-    connect(this, &QDialog::accepted, this, &AddEditAutoProfileDialog::saveAutoProfileInformation);
+    connect(this, &AddEditAutoProfileDialog::accepted, this, &AddEditAutoProfileDialog::saveAutoProfileInformation);
 }
 
 AddEditAutoProfileDialog::~AddEditAutoProfileDialog()

@@ -106,7 +106,7 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
 
     this->setText(this->displayString.replace("&", "&&"));
 
-    connect(this, SIGNAL(clicked()), this, SLOT(processSingleSelection()));
+    connect(this, &VirtualKeyPushButton::clicked, this, &VirtualKeyPushButton::processSingleSelection);
 }
 
 void VirtualKeyPushButton::processSingleSelection()

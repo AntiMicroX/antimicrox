@@ -122,9 +122,9 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         trayIcon = new QSystemTrayIcon(this);
         trayIcon->setContextMenu(trayIconMenu);
 
-        connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(refreshTrayIconMenu()));
-        connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                this, SLOT(trayIconClickAction(QSystemTrayIcon::ActivationReason)));
+        connect(trayIconMenu, &QMenu::aboutToShow, this, &MainWindow::refreshTrayIconMenu);
+        connect(trayIcon, &QSystemTrayIcon::activated,
+                this, &MainWindow::trayIconClickAction);
     }
 
     // Look at flags and call setEnabled as desired; defaults to true.
@@ -154,24 +154,24 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         aboutDialog = nullptr;
     }
 
-    connect(ui->menuQuit, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
-    connect(ui->menuOptions, SIGNAL(aboutToShow()), this, SLOT(mainMenuChange()));
-    connect(ui->actionKeyValue, SIGNAL(triggered()), this, SLOT(openKeyCheckerDialog()));
-    connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-    connect(ui->actionProperties, SIGNAL(triggered()), this, SLOT(openJoystickStatusWindow()));
-    connect(ui->actionGitHubPage, SIGNAL(triggered()), this, SLOT(openGitHubPage()));
-    connect(ui->actionIssues, SIGNAL(triggered()), this, SLOT(openIssuesPage()));
-    connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(openMainSettingsDialog()));
-    connect(ui->actionWiki, SIGNAL(triggered()), this, SLOT(openWikiPage()));
-    connect(ui->actionGameController_Mapping, SIGNAL(triggered()), this, SLOT(openGameControllerMappingWindow()));
+    connect(ui->menuQuit, &QMenu::aboutToShow, this, &MainWindow::mainMenuChange);
+    connect(ui->menuOptions, &QMenu::aboutToShow, this, &MainWindow::mainMenuChange);
+    connect(ui->actionKeyValue, &QAction::triggered, this, &MainWindow::openKeyCheckerDialog);
+    connect(ui->actionAbout_Qt, &QAction::triggered, qApp, &QApplication::aboutQt);
+    connect(ui->actionProperties, &QAction::triggered, this, &MainWindow::openJoystickStatusWindow);
+    connect(ui->actionGitHubPage, &QAction::triggered, this, &MainWindow::openGitHubPage);
+    connect(ui->actionIssues, &QAction::triggered, this, &MainWindow::openIssuesPage);
+    connect(ui->actionOptions, &QAction::triggered, this, &MainWindow::openMainSettingsDialog);
+    connect(ui->actionWiki, &QAction::triggered, this, &MainWindow::openWikiPage);
+    connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
+    connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
     }
     #elif defined(Q_OS_WIN)
-        connect(appWatcher, SIGNAL(foundApplicableProfile(AutoProfileInfo*)), this, SLOT(autoprofileLoad(AutoProfileInfo*)));
+        connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
     #endif
 
 #ifdef Q_OS_WIN
@@ -184,7 +184,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                 QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
                 ui->uacPushButton->setIcon(uacIcon);
             }
-            connect(ui->uacPushButton, SIGNAL(clicked()), this, SLOT(restartAsElevated()));
+            connect(ui->uacPushButton, &QPushButton::clicked, this, &MainWindow::restartAsElevated);
         }
         else
         {
@@ -432,12 +432,12 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
-        connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
-        connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
+        connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, &MainWindow::propogateNameDisplayStatus);
+        connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
 
         if (showTrayIcon)
         {
-            connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+            connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
         }
     }
 
@@ -479,7 +479,7 @@ void MainWindow::populateTrayIcon()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
+    disconnect(trayIconMenu, &QMenu::aboutToShow, this, &MainWindow::singleTrayProfileMenuShow);
 
     trayIconMenu->clear();
     profileActions.clear();
@@ -540,7 +540,7 @@ void MainWindow::populateTrayIcon()
                     tempmap.insert(QString::number(i), QVariant (configIter.key()));
                     QVariant tempvar (tempmap);
                     newaction->setData(tempvar);
-                    connect(newaction, SIGNAL(triggered(bool)), this, SLOT(profileTrayActionTriggered(bool)));
+                    connect(newaction, &QAction::triggered, this, &MainWindow::profileTrayActionTriggered);
 
                     if (useSingleList)
                     {
@@ -566,7 +566,7 @@ void MainWindow::populateTrayIcon()
                 }
 
                 newaction->setIcon(QIcon::fromTheme("document-open"));
-                connect(newaction, SIGNAL(triggered()), widget, SLOT(openConfigFileDialog()));
+                connect(newaction, &QAction::triggered, widget, &JoyTabWidget::openConfigFileDialog);
 
                 if (useSingleList)
                 {
@@ -591,7 +591,7 @@ void MainWindow::populateTrayIcon()
                 else
                 {
                     joysticksubMenu->addAction(newaction);
-                    connect(joysticksubMenu, SIGNAL(aboutToShow()), this, SLOT(joystickTrayShow()));
+                    connect(joysticksubMenu, &QMenu::aboutToShow, this, &MainWindow::joystickTrayShow);
                 }
 
                 i++;
@@ -600,7 +600,7 @@ void MainWindow::populateTrayIcon()
 
         if (useSingleList)
         {
-            connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(singleTrayProfileMenuShow()));
+            connect(trayIconMenu, &QMenu::aboutToShow, this, &MainWindow::singleTrayProfileMenuShow);
         }
 
         trayIconMenu->addSeparator();
@@ -608,19 +608,19 @@ void MainWindow::populateTrayIcon()
 
     hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
     hideAction->setIcon(QIcon::fromTheme("view-restore"));
-    connect(hideAction, SIGNAL(triggered()), this, SLOT(hideWindow()));
+    connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
 
     restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
     restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
-    connect(restoreAction, SIGNAL(triggered()), this, SLOT(show()));
+    connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
 
     closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
     closeAction->setIcon(QIcon::fromTheme("application-exit"));
-    connect(closeAction, SIGNAL(triggered()), this, SLOT(quitProgram()));
+    connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram);
 
     updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
     updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
-    connect(updateJoy, SIGNAL(triggered()), this, SLOT(startJoystickRefresh()));
+    connect(updateJoy, &QAction::triggered, this, &MainWindow::startJoystickRefresh);
 
     trayIconMenu->addAction(hideAction);
     trayIconMenu->addAction(restoreAction);
@@ -1256,32 +1256,32 @@ void MainWindow::openMainSettingsDialog()
 
     QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
     MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
-    connect(dialog, SIGNAL(changeLanguage(QString)), this, SLOT(changeLanguage(QString)));
+    connect(dialog, &MainSettingsDialog::changeLanguage, this, &MainWindow::changeLanguage);
 
     if (appWatcher != nullptr)
     {
 #if defined(USE_SDL_2) && defined(Q_OS_UNIX) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
-    connect(dialog, SIGNAL(rejected()), this, SLOT(checkAutoProfileWatcherTimer()));
+    connect(dialog, &MainSettingsDialog::accepted, appWatcher, &AutoProfileWatcher::syncProfileAssignment);
+    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkAutoProfileWatcherTimer);
+    connect(dialog, &MainSettingsDialog::rejected, this, &MainWindow::checkAutoProfileWatcherTimer);
     appWatcher->stopTimer();
     }
 
 #elif defined(USE_SDL_2) && defined(Q_OS_WIN)
-    connect(dialog, SIGNAL(accepted()), appWatcher, SLOT(syncProfileAssignment()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkAutoProfileWatcherTimer()));
-    connect(dialog, SIGNAL(rejected()), this, SLOT(checkAutoProfileWatcherTimer()));
+    connect(dialog, &MainSettingsDialog::accepted, appWatcher, &AutoProfileWatcher::syncProfileAssignment);
+    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkAutoProfileWatcherTimer);
+    connect(dialog, &MainSettingsDialog::rejected, this, &MainWindow::checkAutoProfileWatcherTimer);
     appWatcher->stopTimer();
 #endif
     }
 
-    connect(dialog, SIGNAL(accepted()), this, SLOT(populateTrayIcon()));
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkHideEmptyOption()));
+    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::populateTrayIcon);
+    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkHideEmptyOption);
 
 #ifdef Q_OS_WIN
-    connect(dialog, SIGNAL(accepted()), this, SLOT(checkKeyRepeatOptions()));
+    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkKeyRepeatOptions);
 
 #endif
 
@@ -1340,7 +1340,7 @@ void MainWindow::showStickAssignmentDialog()
         Joystick *joystick = qobject_cast<Joystick*>(joyTab->getJoystick()); // static_cast
 
         AdvanceStickAssignmentDialog *dialog = new AdvanceStickAssignmentDialog(joystick, this);
-        connect(dialog, SIGNAL(finished(int)), joyTab, SLOT(fillButtons()));
+        connect(dialog, &AdvanceStickAssignmentDialog::finished, joyTab, &JoyTabWidget::fillButtons);
         dialog->show();
     }
 }
@@ -1524,11 +1524,11 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
             {
                 dialog->setParent(0);
                 dialog->setWindowFlags(Qt::Window);
-                connect(dialog, SIGNAL(finished(int)), qApp, SLOT(quit()));
+                connect(dialog, &GameControllerMappingDialog::finished, qApp, &QApplication::quit);
             }
             else
             {
-                connect(dialog, SIGNAL(mappingUpdate(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString, InputDevice*)));
+                connect(dialog, &GameControllerMappingDialog::mappingUpdate, this, &MainWindow::propogateMappingUpdate);
             }
 
             dialog->show();
@@ -1567,11 +1567,11 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     tabwidget->refreshButtons();
     ui->tabWidget->setCurrentIndex(index);
 
-    connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
-    connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
+    connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, &MainWindow::propogateNameDisplayStatus);
+    connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
     if (showTrayIcon)
     {
-        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
         trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();
@@ -1652,11 +1652,11 @@ void MainWindow::addJoyTab(InputDevice *device)
         }
     }
 
-    connect(tabwidget, SIGNAL(namesDisplayChanged(bool)), this, SLOT(propogateNameDisplayStatus(bool)));
-    connect(tabwidget, SIGNAL(mappingUpdated(QString,InputDevice*)), this, SLOT(propogateMappingUpdate(QString,InputDevice*)));
+    connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, &MainWindow::propogateNameDisplayStatus);
+    connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
     if (showTrayIcon)
     {
-        connect(tabwidget, SIGNAL(joystickConfigChanged(int)), this, SLOT(populateTrayIcon()));
+        connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
         trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();

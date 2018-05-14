@@ -48,7 +48,7 @@ void LocalAntiMicroServer::startLocalServer()
     }
     else
     {
-        connect(localServer, SIGNAL(newConnection()), this, SLOT(handleOutsideConnection()));
+        connect(localServer, &QLocalServer::newConnection, this, &LocalAntiMicroServer::handleOutsideConnection);
     }
 }
 
@@ -59,8 +59,8 @@ void LocalAntiMicroServer::handleOutsideConnection()
     QLocalSocket *socket = localServer->nextPendingConnection();
     if (socket != nullptr)
     {
-        connect(socket, SIGNAL(disconnected()), this, SLOT(handleSocketDisconnect()));
-        connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
+        connect(socket, &QLocalSocket::disconnected, this, &LocalAntiMicroServer::handleSocketDisconnect);
+        connect(socket, &QLocalSocket::disconnected, socket, &QLocalSocket::deleteLater);
     }
 }
 

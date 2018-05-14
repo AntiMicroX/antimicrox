@@ -73,7 +73,7 @@ GameControllerExample::GameControllerExample(QWidget *parent) :
     rotatedaxisimage = axisimage.transformed(myTransform);
     currentIndex = 0;
 
-    connect(this, SIGNAL(indexUpdated(int)), this, SLOT(update()));
+    connect(this, &GameControllerExample::indexUpdated, this, [=]() { update(); });
 }
 
 void GameControllerExample::paintEvent(QPaintEvent *event)

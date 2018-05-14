@@ -48,7 +48,7 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
     if (joystick != nullptr)
     {
         enableFlashes(joystick);
-        connect(widget, SIGNAL(forceTabUnflash(JoyTabWidget*)), this, SLOT(unflashTab(JoyTabWidget*)));
+        connect(widget, &JoyTabWidget::forceTabUnflash, this, &JoyTabWidgetContainer::unflashTab);
     }
 
     return QTabWidget::addTab(widget, string);
@@ -126,14 +126,14 @@ void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 
     unflashAll();
 
-    disconnect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
-    disconnect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(joystick, &InputDevice::clicked, this, &JoyTabWidgetContainer::flash);
+    disconnect(joystick, &InputDevice::released, this, &JoyTabWidgetContainer::unflash);
 }
 
 void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(joystick, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(joystick, &InputDevice::clicked, this, &JoyTabWidgetContainer::flash, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::released, this, &JoyTabWidgetContainer::unflash, Qt::QueuedConnection);
 }
