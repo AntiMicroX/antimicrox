@@ -8,7 +8,6 @@ namespace MessageHandler
    void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
    {
 
-       fprintf(stderr, "Debug: %s (%s:%u, %s)\n", msg.toLocal8Bit().constData(), context.file, context.line, context.function);
     #ifndef QT_DEBUG_NO_OUTPUT
 
        QByteArray localMsg = msg.toLocal8Bit();
