@@ -38,7 +38,7 @@ protected:
 private slots:
     void switchToggle();
     void switchTurbo();
-    void switchSetMode();
+    void switchSetMode(QAction* action);
     void disableSetMode();
     void clearButton();
 };

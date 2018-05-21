@@ -42,8 +42,8 @@ protected:
     int getTriggerPresetIndex();
 
 private slots:
-    void setAxisPreset();
-    void setTriggerPreset();
+    void setAxisPreset(QAction* action);
+    void setTriggerPreset(QAction* action);
     void openMouseSettingsDialog();
 
 private:

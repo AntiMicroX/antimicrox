@@ -79,7 +79,7 @@ private slots:
     void obliterate();
     void changeButtonDisplay();
     void changeAxisDeadZone(int index);
-    void updateLastAxisLineEdit(int value);
+    void updateLastAxisLineEdit(JoyAxis *tempAxis, int value);
     void updateLastAxisLineEditRaw(int index, int value);
 
 private:

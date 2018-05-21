@@ -25,6 +25,8 @@
 class AutoProfileInfo;
 class AntiMicroSettings;
 class InputDevice;
+class CapturedWindowInfoDialog;
+class UnixCaptureWindowUtility;
 
 namespace Ui {
 class AddEditAutoProfileDialog;
@@ -65,14 +67,14 @@ private slots:
     void saveAutoProfileInformation();
     void checkForReservedGUIDs(int index);
     void checkForDefaultStatus();
-    void windowPropAssignment();
+    void windowPropAssignment(CapturedWindowInfoDialog *dialog);
 
 #ifdef Q_OS_WIN
     void openWinAppProfileDialog();
     void captureWindowsApplicationPath();
 #elif defined(Q_OS_UNIX)
     void showCaptureHelpWindow();
-    void checkForGrabbedWindow();
+    void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
 #endif
 
 private:

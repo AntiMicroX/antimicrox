@@ -27,6 +27,9 @@
 class InputDevice;
 class QWidget;
 class JoyButton;
+class JoyControlStickButton;
+class JoyDPadButton;
+class JoyAxisButton;
 
 namespace Ui {
 class QuickSetDialog;
@@ -51,10 +54,10 @@ public:
 
 
 private slots:
-    void showAxisButtonDialog();
-    void showButtonDialog();
-    void showStickButtonDialog();
-    void showDPadButtonDialog();
+    void showAxisButtonDialog(JoyAxisButton* joybtn);
+    void showButtonDialog(JoyButton* joybtn);
+    void showStickButtonDialog(JoyControlStickButton* joyctrlstickbtn);
+    void showDPadButtonDialog(JoyDPadButton* joydpadbtn);
     void restoreButtonStates();
 
 private:

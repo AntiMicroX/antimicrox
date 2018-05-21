@@ -818,7 +818,9 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
     {
         QAction *temp = iterActions.next();
         disconnect(temp, &QAction::triggered, 0, 0);
-        connect(temp, &QAction::triggered, this, &VirtualKeyboardMouseWidget::otherKeysActionSingle);
+        connect(temp, &QAction::triggered, this, [this, temp](bool checked) {
+            otherKeysActionSingle(temp, checked);
+        });
     }
 
 
@@ -848,7 +850,9 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
     {
         QAction *temp = iterActions.next();
         disconnect(temp, &QAction::triggered, 0, 0);
-        connect(temp, &QAction::triggered, this, &VirtualKeyboardMouseWidget::otherKeysActionAdvanced);
+        connect(temp, &QAction::triggered, this, [this, temp](bool checked) {
+            otherKeysActionAdvanced(temp, checked);
+        });
     }
 
     disconnect(noneButton, &QPushButton::clicked, 0, 0);
@@ -1096,24 +1100,22 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
     return otherKeysPushbutton;
 }
 
-void VirtualKeyboardMouseWidget::otherKeysActionSingle(bool triggered)
+void VirtualKeyboardMouseWidget::otherKeysActionSingle(QAction* tempAction, bool triggered)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(triggered);
 
-    QAction *tempAction = qobject_cast<QAction*>(sender()); // static_cast
     int virtualkey = tempAction->data().toInt();
     processSingleKeyboardSelection(virtualkey, AntKeyMapper::getInstance()->returnQtKey(virtualkey));
 }
 
-void VirtualKeyboardMouseWidget::otherKeysActionAdvanced(bool triggered)
+void VirtualKeyboardMouseWidget::otherKeysActionAdvanced(QAction* tempAction, bool triggered)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(triggered);
 
-    QAction *tempAction = qobject_cast<QAction*>(sender()); // static_cast
     int virtualkey = tempAction->data().toInt();
     processAdvancedKeyboardSelection(virtualkey, AntKeyMapper::getInstance()->returnQtKey(virtualkey));
 }

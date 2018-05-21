@@ -54,11 +54,9 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
     return QTabWidget::addTab(widget, string);
 }
 
-void JoyTabWidgetContainer::flash()
+void JoyTabWidgetContainer::flash(InputDevice* joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    InputDevice *joystick = qobject_cast<InputDevice*>(sender()); // static_cast
 
     bool found = false;
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
@@ -72,11 +70,9 @@ void JoyTabWidgetContainer::flash()
     }
 }
 
-void JoyTabWidgetContainer::unflash()
+void JoyTabWidgetContainer::unflash(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    InputDevice *joystick = qobject_cast<InputDevice*>(sender()); // static_cast
 
     bool found = false;
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
@@ -96,7 +92,7 @@ void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 
     bool found = false;
 
-    for (int i=0; (i < tabBar()->count()) && !found; i++)
+    for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
         if (tab == tabWidget)
@@ -126,14 +122,18 @@ void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 
     unflashAll();
 
-    disconnect(joystick, &InputDevice::clicked, this, &JoyTabWidgetContainer::flash);
-    disconnect(joystick, &InputDevice::released, this, &JoyTabWidgetContainer::unflash);
+    disconnect(joystick, &InputDevice::clicked, this, nullptr);
+    disconnect(joystick, &InputDevice::released, this, nullptr);
 }
 
 void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(joystick, &InputDevice::clicked, this, &JoyTabWidgetContainer::flash, Qt::QueuedConnection);
-    connect(joystick, &InputDevice::released, this, &JoyTabWidgetContainer::unflash, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::clicked, this, [this, joystick] {
+        flash(joystick);
+    }, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::released, this, [this, joystick] {
+        unflash(joystick);
+    }, Qt::QueuedConnection);
 }

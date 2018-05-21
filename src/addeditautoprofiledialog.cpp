@@ -319,7 +319,9 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     connect(thread, &QThread::started, util, &UnixCaptureWindowUtility::attemptWindowCapture);
     connect(util, &UnixCaptureWindowUtility::captureFinished, thread, &QThread::quit);
     connect(util, &UnixCaptureWindowUtility::captureFinished, box, &QMessageBox::hide);
-    connect(util, &UnixCaptureWindowUtility::captureFinished, this, &AddEditAutoProfileDialog::checkForGrabbedWindow, Qt::QueuedConnection);
+    connect(util, &UnixCaptureWindowUtility::captureFinished, this, [this, util]() {
+        checkForGrabbedWindow(util);
+    }, Qt::QueuedConnection);
 
     connect(thread, &QThread::finished, box, &QMessageBox::deleteLater);
     connect(util, &UnixCaptureWindowUtility::destroyed, thread, &QThread::deleteLater);
@@ -333,14 +335,13 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
  * @brief Check if there is a program path saved in an UnixCaptureWindowUtility
  *     object
  */
-void AddEditAutoProfileDialog::checkForGrabbedWindow()
+void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility* util)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     #ifdef WITH_X11
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    UnixCaptureWindowUtility *util = qobject_cast<UnixCaptureWindowUtility*>(sender()); // static_cast
     long targetWindow = util->getTargetWindow();
     bool escaped = !util->hasFailed();
     bool failed = false;
@@ -367,7 +368,11 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
     if (targetWindow != None)
     {
         CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(targetWindow, this);
-        connect(dialog, &CapturedWindowInfoDialog::accepted, this, &AddEditAutoProfileDialog::windowPropAssignment);
+        connect(dialog, &CapturedWindowInfoDialog::accepted, [this, dialog]() {
+
+            windowPropAssignment(dialog);
+        });
+
         dialog->show();
     }
     else if (!escaped)
@@ -394,7 +399,7 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow()
 
 #endif
 
-void AddEditAutoProfileDialog::windowPropAssignment()
+void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -402,7 +407,6 @@ void AddEditAutoProfileDialog::windowPropAssignment()
     disconnect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     disconnect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
 
-    CapturedWindowInfoDialog *dialog = qobject_cast<CapturedWindowInfoDialog*>(sender()); // static_cast
     if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowPath)
     {
         if (dialog->useFullWindowPath())

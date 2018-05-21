@@ -154,8 +154,16 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         aboutDialog = nullptr;
     }
 
-    connect(ui->menuQuit, &QMenu::aboutToShow, this, &MainWindow::mainMenuChange);
-    connect(ui->menuOptions, &QMenu::aboutToShow, this, &MainWindow::mainMenuChange);
+    QMenu* menuPointer = ui->menuQuit;
+    connect(ui->menuQuit, &QMenu::aboutToShow, this, [this, menuPointer] {
+        mainMenuChange(menuPointer);
+    });
+
+    QMenu* menuPointerOptions = ui->menuOptions;
+    connect(ui->menuOptions, &QMenu::aboutToShow, this, [this, menuPointerOptions] {
+        mainMenuChange(menuPointerOptions);
+    });
+
     connect(ui->actionKeyValue, &QAction::triggered, this, &MainWindow::openKeyCheckerDialog);
     connect(ui->actionAbout_Qt, &QAction::triggered, qApp, &QApplication::aboutQt);
     connect(ui->actionProperties, &QAction::triggered, this, &MainWindow::openJoystickStatusWindow);
@@ -432,7 +440,9 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
-        connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, &MainWindow::propogateNameDisplayStatus);
+        connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
+            propogateNameDisplayStatus(tabwidget, displayNames);
+        });
         connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
 
         if (showTrayIcon)
@@ -540,7 +550,9 @@ void MainWindow::populateTrayIcon()
                     tempmap.insert(QString::number(i), QVariant (configIter.key()));
                     QVariant tempvar (tempmap);
                     newaction->setData(tempvar);
-                    connect(newaction, &QAction::triggered, this, &MainWindow::profileTrayActionTriggered);
+                    connect(newaction, &QAction::triggered, this, [this, newaction](bool checked) {
+                        profileTrayActionTriggered(newaction, checked);
+                    });
 
                     if (useSingleList)
                     {
@@ -591,7 +603,9 @@ void MainWindow::populateTrayIcon()
                 else
                 {
                     joysticksubMenu->addAction(newaction);
-                    connect(joysticksubMenu, &QMenu::aboutToShow, this, &MainWindow::joystickTrayShow);
+                    connect(joysticksubMenu, &QMenu::aboutToShow, this, [this, joysticksubMenu] {
+                        joystickTrayShow(joysticksubMenu);
+                    });
                 }
 
                 i++;
@@ -682,11 +696,9 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
     }
 }
 
-void MainWindow::mainMenuChange()
+void MainWindow::mainMenuChange(QMenu* tempMenu)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    QMenu *tempMenu = qobject_cast<QMenu*>(sender()); // static_cast
 
     if (tempMenu == ui->menuQuit)
     {
@@ -895,11 +907,10 @@ void MainWindow::hideWindow()
     hide();
 }
 
-void MainWindow::joystickTrayShow()
+void MainWindow::joystickTrayShow(QMenu* tempmenu)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QMenu *tempmenu = qobject_cast<QMenu*>(sender()); // static_cast
     QList<QAction*> menuactions = tempmenu->actions();
     QListIterator<QAction*> listiter (menuactions);
     while (listiter.hasNext())
@@ -1181,12 +1192,11 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
     }
 }
 
-void MainWindow::propogateNameDisplayStatus(bool displayNames)
+void MainWindow::propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget*>(sender());  // static_cast
-    for (int i=0; i < ui->tabWidget->count(); i++)
+     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
         if ((tab != nullptr) && (tab != tabwidget))
@@ -1404,14 +1414,14 @@ void MainWindow::singleTrayProfileMenuShow()
 }
 
 
-void MainWindow::profileTrayActionTriggered(bool checked)
+void MainWindow::profileTrayActionTriggered(QAction *action, bool checked)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Obtaining the selected config
-    QAction *action = qobject_cast<QAction*>(sender());  // static_cast
     QHash<QString, QVariant> tempmap = action->data().toHash();
     QHashIterator<QString, QVariant> iter(tempmap);
+
     while (iter.hasNext())
     {
         iter.next();
@@ -1567,7 +1577,9 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     tabwidget->refreshButtons();
     ui->tabWidget->setCurrentIndex(index);
 
-    connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, &MainWindow::propogateNameDisplayStatus);
+    connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
+        propogateNameDisplayStatus(tabwidget, displayNames);
+    });
     connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
     if (showTrayIcon)
     {
@@ -1640,7 +1652,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     tabwidget->refreshButtons();
 
     // Refresh tab text to reflect new index values.
-    for (int i=0; i < ui->tabWidget->count(); i++)
+    for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         if (tab != nullptr)
@@ -1652,7 +1664,10 @@ void MainWindow::addJoyTab(InputDevice *device)
         }
     }
 
-    connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, &MainWindow::propogateNameDisplayStatus);
+    connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
+        propogateNameDisplayStatus(tabwidget, displayNames);
+    });
+
     connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
     if (showTrayIcon)
     {

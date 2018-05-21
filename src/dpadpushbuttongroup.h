@@ -24,7 +24,7 @@ class JoyDPad;
 class QWidget;
 class JoyDPadButtonWidget;
 class DPadPushButton;
-
+class JoyButtonWidget;
 
 class DPadPushButtonGroup : public QGridLayout
 {
@@ -47,7 +47,7 @@ public slots:
 
 private slots:
     void propogateSlotsChanged();
-    void openDPadButtonDialog();
+    void openDPadButtonDialog(JoyButtonWidget* buttonWidget);
     void showDPadDialog();
 
 private:

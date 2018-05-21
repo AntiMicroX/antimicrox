@@ -21,7 +21,8 @@
 #include <QDialog>
 
 class Joystick;
-
+class JoyAxisButton;
+class JoyButton;
 
 
 namespace Ui {
@@ -47,8 +48,8 @@ private slots:
     void refreshStickConfiguration();
     void refreshVDPadConfiguration();
 
-    void checkForAxisAssignmentStickOne();
-    void checkForAxisAssignmentStickTwo();
+    void checkForAxisAssignmentStickOne(QWidget* comboBox);
+    void checkForAxisAssignmentStickTwo(QWidget* comboBox);
 
     void changeStateStickOneWidgets(bool enabled);
     void changeStateStickTwoWidgets(bool enabled);
@@ -67,21 +68,19 @@ private slots:
     void openQuickAssignDialogStick1();
     void openQuickAssignDialogStick2();
 
-    void quickAssignStick1Axis1();
-    void quickAssignStick1Axis2();
-
-    void quickAssignStick2Axis1();
-    void quickAssignStick2Axis2();
-
     void openAssignVDPadUp();
     void openAssignVDPadDown();
     void openAssignVDPadLeft();
     void openAssignVDPadRight();
 
-    void quickAssignVDPadUp();
-    void quickAssignVDPadDown();
-    void quickAssignVDPadLeft();
-    void quickAssignVDPadRight();
+    void quickAssignVDPadUp(JoyAxisButton* joyaxisbtn);
+    void quickAssignVDPadUpBtn(JoyButton* joybtn);
+    void quickAssignVDPadDown(JoyAxisButton* axbtn);
+    void quickAssignVDPadDownJbtn(JoyButton* axbtn);
+    void quickAssignVDPadLeft(JoyAxisButton* joyaxisbtn);
+    void quickAssignVDPadLeftJbtn(JoyButton* joybtn);
+    void quickAssignVDPadRight(JoyAxisButton* joyaxisbtn);
+    void quickAssignVDPadRightJbtn(JoyButton* joybtn);
 
     void reenableButtonEvents();
 

@@ -81,9 +81,7 @@ private slots:
 
     void updateSlotsScrollArea(int value);
     void deleteSlot();
-    void changeSelectedSlot();
     void insertSlot();
-    void updateSelectedSlot(int value);
 
     void insertPauseSlot();
     void insertHoldSlot();

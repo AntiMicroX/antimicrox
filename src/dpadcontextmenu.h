@@ -37,8 +37,8 @@ protected:
     int getPresetIndex();
 
 private slots:
-    void setDPadPreset();
-    void setDPadMode();
+    void setDPadPreset(QAction* action);
+    void setDPadMode(QAction* action);
     void openMouseSettingsDialog();
 
 private:

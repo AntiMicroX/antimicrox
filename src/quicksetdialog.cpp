@@ -75,12 +75,16 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
-                    connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
+                    connect(stickbutton, &JoyControlStickButton::clicked, this, [this, stickbutton]() {
+                        showStickButtonDialog(stickbutton);
+                    });
                 }
             }
             else
             {
-                connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
+                connect(stickbutton, &JoyControlStickButton::clicked, this, [this, stickbutton]() {
+                    showStickButtonDialog(stickbutton);
+                });
             }
 
             if (!stickbutton->getIgnoreEventState())
@@ -99,8 +103,13 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
             JoyAxisButton *naxisbutton = axis->getNAxisButton();
             JoyAxisButton *paxisbutton = axis->getPAxisButton();
 
-            connect(naxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
-            connect(paxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
+            connect(naxisbutton, &JoyAxisButton::clicked, this, [this, naxisbutton]() {
+                showAxisButtonDialog(naxisbutton);
+            });
+
+            connect(paxisbutton, &JoyAxisButton::clicked, this, [this, paxisbutton]() {
+                showAxisButtonDialog(paxisbutton);
+            });
 
             if (!naxisbutton->getIgnoreEventState())
             {
@@ -114,7 +123,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
         }
     }
 
-    for (int i=0; i < currentset->getNumberHats(); i++)
+    for (int i = 0; i < currentset->getNumberHats(); i++)
     {
         JoyDPad *dpad = currentset->getJoyDPad(i);
         QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
@@ -130,12 +139,16 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                 {
-                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                        showDPadButtonDialog(dpadbutton);
+                    });
                 }
             }
             else
             {
-                connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                    showDPadButtonDialog(dpadbutton);
+                });
             }
 
             if (!dpadbutton->getIgnoreEventState())
@@ -163,12 +176,16 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                     {
-                        connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                        connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                            showDPadButtonDialog(dpadbutton);
+                        });
                     }
                 }
                 else
                 {
-                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                        showDPadButtonDialog(dpadbutton);
+                    });
                 }
 
                 if (!dpadbutton->getIgnoreEventState())
@@ -179,12 +196,15 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
         }
     }
 
-    for (int i=0; i < currentset->getNumberButtons(); i++)
+    for (int i = 0; i < currentset->getNumberButtons(); i++)
     {
         JoyButton *button = currentset->getJoyButton(i);
         if ((button != nullptr) && !button->isPartVDPad())
         {
-            connect(button, &JoyButton::clicked, this, &QuickSetDialog::showButtonDialog);
+            connect(button, &JoyButton::clicked, this, [this, button] {
+                showButtonDialog(button);
+            });
+
             if (!button->getIgnoreEventState())
             {
                 button->setIgnoreEventState(true);
@@ -245,12 +265,16 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
-                    connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
+                    connect(stickbutton, &JoyControlStickButton::clicked, this, [this, stickbutton]() {
+                        showStickButtonDialog(stickbutton);
+                    });
                 }
             }
             else
             {
-                connect(stickbutton, &JoyControlStickButton::clicked, this, &QuickSetDialog::showStickButtonDialog);
+                connect(stickbutton, &JoyControlStickButton::clicked, this, [this, stickbutton]() {
+                    showStickButtonDialog(stickbutton);
+                });
             }
 
             if (!stickbutton->getIgnoreEventState())
@@ -260,7 +284,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
         }
     }
 
-    for (int i=0; i < currentset->getNumberAxes(); i++)
+    for (int i = 0; i < currentset->getNumberAxes(); i++)
     {
         JoyAxis *axis = currentset->getJoyAxis(i);
 
@@ -269,8 +293,13 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
             JoyAxisButton *naxisbutton = axis->getNAxisButton();
             JoyAxisButton *paxisbutton = axis->getPAxisButton();
 
-            connect(naxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
-            connect(paxisbutton, &JoyAxisButton::clicked, this, &QuickSetDialog::showAxisButtonDialog);
+            connect(naxisbutton, &JoyAxisButton::clicked, this, [this, naxisbutton]() {
+                showAxisButtonDialog(naxisbutton);
+            });
+
+            connect(paxisbutton, &JoyAxisButton::clicked, this, [this, paxisbutton]() {
+                showAxisButtonDialog(paxisbutton);
+            });
 
             if (!naxisbutton->getIgnoreEventState())
             {
@@ -300,12 +329,16 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                 {
-                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                        showDPadButtonDialog(dpadbutton);
+                    });
                 }
             }
             else
             {
-                connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                    showDPadButtonDialog(dpadbutton);
+                });
             }
 
             if (!dpadbutton->getIgnoreEventState())
@@ -333,12 +366,16 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                     {
-                        connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                        connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                            showDPadButtonDialog(dpadbutton);
+                        });
                     }
                 }
                 else
                 {
-                    connect(dpadbutton, &JoyDPadButton::clicked, this, &QuickSetDialog::showDPadButtonDialog);
+                    connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
+                        showDPadButtonDialog(dpadbutton);
+                    });
                 }
 
                 if (!dpadbutton->getIgnoreEventState())
@@ -349,12 +386,15 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
         }
     }
 
-    for (int i=0; i < currentset->getNumberButtons(); i++)
+    for (int i = 0; i < currentset->getNumberButtons(); i++)
     {
         JoyButton *button = currentset->getJoyButton(i);
         if ((button != nullptr) && !button->isPartVDPad())
         {
-            connect(button, &JoyButton::clicked, this, &QuickSetDialog::showButtonDialog);
+            connect(button, &JoyButton::clicked, this, [this, button] {
+                showButtonDialog(button);
+            });
+
             if (!button->getIgnoreEventState())
             {
                 button->setIgnoreEventState(true);
@@ -374,11 +414,11 @@ QuickSetDialog::~QuickSetDialog()
     delete ui;
 }
 
-void QuickSetDialog::showAxisButtonDialog()
+void QuickSetDialog::showAxisButtonDialog(JoyAxisButton* joybtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    lastButton = qobject_cast<JoyAxisButton*>(sender());
+    lastButton = joybtn;
 
     if (helper != nullptr) {
         helper = new ButtonEditDialogHelper();
@@ -428,11 +468,11 @@ void QuickSetDialog::showAxisButtonDialog()
     this->close();
 }
 
-void QuickSetDialog::showButtonDialog()
+void QuickSetDialog::showButtonDialog(JoyButton* joybtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    lastButton = qobject_cast<JoyButton*>(sender()); // static_cast
+    lastButton = joybtn; // static_cast
 
     if (helper == nullptr) {
         helper = new ButtonEditDialogHelper();
@@ -486,17 +526,18 @@ void QuickSetDialog::showButtonDialog()
     this->close();
 }
 
-void QuickSetDialog::showStickButtonDialog()
+void QuickSetDialog::showStickButtonDialog(JoyControlStickButton* joyctrlstickbtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    lastButton = qobject_cast<JoyControlStickButton*>(sender());
+    lastButton = joyctrlstickbtn;
 
     // sometimes appears situation, when we want to map an axis of stick,
     // it's detected some state between pressing stick button and moving axis.
     // It chooses a function for pressing a stick, but later appears problem,
     // because correct and prepared value is from the axis one, so static_cast
     // for stick button is failing
+    // App can sometimes ask to three times for a button, but it never is going to crash now
     // if lastButton is still null pointer, check, if correct value comes from axis
     if (lastButton == nullptr) lastButton = qobject_cast<JoyAxisButton*>(sender());
 
@@ -523,8 +564,6 @@ void QuickSetDialog::showStickButtonDialog()
 
     }
 
-
-
     // when alias exists but not index
     if ((alias != -1) && (index == -1)) {
 
@@ -557,11 +596,11 @@ void QuickSetDialog::showStickButtonDialog()
 }
 
 
-void QuickSetDialog::showDPadButtonDialog()
+void QuickSetDialog::showDPadButtonDialog(JoyDPadButton* joydpadbtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    lastButton = qobject_cast<JoyDPadButton*>(sender());
+    lastButton = joydpadbtn;
 
     if (helper == nullptr) {
         helper = new ButtonEditDialogHelper();

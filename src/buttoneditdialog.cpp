@@ -513,14 +513,14 @@ void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-
         if ((currentQuickDialog == nullptr) && (buttonEventInterval.isNull() || (buttonEventInterval.elapsed() > 1000)))
     {
         // for better security, force pausing for 1 sec between key presses,
         // because mapped joystick buttons and axes become keys too
         // it's good for oversensitive buttons and axes, which can
         // create QuickSetDialog windows many times for one key
-        if (buttonEventInterval.isNull()) buttonEventInterval.start();
+        if (buttonEventInterval.isNull())
+            buttonEventInterval.start();
         else
             buttonEventInterval.restart();
 

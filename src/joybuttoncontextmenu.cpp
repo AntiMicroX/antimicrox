@@ -97,7 +97,10 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchSetMode);
+        connect(action, &QAction::triggered, this, [this, action]() {
+            switchSetMode(action);
+        });
+
         tempGroup->addAction(action);
 
         action = tempSetMenu->addAction(trUtf8("Set %1 2W").arg(i+1));
@@ -108,7 +111,10 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchSetMode);
+        connect(action, &QAction::triggered, this, [this, action]() {
+            switchSetMode(action);
+        });
+
         tempGroup->addAction(action);
 
         action = tempSetMenu->addAction(trUtf8("Set %1 WH").arg(i+1));
@@ -119,7 +125,10 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchSetMode);
+        connect(action, &QAction::triggered, this, [this, action]() {
+            switchSetMode(action);
+        });
+
         tempGroup->addAction(action);
 
         if (i == button->getParentSet()->getIndex())
@@ -149,11 +158,10 @@ void JoyButtonContextMenu::switchTurbo()
     PadderCommon::inputDaemonMutex.unlock();
 }
 
-void JoyButtonContextMenu::switchSetMode()
+void JoyButtonContextMenu::switchSetMode(QAction* action)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
     int setSelection = item / 3;
     int setChangeCondition = item % 3;

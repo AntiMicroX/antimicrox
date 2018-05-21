@@ -40,6 +40,7 @@ class QMenu;
 class QShowEvent;
 class QEvent;
 class QCloseEvent;
+class JoyTabWidget;
 
 namespace Ui {
 class MainWindow;
@@ -112,13 +113,13 @@ public slots:
 private slots:
     void refreshTrayIconMenu();
     void trayIconClickAction(QSystemTrayIcon::ActivationReason reason);
-    void mainMenuChange();
+    void mainMenuChange(QMenu* tempMenu);
     void disableFlashActions();
     void enableFlashActions();
 
-    void joystickTrayShow();
+    void joystickTrayShow(QMenu* tempmenu);
     void singleTrayProfileMenuShow();
-    void profileTrayActionTriggered(bool checked);
+    void profileTrayActionTriggered(QAction *action, bool checked);
 
     void populateTrayIcon();
     void openAboutDialog();
@@ -127,7 +128,7 @@ private slots:
     void openGitHubPage();
     void openIssuesPage();
     void openWikiPage();
-    void propogateNameDisplayStatus(bool displayNames);
+    void propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames);
     void changeLanguage(QString language);
     void openMainSettingsDialog();
     void showStickAssignmentDialog();

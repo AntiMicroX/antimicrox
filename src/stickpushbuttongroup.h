@@ -59,7 +59,7 @@ public slots:
 
 private slots:
     void propogateSlotsChanged();
-    void openStickButtonDialog();
+    void openStickButtonDialog(JoyControlStickButtonPushButton* pushbutton);
     void showStickDialog();
 
 private:

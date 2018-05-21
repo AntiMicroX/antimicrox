@@ -57,7 +57,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -65,7 +67,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -73,7 +77,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -81,7 +87,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -89,7 +97,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -97,7 +107,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this,&DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -105,7 +117,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -113,7 +127,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadPreset);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -125,7 +141,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(dpad->getJoyMode() == JoyDPad::StandardMode);
     action->setData(QVariant(mode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("Eight Way"));
@@ -133,7 +151,9 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::EightWayMode);
     mode = static_cast<int>(JoyDPad::EightWayMode);
     action->setData(QVariant(mode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Cardinal"));
@@ -141,7 +161,9 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::FourWayCardinal);
     mode = static_cast<int>(JoyDPad::FourWayCardinal);
     action->setData(QVariant(mode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Diagonal"));
@@ -149,7 +171,10 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::FourWayDiagonal);
     mode = static_cast<int>(JoyDPad::FourWayDiagonal);
     action->setData(QVariant(mode));
-    connect(action, &QAction::triggered, this, &DPadContextMenu::setDPadMode);
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
+
     modesGroup->addAction(action);
 
     this->addSeparator();
@@ -162,11 +187,10 @@ void DPadContextMenu::buildMenu()
 /**
  * @brief Set the appropriate mode for a DPad based on the item chosen.
  */
-void DPadContextMenu::setDPadMode()
+void DPadContextMenu::setDPadMode(QAction* action)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
     dpad->setJoyMode((JoyDPad::JoyMode)item);
 }
@@ -175,11 +199,10 @@ void DPadContextMenu::setDPadMode()
  * @brief Assign the appropriate slots to DPad buttons based on the preset item
  *     that was chosen.
  */
-void DPadContextMenu::setDPadPreset()
+void DPadContextMenu::setDPadPreset(QAction* action)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *upButtonSlot = nullptr;

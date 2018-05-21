@@ -38,8 +38,8 @@ protected:
     int getPresetIndex();
 
 private slots:
-    void setStickPreset();
-    void setStickMode();
+    void setStickPreset(QAction* action);
+    void setStickMode(QAction* action);
     void openMouseSettingsDialog();
 
 private:

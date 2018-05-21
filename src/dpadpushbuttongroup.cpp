@@ -55,7 +55,9 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadLeftUp);
     upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = upLeftButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
 
     button->establishPropertyUpdatedConnections();
 
@@ -67,7 +69,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadUp);
     upButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = upButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
@@ -77,7 +82,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadRightUp);
     upRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = upRightButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
@@ -87,7 +95,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadLeft);
     leftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = leftButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
@@ -102,7 +113,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadRight);
     rightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = rightButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
@@ -112,7 +126,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadLeftDown);
     downLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = downLeftButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
@@ -121,7 +138,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadDown);
     downButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = downButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
@@ -130,7 +150,10 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadRightDown);
     downRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = downRightButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, &DPadPushButtonGroup::openDPadButtonDialog);
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
@@ -189,11 +212,10 @@ JoyDPad* DPadPushButtonGroup::getDPad() const
     return dpad;
 }
 
-void DPadPushButtonGroup::openDPadButtonDialog()
+void DPadPushButtonGroup::openDPadButtonDialog(JoyButtonWidget* buttonWidget)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
 
     ButtonEditDialog *dialog = new ButtonEditDialog(button, dpad->getParentSet()->getInputDevice(), parentWidget());

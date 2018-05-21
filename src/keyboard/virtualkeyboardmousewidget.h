@@ -95,8 +95,8 @@ private slots:
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
     void setButtonFontSizes();
-    void otherKeysActionSingle(bool triggered);
-    void otherKeysActionAdvanced(bool triggered);
+    void otherKeysActionSingle(QAction* action, bool triggered);
+    void otherKeysActionAdvanced(QAction* action, bool triggered);
     void nullifyDialogPointer();
 
 private:

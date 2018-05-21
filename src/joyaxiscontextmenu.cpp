@@ -79,7 +79,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -87,7 +90,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -95,7 +101,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -103,7 +112,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -111,7 +123,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -119,7 +134,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -127,7 +145,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -135,7 +156,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -143,7 +167,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -151,7 +178,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -159,7 +189,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setAxisPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -244,11 +277,10 @@ int JoyAxisContextMenu::getPresetIndex()
     return result;
 }
 
-void JoyAxisContextMenu::setAxisPreset()
+void JoyAxisContextMenu::setAxisPreset(QAction* action)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *nbuttonslot = nullptr;
@@ -352,7 +384,10 @@ void JoyAxisContextMenu::buildTriggerMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setTriggerPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setTriggerPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -360,7 +395,10 @@ void JoyAxisContextMenu::buildTriggerMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setTriggerPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setTriggerPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -368,7 +406,10 @@ void JoyAxisContextMenu::buildTriggerMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::setTriggerPreset);
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setTriggerPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -413,11 +454,10 @@ int JoyAxisContextMenu::getTriggerPresetIndex()
     return result;
 }
 
-void JoyAxisContextMenu::setTriggerPreset()
+void JoyAxisContextMenu::setTriggerPreset(QAction* action)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender());  // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *pbuttonslot = nullptr;

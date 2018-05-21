@@ -695,13 +695,12 @@ void GameControllerMappingDialog::changeAxisDeadZone(int index)
     }
 }
 
-void GameControllerMappingDialog::updateLastAxisLineEdit(int value)
+void GameControllerMappingDialog::updateLastAxisLineEdit(JoyAxis *tempAxis, int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (abs(value) >= 2000)
     {
-        JoyAxis *tempAxis = qobject_cast<JoyAxis*>(sender()); // static_cast
         QString temp = QString();
         if (device->isGameController())
         {

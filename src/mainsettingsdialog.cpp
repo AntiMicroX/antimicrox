@@ -1479,7 +1479,10 @@ void MainSettingsDialog::openAddAutoProfileDialog()
     QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
     AutoProfileInfo *info = new AutoProfileInfo(this);
     AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
-    connect(dialog, &AddEditAutoProfileDialog::accepted, this, &MainSettingsDialog::addNewAutoProfile);
+    connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
+        addNewAutoProfile(dialog);
+    });
+
     connect(dialog, &AddEditAutoProfileDialog::rejected, info, &AutoProfileInfo::deleteLater);
     dialog->show();
 }
@@ -1506,14 +1509,19 @@ void MainSettingsDialog::openEditAutoProfileDialog()
                 }
             }
             AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, true, this);
-            connect(dialog, &AddEditAutoProfileDialog::accepted, this, &MainSettingsDialog::transferEditsToCurrentTableRow);
+            connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
+                transferEditsToCurrentTableRow(dialog);
+            });
+
             dialog->show();
         }
         else
         {
             EditAllDefaultAutoProfileDialog *dialog = new EditAllDefaultAutoProfileDialog(info, settings, this);
             dialog->show();
-            connect(dialog, &EditAllDefaultAutoProfileDialog::accepted, this, &MainSettingsDialog::transferAllProfileEditToCurrentTableRow);
+            connect(dialog, &EditAllDefaultAutoProfileDialog::accepted, this, [this, dialog] {
+                transferAllProfileEditToCurrentTableRow(dialog);
+            });
         }
     }
 }
@@ -1600,21 +1608,19 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
     }
 }
 
-void MainSettingsDialog::transferAllProfileEditToCurrentTableRow()
+void MainSettingsDialog::transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog* dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    EditAllDefaultAutoProfileDialog *dialog = qobject_cast<EditAllDefaultAutoProfileDialog*>(sender()); // static_cast
     AutoProfileInfo *info = dialog->getAutoProfile();
     allDefaultProfile = info;
     changeDeviceForProfileTable(0);
 }
 
-void MainSettingsDialog::transferEditsToCurrentTableRow()
+void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog *dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    AddEditAutoProfileDialog *dialog = qobject_cast<AddEditAutoProfileDialog*>(sender()); // static_cast
     AutoProfileInfo *info = dialog->getAutoProfile();
 
     // Delete pointers to object that might be misplaced
@@ -1710,11 +1716,10 @@ void MainSettingsDialog::transferEditsToCurrentTableRow()
     changeDeviceForProfileTable(currentIndex);
 }
 
-void MainSettingsDialog::addNewAutoProfile()
+void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    AddEditAutoProfileDialog *dialog = qobject_cast<AddEditAutoProfileDialog*>(sender()); // static_cast
     AutoProfileInfo *info = dialog->getAutoProfile();
 
     bool found = false;
