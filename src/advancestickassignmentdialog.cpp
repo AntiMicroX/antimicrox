@@ -129,11 +129,12 @@ void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickOne(QWidget* combo
     {
         if (ui->xAxisOneComboBox->currentIndex() != ui->yAxisOneComboBox->currentIndex())
         {
-            for (int i=0; i < joystick->NUMBER_JOYSETS; i++)
+            for (int i = 0; i < joystick->NUMBER_JOYSETS; i++)
             {
                 SetJoystick *currentset = joystick->getSetJoystick(i);
                 JoyAxis *axis1 = currentset->getJoyAxis(ui->xAxisOneComboBox->currentIndex()-1);
                 JoyAxis *axis2 = currentset->getJoyAxis(ui->yAxisOneComboBox->currentIndex()-1);
+
                 if (axis1 && axis2)
                 {
                     JoyControlStick *controlstick = currentset->getJoyStick(0);

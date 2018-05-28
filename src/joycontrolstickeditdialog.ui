@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>702</width>
-    <height>464</height>
+    <height>515</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -751,7 +751,7 @@ functionality to an analog stick.</string>
          <item>
           <widget class="QLabel" name="stickNameLabel">
            <property name="text">
-            <string>Name:</string>
+            <string>Na&amp;me:</string>
            </property>
            <property name="buddy">
             <cstring>stickNameLineEdit</cstring>
@@ -774,8 +774,7 @@ functionality to an analog stick.</string>
          </property>
          <property name="icon">
           <iconset theme="edit-select">
-           <normaloff/>
-          </iconset>
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </widget>
        </item>

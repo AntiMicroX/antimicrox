@@ -128,6 +128,7 @@ private slots:
     void openGitHubPage();
     void openIssuesPage();
     void openWikiPage();
+    void openCalibration();
     void propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames);
     void changeLanguage(QString language);
     void openMainSettingsDialog();

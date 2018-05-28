@@ -45,7 +45,7 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex,
     SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
     joystickID = SDL_JoystickInstanceID(joyhandle);
 
-    for (int i=0; i < NUMBER_JOYSETS; i++)
+    for (int i = 0; i < NUMBER_JOYSETS; i++)
     {
         GameControllerSet *controllerset = new GameControllerSet(this, i, this);
         getJoystick_sets().insert(i, controllerset);

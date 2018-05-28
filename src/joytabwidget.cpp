@@ -173,7 +173,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     tempVBoxLayout->addWidget(scrollArea2);
     stackedWidget_2->addWidget(page_2);
 
-
     page_3 = new QWidget();
     page_3->setObjectName(QString::fromUtf8("page_3"));
 
@@ -193,7 +192,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     scrollArea3->setWidget(scrollAreaWidgetContents3);
     tempVBoxLayout->addWidget(scrollArea3);
     stackedWidget_2->addWidget(page_3);
-
 
     page_4 = new QWidget();
     page_4->setObjectName(QString::fromUtf8("page_4"));
