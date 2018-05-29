@@ -6,6 +6,7 @@
 #include <SDL2/SDL_joystick.h>
 
 #include <QWidget>
+#include <QProgressBar>
 
 class JoyControlStick;
 class InputDevice;
@@ -22,11 +23,19 @@ public:
     explicit Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget *parent = 0);
     ~Calibration();
 
+protected:
+    void setProgressBars(int inputDevNr, int setJoyNr, int stickNr);
+    void updateAxesBox();
+
 private:
     Ui::Calibration *ui;
     QMap<SDL_JoystickID, InputDevice*>* joysticks;
     JoyControlStick *stick;
     JoyControlStickEditDialogHelper helper;
+    JoyAxis* joyAxisX;
+    JoyAxis* joyAxisY;
+    QProgressBar *axisBarX;
+    QProgressBar *axisBarY;
 
 public slots:
     void saveSettings();

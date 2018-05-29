@@ -30,7 +30,7 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-
+#include <QLabel>
 
 // Define Pi here.
 const double JoyControlStick::PI = acos(-1.0);
@@ -979,10 +979,12 @@ QString JoyControlStick::getPartialName(bool forceFullFormat, bool displayNames)
     }
     else
     {
+
         label.append(trUtf8("Stick")).append(" ");
-        label.append(QString::number(getRealJoyIndex()));
+        label.append(QString::number(getRealJoyIndex()));        
     }
 
+    setStickName(label);
     return label;
 }
 
