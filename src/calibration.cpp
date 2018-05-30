@@ -4,6 +4,7 @@
 #include "joycontrolstick.h"
 #include "joytabwidget.h"
 #include "inputdevice.h"
+#include "joybuttontypes/joycontrolstickmodifierbutton.h"
 
 #include <SDL2/SDL_joystick.h>
 
@@ -11,57 +12,33 @@
 #include <QProgressBar>
 #include <QMessageBox>
 #include <QLayoutItem>
+#include <QPointer>
 
 
 Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Calibration),
-    helper(stick)
+    helper(joysticks->value(0)->getSetJoystick(0)->getJoyStick(0))
 {
     ui->setupUi(this);
 
     setAttribute(Qt::WA_DeleteOnClose);
 
-    // TODO - THREADS
+    setWindowTitle(trUtf8("Calibration"));
 
     this->joysticks = joysticks;
-    this->stick = joysticks->value(0)->getSetJoystick(0)->getJoyStick(0);
-
-
-    // for getSetJoystick(int) is InputDevice::NUMBER_JOYSETS
-    // for (int i = 0; i < joystick->getNumberAxes(); i++)
-
-   /* SetJoystick *currentset = joysticks->value(0)->getSetJoystick(0);
-
-    for (int i = 0; i < joysticks->value(0)->getNumberAxes(); i++)
-    {
-        JoyAxis *axis = currentset->getJoyAxis(i);
-
-        if (axis != nullptr)
-        {
-            QHBoxLayout *hbox = new QHBoxLayout();
-
-            QLabel *axisLabel = new QLabel();
-            axisLabel->setText(trUtf8("Axis %1").arg(axis->getRealJoyIndex()));
-            QProgressBar *axisBar = new QProgressBar();
-            axisBar->setMinimum(JoyAxis::AXISMIN);
-            axisBar->setMaximum(JoyAxis::AXISMAX);
-            axisBar->setFormat("%v");
-            axisBar->setValue(axis->getCurrentRawValue());
-            hbox->addWidget(axisLabel);
-            hbox->addWidget(axisBar);
-            hbox->addSpacing(10);
-            ui->progressBarsLayout->addLayout(hbox);
-
-            connect(axis, &JoyAxis::moved, axisBar, &QProgressBar::setValue);
-        }
-    }*/
+    QPointer<JoyControlStick> controlstick = joysticks->value(0)->getSetJoystick(0)->getJoyStick(0);
+    this->stick = controlstick.data();
+    controlstick.data()->getModifierButton()->establishPropertyUpdatedConnections();
+    helper.moveToThread(controlstick.data()->thread());
 
     setProgressBars(0, 0, 0);
 
-    helper.moveToThread(stick->thread());
+    ui->stickStatusBoxWidget->setStick(controlstick.data());
+    ui->stickStatusBoxWidget->update();
 
-    ui->stickStatusBoxWidget->setStick(stick);
+    if (controlstick.isNull())
+        controlstick.clear();
 
     QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
 
@@ -81,8 +58,6 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
 
     connect(ui->saveBtn, &QPushButton::clicked, this, &Calibration::saveSettings);
     connect(ui->cancelBtn, &QPushButton::clicked, this, &Calibration::close);
-  //  connect(ui->movedXProgress, &QProgressBar::valueChanged, this, &Calibration::checkX);
-  //  connect(ui->movedYProgress, &QProgressBar::valueChanged, this, &Calibration::checkY);
     connect(ui->controllersBox, &QComboBox::currentTextChanged, this, &Calibration::setController);
     connect(ui->axesBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &Calibration::createAxesConnection);
     connect(ui->jstestgtkCheckbox, &QCheckBox::stateChanged, this, &Calibration::loadSetFromJstest);
@@ -99,19 +74,60 @@ Calibration::~Calibration()
 
 void Calibration::saveSettings()
 {
+    if (enoughProb()) {
 
+        calculateDeadZone(x_es_val);
+        calculateDeadZone(y_es_val);
+
+    } else {
+
+
+    }
 }
 
 
-void Calibration::checkX()
+bool Calibration::enoughProb()
 {
+    bool enough = true;
+    if (x_es_val.count(QString("+")) < 3) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the right at least three times!")); }
+    else if (x_es_val.count(QString("-")) < 3) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the left at least three times!")); }
+    else if (y_es_val.count(QString("+")) < 3) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move Y axis up at least three times!")); }
+    else if (y_es_val.count(QString("-")) < 3) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move Y axis down at least three times!")); }
 
+    return enough;
 }
 
 
-void Calibration::checkY()
+int Calibration::calculateDeadZone(QHash<QString,int> ax_values)
 {
+    // temporarily
+    return 0;
+}
 
+
+void Calibration::checkX(int value)
+{
+    if (value > 0) {
+        if (x_es_val.count(QString("+")) <= 5) x_es_val.insertMulti(QString("+"), value);
+    } else {
+        if (x_es_val.count(QString("-")) <= 5) x_es_val.insertMulti(QString("-"), value);
+    }
+
+    axisBarX->setValue(value);
+    update();
+}
+
+
+void Calibration::checkY(int value)
+{
+    if (value > 0) {
+        if (y_es_val.count(QString("+")) <= 5) y_es_val.insertMulti(QString("+"), value);
+    } else {
+        if (y_es_val.count(QString("-")) <= 5) y_es_val.insertMulti(QString("-"), value);
+    }
+
+    axisBarY->setValue(value);
+    update();
 }
 
 
@@ -123,17 +139,16 @@ void Calibration::setController(QString controllerName)
     {
         iterTemp.next();
 
-        InputDevice *joystick = iterTemp.value();
+        QPointer<InputDevice> joystick = iterTemp.value();
 
-        // TODO - iterate over all sticks
-        JoyControlStick* joyStick = iterTemp.value()->getSetJoystick(0)->getJoyStick(0);
-
-        if (controllerName == joystick->getSDLName()) {
-            stick = joyStick;
+        if (controllerName == joystick.data()->getSDLName())
+        {
             updateAxesBox();
             createAxesConnection();
             break;
         }
+
+        if (joystick.isNull()) joystick.clear();
     }
 }
 
@@ -161,33 +176,20 @@ void Calibration::createAxesConnection()
 {
     qDeleteAll(ui->axesWidget->findChildren<QWidget*>());
 
-    if ((joyAxisX != nullptr) && (axisBarX != nullptr)) {
-        disconnect(joyAxisX, &JoyAxis::moved, axisBarX, nullptr);
-       // delete joyAxisX;
-       // delete axisBarX;
-        joyAxisX = nullptr;
-        axisBarX = nullptr;
-    }
+    QPointer<JoyControlStick> controlstick = joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getJoyStick(ui->axesBox->currentIndex());
+    this->stick = controlstick.data();
+    controlstick.data()->getModifierButton()->establishPropertyUpdatedConnections();
+    helper.moveToThread(controlstick.data()->thread());
+    ui->stickStatusBoxWidget->setStick(controlstick.data());
+    ui->stickStatusBoxWidget->update();
+    setProgressBars(controlstick.data());
 
-    if ((joyAxisY != nullptr) && (axisBarY != nullptr)) {
-        disconnect(joyAxisY, &JoyAxis::moved, axisBarY, nullptr);
-       // delete joyAxisY;
-       // delete axisBarY;
-        joyAxisY = nullptr;
-        axisBarY = nullptr;
-    }
-
-    setProgressBars(ui->controllersBox->currentIndex(), 0, ui->axesBox->currentIndex());
-    helper.moveToThread(stick->thread());
-    this->stick = joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getJoyStick(ui->axesBox->currentIndex());
-    ui->stickStatusBoxWidget->setStick(stick);
+    if (controlstick.isNull()) controlstick.clear();
 }
 
 
-void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
+void Calibration::setProgressBars(JoyControlStick* controlstick)
 {
-
-        JoyControlStick* controlstick = joysticks->value(inputDevNr)->getSetJoystick(setJoyNr)->getJoyStick(stickNr);
 
         joyAxisX = controlstick->getAxisX();
         joyAxisY = controlstick->getAxisY();
@@ -220,10 +222,56 @@ void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
             ui->progressBarsLayout->addLayout(hbox);
             ui->progressBarsLayout->addLayout(hbox2);
 
-            connect(joyAxisX, &JoyAxis::moved, axisBarX, &QProgressBar::setValue);
-            connect(joyAxisY, &JoyAxis::moved, axisBarY, &QProgressBar::setValue);
+            connect(joyAxisX, &JoyAxis::moved, this, &Calibration::checkX);
+            connect(joyAxisY, &JoyAxis::moved, this, &Calibration::checkY);
+
         }
 
         update();
 }
 
+
+void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
+{
+
+        JoyControlStick* controlstick = joysticks->value(inputDevNr)->getSetJoystick(setJoyNr)->getJoyStick(stickNr);
+        helper.moveToThread(controlstick->thread());
+
+        joyAxisX = controlstick->getAxisX();
+        joyAxisY = controlstick->getAxisY();
+
+        if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
+        {
+            QHBoxLayout *hbox = new QHBoxLayout();
+            QHBoxLayout *hbox2 = new QHBoxLayout();
+
+            QLabel *axisLabel = new QLabel();
+            QLabel *axisLabel2 = new QLabel();
+            axisLabel->setText(trUtf8("Axis %1").arg(joyAxisX->getRealJoyIndex()));
+            axisLabel2->setText(trUtf8("Axis %1").arg(joyAxisY->getRealJoyIndex()));
+            axisBarX = new QProgressBar();
+            axisBarY = new QProgressBar();
+            axisBarX->setMinimum(JoyAxis::AXISMIN);
+            axisBarX->setMaximum(JoyAxis::AXISMAX);
+            axisBarX->setFormat("%v");
+            axisBarX->setValue(joyAxisX->getCurrentRawValue());
+            axisBarY->setMinimum(JoyAxis::AXISMIN);
+            axisBarY->setMaximum(JoyAxis::AXISMAX);
+            axisBarY->setFormat("%v");
+            axisBarY->setValue(joyAxisY->getCurrentRawValue());
+            hbox->addWidget(axisLabel);
+            hbox->addWidget(axisBarX);
+            hbox->addSpacing(10);
+            hbox2->addWidget(axisLabel2);
+            hbox2->addWidget(axisBarY);
+            hbox2->addSpacing(10);
+            ui->progressBarsLayout->addLayout(hbox);
+            ui->progressBarsLayout->addLayout(hbox2);
+
+            connect(joyAxisX, &JoyAxis::moved, this, &Calibration::checkX);
+            connect(joyAxisY, &JoyAxis::moved, this, &Calibration::checkY);
+
+        }
+
+        update();
+}

@@ -129,7 +129,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>Axes:</string>
+            <string>Sticks:</string>
            </property>
           </widget>
          </item>

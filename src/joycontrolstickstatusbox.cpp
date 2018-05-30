@@ -74,6 +74,8 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
     connect(stick, &JoyControlStick::diagonalRangeChanged, [this](int) { update(); });
     connect(stick, &JoyControlStick::maxZoneChanged, [this](int) { update(); });
     connect(stick, &JoyControlStick::joyModeChanged, this, [=]() { update(); });
+
+    update();
 }
 
 JoyControlStick* JoyControlStickStatusBox::getStick() const
