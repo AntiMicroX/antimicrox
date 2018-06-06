@@ -35,13 +35,17 @@ const int JoyAxis::AXISMIN = -32767;
 const int JoyAxis::AXISMAX = 32767;
 const int JoyAxis::AXISDEADZONE = 6000;
 const int JoyAxis::AXISMAXZONE = 32000;
+const int JoyAxis::AXISRANGECENTER = 0;
+int JoyAxis::AXIS_CENTER_CALIBRATED = -1;
+int JoyAxis::AXIS_MIN_CALIBRATED = -1;
+int JoyAxis::AXIS_MAX_CALIBRATED = -1;
 
 // Speed in pixels/second
 const float JoyAxis::JOYSPEED = 20.0;
-
 const JoyAxis::ThrottleTypes JoyAxis::DEFAULTTHROTTLE = JoyAxis::NormalThrottle;
-
 const QString JoyAxis::xmlName = "axis";
+
+
 
 JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
                  QObject *parent) :
@@ -335,7 +339,7 @@ int JoyAxis::calculateThrottledValue(int value)
         qDebug() << "It's a negative throttle";
         #endif
 
-        temp = (value + AXISMIN) / 2;
+        temp = (value + getMinAxValue()) / 2;
     }
     else if (throttle == static_cast<int>(PositiveThrottle))
     {
@@ -343,7 +347,7 @@ int JoyAxis::calculateThrottledValue(int value)
         qDebug() << "It's a positive throttle";
         #endif
 
-        temp = (value + AXISMAX) / 2;
+        temp = (value + getMaxAxValue()) / 2;
     }
     else if (throttle == static_cast<int>(PositiveHalfThrottle))
     {
@@ -440,9 +444,9 @@ void JoyAxis::setMaxZoneValue(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value >= AXISMAX)
+    if (value >= getMaxAxValue())
     {
-        maxZoneValue = AXISMAX;
+        maxZoneValue = getMaxAxValue();
         emit propertyUpdated();
     }
     else
@@ -757,7 +761,7 @@ void JoyAxis::adjustRange()
 
     if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
     {
-        currentThrottledDeadValue = AXISMAX;
+        currentThrottledDeadValue = getMaxAxValue();
     }
     else if ((throttle == static_cast<int>(JoyAxis::NormalThrottle)) ||
              (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle)) ||
@@ -767,7 +771,7 @@ void JoyAxis::adjustRange()
     }
     else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
     {
-        currentThrottledDeadValue = AXISMIN;
+        currentThrottledDeadValue = getMinAxValue();
     }
 
     currentThrottledValue = calculateThrottledValue(currentRawValue);
@@ -932,29 +936,29 @@ void JoyAxis::setCurrentRawValue(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((value >= JoyAxis::AXISMIN) && (value <= JoyAxis::AXISMAX))
+    if ((value >= getMinAxValue()) && (value <= getMaxAxValue()))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Raw value is less than " << JoyAxis::AXISMAX << " and greather than " << JoyAxis::AXISMIN;
+        qDebug() << "Raw value is less than " << getMaxAxValue() << " and greather than " << getMinAxValue();
         #endif
 
         currentRawValue = value;
     }
-    else if (value > JoyAxis::AXISMAX)
+    else if (value > getMaxAxValue())
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Raw value is greather than " << JoyAxis::AXISMAX;
+        qDebug() << "Raw value is greather than " << getMaxAxValue();
         #endif
 
-        currentRawValue = JoyAxis::AXISMAX;
+        currentRawValue = getMaxAxValue();
     }
-    else if (value < JoyAxis::AXISMIN)
+    else if (value < getMinAxValue())
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Raw value is less than " << JoyAxis::AXISMIN;
+        qDebug() << "Raw value is less than " << getMinAxValue();
         #endif
 
-        currentRawValue = JoyAxis::AXISMIN;
+        currentRawValue = getMinAxValue();
     }
 
     #ifndef QT_DEBUG_NO_OUTPUT
@@ -1367,11 +1371,11 @@ int JoyAxis::getProperReleaseValue()
     }
     else if (throttle == static_cast<int>(NegativeThrottle))
     {
-        value = JoyAxis::AXISMAX;
+        value = getMaxAxValue();
     }
     else if (throttle == static_cast<int>(PositiveThrottle))
     {
-        value = JoyAxis::AXISMIN;
+        value = getMinAxValue();
     }
     else if (throttle == static_cast<int>(PositiveHalfThrottle))
     {
@@ -1424,4 +1428,25 @@ void JoyAxis::eventReset()
 
     naxisbutton->eventReset();
     paxisbutton->eventReset();
+}
+
+
+int JoyAxis::getMaxAxValue() {
+
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return ((JoyAxis::AXIS_MAX_CALIBRATED != -1) ? JoyAxis::AXIS_MAX_CALIBRATED : JoyAxis::AXISMAX);
+    qDebug() << "GETMAXAXVALUE: " << JoyAxis::AXIS_MAX_CALIBRATED;
+   // return JoyAxis::AXISMAX;
+}
+
+
+int JoyAxis::getMinAxValue() {
+
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return ((JoyAxis::AXIS_MIN_CALIBRATED != -1) ? JoyAxis::AXIS_MIN_CALIBRATED : JoyAxis::AXISMIN);
+    qDebug() << "GETMINAXVALUE: " << JoyAxis::AXIS_MIN_CALIBRATED;
+    //return JoyAxis::AXISMIN;
+
 }

@@ -345,7 +345,7 @@ void AxisEditDialog::updateDeadZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= JoyAxis::AXISMIN) && (temp <= JoyAxis::AXISMAX))
+    if ((temp >= this->axis->getMinAxValue()) && (temp <= this->axis->getMaxAxValue()))
     {
         ui->horizontalSlider->setValue(temp);
     }
@@ -356,7 +356,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= JoyAxis::AXISMIN) && (temp <= JoyAxis::AXISMAX))
+    if ((temp >= this->axis->getMinAxValue()) && (temp <= this->axis->getMaxAxValue()))
     {
         ui->horizontalSlider_2->setValue(temp);
     }

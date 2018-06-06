@@ -32,6 +32,7 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyAxis;
 
+
 class JoyAxis : public QObject
 {
     Q_OBJECT
@@ -53,7 +54,8 @@ public:
     void activatePendingEvent();
     bool hasPendingEvent();
     void clearPendingEvent();
-
+    int getMinAxValue();
+    int getMaxAxValue();
     bool inDeadZone(int value);
 
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
@@ -135,6 +137,7 @@ public:
     int getLastKnownThrottleValue();
     int getLastKnownRawValue();
     int getProperReleaseValue();
+    void setCurrentRawValue(int value);
 
     // Don't use direct assignment but copying from a current axis.
     void copyRawValues(JoyAxis *srcAxis);
@@ -151,6 +154,10 @@ public:
     static const int AXISDEADZONE;
     static const int AXISMAXZONE;
     static const ThrottleTypes DEFAULTTHROTTLE;
+    static const int AXISRANGECENTER;
+    static int AXIS_CENTER_CALIBRATED;
+    static int AXIS_MIN_CALIBRATED;
+    static int AXIS_MAX_CALIBRATED;
 
     static const float JOYSPEED;
 
@@ -160,7 +167,7 @@ protected:
     void createDeskEvent(bool ignoresets = false);
     void adjustRange();
     int calculateThrottledValue(int value);
-    void setCurrentRawValue(int value);
+
     void performCalibration(int value);
     void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true);
 

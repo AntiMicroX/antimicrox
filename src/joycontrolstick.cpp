@@ -1044,12 +1044,12 @@ void JoyControlStick::setDeadZone(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value > JoyAxis::AXISMAX)
+    if (value > getAxisX()->getMaxAxValue())
     {
-        value = JoyAxis::AXISMAX;
+        value = getAxisX()->getMaxAxValue();
     }
 
-    if ((value != deadZone) && (value < maxZone))
+    if ((value != deadZone) && (value <= maxZone))
     {
         deadZone = value;
         emit deadZoneChanged(value);
@@ -1062,9 +1062,9 @@ void JoyControlStick::setMaxZone(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value >= JoyAxis::AXISMAX)
+    if (value >= getAxisX()->getMaxAxValue())
     {
-        value = JoyAxis::AXISMAX;
+        value = getAxisX()->getMaxAxValue();
     }
 
     if ((value != maxZone) && (value > deadZone))
@@ -1175,6 +1175,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             else if ((xml->name() == "mode") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
+
                 if (temptext == "eight-way")
                 {
                     this->setJoyMode(EightWayMode);
@@ -1192,6 +1193,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
+
                 if ((tempchoice > 0) && (tempchoice <= 100))
                 {
                     this->setCircleAdjust(tempchoice / 100.0);
@@ -1201,6 +1203,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value((JoyStickDirections)index);
+
                 if (button)
                 {
                     button->readConfig(xml);

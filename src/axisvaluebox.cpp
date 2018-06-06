@@ -71,10 +71,10 @@ void AxisValueBox::setValue(int value)
     qDebug() << "throttle variable has value: " << throttle;
     #endif
 
-    if ((value >= JoyAxis::AXISMIN) && (value <= JoyAxis::AXISMAX))
+    if ((value >= getMinAxValue()) && (value <= getMaxAxValue()))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Value for axis from value box is between : " << JoyAxis::AXISMIN << " and " << JoyAxis::AXISMAX;
+        qDebug() << "Value for axis from value box is between : " << getMinAxValue() << " and " << getMaxAxValue();
         #endif
 
         if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
@@ -83,11 +83,11 @@ void AxisValueBox::setValue(int value)
         }
         else if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
         {
-            this->joyValue = ((value + JoyAxis::AXISMIN) / 2);
+            this->joyValue = ((value + getMinAxValue()) / 2);
         }
         else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
         {
-            this->joyValue = (value + JoyAxis::AXISMAX) / 2;
+            this->joyValue = (value + getMaxAxValue()) / 2;
         }
         else if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
         {
@@ -105,7 +105,7 @@ void AxisValueBox::setDeadZone(int deadZone)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((deadZone >= JoyAxis::AXISMIN) && (deadZone <= JoyAxis::AXISMAX))
+    if ((deadZone >= getMinAxValue()) && (deadZone <= getMaxAxValue()))
     {
         this->deadZone = deadZone;
     }
@@ -123,7 +123,7 @@ void AxisValueBox::setMaxZone(int maxZone)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((maxZone >= JoyAxis::AXISMIN) && (maxZone <= JoyAxis::AXISMAX))
+    if ((maxZone >= getMinAxValue()) && (maxZone <= getMaxAxValue()))
     {
         this->maxZone = maxZone;
     }
@@ -209,7 +209,7 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     paint.setBrush(innerColor);
 
     int barwidth = (throttle == 0) ? boxwidth : singlewidth;
-    int barlength = abs((barwidth - 2) * joyValue) / JoyAxis::AXISMAX;
+    int barlength = abs((barwidth - 2) * joyValue) / getMaxAxValue();
 
     if (joyValue > 0)
     {
@@ -221,8 +221,8 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     }
 
     // Draw marker for deadZone
-    int deadLine = abs((barwidth - 2) * deadZone) / JoyAxis::AXISMAX;
-    int maxLine = abs((barwidth - 2) * maxZone) / JoyAxis::AXISMAX;
+    int deadLine = abs((barwidth - 2) * deadZone) / getMaxAxValue();
+    int maxLine = abs((barwidth - 2) * maxZone) / getMaxAxValue();
 
     paint.setPen(Qt::blue);
     brush.setColor(Qt::blue);
@@ -250,4 +250,17 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
         paint.setPen(Qt::red);
         qDrawPlainRect(&paint, singleend - maxLine, 2, 4, boxheight + 2, Qt::black, 1, &maxBrush);
     }
+}
+
+
+int AxisValueBox::getMaxAxValue() {
+
+    return (JoyAxis::AXIS_MAX_CALIBRATED != -1) ? JoyAxis::AXIS_MAX_CALIBRATED : JoyAxis::AXISMAX;
+}
+
+
+int AxisValueBox::getMinAxValue() {
+
+    return (JoyAxis::AXIS_MIN_CALIBRATED != -1) ? JoyAxis::AXIS_MIN_CALIBRATED : JoyAxis::AXISMIN;
+
 }

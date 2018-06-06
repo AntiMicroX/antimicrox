@@ -33,6 +33,7 @@ class JoyControlStickModifierButton;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
+
 class JoyControlStick : public QObject, public JoyStickDirectionsType
 {
     Q_OBJECT
@@ -162,6 +163,9 @@ public:
     QHash<JoyStickDirections, JoyControlStickButton*> getButtonsForDirection(JoyControlStick::JoyStickDirections direction);
     void setDirButtonsUpdateInitAccel(JoyControlStick::JoyStickDirections direction, bool state);
 
+    double calculateXDiagonalDeadZone(int axisXValue, int axisYValue);
+    double calculateYDiagonalDeadZone(int axisXValue, int axisYValue);
+
     virtual bool isDefault();
     virtual void setDefaultStickName(QString tempname);
     virtual QString getDefaultStickName();
@@ -222,9 +226,6 @@ protected:
     double calculateEightWayDiagonalDistanceFromDeadZone();
     double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue);
     double calculateEightWayDiagonalDistance(int axisXValue, int axisYValue);
-
-    inline double calculateXDiagonalDeadZone(int axisXValue, int axisYValue);
-    inline double calculateYDiagonalDeadZone(int axisXValue, int axisYValue);
 
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
     void clearPendingAxisEvents();

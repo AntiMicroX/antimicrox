@@ -33,6 +33,8 @@ public:
     int getMaxZone();
     int getJoyValue();
     int getThrottle();
+    int getMinAxValue();
+    int getMaxAxValue();
 
 protected:
     virtual void resizeEvent(QResizeEvent *event);

@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>700</width>
     <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>500</width>
+    <width>700</width>
     <height>600</height>
    </size>
   </property>
@@ -69,6 +69,13 @@
           </layout>
          </item>
          <item>
+          <widget class="QPushButton" name="startButton">
+           <property name="text">
+            <string>Start calibration</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QWidget" name="axesWidget" native="true">
            <property name="minimumSize">
             <size>
@@ -81,6 +88,13 @@
              <layout class="QVBoxLayout" name="progressBarsLayout"/>
             </item>
            </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="steps">
+           <property name="text">
+            <string/>
+           </property>
           </widget>
          </item>
          <item>

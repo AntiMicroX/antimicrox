@@ -25,13 +25,19 @@ public:
     explicit Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget *parent = 0);
     ~Calibration();
 
+    int chooseMinMax(QString min_max_sign, QList<int> ax_values);
+    bool ifGtkJstestRunToday();
+    const QString getSetfromGtkJstest();
+
 
 protected:
     void setProgressBars(int inputDevNr, int setJoyNr, int stickNr);
     void setProgressBars(JoyControlStick* controlstick);
     void updateAxesBox();
     bool enoughProb();
-    int calculateDeadZone(QHash<QString,int> ax_values);
+    int calculateRawVal(QHash<QString,int> ax_values, JoyAxis* joyAxis);
+    void calibrate(JoyControlStick* stick);
+    void setInfoText(int deadZoneX, int deadZoneY);
 
 
 private:
@@ -43,8 +49,10 @@ private:
     JoyAxis* joyAxisY;
     QProgressBar *axisBarX;
     QProgressBar *axisBarY;
-    QHash<QString,int> x_es_val;
-    QHash<QString,int> y_es_val;
+    QMultiHash<QString,int> x_es_val;
+    QMultiHash<QString,int> y_es_val;
+    int sumX;
+    int sumY;
 
 
 public slots:
@@ -54,6 +62,13 @@ public slots:
     void createAxesConnection();
     void setController(QString controllerName);
     void loadSetFromJstest();
+    void startCalibration();
+    void startSecondStep();
+    void startLastStep();
+
+signals:
+    void deadZoneChanged(int value);
+    void propertyUpdated();
 
 
 };
