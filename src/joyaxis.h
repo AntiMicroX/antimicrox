@@ -54,8 +54,6 @@ public:
     void activatePendingEvent();
     bool hasPendingEvent();
     void clearPendingEvent();
-    int getMinAxValue();
-    int getMaxAxValue();
     bool inDeadZone(int value);
 
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
@@ -119,6 +117,15 @@ public:
 
     double getButtonsEasingDuration();
 
+    void setAxisMinCal(int value);
+    int getAxisMinCal();
+
+    void setAxisMaxCal(int value);
+    int getAxisMaxCal();
+
+    void setAxisCenterCal(int value);
+    int getAxisCenterCal();
+
     virtual QString getAxisName();
     virtual int getDefaultDeadZone();
     virtual int getDefaultMaxZone();
@@ -154,10 +161,6 @@ public:
     static const int AXISDEADZONE;
     static const int AXISMAXZONE;
     static const ThrottleTypes DEFAULTTHROTTLE;
-    static const int AXISRANGECENTER;
-    static int AXIS_CENTER_CALIBRATED;
-    static int AXIS_MIN_CALIBRATED;
-    static int AXIS_MAX_CALIBRATED;
 
     static const float JOYSPEED;
 
@@ -179,6 +182,7 @@ protected:
 
     QString axisName;
     QString defaultAxisName;
+
     int throttle;
     int deadZone;
     int maxZoneValue;
@@ -186,6 +190,9 @@ protected:
     int currentThrottledValue;
     int currentThrottledDeadValue;
     int index;
+    int axis_center_cal;
+    int axis_min_cal;
+    int axis_max_cal;
 
     // TODO: CHECK IF PROPERTY IS NEEDED.
     //bool pendingUpdateLastValues;

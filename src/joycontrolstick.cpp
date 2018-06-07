@@ -54,6 +54,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2,
     this->axisY = axis2;
     this->axisY->setControlStick(this);
 
+    this->calibrated = false;
     this->index = index;
     this->originset = originset;
     this->modifierButton = nullptr;
@@ -1044,9 +1045,9 @@ void JoyControlStick::setDeadZone(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value > getAxisX()->getMaxAxValue())
+    if (value > getAxisX()->getAxisMaxCal())
     {
-        value = getAxisX()->getMaxAxValue();
+        value = getAxisX()->getAxisMaxCal();
     }
 
     if ((value != deadZone) && (value <= maxZone))
@@ -1062,9 +1063,9 @@ void JoyControlStick::setMaxZone(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value >= getAxisX()->getMaxAxValue())
+    if (value >= getAxisX()->getAxisMaxCal())
     {
-        value = getAxisX()->getMaxAxValue();
+        value = getAxisX()->getAxisMaxCal();
     }
 
     if ((value != maxZone) && (value > deadZone))
@@ -1073,6 +1074,28 @@ void JoyControlStick::setMaxZone(int value)
         emit maxZoneChanged(value);
         emit propertyUpdated();
     }
+}
+
+bool JoyControlStick::wasCalibrated()
+{
+    return calibrated;
+}
+
+
+void JoyControlStick::setCalibrationFlag(bool flag)
+{
+    calibrated = flag;
+}
+
+
+QString JoyControlStick::getCalibrationSummary()
+{
+    return calibrationSummary;
+}
+
+void JoyControlStick::setCalibrationSummary(QString text)
+{
+    calibrationSummary = text;
 }
 
 /**

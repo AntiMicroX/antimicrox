@@ -22,6 +22,7 @@
 
 class QResizeEvent;
 class QPaintEvent;
+class JoyAxis;
 
 class AxisValueBox : public QWidget
 {
@@ -43,10 +44,14 @@ protected:
 public slots:
     void setThrottle(int throttle);
     void setValue(int value);
+    void setValue(JoyAxis* axis, int value);
     void setDeadZone(int deadZone);
+    void setDeadZone(JoyAxis* axis, int deadZone);
     void setMaxZone(int maxZone);
+    void setMaxZone(JoyAxis* axis, int deadZone);
 
 private:
+    JoyAxis* axis;
     int deadZone;
     int maxZone;
     int joyValue;

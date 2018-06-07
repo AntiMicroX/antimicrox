@@ -2458,9 +2458,7 @@ void InputDevice::setRawAxisDeadZone(int deadZone)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int max_int = (JoyAxis::AXIS_MAX_CALIBRATED != -1) ? JoyAxis::AXIS_MAX_CALIBRATED : JoyAxis::AXISMAX;
-
-    if ((deadZone > 0) && (deadZone <= max_int))
+    if ((deadZone > 0) && (deadZone <= JoyAxis::AXISMAX))
     {
         this->rawAxisDeadZone = deadZone;
     }

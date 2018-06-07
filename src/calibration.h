@@ -28,6 +28,7 @@ public:
     int chooseMinMax(QString min_max_sign, QList<int> ax_values);
     bool ifGtkJstestRunToday();
     const QString getSetfromGtkJstest();
+    void setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y);
 
 
 protected:
@@ -38,6 +39,7 @@ protected:
     int calculateRawVal(QHash<QString,int> ax_values, JoyAxis* joyAxis);
     void calibrate(JoyControlStick* stick);
     void setInfoText(int deadZoneX, int deadZoneY);
+    int calibratedDeadZone(int center, int deadzone);
 
 
 private:
@@ -51,9 +53,18 @@ private:
     QProgressBar *axisBarY;
     QMultiHash<QString,int> x_es_val;
     QMultiHash<QString,int> y_es_val;
+    int center_calibrated_x;
+    int center_calibrated_y;
+    int max_axis_val_x;
+    int min_axis_val_x;
+    int max_axis_val_y;
+    int min_axis_val_y;
+    int deadzone_calibrated_x;
+    int deadzone_calibrated_y;
     int sumX;
     int sumY;
-
+    bool calibrated;
+    QString text;
 
 public slots:
     void saveSettings();
@@ -66,10 +77,12 @@ public slots:
     void startSecondStep();
     void startLastStep();
 
+protected slots:
+    void resetSettings();
+
 signals:
     void deadZoneChanged(int value);
     void propertyUpdated();
-
 
 };
 

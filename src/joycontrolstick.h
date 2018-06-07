@@ -55,11 +55,16 @@ public:
     void queueJoyEvent(bool ignoresets);
     void activatePendingEvent();
     void clearPendingEvent();
+    void setCalibrationFlag(bool flag);
+    void setCalibrationSummary(QString text);
+
+    QString getCalibrationSummary();
 
     bool inDeadZone();
     bool hasSlotsAssigned();
     bool isRelativeSpring();
     bool hasPendingEvent();
+    bool wasCalibrated();
 
     int getDeadZone();
     int getDiagonalRange();
@@ -272,6 +277,9 @@ private:
     bool isActive;
     bool safezone;
     bool pendingStickEvent;
+    bool calibrated;
+
+    QString calibrationSummary;
 
     JoyAxis *axisX;
     JoyAxis *axisY;
