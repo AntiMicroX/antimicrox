@@ -45,6 +45,9 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
     this->joysticks = joysticks;
     QPointer<JoyControlStick> controlstick = joysticks->value(0)->getSetJoystick(0)->getJoyStick(0);
     this->stick = controlstick.data();
+    calibrated = this->stick->wasCalibrated();
+    ui->Informations->setText(stick->getCalibrationSummary());
+
     controlstick.data()->getModifierButton()->establishPropertyUpdatedConnections();
     helper.moveToThread(controlstick.data()->thread());
 
@@ -95,34 +98,54 @@ Calibration::~Calibration()
 
 void Calibration::resetSettings()
 {
-    sumX = 0;
-    sumY = 0;
-    center_calibrated_x = -1;
-    center_calibrated_y = -1;
-    max_axis_val_x = -1;
-    min_axis_val_x = -1;
-    max_axis_val_y = -1;
-    min_axis_val_y = -1;
-    deadzone_calibrated_x = -1;
-    deadzone_calibrated_y = -1;
-    calibrated = false;
-    x_es_val.clear();
-    y_es_val.clear();
+    QMessageBox msgBox;
+    msgBox.setText(trUtf8("Do you really want to reset settings of current axes?"));
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
-    joyAxisX->setAxisCenterCal(center_calibrated_x);
-    joyAxisY->setAxisCenterCal(center_calibrated_y);
-    joyAxisX->setDeadZone(JoyAxis::AXISDEADZONE);
-    joyAxisY->setDeadZone(JoyAxis::AXISDEADZONE);
-    joyAxisX->setAxisMinCal(min_axis_val_x);
-    joyAxisY->setAxisMinCal(min_axis_val_y);
-    joyAxisX->setAxisMaxCal(max_axis_val_x);
-    joyAxisY->setAxisMaxCal(max_axis_val_y);
-    joyAxisX->setMaxZoneValue(JoyAxis::AXISMAXZONE);
-    joyAxisY->setMaxZoneValue(JoyAxis::AXISMAXZONE);
-    calibrated = false;
-    stick->setCalibrationFlag(false);
-    stick->setCalibrationSummary(QString());
+    switch(msgBox.exec())
+    {
+        case QMessageBox::Ok:
+        sumX = 0;
+        sumY = 0;
+        center_calibrated_x = -1;
+        center_calibrated_y = -1;
+        max_axis_val_x = -1;
+        min_axis_val_x = -1;
+        max_axis_val_y = -1;
+        min_axis_val_y = -1;
+        deadzone_calibrated_x = -1;
+        deadzone_calibrated_y = -1;
+        calibrated = false;
+        x_es_val.clear();
+        y_es_val.clear();
 
+        joyAxisX->setAxisCenterCal(center_calibrated_x);
+        joyAxisY->setAxisCenterCal(center_calibrated_y);
+        joyAxisX->setDeadZone(JoyAxis::AXISDEADZONE);
+        joyAxisY->setDeadZone(JoyAxis::AXISDEADZONE);
+        joyAxisX->setAxisMinCal(min_axis_val_x);
+        joyAxisY->setAxisMinCal(min_axis_val_y);
+        joyAxisX->setAxisMaxCal(max_axis_val_x);
+        joyAxisY->setAxisMaxCal(max_axis_val_y);
+        joyAxisX->setMaxZoneValue(JoyAxis::AXISMAXZONE);
+        joyAxisY->setMaxZoneValue(JoyAxis::AXISMAXZONE);
+        stick->setDeadZone(JoyAxis::AXISDEADZONE);
+        stick->setMaxZone(JoyAxis::AXISMAXZONE);
+        calibrated = false;
+        stick->setCalibrationFlag(false);
+        stick->setCalibrationSummary(QString());
+
+        update();
+        ui->stickStatusBoxWidget->update();
+        break;
+
+        case QMessageBox::Cancel:
+        break;
+
+        default:
+        break;
+
+    }
 }
 
 void Calibration::setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y) {
@@ -153,7 +176,7 @@ void Calibration::startCalibration()
 
     bool confirmed = true;
 
-    if (calibrated) {
+    if (stick->wasCalibrated()) {
 
         QMessageBox msgBox;
         msgBox.setText(trUtf8("Calibration was saved for the preset. Do you really want to reset settings?"));
@@ -179,6 +202,7 @@ void Calibration::startCalibration()
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr) && confirmed) {
 
+        stick->setCalibrationFlag(false);
         calibrated = false;
 
             ui->steps->setText(trUtf8("place the joystick in the center position"));
@@ -204,8 +228,8 @@ void Calibration::startCalibration()
                     center_calibrated_y = 0;
                 }
 
-                deadzone_calibrated_x = calibratedDeadZone(center_calibrated_x, joyAxisX->getDeadZone());
-                deadzone_calibrated_y = calibratedDeadZone(center_calibrated_y, joyAxisY->getDeadZone());
+               // deadzone_calibrated_x = calibratedDeadZone(center_calibrated_x, joyAxisX->getDeadZone());
+               // deadzone_calibrated_y = calibratedDeadZone(center_calibrated_y, joyAxisY->getDeadZone());
 
                 QString text = QString();
                 text.append(trUtf8("\n\nCenter X: %1").arg(center_calibrated_x));
@@ -241,20 +265,36 @@ void Calibration::startSecondStep()
             qDebug() << "X_ES_VAL: " << x_es_val.count(QString("-"));
             qDebug() << "Y_ES_VAL: " << y_es_val.count(QString("-"));
 
-            if ((x_es_val.count(QString("-")) > 2) && (y_es_val.count(QString("-")) > 2)) {
+
+            if (enoughProb(x_es_val.count(QString("-")), y_es_val.count(QString("-")))) {
+
+                int min_x = 0;
+                int min_y = 0;
 
                 for (int i = 0; i < x_es_val.count(QString("-")); i++) {
-                    if ((abs(x_es_val.values(QString("-")).at(i)) > deadzone_calibrated_x))
-                        sumX += x_es_val.values(QString("-")).at(i);
+                  //  if ((abs(x_es_val.values(QString("-")).at(i)) > deadzone_calibrated_x))
+                    if (i > 0) {
+                        if (x_es_val.values(QString("-")).at(i) < x_es_val.values(QString("-")).at(i-1))  {
+                            min_x = x_es_val.values(QString("-")).at(i);
+                        }
+                    } else {
+                        min_x = x_es_val.values(QString("-")).at(i);
+                    }
                 }
 
                 for (int i = 0; i < y_es_val.count(QString("-")); i++) {
-                    if ((abs(y_es_val.values(QString("-")).at(i)) > deadzone_calibrated_y))
-                        sumY += y_es_val.values(QString("-")).at(i);
+                  //  if ((abs(y_es_val.values(QString("-")).at(i)) > deadzone_calibrated_y))
+                    if (i > 0) {
+                        if (y_es_val.values(QString("-")).at(i) < y_es_val.values(QString("-")).at(i-1))  {
+                            min_y = y_es_val.values(QString("-")).at(i);
+                        }
+                    } else {
+                        min_y = y_es_val.values(QString("-")).at(i);
+                    }
                 }
 
-                min_axis_val_x = sumX / x_es_val.count(QString("-"));
-                min_axis_val_y = sumY / y_es_val.count(QString("-"));
+                min_axis_val_x = min_x;
+                min_axis_val_y = min_y;
 
                 QString text = ui->Informations->text();
                 text.append(trUtf8("\n\nX: %1").arg(min_axis_val_x));
@@ -288,20 +328,35 @@ void Calibration::startLastStep()
             ui->startButton->setText(trUtf8("Start final step"));
             update();
 
-            if ((x_es_val.count(QString("+")) > 2) && (y_es_val.count(QString("+")) > 2)) {
+            if (enoughProb(x_es_val.count(QString("+")), y_es_val.count(QString("+")))) {
+
+                int max_x = 0;
+                int max_y = 0;
 
                 for (int i = 0; i < x_es_val.count(QString("+")); i++) {
-                    if ((x_es_val.values(QString("+")).at(i) > deadzone_calibrated_x))
-                        sumX += x_es_val.values(QString("+")).at(i);
+                  //  if ((x_es_val.values(QString("+")).at(i) > deadzone_calibrated_x))
+                        if (i > 0) {
+                            if (x_es_val.values(QString("+")).at(i) > x_es_val.values(QString("+")).at(i-1))  {
+                                max_x = x_es_val.values(QString("+")).at(i);
+                            }
+                        } else {
+                            max_x = x_es_val.values(QString("+")).at(i);
+                        }
                 }
 
                 for (int i = 0; i < y_es_val.count(QString("+")); i++) {
-                    if ((y_es_val.values(QString("+")).at(i) > deadzone_calibrated_y))
-                        sumY += y_es_val.values(QString("+")).at(i);
+                 //   if ((y_es_val.values(QString("+")).at(i) > deadzone_calibrated_y))
+                    if (i > 0) {
+                        if (y_es_val.values(QString("+")).at(i) > y_es_val.values(QString("+")).at(i-1))  {
+                            max_y = y_es_val.values(QString("+")).at(i);
+                        }
+                    } else {
+                        max_y = y_es_val.values(QString("+")).at(i);
+                    }
                 }
 
-                max_axis_val_x = sumX / x_es_val.count(QString("+"));
-                max_axis_val_y = sumY / y_es_val.count(QString("+"));
+                max_axis_val_x = max_x;
+                max_axis_val_y = max_y;
 
                 QString text2 = ui->Informations->text();
                 text2.append(trUtf8("\n\nX: %1").arg(max_axis_val_x));
@@ -312,9 +367,14 @@ void Calibration::startLastStep()
 
                 setQuadraticZoneCalibrated(max_axis_val_x, min_axis_val_x, max_axis_val_y, min_axis_val_y);
 
+                deadzone_calibrated_x = (max_axis_val_y + max_axis_val_x)/4;
+                deadzone_calibrated_y = (max_axis_val_y + max_axis_val_x)/4;
+
                 QString text3 = ui->Informations->text();
                 text3.append(trUtf8("\n\nrange X: %1 - %2").arg(min_axis_val_x).arg(max_axis_val_x));
                 text3.append(trUtf8("\nrange Y: %1 - %2").arg(min_axis_val_y).arg(max_axis_val_y));
+                text3.append(trUtf8("\n\ndeadzone X: %1").arg(deadzone_calibrated_x));
+                text3.append(trUtf8("\ndeadzone Y: %1").arg(deadzone_calibrated_y));
                 ui->Informations->setText(text3);
                 this->text = text3;
 
@@ -342,12 +402,14 @@ void Calibration::saveSettings()
       joyAxisY->setAxisCenterCal(center_calibrated_y);
       joyAxisX->setDeadZone(deadzone_calibrated_x);
       joyAxisY->setDeadZone(deadzone_calibrated_y);
+      stick->setDeadZone(deadzone_calibrated_x);
       joyAxisX->setAxisMinCal(min_axis_val_x);
       joyAxisY->setAxisMinCal(min_axis_val_y);
       joyAxisX->setAxisMaxCal(max_axis_val_x);
       joyAxisY->setAxisMaxCal(max_axis_val_y);
       joyAxisX->setMaxZoneValue(max_axis_val_x);
       joyAxisY->setMaxZoneValue(max_axis_val_y);
+      stick->setMaxZone(max_axis_val_x);
       calibrated = true;
       stick->setCalibrationFlag(true);
       stick->setCalibrationSummary(this->text);
@@ -367,24 +429,14 @@ const QString Calibration::getSetfromGtkJstest()
 }
 
 
-void Calibration::setInfoText(int deadZoneX, int deadZoneY)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    ui->Informations->setText(trUtf8("dead zone value - X: %1\ndead zone value - Y: %2\n").arg(deadZoneX).arg(deadZoneY));
-}
-
-
-bool Calibration::enoughProb()
+bool Calibration::enoughProb(int x_count, int y_count)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool enough = true;
 
-    if (x_es_val.count(QString("+")) < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the right at least three times!")); }
-    else if (x_es_val.count(QString("-")) < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the left at least three times!")); }
-    else if (y_es_val.count(QString("+")) < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move Y axis up at least three times!")); }
-    else if (y_es_val.count(QString("-")) < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move Y axis down at least three times!")); }
+    if (x_count < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the right at least five times! Keep moving!")); }
+    else if (y_count < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the left at least five times! Keep moving!")); }
 
     return enough;
 }
@@ -430,30 +482,6 @@ int Calibration::calculateRawVal(QHash<QString,int> ax_values, JoyAxis* joyAxis)
     qDebug() << "current raw value for joyAxis is " << axis1Value;
 
     return axis1Value;
-}
-
-
-void Calibration::calibrate(JoyControlStick* stick)
-{
-   /* if (stick->inDeadZone()) {
-
-        // stickInput.normalized * ((stickInput.magnitude - deadzone) / (1 - deadzone));
-
-        double norm = stick->getNormalizedAbsoluteDistance() * ((stick->getAbsoluteRawDistance(stick->getAxisX()->getCurrentRawValue(), stick->getAxisY()->getCurrentRawValue()) - stick->getDeadZone()) / (1 - stick->getDeadZone()));
-
-        qDebug() << "Stick values are in dead zone circle: " << norm;
-
-        stick->getAxisX()->setCurrentRawValue(norm);
-        stick->getAxisY()->setCurrentRawValue(norm);
-
-    } else {
-
-        qDebug() << "Stick doesn't appear in dead zone circle. 0 values are set into joyAxisX and joyAxisY";
-
-        stick->getAxisX()->setCurrentRawValue(0);
-        stick->getAxisY()->setCurrentRawValue(0);
-
-    }*/
 }
 
 
@@ -586,6 +614,9 @@ void Calibration::setProgressBars(JoyControlStick* controlstick)
         joyAxisX = controlstick->getAxisX();
         joyAxisY = controlstick->getAxisY();
 
+        calibrated = controlstick->wasCalibrated();
+        ui->Informations->setText(controlstick->getCalibrationSummary());
+
         if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
         {
             QHBoxLayout *hbox = new QHBoxLayout();
@@ -632,6 +663,9 @@ void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
 
         joyAxisX = controlstick->getAxisX();
         joyAxisY = controlstick->getAxisY();
+
+        calibrated = controlstick->wasCalibrated();
+        ui->Informations->setText(controlstick->getCalibrationSummary());
 
         if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
         {

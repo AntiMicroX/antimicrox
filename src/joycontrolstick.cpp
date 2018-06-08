@@ -1189,6 +1189,17 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 this->setMaxZone(tempchoice);
             }
+            else if ((xml->name() == "calibrated") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                bool tempchoice = (temptext == "true") ? true : false;
+                this->setCalibrationFlag(tempchoice);
+            }
+            else if ((xml->name() == "summary") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                this->setCalibrationSummary(temptext);
+            }
             else if ((xml->name() == "diagonalRange") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
@@ -1279,6 +1290,10 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         {
             xml->writeTextElement("maxZone", QString::number(maxZone));
         }
+
+        xml->writeTextElement("calibrated", (calibrated ? "true" : "false"));
+        xml->writeTextElement("summary", (getCalibrationSummary().isEmpty() ? "" : calibrationSummary));
+
 
         if ((currentMode == StandardMode) || (currentMode == EightWayMode))
         {

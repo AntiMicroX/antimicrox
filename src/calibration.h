@@ -35,10 +35,8 @@ protected:
     void setProgressBars(int inputDevNr, int setJoyNr, int stickNr);
     void setProgressBars(JoyControlStick* controlstick);
     void updateAxesBox();
-    bool enoughProb();
+    bool enoughProb(int x_count, int y_count);
     int calculateRawVal(QHash<QString,int> ax_values, JoyAxis* joyAxis);
-    void calibrate(JoyControlStick* stick);
-    void setInfoText(int deadZoneX, int deadZoneY);
     int calibratedDeadZone(int center, int deadzone);
 
 
