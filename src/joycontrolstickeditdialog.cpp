@@ -120,6 +120,9 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
     stick->getModifierButton()->establishPropertyUpdatedConnections();
 
+    update();
+    updateGeometry();
+
     PadderCommon::inputDaemonMutex.unlock();
 
     connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyControlStickEditDialog::implementPresets);

@@ -38,10 +38,10 @@ const int JoyAxis::AXISMAXZONE = 32000;
 
 // Speed in pixels/second
 const float JoyAxis::JOYSPEED = 20.0;
-
 const JoyAxis::ThrottleTypes JoyAxis::DEFAULTTHROTTLE = JoyAxis::NormalThrottle;
-
 const QString JoyAxis::xmlName = "axis";
+
+
 
 JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
                  QObject *parent) :
@@ -52,6 +52,9 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
     stick = nullptr;
     lastKnownThottledValue = 0;
     lastKnownRawValue = 0;
+    axis_max_cal = -1;
+    axis_min_cal = -1;
+    axis_center_cal = -1;
     this->originset = originset;
     this->parentSet = parentSet;
     naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);
@@ -335,7 +338,7 @@ int JoyAxis::calculateThrottledValue(int value)
         qDebug() << "It's a negative throttle";
         #endif
 
-        temp = (value + AXISMIN) / 2;
+        temp = (value + getAxisMinCal()) / 2;
     }
     else if (throttle == static_cast<int>(PositiveThrottle))
     {
@@ -343,7 +346,7 @@ int JoyAxis::calculateThrottledValue(int value)
         qDebug() << "It's a positive throttle";
         #endif
 
-        temp = (value + AXISMAX) / 2;
+        temp = (value + getAxisMaxCal()) / 2;
     }
     else if (throttle == static_cast<int>(PositiveHalfThrottle))
     {
@@ -440,9 +443,9 @@ void JoyAxis::setMaxZoneValue(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value >= AXISMAX)
+    if (value >=getAxisMaxCal())
     {
-        maxZoneValue = AXISMAX;
+        maxZoneValue = getAxisMaxCal();
         emit propertyUpdated();
     }
     else
@@ -564,6 +567,10 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
         }
     }
 
+        xml->writeTextElement("center_value", QString::number(axis_center_cal));
+        xml->writeTextElement("min_value", QString::number(axis_min_cal));
+        xml->writeTextElement("max_value", QString::number(axis_max_cal));
+
 
         xml->writeStartElement("throttle");
 
@@ -629,6 +636,43 @@ bool JoyAxis::readMainConfig(QXmlStreamReader *xml)
         #endif
 
         this->setMaxZoneValue(tempchoice);
+    }
+    else if ((xml->name() == "center_value") && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+
+        #ifndef QT_DEBUG_NO_OUTPUT
+        qDebug() << "From xml config center value is: " << tempchoice;
+        #endif
+
+        this->setAxisCenterCal(tempchoice);
+    }
+    else if ((xml->name() == "min_value") && xml->isStartElement())
+    {
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+
+        #ifndef QT_DEBUG_NO_OUTPUT
+        qDebug() << "From xml config min value is: " << tempchoice;
+        #endif
+
+        this->setAxisMinCal(tempchoice);
+    }
+    else if ((xml->name() == "max_value") && xml->isStartElement())
+    {
+
+        found = true;
+        QString temptext = xml->readElementText();
+        int tempchoice = temptext.toInt();
+
+        #ifndef QT_DEBUG_NO_OUTPUT
+        qDebug() << "From xml config max value is: " << tempchoice;
+        #endif
+
+        this->setAxisMaxCal(tempchoice);
     }
     else if ((xml->name() == "throttle") && xml->isStartElement())
     {
@@ -757,7 +801,7 @@ void JoyAxis::adjustRange()
 
     if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
     {
-        currentThrottledDeadValue = AXISMAX;
+        currentThrottledDeadValue = getAxisMaxCal();
     }
     else if ((throttle == static_cast<int>(JoyAxis::NormalThrottle)) ||
              (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle)) ||
@@ -767,7 +811,7 @@ void JoyAxis::adjustRange()
     }
     else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
     {
-        currentThrottledDeadValue = AXISMIN;
+        currentThrottledDeadValue = getAxisMinCal();
     }
 
     currentThrottledValue = calculateThrottledValue(currentRawValue);
@@ -932,29 +976,29 @@ void JoyAxis::setCurrentRawValue(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((value >= JoyAxis::AXISMIN) && (value <= JoyAxis::AXISMAX))
+    if ((value >= getAxisMinCal()) && (value <= getAxisMaxCal()))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Raw value is less than " << JoyAxis::AXISMAX << " and greather than " << JoyAxis::AXISMIN;
+        qDebug() << "Raw value is less than " << getAxisMaxCal() << " and greather than " << getAxisMinCal();
         #endif
 
         currentRawValue = value;
     }
-    else if (value > JoyAxis::AXISMAX)
+    else if (value > getAxisMaxCal())
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Raw value is greather than " << JoyAxis::AXISMAX;
+        qDebug() << "Raw value is greather than " << getAxisMaxCal();
         #endif
 
-        currentRawValue = JoyAxis::AXISMAX;
+        currentRawValue = getAxisMaxCal();
     }
-    else if (value < JoyAxis::AXISMIN)
+    else if (value < getAxisMinCal())
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Raw value is less than " << JoyAxis::AXISMIN;
+        qDebug() << "Raw value is less than " << getAxisMinCal();
         #endif
 
-        currentRawValue = JoyAxis::AXISMIN;
+        currentRawValue = getAxisMinCal();
     }
 
     #ifndef QT_DEBUG_NO_OUTPUT
@@ -1367,11 +1411,11 @@ int JoyAxis::getProperReleaseValue()
     }
     else if (throttle == static_cast<int>(NegativeThrottle))
     {
-        value = JoyAxis::AXISMAX;
+        value = getAxisMaxCal();
     }
     else if (throttle == static_cast<int>(PositiveThrottle))
     {
-        value = JoyAxis::AXISMIN;
+        value = getAxisMinCal();
     }
     else if (throttle == static_cast<int>(PositiveHalfThrottle))
     {
@@ -1424,4 +1468,34 @@ void JoyAxis::eventReset()
 
     naxisbutton->eventReset();
     paxisbutton->eventReset();
+}
+
+void JoyAxis::setAxisMinCal(int value) {
+
+    axis_min_cal = value;
+}
+
+int JoyAxis::getAxisMinCal() {
+
+    return ((axis_min_cal != -1) ? axis_min_cal : JoyAxis::AXISMIN);
+}
+
+void JoyAxis::setAxisMaxCal(int value) {
+
+    axis_max_cal = value;
+}
+
+int JoyAxis::getAxisMaxCal() {
+
+    return ((axis_max_cal != -1) ? axis_max_cal : JoyAxis::AXISMAX);
+}
+
+void JoyAxis::setAxisCenterCal(int value) {
+
+    axis_center_cal = value;
+}
+
+int JoyAxis::getAxisCenterCal() {
+
+    return((axis_center_cal != -1) ? axis_center_cal : 0);
 }

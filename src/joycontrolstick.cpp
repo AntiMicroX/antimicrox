@@ -30,7 +30,7 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-
+#include <QLabel>
 
 // Define Pi here.
 const double JoyControlStick::PI = acos(-1.0);
@@ -38,7 +38,7 @@ const double JoyControlStick::PI = acos(-1.0);
 // Set default values used for stick properties.
 const int JoyControlStick::DEFAULTDEADZONE = 8000;
 const int JoyControlStick::DEFAULTMAXZONE = JoyAxis::AXISMAXZONE;
-const int JoyControlStick::DEFAULTDIAGONALRANGE = 45;
+const int JoyControlStick::DEFAULTDIAGONALRANGE = 90;
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 const double JoyControlStick::DEFAULTCIRCLE = 0.0;
 const int JoyControlStick::DEFAULTSTICKDELAY = 0;
@@ -54,6 +54,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2,
     this->axisY = axis2;
     this->axisY->setControlStick(this);
 
+    this->calibrated = false;
     this->index = index;
     this->originset = originset;
     this->modifierButton = nullptr;
@@ -979,10 +980,12 @@ QString JoyControlStick::getPartialName(bool forceFullFormat, bool displayNames)
     }
     else
     {
+
         label.append(trUtf8("Stick")).append(" ");
-        label.append(QString::number(getRealJoyIndex()));
+        label.append(QString::number(getRealJoyIndex()));        
     }
 
+    setStickName(label);
     return label;
 }
 
@@ -1042,12 +1045,12 @@ void JoyControlStick::setDeadZone(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value > JoyAxis::AXISMAX)
+    if (value > getAxisX()->getAxisMaxCal())
     {
-        value = JoyAxis::AXISMAX;
+        value = getAxisX()->getAxisMaxCal();
     }
 
-    if ((value != deadZone) && (value < maxZone))
+    if ((value != deadZone) && (value <= maxZone))
     {
         deadZone = value;
         emit deadZoneChanged(value);
@@ -1060,9 +1063,9 @@ void JoyControlStick::setMaxZone(int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     value = abs(value);
-    if (value >= JoyAxis::AXISMAX)
+    if (value >= getAxisX()->getAxisMaxCal())
     {
-        value = JoyAxis::AXISMAX;
+        value = getAxisX()->getAxisMaxCal();
     }
 
     if ((value != maxZone) && (value > deadZone))
@@ -1071,6 +1074,28 @@ void JoyControlStick::setMaxZone(int value)
         emit maxZoneChanged(value);
         emit propertyUpdated();
     }
+}
+
+bool JoyControlStick::wasCalibrated()
+{
+    return calibrated;
+}
+
+
+void JoyControlStick::setCalibrationFlag(bool flag)
+{
+    calibrated = flag;
+}
+
+
+QString JoyControlStick::getCalibrationSummary()
+{
+    return calibrationSummary;
+}
+
+void JoyControlStick::setCalibrationSummary(QString text)
+{
+    calibrationSummary = text;
 }
 
 /**
@@ -1164,6 +1189,17 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 int tempchoice = temptext.toInt();
                 this->setMaxZone(tempchoice);
             }
+            else if ((xml->name() == "calibrated") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                bool tempchoice = (temptext == "true") ? true : false;
+                this->setCalibrationFlag(tempchoice);
+            }
+            else if ((xml->name() == "summary") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                this->setCalibrationSummary(temptext);
+            }
             else if ((xml->name() == "diagonalRange") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
@@ -1173,6 +1209,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             else if ((xml->name() == "mode") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
+
                 if (temptext == "eight-way")
                 {
                     this->setJoyMode(EightWayMode);
@@ -1190,6 +1227,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
+
                 if ((tempchoice > 0) && (tempchoice <= 100))
                 {
                     this->setCircleAdjust(tempchoice / 100.0);
@@ -1199,6 +1237,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value((JoyStickDirections)index);
+
                 if (button)
                 {
                     button->readConfig(xml);
@@ -1251,6 +1290,10 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         {
             xml->writeTextElement("maxZone", QString::number(maxZone));
         }
+
+        xml->writeTextElement("calibrated", (calibrated ? "true" : "false"));
+        xml->writeTextElement("summary", (getCalibrationSummary().isEmpty() ? "" : calibrationSummary));
+
 
         if ((currentMode == StandardMode) || (currentMode == EightWayMode))
         {

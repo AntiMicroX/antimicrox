@@ -131,17 +131,26 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 
     connect(ui->horizontalSlider, &QSlider::valueChanged, this, &AxisEditDialog::updateDeadZoneBox);
-    connect(ui->horizontalSlider, &QSlider::valueChanged, ui->axisstatusBox, &AxisValueBox::setDeadZone);
+    connect(ui->horizontalSlider, &QSlider::valueChanged, this, [this, axis](int deadzone) {
+        ui->axisstatusBox->setDeadZone(axis, deadzone);
+    });
+
     connect(ui->horizontalSlider, &QSlider::valueChanged, axis, &JoyAxis::setDeadZone);
 
     connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, &AxisEditDialog::updateMaxZoneBox);
-    connect(ui->horizontalSlider_2, &QSlider::valueChanged, ui->axisstatusBox, &AxisValueBox::setMaxZone);
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, [this, axis](int deadzone) {
+        ui->axisstatusBox->setMaxZone(axis, deadzone);
+    });
+
     connect(ui->horizontalSlider_2, &QSlider::valueChanged, axis, &JoyAxis::setMaxZoneValue);
 
     connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::updateThrottleUi);
     connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::presetForThrottleChange);
 
-    connect(axis, &JoyAxis::moved, ui->axisstatusBox, &AxisValueBox::setValue);
+    connect(axis, &JoyAxis::moved, this, [this, axis](int value) {
+       ui->axisstatusBox->setValue(axis, value);
+    });
+
     connect(axis, &JoyAxis::moved, this, &AxisEditDialog::updateJoyValue);
 
     connect(ui->lineEdit, &QLineEdit::textEdited, this, &AxisEditDialog::updateDeadZoneSlider);
@@ -345,7 +354,7 @@ void AxisEditDialog::updateDeadZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= JoyAxis::AXISMIN) && (temp <= JoyAxis::AXISMAX))
+    if ((temp >= this->axis->getAxisMinCal()) && (temp <= this->axis->getAxisMaxCal()))
     {
         ui->horizontalSlider->setValue(temp);
     }
@@ -356,7 +365,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= JoyAxis::AXISMIN) && (temp <= JoyAxis::AXISMAX))
+    if ((temp >= this->axis->getAxisMinCal()) && (temp <= this->axis->getAxisMaxCal()))
     {
         ui->horizontalSlider_2->setValue(temp);
     }

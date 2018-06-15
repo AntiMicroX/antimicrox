@@ -38,6 +38,7 @@
 #include "advancestickassignmentdialog.h"
 #include "common.h"
 #include "gamecontrollermappingdialog.h"
+#include "calibration.h"
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
 #include "autoprofileinfo.h"
@@ -59,6 +60,7 @@
 #include <QAction>
 #include <QDebug>
 #include <QHash>
+#include <QPointer>
 #include <QHashIterator>
 #include <QMapIterator>
 #include <QLocalSocket>
@@ -171,6 +173,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionIssues, &QAction::triggered, this, &MainWindow::openIssuesPage);
     connect(ui->actionOptions, &QAction::triggered, this, &MainWindow::openMainSettingsDialog);
     connect(ui->actionWiki, &QAction::triggered, this, &MainWindow::openWikiPage);
+    connect(ui->actionCalibration, &QAction::triggered, this, &MainWindow::openCalibration);
     connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
@@ -371,6 +374,7 @@ void MainWindow::makeJoystickTabs()
     // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
     QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
+
     while (iterTemp.hasNext())
     {
         iterTemp.next();
@@ -1021,12 +1025,14 @@ void MainWindow::changeEvent(QEvent *event)
     QMainWindow::changeEvent(event);
 }
 
+
 void MainWindow::openAboutDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     aboutDialog->show();
 }
+
 
 void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 {
@@ -1053,6 +1059,7 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
     }
 }
 
+
 void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1075,6 +1082,7 @@ void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
     }
 }
 
+
 void MainWindow::removeJoyTabs()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1091,6 +1099,7 @@ void MainWindow::removeJoyTabs()
     ui->tabWidget->clear();
 }
 
+
 void MainWindow::handleInstanceDisconnect()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1098,6 +1107,7 @@ void MainWindow::handleInstanceDisconnect()
     settings->sync();
     loadAppConfig(true);
 }
+
 
 void MainWindow::openJoystickStatusWindow()
 {
@@ -1116,6 +1126,7 @@ void MainWindow::openJoystickStatusWindow()
     }
 }
 
+
 void MainWindow::openKeyCheckerDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1124,12 +1135,14 @@ void MainWindow::openKeyCheckerDialog()
     dialog->show();
 }
 
+
 void MainWindow::openGitHubPage()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage));
 }
+
 
 void MainWindow::openIssuesPage()
 {
@@ -1138,12 +1151,34 @@ void MainWindow::openIssuesPage()
     QDesktopServices::openUrl(QUrl(PadderCommon::githubIssuesPage));
 }
 
+
 void MainWindow::openWikiPage()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QDesktopServices::openUrl(QUrl(PadderCommon::wikiPage));
 }
+
+
+void MainWindow::openCalibration()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    if (joysticks->isEmpty()) {
+
+        QMessageBox::information(this, trUtf8("Calibration couldn't be opened"), trUtf8("You must connect at least one controller to open the window"));
+
+    } else {
+
+        QPointer<Calibration> calibration = new Calibration(joysticks);
+        calibration.data()->show();
+
+        if (calibration.isNull())
+            calibration.clear();
+
+    }
+}
+
 
 void MainWindow::unloadCurrentConfig(int joystickIndex)
 {
@@ -1159,7 +1194,7 @@ void MainWindow::unloadCurrentConfig(int joystickIndex)
     }
     else if (joystickIndex <= 0)
     {
-        for (int i=0; i < ui->tabWidget->count(); i++)
+        for (int i = 0; i < ui->tabWidget->count(); i++)
         {
             JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(i));  // static_cast
             if (widget != nullptr)
@@ -1169,6 +1204,7 @@ void MainWindow::unloadCurrentConfig(int joystickIndex)
         }
     }
 }
+
 
 void MainWindow::unloadCurrentConfig(QString controllerID)
 {
@@ -1192,6 +1228,7 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
     }
 }
 
+
 void MainWindow::propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1208,6 +1245,7 @@ void MainWindow::propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displa
         }
     }
 }
+
 
 void MainWindow::changeStartSetNumber(int startSetNumber, QString controllerID)
 {
@@ -1230,6 +1268,7 @@ void MainWindow::changeStartSetNumber(int startSetNumber, QString controllerID)
         }
     }
 }
+
 
 void MainWindow::changeStartSetNumber(int startSetNumber, int joystickIndex)
 {
@@ -1256,10 +1295,12 @@ void MainWindow::changeStartSetNumber(int startSetNumber, int joystickIndex)
     }
 }
 
+
 /**
  * @brief Build list of current input devices and pass it to settings dialog
  *     instance. Open Settings dialog.
  */
+
 void MainWindow::openMainSettingsDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1298,6 +1339,7 @@ void MainWindow::openMainSettingsDialog()
     dialog->show();
 }
 
+
 /**
  * @brief Change language used by the application.
  * @param Language code
@@ -1311,6 +1353,7 @@ void MainWindow::changeLanguage(QString language)
         PadderCommon::reloadTranslations(translator, appTranslator, language);
     }
 }
+
 
 /**
  * @brief Check if the program should really quit or if it should
@@ -1334,6 +1377,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event);
 }
 
+
 /**
  * @brief Show abstracted controller dialog for use in SDL 1.2. No longer
  *     used for versions of the program running SDL 2. In SDL 2,
@@ -1354,6 +1398,7 @@ void MainWindow::showStickAssignmentDialog()
         dialog->show();
     }
 }
+
 
 /**
  * @brief Display a version of the tray menu that shows all recent profiles for

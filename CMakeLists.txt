@@ -243,6 +243,7 @@ set(antimicro_SOURCES
     src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.cpp
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
+    src/calibration.cpp
 )
 
 set(antimicro_HEADERS
@@ -339,6 +340,7 @@ set(antimicro_HEADERS
     src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.h
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
+    src/calibration.h
 )
 
 set(antimicro_FORMS src/mainwindow.ui
@@ -361,6 +363,7 @@ set(antimicro_FORMS src/mainwindow.ui
     src/editalldefaultautoprofiledialog.ui
     src/extraprofilesettingsdialog.ui
     src/capturedwindowinfodialog.ui
+    src/calibration.ui
 )
 
 set(antimicro_RESOURCES src/resources.qrc)

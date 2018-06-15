@@ -631,7 +631,7 @@ void SetJoystick::addControlStick(int index, JoyControlStick *stick)
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
-        if (button)
+        if (button != nullptr)
         {
             connect(button, &JoyControlStickButton::setChangeActivated, this, &SetJoystick::propogateSetChange);
             connect(button, &JoyControlStickButton::setAssignmentChanged, this, &SetJoystick::propogateSetStickButtonAssociation);

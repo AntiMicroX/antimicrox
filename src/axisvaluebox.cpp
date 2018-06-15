@@ -33,6 +33,7 @@ AxisValueBox::AxisValueBox(QWidget *parent) :
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    axis = nullptr;
     deadZone = 0;
     maxZone = 0;
     joyValue = 0;
@@ -98,6 +99,49 @@ void AxisValueBox::setValue(int value)
             this->joyValue = (value >= 0) ? value : (-value);
         }
     }
+
+    update();
+}
+
+void AxisValueBox::setValue(JoyAxis* axis, int value)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    this->axis = axis;
+
+    #ifndef QT_DEBUG_NO_OUTPUT
+    qDebug() << "Value for axis from value box at start is: " << value;
+    qDebug() << "throttle variable has value: " << throttle;
+    #endif
+
+    if ((value >= axis->getAxisMinCal()) && (value <= axis->getAxisMaxCal()))
+    {
+        #ifndef QT_DEBUG_NO_OUTPUT
+        qDebug() << "Value for axis from value box is between : " << axis->getAxisMinCal() << " and " << axis->getAxisMaxCal();
+        #endif
+
+        if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
+        {
+            this->joyValue = value;
+        }
+        else if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
+        {
+            this->joyValue = ((value + axis->getAxisMinCal()) / 2);
+        }
+        else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
+        {
+            this->joyValue = (value + axis->getAxisMaxCal()) / 2;
+        }
+        else if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
+        {
+            this->joyValue = (value <= 0) ? value : (-value);
+        }
+        else if (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle))
+        {
+            this->joyValue = (value >= 0) ? value : (-value);
+        }
+    }
+
     update();
 }
 
@@ -109,6 +153,21 @@ void AxisValueBox::setDeadZone(int deadZone)
     {
         this->deadZone = deadZone;
     }
+
+    update();
+}
+
+void AxisValueBox::setDeadZone(JoyAxis* axis, int deadZone)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    this->axis = axis;
+
+    if ((deadZone >= axis->getAxisMinCal()) && (deadZone <= axis->getAxisMaxCal()))
+    {
+        this->deadZone = deadZone;
+    }
+
     update();
 }
 
@@ -127,6 +186,21 @@ void AxisValueBox::setMaxZone(int maxZone)
     {
         this->maxZone = maxZone;
     }
+
+    update();
+}
+
+void AxisValueBox::setMaxZone(JoyAxis* axis, int maxZone)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    this->axis = axis;
+
+    if ((maxZone >= axis->getAxisMinCal()) && (maxZone <= axis->getAxisMaxCal()))
+    {
+        this->maxZone = maxZone;
+    }
+
     update();
 }
 
@@ -209,7 +283,7 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     paint.setBrush(innerColor);
 
     int barwidth = (throttle == 0) ? boxwidth : singlewidth;
-    int barlength = abs((barwidth - 2) * joyValue) / JoyAxis::AXISMAX;
+    int barlength = abs((barwidth - 2) * joyValue) / getMaxAxValue();
 
     if (joyValue > 0)
     {
@@ -221,8 +295,8 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     }
 
     // Draw marker for deadZone
-    int deadLine = abs((barwidth - 2) * deadZone) / JoyAxis::AXISMAX;
-    int maxLine = abs((barwidth - 2) * maxZone) / JoyAxis::AXISMAX;
+    int deadLine = abs((barwidth - 2) * deadZone) / getMaxAxValue();
+    int maxLine = abs((barwidth - 2) * maxZone) / getMaxAxValue();
 
     paint.setPen(Qt::blue);
     brush.setColor(Qt::blue);
@@ -250,4 +324,23 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
         paint.setPen(Qt::red);
         qDrawPlainRect(&paint, singleend - maxLine, 2, 4, boxheight + 2, Qt::black, 1, &maxBrush);
     }
+}
+
+
+int AxisValueBox::getMaxAxValue() {
+
+    bool axisDefined = false;
+    if (axis != nullptr) axisDefined = true;
+
+    return (axisDefined && (axis->getAxisMaxCal() != -1)) ? axis->getAxisMaxCal() : JoyAxis::AXISMAX;
+}
+
+
+int AxisValueBox::getMinAxValue() {
+
+    bool axisDefined = false;
+    if (axis != nullptr) axisDefined = true;
+
+    return (axisDefined && (axis->getAxisMinCal() != -1)) ? axis->getAxisMinCal() : JoyAxis::AXISMIN;
+
 }
