@@ -48,6 +48,9 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
     calibrated = this->stick->wasCalibrated();
     ui->Informations->setText(stick->getCalibrationSummary());
 
+    // temporarily, until functionality is implemented
+    ui->jstestgtkCheckbox->hide();
+
     controlstick.data()->getModifierButton()->establishPropertyUpdatedConnections();
     helper.moveToThread(controlstick.data()->thread());
 
@@ -96,6 +99,10 @@ Calibration::~Calibration()
     delete ui;
 }
 
+/**
+ * @brief Resets memory of all variables to default, updates window and shows message
+ * @return Nothing
+ */
 void Calibration::resetSettings()
 {
     QMessageBox msgBox;
@@ -148,6 +155,14 @@ void Calibration::resetSettings()
     }
 }
 
+/**
+ * @brief Creates quadratic field in a case, when max value is not equal to negative min value. It always chooses less value
+ * @param max value for X - positive value
+ * @param min value for X - negative value
+ * @param max value for Y - positive value
+ * @param min value for Y - negative value
+ * @return Nothing
+ */
 void Calibration::setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y) {
 
     if(max_axis_val_x > abs(min_axis_val_x)) {
@@ -163,13 +178,19 @@ void Calibration::setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_
     }
 }
 
-
+/**
+ * @brief Moves deadzone position after changing center position of axes
+ * @return Moved deadzone position
+ */
 int Calibration::calibratedDeadZone(int center, int deadzone)
 {
     return (center + deadzone);
 }
 
-
+/**
+ * @brief Prepares first step of calibration - finding center
+ * @return nothing
+ */
 void Calibration::startCalibration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -205,7 +226,7 @@ void Calibration::startCalibration()
         stick->setCalibrationFlag(false);
         calibrated = false;
 
-            ui->steps->setText(trUtf8("place the joystick in the center position"));
+            ui->steps->setText(trUtf8("place the joystick in the center position.\n\nIt's the part, where often you don't have to move. Just skip it in such situation."));
             update();
 
             this->setWindowTitle(trUtf8("calibrating center"));
@@ -249,7 +270,10 @@ void Calibration::startCalibration()
     }
 }
 
-
+/**
+ * @brief Prepares second step of calibration - moving into top-left corner - negative values
+ * @return nothing
+ */
 void Calibration::startSecondStep()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -314,7 +338,10 @@ void Calibration::startSecondStep()
     }
 }
 
-
+/**
+ * @brief Prepares third step of calibration - moving into bottom-right corner - postive values
+ * @return nothing
+ */
 void Calibration::startLastStep()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -390,7 +417,10 @@ void Calibration::startLastStep()
       }
 }
 
-
+/**
+ * @brief Updates variables contents and shows message
+ * @return nothing
+ */
 void Calibration::saveSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -420,7 +450,10 @@ void Calibration::saveSettings()
    }
 }
 
-
+/**
+ * @brief Gets settings from gtk-jstest profile
+ * @return text of settings from found profile
+ */
 const QString Calibration::getSetfromGtkJstest()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -428,7 +461,12 @@ const QString Calibration::getSetfromGtkJstest()
     return QString();
 }
 
-
+/**
+ * @brief checks whether axes were moved at least 5 times in both ways. If not, it shows a message
+ * @param counts of ax X moving values
+ * @param counts of ax Y moving values
+ * @return if counts of values for X and Y axes were greater than 4
+ */
 bool Calibration::enoughProb(int x_count, int y_count)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -441,50 +479,12 @@ bool Calibration::enoughProb(int x_count, int y_count)
     return enough;
 }
 
-
-int Calibration::calculateRawVal(QHash<QString,int> ax_values, JoyAxis* joyAxis)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    int min_int = chooseMinMax(QString("-"), ax_values.values(QString("-")));
-    int max_int = chooseMinMax(QString("+"), ax_values.values(QString("+")));
-    int deadzone_value = 0;
-
-    qDebug() << "Int Min value of " << joyAxis->getAxisName() << " is " << min_int;
-    qDebug() << "Int Max value of " << joyAxis->getAxisName() << " is " << max_int;
-
-    if (abs(min_int) == max_int) {
-
-        qDebug() << "Min and max values are equal";
-
-        deadzone_value = max_int;
-
-    } else {
-
-        if (max_int > abs(min_int)) {
-
-            qDebug() << "Max value is greater than min value";
-
-            deadzone_value = min_int;
-
-        } else {
-
-            qDebug() << "Min value is greater than max value";
-
-            deadzone_value = max_int;
-
-        }
-    }
-
-    joyAxis->setCurrentRawValue(deadzone_value);
-    int axis1Value = joyAxis->getCurrentRawValue();
-
-    qDebug() << "current raw value for joyAxis is " << axis1Value;
-
-    return axis1Value;
-}
-
-
+/**
+ * @brief it's a slot of moving ax Y. Counts positive and negative values for later comparisions
+ * @param place for sign "+" or "-". Depends on we want to find max value or min value for ax
+ * @param list of moving ax values in positive and negative ways
+ * @return min value if sign was "-" or max value if sign was "+"
+ */
 int Calibration::chooseMinMax(QString min_max_sign, QList<int> ax_values)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -504,7 +504,11 @@ int Calibration::chooseMinMax(QString min_max_sign, QList<int> ax_values)
     return min_max;
 }
 
-
+/**
+ * @brief it's a slot of moving ax X. Counts positive and negative values for later comparisions
+ * @param value of moving ax
+ * @return nothing
+ */
 void Calibration::checkX(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -519,7 +523,11 @@ void Calibration::checkX(int value)
     update();
 }
 
-
+/**
+ * @brief it's a slot of moving ax Y. Counts positive and negative values for later comparisions
+ * @param value of moving ax
+ * @return nothing
+ */
 void Calibration::checkY(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -534,7 +542,11 @@ void Calibration::checkY(int value)
     update();
 }
 
-
+/**
+ * @brief for chosen controller, sticks list and animation widgets are refreshed
+ * @param detected name of controller
+ * @return nothing
+ */
 void Calibration::setController(QString controllerName)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -558,7 +570,10 @@ void Calibration::setController(QString controllerName)
     }
 }
 
-
+/**
+ * @brief Refreshes list of sticks, which is below input devices list
+ * @return nothing
+ */
 void Calibration::updateAxesBox()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -573,14 +588,20 @@ void Calibration::updateAxesBox()
     update();
 }
 
-
+/**
+ * @brief Tries to load profile for gtk-jstest application
+ * @return nothing
+ */
 void Calibration::loadSetFromJstest()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 }
 
-
+/**
+ * @brief Tries to find profile for gtk-jstest application
+ * @return if gtk-jstest profile for calibration was found
+ */
 bool Calibration::ifGtkJstestRunToday()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -588,7 +609,10 @@ bool Calibration::ifGtkJstestRunToday()
     return true;
 }
 
-
+/**
+ * @brief Initializes widget for moving axes (animations) and changes storing data for variables
+ * @return nothing
+ */
 void Calibration::createAxesConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -606,7 +630,11 @@ void Calibration::createAxesConnection()
     if (controlstick.isNull()) controlstick.clear();
 }
 
-
+/**
+ * @brief Creates progress bars for axes and creates connections
+ * @param pointer to stick
+ * @return nothing
+ */
 void Calibration::setProgressBars(JoyControlStick* controlstick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -653,7 +681,13 @@ void Calibration::setProgressBars(JoyControlStick* controlstick)
         update();
 }
 
-
+/**
+ * @brief Creates progress bars for axes and creates connections
+ * @param device number
+ * @param joystick number
+ * @param stick number
+ * @return nothing
+ */
 void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

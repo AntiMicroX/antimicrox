@@ -38,7 +38,7 @@ const double JoyControlStick::PI = acos(-1.0);
 // Set default values used for stick properties.
 const int JoyControlStick::DEFAULTDEADZONE = 8000;
 const int JoyControlStick::DEFAULTMAXZONE = JoyAxis::AXISMAXZONE;
-const int JoyControlStick::DEFAULTDIAGONALRANGE = 45;
+const int JoyControlStick::DEFAULTDIAGONALRANGE = 90;
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 const double JoyControlStick::DEFAULTCIRCLE = 0.0;
 const int JoyControlStick::DEFAULTSTICKDELAY = 0;
