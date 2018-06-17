@@ -127,7 +127,7 @@ because the option is set as default in CMakeLists.txt.
 
 ### Building Under Windows
 
-*Instructions provided by aybe @ https://github.com/aybe.
+*Instructions provided by aybe @ https://github.com/aybe
 and modified by Travis Nickles.*
 
 * Download and install CMake: http://www.cmake.org/cmake/resources/software.html .
