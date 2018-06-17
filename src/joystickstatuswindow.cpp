@@ -17,6 +17,8 @@
 
 #include "joystickstatuswindow.h"
 #include "ui_joystickstatuswindow.h"
+
+#include "messagehandler.h"
 #include "joybuttonstatusbox.h"
 #include "inputdevice.h"
 #include "common.h"
@@ -39,7 +41,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
@@ -81,7 +83,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
             hbox->addSpacing(10);
             axesBox->addLayout(hbox);
 
-            connect(axis, SIGNAL(moved(int)), axisBar, SLOT(setValue(int)));
+            connect(axis, &JoyAxis::moved, axisBar, &QProgressBar::setValue);
         }
     }
 
@@ -135,8 +137,8 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
             hbox->addSpacing(10);
             hatsBox->addLayout(hbox);
 
-            connect(dpad, SIGNAL(active(int)), dpadBar, SLOT(setValue(int)));
-            connect(dpad, SIGNAL(released(int)), dpadBar, SLOT(setValue(int)));
+            connect(dpad, &JoyDPad::active, dpadBar, &QProgressBar::setValue);
+            connect(dpad, &JoyDPad::released, dpadBar, &QProgressBar::setValue);
         }
     }
 
@@ -172,20 +174,20 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     PadderCommon::inputDaemonMutex.unlock();
 
-    connect(joystick, SIGNAL(destroyed()), this, SLOT(obliterate()));
-    connect(this, SIGNAL(finished(int)), this, SLOT(restoreButtonStates(int)));
+    connect(joystick, &InputDevice::destroyed, this, &JoystickStatusWindow::obliterate);
+    connect(this, &JoystickStatusWindow::finished, this, &JoystickStatusWindow::restoreButtonStates);
 }
 
 JoystickStatusWindow::~JoystickStatusWindow()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void JoystickStatusWindow::restoreButtonStates(int code)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (code == QDialogButtonBox::AcceptRole)
     {
@@ -200,7 +202,12 @@ void JoystickStatusWindow::restoreButtonStates(int code)
 
 void JoystickStatusWindow::obliterate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->done(QDialogButtonBox::DestructiveRole);
+}
+
+InputDevice* JoystickStatusWindow::getJoystick() const {
+
+    return joystick;
 }

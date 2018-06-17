@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickstatusbox.h"
+
+#include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "joyaxis.h"
 #include "common.h"
@@ -33,7 +35,7 @@
 JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
     QWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = nullptr;
 }
@@ -41,63 +43,65 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent) :
 JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent) :
     QWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
 
     connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
-    connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
-    connect(stick, SIGNAL(circleAdjustChange(double)), this, SLOT(update()));
+        connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
+        connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
+        connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
+        connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
+        connect(stick, SIGNAL(circleAdjustChange(double)), this, SLOT(update()));
 }
 
 void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (stick != nullptr)
-    {
-        disconnect(stick, SIGNAL(deadZoneChanged(int)), this, 0);
-        disconnect(stick, SIGNAL(moved(int,int)), this, 0);
-        disconnect(stick, SIGNAL(diagonalRangeChanged(int)), this, 0);
-        disconnect(stick, SIGNAL(maxZoneChanged(int)), this, 0);
-        disconnect(stick, SIGNAL(joyModeChanged()), this, 0);
-    }
+        {
+            disconnect(stick, SIGNAL(deadZoneChanged(int)), this, nullptr);
+            disconnect(stick, SIGNAL(moved(int,int)), this, nullptr);
+            disconnect(stick, SIGNAL(diagonalRangeChanged(int)), this, nullptr);
+            disconnect(stick, SIGNAL(maxZoneChanged(int)), this, nullptr);
+            disconnect(stick, SIGNAL(joyModeChanged()), this, nullptr);
+        }
 
-    this->stick = stick;
-    connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
-    connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
-    connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
+        this->stick = stick;
+        connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
+        connect(stick, SIGNAL(moved(int,int)), this, SLOT(update()));
+        connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
+        connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
+        connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
+
+    update();
 }
 
-JoyControlStick* JoyControlStickStatusBox::getStick()
+JoyControlStick* JoyControlStickStatusBox::getStick() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return stick;
 }
 
 int JoyControlStickStatusBox::heightForWidth(int width) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return width;
 }
 
 QSize JoyControlStickStatusBox::sizeHint() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return QSize(-1, -1);
 }
 
 void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(event);
 
@@ -122,7 +126,7 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 
 void JoyControlStickStatusBox::drawEightWayBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter paint (this);
     paint.setRenderHint(QPainter::Antialiasing, true);
@@ -142,21 +146,11 @@ void JoyControlStickStatusBox::drawEightWayBox()
     painter.drawRect(0, 0, side-1, side-1);
 
     painter.save();
-    painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    painter.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw diagonal zones
     QList<double> anglesList = stick->getDiagonalZoneAngles();
-    /*QListIterator<double> iter(anglesList);
-    qDebug() << "LIST START";
-    qDebug() << "DIAGONAL RANGE: " << stick->getDiagonalRange();
-    while (iter.hasNext())
-    {
-        qDebug() << "ANGLE: " << iter.next();
-    }
-    qDebug() << "LIST END";
-    qDebug();
-    */
 
     penny.setWidth(0);
     penny.setColor(Qt::black);
@@ -190,7 +184,7 @@ void JoyControlStickStatusBox::drawEightWayBox()
     painter.restore();
 
     painter.save();
-    painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    painter.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     penny.setWidth(0);
@@ -245,7 +239,7 @@ void JoyControlStickStatusBox::drawEightWayBox()
     paint.drawPixmap(pix.rect(), pix);
 
     paint.save();
-    paint.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    paint.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     paint.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw max zone and initial inner clear circle
@@ -270,7 +264,7 @@ void JoyControlStickStatusBox::drawEightWayBox()
 
 void JoyControlStickStatusBox::drawFourWayCardinalBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
@@ -290,7 +284,7 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     painter.drawRect(0, 0, side-1, side-1);
 
     painter.save();
-    painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    painter.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw diagonal zones
@@ -330,7 +324,7 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     painter.restore();
 
     painter.save();
-    painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    painter.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
     penny.setWidth(0);
     painter.setBrush(QBrush(Qt::black));
@@ -384,7 +378,7 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     paint.drawPixmap(pix.rect(), pix);
 
     paint.save();
-    paint.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    paint.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     paint.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw max zone and initial inner clear circle
@@ -409,7 +403,7 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
 
 void JoyControlStickStatusBox::drawFourWayDiagonalBox()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
@@ -429,7 +423,7 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     painter.drawRect(0, 0, side-1, side-1);
 
     painter.save();
-    painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    painter.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw diagonal zones
@@ -469,7 +463,7 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     painter.restore();
 
     painter.save();
-    painter.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    painter.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     painter.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
     penny.setWidth(0);
     painter.setBrush(QBrush(Qt::black));
@@ -523,7 +517,7 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     paint.drawPixmap(pix.rect(), pix);
 
     paint.save();
-    paint.scale(side / (double)(JoyAxis::AXISMAX*2.0), side / (double)(JoyAxis::AXISMAX*2.0));
+    paint.scale(side / static_cast<double>(JoyAxis::AXISMAX*2.0), side / static_cast<double>(JoyAxis::AXISMAX*2.0));
     paint.translate(JoyAxis::AXISMAX, JoyAxis::AXISMAX);
 
     // Draw max zone and initial inner clear circle

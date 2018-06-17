@@ -35,6 +35,7 @@ public:
     QVariant runtimeValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void importFromCommandLine(CommandLineUtility &cmdutility);
     QMutex* getLock();
+    QSettings& getCmdSettings();
 
     static const bool defaultDisabledWinEnhanced;
     static const bool defaultAssociateProfiles;
@@ -44,7 +45,6 @@ public:
 protected:
     QSettings cmdSettings;
     QMutex lock;
-
 
 };
 

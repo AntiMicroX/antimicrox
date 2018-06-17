@@ -16,6 +16,8 @@
  */
 
 #include "dpadcontextmenu.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "antkeymapper.h"
@@ -31,10 +33,10 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
 {
     this->dpad = dpad;
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-    helper.moveToThread(dpad->thread());
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+    getHelper().moveToThread(dpad->thread());
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &DPadContextMenu::aboutToHide, this, &DPadContextMenu::deleteLater);
 }
 
 /**
@@ -43,7 +45,7 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent) :
  */
 void DPadContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -55,7 +57,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -63,7 +67,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -71,7 +77,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -79,7 +87,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -87,7 +97,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -95,7 +107,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -103,7 +117,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     presetMode++;
@@ -111,7 +127,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadPreset(action);
+    });
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -123,7 +141,9 @@ void DPadContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(dpad->getJoyMode() == JoyDPad::StandardMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("Eight Way"));
@@ -131,7 +151,9 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::EightWayMode);
     mode = static_cast<int>(JoyDPad::EightWayMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Cardinal"));
@@ -139,7 +161,9 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::FourWayCardinal);
     mode = static_cast<int>(JoyDPad::FourWayCardinal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Diagonal"));
@@ -147,24 +171,26 @@ void DPadContextMenu::buildMenu()
     action->setChecked(dpad->getJoyMode() == JoyDPad::FourWayDiagonal);
     mode = static_cast<int>(JoyDPad::FourWayDiagonal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setDPadMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setDPadMode(action);
+    });
+
     modesGroup->addAction(action);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+    connect(action, &QAction::triggered, this, &DPadContextMenu::openMouseSettingsDialog);
 }
 
 /**
  * @brief Set the appropriate mode for a DPad based on the item chosen.
  */
-void DPadContextMenu::setDPadMode()
+void DPadContextMenu::setDPadMode(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
     dpad->setJoyMode((JoyDPad::JoyMode)item);
 }
@@ -173,11 +199,10 @@ void DPadContextMenu::setDPadMode()
  * @brief Assign the appropriate slots to DPad buttons based on the preset item
  *     that was chosen.
  */
-void DPadContextMenu::setDPadPreset()
+void DPadContextMenu::setDPadPreset(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *upButtonSlot = nullptr;
@@ -310,7 +335,7 @@ void DPadContextMenu::setDPadPreset()
     tempHash.insert(JoyDPadButton::DpadLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyDPadButton::DpadRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelper().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
@@ -322,7 +347,7 @@ void DPadContextMenu::setDPadPreset()
  */
 int DPadContextMenu::getPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
 
@@ -413,8 +438,13 @@ int DPadContextMenu::getPresetIndex()
  */
 void DPadContextMenu::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, parentWidget());
     dialog->show();
+}
+
+DPadContextMenuHelper& DPadContextMenu::getHelper() {
+
+    return helper;
 }

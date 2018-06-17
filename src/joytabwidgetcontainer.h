@@ -28,6 +28,7 @@ class InputDevice;
 class JoyTabWidgetContainer : public QTabWidget
 {
     Q_OBJECT
+
 public:
     explicit JoyTabWidgetContainer(QWidget *parent = nullptr);
 
@@ -39,8 +40,8 @@ public slots:
     void enableFlashes(InputDevice *joystick);
 
 private slots:
-    void flash();
-    void unflash();
+    void flash(InputDevice* joystick);
+    void unflash(InputDevice *joystick);
     void unflashAll();
     void unflashTab(JoyTabWidget *tabWidget);
 };

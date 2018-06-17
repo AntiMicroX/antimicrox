@@ -16,6 +16,8 @@
  */
 
 #include "joybuttoncontextmenu.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "common.h"
 #include "joybutton.h"
@@ -28,16 +30,16 @@
 JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
     QMenu(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->button = button;
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &JoyButtonContextMenu::aboutToHide, this, &JoyButtonContextMenu::deleteLater);
 }
 
 void JoyButtonContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -46,18 +48,18 @@ void JoyButtonContextMenu::buildMenu()
     action = this->addAction(trUtf8("Toggle"));
     action->setCheckable(true);
     action->setChecked(button->getToggleState());
-    connect(action, SIGNAL(triggered()), this, SLOT(switchToggle()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
 
     action = this->addAction(trUtf8("Turbo"));
     action->setCheckable(true);
     action->setChecked(button->isUsingTurbo());
-    connect(action, SIGNAL(triggered()), this, SLOT(switchToggle()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Clear"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(clearButton()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::clearButton);
 
     this->addSeparator();
 
@@ -69,7 +71,7 @@ void JoyButtonContextMenu::buildMenu()
         action->setCheckable(true);
         action->setChecked(true);
     }
-    connect(action, SIGNAL(triggered()), this, SLOT(disableSetMode()));
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::disableSetMode);
 
     setSectionMenu->addSeparator();
 
@@ -95,7 +97,10 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, SIGNAL(triggered()), this, SLOT(switchSetMode()));
+        connect(action, &QAction::triggered, this, [this, action]() {
+            switchSetMode(action);
+        });
+
         tempGroup->addAction(action);
 
         action = tempSetMenu->addAction(trUtf8("Set %1 2W").arg(i+1));
@@ -106,7 +111,10 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, SIGNAL(triggered()), this, SLOT(switchSetMode()));
+        connect(action, &QAction::triggered, this, [this, action]() {
+            switchSetMode(action);
+        });
+
         tempGroup->addAction(action);
 
         action = tempSetMenu->addAction(trUtf8("Set %1 WH").arg(i+1));
@@ -117,7 +125,10 @@ void JoyButtonContextMenu::buildMenu()
         {
             action->setChecked(true);
         }
-        connect(action, SIGNAL(triggered()), this, SLOT(switchSetMode()));
+        connect(action, &QAction::triggered, this, [this, action]() {
+            switchSetMode(action);
+        });
+
         tempGroup->addAction(action);
 
         if (i == button->getParentSet()->getIndex())
@@ -131,7 +142,7 @@ void JoyButtonContextMenu::buildMenu()
 
 void JoyButtonContextMenu::switchToggle()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->getToggleState());
@@ -140,18 +151,17 @@ void JoyButtonContextMenu::switchToggle()
 
 void JoyButtonContextMenu::switchTurbo()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->isUsingTurbo());
     PadderCommon::inputDaemonMutex.unlock();
 }
 
-void JoyButtonContextMenu::switchSetMode()
+void JoyButtonContextMenu::switchSetMode(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
     int setSelection = item / 3;
     int setChangeCondition = item % 3;
@@ -181,7 +191,7 @@ void JoyButtonContextMenu::switchSetMode()
 
 void JoyButtonContextMenu::disableSetMode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
     button->setChangeSetCondition(JoyButton::SetChangeDisabled);
@@ -190,7 +200,7 @@ void JoyButtonContextMenu::disableSetMode()
 
 void JoyButtonContextMenu::clearButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMetaObject::invokeMethod(button, "clearSlotsEventReset");
 }

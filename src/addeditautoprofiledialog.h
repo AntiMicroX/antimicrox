@@ -25,6 +25,8 @@
 class AutoProfileInfo;
 class AntiMicroSettings;
 class InputDevice;
+class CapturedWindowInfoDialog;
+class UnixCaptureWindowUtility;
 
 namespace Ui {
 class AddEditAutoProfileDialog;
@@ -40,14 +42,43 @@ public:
                                       bool edit=false, QWidget *parent = nullptr);
     ~AddEditAutoProfileDialog();
 
-    AutoProfileInfo* getAutoProfile();
-    QString getOriginalGUID();
-    QString getOriginalExe();
-    QString getOriginalWindowClass();
-    QString getOriginalWindowName();
+    AutoProfileInfo* getAutoProfile() const;
+    QString getOriginalGUID() const;
+    QString getOriginalExe() const;
+    QString getOriginalWindowClass() const;
+    QString getOriginalWindowName() const;
+
+    QList<InputDevice*> *getDevices() const;
+    AntiMicroSettings *getSettings() const;
+    bool getEditForm() const;
+    bool getDefaultInfo() const;
+    QList<QString> const& getReservedGUIDs();
+
 
 protected:
     virtual void accept();
+
+signals:
+    void captureFinished();
+
+private slots:
+    void openProfileBrowseDialog();
+    void openApplicationBrowseDialog();
+    void saveAutoProfileInformation();
+    void checkForReservedGUIDs(int index);
+    void checkForDefaultStatus();
+    void windowPropAssignment(CapturedWindowInfoDialog *dialog);
+
+#ifdef Q_OS_WIN
+    void openWinAppProfileDialog();
+    void captureWindowsApplicationPath();
+#elif defined(Q_OS_UNIX)
+    void showCaptureHelpWindow();
+    void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
+#endif
+
+private:
+    Ui::AddEditAutoProfileDialog *ui;
 
     AutoProfileInfo *info;
     QList<InputDevice*> *devices;
@@ -60,27 +91,6 @@ protected:
     QString originalWindowClass;
     QString originalWindowName;
 
-private:
-    Ui::AddEditAutoProfileDialog *ui;
-
-signals:
-    void captureFinished();
-
-private slots:
-    void openProfileBrowseDialog();
-    void openApplicationBrowseDialog();
-    void saveAutoProfileInformation();
-    void checkForReservedGUIDs(int index);
-    void checkForDefaultStatus();
-    void windowPropAssignment();
-
-#ifdef Q_OS_WIN
-    void openWinAppProfileDialog();
-    void captureWindowsApplicationPath();
-#elif defined(Q_OS_UNIX)
-    void showCaptureHelpWindow();
-    void checkForGrabbedWindow();
-#endif
 };
 
 #endif // ADDEDITAUTOPROFILEDIALOG_H

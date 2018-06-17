@@ -17,6 +17,8 @@
 
 #include "antimicrosettings.h"
 
+#include "messagehandler.h"
+
 #include <QDebug>
 
 const bool AntiMicroSettings::defaultDisabledWinEnhanced = false;
@@ -27,7 +29,7 @@ const int AntiMicroSettings::defaultSDLGamepadPollRate = 10; // unsigned
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent) :
     QSettings(fileName, format, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 /**
@@ -39,7 +41,7 @@ AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QOb
  */
 QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &defaultValue) const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QVariant settingValue;
     QString inGroup = group();
@@ -65,23 +67,30 @@ QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &def
  */
 void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    cmdSettings.clear();
+    getCmdSettings().clear();
 
     if (cmdutility.isLaunchInTrayEnabled())
     {
-        cmdSettings.setValue("LaunchInTray", 1);
+        getCmdSettings().setValue("LaunchInTray", 1);
     }
     if (cmdutility.shouldMapController())
     {
-        cmdSettings.setValue("DisplaySDLMapping", 1);
+        getCmdSettings().setValue("DisplaySDLMapping", 1);
     }
 }
 
 QMutex* AntiMicroSettings::getLock()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &lock;
+}
+
+QSettings& AntiMicroSettings::getCmdSettings() {
+
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return cmdSettings;
 }

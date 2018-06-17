@@ -21,14 +21,17 @@
 #include <linux/uinput.h>
 #include <cmath>
 
-//#include <QDebug>
+#include <QDebug>
 #include <QStringList>
 #include <QStringListIterator>
 #include <QFileInfo>
 #include <QTimer>
+
+
 #include <antkeymapper.h>
 #include <logger.h>
 #include <common.h>
+
 
 static const QString mouseDeviceName = PadderCommon::mouseDeviceName;
 static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
@@ -43,6 +46,7 @@ static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName
 #endif
 
 #include "uinputeventhandler.h"
+#include "messagehandler.h"
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -270,8 +274,6 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
         int fx = ceil(32767 * ((xDis - midwidth) / midwidth));
         int fy = ceil(32767 * ((yDis - midheight) / midheight));
         sendMouseAbsEvent(fx, fy, -1);
-        //write_uinput_event(springMouseFileHandler, EV_ABS, ABS_X, fx, false);
-        //write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, fy);
     }
 }
 
@@ -497,8 +499,6 @@ QString UInputEventHandler::getIdentifier()
  */
 void UInputEventHandler::printPostMessages()
 {
-    //QTextStream out(stdout);
-
     if (!lastErrorString.isEmpty())
     {
         Logger::LogInfo(lastErrorString);
@@ -516,11 +516,11 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
 
     if (mapper && mapper->getKeyMapper())
     {
-        QtUInputKeyMapper *keymapper = static_cast<QtUInputKeyMapper*>(mapper->getKeyMapper());
-        QtX11KeyMapper *nativeWinKeyMapper = 0;
+        QtUInputKeyMapper *keymapper = qobject_cast<QtUInputKeyMapper*>(mapper->getKeyMapper());
+        QtX11KeyMapper *nativeWinKeyMapper = nullptr;
         if (mapper->getNativeKeyMapper())
         {
-            nativeWinKeyMapper = static_cast<QtX11KeyMapper*>(mapper->getNativeKeyMapper());
+            nativeWinKeyMapper = qobject_cast<QtX11KeyMapper*>(mapper->getNativeKeyMapper());
         }
 
         QList<unsigned int> tempList;
@@ -532,7 +532,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             temp.virtualkey = 0;
             temp.modifiers = Qt::NoModifier;
 
-            if (nativeWinKeyMapper)
+            if (nativeWinKeyMapper != nullptr)
             {
                 QtX11KeyMapper::charKeyInformation tempX11 = nativeWinKeyMapper->getCharKeyInformation(maintext.at(i));
                 tempX11.virtualkey = X11Extras::getInstance()->getGroup1KeySym(tempX11.virtualkey);
@@ -598,4 +598,27 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             }
         }
     }
+}
+
+int UInputEventHandler::getKeyboardFileHandler() {
+
+    return keyboardFileHandler;
+}
+
+
+int UInputEventHandler::getMouseFileHandler() {
+
+    return mouseFileHandler;
+}
+
+
+int UInputEventHandler::getSpringMouseFileHandler() {
+
+    return springMouseFileHandler;
+}
+
+
+const QString UInputEventHandler::getUinputDeviceLocation() {
+
+    return uinputDeviceLocation;
 }

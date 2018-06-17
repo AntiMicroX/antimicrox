@@ -16,6 +16,8 @@
  */
 
 #include "joybuttonwidget.h"
+
+#include "messagehandler.h"
 #include "joybuttoncontextmenu.h"
 #include "joybutton.h"
 
@@ -25,7 +27,7 @@
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->button = button;
 
@@ -35,51 +37,53 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
 
-    //connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
+    connect(this, &JoyButtonWidget::customContextMenuRequested, this, &JoyButtonWidget::showContextMenu);
+    connect(button, &JoyButton::propertyUpdated, this, &JoyButtonWidget::refreshLabel);
+    connect(button, &JoyButton::activeZoneChanged, this, &JoyButtonWidget::refreshLabel);
 }
 
-JoyButton* JoyButtonWidget::getJoyButton()
+JoyButton* JoyButtonWidget::getJoyButton() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return button;
 }
 
 void JoyButtonWidget::disableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-    disconnect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(button, &JoyButton::clicked, this, &JoyButtonWidget::flash);
+    disconnect(button, &JoyButton::released, this, &JoyButtonWidget::unflash);
     this->unflash();
 }
 
 void JoyButtonWidget::enableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(button, &JoyButton::clicked, this, &JoyButtonWidget::flash, Qt::QueuedConnection);
+    connect(button, &JoyButton::released, this, &JoyButtonWidget::unflash, Qt::QueuedConnection);
 }
 
 QString JoyButtonWidget::generateLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-    temp = button->getName(false, displayNames).replace("&", "&&");
+    temp = button->getName(false, ifDisplayNames()).replace("&", "&&");
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Name of joy button is: " << temp;
+    #endif
+
     return temp;
 }
 
 void JoyButtonWidget::showContextMenu(const QPoint &point)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
     JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
@@ -89,7 +93,7 @@ void JoyButtonWidget::showContextMenu(const QPoint &point)
 
 void JoyButtonWidget::tryFlash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (button->getButtonState())
     {

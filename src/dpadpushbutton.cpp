@@ -16,6 +16,8 @@
  */
 
 #include "dpadpushbutton.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "dpadcontextmenu.h"
 
@@ -24,7 +26,7 @@
 DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->dpad = dpad;
 
@@ -34,56 +36,59 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+    connect(this, &DPadPushButton::customContextMenuRequested, this, &DPadPushButton::showContextMenu);
 
-    connect(dpad, SIGNAL(dpadNameChanged()), this, SLOT(refreshLabel()));
+    connect(dpad, &JoyDPad::dpadNameChanged, this, &DPadPushButton::refreshLabel);
 }
 
-JoyDPad* DPadPushButton::getDPad()
+JoyDPad* DPadPushButton::getDPad() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return dpad;
 }
 
 QString DPadPushButton::generateLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (!dpad->getDpadName().isEmpty())
     {
-        temp.append(dpad->getName(false, displayNames));
+        temp.append(dpad->getName(false, ifDisplayNames()));
     }
     else
     {
         temp.append(dpad->getName());
     }
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Dpad button name is: " << temp;
+    #endif
+
     return temp;
 }
 
 void DPadPushButton::disableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(dpad, SIGNAL(active(int)), this, SLOT(flash()));
-    disconnect(dpad, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(dpad, &JoyDPad::active, this, &DPadPushButton::flash);
+    disconnect(dpad, &JoyDPad::released, this, &DPadPushButton::unflash);
     this->unflash();
 }
 
 void DPadPushButton::enableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(dpad, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(dpad, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(dpad, &JoyDPad::active, this, &DPadPushButton::flash, Qt::QueuedConnection);
+    connect(dpad, &JoyDPad::released, this, &DPadPushButton::unflash, Qt::QueuedConnection);
 }
 
 void DPadPushButton::showContextMenu(const QPoint &point)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
     DPadContextMenu *contextMenu = new DPadContextMenu(dpad, this);
@@ -93,7 +98,7 @@ void DPadPushButton::showContextMenu(const QPoint &point)
 
 void DPadPushButton::tryFlash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (dpad->getCurrentDirection() != static_cast<int>(JoyDPadButton::DpadCentered))
     {

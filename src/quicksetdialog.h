@@ -27,6 +27,9 @@
 class InputDevice;
 class QWidget;
 class JoyButton;
+class JoyControlStickButton;
+class JoyDPadButton;
+class JoyAxisButton;
 
 namespace Ui {
 class QuickSetDialog;
@@ -42,30 +45,40 @@ public:
     QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, QWidget *parent = nullptr);
     ~QuickSetDialog();
 
-    JoyButton* getLastPressedButton();
+    JoyButton* getLastPressedButton() const;
+    InputDevice *getJoystick() const;
+    QDialog *getCurrentButtonDialog() const;
+    const char* getInvokeString() const;
+    ButtonEditDialogHelper* getHelper() const;
+    JoyButtonSlot::JoySlotInputAction getMode() const;
 
-protected:
-    InputDevice *joystick;
-    QDialog *currentButtonDialog;
-    const char* invokeString;
-    ButtonEditDialogHelper* helper;
-    int code;
-    int alias;
-    int index;
-    JoyButtonSlot::JoySlotInputAction mode;
-    bool withClear;
-    bool withTrue;
-    JoyButton* lastButton;
+
+private slots:
+    void showAxisButtonDialog(JoyAxisButton* joybtn);
+    void showButtonDialog(JoyButton* joybtn);
+    void showStickButtonDialog(JoyControlStickButton* joyctrlstickbtn);
+    void showDPadButtonDialog(JoyDPadButton* joydpadbtn);
+    void restoreButtonStates();
 
 private:
     Ui::QuickSetDialog *ui;
 
-private slots:
-    void showAxisButtonDialog();
-    void showButtonDialog();
-    void showStickButtonDialog();
-    void showDPadButtonDialog();
-    void restoreButtonStates();
+    InputDevice *joystick;
+    QDialog *currentButtonDialog;
+    ButtonEditDialogHelper* helper;
+    JoyButton* lastButton;
+
+    const char* invokeString;
+
+    int code;
+    int alias;
+    int index;
+
+    JoyButtonSlot::JoySlotInputAction mode;
+
+    bool withClear;
+    bool withTrue;
+
 };
 
 #endif // QUICKSETDIALOG_H

@@ -16,6 +16,8 @@
  */
 
 #include "eventhandlerfactory.h"
+
+#include "messagehandler.h"
 #include "eventhandlers/baseeventhandler.h"
 
 #include <QHash>
@@ -24,7 +26,7 @@
 
 static QHash<QString, QString> buildDisplayNames()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<QString, QString> temp;
 #ifdef Q_OS_WIN
@@ -46,7 +48,7 @@ EventHandlerFactory* EventHandlerFactory::instance = nullptr;
 EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 #ifdef Q_OS_UNIX
     #ifdef WITH_UINPUT
@@ -78,7 +80,7 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
 
 EventHandlerFactory::~EventHandlerFactory()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (eventHandler != nullptr)
     {
@@ -89,7 +91,7 @@ EventHandlerFactory::~EventHandlerFactory()
 
 EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (instance == nullptr)
     {
@@ -109,7 +111,7 @@ EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
 
 void EventHandlerFactory::deleteInstance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (instance != nullptr)
     {
@@ -120,14 +122,14 @@ void EventHandlerFactory::deleteInstance()
 
 BaseEventHandler* EventHandlerFactory::handler()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return eventHandler;
 }
 
 QString EventHandlerFactory::fallBackIdentifier()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
 #ifdef Q_OS_UNIX
@@ -147,7 +149,7 @@ QString EventHandlerFactory::fallBackIdentifier()
 
 QStringList EventHandlerFactory::buildEventGeneratorList()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QStringList temp = QStringList();
 
@@ -165,7 +167,7 @@ QStringList EventHandlerFactory::buildEventGeneratorList()
 
 QString EventHandlerFactory::handlerDisplayName(QString handler)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (handlerDisplayNames.contains(handler))

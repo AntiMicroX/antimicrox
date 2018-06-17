@@ -40,6 +40,7 @@ class QMenu;
 class QShowEvent;
 class QEvent;
 class QCloseEvent;
+class JoyTabWidget;
 
 namespace Ui {
 class MainWindow;
@@ -60,15 +61,18 @@ public:
     bool getGraphicalStatus();
 
     void setTranslator(QTranslator *translator);
-    QTranslator* getTranslator();
+    QTranslator* getTranslator() const;
 
     void setAppTranslator(QTranslator *translator);
-    QTranslator* getAppTranslator();
+    QTranslator* getAppTranslator() const;
+
+    QMap<int, QList<QAction*> > const& getProfileActions();
 
 protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
+
     void retranslateUi();
     void loadConfigFile(QString fileLocation, int joystickIndex=0);
     void loadConfigFile(QString fileLocation, QString controllerID);
@@ -76,29 +80,6 @@ protected:
     void unloadCurrentConfig(QString controllerID);
     void changeStartSetNumber(int startSetNumber, QString controllerID); // (unsigned, ..)
     void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // (unsigned, unsigned)
-
-    QMap<SDL_JoystickID, InputDevice*> *joysticks;
-
-    QSystemTrayIcon *trayIcon;
-    QAction *hideAction;
-    QAction *restoreAction;
-    QAction *closeAction;
-    QAction *updateJoy;
-    QMenu *trayIconMenu;
-    QMap<int, QList<QAction*> > profileActions;
-    AboutDialog *aboutDialog;
-    bool signalDisconnect;
-    bool showTrayIcon;
-    bool graphical;
-    QLocalServer *localServer;
-    CommandLineUtility *cmdutility;
-    AntiMicroSettings *settings;
-    QTranslator *translator;
-    QTranslator *appTranslator;
-    AutoProfileWatcher *appWatcher;
-
-private:
-    Ui::MainWindow *ui;
 
 signals:
     void joystickRefreshRequested();
@@ -126,28 +107,29 @@ public slots:
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
     void selectControllerJoyTab(int index); // (unsigned)
+    void handleInstanceDisconnect();
 
 
 private slots:
     void refreshTrayIconMenu();
     void trayIconClickAction(QSystemTrayIcon::ActivationReason reason);
-    void mainMenuChange();
+    void mainMenuChange(QMenu* tempMenu);
     void disableFlashActions();
     void enableFlashActions();
 
-    void joystickTrayShow();
+    void joystickTrayShow(QMenu* tempmenu);
     void singleTrayProfileMenuShow();
-    void profileTrayActionTriggered(bool checked);
+    void profileTrayActionTriggered(QAction *action, bool checked);
 
     void populateTrayIcon();
     void openAboutDialog();
-    void handleInstanceDisconnect();
     void openJoystickStatusWindow();
     void openKeyCheckerDialog();
     void openGitHubPage();
     void openIssuesPage();
     void openWikiPage();
-    void propogateNameDisplayStatus(bool displayNames);
+    void openCalibration();
+    void propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames);
     void changeLanguage(QString language);
     void openMainSettingsDialog();
     void showStickAssignmentDialog();
@@ -163,6 +145,30 @@ private slots:
     void autoprofileLoad(AutoProfileInfo *info);
     void checkAutoProfileWatcherTimer();
     void updateMenuOptions();
+
+private:
+    Ui::MainWindow *ui;
+
+    QMap<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<int, QList<QAction*> > profileActions;
+
+    QSystemTrayIcon *trayIcon;
+    QMenu *trayIconMenu;
+    AboutDialog *aboutDialog;
+    CommandLineUtility *cmdutility;
+    AntiMicroSettings *settings;
+    QTranslator *translator;
+    QTranslator *appTranslator;
+    AutoProfileWatcher *appWatcher;
+
+    QAction *hideAction;
+    QAction *restoreAction;
+    QAction *closeAction;
+    QAction *updateJoy;
+
+    bool signalDisconnect;
+    bool showTrayIcon;
+    bool graphical;
 
 };
 

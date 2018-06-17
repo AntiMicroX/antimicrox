@@ -21,11 +21,12 @@
 #include <QObject>
 #include <QTimer>
 
-#include "joybuttonslot.h"
+class JoyButtonSlot;
 
 class JoyKeyRepeatHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit JoyKeyRepeatHelper(QObject *parent = nullptr);
     QTimer* getRepeatTimer();
@@ -33,20 +34,17 @@ public:
     void setLastActiveKey(JoyButtonSlot *slot);
     JoyButtonSlot* getLastActiveKey();
 
-    //void setKeyRepeatDelay(unsigned int repeatDelay);
-    //unsigned int getKeyRepeatDelay();
-
     void setKeyRepeatRate(int repeatRate); // (unsigned)
     int getKeyRepeatRate(); // unsigned
+
+private slots:
+    void repeatKeysEvent();
 
 protected:
     QTimer keyRepeatTimer;
     JoyButtonSlot *lastActiveKey;
     int keyRepeatDelay; // unsigned
     int keyRepeatRate; // unsigned
-
-private slots:
-    void repeatKeysEvent();
 };
 
 #endif // JOYKEYREPEATHELPER_H

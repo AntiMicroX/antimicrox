@@ -24,7 +24,6 @@ class QWidget;
 class QPaintEvent;
 
 
-
 class FlashButtonWidget : public QPushButton
 {
     Q_OBJECT
@@ -42,10 +41,7 @@ protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual QString generateLabel() = 0;
     virtual void retranslateUi();
-
-    bool isflashing;
-    bool displayNames;
-    bool leftAlignText;
+    bool ifDisplayNames();
 
 signals:
     void flashed(bool flashing);
@@ -59,6 +55,12 @@ public slots:
 protected slots:
     void flash();
     void unflash();
+
+private:
+    bool isflashing;
+    bool displayNames;
+    bool leftAlignText;
+
 };
 
 #endif // FLASHBUTTONWIDGET_H

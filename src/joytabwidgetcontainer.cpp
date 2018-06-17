@@ -16,6 +16,8 @@
  */
 
 #include "joytabwidgetcontainer.h"
+
+#include "messagehandler.h"
 #include "joystick.h"
 #include "joytabwidget.h"
 
@@ -26,37 +28,35 @@
 JoyTabWidgetContainer::JoyTabWidgetContainer(QWidget *parent) :
     QTabWidget(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 }
 
 int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return QTabWidget::addTab(widget, string);
 }
 
 int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     InputDevice *joystick = widget->getJoystick();
 
     if (joystick != nullptr)
     {
         enableFlashes(joystick);
-        connect(widget, SIGNAL(forceTabUnflash(JoyTabWidget*)), this, SLOT(unflashTab(JoyTabWidget*)));
+        connect(widget, &JoyTabWidget::forceTabUnflash, this, &JoyTabWidgetContainer::unflashTab);
     }
 
     return QTabWidget::addTab(widget, string);
 }
 
-void JoyTabWidgetContainer::flash()
+void JoyTabWidgetContainer::flash(InputDevice* joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    InputDevice *joystick = qobject_cast<InputDevice*>(sender()); // static_cast
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool found = false;
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
@@ -70,11 +70,9 @@ void JoyTabWidgetContainer::flash()
     }
 }
 
-void JoyTabWidgetContainer::unflash()
+void JoyTabWidgetContainer::unflash(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
-
-    InputDevice *joystick = qobject_cast<InputDevice*>(sender()); // static_cast
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool found = false;
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
@@ -90,11 +88,11 @@ void JoyTabWidgetContainer::unflash()
 
 void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool found = false;
 
-    for (int i=0; (i < tabBar()->count()) && !found; i++)
+    for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
         if (tab == tabWidget)
@@ -106,7 +104,7 @@ void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 
 void JoyTabWidgetContainer::unflashAll()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i = 0; i < tabBar()->count(); i++)
     {
@@ -120,18 +118,22 @@ void JoyTabWidgetContainer::unflashAll()
 
 void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     unflashAll();
 
-    disconnect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()));
-    disconnect(joystick, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(joystick, &InputDevice::clicked, this, nullptr);
+    disconnect(joystick, &InputDevice::released, this, nullptr);
 }
 
 void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(joystick, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(joystick, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(joystick, &InputDevice::clicked, this, [this, joystick] {
+        flash(joystick);
+    }, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::released, this, [this, joystick] {
+        unflash(joystick);
+    }, Qt::QueuedConnection);
 }

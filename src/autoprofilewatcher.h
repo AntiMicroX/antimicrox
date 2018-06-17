@@ -30,6 +30,7 @@ class AutoProfileInfo;
 class AutoProfileWatcher : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent = nullptr);
     void startTimer();
@@ -37,28 +38,16 @@ public:
     QList<AutoProfileInfo*>* getCustomDefaults();
     AutoProfileInfo* getDefaultAllProfile();
     bool isGUIDLocked(QString guid);
+    QHash<QString, QList<AutoProfileInfo*> > const& getAppProfileAssignments();
+    QHash<QString, QList<AutoProfileInfo*> > const& getWindowClassProfileAssignments();
+    QHash<QString, QList<AutoProfileInfo*> > const& getWindowNameProfileAssignments();
+    QHash<QString, AutoProfileInfo*> const& getDefaultProfileAssignments();
 
     static const int CHECKTIME = 1000; // time in ms
 
 protected:
     QString findAppLocation();
     void clearProfileAssignments();
-
-    QTimer appTimer;
-    AntiMicroSettings *settings;
-    // Path, QList<AutoProfileInfo*>
-    QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
-    // WM_CLASS, QList<AutoProfileInfo*>
-    QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;
-    // WM_NAME, QList<AutoProfileInfo*>
-    QHash<QString, QList<AutoProfileInfo*> > windowNameProfileAssignments;
-    // GUID, AutoProfileInfo*
-    QHash<QString, AutoProfileInfo*> defaultProfileAssignments;
-    //QList<AutoProfileInfo*> *customDefaults;
-    AutoProfileInfo *allDefaultInfo;
-    QString currentApplication;
-    QString currentAppWindowTitle;
-    QSet<QString> guidSet;
 
 signals:
     void foundApplicableProfile(AutoProfileInfo *info);
@@ -68,6 +57,20 @@ public slots:
 
 private slots:
     void runAppCheck();
+
+private:
+    QSet<QString>& getGuidSetLocal();
+
+    QTimer appTimer;
+    AntiMicroSettings *settings;
+    QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
+    QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;
+    QHash<QString, QList<AutoProfileInfo*> > windowNameProfileAssignments;
+    QHash<QString, AutoProfileInfo*> defaultProfileAssignments;
+    AutoProfileInfo *allDefaultInfo;
+    QString currentApplication;
+    QString currentAppWindowTitle;
+    QSet<QString> guidSet;
 };
 
 #endif // AUTOPROFILEWATCHER_H

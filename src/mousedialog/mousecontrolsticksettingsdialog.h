@@ -31,8 +31,13 @@ class SpringModeRegionPreview;
 class MouseControlStickSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
+
 public:
     explicit MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent=0);
+
+    JoyControlStick *getStick() const;
+    SpringModeRegionPreview *getSpringPreviewWidget() const;
+    MouseControlStickSettingsDialogHelper const& getHelper();
     
 protected:
     void selectCurrentMouseModePreset();
@@ -52,10 +57,7 @@ protected:
     void calculateReleaseSpringRadius();
     void calculateExtraAccelerationCurve();
 
-    JoyControlStick *stick;
-    SpringModeRegionPreview *springPreviewWidget;
-    MouseControlStickSettingsDialogHelper helper;
-    
+
 public slots:
     void changeMouseMode(int index);
     void changeMouseCurve(int index);
@@ -71,6 +73,13 @@ public slots:
 
 private slots:
     void updateExtraAccelerationCurve(int index);
+
+private:
+    MouseControlStickSettingsDialogHelper& getHelperLocal();
+
+    JoyControlStick *stick;
+    SpringModeRegionPreview *springPreviewWidget;
+    MouseControlStickSettingsDialogHelper helper;
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOG_H

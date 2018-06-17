@@ -26,21 +26,23 @@ class JoyControlStick;
 class MouseControlStickSettingsDialogHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit MouseControlStickSettingsDialogHelper(JoyControlStick *stick, QObject *parent = nullptr);
 
-protected:
-    JoyControlStick *stick;
+    JoyControlStick* getStick() const;
 
 public slots:
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);
-
     void updateStartMultiPercentage(double value);
     void updateMinAccelThreshold(double value);
     void updateMaxAccelThreshold(double value);
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
+
+private:
+    JoyControlStick *stick;
 };
 
 #endif // MOUSECONTROLSTICKSETTINGSDIALOGHELPER_H

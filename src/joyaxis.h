@@ -32,9 +32,11 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyAxis;
 
+
 class JoyAxis : public QObject
 {
     Q_OBJECT
+
 public:
     explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
     ~JoyAxis();
@@ -52,7 +54,6 @@ public:
     void activatePendingEvent();
     bool hasPendingEvent();
     void clearPendingEvent();
-
     bool inDeadZone(int value);
 
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
@@ -116,6 +117,15 @@ public:
 
     double getButtonsEasingDuration();
 
+    void setAxisMinCal(int value);
+    int getAxisMinCal();
+
+    void setAxisMaxCal(int value);
+    int getAxisMaxCal();
+
+    void setAxisCenterCal(int value);
+    int getAxisCenterCal();
+
     virtual QString getAxisName();
     virtual int getDefaultDeadZone();
     virtual int getDefaultMaxZone();
@@ -134,6 +144,7 @@ public:
     int getLastKnownThrottleValue();
     int getLastKnownRawValue();
     int getProperReleaseValue();
+    void setCurrentRawValue(int value);
 
     // Don't use direct assignment but copying from a current axis.
     void copyRawValues(JoyAxis *srcAxis);
@@ -159,39 +170,30 @@ protected:
     void createDeskEvent(bool ignoresets = false);
     void adjustRange();
     int calculateThrottledValue(int value);
-    void setCurrentRawValue(int value);
+
     void performCalibration(int value);
     void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true);
 
     virtual bool readMainConfig(QXmlStreamReader *xml);
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
-    int index;
-    int deadZone;
-    int maxZoneValue;
-    bool isActive;
-
     JoyAxisButton *paxisbutton;
     JoyAxisButton *naxisbutton;
 
-    bool eventActive;
-    int currentThrottledValue;
-    int currentRawValue;
-    int throttle;
-    JoyAxisButton *activeButton;
-    int originset;
-
-    int currentThrottledDeadValue;
-    JoyControlStick *stick;
     QString axisName;
     QString defaultAxisName;
-    SetJoystick *parentSet;
-    int lastKnownThottledValue;
-    int lastKnownRawValue;
 
-    int pendingValue;
-    bool pendingEvent;
-    bool pendingIgnoreSets;
+    int throttle;
+    int deadZone;
+    int maxZoneValue;
+    int currentRawValue;
+    int currentThrottledValue;
+    int currentThrottledDeadValue;
+    int index;
+    int axis_center_cal;
+    int axis_min_cal;
+    int axis_max_cal;
+
     // TODO: CHECK IF PROPERTY IS NEEDED.
     //bool pendingUpdateLastValues;
 
@@ -217,6 +219,24 @@ public slots:
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
+
+private:
+    bool isActive;
+    bool eventActive;
+
+    JoyAxisButton *activeButton;
+    int originset;
+
+    JoyControlStick *stick;
+
+    SetJoystick *parentSet;
+    int lastKnownThottledValue;
+    int lastKnownRawValue;
+
+    int pendingValue;
+    bool pendingEvent;
+    bool pendingIgnoreSets;
+
 };
 
 #endif // JOYAXIS_H

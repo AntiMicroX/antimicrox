@@ -26,6 +26,7 @@ class QWidget;
 class JoyDPadButtonWidget : public JoyButtonWidget
 {
     Q_OBJECT
+
 public:
     explicit JoyDPadButtonWidget(JoyButton* button, bool displayNames, QWidget *parent = nullptr);
 

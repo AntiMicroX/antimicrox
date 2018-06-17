@@ -16,6 +16,8 @@
  */
 
 #include "unixcapturewindowutility.h"
+
+#include "messagehandler.h"
 #include "qtx11keymapper.h"
 
 #include <QDebug>
@@ -31,7 +33,7 @@
 UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     targetPath = "";
     failed = false;
@@ -43,7 +45,7 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
  */
 void UnixCaptureWindowUtility::attemptWindowCapture()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Only create instance when needed.
     static QtX11KeyMapper x11KeyMapper;
@@ -67,7 +69,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     }
     else
     {
-        display = XOpenDisplay(NULL);
+        display = XOpenDisplay(nullptr);
     }
 
     Window rootWin = XDefaultRootWindow(display);
@@ -93,7 +95,10 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                     target_window = event.xbutton.window;
                 }
 
-                //qDebug() << QString::number(target_window, 16);
+                #ifndef QT_DEBUG_NO_OUTPUT
+                qDebug() << QString::number(target_window, 16);
+                #endif
+
                 break;
 
             case (KeyPress):
@@ -126,9 +131,9 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
  * @brief Get the saved path for a window
  * @return Program path
  */
-QString UnixCaptureWindowUtility::getTargetPath()
+QString UnixCaptureWindowUtility::getTargetPath() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return targetPath;
 }
@@ -137,16 +142,16 @@ QString UnixCaptureWindowUtility::getTargetPath()
  * @brief Check if attemptWindowCapture failed to obtain an application
  * @return Error status
  */
-bool UnixCaptureWindowUtility::hasFailed()
+bool UnixCaptureWindowUtility::hasFailed() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return failed;
 }
 
-long UnixCaptureWindowUtility::getTargetWindow()
+long UnixCaptureWindowUtility::getTargetWindow() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return targetWindow;
 }

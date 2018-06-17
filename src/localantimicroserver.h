@@ -26,11 +26,12 @@ class QLocalServer;
 class LocalAntiMicroServer : public QObject
 {
     Q_OBJECT
+
 public:
     explicit LocalAntiMicroServer(QObject *parent = nullptr);
 
-protected:
-    QLocalServer *localServer;
+    QLocalServer* getLocalServer() const;
+
 
 signals:
     void clientdisconnect();
@@ -40,6 +41,10 @@ public slots:
     void handleOutsideConnection();
     void handleSocketDisconnect();
     void close();
+
+private:
+    QLocalServer *localServer;
+
 };
 
 #endif // LOCALANTIMICROSERVER_H

@@ -16,6 +16,8 @@
  */
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
+
+#include "messagehandler.h"
 #include "common.h"
 #include "eventhandlerfactory.h"
 
@@ -35,7 +37,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->versionLabel->setText(PadderCommon::programVersion);
     fillInfoTextBrowser();
@@ -43,14 +45,14 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
 AboutDialog::~AboutDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void AboutDialog::fillInfoTextBrowser()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QStringList finalInfoText = QStringList();
 
@@ -99,7 +101,7 @@ void AboutDialog::fillInfoTextBrowser()
 
 void AboutDialog::changeEvent(QEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (event->type() == QEvent::LanguageChange)
     {
@@ -111,7 +113,7 @@ void AboutDialog::changeEvent(QEvent *event)
 
 void AboutDialog::retranslateUi()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->retranslateUi(this);
 

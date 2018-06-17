@@ -41,11 +41,12 @@ public:
 protected:
     void selectCurrentPreset();
 
-    JoyControlStick *stick;
-    JoyControlStickEditDialogHelper helper;
-
 private:
     Ui::JoyControlStickEditDialog *ui;
+    JoyControlStickEditDialogHelper& getHelperLocal();
+
+    JoyControlStick *stick;
+    JoyControlStickEditDialogHelper helper;
 
 private slots:
     void implementPresets(int index);

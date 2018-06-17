@@ -40,20 +40,19 @@ public:
     };
     typedef int DialogWindowOption; // unsigned
 
-    QString getWindowClass();
-    QString getWindowName();
-    QString getWindowPath();
-    DialogWindowOption getSelectedOptions();
+    QString getWindowClass() const;
+    QString getWindowName() const;
+    QString getWindowPath() const;
+    DialogWindowOption getSelectedOptions() const;
 
 private:
     Ui::UnixWindowInfoDialog *ui;
-
-protected:
     DialogWindowOption selectedMatch;
 
     QString winClass;
     QString winName;
     QString winPath;
+
 
 private slots:
     void populateOption();

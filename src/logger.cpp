@@ -18,6 +18,8 @@
 
 #include "logger.h"
 
+#include "messagehandler.h"
+
 #include <QTime>
 #include <QDebug>
 
@@ -34,7 +36,7 @@ Logger* Logger::instance = nullptr;
 Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     instance = this;
     instance->outputStream = stream;
@@ -44,8 +46,8 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
-    connect(instance, SIGNAL(pendingMessage()), instance, SLOT(startPendingTimer()));
-    connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
+    connect(instance, &Logger::pendingMessage, instance, &Logger::startPendingTimer);
+    connect(&(instance->pendingTimer), &QTimer::timeout, instance, &Logger::Log);
 }
 
 /**
@@ -61,7 +63,7 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
                LogLevel outputLevel, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     instance = this;
     instance->outputStream = stream;
@@ -71,8 +73,8 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
     instance->pendingTimer.setSingleShot(true);
     instance->writeTime = false;
 
-    connect(instance, SIGNAL(pendingMessage()), instance, SLOT(startPendingTimer()));
-    connect(&(instance->pendingTimer), SIGNAL(timeout()), instance, SLOT(Log()));
+    connect(instance, &Logger::pendingMessage, instance, &Logger::startPendingTimer);
+    connect(&(instance->pendingTimer), &QTimer::timeout, instance, &Logger::Log);
 }
 
 /**
@@ -80,7 +82,7 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
  */
 Logger::~Logger()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     closeLogger();
     closeErrorLogger();
@@ -93,7 +95,7 @@ Logger::~Logger()
  */
 void Logger::setLogLevel(LogLevel level)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -109,7 +111,7 @@ void Logger::setLogLevel(LogLevel level)
  */
 Logger::LogLevel Logger::getCurrentLogLevel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -118,7 +120,7 @@ Logger::LogLevel Logger::getCurrentLogLevel()
 
 void Logger::setCurrentStream(QTextStream *stream)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -131,7 +133,7 @@ void Logger::setCurrentStream(QTextStream *stream)
 
 QTextStream* Logger::getCurrentStream()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -140,7 +142,7 @@ QTextStream* Logger::getCurrentStream()
 
 void Logger::setCurrentErrorStream(QTextStream *stream)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -157,7 +159,7 @@ void Logger::setCurrentErrorStream(QTextStream *stream)
 
 QTextStream* Logger::getCurrentErrorStream()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -174,12 +176,12 @@ QTextStream* Logger::getCurrentErrorStream()
  */
 void Logger::Log()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMutexLocker locker(&logMutex);
     Q_UNUSED(locker);
 
-    QListIterator<LogMessage> iter(pendingMessages);
+    QListIterator<LogMessage> iter(getPendingMessages());
     while (iter.hasNext())
     {
         LogMessage pendingMessage = iter.next();
@@ -196,7 +198,7 @@ void Logger::Log()
  */
 void Logger::closeLogger(bool closeStream)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (outputStream != nullptr)
     {
@@ -219,7 +221,7 @@ void Logger::closeLogger(bool closeStream)
  */
 void Logger::closeErrorLogger(bool closeStream)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (errorStream != nullptr)
     {
@@ -249,7 +251,7 @@ void Logger::closeErrorLogger(bool closeStream)
  */
 void Logger::appendLog(LogLevel level, const QString &message, bool newline)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -263,11 +265,6 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
 
     instance->pendingMessages.append(temp);
 
-    /*if (!instance->pendingTimer.isActive())
-    {
-        instance->pendingTimer.start();
-    }
-    */
     emit instance->pendingMessage();
 }
 
@@ -280,7 +277,7 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
  */
 void Logger::directLog(LogLevel level, const QString &message, bool newline)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -301,7 +298,7 @@ void Logger::directLog(LogLevel level, const QString &message, bool newline)
  */
 void Logger::logMessage(LogMessage msg)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     LogLevel level = msg.level;
     QString message = msg.message;
@@ -319,18 +316,16 @@ void Logger::logMessage(LogMessage msg)
         }
 
         QTextStream *writeStream = outputStream;
-        if ((level < LOG_INFO) && errorStream)
+        if ((level < LOG_INFO) && (errorStream != nullptr))
         {
             writeStream = errorStream;
         }
 
         finalMessage.append(initialPrefix).append(message);
 
-        //*writeStream << initialPrefix << message;
         if (newline)
         {
             finalMessage.append("\n");
-            //*writeStream << endl;
         }
 
         *writeStream << finalMessage;
@@ -345,7 +340,7 @@ void Logger::logMessage(LogMessage msg)
  */
 QTimer* Logger::getLogTimer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &pendingTimer;
 }
@@ -355,7 +350,7 @@ QTimer* Logger::getLogTimer()
  */
 void Logger::stopLogTimer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (pendingTimer.isActive())
     {
@@ -370,7 +365,7 @@ void Logger::stopLogTimer()
  */
 void Logger::setWriteTime(bool status)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -387,7 +382,7 @@ void Logger::setWriteTime(bool status)
  */
 bool Logger::getWriteTime()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -396,7 +391,7 @@ bool Logger::getWriteTime()
 
 void Logger::startPendingTimer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(instance != nullptr);
 
@@ -408,7 +403,7 @@ void Logger::startPendingTimer()
 
 void Logger::setCurrentLogFile(QString filename) {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
   Q_ASSERT(instance != nullptr);
   
@@ -424,7 +419,7 @@ void Logger::setCurrentLogFile(QString filename) {
 
 void Logger::setCurrentErrorLogFile(QString filename) {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
   Q_ASSERT(instance != nullptr);
 
@@ -435,5 +430,10 @@ void Logger::setCurrentErrorLogFile(QString filename) {
   instance->errorFile.open( QIODevice::WriteOnly | QIODevice::Append );
   instance->outErrorFileStream.setDevice( &instance->errorFile );
   instance->setCurrentErrorStream( &instance->outErrorFileStream );
+}
+
+QList<Logger::LogMessage> const& Logger::getPendingMessages() {
+
+    return pendingMessages;
 }
 

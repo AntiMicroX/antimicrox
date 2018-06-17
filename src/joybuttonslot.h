@@ -84,7 +84,7 @@ public:
     static const int JOYSPEED;
     static const QString xmlName;
     
-protected:
+private:
     int deviceCode;
     int qkeyaliasCode; // unsigned
     JoySlotInputAction mode;

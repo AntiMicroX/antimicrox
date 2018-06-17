@@ -30,6 +30,7 @@ class AntiMicroSettings;
 class GameController : public InputDevice
 {
     Q_OBJECT
+
 public:
     explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
 
@@ -60,16 +61,16 @@ public:
     void rawAxisEvent(int index, int value);
     void rawDPadEvent(int index, int value);
 
-    QHash<int, bool> rawbuttons;
-    QHash<int, int> axisvalues;
-    QHash<int, int> dpadvalues;
+    QHash<int, bool> const& getRawbuttons();
+    QHash<int, int> const& getAxisvalues();
+    QHash<int, int> const& getDpadvalues();
+
+    SDL_GameController *getController() const;
 
     static const QString xmlName;
 
 protected:
     void readJoystickConfig(QXmlStreamReader *xml);
-
-    SDL_GameController *controller;
 
 public slots:
     virtual void readConfig(QXmlStreamReader *xml);
@@ -79,6 +80,15 @@ protected slots:
     virtual void axisActivatedEvent(int setindex, int axisindex, int value);
     virtual void buttonClickEvent(int buttonindex);
     virtual void buttonReleaseEvent(int buttonindex);
+
+private:
+    QHash<int, bool> rawbuttons;
+    QHash<int, int> axisvalues;
+    QHash<int, int> dpadvalues;
+
+    SDL_JoystickID joystickID;
+    SDL_GameController *controller;
+
 };
 
 #endif // GAMECONTROLLER_H

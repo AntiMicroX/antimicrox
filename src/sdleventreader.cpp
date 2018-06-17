@@ -16,6 +16,8 @@
  */
 
 #include "sdleventreader.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
@@ -34,7 +36,7 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
                                AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joysticks = joysticks;
     this->settings = settings;
@@ -49,12 +51,12 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
 
     initSDL();
 
-    connect(&pollRateTimer, SIGNAL(timeout()), this, SLOT(performWork()));
+    connect(&pollRateTimer, &QTimer::timeout, this, &SDLEventReader::performWork);
 }
 
 SDLEventReader::~SDLEventReader()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -64,7 +66,7 @@ SDLEventReader::~SDLEventReader()
 
 void SDLEventReader::initSDL()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // SDL_INIT_GAMECONTROLLER should automatically initialize SDL_INIT_JOYSTICK
     // but it doesn't seem to be the case with v2.0.4
@@ -73,7 +75,6 @@ void SDLEventReader::initSDL()
     SDL_JoystickEventState(SDL_ENABLE);
     sdlIsOpen = true;
 
-    //QSettings settings(PadderCommon::configFilePath, QSettings::IniFormat);
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
     QStringList mappings = settings->allKeys();
@@ -93,19 +94,15 @@ void SDLEventReader::initSDL()
     settings->endGroup();
     settings->getLock()->unlock();
 
-    //SDL_GameControllerAddMapping("03000000100800000100000010010000,Twin USB Joystick,a:b2,b:b1,x:b3,y:b0,back:b8,start:b9,leftshoulder:b6,rightshoulder:b7,leftstick:b10,rightstick:b11,leftx:a0,lefty:a1,rightx:a3,righty:a2,lefttrigger:b4,righttrigger:b5,dpup:h0.1,dpleft:h0.8,dpdown:h0.4,dpright:h0.2");
-
     pollRateTimer.stop();
     pollRateTimer.setInterval(pollRate);
-    //pollRateTimer.start();
-    //pollRateTimer.setSingleShot(true);
 
     emit sdlStarted();
 }
 
 void SDLEventReader::closeSDL()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pollRateTimer.stop();
 
@@ -129,7 +126,6 @@ void SDLEventReader::performWork()
 
     if (sdlIsOpen)
     {
-        //int status = SDL_WaitEvent(NULL);
         int status = CheckForEvents();
 
         if (status)
@@ -142,7 +138,7 @@ void SDLEventReader::performWork()
 
 void SDLEventReader::stop()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -156,7 +152,7 @@ void SDLEventReader::stop()
 
 void SDLEventReader::refresh()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -168,7 +164,7 @@ void SDLEventReader::refresh()
 
 void SDLEventReader::secondaryRefresh()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -180,7 +176,7 @@ void SDLEventReader::secondaryRefresh()
 
 void SDLEventReader::clearEvents()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -193,25 +189,17 @@ void SDLEventReader::clearEvents()
 
 bool SDLEventReader::isSDLOpen()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return sdlIsOpen;
 }
 
 int SDLEventReader::CheckForEvents()
 {
-
     int result = 0;
-    //bool exit = false;
-
-    /*Logger::LogInfo(
-                                QString("Gamepad Poll %1").arg(
-                                    QTime::currentTime().toString("hh:mm:ss.zzz")),
-                                true, true);
-    */
 
     SDL_PumpEvents();
-    switch (SDL_PeepEvents(NULL, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
+    switch (SDL_PeepEvents(nullptr, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
     {
         case -1:
         {
@@ -219,7 +207,7 @@ int SDLEventReader::CheckForEvents()
 			   arg(QString(SDL_GetError())),
 			   true, true);
             result = 0;
-            //exit = true;
+
             break;
         }
         case 0:
@@ -228,20 +216,12 @@ int SDLEventReader::CheckForEvents()
             {
                 pollRateTimer.start();
             }
-            //exit = true;
-            //SDL_Delay(10);
+
             break;
         }
         default:
         {
-            /*Logger::LogInfo(
-                        QString("Gamepad Poll %1").arg(
-                            QTime::currentTime().toString("hh:mm:ss.zzz")),
-                        true, true);
-            */
-
             result = 1;
-           // exit = true;
             break;
         }
     }
@@ -251,7 +231,7 @@ int SDLEventReader::CheckForEvents()
 
 void SDLEventReader::updatePollRate(int tempPollRate)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((tempPollRate >= 1) && (tempPollRate <= 16))
     {
@@ -270,14 +250,14 @@ void SDLEventReader::updatePollRate(int tempPollRate)
 
 void SDLEventReader::resetJoystickMap()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     joysticks = nullptr;
 }
 
 void SDLEventReader::quit()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -288,7 +268,7 @@ void SDLEventReader::quit()
 
 void SDLEventReader::closeDevices()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (sdlIsOpen)
     {
@@ -311,8 +291,24 @@ void SDLEventReader::closeDevices()
  */
 void SDLEventReader::haltServices()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::lockInputDevices();
     PadderCommon::unlockInputDevices();
+}
+
+
+QMap<SDL_JoystickID, InputDevice*> *SDLEventReader::getJoysticks() const {
+
+    return joysticks;
+}
+
+AntiMicroSettings *SDLEventReader::getSettings() const {
+
+    return settings;
+}
+
+QTimer const& SDLEventReader::getPollRateTimer() {
+
+    return pollRateTimer;
 }

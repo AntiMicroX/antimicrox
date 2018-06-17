@@ -17,6 +17,8 @@
 
 #include "axiseditdialog.h"
 #include "ui_axiseditdialog.h"
+
+#include "messagehandler.h"
 #include "buttoneditdialog.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "event.h"
@@ -38,7 +40,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     ui(new Ui::AxisEditDialog)
 {
     ui->setupUi(this);
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -90,7 +92,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     }
 
     int currentThrottle = axis->getThrottle();
-    //ui->comboBox_2->setCurrentIndex(currentThrottle+1);
+
     if ((currentThrottle == static_cast<int>(JoyAxis::NegativeThrottle)) || (currentThrottle == static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
         int tempindex = (currentThrottle == static_cast<int>(JoyAxis::NegativeHalfThrottle)) ? 0 : 1;
@@ -124,45 +126,56 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     ui->axisNameLineEdit->setText(axis->getAxisName());
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
 
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(updateDeadZoneBox(int)));
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setDeadZone(int)));
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), axis, SLOT(setDeadZone(int)));
 
-    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), this, SLOT(updateMaxZoneBox(int)));
-    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), ui->axisstatusBox, SLOT(setMaxZone(int)));
-    connect(ui->horizontalSlider_2, SIGNAL(valueChanged(int)), axis, SLOT(setMaxZoneValue(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 
-    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(updateThrottleUi(int)));
-    connect(ui->comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(presetForThrottleChange(int)));
+    connect(ui->horizontalSlider, &QSlider::valueChanged, this, &AxisEditDialog::updateDeadZoneBox);
+    connect(ui->horizontalSlider, &QSlider::valueChanged, this, [this, axis](int deadzone) {
+        ui->axisstatusBox->setDeadZone(axis, deadzone);
+    });
 
-    connect(axis, SIGNAL(moved(int)), ui->axisstatusBox, SLOT(setValue(int)));
-    connect(axis, SIGNAL(moved(int)), this, SLOT(updateJoyValue(int)));
+    connect(ui->horizontalSlider, &QSlider::valueChanged, axis, &JoyAxis::setDeadZone);
 
-    connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(updateDeadZoneSlider(QString)));
-    connect(ui->lineEdit_2, SIGNAL(textEdited(QString)), this, SLOT(updateMaxZoneSlider(QString)));
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, &AxisEditDialog::updateMaxZoneBox);
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, [this, axis](int deadzone) {
+        ui->axisstatusBox->setMaxZone(axis, deadzone);
+    });
 
-    connect(ui->nPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedNDialog()));
-    connect(ui->pPushButton, SIGNAL(clicked()), this, SLOT(openAdvancedPDialog()));
+    connect(ui->horizontalSlider_2, &QSlider::valueChanged, axis, &JoyAxis::setMaxZoneValue);
 
-    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
-    connect(ui->axisNameLineEdit, SIGNAL(textEdited(QString)), axis, SLOT(setAxisName(QString)));
+    connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::updateThrottleUi);
+    connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::presetForThrottleChange);
 
-    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(updateWindowTitleAxisName()));
-    connect(this, SIGNAL(finished(int)), this, SLOT(checkFinalSettings()));
+    connect(axis, &JoyAxis::moved, this, [this, axis](int value) {
+       ui->axisstatusBox->setValue(axis, value);
+    });
+
+    connect(axis, &JoyAxis::moved, this, &AxisEditDialog::updateJoyValue);
+
+    connect(ui->lineEdit, &QLineEdit::textEdited, this, &AxisEditDialog::updateDeadZoneSlider);
+    connect(ui->lineEdit_2, &QLineEdit::textEdited, this, &AxisEditDialog::updateMaxZoneSlider);
+
+    connect(ui->nPushButton, &QPushButton::clicked, this, &AxisEditDialog::openAdvancedNDialog);
+    connect(ui->pPushButton, &QPushButton::clicked, this, &AxisEditDialog::openAdvancedPDialog);
+
+    connect(ui->mouseSettingsPushButton, &QPushButton::clicked, this, &AxisEditDialog::openMouseSettingsDialog);
+    connect(ui->axisNameLineEdit, &QLineEdit::textEdited, axis, &JoyAxis::setAxisName);
+
+    connect(axis, &JoyAxis::axisNameChanged, this, &AxisEditDialog::updateWindowTitleAxisName);
+    connect(this, &AxisEditDialog::finished, this, &AxisEditDialog::checkFinalSettings);
 }
 
 AxisEditDialog::~AxisEditDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void AxisEditDialog::implementPresets(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool actAsTrigger = false;
     int currentThrottle = axis->getThrottle();
@@ -184,7 +197,7 @@ void AxisEditDialog::implementPresets(int index)
 
 void AxisEditDialog::implementAxisPresets(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *nbuttonslot = nullptr;
     JoyButtonSlot *pbuttonslot = nullptr;
@@ -289,21 +302,21 @@ void AxisEditDialog::implementAxisPresets(int index)
 
 void AxisEditDialog::updateDeadZoneBox(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->lineEdit->setText(QString::number(value));
 }
 
 void AxisEditDialog::updateMaxZoneBox(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->lineEdit_2->setText(QString::number(value));
 }
 
 void AxisEditDialog::updateThrottleUi(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempthrottle = 0;
     if ((index == 0) || (index == 1))
@@ -331,17 +344,17 @@ void AxisEditDialog::updateThrottleUi(int index)
 
 void AxisEditDialog::updateJoyValue(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->joyValueLabel->setText(QString::number(value));
 }
 
 void AxisEditDialog::updateDeadZoneSlider(QString value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= JoyAxis::AXISMIN) && (temp <= JoyAxis::AXISMAX))
+    if ((temp >= this->axis->getAxisMinCal()) && (temp <= this->axis->getAxisMaxCal()))
     {
         ui->horizontalSlider->setValue(temp);
     }
@@ -349,10 +362,10 @@ void AxisEditDialog::updateDeadZoneSlider(QString value)
 
 void AxisEditDialog::updateMaxZoneSlider(QString value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= JoyAxis::AXISMIN) && (temp <= JoyAxis::AXISMAX))
+    if ((temp >= this->axis->getAxisMinCal()) && (temp <= this->axis->getAxisMaxCal()))
     {
         ui->horizontalSlider_2->setValue(temp);
     }
@@ -360,60 +373,44 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
 
 void AxisEditDialog::openAdvancedPDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ButtonEditDialog *dialog = new ButtonEditDialog(axis->getPAxisButton(), axis->getControlStick()->getParentSet()->getInputDevice(),  this);
     dialog->show();
 
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPButtonLabel()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPreset()));
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPButtonLabel);
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPreset);
 }
 
 void AxisEditDialog::openAdvancedNDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ButtonEditDialog *dialog = new ButtonEditDialog(axis->getNAxisButton(), axis->getControlStick()->getParentSet()->getInputDevice(), this);
     dialog->show();
 
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshNButtonLabel()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(refreshPreset()));
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshNButtonLabel);
+    connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPreset);
 }
 
 void AxisEditDialog::refreshNButtonLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    /*if (!axis->getNAxisButton()->getActionName().isEmpty())
-    {
-        ui->nPushButton->setText(axis->getNAxisButton()->getActionName());
-    }
-    else
-    {
-        ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
-    }*/
     ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
 }
 
 void AxisEditDialog::refreshPButtonLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    /*if (!axis->getPAxisButton()->getActionName().isEmpty())
-    {
-        ui->pPushButton->setText(axis->getPAxisButton()->getActionName());
-    }
-    else
-    {
-        ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
-    }*/
     ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
 
 }
 
 void AxisEditDialog::checkFinalSettings()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (axis->getThrottle() != initialThrottleState)
     {
@@ -423,7 +420,7 @@ void AxisEditDialog::checkFinalSettings()
 
 void AxisEditDialog::selectAxisCurrentPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
     QList<JoyButtonSlot*> *naxisslots = naxisbutton->getAssignedSlots();
@@ -501,7 +498,7 @@ void AxisEditDialog::selectAxisCurrentPreset()
 
 void AxisEditDialog::selectTriggerPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *paxisbutton = axis->getPAxisButton();
     QList<JoyButtonSlot*> *paxisslots = paxisbutton->getAssignedSlots();
@@ -534,7 +531,7 @@ void AxisEditDialog::selectTriggerPreset()
 
 void AxisEditDialog::implementTriggerPresets(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *pbuttonslot = nullptr;
 
@@ -585,38 +582,38 @@ void AxisEditDialog::implementTriggerPresets(int index)
 
 void AxisEditDialog::refreshPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Disconnect event associated with presetsComboBox so a change in the index does not
     // alter the axis buttons
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    disconnect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
     selectAxisCurrentPreset();
     // Reconnect the event
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 }
 
 void AxisEditDialog::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->mouseSettingsPushButton->setEnabled(false);
 
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, this);
     dialog->show();
-    connect(this, SIGNAL(finished(int)), dialog, SLOT(close()));
-    connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
+    connect(this, &AxisEditDialog::finished, dialog, &MouseAxisSettingsDialog::close);
+    connect(dialog, &MouseAxisSettingsDialog::finished, this, &AxisEditDialog::enableMouseSettingButton);
 }
 
 void AxisEditDialog::enableMouseSettingButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->mouseSettingsPushButton->setEnabled(true);
 }
 
 void AxisEditDialog::updateWindowTitleAxisName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString(trUtf8("Set")).append(" ");
 
@@ -648,7 +645,7 @@ void AxisEditDialog::updateWindowTitleAxisName()
 
 void AxisEditDialog::buildAxisPresetsMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->presetsComboBox->clear();
 
@@ -668,7 +665,7 @@ void AxisEditDialog::buildAxisPresetsMenu()
 
 void AxisEditDialog::buildTriggerPresetsMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->presetsComboBox->clear();
 
@@ -680,7 +677,7 @@ void AxisEditDialog::buildTriggerPresetsMenu()
 
 void AxisEditDialog::presetForThrottleChange(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(index);
 
@@ -692,7 +689,7 @@ void AxisEditDialog::presetForThrottleChange(int index)
         actAsTrigger = true;
     }
 
-    disconnect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    disconnect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
     if (actAsTrigger)
     {
         buildTriggerPresetsMenu();
@@ -704,5 +701,5 @@ void AxisEditDialog::presetForThrottleChange(int index)
         selectAxisCurrentPreset();
     }
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 }

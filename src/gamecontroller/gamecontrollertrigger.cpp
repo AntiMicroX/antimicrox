@@ -18,6 +18,8 @@
 //#include <QDebug>
 
 #include "gamecontrollertrigger.h"
+
+#include "messagehandler.h"
 #include "gamecontrollertriggerbutton.h"
 
 #include <SDL2/SDL_gamecontroller.h>
@@ -36,7 +38,7 @@ const QString GameControllerTrigger::xmlName = "trigger";
 GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyAxis(index, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     naxisbutton = new GameControllerTriggerButton(this, 0, originset, parentSet, this);
     paxisbutton = new GameControllerTriggerButton(this, 1, originset, parentSet, this);
@@ -45,14 +47,14 @@ GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoysti
 
 QString GameControllerTrigger::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->xmlName;
 }
 
 QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool displayNames)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString();
 
@@ -85,7 +87,7 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
 
 void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == JoyAxis::xmlName))
     {
@@ -96,7 +98,11 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
             if (!found && (xml->name() == JoyAxisButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
+
+                #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "Index for axis in readJoystickConfig is: " << index;
+                #endif
+
                 if (index == 1)
                 {
                     found = true;
@@ -133,7 +139,7 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
 
 void GameControllerTrigger::correctJoystickThrottle()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (this->throttle != static_cast<int>(PositiveHalfThrottle))
     {
@@ -146,7 +152,7 @@ void GameControllerTrigger::correctJoystickThrottle()
 
 void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool currentlyDefault = isDefault();
 
@@ -166,8 +172,6 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
         }
     }
 
-    //if (throttle != DEFAULTTHROTTLE)
-    //{
         xml->writeStartElement("throttle");
 
         if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
@@ -192,7 +196,6 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
         }
 
         xml->writeEndElement();
-    //}
 
     if (!currentlyDefault)
     {
@@ -206,21 +209,21 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
 
 int GameControllerTrigger::getDefaultDeadZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->AXISDEADZONE;
 }
 
 int GameControllerTrigger::getDefaultMaxZone()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->AXISMAXZONE;
 }
 
 JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return (ThrottleTypes)this->DEFAULTTHROTTLE;
 }

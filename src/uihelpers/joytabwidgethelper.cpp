@@ -16,6 +16,8 @@
  */
 
 #include "joytabwidgethelper.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "joybuttonslot.h"
@@ -27,7 +29,7 @@
 JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(device);
 
@@ -39,7 +41,7 @@ JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent) :
 
 JoyTabWidgetHelper::~JoyTabWidgetHelper()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (this->reader)
     {
@@ -56,49 +58,49 @@ JoyTabWidgetHelper::~JoyTabWidgetHelper()
 
 bool JoyTabWidgetHelper::hasReader()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return (this->reader != nullptr);
 }
 
 XMLConfigReader* JoyTabWidgetHelper::getReader()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->reader;
 }
 
 bool JoyTabWidgetHelper::hasWriter()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return (this->writer != nullptr);
 }
 
 XMLConfigWriter* JoyTabWidgetHelper::getWriter()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->writer;
 }
 
 bool JoyTabWidgetHelper::hasError()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return errorOccurred;
 }
 
 QString JoyTabWidgetHelper::getErrorString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return lastErrorString;
 }
 
 bool JoyTabWidgetHelper::readConfigFile(QString filepath)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
     device->disconnectPropertyUpdatedConnection();
@@ -127,19 +129,17 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
 
 bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    bool result = false;
     device->revertProfileEdited();
 
-    result = readConfigFile(filepath);
+    return readConfigFile(filepath);
 
-    return result;
 }
 
 bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
@@ -159,7 +159,7 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
 void JoyTabWidgetHelper::reInitDevice()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     device->disconnectPropertyUpdatedConnection();
 
@@ -178,7 +178,7 @@ void JoyTabWidgetHelper::reInitDevice()
 
 void JoyTabWidgetHelper::reInitDeviceWithRevert()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     device->revertProfileEdited();
     reInitDevice();

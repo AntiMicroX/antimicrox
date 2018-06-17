@@ -48,14 +48,16 @@ public:
     int returnVirtualKey(int qkey); // unsigned, unsigned
     int returnQtKey(int key, int scancode=0); // unsigned, unsigned, unsigned
     bool isModifierKey(int qkey); // .., unsigned
-    QtKeyMapperBase* getNativeKeyMapper();
-    QtKeyMapperBase* getKeyMapper();
+    QtKeyMapperBase* getNativeKeyMapper() const;
+    QtKeyMapperBase* getKeyMapper() const;
     bool hasNativeKeyMapper();
 
 protected:
+    static AntKeyMapper *_instance;
+
+private:
     explicit AntKeyMapper(QString handler = "", QObject *parent = nullptr);
 
-    static AntKeyMapper *_instance;
     QtKeyMapperBase *internalMapper;
     QtKeyMapperBase *nativeKeyMapper;
 

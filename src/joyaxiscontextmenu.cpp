@@ -16,6 +16,8 @@
  */
 
 #include "joyaxiscontextmenu.h"
+
+#include "messagehandler.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "antkeymapper.h"
 #include "inputdevice.h"
@@ -29,17 +31,17 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
     QMenu(parent),
     helper(axis)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->axis = axis;
-    helper.moveToThread(axis->thread());
+    getHelperLocal().moveToThread(axis->thread());
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &JoyAxisContextMenu::aboutToHide, this, &JoyAxisContextMenu::deleteLater);
 }
 
 void JoyAxisContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool actAsTrigger = false;
 
@@ -65,7 +67,7 @@ void JoyAxisContextMenu::buildMenu()
 
 void JoyAxisContextMenu::buildAxisMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -77,7 +79,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -85,7 +90,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -93,7 +101,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -101,7 +112,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -109,7 +123,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -117,7 +134,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -125,7 +145,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -133,7 +156,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -141,7 +167,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -149,7 +178,10 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -157,19 +189,22 @@ void JoyAxisContextMenu::buildAxisMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setAxisPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setAxisPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::openMouseSettingsDialog);
 }
 
 int JoyAxisContextMenu::getPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     int result = 0;
 
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
@@ -242,16 +277,10 @@ int JoyAxisContextMenu::getPresetIndex()
     return result;
 }
 
-void JoyAxisContextMenu::setAxisPreset()
+void JoyAxisContextMenu::setAxisPreset(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    //PadderCommon::lockInputDevices();
-
-    //InputDevice *tempDevice = axis->getParentSet()->getInputDevice();
-    //QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
-
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *nbuttonslot = nullptr;
@@ -319,16 +348,6 @@ void JoyAxisContextMenu::setAxisPreset()
                                   Q_ARG(int, nbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
 
-        //JoyAxisButton *button = axis->getNAxisButton();
-        //QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-        //                          Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
-        /*QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, nbuttonslot->getSlotCode()),
-                                  Q_ARG(int, nbuttonslot->getSlotCodeAlias()),
-                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
-        */
-        //button->setAssignedSlot(nbuttonslot->getSlotCode(), nbuttonslot->getSlotCodeAlias(), nbuttonslot->getSlotMode());
         nbuttonslot->deleteLater();
     }
 
@@ -338,25 +357,14 @@ void JoyAxisContextMenu::setAxisPreset()
                                   Q_ARG(int, nbuttonslot->getSlotCode()),
                                   Q_ARG(int, nbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, nbuttonslot->getSlotMode()));
-        //JoyAxisButton *button = axis->getPAxisButton();
-        //QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-        //                          Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
-        /*QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, pbuttonslot->getSlotCode()),
-                                  Q_ARG(int, pbuttonslot->getSlotCodeAlias()),
-                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
-        */
-        //button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
+
         pbuttonslot->deleteLater();
     }
-
-    //PadderCommon::unlockInputDevices();
 }
 
 void JoyAxisContextMenu::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, parentWidget());
     dialog->show();
@@ -364,7 +372,7 @@ void JoyAxisContextMenu::openMouseSettingsDialog()
 
 void JoyAxisContextMenu::buildTriggerMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -376,7 +384,10 @@ void JoyAxisContextMenu::buildTriggerMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setTriggerPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setTriggerPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -384,7 +395,10 @@ void JoyAxisContextMenu::buildTriggerMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setTriggerPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setTriggerPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -392,19 +406,22 @@ void JoyAxisContextMenu::buildTriggerMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setTriggerPreset()));
+    connect(action, &QAction::triggered, this, [this, action]() {
+        setTriggerPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+    connect(action, &QAction::triggered, this, &JoyAxisContextMenu::openMouseSettingsDialog);
 }
 
 int JoyAxisContextMenu::getTriggerPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
 
@@ -437,11 +454,10 @@ int JoyAxisContextMenu::getTriggerPresetIndex()
     return result;
 }
 
-void JoyAxisContextMenu::setTriggerPreset()
+void JoyAxisContextMenu::setTriggerPreset(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender());  // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *pbuttonslot = nullptr;
@@ -467,16 +483,11 @@ void JoyAxisContextMenu::setTriggerPreset()
                                   Q_ARG(int, pbuttonslot->getSlotCodeAlias()),
                                   Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
 
-        //JoyAxisButton *button = axis->getPAxisButton();
-        //QMetaObject::invokeMethod(button, "clearSlotsEventReset",
-        //                          Q_ARG(bool, false));
-        //button->clearSlotsEventReset(false);
-        /*QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, pbuttonslot->getSlotCode()),
-                                  Q_ARG(int, pbuttonslot->getSlotCodeAlias()),
-                                  Q_ARG(JoyButtonSlot::JoySlotInputAction, pbuttonslot->getSlotMode()));
-        */
-        //button->setAssignedSlot(pbuttonslot->getSlotCode(), pbuttonslot->getSlotCodeAlias(), pbuttonslot->getSlotMode());
         pbuttonslot->deleteLater();
     }
+}
+
+JoyAxisContextMenuHelper& JoyAxisContextMenu::getHelperLocal() {
+
+    return helper;
 }

@@ -84,7 +84,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
        <number>1</number>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page1">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -209,6 +209,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <addaction name="actionProperties"/>
     <addaction name="actionKeyValue"/>
     <addaction name="actionGameController_Mapping"/>
+    <addaction name="actionCalibration"/>
     <addaction name="actionStick_Pad_Assign"/>
     <addaction name="actionOptions"/>
     <addaction name="actionUpdate_Joysticks"/>
@@ -326,7 +327,12 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionIssues">
    <property name="text">
-    <string>Issues</string>
+    <string>&amp;Issues</string>
+   </property>
+  </action>
+  <action name="actionCalibration">
+   <property name="text">
+    <string>&amp;Calibration</string>
    </property>
   </action>
  </widget>

@@ -16,6 +16,8 @@
  */
 
 #include "joybuttonmousehelper.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 
 #include <QDebug>
@@ -25,7 +27,7 @@
 JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     firstSpringEvent = false;
 }
@@ -35,7 +37,7 @@ JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent) :
  */
 void JoyButtonMouseHelper::moveMouseCursor()
 {
-   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+   // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int finalx = 0;
     int finaly = 0;
@@ -52,7 +54,7 @@ void JoyButtonMouseHelper::moveMouseCursor()
  */
 void JoyButtonMouseHelper::moveSpringMouse()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int finalx = 0;
     int finaly = 0;
@@ -69,7 +71,7 @@ void JoyButtonMouseHelper::moveSpringMouse()
  */
 void JoyButtonMouseHelper::mouseEvent()
 {
-   // qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+   // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (!JoyButton::hasCursorEvents() && !JoyButton::hasSpringEvents())
     {
@@ -95,7 +97,7 @@ void JoyButtonMouseHelper::mouseEvent()
 
 void JoyButtonMouseHelper::resetButtonMouseDistances()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
     QListIterator<JoyButton*> iter(*buttonList);
@@ -108,35 +110,35 @@ void JoyButtonMouseHelper::resetButtonMouseDistances()
 
 void JoyButtonMouseHelper::setFirstSpringStatus(bool status)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     firstSpringEvent = status;
 }
 
 bool JoyButtonMouseHelper::getFirstSpringStatus()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return firstSpringEvent;
 }
 
 void JoyButtonMouseHelper::carryGamePollRateUpdate(int pollRate)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit gamepadRefreshRateUpdated(pollRate);
 }
 
 void JoyButtonMouseHelper::carryMouseRefreshRateUpdate(int refreshRate)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit mouseRefreshRateUpdated(refreshRate);
 }
 
 void JoyButtonMouseHelper::changeThread(QThread *thread)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::setStaticMouseThread(thread);
 }

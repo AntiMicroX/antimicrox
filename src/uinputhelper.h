@@ -32,6 +32,8 @@ public:
 
     QString getDisplayString(int virtualkey); // unsigned
     int getVirtualKey(QString codestring); // unsigned
+    QHash<QString, int> const& getKnownAliasesX11SymVK(); // <.., unsigned>
+    QHash<int, QString> const& getKnownAliasesVKStrings(); // <unsigned, ..>
 
 protected:
     explicit UInputHelper(QObject *parent = nullptr);

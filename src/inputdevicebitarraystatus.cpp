@@ -16,6 +16,8 @@
  */
 
 #include "inputdevicebitarraystatus.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "setjoystick.h"
 #include "joystick.h"
@@ -27,7 +29,7 @@
 InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < device->getNumberRawAxes(); i++)
     {
@@ -58,8 +60,8 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
         }
     }
 
-    buttonStatus.resize(device->getNumberRawButtons());
-    buttonStatus.fill(0);
+    getButtonStatusLocal().resize(device->getNumberRawButtons());
+    getButtonStatusLocal().fill(0);
 
     for (int i=0; i < device->getNumberRawButtons(); i++)
     {
@@ -67,14 +69,14 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
         JoyButton *button = currentSet->getJoyButton(i);
         if ((button != nullptr) && readCurrent)
         {
-            buttonStatus.setBit(i, button->getButtonState());
+            getButtonStatusLocal().setBit(i, button->getButtonState());
         }
     }
 }
 
 void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((axisIndex >= 0) && (axisIndex <= axesStatus.size()))
     {
@@ -84,17 +86,17 @@ void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
 
 void InputDeviceBitArrayStatus::changeButtonStatus(int buttonIndex, bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((buttonIndex >= 0) && (buttonIndex <= buttonStatus.size()))
+    if ((buttonIndex >= 0) && (buttonIndex <= getButtonStatusLocal().size()))
     {
-        buttonStatus.setBit(buttonIndex, value);
+        getButtonStatusLocal().setBit(buttonIndex, value);
     }
 }
 
 void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((hatIndex >= 0) && (hatIndex <= hatButtonStatus.size()))
     {
@@ -104,10 +106,10 @@ void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
 
 QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int totalArraySize = 0;
-    totalArraySize = axesStatus.size() + hatButtonStatus.size() + buttonStatus.size();
+    totalArraySize = axesStatus.size() + hatButtonStatus.size() + getButtonStatusLocal().size();
 
     QBitArray aggregateBitArray(totalArraySize, false);
     int currentBit = 0;
@@ -124,9 +126,9 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
         currentBit++;
     }
 
-    for (int i=0; i < buttonStatus.size(); i++)
+    for (int i = 0; i < getButtonStatusLocal().size(); i++)
     {
-        aggregateBitArray.setBit(currentBit, buttonStatus.at(i));
+        aggregateBitArray.setBit(currentBit, getButtonStatusLocal().at(i));
         currentBit++;
     }
 
@@ -135,7 +137,7 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 
 void InputDeviceBitArrayStatus::clearStatusValues()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < axesStatus.size(); i++)
     {
@@ -147,5 +149,10 @@ void InputDeviceBitArrayStatus::clearStatusValues()
         hatButtonStatus.replace(i, false);
     }
 
-    buttonStatus.fill(false);
+    getButtonStatusLocal().fill(false);
+}
+
+QBitArray& InputDeviceBitArrayStatus::getButtonStatusLocal() {
+
+    return buttonStatus;
 }

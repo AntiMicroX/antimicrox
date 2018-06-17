@@ -23,22 +23,23 @@
 class UnixCaptureWindowUtility : public QObject
 {
     Q_OBJECT
+
 public:
     explicit UnixCaptureWindowUtility(QObject *parent = nullptr);
-    QString getTargetPath();
-    bool hasFailed();
-    long getTargetWindow();
-
-protected:
-    QString targetPath;
-    bool failed;
-    long targetWindow;
+    QString getTargetPath() const;
+    bool hasFailed() const;
+    long getTargetWindow() const;
 
 signals:
     void captureFinished();
 
 public slots:
     void attemptWindowCapture();
+
+private:
+    QString targetPath;
+    bool failed;
+    long targetWindow;
 };
 
 #endif // UNIXCAPTUREWINDOWUTILITY_H

@@ -25,11 +25,11 @@ class JoyAxis;
 class MouseAxisSettingsDialogHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent = nullptr);
 
-protected:
-    JoyAxis *axis;
+    JoyAxis* getAxis() const;
 
 public slots:
     void updateExtraAccelerationStatus(bool checked);
@@ -40,6 +40,9 @@ public slots:
     void updateMaxAccelThreshold(double value);
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
+
+private:
+    JoyAxis *axis;
 };
 
 #endif // MOUSEAXISSETTINGSDIALOGHELPER_H

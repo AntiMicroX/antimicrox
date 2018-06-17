@@ -17,6 +17,8 @@
 
 #include "extraprofilesettingsdialog.h"
 #include "ui_extraprofilesettingsdialog.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 
 #include <QDebug>
@@ -28,7 +30,7 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
@@ -46,22 +48,27 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
         ui->profileNameLineEdit->setText(device->getProfileName());
     }
 
-    connect(ui->keyPressHorizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeDeviceKeyPress(int)));
-    connect(ui->profileNameLineEdit, SIGNAL(textChanged(QString)), device, SLOT(setProfileName(QString)));
+    connect(ui->keyPressHorizontalSlider, &QSlider::valueChanged, this, &ExtraProfileSettingsDialog::changeDeviceKeyPress);
+    connect(ui->profileNameLineEdit, &QLineEdit::textChanged, device, &InputDevice::setProfileName);
 }
 
 ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temppress = value * 10;
     device->setDeviceKeyPressTime(temppress);
     ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(trUtf8("s")));
+}
+
+InputDevice* ExtraProfileSettingsDialog::getDevice() const  {
+
+    return device;
 }

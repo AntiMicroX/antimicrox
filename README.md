@@ -64,15 +64,17 @@ http://www.gnu.org/licenses/gpl.txt
                                    Value can be a controller index, name, or GUID.
     --startSet <number> [<value>]  Start joysticks on a specific set.
                                    Value can be a controller index, name, or GUID.
-    -d, --daemon                   Launch program as a daemon.
-    --log-level (debug|info)       Enable logging.
+    -d, --daemon                   Launch program as a daemon. Use only on Linux.
+    --log-level (debug|info)       Enable logging. Default: debug.
+    --log-file <filename>          Choose a file for writing logs
     --eventgen (xtest|uinput)      Choose between using XTest support and uinput
-                                   support for event generation. Default: xtest.
+                                   support for event generation. Use only if you have
+                                   enabled xtest and uinput options on Linux or vmulti
+                                   on Windows. Default: xtest.
     -l, --list                     Print information about joysticks detected by
-                                   SDL.
-    --map <value>                  Open game controller mapping window of selected
-                                   controller. Value can be a controller index or
-                                   GUID.
+                                   SDL. Use only if you have sdl library. You can 
+                                   check your controller index, name or 
+                                   even GUID.
 
 
 
@@ -105,6 +107,14 @@ directory. Enter the following commands in order to build the program:
     cmake ..
     make
     sudo make install
+    
+If you are Arch Linux or Arch Linux based distribution user:
+
+```
+git clone https://github.com/archlinux-lucjan/archlinux-packages.git
+cd antimicro-git
+makepkg -sric
+```
 
 The cmake step will use pkg-config to attempt to find SDL
 libraries that you have installed. The project is set up to
@@ -284,3 +294,4 @@ Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian
 burunduk - Ukrainian  
 Flavio HR <flavio.hrx@gmail.com> - Spanish  
 WAZAAAAA - wazaaaaa00<@>gmail<.>com - Italian  
+juliagoda <juliagoda.pl@protonmail.com> - Polish

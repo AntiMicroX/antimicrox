@@ -33,6 +33,7 @@ class AntiMicroSettings;
 class SDLEventReader : public QObject
 {
     Q_OBJECT
+
 public:
     explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                             AntiMicroSettings *settings,
@@ -41,17 +42,15 @@ public:
 
     bool isSDLOpen();
 
+    QMap<SDL_JoystickID, InputDevice*> *getJoysticks() const;
+    AntiMicroSettings *getSettings() const;
+    QTimer const& getPollRateTimer();
+
 protected:
     void initSDL();
     void closeSDL();
     void clearEvents();
     int CheckForEvents();
-
-    QMap<SDL_JoystickID, InputDevice*> *joysticks;
-    bool sdlIsOpen;
-    AntiMicroSettings *settings;
-    int pollRate; // unsigned
-    QTimer pollRateTimer;
 
 signals:
     void eventRaised();
@@ -71,6 +70,13 @@ public slots:
 
 private slots:
     void secondaryRefresh();
+
+private:
+    QMap<SDL_JoystickID, InputDevice*> *joysticks;
+    bool sdlIsOpen;
+    AntiMicroSettings *settings;
+    int pollRate; // unsigned
+    QTimer pollRateTimer;
 
 };
 

@@ -60,15 +60,6 @@ protected:
     QString bindingString(SDL_GameControllerButtonBind bind);
     QList<QVariant> bindingValues(SDL_GameControllerButtonBind bind);
 
-    InputDevice *device;
-    AntiMicroSettings *settings;
-    int buttonGrabs; // unsigned
-    QList<int> eventTriggerAxes;
-    QList<int> originalAxesDeadZones;
-    GameControllerMappingDialogHelper helper;
-    int currentDeadZoneValue;
-    bool usingGameController;
-
 private:
     Ui::GameControllerMappingDialog *ui;
 
@@ -88,8 +79,20 @@ private slots:
     void obliterate();
     void changeButtonDisplay();
     void changeAxisDeadZone(int index);
-    void updateLastAxisLineEdit(int value);
+    void updateLastAxisLineEdit(JoyAxis *tempAxis, int value);
     void updateLastAxisLineEditRaw(int index, int value);
+
+private:
+    GameControllerMappingDialogHelper& getHelperLocal();
+    QList<int>& getEventTriggerAxesLocal();
+
+    InputDevice *device;
+    AntiMicroSettings *settings;
+    int buttonGrabs; // unsigned
+    QList<int> eventTriggerAxes;
+    GameControllerMappingDialogHelper helper;
+    int currentDeadZoneValue;
+    bool usingGameController;
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOG_H

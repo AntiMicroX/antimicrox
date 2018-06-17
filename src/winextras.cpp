@@ -254,7 +254,7 @@ QString WinExtras::getForegroundWindowExePath()
 {
     QString exePath;
     HWND foreground = GetForegroundWindow();
-    HANDLE windowProcess = NULL;
+    HANDLE windowProcess = nullptr;
     if (foreground)
     {
         DWORD processId;
@@ -262,7 +262,7 @@ QString WinExtras::getForegroundWindowExePath()
         windowProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, true, processId);
     }
 
-    if (windowProcess != NULL)
+    if (windowProcess != nullptr)
     {
         TCHAR filename[MAX_PATH];
         memset(filename, 0, sizeof(filename));
@@ -277,7 +277,7 @@ QString WinExtras::getForegroundWindowExePath()
         else
         {
             // Windows XP
-            GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
+            GetModuleFileNameEx(windowProcess, nullptr, filename, MAX_PATH * sizeof(TCHAR));
             //qDebug() << pathLength;
         }
 
@@ -354,7 +354,7 @@ bool WinExtras::elevateAntiMicro()
     tempfile[antiProgramLocation.length()] = '\0';
     sei.lpVerb = tempverb;
     sei.lpFile = tempfile;
-    sei.hwnd = NULL;
+    sei.hwnd = nullptr;
     sei.nShow = SW_NORMAL;
     BOOL result = ShellExecuteEx(&sei);
     return result;
@@ -374,7 +374,7 @@ bool WinExtras::IsRunningAsAdmin()
                              &administratorsGroup);
     if (isAdmin)
     {
-        if (!CheckTokenMembership(NULL, administratorsGroup, &isAdmin))
+        if (!CheckTokenMembership(nullptr, administratorsGroup, &isAdmin))
         {
             isAdmin = FALSE;
         }
@@ -457,7 +457,7 @@ QString WinExtras::getCurrentWindowText()
 
     HWND foreground = GetForegroundWindow();
 
-    if (foreground != NULL)
+    if (foreground != nullptr)
     {
         TCHAR foundWindowTitle[256];
         memset(foundWindowTitle, 0, sizeof(foundWindowTitle));

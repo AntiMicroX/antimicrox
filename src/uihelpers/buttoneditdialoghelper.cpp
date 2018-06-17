@@ -16,6 +16,8 @@
  */
 
 #include "buttoneditdialoghelper.h"
+
+#include "messagehandler.h"
 #include "joybutton.h"
 
 #include <QDebug>
@@ -24,7 +26,7 @@
 ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_ASSERT(button);
 
@@ -34,14 +36,14 @@ ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *paren
 ButtonEditDialogHelper::ButtonEditDialogHelper(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code,
                                              JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, mode);
@@ -51,7 +53,7 @@ void ButtonEditDialogHelper::setAssignedSlot(int code,
 void ButtonEditDialogHelper::setAssignedSlot(int code, int alias,
                                              JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, mode);
@@ -61,7 +63,7 @@ void ButtonEditDialogHelper::setAssignedSlot(int code, int alias,
 void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, int index,
                                              JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, index, mode);
@@ -70,7 +72,7 @@ void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, int index,
 
 void ButtonEditDialogHelper::setUseTurbo(bool useTurbo)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     button->setUseTurbo(useTurbo);
 }

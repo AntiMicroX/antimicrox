@@ -17,13 +17,15 @@
 
 #include "mousehelper.h"
 
+#include "messagehandler.h"
+
 #include <QDesktopWidget>
 #include <QDebug>
 
 MouseHelper::MouseHelper(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     springMouseMoving = false;
     previousCursorLocation[0] = 0;
@@ -32,21 +34,21 @@ MouseHelper::MouseHelper(QObject *parent) :
     pivotPoint[1] = -1;
     mouseTimer.setParent(this);
     mouseTimer.setSingleShot(true);
-    QObject::connect(&mouseTimer, SIGNAL(timeout()), this, SLOT(resetSpringMouseMoving()));
+    QObject::connect(&mouseTimer, &QTimer::timeout, this, &MouseHelper::resetSpringMouseMoving);
 }
 
 void MouseHelper::resetSpringMouseMoving()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     springMouseMoving = false;
 }
 
 void MouseHelper::initDeskWid()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (!deskWid)
+    if (deskWid == nullptr)
     {
         deskWid = new QDesktopWidget;
     }
@@ -54,18 +56,18 @@ void MouseHelper::initDeskWid()
 
 void MouseHelper::deleteDeskWid()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (deskWid)
+    if (deskWid != nullptr)
     {
         delete deskWid;
         deskWid = nullptr;
     }
 }
 
-QDesktopWidget* MouseHelper::getDesktopWidget()
+QDesktopWidget* MouseHelper::getDesktopWidget() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return deskWid;
 }

@@ -16,6 +16,8 @@
  */
 
 #include "joydpadbutton.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "setjoystick.h"
 #include "event.h"
@@ -28,15 +30,15 @@ const QString JoyDPadButton::xmlName = "dpadbutton";
 JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent) :
     JoyButton(direction, originset, parentSet, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->direction = direction;
     this->dpad = dpad;
 }
 
-QString JoyDPadButton::getDirectionName()
+QString JoyDPadButton::getDirectionName() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString ();
     if (direction == DpadUp)
@@ -77,21 +79,21 @@ QString JoyDPadButton::getDirectionName()
 
 QString JoyDPadButton::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->xmlName;
 }
 
 int JoyDPadButton::getRealJoyNumber()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return index;
 }
 
 QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = dpad->getName().append(" - ");
     if (!buttonName.isEmpty() && displayNames)
@@ -121,14 +123,14 @@ QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
 
 void JoyDPadButton::reset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::reset();
 }
 
 void JoyDPadButton::reset(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(index);
     reset();
@@ -136,7 +138,7 @@ void JoyDPadButton::reset(int index)
 
 void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetChangeCondition oldCondition = setSelectionCondition;
 
@@ -172,16 +174,16 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     }
 }
 
-JoyDPad* JoyDPadButton::getDPad()
+JoyDPad* JoyDPadButton::getDPad() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return dpad;
 }
 
-int JoyDPadButton::getDirection()
+int JoyDPadButton::getDirection() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return direction;
 }

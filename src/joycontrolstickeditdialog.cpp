@@ -17,6 +17,8 @@
 
 #include "joycontrolstickeditdialog.h"
 #include "ui_joycontrolstickeditdialog.h"
+
+#include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
@@ -42,11 +44,11 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->stick = stick;
-    helper.moveToThread(stick->thread());
+    getHelperLocal().moveToThread(stick->thread());
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -118,47 +120,50 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
     stick->getModifierButton()->establishPropertyUpdatedConnections();
 
+    update();
+    updateGeometry();
+
     PadderCommon::inputDaemonMutex.unlock();
 
-    connect(ui->presetsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementPresets(int)));
-    connect(ui->joyModeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(implementModes(int)));
+    connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyControlStickEditDialog::implementPresets);
+    connect(ui->joyModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &JoyControlStickEditDialog::implementModes);
 
-    connect(ui->deadZoneSlider, SIGNAL(valueChanged(int)), ui->deadZoneSpinBox, SLOT(setValue(int)));
-    connect(ui->maxZoneSlider, SIGNAL(valueChanged(int)), ui->maxZoneSpinBox, SLOT(setValue(int)));
-    connect(ui->diagonalRangeSlider, SIGNAL(valueChanged(int)), ui->diagonalRangeSpinBox, SLOT(setValue(int)));
-    connect(ui->squareStickSlider, SIGNAL(valueChanged(int)), ui->squareStickSpinBox, SLOT(setValue(int)));
+    connect(ui->deadZoneSlider, &QSlider::valueChanged, ui->deadZoneSpinBox, &QSpinBox::setValue);
+    connect(ui->maxZoneSlider, &QSlider::valueChanged, ui->maxZoneSpinBox, &QSpinBox::setValue);
+    connect(ui->diagonalRangeSlider, &QSlider::valueChanged, ui->diagonalRangeSpinBox, &QSpinBox::setValue);
+    connect(ui->squareStickSlider, &QSlider::valueChanged, ui->squareStickSpinBox, &QSpinBox::setValue);
 
-    connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), ui->deadZoneSlider, SLOT(setValue(int)));
-    connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), ui->maxZoneSlider, SLOT(setValue(int)));
-    connect(ui->maxZoneSpinBox, SIGNAL(valueChanged(int)), this, SLOT(checkMaxZone(int)));
-    connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), ui->diagonalRangeSlider, SLOT(setValue(int)));
-    connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), ui->squareStickSlider, SLOT(setValue(int)));
-    connect(ui->stickDelaySlider, SIGNAL(valueChanged(int)), &helper, SLOT(updateControlStickDelay(int)));
+    connect(ui->deadZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->deadZoneSlider, &QSlider::setValue);
+    connect(ui->maxZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->maxZoneSlider, &QSlider::setValue);
+    connect(ui->maxZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &JoyControlStickEditDialog::checkMaxZone);
+    connect(ui->diagonalRangeSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->diagonalRangeSlider, &QSlider::setValue);
+    connect(ui->squareStickSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->squareStickSlider, &QSlider::setValue);
+    connect(ui->stickDelaySlider, &QSlider::valueChanged, &helper, &JoyControlStickEditDialogHelper::updateControlStickDelay);
 
-    connect(ui->deadZoneSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDeadZone(int)));
-    connect(ui->diagonalRangeSpinBox, SIGNAL(valueChanged(int)), stick, SLOT(setDiagonalRange(int)));
-    connect(ui->squareStickSpinBox, SIGNAL(valueChanged(int)), this, SLOT(changeCircleAdjust(int)));
-    connect(stick, SIGNAL(stickDelayChanged(int)), this, SLOT(updateStickDelaySpinBox(int)));
-    connect(ui->stickDelayDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(updateStickDelaySlider(double)));
+    connect(ui->deadZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), stick, &JoyControlStick::setDeadZone);
+    connect(ui->diagonalRangeSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), stick, &JoyControlStick::setDiagonalRange);
+    connect(ui->squareStickSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &JoyControlStickEditDialog::changeCircleAdjust);
+    connect(stick, &JoyControlStick::stickDelayChanged, this, &JoyControlStickEditDialog::updateStickDelaySpinBox);
+    connect(ui->stickDelayDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &JoyControlStickEditDialog::updateStickDelaySlider);
 
-    connect(stick, SIGNAL(moved(int,int)), this, SLOT(refreshStickStats(int,int)));
-    connect(ui->mouseSettingsPushButton, SIGNAL(clicked()), this, SLOT(openMouseSettingsDialog()));
+    connect(stick, &JoyControlStick::moved, this, &JoyControlStickEditDialog::refreshStickStats);
+    connect(ui->mouseSettingsPushButton, &QPushButton::clicked, this, &JoyControlStickEditDialog::openMouseSettingsDialog);
 
-    connect(ui->stickNameLineEdit, SIGNAL(textEdited(QString)), stick, SLOT(setStickName(QString)));
-    connect(stick, SIGNAL(stickNameChanged()), this, SLOT(updateWindowTitleStickName()));
-    connect(ui->modifierPushButton, SIGNAL(clicked()), this, SLOT(openModifierEditDialog()));
-    connect(stick->getModifierButton(), SIGNAL(slotsChanged()), this, SLOT(changeModifierSummary()));
+    connect(ui->stickNameLineEdit, &QLineEdit::textEdited, stick, &JoyControlStick::setStickName);
+    connect(stick, &JoyControlStick::stickNameChanged, this, &JoyControlStickEditDialog::updateWindowTitleStickName);
+    connect(ui->modifierPushButton, &QPushButton::clicked, this, &JoyControlStickEditDialog::openModifierEditDialog);
+    connect(stick->getModifierButton(), &JoyControlStickModifierButton::slotsChanged, this, &JoyControlStickEditDialog::changeModifierSummary);
 }
 
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     delete ui;
 }
 
 void JoyControlStickEditDialog::implementPresets(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot *upButtonSlot = nullptr;
     JoyButtonSlot *downButtonSlot = nullptr;
@@ -306,13 +311,13 @@ void JoyControlStickEditDialog::implementPresets(int index)
     tempHash.insert(JoyControlStick::StickLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyControlStick::StickRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelperLocal().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
 void JoyControlStickEditDialog::refreshStickStats(int x, int y)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(x);
     Q_UNUSED(y);
@@ -344,7 +349,7 @@ void JoyControlStickEditDialog::refreshStickStats(int x, int y)
 
 void JoyControlStickEditDialog::checkMaxZone(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (value > ui->deadZoneSpinBox->value())
     {
@@ -354,7 +359,7 @@ void JoyControlStickEditDialog::checkMaxZone(int value)
 
 void JoyControlStickEditDialog::implementModes(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -390,7 +395,7 @@ void JoyControlStickEditDialog::implementModes(int index)
 
 void JoyControlStickEditDialog::selectCurrentPreset()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyControlStickButton *upButton = stick->getDirectionButton(JoyControlStick::StickUp);
     QList<JoyButtonSlot*> *upslots = upButton->getAssignedSlots();
@@ -468,7 +473,7 @@ void JoyControlStickEditDialog::selectCurrentPreset()
 
 void JoyControlStickEditDialog::updateMouseMode(int index)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -486,7 +491,7 @@ void JoyControlStickEditDialog::updateMouseMode(int index)
 
 void JoyControlStickEditDialog::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->mouseSettingsPushButton->setEnabled(false);
 
@@ -498,14 +503,14 @@ void JoyControlStickEditDialog::openMouseSettingsDialog()
 
 void JoyControlStickEditDialog::enableMouseSettingButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->mouseSettingsPushButton->setEnabled(true);
 }
 
 void JoyControlStickEditDialog::updateWindowTitleStickName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString(trUtf8("Set")).append(" ");
 
@@ -537,7 +542,7 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
 
 void JoyControlStickEditDialog::changeCircleAdjust(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMetaObject::invokeMethod(stick, "setCircleAdjust", Q_ARG(double, value * 0.01));
 }
@@ -548,7 +553,7 @@ void JoyControlStickEditDialog::changeCircleAdjust(int value)
  */
 void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double temp = value * 0.001; // static_cast<double>
     ui->stickDelayDoubleSpinBox->setValue(temp);
@@ -560,7 +565,7 @@ void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
  */
 void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = static_cast<int>(value) * 100;
     if (ui->stickDelaySlider->value() != temp)
@@ -571,7 +576,7 @@ void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 
 void JoyControlStickEditDialog::openModifierEditDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ButtonEditDialog *dialog = new ButtonEditDialog(stick->getModifierButton(), stick->getParentSet()->getInputDevice(), this);
     dialog->show();
@@ -579,7 +584,12 @@ void JoyControlStickEditDialog::openModifierEditDialog()
 
 void JoyControlStickEditDialog::changeModifierSummary()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
+}
+
+JoyControlStickEditDialogHelper& JoyControlStickEditDialog::getHelperLocal() {
+
+    return helper;
 }

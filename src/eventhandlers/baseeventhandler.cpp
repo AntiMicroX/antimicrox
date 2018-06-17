@@ -16,7 +16,9 @@
  */
 
 #include "baseeventhandler.h"
+
 #include "joybuttonslot.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
@@ -24,18 +26,18 @@
 BaseEventHandler::BaseEventHandler(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 
 BaseEventHandler::~BaseEventHandler()
 {
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 QString BaseEventHandler::getErrorString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     return lastErrorString;
 }
 
@@ -45,7 +47,7 @@ QString BaseEventHandler::getErrorString()
  */
 void BaseEventHandler::printPostMessages()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 /**
@@ -56,7 +58,7 @@ void BaseEventHandler::printPostMessages()
  */
 void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(screen);
@@ -72,7 +74,7 @@ void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
                                             int width, int height)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(width);
@@ -86,12 +88,12 @@ void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
  */
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 void BaseEventHandler::sendTextEntryEvent(QString maintext)
 {
-qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 

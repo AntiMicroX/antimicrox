@@ -16,6 +16,8 @@
  */
 
 #include "joystick.h"
+
+#include "messagehandler.h"
 #include "antimicrosettings.h"
 
 #include <QDebug>
@@ -28,7 +30,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
                    AntiMicroSettings *settings, QObject *parent) :
     InputDevice(deviceIndex, settings, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joyhandle = joyhandle;
 
@@ -37,21 +39,21 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     for (int i = 0; i < NUMBER_JOYSETS; i++)
     {
         SetJoystick *setstick = new SetJoystick(this, i, this);
-        joystick_sets.insert(i, setstick);
+        getJoystick_sets().insert(i, setstick);
         enableSetConnections(setstick);
     }
 }
 
 QString Joystick::getName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return QString(trUtf8("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 QString Joystick::getSDLName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
 
@@ -65,7 +67,7 @@ QString Joystick::getSDLName()
 
 QString Joystick::getGUIDString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
 
@@ -80,14 +82,14 @@ QString Joystick::getGUIDString()
 
 QString Joystick::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->xmlName;
 }
 
 void Joystick::closeSDLDevice()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((joyhandle != nullptr) && SDL_JoystickGetAttached(joyhandle))
     {
@@ -97,7 +99,7 @@ void Joystick::closeSDLDevice()
 
 int Joystick::getNumberRawButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int numbuttons = SDL_JoystickNumButtons(joyhandle);
     return numbuttons;
@@ -105,7 +107,7 @@ int Joystick::getNumberRawButtons()
 
 int Joystick::getNumberRawAxes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int numaxes = SDL_JoystickNumAxes(joyhandle);
     return numaxes;
@@ -113,7 +115,7 @@ int Joystick::getNumberRawAxes()
 
 int Joystick::getNumberRawHats()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int numhats = SDL_JoystickNumHats(joyhandle);
     return numhats;
@@ -121,7 +123,12 @@ int Joystick::getNumberRawHats()
 
 SDL_JoystickID Joystick::getSDLJoystickID()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return joystickID;
+}
+
+SDL_Joystick* Joystick::getJoyhandle() const {
+
+    return joyhandle;
 }

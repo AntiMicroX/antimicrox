@@ -17,6 +17,8 @@
 
 
 #include "simplekeygrabberbutton.h"
+
+#include "messagehandler.h"
 #include "event.h"
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
@@ -38,7 +40,7 @@
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
     QPushButton(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     grabNextAction = false;
     grabbingWheel = false;
@@ -48,7 +50,7 @@ SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
 
 void SimpleKeyGrabberButton::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Do not allow closing of dialog using Escape key
     if (event->key() == Qt::Key_Escape)
@@ -61,7 +63,7 @@ void SimpleKeyGrabberButton::keyPressEvent(QKeyEvent *event)
 
 bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(obj);
 
@@ -80,8 +82,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         else {
             controlcode = mouseEve->button();
         }
-
-        //setText(QString(trUtf8("Mouse")).append(" ").append(QString::number(controlcode)));
 
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
@@ -117,7 +117,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
                 tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
             }
 
-            //unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
             if (tempQtKey > 0)
             {
                 finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
@@ -152,7 +151,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         if (handler->getIdentifier() == "uinput")
         {
             // Find Qt Key corresponding to X11 KeySym.
-            //checkalias = x11KeyMapper.returnQtKey(finalvirtual);
             QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
             checkalias = x11KeyMapper->returnQtKey(finalvirtual);
             // Find corresponding Linux input key for the Qt key.
@@ -299,7 +297,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
 void SimpleKeyGrabberButton::setValue(int value, int alias, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     buttonslot.setSlotCode(value, alias);
     buttonslot.setSlotMode(mode);
@@ -310,7 +308,7 @@ void SimpleKeyGrabberButton::setValue(int value, int alias, JoyButtonSlot::JoySl
 
 void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     buttonslot.setSlotCode(value);
     buttonslot.setSlotMode(mode);
@@ -321,7 +319,7 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
 
 void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     switch (mode)
     {
@@ -393,28 +391,28 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
 
 JoyButtonSlot* SimpleKeyGrabberButton::getValue()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &buttonslot;
 }
 
 void SimpleKeyGrabberButton::refreshButtonLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setText(buttonslot.getSlotString());
 }
 
 bool SimpleKeyGrabberButton::isEdited()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return edited;
 }
 
 bool SimpleKeyGrabberButton::isGrabbing()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return grabNextAction;
 }

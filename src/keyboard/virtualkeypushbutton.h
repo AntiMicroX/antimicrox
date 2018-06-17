@@ -26,20 +26,21 @@
 class VirtualKeyPushButton : public QPushButton
 {
     Q_OBJECT
+
 public:
     explicit VirtualKeyPushButton(QString xcodestring, QWidget *parent = nullptr);
     int calculateFontSize();
-    int getKeycode();
     
-protected:
-    int keycode;
-    int qkeyalias; // unsigned
-    QString xcodestring;
-    QString displayString;
-    bool currentlyActive;
-    bool onCurrentButton;
+    QString getXcodestring() const;
+    QString getDisplayString() const;
+    int getKeycode() const;
+    int getQkeyalias() const; // unsigned
+    bool getCurrentlyActive() const;
+    bool getOnCurrentButton() const;
+
     static QHash<QString, QString> knownAliases;
 
+protected:
     QString setDisplayString(QString xcodestring);
     void populateKnownAliases();
 
@@ -48,6 +49,15 @@ signals:
 
 private slots:
     void processSingleSelection();
+
+private:
+    int keycode;
+    int qkeyalias; // unsigned
+    QString xcodestring;
+    QString displayString;
+    bool currentlyActive;
+    bool onCurrentButton;
+
 };
 
 #endif // VIRTUALKEYPUSHBUTTON_H

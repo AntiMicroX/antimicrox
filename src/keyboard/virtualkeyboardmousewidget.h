@@ -46,6 +46,17 @@ public:
     bool is_numlock_activated();
     bool isLaptop();
 
+    InputDevice *getJoystick() const;
+    ButtonEditDialogHelper* getHelper() const;
+    QWidget *getKeyboardTab() const;
+    QWidget *getMouseTab() const;
+    QPushButton *getNoneButton() const;
+    QPushButton *getMouseSettingsPushButton() const;
+    QMenu *getOtherKeysMenu() const;
+    QuickSetDialog* getCurrentQuickDialog() const;
+
+    static QHash<QString, QString> topRowKeys;
+
 protected:
     void setupVirtualKeyboardLayout();
     QVBoxLayout* setupMainKeyboardLayout();
@@ -60,17 +71,6 @@ protected:
 
     virtual void resizeEvent(QResizeEvent *event);
 
-    bool isLaptopDevice;
-    InputDevice *joystick;
-    ButtonEditDialogHelper* helper;
-    QWidget *keyboardTab;
-    QWidget *mouseTab;
-    QPushButton *noneButton;
-    QPushButton *mouseSettingsPushButton;
-    QMenu *otherKeysMenu;
-    QuickSetDialog* currentQuickDialog;
-
-    static QHash<QString, QString> topRowKeys;
 
 signals:
     void selectionFinished();
@@ -95,9 +95,22 @@ private slots:
     void openMouseSettingsDialog();
     void enableMouseSettingButton();
     void setButtonFontSizes();
-    void otherKeysActionSingle(bool triggered);
-    void otherKeysActionAdvanced(bool triggered);
+    void otherKeysActionSingle(QAction* action, bool triggered);
+    void otherKeysActionAdvanced(QAction* action, bool triggered);
     void nullifyDialogPointer();
+
+private:
+    bool isLaptopDevice;
+    InputDevice *joystick;
+    ButtonEditDialogHelper* helper;
+    QWidget *keyboardTab;
+    QWidget *mouseTab;
+    QPushButton *noneButton;
+    QPushButton *mouseSettingsPushButton;
+    QMenu *otherKeysMenu;
+    QuickSetDialog* currentQuickDialog;
+
+
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

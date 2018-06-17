@@ -16,6 +16,8 @@
  */
 
 #include "joyaxiswidget.h"
+
+#include "messagehandler.h"
 #include "joyaxiscontextmenu.h"
 #include "joyaxis.h"
 
@@ -24,7 +26,7 @@
 JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->axis = axis;
 
@@ -32,50 +34,47 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     enableFlashes();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+    connect(this, &JoyAxisWidget::customContextMenuRequested, this, &JoyAxisWidget::showContextMenu);
 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();
 
     tryFlash();
 
-    connect(axis, SIGNAL(throttleChanged()), this, SLOT(refreshLabel()));
-    connect(axis, SIGNAL(axisNameChanged()), this, SLOT(refreshLabel()));
-
-    //connect(nAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    //connect(pAxisButton, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    connect(nAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(pAxisButton, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(nAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
-    connect(pAxisButton, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
+    connect(axis, &JoyAxis::throttleChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(axis, &JoyAxis::axisNameChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(nAxisButton, &JoyAxisButton::propertyUpdated, this, &JoyAxisWidget::refreshLabel);
+    connect(pAxisButton, &JoyAxisButton::propertyUpdated, this, &JoyAxisWidget::refreshLabel);
+    connect(nAxisButton, &JoyAxisButton::activeZoneChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(pAxisButton, &JoyAxisButton::activeZoneChanged, this, &JoyAxisWidget::refreshLabel);
 
     axis->establishPropertyUpdatedConnection();
     nAxisButton->establishPropertyUpdatedConnections();
     pAxisButton->establishPropertyUpdatedConnections();
 }
 
-JoyAxis* JoyAxisWidget::getAxis()
+JoyAxis* JoyAxisWidget::getAxis() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return axis;
 }
 
 void JoyAxisWidget::disableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(axis, SIGNAL(active(int)), this, SLOT(flash()));
-    disconnect(axis, SIGNAL(released(int)), this, SLOT(unflash()));
+    disconnect(axis, &JoyAxis::active, this, &JoyAxisWidget::flash);
+    disconnect(axis, &JoyAxis::released, this, &JoyAxisWidget::unflash);
     this->unflash();
 }
 
 void JoyAxisWidget::enableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(axis, SIGNAL(active(int)), this, SLOT(flash()), Qt::QueuedConnection);
-    connect(axis, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+    connect(axis, &JoyAxis::active, this, &JoyAxisWidget::flash, Qt::QueuedConnection);
+    connect(axis, &JoyAxis::released, this, &JoyAxisWidget::unflash, Qt::QueuedConnection);
 }
 
 /**
@@ -84,18 +83,21 @@ void JoyAxisWidget::enableFlashes()
  */
 QString JoyAxisWidget::generateLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-    temp = axis->getName(false, displayNames).replace("&", "&&");
+    temp = axis->getName(false, ifDisplayNames()).replace("&", "&&");
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Name of joy axis is: " << temp;
+    #endif
+
     return temp;
 }
 
 void JoyAxisWidget::showContextMenu(const QPoint &point)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
     JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(axis, this);
@@ -105,7 +107,7 @@ void JoyAxisWidget::showContextMenu(const QPoint &point)
 
 void JoyAxisWidget::tryFlash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyAxisButton *nAxisButton = axis->getNAxisButton();
     JoyAxisButton *pAxisButton = axis->getPAxisButton();

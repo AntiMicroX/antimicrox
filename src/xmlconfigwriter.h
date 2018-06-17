@@ -28,23 +28,29 @@ class QFile;
 class XMLConfigWriter : public QObject
 {
     Q_OBJECT
+
 public:
     explicit XMLConfigWriter(QObject *parent = nullptr);
     ~XMLConfigWriter();
     void setFileName(QString filename);
     bool hasError();
-    QString getErrorString();
+    const QString getErrorString();
 
-protected:
+    const QXmlStreamWriter *getXml();
+    QString const& getFileName();
+    const QFile *getConfigFile();
+    const InputDevice* getJoystick();
+    
+public slots:
+    void write(InputDevice* joystick);
+
+private:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
     InputDevice* joystick;
     bool writerError;
     QString writerErrorString;
-    
-public slots:
-    void write(InputDevice* joystick);
 
 };
 

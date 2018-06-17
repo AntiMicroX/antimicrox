@@ -16,6 +16,8 @@
  */
 
 #include "joybuttonslot.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "antkeymapper.h"
 #include "event.h"
@@ -33,7 +35,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     QObject(parent),
     extraData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceCode = 0;
     mode = JoyKeyboard;
@@ -47,7 +49,7 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     QObject(parent),
     extraData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceCode = 0;
     qkeyaliasCode = 0;
@@ -66,7 +68,7 @@ JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObje
     QObject(parent),
     extraData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceCode = 0;
     qkeyaliasCode = 0;
@@ -90,7 +92,7 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     QObject(parent),
     extraData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceCode = slot->deviceCode;
     qkeyaliasCode = slot->qkeyaliasCode;
@@ -105,7 +107,7 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
     QObject(parent),
     extraData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceCode = 0;
     qkeyaliasCode = 0;
@@ -122,7 +124,7 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
 
 void JoyButtonSlot::setSlotCode(int code)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (code >= 0)
     {
@@ -133,7 +135,7 @@ void JoyButtonSlot::setSlotCode(int code)
 
 void JoyButtonSlot::setSlotCode(int code, int alias)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((mode == JoyButtonSlot::JoyKeyboard) && (code > 0))
     {
@@ -149,35 +151,35 @@ void JoyButtonSlot::setSlotCode(int code, int alias)
 
 int JoyButtonSlot::getSlotCodeAlias()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return qkeyaliasCode;
 }
 
 int JoyButtonSlot::getSlotCode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return deviceCode;
 }
 
 void JoyButtonSlot::setSlotMode(JoySlotInputAction selectedMode)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     mode = selectedMode;
 }
 
 JoyButtonSlot::JoySlotInputAction JoyButtonSlot::getSlotMode()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return mode;
 }
 
 QString JoyButtonSlot::movementString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString newlabel = QString();
 
@@ -207,35 +209,35 @@ QString JoyButtonSlot::movementString()
 
 void JoyButtonSlot::setDistance(double distance)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->distance = distance;
 }
 
 double JoyButtonSlot::getMouseDistance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return distance;
 }
 
 QElapsedTimer* JoyButtonSlot::getMouseInterval()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &mouseInterval;
 }
 
 void JoyButtonSlot::restartMouseInterval()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     mouseInterval.restart();
 }
 
 void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == "slot"))
     {
@@ -407,7 +409,7 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
 
 void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     xml->writeStartElement(getXmlName());
 
@@ -425,14 +427,21 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
             }
 
             // Found a valid abstract keysym.
-            //qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
+            #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
+            #endif
+
             xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
         }
         else if (deviceCode > 0)
         {
             // No abstraction provided for key. Add prefix to native keysym.
             int tempkey = deviceCode | QtKeyMapperBase::nativeKeyPrefix;
-            //qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
+
+            #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
+            #endif
+
             xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
         }
     }
@@ -526,14 +535,14 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
 
 QString JoyButtonSlot::getXmlName()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return this->xmlName;
 }
 
 QString JoyButtonSlot::getSlotString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString newlabel = QString();
 
@@ -731,21 +740,21 @@ QString JoyButtonSlot::getSlotString()
 
 void JoyButtonSlot::setPreviousDistance(double distance)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     previousDistance = distance;
 }
 
 double JoyButtonSlot::getPreviousDistance()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return previousDistance;
 }
 
 bool JoyButtonSlot::isModifierKey()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool modifier = false;
     if ((mode == JoyKeyboard) && AntKeyMapper::getInstance()->isModifierKey(qkeyaliasCode))
@@ -758,56 +767,56 @@ bool JoyButtonSlot::isModifierKey()
 
 bool JoyButtonSlot::isEasingActive()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return easingActive;
 }
 
 void JoyButtonSlot::setEasingStatus(bool isActive)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     easingActive = isActive;
 }
 
 QTime* JoyButtonSlot::getEasingTime()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &easingTime;
 }
 
 void JoyButtonSlot::setTextData(QString textData)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->textData = textData;
 }
 
 QString JoyButtonSlot::getTextData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return textData;
 }
 
 void JoyButtonSlot::setExtraData(QVariant data)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->extraData = data;
 }
 
 QVariant JoyButtonSlot::getExtraData()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return extraData;
 }
 
 bool JoyButtonSlot::isValidSlot()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = true;
     switch (mode)

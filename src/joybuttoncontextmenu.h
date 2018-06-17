@@ -27,6 +27,7 @@ class QWidget;
 class JoyButtonContextMenu : public QMenu
 {
     Q_OBJECT
+
 public:
     explicit JoyButtonContextMenu(JoyButton *button, QWidget *parent = nullptr);
     void buildMenu();
@@ -37,7 +38,7 @@ protected:
 private slots:
     void switchToggle();
     void switchTurbo();
-    void switchSetMode();
+    void switchSetMode(QAction* action);
     void disableSetMode();
     void clearButton();
 };

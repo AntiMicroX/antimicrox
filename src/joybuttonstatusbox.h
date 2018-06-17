@@ -30,12 +30,8 @@ class JoyButtonStatusBox : public QPushButton
 
 public:
     explicit JoyButtonStatusBox(JoyButton *button, QWidget *parent = nullptr);
-    JoyButton* getJoyButton();
+    JoyButton* getJoyButton() const;
     bool isButtonFlashing();
-
-protected:
-    JoyButton *button;
-    bool isflashing;
 
 signals:
     void flashed(bool flashing);
@@ -43,6 +39,10 @@ signals:
 private slots:
     void flash();
     void unflash();
+
+private:
+    JoyButton *button;
+    bool isflashing;
 };
 
 #endif // JOYBUTTONSTATUSBOX_H

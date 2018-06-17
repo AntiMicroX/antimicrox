@@ -16,6 +16,8 @@
  */
 
 #include "joycontrolstickbuttonpushbutton.h"
+
+#include "messagehandler.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joybuttoncontextmenu.h"
@@ -28,7 +30,7 @@
 JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->button = button;
 
@@ -38,63 +40,60 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
-
-    //connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
-    connect(button->getStick()->getModifierButton(), SIGNAL(activeZoneChanged()),
-            this, SLOT(refreshLabel()));
+    connect(this, &JoyControlStickButtonPushButton::customContextMenuRequested, this, &JoyControlStickButtonPushButton::showContextMenu);
+    connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button->getStick()->getModifierButton(), &JoyControlStickModifierButton::activeZoneChanged,
+            this, &JoyControlStickButtonPushButton::refreshLabel);
 }
 
 JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return button;
 }
 
 void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     disableFlashes();
     if (this->button != nullptr)
     {
-        //disconnect(this->button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-        disconnect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-        disconnect(this->button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()));
+        disconnect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
+        disconnect(this->button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel);
     }
 
     this->button = button;
     refreshLabel();
     enableFlashes();
-    //connect(button, SIGNAL(slotsChanged()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(propertyUpdated()), this, SLOT(refreshLabel()));
-    connect(button, SIGNAL(activeZoneChanged()), this, SLOT(refreshLabel()), Qt::QueuedConnection);
+
+    connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel, Qt::QueuedConnection);
 }
 
 
 void JoyControlStickButtonPushButton::disableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (button != nullptr)
     {
-        disconnect(button, SIGNAL(clicked(int)), this, SLOT(flash()));
-        disconnect(button, SIGNAL(released(int)), this, SLOT(unflash()));
+        disconnect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash);
+        disconnect(button, &JoyControlStickButton::released, this, &JoyControlStickButtonPushButton::unflash);
     }
     this->unflash();
 }
 
 void JoyControlStickButtonPushButton::enableFlashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (button != nullptr)
     {
-        connect(button, SIGNAL(clicked(int)), this, SLOT(flash()), Qt::QueuedConnection);
-        connect(button, SIGNAL(released(int)), this, SLOT(unflash()), Qt::QueuedConnection);
+        connect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash, Qt::QueuedConnection);
+        connect(button, &JoyControlStickButton::released, this, &JoyControlStickButtonPushButton::unflash, Qt::QueuedConnection);
     }
 }
 
@@ -104,34 +103,40 @@ void JoyControlStickButtonPushButton::enableFlashes()
  */
 QString JoyControlStickButtonPushButton::generateLabel()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
     if (button != nullptr)
     {
-        if (!button->getActionName().isEmpty() && displayNames)
+        if (!button->getActionName().isEmpty() && ifDisplayNames())
         {
+            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Action name was not empty";
+            #endif
 
             temp = button->getActionName().replace("&", "&&");
 
         }
         else
         {
+            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Action name was empty";
+            #endif
 
             temp = button->getCalculatedActiveZoneSummary().replace("&", "&&");
         }
     }
 
+    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Here is name of action for pushed stick button: " << temp;
+    #endif
 
     return temp;
 }
 
 void JoyControlStickButtonPushButton::showContextMenu(const QPoint &point)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
     JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
@@ -141,7 +146,7 @@ void JoyControlStickButtonPushButton::showContextMenu(const QPoint &point)
 
 void JoyControlStickButtonPushButton::tryFlash()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (button->getButtonState())
     {

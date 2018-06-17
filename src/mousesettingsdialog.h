@@ -52,17 +52,16 @@ public slots:
     void updateHorizontalSpeedConvertLabel(int value);
     void updateVerticalSpeedConvertLabel(int value);
     void moveSpeedsTogether(int value);
-    //void changeSmoothingStatus(int index);
     void updateWheelVerticalSpeedLabel(int value);
     void updateWheelHorizontalSpeedLabel(int value);
     void changeSensitivityStatusForMouseMode(int index);
+    void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed);
+    void updateMouseSpringStatusLabels(int coordX, int coordY);
 
     virtual void changeMouseMode(int index) = 0;
     virtual void changeMouseCurve(int index) = 0;
 
 private slots:
-    void updateMouseCursorStatusLabels(int mouseX, int mouseY, int elapsed);
-    void updateMouseSpringStatusLabels(int coordX, int coordY);
     void refreshMouseCursorSpeedValues(int index);
     void disableReleaseSpringBox(bool enable);
     void resetReleaseRadius(bool enabled);

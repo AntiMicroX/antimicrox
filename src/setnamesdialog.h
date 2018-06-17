@@ -35,11 +35,12 @@ public:
     explicit SetNamesDialog(InputDevice *device, QWidget *parent = nullptr);
     ~SetNamesDialog();
 
-protected:
-    InputDevice *device;
+    InputDevice* getDevice() const;
 
 private:
     Ui::SetNamesDialog *ui;
+
+    InputDevice *device;
 
 private slots:
     void saveSetNameChanges();

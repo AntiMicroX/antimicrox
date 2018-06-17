@@ -36,30 +36,30 @@ public:
     ~AutoProfileInfo();
 
     void setGUID(QString guid);
-    QString getGUID();
+    QString getGUID() const;
 
     void setProfileLocation(QString profileLocation);
-    QString getProfileLocation();
+    QString getProfileLocation() const;
 
     void setExe(QString exe);
-    QString getExe();
+    QString getExe() const;
 
     void setWindowClass(QString windowClass);
-    QString getWindowClass();
+    QString getWindowClass() const;
 
     void setWindowName(QString winName);
-    QString getWindowName();
+    QString getWindowName() const;
 
     void setActive(bool active);
     bool isActive();
 
     void setDeviceName(QString name);
-    QString getDeviceName();
+    QString getDeviceName() const;
 
     void setDefaultState(bool value);
     bool isCurrentDefault();
 
-protected:
+private:
     QString guid;
     QString profileLocation;
     QString exe;

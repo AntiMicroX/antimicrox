@@ -16,6 +16,8 @@
  */
 
 #include "xmlconfigwriter.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "common.h"
 
@@ -29,7 +31,7 @@
 XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     xml = new QXmlStreamWriter();
     xml->setAutoFormatting(true);
@@ -40,7 +42,7 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent) :
 
 XMLConfigWriter::~XMLConfigWriter()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (configFile)
     {
@@ -62,7 +64,7 @@ XMLConfigWriter::~XMLConfigWriter()
 
 void XMLConfigWriter::write(InputDevice *joystick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     writerError = false;
 
@@ -92,7 +94,7 @@ void XMLConfigWriter::write(InputDevice *joystick)
 
 void XMLConfigWriter::setFileName(QString filename)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QFile *temp = new QFile(filename);
     fileName = filename;
@@ -101,14 +103,34 @@ void XMLConfigWriter::setFileName(QString filename)
 
 bool XMLConfigWriter::hasError()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return writerError;
 }
 
-QString XMLConfigWriter::getErrorString()
+const QString XMLConfigWriter::getErrorString()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return writerErrorString;
+}
+
+const QXmlStreamWriter *XMLConfigWriter::getXml() {
+
+    return xml;
+}
+
+QString const& XMLConfigWriter::getFileName() {
+
+    return fileName;
+}
+
+const QFile *XMLConfigWriter::getConfigFile() {
+
+    return configFile;
+}
+
+const InputDevice* XMLConfigWriter::getJoystick() {
+
+    return joystick;
 }

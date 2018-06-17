@@ -27,6 +27,7 @@ class QKeyEvent;
 class SlotItemListWidget : public QListWidget
 {
     Q_OBJECT
+
 public:
     explicit SlotItemListWidget(QWidget *parent = nullptr);
 

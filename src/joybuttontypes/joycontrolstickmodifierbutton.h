@@ -30,7 +30,6 @@ class JoyControlStickModifierButton : public JoyGradientButton
 public:
     explicit JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
-    //virtual int getRealJoyNumber();
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
@@ -38,7 +37,7 @@ public:
     virtual double getLastMouseDistanceFromDeadZone();
 
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
-    JoyControlStick *getStick();
+
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
@@ -46,9 +45,11 @@ public:
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
+    JoyControlStick *getStick() const;
+
     static const QString xmlName;
 
-protected:
+private:
     JoyControlStick *stick;
 
 };

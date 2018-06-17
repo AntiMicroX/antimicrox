@@ -16,6 +16,8 @@
  */
 
 #include "dpadpushbuttongroup.h"
+
+#include "messagehandler.h"
 #include "joydpad.h"
 #include "joydpadbuttonwidget.h"
 #include "dpadpushbutton.h"
@@ -30,7 +32,7 @@
 DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->dpad = dpad;
     this->displayNames = displayNames;
@@ -38,12 +40,12 @@ DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidg
     generateButtons();
     changeButtonLayout();
 
-    connect(dpad, SIGNAL(joyModeChanged()), this, SLOT(changeButtonLayout()));
+    connect(dpad, &JoyDPad::joyModeChanged, this, &DPadPushButtonGroup::changeButtonLayout);
 }
 
 void DPadPushButtonGroup::generateButtons()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
 
@@ -53,11 +55,13 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadLeftUp);
     upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = upLeftButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
 
     button->establishPropertyUpdatedConnections();
 
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 0, 0);
 
@@ -65,79 +69,100 @@ void DPadPushButtonGroup::generateButtons()
     button = buttons->value(JoyDPadButton::DpadUp);
     upButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = upButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 0, 1);
 
     button = buttons->value(JoyDPadButton::DpadRightUp);
     upRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = upRightButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 0, 2);
 
     button = buttons->value(JoyDPadButton::DpadLeft);
     leftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = leftButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 1, 0);
 
     dpadWidget = new DPadPushButton(dpad, displayNames, parentWidget());
     dpadWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
-    connect(dpadWidget, SIGNAL(clicked()), this, SLOT(showDPadDialog()));
+    connect(dpadWidget, &DPadPushButton::clicked, this, &DPadPushButtonGroup::showDPadDialog);
     addWidget(dpadWidget, 1, 1);
 
     button = buttons->value(JoyDPadButton::DpadRight);
     rightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = rightButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
 
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 1, 2);
 
     button = buttons->value(JoyDPadButton::DpadLeftDown);
     downLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = downLeftButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 2, 0);
 
     button = buttons->value(JoyDPadButton::DpadDown);
     downButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = downButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 2, 1);
 
     button = buttons->value(JoyDPadButton::DpadRightDown);
     downRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
     pushbutton = downRightButton;
-    connect(pushbutton, SIGNAL(clicked()), this, SLOT(openDPadButtonDialog()));
+    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
+        openDPadButtonDialog(pushbutton);
+    });
+
     button->establishPropertyUpdatedConnections();
-    connect(button, SIGNAL(slotsChanged()), this, SLOT(propogateSlotsChanged()));
+    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, 2, 2);
 }
 
 void DPadPushButtonGroup::changeButtonLayout()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((dpad->getJoyMode() == JoyDPad::StandardMode) ||
         (dpad->getJoyMode() == JoyDPad::EightWayMode) ||
@@ -175,23 +200,22 @@ void DPadPushButtonGroup::changeButtonLayout()
 
 void DPadPushButtonGroup::propogateSlotsChanged()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit buttonSlotChanged();
 }
 
-JoyDPad* DPadPushButtonGroup::getDPad()
+JoyDPad* DPadPushButtonGroup::getDPad() const
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return dpad;
 }
 
-void DPadPushButtonGroup::openDPadButtonDialog()
+void DPadPushButtonGroup::openDPadButtonDialog(JoyButtonWidget* buttonWidget)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
 
     ButtonEditDialog *dialog = new ButtonEditDialog(button, dpad->getParentSet()->getInputDevice(), parentWidget());
@@ -200,7 +224,7 @@ void DPadPushButtonGroup::openDPadButtonDialog()
 
 void DPadPushButtonGroup::showDPadDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     DPadEditDialog *dialog = new DPadEditDialog(dpad, parentWidget());
     dialog->show();
@@ -208,7 +232,7 @@ void DPadPushButtonGroup::showDPadDialog()
 
 void DPadPushButtonGroup::toggleNameDisplay()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     displayNames = !displayNames;
 

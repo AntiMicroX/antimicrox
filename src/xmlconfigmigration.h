@@ -34,13 +34,15 @@ public:
     bool requiresMigration();
     QString migrate();
 
-protected:
-    QXmlStreamReader *reader;
-    int fileVersion;
+    const QXmlStreamReader *getReader();
+    int getFileVersion() const;
 
 private:
     QString readConfigToString();
     QString version0006Migration();
+
+    QXmlStreamReader *reader;
+    int fileVersion;
 
 };
 

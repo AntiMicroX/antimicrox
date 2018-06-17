@@ -35,11 +35,12 @@ public:
     explicit ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent = nullptr);
     ~ExtraProfileSettingsDialog();
 
-protected:
-    InputDevice *device;
+    InputDevice* getDevice() const;
 
 private:
     Ui::ExtraProfileSettingsDialog *ui;
+
+    InputDevice *device;
 
 private slots:
     void changeDeviceKeyPress(int value);

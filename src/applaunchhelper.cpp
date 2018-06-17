@@ -16,6 +16,8 @@
  */
 
 #include "applaunchhelper.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "antimicrosettings.h"
@@ -35,7 +37,7 @@ AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical,
                                  QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->settings = settings;
     this->graphical = graphical;
@@ -43,7 +45,7 @@ AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical,
 
 void AppLaunchHelper::initRunMethods()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (graphical)
     {
@@ -61,7 +63,7 @@ void AppLaunchHelper::initRunMethods()
 
 void AppLaunchHelper::enablePossibleMouseSmoothing()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
     if (smoothingEnabled)
@@ -82,7 +84,7 @@ void AppLaunchHelper::enablePossibleMouseSmoothing()
 
 void AppLaunchHelper::changeMouseRefreshRate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int refreshRate = settings->value("Mouse/RefreshRate", 0).toInt();
     if (refreshRate > 0)
@@ -93,7 +95,7 @@ void AppLaunchHelper::changeMouseRefreshRate()
 
 void AppLaunchHelper::changeGamepadPollRate()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int pollRate = settings->value("GamepadPollRate",
                                             AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
@@ -105,7 +107,7 @@ void AppLaunchHelper::changeGamepadPollRate()
 
 void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QTextStream outstream(stdout);
 
@@ -140,7 +142,7 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
 
 void AppLaunchHelper::changeSpringModeScreen()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QDesktopWidget deskWid;
     int springScreen = settings->value("Mouse/SpringScreen",
@@ -160,7 +162,7 @@ void AppLaunchHelper::changeSpringModeScreen()
 void AppLaunchHelper::checkPointerPrecision()
 {
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     WinExtras::grabCurrentPointerPrecision();
     bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
                                                 AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
@@ -172,7 +174,7 @@ void AppLaunchHelper::checkPointerPrecision()
 
 void AppLaunchHelper::appQuitPointerPrecision()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool disableEnhancedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
                                                 AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
@@ -186,21 +188,26 @@ void AppLaunchHelper::appQuitPointerPrecision()
 
 void AppLaunchHelper::revertMouseThread()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::indirectStaticMouseThread(QThread::currentThread());
 }
 
 void AppLaunchHelper::changeMouseThread(QThread *thread)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::setStaticMouseThread(thread);
 }
 
 void AppLaunchHelper::establishMouseTimerConnections()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::establishMouseTimerConnections();
+}
+
+AntiMicroSettings *AppLaunchHelper::getSettings() const {
+
+    return settings;
 }

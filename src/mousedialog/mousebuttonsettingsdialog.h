@@ -32,8 +32,13 @@ class SpringModeRegionPreview;
 class MouseButtonSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
+
 public:
     explicit MouseButtonSettingsDialog(JoyButton *button, QWidget *parent = nullptr);
+
+    JoyButton *getButton() const;
+    SpringModeRegionPreview *getSpringPreviewWidget() const;
+    MouseButtonSettingsDialogHelper const& getHelper();
     
 protected:
     void selectCurrentMouseModePreset();
@@ -41,10 +46,6 @@ protected:
     void calculateMouseSpeedPreset();
     void updateWindowTitleButtonName();
     void calculateExtraAccelerationCurve();
-
-    JoyButton *button;
-    SpringModeRegionPreview *springPreviewWidget;
-    MouseButtonSettingsDialogHelper helper;
     
 public slots:
     void changeMouseMode(int index);
@@ -55,10 +56,16 @@ public slots:
     void updateSpringHeight(int value);
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
-    //void updateSpringRelativeStatus(bool value);
 
 private slots:
     void updateExtraAccelerationCurve(int index);
+
+private:
+    MouseButtonSettingsDialogHelper& getHelperLocal();
+
+    JoyButton *button;
+    SpringModeRegionPreview *springPreviewWidget;
+    MouseButtonSettingsDialogHelper helper;
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOG_H

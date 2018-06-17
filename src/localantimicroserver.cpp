@@ -16,6 +16,8 @@
  */
 
 #include "localantimicroserver.h"
+
+#include "messagehandler.h"
 #include "common.h"
 
 #include <QTextStream>
@@ -26,14 +28,14 @@
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     localServer = new QLocalServer(this);
 }
 
 void LocalAntiMicroServer::startLocalServer()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QLocalServer::removeServer(PadderCommon::localSocketKey);
     localServer->setMaxPendingConnections(1);
@@ -46,32 +48,37 @@ void LocalAntiMicroServer::startLocalServer()
     }
     else
     {
-        connect(localServer, SIGNAL(newConnection()), this, SLOT(handleOutsideConnection()));
+        connect(localServer, &QLocalServer::newConnection, this, &LocalAntiMicroServer::handleOutsideConnection);
     }
 }
 
 void LocalAntiMicroServer::handleOutsideConnection()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QLocalSocket *socket = localServer->nextPendingConnection();
     if (socket != nullptr)
     {
-        connect(socket, SIGNAL(disconnected()), this, SLOT(handleSocketDisconnect()));
-        connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
+        connect(socket, &QLocalSocket::disconnected, this, &LocalAntiMicroServer::handleSocketDisconnect);
+        connect(socket, &QLocalSocket::disconnected, socket, &QLocalSocket::deleteLater);
     }
 }
 
 void LocalAntiMicroServer::handleSocketDisconnect()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit clientdisconnect();
 }
 
 void LocalAntiMicroServer::close()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     localServer->close();
+}
+
+QLocalServer* LocalAntiMicroServer::getLocalServer() const {
+
+    return localServer;
 }

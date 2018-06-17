@@ -17,6 +17,8 @@
 
 #include "setnamesdialog.h"
 #include "ui_setnamesdialog.h"
+
+#include "messagehandler.h"
 #include "inputdevice.h"
 
 #include <QTableWidgetItem>
@@ -29,7 +31,7 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
@@ -40,19 +42,19 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
         ui->setNamesTableWidget->setItem(i, 0, new QTableWidgetItem(tempSetName));
     }
 
-    connect(this, SIGNAL(accepted()), this, SLOT(saveSetNameChanges()));
+    connect(this, &SetNamesDialog::accepted, this, &SetNamesDialog::saveSetNameChanges);
 }
 
 SetNamesDialog::~SetNamesDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     delete ui;
 }
 
 void SetNamesDialog::saveSetNameChanges()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i=0; i < ui->setNamesTableWidget->rowCount(); i++)
     {
@@ -64,4 +66,9 @@ void SetNamesDialog::saveSetNameChanges()
             device->getSetJoystick(i)->setName(setNameText);
         }
     }
+}
+
+InputDevice* SetNamesDialog::getDevice() const {
+
+    return device;
 }

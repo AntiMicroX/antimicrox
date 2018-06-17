@@ -17,6 +17,8 @@
 
 
 #include "joycontrolstickcontextmenu.h"
+
+#include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
@@ -32,17 +34,17 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
     QMenu(parent),
     helper(stick)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
-    helper.moveToThread(stick->thread());
+    getHelperLocal().moveToThread(stick->thread());
 
-    connect(this, SIGNAL(aboutToHide()), this, SLOT(deleteLater()));
+    connect(this, &JoyControlStickContextMenu::aboutToHide, this, &JoyControlStickContextMenu::deleteLater);
 }
 
 void JoyControlStickContextMenu::buildMenu()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QAction *action = nullptr;
 
@@ -54,7 +56,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -62,7 +67,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -70,7 +78,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -78,7 +89,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -86,7 +100,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -94,7 +111,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -102,7 +122,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     presetMode++;
@@ -110,7 +133,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickPreset()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickPreset(action);
+    });
+
     presetGroup->addAction(action);
 
     this->addSeparator();
@@ -122,7 +148,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::StandardMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickMode(action);
+    });
+
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("Eight Way"));
@@ -130,7 +159,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setChecked(stick->getJoyMode() == JoyControlStick::EightWayMode);
     mode = static_cast<int>(JoyControlStick::EightWayMode);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickMode(action);
+    });
+
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Cardinal"));
@@ -138,7 +170,10 @@ void JoyControlStickContextMenu::buildMenu()
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayCardinal);
     mode = static_cast<int>(JoyControlStick::FourWayCardinal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickMode(action);
+    });
+
     modesGroup->addAction(action);
 
     action = this->addAction(trUtf8("4 Way Diagonal"));
@@ -146,30 +181,31 @@ void JoyControlStickContextMenu::buildMenu()
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayDiagonal);
     mode = static_cast<int>(JoyControlStick::FourWayDiagonal);
     action->setData(QVariant(mode));
-    connect(action, SIGNAL(triggered()), this, SLOT(setStickMode()));
+    connect(action, &QAction::triggered, this, [this, action] {
+        setStickMode(action);
+    });
+
     modesGroup->addAction(action);
 
     this->addSeparator();
 
     action = this->addAction(trUtf8("Mouse Settings"));
     action->setCheckable(false);
-    connect(action, SIGNAL(triggered()), this, SLOT(openMouseSettingsDialog()));
+    connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::openMouseSettingsDialog);
 }
 
-void JoyControlStickContextMenu::setStickMode()
+void JoyControlStickContextMenu::setStickMode(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
     stick->setJoyMode(static_cast<JoyControlStick::JoyMode>(item));
 }
 
-void JoyControlStickContextMenu::setStickPreset()
+void JoyControlStickContextMenu::setStickPreset(QAction* action)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = qobject_cast<QAction*>(sender()); // static_cast
     int item = action->data().toInt();
 
     JoyButtonSlot *upButtonSlot = nullptr;
@@ -317,13 +353,13 @@ void JoyControlStickContextMenu::setStickPreset()
     tempHash.insert(JoyControlStick::StickLeftDown, downLeftButtonSlot);
     tempHash.insert(JoyControlStick::StickRightDown, downRightButtonSlot);
 
-    helper.setPendingSlots(&tempHash);
+    getHelperLocal().setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
 
 int JoyControlStickContextMenu::getPresetIndex()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int result = 0;
 
@@ -408,8 +444,13 @@ int JoyControlStickContextMenu::getPresetIndex()
 
 void JoyControlStickContextMenu::openMouseSettingsDialog()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, parentWidget());
     dialog->show();
+}
+
+JoyControlStickContextMenuHelper& JoyControlStickContextMenu::getHelperLocal() {
+
+    return helper;
 }

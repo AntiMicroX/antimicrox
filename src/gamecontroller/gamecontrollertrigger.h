@@ -54,6 +54,7 @@ public:
 
 protected:
     void correctJoystickThrottle();
+
 };
 
 #endif // GAMECONTROLLERTRIGGER_H

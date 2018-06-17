@@ -34,12 +34,13 @@
 #include <X11/Xutil.h>
 
 #include "x11extras.h"
+#include "messagehandler.h"
 
 
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
     QtKeyMapperBase(parent)
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     identifier = "xtest";
     populateMappingHashes();
@@ -54,7 +55,7 @@ QtX11KeyMapper::QtX11KeyMapper(QObject *parent) :
  */
 void QtX11KeyMapper::populateMappingHashes()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (qtKeyToVirtualKey.isEmpty())
     {
@@ -315,7 +316,7 @@ void QtX11KeyMapper::populateMappingHashes()
 
 void QtX11KeyMapper::populateCharKeyInformation()
 {
-    qDebug() << "[" << __FILE__ << ": " << __LINE__ << "] " << __FUNCTION__;
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     virtualkeyToCharKeyInformation.clear();
     Display* display = X11Extras::getInstance()->display();
@@ -359,7 +360,7 @@ void QtX11KeyMapper::populateCharKeyInformation()
                 char returnstring[256];
                 memset(returnstring, 0, sizeof(returnstring));
                 int bitestoreturn = sizeof(returnstring) - 1;
-                int numchars = XLookupString(&tempevent, returnstring, bitestoreturn, NULL, NULL);
+                int numchars = XLookupString(&tempevent, returnstring, bitestoreturn, nullptr, nullptr);
                 if (numchars > 0)
                 {
                     returnstring[numchars] = '\0';
