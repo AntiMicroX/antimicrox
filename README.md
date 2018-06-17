@@ -2,11 +2,11 @@
 
 1. [Description](#description)  
 2. [License](#license)  
-3. [Command line](#command-line)  
+3. [Command Line](#command-line)  
 4. [Build Dependencies](#build-dependencies)  
-    a. [Building under Linux](#building-under-linux)  
-    b. [Building under Windows](#building-under-windows)  
-5. [Testing under Linux](#testing-under-linux)  
+    a. [Building Under Linux](#building-under-linux)  
+    b. [Building Under Windows](#building-under-windows)  
+5. [Testing Under Linux](#testing-under-linux)  
 6. [Support](#support)  
 7. [Bugs](#bugs)  
 8. [Shoutout](#shoutout)  
@@ -24,8 +24,8 @@ means that your system has to be running an X environment in order to run
 this program.
 
 This program is currently supported under various Linux
-distributions, Windows (Vista and later), and FreeBSD. However work of application
-has been tested only on Linux (Arch Linux), on next systems will be tested in the future.
+distributions, Windows (Vista and later), and FreeBSD. However functionality of application
+has been tested only on Linux (Arch Linux and Ubuntu). More systems will be tested in the future.
 
 Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
 application. Their versions are here:
@@ -43,7 +43,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 
 
-## Command line
+## Command Line
 
     Usage: antimicro [options] [profile]
 
@@ -90,14 +90,14 @@ installed on your system in order to build this program:
 
 * g++
 * cmake
-* qttools5-dev and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt 5 support)
-* libsdl2-dev (sdl2 on distros based on Arch Linux) (SDL 2)
-* libxi-dev (libxi on distros based on Arch Linux) (optional. Needed to compile with X11 and uinput support)
-* libxtst-dev (libxtst on distros based on Arch Linux) (optional. Needed to compile with XTest support)
-* libx11-dev (libx11 on distros based on Arch Linux) (optional. Needed to compile with Qt 5 support)
+* qttools5-dev and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt5 support)
+* libsdl2-dev (sdl2 on distros based on Arch Linux) (SDL2)
+* libxi-dev (libxi on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
+* libxtst-dev (libxtst on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
+* libx11-dev (libx11 on distros based on Arch Linux) (Needed to compile with Qt5 support)
 
 
-### Building under Linux
+### Building Under Linux
 
 In order to build this program, open a terminal and cd into the antimicro
 directory. Enter the following commands in order to build the program:
@@ -108,7 +108,7 @@ directory. Enter the following commands in order to build the program:
     make
     sudo make install
     
-If you are Arch Linux or Arch Linux based distribution user:
+If you're an Arch Linux or Arch Linux based distribution user:
 
 ```
 git clone https://github.com/archlinux-lucjan/archlinux-packages.git
@@ -118,28 +118,28 @@ makepkg -sric
 
 The cmake step will use pkg-config to attempt to find SDL
 libraries that you have installed. The project is set up to
-look for a copy of SDL 2. This behavior should work
+look for a copy of SDL2. This behavior should work
 fine for most people. You can override this behavior by using the -DUSE_SDL_2
 option when you run cmake. Using -DUSE_SDL_2=ON when you run cmake will mean
-that you want antimicro compiled with SDL 2 support. However you don't have to do that,
+that you want antimicro compiled with SDL2 support. However you don't have to do that,
 because the option is set as default in CMakeLists.txt.
 
 
-### Building under Windows
+### Building Under Windows
 
-**Instructions provided by aybe @ https://github.com/aybe.
-Modified by Travis Nickles.**
+*Instructions provided by aybe @ https://github.com/aybe.
+and modified by Travis Nickles.*
 
-* Download and install CMake: http://www.cmake.org/cmake/resources/software.html
+* Download and install CMake: http://www.cmake.org/cmake/resources/software.html .
 
-* You will need Qt with MinGW support: https://www.qt.io/download-open-source/. The
-current stable version of Qt that is being used to create builds is 5.10.0.
+* You will need Qt with MinGW support: https://www.qt.io/download-open-source/ . The
+current stable version of Qt that is being used to create builds is 5.10.0 .
 
-* download SDL development package : https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz
+* Download SDL development package : https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz .
 
-* open the archive and drop the 'SDL2-2.0.8' folder in the 'antimicro' folder
+* Open the archive and drop the 'SDL2-2.0.8' folder in the 'antimicro' folder.
 
-* open the project (CMakeLists.txt) in Qt Creator The CMake Wizard will appear
+* Open the project (CMakeLists.txt) in Qt Creator. The CMake Wizard will appear
 the first time you open the project in Qt Creator.
 
 * Choose a Build Location. The recommendation is to create a "build" folder
@@ -147,15 +147,15 @@ under the root antimicro folder and choose that for the build location.
 
 * In the Run CMake section, in the Arguments field, please input
 ```-DCMAKE_PREFIX_PATH=<Path to MinGW Qt install>```
--DCMAKE_BUILD_TYPE=Release. Replace "```<Path to MinGW Qt install>```"
+```-DCMAKE_BUILD_TYPE=Release```. Replace "```<Path to MinGW Qt install>```"
 with the actual path to your Qt installation. The default path for version
-Qt 5.10.0 is C:\Qt\Qt5.10.0\mingw53_32.
+Qt 5.10.0 is C:\Qt\Qt5.10.0\mingw53_32 .
 
-* Choose "MinGW Generator" for the Generator option in the Run CMake section
+* Choose "MinGW Generator" for the Generator option in the Run CMake section.
 
-* Click the Run CMake button and then click Finish
+* Click the Run CMake button and then click Finish.
 
-* In the main IDE window, open the Build menu and select "Build All" (Ctrl+Shift+B)
+* In the main IDE window, open the Build menu and select "Build All" (Ctrl+Shift+B).
 
 * The application will need SDL2.DLL. A build step has been added to
 CMakeLists.txt in order to automate the process. Click the "Projects" icon
@@ -180,23 +180,23 @@ when bundling the Window version for other users.
 * Run "Build All" to have the application and required DLLs installed
 into the final location that will be ready for distribution.
 
-### 64 bit build
+#### 64-bit Build
 
-* Some additional steps are required in order to compile a 64 bit version of
+* Some additional steps are required in order to compile a 64-bit version of
 antimicro. The first step is to download a packaged version of Qt, MSYS shell environment,
 the MinGW 64 C++ compiler, and a series of libraries @
-https://github.com/iat-cener/tonatiuh/wiki/Installing-MinGW-For-Windows64
+https://github.com/iat-cener/tonatiuh/wiki/Installing-MinGW-For-Windows64 .
 
 * You will have to manually create a new Kit in Qt Creator. In the main Qt
 Creator window, click the "Projects" button in the sidebar to bring up the
 "Build Settings" page for the project. Click on the "Manage Kits" button
-near the top of the page. Manually add the 64 bit compiled Qt version under
-"Qt Versions", add the 64 bit MinGW under "Compilers", and add the 64 bit
+near the top of the page. Manually add the 64-bit compiled Qt version under
+"Qt Versions", add the 64-bit MinGW under "Compilers", and add the 64 bit
 gdb.exe under "Debuggers".
 
 * After creating a new kit in Qt Creator, bring up the "Build Settings" page
 for the project. Hover over the currently selected kit name and click the
-arrow that appears, hover over "Change Kit" and select the proper 64 bit kit
+arrow that appears, hover over "Change Kit" and select the proper 64-bit kit
 that you created earlier.
 
 * Perform a clean on the project or delete the build directory that CMake is
@@ -208,59 +208,59 @@ and have it point to the 64 bit compiled version Qt. Also, make sure to add
 building the program and copy the proper Qt and SDL DLLs if you perform an
 **install_dlls**.
 
-## Building the Windows Installer Package (MSI)
+#### Building The Windows Installer Package (MSI)
 
-(these instructions have been tested with WiX 3.8)
+*These instructions have been tested with WiX 3.8*
 
-* you need to have WiX installed, grab it at http://wixtoolset.org/
+* You need to have WiX installed, grab it at http://wixtoolset.org/ .
 
-* the building process relies on the WIX environment, it is recommended that you download the installer instead of the binaries as it it will set it up for you
+* The building process relies on the WIX environment, it is recommended that you download the installer instead of the binaries as it it will set it up for you.
 
-* if Qt Creator is running while you install or upgrade to a newer version then make sure to restart it as it will either not find that environment variable or fetch the old (incorrect) value from the previous version
+* If Qt Creator is running while you install or upgrade to a newer version then make sure to restart it as it will either not find that environment variable or fetch the old (incorrect) value from the previous version.
 
-* to build the MSI package, click on the "Projects" icon in the sidebar,
+* To build the MSI package, click on the "Projects" icon in the sidebar,
 click the "Details" button on the make entry, uncheck all other options
 and check the "buildmsi" box.
 
-* currently it relies on INSTALL to copy files at the location they are harvested, this might change in the future
+* Currently it relies on INSTALL to copy files at the location they are harvested, this might change in the future.
 
-Notes about the WXS file and the building process :
+Notes about the WXS file and the building process:
 
-* the WXS file has been generated with WixEdit and manually modified to contain relative paths, it will only work from the 'windows' sub-folder (or any other)
+* The WXS file has been generated with WixEdit and manually modified to contain relative paths, it will only work from the 'windows' sub-folder (or any other).
 
-* WixCop can be run against the WXS file and it should not point out any errors as the WXS has been corrected previously with the -F switch
+* WixCop can be run against the WXS file and it should not point out any errors as the WXS has been corrected previously with the -F switch.
 
-* CNDL1113 warning : shortucts are advertised, left as-is as a nice feature about them is that if the program gets corrupted it will be repaired by Windows Installer, by design the shortcuts will not point to antimicro.exe as a regular LNK file
+* CNDL1113 warning : shortucts are advertised, left as-is as a nice feature about them is that if the program gets corrupted it will be repaired by Windows Installer, by design the shortcuts will not point to antimicro.exe as a regular LNK file.
 
-* LGHT1073 warning : SDL2.DLL does not specify its language in the language column, not a big deal; it could be recompiled but it's pretty much a time waste as it would only prevent this warning
+* LGHT1073 warning : SDL2.DLL does not specify its language in the language column, not a big deal; it could be recompiled but it's pretty much a time waste as it would only prevent this warning.
 
-* all of these warnings have been made silent through the use of command-line switches.
+* All of these warnings have been made silent through the use of command-line switches.
 
-* built MSI package will be placed in /windows
+* Built MSI package will be placed in /windows .
 
-## Testing under Linux
+## Testing Under Linux
 
 If you are having problems with antimicro detecting a controller or
 detecting all axes and buttons, you should test the controller outside of
 antimicro to check if the problem is with antimicro or not. The two endorsed
 programs for testing gamepads outside of antimicro are **sdl-jstest**
-(**sdl2-jstest**) and **evtest**. SDL 2 utilizes evdev on Linux so performing
+(**sdl2-jstest**) and **evtest**. SDL2 utilizes evdev on Linux so performing
 testing with older programs that use joydev won't be as helpful since some
-devices behave a bit differently between the two systems. It exists another method too, 
+devices behave a bit differently between the two systems. Another method also exist, 
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicro/issues)
+In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicro/issues) .
 
 ## Bugs
 
-Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or asks of users. 
+Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or questions from users. 
 
 
 ## Shoutout
 
-A big, original inspiration for this program was the program QJoyPad
+A big, original inspiration for this program was the program QJoyPad.
 
 
 ## Credits
@@ -270,6 +270,7 @@ A big, original inspiration for this program was the program QJoyPad
 juliagoda
 
 ### Original Developer
+
 Travis Nickles <nickles.travis@gmail.com>
 
 ### Old Contributors
