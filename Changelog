@@ -1,3 +1,14 @@
+2018-16-06 Jagoda Gorska <juliagoda.pl@protonmail.com>
+
+Version 2.24
+
+* Added calibration
+
+* Ported Qt4 to Qt5
+
+* Removed Qt4 support
+
+
 2016-11-05 Jeff Backus <jeff@jsbackus.com>
 
 Version 2.23
