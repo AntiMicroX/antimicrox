@@ -226,10 +226,10 @@ void Calibration::startCalibration()
         stick->setCalibrationFlag(false);
         calibrated = false;
 
-            ui->steps->setText(trUtf8("place the joystick in the center position.\n\nIt's the part, where often you don't have to move. Just skip it in such situation."));
+            ui->steps->setText(trUtf8("Place the joystick in the center position.\n\nIt's the part, where often you don't have to move. Just skip it in such situation."));
             update();
 
-            this->setWindowTitle(trUtf8("calibrating center"));
+            this->setWindowTitle(trUtf8("Calibrating center"));
             ui->startButton->setText(trUtf8("Start second step"));
             update();
 
@@ -280,10 +280,10 @@ void Calibration::startSecondStep()
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr)) {
 
-            ui->steps->setText(trUtf8("\nplace the joystick in the top-left corner many times"));
+            ui->steps->setText(trUtf8("\nPlace the joystick in the top-left corner many times"));
             update();
 
-            this->setWindowTitle(trUtf8("calibrating position"));
+            this->setWindowTitle(trUtf8("Calibrating position"));
             update();
 
             qDebug() << "X_ES_VAL: " << x_es_val.count(QString("-"));
@@ -348,10 +348,10 @@ void Calibration::startLastStep()
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr)) {
 
-            ui->steps->setText(trUtf8("\nplace the joystick in the bottom-right corner"));
+            ui->steps->setText(trUtf8("\nPlace the joystick in the bottom-right corner"));
             update();
 
-            this->setWindowTitle(trUtf8("calibrating position"));
+            this->setWindowTitle(trUtf8("Calibrating position"));
             ui->startButton->setText(trUtf8("Start final step"));
             update();
 
@@ -405,7 +405,7 @@ void Calibration::startLastStep()
                 ui->Informations->setText(text3);
                 this->text = text3;
 
-                ui->steps->setText(trUtf8("\n---calibration done---\n"));
+                ui->steps->setText(trUtf8("\n---Calibration done!---\n"));
                 ui->startButton->setText(trUtf8("Start calibration"));
                 this->setWindowTitle(trUtf8("Calibration"));
                 update();
