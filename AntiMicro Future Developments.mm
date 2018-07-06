@@ -2,10 +2,11 @@
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1526063409822" TEXT="Antimicro Future Developments">
 <font BOLD="true" NAME="Arial Black" SIZE="18"/>
-<node CREATED="1526058011028" ID="ID_121032400" MODIFIED="1526063318879" POSITION="right" TEXT="Add controller calibration">
+<node CREATED="1526058011028" ID="ID_121032400" MODIFIED="1530549062564" POSITION="right" TEXT="Add controller calibration">
 <font BOLD="true" NAME="Verdana" SIZE="14"/>
 <icon BUILTIN="idea"/>
 <icon BUILTIN="full-1"/>
+<icon BUILTIN="button_ok"/>
 <node CREATED="1526058584673" ID="ID_380767629" MODIFIED="1526058599436" TEXT="&quot;We should be able to calibrate it by moving it to its extremes after clicking a button so that the software knows the maximum values for both axes, then click &quot;Finish calibrating&quot; when the joystick is at the center so it knows where that is too.&quot;">
 <cloud/>
 <font ITALIC="true" NAME="SansSerif" SIZE="12"/>
