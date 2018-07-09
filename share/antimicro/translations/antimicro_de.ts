@@ -378,37 +378,37 @@ of the all default profile option.</source>
         <translation>Anwendungsfenster auswählen</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="382"/>
+        <location filename="addeditautoprofiledialog.cpp" line="387"/>
         <source>Could not obtain information for the selected window.</source>
         <translation>Konnte nicht Information für das ausgewählte Fenster gewinnen.</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="383"/>
+        <location filename="addeditautoprofiledialog.cpp" line="388"/>
         <source>Application Capture Failed</source>
         <translation>Anwendungsauswahl fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="487"/>
+        <location filename="addeditautoprofiledialog.cpp" line="491"/>
         <source>Profile file path is invalid.</source>
         <translation>Profil-Dateipfad ist ungültig.</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="497"/>
+        <location filename="addeditautoprofiledialog.cpp" line="501"/>
         <source>No window matching property was specified.</source>
         <translation>Kein zugehöriges Fenster wurde spezifiziert.</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="511"/>
+        <location filename="addeditautoprofiledialog.cpp" line="515"/>
         <source>Program path is invalid or not executable.</source>
         <translation>Programmpfad ist ungültig oder nicht ausführbar.</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="519"/>
+        <location filename="addeditautoprofiledialog.cpp" line="523"/>
         <source>File is not an .exe file.</source>
         <translation>Datei ist keine .exe-Datei.</translation>
     </message>
     <message>
-        <location filename="addeditautoprofiledialog.cpp" line="527"/>
+        <location filename="addeditautoprofiledialog.cpp" line="531"/>
         <source>No window matching property was selected.</source>
         <translation>Kein zugehöriges Fenster wurde ausgewählt.</translation>
     </message>
@@ -417,7 +417,7 @@ of the all default profile option.</source>
     <name>AdvanceButtonDialog</name>
     <message>
         <location filename="advancebuttondialog.ui" line="29"/>
-        <location filename="advancebuttondialog.cpp" line="1249"/>
+        <location filename="advancebuttondialog.cpp" line="1242"/>
         <source>Advanced</source>
         <translation>Erweitert</translation>
     </message>
@@ -497,7 +497,7 @@ of the all default profile option.</source>
         <translation>0s</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1648"/>
+        <location filename="advancebuttondialog.cpp" line="1641"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>Fügt eine Pause zwischen den Tasten ein.</translation>
     </message>
@@ -508,7 +508,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="280"/>
-        <location filename="advancebuttondialog.cpp" line="1609"/>
+        <location filename="advancebuttondialog.cpp" line="1602"/>
         <source>Insert a new blank slot.</source>
         <translation>Fügt eine neue leere Aktion hinzu.</translation>
     </message>
@@ -688,7 +688,7 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="1039"/>
-        <location filename="advancebuttondialog.cpp" line="1383"/>
+        <location filename="advancebuttondialog.cpp" line="1376"/>
         <source>Disabled</source>
         <translation>Deaktiviert</translation>
     </message>
@@ -823,99 +823,99 @@ of the all default profile option.</source>
         <translation>/Sek.</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1254"/>
+        <location filename="advancebuttondialog.cpp" line="1247"/>
         <source>Set %1</source>
         <translation>Set %1</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1391"/>
-        <location filename="advancebuttondialog.cpp" line="1437"/>
+        <location filename="advancebuttondialog.cpp" line="1384"/>
+        <location filename="advancebuttondialog.cpp" line="1430"/>
         <source>Select Set %1</source>
         <translation>Wähle Set %1</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1406"/>
+        <location filename="advancebuttondialog.cpp" line="1399"/>
         <source>One Way</source>
         <translation>Einweg</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1409"/>
+        <location filename="advancebuttondialog.cpp" line="1402"/>
         <source>Two Way</source>
         <translation>Zweiwege</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1412"/>
+        <location filename="advancebuttondialog.cpp" line="1405"/>
         <source>While Held</source>
         <translation>Solang wie gehalten</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1534"/>
+        <location filename="advancebuttondialog.cpp" line="1527"/>
         <source>Choose Executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1613"/>
+        <location filename="advancebuttondialog.cpp" line="1606"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1619"/>
+        <location filename="advancebuttondialog.cpp" line="1612"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1626"/>
+        <location filename="advancebuttondialog.cpp" line="1619"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1632"/>
+        <location filename="advancebuttondialog.cpp" line="1625"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1637"/>
+        <location filename="advancebuttondialog.cpp" line="1630"/>
         <source>Chose a profile to load when this slot is activated.</source>
         <translation>Wähle ein Profil zum Laden wenn dieser Slot aktiviert ist.</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1641"/>
+        <location filename="advancebuttondialog.cpp" line="1634"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1652"/>
+        <location filename="advancebuttondialog.cpp" line="1645"/>
         <source>Specify the time that keys past this slot should be held down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1657"/>
+        <location filename="advancebuttondialog.cpp" line="1650"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1663"/>
+        <location filename="advancebuttondialog.cpp" line="1656"/>
         <source>Change to selected set once slot is activated.</source>
         <translation>Wechsle zu ausgewähltem Set wenn Slot aktiviert ist.</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1667"/>
+        <location filename="advancebuttondialog.cpp" line="1660"/>
         <source>Full string will be typed when a slot is activated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1672"/>
+        <location filename="advancebuttondialog.cpp" line="1665"/>
         <source>Execute program when slot is activated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="advancebuttondialog.ui" line="667"/>
-        <location filename="advancebuttondialog.cpp" line="1501"/>
+        <location filename="advancebuttondialog.cpp" line="1494"/>
         <source>Choose Profile</source>
         <translation>Wähle Profil</translation>
     </message>
     <message>
-        <location filename="advancebuttondialog.cpp" line="1502"/>
+        <location filename="advancebuttondialog.cpp" line="1495"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>Konfigurationsdateien (*.amgp *.xml)</translation>
     </message>
@@ -1018,62 +1018,62 @@ of the all default profile option.</source>
         <translation>Rechts:</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="67"/>
         <location filename="advancestickassignmentdialog.cpp" line="68"/>
-        <location filename="advancestickassignmentdialog.cpp" line="70"/>
+        <location filename="advancestickassignmentdialog.cpp" line="69"/>
         <location filename="advancestickassignmentdialog.cpp" line="71"/>
+        <location filename="advancestickassignmentdialog.cpp" line="72"/>
         <source>Axis %1</source>
         <translation>Achse %1</translation>
-    </message>
-    <message>
-        <location filename="advancestickassignmentdialog.cpp" line="575"/>
-        <location filename="advancestickassignmentdialog.cpp" line="576"/>
-        <location filename="advancestickassignmentdialog.cpp" line="577"/>
-        <location filename="advancestickassignmentdialog.cpp" line="578"/>
-        <source>Axis %1 -</source>
-        <translation>Achse %1 -</translation>
     </message>
     <message>
         <location filename="advancestickassignmentdialog.cpp" line="583"/>
         <location filename="advancestickassignmentdialog.cpp" line="584"/>
         <location filename="advancestickassignmentdialog.cpp" line="585"/>
         <location filename="advancestickassignmentdialog.cpp" line="586"/>
+        <source>Axis %1 -</source>
+        <translation>Achse %1 -</translation>
+    </message>
+    <message>
+        <location filename="advancestickassignmentdialog.cpp" line="591"/>
+        <location filename="advancestickassignmentdialog.cpp" line="592"/>
+        <location filename="advancestickassignmentdialog.cpp" line="593"/>
+        <location filename="advancestickassignmentdialog.cpp" line="594"/>
         <source>Axis %1 +</source>
         <translation>Achse %1 +</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="596"/>
-        <location filename="advancestickassignmentdialog.cpp" line="597"/>
-        <location filename="advancestickassignmentdialog.cpp" line="598"/>
-        <location filename="advancestickassignmentdialog.cpp" line="599"/>
+        <location filename="advancestickassignmentdialog.cpp" line="604"/>
+        <location filename="advancestickassignmentdialog.cpp" line="605"/>
+        <location filename="advancestickassignmentdialog.cpp" line="606"/>
+        <location filename="advancestickassignmentdialog.cpp" line="607"/>
         <source>Button %1</source>
         <translation>Button %1</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="924"/>
+        <location filename="advancestickassignmentdialog.cpp" line="932"/>
         <source>Move stick 1 along the X axis</source>
         <translation>Bewege Stick 1 entlang der X Achse</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="938"/>
+        <location filename="advancestickassignmentdialog.cpp" line="949"/>
         <source>Move stick 1 along the Y axis</source>
         <translation>Bewege Stick 1 entlang der Y Achse</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="969"/>
+        <location filename="advancestickassignmentdialog.cpp" line="982"/>
         <source>Move stick 2 along the X axis</source>
         <translation>Bewege Stick 2 entlang der X Achse</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="984"/>
+        <location filename="advancestickassignmentdialog.cpp" line="999"/>
         <source>Move stick 2 along the Y axis</source>
         <translation>Bewege Stick 2 entlang der Y Achse</translation>
     </message>
     <message>
-        <location filename="advancestickassignmentdialog.cpp" line="1055"/>
-        <location filename="advancestickassignmentdialog.cpp" line="1111"/>
-        <location filename="advancestickassignmentdialog.cpp" line="1167"/>
-        <location filename="advancestickassignmentdialog.cpp" line="1223"/>
+        <location filename="advancestickassignmentdialog.cpp" line="1040"/>
+        <location filename="advancestickassignmentdialog.cpp" line="1105"/>
+        <location filename="advancestickassignmentdialog.cpp" line="1170"/>
+        <location filename="advancestickassignmentdialog.cpp" line="1236"/>
         <source>Press a button or move an axis</source>
         <translation>Drücke einen Button oder bewege eine Achse</translation>
     </message>
@@ -1087,68 +1087,68 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="77"/>
-        <location filename="axiseditdialog.cpp" line="642"/>
+        <location filename="axiseditdialog.cpp" line="653"/>
         <source>Mouse (Horizontal)</source>
         <translation>Maus (Horizontal)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="82"/>
-        <location filename="axiseditdialog.cpp" line="643"/>
+        <location filename="axiseditdialog.cpp" line="654"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Maus (Invertiert Horizontal)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="87"/>
-        <location filename="axiseditdialog.cpp" line="644"/>
+        <location filename="axiseditdialog.cpp" line="655"/>
         <source>Mouse (Vertical)</source>
         <translation>Maus (Vertikal)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="92"/>
-        <location filename="axiseditdialog.cpp" line="645"/>
+        <location filename="axiseditdialog.cpp" line="656"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Maus (Invertiert Vertikal)</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="97"/>
-        <location filename="axiseditdialog.cpp" line="646"/>
+        <location filename="axiseditdialog.cpp" line="657"/>
         <source>Arrows: Up | Down</source>
         <translation>Pfeiltasten: Hoch | Runter</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="102"/>
-        <location filename="axiseditdialog.cpp" line="647"/>
+        <location filename="axiseditdialog.cpp" line="658"/>
         <source>Arrows: Left | Right</source>
         <translation>Pfeiltasten: Links | Rechts</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="107"/>
-        <location filename="axiseditdialog.cpp" line="648"/>
+        <location filename="axiseditdialog.cpp" line="659"/>
         <source>Keys: W | S</source>
         <translation>Tasten: W | S</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="112"/>
-        <location filename="axiseditdialog.cpp" line="649"/>
+        <location filename="axiseditdialog.cpp" line="660"/>
         <source>Keys: A | D</source>
         <translation>Tasten: A | D</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="117"/>
-        <location filename="axiseditdialog.cpp" line="650"/>
+        <location filename="axiseditdialog.cpp" line="661"/>
         <source>NumPad: KP_8 | KP_2</source>
         <translation>Nummernblock: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="122"/>
-        <location filename="axiseditdialog.cpp" line="651"/>
+        <location filename="axiseditdialog.cpp" line="662"/>
         <source>NumPad: KP_4 | KP_6</source>
         <translation>Nummernblock: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="axiseditdialog.ui" line="127"/>
-        <location filename="axiseditdialog.cpp" line="652"/>
-        <location filename="axiseditdialog.cpp" line="664"/>
+        <location filename="axiseditdialog.cpp" line="663"/>
+        <location filename="axiseditdialog.cpp" line="675"/>
         <source>None</source>
         <translation>Nichts</translation>
     </message>
@@ -1240,22 +1240,22 @@ oder Loslassen einer Achse interpretiert wird.</translation>
         <translation>Aktueller Wert:</translation>
     </message>
     <message>
-        <location filename="axiseditdialog.cpp" line="607"/>
+        <location filename="axiseditdialog.cpp" line="618"/>
         <source>Set</source>
         <translation>Set</translation>
     </message>
     <message>
-        <location filename="axiseditdialog.cpp" line="621"/>
+        <location filename="axiseditdialog.cpp" line="632"/>
         <source>Set %1</source>
         <translation>Set %1</translation>
     </message>
     <message>
-        <location filename="axiseditdialog.cpp" line="662"/>
+        <location filename="axiseditdialog.cpp" line="673"/>
         <source>Left Mouse Button</source>
         <translation>Linke Maustaste</translation>
     </message>
     <message>
-        <location filename="axiseditdialog.cpp" line="663"/>
+        <location filename="axiseditdialog.cpp" line="674"/>
         <source>Right Mouse Button</source>
         <translation>Rechte Maustaste</translation>
     </message>
@@ -1314,7 +1314,7 @@ oder Loslassen einer Achse interpretiert wird.</translation>
     <message>
         <location filename="buttoneditdialog.ui" line="197"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name:</translation>
     </message>
     <message>
         <location filename="buttoneditdialog.ui" line="207"/>
@@ -1348,52 +1348,243 @@ this button is being used.</source>
     <message>
         <location filename="buttoneditdialog.cpp" line="63"/>
         <location filename="buttoneditdialog.cpp" line="121"/>
-        <location filename="buttoneditdialog.cpp" line="567"/>
+        <location filename="buttoneditdialog.cpp" line="581"/>
         <source>Choose your keyboard key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="400"/>
+        <location filename="buttoneditdialog.cpp" line="404"/>
         <source>No button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="408"/>
-        <location filename="buttoneditdialog.cpp" line="416"/>
-        <location filename="buttoneditdialog.cpp" line="451"/>
-        <location filename="buttoneditdialog.cpp" line="531"/>
+        <location filename="buttoneditdialog.cpp" line="412"/>
+        <location filename="buttoneditdialog.cpp" line="420"/>
+        <location filename="buttoneditdialog.cpp" line="455"/>
+        <location filename="buttoneditdialog.cpp" line="545"/>
         <source>Last button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="408"/>
+        <location filename="buttoneditdialog.cpp" line="412"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="416"/>
+        <location filename="buttoneditdialog.cpp" line="420"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="451"/>
+        <location filename="buttoneditdialog.cpp" line="455"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="531"/>
+        <location filename="buttoneditdialog.cpp" line="545"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="548"/>
+        <location filename="buttoneditdialog.cpp" line="562"/>
         <source>As last gamepad button has been set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="buttoneditdialog.cpp" line="553"/>
+        <location filename="buttoneditdialog.cpp" line="567"/>
         <source>Index %1</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Calibration</name>
+    <message>
+        <location filename="calibration.ui" line="20"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="74"/>
+        <location filename="calibration.cpp" line="409"/>
+        <source>Start calibration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="136"/>
+        <source>Controller:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="146"/>
+        <source>Sticks:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="156"/>
+        <source>Use settings from jstest-gtk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="193"/>
+        <source>Reset settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="213"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="calibration.ui" line="220"/>
+        <location filename="calibration.cpp" line="449"/>
+        <source>Save</source>
+        <translation type="unfinished">Speichern</translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="31"/>
+        <location filename="calibration.cpp" line="410"/>
+        <source>Calibration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="109"/>
+        <source>Do you really want to reset settings of current axes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="203"/>
+        <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="229"/>
+        <source>Place the joystick in the center position.
+
+It&apos;s the part, where often you don&apos;t have to move. Just skip it in such situation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="232"/>
+        <source>Calibrating center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="233"/>
+        <source>Start second step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="256"/>
+        <source>
+
+Center X: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="257"/>
+        <source>
+Center Y: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="283"/>
+        <source>
+Place the joystick in the top-left corner many times</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="286"/>
+        <location filename="calibration.cpp" line="354"/>
+        <source>Calibrating position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="324"/>
+        <location filename="calibration.cpp" line="389"/>
+        <source>
+
+X: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="325"/>
+        <location filename="calibration.cpp" line="390"/>
+        <source>
+Y: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="351"/>
+        <source>
+Place the joystick in the bottom-right corner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="355"/>
+        <source>Start final step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="401"/>
+        <source>
+
+range X: %1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="402"/>
+        <source>
+range Y: %1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="403"/>
+        <source>
+
+deadzone X: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="404"/>
+        <source>
+deadzone Y: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="408"/>
+        <source>
+---Calibration done!---
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="449"/>
+        <source>Calibration values have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="476"/>
+        <location filename="calibration.cpp" line="477"/>
+        <source>Dead zone calibration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="476"/>
+        <source>You must move X axis to the right at least five times! Keep moving!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="477"/>
+        <source>You must move X axis to the left at least five times! Keep moving!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.cpp" line="655"/>
+        <location filename="calibration.cpp" line="656"/>
+        <location filename="calibration.cpp" line="711"/>
+        <location filename="calibration.cpp" line="712"/>
+        <source>Axis %1</source>
+        <translation type="unfinished">Achse %1</translation>
     </message>
 </context>
 <context>
@@ -1608,62 +1799,62 @@ this button is being used.</source>
         <translation>Maus (Normal)</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="64"/>
+        <location filename="dpadcontextmenu.cpp" line="66"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Maus (Invertiert Horizontal)</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="72"/>
+        <location filename="dpadcontextmenu.cpp" line="76"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Maus (Invertiert Vertikal)</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="80"/>
+        <location filename="dpadcontextmenu.cpp" line="86"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>Maus (Invertiert Horizontal + Vertikal)</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="88"/>
+        <location filename="dpadcontextmenu.cpp" line="96"/>
         <source>Arrows</source>
         <translation>Pfeiltasten</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="96"/>
+        <location filename="dpadcontextmenu.cpp" line="106"/>
         <source>Keys: W | A | S | D</source>
         <translation>Tasten: W | A | S | D</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="104"/>
+        <location filename="dpadcontextmenu.cpp" line="116"/>
         <source>NumPad</source>
         <translation>Nummerntastatur</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="112"/>
+        <location filename="dpadcontextmenu.cpp" line="126"/>
         <source>None</source>
         <translation>Nichts</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="124"/>
+        <location filename="dpadcontextmenu.cpp" line="140"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="131"/>
+        <location filename="dpadcontextmenu.cpp" line="149"/>
         <source>Eight Way</source>
         <translation>8-Weg</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="139"/>
+        <location filename="dpadcontextmenu.cpp" line="159"/>
         <source>4 Way Cardinal</source>
         <translation>4-Wege kardinal</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="147"/>
+        <location filename="dpadcontextmenu.cpp" line="169"/>
         <source>4 Way Diagonal</source>
         <translation>4-Wege diagonal</translation>
     </message>
     <message>
-        <location filename="dpadcontextmenu.cpp" line="157"/>
+        <location filename="dpadcontextmenu.cpp" line="182"/>
         <source>Mouse Settings</source>
         <translation>Mauseinstellungen</translation>
     </message>
@@ -2133,9 +2324,9 @@ Joysticks aktualisiert werden.</translation>
 <context>
     <name>JoyAxis</name>
     <message>
-        <location filename="joyaxis.cpp" line="1189"/>
-        <location filename="joyaxis.cpp" line="1198"/>
-        <location filename="joyaxis.cpp" line="1204"/>
+        <location filename="joyaxis.cpp" line="1233"/>
+        <location filename="joyaxis.cpp" line="1242"/>
+        <location filename="joyaxis.cpp" line="1248"/>
         <source>Axis</source>
         <translation>Achse</translation>
     </message>
@@ -2173,69 +2364,69 @@ Joysticks aktualisiert werden.</translation>
         <translation>Maus (Horizontal)</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="86"/>
+        <location filename="joyaxiscontextmenu.cpp" line="89"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Maus (Invertiert Horizontal)</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="94"/>
+        <location filename="joyaxiscontextmenu.cpp" line="100"/>
         <source>Mouse (Vertical)</source>
         <translation>Maus (Vertikal)</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="102"/>
+        <location filename="joyaxiscontextmenu.cpp" line="111"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Maus (Invertiert Vertikal)</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="110"/>
+        <location filename="joyaxiscontextmenu.cpp" line="122"/>
         <source>Arrows: Up | Down</source>
         <translation>Pfeiltasten: Hoch | Runter</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="118"/>
+        <location filename="joyaxiscontextmenu.cpp" line="133"/>
         <source>Arrows: Left | Right</source>
         <translation>Pfeiltasten: Links | Rechts</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="126"/>
+        <location filename="joyaxiscontextmenu.cpp" line="144"/>
         <source>Keys: W | S</source>
         <translation>Tasten: W | S</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="134"/>
+        <location filename="joyaxiscontextmenu.cpp" line="155"/>
         <source>Keys: A | D</source>
         <translation>Tasten: A | D</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="142"/>
+        <location filename="joyaxiscontextmenu.cpp" line="166"/>
         <source>NumPad: KP_8 | KP_2</source>
         <translation>Nummernblock: KP_8 | KP_2</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="150"/>
+        <location filename="joyaxiscontextmenu.cpp" line="177"/>
         <source>NumPad: KP_4 | KP_6</source>
         <translation>Nummernblock: KP_4 | KP_6</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="158"/>
-        <location filename="joyaxiscontextmenu.cpp" line="367"/>
+        <location filename="joyaxiscontextmenu.cpp" line="188"/>
+        <location filename="joyaxiscontextmenu.cpp" line="405"/>
         <source>None</source>
         <translation>Nichts</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="167"/>
-        <location filename="joyaxiscontextmenu.cpp" line="376"/>
+        <location filename="joyaxiscontextmenu.cpp" line="200"/>
+        <location filename="joyaxiscontextmenu.cpp" line="417"/>
         <source>Mouse Settings</source>
         <translation>Mauseinstellungen</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="351"/>
+        <location filename="joyaxiscontextmenu.cpp" line="383"/>
         <source>Left Mouse Button</source>
         <translation>Linke Maustaste</translation>
     </message>
     <message>
-        <location filename="joyaxiscontextmenu.cpp" line="359"/>
+        <location filename="joyaxiscontextmenu.cpp" line="394"/>
         <source>Right Mouse Button</source>
         <translation>Rechte Maustaste</translation>
     </message>
@@ -2336,12 +2527,12 @@ Joysticks aktualisiert werden.</translation>
         <translation type="unfinished">Set %1 1W</translation>
     </message>
     <message>
-        <location filename="joybuttoncontextmenu.cpp" line="103"/>
+        <location filename="joybuttoncontextmenu.cpp" line="106"/>
         <source>Set %1 2W</source>
         <translation type="unfinished">Set %1 2W</translation>
     </message>
     <message>
-        <location filename="joybuttoncontextmenu.cpp" line="114"/>
+        <location filename="joybuttoncontextmenu.cpp" line="120"/>
         <source>Set %1 WH</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2468,9 +2659,9 @@ Joysticks aktualisiert werden.</translation>
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="joycontrolstick.cpp" line="966"/>
-        <location filename="joycontrolstick.cpp" line="975"/>
-        <location filename="joycontrolstick.cpp" line="982"/>
+        <location filename="joycontrolstick.cpp" line="967"/>
+        <location filename="joycontrolstick.cpp" line="976"/>
+        <location filename="joycontrolstick.cpp" line="984"/>
         <source>Stick</source>
         <translation>Stick</translation>
     </message>
@@ -2521,62 +2712,62 @@ Joysticks aktualisiert werden.</translation>
         <translation>Maus (Normal)</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="63"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="66"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Maus (Invertiert Horizontal)</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="71"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="77"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Maus (Invertiert Vertikal)</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="79"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="88"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>Maus (Invertiert Horizontal + Vertikal)</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="87"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="99"/>
         <source>Arrows</source>
         <translation>Pfeiltasten</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="95"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="110"/>
         <source>Keys: W | A | S | D</source>
         <translation>Tasten: W | A | S | D</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="103"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="121"/>
         <source>NumPad</source>
         <translation>Nummerntastatur</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="111"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="132"/>
         <source>None</source>
         <translation>Nichts</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="123"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="147"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="130"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="157"/>
         <source>Eight Way</source>
         <translation>8-Wege</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="138"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="168"/>
         <source>4 Way Cardinal</source>
         <translation>4-Wege kardinal</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="146"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="179"/>
         <source>4 Way Diagonal</source>
         <translation>4-Wege diagonal</translation>
     </message>
     <message>
-        <location filename="joycontrolstickcontextmenu.cpp" line="156"/>
+        <location filename="joycontrolstickcontextmenu.cpp" line="192"/>
         <source>Mouse Settings</source>
         <translation>Mauseinstellungen</translation>
     </message>
@@ -2770,8 +2961,9 @@ functionality to an analog stick.</source>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="754"/>
-        <source>Name:</source>
-        <translation>Name:</translation>
+        <source>Na&amp;me:</source>
+        <oldsource>Name:</oldsource>
+        <translation type="unfinished">Name:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="764"/>
@@ -2819,12 +3011,12 @@ functionality to an analog stick.</source>
         <translation>diagonale Reichweite:</translation>
     </message>
     <message>
-        <location filename="joycontrolstickeditdialog.cpp" line="512"/>
+        <location filename="joycontrolstickeditdialog.cpp" line="515"/>
         <source>Set</source>
         <translation>Set</translation>
     </message>
     <message>
-        <location filename="joycontrolstickeditdialog.cpp" line="526"/>
+        <location filename="joycontrolstickeditdialog.cpp" line="529"/>
         <source>Set %1</source>
         <translation>Set %1</translation>
     </message>
@@ -2891,266 +3083,266 @@ functionality to an analog stick.</source>
     <name>JoyTabWidget</name>
     <message>
         <location filename="joytabwidget.cpp" line="85"/>
-        <location filename="joytabwidget.cpp" line="760"/>
-        <location filename="joytabwidget.cpp" line="904"/>
-        <location filename="joytabwidget.cpp" line="947"/>
-        <location filename="joytabwidget.cpp" line="1099"/>
-        <location filename="joytabwidget.cpp" line="2420"/>
+        <location filename="joytabwidget.cpp" line="758"/>
+        <location filename="joytabwidget.cpp" line="902"/>
+        <location filename="joytabwidget.cpp" line="945"/>
+        <location filename="joytabwidget.cpp" line="1097"/>
+        <location filename="joytabwidget.cpp" line="2418"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;Neu&gt;</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="93"/>
-        <location filename="joytabwidget.cpp" line="1614"/>
+        <location filename="joytabwidget.cpp" line="1612"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="95"/>
-        <location filename="joytabwidget.cpp" line="1615"/>
+        <location filename="joytabwidget.cpp" line="1613"/>
         <source>Remove configuration from recent list.</source>
         <translation>Entferne Konfiguration aus den letzten Einträgen.</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="100"/>
-        <location filename="joytabwidget.cpp" line="1617"/>
+        <location filename="joytabwidget.cpp" line="1615"/>
         <source>Load</source>
         <translation>Laden</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="102"/>
-        <location filename="joytabwidget.cpp" line="1618"/>
+        <location filename="joytabwidget.cpp" line="1616"/>
         <source>Load configuration file.</source>
         <translation>Lade Konfigurationsdatei.</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="107"/>
-        <location filename="joytabwidget.cpp" line="1620"/>
+        <location filename="joytabwidget.cpp" line="1618"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="109"/>
-        <location filename="joytabwidget.cpp" line="1621"/>
+        <location filename="joytabwidget.cpp" line="1619"/>
         <source>Save changes to configuration file.</source>
         <translation>Änderungen in Konfigurationsdatei speichern.</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="114"/>
-        <location filename="joytabwidget.cpp" line="1623"/>
+        <location filename="joytabwidget.cpp" line="1621"/>
         <source>Save As</source>
         <translation>Speichern unter</translation>
     </message>
     <message>
         <location filename="joytabwidget.cpp" line="116"/>
-        <location filename="joytabwidget.cpp" line="1624"/>
+        <location filename="joytabwidget.cpp" line="1622"/>
         <source>Save changes to a new configuration file.</source>
         <translation>Änderungen in neue Konfigurationsdatei speichern.</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="308"/>
-        <location filename="joytabwidget.cpp" line="1626"/>
+        <location filename="joytabwidget.cpp" line="306"/>
+        <location filename="joytabwidget.cpp" line="1624"/>
         <source>Sets</source>
         <translation>Sets</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="310"/>
+        <location filename="joytabwidget.cpp" line="308"/>
         <source>Copy from Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="311"/>
+        <location filename="joytabwidget.cpp" line="309"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="319"/>
-        <location filename="joytabwidget.cpp" line="1627"/>
+        <location filename="joytabwidget.cpp" line="317"/>
+        <location filename="joytabwidget.cpp" line="1625"/>
         <source>Set 1</source>
         <translation>Set 1</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="323"/>
-        <location filename="joytabwidget.cpp" line="1628"/>
+        <location filename="joytabwidget.cpp" line="321"/>
+        <location filename="joytabwidget.cpp" line="1626"/>
         <source>Set 2</source>
         <translation>Set 2</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="327"/>
-        <location filename="joytabwidget.cpp" line="1629"/>
+        <location filename="joytabwidget.cpp" line="325"/>
+        <location filename="joytabwidget.cpp" line="1627"/>
         <source>Set 3</source>
         <translation>Set 3</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="331"/>
-        <location filename="joytabwidget.cpp" line="1630"/>
+        <location filename="joytabwidget.cpp" line="329"/>
+        <location filename="joytabwidget.cpp" line="1628"/>
         <source>Set 4</source>
         <translation>Set 4</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="335"/>
-        <location filename="joytabwidget.cpp" line="1631"/>
+        <location filename="joytabwidget.cpp" line="333"/>
+        <location filename="joytabwidget.cpp" line="1629"/>
         <source>Set 5</source>
         <translation>Set 5</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="339"/>
-        <location filename="joytabwidget.cpp" line="1632"/>
+        <location filename="joytabwidget.cpp" line="337"/>
+        <location filename="joytabwidget.cpp" line="1630"/>
         <source>Set 6</source>
         <translation>Set 6</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="343"/>
-        <location filename="joytabwidget.cpp" line="1633"/>
+        <location filename="joytabwidget.cpp" line="341"/>
+        <location filename="joytabwidget.cpp" line="1631"/>
         <source>Set 7</source>
         <translation>Set 7</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="347"/>
-        <location filename="joytabwidget.cpp" line="1634"/>
+        <location filename="joytabwidget.cpp" line="345"/>
+        <location filename="joytabwidget.cpp" line="1632"/>
         <source>Set 8</source>
         <translation>Set 8</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="413"/>
-        <location filename="joytabwidget.cpp" line="1640"/>
+        <location filename="joytabwidget.cpp" line="411"/>
+        <location filename="joytabwidget.cpp" line="1638"/>
         <source>Stick/Pad Assign</source>
         <translation>Stick/Pad Zuweisung</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="419"/>
-        <location filename="joytabwidget.cpp" line="1639"/>
+        <location filename="joytabwidget.cpp" line="417"/>
+        <location filename="joytabwidget.cpp" line="1637"/>
         <source>Controller Mapping</source>
         <translation>Controllerzuweisung</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="426"/>
-        <location filename="joytabwidget.cpp" line="1641"/>
+        <location filename="joytabwidget.cpp" line="424"/>
+        <location filename="joytabwidget.cpp" line="1639"/>
         <source>Quick Set</source>
         <translation>Schnellkonfiguration</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="434"/>
-        <location filename="joytabwidget.cpp" line="1644"/>
+        <location filename="joytabwidget.cpp" line="432"/>
+        <location filename="joytabwidget.cpp" line="1642"/>
         <source>Names</source>
         <translation>Namen</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="436"/>
-        <location filename="joytabwidget.cpp" line="1645"/>
+        <location filename="joytabwidget.cpp" line="434"/>
+        <location filename="joytabwidget.cpp" line="1643"/>
         <source>Toggle button name displaying.</source>
         <translation>Buttonnamendarstellung wechseln.</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="441"/>
-        <location filename="joytabwidget.cpp" line="1647"/>
+        <location filename="joytabwidget.cpp" line="439"/>
+        <location filename="joytabwidget.cpp" line="1645"/>
         <source>Pref</source>
         <translation>Einst</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="443"/>
-        <location filename="joytabwidget.cpp" line="1648"/>
+        <location filename="joytabwidget.cpp" line="441"/>
+        <location filename="joytabwidget.cpp" line="1646"/>
         <source>Change global profile settings.</source>
         <translation>Globale Profileinstellungen ändern.</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="447"/>
-        <location filename="joytabwidget.cpp" line="1642"/>
-        <location filename="joytabwidget.cpp" line="1650"/>
+        <location filename="joytabwidget.cpp" line="445"/>
+        <location filename="joytabwidget.cpp" line="1640"/>
+        <location filename="joytabwidget.cpp" line="1648"/>
         <source>Reset</source>
         <translation>Reset</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="449"/>
-        <location filename="joytabwidget.cpp" line="1651"/>
+        <location filename="joytabwidget.cpp" line="447"/>
+        <location filename="joytabwidget.cpp" line="1649"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>Änderungen der Konfiguration zurücksetzen. Neuladen der Konfiguration.</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="511"/>
+        <location filename="joytabwidget.cpp" line="509"/>
         <source>Open Config</source>
         <translation>Konfiguration öffnen</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="511"/>
+        <location filename="joytabwidget.cpp" line="509"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>Konfigurationsdateien (*.amgp *.xml)</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="617"/>
-        <location filename="joytabwidget.cpp" line="788"/>
-        <location filename="joytabwidget.cpp" line="800"/>
+        <location filename="joytabwidget.cpp" line="615"/>
+        <location filename="joytabwidget.cpp" line="786"/>
+        <location filename="joytabwidget.cpp" line="798"/>
         <source>Config File (*.%1.amgp)</source>
         <translation>Konfigurationsdatei (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="1671"/>
-        <location filename="joytabwidget.cpp" line="1726"/>
+        <location filename="joytabwidget.cpp" line="1669"/>
+        <location filename="joytabwidget.cpp" line="1724"/>
         <source>Save Profile Changes?</source>
         <translation>Profiländerungen speichern?</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="1674"/>
-        <location filename="joytabwidget.cpp" line="1730"/>
+        <location filename="joytabwidget.cpp" line="1672"/>
+        <location filename="joytabwidget.cpp" line="1728"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>Änderungen am neuen Profil wurden nicht gespeichert. Möchten Sie das aktuelle Profil speichern oder verwerfen?</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="1678"/>
-        <location filename="joytabwidget.cpp" line="1734"/>
+        <location filename="joytabwidget.cpp" line="1676"/>
+        <location filename="joytabwidget.cpp" line="1732"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>Änderungen am neuen Profil %1 wurden nicht gespeichert. Möchten Sie das aktuelle Profil speichern oder verwerfen?</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2003"/>
+        <location filename="joytabwidget.cpp" line="2001"/>
         <source>Sticks</source>
         <translation>Sticks</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2071"/>
-        <location filename="joytabwidget.cpp" line="2122"/>
+        <location filename="joytabwidget.cpp" line="2069"/>
+        <location filename="joytabwidget.cpp" line="2120"/>
         <source>DPads</source>
         <translation>DPads</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2262"/>
+        <location filename="joytabwidget.cpp" line="2260"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>Es wurden keine Tasten zugewiesen. Bitte verwenden Sie den Schnellkonfiguration um Tasten zuzuweisen
 oder deaktivieren Sie das Ausblenden leerer Tasten.</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2460"/>
-        <location filename="joytabwidget.cpp" line="2487"/>
+        <location filename="joytabwidget.cpp" line="2458"/>
+        <location filename="joytabwidget.cpp" line="2485"/>
         <source>Set %1: %2</source>
         <translation>Set %1: %2</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2464"/>
-        <location filename="joytabwidget.cpp" line="2491"/>
+        <location filename="joytabwidget.cpp" line="2462"/>
+        <location filename="joytabwidget.cpp" line="2489"/>
         <source>Set %1</source>
         <translation>Set %1</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2499"/>
+        <location filename="joytabwidget.cpp" line="2497"/>
         <source>Copy Set Assignments</source>
         <translation>Kopiere Set-Zuweisungen</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="2500"/>
+        <location filename="joytabwidget.cpp" line="2498"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>Sind Sie sicher, dass Sie die Aufgaben-und Geräteeigenschaften von%1 kopieren möchten?</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="617"/>
-        <location filename="joytabwidget.cpp" line="788"/>
-        <location filename="joytabwidget.cpp" line="800"/>
+        <location filename="joytabwidget.cpp" line="615"/>
+        <location filename="joytabwidget.cpp" line="786"/>
+        <location filename="joytabwidget.cpp" line="798"/>
         <source>Save Config</source>
         <translation>Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="joytabwidget.cpp" line="1576"/>
-        <location filename="joytabwidget.cpp" line="1583"/>
+        <location filename="joytabwidget.cpp" line="1574"/>
+        <location filename="joytabwidget.cpp" line="1581"/>
         <source>Set</source>
         <translation>Set</translation>
     </message>
@@ -3742,7 +3934,7 @@ Die Einstellungen werden nicht wirksam werden, bis Sie entweder alle Joysticks a
     </message>
     <message>
         <location filename="mainsettingsdialog.ui" line="600"/>
-        <location filename="mainsettingsdialog.cpp" line="1879"/>
+        <location filename="mainsettingsdialog.cpp" line="1884"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
@@ -3816,17 +4008,17 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
         <translation>Wähle das Standard-Profil-Verzeichnis</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.cpp" line="1526"/>
+        <location filename="mainsettingsdialog.cpp" line="1534"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>Sind Sie sicher, dass Sie das Profil löschen möchten?</translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.cpp" line="1943"/>
+        <location filename="mainsettingsdialog.cpp" line="1948"/>
         <source>Save Log File As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainsettingsdialog.cpp" line="1944"/>
+        <location filename="mainsettingsdialog.cpp" line="1949"/>
         <source>Log Files (*.log)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3869,96 +4061,101 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
         <translation type="vanished">Wenn die Ereignisse nicht erkannt werden, klicken Sie hier um als Administrator neuzustarten.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="218"/>
+        <location filename="mainwindow.ui" line="219"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="237"/>
-        <location filename="mainwindow.cpp" line="617"/>
+        <location filename="mainwindow.ui" line="238"/>
+        <location filename="mainwindow.cpp" line="635"/>
         <source>&amp;Quit</source>
         <translation>B&amp;eenden</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="240"/>
+        <location filename="mainwindow.ui" line="241"/>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="252"/>
-        <location filename="mainwindow.cpp" line="621"/>
+        <location filename="mainwindow.ui" line="253"/>
+        <location filename="mainwindow.cpp" line="639"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Joysticks aktualisieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="255"/>
+        <location filename="mainwindow.ui" line="256"/>
         <source>Ctrl+U</source>
         <translation>Strg+U</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
-        <location filename="mainwindow.cpp" line="609"/>
+        <location filename="mainwindow.ui" line="265"/>
+        <location filename="mainwindow.cpp" line="627"/>
         <source>&amp;Hide</source>
         <translation>&amp;Verstecken</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="267"/>
+        <location filename="mainwindow.ui" line="268"/>
         <source>Ctrl+H</source>
         <translation>Strg+H</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="276"/>
+        <location filename="mainwindow.ui" line="277"/>
         <source>&amp;About</source>
         <translation>Ü&amp;ber</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="280"/>
         <source>Ctrl+A</source>
         <translation>Strg+A</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="284"/>
+        <location filename="mainwindow.ui" line="285"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="289"/>
+        <location filename="mainwindow.ui" line="290"/>
         <source>&amp;Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="294"/>
+        <location filename="mainwindow.ui" line="295"/>
         <source>&amp;Key Checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="304"/>
+        <location filename="mainwindow.ui" line="305"/>
         <source>&amp;GitHub Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="309"/>
+        <location filename="mainwindow.ui" line="310"/>
         <source>&amp;Game Controller Mapping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="314"/>
+        <location filename="mainwindow.ui" line="315"/>
         <source>S&amp;ettings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="319"/>
+        <location filename="mainwindow.ui" line="320"/>
         <source>&amp;Stick/Pad Assign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="324"/>
+        <location filename="mainwindow.ui" line="325"/>
         <source>&amp;Wiki</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="329"/>
-        <source>Issues</source>
+        <location filename="mainwindow.ui" line="330"/>
+        <source>&amp;Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="335"/>
+        <source>&amp;Calibration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3974,7 +4171,7 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
         <translation type="vanished">Tastenkontrolle</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="299"/>
+        <location filename="mainwindow.ui" line="300"/>
         <source>Home Page</source>
         <translation>Webseite</translation>
     </message>
@@ -3991,39 +4188,49 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
         <translation type="vanished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="340"/>
+        <location filename="mainwindow.cpp" line="351"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
-        <location filename="mainwindow.cpp" line="432"/>
-        <location filename="mainwindow.cpp" line="504"/>
-        <location filename="mainwindow.cpp" line="1565"/>
-        <location filename="mainwindow.cpp" line="1613"/>
-        <location filename="mainwindow.cpp" line="1637"/>
-        <location filename="mainwindow.cpp" line="1650"/>
+        <location filename="mainwindow.cpp" line="395"/>
+        <location filename="mainwindow.cpp" line="444"/>
+        <location filename="mainwindow.cpp" line="518"/>
+        <location filename="mainwindow.cpp" line="1620"/>
+        <location filename="mainwindow.cpp" line="1670"/>
+        <location filename="mainwindow.cpp" line="1694"/>
+        <location filename="mainwindow.cpp" line="1707"/>
         <source>(%1)</source>
         <translation>(%1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="561"/>
-        <location filename="mainwindow.cpp" line="565"/>
+        <location filename="mainwindow.cpp" line="577"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>Open File</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="613"/>
+        <location filename="mainwindow.cpp" line="631"/>
         <source>&amp;Restore</source>
         <translation>&amp;Wiederherstellen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1475"/>
+        <location filename="mainwindow.cpp" line="1169"/>
+        <source>Calibration couldn&apos;t be opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1169"/>
+        <source>You must connect at least one controller to open the window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1530"/>
         <source>Run as Administrator?</source>
         <translation>Als Administrator ausführen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1476"/>
+        <location filename="mainwindow.cpp" line="1531"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4032,17 +4239,17 @@ Some games run as Administrator which will cause events generated by antimicro t
 Manche Spiele laufen als Administrator, weshalb manche Ereignisse durch antimicro nicht von diesen Spielen erkannt werden, wenn antimicro nicht auch als Administrator ausgeführt wird. Dies geschieht auf Grund von Erlaubnisproblemen durch Benutzerkontensteuerung (UAC) Einstellungen in Windows Vista und neuer.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1501"/>
+        <location filename="mainwindow.cpp" line="1556"/>
         <source>Failed to elevate program</source>
         <translation>Berechtigungserhöhung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1502"/>
+        <location filename="mainwindow.cpp" line="1557"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>Neustart als Administrator ist fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1539"/>
+        <location filename="mainwindow.cpp" line="1594"/>
         <source>Could not find controller. Exiting.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4665,7 +4872,7 @@ auf Ihrem Bildschirm nutzen.</translation>
         <translation>Arbeitsverzeichnis konnte nicht gesetzt werden zu /</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="807"/>
+        <location filename="main.cpp" line="808"/>
         <source>Quitting Program</source>
         <translation>Beende Programm</translation>
     </message>
@@ -4750,17 +4957,17 @@ auf Ihrem Bildschirm nutzen.</translation>
         <translation>Nutze %1 als Ereignisgenerator.</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="785"/>
+        <location filename="main.cpp" line="786"/>
         <source>Could not raise process priority.</source>
         <translation>Konnte Prozesspriorität nicht erhöhen.</translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="943"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="947"/>
         <source>Last button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="943"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="947"/>
         <source>There isn&apos;t a last button pressed from gamepad in data. Did you set at least one button from gamepad for keyboard?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4936,12 +5143,12 @@ auf Ihrem Bildschirm nutzen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1673"/>
+        <location filename="mainwindow.cpp" line="1733"/>
         <source>Auto-switching to profile &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1676"/>
+        <location filename="mainwindow.cpp" line="1736"/>
         <source>Auto-switching to nullptr profile!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4965,7 +5172,7 @@ auf Ihrem Bildschirm nutzen.</translation>
     </message>
     <message>
         <location filename="quicksetdialog.cpp" line="52"/>
-        <location filename="quicksetdialog.cpp" line="221"/>
+        <location filename="quicksetdialog.cpp" line="241"/>
         <source>Quick Set %1</source>
         <translation>Schnellkonfiguration %1</translation>
     </message>
@@ -6104,114 +6311,114 @@ E</translation>
         <translation>KEINE</translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="898"/>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="914"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="902"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="918"/>
         <source>Last button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="898"/>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="914"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="902"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="918"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="985"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="989"/>
         <source>Others</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="999"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1003"/>
         <source>Applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1005"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1009"/>
         <source>Browser Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1010"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1014"/>
         <source>Browser Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1015"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1019"/>
         <source>Browser Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1020"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1024"/>
         <source>Browser Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1025"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1029"/>
         <source>Browser Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1030"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1034"/>
         <source>Browser Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1035"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1039"/>
         <source>Browser Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1040"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1044"/>
         <source>Calc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1045"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1049"/>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1050"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1054"/>
         <source>Media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1055"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1059"/>
         <source>Media Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1060"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1064"/>
         <source>Media Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1065"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1069"/>
         <source>Media Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1070"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1074"/>
         <source>Media Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1075"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1079"/>
         <source>Search</source>
         <translation type="unfinished">Suche</translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1080"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1084"/>
         <source>Volume Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1085"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1089"/>
         <source>Volume Mute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1090"/>
+        <location filename="keyboard/virtualkeyboardmousewidget.cpp" line="1094"/>
         <source>Volume Up</source>
         <translation type="unfinished"></translation>
     </message>
