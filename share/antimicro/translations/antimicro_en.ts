@@ -1552,102 +1552,108 @@ this button is being used.</translation>
     <message>
         <location filename="calibration.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="74"/>
         <location filename="calibration.cpp" line="409"/>
         <source>Start calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Start calibration</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="136"/>
         <source>Controller:</source>
-        <translation type="unfinished"></translation>
+        <translation>Controller:</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="146"/>
         <source>Sticks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sticks:</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="156"/>
         <source>Use settings from jstest-gtk</source>
-        <translation type="unfinished"></translation>
+        <translation>Use settings from jstest-gtk</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="193"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Reset settings</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="213"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancel</translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="calibration.ui" line="220"/>
         <location filename="calibration.cpp" line="449"/>
         <source>Save</source>
-        <translation type="unfinished">Save</translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="31"/>
         <location filename="calibration.cpp" line="410"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibration</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="109"/>
         <source>Do you really want to reset settings of current axes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Do you really want to reset settings of current axes?</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="203"/>
         <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibration was saved for the preset. Do you really want to reset settings?</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="229"/>
         <source>Place the joystick in the center position.
 
 It&apos;s the part, where often you don&apos;t have to move. Just skip it in such situation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Place the joystick in the center position.
+
+It&apos;s the part, where often you don&apos;t have to move. Just skip it in such situation.</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="232"/>
         <source>Calibrating center</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrating center</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="233"/>
         <source>Start second step</source>
-        <translation type="unfinished"></translation>
+        <translation>Start second step</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="256"/>
         <source>
 
 Center X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+Center X: %1</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="257"/>
         <source>
 Center Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Center Y: %1</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="283"/>
         <source>
 Place the joystick in the top-left corner many times</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Place the joystick in the top-left corner many times</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="286"/>
         <location filename="calibration.cpp" line="354"/>
         <source>Calibrating position</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrating position</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="324"/>
@@ -1655,79 +1661,91 @@ Place the joystick in the top-left corner many times</source>
         <source>
 
 X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+X: %1</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="325"/>
         <location filename="calibration.cpp" line="390"/>
         <source>
 Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Y: %1</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="351"/>
         <source>
 Place the joystick in the bottom-right corner</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Place the joystick in the bottom-right corner</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="355"/>
         <source>Start final step</source>
-        <translation type="unfinished"></translation>
+        <translation>Start final step</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="401"/>
         <source>
 
 range X: %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+range X: %1 - %2</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="402"/>
         <source>
 range Y: %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>
+range Y: %1 - %2</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="403"/>
         <source>
 
 deadzone X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+deadzone X: %1</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="404"/>
         <source>
 deadzone Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+deadzone Y: %1</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="408"/>
         <source>
 ---Calibration done!---
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+---Calibration done!---
+</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="449"/>
         <source>Calibration values have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibration values have been saved</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="476"/>
         <location filename="calibration.cpp" line="477"/>
         <source>Dead zone calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Dead zone calibration</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="476"/>
         <source>You must move X axis to the right at least five times! Keep moving!</source>
-        <translation type="unfinished"></translation>
+        <translation>You must move X axis to the right at least five times! Keep moving!</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="477"/>
         <source>You must move X axis to the left at least five times! Keep moving!</source>
-        <translation type="unfinished"></translation>
+        <translation>You must move X axis to the left at least five times! Keep moving!</translation>
     </message>
     <message>
         <location filename="calibration.cpp" line="655"/>
@@ -1735,7 +1753,7 @@ deadzone Y: %1</source>
         <location filename="calibration.cpp" line="711"/>
         <location filename="calibration.cpp" line="712"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Axis %1</translation>
+        <translation>Axis %1</translation>
     </message>
 </context>
 <context>
@@ -2989,7 +3007,7 @@ functionality to an analog stick.</translation>
         <location filename="joycontrolstickeditdialog.ui" line="754"/>
         <source>Na&amp;me:</source>
         <oldsource>Name:</oldsource>
-        <translation type="unfinished">Name:</translation>
+        <translation>Na&amp;me:</translation>
     </message>
     <message>
         <location filename="joycontrolstickeditdialog.ui" line="764"/>
