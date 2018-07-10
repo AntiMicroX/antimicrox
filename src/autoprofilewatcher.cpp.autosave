@@ -430,8 +430,11 @@ void AutoProfileWatcher::syncProfileAssignment()
                 if (!windowName.isEmpty())
                 {
                     info->setWindowName(windowName);
+                    qDebug() << "WINDOW NAME IN AUTOPROFILEWATCHER: " << windowName;
 
                     QList<AutoProfileInfo*> templist;
+                    
+                    
                     if (getWindowNameProfileAssignments().contains(windowName))
                     {
                         templist = getWindowNameProfileAssignments().value(windowName);

@@ -73,6 +73,9 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     this->originalWindowClass = info->getWindowClass();
     this->originalWindowName = info->getWindowName();
 
+    if (info->isPartialState()) ui->setPartialCheckBox->setChecked(true);
+    else ui->setPartialCheckBox->setChecked(false);
+
     QListIterator<QString> iterGUIDs(reservedGUIDS);
     while (iterGUIDs.hasNext())
     {
@@ -214,9 +217,11 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
 
     info->setProfileLocation(ui->profileLineEdit->text());
     int deviceIndex = ui->devicesComboBox->currentIndex();
+
     if (deviceIndex > 0)
     {
         QVariant temp = ui->devicesComboBox->itemData(deviceIndex, Qt::UserRole);
+
         // Assume that if the following is not true, the GUID should
         // not be changed.
         if (!temp.isNull())
@@ -236,6 +241,8 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
     info->setWindowClass(ui->winClassLineEdit->text());
     info->setWindowName(ui->winNameLineEdit->text());
     info->setDefaultState(ui->asDefaultCheckBox->isChecked());
+    info->setPartialState(ui->setPartialCheckBox->isChecked());
+
 }
 
 void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
@@ -589,4 +596,10 @@ bool AddEditAutoProfileDialog::getDefaultInfo() const {
 QList<QString> const& AddEditAutoProfileDialog::getReservedGUIDs() {
 
     return reservedGUIDs;
+}
+
+void AddEditAutoProfileDialog::on_setPartialCheckBox_stateChanged(int arg1)
+{
+    if (arg1 == 0) ui->winNameLineEdit->setEnabled(false);
+    else ui->winNameLineEdit->setEnabled(true);
 }

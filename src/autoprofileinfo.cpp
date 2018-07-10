@@ -24,7 +24,7 @@
 
 
 AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
-                                 QString exe, bool active, QObject *parent) :
+                                 QString exe, bool active, bool partialTitle, QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -34,10 +34,11 @@ AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
     setExe(exe);
     setActive(active);
     setDefaultState(false);
+    setPartialState(partialTitle);
 }
 
 AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
-                                 bool active, QObject *parent) :
+                                 bool active, bool partialTitle, QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -46,6 +47,7 @@ AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
     setProfileLocation(profileLocation);
     setActive(active);
     setDefaultState(false);
+    setPartialState(partialTitle);
 }
 
 AutoProfileInfo::AutoProfileInfo(QObject *parent) :
@@ -55,6 +57,7 @@ AutoProfileInfo::AutoProfileInfo(QObject *parent) :
 
     setActive(true);
     setDefaultState(false);
+    setPartialState(false);
 }
 
 AutoProfileInfo::~AutoProfileInfo()
@@ -81,6 +84,7 @@ void AutoProfileInfo::setProfileLocation(QString profileLocation)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QFileInfo info(profileLocation);
+
     if ((profileLocation != this->profileLocation) &&
         info.exists() && info.isReadable())
     {
@@ -198,4 +202,18 @@ QString AutoProfileInfo::getDeviceName() const
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return deviceName;
+}
+
+void AutoProfileInfo::setPartialState(bool value)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    this->partialState = value;
+}
+
+bool AutoProfileInfo::isPartialState()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return partialState;
 }

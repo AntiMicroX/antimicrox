@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>706</width>
-    <height>578</height>
+    <height>582</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -55,7 +55,7 @@
         <bool>false</bool>
        </property>
        <property name="currentRow">
-        <number>0</number>
+        <number>-1</number>
        </property>
        <item>
         <property name="text">
@@ -92,7 +92,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -918,7 +918,7 @@ precise.</string>
               <item row="0" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
-                 <string>Histor&amp;y Size:</string>
+                 <string>History Si&amp;ze:</string>
                 </property>
                 <property name="buddy">
                  <cstring>historySizeSpinBox</cstring>
