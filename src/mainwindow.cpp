@@ -103,6 +103,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     else
     {
         this->appWatcher = nullptr;
+        qDebug() << "appWatcher instance set to null pointer";
     }
     #endif
 #elif defined(Q_OS_WIN)
@@ -1318,6 +1319,7 @@ void MainWindow::openMainSettingsDialog()
     connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkAutoProfileWatcherTimer);
     connect(dialog, &MainSettingsDialog::rejected, this, &MainWindow::checkAutoProfileWatcherTimer);
     appWatcher->stopTimer();
+    qDebug() << "Stopping appWatcher in openMainSettingsDialog";
     }
 
 #elif defined(USE_SDL_2) && defined(Q_OS_WIN)
@@ -1763,6 +1765,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                     {
                         found = true;
                         iter.toBack();
+                        qDebug() << "autoProfileInfo has the same GUID as GUID of joystick and the autoProfile is default. Found = true.";
                     }
                 }
 
@@ -1777,6 +1780,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                     if (appWatcher->isGUIDLocked(tempguid))
                     {
                         found = true;
+                        qDebug() << "GUID is locked in appWatcher. Found = true.";
                     }
                 }
 
@@ -1787,21 +1791,26 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                     if (info->getProfileLocation().isEmpty())
                     {
                         widget->setCurrentConfig(0);
+                        qDebug() << "profile location is empty. setCurrentConfig(0)";
                     }
                     else
                     {
                         widget->loadConfigFile(info->getProfileLocation());
+                        qDebug() << "loaded config file for current AutoLoadInfo";
                     }
                 }
             }
             else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
             {
+                qDebug() << "GUID of AutoProfileInfo: " << info->getGUID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
                 if (info->getProfileLocation().isEmpty())
                 {
+                    qDebug() << "profile location of AutoProfileInfo is empty. Set first config";
                     widget->setCurrentConfig(0);
                 }
                 else
                 {
+                    qDebug() << "load config file for AutoProfileInfo";
                     widget->loadConfigFile(info->getProfileLocation());
                 }
             }
@@ -1826,10 +1835,12 @@ void MainWindow::checkAutoProfileWatcherTimer()
     if (autoProfileActive == "1")
     {
         appWatcher->startTimer();
+        qDebug() << "Started timer for appWatcher";
     }
     else
     {
         appWatcher->stopTimer();
+        qDebug() << "Stopped timer for appWatcher";
     }
     #if defined(Q_OS_UNIX)
     }

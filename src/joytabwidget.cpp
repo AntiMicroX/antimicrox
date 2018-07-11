@@ -495,6 +495,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     reconnectCheckUnsavedEvent();
     reconnectMainComboBoxEvents();
+
 }
 
 void JoyTabWidget::openConfigFileDialog()
@@ -1372,7 +1373,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
 
                 if ((numberRecentProfiles > 0) && (configBox->count() == (numberRecentProfiles + 1)))
                 {
-                    configBox->removeItem(numberRecentProfiles-1);
+                    configBox->removeItem(numberRecentProfiles - 1);
                     //configBox->removeItem(5);
                 }
                 configBox->insertItem(1, PadderCommon::getProfileName(fileinfo), fileinfo.absoluteFilePath());
@@ -1395,10 +1396,6 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
 void JoyTabWidget::showQuickSetDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-   // QuickSetDialog *dialog = new QuickSetDialog(joystick, this);
-   // connect(dialog, &QuickSetDialog::finished, this, &JoyTabWidget::refreshButtons);
-   // dialog->show();
 
     ButtonEditDialog *dialog = new ButtonEditDialog(joystick, this);
     connect(dialog, &ButtonEditDialog::finished, this, &JoyTabWidget::refreshButtons);
