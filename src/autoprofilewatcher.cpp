@@ -261,8 +261,18 @@ void AutoProfileWatcher::runAppCheck()
                                 info->getExe() == baseAppFileName)) ? 1 : 0;
                 numMatched += (!info->getWindowClass().isEmpty() &&
                                info->getWindowClass() == nowWindowClass) ? 1 : 0;
-                numMatched += (!info->getWindowName().isEmpty() &&
-                               info->getWindowName() == nowWindowName) ? 1 : 0;
+
+
+                if (info->isPartialState()) {
+
+                    numMatched += (!info->getWindowName().isEmpty() &&
+                                   nowWindowName.contains(info->getWindowName())) ? 1 : 0;
+                } else {
+
+                    numMatched += (!info->getWindowName().isEmpty() &&
+                                   info->getWindowName() == nowWindowName) ? 1 : 0;
+                }
+
 
                 if (numProps == numMatched)
                 {
