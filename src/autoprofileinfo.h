@@ -29,9 +29,9 @@ class AutoProfileInfo : public QObject
 
 public:
     explicit AutoProfileInfo(QString guid, QString profileLocation,
-                             bool active, QObject *parent = nullptr);
+                             bool active, bool partialTitle, QObject *parent = nullptr);
     explicit AutoProfileInfo(QString guid, QString profileLocation,
-                             QString exe, bool active, QObject *parent = nullptr);
+                             QString exe, bool active, bool partialTitle, QObject *parent = nullptr);
     explicit AutoProfileInfo(QObject *parent=0);
     ~AutoProfileInfo();
 
@@ -59,6 +59,9 @@ public:
     void setDefaultState(bool value);
     bool isCurrentDefault();
 
+    void setPartialState(bool value);
+    bool isPartialState();
+
 private:
     QString guid;
     QString profileLocation;
@@ -68,6 +71,7 @@ private:
     QString windowName;
     bool active;
     bool defaultState;
+    bool partialState;
 
 };
 

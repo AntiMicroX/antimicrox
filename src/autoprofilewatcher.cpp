@@ -31,9 +31,9 @@
 #include <QApplication>
 
 #if defined(Q_OS_UNIX) && defined(WITH_X11)
-#include "x11extras.h"
+    #include "x11extras.h"
 #elif defined(Q_OS_WIN)
-#include "winextras.h"
+    #include "winextras.h"
 #endif
 
 
@@ -48,7 +48,11 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
 
     syncProfileAssignment();
 
-    runAppCheck();
+    checkWindowTimer.setInterval(1000);
+    checkWindowTimer.start();
+
+    connect(&(checkWindowTimer), &QTimer::timeout, this, &AutoProfileWatcher::runAppCheck);
+
 }
 
 void AutoProfileWatcher::startTimer()
@@ -104,6 +108,7 @@ void AutoProfileWatcher::runAppCheck()
 #ifdef Q_OS_WIN
     nowWindowName = WinExtras::getCurrentWindowText();
 #elif defined(Q_OS_UNIX)
+
     long currentWindow = X11Extras::getInstance()->getWindowInFocus();
     if (currentWindow > 0)
     {
@@ -123,7 +128,13 @@ void AutoProfileWatcher::runAppCheck()
     }
 #endif
 
+    qDebug() << "WINDOW CLASS: " << nowWindowClass;
+    qDebug() << "WINDOW NAME: " << nowWindowName;
+    qDebug() << "WINDOW IN FOCUS: " << nowWindow;
+
     bool checkForTitleChange = getWindowNameProfileAssignments().size() > 0;
+
+    qDebug() << "checkForTitleChange: " << checkForTitleChange;
 
 #ifdef Q_OS_WIN
     if (!focusedWidget && ((!appLocation.isEmpty() && (appLocation != currentApplication)) ||
@@ -170,12 +181,65 @@ void AutoProfileWatcher::runAppCheck()
             fullSet.unite(tempSet);
         }
 
-        if (!nowWindowName.isEmpty() && getWindowNameProfileAssignments().contains(nowWindowName))
+        // part window title
+        if (!nowWindowName.isEmpty())
         {
-            QSet<AutoProfileInfo*> tempSet;
-            tempSet = getWindowNameProfileAssignments().value(nowWindowName).toSet();
-            fullSet = fullSet.unite(tempSet);
+            QHashIterator< QString, QList< AutoProfileInfo *> > iter(getWindowNameProfileAssignments());
+            while (iter.hasNext())
+            {
+                iter.next();
+
+                bool hasOnePartName = false;
+
+                QListIterator< AutoProfileInfo* > iterList(iter.value());
+                while (iterList.hasNext()) {
+
+                    AutoProfileInfo* autoInfo = iterList.next();
+
+                    if (autoInfo->isPartialState()) {
+                        hasOnePartName = true;
+                        break;
+                    }
+                }
+
+                if (hasOnePartName) {
+
+                    qDebug() << "IT HAS A PARTIAL TITLE NAME";
+
+                    if (nowWindowName.contains(iter.key())) {
+
+                        qDebug() << "WINDOW: \"" << nowWindowName << "\" includes \"" << iter.key() << "\"";
+
+                        QSet< AutoProfileInfo* > tempSet;
+                        QList< AutoProfileInfo *> list = iter.value();
+                        tempSet = list.toSet();
+                        fullSet = fullSet.unite(tempSet);
+
+                    } else {
+
+                        qDebug() << "WINDOW: \"" << nowWindowName << "\" doesn't include \"" << iter.key() << "\"";
+                    }
+
+                } else {
+
+                    qDebug() << "IT HAS A FULL TITLE NAME";
+
+                    if (iter.key() == nowWindowName) {
+
+                        qDebug() << "WINDOW: \"" << nowWindowName << "\" is equal to hash key: \"" << iter.key() << "\"";
+
+                        QSet<AutoProfileInfo*> tempSet;
+                        tempSet = getWindowNameProfileAssignments().value(nowWindowName).toSet();
+                        fullSet = fullSet.unite(tempSet);
+
+                    } else {
+
+                        qDebug() << "WINDOW: \"" << nowWindowName << "\" is not equal to hash key: \"" << iter.key() << "\"";
+                    }
+                }
+            }
         }
+
 
         QHash<QString, int> highestMatchCount;
         QHash<QString, AutoProfileInfo*> highestMatches;
@@ -197,8 +261,18 @@ void AutoProfileWatcher::runAppCheck()
                                 info->getExe() == baseAppFileName)) ? 1 : 0;
                 numMatched += (!info->getWindowClass().isEmpty() &&
                                info->getWindowClass() == nowWindowClass) ? 1 : 0;
-                numMatched += (!info->getWindowName().isEmpty() &&
-                               info->getWindowName() == nowWindowName) ? 1 : 0;
+
+
+                if (info->isPartialState()) {
+
+                    numMatched += (!info->getWindowName().isEmpty() &&
+                                   nowWindowName.contains(info->getWindowName())) ? 1 : 0;
+                } else {
+
+                    numMatched += (!info->getWindowName().isEmpty() &&
+                                   info->getWindowName() == nowWindowName) ? 1 : 0;
+                }
+
 
                 if (numProps == numMatched)
                 {
@@ -280,7 +354,7 @@ void AutoProfileWatcher::syncProfileAssignment()
     bool defaultActive = allActive == "1" ? true : false;
     if (defaultActive)
     {
-        allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, this);
+        allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, 0, this);
         allDefaultInfo->setDefaultState(true);
     }
 
@@ -299,7 +373,7 @@ void AutoProfileWatcher::syncProfileAssignment()
             bool profileActive = active == "1" ? true : false;
             if (profileActive && guid != "all")
             {
-                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
+                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, 0, this);
                 info->setDefaultState(true);
                 defaultProfileAssignments.insert(guid, info);
             }
@@ -317,6 +391,9 @@ void AutoProfileWatcher::syncProfileAssignment()
         profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
         windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
+        QString partialTitle = settings->value(QString("AutoProfile%1PartialTitle").arg(i), 0).toString();
+        bool partialTitleBool = partialTitle == "1" ? true : false;
+
 #ifdef Q_OS_UNIX
         windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
 #else
@@ -331,7 +408,7 @@ void AutoProfileWatcher::syncProfileAssignment()
             bool profileActive = active == "1" ? true : false;
             if (profileActive)
             {
-                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
+                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, partialTitleBool, this);
 
                 if (!windowClass.isEmpty())
                 {
@@ -342,19 +419,41 @@ void AutoProfileWatcher::syncProfileAssignment()
                     {
                         templist = getWindowClassProfileAssignments().value(windowClass);
                     }
+
                     templist.append(info);
                     windowClassProfileAssignments.insert(windowClass, templist);
                 }
 
+                // look here!
+                // partly watching is needed for window title
                 if (!windowName.isEmpty())
                 {
                     info->setWindowName(windowName);
+                    qDebug() << "WINDOW NAME IN AUTOPROFILEWATCHER: " << windowName;
 
                     QList<AutoProfileInfo*> templist;
+
+                    QHashIterator<QString, QList<AutoProfileInfo*> > windows(getWindowNameProfileAssignments());
+
+                    qDebug() << "getWindowNameProfileAssignments contains such elements like: ";
+
+                    while(windows.hasNext()) {
+
+                        windows.next();
+
+                        qDebug() << windows.key();
+                    }
+
                     if (getWindowNameProfileAssignments().contains(windowName))
                     {
+                        qDebug() << "getWindowNameProfileAssignments contains " << windowName;
                         templist = getWindowNameProfileAssignments().value(windowName);
+
+                    } else {
+
+                        qDebug() << "getWindowNameProfileAssignments doesn't contain " << windowName;
                     }
+
                     templist.append(info);
                     windowNameProfileAssignments.insert(windowName, templist);
                 }
@@ -368,6 +467,7 @@ void AutoProfileWatcher::syncProfileAssignment()
                     {
                         templist = getAppProfileAssignments().value(exe);
                     }
+
                     templist.append(info);
                     appProfileAssignments.insert(exe, templist);
 
@@ -379,6 +479,7 @@ void AutoProfileWatcher::syncProfileAssignment()
                         {
                             templist = getAppProfileAssignments().value(baseExe);
                         }
+
                         templist.append(info);
                         appProfileAssignments.insert(baseExe, templist);
                     }

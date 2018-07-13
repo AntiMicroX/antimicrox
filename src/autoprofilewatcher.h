@@ -43,7 +43,7 @@ public:
     QHash<QString, QList<AutoProfileInfo*> > const& getWindowNameProfileAssignments();
     QHash<QString, AutoProfileInfo*> const& getDefaultProfileAssignments();
 
-    static const int CHECKTIME = 1000; // time in ms
+    static const int CHECKTIME = 500; // time in ms
 
 protected:
     QString findAppLocation();
@@ -62,6 +62,7 @@ private:
     QSet<QString>& getGuidSetLocal();
 
     QTimer appTimer;
+    QTimer checkWindowTimer;
     AntiMicroSettings *settings;
     QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
     QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;

@@ -909,9 +909,11 @@ void MainSettingsDialog::populateAutoProfiles()
 
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
+    QString partialTitle = settings->value(QString("DefaultAutoProfileAll/PartialTitle"), "").toString();
 
     bool defaultActive = allActive == "1" ? true : false;
-    allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, this);
+    bool partialTitleBool = partialTitle == "1" ? true : false;
+    allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, partialTitleBool, this);
     allDefaultProfile->setDefaultState(true);
 
     QStringListIterator iter(registeredGUIDs);
@@ -923,6 +925,8 @@ void MainSettingsDialog::populateAutoProfiles()
 
         QString profile = settings->value(QString("DefaultAutoProfile-%1/Profile").arg(guid), "").toString();
         QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(guid), "0").toString();
+        QString partialTitle = settings->value(QString("DefaultAutoProfile-%1/PartialTitle").arg(guid), "0").toString();
+        bool partialTitleBool = partialTitle == "1" ? true : false;
         QString deviceName = settings->value(QString("DefaultAutoProfile-%1/DeviceName").arg(guid), "").toString();
 
         if (!guid.isEmpty() && !profile.isEmpty() && !deviceName.isEmpty())
@@ -930,7 +934,7 @@ void MainSettingsDialog::populateAutoProfiles()
             bool profileActive = active == "1" ? true : false;
             if (!defaultAutoProfiles.contains(guid) && guid != "all")
             {
-                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, this);
+                AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, partialTitleBool, this);
                 info->setDefaultState(true);
                 info->setDeviceName(deviceName);
                 defaultAutoProfiles.insert(guid, info);
@@ -958,6 +962,8 @@ void MainSettingsDialog::populateAutoProfiles()
         QString guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
         QString profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         QString active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
+        QString partialTitle = settings->value(QString("AutoProfile%1PartialTitle").arg(i), 0).toString();
+        bool partialTitleBool = partialTitle == "1" ? true : false;
         QString deviceName = settings->value(QString("AutoProfile%1DeviceName").arg(i), "").toString();
 
         // Check if all required elements exist. If not, assume that the end of the
@@ -966,7 +972,7 @@ void MainSettingsDialog::populateAutoProfiles()
             !guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
-            AutoProfileInfo *info = new AutoProfileInfo(guid, profile, exe, profileActive, this);
+            AutoProfileInfo *info = new AutoProfileInfo(guid, profile, exe, profileActive, partialTitleBool, this);
             if (!deviceName.isEmpty())
             {
                 info->setDeviceName(deviceName);
@@ -1264,6 +1270,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
     {
         AutoProfileInfo *info = iterProfiles.next();
         QString defaultActive = info->isActive() ? "1" : "0";
+        QString partialTitle = info->isPartialState() ? "1" : "0";
         if (!info->getExe().isEmpty())
         {
             settings->setValue(QString("AutoProfile%1Exe").arg(i), info->getExe());
@@ -1282,6 +1289,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
         settings->setValue(QString("AutoProfile%1GUID").arg(i), info->getGUID());
         settings->setValue(QString("AutoProfile%1Profile").arg(i), info->getProfileLocation());
         settings->setValue(QString("AutoProfile%1Active").arg(i), defaultActive);
+        settings->setValue(QString("AutoProfile%1PartialTitle").arg(i), partialTitle);
         settings->setValue(QString("AutoProfile%1DeviceName").arg(i), info->getDeviceName());
         i++;
     }
@@ -1581,6 +1589,7 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int selectedRow = ui->autoProfileTableWidget->currentRow();
+
     if (selectedRow >= 0)
     {
         QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);

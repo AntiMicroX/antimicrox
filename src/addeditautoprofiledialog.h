@@ -77,6 +77,8 @@ private slots:
     void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
 #endif
 
+    void on_setPartialCheckBox_stateChanged(int arg1);
+
 private:
     Ui::AddEditAutoProfileDialog *ui;
 
