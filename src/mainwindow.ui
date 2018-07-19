@@ -192,13 +192,14 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>29</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">
     <property name="title">
      <string>&amp;App</string>
     </property>
+    <addaction name="actionImportProfile"/>
     <addaction name="actionHide"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -333,6 +334,11 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionCalibration">
    <property name="text">
     <string>&amp;Calibration</string>
+   </property>
+  </action>
+  <action name="actionImportProfile">
+   <property name="text">
+    <string>Import profile</string>
    </property>
   </action>
  </widget>
