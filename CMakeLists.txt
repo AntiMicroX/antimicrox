@@ -230,6 +230,7 @@ set(antimicro_SOURCES
     src/slotitemlistwidget.cpp
     src/eventhandlers/baseeventhandler.cpp
     src/eventhandlerfactory.cpp
+    src/profileimporter.cpp
     src/uihelpers/advancebuttondialoghelper.cpp
     src/uihelpers/buttoneditdialoghelper.cpp
     src/uihelpers/joytabwidgethelper.cpp
@@ -327,6 +328,7 @@ set(antimicro_HEADERS
     src/slotitemlistwidget.h
     src/eventhandlers/baseeventhandler.h
     src/eventhandlerfactory.h
+    src/profileimporter.h
     src/uihelpers/advancebuttondialoghelper.h
     src/uihelpers/buttoneditdialoghelper.h
     src/uihelpers/joytabwidgethelper.h
@@ -364,6 +366,7 @@ set(antimicro_FORMS src/mainwindow.ui
     src/extraprofilesettingsdialog.ui
     src/capturedwindowinfodialog.ui
     src/calibration.ui
+    src/profileimporter.ui
 )
 
 set(antimicro_RESOURCES src/resources.qrc)
