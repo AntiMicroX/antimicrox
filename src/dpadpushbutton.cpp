@@ -23,6 +23,7 @@
 
 #include <QDebug>
 
+
 DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {

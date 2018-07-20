@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 	// Update log info based on config values
 	if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
 	    settings.contains("LogLevel")) {
-	  appLogger.setLogLevel( (Logger::LogLevel) settings.value("LogLevel").toInt() );
+      appLogger.setLogLevel( static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()) );
 	}
 	if( cmdutility.getCurrentLogFile().isEmpty() &&
 	    settings.contains("LogFile")) {
@@ -506,7 +506,7 @@ int main(int argc, char *argv[])
     // Update log info based on config values
     if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
 	settings->contains("LogLevel")) {
-      appLogger.setLogLevel( (Logger::LogLevel)settings->value("LogLevel").toInt() );
+      appLogger.setLogLevel( static_cast<Logger::LogLevel>(settings->value("LogLevel").toInt()) );
     }
     if( cmdutility.getCurrentLogFile().isEmpty() &&
 	settings->contains("LogFile")) {
@@ -548,7 +548,7 @@ int main(int argc, char *argv[])
     sigemptyset(&termaction.sa_mask);
     termaction.sa_flags = 0;
 
-    sigaction(SIGTERM, &termaction, 0);
+    sigaction(SIGTERM, &termaction, nullptr);
 
     // Have program handle SIGINT
     struct sigaction termint;
@@ -556,7 +556,7 @@ int main(int argc, char *argv[])
     sigemptyset(&termint.sa_mask);
     termint.sa_flags = 0;
 
-    sigaction(SIGINT, &termint, 0);
+    sigaction(SIGINT, &termint, nullptr);
 
 #endif
 

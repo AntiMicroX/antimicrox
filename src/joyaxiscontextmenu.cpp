@@ -27,6 +27,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent) :
     QMenu(parent),
     helper(axis)

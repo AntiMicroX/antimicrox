@@ -252,7 +252,7 @@ void AdvanceButtonDialog::changeTurboText(int value)
     if (value >= MINIMUMTURBO)
     {
         double delay = value / 100.0;
-        double clicks = 100.0 / (double)value;
+        double clicks = 100.0 / static_cast<double>(value);
         QString delaytext = QString::number(delay, 'g', 3).append(" ").append(trUtf8("sec."));
         QString labeltext = QString::number(clicks, 'g', 2).append(" ").append(trUtf8("/sec."));
 
@@ -336,7 +336,7 @@ void AdvanceButtonDialog::deleteSlot()
 
     QListWidgetItem *item = ui->slotListWidget->takeItem(index);
     delete item;
-    item = 0;
+    item = nullptr;
 
     // Deleted last button. Replace with new blank button
     if (index == (itemcount - 1))
@@ -1276,7 +1276,7 @@ void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int milliseconds = (static_cast<int>(value) * 1000) + (fmod(value, 1.0) * 1000);
+    int milliseconds = (static_cast<int>(value) * 1000) + static_cast<int>(fmod(value, 1.0) * 1000);
     button->setCycleResetTime(milliseconds);
 }
 

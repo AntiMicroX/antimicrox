@@ -27,6 +27,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {

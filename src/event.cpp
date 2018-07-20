@@ -100,8 +100,8 @@ void fakeAbsMouseCoordinates(double springX, double springY,
     destMidWidth = destSpringWidth / 2;
     destMidHeight = destSpringHeight / 2;
 
-    finalx = (screenMidwidth + (springX * destMidWidth) + deskRect.x());
-    finaly = (screenMidheight + (springY * destMidHeight) + deskRect.y());
+    finalx = (screenMidwidth + (static_cast<int>(springX) * destMidWidth) + deskRect.x());
+    finaly = (screenMidheight + (static_cast<int>(springY) * destMidHeight) + deskRect.y());
 }
 
 // Create the event used by the operating system.
@@ -217,13 +217,13 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
                 int xRelativeMoovCoor = 0;
                 if (relativeSpring->displacementX >= -1.0)
                 {
-                    xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
+                    xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
                 }
 
                 int yRelativeMoovCoor = 0;
                 if (relativeSpring->displacementY >= -1.0)
                 {
-                    yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
+                    yRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementY) * destRelativeHeight) / 2;
                 }
 
                 xmovecoor += xRelativeMoovCoor;
@@ -356,8 +356,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             }
         }
 
-        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (fullSpring->displacementX * destMidWidth) + deskRect.x()): pivotX;
-        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (fullSpring->displacementY * destMidHeight) + deskRect.y()) : pivotY;
+        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (static_cast<int>(fullSpring->displacementX) * destMidWidth) + deskRect.x()): pivotX;
+        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (static_cast<int>(fullSpring->displacementY) * destMidHeight) + deskRect.y()) : pivotY;
 
         int fullSpringDestX = xmovecoor;
         int fullSpringDestY = ymovecoor;
@@ -372,13 +372,13 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             int xRelativeMoovCoor = 0;
             if (relativeSpring->displacementX >= -1.0)
             {
-                xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
+                xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
             }
 
             int yRelativeMoovCoor = 0;
             if (relativeSpring->displacementY >= -1.0)
             {
-                yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
+                yRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementY) * destRelativeHeight) / 2;
             }
 
             xmovecoor += xRelativeMoovCoor;
@@ -687,7 +687,7 @@ QString keycodeToKeyString(int keycode, int alias)
         {
             Display* display = X11Extras::getInstance()->display();
             newkey = QString("0x%1").arg(keycode, 0, 16);
-            QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, keycode, 0, 0));
+            QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0));
             QString tempalias = X11Extras::getInstance()->getDisplayString(tempkey);
             if (!tempalias.isEmpty())
             {
@@ -696,7 +696,7 @@ QString keycodeToKeyString(int keycode, int alias)
             else
             {
                 XKeyPressedEvent tempevent;
-                tempevent.keycode = keycode;
+                tempevent.keycode = static_cast<unsigned int>(keycode);
                 tempevent.type = KeyPress;
                 tempevent.display = display;
                 tempevent.state = 0;
@@ -784,7 +784,7 @@ int X11KeyCodeToX11KeySym(int keycode)
 #elif defined(Q_OS_UNIX)
     #ifdef WITH_X11
     Display* display = X11Extras::getInstance()->display();
-    int tempcode = XkbKeycodeToKeysym(display, keycode, 0, 0);
+    int tempcode = static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0));
     return tempcode;
     #else
 
@@ -811,7 +811,7 @@ QString keysymToKeyString(int keysym, int alias)
         int keycode = 0;
         if (keysym > 0)
         {
-            keycode = XKeysymToKeycode(display, keysym);
+            keycode = XKeysymToKeycode(display, static_cast<KeySym>(keysym));
         }
         newkey = keycodeToKeyString(keycode);
     }

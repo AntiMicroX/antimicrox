@@ -23,6 +23,7 @@
 #include <QDebug>
 #include <QMessageBox>
 
+
 ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *parent) :
     QObject(parent)
 {

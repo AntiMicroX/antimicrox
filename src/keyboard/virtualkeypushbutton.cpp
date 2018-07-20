@@ -31,6 +31,8 @@
 
 QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
 
+
+
 VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent) :
     QPushButton(parent)
 {

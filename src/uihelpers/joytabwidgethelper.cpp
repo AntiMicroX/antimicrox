@@ -26,6 +26,7 @@
 
 #include <QDebug>
 
+
 JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent) :
     QObject(parent)
 {

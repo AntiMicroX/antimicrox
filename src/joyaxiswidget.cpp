@@ -23,6 +23,7 @@
 
 #include <QDebug>
 
+
 JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {

@@ -24,6 +24,7 @@
 #include <QStyle>
 #include <QDebug>
 
+
 JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
     QPushButton(parent)
 {

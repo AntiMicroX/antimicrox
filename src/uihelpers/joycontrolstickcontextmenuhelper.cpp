@@ -24,6 +24,7 @@
 #include <QHashIterator>
 #include <QDebug>
 
+
 JoyControlStickContextMenuHelper::JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent) :
     QObject(parent)
 {

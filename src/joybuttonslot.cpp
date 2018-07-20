@@ -885,10 +885,6 @@ bool JoyButtonSlot::isValidSlot()
     {
         break;
     }
-    default:
-    {
-        break;
-    }
     }
 
     return result;

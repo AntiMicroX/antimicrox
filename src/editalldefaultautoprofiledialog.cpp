@@ -29,6 +29,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
                                                                  QWidget *parent) :
     QDialog(parent),

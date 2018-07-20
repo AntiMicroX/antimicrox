@@ -30,6 +30,7 @@
 #include <QMetaObject>
 #include <QDebug>
 
+
 MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget *parent) :
     MouseSettingsDialog(parent),
     helper(button)

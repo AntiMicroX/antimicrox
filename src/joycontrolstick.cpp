@@ -43,6 +43,7 @@ const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::S
 const double JoyControlStick::DEFAULTCIRCLE = 0.0;
 const int JoyControlStick::DEFAULTSTICKDELAY = 0;
 
+
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2,
                                  int index, int originset, QObject *parent) :
     QObject(parent)
@@ -480,16 +481,16 @@ double JoyControlStick::getDistanceFromDeadZone(int axisXValue, int axisYValue)
 
     int squared_dist = (axis1Value * axis1Value)
             + (axis2Value * axis2Value);
-    int dist = sqrt(squared_dist);
+    int dist = static_cast<int>(sqrt(squared_dist));
 
-    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double squareStickFullPhi = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
     double adjustedDist = (circleStickFull > 1.0) ? (dist / circleStickFull) : dist;
     double adjustedDeadZone = (circleStickFull > 1.0) ? (deadZone / circleStickFull) : deadZone;
 
-    distance = (adjustedDist - adjustedDeadZone)/(double)(maxZone - adjustedDeadZone);
+    distance = (adjustedDist - adjustedDeadZone)/static_cast<double>(maxZone - adjustedDeadZone);
     distance = qBound(0.0, distance, 1.0);
     return distance;
 }
@@ -530,9 +531,9 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
-    int deadY = abs(floor(deadZone * ang_cos + 0.5));
+    int deadY = static_cast<int>(abs(floor(deadZone * ang_cos + 0.5)));
 
-    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double squareStickFullPhi = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
@@ -679,7 +680,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
     double ang_cos = cos(angle2);
 
     int deadX = abs(static_cast<int>(floor(deadZone * ang_sin + 0.5)));
-    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double squareStickFullPhi = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
@@ -1236,9 +1237,9 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             else if ((xml->name() == JoyControlStickButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
-                JoyControlStickButton *button = buttons.value((JoyStickDirections)index);
+                JoyControlStickButton *button = buttons.value(static_cast<JoyStickDirections>(index));
 
-                if (button)
+                if (button != nullptr)
                 {
                     button->readConfig(xml);
                 }
@@ -1967,7 +1968,7 @@ int JoyControlStick::calculateCircleXValue(int axisXValue, int axisYValue)
         double ang_sin = sin(angle2);
         double ang_cos = cos(angle2);
 
-        double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+        double squareStickFull = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
         double circle = this->circle;
         double circleStickFull = (squareStickFull - 1) * circle + 1;
 
@@ -1991,7 +1992,7 @@ int JoyControlStick::calculateCircleYValue(int axisXValue, int axisYValue)
         double ang_sin = sin(angle2);
         double ang_cos = cos(angle2);
 
-        double squareStickFull = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+        double squareStickFull = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
         double circle = this->circle;
         double circleStickFull = (squareStickFull - 1) * circle + 1;
 
@@ -2174,7 +2175,7 @@ bool JoyControlStick::isDefault()
     value = value && (maxZone == DEFAULTMAXZONE);
     value = value && (diagonalRange == DEFAULTDIAGONALRANGE);
     value = value && (currentMode == DEFAULTMODE);
-    value = value && (circle == DEFAULTCIRCLE);
+    value = value && (qFuzzyCompare(circle, DEFAULTCIRCLE));
     value = value && (stickDelay == DEFAULTSTICKDELAY);
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
@@ -2455,7 +2456,7 @@ double JoyControlStick::getButtonsPresetSensitivity()
         {
             JoyControlStickButton *button = iter.next().value();
             double temp = button->getSensitivity();
-            if (temp != presetSensitivity)
+            if (qFuzzyCompare(temp, presetSensitivity))
             {
                 presetSensitivity = 1.0;
                 iter.toBack();
@@ -2818,15 +2819,15 @@ JoyControlStick::determineStandardModeDirection(int axisXValue, int axisYValue)
     double bearing = calculateBearing(axisXValue, axisYValue);
 
     QList<double> anglesList = getDiagonalZoneAngles();
-    int initialLeft = anglesList.value(0);
-    int initialRight = anglesList.value(1);
-    int upRightInitial = anglesList.value(2);
-    int rightInitial = anglesList.value(3);
-    int downRightInitial = anglesList.value(4);
-    int downInitial = anglesList.value(5);
-    int downLeftInitial = anglesList.value(6);
-    int leftInitial = anglesList.value(7);
-    int upLeftInitial = anglesList.value(8);
+    int initialLeft = static_cast<int>(anglesList.value(0));
+    int initialRight = static_cast<int>(anglesList.value(1));
+    int upRightInitial = static_cast<int>(anglesList.value(2));
+    int rightInitial = static_cast<int>(anglesList.value(3));
+    int downRightInitial = static_cast<int>(anglesList.value(4));
+    int downInitial = static_cast<int>(anglesList.value(5));
+    int downLeftInitial = static_cast<int>(anglesList.value(6));
+    int leftInitial = static_cast<int>(anglesList.value(7));
+    int upLeftInitial = static_cast<int>(anglesList.value(8));
 
     if ((bearing <= initialRight) || (bearing >= initialLeft))
     {
@@ -3243,7 +3244,7 @@ double JoyControlStick::getButtonsEasingDuration()
         {
             JoyControlStickButton *button = iter.next().value();
             double temp = button->getEasingDuration();
-            if (temp != result)
+            if (qFuzzyCompare(temp, result))
             {
                 result = JoyButton::DEFAULTEASINGDURATION;
                 iter.toBack();
@@ -3378,7 +3379,7 @@ double JoyControlStick::getButtonsExtraAccelerationMultiplier()
             if (button != nullptr)
             {
                 double temp = button->getExtraAccelerationMultiplier();
-                if (temp != result)
+                if (qFuzzyCompare(temp, result))
                 {
                     result = JoyButton::DEFAULTEXTRACCELVALUE;
                     iter.toBack();
@@ -3429,7 +3430,7 @@ double JoyControlStick::getButtonsStartAccelerationMultiplier()
             if (button != nullptr)
             {
                 double temp = button->getStartAccelMultiplier();
-                if (temp != result)
+                if (qFuzzyCompare(temp, result))
                 {
                     result = JoyButton::DEFAULTSTARTACCELMULTIPLIER;
                     iter.toBack();
@@ -3479,7 +3480,7 @@ double JoyControlStick::getButtonsMinAccelerationThreshold()
             if (button != nullptr)
             {
                 double temp = button->getMinAccelThreshold();
-                if (temp != result)
+                if (qFuzzyCompare(temp, result))
                 {
                     result = JoyButton::DEFAULTMINACCELTHRESHOLD;
                     iter.toBack();
@@ -3529,7 +3530,7 @@ double JoyControlStick::getButtonsMaxAccelerationThreshold()
             if (button != nullptr)
             {
                 double temp = button->getMaxAccelThreshold();
-                if (temp != result)
+                if (qFuzzyCompare(temp, result))
                 {
                     result = JoyButton::DEFAULTMAXACCELTHRESHOLD;
                     iter.toBack();
@@ -3580,7 +3581,7 @@ double JoyControlStick::getButtonsAccelerationEasingDuration()
             if (button != nullptr)
             {
                 double temp = button->getAccelExtraDuration();
-                if (temp != result)
+                if (qFuzzyCompare(temp, result))
                 {
                     result = JoyButton::DEFAULTACCELEASINGDURATION;
                     iter.toBack();
@@ -4048,7 +4049,7 @@ double JoyControlStick::calculateXAxisDistance(int axisXValue)
     double distance = 0.0;
     int axis1Value = axisXValue;
 
-    distance = axis1Value / (double)(maxZone);
+    distance = axis1Value / static_cast<double>(maxZone);
     if (distance < -1.0)
     {
         distance = -1.0;
@@ -4072,7 +4073,7 @@ double JoyControlStick::calculateYAxisDistance(int axisYValue)
     double distance = 0.0;
     int axis2Value = axisYValue;
 
-    distance = axis2Value / (double)(maxZone);
+    distance = axis2Value / static_cast<double>(maxZone);
     if (distance < -1.0)
     {
         distance = -1.0;
@@ -4276,7 +4277,7 @@ double JoyControlStick::getSpringDeadCircleX()
     int deadX = abs(static_cast<int>(floor(deadZone * ang_sin + 0.5)));
     double diagonalDeadX = calculateXDiagonalDeadZone(axis1Value, axis2Value);
 
-    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double squareStickFullPhi = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 
@@ -4321,10 +4322,10 @@ double JoyControlStick::getSpringDeadCircleY()
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
-    int deadY = abs(static_cast<int>((int)floor(deadZone * ang_cos + 0.5)));
+    int deadY = abs(static_cast<int>(floor(deadZone * ang_cos + 0.5)));
     double diagonalDeadY = calculateYDiagonalDeadZone(axis1Value, axis2Value);
 
-    double squareStickFullPhi = qMin(ang_sin ? 1/fabs(ang_sin) : 2, ang_cos ? 1/fabs(ang_cos) : 2);
+    double squareStickFullPhi = qMin(static_cast<bool>(ang_sin) ? 1/fabs(ang_sin) : 2, static_cast<bool>(ang_cos) ? 1/fabs(ang_cos) : 2);
     double circle = this->circle;
     double circleStickFull = (squareStickFullPhi - 1) * circle + 1;
 

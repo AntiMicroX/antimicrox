@@ -31,6 +31,7 @@
 
 QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
+
 CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)
 {

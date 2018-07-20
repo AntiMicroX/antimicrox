@@ -32,7 +32,7 @@ BaseEventHandler::BaseEventHandler(QObject *parent) :
 
 BaseEventHandler::~BaseEventHandler()
 {
-qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 QString BaseEventHandler::getErrorString()
@@ -88,12 +88,17 @@ void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
  */
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
-qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    Q_UNUSED(xDis);
+    Q_UNUSED(yDis);
 }
 
 void BaseEventHandler::sendTextEntryEvent(QString maintext)
 {
-qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    Q_UNUSED(maintext);
 }
 
 

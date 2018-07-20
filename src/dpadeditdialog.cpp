@@ -72,7 +72,7 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
     ui->dpadNameLineEdit->setText(dpad->getDpadName());
 
     int dpadDelay = dpad->getDPadDelay();
-    ui->dpadDelaySlider->setValue(dpadDelay * .1);
+    ui->dpadDelaySlider->setValue(static_cast<int>(dpadDelay * .1));
     ui->dpadDelayDoubleSpinBox->setValue(dpadDelay * .001);
 
     PadderCommon::inputDaemonMutex.unlock();

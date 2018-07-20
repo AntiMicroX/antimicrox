@@ -26,6 +26,7 @@
 
 const QString Joystick::xmlName = "joystick";
 
+
 Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
                    AntiMicroSettings *settings, QObject *parent) :
     InputDevice(deviceIndex, settings, parent)

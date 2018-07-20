@@ -2312,7 +2312,7 @@ void JoyTabWidget::removeSetButtons(SetJoystick *set)
         }
     }
 
-    while (current_layout && ((child = current_layout->takeAt(0)) != 0))
+    while (current_layout && ((child = current_layout->takeAt(0)) != nullptr))
     {
         current_layout->removeWidget(child->widget());
         delete child->widget();

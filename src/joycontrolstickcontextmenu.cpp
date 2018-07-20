@@ -30,6 +30,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, QWidget *parent) :
     QMenu(parent),
     helper(stick)

@@ -33,18 +33,16 @@
 
 
 
-
-
 XTestEventHandler::XTestEventHandler(QObject *parent) :
     BaseEventHandler(parent)
 {
-qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 
 XTestEventHandler::~XTestEventHandler()
 {
-qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 
@@ -75,10 +73,10 @@ void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
     if (device == JoyButtonSlot::JoyKeyboard)
     {
-        int tempcode = XKeysymToKeycode(display, code);
+        int tempcode = XKeysymToKeycode(display, static_cast<unsigned long>(code));
         if (tempcode > 0)
         {
-            XTestFakeKeyEvent(display, tempcode, pressed, 0);
+            XTestFakeKeyEvent(display, static_cast<unsigned int>(tempcode), pressed, 0);
             XFlush(display);
         }
     }
@@ -93,7 +91,7 @@ void XTestEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 
     if (device == JoyButtonSlot::JoyMouseButton)
     {
-        XTestFakeButtonEvent(display, code, pressed, 0);
+        XTestFakeButtonEvent(display, static_cast<unsigned int>(code), pressed, 0);
         XFlush(display);
     }
 }
@@ -139,7 +137,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
         for (int i=0; i < maintext.size(); i++)
         {
             QtX11KeyMapper::charKeyInformation temp = keymapper->getCharKeyInformation(maintext.at(i));
-            int tempcode = XKeysymToKeycode(display, temp.virtualkey);
+            int tempcode = XKeysymToKeycode(display, static_cast<unsigned long>(temp.virtualkey));
             if (tempcode > 0)
             {
                 QList<int> tempList;
@@ -156,7 +154,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                         }
 
                         int modifiercode = shiftcode;
-                        XTestFakeKeyEvent(display, modifiercode, 1, 0);
+                        XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
                         tempList.append(modifiercode);
                     }
 
@@ -170,7 +168,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                         }
 
                         int modifiercode = controlcode;
-                        XTestFakeKeyEvent(display, modifiercode, 1, 0);
+                        XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
                         tempList.append(modifiercode);
                     }
 
@@ -184,7 +182,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                         }
 
                         int modifiercode = altcode;
-                        XTestFakeKeyEvent(display, modifiercode, 1, 0);
+                        XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
                         tempList.append(modifiercode);
                     }
 
@@ -198,12 +196,12 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                         }
 
                         int modifiercode = metacode;
-                        XTestFakeKeyEvent(display, modifiercode, 1, 0);
+                        XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
                         tempList.append(modifiercode);
                     }
                 }
 
-                XTestFakeKeyEvent(display, tempcode, 1, 0);
+                XTestFakeKeyEvent(display, static_cast<unsigned int>(tempcode), 1, 0);
                 tempList.append(tempcode);
 
                 XFlush(display);
@@ -215,7 +213,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                     while (tempiter.hasPrevious())
                     {
                         int currentcode = tempiter.previous();
-                        XTestFakeKeyEvent(display, currentcode, 0, 0);
+                        XTestFakeKeyEvent(display, static_cast<unsigned int>(currentcode), 0, 0);
                     }
 
                     XFlush(display);

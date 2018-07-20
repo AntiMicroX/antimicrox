@@ -322,7 +322,7 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
                 emit active(value);
             }
 
-            pendingDirection = (JoyDPadButton::JoyDPadDirections)value;
+            pendingDirection = static_cast<JoyDPadButton::JoyDPadDirections>(value);
 
             if (ignoresets || (dpadDelay == 0))
             {
@@ -701,7 +701,7 @@ double JoyDPad::getButtonsPresetSensitivity()
         {
             JoyDPadButton *button = iter.next().value();
             double temp = button->getSensitivity();
-            if (temp != presetSensitivity)
+            if (qFuzzyCompare(temp, presetSensitivity))
             {
                 presetSensitivity = 1.0;
                 iter.toBack();
@@ -1188,7 +1188,7 @@ double JoyDPad::getButtonsEasingDuration()
         {
             JoyDPadButton *button = iter.next().value();
             double temp = button->getEasingDuration();
-            if (temp != result)
+            if (qFuzzyCompare(temp, result))
             {
                 result = JoyButton::DEFAULTEASINGDURATION;
                 iter.toBack();

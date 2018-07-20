@@ -22,6 +22,7 @@
 
 #include <QDebug>
 
+
 GameControllerMappingDialogHelper::GameControllerMappingDialogHelper(InputDevice *device,
                                                                      QObject *parent) :
     QObject(parent)

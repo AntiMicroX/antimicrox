@@ -29,6 +29,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {

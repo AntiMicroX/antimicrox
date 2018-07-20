@@ -37,6 +37,7 @@
 
 const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
+
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                          AntiMicroSettings *settings,
                          bool graphical, QObject *parent) :
@@ -360,7 +361,7 @@ void InputDaemon::quit()
     stopped = true;
     pollResetTimer.stop();
 
-    disconnect(eventWorker, &SDLEventReader::eventRaised, this, 0);
+    disconnect(eventWorker, &SDLEventReader::eventRaised, this, nullptr);
 
     // Wait for SDL to finish. Let worker destructor close SDL.
     // Let InputDaemon destructor close thread instance.
@@ -875,7 +876,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                         {
                                             if (axis->getThrottle() != static_cast<int>(JoyAxis::NormalThrottle))
                                             {
-                                                event.jaxis.value = axis->getProperReleaseValue();
+                                                event.jaxis.value = static_cast<short>(axis->getProperReleaseValue());
                                             }
                                         }
                                     }
@@ -908,7 +909,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                             if ((event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT) ||
                                                 (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT))
                                             {
-                                                event.caxis.value = axis->getProperReleaseValue();
+                                                event.caxis.value = static_cast<short>(axis->getProperReleaseValue());
                                             }
                                         }
                                     }

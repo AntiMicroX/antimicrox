@@ -29,6 +29,7 @@
 #include <QEvent>
 #include <QFile>
 #include <QStringList>
+#include <QDate>
 #include <QDebug>
 
 AboutDialog::AboutDialog(QWidget *parent) :
@@ -57,7 +58,8 @@ void AboutDialog::fillInfoTextBrowser()
     QStringList finalInfoText = QStringList();
 
     finalInfoText.append(trUtf8("Program Version %1").arg(PadderCommon::programVersion));
-    finalInfoText.append(trUtf8("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
+    // __DATE__, __TIME__
+    finalInfoText.append(trUtf8("Program Compiled on %1 at %2").arg(QDate::currentDate().toString("MMM dd yyyy")).arg(QTime::currentTime().toString("hh:mm:ss")));
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");

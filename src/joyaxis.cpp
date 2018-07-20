@@ -28,6 +28,7 @@
 
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QtGlobal>
 #include <QDebug>
 
 // Set default values for many properties.
@@ -1132,7 +1133,7 @@ double JoyAxis::getButtonsPresetSensitivity()
 
     double presetSensitivity = 1.0;
 
-    if (paxisbutton->getSensitivity() == naxisbutton->getSensitivity())
+    if (qFuzzyCompare(paxisbutton->getSensitivity(), naxisbutton->getSensitivity()))
     {
         presetSensitivity = paxisbutton->getSensitivity();
     }
@@ -1371,7 +1372,7 @@ double JoyAxis::getButtonsEasingDuration()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double result = JoyButton::DEFAULTEASINGDURATION;
-    if (paxisbutton->getEasingDuration() == naxisbutton->getEasingDuration())
+    if (qFuzzyCompare(paxisbutton->getEasingDuration(), naxisbutton->getEasingDuration()))
     {
         result = paxisbutton->getEasingDuration();
     }

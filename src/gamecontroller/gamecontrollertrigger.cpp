@@ -225,5 +225,5 @@ JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return (ThrottleTypes)this->DEFAULTTHROTTLE;
+    return static_cast<ThrottleTypes>(this->DEFAULTTHROTTLE);
 }

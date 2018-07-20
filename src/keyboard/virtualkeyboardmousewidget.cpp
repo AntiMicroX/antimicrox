@@ -63,6 +63,8 @@
 
 QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, QString> ();
 
+
+
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog, QWidget *parent) :
     QTabWidget(parent)
 {
@@ -809,7 +811,7 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
     while (iter.hasNext())
     {
         VirtualKeyPushButton *keybutton = iter.next();
-        disconnect(keybutton, &VirtualKeyPushButton::keycodeObtained, 0, 0);
+        disconnect(keybutton, &VirtualKeyPushButton::keycodeObtained, nullptr, nullptr);
         connect(keybutton, &VirtualKeyPushButton::keycodeObtained, this, &VirtualKeyboardMouseWidget::processSingleKeyboardSelection);
     }
 
@@ -817,14 +819,14 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
     while (iterActions.hasNext())
     {
         QAction *temp = iterActions.next();
-        disconnect(temp, &QAction::triggered, 0, 0);
+        disconnect(temp, &QAction::triggered, nullptr, nullptr);
         connect(temp, &QAction::triggered, this, [this, temp](bool checked) {
             otherKeysActionSingle(temp, checked);
         });
     }
 
 
-        disconnect(noneButton, &QPushButton::clicked, 0, 0);
+        disconnect(noneButton, &QPushButton::clicked, nullptr, nullptr);
         connect(noneButton, &QPushButton::clicked, this, &VirtualKeyboardMouseWidget::clearButtonSlotsFinish);
 
         #ifndef QT_DEBUG_NO_OUTPUT
@@ -841,7 +843,7 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
     while (iter.hasNext())
     {
         VirtualKeyPushButton *keybutton = iter.next();
-        disconnect(keybutton, &VirtualKeyPushButton::keycodeObtained, 0, 0);
+        disconnect(keybutton, &VirtualKeyPushButton::keycodeObtained, nullptr, nullptr);
         connect(keybutton, &VirtualKeyPushButton::keycodeObtained, this, &VirtualKeyboardMouseWidget::processAdvancedKeyboardSelection);
     }
 
@@ -849,13 +851,13 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnectio
     while (iterActions.hasNext())
     {
         QAction *temp = iterActions.next();
-        disconnect(temp, &QAction::triggered, 0, 0);
+        disconnect(temp, &QAction::triggered, nullptr, nullptr);
         connect(temp, &QAction::triggered, this, [this, temp](bool checked) {
             otherKeysActionAdvanced(temp, checked);
         });
     }
 
-    disconnect(noneButton, &QPushButton::clicked, 0, 0);
+    disconnect(noneButton, &QPushButton::clicked, nullptr, nullptr);
     connect(noneButton, &QPushButton::clicked, this, &VirtualKeyboardMouseWidget::clearButtonSlots);
 }
 
@@ -868,7 +870,7 @@ void VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections()
     while (iter.hasNext())
     {
         VirtualMousePushButton *mousebutton = iter.next();
-        disconnect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, 0, 0);
+        disconnect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, nullptr, nullptr);
         connect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, this, &VirtualKeyboardMouseWidget::processSingleMouseSelection);
     }
 }
@@ -882,7 +884,7 @@ void VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections(
     while (iter.hasNext())
     {
         VirtualMousePushButton *mousebutton = iter.next();
-        disconnect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, 0, 0);
+        disconnect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, nullptr, nullptr);
         connect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, this, &VirtualKeyboardMouseWidget::processAdvancedMouseSelection);
     }
 }

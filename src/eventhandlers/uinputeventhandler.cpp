@@ -207,7 +207,7 @@ void UInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
                 }
             }
 
-            write_uinput_event(mouseFileHandler, EV_KEY, tempcode, pressed ? 1 : 0);
+            write_uinput_event(mouseFileHandler, EV_KEY, static_cast<int>(tempcode), pressed ? 1 : 0);
         }
         else if (code == 4)
         {
@@ -266,24 +266,26 @@ void UInputEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
                                               int width, int height)
 {
-    if (width > 0 && height > 0)
+    if ((width > 0) && (height > 0))
     {
         double midwidth = static_cast<double>(width) / 2.0;
         double midheight = static_cast<double>(height) / 2.0;
 
-        int fx = ceil(32767 * ((xDis - midwidth) / midwidth));
-        int fy = ceil(32767 * ((yDis - midheight) / midheight));
+        int fx = static_cast<int>(ceil(32767 * ((xDis - midwidth) / midwidth)));
+        int fy = static_cast<int>(ceil(32767 * ((yDis - midheight) / midheight)));
         sendMouseAbsEvent(fx, fy, -1);
     }
+
+
 }
 
 void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
-    if (xDis >= -1.0 && xDis <= 1.0 &&
-        yDis >= -1.0 && yDis <= 1.0)
+    if ((xDis >= -1.0) && (xDis <= 1.0) &&
+        (yDis >= -1.0) && (yDis <= 1.0))
     {
-        int fx = ceil(32767 * xDis);
-        int fy = ceil(32767 * yDis);
+        int fx = static_cast<int>(ceil(32767 * xDis));
+        int fy = static_cast<int>(ceil(32767 * yDis));
         sendMouseAbsEvent(fx, fy, -1);
     }
 }
@@ -465,9 +467,9 @@ void UInputEventHandler::write_uinput_event(int filehandle, int type,
     struct input_event ev2;
 
     memset(&ev, 0, sizeof(struct input_event));
-    gettimeofday(&ev.time, 0);
-    ev.type = type;
-    ev.code = code;
+    gettimeofday(&ev.time, nullptr);
+    ev.type = static_cast<unsigned short>(type);
+    ev.code = static_cast<unsigned short>(code);
     ev.value = value;
 
     write(filehandle, &ev, sizeof(struct input_event));
@@ -475,7 +477,7 @@ void UInputEventHandler::write_uinput_event(int filehandle, int type,
     if (syn)
     {
         memset(&ev2, 0, sizeof(struct input_event));
-        gettimeofday(&ev2.time, 0);
+        gettimeofday(&ev2.time, nullptr);
         ev2.type = EV_SYN;
         ev2.code = SYN_REPORT;
         ev2.value = 0;
@@ -536,10 +538,10 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             {
                 QtX11KeyMapper::charKeyInformation tempX11 = nativeWinKeyMapper->getCharKeyInformation(maintext.at(i));
                 tempX11.virtualkey = X11Extras::getInstance()->getGroup1KeySym(tempX11.virtualkey);
-                unsigned int tempQtKey = nativeWinKeyMapper->returnQtKey(tempX11.virtualkey);
+                unsigned int tempQtKey = static_cast<unsigned int>(nativeWinKeyMapper->returnQtKey(tempX11.virtualkey));
                 if (tempQtKey > 0)
                 {
-                    temp.virtualkey = keymapper->returnVirtualKey(tempQtKey);
+                    temp.virtualkey = keymapper->returnVirtualKey(static_cast<int>(tempQtKey));
                     temp.modifiers = tempX11.modifiers;
                 }
                 else
@@ -581,7 +583,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
                     }
                 }
 
-                tempList.append(temp.virtualkey);
+                tempList.append(static_cast<unsigned int>(temp.virtualkey));
                 write_uinput_event(keyboardFileHandler, EV_KEY, temp.virtualkey, 1, true);
             }
 
@@ -593,7 +595,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
                 {
                     unsigned int currentcode = tempiter.previous();
                     bool sync = !tempiter.hasPrevious() ? true : false;
-                    write_uinput_event(keyboardFileHandler, EV_KEY, currentcode, 0, sync);
+                    write_uinput_event(keyboardFileHandler, EV_KEY, static_cast<int>(currentcode), 0, sync);
                 }
             }
         }
