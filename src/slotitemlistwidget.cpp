@@ -25,6 +25,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 SlotItemListWidget::SlotItemListWidget(QWidget *parent) :
     QListWidget(parent)
 {

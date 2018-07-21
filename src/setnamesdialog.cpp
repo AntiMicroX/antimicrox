@@ -25,6 +25,7 @@
 #include <QWidget>
 #include <QDebug>
 
+
 SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SetNamesDialog)

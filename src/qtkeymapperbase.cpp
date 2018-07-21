@@ -25,6 +25,7 @@ const int QtKeyMapperBase::customQtKeyPrefix;
 const int QtKeyMapperBase::customKeyPrefix;
 const int QtKeyMapperBase::nativeKeyPrefix;
 
+
 QtKeyMapperBase::QtKeyMapperBase(QObject *parent) :
     QObject(parent)
 {

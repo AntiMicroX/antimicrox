@@ -92,6 +92,7 @@ void XMLConfigWriter::write(InputDevice *joystick)
     }
 }
 
+
 void XMLConfigWriter::setFileName(QString filename)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

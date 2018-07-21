@@ -23,6 +23,7 @@
 
 const QString VDPad::xmlName = "vdpad";
 
+
 VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyDPad(index, originset, parentSet, parent)
 {

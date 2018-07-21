@@ -80,7 +80,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                  cursor, CurrentTime);
     if (status == Success)
     {
-        XGrabKey(display, XKeysymToKeycode(display, x11KeyMapper.returnVirtualKey(Qt::Key_Escape)), 0, rootWin,
+        XGrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))), 0, rootWin,
                  true, GrabModeAsync, GrabModeAsync);
 
         XEvent event;
@@ -108,7 +108,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
             }
         }
 
-        XUngrabKey(display, XKeysymToKeycode(display, x11KeyMapper.returnVirtualKey(Qt::Key_Escape)),
+        XUngrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))),
                    0, rootWin);
         XUngrabPointer(display, CurrentTime);
         XFlush(display);
@@ -116,7 +116,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
 
     if (target_window != None)
     {
-        targetWindow = target_window;
+        targetWindow = static_cast<long>(target_window);
     }
     else if (!escaped)
     {

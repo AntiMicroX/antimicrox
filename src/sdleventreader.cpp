@@ -21,6 +21,7 @@
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
+
 //#include "logger.h"
 
 #include <QDebug>

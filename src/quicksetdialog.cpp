@@ -671,7 +671,7 @@ void QuickSetDialog::restoreButtonStates()
                 stickbutton->setIgnoreEventState(false);
             }
 
-            disconnect(stickbutton, &JoyControlStickButton::clicked, this, 0);
+            disconnect(stickbutton, &JoyControlStickButton::clicked, this, nullptr);
         }
     }
 
@@ -691,8 +691,8 @@ void QuickSetDialog::restoreButtonStates()
             {
                 paxisbutton->setIgnoreEventState(false);
             }
-            disconnect(naxisbutton, &JoyAxisButton::clicked, this, 0);
-            disconnect(paxisbutton, &JoyAxisButton::clicked, this, 0);
+            disconnect(naxisbutton, &JoyAxisButton::clicked, this, nullptr);
+            disconnect(paxisbutton, &JoyAxisButton::clicked, this, nullptr);
         }
     }
 
@@ -708,7 +708,7 @@ void QuickSetDialog::restoreButtonStates()
             {
                 dpadbutton->setIgnoreEventState(false);
             }
-            disconnect(dpadbutton, &JoyDPadButton::clicked, this, 0);
+            disconnect(dpadbutton, &JoyDPadButton::clicked, this, nullptr);
         }
     }
 
@@ -726,7 +726,7 @@ void QuickSetDialog::restoreButtonStates()
                 {
                     dpadbutton->setIgnoreEventState(false);
                 }
-                disconnect(dpadbutton, &JoyDPadButton::clicked, this, 0);
+                disconnect(dpadbutton, &JoyDPadButton::clicked, this, nullptr);
             }
         }
     }
@@ -740,7 +740,7 @@ void QuickSetDialog::restoreButtonStates()
             {
                 button->setIgnoreEventState(false);
             }
-            disconnect(button, &JoyButton::clicked, this, 0);
+            disconnect(button, &JoyButton::clicked, this, nullptr);
         }
     }
 
