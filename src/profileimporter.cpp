@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QSettings>
 
 #include <iostream>
 #include <fstream>
@@ -84,7 +85,7 @@ char ProfileImporter::convertHexToString_char(string const & hexValue)
 
 void ProfileImporter::putGamecontrMapping()
 {
-/*    QString mappingString = generateSDLMappingString();
+/*  QString mappingString = generateSDLMappingString();
 
     settings->getLock()->lock();
 
@@ -101,7 +102,7 @@ void ProfileImporter::putGamecontrMapping()
         out << generateSDLMappingString();
     }
 
-    emit mappingUpdate(mappingString, device);*/
+    emit mappingUpdate(mappingString, device); */
 }
 
 
@@ -163,28 +164,24 @@ void ProfileImporter::putSettingsToApp()
 
     */
 
+
 bool ProfileImporter::allFilled()
 {
-    return ((!ui->profileLineEdit->text().isEmpty()) && (radioBtnProfiles.checkedButton() != nullptr));
-}
-
-
-void ProfileImporter::on_AcceptBtn_clicked()
-{
-    if (!allFilled())
+    if ((!ui->profileLineEdit->text().isEmpty()) && (radioBtnProfiles.checkedButton() != nullptr))
     {
-        QMessageBox box;
-        box.setText(trUtf8("Could not import profile. Choose profile type and profile's file."));
-        box.setWindowTitle(trUtf8("Insufficient data"));
-        box.setStandardButtons(QMessageBox::Close);
-        box.raise();
-        box.exec();
-
+        if (ui->fullSettCheckBox->isChecked())
+        {
+            if (ui->configLineEdit->text().isEmpty()) return false;
+            else return true;
+        }
+        else
+        {
+            return true;
+        }
     }
     else
     {
-
-
+        return false;
     }
 }
 
@@ -194,8 +191,8 @@ void ProfileImporter::changeExtensionFile(QString filePath)
     QFileInfo info(filePath);
     if (properExtension(filePath))
     {
-        if ((radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey")) {
-
+        if ((radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey"))
+        {
             QString strNewName = info.path() + "/" + info.completeBaseName() + ".ini";
             QFile renamed(filePath);
             renamed.rename(filePath, strNewName);
@@ -220,7 +217,6 @@ void ProfileImporter::backExtensionFile(QString filePath)
     QString strNewName = info.path() + "/" + info.completeBaseName() + "." + extensionProfile();
     QFile renamed(filePath);
     renamed.rename(filePath, strNewName);
-
 }
 
 
@@ -234,9 +230,8 @@ QString ProfileImporter::extensionProfile()
 }
 
 
-bool ProfileImporter::properExtension(QString profilePath)
+bool ProfileImporter::properExtension(const QString& profilePath)
 {
-
     QFileInfo info(profilePath);
 
     if ((radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey") && (info.completeSuffix() == "cfg"))
@@ -256,8 +251,20 @@ bool ProfileImporter::properExtension(QString profilePath)
 }
 
 
-void ProfileImporter::openFile(QString profilePath)
+bool ProfileImporter::properExtensionSett(const QString & settfilePath)
 {
+    QFileInfo info(settfilePath);
+
+    if (info.completeSuffix() == "ini") return true;
+
+    return false;
+}
+
+
+void ProfileImporter::openFile(QString importedFilePath)
+{
+    QSettings settings(importedFilePath, QSettings::NativeFormat);
+
 
 
 }
@@ -270,49 +277,15 @@ void ProfileImporter::readSettGroups()
 }
 
 
-QString ProfileImporter::displayModeJoyToKey()
+const QString ProfileImporter::displayModeJoyToKey()
 {
-    return "";
+    return displayedModeJoyToKey;
 }
 
 
-void ProfileImporter::on_cancelBtn_clicked()
+void ProfileImporter::setDisplayModeJoyToKey(QString const & displayMode)
 {
-    close();
-}
-
-
-void ProfileImporter::on_findProfileBtn_clicked()
-{
-    if (radioBtnProfiles.checkedButton() == nullptr) {
-
-        QMessageBox box;
-        box.setText(trUtf8("Could not define file's extension. Choose profile's type first above."));
-        box.setWindowTitle(trUtf8("Insufficient data"));
-        box.setStandardButtons(QMessageBox::Close);
-        box.raise();
-        box.exec();
-
-    } else {
-
-        QString profile = profilePath();
-        if (!properExtension(profile)) {
-
-            QMessageBox box;
-            box.setText(trUtf8("Could not choose a file. Find a file with proper extension."));
-            box.setWindowTitle(trUtf8("Incorrect filename"));
-            box.setStandardButtons(QMessageBox::Close);
-            box.raise();
-            box.exec();
-
-        } else {
-
-            ui->profileLineEdit->setText(profilePath());
-
-            QFileInfo info(profile);
-            chosenFile = info.completeBaseName();
-        }
-    }
+    displayedModeJoyToKey = displayMode;
 }
 
 
@@ -326,13 +299,13 @@ QString ProfileImporter::filedialogDescExt()
 }
 
 
-QString ProfileImporter::profilePath()
+const QString ProfileImporter::importedFilePath(QString title, QString extensionFile)
 {
     QString fileName = QFileDialog::getOpenFileName(
-            this, trUtf8("Choose game profile"),
+            this, title,
             QFileDialog::getExistingDirectory(this, trUtf8("Find"),
                                               QDir::currentPath()),
-            filedialogDescExt());
+            extensionFile);
 
     return fileName;
 }
@@ -340,7 +313,6 @@ QString ProfileImporter::profilePath()
 
 void ProfileImporter::rewriteButtonGroup()
 {
-
     QList<QRadioButton *> allButtons = ui->groupBox->findChildren<QRadioButton *>();
 
     qDebug() << allButtons.size();
@@ -353,6 +325,27 @@ void ProfileImporter::rewriteButtonGroup()
     qDebug() << radioBtnProfiles.checkedId();
     qDebug() << radioBtnProfiles.checkedButton();
 }
+
+
+void ProfileImporter::putSettingsFromJoyToKey()
+{
+
+}
+
+
+void ProfileImporter::putSettingsFromXPadder()
+{
+
+}
+
+
+void ProfileImporter::putSettingsFromPinnacle()
+{
+
+}
+
+
+// ----------------------------- SLOTS ------------------------------------- //
 
 
 // 0 - unchecked
@@ -386,5 +379,100 @@ void ProfileImporter::on_fullSettCheckBox_stateChanged(int state)
             ui->findConfigBtn->setDisabled(true);
 
         break;
+    }
+}
+
+
+void ProfileImporter::on_AcceptBtn_clicked()
+{
+    if (!allFilled())
+    {
+        QMessageBox box;
+        box.setText(trUtf8("Could not import profile. Choose profile type and profile's file."));
+        box.setWindowTitle(trUtf8("Insufficient data"));
+        box.setStandardButtons(QMessageBox::Close);
+        box.raise();
+        box.exec();
+    }
+    else
+    {
+
+
+    }
+}
+
+
+void ProfileImporter::on_cancelBtn_clicked()
+{
+    close();
+}
+
+
+void ProfileImporter::on_findProfileBtn_clicked()
+{
+    if (radioBtnProfiles.checkedButton() == nullptr) {
+
+        QMessageBox box;
+        box.setText(trUtf8("Could not define file's extension. Choose profile's type first above."));
+        box.setWindowTitle(trUtf8("Insufficient data"));
+        box.setStandardButtons(QMessageBox::Close);
+        box.raise();
+        box.exec();
+
+    } else {
+
+        QString profile = importedFilePath(trUtf8("Choose game profile"), filedialogDescExt());
+
+        if (!properExtension(profile))
+        {
+            QMessageBox box;
+            box.setText(trUtf8("Could not choose a file. Find a file with proper extension."));
+            box.setWindowTitle(trUtf8("Incorrect filename"));
+            box.setStandardButtons(QMessageBox::Close);
+            box.raise();
+            box.exec();
+
+        } else {
+
+            ui->profileLineEdit->setText(profile);
+
+            QFileInfo info(profile);
+            chosenFile = info.completeBaseName();
+        }
+    }
+}
+
+
+void ProfileImporter::on_findConfigBtn_clicked()
+{
+    if (radioBtnProfiles.checkedButton() == nullptr)
+    {
+        QMessageBox box;
+        box.setText(trUtf8("Could not define file's extension. Choose profile's type first above."));
+        box.setWindowTitle(trUtf8("Insufficient data"));
+        box.setStandardButtons(QMessageBox::Close);
+        box.raise();
+        box.exec();
+
+    } else {
+
+        QString settingsFile = importedFilePath(trUtf8("Choose app settings file"), trUtf8("Settings file (*.ini)"));
+
+        if (!properExtensionSett(settingsFile))
+        {
+            QMessageBox box;
+            box.setText(trUtf8("Could not choose a file. Find a file with proper extension."));
+            box.setWindowTitle(trUtf8("Incorrect filename"));
+            box.setStandardButtons(QMessageBox::Close);
+            box.raise();
+            box.exec();
+
+        } else {
+
+            ui->configLineEdit->setText(settingsFile);
+
+            QFileInfo info(settingsFile);
+            chosenFileSett = info.completeBaseName();
+        }
     }
 }

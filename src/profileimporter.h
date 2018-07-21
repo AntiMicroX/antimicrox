@@ -133,17 +133,20 @@ public:
 
     void changeExtensionFile(QString filePath);
     void backExtensionFile(QString filePath);
-    QString profilePath();
-    void openFile(QString profilePath);
+    void openFile(QString importedFilePath);
     void readSettGroups();
-    int convertStringToQtKey(QString const & keyString);
+    const QString importedFilePath(QString title, QString extensionFile);
+    const QString displayModeJoyToKey();
     QChar convertHexToString_QChar(QString const & hexValue);
     char convertHexToString_char(std::string const & hexValue);
+    int convertStringToQtKey(QString const & keyString);
 
 
 protected:
     bool allFilled();
-    bool properExtension(QString profilePath);
+    bool properExtension(const QString& profilePath);
+    bool properExtensionSett(const QString& settfilePath);
+    void setDisplayModeJoyToKey(QString const & displayMode);
     QString extensionProfile();
 
 
@@ -152,6 +155,7 @@ private slots:
     void on_cancelBtn_clicked();
     void on_findProfileBtn_clicked();
     void on_fullSettCheckBox_stateChanged(int state);
+    void on_findConfigBtn_clicked();
 
 
 private:
@@ -160,15 +164,19 @@ private:
     QHash<QString, QString> antToCurrGamepads;
 
     AntiMicroSettings *settings;
-    QString chosenFile;
     QButtonGroup radioBtnProfiles;
+    QString chosenFile;
+    QString chosenFileSett;
     QString displayedModeJoyToKey;
     QString buttonMode;
 
     void putSettingsToApp();
     void putGamecontrMapping();
-    QString displayModeJoyToKey();
     void rewriteButtonGroup();
+    void putSettingsFromJoyToKey();
+    void putSettingsFromXPadder();
+    void putSettingsFromPinnacle();
+
     QString filedialogDescExt();
 
 };
