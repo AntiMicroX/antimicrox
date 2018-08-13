@@ -95,6 +95,9 @@ protected slots:
     void resetMouseAcceleration();
     void selectLogFile();
 
+private slots:
+    void on_resetBtn_clicked();
+
 private:
     Ui::MainSettingsDialog *ui;
 
@@ -109,6 +112,11 @@ private:
 
     AutoProfileInfo* allDefaultProfile;
     QList<InputDevice*> *connectedDevices;
+
+    void resetGeneralSett();
+    void resetAutoProfSett();
+    void resetMouseSett();
+    void resetAdvancedSett();
 };
 
 #endif // MAINSETTINGSDIALOG_H

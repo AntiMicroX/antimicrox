@@ -154,6 +154,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     fillGUIDComboBox();
 #endif
 
+
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
     if (autoProfileActive == "1")
     {
@@ -1009,7 +1010,7 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    for (int i = ui->autoProfileTableWidget->rowCount()-1; i >= 0; i--)
+    for (int i = ui->autoProfileTableWidget->rowCount() - 1; i >= 0; i--)
     {
         ui->autoProfileTableWidget->removeRow(i);
     }
@@ -1035,11 +1036,13 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 
             QString deviceName = info->getDeviceName();
             QString guidDisplay = info->getGUID();
+
             if (!deviceName.isEmpty())
             {
                 guidDisplay = QString("%1 ").arg(info->getDeviceName());
                 guidDisplay.append(QString("(%1)").arg(info->getGUID()));
             }
+
             item = new QTableWidgetItem(guidDisplay);
             item->setFlags(item->flags() & ~Qt::ItemIsEditable);
             item->setData(Qt::UserRole, info->getGUID());
@@ -1097,11 +1100,13 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 
                 QString deviceName = info->getDeviceName();
                 QString guidDisplay = info->getGUID();
+
                 if (!deviceName.isEmpty())
                 {
                     guidDisplay = QString("%1 ").arg(info->getDeviceName());
                     guidDisplay.append(QString("(%1)").arg(info->getGUID()));
                 }
+
                 item = new QTableWidgetItem(guidDisplay);
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
                 item->setData(Qt::UserRole, info->getGUID());
@@ -1999,4 +2004,157 @@ AutoProfileInfo* MainSettingsDialog::getAllDefaultProfile() const {
 QList<InputDevice*>* MainSettingsDialog::getConnectedDevices() const {
 
     return connectedDevices;
+}
+
+void MainSettingsDialog::on_resetBtn_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setText(trUtf8("Do you really want to reset setting?"));
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+
+    switch(msgBox.exec())
+    {
+        case QMessageBox::Ok:
+            resetGeneralSett();
+            resetAutoProfSett();
+            resetMouseSett();
+            resetAdvancedSett();
+            ui->localeListWidget->setCurrentRow(0);
+
+        break;
+
+        case QMessageBox::Cancel:
+
+        break;
+
+        default:
+
+        break;
+    }
+
+    QMessageBox msgBox2;
+    msgBox2.setText(trUtf8("Would you like to reset mappings too?"));
+    msgBox2.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+
+    switch(msgBox2.exec())
+    {
+        case QMessageBox::Ok:
+
+            ui->controllerMappingsTableWidget->setRowCount(0);
+
+        break;
+
+        case QMessageBox::Cancel:
+
+        break;
+
+        default:
+
+        break;
+    }
+
+
+}
+
+
+void MainSettingsDialog::resetGeneralSett()
+{
+    ui->profileDefaultDirLineEdit->setText(PadderCommon::preferredProfileDir(settings));
+    ui->numberRecentProfileSpinBox->setValue(5);
+    int gamepadPollIndex = ui->gamepadPollRateComboBox->findData(JoyButton::getGamepadRefreshRate());
+
+    if (gamepadPollIndex >= 0)
+    {
+        ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
+    }
+
+    ui->closeToTrayCheckBox->setChecked(false);
+    ui->launchAtWinStartupCheckBox->setChecked(false);
+    ui->traySingleProfileListCheckBox->setChecked(false);
+    ui->minimizeTaskbarCheckBox->setChecked(false);
+    ui->hideEmptyCheckBox->setChecked(false);
+    ui->autoLoadPreviousCheckBox->setChecked(true);
+    ui->launchInTrayCheckBox->setChecked(false);
+    ui->associateProfilesCheckBox->setChecked(true);
+    ui->keyRepeatEnableCheckBox->setChecked(false);
+
+    ui->keyDelayHorizontalSlider->setValue(660);
+    ui->keyRateHorizontalSlider->setValue(25);
+}
+
+
+void MainSettingsDialog::resetAutoProfSett()
+{
+
+    disconnect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+
+    ui->activeCheckBox->setChecked(false);
+    ui->devicesComboBox->setCurrentIndex(0);
+
+    ui->autoProfileTableWidget->setRowCount(0);
+
+    AutoProfileInfo *info = allDefaultProfile;
+
+    ui->autoProfileTableWidget->insertRow(0);
+    QTableWidgetItem *item = new QTableWidgetItem();
+    item->setCheckState(info->isActive() ? Qt::Checked : Qt::Unchecked);
+    ui->autoProfileTableWidget->setItem(0, 0, item);
+
+    QString deviceName = info->getDeviceName();
+    QString guidDisplay = info->getGUID();
+
+    if (!deviceName.isEmpty())
+    {
+        guidDisplay = QString("%1 ").arg(info->getDeviceName());
+        guidDisplay.append(QString("(%1)").arg(info->getGUID()));
+    }
+
+    item = new QTableWidgetItem(guidDisplay);
+    item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+    item->setData(Qt::UserRole, info->getGUID());
+    item->setToolTip(info->getGUID());
+    ui->autoProfileTableWidget->setItem(0, 1, item);
+
+    item = new QTableWidgetItem("Default");
+    item->setData(Qt::UserRole, "default");
+    ui->autoProfileTableWidget->setItem(0, 6, item);
+
+    item = new QTableWidgetItem("Instance");
+    item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+    ui->autoProfileTableWidget->setItem(0, 7, item);
+
+    if (ui->autoProfileTableWidget->rowCount() == 1) profileList.clear();
+
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+}
+
+
+void MainSettingsDialog::resetMouseSett()
+{
+    ui->disableWindowsEnhancedPointCheckBox->setChecked(false);
+    ui->smoothingEnableCheckBox->setChecked(false);
+    ui->smoothingEnableCheckBox->setEnabled(true);
+    ui->historySizeSpinBox->setValue(10);
+    ui->historySizeSpinBox->setEnabled(false);
+    ui->weightModifierDoubleSpinBox->setValue(0.20);
+    ui->weightModifierDoubleSpinBox->setEnabled(false);
+
+    int refreshIndex = ui->mouseRefreshRateComboBox->findData(JoyButton::getMouseRefreshRate());
+    if (refreshIndex >= 0)
+    {
+        ui->mouseRefreshRateComboBox->setCurrentIndex(refreshIndex);
+    }
+
+    int screenIndex = ui->springScreenComboBox->findData(JoyButton::getSpringModeScreen());
+    if (screenIndex > -1)
+    {
+        ui->springScreenComboBox->setCurrentIndex(screenIndex);
+    }
+}
+
+
+void MainSettingsDialog::resetAdvancedSett()
+{
+    ui->logFilePathEdit->setText("");
+    ui->logLevelComboBox->setCurrentIndex(0);
 }

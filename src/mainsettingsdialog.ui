@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>706</width>
-    <height>582</height>
+    <height>617</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1205,7 +1205,7 @@ values used by the virtual mouse.</string>
            <x>10</x>
            <y>9</y>
            <width>481</width>
-           <height>31</height>
+           <height>36</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -1230,7 +1230,7 @@ values used by the virtual mouse.</string>
            <x>9</x>
            <y>69</y>
            <width>481</width>
-           <height>31</height>
+           <height>34</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -1294,14 +1294,37 @@ values used by the virtual mouse.</string>
     </layout>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+    <layout class="QHBoxLayout" name="horizontalLayout_19">
+     <property name="leftMargin">
+      <number>5</number>
      </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     <property name="topMargin">
+      <number>5</number>
      </property>
-    </widget>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="resetBtn">
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
