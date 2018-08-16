@@ -61,7 +61,7 @@ InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
     rawAxisDeadZone = RAISEDDEADZONE;
-    this->settings = settings;
+    m_settings = settings;
 }
 
 InputDevice::~InputDevice()
@@ -705,7 +705,7 @@ void InputDevice::changeSetButtonAssociation(int button_index, int originset, in
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *button = getJoystick_sets().value(newset)->getJoyButton(button_index);
-    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
     button->setChangeSetSelection(originset);
     button->setChangeSetCondition(tempmode, true);
 }
@@ -825,7 +825,7 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
 
                                             if (button != nullptr)
                                             {
-                                                vdpad->addVButton((JoyDPadButton::JoyDPadDirections)vdpadDirection, button);
+                                                vdpad->addVButton(static_cast<JoyDPadButton::JoyDPadDirections>(vdpadDirection), button);
                                             }
                                         }
                                     }
@@ -844,7 +844,7 @@ void InputDevice::readConfig(QXmlStreamReader *xml)
                                         JoyButton *button = currentset->getJoyButton(vdpadButtonIndex);
                                         if (button != nullptr)
                                         {
-                                            vdpad->addVButton((JoyDPadButton::JoyDPadDirections)vdpadDirection, button);
+                                            vdpad->addVButton(static_cast<JoyDPadButton::JoyDPadDirections>(vdpadDirection), button);
                                         }
                                     }
                                 }
@@ -1306,7 +1306,7 @@ void InputDevice::changeSetAxisButtonAssociation(int button_index, int axis_inde
         button = getJoystick_sets().value(newset)->getJoyAxis(axis_index)->getPAxisButton();
     }
 
-    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
     button->setChangeSetSelection(originset);
     button->setChangeSetCondition(tempmode, true);
 }
@@ -1315,9 +1315,9 @@ void InputDevice::changeSetStickButtonAssociation(int button_index, int stick_in
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyControlStickButton *button = getJoystick_sets().value(newset)->getJoyStick(stick_index)->getDirectionButton((JoyControlStick::JoyStickDirections)button_index);
+    JoyControlStickButton *button = getJoystick_sets().value(newset)->getJoyStick(stick_index)->getDirectionButton(static_cast<JoyControlStick::JoyStickDirections>(button_index));
 
-    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
     button->setChangeSetSelection(originset);
     button->setChangeSetCondition(tempmode, true);
 }
@@ -1328,7 +1328,7 @@ void InputDevice::changeSetDPadButtonAssociation(int button_index, int dpad_inde
 
     JoyDPadButton *button = getJoystick_sets().value(newset)->getJoyDPad(dpad_index)->getJoyButton(button_index);
 
-    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
     button->setChangeSetSelection(originset);
     button->setChangeSetCondition(tempmode, true);
 }
@@ -1339,7 +1339,7 @@ void InputDevice::changeSetVDPadButtonAssociation(int button_index, int dpad_ind
 
     JoyDPadButton *button = getJoystick_sets().value(newset)->getVDPad(dpad_index)->getJoyButton(button_index);
 
-    JoyButton::SetChangeCondition tempmode = (JoyButton::SetChangeCondition)mode;
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
     button->setChangeSetSelection(originset);
     button->setChangeSetCondition(tempmode, true);
 }
@@ -2165,7 +2165,7 @@ AntiMicroSettings* InputDevice::getSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return settings;
+    return m_settings;
 }
 
 bool InputDevice::isKnownController()
@@ -2179,17 +2179,17 @@ bool InputDevice::isKnownController()
     }
     else
     {
-        settings->beginGroup("Mappings");
-        if (settings->contains(getGUIDString()))
+        m_settings->beginGroup("Mappings");
+        if (m_settings->contains(getGUIDString()))
         {
             result = true;
         }
-        else if (settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled")))
+        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled")))
         {
             result = true;
         }
 
-        settings->endGroup();
+        m_settings->endGroup();
     }
 
     return result;

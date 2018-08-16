@@ -325,7 +325,7 @@ protected:
     static int springModeScreen;
     static int gamepadRefreshRate;
 
-    int index; // Used to denote the SDL index of the actual joypad button
+    int m_index; // Used to denote the SDL index of the actual joypad button
     int turboInterval;
     int wheelSpeedX;
     int wheelSpeedY;
@@ -348,7 +348,7 @@ protected:
     QTime wheelHorizontalTime;
     QTime turboHold;
 
-    SetJoystick *parentSet; // Pointer to set that button is assigned to.
+    SetJoystick *m_parentSet; // Pointer to set that button is assigned to.
     SetChangeCondition setSelectionCondition;
     JoyButtonSlot *currentWheelVerticalEvent;
     JoyButtonSlot *currentWheelHorizontalEvent;
@@ -446,13 +446,13 @@ private:
     QList<JoyButtonSlot*>& getAssignmentsLocal();
     QList<JoyButtonSlot*>& getActiveSlotsLocal();
 
-    bool toggle;
+    bool m_toggle;
     bool quitEvent;
     bool isDown;
     bool toggleActiveState;
-    bool useTurbo;
+    bool m_useTurbo;
     bool lastUnlessInList;
-    bool ignoresets;
+    bool m_ignoresets;
     bool ignoreEvents;
     bool whileHeldStatus;
     bool updateLastMouseDistance; // Should lastMouseDistance be updated. Set after mouse event.
@@ -467,7 +467,7 @@ private:
 
     int mouseSpeedX;
     int mouseSpeedY;
-    int originset;
+    int m_originset;
     int springWidth;
     int springHeight;
     int currentRawValue;
@@ -487,7 +487,7 @@ private:
     double minMouseDistanceAccelThreshold;
     double maxMouseDistanceAccelThreshold;
     double startAccelMultiplier;
-    double easingDuration;
+    double m_easingDuration;
     double extraAccelerationMultiplier;
 
     QTimer pauseTimer;
@@ -514,7 +514,7 @@ private:
     JoyButtonSlot *currentHold;
     JoyButtonSlot *currentCycle;
     JoyButtonSlot *previousCycle;
-    JoyButtonSlot *currentDistance;
+    JoyButtonSlot *m_currentDistance;
     JoyButtonSlot *currentMouseEvent;
     JoyButtonSlot *currentRelease;
     JoyButtonSlot *currentKeyPress;
@@ -531,7 +531,7 @@ private:
     QTime cycleResetHold;
     static QTime testOldMouseTime;
 
-    VDPad *vdpad;
+    VDPad *m_vdpad;
     JoyMouseMovementMode mouseMode;
     JoyMouseCurve mouseCurve;
     JoyExtraAccelerationCurve extraAccelCurve;

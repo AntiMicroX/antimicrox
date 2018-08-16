@@ -189,7 +189,7 @@ protected:
     int currentRawValue;
     int currentThrottledValue;
     int currentThrottledDeadValue;
-    int index;
+    int m_index;
     int axis_center_cal;
     int axis_min_cal;
     int axis_max_cal;
@@ -225,11 +225,11 @@ private:
     bool eventActive;
 
     JoyAxisButton *activeButton;
-    int originset;
+    int m_originset;
 
-    JoyControlStick *stick;
+    JoyControlStick *m_stick;
 
-    SetJoystick *parentSet;
+    SetJoystick *m_parentSet;
     int lastKnownThottledValue;
     int lastKnownRawValue;
 

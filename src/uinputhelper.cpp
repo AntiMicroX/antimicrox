@@ -22,7 +22,7 @@
 #include "uinputhelper.h"
 #include "messagehandler.h"
 
-UInputHelper* UInputHelper::_instance = 0;
+UInputHelper* UInputHelper::_instance = nullptr;
 
 UInputHelper::UInputHelper(QObject *parent) :
     QObject(parent)
@@ -33,7 +33,7 @@ UInputHelper::UInputHelper(QObject *parent) :
 
 UInputHelper::~UInputHelper()
 {
-    _instance = 0;
+    _instance = nullptr;
 }
 
 void UInputHelper::populateKnownAliases()
@@ -287,16 +287,16 @@ UInputHelper* UInputHelper::getInstance()
 
 void UInputHelper::deleteInstance()
 {
-    if (_instance)
+    if (_instance != nullptr)
     {
         delete _instance;
-        _instance = 0;
+        _instance = nullptr;
     }
 }
 
 QString UInputHelper::getDisplayString(int virtualkey)
 {
-    QString temp;
+    QString temp = QString();
     if (virtualkey <= 0)
     {
         temp = tr("[NO KEY]");

@@ -52,6 +52,7 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event);
 
 private:
+    ButtonEditDialogHelper helper;
     Ui::ButtonEditDialog *ui;
     ButtonEditDialogHelper& getHelperLocal();
 
@@ -60,7 +61,7 @@ private:
     QuickSetDialog *currentQuickDialog;
     bool ignoreRelease;
     JoyButton* lastJoyButton;
-    ButtonEditDialogHelper helper;
+
     static ButtonEditDialog *instance;
 
 signals:

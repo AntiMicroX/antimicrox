@@ -28,6 +28,7 @@
 
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QtGlobal>
 #include <QDebug>
 
 // Set default values for many properties.
@@ -49,19 +50,19 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    stick = nullptr;
+    m_stick = nullptr;
     lastKnownThottledValue = 0;
     lastKnownRawValue = 0;
     axis_max_cal = -1;
     axis_min_cal = -1;
     axis_center_cal = -1;
-    this->originset = originset;
-    this->parentSet = parentSet;
+    m_originset = originset;
+    m_parentSet = parentSet;
     naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);
     paxisbutton = new JoyAxisButton(this, 1, originset, parentSet, this);
 
     reset();
-    this->index = index;
+    m_index = index;
 }
 
 JoyAxis::~JoyAxis()
@@ -79,7 +80,7 @@ void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValue
     pendingValue = 0;
     pendingIgnoreSets = false;
 
-    if (this->stick != nullptr)
+    if (m_stick != nullptr)
     {
         stickPassEvent(value, ignoresets, updateLastValues);
     }
@@ -125,7 +126,7 @@ void JoyAxis::stickPassEvent(int value, bool ignoresets, bool updateLastValues)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (this->stick != nullptr)
+    if (m_stick != nullptr)
     {
         if (updateLastValues)
         {
@@ -151,11 +152,11 @@ void JoyAxis::stickPassEvent(int value, bool ignoresets, bool updateLastValues)
 
         if (!ignoresets)
         {
-            stick->queueJoyEvent(ignoresets);
+            m_stick->queueJoyEvent(ignoresets);
         }
         else
         {
-            stick->joyEvent(ignoresets);
+            m_stick->joyEvent(ignoresets);
         }
 
         emit moved(currentRawValue);
@@ -166,7 +167,7 @@ void JoyAxis::joyEvent(int value, bool ignoresets, bool updateLastValues)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((this->stick != nullptr) && !pendingEvent)
+    if ((m_stick != nullptr) && !pendingEvent)
     {
         stickPassEvent(value, ignoresets, updateLastValues);
     }
@@ -186,8 +187,8 @@ void JoyAxis::joyEvent(int value, bool ignoresets, bool updateLastValues)
         // If in joystick mode and this is the first detected event,
         // use the current value as the axis center point. If the value
         // is below -30,000 then consider it a trigger.
-        InputDevice *device = parentSet->getInputDevice();
-        if (!device->isGameController() && !device->hasCalibrationThrottle(index))
+        InputDevice *device = m_parentSet->getInputDevice();
+        if (!device->isGameController() && !device->hasCalibrationThrottle(m_index))
         {
             performCalibration(currentRawValue);
             safezone = !inDeadZone(currentRawValue);
@@ -303,7 +304,7 @@ int JoyAxis::getRealJoyIndex()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index + 1;
+    return m_index + 1;
 }
 
 int JoyAxis::getCurrentThrottledValue()
@@ -369,14 +370,14 @@ void JoyAxis::setIndex(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->index = index;
+    m_index = index;
 }
 
 int JoyAxis::getIndex()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index;
+    return m_index;
 }
 
 
@@ -552,7 +553,7 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
     bool currentlyDefault = isDefault();
 
     xml->writeStartElement(getXmlName());
-    xml->writeAttribute("index", QString::number(index+1));
+    xml->writeAttribute("index", QString::number(m_index+1));
 
     if (!currentlyDefault)
     {
@@ -704,10 +705,10 @@ bool JoyAxis::readMainConfig(QXmlStreamReader *xml)
             this->setThrottle(static_cast<int>(JoyAxis::PositiveHalfThrottle));
         }
 
-        InputDevice *device = parentSet->getInputDevice();
-        if (!device->hasCalibrationThrottle(index))
+        InputDevice *device = m_parentSet->getInputDevice();
+        if (!device->hasCalibrationThrottle(m_index))
         {
-            device->setCalibrationStatus(index,
+            device->setCalibrationStatus(m_index,
                                          static_cast<JoyAxis::ThrottleTypes>(throttle));
         }
 
@@ -724,13 +725,13 @@ bool JoyAxis::readButtonConfig(QXmlStreamReader *xml)
 
     bool found = false;
 
-    int index = xml->attributes().value("index").toString().toInt();
-    if (index == 1)
+    int index_local = xml->attributes().value("index").toString().toInt();
+    if (index_local == 1)
     {
         found = true;
         naxisbutton->readConfig(xml);
     }
-    else if (index == 2)
+    else if (index_local == 2)
     {
         found = true;
         paxisbutton->readConfig(xml);
@@ -771,7 +772,7 @@ void JoyAxis::reset(int index)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     reset();
-    this->index = index;
+    m_index = index;
 }
 
 JoyAxisButton* JoyAxis::getPAxisButton()
@@ -874,14 +875,14 @@ void JoyAxis::propogateThrottleChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    emit throttleChangePropogated(this->index);
+    emit throttleChangePropogated(m_index);
 }
 
 int JoyAxis::getCurrentlyAssignedSet()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return originset;
+    return m_originset;
 }
 
 void JoyAxis::setControlStick(JoyControlStick *stick)
@@ -890,7 +891,7 @@ void JoyAxis::setControlStick(JoyControlStick *stick)
 
     removeVDPads();
     removeControlStick();
-    this->stick = stick;
+    m_stick = stick;
     emit propertyUpdated();
 }
 
@@ -898,28 +899,28 @@ bool JoyAxis::isPartControlStick()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return (this->stick != nullptr);
+    return (m_stick != nullptr);
 }
 
 JoyControlStick* JoyAxis::getControlStick()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->stick;
+    return m_stick;
 }
 
 void JoyAxis::removeControlStick(bool performRelease)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (stick != nullptr)
+    if (m_stick != nullptr)
     {
         if (performRelease)
         {
-            stick->releaseButtonEvents();
+            m_stick->releaseButtonEvents();
         }
 
-        this->stick = nullptr;
+        m_stick = nullptr;
         emit propertyUpdated();
     }
 }
@@ -1132,7 +1133,7 @@ double JoyAxis::getButtonsPresetSensitivity()
 
     double presetSensitivity = 1.0;
 
-    if (paxisbutton->getSensitivity() == naxisbutton->getSensitivity())
+    if (qFuzzyCompare(paxisbutton->getSensitivity(), naxisbutton->getSensitivity()))
     {
         presetSensitivity = paxisbutton->getSensitivity();
     }
@@ -1284,7 +1285,7 @@ SetJoystick* JoyAxis::getParentSet()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return parentSet;
+    return m_parentSet;
 }
 
 void JoyAxis::establishPropertyUpdatedConnection()
@@ -1327,16 +1328,16 @@ void JoyAxis::performCalibration(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    InputDevice *device = parentSet->getInputDevice();
+    InputDevice *device = m_parentSet->getInputDevice();
     if (value <= -30000)
     {
         // Assume axis is a trigger. Set default throttle to Positive.
-        device->setCalibrationThrottle(index, PositiveThrottle);
+        device->setCalibrationThrottle(m_index, PositiveThrottle);
     }
     else
     {
         // Ensure that default throttle is used when a device is reset.
-        device->setCalibrationThrottle(index,
+        device->setCalibrationThrottle(m_index,
                                        static_cast<JoyAxis::ThrottleTypes>(throttle));
     }
 }
@@ -1371,7 +1372,7 @@ double JoyAxis::getButtonsEasingDuration()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double result = JoyButton::DEFAULTEASINGDURATION;
-    if (paxisbutton->getEasingDuration() == naxisbutton->getEasingDuration())
+    if (qFuzzyCompare(paxisbutton->getEasingDuration(), naxisbutton->getEasingDuration()))
     {
         result = paxisbutton->getEasingDuration();
     }

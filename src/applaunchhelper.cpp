@@ -98,7 +98,7 @@ void AppLaunchHelper::changeGamepadPollRate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int pollRate = settings->value("GamepadPollRate",
-                                            AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
+                                            AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
     if (pollRate > 0)
     {
         JoyButton::setGamepadRefreshRate(pollRate);

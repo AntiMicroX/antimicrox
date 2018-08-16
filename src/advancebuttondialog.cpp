@@ -54,23 +54,23 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     PadderCommon::inputDaemonMutex.lock();
 
-    this->button = button;
+    m_button = button;
     oldRow = 0;
 
     getHelperLocal().moveToThread(button->thread());
 
-    if (this->button->getToggleState())
+    if (m_button->getToggleState())
     {
         ui->toggleCheckbox->setChecked(true);
     }
 
-    if (this->button->isUsingTurbo())
+    if (m_button->isUsingTurbo())
     {
         ui->turboCheckbox->setChecked(true);
         ui->turboSlider->setEnabled(true);
     }
 
-    int interval = this->button->getTurboInterval() / 10;
+    int interval = m_button->getTurboInterval() / 10;
     if (interval < MINIMUMTURBO)
     {
         interval = JoyButton::ENABLEDTURBODEFAULT / 10;
@@ -78,7 +78,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     ui->turboSlider->setValue(interval);
     this->changeTurboText(interval);
 
-    QListIterator<JoyButtonSlot*> iter(*(this->button->getAssignedSlots()));
+    QListIterator<JoyButtonSlot*> iter(*(m_button->getAssignedSlots()));
     while (iter.hasNext())
     {
         JoyButtonSlot *buttonslot = iter.next();
@@ -138,12 +138,12 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     populateSetSelectionComboBox();
     populateSlotSetSelectionComboBox();
 
-    if ((this->button->getSetSelection() > -1) &&
-        (this->button->getChangeSetCondition() != JoyButton::SetChangeDisabled))
+    if ((m_button->getSetSelection() > -1) &&
+        (m_button->getChangeSetCondition() != JoyButton::SetChangeDisabled))
     {
-        int selectIndex = static_cast<int>(this->button->getChangeSetCondition());
-        selectIndex += this->button->getSetSelection() * 3;
-        if (this->button->getOriginSet() < this->button->getSetSelection())
+        int selectIndex = static_cast<int>(m_button->getChangeSetCondition());
+        selectIndex += m_button->getSetSelection() * 3;
+        if (m_button->getOriginSet() < m_button->getSetSelection())
         {
             selectIndex -= 3;
         }
@@ -171,11 +171,11 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     updateWindowTitleButtonName();
 
-    if (this->button->isPartRealAxis() && this->button->isUsingTurbo())
+    if (m_button->isPartRealAxis() && m_button->isUsingTurbo())
     {
         ui->turboModeComboBox->setEnabled(true);
     }
-    else if (!this->button->isPartRealAxis())
+    else if (!m_button->isPartRealAxis())
     {
         ui->turboModeComboBox->setVisible(false);
         ui->turboModeLabel->setVisible(false);
@@ -184,7 +184,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     findTurboModeComboIndex();
 
     // Don't show Set Selector page for modifier buttons
-    if (this->button->isModifierButton())
+    if (m_button->isModifierButton())
     {
         delete ui->listWidget->item(3);
     }
@@ -252,7 +252,7 @@ void AdvanceButtonDialog::changeTurboText(int value)
     if (value >= MINIMUMTURBO)
     {
         double delay = value / 100.0;
-        double clicks = 100.0 / (double)value;
+        double clicks = 100.0 / static_cast<double>(value);
         QString delaytext = QString::number(delay, 'g', 3).append(" ").append(trUtf8("sec."));
         QString labeltext = QString::number(clicks, 'g', 2).append(" ").append(trUtf8("/sec."));
 
@@ -336,7 +336,7 @@ void AdvanceButtonDialog::deleteSlot()
 
     QListWidgetItem *item = ui->slotListWidget->takeItem(index);
     delete item;
-    item = 0;
+    item = nullptr;
 
     // Deleted last button. Replace with new blank button
     if (index == (itemcount - 1))
@@ -612,7 +612,7 @@ void AdvanceButtonDialog::clearAllSlots()
     appendBlankKeyGrabber();
     changeTurboForSequences();
 
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
+    QMetaObject::invokeMethod(m_button, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
     performStatsWidgetRefresh(ui->slotListWidget->currentItem());
 
     emit slotsChanged();
@@ -644,7 +644,7 @@ void AdvanceButtonDialog::changeTurboForSequences()
         if (ui->turboCheckbox->isChecked())
         {
             ui->turboCheckbox->setChecked(false);
-            this->button->setUseTurbo(false);
+            m_button->setUseTurbo(false);
             emit turboChanged(false);
         }
 
@@ -747,7 +747,7 @@ void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 
     if (value >= MINIMUMTURBO)
     {
-        button->setTurboInterval(value * 10);
+        m_button->setTurboInterval(value * 10);
     }
 }
 
@@ -758,16 +758,16 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
     ui->turboCheckbox->setChecked(state);
     ui->turboSlider->setEnabled(state);
 
-    if (this->button->isPartRealAxis())
+    if (m_button->isPartRealAxis())
     {
         ui->turboModeComboBox->setEnabled(state);
     }
 
     changeTurboForSequences();
-    button->setUseTurbo(state);
-    if ((button->getTurboInterval() / 10) >= MINIMUMTURBO)
+    m_button->setUseTurbo(state);
+    if ((m_button->getTurboInterval() / 10) >= MINIMUMTURBO)
     {
-        ui->turboSlider->setValue(button->getTurboInterval() / 10);
+        ui->turboSlider->setValue(m_button->getTurboInterval() / 10);
     }
 }
 
@@ -787,7 +787,7 @@ void AdvanceButtonDialog::updateSetSelection()
         chosen_set = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
 
         // Above removed rows
-        if (button->getOriginSet() > chosen_set)
+        if (m_button->getOriginSet() > chosen_set)
         {
             chosen_set = (ui->setSelectionComboBox->currentIndex() - 1) / 3;
         }
@@ -828,14 +828,13 @@ void AdvanceButtonDialog::updateSetSelection()
     {
         // First, remove old condition for the button in both sets.
         // After that, make the new assignment.
-        button->setChangeSetCondition(JoyButton::SetChangeDisabled);
-
-        button->setChangeSetSelection(chosen_set);
-        button->setChangeSetCondition(set_selection_condition);
+        m_button->setChangeSetCondition(JoyButton::SetChangeDisabled);
+        m_button->setChangeSetSelection(chosen_set);
+        m_button->setChangeSetCondition(set_selection_condition);
     }
     else
     {
-        button->setChangeSetCondition(JoyButton::SetChangeDisabled);
+        m_button->setChangeSetCondition(JoyButton::SetChangeDisabled);
     }
 
     PadderCommon::inputDaemonMutex.unlock();
@@ -1239,14 +1238,14 @@ void AdvanceButtonDialog::updateWindowTitleButtonName()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-    temp.append(trUtf8("Advanced").append(": ")).append(button->getPartialName(false, true));
+    temp.append(trUtf8("Advanced").append(": ")).append(m_button->getPartialName(false, true));
 
-    if (button->getParentSet()->getIndex() != 0)
+    if (m_button->getParentSet()->getIndex() != 0)
     {
-        int setIndex = button->getParentSet()->getRealIndex();
+        int setIndex = m_button->getParentSet()->getRealIndex();
         temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
 
-        QString setName = button->getParentSet()->getName();
+        QString setName = m_button->getParentSet()->getName();
         if (!setName.isEmpty())
         {
             temp.append(": ").append(setName);
@@ -1276,15 +1275,15 @@ void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int milliseconds = (static_cast<int>(value) * 1000) + (fmod(value, 1.0) * 1000);
-    button->setCycleResetTime(milliseconds);
+    int milliseconds = (static_cast<int>(value) * 1000) + (static_cast<int>(fmod(value, 1.0)) * 1000);
+    m_button->setCycleResetTime(milliseconds);
 }
 
 void AdvanceButtonDialog::populateAutoResetInterval()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double seconds = button->getCycleResetTime() / 1000.0;
+    double seconds = m_button->getCycleResetTime() / 1000.0;
     ui->resetCycleDoubleSpinBox->setValue(seconds);
 }
 
@@ -1294,8 +1293,8 @@ void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
 
     if (enabled)
     {
-        button->setCycleResetStatus(true);
-        if ((button->getCycleResetTime() == 0) && (ui->resetCycleDoubleSpinBox->value() > 0.0))
+        m_button->setCycleResetStatus(true);
+        if ((m_button->getCycleResetTime() == 0) && (ui->resetCycleDoubleSpinBox->value() > 0.0))
         {
             double current = ui->resetCycleDoubleSpinBox->value();
             setButtonCycleResetInterval(current);
@@ -1303,7 +1302,7 @@ void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
     }
     else
     {
-        button->setCycleResetStatus(false);
+        m_button->setCycleResetStatus(false);
     }
 }
 
@@ -1378,12 +1377,12 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     int currentIndex = 1;
     for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
     {
-        if (this->button->getOriginSet() != i)
+        if (m_button->getOriginSet() != i)
         {
             QString temp = QString();
             temp.append(trUtf8("Select Set %1").arg(i+1));
 
-            InputDevice *tempdevice = button->getParentSet()->getInputDevice();
+            InputDevice *tempdevice = m_button->getParentSet()->getInputDevice();
             SetJoystick *tempset = tempdevice->getSetJoystick(i);
             if (tempset != nullptr)
             {
@@ -1424,12 +1423,12 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
     int currentIndex = 0;
     for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
     {
-        if (this->button->getOriginSet() != i)
+        if (m_button->getOriginSet() != i)
         {
             QString temp = QString();
             temp.append(trUtf8("Select Set %1").arg(i+1));
 
-            InputDevice *tempdevice = button->getParentSet()->getInputDevice();
+            InputDevice *tempdevice = m_button->getParentSet()->getInputDevice();
             SetJoystick *tempset = tempdevice->getSetJoystick(i);
             if (tempset != nullptr)
             {
@@ -1451,7 +1450,7 @@ void AdvanceButtonDialog::findTurboModeComboIndex()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButton::TurboMode currentTurboMode = this->button->getTurboMode();
+    JoyButton::TurboMode currentTurboMode = m_button->getTurboMode();
     if (currentTurboMode == JoyButton::NormalTurbo)
     {
         ui->turboModeComboBox->setCurrentIndex(0);
@@ -1472,15 +1471,15 @@ void AdvanceButtonDialog::setButtonTurboMode(int value)
 
     if (value == 0)
     {
-        this->button->setTurboMode(JoyButton::NormalTurbo);
+        m_button->setTurboMode(JoyButton::NormalTurbo);
     }
     else if (value == 1)
     {
-        this->button->setTurboMode(JoyButton::GradientTurbo);
+        m_button->setTurboMode(JoyButton::GradientTurbo);
     }
     else if (value == 2)
     {
-        this->button->setTurboMode(JoyButton::PulseTurbo);
+        m_button->setTurboMode(JoyButton::PulseTurbo);
     }
 }
 
@@ -1488,7 +1487,7 @@ void AdvanceButtonDialog::showSelectProfileWindow()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    AntiMicroSettings *settings = this->button->getParentSet()->getInputDevice()->getSettings();
+    AntiMicroSettings *settings = m_button->getParentSet()->getInputDevice()->getSettings();
 
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
     QString filename = QFileDialog::getOpenFileName(this, trUtf8("Choose Profile"),
@@ -1673,7 +1672,7 @@ int AdvanceButtonDialog::getOldRow() const {
 
 JoyButton *AdvanceButtonDialog::getButton() const {
 
-    return button;
+    return m_button;
 }
 
 AdvanceButtonDialogHelper const& AdvanceButtonDialog::getHelper() {

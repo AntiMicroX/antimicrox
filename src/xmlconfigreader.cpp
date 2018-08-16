@@ -42,7 +42,7 @@ XMLConfigReader::XMLConfigReader(QObject *parent) :
 
     xml = new QXmlStreamReader();
     configFile = nullptr;
-    joystick = nullptr;
+    m_joystick = nullptr;
     initDeviceTypes();
 }
 
@@ -72,7 +72,7 @@ void XMLConfigReader::setJoystick(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->joystick = joystick;
+    m_joystick = joystick;
 }
 
 void XMLConfigReader::setFileName(QString filename)
@@ -95,7 +95,7 @@ void XMLConfigReader::configJoystick(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->joystick = joystick;
+    m_joystick = joystick;
     read();
 }
 
@@ -105,7 +105,7 @@ bool XMLConfigReader::read()
 
     bool error = false;
 
-    if ((configFile != nullptr) && configFile->exists() && (joystick != nullptr))
+    if ((configFile != nullptr) && configFile->exists() && (m_joystick != nullptr))
     {
         xml->clear();
 
@@ -156,7 +156,7 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-                joystick->readConfig(xml);
+                m_joystick->readConfig(xml);
             }
             else
             {
@@ -232,7 +232,7 @@ const QFile* XMLConfigReader::getConfigFile() {
 
 const InputDevice* XMLConfigReader::getJoystick() {
 
-    return joystick;
+    return m_joystick;
 }
 
 QStringList const& XMLConfigReader::getDeviceTypes() {

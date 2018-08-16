@@ -109,17 +109,17 @@ void AutoProfileWatcher::runAppCheck()
     nowWindowName = WinExtras::getCurrentWindowText();
 #elif defined(Q_OS_UNIX)
 
-    long currentWindow = X11Extras::getInstance()->getWindowInFocus();
+    long currentWindow = static_cast<long>(X11Extras::getInstance()->getWindowInFocus());
     if (currentWindow > 0)
     {
-        long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
+        long tempWindow = static_cast<long>(X11Extras::getInstance()->findParentClient(static_cast<Window>(currentWindow)));
         if (tempWindow > 0)
         {
             currentWindow = tempWindow;
         }
         nowWindow = QString::number(currentWindow);
-        nowWindowClass = X11Extras::getInstance()->getWindowClass(currentWindow);
-        nowWindowName = X11Extras::getInstance()->getWindowTitle(currentWindow);
+        nowWindowClass = X11Extras::getInstance()->getWindowClass(static_cast<Window>(currentWindow));
+        nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
 
         #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << nowWindowClass;

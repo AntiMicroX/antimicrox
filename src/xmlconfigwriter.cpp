@@ -36,7 +36,7 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     xml = new QXmlStreamWriter();
     xml->setAutoFormatting(true);
     configFile = nullptr;
-    joystick = nullptr;
+    m_joystick = nullptr;
     writerError = false;
 }
 
@@ -44,7 +44,7 @@ XMLConfigWriter::~XMLConfigWriter()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (configFile)
+    if (configFile != nullptr)
     {
         if (configFile->isOpen())
         {
@@ -55,7 +55,7 @@ XMLConfigWriter::~XMLConfigWriter()
         configFile = nullptr;
     }
 
-    if (xml)
+    if (xml != nullptr)
     {
         delete xml;
         xml = nullptr;
@@ -132,5 +132,5 @@ const QFile *XMLConfigWriter::getConfigFile() {
 
 const InputDevice* XMLConfigWriter::getJoystick() {
 
-    return joystick;
+    return m_joystick;
 }

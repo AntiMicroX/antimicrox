@@ -192,7 +192,7 @@ void DPadContextMenu::setDPadMode(QAction* action)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int item = action->data().toInt();
-    dpad->setJoyMode((JoyDPad::JoyMode)item);
+    dpad->setJoyMode(static_cast<JoyDPad::JoyMode>(item));
 }
 
 /**

@@ -128,7 +128,7 @@ private:
     };
 
     int oldRow;
-    JoyButton *button;
+    JoyButton *m_button;
     AdvanceButtonDialogHelper helper;
 
 };

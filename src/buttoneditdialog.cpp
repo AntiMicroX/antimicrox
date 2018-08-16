@@ -223,6 +223,8 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
             ignore = true;
             break;
         }
+    default:
+        break;
     }
 
     if (!ignore)
@@ -243,8 +245,8 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
     }
     else if (ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
     {
-        int controlcode = event->nativeScanCode();
-        int virtualactual = event->nativeVirtualKey();
+        int controlcode = static_cast<int>(event->nativeScanCode());
+        int virtualactual = static_cast<int>(event->nativeVirtualKey());
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
@@ -431,9 +433,9 @@ void ButtonEditDialog::openAdvancedDialog()
     dialog->show();
 
     // Disconnect event to allow for placing slot to AdvanceButtonDialog
-    disconnect(this, &ButtonEditDialog::keyGrabbed, 0, 0);
-    disconnect(this, &ButtonEditDialog::selectionCleared, 0, 0);
-    disconnect(this, &ButtonEditDialog::selectionFinished, 0, 0);
+    disconnect(this, &ButtonEditDialog::keyGrabbed, nullptr, nullptr);
+    disconnect(this, &ButtonEditDialog::selectionCleared, nullptr, nullptr);
+    disconnect(this, &ButtonEditDialog::selectionFinished, nullptr, nullptr);
 
     connect(dialog, &AdvanceButtonDialog::finished, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections);
     connect(dialog, &AdvanceButtonDialog::finished, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections);
@@ -499,7 +501,7 @@ void ButtonEditDialog::closedAdvancedDialog()
 
     ui->advancedPushButton->setEnabled(true);
 
-    disconnect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(int,int)>(&VirtualKeyboardMouseWidget::selectionMade), this, 0);
+    disconnect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(int,int)>(&VirtualKeyboardMouseWidget::selectionMade), this, nullptr);
 
     // Re-connect previously disconnected event
     connect(this, &ButtonEditDialog::keyGrabbed, this, &ButtonEditDialog::processSlotAssignment);

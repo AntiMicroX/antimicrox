@@ -337,13 +337,13 @@ void QtX11KeyMapper::populateCharKeyInformation()
                 dicis |= Qt::ShiftModifier;
             }
 
-            int testsym = XkbKeycodeToKeysym(display, i,
+            int testsym = static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(i),
                                                       dicis & Qt::MetaModifier ? 1 : 0,
-                                                      dicis & Qt::ShiftModifier ? 1 : 0);
+                                                      dicis & Qt::ShiftModifier ? 1 : 0));
             if (testsym != NoSymbol)
             {
                 XKeyPressedEvent tempevent;
-                tempevent.keycode = i;
+                tempevent.keycode = static_cast<unsigned int>(i);
                 tempevent.type = KeyPress;
                 tempevent.display = display;
                 tempevent.state = 0;

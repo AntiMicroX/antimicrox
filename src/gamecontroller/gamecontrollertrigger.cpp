@@ -157,7 +157,7 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
     bool currentlyDefault = isDefault();
 
     xml->writeStartElement(getXmlName());
-    xml->writeAttribute("index", QString::number((index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+    xml->writeAttribute("index", QString::number((m_index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
 
     if (!currentlyDefault)
     {
@@ -225,5 +225,5 @@ JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return (ThrottleTypes)this->DEFAULTTHROTTLE;
+    return static_cast<ThrottleTypes>(this->DEFAULTTHROTTLE);
 }

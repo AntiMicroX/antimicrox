@@ -29,6 +29,9 @@ class JoyGradientButton : public JoyButton
 public:
     explicit JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
 
+    using JoyButton::getPartialName;
+    using JoyButton::setChangeSetCondition;
+
 protected slots:
     virtual void turboEvent();
     virtual void wheelEventVertical();

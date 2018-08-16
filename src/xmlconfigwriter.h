@@ -48,7 +48,7 @@ private:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
-    InputDevice* joystick;
+    InputDevice* m_joystick;
     bool writerError;
     QString writerErrorString;
 

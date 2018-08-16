@@ -46,7 +46,7 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 
     setAxisThrottleConfirm = new SetAxisThrottleDialog(axis, this);
 
-    this->axis = axis;
+    m_axis = axis;
 
     updateWindowTitleAxisName();
 
@@ -178,7 +178,7 @@ void AxisEditDialog::implementPresets(int index)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool actAsTrigger = false;
-    int currentThrottle = axis->getThrottle();
+    int currentThrottle = m_axis->getThrottle();
     if ((currentThrottle == static_cast<int>(JoyAxis::PositiveThrottle)) ||
         (currentThrottle == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
@@ -203,7 +203,7 @@ void AxisEditDialog::implementAxisPresets(int index)
     JoyButtonSlot *pbuttonslot = nullptr;
 
     PadderCommon::lockInputDevices();
-    InputDevice *tempDevice = axis->getParentSet()->getInputDevice();
+    InputDevice *tempDevice = m_axis->getParentSet()->getInputDevice();
     QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
 
     if (index == 1)
@@ -258,8 +258,8 @@ void AxisEditDialog::implementAxisPresets(int index)
     }
     else if (index == 11)
     {
-        JoyAxisButton *nbutton = axis->getNAxisButton();
-        JoyAxisButton *pbutton = axis->getPAxisButton();
+        JoyAxisButton *nbutton = m_axis->getNAxisButton();
+        JoyAxisButton *pbutton = m_axis->getPAxisButton();
 
         QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset");
         QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
@@ -270,7 +270,7 @@ void AxisEditDialog::implementAxisPresets(int index)
 
     if (nbuttonslot != nullptr)
     {
-        JoyAxisButton *button = axis->getNAxisButton();
+        JoyAxisButton *button = m_axis->getNAxisButton();
         QMetaObject::invokeMethod(button, "clearSlotsEventReset",
                                   Q_ARG(bool, false));
 
@@ -285,7 +285,7 @@ void AxisEditDialog::implementAxisPresets(int index)
 
     if (pbuttonslot != nullptr)
     {
-        JoyAxisButton *button = axis->getPAxisButton();
+        JoyAxisButton *button = m_axis->getPAxisButton();
         QMetaObject::invokeMethod(button, "clearSlotsEventReset", Q_ARG(bool, false));
 
         QMetaObject::invokeMethod(button, "setAssignedSlot", Qt::BlockingQueuedConnection,
@@ -338,7 +338,7 @@ void AxisEditDialog::updateThrottleUi(int index)
         tempthrottle = (index == 3) ? static_cast<int>(JoyAxis::PositiveThrottle) : static_cast<int>(JoyAxis::PositiveHalfThrottle);
     }
 
-    axis->setThrottle(tempthrottle);
+    m_axis->setThrottle(tempthrottle);
     ui->axisstatusBox->setThrottle(tempthrottle);
 }
 
@@ -354,7 +354,7 @@ void AxisEditDialog::updateDeadZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= this->axis->getAxisMinCal()) && (temp <= this->axis->getAxisMaxCal()))
+    if ((temp >= m_axis->getAxisMinCal()) && (temp <= m_axis->getAxisMaxCal()))
     {
         ui->horizontalSlider->setValue(temp);
     }
@@ -365,7 +365,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
-    if ((temp >= this->axis->getAxisMinCal()) && (temp <= this->axis->getAxisMaxCal()))
+    if ((temp >= m_axis->getAxisMinCal()) && (temp <= m_axis->getAxisMaxCal()))
     {
         ui->horizontalSlider_2->setValue(temp);
     }
@@ -375,7 +375,7 @@ void AxisEditDialog::openAdvancedPDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getPAxisButton(), axis->getControlStick()->getParentSet()->getInputDevice(),  this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(m_axis->getPAxisButton(), m_axis->getControlStick()->getParentSet()->getInputDevice(),  this);
     dialog->show();
 
     connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPButtonLabel);
@@ -386,7 +386,7 @@ void AxisEditDialog::openAdvancedNDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(axis->getNAxisButton(), axis->getControlStick()->getParentSet()->getInputDevice(), this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(m_axis->getNAxisButton(), m_axis->getControlStick()->getParentSet()->getInputDevice(), this);
     dialog->show();
 
     connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshNButtonLabel);
@@ -397,14 +397,14 @@ void AxisEditDialog::refreshNButtonLabel()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ui->nPushButton->setText(axis->getNAxisButton()->getSlotsSummary());
+    ui->nPushButton->setText(m_axis->getNAxisButton()->getSlotsSummary());
 }
 
 void AxisEditDialog::refreshPButtonLabel()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ui->pPushButton->setText(axis->getPAxisButton()->getSlotsSummary());
+    ui->pPushButton->setText(m_axis->getPAxisButton()->getSlotsSummary());
 
 }
 
@@ -412,7 +412,7 @@ void AxisEditDialog::checkFinalSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (axis->getThrottle() != initialThrottleState)
+    if (m_axis->getThrottle() != initialThrottleState)
     {
         setAxisThrottleConfirm->exec();
     }
@@ -422,9 +422,9 @@ void AxisEditDialog::selectAxisCurrentPreset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyAxisButton *naxisbutton = axis->getNAxisButton();
+    JoyAxisButton *naxisbutton = m_axis->getNAxisButton();
     QList<JoyButtonSlot*> *naxisslots = naxisbutton->getAssignedSlots();
-    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+    JoyAxisButton *paxisbutton = m_axis->getPAxisButton();
     QList<JoyButtonSlot*> *paxisslots = paxisbutton->getAssignedSlots();
 
     if ((naxisslots->length() == 1) && (paxisslots->length() == 1))
@@ -500,7 +500,7 @@ void AxisEditDialog::selectTriggerPreset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyAxisButton *paxisbutton = axis->getPAxisButton();
+    JoyAxisButton *paxisbutton = m_axis->getPAxisButton();
     QList<JoyButtonSlot*> *paxisslots = paxisbutton->getAssignedSlots();
 
     if (paxisslots->length() == 1)
@@ -545,8 +545,8 @@ void AxisEditDialog::implementTriggerPresets(int index)
     }
     else if (index == 3)
     {
-        JoyAxisButton *nbutton = axis->getNAxisButton();
-        JoyAxisButton *pbutton = axis->getPAxisButton();
+        JoyAxisButton *nbutton = m_axis->getNAxisButton();
+        JoyAxisButton *pbutton = m_axis->getPAxisButton();
 
         QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset");
         QMetaObject::invokeMethod(pbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection);
@@ -558,8 +558,8 @@ void AxisEditDialog::implementTriggerPresets(int index)
     if (pbuttonslot != nullptr)
     {
 
-        JoyAxisButton *nbutton = axis->getNAxisButton();
-        JoyAxisButton *pbutton = axis->getPAxisButton();
+        JoyAxisButton *nbutton = m_axis->getNAxisButton();
+        JoyAxisButton *pbutton = m_axis->getPAxisButton();
         if (nbutton->getAssignedSlots()->length() > 0)
         {
             QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
@@ -598,7 +598,7 @@ void AxisEditDialog::openMouseSettingsDialog()
 
     ui->mouseSettingsPushButton->setEnabled(false);
 
-    MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, this);
+    MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(m_axis, this);
     dialog->show();
     connect(this, &AxisEditDialog::finished, dialog, &MouseAxisSettingsDialog::close);
     connect(dialog, &MouseAxisSettingsDialog::finished, this, &AxisEditDialog::enableMouseSettingButton);
@@ -617,21 +617,21 @@ void AxisEditDialog::updateWindowTitleAxisName()
 
     QString temp = QString(trUtf8("Set")).append(" ");
 
-    if (!axis->getAxisName().isEmpty())
+    if (!m_axis->getAxisName().isEmpty())
     {
-        temp.append(axis->getPartialName(false, true));
+        temp.append(m_axis->getPartialName(false, true));
     }
     else
     {
-        temp.append(axis->getPartialName());
+        temp.append(m_axis->getPartialName());
     }
 
-    if (axis->getParentSet()->getIndex() != 0)
+    if (m_axis->getParentSet()->getIndex() != 0)
     {
-        int setIndex = axis->getParentSet()->getRealIndex();
+        int setIndex = m_axis->getParentSet()->getRealIndex();
         temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
 
-        QString setName = axis->getParentSet()->getName();
+        QString setName = m_axis->getParentSet()->getName();
         if (!setName.isEmpty())
         {
             temp.append(": ").append(setName);
@@ -682,7 +682,7 @@ void AxisEditDialog::presetForThrottleChange(int index)
     Q_UNUSED(index);
 
     bool actAsTrigger = false;
-    int currentThrottle = axis->getThrottle();
+    int currentThrottle = m_axis->getThrottle();
     if ((currentThrottle == static_cast<int>(JoyAxis::PositiveThrottle)) ||
         (currentThrottle == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {

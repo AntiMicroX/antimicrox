@@ -34,14 +34,14 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->index = index;
+    m_index = index;
     buttons = QHash<int, JoyDPadButton*> ();
     activeDiagonalButton = nullptr;
     prevDirection = JoyDPadButton::DpadCentered;
     pendingDirection = prevDirection;
-    this->originset = originset;
+    m_originset = originset;
     currentMode = StandardMode;
-    this->parentSet = parentSet;
+    m_parentSet = parentSet;
     this->dpadDelay = DEFAULTDPADDELAY;
 
     populateButtons();
@@ -69,39 +69,39 @@ JoyDPad::~JoyDPad()
     buttons.clear();
 }
 
-JoyDPadButton *JoyDPad::getJoyButton(int index)
+JoyDPadButton *JoyDPad::getJoyButton(int index_local)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return buttons.value(index);
+    return buttons.value(index_local);
 }
 
 void JoyDPad::populateButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, originset, this, parentSet, this);
+    JoyDPadButton* button = new JoyDPadButton (JoyDPadButton::DpadUp, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadUp, button);
 
-    button = new JoyDPadButton (JoyDPadButton::DpadDown, originset, this, parentSet, this);
+    button = new JoyDPadButton (JoyDPadButton::DpadDown, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadDown, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRight, originset, this, parentSet, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRight, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadRight, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeft, originset, this, parentSet, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeft, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadLeft, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeftUp, originset, this, parentSet, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeftUp, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadLeftUp, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRightUp, originset, this, parentSet, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRightUp, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadRightUp, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadRightDown, originset, this, parentSet, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadRightDown, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadRightDown, button);
 
-    button = new JoyDPadButton(JoyDPadButton::DpadLeftDown, originset, this, parentSet, this);
+    button = new JoyDPadButton(JoyDPadButton::DpadLeftDown, m_originset, this, m_parentSet, this);
     buttons.insert(JoyDPadButton::DpadLeftDown, button);
 }
 
@@ -141,21 +141,21 @@ int JoyDPad::getJoyNumber()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index;
+    return m_index;
 }
 
 int JoyDPad::getIndex()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index;
+    return m_index;
 }
 
 int JoyDPad::getRealJoyNumber()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index + 1;
+    return m_index + 1;
 }
 
 QString JoyDPad::getXmlName()
@@ -194,8 +194,8 @@ bool JoyDPad::readMainConfig(QXmlStreamReader *xml)
     if ((xml->name() == "dpadbutton") && xml->isStartElement())
     {
         found = true;
-        int index = xml->attributes().value("index").toString().toInt();
-        JoyDPadButton* button = this->getJoyButton(index);
+        int index_local = xml->attributes().value("index").toString().toInt();
+        JoyDPadButton* button = this->getJoyButton(index_local);
         if (button != nullptr)
         {
             button->readConfig(xml);
@@ -240,7 +240,7 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
     if (!isDefault())
     {
         xml->writeStartElement(getXmlName());
-        xml->writeAttribute("index", QString::number(index+1));
+        xml->writeAttribute("index", QString::number(m_index + 1));
         if (currentMode == EightWayMode)
         {
             xml->writeTextElement("mode", "eight-way");
@@ -322,7 +322,7 @@ void JoyDPad::joyEvent(int value, bool ignoresets)
                 emit active(value);
             }
 
-            pendingDirection = (JoyDPadButton::JoyDPadDirections)value;
+            pendingDirection = static_cast<JoyDPadButton::JoyDPadDirections>(value);
 
             if (ignoresets || (dpadDelay == 0))
             {
@@ -701,7 +701,7 @@ double JoyDPad::getButtonsPresetSensitivity()
         {
             JoyDPadButton *button = iter.next().value();
             double temp = button->getSensitivity();
-            if (temp != presetSensitivity)
+            if (!qFuzzyCompare(temp, presetSensitivity))
             {
                 presetSensitivity = 1.0;
                 iter.toBack();
@@ -807,7 +807,7 @@ SetJoystick* JoyDPad::getParentSet()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return parentSet;
+    return m_parentSet;
 }
 
 void JoyDPad::establishPropertyUpdatedConnection()
@@ -1188,7 +1188,7 @@ double JoyDPad::getButtonsEasingDuration()
         {
             JoyDPadButton *button = iter.next().value();
             double temp = button->getEasingDuration();
-            if (temp != result)
+            if (!qFuzzyCompare(temp, result))
             {
                 result = JoyButton::DEFAULTEASINGDURATION;
                 iter.toBack();
