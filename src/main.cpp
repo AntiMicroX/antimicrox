@@ -109,7 +109,7 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
     while (iter.hasNext())
     {
         InputDevice *joystick = iter.next().value();
-        if (joystick)
+        if (joystick != nullptr)
         {
             delete joystick;
             joystick = nullptr;
@@ -677,7 +677,7 @@ int main(int argc, char *argv[])
         appLogger.LogInfo(QObject::trUtf8("Attempting to use fallback option %1 for event generation.")
                                      .arg(eventDisplayName));
 
-        if (keyMapper)
+        if (keyMapper != nullptr)
         {
             keyMapper->deleteInstance();
             keyMapper = nullptr;
@@ -711,7 +711,7 @@ int main(int argc, char *argv[])
         delete localServer;
         localServer = nullptr;
 
-        if (keyMapper)
+        if (keyMapper != nullptr)
         {
             keyMapper->deleteInstance();
             keyMapper = nullptr;

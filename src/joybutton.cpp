@@ -2963,7 +2963,7 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
     }
     else
     {
-        if (slot)
+        if (slot != nullptr)
         {
             delete slot;
             slot = nullptr;
@@ -3077,7 +3077,7 @@ bool JoyButton::setAssignedSlot(int code, int alias, int index,
         {
             // Insert slot and move existing slots.
             JoyButtonSlot *temp = getAssignedSlots()->at(index);
-            if (temp)
+            if (temp != nullptr)
             {
                 delete temp;
                 temp = nullptr;
@@ -3100,7 +3100,7 @@ bool JoyButton::setAssignedSlot(int code, int alias, int index,
     }
     else
     {
-        if (slot)
+        if (slot != nullptr)
         {
             delete slot;
             slot = nullptr;
@@ -3175,7 +3175,7 @@ bool JoyButton::insertAssignedSlot(int code, int alias, int index,
     }
     else
     {
-        if (slot)
+        if (slot != nullptr)
         {
             delete slot;
             slot = nullptr;
@@ -3288,7 +3288,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
         {
             // Slot already exists. Override code and place into desired slot
             JoyButtonSlot *temp = getAssignedSlots()->at(index);
-            if (temp)
+            if (temp != nullptr)
             {
                 delete temp;
                 temp = nullptr;
@@ -4150,7 +4150,7 @@ void JoyButton::removeAssignedSlot(int index)
     if ((index >= 0) && (index < getAssignedSlots()->size()))
     {
         JoyButtonSlot *slot = getAssignedSlots()->takeAt(index);
-        if (slot)
+        if (slot != nullptr)
         {
             delete slot;
             slot = nullptr;

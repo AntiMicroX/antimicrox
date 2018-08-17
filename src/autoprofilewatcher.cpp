@@ -529,7 +529,7 @@ void AutoProfileWatcher::clearProfileAssignments()
     while (iterTerminate.hasNext())
     {
         AutoProfileInfo *info = iterTerminate.next();
-        if (info)
+        if (info != nullptr)
         {
             delete info;
             info = nullptr;
@@ -540,7 +540,7 @@ void AutoProfileWatcher::clearProfileAssignments()
     while (iterDefaultsDelete.hasNext())
     {
         AutoProfileInfo *info = iterDefaultsDelete.next();
-        if (info)
+        if (info != nullptr)
         {
             delete info;
             info = nullptr;

@@ -237,7 +237,7 @@ Window X11Extras::findParentClient(Window window)
 
             if (XQueryTree(display, window, &root, &parent, &children, &num_children))
             {
-                if (children)
+                if (children != nullptr)
                 {
                     // must be a test for NULL
                     XFree(children);
@@ -316,7 +316,7 @@ int X11Extras::getApplicationPid(Window window)
 
             if (XQueryTree(display, window, &root, &parent, &children, &num_children))
             {
-                if (children)
+                if (children != nullptr)
                 {
                     // must be a test for NULL
                     XFree(children);
@@ -359,7 +359,7 @@ int X11Extras::getApplicationPid(Window window)
         int status = 0;
 
         status = XGetWindowProperty(display, finalwindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-        if ((status == 0) && prop)
+        if ((status == 0) && (prop != nullptr))
         {
             pid = prop[1] << 8;
             pid += prop[0];
@@ -435,7 +435,7 @@ Window X11Extras::findClientWindow(Window window)
     else
     {
         XQueryTree(display, window, &root, &parent, &children, &num_children);
-        if (children)
+        if (children != nullptr)
         {
             for (unsigned int i = 0; (i < num_children) && !finalwindow; i++)
             {
@@ -447,7 +447,7 @@ Window X11Extras::findClientWindow(Window window)
             }
         }
 
-        if (!finalwindow && children)
+        if (!finalwindow && (children != nullptr))
         {
             for (unsigned int i = 0; (i < num_children) && !finalwindow; i++)
             {
@@ -455,7 +455,7 @@ Window X11Extras::findClientWindow(Window window)
             }
         }
 
-        if (children)
+        if (children != nullptr)
         {
             XFree(children);
             children = nullptr;
@@ -481,12 +481,12 @@ bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
                                 &actual_type, &actual_format, &nitems, &bytes_after,
                                 &prop);
 
-    if ((status == Success) && prop)
+    if ((status == Success) && (prop != nullptr))
     {
         result = true;
     }
 
-    if (prop)
+    if (prop != nullptr)
     {
         XFree(prop);
         prop = nullptr;
@@ -583,7 +583,7 @@ QString X11Extras::getWindowTitle(Window window)
                                 &actual_type, &actual_format, &nitems, &bytes_after,
                                 &prop);
 
-    if ((status == Success) && prop)
+    if ((status == Success) && (prop != nullptr))
     {
         char *tempprop = reinterpret_cast<char*>(prop);
         temp.append(QString::fromUtf8(tempprop));
@@ -593,7 +593,7 @@ QString X11Extras::getWindowTitle(Window window)
         #endif
     }
 
-    if (prop)
+    if (prop != nullptr)
     {
         XFree(prop);
         prop = nullptr;
@@ -642,7 +642,7 @@ QString X11Extras::getWindowClass(Window window)
         #endif
     }
 
-    if (prop)
+    if (prop != nullptr)
     {
         XFree(prop);
         prop = nullptr;
@@ -737,7 +737,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             }
         }
 
-        if (mouse_device)
+        if (mouse_device != nullptr)
         {
             XDevice *device = XOpenDevice(display, static_cast<XID>(mouse_device->deviceid));
 
@@ -789,7 +789,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             XCloseDevice(display, device);
         }
 
-        if (all_devices)
+        if (all_devices != nullptr)
         {
             XIFreeDeviceInfo(all_devices);
         }
@@ -881,7 +881,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
             XCloseDevice(display, device);
         }
 
-        if (all_devices)
+        if (all_devices != nullptr)
         {
             XIFreeDeviceInfo(all_devices);
         }

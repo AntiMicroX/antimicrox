@@ -43,13 +43,13 @@ JoyTabWidgetHelper::~JoyTabWidgetHelper()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (this->reader)
+    if (this->reader != nullptr)
     {
         delete this->reader;
         this->reader = nullptr;
     }
 
-    if (this->writer)
+    if (this->writer != nullptr)
     {
         delete this->writer;
         this->writer = nullptr;
@@ -111,7 +111,7 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
     }
 
     device->resetButtonDownCount();
-    if (this->reader)
+    if (this->reader != nullptr)
     {
         this->reader->deleteLater();
         this->reader = nullptr;
@@ -143,7 +143,7 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
     bool result = false;
 
-    if (this->writer)
+    if (this->writer != nullptr)
     {
         this->writer->deleteLater();
         this->writer = nullptr;

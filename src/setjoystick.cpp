@@ -166,7 +166,7 @@ void SetJoystick::deleteButtons()
     while (iter.hasNext())
     {
         JoyButton *button = iter.next().value();
-        if (button)
+        if (button != nullptr)
         {
             delete button;
             button = nullptr;
@@ -185,7 +185,7 @@ void SetJoystick::deleteAxes()
     while (iter.hasNext())
     {
         JoyAxis *axis = iter.next().value();
-        if (axis)
+        if (axis != nullptr)
         {
             delete axis;
             axis = nullptr;
@@ -203,7 +203,7 @@ void SetJoystick::deleteSticks()
     while (iter.hasNext())
     {
         JoyControlStick *stick = iter.next().value();
-        if (stick)
+        if (stick != nullptr)
         {
             delete stick;
             stick = nullptr;
@@ -221,7 +221,7 @@ void SetJoystick::deleteVDpads()
     while (iter.hasNext())
     {
         VDPad *dpad = iter.next().value();
-        if (dpad)
+        if (dpad != nullptr)
         {
             delete dpad;
             dpad = nullptr;
@@ -240,7 +240,7 @@ void SetJoystick::deleteHats()
     while (iter.hasNext())
     {
         JoyDPad *dpad = iter.next().value();
-        if (dpad)
+        if (dpad != nullptr)
         {
             delete dpad;
             dpad = nullptr;
