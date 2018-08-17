@@ -1171,6 +1171,9 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         lastFileAbsolute = lastFileInfo.absoluteFilePath();
 #endif
 
+        // preventing checkForUnsavedProfile(int) at program start-up
+        disconnectCheckUnsavedEvent();
+
         int lastindex = configBox->findData(lastFileAbsolute);
         if (lastindex > 0)
         {
@@ -1182,6 +1185,8 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             configBox->setCurrentIndex(0);
             emit joystickConfigChanged(m_joystick->getJoyNumber());
         }
+
+        reconnectCheckUnsavedEvent();
     }
     else if (configBox->currentIndex() != 0)
     {

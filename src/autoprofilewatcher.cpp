@@ -48,7 +48,7 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
 
     syncProfileAssignment();
 
-    checkWindowTimer.setInterval(1000);
+    checkWindowTimer.setInterval(2000);
     checkWindowTimer.start();
 
     connect(&(checkWindowTimer), &QTimer::timeout, this, &AutoProfileWatcher::runAppCheck);
@@ -424,7 +424,6 @@ void AutoProfileWatcher::syncProfileAssignment()
                     windowClassProfileAssignments.insert(windowClass, templist);
                 }
 
-                // look here!
                 // partly watching is needed for window title
                 if (!windowName.isEmpty())
                 {

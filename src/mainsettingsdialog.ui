@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>706</width>
-    <height>617</height>
+    <height>627</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -92,7 +92,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -110,7 +110,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Profi&amp;le Directory:</string>
+              <string>Prof&amp;ile Directory:</string>
              </property>
              <property name="buddy">
               <cstring>profileDefaultDirLineEdit</cstring>
